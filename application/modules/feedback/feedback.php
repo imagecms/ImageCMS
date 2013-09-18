@@ -15,20 +15,27 @@ class Feedback extends MY_Controller {
     public $theme_max_len = 150;
     public $admin_mail = 'admin@localhost';
     public $message = '';
+    protected $formErrors = array();
 
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
         $this->load_settings();
+
+
+        $this->formErrors = array(
+            'required' => lang('Field is required'),
+            'min_length' => lang('Length is less than the minimum'),
+            'valid_email' => lang('Email is not valid'),
+            'max_length' => lang('Length greater than the maximum')
+        );
     }
 
     public function autoload() {
         
     }
 
-     function captcha_check($code) {
-
-        
+    function captcha_check($code) {
         if (!$this->dx_auth->captcha_check($code))
             return FALSE;
         else
@@ -43,7 +50,7 @@ class Feedback extends MY_Controller {
 
         return $result;
     }
-    
+
     // Index function
     public function index() {
         $this->core->set_meta_tags(lang('Feedback'));
@@ -61,7 +68,6 @@ class Feedback extends MY_Controller {
             $this->form_validation->set_rules('email', lang('E-Mail'), 'trim|required|valid_email|xss_clean');
             $this->form_validation->set_rules('theme', lang('Theme'), 'trim|required|max_length[' . $this->theme_max_len . ']|xss_clean');
 
-            
             if ($this->dx_auth->use_recaptcha)
                 $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection") . 'RECAPTCHA', 'trim|xss_clean|required|callback_recaptcha_check');
             else
@@ -69,14 +75,29 @@ class Feedback extends MY_Controller {
 
             $this->form_validation->set_rules('message', lang('Message'), 'trim|required|max_length[' . $this->message_max_len . ']|xss_clean');
 
-            if ($this->form_validation->run($this) == FALSE) {
-                $this->template->assign('form_errors', validation_errors('<div style="color:red">', '</div>'));
-            } else {
+            if ($this->form_validation->run($this) == FALSE) { // there are errors
+                $fields = array(
+                    'theme' => lang('Theme'),
+                    'name' => lang('Name'),
+                    'email' => lang('E-mail'),
+                    'message' => lang('Message'),
+                );
+                $errors = "";
+                $this->form_validation->set_error_delimiters("", "");
+                foreach ($fields as $field => $name) {
+                    $error = $this->form_validation->error($field);
+                    if (!empty($error)) {
+                        $error_ = isset($this->formErrors[$error]) ? $this->formErrors[$error] : 'Error';
+                        $errors .= "<div style=\"color:red\">{$name} - {$error_}</div>";
+                    }
+                }
+                $this->template->assign('form_errors', $errors);
+            } else { // form is validate
                 $this->message = strip_tags(nl2br(
-                        lang('Theme') . ' : ' . $this->input->post('theme') . 
-                        lang('Name') .' : ' . $this->input->post('name') . 
-                        lang('E-mail') .' : ' . $this->input->post('email') . 
-                        lang('Message') . ' : ' . $this->input->post('message')
+                                lang('Theme') . ' : ' . $this->input->post('theme') .
+                                lang('Name') . ' : ' . $this->input->post('name') .
+                                lang('E-mail') . ' : ' . $this->input->post('email') .
+                                lang('Message') . ' : ' . $this->input->post('message')
                 ));
                 $this->_send_message();
             }
@@ -119,8 +140,6 @@ class Feedback extends MY_Controller {
             $this->admin_mail = $settings['email'];
         }
     }
-
-   
 
     /**
      * Display template file

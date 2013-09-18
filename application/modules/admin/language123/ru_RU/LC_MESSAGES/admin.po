@@ -1,0 +1,4072 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-17 10:59+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ../../../templates/administrator\n"
+"X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
+"X-Poedit-SearchPath-3: ../../../templates/administrator/.\n"
+"X-Poedit-SearchPath-4: ../../modules/shop/models\n"
+"X-Poedit-SearchPath-5: ../../helpers\n"
+
+#: admin.php:62
+msgid "Cleared the cache"
+msgstr "Кэш очищен"
+
+#: admin.php:68
+msgid "Files deleted"
+msgstr "Файлы удалены"
+
+#: admin.php:70
+#: admin.php:78
+msgid "Cache has been cleared"
+msgstr "Кэш очищен"
+
+#: admin.php:76
+msgid "Outdated files  have been deleted"
+msgstr "Устаревшие файлы удалены"
+
+#: admin.php:81
+msgid "Clearing cache error"
+msgstr "Ошибка очистки кэша"
+
+#: admin.php:162
+msgid "exited the control panel"
+msgstr "вышли с контрольной панели"
+
+#: admin.php:177
+msgid "Site address"
+msgstr "Адрес сайта"
+
+#: admin.php:177
+msgid "page"
+msgstr "страница"
+
+#: admin.php:177
+msgid "ip-address"
+msgstr "IP-адрес"
+
+#: admin.php:177
+msgid "user name"
+msgstr "имя пользователя"
+
+#: admin.php:177
+msgid "Message"
+msgstr "Сообщение"
+
+#: admin.php:187
+msgid "An error occurred while sending a message"
+msgstr "Произошла ошибка при отправке сообщения"
+
+#: admin.php:190
+msgid "Your message has been sent"
+msgstr "Ваше сообщение было отправлено"
+
+#: admin.php:193
+msgid "Comment is a required field"
+msgstr "Поле комментарий обязательное"
+
+#: widgets_manager.php:30
+#: widgets_manager.php:80
+#: widgets_manager.php:214
+msgid "Set the directory access rights to continue the work with widgets"
+msgstr "Установите права доступа к каталогу, чтобы продолжить работу с виджетами"
+
+#: widgets_manager.php:90
+msgid "Widget with the same name already exists. Choose or select another name."
+msgstr "Виджет с таким именем уже существует. Выберите  другое имя."
+
+#: widgets_manager.php:95
+#: widgets_manager.php:168
+#: widgets_manager.php:254
+#: widgets_manager.php:309
+#: pages.php:140
+#: pages.php:472
+#: categories.php:135
+#: categories.php:422
+msgid "Description "
+msgstr "Описание"
+
+#: widgets_manager.php:96
+#: widgets_manager.php:169
+#: widgets_manager.php:255
+#: widgets_manager.php:310
+#: settings.php:94
+msgid "Name"
+msgstr "Имя"
+
+#: widgets_manager.php:97
+msgid "Module"
+msgstr "Модуль"
+
+#: widgets_manager.php:98
+msgid "Method"
+msgstr "Методы"
+
+#: widgets_manager.php:148
+#: widgets_manager.php:184
+msgid "Created a widget"
+msgstr "Сиджетов создан"
+
+#: widgets_manager.php:151
+#: widgets_manager.php:199
+msgid "Widget created"
+msgstr "Виджет создан"
+
+#: widgets_manager.php:170
+#: widgets_manager.php:256
+msgid "HTML"
+msgstr "HTML"
+
+#: widgets_manager.php:243
+#: widgets_manager.php:368
+msgid "Error: widget not found!"
+msgstr "Ошибка: виджет не найден!"
+
+#: widgets_manager.php:291
+#: widgets_manager.php:325
+msgid "Changed a widget"
+msgstr "Виджет изменен"
+
+#: widgets_manager.php:294
+#: widgets_manager.php:327
+#: languages.php:263
+msgid "Changes has been saved"
+msgstr "Изменения сохранены"
+
+#: widgets_manager.php:397
+msgid "Deleted a widget"
+msgstr "Виджет удален"
+
+#: widgets_manager.php:399
+msgid "Widget successfully deleted"
+msgstr "Виджет успешно удален"
+
+#: widgets_manager.php:540
+msgid "Core"
+msgstr "Ядро"
+
+#: pages.php:109
+msgid "Deleted ID page"
+msgstr "ID удаленой страницы"
+
+#: pages.php:137
+#: pages.php:468
+#: languages.php:123
+#: languages.php:231
+#: categories.php:130
+#: categories.php:138
+#: categories.php:298
+#: categories.php:420
+msgid "Title"
+msgstr "Название"
+
+#: pages.php:138
+#: pages.php:469
+msgid "URL"
+msgstr "URL"
+
+#: pages.php:139
+#: pages.php:471
+msgid "Preliminary contents"
+msgstr "Предварительное содержание"
+
+#: pages.php:141
+#: pages.php:473
+#: categories.php:140
+msgid "Page template"
+msgstr "Шаблон страницы"
+
+#: pages.php:142
+#: pages.php:475
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: pages.php:143
+#: pages.php:476
+msgid "Creation time"
+msgstr "Время создания"
+
+#: pages.php:144
+#: pages.php:477
+msgid "Publication date"
+msgstr "Дата публикации"
+
+#: pages.php:145
+#: pages.php:478
+msgid "Publication time"
+msgstr "Время публикации"
+
+#: pages.php:147
+msgid "Main page template"
+msgstr "Основной шаблон страницы"
+
+#: pages.php:155
+#: categories.php:529
+msgid "Error"
+msgstr "Ошибка"
+
+#: pages.php:174
+#: pages.php:507
+msgid "Reserved the same name module"
+msgstr "Reserved одноименным модулем"
+
+#: pages.php:183
+#: pages.php:516
+msgid "Reserved of the same name category"
+msgstr "Reserved одного и того же названия категории"
+
+#: pages.php:195
+msgid "Page with the same URL has been created yet. Specify or select another URL"
+msgstr "Страницы с таким же URL еще не создано. Укажите или выберите другой URL"
+
+#: pages.php:261
+msgid "Created a page"
+msgstr "Создал страницу"
+
+#: pages.php:271
+msgid "Page has been created"
+msgstr "Страница была создана"
+
+#: pages.php:320
+msgid "Page"
+msgstr "странице"
+
+#: pages.php:320
+msgid "Not found"
+msgstr "не найдены"
+
+#: pages.php:447
+msgid "Language of the page"
+msgstr "Язык страницы"
+
+#: pages.php:447
+msgid "Created. ID"
+msgstr "Дата создания. ID"
+
+#: pages.php:470
+#: settings.php:97
+#: categories.php:136
+#: categories.php:423
+msgid "Keywords"
+msgstr "Ключевые слова"
+
+#: pages.php:474
+msgid "Main page template "
+msgstr "Основной шаблон страницы "
+
+#: pages.php:530
+msgid "Page with URL"
+msgstr "Страница с URL"
+
+#: pages.php:530
+msgid "in ID category"
+msgstr "в ID  категории"
+
+#: pages.php:530
+msgid " already exists. Specify or select another URL"
+msgstr " уже существует. Укажите или выберите другой URL"
+
+#: pages.php:588
+msgid "Changed the page "
+msgstr "Страница Изменена"
+
+#: pages.php:598
+msgid "Page contents have been updated"
+msgstr "Контент страницы был обновлен"
+
+#: pages.php:617
+msgid "Error: Generic page can not be deleted."
+msgstr "Ошибка: Общая страница не может быть удалена."
+
+#: pages.php:635
+#: pages.php:652
+msgid "Page has been deleted."
+msgstr "Страница удалена."
+
+#: pages.php:697
+msgid "Successful delete"
+msgstr "/* Успешное удаление */"
+
+#: pages.php:780
+msgid "Successfull moving"
+msgstr "Успешное перемещение"
+
+#: pages.php:784
+msgid "The operation error"
+msgstr "Ошибки в операции"
+
+#: pages.php:837
+msgid "Zero-length string"
+msgstr "Строка нулевой длины"
+
+#: pages.php:925
+msgid "Status change success"
+msgstr "Статус был изменен"
+
+#: mod_search.php:96
+msgid "Error: Module information has not been found"
+msgstr "Ошибка: не найдено информации модуля"
+
+#: mod_search.php:123
+#: sys_upgrade.php:32
+msgid "FTP_connect function is not available"
+msgstr "Функция Ftp_connect недоступна"
+
+# а
+#: mod_search.php:140
+#: sys_upgrade.php:62
+msgid "Server connection error:Check username and password"
+msgstr "шибка соединения с сервером: Проверте имя пользователя и пароль "
+
+#: mod_search.php:167
+msgid "Wrong path to the root directory"
+msgstr "Неправильный путь к корневому каталогу"
+
+#: mod_search.php:182
+msgid "File downloading error"
+msgstr "Ошибка скачивания файла"
+
+#: mod_search.php:207
+#: mod_search.php:287
+msgid "Creation of temporary directory has been failed"
+msgstr "Создание временного каталога не удалось"
+
+#: mod_search.php:231
+msgid "Delete the directory to continue"
+msgstr "Для продолжения удалите каталог"
+
+#: mod_search.php:231
+msgid "Attention or Caution"
+msgstr "Внимание или Осторожно"
+
+#: mod_search.php:237
+#: mod_search.php:268
+#: sys_upgrade.php:129
+msgid "Exploding error"
+msgstr "Подрывна ошибка"
+
+# а
+#: mod_search.php:248
+msgid "Module installation error"
+msgstr "Ошыбка установки модуля"
+
+#: mod_search.php:258
+#: mod_search.php:306
+msgid "Modul has been installed"
+msgstr "Модуль был установлен"
+
+# а
+#: mod_search.php:296
+msgid "Module installation module"
+msgstr "Установка модуля"
+
+#: backup.php:42
+msgid "Directory ./application/backups has no writing permission"
+msgstr "Каталог ./application/backups  не имеет прав записи"
+
+#: backup.php:82
+msgid "Backup copying"
+msgstr "Резервное копирование"
+
+#: backup.php:113
+msgid "Backup copying has been completed"
+msgstr "Резервное копирование завершено"
+
+#: settings.php:56
+msgid "Yes"
+msgstr "Да"
+
+#: settings.php:56
+#: categories.php:371
+msgid "No"
+msgstr "Нет"
+
+#: settings.php:95
+msgid "Short name"
+msgstr "Краткое название"
+
+#: settings.php:96
+msgid "Description"
+msgstr "Описание"
+
+#: settings.php:198
+msgid "Page has not been found"
+msgstr "Страница не найдена"
+
+#: settings.php:243
+msgid "Changed wesite settings"
+msgstr "Настройки сайта изменены"
+
+#: settings.php:247
+msgid "Settings have been saved"
+msgstr "Настройки сохранены"
+
+#: login.php:48
+msgid "E-mail"
+msgstr "E-mail"
+
+#: login.php:49
+msgid "Password"
+msgstr "Пароль"
+
+#: login.php:59
+msgid "Protection code"
+msgstr "Защитный код"
+
+#: login.php:74
+msgid "Entered the IP control panel"
+msgstr "Введен IP панели управления"
+
+#: login.php:78
+msgid "Username and password have not been found"
+msgstr "Имя пользователя и пароль не были найдены"
+
+#: login.php:94
+msgid "Username or Email"
+msgstr "Имя пользователя или e-mail"
+
+#: login.php:98
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr "Пожалуйста, проверьте свою электронную почту для получения инструкций о том, как активировать новый пароль."
+
+#: login.php:120
+#: login.php:124
+msgid "Wrong protection code"
+msgstr "Неправильный код защиты"
+
+# а
+#: components.php:103
+msgid "Installed a module"
+msgstr "Модуль установлен"
+
+#: components.php:138
+msgid "Deleted a module"
+msgstr "Удаленный модуль"
+
+#: components.php:139
+msgid "The module successfully uninstall"
+msgstr "Модуль успешно удален"
+
+#: components.php:142
+msgid "Module deletion error"
+msgstr "Ошибка удаления модуля"
+
+#: components.php:248
+msgid "Changed the module settings"
+msgstr "Настройки модуля изменены "
+
+#: components.php:339
+msgid "Author"
+msgstr "Автор"
+
+#: components.php:339
+msgid "Version "
+msgstr "Версия"
+
+#: components.php:343
+msgid "Can't load module info file"
+msgstr "Не удается загрузить файл информации модуля"
+
+#: components.php:413
+msgid "Positions updated"
+msgstr "Позиции обновлены"
+
+#: components.php:415
+msgid "Fail"
+msgstr "Неудача"
+
+#: components.php:429
+msgid "Changes saved"
+msgstr "Изменения сохранены"
+
+#: sys_upgrade.php:48
+msgid "You are using the latest version"
+msgstr "Вы используете последнюю версию"
+
+#: sys_upgrade.php:48
+msgid "Congratulations!"
+msgstr "Поздравляем!"
+
+#: sys_upgrade.php:85
+msgid "Error: Wrong path to the root directory."
+msgstr "Ошибка: Неправильный путь к корневому каталогу."
+
+#: sys_upgrade.php:96
+msgid "Error downloading update file"
+msgstr "Ошибка при загрузке файлов обновления"
+
+#: sys_upgrade.php:162
+msgid "Updating has been completed"
+msgstr "Обновление завершено"
+
+#: languages.php:124
+#: languages.php:232
+msgid "Identifier"
+msgstr "Идентификатор"
+
+#: languages.php:125
+#: languages.php:233
+#: categories.php:132
+#: categories.php:421
+msgid "Image"
+msgstr "Изображение"
+
+#: languages.php:126
+#: languages.php:234
+msgid "Locale"
+msgstr "Локаль"
+
+#: languages.php:127
+#: languages.php:235
+#: categories.php:139
+msgid "Template"
+msgstr "Шаблон"
+
+#: languages.php:147
+msgid "Create a language"
+msgstr "Создать язык"
+
+#: languages.php:153
+msgid "Language has been created"
+msgstr "Язык создан"
+
+#: languages.php:255
+msgid "Changed a language"
+msgstr "Язык изменен"
+
+#: languages.php:286
+#: languages.php:302
+msgid "This language has been used by default and can not be deleted"
+msgstr "Этот язык был использован по умолчанию и не может быть удален"
+
+#: languages.php:286
+#: languages.php:302
+msgid "Blocking"
+msgstr "Блокировка"
+
+#: languages.php:294
+#: languages.php:314
+msgid "Deleted the ID language"
+msgstr "ID удаленого языка"
+
+#: languages.php:316
+msgid "the language has been deleted"
+msgstr "язык удален"
+
+#: languages.php:337
+msgid "Specified a language or selected a language"
+msgstr "Указан язык"
+
+#: languages.php:337
+msgid "by default"
+msgstr "по умолчанию"
+
+#: languages.php:339
+msgid "The language has been installed by default"
+msgstr "Был установлен язык по умолчанию"
+
+#: categories.php:63
+msgid "The position has been successfully saved"
+msgstr "Позицыя сохранена"
+
+#: categories.php:131
+msgid "URL categories"
+msgstr "URL категорий"
+
+#: categories.php:133
+msgid "Position"
+msgstr "Позиция"
+
+#: categories.php:134
+#: categories.php:299
+msgid "Parent"
+msgstr "Родитель"
+
+#: categories.php:137
+#: categories.php:424
+msgid "Short description"
+msgstr "Краткое описание"
+
+#: categories.php:141
+msgid "Main template"
+msgstr "Главный шаблон"
+
+#: categories.php:142
+msgid "Per page"
+msgstr "На страницу"
+
+#: categories.php:209
+#: categories.php:351
+msgid "Category has been created or created a category"
+msgstr "Категория была создана"
+
+#: categories.php:217
+#: categories.php:370
+msgid "Category"
+msgstr "Категория"
+
+#: categories.php:217
+msgid "Created or has been created"
+msgstr "Созданный или был создан"
+
+#: categories.php:248
+msgid "Changed the category"
+msgstr "Категория изменена "
+
+#: categories.php:425
+msgid "Meta title"
+msgstr "Meta title"
+
+#: categories.php:448
+msgid "Translated the category"
+msgstr "Категории переведена"
+
+#: categories.php:457
+msgid "Changed the category translation"
+msgstr "Перевод категории изменен"
+
+#: categories.php:470
+msgid "Category translation updated"
+msgstr "Перевод категории обновлен"
+
+#: categories.php:529
+msgid "Category deletion error"
+msgstr "Ошибки удаления категории"
+
+#: categories.php:540
+#: categories.php:572
+msgid "Deleted ID category or ID category has been deleted"
+msgstr "Удалено категорию с ID"
+
+#: categories.php:600
+msgid "Category deleted"
+msgstr "Категория удалена"
+
+#: admin_search.php:87
+#: admin_search.php:208
+msgid "First link"
+msgstr "Первая ссылка"
+
+#: admin_search.php:88
+#: admin_search.php:209
+msgid "Last link"
+msgstr "Последняя ссылка"
+
+# а
+#: ../../../templates/administrator/profiler_template.php:356
+msgid "profiler_"
+msgstr "profiler_"
+
+#: ../../../templates/administrator/profiler_template.php:405
+msgid "No profiles"
+msgstr "Нет профилей"
+
+#: ../../../templates/administrator/inc/menus.php:13
+msgid "Dashboard"
+msgstr "Главная"
+
+#: ../../../templates/administrator/inc/menus.php:19
+msgid "Content"
+msgstr "Содержание"
+
+#: ../../../templates/administrator/inc/menus.php:24
+msgid "Create page"
+msgstr "Создать страницу"
+
+#: ../../../templates/administrator/inc/menus.php:28
+msgid "Articles list"
+msgstr "Список содержимого"
+
+#: ../../../templates/administrator/inc/menus.php:35
+msgid "Custom fields constructor"
+msgstr "Конструктор полей"
+
+#: ../../../templates/administrator/inc/menus.php:39
+msgid "Fields list"
+msgstr "Список полей"
+
+#: ../../../templates/administrator/inc/menus.php:43
+msgid "Group's list "
+msgstr "Список групп"
+
+#: ../../../templates/administrator/inc/menus.php:49
+msgid "Categories"
+msgstr "Категории"
+
+#: ../../../templates/administrator/inc/menus.php:54
+msgid "Create new"
+msgstr "Создать новый"
+
+#: ../../../templates/administrator/inc/menus.php:58
+msgid "Categories list"
+msgstr "Список категорий"
+
+#: ../../../templates/administrator/inc/menus.php:64
+msgid "Menu"
+msgstr "Меню"
+
+#: ../../../templates/administrator/inc/menus.php:74
+msgid "Modules"
+msgstr "Модули"
+
+#: ../../../templates/administrator/inc/menus.php:79
+msgid "All modules"
+msgstr "Все модули"
+
+#: ../../../templates/administrator/inc/menus.php:91
+msgid "Widgets"
+msgstr "Виджеты"
+
+#: ../../../templates/administrator/inc/menus.php:96
+msgid "Create widget"
+msgstr "Создать виджет"
+
+#: ../../../templates/administrator/inc/menus.php:100
+msgid "Widgets list"
+msgstr "Список виджетов"
+
+#: ../../../templates/administrator/inc/menus.php:106
+msgid "System"
+msgstr "Система"
+
+#: ../../../templates/administrator/inc/menus.php:111
+#: ../../../templates/administrator/inc/menus.php:305
+msgid "Global settings"
+msgstr "Глобальные настройки"
+
+#: ../../../templates/administrator/inc/menus.php:115
+msgid "Template editor"
+msgstr "Редактор шаблонов"
+
+#: ../../../templates/administrator/inc/menus.php:119
+msgid "Languages"
+msgstr "Языки"
+
+#: ../../../templates/administrator/inc/menus.php:123
+msgid "Cache"
+msgstr "Кеш"
+
+#: ../../../templates/administrator/inc/menus.php:130
+msgid "Events journal"
+msgstr "Журнал событий"
+
+#: ../../../templates/administrator/inc/menus.php:134
+msgid "Backup"
+msgstr "Резервное копирование"
+
+#: ../../../templates/administrator/inc/menus.php:138
+msgid "Roles list"
+msgstr "Список ролей"
+
+#: ../../../templates/administrator/inc/menus.php:147
+msgid "Shop dashboard"
+msgstr "Главная"
+
+#: ../../../templates/administrator/inc/menus.php:153
+#: ../../../templates/administrator/inc/menus.php:158
+#: ../../../templates/administrator/inc/menus.php:294
+msgid "Orders"
+msgstr "Заказы"
+
+#: ../../../templates/administrator/inc/menus.php:162
+msgid "Orders list"
+msgstr "Список заказов"
+
+#: ../../../templates/administrator/inc/menus.php:166
+msgid "Order statuses"
+msgstr "Статусы заказов"
+
+#: ../../../templates/administrator/inc/menus.php:170
+msgid "Callbacks"
+msgstr "Колбеки"
+
+#: ../../../templates/administrator/inc/menus.php:174
+msgid "Callbacks list"
+msgstr "Список колбеков"
+
+#: ../../../templates/administrator/inc/menus.php:178
+msgid "Callback statuses"
+msgstr "Статусы колбеков"
+
+#: ../../../templates/administrator/inc/menus.php:182
+msgid "Callback themes"
+msgstr "Темы колбеков"
+
+#: ../../../templates/administrator/inc/menus.php:186
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: ../../../templates/administrator/inc/menus.php:190
+msgid "Notifications list"
+msgstr "Уведомления о появление"
+
+#: ../../../templates/administrator/inc/menus.php:194
+msgid "Notification statuses"
+msgstr "Статусы уведомлений"
+
+#: ../../../templates/administrator/inc/menus.php:198
+msgid "Other"
+msgstr "Остальное"
+
+#: ../../../templates/administrator/inc/menus.php:202
+msgid "Comments"
+msgstr "Комментарии"
+
+#: ../../../templates/administrator/inc/menus.php:208
+msgid "Products catalogue"
+msgstr "Каталог товаров"
+
+#: ../../../templates/administrator/inc/menus.php:213
+msgid "Product categories"
+msgstr "Категории товаров"
+
+#: ../../../templates/administrator/inc/menus.php:217
+msgid "Products list"
+msgstr "Список товаров"
+
+#: ../../../templates/administrator/inc/menus.php:221
+msgid "Products properties"
+msgstr "Свойства товаров"
+
+#: ../../../templates/administrator/inc/menus.php:225
+msgid "Produkts kits"
+msgstr "Наборы товаров"
+
+#: ../../../templates/administrator/inc/menus.php:229
+msgid "Products without images"
+msgstr "Товары без картинок"
+
+#: ../../../templates/administrator/inc/menus.php:235
+msgid "Users management"
+msgstr "Пользователи"
+
+#: ../../../templates/administrator/inc/menus.php:240
+msgid "List of users"
+msgstr "Список ользователей"
+
+#: ../../../templates/administrator/inc/menus.php:244
+msgid "RBAC control"
+msgstr "Управление правами доступа"
+
+#: ../../../templates/administrator/inc/menus.php:250
+msgid "Components"
+msgstr "Компоненты"
+
+#: ../../../templates/administrator/inc/menus.php:255
+#: ../../../templates/administrator/inc/menus.php:290
+msgid "Brands"
+msgstr "Бренды"
+
+#: ../../../templates/administrator/inc/menus.php:259
+msgid "Stocks"
+msgstr "Склады"
+
+#: ../../../templates/administrator/inc/menus.php:263
+msgid "Banners"
+msgstr "Баннеры"
+
+#: ../../../templates/administrator/inc/menus.php:279
+msgid "Custom fields"
+msgstr "Дополнительные поля"
+
+#: ../../../templates/administrator/inc/menus.php:285
+msgid "Statistics"
+msgstr "Статистика"
+
+#: ../../../templates/administrator/inc/menus.php:300
+msgid "Shop settings"
+msgstr "Настройки"
+
+#: ../../../templates/administrator/inc/menus.php:309
+msgid "Currencies"
+msgstr "Валюты"
+
+#: ../../../templates/administrator/inc/menus.php:313
+msgid "Delivery methods (shipping)"
+msgstr "Способы доставки"
+
+#: ../../../templates/administrator/inc/menus.php:317
+msgid "Payment methods"
+msgstr "Способы оплаты"
+
+#: ../../../templates/administrator/inc/menus.php:321
+msgid "Automation"
+msgstr "Автоматизация"
+
+#: ../../modules/shop/admin/deliverymethods.php:73
+msgid "Delivery created"
+msgstr "Доставка создана"
+
+#: ../../modules/shop/admin/deliverymethods.php:109
+msgid "Delivery method is not found"
+msgstr "Способ доставки не найден"
+
+#: ../../modules/shop/admin/deliverymethods.php:146
+#: ../../modules/shop/admin/callbacks.php:100
+#: ../../modules/shop/admin/callbacks.php:202
+#: ../../modules/shop/admin/callbacks.php:401
+#: ../../modules/shop/admin/customfields.php:154
+#: ../../modules/shop/admin/users.php:383
+#: ../../modules/shop/admin/users.php:387
+#: ../../modules/shop/admin/orderstatuses.php:128
+#: ../../modules/shop/admin/paymentmethods.php:128
+#: ../../modules/shop/admin/settings.php:268
+msgid "Changes have been saved"
+msgstr "Изменения сохранены"
+
+#: ../../modules/shop/admin/deliverymethods.php:173
+#: ../../modules/shop/admin/notifications.php:245
+#: ../../modules/shop/admin/customfields.php:203
+#: ../../modules/shop/admin/users.php:492
+#: ../../modules/shop/admin/paymentmethods.php:156
+msgid "No data transmitted"
+msgstr "Данные не переданы"
+
+#: ../../modules/shop/admin/deliverymethods.php:185
+msgid "Delivery method removed"
+msgstr "Способ доставки удален"
+
+#: ../../modules/shop/admin/deliverymethods.php:216
+#: ../../modules/shop/admin/paymentmethods.php:185
+#: ../../modules/shop/admin/settings.php:438
+msgid "Positions saved"
+msgstr "Позиции сохранены"
+
+#: ../../modules/shop/admin/notifications.php:125
+msgid "Notification is not found"
+msgstr "Уведомление не найдено"
+
+#: ../../modules/shop/admin/notifications.php:140
+msgid "Manager does not exist or is not set"
+msgstr "Менеджер не существует или не установлен"
+
+#: ../../modules/shop/admin/notifications.php:158
+msgid "Notification updated"
+msgstr "Уведомление обновлено"
+
+#: ../../modules/shop/admin/notifications.php:181
+msgid "Notification status updated"
+msgstr "Статус уведомления обновлен"
+
+#: ../../modules/shop/admin/notifications.php:205
+msgid "User is notified by E-mail"
+msgstr "Пользователь получыл уведомление по электронной почте"
+
+#: ../../modules/shop/admin/notifications.php:258
+msgid "Uninstalling"
+msgstr "Удаление"
+
+#: ../../modules/shop/admin/notifications.php:288
+msgid "Order status changed"
+msgstr "Статус заказа изменен"
+
+#: ../../modules/shop/admin/callbacks.php:155
+msgid "Position created"
+msgstr "Позиция создана"
+
+#: ../../modules/shop/admin/callbacks.php:186
+#: ../../modules/shop/admin/orderstatuses.php:189
+msgid "Such status does not exist"
+msgstr "Такой статус не существует"
+
+#: ../../modules/shop/admin/callbacks.php:230
+msgid "Default status was changed"
+msgstr "Статус по умолчанию изменен"
+
+#: ../../modules/shop/admin/callbacks.php:249
+msgid "Callback's status was changed"
+msgstr "Статус колбека изменен"
+
+#: ../../modules/shop/admin/callbacks.php:263
+#: ../../modules/shop/admin/orderstatuses.php:226
+msgid "Positions saved successfully"
+msgstr "Позиции успешно сохранены"
+
+#: ../../modules/shop/admin/callbacks.php:281
+msgid "Callback is changed"
+msgstr "Колбек изменен"
+
+#: ../../modules/shop/admin/callbacks.php:297
+msgid "Callback was removed"
+msgstr "Колбек удален"
+
+#: ../../modules/shop/admin/callbacks.php:302
+msgid "Callbacks was removed"
+msgstr "Колбекы  удалены"
+
+#: ../../modules/shop/admin/callbacks.php:319
+msgid "Unable to remove default status"
+msgstr "Не удается удалить статус по умолчанию"
+
+#: ../../modules/shop/admin/callbacks.php:326
+msgid "Status was removed"
+msgstr "Статус был удален"
+
+#: ../../modules/shop/admin/callbacks.php:363
+msgid "Topic started"
+msgstr "Тема начата"
+
+#: ../../modules/shop/admin/callbacks.php:439
+msgid "Topic deleted"
+msgstr "Обсуждение удалено"
+
+#: ../../modules/shop/admin/customfields.php:57
+msgid "An additional field is created"
+msgstr "Дополнительное поле создано"
+
+#: ../../modules/shop/admin/customfields.php:117
+msgid "Field not found"
+msgstr "Поле не найдено"
+
+#: ../../modules/shop/admin/customfields.php:216
+msgid "Field is removed"
+msgstr "Поле удалено"
+
+#: ../../modules/shop/admin/users.php:305
+msgid "A user with this email is already registered."
+msgstr "Пользователь с таким E-mail уже зарегистрирован."
+
+#: ../../modules/shop/admin/users.php:335
+msgid "Created by"
+msgstr "Созданный "
+
+#: ../../modules/shop/admin/users.php:337
+msgid "User created"
+msgstr "Пользователь создан"
+
+#: ../../modules/shop/admin/users.php:369
+msgid "User not found"
+msgstr "Пользователь не найден"
+
+#: ../../modules/shop/admin/users.php:383
+msgid "Shop"
+msgstr "Магазин"
+
+#: ../../modules/shop/admin/users.php:504
+msgid "Members removed"
+msgstr "Пользователи удалены"
+
+#: ../../modules/shop/admin/orderstatuses.php:79
+msgid "Order status created"
+msgstr "Статус заказа создан"
+
+#: ../../modules/shop/admin/orderstatuses.php:110
+msgid "Order Status not found"
+msgstr "Статус заказа не найден"
+
+#: ../../modules/shop/admin/orderstatuses.php:172
+msgid "Status and related orders removed"
+msgstr "Статус и связанных с ним заказы  удалены"
+
+#: ../../modules/shop/admin/orderstatuses.php:180
+#: ../../modules/shop/admin/orderstatuses.php:184
+msgid "Status removed"
+msgstr "Статус удален"
+
+#: ../../modules/shop/admin/orderstatuses.php:192
+msgid "Unable to remove the base status"
+msgstr "Не удалось удалить основной статус"
+
+#: ../../modules/shop/admin/paymentmethods.php:63
+msgid "Payment method is created"
+msgstr "Способ оплаты создан"
+
+#: ../../modules/shop/admin/paymentmethods.php:95
+msgid "Payment method is not found."
+msgstr "Способ оплаты не найден."
+
+#: ../../modules/shop/admin/paymentmethods.php:168
+msgid "Method of payment is removed"
+msgstr "Способ оплаты удален"
+
+#: ../../modules/shop/admin/products.php:46
+msgid "Category not found"
+msgstr "Категория не найдена"
+
+#: ../../modules/shop/admin/products.php:119
+#: ../../modules/shop/admin/products.php:320
+msgid "Date Created"
+msgstr "Дата создания"
+
+# а
+#: ../../modules/shop/admin/products.php:132
+msgid "Url is buisy!"
+msgstr "Гиперссылка занята!"
+
+#: ../../modules/shop/admin/products.php:143
+msgid "Field Url is empty!"
+msgstr "Поле URL пустое!"
+
+#: ../../modules/shop/admin/products.php:255
+msgid "The product was successfully created"
+msgstr "Продукт был успешно создан"
+
+#: ../../modules/shop/admin/products.php:313
+#: ../../modules/shop/admin/products.php:1075
+msgid "Product not found"
+msgstr "Товар не найден"
+
+#: ../../modules/shop/admin/products.php:350
+msgid "The specified URL is busy"
+msgstr "Указанный URL занят"
+
+#: ../../modules/shop/admin/products.php:501
+msgid "The product was successfully edited"
+msgstr "Продукт успешно отредактирован"
+
+#: ../../modules/shop/admin/products.php:830
+msgid "Price updated"
+msgstr "Цена обновлена"
+
+#: ../../modules/shop/admin/products.php:841
+msgid "(copy)"
+msgstr "(копия) "
+
+#: ../../modules/shop/admin/products.php:958
+msgid "A copy was successfully created"
+msgstr "Копия была успешно создана"
+
+#: ../../modules/shop/admin/products.php:1089
+msgid " language "
+msgstr "  язык "
+
+#: ../../modules/shop/admin/settings.php:80
+msgid "Number of products on site"
+msgstr "Количество товаров на сайте"
+
+#: ../../modules/shop/admin/settings.php:81
+msgid "Array of values for the number of products on site"
+msgstr "Массив значений для ряда товаров на сайте"
+
+#: ../../modules/shop/admin/settings.php:82
+msgid "The number of items in the control panel"
+msgstr "Количество элементов в панели управления"
+
+#: ../../modules/shop/admin/settings.php:90
+msgid "Email, which send messages to the new Callback"
+msgstr "E-mail, который посылает сообщения новому Колбеку"
+
+#: ../../modules/shop/admin/settings.php:91
+#: ../../modules/shop/admin/settings.php:92
+msgid "Email address of the sender"
+msgstr "E-mail отправителя"
+
+#: ../../modules/shop/admin/settings.php:398
+#: ../../modules/shop/admin/settings.php:417
+msgid "Pictures Updated"
+msgstr "Картинки обновлена"
+
+#: ../../modules/shop/admin/orders.php:146
+msgid "Forward&nbsp;"
+msgstr "Вперед&nbsp;"
+
+#: ../../modules/shop/admin/orders.php:147
+msgid "&nbsp;Back"
+msgstr "&nbsp;Назад"
+
+#: ../../modules/shop/admin/orders.php:209
+msgid "Order not found"
+msgstr "Заказ не найден"
+
+#: ../../modules/shop/admin/orders.php:419
+#: ../../modules/shop/admin/orders.php:523
+msgid "Order Status changed"
+msgstr "Статус заказа изменен"
+
+#: ../../modules/shop/admin/orders.php:484
+msgid "Orders are removed"
+msgstr "Заказы удалены"
+
+#: ../../modules/shop/admin/orders.php:484
+#: ../../modules/shop/admin/orders.php:523
+#: ../../modules/shop/admin/warehouses.php:107
+msgid "The operation was successful"
+msgstr "Операция прошла успешно"
+
+#: ../../modules/shop/admin/orders.php:560
+msgid "Payment status of orders changed"
+msgstr "Статус оплаты заказов изменен"
+
+#: ../../modules/shop/admin/orders.php:560
+msgid "Saved"
+msgstr "Сохранено"
+
+#: ../../modules/shop/admin/orders.php:615
+msgid "You can not delete the last item from the order"
+msgstr "Вы не можете удалить последний элемент из заказа"
+
+#: ../../modules/shop/admin/orders.php:635
+#: ../../modules/shop/admin/orders.php:650
+msgid "Product is removed from the Order"
+msgstr "Продукт удален из Заказа"
+
+#: ../../modules/shop/admin/orders.php:795
+#: ../../modules/shop/admin/orders.php:822
+msgid "Product updated"
+msgstr "Продукт обновлен"
+
+#: ../../modules/shop/admin/orders.php:868
+msgid "Item has been added to the order"
+msgstr "Товар добавлен к заказу"
+
+#: ../../modules/shop/admin/orders.php:872
+msgid "This product does not exist"
+msgstr "Этот товар не существует"
+
+#: ../../modules/shop/admin/orders.php:975
+msgid "Delivery"
+msgstr "Доставка"
+
+#: ../../modules/shop/admin/orders.php:1085
+msgid "Order was successfully created"
+msgstr "Заказ успешно создан"
+
+#: ../../modules/shop/admin/orders.php:1098
+msgid "User is not selected"
+msgstr "Пользователь не выбран"
+
+#: ../../modules/shop/admin/orders.php:1100
+msgid "Delivery method is not selected"
+msgstr "Способ доставки не выбран"
+
+#: ../../modules/shop/admin/orders.php:1102
+msgid "Payment method is not selected"
+msgstr "Способ оплаты не выбран"
+
+#: ../../modules/shop/admin/warehouses.php:48
+msgid "Warehouse created"
+msgstr "Склад создан"
+
+#: ../../modules/shop/admin/warehouses.php:66
+msgid "Warehouse not found"
+msgstr "Склад не найден"
+
+#: ../../modules/shop/admin/warehouses.php:95
+msgid "No data transferred"
+msgstr "Нет переданых данных"
+
+#: ../../modules/shop/admin/warehouses.php:107
+msgid "Warehouse deleted"
+msgstr "Склад удален"
+
+#: ../../modules/shop/admin/banners.php:151
+msgid "Banner created"
+msgstr "Баннер создан"
+
+#: ../../modules/shop/admin/banners.php:183
+#: ../../modules/shop/admin/banners.php:356
+msgid "Banner could not be found"
+msgstr "Баннер не может быть найден"
+
+#: ../../modules/shop/admin/banners.php:255
+msgid "Banner updated"
+msgstr "Баннер обновлен"
+
+#: ../../modules/shop/admin/banners.php:295
+msgid "Banner removed"
+msgstr "Баннер удален"
+
+#: ../../modules/shop/admin/notificationstatuses.php:71
+msgid "Status pending created"
+msgstr "Статус ожидания создан"
+
+# а
+#: ../../modules/shop/admin/notificationstatuses.php:95
+msgid "Status pending no nayden"
+msgstr "Статус ожидания не найден"
+
+#: ../../modules/shop/admin/system.php:117
+msgid "Could not find any properties"
+msgstr "Не удалось найти свойства"
+
+#: ../../modules/shop/admin/system.php:315
+msgid "You do not choose"
+msgstr "Вы не выбрали"
+
+#: ../../modules/shop/admin/system.php:357
+msgid "Export successfully"
+msgstr "Экспорт прошол успешно"
+
+#: ../../modules/shop/admin/system.php:360
+msgid "No configuration key or<br /> key account list on Mailchimp"
+msgstr "Нет ключа конфигурации или <br /> ключа списка аккаунта на Mailchimp"
+
+#: ../../modules/shop/admin/currencies.php:50
+msgid "Currency created"
+msgstr "Валюта создана"
+
+#: ../../modules/shop/admin/currencies.php:74
+#: ../../modules/shop/admin/currencies.php:110
+msgid "Currency not found"
+msgstr "Валюта не найдена"
+
+#: ../../modules/shop/admin/currencies.php:193
+msgid "Unable to remove the main currency"
+msgstr "Невозможно  удалить главную валюту"
+
+#: ../../modules/shop/admin/currencies.php:211
+msgid "Error. Currency used by other objects. Check the payment methods"
+msgstr "Ошибка. Валюту, используют другие объекты. Проверьте способы оплаты"
+
+#: ../../modules/shop/admin/currencies.php:222
+msgid "Error. The currency used in the products. Check the currency options products"
+msgstr "Ошибка. Валюта, используется в товарах. Проверьте настройки  валюты товаров"
+
+#: ../../modules/shop/admin/currencies.php:231
+msgid "Currency successfully removed"
+msgstr "Валюта успешно удалена"
+
+#: ../../modules/shop/admin/currencies.php:244
+msgid "Conversion completed. Now the currency may be removed"
+msgstr "Преобразование завершено. Сейчас валюта может быть удалена"
+
+#: ../../modules/shop/admin/currencies.php:249
+msgid "Prices updated"
+msgstr "Цены обновлены"
+
+#: ../../modules/shop/admin/currencies.php:251
+msgid "There was no price for the upgrade"
+msgstr "Не было цены для обновления"
+
+#: ../../modules/shop/admin/comulativ.php:48
+#: ../../modules/shop/admin/comulativ.php:111
+#: ../../modules/shop/admin/comulativ.php:206
+msgid "Discount"
+msgstr "Скидка"
+
+#: ../../modules/shop/admin/comulativ.php:49
+#: ../../modules/shop/admin/comulativ.php:112
+msgid "The amount of"
+msgstr "Количество"
+
+#: ../../modules/shop/admin/comulativ.php:50
+#: ../../modules/shop/admin/comulativ.php:114
+msgid "Amount before"
+msgstr "Сумма до"
+
+#: ../../modules/shop/admin/comulativ.php:76
+#: ../../modules/shop/admin/discounts.php:93
+msgid "Discount created"
+msgstr "Скидка создана"
+
+#: ../../modules/shop/admin/comulativ.php:139
+msgid "Discount updated"
+msgstr "Скидка обновлена"
+
+#: ../../modules/shop/admin/comulativ.php:223
+msgid "Deposit rates"
+msgstr "Депозитные ставки"
+
+#: ../../modules/shop/admin/comulativ.php:223
+msgid "refreshed successfully"
+msgstr "успешно обновлено"
+
+#: ../../modules/shop/admin/comulativ.php:258
+msgid "Cumulative discount removed"
+msgstr "Накопительная скидка удалена"
+
+#: ../../modules/shop/admin/categories.php:121
+msgid "Specified URL busy"
+msgstr "Указаной URL занят"
+
+#: ../../modules/shop/admin/categories.php:152
+msgid "Category created"
+msgstr "Категория создана"
+
+#: ../../modules/shop/admin/categories.php:201
+msgid "Specified URL is busy"
+msgstr "Указаной URL занят"
+
+#: ../../modules/shop/admin/categories.php:292
+msgid "Category deleted successfully"
+msgstr "Категория успешно удалена"
+
+#: ../../modules/shop/admin/categories.php:298
+msgid "Categories deleted successfully"
+msgstr "Категории успешно удалены"
+
+#: ../../modules/shop/admin/categories.php:302
+msgid "Failed to delete the category"
+msgstr "Невозможно удалить категорию"
+
+#: ../../modules/shop/admin/categories.php:426
+msgid "Category was not found"
+msgstr "Категория не найдена"
+
+#: ../../modules/shop/admin/categories.php:492
+msgid "The file has been successfully created"
+msgstr "Файл успешно создан"
+
+#: ../../modules/shop/admin/categories.php:495
+msgid "Could not create file"
+msgstr "Не удалось создать файл"
+
+#: ../../modules/shop/admin/discounts.php:203
+msgid "Discounts are removed"
+msgstr "Скидки удалены"
+
+# а
+#: ../../modules/shop/admin/brands.php:112
+#: ../../modules/shop/admin/brands.php:187
+msgid "The URL you busy"
+msgstr "URL занят"
+
+#: ../../modules/shop/admin/brands.php:147
+msgid "Brand created"
+msgstr "Бренд создан"
+
+#: ../../modules/shop/admin/brands.php:172
+#: ../../modules/shop/admin/brands.php:323
+msgid "Brand not found"
+msgstr "Бренд не найден"
+
+#: ../../modules/shop/admin/brands.php:260
+msgid "Removing brand"
+msgstr "Удаление бренда"
+
+#: ../../modules/shop/admin/properties.php:150
+msgid "Property created"
+msgstr "Свойство создано"
+
+#: ../../modules/shop/admin/properties.php:180
+msgid "The property is not found"
+msgstr "Свойство не найдено"
+
+#: ../../modules/shop/admin/properties.php:257
+msgid "The list of properties is empty"
+msgstr "Список свойств пуст"
+
+#: ../../modules/shop/admin/properties.php:258
+msgid "Create"
+msgstr "Создать"
+
+#: ../../modules/shop/admin/properties.php:313
+msgid "Success"
+msgstr "Успешно"
+
+#: ../../modules/shop/admin/properties.php:313
+msgid "The property(ies) deleted"
+msgstr "Свойство(а) удалено(ы)"
+
+#: ../../modules/shop/admin/properties.php:327
+msgid "Change saved successfully"
+msgstr "Изменения успешно сохранены"
+
+#: ../../modules/shop/admin/gifts.php:43
+msgid "Certificate with this key already exists"
+msgstr "Сертификат с этим ключом уже существует"
+
+#: ../../modules/shop/admin/gifts.php:48
+msgid "Code"
+msgstr "Код"
+
+#: ../../modules/shop/admin/gifts.php:49
+#: ../../modules/shop/admin/gifts.php:106
+msgid "Cost of the certificate"
+msgstr "Стоимость сертификата"
+
+#: ../../modules/shop/admin/gifts.php:50
+#: ../../modules/shop/admin/gifts.php:107
+msgid "Date of creation"
+msgstr "Дата создания"
+
+#: ../../modules/shop/admin/gifts.php:62
+msgid "Certificate is created"
+msgstr "Сертификат создан"
+
+#: ../../modules/shop/admin/gifts.php:93
+msgid "Certificate (s) removed (s)"
+msgstr "Сертификат(ы) удален(ы)"
+
+#: ../../modules/shop/admin/gifts.php:139
+msgid "You have changed the status of the certificate"
+msgstr "Вы изменили статус сертификата"
+
+#: ../../modules/shop/admin/gifts.php:166
+msgid "The settings are saved"
+msgstr "Настройки сохранены"
+
+#: ../../modules/shop/admin/kits.php:57
+msgid "You did not ask for a set of main commodity"
+msgstr "Вы не спрашивали набор основных товаров"
+
+# а
+#: ../../modules/shop/admin/kits.php:62
+#: ../../modules/shop/admin/kits.php:141
+msgid "You must attach the goods to create a set"
+msgstr "Необходимо прикрепить товары для создания набора"
+
+#: ../../modules/shop/admin/kits.php:68
+#: ../../modules/shop/admin/kits.php:147
+msgid "Kit with such goods already exists"
+msgstr "Комплект с такими товарами уже существует"
+
+#: ../../modules/shop/admin/kits.php:89
+msgid "Kit created"
+msgstr "Комплект создан"
+
+#: ../../modules/shop/admin/kits.php:118
+msgid "The kit was not found"
+msgstr "Комплект не найден"
+
+# а
+#: ../../modules/shop/admin/kits.php:136
+msgid "You did not ask for a set of main commodity "
+msgstr "Вы не спрашивали набор основных товаров "
+
+#: ../../modules/shop/admin/kits.php:225
+msgid "Set (s) has been successfully removed (s)"
+msgstr "Набор(ы) был(ы) успешно удален(ы)"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:18
+msgid "ProductId"
+msgstr "ID товара"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:20
+msgid "CSV column name "
+msgstr "Имя колонки CSV"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:21
+msgid "Multiple selection"
+msgstr "Множественний выбор"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:22
+msgid "Active"
+msgstr "Активный"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:24
+msgid "Value"
+msgstr "Значение"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:25
+msgid "Show on product page"
+msgstr "Показывать на странице товаров"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:26
+msgid "Main property"
+msgstr "Главное свойство"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:27
+msgid "Show in product compare"
+msgstr "Показывать в сравнение товаров"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:28
+msgid "Show in filter"
+msgstr "Показывать в фильтре"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:29
+msgid "Use in categories"
+msgstr "Исрользовать в  категориях"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:21
+#: ../../modules/shop/models/build/classes/Shop/SPaymentMethods.php:19
+#, fuzzy
+msgid "a_name"
+msgstr "Название бренда"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:22
+msgid "a_s_banner_text_create_b"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:23
+msgid "a_url"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:24
+#, fuzzy
+msgid "a_image"
+msgstr "Главное изображение"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:25
+#: ../../modules/shop/models/build/classes/Shop/SPaymentMethods.php:22
+#, fuzzy
+msgid "a_position"
+msgstr "Позиция"
+
+#: ../../modules/shop/models/build/classes/Shop/SPaymentMethods.php:20
+#, fuzzy
+msgid "a_description"
+msgstr "Описание"
+
+#: ../../modules/shop/models/build/classes/Shop/SPaymentMethods.php:21
+#, fuzzy
+msgid "a_active"
+msgstr "активный"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:21
+#, fuzzy
+msgid "a_login"
+msgstr "Логин"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:22
+#, fuzzy
+msgid "a_password"
+msgstr "Пароль"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:23
+#, fuzzy
+msgid "a_email"
+msgstr "Email"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:24
+#, fuzzy
+msgid "a_group"
+msgstr "Группа"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:25
+msgid "a_fio"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:26
+#, fuzzy
+msgid "a_phone"
+msgstr "Главный телефон"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:27
+#, fuzzy
+msgid "a_address"
+msgstr "Адрес"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:28
+msgid "a_time_register"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:29
+msgid "a_summ_purchases"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:30
+msgid "a_role"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:26
+msgid "a_date_start"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:27
+msgid "a_date_finish"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:28
+#, fuzzy
+msgid "a_discount"
+msgstr "Скидка"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:29
+#, fuzzy
+msgid "a_category"
+msgstr "Категория"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:30
+#, fuzzy
+msgid "a_product_n"
+msgstr "товар"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:31
+msgid "a_group_users"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:21
+msgid "a_custom_f_object"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:24
+#, fuzzy
+msgid "a_field_type"
+msgstr "Тип поля"
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:26
+msgid "a_custom_f_req_field_ne"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:27
+msgid "a_custom_f_multi_p"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:28
+msgid "a_custom_f_posibb_list"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:29
+#, fuzzy
+msgid "a_validations"
+msgstr "Валидаторы"
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:30
+msgid "a_custom_f_fiel_active"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:31
+msgid "a_custom_f_private_field"
+msgstr ""
+
+# а
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:32
+#, fuzzy
+msgid "a_custom_f_right"
+msgstr "a2_acces_right"
+
+#: ../../helpers/category_helper.php:86
+msgid "No category"
+msgstr "Без категории"
+
+#: ../../helpers/rules_helper.php:45
+msgid "No rights for"
+msgstr ""
+
+#: ../../helpers/rules_helper.php:57
+msgid "Error checking permissions"
+msgstr "Ошибка разрешений"
+
+#: ../../helpers/rules_helper.php:87
+msgid "Operation panel"
+msgstr "Панель управления"
+
+#: ../../helpers/rules_helper.php:90
+msgid "Pages"
+msgstr "Страницы"
+
+#: ../../helpers/rules_helper.php:95
+msgid "Members"
+msgstr "Пользователи"
+
+#: ../../helpers/rules_helper.php:96
+msgid "Group"
+msgstr "Группа"
+
+#: ../../helpers/rules_helper.php:97
+msgid "Logs"
+msgstr ""
+
+#: ../../helpers/rules_helper.php:99
+msgid "File Editor"
+msgstr "Редактирование файла"
+
+#: ../../helpers/rules_helper.php:113
+msgid "Access Control Panel"
+msgstr ""
+
+#: ../../helpers/rules_helper.php:114
+msgid "System update"
+msgstr "Обновление системы"
+
+#: ../../helpers/rules_helper.php:115
+msgid "Find pages in the control panel"
+msgstr "Поиск страниц в панели управления"
+
+#: ../../helpers/rules_helper.php:116
+msgid "Creating a language"
+msgstr "Создать язык"
+
+#: ../../helpers/rules_helper.php:117
+msgid "Changing the language"
+msgstr "Изменение языка"
+
+#: ../../helpers/rules_helper.php:118
+msgid "Remove languages"
+msgstr "Удалить язык"
+
+#: ../../helpers/rules_helper.php:119
+msgid "Changing site settings"
+msgstr "Настройки сайта изменены"
+
+#: ../../helpers/rules_helper.php:120
+msgid "Clearing the cache"
+msgstr "Очищение кэша"
+
+#: ../../helpers/rules_helper.php:121
+msgid "Creating pages"
+msgstr "Создать страницу"
+
+#: ../../helpers/rules_helper.php:122
+msgid "Editing pages"
+msgstr "Редактировать страницу"
+
+#: ../../helpers/rules_helper.php:123
+msgid "Delete pages"
+msgstr "Удалить страницы"
+
+#: ../../helpers/rules_helper.php:124
+msgid "Creating categories"
+msgstr "Создание категорий"
+
+#: ../../helpers/rules_helper.php:125
+msgid "Edit Categories"
+msgstr "Редактирование категорий"
+
+#: ../../helpers/rules_helper.php:126
+msgid "Category delete"
+msgstr "Категория удалена"
+
+#: ../../helpers/rules_helper.php:127
+msgid "Install Modules"
+msgstr "Установка модулей"
+
+#: ../../helpers/rules_helper.php:128
+msgid "Removing Modules"
+msgstr "Удаление модулей"
+
+# а
+#: ../../helpers/rules_helper.php:129
+msgid "Administration module"
+msgstr "Аминистративный модуль"
+
+#: ../../helpers/rules_helper.php:130
+msgid "Creating widgets"
+msgstr "Создать виджет"
+
+#: ../../helpers/rules_helper.php:131
+msgid "Removing widgets"
+msgstr "Удаление виджета"
+
+#: ../../helpers/rules_helper.php:132
+msgid "Access to the widget settings"
+msgstr "Настройки виджета"
+
+#: ../../helpers/rules_helper.php:133
+msgid "Create a menu"
+msgstr "Создать меню"
+
+#: ../../helpers/rules_helper.php:134
+msgid "Edit menu"
+msgstr "Редактировать меню"
+
+#: ../../helpers/rules_helper.php:135
+msgid "Menu deleting"
+msgstr "Удаление меню"
+
+#: ../../helpers/rules_helper.php:136
+msgid "Create users of their group"
+msgstr "Создать пользователей для групп"
+
+#: ../../helpers/rules_helper.php:137
+msgid "Create users of all groups"
+msgstr "Создать пользователей для всех групп"
+
+#: ../../helpers/rules_helper.php:138
+msgid "Edit Users"
+msgstr "Редактировать пользователей"
+
+#: ../../helpers/rules_helper.php:139
+msgid "Remove Users"
+msgstr "Удалить пользователей"
+
+#: ../../helpers/rules_helper.php:140
+msgid "Viewing member"
+msgstr ""
+
+#: ../../helpers/rules_helper.php:141
+msgid "Creating Groups"
+msgstr "Создание группы"
+
+#: ../../helpers/rules_helper.php:142
+msgid "Editing Groups"
+msgstr "Редактирование групп"
+
+#: ../../helpers/rules_helper.php:143
+msgid "Deleting Groups"
+msgstr "Удалить группу"
+
+#: ../../helpers/rules_helper.php:144
+msgid "View Log"
+msgstr "Просмотр логов"
+
+#: ../../helpers/rules_helper.php:145
+msgid "Backing up"
+msgstr "Резервное копирование"
+
+#: ../../helpers/rules_helper.php:146
+msgid "Access to the file editor"
+msgstr ""
+
+#: ../../helpers/rules_helper.php:147
+msgid "Download files"
+msgstr "Скачать файлы"
+
+#: ../../helpers/rules_helper.php:148
+msgid "Editing Files"
+msgstr "Редактирование файлов"
+
+#: ../../helpers/rules_helper.php:149
+msgid "Edit Folders"
+msgstr "Редактировать папки"
+
+#: ../../helpers/javascript_helper.php:29
+msgid "Requests to the database"
+msgstr "Запросов к базе"
+
+#: ../../helpers/javascript_helper.php:47
+msgid "Redirecting"
+msgstr "Перенаправление"
+
+#~ msgid "Show page"
+#~ msgstr "Показать страницу"
+
+#~ msgid "Modules additions"
+#~ msgstr "Модули дополнений"
+
+# Не верно анг
+#~ msgid "Autocomplite"
+#~ msgstr "Автозаполнение"
+# Не верно анг
+#~ msgid "Autocomplite words"
+#~ msgstr "Автозаполнение слов"
+#~ msgid "choose date"
+#~ msgstr "выберите дату"
+#~ msgid "Cancel"
+#~ msgstr "Отменить"
+#~ msgid "Preview"
+#~ msgstr "Просмотр"
+#~ msgid "site"
+#~ msgstr "сайт"
+#~ msgid "Manage shop"
+#~ msgstr "Администрировать магазин "
+#~ msgid "Manage site"
+#~ msgstr "Администрировать сайт"
+#~ msgid "Interface"
+#~ msgstr "Интерфейс"
+#~ msgid "Help us get better"
+#~ msgstr "Помогите нам стать лучше"
+#~ msgid "report an error"
+#~ msgstr "сообщить об ошибке"
+#~ msgid "Documentation"
+#~ msgstr "Документация"
+#~ msgid "Your Name"
+#~ msgstr "Ваше имя"
+#~ msgid "Your Email"
+#~ msgstr "Ваш E-mail"
+# хуйня
+#~ msgid ""
+#~ "don\");\n"
+#~ "_("
+#~ msgstr "1"
+#~ msgid "Back"
+#~ msgstr "Вернутся"
+#~ msgid "Save"
+#~ msgstr "Сохранить"
+# а
+#~ msgid "Privilegy"
+#~ msgstr "Привилегия"
+#~ msgid "Delete selected groups"
+#~ msgstr "Удалить выбранные модули?"
+#~ msgid "Clean"
+#~ msgstr "Очистить"
+#~ msgid "roll up category"
+#~ msgstr "свернуть категорию"
+#~ msgid "expand category"
+#~ msgstr "Развернуть категорию"
+#~ msgid "edit category"
+#~ msgstr "редактировать категорию"
+#~ msgid "go to site"
+#~ msgstr "перейти на сайт"
+#~ msgid "Return"
+#~ msgstr "Возвращение"
+#~ msgid "Save and create a new group"
+#~ msgstr "Сохранить и создать новую группу"
+#~ msgid "Save and edit"
+#~ msgstr "Сохраненить и измененить"
+#~ msgid "Create new page"
+#~ msgstr "Создать новую страницу"
+#~ msgid "Parent category"
+#~ msgstr "Родительская категория"
+#~ msgid "Full description"
+#~ msgstr "Полное описание"
+#~ msgid "Check mail sending"
+#~ msgstr "Проверить отправку почты"
+#~ msgid "Check"
+#~ msgstr "Проверка"
+#~ msgid "Not enough rights to access"
+#~ msgstr "Не хватает прав доступа"
+#~ msgid "Users"
+#~ msgstr "Пользователи"
+#~ msgid "Roles groups list"
+#~ msgstr "Список групп ролей"
+#~ msgid "Delete"
+#~ msgstr "Удалить"
+#~ msgid "ID"
+#~ msgstr "ID"
+#~ msgid "List"
+#~ msgstr "Список"
+#~ msgid "Empty."
+#~ msgstr "Пустой."
+#~ msgid "Remove roles?"
+#~ msgstr "Удалить  роли?"
+#~ msgid "Delete cache"
+#~ msgstr "Очистка кэша"
+#~ msgid "Total file caching"
+#~ msgstr "Всего файлов кэширования"
+#~ msgid "Clear outdated"
+#~ msgstr "Очистить устаревшие"
+#~ msgid "Clear all"
+#~ msgstr "Очистить полностью"
+#~ msgid "Privileges list"
+#~ msgstr "Список ролей"
+#~ msgid "Create privilege"
+#~ msgstr "Создать роль"
+#~ msgid "Role remove"
+#~ msgstr "Удаление роли"
+#~ msgid "Remove selected roles?"
+#~ msgstr "Удалить выбранные роли?"
+#~ msgid "Roles group create"
+#~ msgstr "Создать группу роли"
+#~ msgid "Properties"
+#~ msgstr "Свойства"
+#~ msgid "Add a subcategory"
+#~ msgstr "Добавить подкатегорию"
+#~ msgid "Add an article"
+#~ msgstr "Добавить статью"
+#~ msgid "Double click to show all categories"
+#~ msgstr "Дважды щелкните, чтобы показать все категории"
+#~ msgid "Change category data"
+#~ msgstr "Изменить данные категории"
+#~ msgid "Version"
+#~ msgstr "Версия"
+#~ msgid "Install"
+#~ msgstr "Установка"
+#~ msgid "FTP connection settings"
+#~ msgstr "Настройки FTP соединения"
+#~ msgid "Hostname"
+#~ msgstr "Имя хоста"
+#~ msgid "Port"
+#~ msgstr "Порт"
+#~ msgid "login"
+#~ msgstr "Логин"
+#~ msgid "Path to the root directory"
+#~ msgstr "Путь к корневому каталогу"
+#~ msgid "For example"
+#~ msgstr "Например"
+#~ msgid "Next"
+#~ msgstr "Следующий"
+#~ msgid "Save and go back"
+#~ msgstr "Создать и выйти"
+#~ msgid "Additional fields"
+#~ msgstr "Дополнительные поля"
+#~ msgid "Settings"
+#~ msgstr "Настройки"
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+#~ msgid "Full contents"
+#~ msgstr "Полное содержание"
+#~ msgid "Only Latin characters"
+#~ msgstr "Только латинские буквы"
+#~ msgid "Tags"
+#~ msgstr "Тэги"
+#~ msgid "Meta Title"
+#~ msgstr "Meta Title"
+#~ msgid "Meta Description"
+#~ msgstr "Meta Description"
+#~ msgid "Meta Keywords"
+#~ msgstr "Meta Keywords"
+#~ msgid "Page Template"
+#~ msgstr "Шаблон страницы"
+#~ msgid "Comment permission"
+#~ msgstr "Разрешить комментирование:"
+#~ msgid "Publication status"
+#~ msgstr "Статус публикации"
+#~ msgid "Published"
+#~ msgstr "Опубликованный"
+#~ msgid "Waiting approval "
+#~ msgstr "Ожидает одобрения"
+#~ msgid "Unpublished"
+#~ msgstr "Не опубликовано"
+#~ msgid "Time and date of creation"
+#~ msgstr " Дата и время создания"
+#~ msgid "Time and date of publication"
+#~ msgstr "Дата и время публикации"
+#~ msgid "Access"
+#~ msgstr "Доступ"
+#~ msgid "All"
+#~ msgstr "Все"
+#~ msgid "Create and exit"
+#~ msgstr "Создать и выйти"
+#~ msgid "Meta tags"
+#~ msgstr "Мета теги"
+#~ msgid "AutoFit"
+#~ msgstr "Автоподбор"
+#~ msgid "Field group"
+#~ msgstr "Группа полей"
+#~ msgid "Select  a field group  for a category"
+#~ msgstr "Выберите группу полей для категории"
+#~ msgid "Apply for subcategories"
+#~ msgstr "Применить для подкатегории"
+#~ msgid "Pages fields group"
+#~ msgstr "Группа полей страницы"
+#~ msgid ""
+#~ "Select a field group to be displayed/ viewed  in the created category of "
+#~ "the group or group category"
+#~ msgstr ""
+#~ "Выберите группу полей, которая будет отображаться при создании страниц в "
+#~ "данной категории"
+#~ msgid "Choose an image "
+#~ msgstr "Выберите изображение"
+#~ msgid "Sort by"
+#~ msgstr "Сортировать по"
+#~ msgid "by date"
+#~ msgstr "дате"
+#~ msgid "By alphabet or  in the alphabetic order"
+#~ msgstr "По алфавиту или в алфавитном порядке"
+#~ msgid "By position"
+#~ msgstr "По положению"
+#~ msgid "In descending order"
+#~ msgstr "В порядке убывания"
+#~ msgid "In ascending order"
+#~ msgstr "В порядке возрастания"
+#~ msgid "Posts on page"
+#~ msgstr "Записей на странице"
+#~ msgid "Comment pages by default "
+#~ msgstr "Страницы комментариев по умолчанию"
+#~ msgid "Display pages of other categories"
+#~ msgstr "Отображать страницы других категорий"
+#~ msgid "Main category template by default"
+#~ msgstr "Главный шаблон категории. По умолчанию "
+#~ msgid "Category template"
+#~ msgstr "Шаблон категории"
+# анг
+#~ msgid "Page view template by default"
+#~ msgstr "Шаблон просмотра страниц. По умолчанию"
+#~ msgid "Privileges"
+#~ msgstr "Привилегии"
+#~ msgid "English"
+#~ msgstr "English"
+#~ msgid "Russian"
+#~ msgstr "Русский"
+#~ msgid "System information"
+#~ msgstr "Информация системы"
+#~ msgid "Level of server utilisation"
+#~ msgstr "Уровень использования сервера"
+#~ msgid "Server"
+#~ msgstr "Сервер"
+#~ msgid "Operating system"
+#~ msgstr "Операционная система"
+#~ msgid "Data base"
+#~ msgstr "База данных"
+#~ msgid "Period"
+#~ msgstr "Период"
+#~ msgid "Size"
+#~ msgstr "Размер"
+#~ msgid "Write permission"
+#~ msgstr "Права записи"
+#~ msgid "Roles group edit"
+#~ msgstr "Редактирования группы ролей"
+#~ msgid "Module deinstalling"
+#~ msgstr "Удаление модуля"
+#~ msgid "Delete selected module(s)?"
+#~ msgstr "Удалить выбранный виджет(ы)?"
+#~ msgid "Delete modules?"
+#~ msgstr "Удалить модулей?"
+#~ msgid "Auto loading "
+#~ msgstr "Автозагрузка"
+#~ msgid "URL access"
+#~ msgstr "URL доступ"
+#~ msgid "Show in menu"
+#~ msgstr "Показывать в меню"
+#~ msgid "switch on"
+#~ msgstr "показывать"
+#~ msgid "switch off"
+#~ msgstr "не показывать"
+#~ msgid "Modules has not been installed"
+#~ msgstr "Модули не установлены"
+#~ msgid "There isn't any module for install!"
+#~ msgstr "Нет модулей для установки!"
+#~ msgid "Main"
+#~ msgstr "Главная"
+#~ msgid "All orders"
+#~ msgstr "Все заказы"
+#~ msgid "Order status"
+#~ msgstr "Статусы заказов"
+#~ msgid "Callback"
+#~ msgstr "Колбек"
+#~ msgid "Statuses of the appearance"
+#~ msgstr "Статусы уведомлений"
+#~ msgid "Others"
+#~ msgstr "Остальное"
+#~ msgid "Products catalog"
+#~ msgstr "Каталог товаров"
+#~ msgid "Products"
+#~ msgstr "Товары"
+#~ msgid "Products sets"
+#~ msgstr "Список товаров"
+#~ msgid "Users list"
+#~ msgstr "Список пользователей"
+#~ msgid "Management of access rights"
+#~ msgstr "Управление правами доступа"
+#~ msgid "Warehouse"
+#~ msgstr "Склады"
+#~ msgid "Progressive discounts"
+#~ msgstr "Накопительные скидки"
+#~ msgid "Gift Certificates"
+#~ msgstr "Подарочные сертификаты"
+#~ msgid "Currency"
+#~ msgstr "Валюты"
+#~ msgid "Delivery method"
+#~ msgstr "Способы доставки"
+#~ msgid "Payd method"
+#~ msgstr "Способы оплаты"
+#~ msgid "Administer site"
+#~ msgstr "Администрировать сайт"
+#~ msgid "Search results"
+#~ msgstr "Результаты поиска"
+#~ msgid "Forward"
+#~ msgstr "Вперед&nbsp;"
+#~ msgid "Update"
+#~ msgstr "Обновление"
+#~ msgid "Main page"
+#~ msgstr "Главная страница"
+#~ msgid "Sorry but you have an old browser"
+#~ msgstr "Жаль, но у вас старый браузер"
+#~ msgid "Update or download new browsers here"
+#~ msgstr "Обновите или загрузите новый браузер здесь"
+#~ msgid "Importance"
+#~ msgstr "Важность"
+#~ msgid "Base"
+#~ msgstr "Базовой"
+#~ msgid "back"
+#~ msgstr "назад"
+#~ msgid "Tools panel"
+#~ msgstr "Панель инструментов"
+#~ msgid "Uncategorized"
+#~ msgstr "Без категории"
+#~ msgid "No recently added pages"
+#~ msgstr "Нет недавно добавленных страниц"
+#~ msgid "No recently updated pages"
+#~ msgstr "Нет недавно обновленых страниц"
+#~ msgid "Check version update"
+#~ msgstr "Проверить обновления версии"
+#~ msgid "Latest/recent comments"
+#~ msgstr "Последнее /недавние комментарии"
+#~ msgid "ImageCMS news"
+#~ msgstr "Новости ImageCMS"
+#~ msgid "Select the module type to the table below"
+#~ msgstr "Выберите тип модуля в таблице ниже"
+#~ msgid "Module installed"
+#~ msgstr "Модуль установлен"
+#~ msgid "Module successfully installed"
+#~ msgstr "Модуль успешно установлен"
+#~ msgid "Something went wrong. Startup status is not changed."
+#~ msgstr "Что-то пошло не так. Начальный статус не изминен."
+#~ msgid "Something went wrong. URL access is not changed."
+#~ msgstr "Что-то пошло не так. URL доступ не изменился."
+#~ msgid "Turn on"
+#~ msgstr "Включить"
+#~ msgid "Turn off"
+#~ msgstr "Выключить"
+#~ msgid "Have not modules to install"
+#~ msgstr "Нет модулей для установки!              "
+#~ msgid "Widget creating"
+#~ msgstr "Создание виджета"
+#~ msgid "Widget successfully created"
+#~ msgstr "Виджет создан"
+#~ msgid "Enter template name"
+#~ msgstr "Введите имя шаблона"
+#~ msgid "No pages in category"
+#~ msgstr "Нет страниц в категории"
+#~ msgid "Category successfully added"
+#~ msgstr "Категория успешно добавлена"
+#~ msgid "You need to enter a string"
+#~ msgstr "Вам нужно ввести строку"
+#~ msgid "This field is required."
+#~ msgstr "Это поле обязательно."
+#~ msgid "Please"
+#~ msgstr "Пожалуйста"
+#~ msgid "enter the correct value"
+#~ msgstr "введите правильное значение"
+#~ msgid "enter a valid email address"
+#~ msgstr "введите действительный адрес электронной почты"
+#~ msgid "enter the correct URL"
+#~ msgstr "ввести правильный URL"
+#~ msgid "enter correct date"
+#~ msgstr "введите правильную дату"
+#~ msgid "enter correct date in format ISO"
+#~ msgstr "введите правильную дату в формате ISO"
+#~ msgid "enter number"
+#~ msgstr "введите номер"
+#~ msgid "enter only numbers"
+#~ msgstr "введите только цифры"
+#~ msgid "enter a valid credit card number"
+#~ msgstr "укажите действительный номер кредитной карты"
+#~ msgid "enter the same value again"
+#~ msgstr "введите то же значение снова"
+#~ msgid "Select the file with the correct extension"
+#~ msgstr "Выберите файл с правильным расширением"
+#~ msgid "Enter no more"
+#~ msgstr "Введите не более"
+#~ msgid "characters"
+#~ msgstr "символов"
+#~ msgid "enter at least"
+#~ msgstr "Введите по крайней мере"
+#~ msgid "enter value from"
+#~ msgstr "введите значение от"
+# НЛО
+#~ msgid "to"
+#~ msgstr "до"
+#~ msgid "enter number from"
+#~ msgstr "введите число от"
+#~ msgid "enter a number less than or equal to"
+#~ msgstr "ввести число меньше или равно"
+#~ msgid "enter a number more than or equal to"
+#~ msgstr "ввести число больше или равно"
+#~ msgid "Administer shop"
+#~ msgstr "Администрирование магазина"
+#~ msgid "Back to the system"
+#~ msgstr "Обратно в систему"
+#~ msgid "Conversion error"
+#~ msgstr "Ошибка преобразования"
+#~ msgid "User already notified via E-mail upon availability! Notify again"
+#~ msgstr ""
+#~ "Пользователь уже уведомлен по электронной почте про наличие! Сообщить "
+#~ "снова"
+#~ msgid "Notify the user via E-mail upon availability"
+#~ msgstr "Сообщить пользователю с помощью электронной почты про наличие"
+#~ msgid "Delete canceled orders"
+#~ msgstr "Удалить отмененные заказы"
+#~ msgid "Delete canceled messages"
+#~ msgstr "Удалить отмененные сообщения"
+#~ msgid "Delete order ID"
+#~ msgstr "ID удаленого заказа"
+#~ msgid "Product changes"
+#~ msgstr "Изменить продукт"
+#~ msgid "File is loaded. Slot"
+#~ msgstr "Файл загружается. Слот"
+#~ msgid "Script error. Notify administrator."
+#~ msgstr "Ошибки сценария. Сообщите администратору."
+#~ msgid "Wait for resize ending"
+#~ msgstr "Дождитесь окончания ресайза"
+#~ msgid "Resize images for products"
+#~ msgstr "Произвести ресайз для товара"
+#~ msgid "All finding products"
+#~ msgstr "Все найденные продукты"
+#~ msgid "Processed"
+#~ msgstr "Обработано"
+#~ msgid "Images updated"
+#~ msgstr "Изображения обновлены"
+#~ msgid "Completed"
+#~ msgstr "Завершено"
+#~ msgid "Resize products images"
+#~ msgstr "Ресайз изображений продуктов"
+#~ msgid "Products found"
+#~ msgstr "Найдено товаров"
+#~ msgid "Additional images resize"
+#~ msgstr "Ресайз дополнительных изображений"
+#~ msgid "Found products with additional images"
+#~ msgstr "Найденые товары с дополнительными изображениями"
+#~ msgid "Access denied"
+#~ msgstr "Ограничение прав"
+#~ msgid ""
+#~ "This is a demo version ImageCMS. Part of the actions are limited. For a "
+#~ "complete functional download and install the distribution."
+#~ msgstr ""
+#~ "Это демонстрационная версия ImageCMS. Часть действий ограничена. Что-бы "
+#~ "ознакомиться с полным функционалом скачайте и установите дистрибутив."
+#~ msgid "Please enter the column number"
+#~ msgstr "Пожалуйста, введите номер столбца"
+#~ msgid "Column number updated"
+#~ msgstr "Номер столбца обновлен"
+#~ msgid "Failed to update the column number"
+#~ msgstr "Не удалось обновить номер столбца"
+#~ msgid "Product"
+#~ msgstr "Продукт"
+#~ msgid "Variant"
+#~ msgstr "Вариант"
+#~ msgid "Price"
+#~ msgstr "Цена"
+#~ msgid "Balance"
+#~ msgstr "Остаток"
+#~ msgid "Out of stock"
+#~ msgstr "Нет на складе"
+#~ msgid "Add to Cart"
+#~ msgstr "Добавить в корзину"
+#~ msgid "In the cart"
+#~ msgstr "В корзине"
+#~ msgid "A user with this email already exists"
+#~ msgstr "Пользователь с таким E-mail уже существует"
+#~ msgid "New user created"
+#~ msgstr "Создан новый пользователь"
+#~ msgid "Failed to create user"
+#~ msgstr "Не удалось создать пользователя"
+#~ msgid "Check the input data and fill in all mandatory fields"
+#~ msgstr "Проверьте введенные данные и заполните все обязательные поля"
+#~ msgid "Current certificate (amount):"
+#~ msgstr "Текущий сертификат (сумма):"
+#~ msgid "Sort method updated"
+#~ msgstr "Метод сортировки обновлен"
+#~ msgid "Conversion error, "
+#~ msgstr "Ошибка преобразования,"
+#~ msgid "Failure to remove variant"
+#~ msgstr "Ошибка удаления варианта"
+#~ msgid "Remove selected orders?"
+#~ msgstr "Удалить выбранные заказы?"
+#~ msgid "Remove selected notifications?"
+#~ msgstr "Удалить выбранные уведомления?"
+#~ msgid "Remove order with ID: "
+#~ msgstr "Удалить заказ с ID:"
+#~ msgid "Change product"
+#~ msgstr "Изменить  продукт"
+#~ msgid "The file is loaded. Slot "
+#~ msgstr "Файл загружается. Слот"
+#~ msgid "Error in the script. Please notify the administrator"
+#~ msgstr "Ошибка в сценарии. Пожалуйста, сообщите администратору"
+#~ msgid "To use your personal account, activate JavaScript, please."
+#~ msgstr ""
+#~ "Для использования кабинета администрирования, пожалуйста, включите "
+#~ "JavaScript."
+#~ msgid "Hello"
+#~ msgstr "Здравствуйте"
+#~ msgid "Contents"
+#~ msgstr "Содержымое"
+#~ msgid "Without a category"
+#~ msgstr "Без категории"
+#~ msgid "Field constructor"
+#~ msgstr "Конструктор поля"
+#~ msgid "Management"
+#~ msgstr "Управление"
+#~ msgid "Search"
+#~ msgstr "Поиск"
+#~ msgid "Site settings"
+#~ msgstr "Настройки сайта"
+# НЛО
+#~ msgid "Clear old or Delete outdated posts or information"
+#~ msgstr "Очистите старые или удалять устаревшие сообщения или информацию"
+#~ msgid "Event journal"
+#~ msgstr "Журнал событий"
+#~ msgid "View a site"
+#~ msgstr "Просмотр сайта"
+#~ msgid "Exit"
+#~ msgstr "Выхад"
+#~ msgid "Delete the file to continue"
+#~ msgstr "Удалить файл, чтобы продолжить"
+#~ msgid "Forgot your password?"
+#~ msgstr "Забыли пароль?"
+#~ msgid "Send"
+#~ msgstr "Отправить"
+#~ msgid "Log in"
+#~ msgstr "Войти"
+#~ msgid "New Role"
+#~ msgstr "Новая роль"
+#~ msgid "Role"
+#~ msgstr "Роль"
+#~ msgid "Attention"
+#~ msgstr "Внимание"
+#~ msgid "Make a database backup copy before updating "
+#~ msgstr "Сделайте резервную копию базы данных перед обновлением"
+# вот а фак
+#~ msgid "For example:  /domains/mysite/public_html/"
+#~ msgstr "Например: /domains/mysite/public_html/"
+#~ msgid "Role edit"
+#~ msgstr "Редактирование роли"
+#~ msgid "Save and exit"
+#~ msgstr "Сохранить и выйти"
+# англ
+#~ msgid "Create a page"
+#~ msgstr "Создать страницу"
+#~ msgid "New pages"
+#~ msgstr "Новые страницы"
+#~ msgid "Updated pages"
+#~ msgstr "Страницы обновлены"
+#~ msgid "Information"
+#~ msgstr "Информация"
+#~ msgid "Delete selected languages?"
+#~ msgstr "Удалить выбранные языки?"
+#~ msgid "Attention! All pages in this language will be deleted!"
+#~ msgstr "Внимание! Все страницы на этом языке будут удалены!"
+#~ msgid "Create language"
+#~ msgstr "Создать язык"
+#~ msgid "Folder"
+#~ msgstr "Папка"
+#~ msgid "Go back"
+#~ msgstr "Вернуться"
+# англ
+#~ msgid "Short widget discription"
+#~ msgstr "Краткое описание виджета"
+#~ msgid "Type"
+#~ msgstr "Тип"
+#~ msgid "Module name"
+#~ msgstr "Название модуля"
+#~ msgid "User"
+#~ msgstr "Пользователь"
+#~ msgid "Reference"
+#~ msgstr "Ссылка"
+#~ msgid "Status"
+#~ msgstr "Статус"
+#~ msgid "go to the website"
+#~ msgstr "просмотр сайта"
+#~ msgid "show"
+#~ msgstr "показать"
+#~ msgid "hit"
+#~ msgstr "хит"
+#~ msgid "novelty"
+#~ msgstr "новинка"
+#~ msgid "promotion"
+#~ msgstr "акция"
+#~ msgid "Variants"
+#~ msgstr "Варианты"
+#~ msgid "Drag product variant"
+#~ msgstr "Перетащите вариант продукта"
+#~ msgid "No relevant data has been found"
+#~ msgstr "Соответствующих данных не было обнаружено"
+#~ msgid "Telephone"
+#~ msgstr "Телефон"
+#~ msgid "Delete products"
+#~ msgstr "Удалить продукты"
+#~ msgid "Really delete selected products?"
+#~ msgstr "Вы действительно хотите удалить выбранные продукты?"
+# НЛО
+#~ msgid "a_products_del_body_warning"
+#~ msgstr "a_products_del_body_warning"
+#~ msgid "Move products"
+#~ msgstr "Перемещение товаров"
+#~ msgid "Move"
+#~ msgstr "Переместить"
+#~ msgid "Items list"
+#~ msgstr "Список элементов"
+#~ msgid "Filter"
+#~ msgstr "Фильтр"
+#~ msgid "Reset filter"
+#~ msgstr "Сбросить фильтр"
+#~ msgid "Cancel filter"
+#~ msgstr "Отменить фильтрацию"
+# I am
+#~ msgid "Mark"
+#~ msgstr "Отметить"
+#~ msgid "Hit"
+#~ msgstr "Хит"
+#~ msgid "New"
+#~ msgstr "Новый"
+#~ msgid "Promotion"
+#~ msgstr "Акция"
+#~ msgid "Create copy"
+#~ msgstr "Создайте копию"
+#~ msgid "Move to category"
+#~ msgstr "Переместить в категорию"
+#~ msgid "Article"
+#~ msgstr "Артикул"
+#~ msgid "From"
+#~ msgstr "От"
+#~ msgid "To"
+#~ msgstr "До"
+#~ msgid "Request showed no result"
+#~ msgstr "Запрос не дал результатов"
+#~ msgid "There are no results. Modify your search or click the "
+#~ msgstr "Нет результатов. Измените критерии поиска или нажмите"
+#~ msgid "At the products page"
+#~ msgstr "На странице товаров"
+#~ msgid "Change"
+#~ msgstr "Изменить"
+#~ msgid "Options"
+#~ msgstr "Опции"
+#~ msgid "Specify"
+#~ msgstr "Укажыте"
+#~ msgid "or"
+#~ msgstr "или"
+#~ msgid "Item"
+#~ msgstr "Еденыца"
+#~ msgid "inactive"
+#~ msgstr "Неактивный"
+#~ msgid "Special offers"
+#~ msgstr "Специальные предложения"
+#~ msgid "Search start"
+#~ msgstr "Начать поиск"
+#~ msgid "Brand"
+#~ msgstr "Бренд"
+#~ msgid "Save and create a new record"
+#~ msgstr "Сохранить и создать новую запись"
+#~ msgid " Save and edit"
+#~ msgstr "Сохранить и изменить"
+#~ msgid "View"
+#~ msgstr "Просмотр"
+#~ msgid " callbacks"
+#~ msgstr "колбеки"
+#~ msgid "Sort by  number"
+#~ msgstr "Сортировать по числу"
+#~ msgid "Sort by name ."
+#~ msgstr "Сортировать по имени."
+#~ msgid "User name"
+#~ msgstr "Имя пользователя"
+#~ msgid "Sort by  phone number"
+#~ msgstr "Сортировать по номеру телефона"
+#~ msgid "Sort by theme"
+#~ msgstr "Сортировать по теме"
+#~ msgid "Theme"
+#~ msgstr "Тема"
+#~ msgid "Sort by status"
+#~ msgstr "Сортировать по статусу"
+#~ msgid "Sort by  date"
+#~ msgstr "Сортировать по дате"
+#~ msgid "Date"
+#~ msgstr "Дата"
+#~ msgid "Last comment left by the manager"
+#~ msgstr "Последний комментарий, оставленный менеджером"
+#~ msgid "Manager"
+#~ msgstr "Менеджер"
+#~ msgid "Edit callback"
+#~ msgstr "Редактировать колбек"
+#~ msgid "All Callbacks "
+#~ msgstr "Все колбеки"
+#~ msgid "Found results"
+#~ msgstr "Найденые результаты"
+#~ msgid "Empty callback list."
+#~ msgstr "Пустой список колбеков."
+#~ msgid "Remove callback"
+#~ msgstr "Удалить колбек"
+#~ msgid "Really delete callback(s)"
+#~ msgstr "Вы действительно хотите удалить колюек(и)"
+#~ msgid "Remove"
+#~ msgstr "Удалить"
+#~ msgid "Empty status list."
+#~ msgstr "Пустой список статуса."
+#~ msgid "Browse topics callback"
+#~ msgstr "Просмотр тем обратного вызова"
+#~ msgid "Create status"
+#~ msgstr "Создать статус"
+#~ msgid "By default"
+#~ msgstr "По умолчанию"
+#~ msgid "Edit topic callback"
+#~ msgstr "Изменить тему колбека"
+#~ msgid "Creating a status callback"
+#~ msgstr "Создание статуса колбека"
+# англ
+#~ msgid "Status set  for all new  requests. "
+#~ msgstr " Статус будет назначен всем новым запросам."
+#~ msgid "Editing by collback"
+#~ msgstr "Редактирование колбека"
+#~ msgid "Editing Tools colback"
+#~ msgstr "Инструменты редактирования колбека"
+#~ msgid "Language"
+#~ msgstr "Язык"
+#~ msgid ""
+#~ "This icon denotes a field that can be translate well another language."
+#~ msgstr ""
+#~ "Эта иконка обозначает поле, которое можно перевести также на другом языке."
+#~ msgid "Creation of the request subject"
+#~ msgstr "Создание тему запроса"
+#~ msgid "Browse topics collback"
+#~ msgstr "Просмотр тем callback'ов"
+#~ msgid "Add a new topic"
+#~ msgstr "Добавить новую тему"
+#~ msgid "Text"
+#~ msgstr "Текст"
+#~ msgid "Request subject editing"
+#~ msgstr "Редактирование темы запроса"
+#~ msgid "List of callbacks is empty"
+#~ msgstr "Список колбеков пуст"
+#~ msgid "Callback editing"
+#~ msgstr "Редактирование статуса callback'a"
+#~ msgid "Comment"
+#~ msgstr "Комментарий"
+# англ
+#~ msgid "Product property creating"
+#~ msgstr "Создание свойства продукта"
+#~ msgid "The field must contain only Latin characters ."
+#~ msgstr "Поле должно содержать только латинские символы."
+#~ msgid "Hint"
+#~ msgstr "Подсказка"
+#~ msgid "Delete a property"
+#~ msgstr "Удалить свойство"
+#~ msgid "Remove selected properties?"
+#~ msgstr "Удалить выбранные свойства?"
+#~ msgid "Properties list review"
+#~ msgstr " Просмотр свойств товаров"
+#~ msgid "Create a property"
+#~ msgstr "Создать свойство"
+#~ msgid "Empty property list"
+#~ msgstr "Список свойств пуст"
+#~ msgid "Products import"
+#~ msgstr "Импорт продуктов"
+#~ msgid "File"
+#~ msgstr "Файл"
+#~ msgid "Import type"
+#~ msgstr "Тип импорта"
+#~ msgid "Catalog"
+#~ msgstr "Каталог"
+#~ msgid "Columns"
+#~ msgstr "Колонки"
+#~ msgid "The field separator"
+#~ msgstr "Разделитель полей"
+#~ msgid "Semicolon"
+#~ msgstr "Точка с запятой"
+#~ msgid "Colon"
+#~ msgstr "Двоеточие"
+#~ msgid "Comma"
+#~ msgstr "Запятая"
+#~ msgid "Tab"
+#~ msgstr "Табуляция"
+#~ msgid "Sharp"
+#~ msgstr "Решотка"
+#~ msgid "Text separator"
+#~ msgstr "Разделитель текста"
+#~ msgid "quotes"
+#~ msgstr "кавычки"
+#~ msgid "Single quotes"
+#~ msgstr "Одиночные кавычки"
+#~ msgid "Encoding"
+#~ msgstr "Кодирование"
+#~ msgid "Import"
+#~ msgstr "Импорт"
+#~ msgid "Products name"
+#~ msgstr "Название продуктов"
+#~ msgid "Old price"
+#~ msgstr "Старая цена"
+#~ msgid "Quantity"
+#~ msgstr "Количество"
+#~ msgid "Variant name"
+#~ msgstr "Название варианта"
+#~ msgid "Related products"
+#~ msgstr "Связанные товары"
+#~ msgid "The main image"
+#~ msgstr "Основное изображение"
+# англ
+#~ msgid "Main picture an additional"
+#~ msgstr "Основная дополнительная фотография"
+#~ msgid "Small image"
+#~ msgstr "Маленькая фотография"
+# англ
+#~ msgid "Small image an additional"
+#~ msgstr "Миниатюра дополнительних"
+#~ msgid "Additional images"
+#~ msgstr "Дополнительные изображения"
+#~ msgid "Skip column"
+#~ msgstr "Пропустить колонки"
+#~ msgid "Import completed"
+#~ msgstr "Импорт завершен"
+#~ msgid "Fields separator"
+#~ msgstr "Разделитель полей"
+#~ msgid "Quotes"
+#~ msgstr "Кавычки"
+#~ msgid "Field separator"
+#~ msgstr "Разделитель поля"
+#~ msgid "Product Name"
+#~ msgstr "Название продукта"
+#~ msgid "Main image"
+#~ msgstr "Главное изображение"
+#~ msgid "small image"
+#~ msgstr "Миниатюра"
+#~ msgid "Import Complete"
+#~ msgstr "Импорт завершен"
+#~ msgid "Attributes"
+#~ msgstr "Атрибуты"
+#~ msgid "The list of attributes that will be imported"
+#~ msgstr "Список атрибутов, которые будут импортированы"
+#~ msgid "Automatization"
+#~ msgstr "Автоматизация"
+#~ msgid "Export"
+#~ msgstr "Экспорт"
+#~ msgid "Select the file"
+#~ msgstr "Выберите файл"
+#~ msgid "Select the file in a convenient format"
+#~ msgstr "Выберите файл в удобном формате"
+#~ msgid "Files"
+#~ msgstr "Файлы"
+#~ msgid "The data of your database will be stored in the folder"
+#~ msgstr "Данные вашей базы данных будет храниться в папке"
+#~ msgid "Take a snapshot of the database before start"
+#~ msgstr "Сделать снимок базы данных перед запуском"
+#~ msgid "Resize"
+#~ msgstr "Ресайз"
+#~ msgid "For imported images will be produced resize"
+#~ msgstr "Для импортированных изображений будет произведен ресайз"
+#~ msgid "It may take more time"
+#~ msgstr "Это может занять больше времени"
+#~ msgid "Start resize images after import"
+#~ msgstr "Начать ресайз изображений после импорта"
+#~ msgid "Price checking"
+#~ msgstr "Проверка цен"
+#~ msgid ""
+#~ "Will be recalculated prices of products in accordance to the default "
+#~ "currency"
+#~ msgstr ""
+#~ "Будут пересчитаны цены на продукцию в соответствии с валютой по умолчанию"
+#~ msgid "Refresh prices after import"
+#~ msgstr "Обновить цены после импорта"
+#~ msgid "Import language "
+#~ msgstr "Импорт языка"
+#~ msgid "Start import"
+#~ msgstr "Начать импорт"
+#~ msgid "Products export"
+#~ msgstr "Експорт продуктов"
+#~ msgid "active"
+#~ msgstr "активный"
+#~ msgid "Export complete"
+#~ msgstr "Экспорт завершен"
+#~ msgid "categories"
+#~ msgstr "категории"
+#~ msgid "Loading properties"
+#~ msgstr "Загрузка свойств"
+#~ msgid "Show properties of the selected categories"
+#~ msgstr "Показать свойства выбраных категории"
+#~ msgid "Properties of the products"
+#~ msgstr "Свойства продуктов"
+#~ msgid "Select a category for export"
+#~ msgstr "Выберите категорию для экспорта"
+#~ msgid "Filetype"
+#~ msgstr "Тип файла"
+#~ msgid "Exports in progress"
+#~ msgstr "Экспорт в прогрессе"
+#~ msgid "Start export"
+#~ msgstr "Начать експорт"
+#~ msgid "Category list is empty"
+#~ msgstr "Список категорий пуст"
+#~ msgid "Translation"
+#~ msgstr "Перевод"
+# анг
+#~ msgid "Drug category"
+#~ msgstr "Переместить категорию"
+#~ msgid "Collapse category"
+#~ msgstr "Свернуть категорию"
+#~ msgid "expand the category"
+#~ msgstr "Развернуть категорию"
+#~ msgid "Edit the category"
+#~ msgstr "Изменить категорию"
+# фак
+#~ msgid "a_category_creating"
+#~ msgstr "a_category_creating"
+# фак
+#~ msgid "a_return"
+#~ msgstr "a_return"
+# фак
+#~ msgid "a_save"
+#~ msgstr "a_save"
+# фак
+#~ msgid "a_save_and_exit"
+#~ msgstr "a_save_and_exit"
+# фак
+#~ msgid "a_info"
+#~ msgstr "a_info"
+# фак
+#~ msgid "a_select_image"
+#~ msgstr "a_select_image"
+# фак
+#~ msgid "a_sett"
+#~ msgstr "a_sett"
+#~ msgid "Create a new template"
+#~ msgstr "Создать новый шаблон"
+#~ msgid "The basic template category. Default category.tpl"
+#~ msgstr "Основной шаблон категории. По умолчанию category.tpl"
+#~ msgid "Autoselection"
+#~ msgstr "Автоподбор"
+#~ msgid "-Not selected-"
+#~ msgstr "-Не выбрано-"
+# англ
+#~ msgid "By raiting"
+#~ msgstr "По рейтингу"
+#~ msgid "From cheap to expensive"
+#~ msgstr "От дешевых к дорогим"
+#~ msgid "From expensive to cheap"
+#~ msgstr "От дорогих к дешевым"
+#~ msgid "Popular"
+#~ msgstr "Популярные"
+#~ msgid "Novelty"
+#~ msgstr "Новинка"
+#~ msgid "Promotions"
+#~ msgstr "Акции"
+#~ msgid "Do not show short name of the site"
+#~ msgstr "Не показывать короткое название сайта"
+#~ msgid "Meta data"
+#~ msgstr "Ключевые слова"
+# англ
+#~ msgid "THere are no categories at the site"
+#~ msgstr "Нет категорий на сайте"
+#~ msgid "Remove selected categories"
+#~ msgstr "Удалить выбранные категории"
+#~ msgid "Attention! will also remove all the products from this category"
+#~ msgstr "Внимание! Также будут удалены все продукты из этой категории"
+#~ msgid "Edit category ID"
+#~ msgstr "Редактирование категории ID"
+#~ msgid "Not selected"
+#~ msgstr "Не выбрано"
+#~ msgid "Address"
+#~ msgstr "Адрес"
+#~ msgid "Delete warehouse"
+#~ msgstr "Удалить склад"
+# англ
+#~ msgid "Relly remove selected warehouses?"
+#~ msgstr "Вы действительно хотите удалить выбранный складах?"
+#~ msgid "Delete warehouses"
+#~ msgstr "Удалить склады"
+#~ msgid "Warehouses list"
+#~ msgstr "Список складов"
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать склад"
+#~ msgid "Empty warehouse list."
+#~ msgstr "Список складов пустой."
+#~ msgid "Edit warehouse"
+#~ msgstr "Редактировать склад"
+#~ msgid "Creation of Status pending"
+#~ msgstr "Создание статуса уведомления о появлении"
+#~ msgid "General information"
+#~ msgstr "Общая информация"
+#~ msgid "Remove your status?"
+#~ msgstr "Удалить ваш статус?"
+#~ msgid "Remove status?"
+#~ msgstr "Удалить статус?"
+#~ msgid "View the status of appearance"
+#~ msgstr "Просмотр состояния появления"
+#~ msgid "Editing status of appearance"
+#~ msgstr "Редактирование статуса появления"
+#~ msgid "Callback status data"
+#~ msgstr "Данные статуса колбека"
+#~ msgid "Delivery method create"
+#~ msgstr "Создать способ доставки"
+#~ msgid "Data"
+#~ msgstr "Данные"
+#~ msgid "Description delivery price"
+#~ msgstr "Описание цены доставки"
+#~ msgid "Delivery price"
+#~ msgstr "Цена доставки"
+#~ msgid "Free"
+#~ msgstr "Бесплатен"
+#~ msgid "from"
+#~ msgstr "от"
+#~ msgid "Payment method"
+#~ msgstr "Способ оплаты"
+#~ msgid "List is empty."
+#~ msgstr "Список пуст"
+#~ msgid "Removing the shipping methods"
+#~ msgstr "Удаление способов доставки"
+# англ
+#~ msgid "Delete Selected methods of delivery?"
+#~ msgstr "Удалить выбранные способы доставки?"
+#~ msgid "Delete method of delivery?"
+#~ msgstr "Удалить способ доставки?"
+#~ msgid "Delivery methods list"
+#~ msgstr "Список способов доставки"
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать способ доставки"
+#~ msgid "Delivery methods list is empty"
+#~ msgstr "Список способов доставки пустой"
+#~ msgid "Delivery and payment"
+#~ msgstr "Доставка и оплата"
+#~ msgid "Delivery method edit"
+#~ msgstr "Редактирование способа доставки"
+#~ msgid "List is empty"
+#~ msgstr "Список пустой"
+# а
+#~ msgid "receipt"
+#~ msgstr "получение"
+#~ msgid "Product name"
+#~ msgstr "Название продукта"
+# а
+#~ msgid "Measurement unit"
+#~ msgstr "Измерительное устройство"
+#~ msgid "Total price"
+#~ msgstr "Общая цена"
+#~ msgid "Pieces."
+#~ msgstr "Шт."
+#~ msgid "Delivery Address"
+#~ msgstr "Адрес доставки"
+#~ msgid "Phone"
+#~ msgstr "Телефон"
+#~ msgid "Order create"
+#~ msgstr "Создание заказа"
+#~ msgid "Make order"
+#~ msgstr "Создать заказ"
+#~ msgid "Find a product"
+#~ msgstr "Найти товар"
+# а
+#~ msgid "Article / Name / ID"
+#~ msgstr "Арктикул / Название / ID"
+#~ msgid "Total"
+#~ msgstr "Общий"
+#~ msgid "Create new user"
+#~ msgstr "Создать нового пользователя"
+#~ msgid "Full Name"
+#~ msgstr "Полное имя"
+#~ msgid "Search user"
+#~ msgstr "Поиск пользователя"
+#~ msgid "ID / Full Name / Email"
+#~ msgstr "ID / Имя / E-mail"
+#~ msgid "Editing by"
+#~ msgstr "Редактировать по"
+#~ msgid "Order information"
+#~ msgstr "Информация  заказа"
+#~ msgid "Email"
+#~ msgstr "Email"
+#~ msgid "Products amount"
+#~ msgstr "Сумма товаров"
+#~ msgid "Certificate"
+#~ msgstr "Сертификат"
+#~ msgid "Enter the key"
+#~ msgstr "Введите ключ"
+#~ msgid "Current discount"
+#~ msgstr "Текущая скидка"
+#~ msgid "Digits only"
+#~ msgstr "Только цифры"
+#~ msgid "Order removal"
+#~ msgstr "Удаление заказа"
+#~ msgid " Delete selected orders?"
+#~ msgstr "Удалить отмеченные заказы?"
+#~ msgid "Change status"
+#~ msgstr "Изменить статус"
+#~ msgid "Payment status"
+#~ msgstr "Статус оплаты"
+#~ msgid "Paid"
+#~ msgstr "Оплачен"
+#~ msgid "Not paid"
+#~ msgstr "Не оплачен"
+#~ msgid "Create order"
+#~ msgstr "Создать заказ"
+#~ msgid "Customer"
+#~ msgstr "Заказчик"
+#~ msgid "(no delivery)"
+#~ msgstr "(без доставки)"
+#~ msgid "numbers only"
+#~ msgstr "только цифры"
+#~ msgid "choose a date"
+#~ msgstr "выберите дату"
+#~ msgid "Purchased Product"
+#~ msgstr "Купленные товары"
+#~ msgid "pcs"
+#~ msgstr "штук"
+#~ msgid "Orders on the page"
+#~ msgstr "Заказов на странице"
+#~ msgid ""
+#~ " This product has been deleted  from the shop! You can only change the "
+#~ "quantity or replace by another product"
+#~ msgstr ""
+#~ "Данный товар был удален из магазина! Вы можете изменить количество или "
+#~ "заменить другим товаром"
+#~ msgid "Product price has been changed. Old product price"
+#~ msgstr "Цена товара была изменена. Старая цена товара"
+#~ msgid "Save the old price ?"
+#~ msgstr "Сохранить старую цену?"
+#~ msgid "Notify a buyer about the status change"
+#~ msgstr "Уведомить покупателя об изменении статуса"
+#~ msgid "Complete"
+#~ msgstr "Закончыть"
+#~ msgid "on"
+#~ msgstr "на"
+#~ msgid "map"
+#~ msgstr "карта"
+#~ msgid "Show on map"
+#~ msgstr "Показать на карте"
+#~ msgid "Additional data"
+#~ msgstr "Дополнительные данные"
+#~ msgid "Delivery Method"
+#~ msgstr "Способ доставки"
+#~ msgid "Order"
+#~ msgstr "Заказ"
+#~ msgid "Has been created"
+#~ msgstr "Был создан"
+# а
+#~ msgid "Print receipt"
+#~ msgstr "Распечатать чек"
+#~ msgid "Basic data"
+#~ msgstr "Основные данные"
+#~ msgid "Products and order history"
+#~ msgstr "Товары и история заказа"
+#~ msgid "Date of order"
+#~ msgstr "Дата заказа"
+#~ msgid "Not specified"
+#~ msgstr "Не указано"
+#~ msgid "Order amount"
+#~ msgstr "Сумма заказа"
+#~ msgid "Full user name"
+#~ msgstr "Полное имя пользователя"
+#~ msgid "Items in Cart"
+#~ msgstr "Товары в корзине"
+#~ msgid "Gift Certificate"
+#~ msgstr "Подарочный сертификат"
+#~ msgid "Add a new product to the order"
+#~ msgstr "Добавить новый товар к заказу"
+#~ msgid "Ordering information"
+#~ msgstr "Информация для заказа"
+#~ msgid "Commentary to change the status"
+#~ msgstr "Комментарий к изменению статуса"
+# а
+#~ msgid "Info buyer ch stat"
+#~ msgstr "Уведомлять покупателя о смене статуса"
+#~ msgid "Date modified"
+#~ msgstr "Дата изменена"
+#~ msgid "Status history"
+#~ msgstr "История статусов"
+#~ msgid "Product addition"
+#~ msgstr "Додатковые товары"
+#~ msgid "Add"
+#~ msgstr "Добавить"
+#~ msgid "in"
+#~ msgstr "в"
+#~ msgid "Cart"
+#~ msgstr "Корзина"
+#~ msgid "Me"
+#~ msgstr "мне"
+#~ msgid "Option"
+#~ msgstr "Вариант"
+#~ msgid "Payments"
+#~ msgstr "Оплата"
+#~ msgid "Result"
+#~ msgstr "Результат"
+#~ msgid "Orders status creating"
+#~ msgstr "Создание статуса заказа"
+#~ msgid "Edit status"
+#~ msgstr "Редактирование статуса"
+#~ msgid "Delete order status(es)?"
+#~ msgstr "Удалить статус заказа(ов)?"
+#~ msgid "exists"
+#~ msgstr "существует"
+# а
+#~ msgid "a_s"
+#~ msgstr "a_s"
+#~ msgid "In order to"
+#~ msgstr "Для того, чтобы"
+#~ msgid "Do you really want to delete the status?"
+#~ msgstr "Вы действительно хотите удалить статус?"
+#~ msgid "Set another status for these orders"
+#~ msgstr "Установить другой статус этих заказов"
+#~ msgid "Delete all orders with this status"
+#~ msgstr "Удалить все заказы с таким статусом"
+#~ msgid "Orders status edit"
+#~ msgstr "Редактирование статуса заказа"
+#~ msgid "New orders"
+#~ msgstr "Новые заказы"
+#~ msgid "Bestsellers"
+#~ msgstr "Бестселлеры"
+#~ msgid "New users"
+#~ msgstr "Новые пользователи"
+#~ msgid "Amount"
+#~ msgstr "Сумма"
+#~ msgid "Amount of additions to Cart"
+#~ msgstr "Количество доданых в корзину"
+#~ msgid "Date of registration"
+#~ msgstr "Дата регистрации"
+#~ msgid "Last comments"
+#~ msgstr "Последние комментарии"
+#~ msgid "Approved"
+#~ msgstr "Одобренный"
+#~ msgid "Waiting for approval"
+#~ msgstr "Ожидает одобрения"
+#~ msgid "Spam"
+#~ msgstr "Спам"
+#~ msgid "News of ImageCMS"
+#~ msgstr "Новости ImageCMS"
+#~ msgid "Read all"
+#~ msgstr "Читать полнастью"
+#~ msgid "Payment method create"
+#~ msgstr "Создание способа оплаты"
+#~ msgid "Removal of payment methods"
+#~ msgstr "Удаление способов оплаты"
+#~ msgid "Delete the selected payment methods?"
+#~ msgstr "Удалить выбранные способы оплаты?"
+#~ msgid "Delete method of payment?"
+#~ msgstr "Удалить способ оплаты?"
+#~ msgid "Payment methods list"
+#~ msgstr "Список способов оплаты"
+#~ msgid "Create a payment method"
+#~ msgstr "Создать способ оплаты "
+#~ msgid "Payment methods list is empty"
+#~ msgstr "Список способов оплаты пуст"
+#~ msgid "Payment method edit"
+#~ msgstr "Редактировать способа оплаты"
+#~ msgid "Additional field create"
+#~ msgstr "Создание дополнительных полей"
+#~ msgid "Entity"
+#~ msgstr "Тип"
+#~ msgid "Orders "
+#~ msgstr "Заказы"
+#~ msgid "The field should only contain letters without numbers"
+#~ msgstr "Поле должно содержать только латинские буквы без чисел"
+#~ msgid "Label"
+#~ msgstr "Метка"
+#~ msgid "Field"
+#~ msgstr "Поле"
+#~ msgid "Required"
+#~ msgstr "Необходимое"
+#~ msgid "Private"
+#~ msgstr "Приватное"
+#~ msgid "Field type"
+#~ msgstr "Тип поля"
+#~ msgid "Possible values"
+#~ msgstr "Возможные значения"
+#~ msgid "Validators"
+#~ msgstr "Валидаторы"
+# а
+#~ msgid ""
+#~ "Snippet of a certain format,<br /> verifies syntactic correctness<br /> "
+#~ "of the entered information - that is,<br /> to validate."
+#~ msgstr ""
+#~ "Фрагмента кода определённого формату, <br />  ппроверяет синтаксическую "
+#~ "корректность  введеной информации — то есть, <br /> производит валидацию."
+#~ msgid "Classes"
+#~ msgstr "Классы"
+#~ msgid "Custom classes for widget"
+#~ msgstr "Пользовательские классы для виджета"
+#~ msgid "Access rights"
+#~ msgstr "Права доступа"
+#~ msgid ""
+#~ "Access rights define <br />a set of actions (eg, read,<br /> write, "
+#~ "execute) permissions for<br /> the subjects (for example, users<br /> of "
+#~ "the system) of <br />the data objects."
+#~ msgstr ""
+#~ "Права доступа определяют <br /> набор действий (например, чтение, <br /> "
+#~ "запись, выполнение) разрешенных для <br /> предметов (например, "
+#~ "пользователи <br /> системы) из <br />объектов данных."
+# а
+#~ msgid "a2_acces_right"
+#~ msgstr "a2_acces_right"
+#~ msgid "Close"
+#~ msgstr "Закрить"
+#~ msgid "Remove fields"
+#~ msgstr "Удалить поля"
+#~ msgid "Remove the selected field?"
+#~ msgstr "Удалить выделенное поле?"
+#~ msgid "Remove the field?"
+#~ msgstr "Удалите поле?"
+#~ msgid "Additional fields list"
+#~ msgstr "Список дополнительных полей"
+#~ msgid "Create Field"
+#~ msgstr "Создать поле"
+#~ msgid "One user"
+#~ msgstr "Один пользователь"
+#~ msgid "Related entity"
+#~ msgstr "Связанная сущность"
+#~ msgid "Editing a custom field"
+#~ msgstr "Редактирование дополнительного поля"
+#~ msgid "Additional field data"
+#~ msgstr "Данные дополнительного поля"
+#~ msgid "Role create"
+#~ msgstr "Создание роли"
+#~ msgid "Remove group"
+#~ msgstr "Удалить группу"
+#~ msgid "Create group of roles"
+#~ msgstr "Создать группу ролей"
+#~ msgid "Products without icons"
+#~ msgstr "Товари без картинок"
+#~ msgid "Latest/recent  comments"
+#~ msgstr "Последнее /недавние комментарии"
+#~ msgid "Delete "
+#~ msgstr "Удалить"
+#~ msgid "Notification "
+#~ msgstr "Уведомление"
+#~ msgid "ID : "
+#~ msgstr "ID:"
+#~ msgid ""
+#~ "User has already been notified by e-mail  about  product arrival! Notify "
+#~ "again? "
+#~ msgstr ""
+#~ "Пользователь уже был уведомлен по электронной почте о прибытие товара! "
+#~ "Сообщить снова?"
+#~ msgid "Notify a user by e-mail about product arrival?"
+#~ msgstr "Сообщите пользователю по электронной почте о прибытии товара?"
+#~ msgid " Change the status of marked notifications?"
+#~ msgstr "Изменение статуса уведомлений отмеченных ?"
+#~ msgid "Removal requests"
+#~ msgstr "Запросов на удаление"
+#~ msgid "Delete the selected queries?"
+#~ msgstr "Удалить выбранные запросы?"
+#~ msgid "Delete the query?"
+#~ msgstr "Удалить запрос?"
+#~ msgid "Arrival notification"
+#~ msgstr "Уведомление о появлении"
+#~ msgid "Time of addition"
+#~ msgstr "Время добавления"
+#~ msgid "Valid until"
+#~ msgstr "Действительно до"
+#~ msgid "Notified email"
+#~ msgstr "E-mail уведомления"
+#~ msgid "Notified"
+#~ msgstr "Уведомлен"
+#~ msgid "Notify"
+#~ msgstr "Уведомлять"
+#~ msgid "Empty product arrival notification list."
+#~ msgstr "Список уведомлений о появлении пустой."
+#~ msgid "The request for notification"
+#~ msgstr "Запрос относительно уведомления"
+#~ msgid "by"
+#~ msgstr "по"
+#~ msgid "E-mail notification"
+#~ msgstr "Уведомление по электронной почте"
+#~ msgid "Select"
+#~ msgstr "Выбирать"
+#~ msgid "Product creation"
+#~ msgstr "Создание товара"
+#~ msgid "Images"
+#~ msgstr "Изображения"
+#~ msgid "Kits"
+#~ msgstr "Наборы"
+#~ msgid "Product variant name"
+#~ msgstr "Название варианта товара"
+#~ msgid "Photo"
+#~ msgstr "Фото"
+#~ msgid "Edit"
+#~ msgstr "Редактировать"
+#~ msgid "Load from internet"
+#~ msgstr "Загрузите из интернета"
+#~ msgid "Add a variant"
+#~ msgstr "Добавить вариант"
+#~ msgid "Brand name"
+#~ msgstr "Название бренда"
+#~ msgid "Additional categories"
+#~ msgstr "Дополнительные категории"
+#~ msgid "Warehouses"
+#~ msgstr "Склады"
+#~ msgid "tie-in sales"
+#~ msgstr "врезки в продаже"
+#~ msgid "Product main template. By default  product.tpl"
+#~ msgstr "Основной шаблон товара. По-умолчанию product.tpl"
+#~ msgid "Product variations "
+#~ msgstr "Варианты товара"
+#~ msgid "product"
+#~ msgstr "товар"
+#~ msgid "Selected "
+#~ msgstr "Выбранный"
+#~ msgid " Create a product copy?"
+#~ msgstr "Создаье копию товара?"
+#~ msgid "Product displacement"
+#~ msgstr "Перемещение товара"
+#~ msgid "Create a product"
+#~ msgstr "Создать товар"
+#~ msgid "Sort by ID"
+#~ msgstr "Сортировать по ID"
+#~ msgid "Sort by price"
+#~ msgstr "Сортировать по цене"
+#~ msgid "Copy"
+#~ msgstr "Копировать"
+#~ msgid "Previous"
+#~ msgstr "Предыдущий"
+#~ msgid "Select a file"
+#~ msgstr "Выберите файл"
+#~ msgid "Create small image"
+#~ msgstr "Создать миниатюру"
+#~ msgid "Another main image variant"
+#~ msgstr "Другой основной вариант изображения"
+#~ msgid "Another small image variant"
+#~ msgstr "Еще одно небольшое изображение варианта"
+#~ msgid "Delete set"
+#~ msgstr "Удалить набор"
+#~ msgid "Kit List products are empty"
+#~ msgstr "Список наборов продуктов пустой        "
+#~ msgid "Kit removal"
+#~ msgstr "Удаление набора"
+# а
+#~ msgid "Kits del body"
+#~ msgstr "Комплекты дель тела"
+#~ msgid "status"
+#~ msgstr "статус"
+#~ msgid "Select file"
+#~ msgstr "Выберите файл"
+#~ msgid "Product kits review"
+#~ msgstr "Обзор наборов товара"
+#~ msgid "main product"
+#~ msgstr "главный товар"
+#~ msgid "Main product"
+#~ msgstr "Главный товар"
+#~ msgid "Attached products"
+#~ msgstr "Связанные продукты"
+#~ msgid "Create product kit"
+#~ msgstr "Создать набор товаров"
+#~ msgid "Added products"
+#~ msgstr "Добавленные продукты"
+#~ msgid "Edit product kit"
+#~ msgstr "Редактировать набор товаров"
+#~ msgid "Message: "
+#~ msgstr "Сообщение:"
+#~ msgid "Error "
+#~ msgstr "Ошыбка"
+#~ msgid "The absolute path to the page"
+#~ msgstr "Абсолютный путь к странице"
+#~ msgid "Banner creation"
+#~ msgstr "Создание баннера"
+#~ msgid "Text banner"
+#~ msgstr "Текст баннера"
+#~ msgid "Display on the home page:"
+#~ msgstr "Отображать на главной странице:"
+#~ msgid "Display in the categories"
+#~ msgstr "Отображение в категориях:"
+#~ msgid "Do not display"
+#~ msgstr "Не отображать"
+#~ msgid "Select all"
+#~ msgstr "Выбрать все"
+#~ msgid "Active until"
+#~ msgstr "Активно до"
+#~ msgid "Removing banner"
+#~ msgstr "Удаление баннера"
+#~ msgid "Remove selected banners?"
+#~ msgstr "Удалить выбранные баннеры?"
+#~ msgid "Banner list"
+#~ msgstr "Список баннеров"
+#~ msgid "Create a banner"
+#~ msgstr "Создать банер"
+#~ msgid "On the main"
+#~ msgstr "На главную"
+#~ msgid "In categories"
+#~ msgstr "В категориях"
+#~ msgid "Active before"
+#~ msgstr "Активная перед"
+#~ msgid "Empty banner list."
+#~ msgstr "Список баннеров пуст"
+#~ msgid "Editing banner"
+#~ msgstr "Редактирование баннера"
+#~ msgid "Display on the home page"
+#~ msgstr "Отображать на главной странице"
+#~ msgid "Display in the categories:"
+#~ msgstr "Отображать в категориях:"
+#~ msgid "Translated brand ID:"
+#~ msgstr "Перевод ID бренда:"
+#~ msgid "Create brand"
+#~ msgstr "Создать бренд"
+#~ msgid "Remove selected brands?"
+#~ msgstr "Удалить выбранные бренды?"
+#~ msgid "Remove brands?"
+#~ msgstr "Удалить бренды?"
+#~ msgid "List of brands"
+#~ msgstr "Список брендов"
+#~ msgid "Create a brand"
+#~ msgstr "Создать бренд"
+#~ msgid "Brands list is empty."
+#~ msgstr "Список виджетов пуст"
+#~ msgid "Editing brand"
+#~ msgstr "Редактирование бренда"
+#~ msgid "Brands statistics"
+#~ msgstr "Статистика брендов"
+#~ msgid "Orders statistics"
+#~ msgstr "Статистика заказов"
+#~ msgid "Total orders price"
+#~ msgstr "Общая стоимость заказов"
+#~ msgid "Days"
+#~ msgstr "Дни"
+#~ msgid "The amount of orders"
+#~ msgstr "Сумма заказов"
+#~ msgid "Number of Orders"
+#~ msgstr "Количество заказов"
+#~ msgid "External view"
+#~ msgstr "Внешний вид"
+#~ msgid "Wish List"
+#~ msgstr "Список желаний"
+#~ msgid "Notice of appearance"
+#~ msgstr "Уведомление о появление"
+#~ msgid "Registration after order"
+#~ msgstr "Регистрация после заказа"
+#~ msgid "Top sales block"
+#~ msgstr "Блок Top продаж"
+#~ msgid "Password recovery"
+#~ msgstr "Восстановление пароля"
+#~ msgid "Integration with social networks"
+#~ msgstr "Интеграция с социальными сетями"
+#~ msgid "Yandex.Market"
+#~ msgstr "Yandex.Market"
+#~ msgid "Products count shown on site"
+#~ msgstr "Количество товаров на сайте"
+#~ msgid "The values ​​for the number of products per page (example: 12, 24, 48)"
+#~ msgstr "Значения для количества товаров на сайте (например: 12, 24, 48)"
+#~ msgid "Products count in control panel"
+#~ msgstr "Количество продуктов в панели управления"
+#~ msgid "fractional digits"
+#~ msgstr "дробовые цифры"
+#~ msgid "The name at the website"
+#~ msgstr "Название на сайте"
+#~ msgid "Get"
+#~ msgstr "Получить"
+#~ msgid "Prefix (folder will be created)"
+#~ msgstr "Префикс (папка будет создана)"
+#~ msgid "Height, px"
+#~ msgstr "Высота, px"
+#~ msgid "Width, px"
+#~ msgstr "Шырина, px"
+#~ msgid "Additional image"
+#~ msgstr "Дополнительное изображение"
+#~ msgid "Thumbnail"
+#~ msgstr "Миниатюра"
+#~ msgid "Quality"
+#~ msgstr "Количество"
+#~ msgid "Main size"
+#~ msgstr "Главный размер"
+#~ msgid "Auto"
+#~ msgstr "Авто"
+#~ msgid "Height"
+#~ msgstr "Высота"
+#~ msgid "Width"
+#~ msgstr "Шырина"
+#~ msgid "Watermark"
+#~ msgstr "Водяной знак"
+#~ msgid " Horizontal alignment "
+#~ msgstr "Горизонтальное выравнивание"
+#~ msgid "Left"
+#~ msgstr "Слева"
+#~ msgid "Center"
+#~ msgstr "Центр"
+#~ msgid "Right"
+#~ msgstr "Справа"
+#~ msgid "Vertical alignment"
+#~ msgstr "Вертикальное выравнивание"
+#~ msgid "Up"
+#~ msgstr "Вгору"
+#~ msgid "In the middle"
+#~ msgstr "Посредине"
+#~ msgid "At the bottom"
+#~ msgstr "В низу"
+#~ msgid "The ratio of the size of the watermark to the size of photos"
+#~ msgstr "Отношение размеров водяного знака с размерами фотографии"
+#~ msgid "Path to the image"
+#~ msgstr "Путь к изображению"
+#~ msgid "The file must be on the server. For example"
+#~ msgstr "Этот файл должен находиться на сервере. Например"
+#~ msgid "Transparency"
+#~ msgstr "Прозрачность"
+#~ msgid "Font size"
+#~ msgstr "Размер шрифта"
+#~ msgid "Font colour"
+#~ msgstr "Цвет шрифта"
+#~ msgid "Displacement"
+#~ msgstr "Смещение"
+#~ msgid "Path to font "
+#~ msgstr "Путь к шрифту"
+#~ msgid "Font file must be located on the server. For example"
+#~ msgstr "Файл шрифта должен находиться на сервере. Например"
+#~ msgid "Perform resize of all the images?"
+#~ msgstr "Выполнить ресайз всех изображений?"
+#~ msgid "Including additional images"
+#~ msgstr "В том числе дополнительные изображения"
+#~ msgid "Perform resize the selected product"
+#~ msgstr "Выполнить ресайз выбранного товара"
+#~ msgid "sender"
+#~ msgstr "отправитель"
+#~ msgid "Subject"
+#~ msgstr "Тема"
+#~ msgid "Message format"
+#~ msgstr "Формат письма"
+#~ msgid "Message text"
+#~ msgstr "Текст письма"
+#~ msgid "You can use the following variable"
+#~ msgstr "Вы можете использовать следующие переменные"
+#~ msgid "Name of the  WishList author"
+#~ msgstr "Название автора Списка желания"
+#~ msgid " Telephone number of the wishlist author"
+#~ msgstr "Телефон  автора списка желаний"
+#~ msgid "Comments of the wishlist author"
+#~ msgstr "Комментарий автора желаний"
+#~ msgid "Key to view the wishlist"
+#~ msgstr "Ключ для просмотра желаний"
+#~ msgid "Link to view the  WishList"
+#~ msgstr "Ссылку для просмотра Списка жеданий"
+#~ msgid "IP address of the  wishlist author"
+#~ msgstr "IP-адрес автора списка желаний"
+#~ msgid "Sending date of the wishlist"
+#~ msgstr "Данные отправки списка желаний"
+#~ msgid "Notification status about the arrival"
+#~ msgstr "Статус уведомления о прибытии"
+#~ msgid " Name of the user who made a request "
+#~ msgstr "Имя пользователя, который сделал запрос"
+#~ msgid "User phone number"
+#~ msgstr "Телефон пользователя"
+#~ msgid "Product name "
+#~ msgstr "Название товара"
+#~ msgid "Link to view the product"
+#~ msgstr "Ссылку для просмотра продукта"
+#~ msgid " User notification request date"
+#~ msgstr "Дата когда пользователь оставил запрос уведомления"
+#~ msgid "Send notification about new callback to administrator"
+#~ msgstr "Отправлять администратору оповещение о новом Callback'e"
+#~ msgid "Email for sending notifications about new Callbacks"
+#~ msgstr "E-mail для отправки уведомлений о новых колбеках"
+#~ msgid "Username requested a  callback"
+#~ msgstr "Имя пользователя запросившего Сallback"
+#~ msgid "User telephone number requested a callback"
+#~ msgstr "Номер телефона пользователя запросившего Сallback"
+#~ msgid " Callback request date"
+#~ msgstr "Дата колбека"
+#~ msgid "Comments by a callback user"
+#~ msgstr "Комментарии пользователя колбека"
+#~ msgid "General settings"
+#~ msgstr "Общие настройки"
+#~ msgid "Recalculate products after payment of the order?"
+#~ msgstr "Пересчитать товары после оплаты заказа?"
+#~ msgid "Consider the amount of products warehouse on adding to basket"
+#~ msgstr "Рассмотреть сумму склада товаров на добавление в корзину"
+#~ msgid " Administrator notification about the order placement by e-mail"
+#~ msgstr "Уведомление администратора о размещении заказа по электронной почте"
+#~ msgid "Administrator"
+#~ msgstr "Администратор"
+#~ msgid "Customer notification about the order placement"
+#~ msgstr "Уведомления покупателя о размещении заказа"
+#~ msgid "Order placement e-mail to the user has been sent"
+#~ msgstr "Письмо о размещение заказа  было отправлено пользователю"
+#~ msgid "Name of the customer"
+#~ msgstr "Имя заказчика"
+#~ msgid "Customer e-mail address"
+#~ msgstr "Email клиента"
+#~ msgid "Customer phone number"
+#~ msgstr "Телефон пользователя"
+#~ msgid "Delivery address specified by the customer"
+#~ msgstr "Адрес доставкы , указаный клиентом"
+#~ msgid "ID order"
+#~ msgstr "ID заказа"
+#~ msgid " Key to view the order"
+#~ msgstr "Ключ, чтобы посмотреть заказ"
+#~ msgid " Link to the order"
+#~ msgstr "Сссилка на заказ"
+#~ msgid " Customer notification about the order status change"
+#~ msgstr "Уведомления клиента об изменении статуса заказа"
+#~ msgid "New order status"
+#~ msgstr "Новый статус заказа"
+#~ msgid "Time of the order status change"
+#~ msgstr "Время изменения статуса заказа"
+#~ msgid "Registration"
+#~ msgstr "Регистрация"
+#~ msgid "after"
+#~ msgstr "после"
+#~ msgid "order"
+#~ msgstr "заказ"
+# а
+#~ msgid "User registartion after making order"
+#~ msgstr "Регистрация пользователя после создания заказа"
+# а
+#~ msgid " User login for site enrty"
+#~ msgstr "Вход пользователя после входа на сайт"
+#~ msgid "Username of the customer"
+#~ msgstr "Имя пользователя "
+#~ msgid "Customer e-mail"
+#~ msgstr "Enail заказчика"
+#~ msgid "Customer password"
+#~ msgstr "Пароль заказчика"
+#~ msgid "Top sales block "
+#~ msgstr "Блок Top продаж"
+# а
+#~ msgid " Popularity formula coefficient "
+#~ msgstr "Коэффициент формулы популярности"
+# а
+#~ msgid ""
+#~ " Popularity formula: number of views+ products added to the cart "
+#~ "*coefficient . For example: 1000."
+#~ msgstr ""
+#~ "Формула популярности: количество просмотров + количество добавлений в "
+#~ "корзину * коэффициент. Например: 1000."
+#~ msgid "Site name"
+#~ msgstr "Название сайта"
+#~ msgid "Link to confirm password  recovery"
+#~ msgstr "Ссылку для подтверждения восстановления пароля"
+#~ msgid "Key"
+#~ msgstr "Ключ"
+#~ msgid "Site webmaster email"
+#~ msgstr "E-mail вебмастера сайта"
+#~ msgid "Switch on integration with Facebook?"
+#~ msgstr "Включить интеграцию с Facebook?"
+#~ msgid "Secret key"
+#~ msgstr "Секретный ключ"
+#~ msgid "Application number"
+#~ msgstr "Номер приложения"
+#~ msgid "Select template folder"
+#~ msgstr "Выберите папку шаблона"
+#~ msgid "Switch on integration with VKontakte?"
+#~ msgstr "Включить интеграцию с вконтакте?"
+#~ msgid "Protection key"
+#~ msgstr "Ключ защиты"
+#~ msgid "Message  about arrival"
+#~ msgstr "Сообщение о прибытии"
+#~ msgid "Message about a callback"
+#~ msgstr "Сообщение колбека"
+#~ msgid "Message from the order page"
+#~ msgstr "Сообщение с страницы заказа"
+#~ msgid "API Key for Mail Chimp"
+#~ msgstr "API Key для Mail Chimp"
+#~ msgid "The key to your account <br />on the mail Mailchimp"
+#~ msgstr "Ключ к вашему счету <br /> на почтовом Mailchimp"
+#~ msgid "Key for Mail Chimp list"
+#~ msgstr "Ключ для списка Mail Chimp "
+#~ msgid "The key to your list of <br />news for MailChimp"
+#~ msgstr "Ключ к вашему списку новостей <br /> для MailChimp"
+#~ msgid "Settings Yandex.Market"
+#~ msgstr "Настройки Яндекс.Маркет"
+#~ msgid "Displayed categories selection"
+#~ msgstr "Посмотренть выбраные категории"
+#~ msgid "Yandex.Market document"
+#~ msgstr "Яндекс.Маркет  документ"
+#~ msgid "XML document"
+#~ msgstr "XML документ"
+#~ msgid "Currency create"
+#~ msgstr "Создание валюты"
+#~ msgid "ISO"
+#~ msgstr "ISO"
+#~ msgid "Character"
+#~ msgstr "Символ"
+#~ msgid "Currency rate"
+#~ msgstr "Курс валюты"
+#~ msgid "Remove currency"
+#~ msgstr "Удалить валюту"
+#~ msgid "Remove the selected currency?"
+#~ msgstr "Удалить выбранную валюту?"
+#~ msgid "Recalculation"
+#~ msgstr "Пересчет"
+#~ msgid "The currency is in use in the products. Recalculate?"
+#~ msgstr "Валюта используется в товарах. Пересчитать?"
+#~ msgid "Recalculate"
+#~ msgstr "Перещитать"
+#~ msgid "Removing properties"
+#~ msgstr "Удаление свойств"
+#~ msgid "Remove currency?"
+#~ msgstr "Удалить валюту?"
+#~ msgid "Currencies list"
+#~ msgstr "Список валют"
+#~ msgid "Check prices"
+#~ msgstr "Проверить цены"
+#~ msgid "Create currency"
+#~ msgstr "Создать валюту"
+#~ msgid "Use the currency as default at the site"
+#~ msgstr "Использовать  по умолчанию на сайте"
+#~ msgid "Make main"
+#~ msgstr "Сделать главной"
+#~ msgid "Make currency default "
+#~ msgstr "Сделать валютой по умолчанию"
+#~ msgid "There are no currencies"
+#~ msgstr "Ннет валют"
+#~ msgid "don't show"
+#~ msgstr "не показывать"
+#~ msgid "Currency edit"
+#~ msgstr "Редактирование валют"
+#~ msgid "Creating cumulative discount"
+#~ msgstr "Создание накопительной скидки"
+#~ msgid "These discounts"
+#~ msgstr "Эти скидки"
+# фафак
+#~ msgid "Amount of which will be a discount."
+#~ msgstr "Размер которой будет скидка."
+#~ msgid "The amount to which there will be a discount"
+#~ msgstr "Суммы, на которую будет скидка"
+#~ msgid "Not active"
+#~ msgstr "Не активна"
+#~ msgid "Editing by discounts"
+#~ msgstr "Редактирование скидки"
+#~ msgid "Full name"
+#~ msgstr "Полное имя"
+#~ msgid "Purchase price"
+#~ msgstr "Покупная цена"
+#~ msgid "Off manually entered"
+#~ msgstr "Off введенные вручную"
+#~ msgid "Removing discounts"
+#~ msgstr "Удаление скидки"
+#~ msgid "Remove selected discount?"
+#~ msgstr "Удалить выбранный скидку?"
+#~ msgid "Remove the discount?"
+#~ msgstr "Удалить скидку?"
+#~ msgid "List of cumulative discounts"
+#~ msgstr "Список накопительных скидок"
+#~ msgid "Create a discount"
+#~ msgstr "Создать скидку"
+#~ msgid "Discount Amount of"
+#~ msgstr "Сумма скидки"
+#~ msgid "Discount Amount to"
+#~ msgstr " Сумма скидки к"
+#~ msgid "Empty discount list"
+#~ msgstr "Список скидок пуст"
+#~ msgid "Empty user list."
+#~ msgstr "Список пользователей пуст"
+#~ msgid "Discount options"
+#~ msgstr "Настройкы скидки"
+# а
+#~ msgid "Member Discount"
+#~ msgstr "Скидка пользователя"
+#~ msgid "Discounts"
+#~ msgstr "Скидки"
+#~ msgid "Just like the number 10"
+#~ msgstr "Так же, как номер 10"
+#~ msgid "Removing Gift Certificate"
+#~ msgstr "Удаление подарочново сертификата"
+#~ msgid "Remove selected gift certificates?"
+#~ msgstr "Удалить выбранные подарочные сертификаты?"
+#~ msgid "Remove a gift certificate?"
+#~ msgstr "Удалить подарочный сертификат?"
+#~ msgid "Gift certificate list"
+#~ msgstr "Список подарочных сертификатов"
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать подарочный сертификат"
+#~ msgid "Unique key"
+#~ msgstr "Уникальный ключ"
+#~ msgid "Valid to"
+#~ msgstr "Срок действия"
+#~ msgid "Gift certificate list is empty."
+#~ msgstr "Список подарочных сертификатов пуст."
+#~ msgid "Gift certificate create"
+#~ msgstr "Создание подарочного сертификата"
+#~ msgid "Gift certificate price"
+#~ msgstr "Цена подарочного сертификата"
+#~ msgid "Generate"
+#~ msgstr "Сгенерировать"
+#~ msgid "Gift certificate settings"
+#~ msgstr "Настройки подарочного сертификата"
+#~ msgid "Use gift certificates?"
+#~ msgstr "Использувать подарочные сертификаты?"
+#~ msgid "Gift certificate edit"
+#~ msgstr "Редактирование подарочного сертификата"
+#~ msgid "This discount does not enjoy"
+#~ msgstr "Эта скидка не пользуется"
+#~ msgid "Starting date"
+#~ msgstr "Дата начала"
+#~ msgid "Finishing date "
+#~ msgstr "Дата окончания"
+#~ msgid " Number greater than zero. To use a percent discount  apply : "
+#~ msgstr "Число больше нуля. Чтобы использовать процентную скидку примените:"
+#~ msgid "Enter a product for promotion"
+#~ msgstr "Ввести код продукта для продвижения"
+#~ msgid "Enter the name or id"
+#~ msgstr "Введите имя или ID"
+#~ msgid "Selected products:"
+#~ msgstr "Выбранные товары:"
+#~ msgid "Follow product ID by a comma."
+#~ msgstr "Разделите  ID товара запятыми."
+#~ msgid "User group"
+#~ msgstr "Группа пользователей"
+#~ msgid "There are no translations users"
+#~ msgstr "Нет переведенных пользователей"
+#~ msgid "Unregistered users"
+#~ msgstr "Незарегистрированные пользователи"
+#~ msgid "List of permanent discounts"
+#~ msgstr "Список постоянных скидок"
+#~ msgid "Enter a product for discount"
+#~ msgstr "Введите товар для скидки"
+#~ msgid "Create user"
+#~ msgstr "Создать пользователя"
+#~ msgid "Deleting a user"
+#~ msgstr "Удаление пользователя"
+#~ msgid "Remove selected users?"
+#~ msgstr "Удалить выбранных пользователей?"
+#~ msgid "Time of registration"
+#~ msgstr "Время регистрации"
+#~ msgid ""
+#~ "Export CSV gives <br />jumps file with <br />a list of all<br /> users."
+#~ msgstr ""
+#~ "Экспорт CSV дает <br /> скачать файл со <br /> списоком всех <br /> "
+#~ "пользователей."
+# а
+#~ msgid ""
+#~ "Export Mailchimp sent <br />to all users on their<br /> email "
+#~ "subscription<br /> form on your<br /> news rassilku."
+#~ msgstr ""
+#~ "Экспорт Mailchimp отправляет <br /> всем пользователям на их e-mail <br /"
+#~ "> <br /> форму подписки на Ваш <br /> россилки новостей."
+#~ msgid "Orders history"
+#~ msgstr "История заказов"
+#~ msgid "Time of the order"
+#~ msgstr "Время заказа"
+#~ msgid "Delete order"
+#~ msgstr "Удалить заказ"
+#~ msgid "User data"
+#~ msgstr "Данные пользователя"
+#~ msgid "WishList"
+#~ msgstr "Список желаний"
+#~ msgid "Pcs"
+#~ msgstr "Штук"
+#~ msgid "BackUp and Update"
+#~ msgstr "Бекап и Обновление"
+#~ msgid "Copy to the local computer"
+#~ msgstr "Скопируйте на локальный компьютер"
+#~ msgid "Save on the server"
+#~ msgstr "Сохранить на сервере "
+#~ msgid "File will be saved in the directory"
+#~ msgstr "Файл будет сохранен в каталоге"
+#~ msgid "Send email"
+#~ msgstr "Отправить  email"
+#~ msgid "The creation of a new language"
+#~ msgstr "Создание нового языка"
+#~ msgid "Image URL"
+#~ msgstr "URL изображения"
+#~ msgid "Widget delete"
+#~ msgstr "Удалить виджет"
+#~ msgid "Delete selected widget(s)?"
+#~ msgstr "Удалить выбранный виджет(ы)?"
+#~ msgid "Create a widget"
+#~ msgstr "Создать виджет"
+#~ msgid "No widgets created"
+#~ msgstr "Не создано виджетов"
+#~ msgid "Site configuration"
+#~ msgstr "Конфигурация сайта"
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление Мета-тугами"
+#~ msgid "Enter Meta Tags"
+#~ msgstr "Ввести мета-теги"
+#~ msgid "Site information"
+#~ msgstr "Информация системы"
+#~ msgid "Site shutdown"
+#~ msgstr "Отключение сайта"
+#~ msgid "The site will be available only to the Administrator"
+#~ msgstr "Сайт будет доступен только для Администратора"
+#~ msgid "Select admin language"
+#~ msgstr "Выбор языка для админ панели"
+#~ msgid "Display category tree in the content"
+#~ msgstr "Отображать дерево категорий в списке содержимого"
+#~ msgid "Text editor"
+#~ msgstr "Текстовый редактор"
+#~ msgid "The code should be in the format ua-54545845"
+#~ msgstr "Код должен быть в  формате ua-54545845"
+#~ msgid "ID for yandex metric"
+#~ msgstr "Id для Yandex метрики"
+#~ msgid "Whether to display the site name in the title page"
+#~ msgstr " Будет ли отображатся название сайта в тайтле страницы "
+#~ msgid "Category name"
+#~ msgstr "Название категории"
+#~ msgid "Whether to display the category name in the title page"
+#~ msgstr "Будет ли отображатся название категории в тайтле страницы"
+#~ msgid "Separator"
+#~ msgstr "Разделитель"
+#~ msgid "Auto formation"
+#~ msgstr "Сформировать автоматически "
+#~ msgid "Leave empty"
+#~ msgstr "Оставить пустым"
+#~ msgid "If not given or specified"
+#~ msgstr "Если не указаны"
+#~ msgid "If not specified"
+#~ msgstr "Если не указано"
+#~ msgid "Choose language"
+#~ msgstr "Выберите язык"
+#~ msgid "Short site name"
+#~ msgstr "Краткое название сайта"
+#~ msgid "Company type"
+#~ msgstr "Тип предприятия"
+#~ msgid "Main phone"
+#~ msgstr "Главный телефон"
+#~ msgid "Admin email"
+#~ msgstr " Email  админимстратора"
+#~ msgid "you entered as a contact type"
+#~ msgstr "Вы ввели как тип контакту"
+#~ msgid "Contact type"
+#~ msgstr "Тип контакта"
+#~ msgid "Add contact"
+#~ msgstr "Добавить контакт"
+#~ msgid "Logo"
+#~ msgstr "Лого"
+#~ msgid "Click to select the image"
+#~ msgstr "Кликните для выбора изображения"
+#~ msgid "Basic"
+#~ msgstr "Базовые"
+#~ msgid "Widget editing"
+#~ msgstr "Редактирование виджета"
+#~ msgid "HTML code"
+#~ msgstr "HTML код"
+#~ msgid "Confirm"
+#~ msgstr "Подтвердите"
+#~ msgid "Content list"
+#~ msgstr "Список содержимого"
+#~ msgid "All categories"
+#~ msgstr "Все категории"
+#~ msgid "Url"
+#~ msgstr "Url"
+#~ msgid "Without category"
+#~ msgstr "Без категории"
+#~ msgid "a_back"
+#~ msgstr "Назад"
+#~ msgid "Print"
+#~ msgstr "Печатать"
+#~ msgid "Rate"
+#~ msgstr "Рейтинг"
+#, fuzzy
+#~ msgid "Site name or site title"
+#~ msgstr "Название на сайте"
+
+#, fuzzy
+#~ msgid "Short site name or site title"
+#~ msgstr "Не показывать короткое название сайта"
+
+#, fuzzy
+#~ msgid "Language edit"
+#~ msgstr "Язык"
+
+#~ msgid "Have been saved"
+#~ msgstr "Изменения сохранены"
+
+#~ msgid "Appearance"
+#~ msgstr "Появление"
+
+#~ msgid "Delete category"
+#~ msgstr "Удалить категорию"
+
+#~ msgid "Create category"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Category translation"
+#~ msgstr "Перевод категории "
+
+#~ msgid "Version updates available"
+#~ msgstr "Доступны обновления версии"
+
+#~ msgid "Version updates are not available."
+#~ msgstr "Обновлений нет"
+
+#~ msgid "Users with such Email not found"
+#~ msgstr "Пользователь с таким Email не найден"
+
+#~ msgid "All content by categories"
+#~ msgstr "Все содержимое по категориях"
+
+#~ msgid "Language settings"
+#~ msgstr "Языки"
+
+#~ msgid "Site backup"
+#~ msgstr "Резервное копирование"
+
+#, fuzzy
+#~ msgid "User-roles management"
+#~ msgstr "Имя пользователя"
+
+#~ msgid "Delete a category"
+#~ msgstr "Удалить категорию"
+
+#~ msgid "Control or Operation"
+#~ msgstr "Внимание или Осторожно"
+
+#~ msgid "Cont List"
+#~ msgstr "Содержание"
+
+#~ msgid "move or displace"
+#~ msgstr "Не отображать"
+
+#~ msgid "All catagories"
+#~ msgstr "Все категории"
+
+#~ msgid "Remove a Role"
+#~ msgstr "Удалить роль"
+
+#~ msgid "Published or Has been published"
+#~ msgstr "Опубликованные или была опубликована"
+
+#~ msgid "Pending approval or Awaiting approval "
+#~ msgstr "В ожидании подтверждения или ожидающие утверждения"
+
+#~ msgid "Page display"
+#~ msgstr "Просмотр страницы"
+
+#~ msgid "Posts on the page or Records on the page"
+#~ msgstr "Сообщения на странице или в записи на странице"
+
+#~ msgid "Regular discounts"
+#~ msgstr "Постоянные скидки"
+
+#~ msgid "These status callback"
+#~ msgstr "Это состояния колбеков"
+
+#~ msgid "These additional field"
+#~ msgstr "Дополнительные поля"
+
+#~ msgid "Branding"
+#~ msgstr "Брендинг"
+
+#~ msgid "The site is not created any brand"
+#~ msgstr "На сайте не создали ни одного бренда"
+
+#~ msgid "Top setting block"
+#~ msgstr "Топ настройки блокировки"
+
+#~ msgid "Shop set yandex market"
+#~ msgstr "Яндекс.Маркет документ"
+
+#~ msgid "Date of creation or creation date"
+#~ msgstr "Дата создания или датасоздания"
+
+#~ msgid "Time of creation or creation time"
+#~ msgstr "Время создания или создания времени"
+
+#~ msgid "Publication date or date of publication"
+#~ msgstr "Дата публикации или публикации даты"
+
+#~ msgid "Publication time or time of publication"
+#~ msgstr "Время публикации или момент публикации"
+
+#~ msgid "Items saved"
+#~ msgstr "Товары сохраненны"

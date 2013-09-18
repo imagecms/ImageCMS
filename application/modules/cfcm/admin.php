@@ -454,9 +454,9 @@ class Admin extends BaseAdminController {
                 '</div>';
             }
         } else {
-            echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
-            . lang("For category", 'cfcm') . $category->name . lang("Field group has not been selected", 'cfcm') .
-            '</div>';
+            echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;"> '
+            . lang("For category", 'cfcm') . " " . $category->name . " " . lang("Field group has not been selected", 'cfcm') .
+            ' </div>';
         }
     }
 

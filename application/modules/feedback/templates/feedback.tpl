@@ -18,20 +18,24 @@
 
                 <form action="{site_url('feedback')}" method="post">
                     <div class="textbox" style="margin-top: 15px;">
+                        <label for="name">{lang('Your name')}</label>
                         <input type="text" id="name" name="name" class="text" value="{if $_POST.name}{$_POST.name}{/if}"
                                placeholder="{lang('Your name')}"/>
                     </div>
 
                     <div class="textbox" style="margin-top: 15px;">
-                        <input type="text" id="email" name="email" class="text" value="{if $_POST.email}{$_POST.email}{/if}" placeholder="Email"/>
+                        <label for="email">{lang('Email')}</label>
+                        <input type="text" id="email" name="email" class="text" value="{if $_POST.email}{$_POST.email}{/if}" placeholder="{lang('Email')}"/>
                     </div>
 
                     <div class="textbox" style="margin-top: 15px;">
-                        <input type="text" id="theme" name="theme" class="text" value="{if $_POST.theme}{$_POST.theme}{/if}" placeholder="Тема"/>
+                        <label for="theme">{lang('Subject')}</label>
+                        <input type="text" id="theme" name="theme" class="text" value="{if $_POST.theme}{$_POST.theme}{/if}" placeholder="{lang('Subject')}"/>
                     </div>
 
                     <div class="textbox" style="margin-top: 15px;">
-                        <textarea cols="45" rows="10" name="message" id="message" placeholder="Текст Сообщения">{if $_POST.message}{$_POST.message}{/if}</textarea>
+                        <label for="message">{lang('Message')}</label>
+                        <textarea cols="45" rows="10" name="message" id="message" placeholder="{lang('Message')}">{if $_POST.message}{$_POST.message}{/if}</textarea>
                     </div>
 
                     <div style="margin-top: 15px;">
@@ -40,6 +44,7 @@
                     <div class="comment_form_info">
                         {if $captcha_type =='captcha'}
                             <div class="textbox captcha" style="margin-top: 15px;">
+                                <label for="captcha">{lang('Protection code')}</label>
                                 <input type="text" name="captcha" id="recaptcha_response_field" value="" placeholder="{lang('Protection code')}"/>
                             </div>
                         {/if}
