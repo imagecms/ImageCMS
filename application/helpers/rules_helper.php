@@ -11,18 +11,18 @@ if (!function_exists('admin_or_redirect')) {
         if (!$ci->dx_auth->is_logged_in()) {
             if ($ci->input->is_ajax_request())
                 echo json_encode(array('success' => false, 'redirect' => '/admin/login'));
-            else 
+            else
                 redirect('admin/login', '');
             exit;
         }
-        
-        if($ci->dx_auth->is_admin())
+
+        if ($ci->dx_auth->is_admin())
             return true;
-        else{
+        else {
             if ($ci->input->is_ajax_request())
                 echo json_encode(array('success' => false, 'redirect' => '/admin/login'));
             else
-            redirect('admin/login', '');
+                redirect('admin/login', '');
             exit;
         }
     }
@@ -42,7 +42,7 @@ if (!function_exists('cp_check_perm')) {
                 $perms = get_permissions_array();
 
                 if (isset($perms[$perm])) {
-                    $err_text = lang("No rights for") . ': <b>' . $perms[$perm] . '</b>.';
+                    $err_text = lang("No rights for", "admin") . ': <b>' . $perms[$perm] . '</b>.';
 
                     echo '<script type="text/javascript">
 							$(\'page\').set(\'html\',\'<div id="notice" style="width: 500px;">' . $err_text . '</div>\');
@@ -54,7 +54,7 @@ if (!function_exists('cp_check_perm')) {
                 die();
             }
         } else {
-            die(lang("Error checking permissions"));
+            die(lang("Error checking permissions", "admin"));
         }
     }
 
@@ -84,19 +84,19 @@ if (!function_exists('get_perms_groups')) {
 
     function get_perms_groups() {
         $group_names = array(
-            'cp' => lang("Operation panel"),
-            'lang' => lang("Languages"),
-            'cache' => lang("Cache"),
-            'page' => lang("Pages"),
-            'category' => lang("Categories"),
-            'module' => lang("Modules"),
-            'widget' => lang("Widgets"),
-            'menu' => lang("Menu"),
-            'user' => lang("Members"),
-            'roles' => lang("Group"),
-            'logs' => lang("Logs"),
-            'backup' => lang("Backup copying"),
-            'tinybrowser' => lang("File Editor"),
+            'cp' => lang("Operation panel", "admin"),
+            'lang' => lang("Languages", "admin"),
+            'cache' => lang("Cache", "admin"),
+            'page' => lang("Pages", "admin"),
+            'category' => lang("Categories", "admin"),
+            'module' => lang("Modules", "admin"),
+            'widget' => lang("Widgets", "admin"),
+            'menu' => lang("Menu", "admin"),
+            'user' => lang("Members", "admin"),
+            'roles' => lang("Group", "admin"),
+            'logs' => lang("Logs", "admin"),
+            'backup' => lang("Backup copying", "admin"),
+            'tinybrowser' => lang("File Editor", "admin"),
         );
 
         ($hook = get_hook('on_get_perms_groups')) ? eval($hook) : NULL;
@@ -110,43 +110,43 @@ if (!function_exists('get_permissions_array')) {
 
     function get_permissions_array() {
         $all_perms = array(
-            'cp_access' => lang("Access Control Panel"),
-            'cp_autoupdate' => lang("System update"),
-            'cp_page_search' => lang("Find pages in the control panel"),
-            'lang_create' => lang("Creating a language"),
-            'lang_edit' => lang("Changing the language"),
-            'lang_delete' => lang("Remove languages"),
-            'cp_site_settings' => lang("Changing site settings"),
-            'cache_clear' => lang("Clearing the cache"),
-            'page_create' => lang("Creating pages"),
-            'page_edit' => lang("Editing pages"),
-            'page_delete' => lang("Delete pages"),
-            'category_create' => lang("Creating categories"),
-            'category_edit' => lang("Edit Categories"),
-            'category_delete' => lang("Category delete"),
-            'module_install' => lang("Install Modules"),
-            'module_deinstall' => lang("Removing Modules"),
-            'module_admin' => lang("Administration module"),
-            'widget_create' => lang("Creating widgets"),
-            'widget_delete' => lang("Removing widgets"),
-            'widget_access_settings' => lang("Access to the widget settings"),
-            'menu_create' => lang("Create a menu"),
-            'menu_edit' => lang("Edit menu"),
-            'menu_delete' => lang("Menu deleting"),
-            'user_create' => lang("Create users of their group"),
-            'user_create_all_roles' => lang("Create users of all groups"),
-            'user_edit' => lang("Edit Users"),
-            'user_delete' => lang("Remove Users"),
-            'user_view_data' => lang("Viewing member"),
-            'roles_create' => lang("Creating Groups"),
-            'roles_edit' => lang("Editing Groups"),
-            'roles_delete' => lang("Deleting Groups"),
-            'logs_view' => lang("View Log"),
-            'backup_create' => lang("Backing up"),
-            'tinybrowser_all' => lang("Access to the file editor"),
-            'tinybrowser_upload' => lang("Download files"),
-            'tinybrowser_edit' => lang("Editing Files"),
-            'tinybrowser_folders' => lang("Edit Folders"),
+            'cp_access' => lang("Access Control Panel", "admin"),
+            'cp_autoupdate' => lang("System update", "admin"),
+            'cp_page_search' => lang("Find pages in the control panel", "admin"),
+            'lang_create' => lang("Creating a language", "admin"),
+            'lang_edit' => lang("Changing the language", "admin"),
+            'lang_delete' => lang("Remove languages", "admin"),
+            'cp_site_settings' => lang("Changing site settings", "admin"),
+            'cache_clear' => lang("Clearing the cache", "admin"),
+            'page_create' => lang("Creating pages", "admin"),
+            'page_edit' => lang("Editing pages", "admin"),
+            'page_delete' => lang("Delete pages", "admin"),
+            'category_create' => lang("Creating categories", "admin"),
+            'category_edit' => lang("Edit Categories", "admin"),
+            'category_delete' => lang("Category delete", "admin"),
+            'module_install' => lang("Install Modules", "admin"),
+            'module_deinstall' => lang("Removing Modules", "admin"),
+            'module_admin' => lang("Administration module", "admin"),
+            'widget_create' => lang("Creating widgets", "admin"),
+            'widget_delete' => lang("Removing widgets", "admin"),
+            'widget_access_settings' => lang("Access to the widget settings", "admin"),
+            'menu_create' => lang("Create a menu", "admin"),
+            'menu_edit' => lang("Edit menu", "admin"),
+            'menu_delete' => lang("Menu deleting", "admin"),
+            'user_create' => lang("Create users of their group", "admin"),
+            'user_create_all_roles' => lang("Create users of all groups", "admin"),
+            'user_edit' => lang("Edit Users", "admin"),
+            'user_delete' => lang("Remove Users", "admin"),
+            'user_view_data' => lang("Viewing member", "admin"),
+            'roles_create' => lang("Creating Groups", "admin"),
+            'roles_edit' => lang("Editing Groups", "admin"),
+            'roles_delete' => lang("Deleting Groups", "admin"),
+            'logs_view' => lang("View Log", "admin"),
+            'backup_create' => lang("Backing up", "admin"),
+            'tinybrowser_all' => lang("Access to the file editor", "admin"),
+            'tinybrowser_upload' => lang("Download files", "admin"),
+            'tinybrowser_edit' => lang("Editing Files", "admin"),
+            'tinybrowser_folders' => lang("Edit Folders", "admin"),
         );
 
         ($hook = get_hook('get_permissions_array')) ? eval($hook) : NULL;

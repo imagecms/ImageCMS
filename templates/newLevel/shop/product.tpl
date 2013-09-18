@@ -175,10 +175,14 @@
                                                             data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"
                                                             data-varid="{echo $productVariant->getId()}"
+                                                            data-url="{echo shop_url('product/'.$model->getUrl())}"
+                                                            data-price="{echo $productVariant->toCurrency()}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             class="infoBut">
@@ -348,7 +352,6 @@
         </div>
     </div>
     <!--Kit start-->
-    {var_dump($model->getShopKits())}
     {if $model->getShopKits() && $model->getShopKits()->count() > 0}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
