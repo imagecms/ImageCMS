@@ -179,7 +179,6 @@
                             </div>
                         </div>
 
-
                     {elseif $category.id == 58}
 
                         <div id="sidebar">

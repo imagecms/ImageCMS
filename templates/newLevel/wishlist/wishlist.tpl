@@ -140,7 +140,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="btn-remove-WL">
-                                                    <button 
+                                                    <button
                                                         type="button"
                                                         data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
                                                         data-type="json"
@@ -182,7 +182,7 @@
                                                 {$price += $p.price;}
                                                 {$i++}
                                             {/foreach}
-                                            <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')} 
+                                            <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')}
                                                 <span class="frame-prices f-s_0">
                                                     <span class="current-prices">
                                                         <span class="price-new">
@@ -243,7 +243,7 @@
                                         </label>
                                         {if $user['user_image']!=''}
                                             <div class="btn-remove-photo-wishlist">
-                                                <button 
+                                                <button
                                                     type="button"
                                                     data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
                                                     data-type="json"
