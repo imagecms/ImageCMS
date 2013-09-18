@@ -145,7 +145,7 @@ class Widgets_manager extends BaseAdminController {
                     $this->$module->$m('install_defaults', $data);
                 }
 
-                $this->lib_admin->log(lang("Created a widget", "admin") . $data['name']);
+                $this->lib_admin->log(lang("Created a widget", "admin") . " " . $data['name']);
 
                 $conf_file = PUBPATH . '/' . APPPATH . 'modules/' . $data['data'] . '/' . $subpath . 'templates/' . $data['method'] . '_form.tpl';
                 showMessage(lang("Widget created", "admin") . '.');
@@ -181,7 +181,7 @@ class Widgets_manager extends BaseAdminController {
                         //'locale' => $locale
                 );
 
-                $this->lib_admin->log(lang("Created a widget", "admin") . $data['name']);
+                $this->lib_admin->log(lang("Created a widget", "admin") . " " . $data['name']);
 
                 $this->db->insert('widgets', $data);
 
@@ -237,7 +237,7 @@ class Widgets_manager extends BaseAdminController {
                 $subpath = isset($widget['settings']['subpath']) ? $widget['settings']['subpath'] . '/' : '';
                 echo modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('show_settings', $widget));
             } elseif ($widget['type'] == 'html') {
-
+                
             }
         } else {
             show_error(lang("Error: widget not found!"));
@@ -288,7 +288,7 @@ class Widgets_manager extends BaseAdminController {
                 $this->db->insert('widget_i18n', $data);
             }
 
-            $this->lib_admin->log(lang("Changed a widget", "admin") . $data['name']);
+            $this->lib_admin->log(lang("Changed a widget", "admin") . " " . $data['name']);
 
             //updateDiv('page', site_url('admin/widgets_manager'));
             showMessage(lang("Changes has been saved", "admin"));
@@ -322,7 +322,7 @@ class Widgets_manager extends BaseAdminController {
                 $this->db->where('id', $widget['id']);
                 $this->db->update('widgets', $data);
 
-                $this->lib_admin->log(lang("Changed a widget", "admin") . $data['name']);
+                $this->lib_admin->log(lang("Changed a widget", "admin") . " " . $data['name']);
 
                 showMessage(lang("Changes has been saved", "admin"));
                 if ($_POST['action'] == 'tomain')
@@ -357,7 +357,7 @@ class Widgets_manager extends BaseAdminController {
 //                $this->db->where('id', $id);
 //                $this->db->update('widgets', $data);
 //
-//                $this->lib_admin->log(lang("Changed a widget", "admin") . $data['name']);
+//                $this->lib_admin->log(lang("Changed a widget", "admin") ." " . $data['name']);
 //
 //                //updateDiv('page', site_url('admin/widgets_manager'));
 //                showMessage(lang("Changes has been saved", "admin"));
@@ -394,7 +394,7 @@ class Widgets_manager extends BaseAdminController {
             if (file_exists(PUBPATH . '/templates/' . $query['site_template'] . '/widgets/' . $n . '.tpl')) {
                 @unlink(PUBPATH . '/templates/' . $query['site_template'] . '/widgets/' . $n . '.tpl');
             }
-            $this->lib_admin->log(lang("Deleted a widget", "admin") . $n);
+            $this->lib_admin->log(lang("Deleted a widget", "admin") . " " . $n);
         }
         showMessage(lang("Widget successfully deleted", "admin"));
         pjax('/admin/widgets_manager/index');

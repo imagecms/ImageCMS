@@ -12,7 +12,7 @@
                         <span class="title">Ваше имя</span>
                         <span class="frame_form_field">
                             <span class="icon-person"></span>
-                            <input type="text" name="Name"/>
+                            <input type="text" name="Name" maxlength="50" />
                             <label id="for_Name" class="for_validations"></label>
                         </span>
                     </label>
@@ -20,14 +20,14 @@
                         <span class="title">Номер телефона</span>
                         <span class="frame_form_field">
                             <span class="icon-phone"></span>
-                            <input type="text" name="Phone"/>
+                            <input type="text" name="Phone"  maxlength="36"/>
                             <label id="for_Phone" class="for_validations"></label>
                         </span>
                     </label>
                     <label>
                         <span class="title">Комментарий</span>
                         <span class="frame_form_field">
-                            <textarea name="Comment"></textarea>
+                            <textarea name="Comment" maxlength="1000" ></textarea>
                             <label id="for_Comment" class="for_validations"></label>
                         </span>
                     </label>
