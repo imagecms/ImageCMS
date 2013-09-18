@@ -382,7 +382,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        Параметры:
+                                        {lang('Parameters', 'menu')}:
                                     </th>
                                 </tr>
                             </thead>

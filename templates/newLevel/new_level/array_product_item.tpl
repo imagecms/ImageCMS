@@ -115,9 +115,11 @@
                 {/if}
             </div>
         </div>
-        <p>
-            {$p[comment]}
-        </p>
+        {if trim($p[comment]) != ''}
+            <p>
+                {$p[comment]}
+            </p>
+        {/if}
         {if $p.access == 'private' || !$otherlist}
             <div class="funcs-buttons-WL-item">
                 <div class="btn-remove-item-wl">
@@ -125,7 +127,7 @@
                         type="button"
                         data-type="json"
                         data-modal="true"
-                        
+
                         data-drop="#notification"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                         data-callback="removeItem"

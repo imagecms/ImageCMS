@@ -10,6 +10,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('new_level');
         $this->load->model('new_level_model');
         $this->path = TEMPLATES_PATH . 'newLevel';
     }
@@ -43,7 +45,7 @@ class Admin extends BaseAdminController {
             $settings['thema'] = $_POST['thema'];
             $sql = "update components set settings = '" . serialize($settings) . "' where name = 'new_level'";
             $this->db->query($sql);
-            showMessage('Даные сохранены');
+            showMessage(lang('Data saved'));
         } else {
 
             $thema = array();

@@ -2,19 +2,19 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Парнеры</span>
+            <span class="title">{lang('Partners', 'exchangeunfu')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/modules_table"
                    class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
-                    <span class="t-d_u">{lang('Back', 'admin')}</span>
+                    <span class="t-d_u">{lang('Back', 'exchangeunfu')}</span>
                 </a>
                 <button type="button" class="btn btn-small action_on btn-success addPartnerBtn">
-                    <i class="icon-plus"></i>Добавить партнера</button>
+                    <i class="icon-plus"></i>{lang('Add partner', 'exchangeunfu')}</button>
                 <a class="btn btn-small pjax"  href="{$BASE_URL}admin/components/init_window/exchangeunfu/settings" >
-                    <i class="icon-wrench"></i>{lang('Settings', 'admin')}
+                    <i class="icon-wrench"></i>{lang('Settings', 'exchangeunfu')}
                 </a>
             </div>
         </div>
@@ -24,12 +24,12 @@
             <thead>
                 <tr>
                     <th class="span1">#</th>
-                    <th>Имя</th>
-                    <th class="span2">Префикс</th>
-                    <th>Код</th>
-                    <th class="span4">Регион</th>
-                    <th class="span2">Редактировать</th>
-                    <th class="span2">Удалить</th>
+                    <th>{lang('Name', 'exchangeunfu')}</th>
+                    <th class="span2">{lang('Prefix', 'exchangeunfu')}</th>
+                    <th>{lang('Code', 'exchangeunfu')}</th>
+                    <th class="span4">{lang('Region', 'exchangeunfu')}</th>
+                    <th class="span2">{lang('Edit', 'exchangeunfu')}</th>
+                    <th class="span2">{lang('Delete', 'exchangeunfu')}</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,13 +55,13 @@
                         </td>
                         <td class="span1">
                             <button type="button" class="btn btn-small btn-success partnerRefresh">
-                                <i class="icon-edit"></i>Редактировать</button>
+                                <i class="icon-edit"></i>{lang('Edit', 'exchangeunfu')}</button>
                             <button type="button" class="btn btn-small btn-success partnerUpdate" style="display: none">
-                                <i class="icon-refresh"></i>Обновить</button>
+                                <i class="icon-refresh"></i>{lang('Refresh', 'exchangeunfu')}</button>
                         </td>
                         <td class="span1">
                             <button type="button" class="btn btn-small action_on btn-danger deletePartner">
-                                <i class="icon-trash"></i>Удалить</button>
+                                <i class="icon-trash"></i>{lang('Delete', 'exchangeunfu')}</button>
                         </td>
 
                     </tr>
@@ -84,7 +84,7 @@
                     </td>
                     <td>
                         <button type="button" class="btn btn-small btn-success partnerAdd">
-                            <i class="icon-plus"></i>Добавить</button>
+                            <i class="icon-plus"></i>{lang('Add', 'exchangeunfu')}</button>
                     </td>
                     <td>
                     </td>

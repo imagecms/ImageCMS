@@ -17,6 +17,8 @@ class Shop_news extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('shop_news');
     }
 
     public static function adminAutoload() {
@@ -93,7 +95,7 @@ class Shop_news extends MY_Controller {
         $this->load->model('shop_news_model');
 
         $this->shop_news_model->saveCategories($contentId, $data);
-        showMessage('Сохранено');
+        showMessage(lang('Save', 'shop_news'));
     }
 
     /**

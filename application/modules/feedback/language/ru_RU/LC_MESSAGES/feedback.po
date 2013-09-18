@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-28 12:16+0300\n"
-"PO-Revision-Date: 2013-03-28 12:16+0300\n"
-"Last-Translator: koloda <koloda90@gmail.com>\n"
+"POT-Creation-Date: 2013-09-17 17:27+0300\n"
+"PO-Revision-Date: 2013-09-17 17:28+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -17,61 +17,97 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ../../../\n"
 
-#: ../../..//_out.php:6
-#: ../../..//templates/admin/settings.tpl:6
+#: /var/www/image.loc/_temp2.php:6
+msgid "Contacts"
+msgstr "Контакты"
+
+#: /var/www/image.loc/_temp2.php:7
+msgid "Your message has been sent."
+msgstr "Ваше сообщение было отправлено."
+
+#: /var/www/image.loc/_temp2.php:8
+msgid "Your name"
+msgstr "Ваше имя"
+
+#: /var/www/image.loc/_temp2.php:9
+msgid "Theme"
+msgstr "Тема"
+
+#: /var/www/image.loc/_temp2.php:10
+msgid "Message text"
+msgstr "Текст сообщения"
+
+#: /var/www/image.loc/_temp2.php:11
+msgid "Protection code"
+msgstr "Защитный код"
+
+#: /var/www/image.loc/_temp2.php:12
+msgid "Comment"
+msgstr "Комментарий"
+
+#: /var/www/image.loc/_temp2.php:13
 msgid "Feedback settings"
-msgstr ""
+msgstr "Настройки обратной связи"
 
-#: ../../..//_out.php:10
-#: ../../..//templates/admin/settings.tpl:10
+#: /var/www/image.loc/_temp2.php:14
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
-#: ../../..//_out.php:11
-#: ../../..//templates/admin/settings.tpl:11
-#, fuzzy
-msgid "Have been saved"
-msgstr "Сохранение настроек прошло успешно"
+#: /var/www/image.loc/_temp2.php:15
+msgid "Save"
+msgstr "Сохранить"
 
-#: ../../..//_out.php:22
-#: ../../..//templates/admin/settings.tpl:22
+#: /var/www/image.loc/_temp2.php:16
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
-#: ../../..//_out.php:33
-#: ../../..//admin.php:49
-#: ../../..//templates/admin/settings.tpl:33
+#: /var/www/image.loc/_temp2.php:17
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
-#: ../../..//_out.php:36
-#: ../../..//templates/admin/settings.tpl:36
+#: /var/www/image.loc/_temp2.php:18
 msgid "Specify the e-mail address for mailing"
-msgstr ""
+msgstr "Укажите адрес электронной почты для рассылки"
 
-#: ../../..//_out.php:40
-#: ../../..//admin.php:50
-#: ../../..//templates/admin/settings.tpl:40
+#: /var/www/image.loc/_temp2.php:19
 msgid "Maximum message length"
-msgstr ""
+msgstr "Максимальная длина сообщения"
 
-#: ../../..//_out.php:104
-msgid "lang_comment_button"
-msgstr ""
+#: ../../..//admin.php:65
+msgid "Settings have been saved"
+msgstr "Настройки сохранены"
+
+#: ../../..//module_info.php:4
+#: ../../..//feedback.php:49
+msgid "Feedback"
+msgstr "Обратная связь"
 
 #: ../../..//feedback.php:41
 msgid "Improper protection code"
-msgstr ""
+msgstr "Неправильная защита кода"
+
+#: ../../..//feedback.php:60
+#: ../../..//feedback.php:77
+msgid "Name"
+msgstr "Название"
 
 #: ../../..//feedback.php:66
 #: ../../..//feedback.php:68
 msgid "Code protection"
-msgstr ""
+msgstr "Защитный код"
 
-#: ../../..//admin.php:65
+#: ../../..//feedback.php:70
+#: ../../..//feedback.php:79
+msgid "Message"
+msgstr "Сообщение"
+
+#: ../../..//feedback.php:78
+msgid "E-mail"
+msgstr "Электронная почта"
+
 #, fuzzy
-msgid "Settings have been saved or settings were saved"
-msgstr "Сохранение настроек прошло успешно"
+#~ msgid "Settings have been saved or settings were saved"
+#~ msgstr "Сохранение настроек прошло успешно"
 
 #, fuzzy
 #~ msgid "Save and go back"
@@ -177,10 +213,6 @@ msgstr "Сохранение настроек прошло успешно"
 #~ msgstr "Позиція змінена"
 
 #, fuzzy
-#~ msgid "Module name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
 #~ msgid "Languages"
 #~ msgstr "Нааааааааамеееееееееее"
 
@@ -216,10 +248,6 @@ msgstr "Сохранение настроек прошло успешно"
 
 #~ msgid "site"
 #~ msgstr "сайт"
-
-#, fuzzy
-#~ msgid "Manage site"
-#~ msgstr "Позиція"
 
 #, fuzzy
 #~ msgid "Your remark"

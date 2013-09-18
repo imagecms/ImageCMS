@@ -9,6 +9,8 @@ class Tags_Widgets extends MY_Controller {
    	public function __construct()
 	{
 		parent::__construct();
+                $lang = new MY_Lang();
+            $lang->load('tags');
     } 
 
     // Display recent or popular news

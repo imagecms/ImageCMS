@@ -21,6 +21,8 @@ class Print_data extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('print_data');
         if (count($this->db->where('name', 'print_data')->get('components')->result_array()) == 0)
             $this->no_install = false;
 

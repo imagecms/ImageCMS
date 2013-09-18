@@ -55,7 +55,7 @@
                                     <label class="control-label" for="cache">{lang("Cache", 'rss')}:</label>
                                     <div class="controls">
                                         <input type="text" name="cache_ttl" value="{$settings.cache_ttl}" id="cache"/>
-                                        <span class="help-inline">{lang("Specify cashe lifetime in minutes", 'rss')}</span>
+                                        <span class="help-inline">{lang("Specify caсhe lifetime in minutes", 'rss')}</span>
                                     </div>
                                 </div>
                             </div>

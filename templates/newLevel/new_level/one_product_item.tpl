@@ -182,11 +182,14 @@
                                     data-id="{echo $pv->getId()}"
                                     data-prodid="{echo $p->getId()}"
                                     data-varid="{echo $pv->getId()}"
+                                    data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
+                                    data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                     data-name="{echo ShopCore::encode($p->getName())}"
                                     data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-number="{echo trim($pv->getNumber())}"
+                                    data-img="{echo $pv->getSmallPhoto()}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>

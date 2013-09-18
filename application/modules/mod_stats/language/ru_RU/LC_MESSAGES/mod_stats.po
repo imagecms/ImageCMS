@@ -1,0 +1,435 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-17 17:18+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "Stats"
+msgstr "Статистика"
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "Back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:59
+msgid "Orders"
+msgstr "Заказы"
+
+#: /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:54
+msgid "Count"
+msgstr "Количество"
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "Price"
+msgstr "Цена"
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "Information"
+msgstr "Информация"
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "Users"
+msgstr "Пользователи"
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "Online"
+msgstr "Онлайн"
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "Registered"
+msgstr "Зарегистирование"
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "Attendance"
+msgstr "Посещаемость"
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "User information"
+msgstr "Информация пользователя"
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Products"
+msgstr "Продукты"
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "Categories"
+msgstr "Категории"
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Brands"
+msgstr "Бренды"
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Product information"
+msgstr "Информация товара"
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "Receipt of goods"
+msgstr "Поступление товаров"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Most visited"
+msgstr "Самые посещаемые"
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "Brands in category"
+msgstr "Бренды в категориях"
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "Searched keywords"
+msgstr "Ключи поиска"
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "Brands in search results"
+msgstr "Бренды в результатах поиска"
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "Settings:"
+msgstr "Настройки:"
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "save search results"
+msgstr "сохранить результы поиска"
+
+#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_temp2.php:49
+msgid "day"
+msgstr "день"
+
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:50
+msgid "week"
+msgstr "неделя"
+
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:51
+msgid "month"
+msgstr "месяц"
+
+#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_temp2.php:52
+msgid "year"
+msgstr "год"
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "From:"
+msgstr "От:"
+
+#: /var/www/image.loc/_temp2.php:47
+msgid "To:"
+msgstr "До:"
+
+#: /var/www/image.loc/_temp2.php:48
+msgid "Group by:"
+msgstr "Группировать по:"
+
+#: /var/www/image.loc/_temp2.php:53
+msgid "Key"
+msgstr "Ключ"
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "Date"
+msgstr "Дата"
+
+#: /var/www/image.loc/_temp2.php:56
+#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:74
+msgid "pie"
+msgstr "круг"
+
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:75
+msgid "bar"
+msgstr "колонки"
+
+#: /var/www/image.loc/_temp2.php:58
+msgid "Period"
+msgstr "Период"
+
+#: /var/www/image.loc/_temp2.php:60
+msgid "Unique products"
+msgstr "Уникальные продукты"
+
+#: /var/www/image.loc/_temp2.php:61
+msgid "Total products"
+msgstr "Всего товаров"
+
+#: /var/www/image.loc/_temp2.php:62
+msgid "Sum"
+msgstr "Сумма"
+
+#: /var/www/image.loc/_temp2.php:63
+msgid "Paid"
+msgstr "Оплаченый"
+
+#: /var/www/image.loc/_temp2.php:64
+msgid "Select categories"
+msgstr "Вибрать категорию"
+
+#: /var/www/image.loc/_temp2.php:65
+#: /var/www/image.loc/_temp2.php:69
+msgid "Show"
+msgstr "Показывать"
+
+#: /var/www/image.loc/_temp2.php:68
+msgid "Product / ID"
+msgstr "Продукт / ID"
+
+#: /var/www/image.loc/_temp2.php:70
+msgid "Product name"
+msgstr "Название товара"
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "Count of purchasses"
+msgstr "Количество покупок"
+
+#: /var/www/image.loc/_temp2.php:72
+msgid "Count of comments"
+msgstr "Количество комментариев"
+
+#: /var/www/image.loc/_temp2.php:73
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "Product's categories"
+msgstr "Категории товаров"
+
+#: /var/www/image.loc/_temp2.php:77
+msgid "Search"
+msgstr "Поиск"
+
+#: /var/www/image.loc/_temp2.php:78
+msgid "Product's categories in search results"
+msgstr "Категории товаров в результатах поиска"
+
+#: /var/www/image.loc/_temp2.php:79
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: ../../../module_info.php:6
+msgid "Statistic"
+msgstr "Статистика"
+
+#: ../../../classes/Orders.php:75
+msgid "All"
+msgstr "Все"
+
+#: ../../../classes/Orders.php:83
+msgid "Delivered"
+msgstr "Доставленный"
+
+#: ../../../classes/Users.php:77
+msgid "Registrations number"
+msgstr "Число регистраций"
+
+#~ msgid "Products in categories"
+#~ msgstr "Товары в категориях"
+
+#~ msgid "Keywords searched"
+#~ msgstr "Ключевые слова поиска"
+
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Date of creation"
+#~ msgstr "Настр"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Widget settings"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Widget title"
+#~ msgstr "Виджети"
+
+#~ msgid "New pages"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить"
+
+#, fuzzy
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Drug category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Basic information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "General information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Orders list"
+#~ msgstr "Список замовлень"
+
+#~ msgid "Create order"
+#~ msgstr "Создатьзаказ"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
+
+#, fuzzy
+#~ msgid "Date of order"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
+
+#, fuzzy
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Banner creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a banner"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
+
+#, fuzzy
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create user"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Additional information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Category created"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

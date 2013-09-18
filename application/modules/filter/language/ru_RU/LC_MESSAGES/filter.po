@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-29 10:08+0300\n"
+"POT-Creation-Date: 2013-09-16 18:34+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: asdasd <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -17,31 +17,34 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
+#: ../../../module_info.php:4
+msgid "Filter"
+msgstr "Фильтр"
+
 #: ../../../module_info.php:5
-#, fuzzy
 msgid "Search pages and categories to add. fields"
-msgstr "Создать категорию"
+msgstr "Поиск страниц и категорий для доюаления полей"
 
 #: ../../../filter.php:29
 msgid "At your request, page not found."
-msgstr ""
+msgstr "По вашему запросу  ничего не найдено."
 
 #: ../../../filter.php:36
 #: ../../../filter.php:162
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: ../../../filter.php:60
 msgid "The first"
-msgstr ""
+msgstr "Первый"
 
 #: ../../../filter.php:61
 msgid "Last"
-msgstr ""
+msgstr "Последний"
 
 #: ../../../filter.php:142
 msgid "Group has not fields"
-msgstr ""
+msgstr "Группа без полей"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

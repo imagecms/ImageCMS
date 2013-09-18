@@ -47,7 +47,7 @@
                     </li>
                     <li>
                         <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/users/register" class="linkChart"> &nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Register', 'mod_stats')}                                        
+                            <span class="simple_tree">↳</span>{lang('Registered', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
@@ -79,7 +79,7 @@
                     </li>
                     <li>
                         <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/productInfo" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Product info', 'mod_stats')}                                      
+                            <span class="simple_tree">↳</span>{lang('Product information', 'mod_stats')}                                      
                         </a>
                     </li>
                     <li>
@@ -113,7 +113,7 @@
                 <div class="submenu" style="display: none;">
                     <li>
                         <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/keywordsSearched" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Keywords searched', 'mod_stats')}     
+                            <span class="simple_tree">↳</span>{lang('Searched keywords', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
