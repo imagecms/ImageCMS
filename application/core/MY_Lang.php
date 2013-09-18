@@ -67,7 +67,7 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
-        if (strstr($_SERVER['PATH_INFO'], 'install'))
+        if (strstr($_SERVER['REQUEST_URI'], 'install'))
             return;
 
         if (!isset($this->ci))
@@ -114,6 +114,9 @@ class MY_Lang extends MX_Lang {
      * @return	mixed
      */
     public function load($module = 'main') {
+        if (strstr($_SERVER['REQUEST_URI'], 'install'))
+            return;
+        
         if (!$this->gettext)
             $this->_init();
 
