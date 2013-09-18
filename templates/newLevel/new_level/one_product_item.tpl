@@ -42,7 +42,7 @@
                 </div>
             {/if}
             {if !$vertical}
-                {if $Comments[$p->getId()] && $p->enable_comments && $Comments[$p->getId()] != 0}
+                {if $p->enable_comments && intval($Comments[$p->getId()]) !== 0}
                     <div class="frame-star f-s_0">
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
@@ -170,7 +170,6 @@
                                     </button>
                                 </div>
                             </div>
-                            {var_dumps(lang('Купить', 'newLevel'))}
                         {else:}
                             <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 <button
@@ -182,11 +181,14 @@
                                     data-id="{echo $pv->getId()}"
                                     data-prodid="{echo $p->getId()}"
                                     data-varid="{echo $pv->getId()}"
+                                    data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
+                                    data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                     data-name="{echo ShopCore::encode($p->getName())}"
                                     data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-number="{echo trim($pv->getNumber())}"
+                                    data-img="{echo $pv->getSmallPhoto()}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>

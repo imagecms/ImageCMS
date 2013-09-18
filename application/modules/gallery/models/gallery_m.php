@@ -341,7 +341,7 @@ class Gallery_m extends CI_Model {
 
         $query = $this->db->get('gallery_category');
 
-
+       
         if ($query->num_rows() > 0) {
             return $query->result_array();
         } else {

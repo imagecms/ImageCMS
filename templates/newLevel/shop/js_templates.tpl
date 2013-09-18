@@ -254,7 +254,7 @@
         </div>
         </td>
         <td class="frame-cur-sum-price">
-        <span class="title">{/literal}{lang('Сумм','newLevel')}{literal}: </span>
+        <span class="title">{/literal}{lang('Сумма','newLevel')}{literal}: </span>
         <div class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
@@ -808,6 +808,46 @@
     </div>
 </script>
 {/literal}
+    {literal}
+        <script type="text/template" id="reportappearance">
+            <ul class="items items-bask item-report">
+            <li>
+            <a href="<%-item.url%>" class="frame-photo-title" title="<%-item.name%>">
+            <span class="photo-block">
+            <span class="helper"></span>
+            <img src="<%-item.img%>" alt="<%-item.name%>">
+            </span>
+            <span class="title"><%-item.name%></span>
+            </a><div class="description">
+            <div class="frame-prices f-s_0">
+            <%if (item.origprice) { %>
+            <span class="price-discount">
+            <span>
+            <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %><%-item.origprice%></span>
+            <span class="curr"><%-curr%></span>
+            </span>
+            </span>
+            <% } %>
+            <span class="current-prices f-s_0">
+            <span class="price-new">
+            <span>
+            <span class="price priceVariant"><%-item.price%></span>
+            <span class="curr"><%-curr%></span>
+            </span>
+            </span>
+            <span class="price-add">
+            <span>
+            (<span class="price addCurrPrice"><%-item.addprice%></span>
+            <span class="curr-add"><%-nextCs%></span>)
+            </span>
+            </span>
+            </span>
+            </div>
+            </div>
+            </li>
+            </ul>
+        </script>
+    {/literal}
     <span class="tooltip"></span>
     <div class="apply">
         <div class="content-apply">

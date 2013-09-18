@@ -144,7 +144,7 @@ class Languages extends BaseAdminController {
 
             $this->cms_admin->insert_lang($data);
 
-            $this->lib_admin->log(lang("Create a language", "admin") . $data['lang_name']);
+            $this->lib_admin->log(lang("Create a language", "admin") . " " . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
@@ -252,7 +252,7 @@ class Languages extends BaseAdminController {
 
             $this->cms_admin->update_lang($data, $lang_id);
 
-            $this->lib_admin->log(lang("Changed a language", "admin") . $data['lang_name']);
+            $this->lib_admin->log(lang("Changed a language", "admin") . " " . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
@@ -291,7 +291,7 @@ class Languages extends BaseAdminController {
                 $this->db->where('lang', $item);
                 $this->db->delete('content');
                 $this->cache->delete('main_site_langs');
-                $this->lib_admin->log(lang("Deleted the ID language", "admin") . $item);
+                $this->lib_admin->log(lang("Deleted the ID language", "admin") . " " . $item);
             }
         } else {
             $lang = $this->cms_admin->get_lang($id);
@@ -311,7 +311,7 @@ class Languages extends BaseAdminController {
 
             $this->cache->delete('main_site_langs');
 
-            $this->lib_admin->log(lang("Deleted the ID language", "admin") . $id);
+            $this->lib_admin->log(lang("Deleted the ID language", "admin") . ' ' . $id);
         }
         showMessage(lang("the language has been deleted", "admin"));
         pjax('/admin/languages');
@@ -334,9 +334,9 @@ class Languages extends BaseAdminController {
 
         $lang = $this->cms_admin->get_lang($lang_id);
 
-        $this->lib_admin->log(lang("Specified a language or selected a language", "admin") . $lang['lang_name'] . lang("by default", "admin"));
+        $this->lib_admin->log(lang("Specified a language or selected a language", "admin") . " " . $lang['lang_name'] . " " . lang("by default", "admin"));
 
-        showMessage(lang("The language has been installed by default", "admin") . '<b>' . $lang['lang_name'] . '</b>');
+        showMessage(lang("The language has been installed by default", "admin") . ' <b> ' . $lang['lang_name'] . ' </b>');
     }
 
     /**

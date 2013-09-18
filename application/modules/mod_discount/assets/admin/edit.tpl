@@ -67,7 +67,7 @@
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
                                                     <input type="checkbox" {if !$maxApply} checked="checked" {/if} class="noLimitCountCheck">
                                                 </span>
-                                                {lang('Unlimit', 'mod_discount'))}
+                                                {lang('Unlimit', 'mod_discount')}
                                             </span>
                                         </span>
                                     </div>
