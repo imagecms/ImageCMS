@@ -27,6 +27,8 @@ class Admin extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('imagebox');
 
         $this->load->library('DX_Auth');
         //cp_check_perm('module_admin');
@@ -69,14 +71,14 @@ class Admin extends MY_Controller {
             $ext = end(explode('.', $url));
 
             if (strstr(strtolower($this->settings['allowed_types']), strtolower($ext)) == FALSE) {
-                showmessage('Вы пытаетесь загрузить запрещенный тип файла', false, 'r');
+                showmessage(lang('You are trying to download banned file type ', 'imagebox'), false, 'r');
                 return;
             }
 
             $p = @fopen($url, 'rb');
 
             if (!$p) {
-                showmessage('Ошибка загрузки файла.', false, 'r');
+                showmessage(lang('File loading error', 'imagebox'), false, 'r');
                 return;
             }
 
@@ -186,7 +188,7 @@ class Admin extends MY_Controller {
         $this->db->where('name', 'imagebox');
         $this->db->update('components', array('settings' => serialize($data)));
 
-        showMessage('Изменения сохранены.');
+        showMessage(lang('Changes saved', 'imagebox'));
     }
 
     /**

@@ -29,7 +29,7 @@
     </head>
     <body>
     {include_tpl('inc/javascriptVars.tpl');}
-    
+
     {$langDomain = $CI->land->gettext_domain}
     {$CI->lang->load('admin')}
         <div class="main_body">
@@ -142,7 +142,6 @@
                                                                 {/if}
                                                             {/foreach}
                                                         {/if}
-                {//var_dumps($sli.text)}
                                                     <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)$sli.text ? $sli.text : $sli.text}</a>{else:}{echo (bool)$sli.text ? $sli.text : $sli.text}{/if}</li>
 
 

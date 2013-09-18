@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 11:41+0300\n"
-"PO-Revision-Date: 2013-09-17 11:41+0300\n"
-"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
+"POT-Creation-Date: 2013-09-16 18:37+0300\n"
+"PO-Revision-Date: 2013-09-17 12:01+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -17,25 +17,74 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ../../../\n"
 
+#: /var/www/image.loc/_temp2.php:7
+msgid "Related topics"
+msgstr "Связанные темы"
+
+#: /var/www/image.loc/_temp2.php:8
+msgid "Widget settings"
+msgstr "Настройки виджета"
+
+#: /var/www/image.loc/_temp2.php:9
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:10
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_temp2.php:11
+msgid "Save and go back"
+msgstr "Сохранить и выйти"
+
+#: /var/www/image.loc/_temp2.php:12
+msgid "Settings"
+msgstr "Настройки"
+
+#: /var/www/image.loc/_temp2.php:13
+msgid "Pages"
+msgstr "Страницы"
+
+#: /var/www/image.loc/_temp2.php:14
+msgid "Latest"
+msgstr "Последний"
+
+#: /var/www/image.loc/_temp2.php:15
+msgid "Popular"
+msgstr "Популярный"
+
+#: /var/www/image.loc/_temp2.php:16
+msgid "Categories"
+msgstr "Категории"
+
+#: /var/www/image.loc/_temp2.php:17
+msgid "Without a category"
+msgstr "Без категории"
+
+#: /var/www/image.loc/_temp2.php:18
+msgid "Number of news for display"
+msgstr "Количество новостей для отображения"
+
+#: /var/www/image.loc/_temp2.php:19
+msgid "Maximum number of characters"
+msgstr "Максимальное количество символов"
+
 #: ../../..//core_widgets.php:87
 msgid "Amount of news"
 msgstr "Количество новостей"
 
-#: ../../..//core_widgets.php:88
-msgid "Maximum number of characters"
-msgstr "Максимальное количество символов"
-
 #: ../../..//core_widgets.php:101
-msgid "Settings have been saved"
-msgstr "Настройки сохранены"
+#, fuzzy
+msgid "Settings have been saved or settings were saved"
+msgstr "Сохранение настроек прошло успешно"
 
 #: ../../..//core.php:343
 msgid "Home page not found."
-msgstr "Домашняя страница не найдена"
+msgstr "Главная страница не найдена."
 
 #: ../../..//core.php:390
 msgid "Module uploading or loading  error"
-msgstr "Ошибка загрузки модуля"
+msgstr "Загрузки модуля или ошибка загрузки"
 
 #: ../../..//core.php:527
 msgid "The first"
@@ -47,11 +96,11 @@ msgstr "Последний"
 
 #: ../../..//core.php:557
 msgid "Can't locate category template file."
-msgstr "Не найден шаблон категории"
+msgstr "Не удается найти файл шаблона категории."
 
 #: ../../..//core.php:565
 msgid "In the category has no pages."
-msgstr "Нет страниц в категории"
+msgstr "В категории не имеет страниц."
 
 #: ../../..//core.php:697
 msgid "Page not found"
@@ -62,30 +111,8 @@ msgid "Page not found."
 msgstr "Страница не найдена."
 
 #, fuzzy
-#~ msgid "Settings have been saved or settings were saved"
+#~ msgid "Have been saved"
 #~ msgstr "Сохранение настроек прошло успешно"
-
-#~ msgid "Widget settings"
-#~ msgstr "Настройки виджета"
-
-#, fuzzy
-#~ msgid "Save and go back"
-#~ msgstr "Позиція"
-
-#~ msgid "Settings"
-#~ msgstr "Настройки"
-
-#~ msgid "Pages"
-#~ msgstr "Страницы"
-
-#~ msgid "Categories"
-#~ msgstr "Категории"
-
-#~ msgid "Without a category"
-#~ msgstr "Без категории"
-
-#~ msgid "Number of news for display"
-#~ msgstr "Количество новостей для отображения"
 
 #, fuzzy
 #~ msgid "Description "

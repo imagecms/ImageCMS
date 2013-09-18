@@ -17,7 +17,7 @@
         <div class="no-empty {if count($items) == 0}d_n{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Контроль','newLevel')}</h1>
+                    <h1 class="d_i">{lang('Оформление заказа','newLevel')}</h1>
                 </div>
             </div>
             <div class="left-cart">
@@ -26,7 +26,7 @@
                         <ul class="nav nav-order-user">
                             <li class="new-buyer">
                                 <span>
-                                    <span class="text-el">{lang('Я хочу зарегистрироваться!','newLevel')}</span>
+                                    <span class="text-el">{lang('Я новый покупатель','newLevel')}</span>
                                 </span>
                             </li>
                             <li class="old-buyer">

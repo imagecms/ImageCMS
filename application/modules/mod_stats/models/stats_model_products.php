@@ -239,7 +239,7 @@ class Stats_model_products extends CI_Model {
                 GROUP BY  `shop_products_i18n`.`name`";
 
         $result = $this->db->query($query)->row_array();
-      
+
         if ($result != null) {
             return $result;
         } else {
@@ -266,7 +266,37 @@ class Stats_model_products extends CI_Model {
             return 0;
         }
     }
-
+    
+    /**
+     * Get first level categories ids
+     * @return boolean|array
+     */
+    public function getFirstLevelCategoriesIds() {
+        $query = "SELECT id 
+                FROM `shop_category` 
+                WHERE  `url`=`full_path`";
+        $result = $this->db->query($query)->result_array();
+        if ($result != null){
+           return $this->prepareArray($result);
+        }
+        return FALSE;
+    }
+    
+    /**
+     * Prepare array with categories ids
+     * @param array $dataArray
+     * @return boolean|array
+     */
+    public function prepareArray($dataArray = null) {
+        if ($dataArray == null) {
+            return false;
+        }
+        $result = array();
+        foreach ($dataArray as $key => $value) {
+                $result[] = $value['id'];
+        }
+        return $result;
+    }
 }
 
 ?>

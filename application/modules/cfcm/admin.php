@@ -235,9 +235,9 @@ class Admin extends BaseAdminController {
                 $data = $form->getData();
 
                 $matches = array();
-                if (preg_match_all('/<p>([\W\S]+)<\/p>/', $data['initial'], $matches)) {
-                    $data['initial'] = $matches[1];
-                }
+//                if (preg_match_all('/<p>([\W\S]+)<\/p>/', $data['initial'], $matches)) {
+//                    $data['initial'] = $matches[1];
+//                }
 
                 if (isset($data['required']))
                     $data['validation'] = 'required|' . $data['validation'];
@@ -269,14 +269,16 @@ class Admin extends BaseAdminController {
 //                else
 //                    pjax( $_SERVER['HTTP_REFERER']);
 //                exit;
-            }
-
-            $this->template->add_array(array(
+            }else{
+                $this->template->add_array(array(
                 'form' => $form,
             ));
 
 //             $this->display_tpl('_form');
             $this->render('_form');
+            }
+
+            
         }
         else
             echo lang("Field has not been found", 'cfcm');

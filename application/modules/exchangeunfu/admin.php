@@ -6,6 +6,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         $this->locale = MY_Controller::getCurrentLocale();
+        $lang = new MY_Lang();
+        $lang->load('exchangeunfu');
     }
 
     public function index() {
@@ -119,7 +121,7 @@ class Admin extends BaseAdminController {
 
             $this->db->where('identif', 'exchangeunfu')
                     ->update('components', array('settings' => serialize($config)));
-            showMessage("Настройки сохранены");
+            showMessage(lang('Settings saved', 'exchangeunfu'));
         }
     }
 

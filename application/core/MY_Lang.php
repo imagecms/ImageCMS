@@ -67,7 +67,7 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
-        if (strstr($_SERVER['PATH_INFO'], 'install'))
+        if (strstr($_SERVER['REQUEST_URI'], 'install'))
             return;
 
         if (!isset($this->ci))
@@ -81,7 +81,7 @@ class MY_Lang extends MX_Lang {
 
         unset($sett);
         $this->gettext_language = $this->ci->config->item('language');
-        
+
         $this->ci->load->library('gettext_php/gettext_extension', array());
         $this->gettext = & $this->ci->gettext_extension->getInstance();
     }
@@ -114,6 +114,9 @@ class MY_Lang extends MX_Lang {
      * @return	mixed
      */
     public function load($module = 'main') {
+        if (strstr($_SERVER['REQUEST_URI'], 'install'))
+            return;
+
         if (!$this->gettext)
             $this->_init();
 
@@ -128,11 +131,10 @@ class MY_Lang extends MX_Lang {
             $lang = $languageFront[1];
         }
 //        $lang = 'de_DE';
-
 //            var_dumps($module);
         if (strstr($_SERVER['PATH_INFO'], 'install'))
             return;
-        
+
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->gettext->addDomain('application/language/main/', 'main', $lang);

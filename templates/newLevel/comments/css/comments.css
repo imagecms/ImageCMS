@@ -1,4 +1,5 @@
 /*comments*/
+.comment__icsi-css .main-form-comments__icsi-css{margin-bottom: 20px;}
 .comment__icsi-css{margin-bottom: 35px !important;}
 .comment__icsi-css .main-form-comments .title__icsi-css{float: none;width: auto;font-weight: bold;}
 .comment__icsi-css .title__icsi-css{font-weight: bold;}
@@ -29,17 +30,12 @@
 
 .frame-list-comment__icsi-css .frame-drop-comment__icsi-css{padding: 25px 0;}
 .frame-drop-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
-.comment__icsi-css .title_h2__icsi-css{margin-bottom: 15px;font-size: 18px;font-weight: normal;margin-bottom: 4px;}
+.comment__icsi-css .title_h2__icsi-css{margin-bottom: 20px;font-size: 18px;font-weight: normal;}
 .f_l__icsi-css{float: left;}
 .f_r__icsi-css{float: right;}
-.comment__icsi-css .productRate{position: relative;}
-.comment__icsi-css .productRate div {background-position: left bottom;width: 0;height: 100%;position: absolute;top: 0;left: 0;z-index: 1;cursor: pointer;}
-.comment__icsi-css .productRate span {display: block;height: 100%;position: absolute;top: 0;left: 0;z-index: 2;background-position: left center;width: 0;cursor: pointer;}
-.comment__icsi-css .productRate.disabled, .productRate.disabled div{cursor: default;}
-.frame-comments__icsi-css .inside-padd{padding: 14px 20px 15px;}
+.frame-comments__icsi-css .inside-padd{padding: 0 20px 15px;}
 .comment__icsi-css label{display: block;}
 .form__icsi-css label, .form__icsi-css .frameLabel__icsi-css{margin-bottom: 12px;}
-.comment__icsi-css .star-big {width: 145px;height: 31px;}
 .form__icsi-css .title__icsi-css{float: left;width: 128px;padding-right: 10px;margin-top: 6px;text-align: right;}
 .frame_form_field__icsi-css{position: relative;display: block;}
 .comment__icsi-css textarea{height: 134px; padding-top: 5px}
@@ -53,4 +49,6 @@
 .dis-like__icsi-css > button{color: #f03f3f;}
 .form__icsi-css .frame_form_field__icsi-css{margin-left: 138px;}
 .func-button-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
+.mark-pr{margin-bottom: 4px;}
+.mark-pr > .star-small{position: relative;top: 2px;}
 /*/comments*/

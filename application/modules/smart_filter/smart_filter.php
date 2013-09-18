@@ -9,8 +9,10 @@
 class Smart_filter extends \Category\BaseCategory {
 
     public function __construct() {
-        if($this->uri->segments[2] == 'category' || $this->uri->segments[2] == 'filter'){
-            parent::__construct();    
+        if ($this->uri->segments[2] == 'category' || $this->uri->segments[2] == 'filter') {
+            parent::__construct();
+            $lang = new MY_Lang();
+            $lang->load('smart_filter');
         }
     }
 
@@ -35,7 +37,7 @@ class Smart_filter extends \Category\BaseCategory {
     }
 
     public function filter() {
-        
+
         $this->set_price();
 
 
@@ -66,7 +68,7 @@ class Smart_filter extends \Category\BaseCategory {
     public function autoload() {
         
     }
-    
+
     public function _install() {
         /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
         /**

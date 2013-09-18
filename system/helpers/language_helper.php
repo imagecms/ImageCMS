@@ -74,7 +74,6 @@ if (!function_exists('chose_language')) {
             if (in_array($l['identif'], $url_arr))
                 $lang = $l['identif'];
 
-
         if (!$lang) {
             $languages = $ci->db->where('default', 1)->get('languages')->row();
             $lang = $languages->identif;

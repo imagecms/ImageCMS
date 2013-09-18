@@ -14,6 +14,8 @@ class CMSEmail extends MY_Controller {
         parent::__construct();
 
         $this->load->model('cmsemail_model');
+        $lang = new MY_Lang();
+        $lang->load('cmsemail');
     }
 
     public function _install() {
