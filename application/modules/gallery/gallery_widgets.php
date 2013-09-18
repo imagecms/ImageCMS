@@ -10,6 +10,8 @@ class Gallery_Widgets extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('gallery');
     }
 
     public function latest_fotos($widget = array()) {
@@ -62,7 +64,7 @@ class Gallery_Widgets extends MY_Controller {
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
                 showMessage(lang("Settings have been saved", 'gallery'));
-                if($_POST['action'] == 'tomain')
+                if ($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
                 break;
 

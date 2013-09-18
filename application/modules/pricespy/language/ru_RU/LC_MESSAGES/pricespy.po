@@ -19,87 +19,86 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "List of users subscribed to the products"
-msgstr ""
+msgstr "Список пользователей подписаных на товары"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "User"
-msgstr ""
+msgstr "Пользователь"
 
 #: /var/www/image.loc/_temp2.php:10
 #: /var/www/image.loc/_temp2.php:15
 #: /var/www/image.loc/_temp2.php:16
 #: /var/www/image.loc/_temp2.php:21
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Отписаться"
 
 #: /var/www/image.loc/_temp2.php:11
 #: /var/www/image.loc/_temp2.php:17
 msgid "Product"
-msgstr ""
+msgstr "Товар"
 
 #: /var/www/image.loc/_temp2.php:12
 #: /var/www/image.loc/_temp2.php:18
-#, fuzzy
 msgid "New price"
-msgstr "Нові сторінки"
+msgstr "Новая цена"
 
 #: /var/www/image.loc/_temp2.php:13
 #: /var/www/image.loc/_temp2.php:19
 msgid "Old price"
-msgstr ""
+msgstr "Старая цена"
 
 #: /var/www/image.loc/_temp2.php:14
 #: /var/www/image.loc/_temp2.php:20
 msgid "Percentage of price reduction"
-msgstr ""
+msgstr "Процент снижения цен"
 
 #: /var/www/image.loc/_temp2.php:22
 msgid "Watch list is empty"
-msgstr ""
+msgstr "Список пуст"
 
 #: ../../../pricespy.php:53
 msgid "Price changing"
-msgstr ""
+msgstr "Изменения цены"
 
 #: ../../../pricespy.php:54
 msgid "Price on"
-msgstr ""
+msgstr "Цены на"
 
 #: ../../../pricespy.php:54
 msgid "for which you watch on site"
-msgstr ""
+msgstr "для которых вы смотрели на сайте"
 
 #: ../../../pricespy.php:54
 msgid "changed"
-msgstr ""
+msgstr "изменены"
 
 #: ../../../pricespy.php:55
 msgid "View watch list"
-msgstr ""
+msgstr "Просмотреть список просмотров"
 
 #: ../../../pricespy.php:56
 msgid "Unsubscribe tracking"
-msgstr ""
+msgstr "Отказаться отслеживания"
 
 #: ../../../pricespy.php:205
 msgid "Notify about price cut"
-msgstr ""
+msgstr "Оповещать о снижении цены"
 
 #: ../../../pricespy.php:211
 msgid "Already in tracking"
-msgstr ""
+msgstr "Уже в отслеживании"
 
 #: ../../../module_info.php:7
 msgid "Tracking for price"
-msgstr ""
+msgstr "Отслеживание цен"
 
 #: ../../../module_info.php:8
 msgid "Tracking for price module"
-msgstr ""
+msgstr "Модуль слежения за ценами"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

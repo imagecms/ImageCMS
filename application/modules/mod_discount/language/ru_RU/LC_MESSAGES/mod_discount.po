@@ -19,385 +19,378 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:13
 #: /var/www/image.loc/_temp2.php:25
-#, fuzzy
 msgid "Certificate code"
-msgstr "Создатьзаказ"
+msgstr "Код сертификата"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "on amount"
-msgstr ""
+msgstr "на сумму"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "Maximum possible discount is using"
-msgstr ""
+msgstr "Используется максимально возможная скидка"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "discount type: product"
-msgstr ""
+msgstr "тип скидки: наименования"
 
 #: /var/www/image.loc/_temp2.php:17
 #: /var/www/image.loc/_temp2.php:24
 msgid "discount amount"
-msgstr ""
+msgstr "размер скидки"
 
 #: /var/www/image.loc/_temp2.php:18
 msgid "number"
-msgstr ""
+msgstr "число"
 
 #: /var/www/image.loc/_temp2.php:19
 msgid "discount name"
-msgstr ""
+msgstr "название скидки"
 
 #: /var/www/image.loc/_temp2.php:20
 msgid "discount key"
-msgstr ""
+msgstr "ключ скидки"
 
 #: /var/www/image.loc/_temp2.php:21
 msgid "discount type"
-msgstr ""
+msgstr "тип скидки"
 
 #: /var/www/image.loc/_temp2.php:22
+#, fuzzy
 msgid "discount charge type"
-msgstr ""
+msgstr "тип  скидки"
 
 #: /var/www/image.loc/_temp2.php:23
 msgid "discount size"
-msgstr ""
+msgstr "размер скидки"
 
 #: /var/www/image.loc/_temp2.php:26
 msgid "Apply sertificate"
-msgstr ""
+msgstr "Применить сертификат"
 
 #: /var/www/image.loc/_temp2.php:27
-#, fuzzy
 msgid "Discount creating"
-msgstr "Настр"
+msgstr "Создание скидки"
 
 #: /var/www/image.loc/_temp2.php:28
 #: /var/www/image.loc/_temp2.php:86
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:29
 #: /var/www/image.loc/_temp2.php:87
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:30
 #: /var/www/image.loc/_temp2.php:64
 msgid "Create"
-msgstr ""
+msgstr "Создать"
 
 #: /var/www/image.loc/_temp2.php:31
 #: /var/www/image.loc/_temp2.php:90
 msgid "Discount details"
-msgstr ""
+msgstr "Детали скидки"
 
 #: /var/www/image.loc/_temp2.php:32
 #: /var/www/image.loc/_temp2.php:91
 msgid "Discount name"
-msgstr ""
+msgstr "Название скидки"
 
 #: /var/www/image.loc/_temp2.php:33
 #: /var/www/image.loc/_temp2.php:92
 msgid "Discount code"
-msgstr ""
+msgstr "Код скидки"
 
 #: /var/www/image.loc/_temp2.php:34
 msgid "Users count"
-msgstr ""
+msgstr "Количество пользователей"
 
 #: /var/www/image.loc/_temp2.php:35
 #: /var/www/image.loc/_temp2.php:94
 msgid "Unlimit"
-msgstr ""
+msgstr "Неограничено"
 
 #: /var/www/image.loc/_temp2.php:36
 #: /var/www/image.loc/_temp2.php:95
 msgid "Method of calculation"
-msgstr ""
+msgstr "Метод подсчета"
 
 #: /var/www/image.loc/_temp2.php:37
 #: /var/www/image.loc/_temp2.php:96
 msgid "Choose method"
-msgstr ""
+msgstr "Выберите метод"
 
 #: /var/www/image.loc/_temp2.php:38
 #: /var/www/image.loc/_temp2.php:97
 msgid "Percents"
-msgstr ""
+msgstr "Проценты"
 
 #: /var/www/image.loc/_temp2.php:39
 #: /var/www/image.loc/_temp2.php:98
 msgid "Fixed"
-msgstr ""
+msgstr "Фиксированный"
 
 #: /var/www/image.loc/_temp2.php:40
 #: /var/www/image.loc/_temp2.php:99
 msgid "Discount type"
-msgstr ""
+msgstr "Тип скидки"
 
 #: /var/www/image.loc/_temp2.php:41
 #: /var/www/image.loc/_temp2.php:100
 msgid "Choose type"
-msgstr ""
+msgstr "Выберите тип"
 
 #: /var/www/image.loc/_temp2.php:42
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: /var/www/image.loc/_temp2.php:43
 #: /var/www/image.loc/_temp2.php:67
 #: /var/www/image.loc/_temp2.php:101
 msgid "Order amount of more than"
-msgstr ""
+msgstr "Сумма заказа на больше чем"
 
 #: /var/www/image.loc/_temp2.php:44
 #: /var/www/image.loc/_temp2.php:68
 #: /var/www/image.loc/_temp2.php:102
-#, fuzzy
 msgid "Cumulative discount"
-msgstr "Создать категорию"
+msgstr "Накопительная скидка"
 
 #: /var/www/image.loc/_temp2.php:45
 #: /var/www/image.loc/_temp2.php:69
 #: /var/www/image.loc/_temp2.php:103
 msgid "User"
-msgstr ""
+msgstr "Пользователь"
 
 #: /var/www/image.loc/_temp2.php:46
 msgid "Users group"
-msgstr ""
+msgstr "Группа пользователей"
 
 #: /var/www/image.loc/_temp2.php:47
 #: /var/www/image.loc/_temp2.php:71
 #: /var/www/image.loc/_temp2.php:105
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: /var/www/image.loc/_temp2.php:48
 #: /var/www/image.loc/_temp2.php:72
 #: /var/www/image.loc/_temp2.php:106
 msgid "Product"
-msgstr ""
+msgstr "Товар"
 
 #: /var/www/image.loc/_temp2.php:49
 #: /var/www/image.loc/_temp2.php:73
 #: /var/www/image.loc/_temp2.php:107
 msgid "Brand"
-msgstr ""
+msgstr "Бренд"
 
 #: /var/www/image.loc/_temp2.php:50
 #: /var/www/image.loc/_temp2.php:108
 msgid "Only for registered"
-msgstr ""
+msgstr "Только для зарегистрированных"
 
 #: /var/www/image.loc/_temp2.php:51
 #: /var/www/image.loc/_temp2.php:109
 msgid "Gift Certificate"
-msgstr ""
+msgstr "Подарочный сертификат"
 
 #: /var/www/image.loc/_temp2.php:52
 #: /var/www/image.loc/_temp2.php:110
 msgid "from"
-msgstr ""
+msgstr "от"
 
 #: /var/www/image.loc/_temp2.php:53
 #: /var/www/image.loc/_temp2.php:61
 #: /var/www/image.loc/_temp2.php:111
 #: /var/www/image.loc/_temp2.php:119
 msgid "to"
-msgstr ""
+msgstr "до"
 
 #: /var/www/image.loc/_temp2.php:54
 #: /var/www/image.loc/_temp2.php:112
 msgid "Maximum"
-msgstr ""
+msgstr "Максимальный"
 
 #: /var/www/image.loc/_temp2.php:55
 #: /var/www/image.loc/_temp2.php:113
-#, fuzzy
 msgid "Current user"
-msgstr "Создать категорию"
+msgstr "Текущий пользователь"
 
 #: /var/www/image.loc/_temp2.php:56
 #: /var/www/image.loc/_temp2.php:114
 msgid "ID / Name / E-mail"
-msgstr ""
+msgstr "ID / Имя / Электронная почта"
 
 #: /var/www/image.loc/_temp2.php:57
 #: /var/www/image.loc/_temp2.php:115
-#, fuzzy
 msgid "Current product"
-msgstr "Создать категорию"
+msgstr "Текущий товар"
 
 #: /var/www/image.loc/_temp2.php:58
 #: /var/www/image.loc/_temp2.php:116
 msgid "Name / ID"
-msgstr ""
+msgstr "Имя / ID"
 
 #: /var/www/image.loc/_temp2.php:59
 #: /var/www/image.loc/_temp2.php:117
-#, fuzzy
 msgid "Allowed time for discounts"
-msgstr "Создать категорию"
+msgstr "Допустимое время для скидок"
 
 #: /var/www/image.loc/_temp2.php:60
 #: /var/www/image.loc/_temp2.php:118
 msgid "Period of the discount from"
-msgstr ""
+msgstr "Период действия скидки от"
 
 #: /var/www/image.loc/_temp2.php:62
 #: /var/www/image.loc/_temp2.php:120
-#, fuzzy
 msgid "Constant discount"
-msgstr "Создать категорию"
+msgstr "Постоянная скидка"
 
 #: /var/www/image.loc/_temp2.php:63
 msgid "Discounts"
-msgstr ""
+msgstr "Скидки"
 
 #: /var/www/image.loc/_temp2.php:65
 msgid "Choose discount type"
-msgstr ""
+msgstr "Выберите тип скидки"
 
 #: /var/www/image.loc/_temp2.php:66
 msgid "All"
-msgstr ""
+msgstr "Все"
 
 #: /var/www/image.loc/_temp2.php:70
 #: /var/www/image.loc/_temp2.php:104
 msgid "User group"
-msgstr ""
+msgstr "Группа пользователей"
 
 #: /var/www/image.loc/_temp2.php:74
 msgid "Key"
-msgstr ""
+msgstr "Ключ"
 
 #: /var/www/image.loc/_temp2.php:75
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: /var/www/image.loc/_temp2.php:76
 msgid "Limit"
-msgstr ""
+msgstr "Лимит"
 
 #: /var/www/image.loc/_temp2.php:77
 msgid "Used"
-msgstr ""
+msgstr "Используемый"
 
 #: /var/www/image.loc/_temp2.php:78
 msgid "Beggining time"
-msgstr ""
+msgstr "Время начала"
 
 #: /var/www/image.loc/_temp2.php:79
 msgid "End time"
-msgstr ""
+msgstr "Время окончания"
 
 #: /var/www/image.loc/_temp2.php:80
 msgid "Active"
-msgstr ""
+msgstr "Активный"
 
 #: /var/www/image.loc/_temp2.php:81
 #: /var/www/image.loc/_temp2.php:84
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: /var/www/image.loc/_temp2.php:82
 msgid "Unlimited"
-msgstr ""
+msgstr "Неограничено"
 
 #: /var/www/image.loc/_temp2.php:83
 msgid "show"
-msgstr ""
+msgstr "показать"
 
 #: /var/www/image.loc/_temp2.php:85
 msgid "Discount editing"
-msgstr ""
+msgstr "Редактирование скидки"
 
 #: /var/www/image.loc/_temp2.php:88
 msgid "Save and exit"
-msgstr ""
+msgstr "Сохранить и выйти"
 
 #: /var/www/image.loc/_temp2.php:89
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 #: /var/www/image.loc/_temp2.php:93
 msgid "Count of usage"
-msgstr ""
+msgstr "Количество использования"
 
 #: ../../../admin.php:51
 #: ../../../admin.php:55
 #: ../../../admin.php:172
 #: ../../../admin.php:176
 msgid "Value from"
-msgstr ""
+msgstr "Значение от"
 
 #: ../../../admin.php:52
 #: ../../../admin.php:173
 msgid "Value to"
-msgstr ""
+msgstr "Значение до"
 
 #: ../../../admin.php:59
 #: ../../../admin.php:180
 msgid "Amount <<from>> can not be greater than the sum <<to>>"
-msgstr ""
+msgstr "Количество << от >> не может быть больше, чем << до >>"
 
 #: ../../../admin.php:64
 #: ../../../admin.php:185
 msgid "Enter a product that is in the database"
-msgstr ""
+msgstr "Введите  продукт, который находится в базе"
 
 #: ../../../admin.php:69
 #: ../../../admin.php:189
 msgid "Enter the user who is in the database"
-msgstr ""
+msgstr "Введите пользователя, который находится в базе данных"
 
 #: ../../../admin.php:75
 #: ../../../admin.php:195
 msgid "There can be more than one discount with said upper threshold as a <<maximum>>!"
-msgstr ""
+msgstr "Может быть более одной скидки с указанным верхним порогом в качестве <<максимального>> !"
 
 #: ../../../admin.php:80
 #: ../../../admin.php:201
 msgid "Invalid date range!"
-msgstr ""
+msgstr "Неверный диапазон дат!"
 
 #: ../../../admin.php:85
 msgid "Discounts percents may not be more than 99!"
-msgstr ""
+msgstr "Проценты скидки не могут быть более 99!"
 
 #: ../../../admin.php:129
-#, fuzzy
 msgid "Failed to create a discount"
-msgstr "Создать категорию"
+msgstr "Не удалось создать скидку"
 
 #: ../../../admin.php:135
 #: ../../../admin.php:208
 msgid "Discount successfully created!"
-msgstr ""
+msgstr "Скидка успешно создана!"
 
 #: ../../../admin.php:238
 msgid "Changes saved"
-msgstr ""
+msgstr "Изменения сохранены"
 
 #: ../../../admin.php:256
 msgid "Discount not found"
-msgstr ""
+msgstr "Скидка не найден"
 
 #: ../../../gift.php:68
 msgid "Invalid code try again"
-msgstr ""
+msgstr "Неверный код, попробуйте еще раз"
 
 #: ../../../module_info.php:5
 msgid "Discounts control module"
-msgstr ""
+msgstr "Модуля управления скидками"
 
 #: ../../../models/discount_model_admin.php:466
 #: ../../../models/discount_model_admin.php:478
 msgid "Value"
-msgstr ""
+msgstr "Значение"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

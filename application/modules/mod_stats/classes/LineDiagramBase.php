@@ -14,6 +14,8 @@ class LineDiagramBase {
 
     public function __construct() {
         $this->params = $this->getParamsFromCookies();
+        $lang = new \MY_Lang();
+        $lang->load('mod_stats');
     }
     
     

@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-13 18:04+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: Mark <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -13,63 +13,60 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
-#: /var/www/image.loc/_temp2.php:10
-#: /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_temp2.php:10 /var/www/image.loc/_temp2.php:11
 msgid "product"
-msgstr ""
+msgstr "продукт"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "products"
-msgstr ""
+msgstr "продукты"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "with filter"
-msgstr ""
+msgstr "с фильтром"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "Price from"
-msgstr ""
+msgstr "Цена от"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "to"
-msgstr ""
+msgstr "до"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "Reset filter"
-msgstr ""
+msgstr "Сбросить фильтр"
 
 #: /var/www/image.loc/_temp2.php:17
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
 #: /var/www/image.loc/_temp2.php:18
 msgid "Javascript is not enabled"
-msgstr ""
+msgstr "Javascript не включен"
 
-#: /var/www/image.loc/_temp2.php:19
-#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:19 /var/www/image.loc/_temp2.php:20
 msgid "Only numeric"
-msgstr ""
+msgstr "Только цифры"
 
 #: /var/www/image.loc/_temp2.php:21
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 #: /var/www/image.loc/_temp2.php:22
 msgid "Manufacturer"
-msgstr ""
+msgstr "Производитель"
 
 #: ../../../module_info.php:6
 msgid "Advanced filter module on properties of products"
-msgstr ""
+msgstr "Расширенный модуль фильтра для свойств товаров"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

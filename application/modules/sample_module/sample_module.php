@@ -15,6 +15,8 @@ class Sample_Module extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('sample_module');
         $this->load->module('core');
         //\CMSFactory\Events::create()->registerEvent(array('commentId' => 144));
 

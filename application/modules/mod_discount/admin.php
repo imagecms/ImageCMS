@@ -14,6 +14,8 @@ class Admin extends \ShopAdminController {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('mod_discount');
         $this->load->model('discount_model_admin');
         \CMSFactory\assetManager::create()
                 ->registerStyle('style')

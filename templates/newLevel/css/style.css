@@ -52,8 +52,8 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 .vertical-layout .right-product-right{width: 100%;float: none;margin-bottom: 20px;}
 .vertical-layout .left-product{width: 35%;float: left;}
 
-.comment__icsi-css .frame-list-comment__icsi-css{width: 56%;float: left;}
-.comment__icsi-css .main-form-comments__icsi-css{width: 40%;float: right;}
+.comment__icsi-css .frame-list-comment__icsi-css{max-width: 650px;}
+.comment__icsi-css .main-form-comments__icsi-css{max-width: 650px;}
 .comment__icsi-css .main-form-comments__icsi-css.noComments{float: none;}
 
 .left-catalog-first{float: left;width: 74.5%;}
@@ -96,10 +96,10 @@ body, input, select, button, textarea {font: 12px Tahoma, Geneva, Kalimati, sans
 input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background: none;border: none;}
 input[type="button"], input[type="submit"], input[type="reset"], button{text-align: center;}
 label, input[type="button"], input[type="submit"], input[type="reset"], button{padding: 0;cursor: pointer;}
-[class*="btn"] > button, [class*="btn"] > a{cursor: pointer;display: inline-block;font-size: 0;}
+[class*="btn"] > button, [class*="btn"] > a, .buti > button, .buti > a{cursor: pointer;display: inline-block;font-size: 0;}
 [class*="btn"].pointer > button, [class*="btn"].pointer > a{cursor: pointer !important;}
 input[type="text"], input[type="password"], textarea{width: 100%;max-width: 100%;padding: 0 5px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
-textarea, select, input[type="text"], input[type="password"]{border: 1px solid;}
+textarea, select, input[type="text"], input[type="password"]{border: 1px solid;background-color: #fff;}
 select, input[type="text"], input[type="password"]{height: 35px;}
 textarea{overflow: auto;display: block;height: 64px;padding-top: 4px;padding-bottom: 4px;}
 sub, sup {position: relative;font-size: 75%;line-height: 0;}
@@ -230,6 +230,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 nav a{text-decoration: none;}
 .nav > li{float: left;position: relative;}
 .nav.nav-vertical > li{float: none;}
+.nav-vertical + .nav-vertical{margin-top: 10px;}
 .nav > li > a, .nav > li > span, .nav > li > button{display: block;}
 /*/base nav*/
 
@@ -262,9 +263,9 @@ p {margin-bottom: 10px;line-height: 18px;}
 /*/text*/
 
 /*buttons base*/
-[class*="btn-"]{display: inline-block;position: relative;font-size: 0;}
-[class*="btn-"] > a, [class*="btn-"] > a:hover{text-decoration: none;}
-[class*="btn-"]{vertical-align: middle;}
+[class*="btn-"], .buti{display: inline-block;position: relative;font-size: 0;}
+[class*="btn-"] > a, [class*="btn-"] > a:hover, .buti > a, .buti > a:hover{text-decoration: none;}
+[class*="btn-"], .buti{vertical-align: middle;}
 
 /*/buttons base*/
 
@@ -396,7 +397,7 @@ input.input-search{height: 33px;}
 .product-charac{max-height: 220px;}
 .product-descr{max-height: 250px;}
 .product-comment{max-height: 400px;}
-#comment .product-comment{max-height: none;}
+#comment .product-comment{max-height: none !important;height: auto !important;}
 .photoProduct .photo-block{width: 100%;height: 270px;padding: 15px;}
 .title-product{margin-bottom: 19px;}
 .title-product .frame-title{margin-right: 15px;}
@@ -913,7 +914,11 @@ li.clear-pag-item{margin: 0 14px 4px;}
 .social-tell .b-share{padding-left: 0 !important;}
 .text-social-tell{position: relative;top: 5px;}
 .social-product > dt{float: left;margin-right: 10px;}
-.social-product > dd{overflow: hidden;}
+.text-social-like{margin-bottom: 3px;}
+.social-like{clear: left;}
+.social-like > table{width: auto;}
+.social-like > table td{padding-right: 10px;}
+.social-tell{overflow: hidden;margin-bottom: 5px;}
 
 .frame-delivery-payment{margin-bottom: 8px;}
 .frame-delivery-payment dt{padding: 9px 14px 0;}

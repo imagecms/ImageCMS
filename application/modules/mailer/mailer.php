@@ -16,6 +16,8 @@ class Mailer extends MY_Controller {
         parent::__construct();
 
         $this->load->module('core');
+        $lang = new MY_Lang();
+        $lang->load('mailer');
     }
 
     /**

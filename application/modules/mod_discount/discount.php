@@ -27,6 +27,8 @@ class discount extends classes\BaseDiscount {
      */
     public function __construct() {
         parent::__construct();
+        $lang = new \MY_Lang();
+        $lang->load('mod_discount');
     }
     
    /**

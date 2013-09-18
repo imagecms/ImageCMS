@@ -19,33 +19,32 @@ msgstr ""
 
 #: ../../../module_info.php:4
 msgid "Filter"
-msgstr ""
+msgstr "Фильтр"
 
 #: ../../../module_info.php:5
-#, fuzzy
 msgid "Search pages and categories to add. fields"
-msgstr "Создать категорию"
+msgstr "Поиск страниц и категорий для доюаления полей"
 
 #: ../../../filter.php:29
 msgid "At your request, page not found."
-msgstr ""
+msgstr "По вашему запросу  ничего не найдено."
 
 #: ../../../filter.php:36
 #: ../../../filter.php:162
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: ../../../filter.php:60
 msgid "The first"
-msgstr ""
+msgstr "Первый"
 
 #: ../../../filter.php:61
 msgid "Last"
-msgstr ""
+msgstr "Последний"
 
 #: ../../../filter.php:142
 msgid "Group has not fields"
-msgstr ""
+msgstr "Группа без полей"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"
