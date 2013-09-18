@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:38+0300\n"
+"POT-Creation-Date: 2013-09-18 15:33+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -80,6 +80,7 @@ msgid "Template user mail"
 msgstr "Шаблон письма пользователю"
 
 #: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:71
 msgid "Send email to user"
 msgstr "Отправить  сообщение пользователю"
 
@@ -201,16 +202,12 @@ msgid "Template settings"
 msgstr "Настройки шаблона"
 
 #: /var/www/image.loc/_temp2.php:63
-msgid "Template_variables"
-msgstr "Template_variables"
+msgid "Template variables"
+msgstr "Переменный шаблона"
 
 #: /var/www/image.loc/_temp2.php:65
 msgid "Template name(only latin)"
 msgstr "Имя шаблона (только латинские)"
-
-#: /var/www/image.loc/_temp2.php:71
-msgid "Send_email_to_user"
-msgstr "Send_email_to_user"
 
 #: /var/www/image.loc/_temp2.php:80
 msgid "Variables"
@@ -228,44 +225,34 @@ msgstr "Редактировать"
 msgid "Add new variable"
 msgstr "Добавить новую переменную"
 
-#: ../../../admin.php:42
-msgid "Template_created"
-msgstr ""
+#: ../../../admin.php:44
+msgid "Template created"
+msgstr "Шаблон создан"
 
-#: ../../../admin.php:81
-msgid "Template_edited"
-msgstr "Template_edited"
-
-#: ../../../admin.php:105
-msgid "Admin_email"
-msgstr "ADMIN_EMAIL"
-
-#: ../../../admin.php:106
-msgid "Sender_eamil"
-msgstr "Sender_eamil"
+#: ../../../admin.php:83
+msgid "Template edited"
+msgstr "Шаблон отредактирован"
 
 #: ../../../admin.php:108
-#: ../../../classes/ParentEmail.php:234
-#: ../../../classes/ParentEmail.php:289
-msgid "From_email"
-msgstr "From_email"
+msgid "Email sender"
+msgstr "От кого"
 
-#: ../../../admin.php:116
-#: ../../../admin.php:119
+#: ../../../admin.php:118
+#: ../../../admin.php:121
 msgid "Message"
 msgstr "Сообщение"
 
-#: ../../../admin.php:119
-msgid "Settings_saved"
-msgstr "Settings_saved"
+#: ../../../admin.php:121
+msgid "Settings saved"
+msgstr "Настройки сохранены"
 
-#: ../../../admin.php:130
+#: ../../../admin.php:132
 msgid "Field"
 msgstr "Поле"
 
-#: ../../../admin.php:130
-msgid "must_contain_variable"
-msgstr "must_contain_variable"
+#: ../../../admin.php:132
+msgid "Must contain variable"
+msgstr "Должен содержать переменную"
 
 #: ../../../module_info.php:6
 msgid "CMSEmail"
@@ -275,47 +262,49 @@ msgstr "CMSEmail"
 msgid "Email module"
 msgstr "Модуль писем"
 
-#: ../../../classes/ParentEmail.php:163
-#: ../../../classes/ParentEmail.php:192
-msgid "error_user_message_doesnt_send"
-msgstr "error_user_message_doesnt_send"
+#: ../../../classes/ParentEmail.php:165
+#: ../../../classes/ParentEmail.php:194
+msgid "User message doesnt send"
+msgstr "Письмо пользователю не отослано"
 
-#: ../../../classes/ParentEmail.php:232
-msgid "Template_name"
-msgstr "Template_name"
-
-#: ../../../classes/ParentEmail.php:233
-#: ../../../classes/ParentEmail.php:288
-msgid "from"
-msgstr "от"
+#: ../../../classes/ParentEmail.php:234
+msgid "Template name"
+msgstr "Название шаблона"
 
 #: ../../../classes/ParentEmail.php:235
 #: ../../../classes/ParentEmail.php:290
-msgid "Template_theme"
-msgstr "Template_theme"
+msgid "from"
+msgstr "от"
 
-#: ../../../classes/ParentEmail.php:238
-#: ../../../classes/ParentEmail.php:240
-#: ../../../classes/ParentEmail.php:293
-#: ../../../classes/ParentEmail.php:295
-msgid "Template_user_mail"
-msgstr "Template_user_mail"
+#: ../../../classes/ParentEmail.php:237
+#: ../../../classes/ParentEmail.php:292
+msgid "Template theme"
+msgstr "Тема шаблона"
 
-#: ../../../classes/ParentEmail.php:243
 #: ../../../classes/ParentEmail.php:245
-#: ../../../classes/ParentEmail.php:298
-#: ../../../classes/ParentEmail.php:300
-msgid "Template_admin_mail"
-msgstr "Template_admin_mail"
-
 #: ../../../classes/ParentEmail.php:247
+#: ../../../classes/ParentEmail.php:300
 #: ../../../classes/ParentEmail.php:302
-msgid "Admin_address"
-msgstr "Admin_address"
+msgid "Template admin mail"
+msgstr "Шаблон письма админу"
 
-#: ../../../classes/ParentEmail.php:379
-msgid "Check_email_sending"
-msgstr "Check_email_sending"
+#~ msgid "Send_email_to_user"
+#~ msgstr "Send_email_to_user"
+
+#~ msgid "Admin_email"
+#~ msgstr "ADMIN_EMAIL"
+
+#~ msgid "From_email"
+#~ msgstr "From_email"
+
+#~ msgid "Template_user_mail"
+#~ msgstr "Template_user_mail"
+
+#~ msgid "Admin_address"
+#~ msgstr "Admin_address"
+
+#~ msgid "Check_email_sending"
+#~ msgstr "Check_email_sending"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"
