@@ -1,4 +1,5 @@
 /*comments*/
+.comment__icsi-css .main-form-comments__icsi-css{margin-bottom: 20px;}
 .comment__icsi-css{margin-bottom: 35px !important;}
 .comment__icsi-css .main-form-comments .title__icsi-css{float: none;width: auto;font-weight: bold;}
 .comment__icsi-css .title__icsi-css{font-weight: bold;}
@@ -29,7 +30,7 @@
 
 .frame-list-comment__icsi-css .frame-drop-comment__icsi-css{padding: 25px 0;}
 .frame-drop-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
-.comment__icsi-css .title_h2__icsi-css{margin-bottom: 15px;font-size: 18px;font-weight: normal;margin-bottom: 4px;}
+.comment__icsi-css .title_h2__icsi-css{margin-bottom: 20px;font-size: 18px;font-weight: normal;}
 .f_l__icsi-css{float: left;}
 .f_r__icsi-css{float: right;}
 .comment__icsi-css .productRate{position: relative;}
@@ -53,4 +54,6 @@
 .dis-like__icsi-css > button{color: #f03f3f;}
 .form__icsi-css .frame_form_field__icsi-css{margin-left: 138px;}
 .func-button-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
+.mark-pr{margin-bottom: 4px;}
+.mark-pr > .star-small{position: relative;top: 2px;}
 /*/comments*/

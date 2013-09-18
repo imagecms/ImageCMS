@@ -19,6 +19,8 @@ class Gallery extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('gallery');
 
         $this->load->module('core');
         $this->load->model('gallery_m');
@@ -35,9 +37,9 @@ class Gallery extends MY_Controller {
     /**
      * List categories and get albums from first category
      */
-    function index() {        
+    function index() {
         $this->core->set_meta_tags(lang('Gallery', 'gallery'));
-        
+
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
 

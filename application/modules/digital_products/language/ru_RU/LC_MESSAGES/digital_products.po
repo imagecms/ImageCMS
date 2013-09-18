@@ -19,19 +19,19 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "Congratulations! You can download this digital content!"
-msgstr ""
+msgstr "Поздравляем! Вы можете скачать этот цифровой контент!"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "You must pay to download this digital content."
-msgstr ""
+msgstr "Вы должны заплатить, чтобы скачать этот цифровой контент."
 
 #: ../../../module_info.php:6
 msgid "Digital products"
-msgstr ""
+msgstr "Цифровые товары"
 
 #: ../../../module_info.php:7
 msgid "Buy digital products"
-msgstr ""
+msgstr "Купить цифровые товары"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

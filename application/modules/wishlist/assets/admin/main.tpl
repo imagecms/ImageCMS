@@ -12,7 +12,7 @@
                     <span class="t-d_u">{lang('Back', 'wishlist')}</span>
                 </a>
                 <a href="{$BASE_URL}admin/components/cp/wishlist" class="btn btn-small pjax">
-                    {lang(users)}
+                    {lang('Users', 'wishlist')}
                 </a>
                 <button type="button"
                         class="btn btn-small btn-primary action_on formSubmit"

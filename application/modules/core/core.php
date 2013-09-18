@@ -27,6 +27,8 @@ class Core extends MY_Controller {
         parent::__construct();
         $this->_load_languages();
         Modules::$registry['core'] = $this;
+        $lang = new MY_Lang();
+        $lang->load('core');
     }
 
     public function index() {

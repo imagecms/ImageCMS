@@ -19,85 +19,84 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:11
 msgid "New Level"
-msgstr ""
+msgstr "New Level"
 
 #: /var/www/image.loc/_temp2.php:12
 #: /var/www/image.loc/_temp2.php:24
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:13
 #: /var/www/image.loc/_temp2.php:23
 #: /var/www/image.loc/_temp2.php:34
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: /var/www/image.loc/_temp2.php:15
 #: /var/www/image.loc/_temp2.php:29
 msgid "Columns"
-msgstr ""
+msgstr "Колонны"
 
 #: /var/www/image.loc/_temp2.php:16
 #: /var/www/image.loc/_temp2.php:35
 msgid "Colour scheme"
-msgstr ""
+msgstr "Цветовая схема"
 
 #: /var/www/image.loc/_temp2.php:17
 #: /var/www/image.loc/_temp2.php:20
 msgid "Categories columns"
-msgstr ""
+msgstr "Столбци категорий"
 
 #: /var/www/image.loc/_temp2.php:18
 #: /var/www/image.loc/_temp2.php:21
 msgid "Column"
-msgstr ""
+msgstr "Колонка"
 
 #: /var/www/image.loc/_temp2.php:19
 #: /var/www/image.loc/_temp2.php:22
 #: /var/www/image.loc/_temp2.php:33
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:25
-#, fuzzy
 msgid "Properties settings"
-msgstr "Виджети"
+msgstr "Настройки свойств"
 
 #: /var/www/image.loc/_temp2.php:26
 msgid "Columns settings"
-msgstr ""
+msgstr "Настройки колонок"
 
 #: /var/www/image.loc/_temp2.php:27
 msgid "Properties types"
-msgstr ""
+msgstr "Типы свойства"
 
 #: /var/www/image.loc/_temp2.php:28
 msgid "Add new properties type"
-msgstr ""
+msgstr "Добавить новый тип свойства"
 
 #: /var/www/image.loc/_temp2.php:30
 msgid "Add new column"
-msgstr ""
+msgstr "Добавить новый столбец"
 
 #: /var/www/image.loc/_temp2.php:31
 msgid "Additional settings of NewLevel module"
-msgstr ""
+msgstr "Дополнительная настройка модуля NewLevel"
 
 #: /var/www/image.loc/_temp2.php:32
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
 #: ../../../admin.php:46
 msgid "Data saved"
-msgstr ""
+msgstr "Данные сохранены"
 
 #: ../../../module_info.php:7
 msgid "New Level module"
-msgstr ""
+msgstr "Модуль New Level"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

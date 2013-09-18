@@ -14,7 +14,6 @@ var productPhotoCZoom = productPhotoCZoom != undefined,
         hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 var cW = '980',
         selIcons = '[class*=icon_]',
-        widhtItemScroll = 256,
         preloader = '.preloader',
         selScrollPane = '.frame-scroll-pane .content-carousel';
 var optionsMenu = {
@@ -49,7 +48,7 @@ var optionsMenu = {
 var scrollPane = {
     animateScroll: true,
     showArrows: true,
-    arrowButtonSpeed: 250
+    arrowButtonSpeed: 256
 };
 var carousel = {
     item: 'li',
@@ -467,6 +466,9 @@ function processBtnBuyCount(el) {
     $(document).trigger({'type': 'processPageEnd'});
 }
 function getDiscount(k) {
+//    if (!$.exists('#aa'))
+//        body.append('<div id="aa" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+//    $('#aa').text(parseInt($('#aa').text()) + 1);
     $(document).trigger('showActivity');
     if ($.isFunction(window.get_discount)) {
         get_discount(k);
@@ -641,7 +643,7 @@ function initShopPage(showWindow, item) {
             pdTr.find(genObj.countOrCompl).html(word);
         })
     }
-    $(genObj.frameBasks + ' input').on('keyup', function(e) {
+    $(genObj.frameBasks + ' input').unbind('keyup').on('keyup', function(e) {
         var $this = $(this);
         if ($this.maxValue(e, function() {
             $this.closest(genObj.numberC).tooltip()
@@ -843,6 +845,10 @@ function condProduct(vStock, liBlock, btnBuy) {
 }
 
 //declaration front functions
+function serializeForm(el) {
+    var $this = $(el);
+    return $this.data('data', $this.closest('form').serialize());
+}
 if (!$.isFunction($.fancybox)) {
     var loadingTimer, loadingFrame = 1;
     body.append(loading = $('<div id="fancybox-loading"><div></div></div>'));
@@ -907,11 +913,11 @@ function initCarouselJscrollPaneCycle(el) {
                 if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
                 {
 //            ширина блоку товару разом з мергінами
-                    api.scrollByX(widhtItemScroll);
+                    api.scrollByX(scrollPane.arrowButtonSpeed);
                     return false;
                 }
                 if (delta == 1 && api.getContentPositionX() != 0) {
-                    api.scrollByX(-widhtItemScroll);
+                    api.scrollByX(-scrollPane.arrowButtonSpeed);
                     return false;
                 }
 
@@ -1352,24 +1358,17 @@ function init() {
     optionsDrop.before = function(el, dropEl, isajax) {
         var dropEl = $(dropEl);
         if (dropEl.hasClass('drop-report')) {
-            dropEl.find('li').children().remove();
-            dropEl.find('[data-clone="data-report"]').remove();
-            var parentEl = el.closest(genObj.parentBtnBuy)
-            if (!$.existsN(el.closest('.item-product')))
-                var elWrap = parentEl.clone(true).removeAttr('style').children();
-            else {
-                var elWrap = parentEl.find('.frame-photo-title > .photo-block').clone(true);
-                elWrap.after('<div class="description"><span class="title">' + $('h1').text() + '</span>' + parentEl.find('.frame-prices').clone().html() + '</div>')
-            }
             var dropElRep = dropEl.find('[data-rel="pastehere"]');
-            //adding product info into form
-            var formCont = $('#data-report'),
-                    productId = el.attr('data-prodid');
-            formCont.find('input[name="ProductId"]').val(productId)
+            dropElRep.html(_.template($('#reportappearance').html(), {
+                item: Shop.composeCartItem(el)
+            }));
 
-            if (!$.existsN(dropElRep.find('.items-bask')))
-                dropElRep.append('<ul class="items items-bask item-report"><li></li></ul>');
-            dropElRep.find('.item-report').children().append(elWrap).find('.icon_times, .funcs-buttons, .star, .product-status, .decor-element, .check-variant-catalog, .check-variant-product, .frame-star, .funcs-buttons-WL-item').remove().end().find('.no-vis-table').parent().remove().end().end().parent().parent().append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
+            //form initialize
+            //adding product info into form
+            $('#data-report').find('input[name="ProductId"]').val(el.data('prodid'));
+            ///*form initialize
+
+            dropElRep.append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
             return el;
         }
         if (dropEl.hasClass('frame-already-show')) {
@@ -1834,14 +1833,15 @@ function init() {
     tovarChangeCount();
 
     wnd.focus(function() {
-        $.fancybox.showActivity();
         processBtnBuyCount();
         checkSyncs();
         processComp();
         processWish();
         compareListCount();
         wishListCount();
-        initShopPage(false);
+        //initShopPage(false);
+        if ($(genObj.popupCart).is(':visible'))
+            $.drop('closeDrop')($(genObj.popupCart))
         processCarts();
         countSumBask();
         //shipping changing, re-render cart page

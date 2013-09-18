@@ -4,8 +4,86 @@
     </label>
 {/if}
 <div class="comment__icsi-css" id="comment__icsi-css">
+    <div class="title_h2__icsi-css">{lang('Отзывы покупателей', 'newLevel')}</div>
+    {if $can_comment == 0 OR $is_logged_in}
+        <div class="main-form-comments__icsi-css {if !$comments_arr}noComments{/if}">
+            <div class="frame-comments__icsi-css layout-highlight">
+                <div class="title_h2__icsi-css title-default">
+                    <div class="title">{lang('Оставить комментарий','newLevel')}</div>
+                </div>
+                <!-- Start of new comment fild -->
+                <div class="form-comment__icsi-css form__icsi-css main-form-comments">
+                    <div class="inside-padd">
+                        <form method="post">
+                            {if !$is_logged_in}
+                                {if $use_moderation}
+                                    <label>
+                                        <span class="frame_form_field__icsi-css">
+                                            <div class="msg">
+                                                <div class="success">
+                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </label>
+                                {/if}
+                                <label style="width: 45%;float: left;">
+                                    <span class="title__icsi-css">{lang('Ваше имя','newLevel')}</span>
+                                    <span class="frame_form_field__icsi-css">
+                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
+                                    </span>
+                                </label>
+                                <label style="width: 45%;margin-left: 10%;float: left;">
+                                    <span class="title__icsi-css">{lang('Ваш email:', 'newLevel')}</span>
+                                    <span class="frame_form_field__icsi-css">
+                                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                                    </span>
+                                </label>
+                            {/if}
+                            <label>
+                                <span class="title__icsi-css">{lang('Текст комментария:')}</span>
+                                <span class="frame_form_field__icsi-css">
+                                    <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
+                                </span>
+                            </label>
+                            <!-- Start star reiting -->
+                            <div class="frameLabel__icsi-css">
+                                <span class="title__icsi-css f_l t-a_l">{lang('Ваша оценка:', 'newLevel')}</span>
+                                <div class="frame_form_field__icsi-css">
+                                    <div class="star">
+                                        <div class="productRate star-big clicktemprate">
+                                            <div class="for_comment" style="width: 0%"></div>
+                                            <input id="ratec" name="ratec" type="hidden" value=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End star reiting -->
+                            {if $use_captcha}
+                                <label>
+                                    <span class="title__icsi-css">{lang('Код защиты')}</span>
+                                    {$cap_image}
+                                    <span class="frame_form_field__icsi-css">
+                                        <input type="text" name="captcha" id="captcha"/>
+                                    </span>
+                                </label>
+                            {/if}
+
+                            <div class="frameLabel__icsi-css">
+                                <span class="frame_form_field__icsi-css">
+                                    <div class="btn-form">
+                                        <input type="submit" value="{lang('Комментировать')}" onclick="post(this)"/>
+                                    </div>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End of new comment fild -->
+                </div>
+            </div>
+        </div>
+    {/if}
     {if $comments_arr}
-        <div class="title_h2__icsi-css">{lang('Отзывы покупателей', 'newLevel')}</div>
         <div class="frame-list-comment__icsi-css">
             <ul class="sub-1 product-comment patch-product-view">
                 {foreach $comments_arr as $key => $comment}
@@ -17,7 +95,7 @@
                         </div>
                         {if $comment.rate != 0}
                             <div class="mark-pr">
-                                <span>{lang('Average customer rating:','newLevel')}</span>
+                                <span>{lang('Оценка товара:','newLevel')}</span>
                                 <div class="star-small d_i-b">
                                     <div class="productRate star-small">
                                         <div style="width: {echo (int)$comment.rate *20}%"></div>
@@ -45,22 +123,22 @@
                                 <div class="btn__icsi-css f_l__icsi-css">
                                     <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                         <span class="icon-comment__icsi-css"></span>
-                                            <span class="text-el d_l_1">{lang('Ответить')}</span>
+                                        <span class="text-el d_l_1">{lang('Ответить')}</span>
                                     </button>
                                 </div>
                             {/if}
 
                             <div class="f_r__icsi-css">
                                 <span>
-                                    <span class="s-t">{lang('Comment was helpful?','newLevel')}</span>
+                                    <span class="s-t">{lang('Отзыв полезен?','newLevel')}</span>
                                     <span class="btn__icsi-css like__icsi-css">
                                         <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
-                                            <span class="text-el">{lang('Yes','newLevel')} <span class="yesholder{$comment.id}">({echo $comment.like})</span></span>
+                                            <span class="text-el">{lang('Да','newLevel')} <span class="yesholder{$comment.id}">({echo $comment.like})</span></span>
                                         </button>
                                     </span>
                                     <span class="btn__icsi-css dis-like__icsi-css">
                                         <button type="button" class="usefullno" data-comid="{echo $comment.id}">
-                                            <span class="text-el">{lang('No','newLevel')} <span class="noholder{$comment.id}">({echo $comment.disslike})</span></span>
+                                            <span class="text-el">{lang('Нет','newLevel')} <span class="noholder{$comment.id}">({echo $comment.disslike})</span></span>
                                         </button>
                                     </span>
                                 </span>
@@ -88,7 +166,7 @@
                             </ul>
                         {/if}
                         <div class="btn-all-comments">
-                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Hide','newLevel')}</span> ↑' data-show='<span class="d_l_1">{lang('See all comments','newLevel')}</span> ↓'></span></button>
+                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Скрыть','newLevel')}</span> ↑' data-show='<span class="d_l_1">{lang('Смотреть все ответы','newLevel')}</span> ↓'></span></button>
                         </div>
                     </li>
                 {/foreach}
@@ -97,84 +175,6 @@
                 <span class="icon_arrow"></span>
                 <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
             </button>
-        </div>
-    {/if}
-    {if $can_comment == 0 OR $is_logged_in}
-        <div class="main-form-comments__icsi-css {if !$comments_arr}noComments{/if}">
-            <div class="frame-comments__icsi-css layout-highlight">
-                <div class="title_h2__icsi-css title-default">
-                    <div class="title">{lang('Оставить комментарий','newLevel')}</div>
-                </div>
-                <!-- Start of new comment fild -->
-                <div class="form-comment__icsi-css form__icsi-css main-form-comments">
-                    <div class="inside-padd">
-                        <form method="post">
-                            {if !$is_logged_in}
-                                {if $use_moderation}
-                                    <label>
-                                        <span class="frame_form_field__icsi-css">
-                                            <div class="msg">
-                                                <div class="success">
-                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
-                                                </div>
-                                            </div>
-                                        </span>
-                                    </label>
-                                {/if}
-                                <label>
-                                    <span class="title__icsi-css">{lang('Ваше имя','newLevel')}</span>
-                                    <span class="frame_form_field__icsi-css">
-                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
-                                    </span>
-                                </label>
-                                <label>
-                                    <span class="title__icsi-css">{lang('Ваш email:', 'newLevel')}</span>
-                                    <span class="frame_form_field__icsi-css">
-                                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
-                                    </span>
-                                </label>
-                            {/if}
-                            <!-- Start star reiting -->
-                            <div class="frameLabel__icsi-css">
-                                <span class="title__icsi-css f_l t-a_l">{lang('Ваша оценка:', 'newLevel')}</span>
-                                <div class="frame_form_field__icsi-css">
-                                    <div class="star">
-                                        <div class="productRate star-big clicktemprate">
-                                            <div class="for_comment" style="width: 0%"></div>
-                                            <input id="ratec" name="ratec" type="hidden" value=""/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End star reiting -->
-                            <label>
-                                <span class="title__icsi-css">{lang('Текст комментария:')}</span>
-                                <span class="frame_form_field__icsi-css">
-                                    <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
-                                </span>
-                            </label>
-                            {if $use_captcha}
-                                <label>
-                                    <span class="title__icsi-css">{lang('lang_captcha')}</span>
-                                    {$cap_image}
-                                    <span class="frame_form_field__icsi-css">
-                                        <input type="text" name="captcha" id="captcha"/>
-                                    </span>
-                                </label>
-                            {/if}
-
-                            <div class="frameLabel__icsi-css">
-                                <span class="frame_form_field__icsi-css">
-                                    <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="post(this)"/>
-                                    </div>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- End of new comment fild -->
-                </div>
-            </div>
         </div>
     {/if}
 

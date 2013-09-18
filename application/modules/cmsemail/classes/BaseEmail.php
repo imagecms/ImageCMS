@@ -15,6 +15,8 @@ class BaseEmail extends ParentEmail {
 
     public function __construct() {
         parent::__construct();
+        $lang = new \MY_Lang();
+        $lang->load('cmsemail');
     }
 
     public function create($params = array()) {

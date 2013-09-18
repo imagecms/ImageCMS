@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:33+0300\n"
+"POT-Creation-Date: 2013-09-17 17:25+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -18,96 +18,99 @@ msgstr ""
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp2.php:5
-msgid "Bach"
-msgstr ""
+msgid "Batch"
+msgstr "Пакет"
 
 #: /var/www/image.loc/_temp2.php:6
 msgid "Sending emails"
-msgstr ""
+msgstr "Отправка электронной почты"
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "Send a letter"
-msgstr ""
+msgstr "Отправить письмо"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: /var/www/image.loc/_temp2.php:10
 msgid "Your name"
-msgstr ""
+msgstr "Ваше имя"
 
 #: /var/www/image.loc/_temp2.php:11
 msgid "Your e-mail"
-msgstr ""
+msgstr "Ваш e-mail"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "Hello"
-msgstr ""
+msgstr "Привет"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "best regards, administration"
-msgstr ""
+msgstr "с уважением, администрация"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "Send to groups"
-msgstr ""
+msgstr "Отправить группам"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "Formatting"
-msgstr ""
+msgstr "Форматирование"
 
 #: /var/www/image.loc/_temp2.php:17
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: /var/www/image.loc/_temp2.php:18
 msgid "Plain Text"
-msgstr ""
+msgstr "Обычный текст"
 
 #: ../../../admin.php:101
 msgid "Send"
-msgstr ""
+msgstr "Послать"
 
 #: ../../../admin.php:101
 msgid "users e-mail with a subject"
-msgstr ""
+msgstr "пользовательский e-mail с темой"
 
 #: ../../../admin.php:109
 msgid "message has been sent"
-msgstr ""
+msgstr "сообщение было отправлено"
 
 #: ../../../admin.php:109
 msgid "Number of e-mails sent"
-msgstr ""
+msgstr "Количество отправленных писем"
 
 #: ../../../admin.php:109
 msgid "pcs."
-msgstr ""
+msgstr "шт."
 
 #: ../../../admin.php:113
 msgid "none of the messages"
-msgstr ""
+msgstr "ни одно из сообщений"
 
 #: ../../../admin.php:113
 msgid "Number not"
-msgstr ""
+msgstr "Число не"
 
 #: ../../../module_info.php:4
 msgid "Email sending"
-msgstr ""
+msgstr "Отправка электронной почты"
 
 #: ../../../module_info.php:5
 msgid "Users group email sending module"
-msgstr ""
+msgstr "Модуль отправки электронной почты граппам пользователей"
+
+#~ msgid "Bach"
+#~ msgstr "Холостяк"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

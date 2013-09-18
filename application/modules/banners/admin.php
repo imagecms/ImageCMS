@@ -19,6 +19,9 @@ class Admin extends BaseAdminController {
 
         $locale = $this->db->where('default', 1)->get('languages')->result_array();
         $this->def_locale = $locale[0]['identif'];
+        
+        $lang = new MY_Lang();
+        $lang->load('banners');
 
         
         $this->is_shop = SHOP_INSTALLED;
