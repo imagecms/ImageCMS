@@ -1487,7 +1487,7 @@ var ie = jQuery.browser.msie,
                 'timeclosemodal': timeclosemodal,
                 'moreoneNC': moreoneNC
             }).attr('data-elrun', $thisSource);
-            $(set.exit).unbind('click.drop').on('click.drop', function() {
+            $(set.exit).die('click.drop').live('click.drop', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
             var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';

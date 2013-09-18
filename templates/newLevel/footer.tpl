@@ -78,7 +78,7 @@
         <div class="f_l">
             <div class="c_w">&copy; Интернет-магазин &laquo;Imageshop&raquo;, 2013</div>
             <div class="c_9">Все права защищены</div>
-            {/*widget('copy_right')/}
+            {/*widget('copy_right')*/}
         </div>
         <div class="f_r">
             <a class="f-s_0 c_w">

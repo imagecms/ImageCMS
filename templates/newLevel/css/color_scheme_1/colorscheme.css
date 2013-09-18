@@ -35,7 +35,9 @@ body{background: #faf8f6;color: #333;}
 [class*="icon-"], .title-category-l1.is-sub:after, .title-category-l1.is-sub .ie, .ui-slider-handle, .fancy-ico, #fancybox-close, .product-status{background: url("images/sprite.png") no-repeat;}
 .icon-plus{width: 10px;height: 10px;background-position: -260px 0;}
 .icon-minus{width: 10px;height: 2px;background-position: -280px 0;}
-/*[class*="btn-"], [class*="btn-"] > button, [class*="btn-"] > a{background: url("images/buttons.png") no-repeat;}*/
+/*.buti, .buti > button, .buti > a, .buti > input{background: url("images/buttons.png") no-repeat;}
+.buti{margin-right: 9px;}
+.buti > button, .buti > a, .buti > input{margin-right: -9px;}*/
 .v_f, .menu-row-category .frame-drop-menu > ul > li:after{background: url("images/v_f.png") repeat-y;}
 .h_f, .text-proposition-h.text-el:after, .items-benefits > li:before, footer:before, .footer-footer:before{background: url("images/h_f.png") repeat-x;}
 
@@ -263,7 +265,8 @@ a:focus, a:active {color: #51d2ff;}
 #view h2, #view .title-h2{color: #666;}
 #view .title-h2 + h2{color: #333;}
 .patch-product-view{position: relative;}
-.page-product .patch-product-view[style]:after{
+.page-product #view .patch-product-view[style]{margin-bottom: 10px;}
+.page-product #view .patch-product-view[style]:after{
     content: "";position: absolute;left: 0;bottom: 0;width: 100%;height: 30px;
     background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 99%, rgba(255,255,255,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(99%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
