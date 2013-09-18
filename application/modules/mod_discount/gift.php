@@ -23,6 +23,8 @@ class Gift extends \mod_discount\classes\BaseDiscount {
     public function __construct() {
 
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('mod_discount');
         $this->get_all_discount();
         $this->collect_type();
     }
@@ -65,7 +67,7 @@ class Gift extends \mod_discount\classes\BaseDiscount {
                 break;
             } 
         
-        return json_encode(array('error'=>true, 'mes'=>'Неверный код попробуйте еще раз'));
+        return json_encode(array('error'=>true, 'mes'=>lang('Invalid code try again', 'mod_discount')));
     }
       /**
      * render gift input

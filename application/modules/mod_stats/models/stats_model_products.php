@@ -291,7 +291,7 @@ class Stats_model_products extends CI_Model {
         if ($dataArray == null) {
             return false;
         }
-        $result = [];
+        $result = array();
         foreach ($dataArray as $key => $value) {
                 $result[] = $value['id'];
         }

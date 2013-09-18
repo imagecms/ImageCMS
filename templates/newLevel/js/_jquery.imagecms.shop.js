@@ -29,10 +29,6 @@ function pluralStr(i, str) {
             return str[2];
     }
 }
-function serializeForm(el) {
-    var $this = $(el);
-    return $this.data('data', $this.closest('form').serialize());
-}
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
             validLabels = /^(data|css):/,
@@ -587,9 +583,9 @@ var ie = jQuery.browser.msie,
             tooltip.text(settings.title);
             if (settings.otherClass !== false)
                 tooltip.addClass(settings.otherClass);
-            if (settings.effect == 'always' && !$.exists('.'+settings.otherClass+'tooltip')) {
+            if (settings.effect == 'always' && !$.exists('.' + settings.otherClass + 'tooltip')) {
                 tooltip = tooltip.clone();
-                tooltip.addClass(settings.otherClass+'tooltip').appendTo(body);
+                tooltip.addClass(settings.otherClass + 'tooltip').appendTo(body);
             }
             var tempeff = false;
             if (settings.effect == 'notalways') {
@@ -1491,7 +1487,7 @@ var ie = jQuery.browser.msie,
                 'timeclosemodal': timeclosemodal,
                 'moreoneNC': moreoneNC
             }).attr('data-elrun', $thisSource);
-            $(set.exit).unbind('click.drop').on('click.drop', function() {
+            $(set.exit).die('click.drop').live('click.drop', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
             var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
@@ -2310,6 +2306,9 @@ var Shop = {
             return template = _.template($(selector).html(), Shop.Cart);
         },
         sync: function() {
+            $(document).trigger({
+                type: 'before_sync_cart'
+            });
             $.getJSON('/shop/cart_api/sync', function(data) {
                 if (typeof(data) == 'object') {
 

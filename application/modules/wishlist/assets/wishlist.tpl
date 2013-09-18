@@ -6,7 +6,7 @@
     {if $errors}
         {foreach $errors as $error}
             <div class="msg">
-               ssssssssssssssssssssssssss <div class="error">{$error}</div>
+               <div class="error">{$error}</div>
             </div>
         {/foreach}
     {/if}
@@ -25,7 +25,7 @@
 </form>
 <form method="POST" action="/wishlist/deleteImage">
     <input type="hidden" value="{echo $user[user_image]}" name="image"/>
-    <input type="submit" value="Удалить картинку" class="btn"/>
+    <input type="submit" value="{lang('Delete image', 'wishlist')}" class="btn"/>
     {form_csrf()}
 </form>
 
@@ -41,19 +41,19 @@
 <br /><br />
 <form method="POST" action="/wishlist/createWishList">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
-    Типи списков
+    {lang('Lists types', 'wishlist')}
     <br>
     <select name="wlTypes">
-        <option value="shared">Shared</option>
-        <option value="public">Public</option>
-        <option value="private">Private</option>
+        <option value="shared">{lang('shared', 'wishlist')}</option>
+        <option value="public">{lang('public', 'wishlist')}</option>
+        <option value="private">{lang('private', 'wishlist')}</option>
     </select>
     <br>
-    Название Списка
+   {lang('List name', 'wishlist')}
     <input type="text" value="" name="wishListName"/>
-    Описание Списка
+    {lang('List description', 'wishlist')}
     <textarea name="wlDescription"></textarea>
-    <input type="submit" value="Создать новий список" class="btn"/>
+    <input type="submit" value="{lang('Create new list', 'wishlist')}" class="btn"/>
     {form_csrf()}
 </form>
 
@@ -67,19 +67,19 @@
                     <tr>
                         <td colspan="4">
                             <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
-                            Тип списка: <b>{echo $wishlist[0][access]}</b>
+                            {lang('List type', 'wishlist')}: <b>{echo $wishlist[0][access]}</b>
                             <div class="wishListDescription" >{$wishlist[0][description]}</div>
-                            <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}"class="btn">удалить</a>
-                            <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}"class="btn">редактировать</a>
+                            <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}"class="btn">{lang('delete', 'wishlist')}</a>
+                            <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}"class="btn">{lang('edit', 'wishlist')}</a>
                         </td>
                     </tr>
                     {if $wishlist[0][variant_id]}
                         <tr>
                             <th>Check</th>
                             <th>№</th>
-                            <th>Отписатся</th>
-                            <th>Товар</th>
-                            <th>Коментарий</th>
+                            <th>{lang('Unsubscribe', 'wishlist')}</th>
+                            <th>{lang('Product', 'wishlist')}</th>
+                            <th>{lang('Comment', 'wishlist')}</th>
                         </tr>
                     {/if}
                 </thead>
@@ -90,8 +90,8 @@
                                 <td><input type="checkbox" name="listItem[]" value="{$w['list_product_id']}" /></td>
                                 <td>{echo $key+1}</td>
                                 <td>
-                                    <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}" class="btn">удалить</a>
-                                    <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}/{echo $user[id]}"class="btn">Переместить</a>
+                                    <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}" class="btn">{lang('Delete', 'wishlist')}</a>
+                                    <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}/{echo $user[id]}"class="btn">{lang('Move', 'wishlist')}</a>
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/'.$w[url])}"
@@ -111,20 +111,20 @@
                         {/foreach}
                     {else:}
                         <tr>
-                            <td colspan="4">Список пуст</td>
+                            <td colspan="4">{lang('Emty list', 'wishlist')}</td>
                         </tr>
                     {/if}
                 </tbody>
             </table>
             {form_csrf()}
             {if $wishlist[0][variant_id]}
-                <input type="submit" class="btn btn-small" value="Удалить">
+                <input type="submit" class="btn btn-small" value="{lang('Delete', 'wishlist')}">
             {/if}
         </form>
         <hr/>
     {/foreach}
 {else:}
-    Список Желания пуст
+    {lang('Wish list is empty', 'wishlist')}
 {/if}
 </article>
 

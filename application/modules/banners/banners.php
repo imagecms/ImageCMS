@@ -21,6 +21,8 @@ class Banners extends MY_Controller {
             $this->no_install = false;
         $this->load->module('core');
         $this->load->model('banner_model');
+        $lang = new MY_Lang();
+        $lang->load('banners');
     }
 
     public function index() {

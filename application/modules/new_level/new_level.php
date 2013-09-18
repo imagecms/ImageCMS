@@ -11,6 +11,8 @@ class New_level extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('new_level_model');
+        $lang = new MY_Lang();
+        $lang->load('new_level');
     }
 
     public function index() {

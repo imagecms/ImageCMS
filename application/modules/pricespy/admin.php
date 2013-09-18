@@ -6,6 +6,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('pricespy');
 
         $this->load->library('DX_Auth');
     }

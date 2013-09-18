@@ -23,6 +23,7 @@
 <div class="frame-crumbs">
     {widget('path')}
 </div>
+{$totalProducts = count($products)}
 <div class="frame-inside">
     <div class="container">
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
@@ -30,9 +31,8 @@
                 <div class="frame-title">
                     <h1 class="d_i">{echo $model->getName()}</h1>
                 </div>
-                <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('{lang("товар","newLevel")}','{lang("товара","newLevel")}','{lang("товаров","newLevel")}'))})</span>
+                <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
             </div>
-
             {if $totalProducts == 0}
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">

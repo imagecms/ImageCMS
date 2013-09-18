@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th colspan="6">
-                Колонки категорий:
+                {lang('Categories columns', 'new_level')}:
             </th>
         </tr>
     </thead>
@@ -17,7 +17,7 @@
                                     {foreach $columns as $column}
                                         <td class="span5">
                                             <div class="control-group">
-                                                <label class="control-label" for="iddCategory"><b class="columnName">Колонка {echo $column}:</b></label>
+                                                <label class="control-label" for="iddCategory"><b class="columnName">{lang('Column', 'new_level')} {echo $column}:</b></label>
                                                 <div class="controls ">
                                                     <select  id="ajaxSaveShopCategories" name="Categories[]" multiple="multiple" style="height:250px !important;">
                                                         {foreach $categories as $category}
@@ -28,7 +28,7 @@
                                                             {/if}
                                                         {/foreach}
                                                     </select>
-                                                    <button type="button" data-column="{echo $column}" class="btn btn-small btn-primary btn-success cattegoryColumnSaveButtonMod"><i class="icon-ok icon-white"></i>Сохранить</button>
+                                                    <button type="button" data-column="{echo $column}" class="btn btn-small btn-primary btn-success cattegoryColumnSaveButtonMod"><i class="icon-ok icon-white"></i>{lang('Save', 'new_level')}</button>
                                                 </div>
                                             </div>   
                                         </td>

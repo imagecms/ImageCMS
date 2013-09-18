@@ -27,6 +27,8 @@ class Sitemap extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('sitemap');
         $this->robots = $this->replace(file('robots.txt'));
         $this->load->module('core');
         $this->langs = $this->core->langs;
@@ -344,7 +346,7 @@ class Sitemap extends MY_Controller {
                 $CI->db->where('name', 'sitemap');
                 $CI->db->update('components', array('settings' => serialize($XMLDataMap)));
 
-                showMessage('Пинг отправлен', 'Google ping');
+                showMessage(lang('Ping sended', 'sitemap'), 'Google ping');
             }
 
             return $code;

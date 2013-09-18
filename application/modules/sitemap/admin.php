@@ -12,6 +12,8 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
+         $lang = new MY_Lang();
+        $lang->load('sitemap');
 
         $this->load->library('DX_Auth');
         //cp_check_perm('module_admin');
@@ -66,7 +68,7 @@ class Admin extends BaseAdminController {
         $this->db->where('name', 'sitemap');
         $this->db->update('components', array('settings' => serialize($XMLDataMap)));
 
-        showMessage(lang("Changes have been saved"));
+        showMessage(lang("Changes have been saved", 'sitemap'));
     }
 
     /**

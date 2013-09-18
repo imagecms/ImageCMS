@@ -12,11 +12,11 @@
                     {$item = $CI->load->module('cfcm')->connect_fields($item, 'page')}
                     <li>
                         <a href="{site_url($item.full_url)}" class="frame-photo-title">
-                            {if trim($item.field_field_img) != ""}
+                            {if trim($item.field_image) != ""}
                                 <span class="d_b">
                                     <span class="photo-block">
                                         <span class="helper"></span>
-                                        <img src="{$item.field_field_img}" alt="" />
+                                        <img src="{$item.field_image}" alt="" />
                                     </span>
                                 </span>
                             {/if}

@@ -3,10 +3,10 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Удаление пользователей</h3>
+            <h3>{lang('Users removing', 'wishlist')}</h3>
         </div>
         <div class="modal-body">
-            <p>Удалить пользователей?</p>
+            <p>{lang('Remove users?', 'wishlist')}</p>
         </div>
         <div class="modal-footer">
             <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/init_window/wishlist/delete_user/')">{lang('Delete', 'wishlist')}</a>
@@ -29,7 +29,7 @@
                     </a>
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
                         <i class="icon-wrench"></i>
-                        {lang(settings)}
+                        {lang('Settings', 'wishlist')}
                     </a>
                     <button type="button"
                             class="btn btn-small btn-danger disabled action_on"
@@ -56,8 +56,8 @@
                                 </th>
                                 <th class="span1">{lang('ID', 'wishlist')}</th>
                                 <th class="span5">{lang('User', 'wishlist')}</th>
-                                <th class="span5">{lang('lists_count')}</th>
-                                <th class="span5">{lang('items_count')}</th>
+                                <th class="span5">{lang('Lists count','wishlist')}</th>
+                                <th class="span5">{lang('Lists items count','wishlist')}</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -22,6 +22,8 @@ class Orders extends \MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('stats_model_orders');
+        $lang = new \MY_Lang();
+        $lang->load('mod_stats');
     }
 
     /**
@@ -52,7 +54,7 @@ class Orders extends \MY_Controller {
             'type' => 'line',
             'data' => array(
                 0 => array(
-                    'key' => 'Оплачены',
+                    'key' => lang('Paid'),
                     'values' => $paid
                 )
             )
@@ -72,15 +74,15 @@ class Orders extends \MY_Controller {
             'type' => 'line',
             'data' => array(
                 0 => array(
-                    'key' => 'Все',
+                    'key' => lang('All'),
                     'values' => $all
                 ),
                 1 => array(
-                    'key' => 'Оплачены',
+                    'key' => lang('Paid'),
                     'values' => $paid
                 ),
                 2 => array(
-                    'key' => 'Доставленные',
+                    'key' => lang('Delivered'),
                     'values' => $delivered
                 )
             )

@@ -20,6 +20,8 @@ class Commentsapi extends Comments {
         parent::__construct();
         $this->load->module('core');
         $this->module = $this->getModule($_SERVER['HTTP_REFERER']);
+        $lang = new MY_Lang();
+        $lang->load('comments');
     }
 
     private function init_settings() {

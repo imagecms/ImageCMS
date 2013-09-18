@@ -14,6 +14,8 @@ class Share extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('share');
         $this->load->module('core');
 
         $this->db->select('settings');
@@ -90,40 +92,39 @@ class Share extends MY_Controller {
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id)) return;
                         js = d.createElement(s); js.id = id;
-                        js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
+                        js.src = "//connect.facebook.net/en_EN/all.js#xfbml=1";
                         fjs.parentNode.insertBefore(js, fjs);
                         }(document, "script", "facebook-jssdk"));</script>
                         <div class="fb-like" data-send="false" data-layout="button_count" data-width="60" data-show-faces="true"></div></td>';
         }
-        if ($settings['vk_like'] == 1) {
-            $string['vk'] = '<td> <html>
-                <head>
-                <!-- Put this script tag to the <head> of your page -->
-                <script async="async" defer="defer" type="text/javascript" src="http://userapi.com/js/api/openapi.js"></script>
-                <script async="async" defer="defer" type="text/javascript">
-                    VK.init({apiId: ' . $settings['vk_apiid'] . ', onlyWidgets: true});
-                </script>
-                </head>
-                <body>
-                <!-- Put this div tag to the place, where the Like block will be -->
-                <div id="vk_like"></div>
-                <script async="async" defer="defer" type="text/javascript">
-                    VK.Widgets.Like("vk_like", {type: "mini"});
-                </script>
-                </body>
-                </html></td>';
+        if ($settings['vk_like'] == 1 && $settings['vk_apiid']) {
+            $string['vk'] = "<td>
+
+                        <!-- Put this script tag to the <head> of your page -->
+                        <script type='text/javascript' src='//vk.com/js/api/openapi.js?101'></script>
+
+                        <script type='text/javascript'>
+                          VK.init({apiId: {$settings['vk_apiid']}, onlyWidgets: true});
+                        </script>
+
+                        <!-- Put this div tag to the place, where the Like block will be -->
+                        <div id='vk_like'></div>
+                        <script type='text/javascript'>
+                        VK.Widgets.Like('vk_like', {type: 'mini', height: 18});
+                        </script>
+                        </td>";
         }
         if ($settings['gg_like'] == 1) {
-            $string['google'] = '<td>     <!-- Place this tag where you want the +1 button to render. -->
-                        <div class="g-plusone"></div>
-                        <!-- Place this tag after the last +1 button tag. -->
-                        <script async="async" defer="defer" type="text/javascript">
-                        (function() {
-                        var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
-                        po.src = "https://apis.google.com/js/plusone.js";
-                        var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
-                        })();
-                        </script></td>';
+            $string['google'] = "<td><!-- Place this tag in your head or just before your close body tag. -->
+                        <script type='text/javascript' src='https://apis.google.com/js/plusone.js'>
+                          {lang: 'ru', parsetags: 'explicit'}
+                        </script>
+
+                        <!-- Place this tag where you want the +1 button to render. -->
+                        <div class='g-plusone' data-size='medium'></div>
+
+                        <!-- Place this render call where appropriate. -->
+                        <script type='text/javascript'>gapi.plusone.go();</script></td>";
         }
         if ($settings['twitter_like'] == 1) {
             $string['twitter'] = '<td><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
