@@ -15,11 +15,12 @@
                     {echo ShopCore::encode($model->getName())}
                 </span>
                 {if $model->firstVariant->getName()}
-                    <span class="code_v">{lang('s_variant')}: {echo $model->firstVariant->getName()}</span>
+                    <span class="divider">/</span>
+                    <span class="code_v">{lang('Вариант','commerce_mobiles_new')}: {echo $model->firstVariant->getName()}</span>
                 {/if}
                 {if $model->firstVariant->number}
                     <span class="divider">/</span>
-                    <span class="code">{lang('s_article')}: {echo $model->firstVariant->number}</span>
+                    <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $model->firstVariant->number}</span>
                 {/if}
                 <span class="d_b price">{echo $model->firstVariant->toCurrency()} {$CS}</span>
                 <div class="but_buy">
@@ -27,7 +28,7 @@
                         <a href="{shop_url('cart')}" onclick="$(this).closest('form').submit();
                                 return false;">
                             <span class="helper"></span>
-                            <span class="v-a_m">{lang('s_buy')}</span>
+                            <span class="v-a_m">{lang('Купить','commerce_mobiles_new')}</span>
                         </a>
                         <input type="hidden" name="productId" value="{echo $model->getId()}" />
                         <input type="hidden" name="variantId" value="{echo $model->firstVariant->getId()}" />
@@ -45,7 +46,7 @@
         <span class="helper"></span>
         <span class="v-a_m">
             <span class="check_other_variant icon"></span>
-            <span class="title">Другие варианты товара</span>
+            <span class="title">{lang('Другие варианты товара','commerce_mobiles_new')}</span>
         </span>
     </div>
 {/if}
@@ -60,11 +61,12 @@
                             {echo ShopCore::encode($model->getName())}
                         </span>
                         {if $p->getName()}
-                            <span class="code_v">{lang('s_variant')}: {echo $p->getName()}</span>
+                            <span class="divider">/</span>
+                            <span class="code_v">{lang('Вариант','commerce_mobiles_new')}: {echo $p->getName()}</span>
                         {/if}
                         {if $p->number}
                             <span class="divider">/</span>
-                            <span class="code">{lang('s_article')}: {echo $p->number}</span>
+                            <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $p->number}</span>
                         {/if}
                         <span class="d_b price">{echo $p->toCurrency()} {$CS}</span>
                         <div class="but_buy">
@@ -72,7 +74,7 @@
                                 <a href="{shop_url('cart')}" onclick="$(this).closest('form').submit();
                                 return false;">
                                     <span class="helper"></span>
-                                    <span class="v-a_m">{lang('s_buy')}</span>
+                                    <span class="v-a_m">{lang('Купить','commerce_mobiles_new')}</span>
                                 </a>
                                 <input type="hidden" name="productId" value="{echo $model->getId()}" />
                                 <input type="hidden" name="variantId" value="{echo $p->getId()}" />
@@ -88,21 +90,20 @@
     {/foreach}
 </ul>
 <div class="text tovar_description">
-    {if ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
-        <h2>{lang('s_properties')}</h2>
+    {if $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
+        <h2>{lang('Свойства','commerce_mobiles_new')}</h2>
         <dl>
-            {$props = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
             {foreach $props as $property_key => $property_val}
-                <dt>{$property_key}:</dt>
+                <dt>{$property_val['Name']}:</dt>
                 <dd>
-                    {$property_val}
+                    {$property_val['Value']}
                 </dd>
             {/foreach}
         </dl>
     {/if}
     <br>
     {if $model->getFullDescription()}
-        <h2>{lang('s_description')}</h2>
+        <h2>{lang('Описание','commerce_mobiles_new')}</h2>
         {echo $model->getFullDescription()}
     {/if}
 </div>
