@@ -49,8 +49,8 @@ class Core extends MY_Controller {
 
         // Set site main template
         $this->config->set_item('template', $this->settings['site_template']);
-        
-        
+
+
 
         // Load Template library
         ($hook = get_hook('core_load_template_engine')) ? eval($hook) : NULL;
@@ -342,7 +342,7 @@ class Core extends MY_Controller {
                 if ($query->num_rows() > 0) {
                     $page = $query->row_array();
                 } else {
-                    $this->error(lang("Home page not found."));
+                    $this->error(lang("Home page not found.", "core"));
                 }
 
                 // Set page template file
@@ -389,7 +389,7 @@ class Core extends MY_Controller {
                 if (is_object($module) && method_exists($module, 'index')) {
                     $module->index();
                 } else {
-                    $this->error(lang("Module uploading or loading  error") . $modName);
+                    $this->error(lang("Module uploading or loading  error", "core") . $modName);
                 }
 
                 break;
@@ -521,13 +521,18 @@ class Core extends MY_Controller {
         if ($category['total_pages'] > $category['per_page']) {
             $this->load->library('Pagination');
 
-            // $config['base_url']    = site_url($category['path_url']);
-            $config['base_url'] = '/' . $category['path_url'];
+
+            if (array_key_exists($this->uri->segment(1), $this->langs)) {
+                $config['base_url'] = '/' . $this->uri->segment(1) . "/" . $category['path_url'];
+            } else {
+                $config['base_url'] = '/' . $category['path_url'];
+            }
+
             $config['total_rows'] = $category['total_pages'];
             $config['per_page'] = $category['per_page'];
             $config['uri_segment'] = $segment;
-            $config['first_link'] = lang("The first");
-            $config['last_link'] = lang("Last");
+            $config['first_link'] = lang("The first", "core");
+            $config['last_link'] = lang("Last", "core");
 
             $config['cur_tag_open'] = '<span class="active">';
             $config['cur_tag_close'] = '</span>';
@@ -564,7 +569,7 @@ class Core extends MY_Controller {
             $content = $this->template->read($cat_tpl, array('pages' => $pages));
         } else {
             ($hook = get_hook('core_dispcat_no_pages')) ? eval($hook) : NULL;
-            $content = $this->template->read($cat_tpl, array('no_pages' => lang("In the category has no pages.")));
+            $content = $this->template->read($cat_tpl, array('no_pages' => lang("In the category has no pages.", "core")));
         }
 
         $category['title'] == NULL ? $category['title'] = $category['name'] : TRUE;
@@ -627,10 +632,10 @@ class Core extends MY_Controller {
                     $this->core_data['module'] = $mod_name;
 
                     ($hook = get_hook('core_load_module_autoload')) ? eval($hook) : NULL;
-                   // if (!self::$detect_load[$mod_name]) {
-                        $this->$mod_name->autoload();
-                        self::$detect_load[$mod_name] = 1;
-                  //  }
+                    // if (!self::$detect_load[$mod_name]) {
+                    $this->$mod_name->autoload();
+                    self::$detect_load[$mod_name] = 1;
+                    //  }
                 }
             }
         }
@@ -696,9 +701,9 @@ class Core extends MY_Controller {
         header('HTTP/1.1 404 Not Found');
         ($hook = get_hook('core_display_error_404')) ? eval($hook) : NULL;
 
-        $this->set_meta_tags(lang("Page not found"));
+        $this->set_meta_tags(lang("Page not found", "core"));
 
-        $this->template->assign('error_text', lang("Page not found."));
+        $this->template->assign('error_text', lang("Page not found.", "core"));
         $this->template->show('404');
         //$this->template->show();
         exit;
