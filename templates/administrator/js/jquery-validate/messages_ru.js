@@ -2,24 +2,24 @@
  * Translated default messages for the jQuery validation plugin.
  * Locale: RU (Russian; русский язык)
  */
-(function ($, lang) {
+(function ($, langs) {
 	$.extend($.validator.messages, {
-            	required: lang.needToFillField,
-		remote: lang.please + ", " + lang.enterCorrectValue +  ".",
-		email: lang.please + ", " + lang.enterValidEmailAddress + ".",
-		url: lang.please + ", " + lang.enterCorrectURL + ".",
-		date: lang.please +  ", " + lang.enterCorrectDate + ".",
-		dateISO: lang.please +  ", " + lang.enterCorrectDateFormatISO + ".",
-		number: lang.please +  ", " + lang.enterNumber + ".",
-		digits: lang.please + ", " + lang.enterOnlyNumbers + ".",
-		creditcard: lang.please +  ", " + lang.enterValidCreditCardNumber + ".",
-		equalTo: lang.please +  ", " + lang.enterTheSameValueAgain + ".",
-		accept:  lang.please + ", " + lang.selectFileWwithCorrectExtension + ".",
-		maxlength: $.validator.format(lang.please +  ", " + lang.enterNoMore + " {0} " + lang.characters + "."),
-		minlength: $.validator.format(lang.please +  ", " + lang.enterAtLeast + " {0} " + lang.characters + "."),
-		rangelength: $.validator.format(lang.please +  ", " + lang.enterValueFrom + " {0} " + lang.to + " {1} " + lang.characters + "."),
-		range: $.validator.format(lang.please +  ", " + lang.enterNumberFrom + "{0} " + lang.to + " {1}."),
-		max: $.validator.format(lang.please + ", " + lang.enterNumberLessThanOrEqualTo + " {0}."),
-		min: $.validator.format(lang.please +  ", " + lang.enterNumberMoreThanOrEqualTo + " {0}.")
+            	required: langs.needToFillField,
+		remote: langs.please + ", " + langs.enterCorrectValue +  ".",
+		email: langs.please + ", " + langs.enterValidEmailAddress + ".",
+		url: langs.please + ", " + langs.enterCorrectURL + ".",
+		date: langs.please +  ", " + langs.enterCorrectDate + ".",
+		dateISO: langs.please +  ", " + langs.enterCorrectDateFormatISO + ".",
+		number: langs.please +  ", " + langs.enterNumber + ".",
+		digits: langs.please + ", " + langs.enterOnlyNumbers + ".",
+		creditcard: langs.please +  ", " + langs.enterValidCreditCardNumber + ".",
+		equalTo: langs.please +  ", " + langs.enterTheSameValueAgain + ".",
+		accept:  langs.please + ", " + langs.selectFileWwithCorrectExtension + ".",
+		maxlength: $.validator.format(langs.please +  ", " + langs.enterNoMore + " {0} " + langs.characters + "."),
+		minlength: $.validator.format(langs.please +  ", " + langs.enterAtLeast + " {0} " + langs.characters + "."),
+		rangelength: $.validator.format(langs.please +  ", " + langs.enterValueFrom + " {0} " + langs.to + " {1} " + langs.characters + "."),
+		range: $.validator.format(langs.please +  ", " + langs.enterNumberFrom + "{0} " + langs.to + " {1}."),
+		max: $.validator.format(langs.please + ", " + langs.enterNumberLessThanOrEqualTo + " {0}."),
+		min: $.validator.format(langs.please +  ", " + langs.enterNumberMoreThanOrEqualTo + " {0}.")
 	});
 }(jQuery, lang));
