@@ -314,7 +314,7 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     private function buildScriptPath($tpl) {
-        if (!$this->template)
+//        if (!$this->template)
             $this->template = \CI_Controller::get_instance()->config->item('template');
 
         if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/js/' . $tpl . '.js'))
