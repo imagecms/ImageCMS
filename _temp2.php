@@ -1,90 +1,222 @@
 <?php
 /*
-./assets/variablesSelectOptions.tpl
-./assets/jsLangs.tpl
-./assets/newVariable.tpl
-./assets/admin/create.tpl
-./assets/admin/list.tpl
-./assets/admin/settings.tpl
-./assets/admin/edit.tpl*/
+../../..//templates/latest_fotos.tpl
+../../..//templates/latest_fotos_form.tpl
+../../..//templates/public/album.tpl
+../../..//templates/public/thumbnails.tpl
+../../..//templates/public/albums.tpl
+../../..//templates/public/main_backup.tpl
+../../..//templates/admin/error.tpl
+../../..//templates/admin/create_category.tpl
+../../..//templates/admin/album_list.tpl
+../../..//templates/admin/categories.tpl
+../../..//templates/admin/edit_category.tpl
+../../..//templates/admin/create_album.tpl
+../../..//templates/admin/settings.tpl
+../../..//templates/admin/album_params.tpl
+../../..//templates/admin/edit_image.tpl
+../../..//templates/admin/edit_album.tpl*/
 
-_("Message6");
-_("Variable must be surrounded by $");
-_("Creating mail template");
+_("My last photo");
+_("Gallery");
+_("Image");
+_("from");
+_("All images");
+_("Previous");
+_("Next");
+_("Gallery");
+_("Gallery");
+_("Albums not found");
+_("All albums");
+_("Categories");
+_("Removing categories");
+_("Remove selected category");
+_("View images");
+_("Edit");
+_("Edit albums");
+_("Delete");
+_("Delete albums");
+_("Cancel");
+_("Delete");
+_("Removing categories");
+_("Remove selected category");
+_("No");
+_("Height");
+_("Height");
+_("Return");
+_("Add pictures");
+_("Edit");
+_("Widget settings");
 _("Go back");
 _("Save");
 _("Save and go back");
 _("Settings");
-_("Template name (only latin)");
-_("From");
-_("From email");
-_("Theme");
-_("Message type");
-_("Template user mail");
-_("Send email to user");
-_("Yes");
-_("No");
-_("Admin mail template");
-_("Send email to admin");
-_("Yes");
-_("No");
-_("Admin address");
-_("Template description");
-_("Template email deleting");
-_("Delete selected templates");
-_("Delete");
-_("Cancel");
-_("Template list view");
+_("Images limit");
+_("Algorithm");
+_("Last images");
+_("Random images");
+_("Create a category");
 _("Back");
-_("Settings");
-_("Delete");
-_("Create template");
+_("Create");
+_("Save and exit");
 _("Name");
 _("Description");
-_("Theme");
-_("Templates list empty");
+_("Position");
+_("Cancel");
+_("Delete");
+_("Albums");
+_("Back");
+_("Create");
+_("View images");
+_("Name");
+_("Created");
+_("Has been updated");
+_("Views");
+_("Description");
+_("No albums found");
+_("Delete album?");
+_("Categories");
+_("Delete");
+_("Create a category");
+_("Create an album");
+_("Settings");
+_("ID");
+_("Name");
+_("Albums");
+_("Description");
+_("Created");
+_("Edit the category");
+_("Edit the category");
+_("View albums");
+_("View albums");
+_("Category list is empty");
+_("Delete category?");
+_("Cancel");
+_("Delete");
+_("Edit the category");
+_("Back");
+_("Save");
+_("Save and exit");
+_("Name");
+_("Description");
+_("Position");
+_("Cancel");
+_("Delete");
+_("Create an album");
+_("Back");
+_("Create an album");
+_("Categories");
+_("Name");
+_("Description");
+_("Template file");
+_("by default");
 _("Settings");
 _("Back");
 _("Save");
-_("Settings");
-_("Install standart templates");
-_("From");
-_("From email");
-_("Admin email");
-_("Theme");
-_("Use wraper");
-_("Wraper");
-_("Server path to sendmail");
-_("Protocol");
-_("Port");
-_("Check email sending");
-_("Email template editing");
-_("Go back");
+_("Categories and albums");
+_("Sort");
+_("By date");
+_("in alphabetic order");
+_("By position");
+_("in descending order");
+_("in  ascending order");
+_("Images");
+_("maximum file size");
+_("In megabites");
+_("Maximum width");
+_("Maximum height");
+_("Quality");
+_("Save ratio");
+_("Yes");
+_("No");
+_("Cut the borders");
+_("Yes");
+_("No");
+_("Image preview");
+_("Width");
+_("px");
+_("px");
+_("Save ratio");
+_("Yes");
+_("No");
+_("Cut the borders");
+_("Yes");
+_("No");
+_("Image icons");
+_("Width");
+_("px");
+_("px");
+_("Save ratio");
+_("Yes");
+_("No");
+_("Cut the borders");
+_("Yes");
+_("No");
+_("Watermark");
+_("horizontal alignment");
+_("left or on the left");
+_("in the center");
+_("on the right");
+_("vertical alignment");
+_("at the top");
+_("in the middle");
+_("at the bottom");
+_("Type");
+_("Text");
+_("Image");
+_("Path to the image");
+_("File has to be located on the server. For example");
+_("Transparency");
+_("Select a digit from 1 to 100");
+_("Offset");
+_("px");
+_("Text");
+_("Font size");
+_("Font colour");
+_("Offset");
+_("px");
+_("Path to font");
+_("Album");
+_("Back");
 _("Save");
 _("Save and go back");
-_("Template settings");
-_("Template variables");
-_("Settings");
-_("Template name(only latin)");
-_("From");
-_("From email");
-_("Theme");
-_("Message type");
-_("Template user mail");
-_("Send email to user");
-_("Yes");
-_("No");
-_("Admin mail template");
-_("Send email to admin");
-_("Yes");
-_("No");
-_("Admin address");
-_("Template description");
-_("Variables");
-_("Values");
-_("Edit");
 _("Delete");
-_("Add new variable");
-_("From");
+_("Categories");
+_("Name");
+_("Description");
+_("Position");
+_("Template file");
+_("by default");
+_("Album deletion");
+_("Cancel");
+_("Delete");
+_("Select a file");
+_("Upload a file");
+_("Gallery");
+_("Album");
+_("Name");
+_("Has been downloaded");
+_("Views");
+_("File size");
+_("Image size");
+_("Preview");
+_("Position");
+_("Description");
+_("Save");
+_("Cancel");
+_("New name");
+_("Save");
+_("Album");
+_("Back");
+_("Save");
+_("Delete");
+_("Chose all photos");
+_("Delete");
+_("Name");
+_("Size");
+_("Album is empty");
+_("Deleting photos");
+_("Cancel");
+_("Delete");
 
 ?>

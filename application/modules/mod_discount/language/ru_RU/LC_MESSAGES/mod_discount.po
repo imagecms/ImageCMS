@@ -290,7 +290,7 @@ msgstr "Время окончания"
 
 #: /var/www/image.loc/_temp2.php:80
 msgid "Active"
-msgstr "Активный"
+msgstr "Активен"
 
 #: /var/www/image.loc/_temp2.php:81
 #: /var/www/image.loc/_temp2.php:84
