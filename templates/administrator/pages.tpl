@@ -1,4 +1,4 @@
-<div class="modal hide fade" id="pages_action_dialog">
+{ /* }lang('Your search did not found', 'admin'){ */ }<div class="modal hide fade" id="pages_action_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3 id="mvMv">{lang("Copy/Move pages")}</h3>
@@ -19,7 +19,7 @@
 <div class="modal hide fade" id="pages_delete_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang("Delete pages",'admin')}</h3>
+        <h3>{lang('Delete pages','admin')}</h3>
     </div>
     <div class="modal-body">
         {lang("Delete selected pages",'admin')}
@@ -44,7 +44,7 @@
                     <button onclick="$('#pages_action_dialog').modal();
                 pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
                     <button onclick="$('#pages_delete_dialog').modal();
-                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Create page','admin')}</button>
+                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Delete pages','admin')}</button>
                     <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</button>-->
                     <a class="btn btn-small btn-success pjax" href='{$BASE_URL}admin/pages'><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</a>
                 </div>
@@ -161,7 +161,7 @@
                                 </td>
                                 <td><span>{$page.id}</span></td>
                                 <td class="share_alt">
-                                    <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("goto site","admin")}"><i class="icon-share-alt"></i></a>
+                                    <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site","admin")}"><i class="icon-share-alt"></i></a>
                                     <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing","admin")}">{$page.title}</a>
                                 </td>
                                 <td><span>{truncate($page.url, 40, '...')}</span></td>
@@ -199,7 +199,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found','admin')}</div>
+                                                <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'admin')}</div>
                                             </td>
                                         </tr>
                                     </tbody>

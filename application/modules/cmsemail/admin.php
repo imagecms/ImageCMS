@@ -80,7 +80,7 @@ class Admin extends BaseAdminController {
 
         if ($_POST) {
             if ($this->email->edit($id, array(), $locale)) {
-                showMessage(lang('Template_edited'));
+                showMessage(lang('Template edited', 'cmsemail'));
 
                 if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/cmsemail/index');
@@ -105,7 +105,7 @@ class Admin extends BaseAdminController {
     public function update_settings() {
         if ($_POST) {
             $this->form_validation->set_rules('settings[admin_email]', lang('Admin email', 'cmsemail'), 'required|xss_clean|valid_email');
-            $this->form_validation->set_rules('settings[from_email]', lang('Sender eamil', 'cmsemail'), 'required|xss_clean|valid_email');
+            $this->form_validation->set_rules('settings[from_email]', lang('Email sender', 'cmsemail'), 'required|xss_clean|valid_email');
             $this->form_validation->set_rules('settings[from]', lang('From', 'cmsemail'), 'required|xss_clean');
             $this->form_validation->set_rules('settings[theme]', lang('From email', 'cmsemail'), 'xss_clean|required');
 
@@ -129,7 +129,7 @@ class Admin extends BaseAdminController {
         if (preg_match('/\$content/', htmlentities($wraper))) {
             return TRUE;
         } else {
-            $this->form_validation->set_message('wraper_check', lang('Field', 'cmsemail') . ' %s ' . lang('must_contain_variable', 'cmsemail') . ' $content');
+            $this->form_validation->set_message('wraper_check', lang('Field', 'cmsemail') . ' %s ' . lang('Must contain variable', 'cmsemail') . ' $content');
             return FALSE;
         }
     }

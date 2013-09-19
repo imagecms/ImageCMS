@@ -2,7 +2,7 @@
     <div class="row">
         <div class="span3">
             {if  $CI->uri->uri_string() != ''}
-                 {load_menu('left_menu')}
+                {load_menu('left_menu')}
             {/if}
         </div>
         <div class="span6">
@@ -18,6 +18,7 @@
                         {$p.prev_text}
                     {/foreach}
                 </div>
+                {$pagination}
             </article>
         </div>
     </div>

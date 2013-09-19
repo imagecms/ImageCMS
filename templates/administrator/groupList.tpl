@@ -56,7 +56,7 @@
         {else:}
             </br>
             <div class="alert alert-info">
-                {lang("List",'admin')} {lang("Group",'admin')} {lang('Privilegy','admin')} {lang("Empty.",'admin')}
+                {lang("List",'admin')} {lang("Group",'admin')} {lang('Privilege','admin')} {lang("Empty.",'admin')}
             </div>
         {/if}
     </div>
