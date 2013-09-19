@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-13 17:12+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: Mark <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -13,139 +13,129 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "Redirect links removing"
-msgstr ""
+msgstr "Удаление ссылки редиректа"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Remove links?"
-msgstr ""
+msgstr "Удалить ссылки?"
 
-#: /var/www/image.loc/_temp2.php:9
-#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_temp2.php:9 /var/www/image.loc/_temp2.php:14
 msgid "Redirect"
-msgstr ""
+msgstr "Редирект"
 
 #: /var/www/image.loc/_temp2.php:10
-#, fuzzy
 msgid "Create redirect"
-msgstr "Создатьзаказ"
+msgstr "Создать редирект"
 
-#: /var/www/image.loc/_temp2.php:11
-#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:11 /var/www/image.loc/_temp2.php:27
 msgid "Old URL"
-msgstr ""
+msgstr "Старый URL"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "Redirect type)"
-msgstr ""
+msgstr "Тип редиректа"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "Redirect kind"
-msgstr ""
+msgstr "Вид редиректа"
 
 #: /var/www/image.loc/_temp2.php:15
-#, fuzzy
 msgid "New redirect creation"
-msgstr "Настр"
+msgstr "Создание нового редиректа"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "New trash data"
-msgstr ""
+msgstr "Новые данные"
 
-#: /var/www/image.loc/_temp2.php:17
-#: /var/www/image.loc/_temp2.php:21
-#: /var/www/image.loc/_temp2.php:28
-#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:17 /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:32
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
-#: /var/www/image.loc/_temp2.php:18
-#: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:29
-#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:18 /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:29 /var/www/image.loc/_temp2.php:34
 msgid "Product"
-msgstr ""
+msgstr "Продукт"
 
-#: /var/www/image.loc/_temp2.php:19
-#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:19 /var/www/image.loc/_temp2.php:30
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
-#: /var/www/image.loc/_temp2.php:20
-#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:20 /var/www/image.loc/_temp2.php:24
 #: /var/www/image.loc/_temp2.php:31
-#, fuzzy
 msgid "Category of Base"
-msgstr "Настр"
+msgstr "Категория Базы"
 
-#: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:23 /var/www/image.loc/_temp2.php:35
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
 #: /var/www/image.loc/_temp2.php:25
 msgid "Link editing"
-msgstr ""
+msgstr "Редактирования ссылки"
 
 #: /var/www/image.loc/_temp2.php:26
 msgid "Link edit"
-msgstr ""
+msgstr "Редактирования ссылки"
 
 #: /var/www/image.loc/_temp2.php:33
 msgid "Redirect Url"
-msgstr ""
+msgstr "URL редиректа"
 
 #: /var/www/image.loc/_temp2.php:36
 msgid "Categories of Base"
-msgstr ""
+msgstr "Категории базы"
 
-#: /var/www/image.loc/_temp2.php:37
-#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:37 /var/www/image.loc/_temp2.php:40
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: /var/www/image.loc/_temp2.php:38
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
-#: /var/www/image.loc/_temp2.php:39
-#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_temp2.php:39 /var/www/image.loc/_temp2.php:42
 #: /var/www/image.loc/_temp2.php:45
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:41
 msgid "Editing"
-msgstr ""
+msgstr "Редактирование"
 
 #: /var/www/image.loc/_temp2.php:43
 msgid "Create"
-msgstr ""
+msgstr "Создать"
 
 #: /var/www/image.loc/_temp2.php:44
 msgid "Create and exit"
-msgstr ""
+msgstr "Создать и выйти"
 
 #: /var/www/image.loc/_temp2.php:46
 msgid "Save"
-msgstr ""
+msgstr "Создать"
 
 #: /var/www/image.loc/_temp2.php:47
 msgid "Save and exit"
-msgstr ""
+msgstr "Сохранить и выйти"
 
 #: ../../../module_info.php:7
 msgid "Module of redirects from remote products"
-msgstr ""
+msgstr "Модуль редирект с удаленных товаров"
 
+# хз
 #: ../../../module_info.php:8
-msgid "Module for creating a link from remote product to category, product, article, 404, or another site"
+msgid ""
+"Module for creating a link from remote product to category, product, "
+"article, 404, or another site"
 msgstr ""
+"Модуль для создания связи с удаленного товара к категорие, товару, странице, "
+"404 или другому сайту"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

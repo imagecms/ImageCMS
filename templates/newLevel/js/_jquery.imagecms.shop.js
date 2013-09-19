@@ -29,10 +29,6 @@ function pluralStr(i, str) {
             return str[2];
     }
 }
-function serializeForm(el) {
-    var $this = $(el);
-    return $this.data('data', $this.closest('form').serialize());
-}
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
             validLabels = /^(data|css):/,
@@ -89,7 +85,20 @@ $.fn.pricetext = function(e, rank) {
     $(document).trigger({type: 'textanimatechange', el: $this, ovalue: parseFloat($this.text().replace(/\s+/g, '')), nvalue: e, rank: rank})
     return $this;
 }
-
+$.fn.setCursorPosition = function(pos) {
+    this.each(function(index, elem) {
+        if (elem.setSelectionRange) {
+            elem.setSelectionRange(pos, pos);
+        } else if (elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', pos);
+            range.moveStart('character', pos);
+            range.select();
+        }
+    });
+    return this;
+};
 $(document).on('textanimatechange', function(e) {
     var $this = e.el,
             nv = e.nvalue,
@@ -194,7 +203,7 @@ var ie = jQuery.browser.msie,
                         }
                     });
                     var form = frameChecks.closest('form');
-                    form.find('input[type="reset"]').unbind('click.nstcheck').on('click.nstcheck', function() {
+                    form.find('[type="reset"]').unbind('click.nstcheck').on('click.nstcheck', function() {
                         methods.changeCheckallreset(form.find(elCheckWrap));
                     });
                 });
@@ -1491,7 +1500,7 @@ var ie = jQuery.browser.msie,
                 'timeclosemodal': timeclosemodal,
                 'moreoneNC': moreoneNC
             }).attr('data-elrun', $thisSource);
-            $(set.exit).unbind('click.drop').on('click.drop', function() {
+            $(set.exit).die('click.drop').live('click.drop', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
             var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
@@ -2341,6 +2350,9 @@ var Shop = {
                         type: 'sync_cart'
                     });
                 }
+                $(document).trigger({
+                    type: 'end_sync_cart'
+                });
                 if (data == false)
                     Shop.Cart.clear();
             });

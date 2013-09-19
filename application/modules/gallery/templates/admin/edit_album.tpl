@@ -50,7 +50,7 @@
                                                     <img title="{$item.file_name}{$item.file_ext}" src="{media_url($album_url . '/' . $item['file_name'] .'_prev'. $item['file_ext'])}"/>
                                                     <div class="btn-group f-s_0">
                                                         <button type="button" class="btn" data-rel="tooltip" onclick="shopCategories.deleteCategoriesConfirm($(this).closest('td').find('[name=ids]').val());" data-title="{lang("Delete", 'gallery')}" data-remove=""><i class="icon-remove"></i></button>
-                                                        <a href="/admin/components/init_window/gallery/edit_image/{$item.id}" class="btn" data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i></a>
+                                                        <a href="/admin/components/init_window/gallery/edit_image/{$item.id}" class="btn" data-rel="tooltip" data-title="{lang('Edit', 'gallery')}"><i class="icon-edit"></i></a>
                                                     </div>
                                                     <div class="fon"></div>
                                                 </div>

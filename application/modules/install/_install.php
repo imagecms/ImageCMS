@@ -11,11 +11,12 @@ class Install extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-
+        $lang = new MY_Lang();
+        $lang->load('install');
 //        $this->host = 'http://' . str_replace('index.php', '', $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']) . 'index.php/';
         $this->load->helper('string');
+        $this->load->helper('form_csrf');
         $this->host = reduce_multiples($this->host);
-//        $this->load->language('main', 'russian');
     }
 
     public function index() {
@@ -402,6 +403,15 @@ class Install extends MY_Controller {
         mysql_close($link);
 
         return $result;
+    }
+    
+    public function change_language(){
+        $language = $this->input->post('language');
+        if($language){
+            $this->session->set_userdata('language', $language);
+            
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
 
 }

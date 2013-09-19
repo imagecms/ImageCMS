@@ -10,6 +10,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('new_level');
         $this->load->model('new_level_model');
         $this->path = TEMPLATES_PATH . 'newLevel';
     }

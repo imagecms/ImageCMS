@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 {else:}
-                    <div class="btn-not-avail variant_{echo $p.variant_id} variant" {if $key != 0}style="display:none"{/if}>
+                    <div class="btn-not-avail variant_{echo $p.variant_id} variant" >
                         <button
                             class="infoBut"
                             type="button"
@@ -104,10 +104,13 @@
                             data-prodid="{echo $p.id}"
                             data-varid="{echo $p.variant_id}"
                             data-price="{echo $p.price}"
+                            data-addPrice="{if $NextCS != null}{echo ShopCore::app()->SCurrencyHelper->convert($p.price, $NextCSId)}{/if}"
                             data-name="{echo ShopCore::encode($p.name)}"
                             data-maxcount="{echo $p.stock}"
                             data-number="{echo trim($p.number)}"
                             data-mediumImage="{echo $photo}"
+                            data-img="{echo $photo}"
+                            data-url="{echo shop_url('product/'.$p.url)}"
                             <span class="icon-but"></span>
                             <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                         </button>

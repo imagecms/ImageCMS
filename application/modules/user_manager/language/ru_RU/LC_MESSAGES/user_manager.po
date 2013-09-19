@@ -2,83 +2,80 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 16:54+0300\n"
-"PO-Revision-Date: 2013-09-13 16:55+0300\n"
+"POT-Creation-Date: 2013-09-19 13:07+0300\n"
+"PO-Revision-Date: 2013-09-19 13:07+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: ru_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: ../../../\n"
 
 #: /var/www/image.loc/_temp2.php:13
 #: /var/www/image.loc/_temp2.php:21
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: /var/www/image.loc/_temp2.php:14
-#, fuzzy
 msgid "Cancel"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Отмена"
 
 #: /var/www/image.loc/_temp2.php:15
 #: /var/www/image.loc/_temp2.php:43
 #: /var/www/image.loc/_temp2.php:65
 msgid "Return"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:16
-#, fuzzy
 msgid "User create"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Пользователь создан"
 
 #: /var/www/image.loc/_temp2.php:17
-#, fuzzy
 msgid "Create a Group"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Создать Группу"
 
 #: /var/www/image.loc/_temp2.php:18
 msgid "Users"
-msgstr ""
+msgstr "Пользователи"
 
 #: /var/www/image.loc/_temp2.php:19
 msgid "Groups"
-msgstr ""
+msgstr "Группы"
 
+# хз
 #: /var/www/image.loc/_temp2.php:20
 msgid "Access rights differentiation system"
-msgstr ""
+msgstr "Права доступа разных систем"
 
 #: /var/www/image.loc/_temp2.php:22
 #: /var/www/image.loc/_temp2.php:23
-#, fuzzy
 msgid "Cancel filter"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Отменить фильтр"
 
+# а
 #: /var/www/image.loc/_temp2.php:24
 msgid "Filter admin"
-msgstr ""
+msgstr "Фильтр"
 
 #: /var/www/image.loc/_temp2.php:25
 msgid "All groups"
-msgstr ""
+msgstr "Все группы"
 
 #: /var/www/image.loc/_temp2.php:26
 #: /var/www/image.loc/_temp2.php:30
 #: /var/www/image.loc/_temp2.php:44
 #: /var/www/image.loc/_temp2.php:66
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:27
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: /var/www/image.loc/_temp2.php:28
 #: /var/www/image.loc/_temp2.php:29
@@ -87,125 +84,118 @@ msgstr ""
 #: /var/www/image.loc/_temp2.php:82
 #: /var/www/image.loc/_temp2.php:101
 msgid "Group"
-msgstr ""
+msgstr "Группа"
 
 #: /var/www/image.loc/_temp2.php:31
-#, fuzzy
 msgid "Cancel all"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Отменить все"
 
 #: /var/www/image.loc/_temp2.php:32
-#, fuzzy
 msgid "Cancel selection"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Отменить выбранное"
 
 #: /var/www/image.loc/_temp2.php:33
 #: /var/www/image.loc/_temp2.php:98
 #: /var/www/image.loc/_temp2.php:106
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /var/www/image.loc/_temp2.php:34
 msgid "Login"
-msgstr ""
+msgstr "Войти"
 
 #: /var/www/image.loc/_temp2.php:35
 #: /var/www/image.loc/_temp2.php:47
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #: /var/www/image.loc/_temp2.php:37
 #: /var/www/image.loc/_temp2.php:54
-#, fuzzy
 msgid "Ban"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Бан"
 
 #: /var/www/image.loc/_temp2.php:38
 #: /var/www/image.loc/_temp2.php:103
 msgid "Last IP"
-msgstr ""
+msgstr "Последний IP"
 
+# неее
 #: /var/www/image.loc/_temp2.php:39
 msgid "Latest Entry or Last Entry"
-msgstr ""
+msgstr "Последний Вход"
 
 #: /var/www/image.loc/_temp2.php:40
-#, fuzzy
 msgid "Created"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Создано"
 
 #: /var/www/image.loc/_temp2.php:41
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 #: /var/www/image.loc/_temp2.php:42
 msgid "Editing by"
-msgstr ""
+msgstr "Редактировать"
 
 #: /var/www/image.loc/_temp2.php:45
 #: /var/www/image.loc/_temp2.php:67
-#, fuzzy
 msgid "Save and exit"
-msgstr "Позиція"
+msgstr "Создать и вийти"
 
 #: /var/www/image.loc/_temp2.php:46
 msgid "User data"
-msgstr ""
+msgstr "Данные пользователя"
 
 #: /var/www/image.loc/_temp2.php:48
 #: /var/www/image.loc/_temp2.php:78
-#, fuzzy
 msgid "Full name"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Полное имя"
 
 #: /var/www/image.loc/_temp2.php:49
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: /var/www/image.loc/_temp2.php:51
 msgid "Without group"
-msgstr ""
+msgstr "Без группы"
 
 #: /var/www/image.loc/_temp2.php:52
 #: /var/www/image.loc/_temp2.php:80
-#, fuzzy
 msgid "New password"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Новый пароль"
 
 #: /var/www/image.loc/_temp2.php:53
 #, fuzzy
-msgid "New password confirmation"
-msgstr "Нааааааааамеееееееееее"
+msgid "Password confirm"
+msgstr "Подтвердить пароль"
 
 #: /var/www/image.loc/_temp2.php:55
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: /var/www/image.loc/_temp2.php:56
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: /var/www/image.loc/_temp2.php:57
 msgid "Ban Reason"
-msgstr ""
+msgstr "Причина Бана"
 
 #: /var/www/image.loc/_temp2.php:58
 msgid "Options"
-msgstr ""
+msgstr "Опции"
 
 #: /var/www/image.loc/_temp2.php:59
 #: /var/www/image.loc/_temp2.php:64
 #: /var/www/image.loc/_temp2.php:86
-#, fuzzy
 msgid "Create"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Создать"
 
 #: /var/www/image.loc/_temp2.php:60
 #: /var/www/image.loc/_temp2.php:68
 #: /var/www/image.loc/_temp2.php:89
 #: /var/www/image.loc/_temp2.php:107
 msgid "Name"
-msgstr ""
+msgstr "Название"
 
 #: /var/www/image.loc/_temp2.php:61
 #: /var/www/image.loc/_temp2.php:69
@@ -213,187 +203,181 @@ msgstr ""
 #: /var/www/image.loc/_temp2.php:90
 #: /var/www/image.loc/_temp2.php:108
 msgid "Identifier"
-msgstr ""
+msgstr "Идентификатор"
 
 #: /var/www/image.loc/_temp2.php:62
 msgid "Just latin characters"
-msgstr ""
+msgstr "Только латинские буквы"
 
 #: /var/www/image.loc/_temp2.php:63
 #: /var/www/image.loc/_temp2.php:71
 #: /var/www/image.loc/_temp2.php:92
 #: /var/www/image.loc/_temp2.php:109
-#, fuzzy
 msgid "Description"
-msgstr "Позиція"
+msgstr "Описание"
 
 #: /var/www/image.loc/_temp2.php:72
-#, fuzzy
 msgid "Create a new user"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Создать новго пользователя"
 
 #: /var/www/image.loc/_temp2.php:73
 #: /var/www/image.loc/_temp2.php:85
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:74
-#, fuzzy
 msgid "Сreate"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Создать"
 
 #: /var/www/image.loc/_temp2.php:75
 #: /var/www/image.loc/_temp2.php:87
-#, fuzzy
 msgid "Create and exit"
-msgstr "Позиція"
+msgstr "Создать и выйти"
 
 #: /var/www/image.loc/_temp2.php:76
 msgid "New user"
-msgstr ""
+msgstr "Новый пользователь"
 
 #: /var/www/image.loc/_temp2.php:77
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: /var/www/image.loc/_temp2.php:79
 msgid "Phone number"
-msgstr ""
+msgstr "Номер телефона"
 
 #: /var/www/image.loc/_temp2.php:81
 msgid "Confirm the password"
-msgstr ""
+msgstr "Подтвердите пароль"
 
 #: /var/www/image.loc/_temp2.php:83
 msgid "No group"
-msgstr ""
+msgstr "Нет групп"
 
 #: /var/www/image.loc/_temp2.php:84
-#, fuzzy
 msgid "Creating a group"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Создать группу"
 
 #: /var/www/image.loc/_temp2.php:88
 msgid "Group details"
-msgstr ""
+msgstr "Детали группы"
 
 #: /var/www/image.loc/_temp2.php:91
 msgid "Only Latin characters"
-msgstr ""
+msgstr "Только латинские буквы"
 
 #: /var/www/image.loc/_temp2.php:93
 #: /var/www/image.loc/_temp2.php:95
 msgid "Deleting a user"
-msgstr ""
+msgstr "Удаление пользователя"
 
 #: /var/www/image.loc/_temp2.php:94
 msgid "Remove selected users?"
-msgstr ""
+msgstr "Удалить выбранных пользователей?"
 
 #: /var/www/image.loc/_temp2.php:96
 msgid "Delete a user?"
-msgstr ""
+msgstr "Удалить пользователя?"
 
 #: /var/www/image.loc/_temp2.php:97
 msgid "User Manager"
-msgstr ""
+msgstr "Управление пользователями"
 
 #: /var/www/image.loc/_temp2.php:99
 msgid "User"
-msgstr ""
+msgstr "Пользователь"
 
 #: /var/www/image.loc/_temp2.php:100
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: /var/www/image.loc/_temp2.php:102
 msgid "Banned"
-msgstr ""
+msgstr "Бан"
 
 #: /var/www/image.loc/_temp2.php:104
 msgid "Preliminary contents"
-msgstr ""
+msgstr "Предварительное содержание"
 
 #: /var/www/image.loc/_temp2.php:105
 msgid "Group list"
-msgstr ""
+msgstr "Список групп"
 
 #: /var/www/image.loc/_temp2.php:110
 msgid "Editing Groups"
-msgstr ""
+msgstr "Редактирование групп"
 
 #: /var/www/image.loc/_temp2.php:111
 msgid "Group data"
-msgstr ""
+msgstr "Данные группы"
 
-#: ../../..//admin.php:171
-#: ../../..//admin.php:363
-#: ../../..//admin.php:371
+#: ../../..//admin.php:173
+#: ../../..//admin.php:365
+#: ../../..//admin.php:373
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
-#: ../../..//admin.php:183
-#: ../../..//admin.php:377
+#: ../../..//admin.php:185
+#: ../../..//admin.php:379
 msgid "User with the same e-mail has been registered"
-msgstr ""
+msgstr "Пользователь с таким e-mail был зарегистрирован"
 
-#: ../../..//admin.php:203
+# неее
+#: ../../..//admin.php:205
 msgid "Create a user or the username has been created"
-msgstr ""
+msgstr "Создать пользователя"
 
-#: ../../..//admin.php:207
+# неее
+#: ../../..//admin.php:209
 msgid "Username has been created or user has been created"
-msgstr ""
+msgstr "Пользователь был создан"
 
-#: ../../..//admin.php:246
+#: ../../..//admin.php:248
 msgid "Ban the user  or the user has been banned"
-msgstr ""
+msgstr "Пользователь забанен"
 
-#: ../../..//admin.php:255
+#: ../../..//admin.php:257
 msgid "The user has been unbanned "
-msgstr ""
+msgstr "Пользователь был удален с бана"
 
-#: ../../..//admin.php:292
-#: ../../..//admin.php:309
-#: ../../..//admin.php:339
+#: ../../..//admin.php:294
+#: ../../..//admin.php:311
+#: ../../..//admin.php:341
 msgid "User has not been found "
-msgstr ""
+msgstr "Пользователь не найден "
 
-#: ../../..//admin.php:321
+#: ../../..//admin.php:323
 msgid "You do not pass search"
-msgstr ""
+msgstr "Вы не прошли поиска"
 
-#: ../../..//admin.php:405
-#, fuzzy
+#: ../../..//admin.php:407
 msgid "Updated a user"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Пользователь обновлен"
 
-#: ../../..//admin.php:410
-#: ../../..//admin.php:515
-#, fuzzy
+#: ../../..//admin.php:412
+#: ../../..//admin.php:517
 msgid "Changes have been saved"
-msgstr "Сохранение настроек прошло успешно"
+msgstr "Изменения сохранены"
 
-#: ../../..//admin.php:460
-#, fuzzy
+#: ../../..//admin.php:462
 msgid "Created a group"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Группу создано"
 
-#: ../../..//admin.php:461
+#: ../../..//admin.php:463
 msgid "Group has been created"
-msgstr ""
+msgstr "Группа была создана"
 
-#: ../../..//admin.php:479
+#: ../../..//admin.php:481
 msgid "No data transmitted"
-msgstr ""
+msgstr "Данные не переданы"
 
-#: ../../..//admin.php:489
+#: ../../..//admin.php:491
 msgid "Deleted a user"
-msgstr ""
+msgstr "Пользователь удален"
 
 #: ../../..//module_info.php:5
 msgid "Users manager"
-msgstr ""
+msgstr "Управление пользователями"
 
 #, fuzzy
 #~ msgid "Create user"

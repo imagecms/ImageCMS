@@ -40,6 +40,8 @@ class ParentWishlist extends \MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new \MY_Lang();
+        $lang->load('wishlist');
 
         $this->writeCookies();
         $this->load->model('wishlist_model');

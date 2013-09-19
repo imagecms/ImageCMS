@@ -3,6 +3,8 @@
 class facebook{
     public $settings = array();
     public function __construct() {
+          $lang = new MY_Lang();
+            $lang->load('social_servises');
         //load settings
         $ci = &get_instance();
         $row = $ci->db->where('name', 'facebook_int')->get('Shop_settings')->row();

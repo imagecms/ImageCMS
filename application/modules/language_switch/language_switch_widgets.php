@@ -13,6 +13,8 @@ class Language_switch_Widgets extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+         $lang = new MY_Lang();
+        $lang->load('language_switch');
     }
 
     // Get and display recent comments

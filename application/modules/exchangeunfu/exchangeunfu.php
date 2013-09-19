@@ -25,6 +25,8 @@ class Exchangeunfu extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('exchangeunfu');
 
         /* define path to folder for saving files from 1c */
         $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
@@ -81,7 +83,6 @@ class Exchangeunfu extends MY_Controller {
                 ->onShopProductPreCreate()
                 ->setListener('_extendPageAdmin');
 
-
         \CMSFactory\Events::create()
                 ->onShopProductCreate()
                 ->setListener('_addProductPartner');
@@ -89,18 +90,6 @@ class Exchangeunfu extends MY_Controller {
         \CMSFactory\Events::create()
                 ->onShopProductUpdate()
                 ->setListener('_addProductPartner');
-
-        \CMSFactory\Events::create()
-                ->onShopUserCreate()
-                ->setListener('_addUserExternalId');
-
-        \CMSFactory\Events::create()
-                ->onShopCategoryCreate()
-                ->setListener('_addCategoryExternalId');
-
-        \CMSFactory\Events::create()
-                ->onShopOrderCreate()
-                ->setListener('_addOrderExternalId');
     }
 
     /**
@@ -114,14 +103,6 @@ class Exchangeunfu extends MY_Controller {
             echo "file_limit=1000000000";
         }
         exit();
-    }
-
-    public function make_import() {
-        $this->import->import();
-    }
-
-    public function make_export($partner_id = null) {
-        $this->export->export($partner_id);
     }
 
     /**
@@ -348,40 +329,6 @@ class Exchangeunfu extends MY_Controller {
                     'external_id' => md5($prices[$key] . $product['external_id'])
                 ));
             }
-        }
-    }
-
-    /**
-     * add user external id
-     * @param type $data
-     */
-    public static function _addUserExternalId($data) {
-        $ci = &get_instance();
-        $external_id = md5($data['user']->getId());
-        $ci->db->where('id', $data['user']->getId())->update('users', array('external_id' => $external_id));
-    }
-
-    /**
-     * add category external id
-     * @param type $data
-     */
-    public static function _addCategoryExternalId($data) {
-        $ci = &get_instance();
-        $external_id = md5($data['ShopCategoryId']);
-        $ci->db->where('id', $data['ShopCategoryId'])->update('shop_category', array('external_id' => $external_id));
-    }
-
-    /**
-     * add order and order products external id
-     * @param type $data
-     */
-    public static function _addOrderExternalId($data) {
-        $ci = &get_instance();
-        foreach ($data['products'] as $producst_id) {
-            $external_id = md5($producst_id);
-            $ci->db->where('id', $producst_id)
-                    ->where('order_id', $data['order_id'])
-                    ->update('shop_orders_products', array('external_id' => $external_id));
         }
     }
 
@@ -734,15 +681,15 @@ class Exchangeunfu extends MY_Controller {
      */
     private function command_sale_query() {
         if ($this->check_perm() === true) {
+            $this->export = new \exchangeunfu\exportXML();
             if ($this->input->get('partner')) {
                 $parter_id = $this->db->select('external_id')->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
-                $this->export = new \exchangeunfu\exportXML();
                 if ($parter_id) {
                     $parter_id = $parter_id->row_array();
                     $this->export->export($parter_id['external_id']);
-                } else {
-                    $this->export->export();
                 }
+            } else {
+                $this->export->export();
             }
         }
         exit();

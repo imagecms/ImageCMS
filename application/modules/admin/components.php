@@ -100,7 +100,7 @@ class Components extends BaseAdminController {
             $this->load->library('cms_hooks');
             $this->cms_hooks->build_hooks();
 
-            $this->lib_admin->log(lang("Installed a module", "admin") . $data['name']);
+            $this->lib_admin->log(lang("Installed a module", "admin") . " " . $data['name']);
 
             if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
                 $result = true;
@@ -135,7 +135,7 @@ class Components extends BaseAdminController {
 
                 $this->db->limit(1);
                 $this->db->delete('components', array('name' => $module));
-                $this->lib_admin->log(lang("Deleted a module", "admin") . $module);
+                $this->lib_admin->log(lang("Deleted a module", "admin") . " " . $module);
                 showMessage(lang("The module successfully uninstall", "admin"));
                 pjax('/admin/components/modules_table');
             } else {
@@ -245,7 +245,7 @@ class Components extends BaseAdminController {
             $this->db->where('name', $component);
             $this->db->update('components', $data);
 
-            $this->lib_admin->log(lang("Changed the module settings", "admin") . $com['name']);
+            $this->lib_admin->log(lang("Changed the module settings", "admin") . " " . $com['name']);
 
             //showMessage(lang('Settings are saved','admin'));
         } else {

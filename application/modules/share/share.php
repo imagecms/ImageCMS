@@ -14,6 +14,8 @@ class Share extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('share');
         $this->load->module('core');
 
         $this->db->select('settings');

@@ -21,6 +21,8 @@ class Tags extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $lang = new MY_Lang();
+            $lang->load('tags');
         // $this->output->enable_profiler(TRUE);
     }
 

@@ -26,12 +26,13 @@
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
 
+
     </head>
     <body>
-    {include_tpl('inc/javascriptVars.tpl');}
-    
-    {$langDomain = $CI->land->gettext_domain}
-    {$CI->lang->load('admin')}
+        {include_tpl('inc/javascriptVars')}
+
+        {$langDomain = $CI->land->gettext_domain}
+        {$CI->lang->load('admin')}
         <div class="main_body">
             <div id="fixPage"></div>
             <!-- Here be notifications -->
@@ -131,10 +132,10 @@
                                                             <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
                                                             {/foreach}
                                                         {/if}
-                                                    {if $sli.modulesList}
-                                                        {if !$components}
-                                                            {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
-                                                        {/if}
+                                                        {if $sli.modulesList}
+                                                            {if !$components}
+                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
+                                                            {/if}
 
                                                         {foreach $components as $component}
                                                             {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
@@ -142,7 +143,6 @@
                                                                 {/if}
                                                             {/foreach}
                                                         {/if}
-                {//var_dumps($sli.text)}
                                                     <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)$sli.text ? $sli.text : $sli.text}</a>{else:}{echo (bool)$sli.text ? $sli.text : $sli.text}{/if}</li>
 
 
@@ -256,15 +256,15 @@
         </div>
         <script>
             {$settings = $CI->cms_admin->get_settings();}
-                                    var textEditor = '{$settings.text_editor}';
+            var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
-                                    var userLogined = true;
+            var userLogined = true;
             {else:}
-                                    var userLogined = false;
+            var userLogined = false;
             {/if}
 
-                                    var locale = '{echo $this->CI->config->item('language')}';
-                                    var base_url = "{site_url()}";
+            var locale = '{echo $this->CI->config->item('language')}';
+            var base_url = "{site_url()}";
         </script>
 
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -304,13 +304,13 @@
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
-                                    var isShop = true;
+            var isShop = true;
             {else:}
-                                    var isShop = false;
+            var isShop = false;
             {/if}
-                var lang_only_number = "{lang("numbers only","admin")}";
-                var show_tovar_text = "{lang("show","admin")}";
-                var hide_tovar_text = "{lang('don\'t show')}";
+            var lang_only_number = "{lang("numbers only","admin")}";
+            var show_tovar_text = "{lang("show","admin")}";
+            var hide_tovar_text = "{lang('don\'t show')}";
             {literal}
 
                 $(document).ready(function() {

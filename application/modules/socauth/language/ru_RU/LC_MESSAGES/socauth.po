@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-13 17:53+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: Mark <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -13,173 +13,153 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_temp2.php:9
-#: /var/www/image.loc/_temp2.php:11
-#: /var/www/image.loc/_temp2.php:12
-#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_temp2.php:9 /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_temp2.php:12 /var/www/image.loc/_temp2.php:14
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Отписатся"
 
-#: /var/www/image.loc/_temp2.php:10
-#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:10 /var/www/image.loc/_temp2.php:34
 msgid "VK"
-msgstr ""
+msgstr "В.К."
 
-#: /var/www/image.loc/_temp2.php:13
-#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:13 /var/www/image.loc/_temp2.php:35
 msgid "Yandex"
-msgstr ""
+msgstr "Яндекс"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "Mistake, maybe the email is already in use"
-msgstr ""
+msgstr "Ошибка, может быть, электронная почта уже используется"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "Try to use a different method to enter."
-msgstr ""
+msgstr "Попробуйте использовать другой метод для входа."
 
-#: /var/www/image.loc/_temp2.php:17
-#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:17 /var/www/image.loc/_temp2.php:36
 msgid "Login page"
-msgstr ""
+msgstr "Страница входа"
 
-#: /var/www/image.loc/_temp2.php:18
-#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:18 /var/www/image.loc/_temp2.php:37
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
-#: /var/www/image.loc/_temp2.php:19
-#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:19 /var/www/image.loc/_temp2.php:20
 #: /var/www/image.loc/_temp2.php:21
 msgid "Enter your login"
-msgstr ""
+msgstr "Введите свой логин"
 
-#: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:24
-#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:22 /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:24 /var/www/image.loc/_temp2.php:25
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
-#: /var/www/image.loc/_temp2.php:26
-#: /var/www/image.loc/_temp2.php:27
-#: /var/www/image.loc/_temp2.php:28
-#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:26 /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:29
 msgid "Code protection"
-msgstr ""
+msgstr "Защитный код"
 
 #: /var/www/image.loc/_temp2.php:30
 msgid "Remember me"
-msgstr ""
+msgstr "Запомнить меня"
 
 #: /var/www/image.loc/_temp2.php:31
 msgid "Forgot password"
-msgstr ""
+msgstr "Забыл пароль"
 
 #: /var/www/image.loc/_temp2.php:32
 msgid "Registration"
-msgstr ""
+msgstr "Регистрация"
 
-#: /var/www/image.loc/_temp2.php:33
-#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_temp2.php:33 /var/www/image.loc/_temp2.php:41
 msgid "Enter"
-msgstr ""
+msgstr "Вход"
 
-#: /var/www/image.loc/_temp2.php:38
-#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:38 /var/www/image.loc/_temp2.php:39
 #: /var/www/image.loc/_temp2.php:40
 msgid "Enter your email"
-msgstr ""
+msgstr "Введите адрес электронной почты"
 
 #: /var/www/image.loc/_temp2.php:42
 msgid "Authorization settings through third-party services"
-msgstr ""
+msgstr "Настройки авторизации через сторонние сервисы"
 
 #: /var/www/image.loc/_temp2.php:43
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:44
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:45
 msgid "Authorization settings using your Google account"
-msgstr ""
+msgstr "Настройки авторизации с помощью аккаунта Google"
 
-#: /var/www/image.loc/_temp2.php:46
-#: /var/www/image.loc/_temp2.php:51
-#: /var/www/image.loc/_temp2.php:56
-#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:46 /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:56 /var/www/image.loc/_temp2.php:61
 msgid "Need to get 1 time"
-msgstr ""
+msgstr "Необходимо получить 1 раз"
 
-#: /var/www/image.loc/_temp2.php:47
-#: /var/www/image.loc/_temp2.php:48
-#: /var/www/image.loc/_temp2.php:52
-#: /var/www/image.loc/_temp2.php:53
-#: /var/www/image.loc/_temp2.php:57
-#: /var/www/image.loc/_temp2.php:58
-#: /var/www/image.loc/_temp2.php:62
-#: /var/www/image.loc/_temp2.php:63
+#: /var/www/image.loc/_temp2.php:47 /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:52 /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:57 /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:62 /var/www/image.loc/_temp2.php:63
 msgid "Get"
-msgstr ""
+msgstr "Получить"
 
 #: /var/www/image.loc/_temp2.php:49
 msgid "Use authorization via Google"
-msgstr ""
+msgstr "Использовать авторизацию с помощью Google"
 
 #: /var/www/image.loc/_temp2.php:50
 msgid "Use authorization via VK account"
-msgstr ""
+msgstr "Использовать авторизацию через акаунт В.К."
 
 #: /var/www/image.loc/_temp2.php:54
 msgid "Use authorization via VK"
-msgstr ""
+msgstr "Использовать авторизацию через ВКонтакте"
 
 #: /var/www/image.loc/_temp2.php:55
 msgid "Authorization settings using your FaceBook account"
-msgstr ""
+msgstr "Настройки авторизации с помощью акаунта в Facebook"
 
 #: /var/www/image.loc/_temp2.php:59
 msgid "Use authorization via FaceBook"
-msgstr ""
+msgstr "Использовать авторизацию через FaceBook"
 
 #: /var/www/image.loc/_temp2.php:60
 msgid "Authorization settings using your Yandex account"
-msgstr ""
+msgstr "Настройки авторизации с помощью акаунта Яндекса"
 
 #: /var/www/image.loc/_temp2.php:64
 msgid "Appication Id"
-msgstr ""
+msgstr "Appication Id"
 
 #: /var/www/image.loc/_temp2.php:65
 msgid "Appication password"
-msgstr ""
+msgstr "Пароль программы"
 
 #: /var/www/image.loc/_temp2.php:66
 msgid "Use authorization via Yandex"
-msgstr ""
+msgstr "Использовать авторизацию с помощью Яндекса"
 
 #: ../../../socauth.php:34
 msgid "Your password to access the site"
-msgstr ""
+msgstr "Ваш пароль для доступа к сайту"
 
 #: ../../../admin.php:51
 msgid "Settings are saved"
-msgstr ""
+msgstr "Настройки сохранены"
 
 #: ../../../module_info.php:7
 msgid "Authorization module"
-msgstr ""
+msgstr "Модуль авторизации"
 
 #: ../../../module_info.php:8
 msgid "Module for authorization via popular social networks"
-msgstr ""
+msgstr "Модуль для авторизации через популярные социальные сети"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

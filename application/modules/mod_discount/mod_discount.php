@@ -27,6 +27,8 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
     public function __construct() {
 
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('mod_discount');
         $this->load->model('discount_model_admin');
     }
 
