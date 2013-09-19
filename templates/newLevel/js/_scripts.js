@@ -1396,8 +1396,10 @@ function init() {
                 elCheckWrap: '.niceRadio'
             });
         }
-        if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]')))
-            dropEl.find('form input[type="text"]:first').focus();
+        if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]'))) {
+            var input = dropEl.find('form input[type="text"]:first');
+            input.setCursorPosition(input.val().length);
+        }
         if ($.existsN(dropEl.find('.lineForm:visible'))) {
             cuSel($.extend({}, cuselOptions, {changedEl: '.drop:visible .lineForm select'}));
             if (ltie7)

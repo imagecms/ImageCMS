@@ -68,7 +68,7 @@
                                 <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('Найти','newLevel')}</span></button>
                             </span>
                             <div class="frame-search-input">
-                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Поиск по сайту', 'newLevel')}" {if strpos($CI->uri->uri_string, 'search') !== false}autofocus{/if}/>
+                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Поиск по сайту', 'newLevel')}"/>
                                 <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>
@@ -79,3 +79,13 @@
         </div>
     </div>
 </div>
+{if strpos($CI->uri->uri_string, 'search') !== false}
+    {literal}
+        <script>
+            $(document).live('scriptDefer', function(){
+            var input = $('#inputString');
+            input.setCursorPosition(input.val().length);
+            });
+        </script>
+    {/literal}
+{/if}
