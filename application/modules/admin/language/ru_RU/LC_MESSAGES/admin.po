@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-18 15:51+0300\n"
+"POT-Creation-Date: 2013-09-19 11:49+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -58,51 +58,59 @@ msgid "Create"
 msgstr "Создать"
 
 #: /var/www/image.loc/_temp2.php:31
+msgid "Message"
+msgstr "Сообщение"
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "Variable must be surrounded by $"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
 msgid "Preview"
 msgstr "Просмотр"
 
-#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:34
 msgid "site"
 msgstr "сайт"
 
-#: /var/www/image.loc/_temp2.php:33
-#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:36
 msgid "Orders"
 msgstr "Заказы"
 
-#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:37
 msgid "Manage shop"
 msgstr "Администрировать магазин "
 
-#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:38
 msgid "Manage site"
 msgstr "Администрировать сайт"
 
-#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:39
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:40
 msgid "Help us get better"
 msgstr "Помогите нам стать лучше"
 
-#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:41
 msgid "report an error"
 msgstr "сообщить об ошибке"
 
-#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:42
 msgid "Documentation"
 msgstr "Документация"
 
-#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_temp2.php:43
 msgid "Your Name"
 msgstr "Ваше имя"
 
-#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_temp2.php:44
 msgid "Your Email"
 msgstr "Ваш E-mail"
 
-#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:45
 msgid ""
 "don\");\n"
 "_("
@@ -1279,10 +1287,6 @@ msgstr "Ограничение прав"
 #: /var/www/image.loc/_temp2.php:143
 msgid "This is a demo version ImageCMS. Part of the actions are limited. For a complete functional download and install the distribution."
 msgstr "Это демонстрационная версия ImageCMS. Часть действий ограничена. Что-бы ознакомиться с полным функционалом скачайте и установите дистрибутив."
-
-#: /var/www/image.loc/_temp2.php:144
-msgid "Message"
-msgstr "Сообщение"
 
 #: /var/www/image.loc/_temp2.php:145
 msgid "Please enter the column number"
@@ -3336,7 +3340,7 @@ msgstr "Создание товара"
 #: /var/www/image.loc/_temp2.php:294
 #: /var/www/image.loc/_temp2.php:362
 #: /var/www/image.loc/_temp2.php:378
-#: /var/www/image.loc/_temp2.php:437
+#: /var/www/image.loc/_temp2.php:444
 msgid "Images"
 msgstr "Изображения"
 
@@ -3345,7 +3349,7 @@ msgstr "Изображения"
 #: /var/www/image.loc/_temp2.php:297
 #: /var/www/image.loc/_temp2.php:366
 #: /var/www/image.loc/_temp2.php:379
-#: /var/www/image.loc/_temp2.php:439
+#: /var/www/image.loc/_temp2.php:446
 msgid "Kits"
 msgstr "Наборы"
 
@@ -3364,7 +3368,7 @@ msgstr "Фото"
 #: /var/www/image.loc/_temp2.php:152
 #: /var/www/image.loc/_temp2.php:180
 #: /var/www/image.loc/_temp2.php:334
-#: /var/www/image.loc/_temp2.php:452
+#: /var/www/image.loc/_temp2.php:459
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -3448,8 +3452,8 @@ msgid "Copy"
 msgstr "Копировать"
 
 #: /var/www/image.loc/_temp2.php:237
-#: /var/www/image.loc/_temp2.php:442
-#: /var/www/image.loc/_temp2.php:443
+#: /var/www/image.loc/_temp2.php:449
+#: /var/www/image.loc/_temp2.php:450
 msgid "Previous"
 msgstr "Предыдущий"
 
@@ -3493,13 +3497,13 @@ msgid "Kit List products are empty"
 msgstr "Список наборов продуктов пустой        "
 
 #: /var/www/image.loc/_temp2.php:303
-#: /var/www/image.loc/_temp2.php:446
+#: /var/www/image.loc/_temp2.php:453
 msgid "Kit removal"
 msgstr "Удаление набора"
 
 # а
 #: /var/www/image.loc/_temp2.php:304
-#: /var/www/image.loc/_temp2.php:447
+#: /var/www/image.loc/_temp2.php:454
 msgid "Kits del body"
 msgstr "Комплекты дель тела"
 
@@ -3510,6 +3514,27 @@ msgstr "статус"
 #: /var/www/image.loc/_temp2.php:405
 msgid "Select file"
 msgstr "Выберите файл"
+
+#: /var/www/image.loc/_temp2.php:432
+msgid "Searching for images on the Internet"
+msgstr "Поиск изображений в Интернете"
+
+#: /var/www/image.loc/_temp2.php:433
+msgid "URL or request for search"
+msgstr "URL или запрос для поиска"
+
+#: /var/www/image.loc/_temp2.php:434
+msgid "Enter the URL of the image or the search criterion"
+msgstr "Введите адрес изображения или  критери поиска"
+
+#: /var/www/image.loc/_temp2.php:435
+msgid "Hold down Shift to select multiple images"
+msgstr "Удерживайте Shift, чтобы выбрать несколько изображений"
+
+# англ
+#: /var/www/image.loc/_temp2.php:436
+msgid "Save as additional"
+msgstr "Сохранить как дополнительные"
 
 #: /var/www/image.loc/_temp2.php:21
 msgid "Do you really want to delete selected kits?"
@@ -4857,26 +4882,25 @@ msgstr "Ничего не найдено"
 msgid "Confirm"
 msgstr "Подтвердите"
 
-#: /var/www/image.loc/_temp2.php:96
+#: /var/www/image.loc/_temp2.php:97
 msgid "Content list"
 msgstr "Список содержимого"
 
-#: /var/www/image.loc/_temp2.php:100
-#: /var/www/image.loc/_temp2.php:101
 #: /var/www/image.loc/_temp2.php:102
+#: /var/www/image.loc/_temp2.php:103
 msgid "Create page"
 msgstr "Создать страницу"
 
-#: /var/www/image.loc/_temp2.php:103
-#: /var/www/image.loc/_temp2.php:110
+#: /var/www/image.loc/_temp2.php:104
+#: /var/www/image.loc/_temp2.php:111
 msgid "All categories"
 msgstr "Все категории"
 
-#: /var/www/image.loc/_temp2.php:105
+#: /var/www/image.loc/_temp2.php:106
 msgid "Url"
 msgstr "Url"
 
-#: /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:112
 msgid "Without category"
 msgstr "Без категории"
 
@@ -5038,12 +5062,12 @@ msgstr "Ваше сообщение было отправлено"
 msgid "Comment is a required field"
 msgstr "Поле комментарий обязательное"
 
-#: pages.php:112
+#: pages.php:109
 msgid "Deleted ID page"
 msgstr "ID удаленой страницы"
 
-#: pages.php:143
-#: pages.php:475
+#: pages.php:140
+#: pages.php:472
 #: widgets_manager.php:95
 #: widgets_manager.php:168
 #: widgets_manager.php:254
@@ -5051,107 +5075,111 @@ msgstr "ID удаленой страницы"
 msgid "Description "
 msgstr "Описание"
 
-#: pages.php:146
-#: pages.php:479
+#: pages.php:143
+#: pages.php:476
 msgid "Creation time"
 msgstr "Время создания"
 
-#: pages.php:147
-#: pages.php:480
+#: pages.php:144
+#: pages.php:477
 msgid "Publication date"
 msgstr "Дата публикации"
 
-#: pages.php:148
-#: pages.php:481
+#: pages.php:145
+#: pages.php:478
 msgid "Publication time"
 msgstr "Время публикации"
 
-#: pages.php:150
+#: pages.php:147
 msgid "Main page template"
 msgstr "Основной шаблон страницы"
 
-#: pages.php:177
-#: pages.php:510
+#: pages.php:174
+#: pages.php:507
 msgid "Reserved the same name module"
 msgstr "Reserved одноименным модулем"
 
-#: pages.php:186
-#: pages.php:519
+#: pages.php:183
+#: pages.php:516
 msgid "Reserved of the same name category"
 msgstr "Reserved одного и того же названия категории"
 
-#: pages.php:198
+#: pages.php:195
 msgid "Page with the same URL has been created yet. Specify or select another URL"
 msgstr "Страницы с таким же URL еще не создано. Укажите или выберите другой URL"
 
-#: pages.php:264
+#: pages.php:261
 msgid "Created a page"
 msgstr "Создал страницу"
 
-#: pages.php:274
+#: pages.php:271
 msgid "Page has been created"
 msgstr "Страница была создана"
 
-#: pages.php:323
+#: pages.php:320
 msgid "Not found"
 msgstr "не найдены"
 
-#: pages.php:450
+#: pages.php:447
 msgid "Language of the page"
 msgstr "Язык страницы"
 
-#: pages.php:450
+#: pages.php:447
 msgid "Created. ID"
 msgstr "Дата создания. ID"
 
-#: pages.php:477
+#: pages.php:474
 msgid "Main page template "
 msgstr "Основной шаблон страницы "
 
-#: pages.php:533
+#: pages.php:530
 msgid "Page with URL"
 msgstr "Страница с URL"
 
-#: pages.php:533
+#: pages.php:530
 msgid "in ID category"
 msgstr "в ID  категории"
 
-#: pages.php:533
+#: pages.php:530
 msgid " already exists. Specify or select another URL"
 msgstr " уже существует. Укажите или выберите другой URL"
 
-#: pages.php:591
-msgid "Changed the page "
-msgstr "Страница Изменена"
+#: pages.php:588
+msgid "Changed the page"
+msgstr "Страница изменена"
 
-#: pages.php:601
+#: pages.php:598
 msgid "Page contents have been updated"
 msgstr "Контент страницы был обновлен"
 
-#: pages.php:620
+#: pages.php:617
 msgid "Error: Generic page can not be deleted."
 msgstr "Ошибка: Общая страница не может быть удалена."
 
-#: pages.php:638
-#: pages.php:655
+#: pages.php:635
+#: pages.php:652
 msgid "Page has been deleted."
 msgstr "Страница удалена."
 
-#: pages.php:700
+#: pages.php:697
 msgid "Successful delete"
 msgstr "/* Успешное удаление */"
 
-#: pages.php:783
+#: pages.php:780
 msgid "Successfull moving"
 msgstr "Успешное перемещение"
 
-#: pages.php:787
+#: pages.php:784
 msgid "The operation error"
 msgstr "Ошибки в операции"
 
-#: pages.php:840
+#: pages.php:837
 msgid "Zero-length string"
 msgstr "Строка нулевой длины"
+
+#: pages.php:925
+msgid "Status change success"
+msgstr "Статус был изменен"
 
 #: login.php:59
 msgid "Protection code"
