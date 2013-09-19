@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    
+    
     $('.protocolSettings').on('change', function() {
         if ($(this).val() === "SMTP") {
             $('.portControlGroup').css('display', 'block');
@@ -177,7 +179,7 @@ var EmailTemplateVariables = {
     },
     validateVariable: function(variable, variableValue) {
         if (variable[0] != '$' || variable[variable.length - 1] != '$') {
-            showMessage('Сообщение', 'Переменну должни окружать $', 'r');
+            showMessage(lang('Message6'), lang('Variable must be surrounded by $'), 'r');
             exit;
         }
         if (!variableValue) {

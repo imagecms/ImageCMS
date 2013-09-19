@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="new_pass_conf">{lang('New password confirmation', 'user_manager')}</label>
+                                            <label class="control-label" for="new_pass_conf">{lang('Password confirm', 'user_manager')}</label>
                                             <div class="controls">
                                                 <input type="password" name="new_pass_conf" id="new_pass_conf" value=""/>
                                             </div>
