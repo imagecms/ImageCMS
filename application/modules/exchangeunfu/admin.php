@@ -6,6 +6,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         $this->locale = MY_Controller::getCurrentLocale();
+        $lang = new MY_Lang();
+        $lang->load('exchangeunfu');
     }
 
     public function index() {

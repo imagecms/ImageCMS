@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 16:25+0300\n"
+"POT-Creation-Date: 2013-09-17 17:41+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -13,524 +13,520 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../\n"
-"X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: .\n"
-
-#: /var/www/image.loc/_temp2.php:19
-#: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:31
-#: /var/www/image.loc/_temp2.php:37
-#: /var/www/image.loc/_temp2.php:53
-#: /var/www/image.loc/_temp2.php:89
-#: /var/www/image.loc/_temp2.php:124
-#, fuzzy
-msgid "Product"
-msgstr "Настр"
 
 #: /var/www/image.loc/_temp2.php:20
 #: /var/www/image.loc/_temp2.php:24
 #: /var/www/image.loc/_temp2.php:32
 #: /var/www/image.loc/_temp2.php:38
 #: /var/www/image.loc/_temp2.php:54
-#: /var/www/image.loc/_temp2.php:90
-#: /var/www/image.loc/_temp2.php:125
-msgid "Comment"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:91
+#: /var/www/image.loc/_temp2.php:126
+msgid "Product"
+msgstr "Товар"
 
 #: /var/www/image.loc/_temp2.php:21
-#: /var/www/image.loc/_temp2.php:34
-#: /var/www/image.loc/_temp2.php:57
-msgid "Emty list"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_temp2.php:92
+#: /var/www/image.loc/_temp2.php:127
+msgid "Comment"
+msgstr "Комментарий"
 
 #: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:59
-msgid "Wish list is empty"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:58
+msgid "Emty list"
+msgstr "Пустой список"
 
-#: /var/www/image.loc/_temp2.php:25
-#, fuzzy
-msgid "User Information"
-msgstr "Настр"
+#: /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:60
+msgid "Wish list is empty"
+msgstr "Список Желаний пуст"
 
 #: /var/www/image.loc/_temp2.php:26
-#: /var/www/image.loc/_temp2.php:82
-#: /var/www/image.loc/_temp2.php:115
-msgid "Name"
-msgstr ""
+msgid "User Information"
+msgstr "Информация пользователя"
 
 #: /var/www/image.loc/_temp2.php:27
-#: /var/www/image.loc/_temp2.php:112
-msgid "Ava"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:84
+#: /var/www/image.loc/_temp2.php:117
+msgid "Name"
+msgstr "Название"
 
 #: /var/www/image.loc/_temp2.php:28
-#: /var/www/image.loc/_temp2.php:116
-msgid "Birthday"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:114
+msgid "Ava"
+msgstr "Ава"
 
 #: /var/www/image.loc/_temp2.php:29
-#: /var/www/image.loc/_temp2.php:105
-#, fuzzy
-msgid "User lists"
-msgstr "Список замовлень"
+#: /var/www/image.loc/_temp2.php:118
+msgid "Birthday"
+msgstr "День рождения"
 
 #: /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:36
-#: /var/www/image.loc/_temp2.php:52
-#: /var/www/image.loc/_temp2.php:88
-#: /var/www/image.loc/_temp2.php:123
+#: /var/www/image.loc/_temp2.php:107
+msgid "User lists"
+msgstr "Списки пользователя"
+
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:125
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Отписаться"
 
-#: /var/www/image.loc/_temp2.php:33
-#: /var/www/image.loc/_temp2.php:35
-#: /var/www/image.loc/_temp2.php:39
-#: /var/www/image.loc/_temp2.php:50
-msgid "delete"
-msgstr ""
-
+#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:36
 #: /var/www/image.loc/_temp2.php:40
-msgid "Already in WishList"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:51
+msgid "delete"
+msgstr "удалить"
 
 #: /var/www/image.loc/_temp2.php:41
-#: /var/www/image.loc/_temp2.php:114
-#, fuzzy
-msgid "Delete image"
-msgstr "Создать категорию"
+msgid "Already in WishList"
+msgstr "Уже в Списке Желаний"
 
 #: /var/www/image.loc/_temp2.php:42
-msgid "Lists types"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:116
+msgid "Delete image"
+msgstr "Удалить картинку"
 
 #: /var/www/image.loc/_temp2.php:43
-#: /var/www/image.loc/_temp2.php:84
-#: /var/www/image.loc/_temp2.php:132
-msgid "shared"
-msgstr ""
+msgid "Lists types"
+msgstr "Типы списков"
 
 #: /var/www/image.loc/_temp2.php:44
 #: /var/www/image.loc/_temp2.php:86
-#: /var/www/image.loc/_temp2.php:133
-msgid "public"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:134
+msgid "shared"
+msgstr "поделенный"
 
 #: /var/www/image.loc/_temp2.php:45
-#: /var/www/image.loc/_temp2.php:85
-#: /var/www/image.loc/_temp2.php:134
-msgid "private"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:88
+#: /var/www/image.loc/_temp2.php:135
+msgid "public"
+msgstr "публичный"
 
 #: /var/www/image.loc/_temp2.php:46
-#: /var/www/image.loc/_temp2.php:135
-msgid "List name"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:87
+#: /var/www/image.loc/_temp2.php:136
+msgid "private"
+msgstr "частный"
 
 #: /var/www/image.loc/_temp2.php:47
-msgid "List description"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:137
+msgid "List name"
+msgstr "Имя списка"
 
 #: /var/www/image.loc/_temp2.php:48
-#, fuzzy
-msgid "Create new list"
-msgstr "Создать категорию"
+msgid "List description"
+msgstr "Описание списка"
 
 #: /var/www/image.loc/_temp2.php:49
-#: /var/www/image.loc/_temp2.php:83
-#: /var/www/image.loc/_temp2.php:119
-msgid "List type"
-msgstr ""
+msgid "Create new list"
+msgstr "Создать новый список"
 
-#: /var/www/image.loc/_temp2.php:51
-msgid "edit"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:55
-#: /var/www/image.loc/_temp2.php:58
-#: /var/www/image.loc/_temp2.php:91
-#: /var/www/image.loc/_temp2.php:95
-#: /var/www/image.loc/_temp2.php:100
+#: /var/www/image.loc/_temp2.php:50
+#: /var/www/image.loc/_temp2.php:85
 #: /var/www/image.loc/_temp2.php:121
-#: /var/www/image.loc/_temp2.php:126
-msgid "Delete"
-msgstr ""
+msgid "List type"
+msgstr "Тип списка"
+
+#: /var/www/image.loc/_temp2.php:52
+msgid "edit"
+msgstr "редактировать"
 
 #: /var/www/image.loc/_temp2.php:56
-#: /var/www/image.loc/_temp2.php:127
-msgid "Move"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:97
+#: /var/www/image.loc/_temp2.php:102
+#: /var/www/image.loc/_temp2.php:123
+#: /var/www/image.loc/_temp2.php:128
+msgid "Delete"
+msgstr "Удалить"
 
-#: /var/www/image.loc/_temp2.php:60
-msgid "Select Wishlist"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:129
+msgid "Move"
+msgstr "Переместить"
 
 #: /var/www/image.loc/_temp2.php:61
-#, fuzzy
-msgid "Create WishList"
-msgstr "Создать категорию"
+msgid "Select Wishlist"
+msgstr "Выберите Список Желаний"
 
 #: /var/www/image.loc/_temp2.php:62
-#: /var/www/image.loc/_temp2.php:144
-msgid "Move in list"
-msgstr ""
+msgid "Create WishList"
+msgstr "Создать Список Желаний"
 
 #: /var/www/image.loc/_temp2.php:63
-msgid "Add to list"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:146
+msgid "Move in list"
+msgstr "Переместить в список"
 
 #: /var/www/image.loc/_temp2.php:64
-#: /var/www/image.loc/_temp2.php:67
-#, fuzzy
-msgid "Wish List settings"
-msgstr "Виджети"
+msgid "Add to list"
+msgstr "Добавить в список"
 
 #: /var/www/image.loc/_temp2.php:65
-#: /var/www/image.loc/_temp2.php:79
-#: /var/www/image.loc/_temp2.php:98
-#: /var/www/image.loc/_temp2.php:106
-#: /var/www/image.loc/_temp2.php:139
-msgid "Back"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:69
+msgid "Wish List settings"
+msgstr "Настройки Списка Желаний"
 
 #: /var/www/image.loc/_temp2.php:66
-#: /var/www/image.loc/_temp2.php:92
-#: /var/www/image.loc/_temp2.php:118
-msgid "Save"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:81
+#: /var/www/image.loc/_temp2.php:100
+#: /var/www/image.loc/_temp2.php:108
+#: /var/www/image.loc/_temp2.php:141
+msgid "Back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:67
+msgid "Users"
+msgstr "Пользователи"
 
 #: /var/www/image.loc/_temp2.php:68
-msgid "Maximum user name length"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:69
-msgid "Maximum list name length"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:120
+msgid "Save"
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:70
-msgid "Maximum lists counts"
-msgstr ""
+msgid "Maximum user name length"
+msgstr "Максимальная длина имени пользователя"
 
 #: /var/www/image.loc/_temp2.php:71
-msgid "Maximum items counts"
-msgstr ""
+msgid "Maximum list name length"
+msgstr "Максимальная длина имени списка"
 
 #: /var/www/image.loc/_temp2.php:72
-msgid "Maximum comment length"
-msgstr ""
+msgid "Maximum lists counts"
+msgstr "Максимальное количество списков"
 
 #: /var/www/image.loc/_temp2.php:73
-msgid "Maximum description length"
-msgstr ""
+msgid "Maximum items counts"
+msgstr "Максимальное количество элементов"
 
 #: /var/www/image.loc/_temp2.php:74
-msgid "Maximum Wish List description length"
-msgstr ""
+msgid "Maximum comment length"
+msgstr "Максимальная длина комментария"
 
 #: /var/www/image.loc/_temp2.php:75
-msgid "Maximum image width"
-msgstr ""
+msgid "Maximum description length"
+msgstr "Максимальная длина описания"
 
 #: /var/www/image.loc/_temp2.php:76
-msgid "Maximum image height"
-msgstr ""
+msgid "Maximum Wish List description length"
+msgstr "Максимальная длина описания Списка Желания"
 
 #: /var/www/image.loc/_temp2.php:77
-msgid "Maximum image size"
-msgstr ""
+msgid "Maximum image width"
+msgstr "Максимальная ширина изображения"
 
 #: /var/www/image.loc/_temp2.php:78
-msgid "Edit list"
-msgstr ""
+msgid "Maximum image height"
+msgstr "Максимальная высота изображения"
+
+#: /var/www/image.loc/_temp2.php:79
+msgid "Maximum image size"
+msgstr "Максимальный размер изображения"
 
 #: /var/www/image.loc/_temp2.php:80
-#: /var/www/image.loc/_temp2.php:99
-#: /var/www/image.loc/_temp2.php:107
-#: /var/www/image.loc/_temp2.php:140
-#, fuzzy
+msgid "Edit list"
+msgstr "Редактировать список"
+
+#: /var/www/image.loc/_temp2.php:82
+#: /var/www/image.loc/_temp2.php:101
+#: /var/www/image.loc/_temp2.php:109
+#: /var/www/image.loc/_temp2.php:142
 msgid "Settings"
-msgstr "Виджети"
+msgstr "Настройки"
 
-#: /var/www/image.loc/_temp2.php:81
+#: /var/www/image.loc/_temp2.php:83
 msgid "List"
-msgstr ""
+msgstr "Список"
 
-#: /var/www/image.loc/_temp2.php:87
-#: /var/www/image.loc/_temp2.php:120
-#: /var/www/image.loc/_temp2.php:136
+#: /var/www/image.loc/_temp2.php:89
+#: /var/www/image.loc/_temp2.php:122
+#: /var/www/image.loc/_temp2.php:138
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
-#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:95
 msgid "Users removing"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:94
-msgid "Remove users?"
-msgstr ""
+msgstr "Удаление пользователей"
 
 #: /var/www/image.loc/_temp2.php:96
+msgid "Remove users?"
+msgstr "Удалить пользователей?"
+
+#: /var/www/image.loc/_temp2.php:98
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
-#: /var/www/image.loc/_temp2.php:97
-#, fuzzy
+#: /var/www/image.loc/_temp2.php:99
 msgid "Users list"
-msgstr "Список замовлень"
-
-#: /var/www/image.loc/_temp2.php:101
-msgid "ID"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:102
-#: /var/www/image.loc/_temp2.php:108
-#: /var/www/image.loc/_temp2.php:111
-msgid "User"
-msgstr ""
+msgstr "Список пользователей"
 
 #: /var/www/image.loc/_temp2.php:103
-msgid "Lists count"
-msgstr ""
+msgid "ID"
+msgstr "ID"
 
 #: /var/www/image.loc/_temp2.php:104
-msgid "Lists items count"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:109
-#: /var/www/image.loc/_temp2.php:141
-msgid "Lists"
-msgstr ""
-
 #: /var/www/image.loc/_temp2.php:110
-#: /var/www/image.loc/_temp2.php:130
-#: /var/www/image.loc/_temp2.php:137
-#: /var/www/image.loc/_temp2.php:143
-#, fuzzy
-msgid "Create list"
-msgstr "Создать категорию"
-
 #: /var/www/image.loc/_temp2.php:113
+msgid "User"
+msgstr "Пользователь"
+
+#: /var/www/image.loc/_temp2.php:105
+msgid "Lists count"
+msgstr "Количество списков"
+
+#: /var/www/image.loc/_temp2.php:106
+msgid "Lists items count"
+msgstr "Количество товаров в списках"
+
+#: /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:143
+msgid "Lists"
+msgstr "Списки"
+
+#: /var/www/image.loc/_temp2.php:112
+#: /var/www/image.loc/_temp2.php:132
+#: /var/www/image.loc/_temp2.php:139
+#: /var/www/image.loc/_temp2.php:145
+msgid "Create list"
+msgstr "Создать список"
+
+#: /var/www/image.loc/_temp2.php:115
 msgid "Download"
-msgstr ""
+msgstr "Скачать"
 
-#: /var/www/image.loc/_temp2.php:117
+#: /var/www/image.loc/_temp2.php:119
 msgid "Last"
-msgstr ""
+msgstr "Последний"
 
-#: /var/www/image.loc/_temp2.php:122
+#: /var/www/image.loc/_temp2.php:124
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
-#: /var/www/image.loc/_temp2.php:128
+#: /var/www/image.loc/_temp2.php:130
 msgid "Empty list"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:129
-msgid "No lists"
-msgstr ""
+msgstr "Список пуст"
 
 #: /var/www/image.loc/_temp2.php:131
+msgid "No lists"
+msgstr "Нет списков"
+
+#: /var/www/image.loc/_temp2.php:133
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
-#: /var/www/image.loc/_temp2.php:138
+#: /var/www/image.loc/_temp2.php:140
 msgid "Move item"
-msgstr ""
+msgstr "Переместить наименование"
 
-#: /var/www/image.loc/_temp2.php:142
+#: /var/www/image.loc/_temp2.php:144
 msgid "Choose Wish List"
-msgstr ""
+msgstr "Выберите Список Желаний"
 
 #: wishlist.php:206
 #: wishlistApi.php:190
 msgid "Add to Wish List"
-msgstr ""
+msgstr "Добавить в Список Желаний"
 
 #: wishlist.php:217
 #: wishlistApi.php:195
 msgid "Already in Wish List"
-msgstr ""
+msgstr "Уже в Списке Желаний"
 
 #: classes/ParentWishlist.php:85
 msgid "No users"
-msgstr ""
+msgstr "Нет пользователей"
 
 #: classes/ParentWishlist.php:134
 #: classes/ParentWishlist.php:207
 #: classes/ParentWishlist.php:595
 msgid "Invalid request"
-msgstr ""
+msgstr "Неправильный запрос"
 
 #: classes/ParentWishlist.php:187
 msgid "No views"
-msgstr ""
+msgstr "Нет просмотров"
 
 #: classes/ParentWishlist.php:255
 #: classes/BaseApi.php:164
 #: classes/BaseWishlist.php:166
 msgid "Updated"
-msgstr ""
+msgstr "Обновлен"
 
 #: classes/ParentWishlist.php:257
 #: classes/BaseApi.php:166
 #: classes/BaseWishlist.php:168
 msgid "Not updated"
-msgstr ""
+msgstr "Не обновлен"
 
 #: classes/ParentWishlist.php:277
 #: classes/ParentWishlist.php:404
 msgid "Wish Lists limit exhausted"
-msgstr ""
+msgstr "Лимит Списков Желаний исчерпан"
 
 #: classes/ParentWishlist.php:277
 #: classes/ParentWishlist.php:404
 msgid "List maximum"
-msgstr ""
+msgstr "Максимум спосков"
 
 #: classes/ParentWishlist.php:283
 #: classes/BaseApi.php:227
 #: classes/BaseWishlist.php:182
 msgid "List description limit exhausted"
-msgstr ""
+msgstr "Лимит описания сиска исчерпан"
 
 #: classes/ParentWishlist.php:283
 #: classes/BaseApi.php:227
 #: classes/BaseWishlist.php:182
 msgid "List description max count"
-msgstr ""
+msgstr "Максимальная длина описания списка"
 
 #: classes/ParentWishlist.php:289
 msgid "Wish list name will be changed"
-msgstr ""
+msgstr "Имя Списка Желания будет изменено"
 
 #: classes/ParentWishlist.php:289
 msgid "List name length maximum"
-msgstr ""
+msgstr "Максимальная длина названия списка"
 
 #: classes/ParentWishlist.php:293
 msgid "Wish List name can not be empty!"
-msgstr ""
+msgstr "Имя Списка Желаний не может быть пустым!"
 
 #: classes/ParentWishlist.php:299
 #: classes/BaseApi.php:196
 #: classes/BaseWishlist.php:139
-#, fuzzy
 msgid "Created"
-msgstr "Создать категорию"
+msgstr "Создано"
 
 #: classes/ParentWishlist.php:322
 #: classes/ParentWishlist.php:351
 msgid "You can not delete Wish List"
-msgstr ""
+msgstr "Вы не можете удалить Список Желаний"
 
 #: classes/ParentWishlist.php:327
 #: classes/ParentWishlist.php:356
 msgid "Successfully deleted"
-msgstr ""
+msgstr "Успешно удалено"
 
 #: classes/ParentWishlist.php:347
 #: classes/ParentWishlist.php:457
 msgid "Can not remove items from wishlist"
-msgstr ""
+msgstr "Невозможно удалить товары из желаний"
 
 #: classes/ParentWishlist.php:384
 msgid "Limit of list items exhausted"
-msgstr ""
+msgstr "Лимит товаров списка исчерпан"
 
 #: classes/ParentWishlist.php:389
 msgid "User is not logged in"
-msgstr ""
+msgstr "Пользователь не вошли в систему"
 
 #: classes/ParentWishlist.php:395
 msgid "Wishlist name will be changed"
-msgstr ""
+msgstr "Имя Списка Желаний будет изменено"
 
 #: classes/ParentWishlist.php:395
 msgid "Maximum length of wishlist name"
-msgstr ""
+msgstr "Максимальная длина названия Списка Желаний"
 
 #: classes/ParentWishlist.php:409
 msgid "You can not add"
-msgstr ""
+msgstr "Вы не можете добавить"
 
 #: classes/ParentWishlist.php:414
 msgid "Added to wishlist"
-msgstr ""
+msgstr "Добавлено в Список Желаний"
 
 #: classes/ParentWishlist.php:459
 #: classes/BaseApi.php:63
 #: classes/BaseApi.php:93
+#: classes/BaseApi.php:316
 #: classes/BaseWishlist.php:69
+#: classes/BaseWishlist.php:293
 msgid "Successful operation"
-msgstr ""
+msgstr "Успешная операция"
 
 #: classes/ParentWishlist.php:499
 msgid "User data is not found"
-msgstr ""
+msgstr "Данные пользователя не найдены"
 
 #: classes/ParentWishlist.php:559
 msgid "Maximum image size is exceeded"
-msgstr ""
+msgstr "Превышен максимальный размер изображения"
 
 #: classes/ParentWishlist.php:561
 msgid "Maximum width of the image is exceeded"
-msgstr ""
+msgstr "Превышена максимальная ширина изображения"
 
 #: classes/ParentWishlist.php:563
 msgid "Max image height exceeded"
-msgstr ""
+msgstr "Превышена максимальная высота изображения"
 
 #: classes/ParentWishlist.php:565
 msgid "Invalid file format"
-msgstr ""
+msgstr "Неверный формат файла"
 
 #: classes/BaseApi.php:65
 #: classes/BaseApi.php:95
 #: classes/BaseWishlist.php:65
 #: classes/BaseWishlist.php:71
 msgid "Unable to move"
-msgstr ""
+msgstr "Не удалось переместить"
 
 #: classes/BaseApi.php:264
 msgid "Successful deleting"
-msgstr ""
+msgstr "Успешное удаление"
 
 #: classes/BaseApi.php:266
+#: classes/BaseApi.php:318
+#: classes/BaseWishlist.php:295
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: classes/BaseApi.php:280
 msgid "Loading error"
-msgstr ""
+msgstr "Ошибка загрузки"
 
 #: classes/BaseApi.php:284
 #: classes/BaseApi.php:286
 #: classes/BaseWishlist.php:279
 msgid "Image uploaded"
-msgstr ""
+msgstr "Изображение загружено"
 
 #: classes/BaseApi.php:288
 msgid "Can not Upload photo"
-msgstr ""
+msgstr "Не возможно загрузить фото"
 
 #: classes/BaseApi.php:291
 msgid "You did not enter user"
-msgstr ""
+msgstr "Вы не ввели пользователя"
 
 #: classes/BaseWishlist.php:227
 #: classes/BaseWishlist.php:247
 msgid "Successful deleted"
-msgstr ""
+msgstr "Успешное удален"
 
 #: classes/BaseWishlist.php:229
 #: classes/BaseWishlist.php:249
 msgid "Unable to delete"
-msgstr ""
+msgstr "Не удается удалить"
 
 #: classes/BaseWishlist.php:281
 msgid "Can not upload photo"
-msgstr ""
+msgstr "Не возможно загрузить фото"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

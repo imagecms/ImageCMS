@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:38+0300\n"
+"POT-Creation-Date: 2013-09-19 12:44+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -12,317 +12,312 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
-
-#: /var/www/image.loc/_temp2.php:10
-#, fuzzy
-msgid "Creating mail template"
-msgstr "Создать категорию"
+"X-Poedit-SearchPath-0: .\n"
 
 #: /var/www/image.loc/_temp2.php:11
-#: /var/www/image.loc/_temp2.php:59
-msgid "Go back"
-msgstr ""
+#, fuzzy
+msgid "Message6"
+msgstr "Сообщение"
 
 #: /var/www/image.loc/_temp2.php:12
-#: /var/www/image.loc/_temp2.php:45
-#: /var/www/image.loc/_temp2.php:60
-msgid "Save"
-msgstr ""
+msgid "Variable must be surrounded by $"
+msgstr "Переменная должна быть окружена $"
 
 #: /var/www/image.loc/_temp2.php:13
-#: /var/www/image.loc/_temp2.php:61
-msgid "Save and go back"
-msgstr ""
+msgid "Creating mail template"
+msgstr "Создать шаблон письма"
 
 #: /var/www/image.loc/_temp2.php:14
-#: /var/www/image.loc/_temp2.php:36
-#: /var/www/image.loc/_temp2.php:43
-#: /var/www/image.loc/_temp2.php:46
-#: /var/www/image.loc/_temp2.php:64
-#, fuzzy
-msgid "Settings"
-msgstr "Виджети"
+#: /var/www/image.loc/_temp2.php:62
+msgid "Go back"
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:15
-msgid "Template name (only latin)"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:63
+msgid "Save"
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:16
-#: /var/www/image.loc/_temp2.php:48
-#: /var/www/image.loc/_temp2.php:66
-#: /var/www/image.loc/_temp2.php:85
-msgid "From"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:64
+msgid "Save and go back"
+msgstr "Сохранить и вернуться"
 
 #: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:46
 #: /var/www/image.loc/_temp2.php:49
 #: /var/www/image.loc/_temp2.php:67
-msgid "From email"
-msgstr ""
+msgid "Settings"
+msgstr "Настройки"
 
 #: /var/www/image.loc/_temp2.php:18
-#: /var/www/image.loc/_temp2.php:41
-#: /var/www/image.loc/_temp2.php:51
-#: /var/www/image.loc/_temp2.php:68
-msgid "Theme"
-msgstr ""
+msgid "Template name (only latin)"
+msgstr "Имя шаблона (только латинские)"
 
 #: /var/www/image.loc/_temp2.php:19
+#: /var/www/image.loc/_temp2.php:51
 #: /var/www/image.loc/_temp2.php:69
-msgid "Message type"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:88
+msgid "From"
+msgstr "От"
 
 #: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:52
 #: /var/www/image.loc/_temp2.php:70
-#, fuzzy
-msgid "Template user mail"
-msgstr "Создать категорию"
+msgid "From email"
+msgstr "От кого (email)"
 
 #: /var/www/image.loc/_temp2.php:21
-msgid "Send email to user"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:71
+msgid "Theme"
+msgstr "Тема"
 
 #: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:26
 #: /var/www/image.loc/_temp2.php:72
-#: /var/www/image.loc/_temp2.php:76
-msgid "Yes"
-msgstr ""
+msgid "Message type"
+msgstr "Тип сообщения"
 
 #: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:27
 #: /var/www/image.loc/_temp2.php:73
-#: /var/www/image.loc/_temp2.php:77
-msgid "No"
-msgstr ""
+msgid "Template user mail"
+msgstr "Шаблон письма пользователю"
 
 #: /var/www/image.loc/_temp2.php:24
 #: /var/www/image.loc/_temp2.php:74
-msgid "Admin mail template"
-msgstr ""
+msgid "Send email to user"
+msgstr "Отправить  сообщение пользователю"
 
 #: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:29
 #: /var/www/image.loc/_temp2.php:75
-msgid "Send email to admin"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:79
+msgid "Yes"
+msgstr "Да"
+
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:76
+#: /var/www/image.loc/_temp2.php:80
+msgid "No"
+msgstr "Нет"
+
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:77
+msgid "Admin mail template"
+msgstr "Шаблона письма администратору"
 
 #: /var/www/image.loc/_temp2.php:28
 #: /var/www/image.loc/_temp2.php:78
-msgid "Admin address"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:29
-#: /var/www/image.loc/_temp2.php:79
-msgid "Template description"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:30
-msgid "Template email deleting"
-msgstr ""
+msgid "Send email to admin"
+msgstr "Отправлять письмо администратору"
 
 #: /var/www/image.loc/_temp2.php:31
-#, fuzzy
-msgid "Delete selected templates"
-msgstr "Создать категорию"
+#: /var/www/image.loc/_temp2.php:81
+msgid "Admin address"
+msgstr "Адрес администратора"
 
 #: /var/www/image.loc/_temp2.php:32
-#: /var/www/image.loc/_temp2.php:37
-#: /var/www/image.loc/_temp2.php:83
-msgid "Delete"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:82
+msgid "Template description"
+msgstr "Описание шаблона"
 
 #: /var/www/image.loc/_temp2.php:33
-msgid "Cancel"
-msgstr ""
+msgid "Template email deleting"
+msgstr "Удаление шаблона письма "
 
 #: /var/www/image.loc/_temp2.php:34
-msgid "Template list view"
-msgstr ""
+msgid "Delete selected templates"
+msgstr "Удалить выбрание шаблоны"
 
 #: /var/www/image.loc/_temp2.php:35
-#: /var/www/image.loc/_temp2.php:44
-msgid "Back"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:86
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Cancel"
+msgstr "Отменить"
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "Template list view"
+msgstr "Просмотр  списка шаблонов"
 
 #: /var/www/image.loc/_temp2.php:38
-#, fuzzy
+#: /var/www/image.loc/_temp2.php:47
+msgid "Back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:41
 msgid "Create template"
-msgstr "Создать категорию"
-
-#: /var/www/image.loc/_temp2.php:39
-msgid "Name"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:40
-msgid "Description"
-msgstr ""
+msgstr "Создать шаблон"
 
 #: /var/www/image.loc/_temp2.php:42
-msgid "Templates list empty"
-msgstr ""
+msgid "Name"
+msgstr "Название"
 
-#: /var/www/image.loc/_temp2.php:47
-msgid "Install standart templates"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:43
+msgid "Description"
+msgstr "Описание"
+
+#: /var/www/image.loc/_temp2.php:45
+msgid "Templates list empty"
+msgstr "Список шаблонов пуст"
 
 #: /var/www/image.loc/_temp2.php:50
-msgid "Admin email"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:52
-msgid "Use wraper"
-msgstr ""
+msgid "Install standart templates"
+msgstr "Установите стандартные шаблоны"
 
 #: /var/www/image.loc/_temp2.php:53
-msgid "Wraper"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:54
-msgid "Server path to sendmail"
-msgstr ""
+msgid "Admin email"
+msgstr "Email администратора"
 
 #: /var/www/image.loc/_temp2.php:55
-msgid "Protocol"
-msgstr ""
+msgid "Use wraper"
+msgstr "Использувать обгортку"
 
 #: /var/www/image.loc/_temp2.php:56
-msgid "Port"
-msgstr ""
+msgid "Wraper"
+msgstr "Обгортка"
 
 #: /var/www/image.loc/_temp2.php:57
-msgid "Check email sending"
-msgstr ""
+msgid "Server path to sendmail"
+msgstr "Серверная путь к Sendmail"
 
 #: /var/www/image.loc/_temp2.php:58
+msgid "Protocol"
+msgstr "Протокол"
+
+#: /var/www/image.loc/_temp2.php:59
+msgid "Port"
+msgstr "Порт"
+
+#: /var/www/image.loc/_temp2.php:60
+msgid "Check email sending"
+msgstr "Дата отправки электронной почты"
+
+#: /var/www/image.loc/_temp2.php:61
 msgid "Email template editing"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:62
-#, fuzzy
-msgid "Template settings"
-msgstr "Виджети"
-
-#: /var/www/image.loc/_temp2.php:63
-msgid "Template_variables"
-msgstr ""
+msgstr "Редактирование  шаблона письма"
 
 #: /var/www/image.loc/_temp2.php:65
+msgid "Template settings"
+msgstr "Настройки шаблона"
+
+#: /var/www/image.loc/_temp2.php:66
+msgid "Template variables"
+msgstr "Переменный шаблона"
+
+#: /var/www/image.loc/_temp2.php:68
 msgid "Template name(only latin)"
-msgstr ""
+msgstr "Имя шаблона (только латинские)"
 
-#: /var/www/image.loc/_temp2.php:71
-msgid "Send_email_to_user"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:80
+#: /var/www/image.loc/_temp2.php:83
 msgid "Variables"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:81
-msgid "Values"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:82
-msgid "Edit"
-msgstr ""
+msgstr "Переменные"
 
 #: /var/www/image.loc/_temp2.php:84
+msgid "Values"
+msgstr "Величины"
+
+#: /var/www/image.loc/_temp2.php:85
+msgid "Edit"
+msgstr "Редактировать"
+
+#: /var/www/image.loc/_temp2.php:87
 msgid "Add new variable"
-msgstr ""
+msgstr "Добавить новую переменную"
 
-#: ../../../admin.php:42
-#, fuzzy
-msgid "Template_created"
-msgstr "Настр"
+#: admin.php:44
+msgid "Template created"
+msgstr "Шаблон создан"
 
-#: ../../../admin.php:81
-msgid "Template_edited"
-msgstr ""
+#: admin.php:83
+msgid "Template edited"
+msgstr "Шаблон отредактирован"
 
-#: ../../../admin.php:105
-msgid "Admin_email"
-msgstr ""
+#: admin.php:108
+msgid "Email sender"
+msgstr "От кого"
 
-#: ../../../admin.php:106
-msgid "Sender_eamil"
-msgstr ""
-
-#: ../../../admin.php:108
-#: ../../../classes/ParentEmail.php:234
-#: ../../../classes/ParentEmail.php:289
-msgid "From_email"
-msgstr ""
-
-#: ../../../admin.php:116
-#: ../../../admin.php:119
+#: admin.php:118
+#: admin.php:121
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
-#: ../../../admin.php:119
-msgid "Settings_saved"
-msgstr ""
+#: admin.php:121
+msgid "Settings saved"
+msgstr "Настройки сохранены"
 
-#: ../../../admin.php:130
+#: admin.php:132
 msgid "Field"
-msgstr ""
+msgstr "Поле"
 
-#: ../../../admin.php:130
-msgid "must_contain_variable"
-msgstr ""
+#: admin.php:132
+msgid "Must contain variable"
+msgstr "Должен содержать переменную"
 
-#: ../../../module_info.php:6
+#: module_info.php:6
 msgid "CMSEmail"
-msgstr ""
+msgstr "CMSEmail"
 
-#: ../../../module_info.php:7
+#: module_info.php:7
 msgid "Email module"
-msgstr ""
+msgstr "Модуль писем"
 
-#: ../../../classes/ParentEmail.php:163
-#: ../../../classes/ParentEmail.php:192
-msgid "error_user_message_doesnt_send"
-msgstr ""
+#: classes/ParentEmail.php:165
+#: classes/ParentEmail.php:194
+msgid "User message doesnt send"
+msgstr "Письмо пользователю не отослано"
 
-#: ../../../classes/ParentEmail.php:232
-msgid "Template_name"
-msgstr ""
+#: classes/ParentEmail.php:234
+msgid "Template name"
+msgstr "Название шаблона"
 
-#: ../../../classes/ParentEmail.php:233
-#: ../../../classes/ParentEmail.php:288
+#: classes/ParentEmail.php:235
+#: classes/ParentEmail.php:290
 msgid "from"
-msgstr ""
+msgstr "от"
 
-#: ../../../classes/ParentEmail.php:235
-#: ../../../classes/ParentEmail.php:290
-msgid "Template_theme"
-msgstr ""
+#: classes/ParentEmail.php:237
+#: classes/ParentEmail.php:292
+msgid "Template theme"
+msgstr "Тема шаблона"
 
-#: ../../../classes/ParentEmail.php:238
-#: ../../../classes/ParentEmail.php:240
-#: ../../../classes/ParentEmail.php:293
-#: ../../../classes/ParentEmail.php:295
-msgid "Template_user_mail"
-msgstr ""
+#: classes/ParentEmail.php:245
+#: classes/ParentEmail.php:247
+#: classes/ParentEmail.php:300
+#: classes/ParentEmail.php:302
+msgid "Template admin mail"
+msgstr "Шаблон письма админу"
 
-#: ../../../classes/ParentEmail.php:243
-#: ../../../classes/ParentEmail.php:245
-#: ../../../classes/ParentEmail.php:298
-#: ../../../classes/ParentEmail.php:300
-msgid "Template_admin_mail"
-msgstr ""
+#, fuzzy
+#~ msgid "Message4"
+#~ msgstr "Сообщение"
 
-#: ../../../classes/ParentEmail.php:247
-#: ../../../classes/ParentEmail.php:302
-msgid "Admin_address"
-msgstr ""
+#~ msgid "Send_email_to_user"
+#~ msgstr "Send_email_to_user"
 
-#: ../../../classes/ParentEmail.php:379
-msgid "Check_email_sending"
-msgstr ""
+#~ msgid "Admin_email"
+#~ msgstr "ADMIN_EMAIL"
+
+#~ msgid "From_email"
+#~ msgstr "From_email"
+
+#~ msgid "Template_user_mail"
+#~ msgstr "Template_user_mail"
+
+#~ msgid "Admin_address"
+#~ msgstr "Admin_address"
+
+#~ msgid "Check_email_sending"
+#~ msgstr "Check_email_sending"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

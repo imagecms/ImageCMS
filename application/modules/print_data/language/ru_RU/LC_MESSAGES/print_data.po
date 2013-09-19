@@ -19,39 +19,39 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "Brand"
-msgstr ""
+msgstr "Бренд"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
 #: /var/www/image.loc/_temp2.php:10
 msgid "Quantity"
-msgstr ""
+msgstr "Количество"
 
 #: /var/www/image.loc/_temp2.php:11
 msgid "Characteristics"
-msgstr ""
+msgstr "Характеристики"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "Print"
-msgstr ""
+msgstr "Печатать"
 
 #: ../../../module_info.php:4
 msgid "Printing"
-msgstr ""
+msgstr "Печать"
 
 #: ../../../module_info.php:5
 msgid "Printing module."
-msgstr ""
+msgstr "Модуль печати."
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

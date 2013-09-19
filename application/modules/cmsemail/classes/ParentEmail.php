@@ -102,6 +102,8 @@ class ParentEmail extends \MY_Controller {
         parent::__construct();
 
         $this->load->model('../modules/cmsemail/models/cmsemail_model');
+        $lang = new \MY_Lang();
+        $lang->load('cmsemail');
     }
 
     /**
@@ -376,7 +378,7 @@ class ParentEmail extends \MY_Controller {
         $this->email->from($this->from_email, $this->from);
         $this->email->to($this->send_to);
         $this->email->subject($this->theme);
-        $this->email->message(lang('Check_email_sending'));
+        $this->email->message(lang('Check email sending', 'cmsemail'));
 
         $this->email->send();
 

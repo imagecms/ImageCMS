@@ -591,11 +591,11 @@ function autocomplete() {
                         '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
-                        '<span class="help-inline d_b">' + lang.name + '</span>' +
+                        '<span class="help-inline d_b">' + langs.name + '</span>' +
                         '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">' + lang.discount + ' %</span>' +
+                        '<span class="help-inline d_b">' + langs.discount + ' %</span>' +
                         '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
@@ -1367,7 +1367,7 @@ $(document).ready(
                 var column = btn.parent().find('input').val();
 
                 if (!parseInt(column) && parseInt(column) != 0)
-                    showMessage(lang.message, lang.enterColumnNum, 'r');
+                    showMessage(langs.message, langs.enterColumnNum, 'r');
 
 
                 $.ajax({
@@ -1377,10 +1377,10 @@ $(document).ready(
                     success: function(data) {
                         if (data == true) {
 
-                            showMessage(lang.message, lang.columnNumUpdated, 'success');
+                            showMessage(langs.message, langs.columnNumUpdated, 'success');
                             btn.hide();
                         } else {
-                            showMessage(lang.message, lang.failColumnNumUodate, 'errror');
+                            showMessage(langs.message, langs.failColumnNumUodate, 'errror');
 
                         }
                     }
@@ -1400,12 +1400,15 @@ $(window).load(function() {
         difTooltip();
     }).resize();
 
-    if (window.hasOwnProperty('userLogined') && !notificationsInitialized)
+    if (window.hasOwnProperty('userLogined') && !notificationsInitialized && $.exists('#topPanelNotifications'))
     {
         window.setInterval('updateNotificationsTotal()', 20000);
         notificationsInitialized = true;
     }
+
 });
+
+
 //add new imageSizes block
 $('#addImageSizesBlock').live('click', function() {
     var clonedSizesBlock = $('#CloneImageSizesBlock').clone();
@@ -1484,14 +1487,14 @@ $('#variantsForOrders').live('change', function() {
     var stock = $('#variantsForOrders option:selected').data('stock');
     var currency = $('#variantsForOrders option:selected').data('productcurrency');
 
-    $('#productText').html('<b>' + lang.product + ': ' + productName + '</b>');
+    $('#productText').html('<b>' + langs.product + ': ' + productName + '</b>');
     if (variantName != '')
-        $('#productText').append('<br/>' + lang.variant + ': ' + variantName);
+        $('#productText').append('<br/>' + langs.variant + ': ' + variantName);
 
-    $('#productText').append('<br/>' + lang.price + ': ' + parseFloat(variantPrice).toFixed(pricePrecision) + ' ' + currency);
+    $('#productText').append('<br/>' + langs.price + ': ' + parseFloat(variantPrice).toFixed(pricePrecision) + ' ' + currency);
 
     $("#imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName);
-    $('#productStock').html('<br/>' + lang.balance + ': ' + stock);
+    $('#productStock').html('<br/>' + langs.balance + ': ' + stock);
 
     //Show info product block
     if (variantId != undefined)
@@ -1499,13 +1502,13 @@ $('#variantsForOrders').live('change', function() {
 
     //Disable button if stock =0
     if (checkProdStock == 1 && stock == 0) {
-        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(lang.outOfStock);
+        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
     } else {
-        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(lang.addToCart);
+        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     }
     // Check is element in cart
     if (orders.isInCart(variantId) == 'true') {
-        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html(lang.inTheCart);
+        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html(langs.inTheCart);
     }
 
     dataForButton = $('#variantsForOrders option:selected').data();
@@ -1516,7 +1519,7 @@ $('#variantsForOrders').live('change', function() {
 $('#addVariantToCart').die().live('click', function() {
     if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
-        $(this).removeClass('btn-success').addClass('btn-primary').html(lang.inTheCart);
+        $(this).removeClass('btn-success').addClass('btn-primary').html(langs.inTheCart);
     }
 
 });
@@ -1540,7 +1543,7 @@ $('#createUserButton').live('click', function() {
             data: "name=" + userName + "&email=" + userEmail + "&phone=" + userPhone + "&address=" + userAddress,
             success: function(response) {
                 if (response == 'email') {
-                    showMessage(lang.message, lang.thisEmailUserExists, "error");
+                    showMessage(langs.message, langs.thisEmailUserExists, "error");
                 } else if (response != 'false') {
                     $('#collapsed').click();
                     $('#createUserName').val('');
@@ -1559,14 +1562,14 @@ $('#createUserButton').live('click', function() {
                         $('#userPhoneforOrder').html(data.phone);
                         $('#userAddressforOrder').html(data.address);
                     }
-                    showMessage(lang.message, lang.newUserCreated, "success");
+                    showMessage(langs.message, langs.newUserCreated, "success");
                 } else {
-                    showMessage(lang.error, lang.failToCreateUser, "error");
+                    showMessage(langs.error, langs.failToCreateUser, "error");
                 }
             }
         });
     } else {
-        showMessage(lang.error, lang.checkAndFillAll, "error");
+        showMessage(langs.error, langs.checkAndFillAll, "error");
     }
 });
 
@@ -1654,7 +1657,7 @@ $('#checkOrderGiftCert').live('click', function() {
             totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
             $('#shopOrdersTotalPrice').val(totalProductPrice);
             $('#shopOrdersCheckGiftCert').attr('disabled', 'disabled');
-            $('#giftPrice').html(lang.curCertificate + data.price);
+            $('#giftPrice').html(langs.curCertificate + data.price);
             $('#currentGiftCertInfo').show();
         }
     });
@@ -1677,23 +1680,6 @@ $('.removeGiftCert').live('click', function() {
 
 });
 
-$(window).load(function() {
-    $(window).scroll(function() {
-        fixed_frame_title();
-    });
-    $(window).resize(function(event) {
-        $(this).trigger('scroll');
-
-        $('.fade.in').remove();
-        difTooltip();
-    }).resize();
-
-    if (window.hasOwnProperty('userLogined') && !notificationsInitialized)
-    {
-        window.setInterval('updateNotificationsTotal()', 20000);
-        notificationsInitialized = true;
-    }
-});
 
 $('table.orderMethodsTable .orderMethodsEdit').on('click', function() {
     $(this).next('.orderMethodsRefresh').css('display', 'block');

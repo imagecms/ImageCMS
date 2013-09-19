@@ -18,9 +18,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: ../../../module_info.php:6
-#, fuzzy
 msgid "Module frame"
-msgstr "Модулі"
+msgstr "Каркас модуля"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

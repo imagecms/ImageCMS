@@ -11,6 +11,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('wishlist');
         $this->load->helper(array('form', 'url'));
     }
 
@@ -27,7 +29,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerScript('cusel_min', TRUE)
                     ->registerScript('wishlist', TRUE)
                     ->registerStyle('style', TRUE)
-                    ->registerStyle('jquery_ui_1.9.2.custom.min', TRUE)
+                    ->registerStyle('jquery_ui_1.9.2.custom.min')
                     ->setData('wishlists', $this->dataModel['wishlists'])
                     ->setData('user', $this->dataModel['user'])
                     ->setData('settings', $this->settings)

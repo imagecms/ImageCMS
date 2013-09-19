@@ -9,6 +9,8 @@ class Admin  extends MY_Controller {
 	function __construct()
 	{
 		parent::__construct();
+                  $lang = new MY_Lang();
+            $lang->load('tags');
 
     	$this->load->library('DX_Auth');
         //cp_check_perm('module_admin');	
