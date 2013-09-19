@@ -85,7 +85,20 @@ $.fn.pricetext = function(e, rank) {
     $(document).trigger({type: 'textanimatechange', el: $this, ovalue: parseFloat($this.text().replace(/\s+/g, '')), nvalue: e, rank: rank})
     return $this;
 }
-
+$.fn.setCursorPosition = function(pos) {
+    this.each(function(index, elem) {
+        if (elem.setSelectionRange) {
+            elem.setSelectionRange(pos, pos);
+        } else if (elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', pos);
+            range.moveStart('character', pos);
+            range.select();
+        }
+    });
+    return this;
+};
 $(document).on('textanimatechange', function(e) {
     var $this = e.el,
             nv = e.nvalue,
@@ -190,7 +203,7 @@ var ie = jQuery.browser.msie,
                         }
                     });
                     var form = frameChecks.closest('form');
-                    form.find('input[type="reset"]').unbind('click.nstcheck').on('click.nstcheck', function() {
+                    form.find('[type="reset"]').unbind('click.nstcheck').on('click.nstcheck', function() {
                         methods.changeCheckallreset(form.find(elCheckWrap));
                     });
                 });
