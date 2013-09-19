@@ -11,15 +11,16 @@ class assetManager {
     protected static $_BehaviorInstance;
     protected $callMapp = null;
     protected $useCompress = false;
+    protected $module_js = 'jsLangs';
     protected $template;
     protected $ci;
 
     private function __construct() {
-
+        
     }
 
     private function __clone() {
-
+        
     }
 
     /**
@@ -166,6 +167,13 @@ class assetManager {
 
             /** Start. Load template file */
             \CI_Controller::get_instance()->template->show('file:' . $this->buildAdminTemplatePath($tpl), !$ignoreWrap);
+
+            $tpl = $this->module_js;
+            /** Start. If file doesn't exists thorow exception */
+            if (file_exists($this->buildTemplatePath($tpl) . '.tpl')) {
+                /** Start. Load template file */
+                \CI_Controller::get_instance()->template->display('file:' . $this->buildTemplatePath($tpl));
+            }
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
@@ -190,6 +198,13 @@ class assetManager {
 
             /** Start. Load template file */
             \CI_Controller::get_instance()->template->show('file:' . $this->buildTemplatePath($tpl), !$ignoreWrap);
+
+            $tpl = $this->module_js;
+            /** Start. If file doesn't exists thorow exception */
+            if (file_exists($this->buildTemplatePath($tpl) . '.tpl')) {
+                /** Start. Load template file */
+                \CI_Controller::get_instance()->template->display('file:' . $this->buildTemplatePath($tpl));
+            }
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
