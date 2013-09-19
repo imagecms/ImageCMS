@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    var lang = new Object();
+   // var lang = new Object();
     var langs = new Object();
 
     langs.moduleInstall = "{lang('Module installed','admin')}";
@@ -103,6 +103,11 @@
     langs.fileLoaded = "{lang('The file is loaded. Slot ','admin')}";
     langs.scriptErrorTellAdmin = "{lang('Error in the script. Please notify the administrator','admin')}";
 
+    {literal}
+        function lang(value) {
+            return  langs[value];
+        }
+    {/literal}
 
 
 </script>

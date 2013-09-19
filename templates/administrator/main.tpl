@@ -30,14 +30,6 @@
     </head>
     <body>
         {include_tpl('inc/javascriptVars')}
-        <script>
-            {literal}
-                function lang(value) {
-                    return  langs[value];
-                }
-            {/literal}
-
-        </script>
 
         {$langDomain = $CI->land->gettext_domain}
         {$CI->lang->load('admin')}
