@@ -19,10 +19,10 @@
 <div class="modal hide fade" id="pages_delete_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('Delete','admin')}</h3>
+        <h3>{lang('Delete pages','admin')}</h3>
     </div>
     <div class="modal-body">
-        {lang("Delete selected pages", 'admin')}
+        {lang('Delete selected pages?', 'admin')}
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel",'admin')}</a>
