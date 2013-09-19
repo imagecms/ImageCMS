@@ -86,8 +86,6 @@ class MY_Lang extends MX_Lang {
 
         unset($sett);
 
-
-
         $this->ci->load->library('gettext_php/gettext_extension', array());
         $this->gettext = & $this->ci->gettext_extension->getInstance();
     }

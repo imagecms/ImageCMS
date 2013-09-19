@@ -310,7 +310,7 @@
             {/if}
             var lang_only_number = "{lang("numbers only","admin")}";
             var show_tovar_text = "{lang("show","admin")}";
-            var hide_tovar_text = "{lang('don\'t show')}";
+            var hide_tovar_text = "{lang("don't show", 'admin')}";
             {literal}
 
                 $(document).ready(function() {
