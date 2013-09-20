@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 17:24+0300\n"
+"POT-Creation-Date: 2013-09-18 11:06+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,42 +17,43 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: ../../../_install.php:155
+#: ../../../install.php:156
 msgid "Site name"
 msgstr "Название сайта"
 
-#: ../../../_install.php:156
-#: ../../../views/step_2.php:47
+#: ../../../install.php:157
+#: ../../../views/step_2.php:42
 msgid "Host"
 msgstr "Хост"
 
-#: ../../../_install.php:157
+#: ../../../install.php:158
 msgid "Database username"
 msgstr "Имя пользователя базы данных"
 
-#: ../../../_install.php:159
-#: ../../../views/step_2.php:65
+#: ../../../install.php:160
+#: ../../../views/step_2.php:60
 msgid "Database name"
 msgstr "Имя базы данных"
 
-#: ../../../_install.php:161
-#: ../../../views/step_2.php:71
+#: ../../../install.php:162
+#: ../../../views/step_2.php:66
 msgid "Administrator name"
 msgstr "Имя администратора"
 
-#: ../../../_install.php:162
+#: ../../../install.php:163
 msgid "Administrator E-mail"
 msgstr " E-mail администратора"
 
-#: ../../../_install.php:163
+#: ../../../install.php:164
+#: ../../../views/main.php:150
 msgid "Language"
 msgstr "Язык"
 
-#: ../../../_install.php:170
+#: ../../../install.php:171
 msgid "Database connection error"
 msgstr "Ошибка подключения к базе данных"
 
-#: ../../../_install.php:365
+#: ../../../install.php:366
 msgid "Error writing file config.php"
 msgstr "Ошибка записи файла config.php"
 
@@ -80,37 +81,37 @@ msgstr "Русский"
 msgid "English (beta)"
 msgstr "Английский (бета)"
 
-#: ../../../views/step_2.php:27
+#: ../../../views/step_2.php:26
 msgid "Install products examples"
 msgstr "Установите примеры товаров"
 
-#: ../../../views/step_2.php:38
+#: ../../../views/step_2.php:33
 msgid "Database connection"
 msgstr "Подключение к базе данных"
 
-#: ../../../views/step_2.php:42
+#: ../../../views/step_2.php:37
 msgid "Attention"
 msgstr "Внимание"
 
-#: ../../../views/step_2.php:42
+#: ../../../views/step_2.php:37
 msgid "All the data in this database will be destroyed"
 msgstr "Все данные в этой базе данных будет уничтожены"
 
-#: ../../../views/step_2.php:53
+#: ../../../views/step_2.php:48
 msgid "User name"
 msgstr "Имя пользователя"
 
-#: ../../../views/step_2.php:59
-#: ../../../views/step_2.php:79
+#: ../../../views/step_2.php:54
+#: ../../../views/step_2.php:74
 msgid "Password"
 msgstr "Пароль"
 
-#: ../../../views/step_2.php:89
+#: ../../../views/step_2.php:84
 #: ../../../views/step_1.php:37
 msgid "Next"
 msgstr "Следующий"
 
-#: ../../../views/step_2.php:94
+#: ../../../views/step_2.php:89
 msgid "All fields are required"
 msgstr "Все поля обязательны для заполнения"
 
@@ -125,6 +126,18 @@ msgstr "Перейти в Панель управления"
 #: ../../../views/done.php:5
 msgid "Main page"
 msgstr "Главная страница"
+
+#: ../../../views/license_shop.php:1
+msgid "License Agreement"
+msgstr "Лицензионное Соглашение"
+
+#: ../../../views/license_shop.php:87
+msgid "Accept license"
+msgstr "Принять лицензию"
+
+#: ../../../views/license_shop.php:89
+msgid "Cancel"
+msgstr "Отмена"
 
 #: ../../../views/main.php:5
 msgid "Installing"

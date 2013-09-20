@@ -85,7 +85,20 @@ $.fn.pricetext = function(e, rank) {
     $(document).trigger({type: 'textanimatechange', el: $this, ovalue: parseFloat($this.text().replace(/\s+/g, '')), nvalue: e, rank: rank})
     return $this;
 }
-
+$.fn.setCursorPosition = function(pos) {
+    this.each(function(index, elem) {
+        if (elem.setSelectionRange) {
+            elem.setSelectionRange(pos, pos);
+        } else if (elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', pos);
+            range.moveStart('character', pos);
+            range.select();
+        }
+    });
+    return this;
+};
 $(document).on('textanimatechange', function(e) {
     var $this = e.el,
             nv = e.nvalue,
@@ -190,7 +203,7 @@ var ie = jQuery.browser.msie,
                         }
                     });
                     var form = frameChecks.closest('form');
-                    form.find('input[type="reset"]').unbind('click.nstcheck').on('click.nstcheck', function() {
+                    form.find('[type="reset"]').unbind('click.nstcheck').on('click.nstcheck', function() {
                         methods.changeCheckallreset(form.find(elCheckWrap));
                     });
                 });
@@ -2242,7 +2255,6 @@ var Shop = {
             var pattern = /cartItem_*/;
             var items = [];
             for (var i = 0; i < localStorage.length; i++) {
-
                 var key = localStorage.key(i);
                 try {
                     if (key.match(pattern))
@@ -2251,12 +2263,18 @@ var Shop = {
                 }
             }
             return items;
-        }, length: function() {
+        },
+        length: function() {
             var pattern = /cartItem_*/;
             var length = 0;
-            for (var i = 0; i < localStorage.length; i++)
-                if (localStorage.key(i).match(pattern))
-                    length++;
+            for (var i = 0; i < localStorage.length; i++) {
+                try {
+                    if (localStorage.key(i).match(pattern))
+                        length += JSON.parse(localStorage.getItem(localStorage.key(i))).count;
+                } catch (err) {
+                    length += 0;
+                }
+            }
             return length;
         },
         totalRecount: function() {
@@ -2313,22 +2331,12 @@ var Shop = {
                 if (typeof(data) == 'object') {
 
                     var items = Shop.Cart.getAllItems();
-                    for (var i = 0; i < items.length; i++)
-                        if (!items[i].kit)
-                            localStorage.removeItem('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
+                    for (var i = 0; i < items.length; i++) {
+                        localStorage.removeItem('cartItem_' + items[i]['id'].toString().replace(/\[|\]/g, '') + '_' + items[i]['vId']);
+                    }
                     delete items;
                     _.each(_.keys(data.data.items), function(key) {
-                        if (!data.data.items[key].kit)
-                            localStorage.setItem(key, JSON.stringify(data.data.items[key]));
-                        else
-                        {
-                            try {
-                                var kit = Shop.Cart.load('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
-                                kit.count = data.data.items[key].count;
-                                Shop.Cart.save('cartItem_' + kit['id'] + '_' + kit['vId']);
-                            } catch (err) {
-                            }
-                        }
+                        localStorage.setItem(key.toString().replace(/\[|\]/g, ''), JSON.stringify(data.data.items[key]));
                     });
                     $(document).trigger({
                         type: 'cart_changed'
@@ -2355,8 +2363,8 @@ var Shop = {
                 name: false,
                 count: false,
                 kit: false,
-                maxcount: 0,
-                number: '',
+                maxcount: false,
+                number: false,
                 vname: false,
                 url: false
             };
@@ -2379,7 +2387,7 @@ var Shop = {
             img: obj.img ? obj.img : '',
             prodstatus: obj.prodstatus ? obj.prodstatus : '',
             storageId: function() {
-                return 'cartItem_' + this.id + '_' + this.vId;
+                return 'cartItem_' + this.id.toString().replace(/\[|\]/g, '') + '_' + this.vId;
             }
         };
     },

@@ -37,7 +37,7 @@
                                         <label class="control-label" for="inputDesc">{lang("Description","admin")}:</label>
                                         <div class="controls">
                                             <input type="text" name="desc" id="inputDesc">
-                                            <p class="help-block">{lang("Short widget discription","admin")}</p>
+                                            <p class="help-block">{lang("Short widget description","admin")}</p>
                                         </div>
                                     </div>
                                     <div class="control-group">

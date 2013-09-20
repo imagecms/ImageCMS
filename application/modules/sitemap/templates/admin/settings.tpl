@@ -96,7 +96,7 @@
                         <td>
                             <div class="inside_padd">  
                                 <div class="control-group">
-                                    <a href="{site_url('sitemap.xml')}" target="_blank">{lang('Shop site map')}</a>
+                                    <a href="{site_url('sitemap.xml')}" target="_blank">{lang('Shop site map', 'sitemap')}</a>
                                 </div>
                             </div>
                         </td>

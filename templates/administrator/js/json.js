@@ -18,7 +18,7 @@ function json()
     });
 
     if (comment == '') { //Проверка заполнил ли пользователь поле для ввода текста
-        $('#notice').html(lang.needToEnterName + '!'); // Если нет то выводим предупреждение
+        $('#notice').html(langs.needToEnterName + '!'); // Если нет то выводим предупреждение
     }
     else {
         $('#notice').empty();

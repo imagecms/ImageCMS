@@ -101,7 +101,7 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="userMailTextRadio">{lang('Send_email_to_user')}:</label>
+                                                    <label class="control-label" for="userMailTextRadio">{lang('Send email to user', 'cmsemail')}:</label>
                                                     <div class="controls">
                                                         &nbsp; {lang('Yes', 'cmsemail')} &nbsp;
                                                         <span class="frame_label">

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 17:25+0300\n"
-"PO-Revision-Date: 2013-09-17 17:26+0300\n"
+"POT-Creation-Date: 2013-09-18 15:35+0300\n"
+"PO-Revision-Date: 2013-09-19 17:16+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -11,11 +11,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: ../../../\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: /var/www/image.loc/_temp2.php:20
 msgid "My last photo"
@@ -80,6 +80,7 @@ msgid "View images"
 msgstr "Просмотр изображений"
 
 #: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:48
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -137,10 +138,6 @@ msgstr "Назад"
 #: /var/www/image.loc/_temp2.php:47
 msgid "Add pictures"
 msgstr "Додать картинки"
-
-#: /var/www/image.loc/_temp2.php:48
-msgid "a_to_edit"
-msgstr "a_to_edit"
 
 #: /var/www/image.loc/_temp2.php:49
 msgid "Widget settings"
@@ -533,85 +530,88 @@ msgstr "Альбом пуст"
 msgid "Deleting photos"
 msgstr "Удаление фотографий"
 
-#: ../../..//admin.php:86
+#: ../../..//admin.php:88
 msgid "Create a directory to continue your work with the gallery"
 msgstr "Создайте директорию, чтобы продолжить работу с галереей"
 
-#: ../../..//admin.php:86
+#: ../../..//admin.php:88
 msgid "Set the write access"
 msgstr "Установите права на запись"
 
-#: ../../..//admin.php:180
+#: ../../..//admin.php:182
 msgid "Pre-image width"
 msgstr "Прообраз ширины"
 
-#: ../../..//admin.php:181
+#: ../../..//admin.php:183
 msgid "pre-image height"
 msgstr "Прообраз высоты"
 
-#: ../../..//admin.php:182
+#: ../../..//admin.php:184
 msgid "Icon width"
 msgstr "Ширины иконки"
 
-#: ../../..//admin.php:183
+#: ../../..//admin.php:185
 msgid "Icon height"
 msgstr "Высоты иконки"
 
-#: ../../..//admin.php:184
+#: ../../..//admin.php:186
 msgid "Watermark text"
 msgstr "Текст водяного знака"
 
-#: ../../..//admin.php:195
+#: ../../..//admin.php:197
 msgid "Specify the correct path to watermark image"
 msgstr "Укажите правильный путь к изображение водяного знака"
 
-#: ../../..//admin.php:201
+#: ../../..//admin.php:203
 msgid "Specify the correct path to font"
 msgstr "Укажите правильный путь к шрифта"
 
-#: ../../..//admin.php:239
-#: ../../..//gallery_widgets.php:64
+#: ../../..//admin.php:241
+#: ../../..//gallery_widgets.php:66
 msgid "Settings have been saved"
 msgstr "Настройки сохранены"
 
-#: ../../..//admin.php:273
+#: ../../..//admin.php:275
 msgid "Album created"
 msgstr "Альбом создан"
 
-#: ../../..//admin.php:288
-#: ../../..//admin.php:464
-#: ../../..//admin.php:698
+#: ../../..//admin.php:290
+#: ../../..//admin.php:466
+#: ../../..//admin.php:700
 msgid "Changes have been saved"
 msgstr "Изменения сохранены"
 
-#: ../../..//admin.php:341
-#: ../../..//admin.php:370
+#: ../../..//admin.php:343
+#: ../../..//admin.php:372
 msgid "Can't load album information"
 msgstr "Не удается загрузить информацию об альбоме"
 
-#: ../../..//admin.php:425
-#: ../../..//admin.php:467
-#: ../../..//admin.php:529
+#: ../../..//admin.php:427
+#: ../../..//admin.php:469
+#: ../../..//admin.php:531
 msgid "Can't load image information"
 msgstr "Не удается загрузить информацию об изображении"
 
-#: ../../..//admin.php:498
+#: ../../..//admin.php:500
 msgid "Photos removed"
 msgstr "Фото удалены"
 
-#: ../../..//admin.php:538
-#: ../../..//admin.php:546
-#: ../../..//admin.php:554
+#: ../../..//admin.php:540
+#: ../../..//admin.php:548
+#: ../../..//admin.php:556
 msgid "Positions updated"
 msgstr "Позиции обновлены"
 
-#: ../../..//gallery_widgets.php:50
+#: ../../..//gallery_widgets.php:52
 msgid "Image limit"
 msgstr "Лимит изображений"
 
 #: ../../..//module_info.php:5
 msgid "Gallery module"
 msgstr "Модуль галереи"
+
+#~ msgid "a_to_edit"
+#~ msgstr "a_to_edit"
 
 #~ msgid "amt_height"
 #~ msgstr "amt_height"

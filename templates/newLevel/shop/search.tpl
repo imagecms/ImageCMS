@@ -48,7 +48,7 @@
 
         {if $totalProducts > 0}
             <div class="left-catalog">
-                <form method="GET" action="" id="seacrh_p_form">
+                <form method="GET" action="" id="catalog_form">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
                     <input type="hidden" name="text" value="{echo $_GET[text]}">
                     <input type="hidden" name="category" value="{echo $_GET[category]}">

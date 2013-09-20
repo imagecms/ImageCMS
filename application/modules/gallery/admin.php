@@ -84,11 +84,12 @@ class Admin extends BaseAdminController {
         }
 
         if (!is_really_writable($this->conf['upload_path']) OR !file_exists($this->conf['upload_path'])) {
-            \CMSFactory\assetManager::create()
-                    ->setData(array(
-                        'error' => lang("Create a directory to continue your work with the gallery", 'gallery') . $this->conf['upload_path'] . lang("Set the write access")
-                    ))
-                    ->renderAdmin('error');
+            $this->template->add_array(array(
+                'error' => lang("Create a directory to continue your work with the gallery", 'gallery') . $this->conf['upload_path'] . lang("Set the write access", 'gallery')
+            ));
+
+            $this->display_tpl('error');
+
             exit;
         }
     }
@@ -112,12 +113,11 @@ class Admin extends BaseAdminController {
     public function index() {
         
         $categories = $this->gallery_m->get_categories('position', 'asc');
-        $data = array(
+        $this->template->add_array(array(
             'categories' => $categories,
-        );
-        \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->renderAdmin('categories');
+        ));
+
+        $this->display_tpl('categories');
     }
 
     /**
@@ -125,8 +125,6 @@ class Admin extends BaseAdminController {
      */
     public function category($id) {
         $albums = $this->gallery_m->get_albums('position', 'asc', $id);
-
-        $template = \CMSFactory\assetManager::create();
 
         if ($albums != FALSE) {
             $cnt = count($albums);
@@ -150,11 +148,16 @@ class Admin extends BaseAdminController {
                 }
             }
 
-            $template->setData('albums', $albums);
+            $this->template->add_array(array(
+                'albums' => $albums
+            ));
         }
 
-        $template->setData('category', $this->gallery_m->get_category($id));
-        $template->renderAdmin('album_list');
+        $this->template->add_array(array(
+            'category' => $this->gallery_m->get_category($id)
+        ));
+
+        $this->display_tpl('album_list');
     }
 
     /**
@@ -163,9 +166,9 @@ class Admin extends BaseAdminController {
     public function settings($action = 'show') {
         switch ($action) {
             case 'show':
-                \CMSFactory\assetManager::create()
-                        ->setData('settings', $this->gallery_m->load_settings())
-                        ->renderAdmin('settings');
+                $this->template->assign('settings', $this->gallery_m->load_settings());
+
+                $this->display_tpl('settings');
                 break;
 
             case 'update':
@@ -329,16 +332,14 @@ class Admin extends BaseAdminController {
         $album = $this->gallery_m->get_album($id, true, false, false, $locale);
 
         if ($album != FALSE) {
-            $data = array(
+            $this->template->add_array(array(
                 'locale' => $locale,
                 'languages' => $this->db->get('languages')->result_array(),
                 'album' => $album,
                 'categories' => $this->gallery_m->get_categories($album['category_id']),
-            );
+            ));
 
-            \CMSFactory\assetManager::create()
-                    ->setData($data)
-                    ->renderAdmin('album_params');
+            $this->display_tpl('album_params');
         } else {
             show_error(lang("Can't load album information", 'gallery'));
         }
@@ -379,26 +380,28 @@ class Admin extends BaseAdminController {
     public function show_crate_album() {
         // Select only category id and name for selectbox
         // $this->db->select('id, name');
+        $cats = $this->gallery_m->get_categories();
 
-        \CMSFactory\assetManager::create()
-                ->setData('categories', $this->gallery_m->get_categories())
-                ->renderAdmin('create_album');
+        $this->template->add_array(array(
+            'categories' => $cats,
+        ));
+
+        $this->display_tpl('create_album');
     }
 
     /**
      * Show edit album template
      */
     public function edit_album($id = 0) {
+        $album = $this->gallery_m->get_album($id);
 
-        $data = array(
-            'album' => $this->gallery_m->get_album($id),
+        $this->template->add_array(array(
+            'album' => $album,
             'category' => $this->gallery_m->get_category($album['category_id']),
             'album_url' => $this->conf['upload_url'] . $id
-        );
+        ));
 
-        \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->renderAdmin('edit_album');
+        $this->display_tpl('edit_album');
     }
 
     // --------------------------------------------------------------------
@@ -409,18 +412,18 @@ class Admin extends BaseAdminController {
         $image = $this->gallery_m->get_image_info($id, $locale);
 
         if ($image != FALSE) {
-            $data = array(
+            $album = $this->gallery_m->get_album($image['album_id'], FALSE);
+
+            $this->template->add_array(array(
                 'locale' => $locale,
                 'languages' => $this->db->get('languages')->result_array(),
                 'image' => $image,
-                'album' => $this->gallery_m->get_album($image['album_id'], FALSE),
+                'album' => $album,
                 'category' => $this->gallery_m->get_category($album['category_id']),
                 'album_url' => $this->conf['upload_url'] . $album['id']
-            );
+            ));
 
-            \CMSFactory\assetManager::create()
-                    ->setData($data)
-                    ->renderAdmin('edit_image');
+            $this->display_tpl('edit_image');
         } else {
             show_error(lang("Can't load image information", 'gallery'));
         }
@@ -599,7 +602,7 @@ class Admin extends BaseAdminController {
     // --------------------------------------------------------------------
 
     public function show_create_category() {
-        \CMSFactory\assetManager::create()->renderAdmin('create_category');
+        $this->display_tpl('create_category');
     }
 
     public function create_category() {
@@ -646,19 +649,18 @@ class Admin extends BaseAdminController {
     }
 
     public function edit_category($id, $locale = null) {
+
         if (null === $locale)
             $locale = $this->gallery_m->chose_locale();
         $category = $this->gallery_m->get_category($id, $locale);
 
-        $data = array(
+        $this->template->add_array(array(
             'category' => $category,
             'locale' => $locale,
             'languages' => $this->db->get('languages')->result_array()
-        );
+        ));
 
-        \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->renderAdmin('edit_category');
+        $this->display_tpl('edit_category');
     }
 
     public function update_category($id, $locale) {
