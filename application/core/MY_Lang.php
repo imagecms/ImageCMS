@@ -33,6 +33,7 @@ class MY_Lang extends MX_Lang {
     private $gettext_codeset;
     public $gettext_domain;
     private $gettext_path;
+    private $gettext = null;
 
     /**
      * The constructor initialize the library
@@ -41,16 +42,6 @@ class MY_Lang extends MX_Lang {
      */
     function __construct() {
         parent::__construct();
-        if (!extension_loaded('gettext')) {
-            include_once('gettext.inc');
-            $_SESSION['GETTEXT_EXIST'] = FALSE;
-            //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
-            //      echo "gettext is not installed\n";
-        } else {
-            $_SESSION['GETTEXT_EXIST'] = TRUE;
-            //      echo "gettext is supported\n";
-            //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
-        }
     }
 
     public function getLangCode($language) {
@@ -72,6 +63,9 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
+//        if (strstr($_SERVER['PATH_INFO'], 'install'))
+//            return;
+
         if (!isset($this->ci))
             $this->ci = & get_instance();
 
@@ -84,68 +78,12 @@ class MY_Lang extends MX_Lang {
         } else {
             $this->gettext_language = $this->ci->session->userdata('language');
         }
-    }
+//        var_dump($sett->lang_sel);
 
-    /**
-     * Load a language file
-     *
-     * @access	public
-     * @param	mixed	the name of the language file to be loaded. Can be an array
-     * @param	string	the language (english, etc.)
-     * @return	mixed
-     */
-    public function load($module = 'main') {
-        $this->_init();
+        unset($sett);
 
-        if (strstr(uri_string(), 'admin')) {
-            $languageAdmin = $this->getLangCode($this->gettext_language);
-            $lang = $languageAdmin[1];
-            if (!$module) {
-                $module = 'admin';
-            }
-        } else {
-            if (strstr($_SERVER['REQUEST_URI'], 'install')) {
-                $langInstall = $this->getLangCode($this->gettext_language);
-                $lang = $langInstall[1];
-            } else {
-                $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
-                $lang = $languageFront[1];
-            }
-        }
-
-        if ($module == 'main') {
-            $template_name = \CI_Controller::get_instance()->config->item('template');
-            $this->addDomain('application/language/main/', 'main', $lang);
-            $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
-        } else {
-            if ($module == 'admin')
-                $this->addDomain('application/language/main/', 'main', $lang);
-
-            $this->addDomain('application/modules/' . $module . '/language', $module, $lang);
-        }
-    }
-
-    public function addDomain($directory, $domain, $locale) {
-        if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
-            // Set current locale
-            setlocale(LC_ALL, '');
-        }
-
-        putenv('LC_ALL=' . $locale);
-        putenv('LANG=' . $locale);
-        putenv('LANGUAGE=' . $locale);
-        bindtextdomain($domain, $directory);
-    }
-
-    /**
-     * Fetch a single line of text from the language array
-     *
-     * @access	public
-     * @param	string	$line	the language line
-     * @return	string
-     */
-    public function line($line = '', $params = FALSE) {
-        return gettext($line);
+        $this->ci->load->library('gettext_php/gettext_extension', array());
+        $this->gettext = & $this->ci->gettext_extension->getInstance();
     }
 
     private function _language() {
@@ -165,6 +103,54 @@ class MY_Lang extends MX_Lang {
             $this->ci->config->set_item('language', $language);
 
         return empty($language) ? 'english' : $language;
+    }
+
+    /**
+     * Load a language file
+     *
+     * @access	public
+     * @param	mixed	the name of the language file to be loaded. Can be an array
+     * @param	string	the language (english, etc.)
+     * @return	mixed
+     */
+    public function load($module = 'main') {
+//        if (strstr($_SERVER['REQUEST_URI'], 'install'))
+//            return;
+
+        if (!$this->gettext)
+            $this->_init();
+
+        if (strstr(uri_string(), 'admin')) {
+            $languageAdmin = $this->getLangCode($this->gettext_language);
+            $lang = $languageAdmin[1];
+            if (!$module) {
+                $module = 'admin';
+            }
+        } else {
+            if (strstr($_SERVER['REQUEST_URI'], 'install')) {
+                $langInstall = $this->getLangCode($this->gettext_language);
+                $lang = $langInstall[1];
+            } else {
+                $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
+                $lang = $languageFront[1];
+            }
+        }
+//        var_dump($lang);
+//        $lang = 'de_DE';
+//            var_dumps($module);
+//        if (strstr($_SERVER['PATH_INFO'], 'install'))
+//            return;
+
+        if ($module == 'main') {
+            $template_name = \CI_Controller::get_instance()->config->item('template');
+            $this->gettext->addDomain('application/language/main/', 'main', $lang);
+            $this->gettext->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
+        } else {
+            if ($module == 'admin')
+                $this->gettext->addDomain('application/language/main/', 'main', $lang);
+
+            $this->gettext->addDomain('application/modules/' . $module . '/language', $module, $lang);
+        }
     }
 
     /**
@@ -230,6 +216,21 @@ class MY_Lang extends MX_Lang {
                 break;
         }
         return $userlang;
+    }
+
+    /**
+     * Fetch a single line of text from the language array
+     *
+     * @access	public
+     * @param	string	$line	the language line
+     * @return	string
+     */
+    public function line($line = '', $params = FALSE) {
+//        if (strstr($_SERVER['PATH_INFO'], 'install'))
+//            return;
+//        if (!$this->gettext)
+//            $this->_init();
+        return gettext($line);
     }
 
     /**
