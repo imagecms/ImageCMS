@@ -23,9 +23,88 @@ class Backup extends BaseAdminController {
         //cp_check_perm('backup_create');
     }
 
+    public function save_settings() {
+        $backup = \libraries\Backup::create();
+
+        $settings = array(
+            'backup_del_status' => isset($_POST['backup_del_status']) ? $_POST['backup_del_status'] : 0,
+            'backup_term' => isset($_POST['backup_term']) ? $_POST['backup_term'] : 6,
+            'backup_maxsize' => isset($_POST['backup_maxsize']) ? $_POST['backup_maxsize'] : 1000,
+        );
+
+        $bad = array();
+        foreach ($settings as $key => $value) {
+            if (FALSE == $backup->setSetting($key, $value)) {
+                $bad[] = $key;
+            }
+        }
+
+        if (count($bad) > 0) {
+            showMessage(lang('Some of settings not saved', 'admin'), 'Error');
+        } else {
+            showMessage(lang('Settings saved', 'admin'));
+        }
+    }
+
+    public function file_actions() {
+        $file = trim($_POST['file']);
+        $locked = isset($_POST['locked']) ? $_POST['locked'] : NULL;
+        switch ($_POST['action']) {
+            case "backup_lock":
+                $this->filesLocking($file, $locked);
+                break;
+            case "backup_delete":
+                $bool = \libraries\Backup::create()->deleteFile($file);
+                echo json_encode(array('deleted' => $bool ? "deleted" : "error"));
+                break;
+        }
+    }
+
+    public function download_file($file) {
+        echo "file";
+        /* $fileName = trim($fileName);
+          $path = "./application/backups/{$fileName}";
+          if (file_exists($path)) {
+          force_download($file, file_get_contents($path));
+          } */
+        /* $this->load->helper('download');
+          $file = $_POST['filename'];
+          force_download($file, file_get_contents('./application/backups/' . $file)); */
+        //print_r($_POST);
+    }
+
+    protected function filesLocking($file, $locked) {
+        $backup = \libraries\Backup::create();
+        $lockedFiles = $backup->getSetting('lockedFiles');
+        if (!is_array($lockedFiles)) {
+            $lockedFiles = array();
+        }
+        if (in_array($file, $lockedFiles) && (int) $locked == 0) {
+            foreach ($lockedFiles as $key => $file_) {
+                if ($file == $file_)
+                    unset($lockedFiles[$key]);
+            }
+        } else {
+            $lockedFiles[] = $file;
+        }
+        $backup->setSetting('lockedFiles', $lockedFiles);
+    }
+
     public function index() {
+        $backup = \libraries\Backup::create();
+
+        $del_status = $backup->getSetting('backup_del_status');
+        $maxSize = $backup->getSetting('backup_maxsize');
+        $term = $backup->getSetting('backup_term');
+
+        $files = $backup->backupFiles();
+
         $this->template->add_array(array(
             'user' => $this->get_admin_info(),
+            'backup_del_status' => is_null($del_status) ? 0 : $del_status,
+            'backup_term' => is_null($term) ? 6 : $term,
+            'backup_maxsize' => is_null($maxSize) ? 1000 : $maxSize,
+            'files' => $files
         ));
 
         $this->template->show('backup', FALSE);
@@ -37,7 +116,7 @@ class Backup extends BaseAdminController {
             mkdir('./application/backups/');
             chmod('./application/backups/', 0777);
         }
-        
+
         if (!is_really_writable('./application/backups')) {
             showMessage(lang("Directory ./application/backups has no writing permission"), false, 'r');
             exit;
@@ -50,9 +129,23 @@ class Backup extends BaseAdminController {
 
             case 'server':
                 $this->load->helper('file');
-                write_file('./application/backups/' . $this->generate_file_name($_POST['file_type']), $this->get_backup_str($_POST['file_type']));
-
-                $this->done();
+                //write_file('./application/backups/' . $this->generate_file_name($_POST['file_type']), $this->get_backup_str($_POST['file_type']));
+                //$this->done();
+                $backup = \libraries\Backup::create();
+                $deleteOld = $backup->getSetting('backup_del_status');
+                if ($deleteOld == 1) {
+                    $deleteData = $backup->deleteOldFiles();
+                } else {
+                    $deleteData = NULL;
+                }
+                if (FALSE !== $fileName = $backup->createBackup($_POST['file_type'])) {
+                    $message = "Backup copying has been completed ";
+                    if (is_array($deleteData)) {
+                        $mb = number_format($deleteData['size'] / 1024 / 1024, 2);
+                        $message .= "<br /> Deleted {$deleteData['count']} files on {$mb} Mb";
+                    }
+                    showMessage(lang($message, "admin"));
+                }
                 break;
 
             case 'email':
@@ -74,17 +167,16 @@ class Backup extends BaseAdminController {
         } else {
             $user = $this->get_admin_info();
 
-            $tmp_file = './system/cache/' . $this->generate_file_name($_POST['file_type']);
-            write_file($tmp_file, $this->get_backup_str($_POST['file_type']));
+            $fileName = \libraries\Backup::create()->createBackup($_POST['file_type'], "sql");
 
             $this->email->to($_POST['email']);
             $this->email->from($user['email']);
-            $this->email->subject(lang("Backup copying","admin") . date('d-m-Y H:i:s'));
+            $this->email->subject(lang("Backup copying", "admin") . date('d-m-Y H:i:s'));
             $this->email->message(' ');
-            $this->email->attach($tmp_file);
+            $this->email->attach($fileName);
             $this->email->send();
 
-            @unlink($tmp_file);
+            @unlink($fileName);
 
             $this->done();
         }
@@ -94,27 +186,13 @@ class Backup extends BaseAdminController {
     // Direct download
     public function force_download($file_type) {
         $this->load->helper('download');
-        force_download($this->generate_file_name($file_type), $this->get_backup_str($file_type));
-    }
-
-    private function get_backup_str($file_type) {
-        $this->load->dbutil();
-
-        $conf = array(
-            'format' => $file_type,
-        );
-
-        $backup = & $this->dbutil->backup($conf);
-
-        return $backup;
+        $fileName = \libraries\Backup::create()->createBackup($file_type, "sql");
+        $fileContents = file_get_contents($fileName);
+        force_download(pathinfo($fileName, PATHINFO_BASENAME), $fileContents);
     }
 
     private function done() {
-        showMessage(lang("Backup copying has been completed","admin"));
-    }
-
-    private function generate_file_name($file_type) {
-        return "sql_" . date("d-m-Y_H.i.s.") . $file_type;
+        showMessage(lang("Backup copying has been completed", "admin"));
     }
 
     private function get_admin_info() {
