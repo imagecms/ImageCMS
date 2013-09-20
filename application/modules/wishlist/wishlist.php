@@ -29,7 +29,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerScript('cusel_min', TRUE)
                     ->registerScript('wishlist', TRUE)
                     ->registerStyle('style', TRUE)
-                    ->registerStyle('jquery_ui_1.9.2.custom.min', TRUE)
+                    ->registerStyle('jquery_ui_1.9.2.custom.min')
                     ->setData('wishlists', $this->dataModel['wishlists'])
                     ->setData('user', $this->dataModel['user'])
                     ->setData('settings', $this->settings)

@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Настройки обновлений</span>
+            <span class="title">{lang('Update settings', 'admin')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
@@ -25,7 +25,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        Настройки
+                        {lang('Settings', 'admin')}
                     </th>
                 </tr>
             </thead>
@@ -34,7 +34,7 @@
                     <td colspan="6">
                         <div class="inside_padd">
                             <div class="control-group">
-                                <label class="control-label">Ваш ключ для обновлений:</label>
+                                <label class="control-label">{lang('Your updation key', 'admin')}:</label>
                                 <div class="controls">
                                     <textarea name="careKey" rows="10" required>{echo $careKey}</textarea>
                                 </div>

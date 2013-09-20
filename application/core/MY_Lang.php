@@ -67,20 +67,24 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
-        if (strstr($_SERVER['REQUEST_URI'], 'install'))
-            return;
+//        if (strstr($_SERVER['PATH_INFO'], 'install'))
+//            return;
 
         if (!isset($this->ci))
             $this->ci = & get_instance();
 
-        $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
-
-        if ($sett->lang_sel) {
-            $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
+        if (!strstr($_SERVER['PATH_INFO'], 'install')) {
+            $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
+            if ($sett->lang_sel) {
+                $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
+            }
+            $this->gettext_language = $this->ci->config->item('language');
+        } else {
+            $this->gettext_language = $this->ci->session->userdata('language');
         }
+//        var_dump($sett->lang_sel);
 
         unset($sett);
-        $this->gettext_language = $this->ci->config->item('language');
 
         $this->ci->load->library('gettext_php/gettext_extension', array());
         $this->gettext = & $this->ci->gettext_extension->getInstance();
@@ -114,8 +118,8 @@ class MY_Lang extends MX_Lang {
      * @return	mixed
      */
     public function load($module = 'main') {
-        if (strstr($_SERVER['REQUEST_URI'], 'install'))
-            return;
+//        if (strstr($_SERVER['REQUEST_URI'], 'install'))
+//            return;
 
         if (!$this->gettext)
             $this->_init();
@@ -127,19 +131,28 @@ class MY_Lang extends MX_Lang {
                 $module = 'admin';
             }
         } else {
-            $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
-            $lang = $languageFront[1];
+            if (strstr($_SERVER['REQUEST_URI'], 'install')) {
+                $langInstall = $this->getLangCode($this->gettext_language);
+                $lang = $langInstall[1];
+            } else {
+                $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
+                $lang = $languageFront[1];
+            }
         }
+//        var_dump($lang);
 //        $lang = 'de_DE';
 //            var_dumps($module);
-        if (strstr($_SERVER['PATH_INFO'], 'install'))
-            return;
+//        if (strstr($_SERVER['PATH_INFO'], 'install'))
+//            return;
 
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->gettext->addDomain('application/language/main/', 'main', $lang);
             $this->gettext->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
         } else {
+            if($module=='admin')
+                $this->gettext->addDomain('application/language/main/', 'main', $lang);
+            
             $this->gettext->addDomain('application/modules/' . $module . '/language', $module, $lang);
         }
     }
@@ -217,12 +230,11 @@ class MY_Lang extends MX_Lang {
      * @return	string
      */
     public function line($line = '', $params = FALSE) {
-        if (strstr($_SERVER['PATH_INFO'], 'install'))
-            return;
-        if (!$this->gettext)
-            $this->_init();
-
-        return $this->gettext->gettext($line);
+//        if (strstr($_SERVER['PATH_INFO'], 'install'))
+//            return;
+//        if (!$this->gettext)
+//            $this->_init();
+        return gettext($line);
     }
 
     /**

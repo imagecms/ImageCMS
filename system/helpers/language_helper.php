@@ -41,10 +41,15 @@ if (!defined('BASEPATH'))
 if (!function_exists('lang')) {
 
     function lang($line, $name = "main", $id = '') {
+        
         textdomain($name);
         $CI = & get_instance();
+//        $CI->load->
+//        var_dump($CI->lang);
+        $line_tmp = $line;
         $line = $CI->lang->line($line);
-
+        if(!$line)
+            return $line_tmp;
 
         if ($id != '') {
 //            $line = '<label for="' . $name . '">' . $line . "</label>";

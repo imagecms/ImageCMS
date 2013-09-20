@@ -48,7 +48,7 @@ class Banners extends MY_Controller {
         $lang = $this->get_main_lang('identif');
         $painting = $type . '_' . (int) $id;
 
-        $hash = 'baners' . $type . $id;
+        $hash = 'baners' . $type . $id . \CI_Controller::get_instance()->config->item('template');
         if ($cahe = Cache_html::get_html($hash)) {
             \CMSFactory\assetManager::create()
                     ->registerScript('jquery.cycle.all.min', TRUE);
