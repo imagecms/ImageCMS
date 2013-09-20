@@ -6,7 +6,7 @@ $gettext_pattern = array(
     "~lang\(\"(.*?)\"~"
 );
 
-define('_DAT', '_js.php');
+define('_DAT', 'jsLangs.php');
 
 function _log($s) {
     $f = fopen(_DAT, 'wb');
@@ -28,7 +28,7 @@ for ($k = 3; $k < count($p); $k++) {
     }
 }
 $domain = array();
-preg_match('/modules\/([a-zA-Z]+)/', $found_in[1], $domain);
+preg_match('/modules\/([a-zA-Z_]+)/', $found_in[0], $domain);
 
 $mod = array();
 foreach ($gettext_pattern as $pattern) {
@@ -41,12 +41,19 @@ if ($mod) {
 //        $result .= $dom;
 //    }
     foreach ($mod AS $value) {
-        $result .= "lang['" . md5($value) . "']" . " = " . ' ". ' . "lang('" . $value . "', '" . $domain[1] . "')" . '."' . ";" . "\n";
+        $result .= "langs['" . $value . "']" . " = "  . "lang('" . $value . "', '" . $domain[1] . "')" . ";" . "\n";
     }
-    $result = "<?php\n/*\n" . implode("\n", $found_in) . "*/\n\n" . 'echo "' . ' <script> lang = {}; ' . $result . ' </script>' . '"; ' . "\n?>";
+    $result = "<?php\n/*\n" . implode("\n", $found_in) . "*/\n\n" . 'echo "' . ' <script> langs = {}; ' . $result . ' </script>' . '"; ' . "\n?>";
 
     _log($result);
+    $result = '';
+    foreach ($mod AS $value) {
+        $result .= "langs['" . $value . "']" . " = ". "\"{lang('" . $value . "', '" . $domain[1] . "')}\"" . ";" . "\n";
+    }
+    $result = '<script> ' . $result . ' </script>';
+//var langs = new Object();
+    file_put_contents('assets/jsLangs.tpl', $result);
     exec('xgettext --force-po -o "' . $p[1] . '" ' . $p[2] . ' ' . $p[3] . ' ' . _DAT);
-    //unlink(_DAT);
+//    unlink(_DAT);
 }
 ?>

@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-08 08:47+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -1313,7 +1313,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:222
 msgid "Site configuration"
-msgstr "Настр1"
+msgstr ""
 
 #: /var/www/image.loc/_temp.php:228
 #: /var/www/image.loc/_temp.php:246

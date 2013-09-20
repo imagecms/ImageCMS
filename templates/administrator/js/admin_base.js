@@ -13,7 +13,7 @@ $(document).ready(function() {
             url: '/admin/components/change_autoload',
             success: function(obj) {
                 if (obj.result === false) {
-                    showMessage(lang.error, lang.errorSomethingWereWrong);
+                    showMessage(langs.error, langs.errorSomethingWereWrong);
                 }
             }
         });
@@ -34,7 +34,7 @@ $(document).ready(function() {
                 url: '/admin/components/change_url_access',
                 success: function(obj) {
                     if (obj.result === false) {
-                        showMessage(lang.error, lang.errorUrlAccess);
+                        showMessage(langs.error, langs.errorUrlAccess);
                     } else {
                         if (obj.result.enabled === 1)
                         {
@@ -63,16 +63,16 @@ $(document).ready(function() {
                     trin.children('td.fdel').remove();
                     trin.children('td.fdel2').remove();
                     trin.append('<td><p> - <p></td>');
-                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + lang.turnOn + '"  data-off="' + lang.turnOff + '"><span class="prod-on_off autoload_ch" data-mid="{$module.id}"></span></div></td>')
-                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + lang.turnOn + '"  data-off="' + lang.turnOff + '"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
+                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + langs.turnOn + '"  data-off="' + langs.turnOff + '"><span class="prod-on_off autoload_ch" data-mid="{$module.id}"></span></div></td>')
+                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + langs.turnOn + '"  data-off="' + langs.turnOff + '"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
                     $('#mtbl').append(trin);
                     $this.parents('tr:first').remove();
                     if ($('tbody.nim').children('tr').contents().length === 0)
                     {
                         $('#nimt').remove();
-                        $('#nimc').html('</br><div class="alert alert-info">' + lang.haveNotModulesToInstall + '</div>');
+                        $('#nimc').html('</br><div class="alert alert-info">' + langs.haveNotModulesToInstall + '</div>');
                     }
-                    showMessage(lang.moduleInstall, lang.moduleSuccessInstall);
+                    showMessage(langs.moduleInstall, langs.moduleSuccessInstall);
                     location.reload();
                 }
             }
@@ -151,10 +151,10 @@ $(document).ready(function() {
             success: function(obj) {
                 if (obj.result === false)
                 {
-                    showMessage(lang.creatingWidget , lang.error + obj.message);
+                    showMessage(langs.creatingWidget , langs.error + obj.message);
                 } else {
                     var url = '/admin/widgets_manager';
-                    showMessage(lang.creatingWidget, lang.createdSuccessfullyWidget);
+                    showMessage(langs.creatingWidget, langs.createdSuccessfullyWidget);
                     redirect_url(url);
                 }
             }
@@ -168,10 +168,10 @@ $(document).ready(function() {
             success: function(obj) {
                 if (obj.result === false)
                 {
-                    showMessage(lang.creatingWidget, lang.error + obj.message);
+                    showMessage(langs.creatingWidget, langs.error + obj.message);
                 } else {
                     var url = '/admin/widgets_manager/create_tpl';
-                    showMessage(lang.creatingWidget, lang.createdSuccessfullyWidget);
+                    showMessage(langs.creatingWidget, langs.createdSuccessfullyWidget);
                     redirect_url(url);
                 }
             }
@@ -267,7 +267,7 @@ $(document).ready(function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
-//            if (confirm(lang.deleteGroup))
+//            if (confirm(langs.deleteGroup))
 //            {
 //                var arr = getcheckedvalues();
 //                $.post('/admin/components/run/shop/rbac/group_delete', {
@@ -285,7 +285,7 @@ $(document).ready(function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
-//            if (confirm(lang.deleteGroup))
+//            if (confirm(langs.deleteGroup))
 //            {
 //                var arr = getcheckedvalues();
 //                $.post('/admin/components/run/shop/rbac/privilege_delete', {
@@ -468,7 +468,7 @@ $(document).ready(function() {
     });
 
     $('#create_tpl').live('click', function() {
-        var name = prompt(lang.enterTemplateName , '');
+        var name = prompt(langs.enterTemplateName , '');
         if (name != null && name != "") {
             $.ajax({
                 type: "post",
@@ -627,7 +627,7 @@ $(document).ready(function() {
                     });
                     $('#pages_list_holder').html('<ul>' + st + '</ul>');
                 } else {
-                    $('#pages_list_holder').html(lang.categoryHaveNotPage);
+                    $('#pages_list_holder').html(langs.categoryHaveNotPage);
                 }
             }
         });

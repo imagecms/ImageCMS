@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Batch', 'group_mailer')}</span></a>
+                <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('back', 'admin')}</span></a>
                 <button type="button" class="btn btn-small formSubmit" data-form="#send" ><i class="icon-list-alt"></i>{lang("Send a letter", 'group_mailer')}</button>                   
             </div>
         </div>                            
@@ -70,7 +70,7 @@
                                                             <span class="niceCheck">
                                                                 <input type="checkbox" name="roles[]" value="{$role.id}" />
                                                             </span>
-                                                            {$role.name}
+                                                            {$role.alt_name}
                                                         </div>
                                                     {/foreach}
                                                 </div>
