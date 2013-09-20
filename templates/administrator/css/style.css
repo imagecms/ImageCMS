@@ -820,3 +820,15 @@ span.check_gg {
 }
 
 
+/* ------ BACKUPS ------ */
+table#backups_list {
+    margin-top: 10px;
+}
+
+/*table#backups_list thead th:nth-child(1) {width: 10px;}
+table#backups_list thead th:nth-child(2) {width: 10px;}
+table#backups_list thead th:nth-child(3) {width: 10px;}*/
+#backups_list thead th:nth-child(4) {width: 80px}
+#backups_list thead th:nth-child(5) {width: 50px}
+#backups_list thead th:nth-child(6) {width: 50px}
+#backups_list thead th:nth-child(7) {width: 50px}

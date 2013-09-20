@@ -9,6 +9,7 @@ $(document).ready(function() {
         }
     });
 
+lang('4444dd');
     $('.niceCheck').on('click', function() {
         if ($(this).find('.wraper_activSettings').attr('checked')) {
             $('.wraperControlGroup').slideUp(500);

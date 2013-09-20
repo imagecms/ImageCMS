@@ -13,13 +13,7 @@ function _log($s) {
 	fclose($f);
 }
 
-
-
 $p = $_SERVER['argv'];
-
-//foreach($p as $filed){
-	//_log(implode("\n",$p));
-//}
 
 $text = '';
 $result = '';
@@ -43,15 +37,8 @@ if ($mod) {
     $result .= '_("'.$value.'");'."\n";
   }
   $result = "<?php\n/*\n".implode("\n",$found_in)."*/\n\n".$result."\n?>";
-
-  
  _log($result);
-// $result ='';
-// foreach($p as $ps){
-//     $result .= $ps;
-// }
-// 
-// _log($result);
+
   exec('xgettext --force-po -o "'.$p[1].'" '.$p[2].' '.$p[3].' '._DAT);
   //unlink(_DAT);
 }
