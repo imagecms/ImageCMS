@@ -264,7 +264,7 @@
                 <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     <span class="photo-block">
                         <span class="helper"></span>
-                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
+                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" id="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
                         {$discount = 0}
                         {if $hasDiscounts}
                             {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency('origprice')*100}
@@ -352,6 +352,7 @@
         </div>
     </div>
     <!--Kit start-->
+    {var_dump($model->getShopKits())}
     {if $model->getShopKits() && $model->getShopKits()->count() > 0}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
@@ -501,6 +502,7 @@
                                                         data-url='{echo json_encode($kitProducts->getUrls())}'
                                                         data-img='{echo json_encode($kitProducts->getImgs())}'
                                                         data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
+                                                        data-count='1'
                                                         data-prodstatus='{json_encode($kitProducts->getKitStatus())}'
                                                         >
                                                     <span class="icon_cleaner icon_cleaner_buy"></span>
