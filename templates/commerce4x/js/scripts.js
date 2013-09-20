@@ -866,9 +866,9 @@ $(document).ready(function() {
     })
 
     $('.del_filter_item').bind('click', function() {
-        console.log($('input#' + $(this).attr('data-id')));
+        //console.log($('input#' + $(this).attr('data-id')));
         var data = $(this).attr('data-id').split("/");
-        $('input#' + data[0] + "[value='" + data[1] + "']").click();
+        $('input#' + $(this).attr('data-id')).click();
         return false;
     })
 

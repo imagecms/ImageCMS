@@ -34,7 +34,7 @@
                                     var items = Shop.Cart.getAllItems();
                                     for (var i = 0; i < items.length; i++)
                                         localStorage.removeItem(items[i].storageId());
-                                    localStorage.setItem('wishList', []);
+                                    localStorage.removeItem('wishList');
                                 }
                             }}{/literal});
                         return false;">

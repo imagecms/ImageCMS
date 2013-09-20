@@ -265,7 +265,7 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count) * parseFloat(item.price).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count * item.price).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
@@ -299,13 +299,11 @@
         <div class="frame-foot drop-footer">
         <div class="header-frame-foot">
         <div class="inside-padd">
+        <div class="clearfix">
         <span class="frame-discount">
-
         <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevel')}{literal}:</span>
         <span class="text-discount current-discount"><span class="genDiscount"><% if (discC) parseFloat(Shop.Cart.discount.sum_discount_product + Shop.Cart.kitDiscount).toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
-
         </span>
-        <div class="clearfix">
         <% if (orderDetails) { %>
         <div class="btn-form f_l">
         <button type="button" data-closed="closed-js">
@@ -508,7 +506,7 @@
         <% var urls = item.url %>
         <% var prodstatus = item.prodstatus %>
 
-        <tr class="row-kits" data-id="popupKit_<%- item.kitId %>">
+        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
         <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
@@ -643,7 +641,7 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count) * parseFloat(item.price).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count * item.price).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
