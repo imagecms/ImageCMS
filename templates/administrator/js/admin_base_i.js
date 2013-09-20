@@ -1453,9 +1453,58 @@ $(document).ready(function() {
         placement: 'top'
     });
 
-
-
     /* --------------------- end of Siteinfo -------------------------*/
+
+
+
+
+    /* --------------------- Backup -------------------------*/
+
+    $(".backup_container #backup_save_settings").live('click', function() {
+        var settings = {};
+
+        $(".backup_container .backup_settings").each(function() {
+            var id = $(this).attr("id");
+            var value = $(this).val();
+            settings[id] = value;
+        });
+
+        $.post(base_url + 'admin/backup/save_settings', settings, function(data) {
+            //alert(data);
+            $(".backup_container #backup_temp").html(data);
+        });
+    });
+
+    $(".backup_container #backups_list .backup_lock").live("click", function() {
+        var params = {};
+        params.action = 'backup_lock';
+        params.file = $(this).parents("tr").find(".backup_filename").text();
+        params.locked = $(this).hasClass('active') ? "1" : "0";
+        $.post(base_url + "admin/backup/file_actions", params, function() {
+        }, "json");
+    });
+
+    $(".backup_container #backups_list .backup_delete").live("click", function() {
+        var params = {};
+        var tr = $(this).parents("tr").remove();
+        params.action = 'backup_delete';
+        params.file = $(this).parents("tr").find(".backup_filename").text();
+        $.post(base_url + "admin/backup/file_actions", params, function(data) {
+        }, "json");
+
+    });
+
+    $(".backup_container #backups_list .backup_download").live("click", function() {
+        var file = $(this).parents("tr").find(".backup_filename").text();
+        $("#download_file_form input").val(file);
+        $("#download_file_form").submit();
+
+    });
+
+    /* --------------------- end of Backup -------------------------*/
+
+
+
 });
 
 
