@@ -105,7 +105,6 @@ _("Remove order with ID: ");
 _("Change product");
 _("The file is loaded. Slot ");
 _("Error in the script. Please notify the administrator");
-_("wwwww55");
 _("Role edit");
 _("Back");
 _("Save");
