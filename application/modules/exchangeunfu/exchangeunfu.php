@@ -285,7 +285,6 @@ class Exchangeunfu extends MY_Controller {
             $array = array();
         }
 
-
         $partners_exist = array();
         foreach ($array as $key => $price) {
             $partners_exist[] = $price['partner_external_id'];
@@ -297,14 +296,10 @@ class Exchangeunfu extends MY_Controller {
                 ->setData('partnets_exists', $partners_exist)
                 ->setData('partners', $partners)
                 ->fetchAdminTemplate('main');
-        /**
-         * return fix block
-         */
-        if (self::$return == 0) {
+
             \CMSFactory\assetManager::create()
                     ->appendData('moduleAdditions', $view);
-            self::$return++;
-        }
+
     }
 
     /**

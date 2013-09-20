@@ -30,7 +30,7 @@
     </head>
     <body>
         {include_tpl('inc/javascriptVars')}
-
+        {include_tpl('inc/jsLangs.tpl')}
         {$langDomain = $CI->land->gettext_domain}
         {$CI->lang->load('admin')}
         <div class="main_body">

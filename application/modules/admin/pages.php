@@ -1021,7 +1021,7 @@ class Pages extends BaseAdminController {
                 'tree' => $this->lib_category->build(),
                 'show_cat_list' => $main_settings['cat_list'],
             ));
-            $this->template->show('pages', FALSE);
+            $this->template->show('pages_list', FALSE);
         } else {
 
             $this->template->add_array(array('no_pages' => TRUE,
@@ -1030,7 +1030,7 @@ class Pages extends BaseAdminController {
                 'cat_id' => $cat_id,
                 'show_cat_list' => $main_settings['cat_list'],
             ));
-            $this->template->show('pages', FALSE);
+            $this->template->show('pages_list', FALSE);
         }
     }
 
