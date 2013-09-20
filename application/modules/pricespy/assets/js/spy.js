@@ -6,7 +6,7 @@ function spy(id, varId) {
             success: function(data) {
                 obj = JSON.parse(data);
                 if (obj.answer === 'sucesfull') {
-                    $('#' + varId).val('Уже в слежении');
+                    $('#' + varId).val(lang('Already in tracking'));
                     document.getElementById(varId).className = 'btn inSpy';
                     document.getElementById(varId).onclick = 'btn inSpy';
                     $('#' + varId).die('click').on("click", function() {

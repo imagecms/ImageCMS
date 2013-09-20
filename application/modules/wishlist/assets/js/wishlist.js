@@ -14,10 +14,10 @@ function addToWL(varId) {
         if (checkedList.hasClass('newWishList')) {
             listID = false;
             listName = $('.wish_list_name').val();
-            if (listName === "Создать список") {
+            if (listName === lang('Create list')) {
                 $('#errors').css('display', 'block');
                 $('#wishCart .error').html('');
-                $('#wishCart .error').append('<p>Неверная назва списка</p>');
+                $('#wishCart .error').append('<p>' + lang('Wrong list name') + '</p>');
                 return false;
             }
         }
@@ -53,7 +53,7 @@ function addToWL(varId) {
 
                     //--------------------
 
-                    $('#' + varId).val('Уже в Списке Желания');
+                    $('#' + varId).val(lang('Already in Wish List'));
                     $('#' + varId).addClass('inWL');
                     $('#' + varId).bind('click');
                     $('#' + varId).die('click').on("click", function() {
@@ -66,7 +66,7 @@ function addToWL(varId) {
     } else {
         $('#errors').css('display', 'block');
         $('#wishCart .error').html('');
-        $('#wishCart .error').append('<p>Список не обран</p>');
+        $('#wishCart .error').append('<p>' + lang('List does not chosen') + '</p>');
     }
 }
 
@@ -171,7 +171,7 @@ $('.newWishList').live('click', function() {
     var maxListsCount = $(this).data('maxlistscount');
     if (listCount >= maxListsCount) {
         if (!$('.listsLimit').length) {
-            $('.newWishListLable').append('<div class="listsLimit">Лимит вишлистов закончен</div>');
+            $('.newWishListLable').append('<div class="listsLimit">' + lang('Limit of Wish List finished ') + '</div>');
         }
 
         $(this).removeAttr('checked');

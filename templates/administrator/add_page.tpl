@@ -7,7 +7,7 @@
         <div class="pull-right">
             <span class="help-inline"></span>
             <div class="d-i_b">
-                <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('back','admin')}</span></a>
                 <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>
             </div>

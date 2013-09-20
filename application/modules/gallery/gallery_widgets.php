@@ -43,10 +43,7 @@ class Gallery_Widgets extends MY_Controller {
         switch ($action) {
             case 'show_settings':
                 //$this->display_tpl('latest_fotos_form', array('widget' => $widget_data));
-                //$this->render('latest_fotos_form', array('widget' => $widget_data));
-                \CMSFactory\assetManager::create()
-                        ->setData(array('widget' => $widget_data))
-                        ->render('latest_fotos_form');
+                $this->render('latest_fotos_form', array('widget' => $widget_data));
                 break;
 
             case 'update_settings':

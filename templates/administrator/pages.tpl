@@ -22,7 +22,7 @@
         <h3>{lang('Delete pages','admin')}</h3>
     </div>
     <div class="modal-body">
-        {lang("Delete selected pages",'admin')}
+        {lang('Delete selected pages?', 'admin')}
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel",'admin')}</a>
@@ -44,7 +44,7 @@
                     <button onclick="$('#pages_action_dialog').modal();
                 pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
                     <button onclick="$('#pages_delete_dialog').modal();
-                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Delete pages','admin')}</button>
+                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Delete','admin')}</button>
                     <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</button>-->
                     <a class="btn btn-small btn-success pjax" href='{$BASE_URL}admin/pages'><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</a>
                 </div>

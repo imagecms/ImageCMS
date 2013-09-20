@@ -44,7 +44,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/admin/updatePartner',
             success: function(data) {
-                showMessage("Сообщение", 'Партнер обновлен');
+                showMessage(lang('Message'), lang('Partner updated'));
             }
         });
 
@@ -80,9 +80,9 @@ $(document).ready(function() {
             url: '/exchangeunfu/admin/deletePartner',
             success: function(result) {
                 if(result){
-                    showMessage("Сообщение", 'Партнер успешно удален');
+                    showMessage(lang('Message'), lang('Partner successfully deleted'));
                 }else{
-                    showMessage("Сообщение", 'Ошыбка удаления', 'r');
+                    showMessage(lang('Message'), lang('Partner not deleted'), 'r');
                 }
             }
         });
@@ -113,10 +113,10 @@ $(document).ready(function() {
             url: '/exchangeunfu/admin/addPartner',
             success: function(data) {
                 if(data){
-                    showMessage('Сообщение', 'Партнер успешно додан');
+                    showMessage(lang('Message'), lang('Partner successfully added'));
                     $(data).insertBefore(TR);
                 }else{
-                    showMessage('Ошыбка', 'Партнер не додан', 'r');
+                    showMessage(lang('Error'), lang('Partner not added'), 'r');
                 }          
             }
         });

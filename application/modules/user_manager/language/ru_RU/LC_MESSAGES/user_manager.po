@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 16:54+0300\n"
-"PO-Revision-Date: 2013-09-14 00:11+0200\n"
-"Last-Translator: Mark <sheme4ko@mail.ru>\n"
+"POT-Creation-Date: 2013-09-19 13:07+0300\n"
+"PO-Revision-Date: 2013-09-19 13:07+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,8 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: ../../../\n"
 
-#: /var/www/image.loc/_temp2.php:13 /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_temp2.php:21
 msgid "Delete"
 msgstr "Удалить"
 
@@ -24,7 +25,8 @@ msgstr "Удалить"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: /var/www/image.loc/_temp2.php:15 /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:15
+#: /var/www/image.loc/_temp2.php:43
 #: /var/www/image.loc/_temp2.php:65
 msgid "Return"
 msgstr "Назад"
@@ -50,7 +52,8 @@ msgstr "Группы"
 msgid "Access rights differentiation system"
 msgstr "Права доступа разных систем"
 
-#: /var/www/image.loc/_temp2.php:22 /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:23
 msgid "Cancel filter"
 msgstr "Отменить фильтр"
 
@@ -63,8 +66,10 @@ msgstr "Фильтр"
 msgid "All groups"
 msgstr "Все группы"
 
-#: /var/www/image.loc/_temp2.php:26 /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:44 /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:66
 msgid "Save"
 msgstr "Сохранить"
 
@@ -72,9 +77,12 @@ msgstr "Сохранить"
 msgid "Properties"
 msgstr "Свойства"
 
-#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:29
-#: /var/www/image.loc/_temp2.php:36 /var/www/image.loc/_temp2.php:50
-#: /var/www/image.loc/_temp2.php:82 /var/www/image.loc/_temp2.php:101
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:50
+#: /var/www/image.loc/_temp2.php:82
+#: /var/www/image.loc/_temp2.php:101
 msgid "Group"
 msgstr "Группа"
 
@@ -86,7 +94,8 @@ msgstr "Отменить все"
 msgid "Cancel selection"
 msgstr "Отменить выбранное"
 
-#: /var/www/image.loc/_temp2.php:33 /var/www/image.loc/_temp2.php:98
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:98
 #: /var/www/image.loc/_temp2.php:106
 msgid "ID"
 msgstr "ID"
@@ -95,15 +104,18 @@ msgstr "ID"
 msgid "Login"
 msgstr "Войти"
 
-#: /var/www/image.loc/_temp2.php:35 /var/www/image.loc/_temp2.php:47
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:47
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: /var/www/image.loc/_temp2.php:37 /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:54
 msgid "Ban"
 msgstr "Бан"
 
-#: /var/www/image.loc/_temp2.php:38 /var/www/image.loc/_temp2.php:103
+#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:103
 msgid "Last IP"
 msgstr "Последний IP"
 
@@ -124,7 +136,8 @@ msgstr "Редактировать"
 msgid "Editing by"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_temp2.php:45 /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_temp2.php:67
 msgid "Save and exit"
 msgstr "Создать и вийти"
 
@@ -132,7 +145,8 @@ msgstr "Создать и вийти"
 msgid "User data"
 msgstr "Данные пользователя"
 
-#: /var/www/image.loc/_temp2.php:48 /var/www/image.loc/_temp2.php:78
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:78
 msgid "Full name"
 msgstr "Полное имя"
 
@@ -144,13 +158,15 @@ msgstr "Телефон"
 msgid "Without group"
 msgstr "Без группы"
 
-#: /var/www/image.loc/_temp2.php:52 /var/www/image.loc/_temp2.php:80
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:80
 msgid "New password"
 msgstr "Новый пароль"
 
 #: /var/www/image.loc/_temp2.php:53
-msgid "New password confirmation"
-msgstr "Новые подтверждения пароля"
+#, fuzzy
+msgid "Password confirm"
+msgstr "Подтвердить пароль"
 
 #: /var/www/image.loc/_temp2.php:55
 msgid "No"
@@ -168,18 +184,23 @@ msgstr "Причина Бана"
 msgid "Options"
 msgstr "Опции"
 
-#: /var/www/image.loc/_temp2.php:59 /var/www/image.loc/_temp2.php:64
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:64
 #: /var/www/image.loc/_temp2.php:86
 msgid "Create"
 msgstr "Создать"
 
-#: /var/www/image.loc/_temp2.php:60 /var/www/image.loc/_temp2.php:68
-#: /var/www/image.loc/_temp2.php:89 /var/www/image.loc/_temp2.php:107
+#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:68
+#: /var/www/image.loc/_temp2.php:89
+#: /var/www/image.loc/_temp2.php:107
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_temp2.php:61 /var/www/image.loc/_temp2.php:69
-#: /var/www/image.loc/_temp2.php:70 /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:69
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:90
 #: /var/www/image.loc/_temp2.php:108
 msgid "Identifier"
 msgstr "Идентификатор"
@@ -188,8 +209,10 @@ msgstr "Идентификатор"
 msgid "Just latin characters"
 msgstr "Только латинские буквы"
 
-#: /var/www/image.loc/_temp2.php:63 /var/www/image.loc/_temp2.php:71
-#: /var/www/image.loc/_temp2.php:92 /var/www/image.loc/_temp2.php:109
+#: /var/www/image.loc/_temp2.php:63
+#: /var/www/image.loc/_temp2.php:71
+#: /var/www/image.loc/_temp2.php:92
+#: /var/www/image.loc/_temp2.php:109
 msgid "Description"
 msgstr "Описание"
 
@@ -197,7 +220,8 @@ msgstr "Описание"
 msgid "Create a new user"
 msgstr "Создать новго пользователя"
 
-#: /var/www/image.loc/_temp2.php:73 /var/www/image.loc/_temp2.php:85
+#: /var/www/image.loc/_temp2.php:73
+#: /var/www/image.loc/_temp2.php:85
 msgid "Go back"
 msgstr "Назад"
 
@@ -205,7 +229,8 @@ msgstr "Назад"
 msgid "Сreate"
 msgstr "Создать"
 
-#: /var/www/image.loc/_temp2.php:75 /var/www/image.loc/_temp2.php:87
+#: /var/www/image.loc/_temp2.php:75
+#: /var/www/image.loc/_temp2.php:87
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
@@ -241,7 +266,8 @@ msgstr "Детали группы"
 msgid "Only Latin characters"
 msgstr "Только латинские буквы"
 
-#: /var/www/image.loc/_temp2.php:93 /var/www/image.loc/_temp2.php:95
+#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:95
 msgid "Deleting a user"
 msgstr "Удаление пользователя"
 
@@ -267,7 +293,7 @@ msgstr "E-mail"
 
 #: /var/www/image.loc/_temp2.php:102
 msgid "Banned"
-msgstr "Запрещенный"
+msgstr "Бан"
 
 #: /var/www/image.loc/_temp2.php:104
 msgid "Preliminary contents"
@@ -285,61 +311,67 @@ msgstr "Редактирование групп"
 msgid "Group data"
 msgstr "Данные группы"
 
-#: ../../..//admin.php:171 ../../..//admin.php:363 ../../..//admin.php:371
+#: ../../..//admin.php:173
+#: ../../..//admin.php:365
+#: ../../..//admin.php:373
 msgid "Password"
 msgstr "Пароль"
 
-#: ../../..//admin.php:183 ../../..//admin.php:377
+#: ../../..//admin.php:185
+#: ../../..//admin.php:379
 msgid "User with the same e-mail has been registered"
 msgstr "Пользователь с таким e-mail был зарегистрирован"
 
 # неее
-#: ../../..//admin.php:203
+#: ../../..//admin.php:205
 msgid "Create a user or the username has been created"
 msgstr "Создать пользователя"
 
 # неее
-#: ../../..//admin.php:207
+#: ../../..//admin.php:209
 msgid "Username has been created or user has been created"
 msgstr "Пользователь был создан"
 
-#: ../../..//admin.php:246
+#: ../../..//admin.php:248
 msgid "Ban the user  or the user has been banned"
 msgstr "Пользователь забанен"
 
-#: ../../..//admin.php:255
+#: ../../..//admin.php:257
 msgid "The user has been unbanned "
 msgstr "Пользователь был удален с бана"
 
-#: ../../..//admin.php:292 ../../..//admin.php:309 ../../..//admin.php:339
+#: ../../..//admin.php:294
+#: ../../..//admin.php:311
+#: ../../..//admin.php:341
 msgid "User has not been found "
 msgstr "Пользователь не найден "
 
-#: ../../..//admin.php:321
+#: ../../..//admin.php:323
 msgid "You do not pass search"
 msgstr "Вы не прошли поиска"
 
-#: ../../..//admin.php:405
+#: ../../..//admin.php:407
 msgid "Updated a user"
 msgstr "Пользователь обновлен"
 
-#: ../../..//admin.php:410 ../../..//admin.php:515
+#: ../../..//admin.php:412
+#: ../../..//admin.php:517
 msgid "Changes have been saved"
 msgstr "Изменения сохранены"
 
-#: ../../..//admin.php:460
+#: ../../..//admin.php:462
 msgid "Created a group"
 msgstr "Группу создано"
 
-#: ../../..//admin.php:461
+#: ../../..//admin.php:463
 msgid "Group has been created"
 msgstr "Группа была создана"
 
-#: ../../..//admin.php:479
+#: ../../..//admin.php:481
 msgid "No data transmitted"
 msgstr "Данные не переданы"
 
-#: ../../..//admin.php:489
+#: ../../..//admin.php:491
 msgid "Deleted a user"
 msgstr "Пользователь удален"
 

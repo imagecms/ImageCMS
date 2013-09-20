@@ -24,13 +24,13 @@ $('.btnF_Send').live('click',function(){
     $('.required').each(function() {
         if(!$(this).val().length) {
             $(this).addClass('badData');
-            $('.errorMessage').html('Заполните обязательные поля!').show();
+            $('.errorMessage').html(lang('Fill in required fields!')).show();
             validation = false;
             return false;
         }else {
             if ($(this).hasClass('emailRequired') && $(this).val().search(pattern) != 0){
                  $(this).addClass('badData');
-                 $('.errorMessage').html('Неверный email!').show();
+                 $('.errorMessage').html(lang('Invalid email!')).show();
                  validation = false;
                  return false;
             }
@@ -43,7 +43,7 @@ $('.btnF_Send').live('click',function(){
              url: '/found_less_expensive/save_message',
              success: function(res) {
                 $('.horizontalF_form').hide();
-                $('.errorMessage').html('Отправлено! Спасибо за уведомление!').show();;
+                $('.errorMessage').html(lang('Sent! Thanks for the notification!')).show();;
                 $('#foundLessExpensixeDrop').fadeOut(2000);
                 $('.forClear').val('');
              }
