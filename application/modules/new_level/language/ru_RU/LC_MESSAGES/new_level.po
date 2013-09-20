@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:27+0300\n"
+"POT-Creation-Date: 2013-09-19 16:45+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -12,89 +12,147 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:11
-msgid "New Level"
-msgstr "New Level"
+#: /var/www/image.loc/_tempLangs.php:12
+#: /var/www/image.loc/_tempLangs.php:14
+#: /var/www/image.loc/_tempLangs.php:17
+#: /var/www/image.loc/_tempLangs.php:19
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:28
+msgid "Message"
+msgstr "Сообщение"
 
-#: /var/www/image.loc/_temp2.php:12
-#: /var/www/image.loc/_temp2.php:24
-msgid "Back"
-msgstr "Назад"
+#: /var/www/image.loc/_tempLangs.php:13
+msgid "Property type updated"
+msgstr "Типы свойства обновлен"
 
-#: /var/www/image.loc/_temp2.php:13
-#: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:34
-msgid "Settings"
-msgstr "Настройки"
-
-#: /var/www/image.loc/_temp2.php:14
-msgid "Properties"
-msgstr "Свойства"
-
-#: /var/www/image.loc/_temp2.php:15
-#: /var/www/image.loc/_temp2.php:29
-msgid "Columns"
-msgstr "Колонны"
-
-#: /var/www/image.loc/_temp2.php:16
-#: /var/www/image.loc/_temp2.php:35
-msgid "Colour scheme"
-msgstr "Цветовая схема"
-
-#: /var/www/image.loc/_temp2.php:17
-#: /var/www/image.loc/_temp2.php:20
-msgid "Categories columns"
-msgstr "Столбци категорий"
-
-#: /var/www/image.loc/_temp2.php:18
-#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_tempLangs.php:15
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:44
 msgid "Column"
 msgstr "Колонка"
 
-#: /var/www/image.loc/_temp2.php:19
-#: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_tempLangs.php:16
+msgid "updated"
+msgstr "обновлена"
+
+#: /var/www/image.loc/_tempLangs.php:18
+msgid "Type of property successfully removed"
+msgstr "Тип свойства успешно удален"
+
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "Type of property successfully updated"
+msgstr "Тип свойства успешно обновлен"
+
+#: /var/www/image.loc/_tempLangs.php:22
+msgid "Type of property successfully added"
+msgstr "Тип свойства успешно додан"
+
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "removed"
+msgstr "удалена"
+
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Column successfully removed"
+msgstr "Колонка успешно удалена"
+
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "successfully added"
+msgstr "успешно обновлена"
+
+#: /var/www/image.loc/_tempLangs.php:31
+msgid "New Level"
+msgstr "New Level"
+
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:47
+msgid "Back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:57
+msgid "Settings"
+msgstr "Настройки"
+
+#: /var/www/image.loc/_tempLangs.php:34
+msgid "Properties"
+msgstr "Свойства"
+
+#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:52
+msgid "Columns"
+msgstr "Колонны"
+
+#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:58
+msgid "Colour scheme"
+msgstr "Цветовая схема"
+
+#: /var/www/image.loc/_tempLangs.php:37
+msgid "Id"
+msgstr "Id"
+
+#: /var/www/image.loc/_tempLangs.php:38
+msgid "Name"
+msgstr "Название"
+
+#: /var/www/image.loc/_tempLangs.php:39
+msgid "Type"
+msgstr "Тип"
+
+#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:43
+msgid "Categories columns"
+msgstr "Столбци категорий"
+
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:56
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_tempLangs.php:48
 msgid "Properties settings"
 msgstr "Настройки свойств"
 
-#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_tempLangs.php:49
 msgid "Columns settings"
 msgstr "Настройки колонок"
 
-#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_tempLangs.php:50
 msgid "Properties types"
 msgstr "Типы свойства"
 
-#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_tempLangs.php:51
 msgid "Add new properties type"
 msgstr "Добавить новый тип свойства"
 
-#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_tempLangs.php:53
 msgid "Add new column"
 msgstr "Добавить новый столбец"
 
-#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_tempLangs.php:54
 msgid "Additional settings of NewLevel module"
 msgstr "Дополнительная настройка модуля NewLevel"
 
-#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_tempLangs.php:55
 msgid "Go back"
 msgstr "Назад"
 
-#: ../../../admin.php:46
+#: admin.php:48
 msgid "Data saved"
 msgstr "Данные сохранены"
 
-#: ../../../module_info.php:7
+#: module_info.php:7
 msgid "New Level module"
 msgstr "Модуль New Level"
 

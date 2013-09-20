@@ -24,7 +24,6 @@
         <div class="content_big_td row-fluid">
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                    
                     <a href="#properties" class="btn btn-small active">{lang('Properties', 'new_level')}</a>
                     <a href="#columns" class="btn btn-small">{lang('Columns', 'new_level')}</a>
                     <a href="/admin/components/init_window/new_level/get_thema" class="btn btn-small">{lang('Colour scheme', 'new_level')}</a>
@@ -37,13 +36,13 @@
                             <thead>
                                 <tr>
                                     <th class="span1">
-                                        Id
+                                        {lang('Id', 'new_level')}
                                     </th>
                                     <th class="span5">
-                                        Name
+                                        {lang('Name', 'new_level')}
                                     </th>
                                     <th class="span5">
-                                        Type
+                                        {lang('Type', 'new_level')}
                                     </th>                               
                                 </tr>
                             </thead>
