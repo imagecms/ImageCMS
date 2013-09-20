@@ -43,17 +43,16 @@ class Gallery extends MY_Controller {
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
 
-        $data = array(
-            'gallery_category' => $categories,
-            'total' => $this->gallery_m->getTotalImages()
-        );
-
         // Get covers
-        $data['albums'] = is_array($albums) ? $this->create_albums_covers($albums) : NULL;
+        if (is_array($albums)) {
+            $this->template->add_array(array(
+                'albums' => $this->create_albums_covers($albums),
+                'gallery_category' => $categories,
+                'total' => $this->gallery_m->getTotalImages()
+            ));
+        }
 
-        \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->render('albums');
+        $this->display_tpl('albums');
     }
 
     /**
@@ -71,15 +70,13 @@ class Gallery extends MY_Controller {
                 $albums = $this->create_albums_covers($albums);
             }
 
-            $data = array(
+            $this->template->add_array(array(
                 'albums' => $albums,
                 'current_category' => $category,
                 'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
-            );
+            ));
 
-            \CMSFactory\assetManager::create()
-                    ->setData($data)
-                    ->render('albums');
+            $this->display_tpl('albums');
         }
     }
 
@@ -134,7 +131,7 @@ class Gallery extends MY_Controller {
             $this->comments->comment_controller = 'gallery/post_comment';
             $this->comments->build_comments($prev_img['id']);
 
-            $data = array(
+            $this->template->add_array(array(
                 'album' => $album,
                 'thumb_url' => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
                 'album_link' => 'gallery/album/' . $album['id'] . '/',
@@ -145,19 +142,16 @@ class Gallery extends MY_Controller {
                 'current_pos' => $current_pos,
                 'current_category' => $this->gallery_m->get_category($album['category_id']),
                 'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
-            );
+            ));
 
             $this->gallery_m->increase_image_views($prev_img['id']);
+
             $this->core->set_meta_tags(array($album['name']));
 
             if ($album['tpl_file']) {
-                \CMSFactory\assetManager::create()
-                        ->setData($data)
-                        ->render($album['tpl_file']);
+                echo $this->display_tpl($album['tpl_file']);
             } else {
-                \CMSFactory\assetManager::create()
-                        ->setData($data)
-                        ->render('album');
+                $this->display_tpl('album');
             }
         }
     }
@@ -184,20 +178,18 @@ class Gallery extends MY_Controller {
         $this->pagination->num_links = 3;
         $this->pagination->initialize($config);
 
-        $data = array(
+        $this->template->add_array(array(
             'album' => $album,
             'thumb_url' => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
             'album_link' => 'gallery/album/' . $album['id'] . '/',
             'album_url' => $this->conf['upload_url'] . $album['id'] . '/',
             'current_category' => $this->gallery_m->get_category($album['category_id']),
             'pagination' => $this->pagination->create_links(),
-        );
+        ));
 
         $this->core->set_meta_tags(array($album['name']));
 
-        \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->render('thumbnails');
+        $this->display_tpl('thumbnails');
     }
 
     function post_comment() {
@@ -245,6 +237,50 @@ class Gallery extends MY_Controller {
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
         $this->load->model('install')->deinstall();
+    }
+
+    /**
+     * Display template file
+     */
+    private function display_tpl($file = '') {
+        /**
+          if ( file_exists($this->template->template_dir . 'gallery') )
+          {
+          if ( file_exists($this->template->template_dir . 'gallery/main.tpl')   )
+          {
+          $this->template->add_array(array(
+          'content' => $this->template->fetch('gallery/' . $file),
+          ));
+
+          $this->template->display('gallery/main');
+          }
+          else
+          {
+          $this->template->show('gallery/' . $file);
+          }
+          }
+          else
+          {
+          $this->template->add_array(array(
+          'content' => $this->fetch_tpl($file),
+          ));
+
+          $file = realpath(dirname(__FILE__)).'/templates/public/main.tpl';
+          $this->template->display('file:' . $file);
+          }
+         * */
+        $this->template->add_array(array(
+            'content' => $this->fetch_tpl($file),
+        ));
+
+        if (file_exists(realpath(dirname(__FILE__)) . '/templates/public/main.tpl')) {
+            $file = realpath(dirname(__FILE__)) . '/templates/public/main.tpl';
+            $this->template->display('file:' . $file);
+        } else {
+            // Use main site template
+            $this->template->show();
+            exit;
+        }
     }
 
     /**

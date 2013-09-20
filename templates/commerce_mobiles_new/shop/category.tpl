@@ -17,7 +17,7 @@
     {else:}
         {$full_url = $_SERVER["REQUEST_URI"] . '?filtermobile=1'}
     {/if}
-    <a href="{echo $full_url}" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
+    <a href="{echo $full_url}" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">{lang('Подбор по параметрам','commerce_mobiles_new')}</span></span></a>
 </div>
 <ul class="catalog">
     {foreach $products as $product}
@@ -29,11 +29,12 @@
                 <span class="descr">
                     <span class="title">{echo ShopCore::encode($product->name)}</span>
                     {if $product->firstVariant->name}
-                        <span class="code_v">{lang('s_variant')}: {echo $product->firstVariant->name}</span>
+                        <span class="divider">/</span>
+                        <span class="code_v">{lang('Вариант','commerce_mobiles_new')}: {echo $product->firstVariant->name}</span>
                     {/if}
                     {if $product->firstVariant->getNumber()}
                         <span class="divider">/</span>
-                        <span class="code">{lang('s_article')}: {echo $product->firstVariant->getNumber()}</span>
+                        <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $product->firstVariant->getNumber()}</span>
                     {/if}
                     <span class="d_b price">{echo $product->firstVariant->toCurrency()} {$CS}</span>
                 </span>
