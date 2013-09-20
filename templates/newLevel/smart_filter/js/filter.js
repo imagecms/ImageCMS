@@ -21,96 +21,105 @@ function changeSelectFilter(el) {
 }
 (function($) {
     var methods = {
-        init: function(options) {
-            var $this = $(this),
-                    settings = $.extend({
-                slider: $this.find('.slider'),
-                minCost: null,
-                maxCost: null,
-                leftSlider: $this.find('.left-slider'),
-                rightSlider: $this.find('.right-slider'),
-            }, options);
-            var slider = settings.slider,
-                    minCost = $(settings.minCost),
-                    maxCost = $(settings.maxCost),
-                    left = settings.leftSlider,
-                    right = settings.rightSlider,
-                    defMin = settings.defMin,
-                    defMax = settings.defMax,
-                    curMin = settings.curMin,
-                    curMax = settings.curMax,
-                    lS = settings.lS,
-                    rS = settings.rS;
-            if (!$.existsN(minCost)) {
-                minCost = $('<input type="text" class="minCost" data-mins="' + defMin + '" value="' + curMin + '" name="' + lS + '" />').appendTo($this.closest('form')).hide();
-            }
-            if (!$.existsN(maxCost)) {
-                maxCost = $('<input type="text" class="maxCost" data-maxs="' + defMax + '" value="' + curMax + '" name="' + rS + '"/>').appendTo($this.closest('form')).hide();
-            }
-            slider.slider({
-                min: defMin,
-                max: defMax,
-                values: [curMin, curMax],
-                range: true,
-                slide: function(event, ui) {
-//                    if ($(ui.handle).is(left)) {
-//                        $(ui.handle).tooltip({
-//                            'title': ui.values[0],
-//                            'effect': 'always',
-//                            'otherClass': 'tooltip-slider'
-//                        });
-//                    }
-//                    if ($(ui.handle).is(right)) {
-//                        $(ui.handle).tooltip({
-//                            'title': ui.values[1],
-//                            'effect': 'always',
-//                            'otherClass': 'tooltip-slider'
-//                        })
-//                    }
+        init: function() {
+            $(this).each(function() {
+                var $this = $(this),
+                        settings = $.extend({
+                    slider: $this.find('.slider'),
+                    minCost: null,
+                    maxCost: null,
+                    leftSlider: $this.find('.left-slider'),
+                    rightSlider: $this.find('.right-slider'),
+                }, eval($this.data('rel')));
+                var slider = settings.slider,
+                        minCost = $(settings.minCost),
+                        maxCost = $(settings.maxCost),
+                        left = settings.leftSlider,
+                        right = settings.rightSlider,
+                        defMin = settings.defMin,
+                        defMax = settings.defMax,
+                        curMin = settings.curMin,
+                        curMax = settings.curMax,
+                        lS = settings.lS,
+                        rS = settings.rS;
+                if (!$.existsN(minCost)) {
+                    minCost = $('<input type="text" class="minCost" data-mins="' + defMin + '" value="' + curMin + '" name="' + lS + '" />').appendTo($this.closest('form')).hide();
+                }
+                if (!$.existsN(maxCost)) {
+                    maxCost = $('<input type="text" class="maxCost" data-maxs="' + defMax + '" value="' + curMax + '" name="' + rS + '"/>').appendTo($this.closest('form')).hide();
+                }
+                slider.slider({
+                    min: defMin,
+                    max: defMax,
+                    values: [curMin, curMax],
+                    range: true,
+                    slide: function(event, ui) {
+//                        if ($(ui.handle).is(left)) {
+//                            $(ui.handle).tooltip({
+//                                'title': ui.values[0],
+//                                'effect': 'always',
+//                                'otherClass': 'tooltip-slider'
+//                            });
+//                        }
+//                        if ($(ui.handle).is(right)) {
+//                            $(ui.handle).tooltip({
+//                                'title': ui.values[1],
+//                                'effect': 'always',
+//                                'otherClass': 'tooltip-slider'
+//                            })
+//                        }
 
-                    minCost.val(ui.values[0]);
-                    maxCost.val(ui.values[1]);
-                },
-                stop: function() {
+                        minCost.val(ui.values[0]);
+                        maxCost.val(ui.values[1]);
+                    },
+                    stop: function() {
+                        ajaxRecount('#' + slider.attr('id'), 'apply-slider');
+                    }
+                });
+                minCost.change(function() {
+                    var value1 = minCost.val(),
+                            value2 = maxCost.val(),
+                            minS = minCost.data('mins');
+                    if (parseInt(value1) > parseInt(value2)) {
+                        value1 = value2;
+                        maxCost.val(value1);
+                    }
+                    if (parseInt(value1) < minS) {
+                        minCost.val(minS);
+                        value1 = minS;
+                    }
+                    slider.slider("values", 0, value1);
+                });
+                maxCost.change(function() {
+                    var value1 = minCost.val(),
+                            value2 = maxCost.val(),
+                            maxS = maxCost.data('maxs');
+                    if (value2 > defMax) {
+                        value2 = defMax;
+                        maxCost.val(defMax);
+                    }
+
+                    if (parseInt(value1) > parseInt(value2)) {
+                        value2 = value1;
+                        maxCost.val(value2);
+                    }
+                    if (parseInt(value2) > maxS) {
+                        maxCost.val(maxS);
+                        value2 = maxS;
+                    }
+                    slider.slider("values", 1, value2);
+                });
+                minCost.add(maxCost).change(function() {
                     ajaxRecount('#' + slider.attr('id'), 'apply-slider');
-                }
-            });
-            minCost.change(function() {
-                var value1 = minCost.val(),
-                        value2 = maxCost.val(),
-                        minS = minCost.data('mins');
-                if (parseInt(value1) > parseInt(value2)) {
-                    value1 = value2;
-                    maxCost.val(value1);
-                }
-                if (parseInt(value1) < minS) {
-                    minCost.val(minS);
-                    value1 = minS;
-                }
-                slider.slider("values", 0, value1);
-            });
-            maxCost.change(function() {
-                var value1 = minCost.val(),
-                        value2 = maxCost.val(),
-                        maxS = maxCost.data('maxs');
-                if (value2 > defMax) {
-                    value2 = defMax;
-                    maxCost.val(defMax);
-                }
-
-                if (parseInt(value1) > parseInt(value2)) {
-                    value2 = value1;
-                    maxCost.val(value2);
-                }
-                if (parseInt(value2) > maxS) {
-                    maxCost.val(maxS);
-                    value2 = maxS;
-                }
-                slider.slider("values", 1, value2);
-            });
-            minCost.add(maxCost).change(function() {
-                ajaxRecount('#' + slider.attr('id'), 'apply-slider');
-            });
+                });
+                $('[type="reset"]').click(function() {
+                    slider.slider({
+                        values: [defMin, defMax]
+                    });
+                    minCost.attr('value', defMin);
+                    maxCost.attr('value', defMax);
+                });
+            })
         }
     };
     $.fn.sliderInit = function(method) {
@@ -198,12 +207,9 @@ function afterAjaxInitializeFilter() {
     var apply = $('.apply'),
             $sliders = $('.frame-slider'),
             catalogForm = $('#catalog_form');
-    //if ($.exists_nabir(frameSlider) == 0) frameSlider = $('<div class="frame-slider"></div>').append('.filter').hide();
 
-    $sliders.each(function() {
-        var $this = $(this);
-        $this.sliderInit(eval($this.data('rel')));
-    });
+    $sliders.sliderInit();
+    
     if ($.exists('.lineForm:visible')) {
         cuSel($.extend({}, cuselOptions, {changedEl: '#catalog_form .lineForm select'}));
         if (ltie7)

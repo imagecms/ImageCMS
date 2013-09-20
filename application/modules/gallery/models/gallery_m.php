@@ -177,7 +177,7 @@ class Gallery_m extends CI_Model {
 
     function get_album_images($album_id, $limit, $ofset, $locale) {
         //$this->db->order_by('uploaded', 'asc');
-        
+
         $this->db->select('*, gallery_images.id as id');
         $this->joinI18n($this->db, 'gallery_images', $locale);
         $this->db->select('CONCAT_WS("", file_name, file_ext) as full_name', FALSE);
@@ -278,7 +278,7 @@ class Gallery_m extends CI_Model {
 
     function get_category($id, $locale = null) {
         if (null === $locale)
-            $locale = $this->chose_locale ();
+            $locale = $this->chose_locale();
         $this->db->limit(1);
         $this->db->where('gallery_category.id', $id);
         $this->db->select('*, gallery_category.id as id');
@@ -341,7 +341,9 @@ class Gallery_m extends CI_Model {
 
         $query = $this->db->get('gallery_category');
 
-       
+        if (!$query)
+            return FALSE;
+
         if ($query->num_rows() > 0) {
             return $query->result_array();
         } else {

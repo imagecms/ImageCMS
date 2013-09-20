@@ -7,7 +7,7 @@ var pagesAdmin = new Object({
                 $('.modal').modal('hide');
                 if (responseObj.data)
                 {
-                    showMessage('', lang.categorySuccessfullyAdd);
+                    showMessage('', langs.categorySuccessfullyAdd);
                     $('#category_selectbox').load('/admin/categories/update_fast_block/'+responseObj.data);
                 }
                 else

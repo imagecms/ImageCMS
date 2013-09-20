@@ -24,7 +24,7 @@ $(document).ready(function() {
         var current = $(this);
         var partners = new Array();
         $('.regionName').each(function() {
-            if ($(this).html() && $(this).html() != '--Не выбрано--') {
+            if ($(this).html() && $(this).html() != '--' + lang('Not choose') + '--') {
                 partners.push($(this).html());
             }
 
@@ -32,7 +32,7 @@ $(document).ready(function() {
 
         current.removeClass('partnersSelected');
         $('.partnersSelected option:selected').each(function() {
-            if ($(this).text() && $(this).text() != '--Не выбрано--') {
+            if ($(this).text() && $(this).text() != '--' + lang('Not choose') + '--') {
                 partners.push($(this).text());
             }
         });
@@ -41,7 +41,7 @@ $(document).ready(function() {
         var inArr = $.inArray(current.find('option:selected').text(), partners);
         if (inArr >= 0) {
             current.val('false')
-            showMessage('Ошыбка', 'Не возможно создать цены дважды для партнера');
+            showMessage(lang('Error'), lang('Can not create a price twice for partner'));
         }
 
 
@@ -63,7 +63,7 @@ $(document).ready(function() {
     $('.updatePartnerPrice').die().live('click', function() {
         console.log()
         if ($(this).closest('tr').find('input.pricePartner').css('display') == 'none') {
-            showMessage('Ошыбка', "Для редактирования кликните по Цене или Количестве.", 'r');
+            
             return false;
         }
 
@@ -93,7 +93,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/updatePrice',
             success: function(data) {
-                showMessage('Сообщение', "Обновление успешное.");
+                showMessage(lang('Message'), lang('Upgrade successful.'));
             }
         });
 
@@ -116,7 +116,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/deletePartner',
             success: function(data) {
-                showMessage('Сообщение', "Удаление успешное.");
+                showMessage(lang('Message'), lang('Successful deleting.'));
             }
         });
 
@@ -140,7 +140,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setHit',
             success: function(data) {
-                showMessage('Сообщение', "Значение изменено.");
+                showMessage(lang('Message'), lang('Value is changed.'));
             }
         });
     });
@@ -163,7 +163,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setHot',
             success: function(data) {
-                showMessage('Сообщение', "Значение изменено.");
+                showMessage(lang('Message'), lang('Value is changed.'));
             }
         });
     });
@@ -186,7 +186,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setAction',
             success: function(data) {
-                showMessage('Сообщение', "Значение изменено.");
+                showMessage(lang('Message'), lang('Value is changed.'));
             }
         });
     });
