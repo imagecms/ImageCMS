@@ -48,7 +48,7 @@
             <div class="hFooter"></div>
         </div>
         <div class="footer">
-            {load_menu('footer_menu')}
+            {load_menu('footer_menu_mobile')}
             <div class="p_r">
                 <div class="versions">
                     <div class="h_f"></div>
