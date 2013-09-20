@@ -5,7 +5,7 @@
             <th>{lang('Region', 'exchangeunfu')}</th>
             <th class="span2">{lang('Price', 'exchangeunfu')}</th>
             <th>{lang('Count', 'exchangeunfu')}</th>
-            <th class="span4">{lang('Stutas', 'exchangeunfu')}</th>
+            <th class="span4">{lang('Status', 'exchangeunfu')}</th>
             <th class="span2">{lang('Update', 'exchangeunfu')}</th>
             <th class="span2">{lang('Delete', 'exchangeunfu')}</th>
         </tr>

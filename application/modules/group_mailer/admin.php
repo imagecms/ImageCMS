@@ -21,7 +21,8 @@ class Admin extends BaseAdminController {
 
     public function index() {
         // Get all user groups
-        $roles = $this->db->get('shop_rbac_roles')->result_array();
+        $locale = chose_language();
+        $roles = $this->db->where('locale', $locale)->join('shop_rbac_roles_i18n', 'shop_rbac_roles.id=shop_rbac_roles_i18n.id')->get('shop_rbac_roles')->result_array();
         $this->template->assign('roles', $roles);
 
         // Get admin email

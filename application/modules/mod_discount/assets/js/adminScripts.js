@@ -14,7 +14,7 @@ $(document).ready(function() {
             url: base_url+'admin/components/init_window/mod_discount/ajaxChangeActive',
             success: function(response) {
                 if (response == true)
-                    showMessage('Статус изменен','','g')
+                    showMessage(lang('Status changed'),'','g')
             }
         });
     });
@@ -152,7 +152,7 @@ $(document).ready(function() {
                 success: function(response) {
                     if (response == true)
                         discountRow.hide();
-                        showMessage('Cкидку удалено!','','g')
+                        showMessage(lang('Discount deleted'),'','g')
                 }
             })
             

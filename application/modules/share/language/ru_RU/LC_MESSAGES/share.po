@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 18:28+0300\n"
+"POT-Creation-Date: 2013-09-19 12:53+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Mark <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -25,8 +25,8 @@ msgid "Services set"
 msgstr "Набор услуг"
 
 #: /var/www/image.loc/_temp2.php:7
-msgid "Button <<I like>>"
-msgstr "Кнопка << Мне нравится >>"
+msgid "Button I like"
+msgstr "Кнопка \"Мне нравится \""
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Я.ру"
@@ -36,11 +36,13 @@ msgstr "Я.ру"
 msgid "VK"
 msgstr "В.К."
 
-#: /var/www/image.loc/_temp2.php:10 /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:10
+#: /var/www/image.loc/_temp2.php:23
 msgid "Facebook"
 msgstr "Facebook"
 
-#: /var/www/image.loc/_temp2.php:11 /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_temp2.php:27
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -112,11 +114,12 @@ msgstr "Сохранить"
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
-#: /var/www/image.loc/_temp2.php:31 /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:32
 msgid "Settings"
 msgstr "Настройки"
 
-#: ../../../admin.php:42
+#: ../../../admin.php:44
 msgid "Settings successfully saved"
 msgstr "Настройки успешно сохранены"
 

@@ -1,6 +1,6 @@
 function denyPermitions() {
     if (!$.exists('.permition_deny')) {
-        $('body').append('<div class="modal hide fade permition_deny"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>' + lang.accessDenied + '</h3></div><div class="modal-body"><p>' + lang.thisIsDemoMessage + '</p></div></div>');
+        $('body').append('<div class="modal hide fade permition_deny"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>' + langs.accessDenied + '</h3></div><div class="modal-body"><p>' + langs.thisIsDemoMessage + '</p></div></div>');
     }
 
     if ($.exists('.formSubmit')) {

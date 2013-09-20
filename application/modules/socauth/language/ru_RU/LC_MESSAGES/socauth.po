@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-13 17:53+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Mark <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -12,20 +12,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:9 /var/www/image.loc/_temp2.php:11
-#: /var/www/image.loc/_temp2.php:12 /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_temp2.php:9
+#: /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_temp2.php:12
+#: /var/www/image.loc/_temp2.php:14
 msgid "Unsubscribe"
 msgstr "Отписатся"
 
-#: /var/www/image.loc/_temp2.php:10 /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:10
+#: /var/www/image.loc/_temp2.php:34
 msgid "VK"
 msgstr "В.К."
 
-#: /var/www/image.loc/_temp2.php:13 /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_temp2.php:35
 msgid "Yandex"
 msgstr "Яндекс"
 
@@ -37,26 +41,33 @@ msgstr "Ошибка, может быть, электронная почта у�
 msgid "Try to use a different method to enter."
 msgstr "Попробуйте использовать другой метод для входа."
 
-#: /var/www/image.loc/_temp2.php:17 /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_temp2.php:36
 msgid "Login page"
 msgstr "Страница входа"
 
-#: /var/www/image.loc/_temp2.php:18 /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:18
+#: /var/www/image.loc/_temp2.php:37
 msgid "Email"
 msgstr "E-mail"
 
-#: /var/www/image.loc/_temp2.php:19 /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:19
+#: /var/www/image.loc/_temp2.php:20
 #: /var/www/image.loc/_temp2.php:21
 msgid "Enter your login"
 msgstr "Введите свой логин"
 
-#: /var/www/image.loc/_temp2.php:22 /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:24 /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:25
 msgid "Password"
 msgstr "Пароль"
 
-#: /var/www/image.loc/_temp2.php:26 /var/www/image.loc/_temp2.php:27
-#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:29
 msgid "Code protection"
 msgstr "Защитный код"
 
@@ -72,11 +83,13 @@ msgstr "Забыл пароль"
 msgid "Registration"
 msgstr "Регистрация"
 
-#: /var/www/image.loc/_temp2.php:33 /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:41
 msgid "Enter"
 msgstr "Вход"
 
-#: /var/www/image.loc/_temp2.php:38 /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:39
 #: /var/www/image.loc/_temp2.php:40
 msgid "Enter your email"
 msgstr "Введите адрес электронной почты"
@@ -97,15 +110,21 @@ msgstr "Сохранить"
 msgid "Authorization settings using your Google account"
 msgstr "Настройки авторизации с помощью аккаунта Google"
 
-#: /var/www/image.loc/_temp2.php:46 /var/www/image.loc/_temp2.php:51
-#: /var/www/image.loc/_temp2.php:56 /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:56
+#: /var/www/image.loc/_temp2.php:61
 msgid "Need to get 1 time"
 msgstr "Необходимо получить 1 раз"
 
-#: /var/www/image.loc/_temp2.php:47 /var/www/image.loc/_temp2.php:48
-#: /var/www/image.loc/_temp2.php:52 /var/www/image.loc/_temp2.php:53
-#: /var/www/image.loc/_temp2.php:57 /var/www/image.loc/_temp2.php:58
-#: /var/www/image.loc/_temp2.php:62 /var/www/image.loc/_temp2.php:63
+#: /var/www/image.loc/_temp2.php:47
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:63
 msgid "Get"
 msgstr "Получить"
 

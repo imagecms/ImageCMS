@@ -14,7 +14,7 @@
     </div>
     <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
         <a href="#likes" class="btn btn-small active">{lang('Services set', 'share')}</a>
-        <a href="#share_buttons" class="btn btn-small">{lang('Button <<I like>>', 'share')}</a>
+        <a href="#share_buttons" class="btn btn-small">{lang('Button I like', 'share')}</a>
     </div>
     <form action="{$BASE_URL}admin/components/cp/share/update_settings" id="widget_form" method="post" class="form-horizontal">
         <div class="tab-content">
