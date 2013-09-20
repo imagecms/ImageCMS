@@ -1,5 +1,4 @@
 <div id="mod-tabs-block">
-{lang('dddddddddddddddfffffffffffffffff')}
 	<h4>{lang("Description", "admin")}</h4>
     <div>
         {$module.description}
