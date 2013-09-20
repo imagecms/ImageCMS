@@ -41,7 +41,9 @@
         <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
     </head>
-    <body class="is{echo $agent[0]} not-js">        
+    <body class="is{echo $agent[0]} not-js"> 
+        {include_tpl('language/jsLangsDefine.tpl')}
+        {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
             <div class="fon-header">
                 <header>
