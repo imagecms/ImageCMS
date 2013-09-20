@@ -649,8 +649,14 @@ class ImportXML {
             $data = array();
 
             $data['username'] = $user->Наименование . '';
-            $data['password'] = $user->Пароль . '';
-            $data['email'] = $user->Емейл . '';
+            if($user->Пароль . ''){
+                $data['password'] = $user->Пароль . '';
+            }
+            
+            if($user->Емейл . ''){
+                $data['email'] = $user->Емейл . '';
+            }
+            
             $data['phone'] = $user->Телефон . '';
             $data['code'] = $user->Код . '';
             $data['address'] = $user->Адрес . '';
