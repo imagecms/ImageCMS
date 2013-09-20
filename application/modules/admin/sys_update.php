@@ -57,7 +57,7 @@ class Sys_update extends BaseAdminController {
         $this->update->createBackUp();
         $this->update->getUpdate();
         $this->cache->delete_all();
-//        $this->update->restoreFromZIP('./application/backups/updates.zip');
+        $this->update->restoreFromZIP('./application/backups/updates.zip');
     }
 
     public function update($sort_by = "create_date", $order = 'asc') {
@@ -117,8 +117,10 @@ class Sys_update extends BaseAdminController {
         else
             echo 0;
     }
-
-    public function get_update() { // method controller's server's update
+    /*
+     * test method dont work
+     */
+    private function get_update() { // method controller's server's update
         ini_set("soap.wsdl_cache_enabled", "0");
         try {
 
