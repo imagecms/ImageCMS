@@ -1985,7 +1985,7 @@ msgstr "Создание тему запроса"
 
 #: /var/www/image.loc/_tempLangs.php:233
 msgid "Browse topics collback"
-msgstr "Просмотр тем callback'ов"
+msgstr "Просмотр тем колбеков"
 
 #: /var/www/image.loc/_tempLangs.php:234
 msgid "Add a new topic"

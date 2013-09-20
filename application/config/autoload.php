@@ -36,7 +36,7 @@ $autoload['plugin'] = array();
   | -------------------------------------------------------------------
  */
 
-$autoload['config'] = array('auth');
+$autoload['config'] = array('auth', 'language');
 
 
 /*
