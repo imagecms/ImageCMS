@@ -221,7 +221,7 @@ class assetManager {
      */
     public function fetchTemplate($tpl) {
         try {
-            /** Start. If file doesn't exists thorow exception */
+
             file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
 //
 //            $obj = new \MY_Lang();
@@ -245,14 +245,24 @@ class assetManager {
      */
     public function fetchAdminTemplate($tpl) {
         try {
+
+            /** Start. If file doesn't exists thorow exception */
+            if (file_exists($this->buildTemplatePath($this->module_js) . '.tpl')) {
+                /** Start. Load template file */
+                $view = \CI_Controller::get_instance()->template->fetch('file:' . $this->buildTemplatePath($this->module_js));
+            }
             /** Start. If file doesn't exists thorow exception */
             file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
 //
 //            $obj = new \MY_Lang();
 //            $obj->load($this->getTrace());
-
+            if (isset($view)) {
+                return $view . \CI_Controller::get_instance()->template->fetch('file:' . $this->buildAdminTemplatePath($tpl));
+            }else{
+                return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildAdminTemplatePath($tpl));
+            }
             /** Start. Return template file */
-            return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildAdminTemplatePath($tpl));
+//            return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildAdminTemplatePath($tpl));
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');

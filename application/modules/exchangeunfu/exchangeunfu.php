@@ -71,7 +71,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-
+        
     }
 
     public static function adminAutoload() {
@@ -259,6 +259,9 @@ class Exchangeunfu extends MY_Controller {
      * @param array $data
      */
     public static function _extendPageAdmin($data) {
+
+        $lang = new MY_Lang();
+        $lang->load('exchangeunfu');
         $ci = &get_instance();
         if ($ci->uri->segment(6) == 'edit') {
             $array = $ci->db

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:26+0300\n"
+"POT-Creation-Date: 2013-09-19 16:47+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -12,91 +12,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:7
+#: /var/www/image.loc/_tempLangs.php:8
 msgid "List of users subscribed to the products"
 msgstr "Список пользователей подписаных на товары"
 
-#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_tempLangs.php:9
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_temp2.php:9
+#: /var/www/image.loc/_tempLangs.php:10
 msgid "User"
 msgstr "Пользователь"
 
-#: /var/www/image.loc/_temp2.php:10
-#: /var/www/image.loc/_temp2.php:15
-#: /var/www/image.loc/_temp2.php:16
-#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_tempLangs.php:11
+#: /var/www/image.loc/_tempLangs.php:16
+#: /var/www/image.loc/_tempLangs.php:17
+#: /var/www/image.loc/_tempLangs.php:22
 msgid "Unsubscribe"
 msgstr "Отписаться"
 
-#: /var/www/image.loc/_temp2.php:11
-#: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_tempLangs.php:12
+#: /var/www/image.loc/_tempLangs.php:18
 msgid "Product"
 msgstr "Товар"
 
-#: /var/www/image.loc/_temp2.php:12
-#: /var/www/image.loc/_temp2.php:18
+#: /var/www/image.loc/_tempLangs.php:13
+#: /var/www/image.loc/_tempLangs.php:19
 msgid "New price"
 msgstr "Новая цена"
 
-#: /var/www/image.loc/_temp2.php:13
-#: /var/www/image.loc/_temp2.php:19
+#: /var/www/image.loc/_tempLangs.php:14
+#: /var/www/image.loc/_tempLangs.php:20
 msgid "Old price"
 msgstr "Старая цена"
 
-#: /var/www/image.loc/_temp2.php:14
-#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_tempLangs.php:15
+#: /var/www/image.loc/_tempLangs.php:21
 msgid "Percentage of price reduction"
 msgstr "Процент снижения цен"
 
-#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_tempLangs.php:23
 msgid "Watch list is empty"
 msgstr "Список пуст"
 
-#: ../../../pricespy.php:53
-msgid "Price changing"
-msgstr "Изменения цены"
-
-#: ../../../pricespy.php:54
-msgid "Price on"
-msgstr "Цены на"
-
-#: ../../../pricespy.php:54
-msgid "for which you watch on site"
-msgstr "для которых вы смотрели на сайте"
-
-#: ../../../pricespy.php:54
-msgid "changed"
-msgstr "изменены"
-
-#: ../../../pricespy.php:55
-msgid "View watch list"
-msgstr "Просмотреть список просмотров"
-
-#: ../../../pricespy.php:56
-msgid "Unsubscribe tracking"
-msgstr "Отказаться отслеживания"
-
-#: ../../../pricespy.php:205
-msgid "Notify about price cut"
-msgstr "Оповещать о снижении цены"
-
-#: ../../../pricespy.php:211
+#: /var/www/image.loc/_tempLangs.php:24
 msgid "Already in tracking"
 msgstr "Уже в отслеживании"
 
-#: ../../../module_info.php:7
+#: pricespy.php:55
+msgid "Price changing"
+msgstr "Изменения цены"
+
+#: pricespy.php:56
+msgid "Price on"
+msgstr "Цены на"
+
+#: pricespy.php:56
+msgid "for which you watch on site"
+msgstr "для которых вы смотрели на сайте"
+
+#: pricespy.php:56
+msgid "changed"
+msgstr "изменены"
+
+#: pricespy.php:57
+msgid "View watch list"
+msgstr "Просмотреть список просмотров"
+
+#: pricespy.php:58
+msgid "Unsubscribe tracking"
+msgstr "Отказаться отслеживания"
+
+#: pricespy.php:207
+msgid "Notify about price cut"
+msgstr "Оповещать о снижении цены"
+
+#: module_info.php:7
 msgid "Tracking for price"
 msgstr "Отслеживание цен"
 
-#: ../../../module_info.php:8
+#: module_info.php:8
 msgid "Tracking for price module"
 msgstr "Модуль слежения за ценами"
 

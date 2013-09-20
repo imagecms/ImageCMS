@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-13 18:04+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Mark <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -12,15 +12,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_temp2.php:10 /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_temp2.php:10
+#: /var/www/image.loc/_temp2.php:11
 msgid "product"
 msgstr "продукт"
 
@@ -52,7 +53,8 @@ msgstr "Цена"
 msgid "Javascript is not enabled"
 msgstr "Javascript не включен"
 
-#: /var/www/image.loc/_temp2.php:19 /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:19
+#: /var/www/image.loc/_temp2.php:20
 msgid "Only numeric"
 msgstr "Только цифры"
 
