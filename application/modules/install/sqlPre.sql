@@ -739,7 +739,8 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 (1, 'main_menu', 'Главное меню', 'shop_menu', 0, '', '2012-02-07 15:34:41'),
 (4, 'top_menu', 'Top menu', 'top_menu', 0, 'Menu at the top of template', '2012-05-11 14:53:24'),
 (5, 'footer_menu', 'Footer menu', 'footer_menu', 0, '', '2012-05-25 11:43:06'),
-(11, 'left_menu', 'left_menu', 'left_menu', 1, 'left_menu', '2013-03-18 16:13:38');
+(11, 'left_menu', 'left_menu', 'left_menu', 1, 'left_menu', '2013-03-18 16:13:38'),
+(12, 'footer_menu_mobile', 'footer_menu_mobile', '', 0, 'footer mobile menu', '2013-09-19 17:42:17');
 
 -- --------------------------------------------------------
 
@@ -799,7 +800,13 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 (41, 11, 64, 'page', NULL, 'a:1:{i:0;s:1:"0";}', 0, 'О магазине', 0, 6, NULL, 'a:2:{s:4:"page";N;s:7:"newpage";i:0;}'),
 (42, 11, 66, 'page', NULL, '', 0, 'Доставка', 0, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
 (43, 11, 67, 'page', NULL, '', 0, 'Помощь', 0, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
-(44, 11, 68, 'page', NULL, '', 0, 'Контакты', 0, 5, NULL, 'a:1:{s:7:"newpage";i:0;}');
+(44, 11, 68, 'page', NULL, '', 0, 'Контакты', 0, 5, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(43, 12, 68, 'page', '', '', 0, 'Контакты', 0, 1, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(44, 12, 67, 'page', '', '', 0, 'Помощь', 0, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(45, 12, 65, 'page', '', '', 0, 'Оплата', 0, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(46, 12, 35, 'page', '', '', 0, 'О сайте', 0, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(47, 12, 66, 'page', '', '', 0, 'Доставка', 0, 5, NULL, 'a:1:{s:7:"newpage";i:0;}');
+
 
 -- --------------------------------------------------------
 
