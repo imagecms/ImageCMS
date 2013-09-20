@@ -352,7 +352,6 @@
         </div>
     </div>
     <!--Kit start-->
-    {var_dump($model->getShopKits())}
     {if $model->getShopKits() && $model->getShopKits()->count() > 0}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
