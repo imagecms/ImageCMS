@@ -546,7 +546,6 @@ function renderGiftInput(tpl) {
         $(genObj.gift).html(tpl);
 }
 function giftError(msg) {
-    console.log(msg);
     $(genObj.gift).children(genObj.msgF).remove()
     if (msg) {
         $(genObj.gift).append(message.error(msg));
@@ -669,9 +668,10 @@ function rmFromPopupCart(context, isKit) {
         var tr = $(context).closest(genObj.trCartKit);
     else
         var tr = $(context).closest('tr');
-    var cartItem = new Shop.cartItem();
+    var cartItem = new Object();
     cartItem.id = tr.data('prodid');
     cartItem.vId = tr.data('varid');
+    cartItem.kitId = tr.data('kitid');
     Shop.Cart.rm(cartItem).totalRecount();
 }
 function togglePopupCart() {
@@ -879,13 +879,18 @@ function banerResize(el) {
     $(el).each(function() {
         var $this = $(this).css('height', '');
         if ($this.hasClass('resize')) {
-            var h = 0,
-                    img = $this.find('img');
-            img.each(function() {
+            var h = 0;
+            $this.find('img').each(function() {
                 var $thisH = $(this).height()
                 h = $thisH > h ? $thisH : h;
             });
             $this.css('height', h + $this.children().outerHeight() - $this.children().height())
+        }
+        else {
+            $this.find('img').each(function() {
+                var $this = $(this);
+                $this.css('margin-left', -$this.css('max-width', 'none').actual('width') / 2);
+            });
         }
     });
 }
@@ -899,8 +904,10 @@ function removePreloaderBaner(el) {
             $(this).fadeIn();
             $('.baner').find(preloader).remove();
             i++;
-            if (i == elL)
+            if (i == elL) {
                 banerResize('.baner:has(.cycle)');
+                $('.baner').find(preloader).remove();
+            }
         })
     })
 }
@@ -1206,7 +1213,6 @@ function onComplete(elSet, elS, el) {
             prev = $(optionsDrop.hrefOptions.prev),
             cycle = optionsDrop.hrefOptions.cycle;
     function resizePhoto() {
-        console.log(elS.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20)
         fancyFrame.css({'height': elS.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20, 'padding': '10px 0'})
     }
     function condBtn(acA) {
@@ -1642,7 +1648,7 @@ function init() {
     $(document).on('autocomplete.before drop.click showActivity before_sync_cart', function(e) {
         $.fancybox.showActivity();
     })
-    $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart end_sync_cart', function(e) {
+    $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart end_sync_cart cart_changed', function(e) {
         $.fancybox.hideActivity();
     })
 
@@ -1749,13 +1755,17 @@ function init() {
     })
 
     $(document).on('sync_cart', function() {
-        countSumBask();
         if (orderDetails) {
             renderOrderDetails();
             //shipping changing, re-render cart page
             recountCartPage(selectDeliv, methodDeliv());
         }
         processCarts();
+        processBtnBuyCount();
+        countSumBask();
+        initShopPage(false);
+        if ($.exists(optionCompare.frameCompare))
+            $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     })
 
     //sample of events shop
@@ -1766,7 +1776,6 @@ function init() {
     $(document).live('cart_changed', function() {
         processCarts();
         processBtnBuyCount();
-        $(document).trigger('hideActivity');
         if ($.exists(optionCompare.frameCompare))
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
@@ -1790,7 +1799,7 @@ function init() {
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
     $(document).on('cart_rm', function(data) {
-        if (!data.cartItem.kit)
+        if (!data.cartItem.kitId)
             $('[data-id="popupProduct_' + data.cartItem.id + '_' + data.cartItem.vId + '"]').remove();
         else
             $('[data-id="popupKit_' + data.cartItem.kitId + '"]').remove();
