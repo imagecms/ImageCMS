@@ -45,25 +45,21 @@ class MY_Lang extends MX_Lang {
     }
 
     public function getLangCode($language) {
-        $langs = array(
-            'russian' => array('ru', 'ru_RU'),
-            'english' => array('en', 'en_US'),
-            'german' => array('de', 'de_CH'),
-            'ukrainian' => array('uk', 'uk_UA')
-        );
+        $this->ci = & get_instance();
+        $langs = $this->ci->config->item('languages');
 
         return isset($langs[$language]) ? $langs[$language] : array('en', 'en_US');
     }
 
     public function getFrontLangCode($language) {
-        $langs = array(
-            'ru' => array('ru', 'ru_RU'),
-            'en' => array('en', 'en_US'),
-            'ge' => array('de', 'de_CH'),
-            'uk' => array('uk', 'uk_UA')
-        );
+        $langs = $this->ci->config->item('languages');
+        foreach ($langs as $lang) {
+            if (in_array($language, $lang)) {
+                return $lang;
+            }
+        }
 
-        return isset($langs[$language]) ? $langs[$language] : array('en', 'en_US');
+        return array('ru', 'ru_RU');
     }
 
     private function _init() {
@@ -150,9 +146,9 @@ class MY_Lang extends MX_Lang {
             $this->gettext->addDomain('application/language/main/', 'main', $lang);
             $this->gettext->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
         } else {
-            if($module=='admin')
+            if ($module == 'admin')
                 $this->gettext->addDomain('application/language/main/', 'main', $lang);
-            
+
             $this->gettext->addDomain('application/modules/' . $module . '/language', $module, $lang);
         }
     }

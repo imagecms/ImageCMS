@@ -1,13 +1,12 @@
 <div id="mod-tabs-block">
-
-	<h4>{lang("Description","admin")}</h4>
+	<h4>{lang("Description", "admin")}</h4>
     <div>
         {$module.description}
 
         <p style="padding:5px;">
-            <b>{lang("Author","admin")}:</b> {$module.author}
+            <b>{lang("Author", "admin")}:</b> {$module.author}
             <br />
-            <b>{lang("Version","admin")}:</b> {$module.version}
+            <b>{lang("Version", "admin")}:</b> {$module.version}
         </p>
 
         <div align="center" style="padding:5px;">

@@ -17,6 +17,9 @@ class Admin extends \BaseAdminController {
     private $mainTpl = null;
 
     public function __construct() {
+
+        $b = new \libraries\Backup();
+
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('mod_stats');
