@@ -1,4 +1,4 @@
-/*
+length/*
  *imagecms frontend plugins
  ** @author Domovoj
  * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
@@ -2169,18 +2169,16 @@ var Shop = {
             return this;
         },
         rm: function(cartItem) {
-            Shop.currentItem = this.load('cartItem_' + cartItem.id + '_' + cartItem.vId);
-            if (Shop.currentItem.kit)
-                var key = 'ShopKit_' + Shop.currentItem.kitId;
+            if (cartItem.kitId)
+                var key = 'ShopKit_' + cartItem.kitId;
             else
-                var key = 'SProducts_' + Shop.currentItem.id + '_' + Shop.currentItem.vId;
-            //Shop.currentItem = cartItem;
+                var key = 'SProducts_' + cartItem.id + '_' + cartItem.vId;
             $.getJSON('/shop/cart_api/delete/' + key, function() {
-                localStorage.removeItem('cartItem_' + Shop.currentItem.id + '_' + Shop.currentItem.vId);
+                localStorage.removeItem('cartItem_' + cartItem.id + '_' + cartItem.vId);
                 Shop.Cart.totalRecount();
                 $(document).trigger({
                     type: 'cart_rm',
-                    cartItem: Shop.currentItem
+                    cartItem: cartItem
                 });
                 $(document).trigger({
                     type: 'cart_changed'
@@ -2270,7 +2268,7 @@ var Shop = {
             for (var i = 0; i < localStorage.length; i++) {
                 try {
                     if (localStorage.key(i).match(pattern))
-                        length += JSON.parse(localStorage.getItem(localStorage.key(i))).count;
+                        length += parseFloat(JSON.parse(localStorage.getItem(localStorage.key(i))).count);
                 } catch (err) {
                     length += 0;
                 }
@@ -2332,14 +2330,11 @@ var Shop = {
 
                     var items = Shop.Cart.getAllItems();
                     for (var i = 0; i < items.length; i++) {
-                        localStorage.removeItem('cartItem_' + items[i]['id'].toString().replace(/\[|\]/g, '') + '_' + items[i]['vId']);
+                        localStorage.removeItem('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
                     }
                     delete items;
                     _.each(_.keys(data.data.items), function(key) {
-                        localStorage.setItem(key.toString().replace(/\[|\]/g, ''), JSON.stringify(data.data.items[key]));
-                    });
-                    $(document).trigger({
-                        type: 'cart_changed'
+                        localStorage.setItem(key, JSON.stringify(data.data.items[key]));
                     });
                     $(document).trigger({
                         type: 'sync_cart'
@@ -2387,7 +2382,7 @@ var Shop = {
             img: obj.img ? obj.img : '',
             prodstatus: obj.prodstatus ? obj.prodstatus : '',
             storageId: function() {
-                return 'cartItem_' + this.id.toString().replace(/\[|\]/g, '') + '_' + this.vId;
+                return 'cartItem_' + this.id + '_' + this.vId;
             }
         };
     },

@@ -113,11 +113,11 @@
                                 <!-- Start button for main & variants prod -->
                                 <div class="funcs-buttons">
                                     {foreach $variants as $key => $productVariant}
+                                        {$discount = 0}
+                                        {if $hasDiscounts}
+                                            {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
+                                        {/if}
                                         {if $productVariant->getStock() > 0}
-                                            {$discount = 0}
-                                            {if $hasDiscounts}
-                                                {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
-                                            {/if}
                                             <div class="frame-count-buy variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                                 <div class="frame-count">
                                                     <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}" data-rel="frameplusminus">
@@ -177,6 +177,7 @@
                                                             data-varid="{echo $productVariant->getId()}"
                                                             data-url="{echo shop_url('product/'.$model->getUrl())}"
                                                             data-price="{echo $productVariant->toCurrency()}"
+                                                            data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
                                                             data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
@@ -352,7 +353,6 @@
         </div>
     </div>
     <!--Kit start-->
-    {var_dump($model->getShopKits())}
     {if $model->getShopKits() && $model->getShopKits()->count() > 0}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
@@ -488,7 +488,7 @@
                                             </div>
                                             <div class="btn-buy">
                                                 <button class="btnBuy" type="button"
-                                                        data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
+                                                        data-prodid="{echo implode(',', $kitProducts->getProductIdCart())}"
                                                         data-price="{echo $kitProducts->getTotalPrice()}"
                                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
                                                         data-addprice="{if $NextCSIdCond}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
@@ -679,15 +679,15 @@
 </div>
 {widget('latest_news')}
 <script type="text/javascript">
-    var hrefCategoryProduct = "{$category_url}";
+                    var hrefCategoryProduct = "{$category_url}";
 </script>
 {literal}
     <script type="text/javascript">
         var
-        //productPhotoFancybox = true,
-        productPhotoDrop = true,
-        productPhotoCZoom = true,
-        forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
+                //productPhotoFancybox = true,
+                productPhotoDrop = true,
+                productPhotoCZoom = true,
+                forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
     </script>
 {/literal}
 {/*
