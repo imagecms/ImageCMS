@@ -509,6 +509,4 @@ $(document).ready(function() {
         console.log(useLocale);
         
     });
-    
-
 });
