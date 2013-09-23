@@ -274,13 +274,17 @@ class Admin extends BaseAdminController {
             @$s_email = $this->input->get('s_email');
             $role = $this->input->get('role');
             $page = (int) $this->uri->segment(8);
+            
+            
+            $loale = BaseAdminController::getCurrentLocale();
 
-            $this->db->select("users.*", FALSE);
-            $this->db->select("shop_rbac_roles.name AS role_name", FALSE);
-            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);
-            $this->db->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id");
-            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id");
-            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->select(
+                            "users.*, 
+                        shop_rbac_roles.name AS role_name, 
+                        shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE)
+                    ->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id")
+                    ->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id")
+                    ->where('shop_rbac_roles_i18n.locale', $loale);
             if (!empty($s_data)) {
                 $this->db->like('username', $s_data);
             } elseif (!empty($s_email)) {

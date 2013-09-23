@@ -31,10 +31,14 @@ class Search extends \MY_Controller {
      * Table representation for keywords searched
      */
     public function templateKeywordsSearched() {
-        $params = \mod_stats\classes\LineDiagramBase::create()->getParamsFromCookies();
+//        $params = \mod_stats\classes\LineDiagramBase::create()->getParamsFromCookies();
 
         $keywords = $this->stats_model_search->getKeywordsByDateRange();
         return $keywords;
+    }
+    
+    public function getBrandsInSearch(){
+        var_dumps($keywords = $this->stats_model_search->queryKeywordsByDateRange(new \mod_stats\classes\LineDiagramBase()));
     }
 
 }
