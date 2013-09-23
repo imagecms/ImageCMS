@@ -23,7 +23,7 @@
                         <div class="controls">
                             <select name="category_id" id="category_id">
                                 {foreach $categories as $item}
-                                <option value="{$item.id}"  {if $item['id'] == $album['category_id']}selected="selected"{/if}>{$item.id} - {$item.name}</option>
+                                <option value="{$item.id}"  {if $item.id == $album.category_id}selected="selected"{/if}>{$item.id} - {$item.name}</option>
                                 {/foreach}
                             </select>
                         </div>

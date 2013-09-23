@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-23 09:30+0300\n"
+"POT-Creation-Date: 2013-09-23 11:20+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -22,174 +22,178 @@ msgstr ""
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
 
 #: /var/www/image.loc/_tempLangs.php:20
+msgid "Edit page"
+msgstr "Редактировать страницу"
+
 #: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:22
 msgid "Show page"
 msgstr "Показать страницу"
 
-#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:23
 msgid "Modules additions"
 msgstr "Модули дополнений"
 
-#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:24
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:24
 #: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:26
 msgid "Autocomplete"
 msgstr "Автозаполнение"
 
-#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:27
 msgid "Autocomplete words"
 msgstr "Автозаполнение слов"
 
-#: /var/www/image.loc/_tempLangs.php:27
 #: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:29
 msgid "choose date"
 msgstr "выберите дату"
 
-#: /var/www/image.loc/_tempLangs.php:29
-#: /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:48
 msgid "Cancel"
 msgstr "Отменить"
 
-#: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:47
 msgid "Create"
 msgstr "Создать"
 
-#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:32
 msgid "Preview"
 msgstr "Просмотр"
 
-#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:33
 msgid "site"
 msgstr "сайт"
 
-#: /var/www/image.loc/_tempLangs.php:33
 #: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:35
 msgid "Orders"
 msgstr "Заказы"
 
-#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:36
 msgid "Manage shop"
 msgstr "Администрировать магазин "
 
-#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:37
 msgid "Manage site"
 msgstr "Администрировать сайт"
 
-#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:38
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:39
 msgid "Help us get better"
 msgstr "Помогите нам стать лучше"
 
-#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:40
 msgid "report an error"
 msgstr "сообщить об ошибке"
 
-#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:41
 msgid "Documentation"
 msgstr "Документация"
 
-#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:42
 msgid "Your Name"
 msgstr "Ваше имя"
 
-#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:43
 msgid "Your Email"
 msgstr "Ваш E-mail"
 
-#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:44
 msgid "Return"
 msgstr "Возвращение"
 
-#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:45
 msgid "Full description"
 msgstr "Полное описание"
 
-#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:46
 msgid "Parent"
 msgstr "Родитель"
 
-#: /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:49
 msgid "Your search did not found"
 msgstr "Ничего не найдено"
 
-#: /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:50
 msgid "Confirm"
 msgstr "Подтвердите"
 
-#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:51
 msgid "Delete pages"
 msgstr "Удалить страницы"
 
-#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:52
 msgid "Delete selected pages?"
 msgstr "Удалить выбранные страницы?"
 
-#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:53
 msgid "Content list"
 msgstr "Список содержимого"
 
-#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:54
 msgid "Filter"
 msgstr "Фильтр"
 
-#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:55
 msgid "Create copy"
 msgstr "Создайте копию"
 
-#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:56
 msgid "Move"
 msgstr "Переместить"
 
-#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:57
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:57
 #: /var/www/image.loc/_tempLangs.php:58
+#: /var/www/image.loc/_tempLangs.php:59
 msgid "Create page"
 msgstr "Создать страницу"
 
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:67
 msgid "All categories"
 msgstr "Все категории"
 
-#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:61
 msgid "Title"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:62
 msgid "Url"
 msgstr "Url"
 
-#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:63
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:64
 msgid "Creation date"
 msgstr "Дата создания"
 
-#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:65
 msgid "Status"
 msgstr "Статус"
 
-#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:66
 msgid "Digits only"
 msgstr "Только цифры"
 
-#: /var/www/image.loc/_tempLangs.php:67
+#: /var/www/image.loc/_tempLangs.php:68
 msgid "Without category"
 msgstr "Без категории"
 
-#: /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:69
 msgid ""
 "don\");\n"
 "_("
@@ -200,24 +204,24 @@ msgid "Update settings"
 msgstr "Настройки обновления"
 
 #: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:175
-#: /var/www/image.loc/_tempLangs.php:219
+#: /var/www/image.loc/_tempLangs.php:176
+#: /var/www/image.loc/_tempLangs.php:220
 msgid "Back"
 msgstr "Вернутся"
 
 #: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:107
-#: /var/www/image.loc/_tempLangs.php:220
+#: /var/www/image.loc/_tempLangs.php:108
+#: /var/www/image.loc/_tempLangs.php:221
 msgid "Save"
 msgstr "Сохранить"
 
 #: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:77
-#: /var/www/image.loc/_tempLangs.php:81
-#: /var/www/image.loc/_tempLangs.php:141
-#: /var/www/image.loc/_tempLangs.php:161
-#: /var/www/image.loc/_tempLangs.php:178
-#: /var/www/image.loc/_tempLangs.php:180
+#: /var/www/image.loc/_tempLangs.php:78
+#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:142
+#: /var/www/image.loc/_tempLangs.php:162
+#: /var/www/image.loc/_tempLangs.php:179
+#: /var/www/image.loc/_tempLangs.php:181
 msgid "Settings"
 msgstr "Настройки"
 
@@ -260,7 +264,7 @@ msgid "E-mail"
 msgstr "E-mail"
 
 #: /var/www/image.loc/_tempLangs.php:37
-#: /var/www/image.loc/_tempLangs.php:132
+#: /var/www/image.loc/_tempLangs.php:133
 msgid "Password"
 msgstr "Пароль"
 
@@ -305,7 +309,7 @@ msgid "Save and edit"
 msgstr "Сохраненить и измененить"
 
 #: /var/www/image.loc/_tempLangs.php:49
-#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:90
 msgid "Group"
 msgstr "Группа"
 
@@ -330,463 +334,467 @@ msgid "Check"
 msgstr "Проверка"
 
 #: /var/www/image.loc/_tempLangs.php:65
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: /var/www/image.loc/_tempLangs.php:66
 msgid "Not enough rights to access"
 msgstr "Не хватает прав доступа"
 
-#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:67
 msgid "Widget delete"
 msgstr "Удалить виджет"
 
-#: /var/www/image.loc/_tempLangs.php:67
+#: /var/www/image.loc/_tempLangs.php:68
 msgid "Delete selected widget(s)?"
 msgstr "Удалить выбранный виджет(ы)?"
 
-#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:71
 msgid "Widgets list"
 msgstr "Список виджетов"
 
-#: /var/www/image.loc/_tempLangs.php:72
+#: /var/www/image.loc/_tempLangs.php:73
 msgid "Create a widget"
 msgstr "Создать виджет"
 
-#: /var/www/image.loc/_tempLangs.php:73
-#: /var/www/image.loc/_tempLangs.php:85
+#: /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:86
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_tempLangs.php:74
-#: /var/www/image.loc/_tempLangs.php:86
-#: /var/www/image.loc/_tempLangs.php:109
-#: /var/www/image.loc/_tempLangs.php:171
-#: /var/www/image.loc/_tempLangs.php:181
+#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:110
+#: /var/www/image.loc/_tempLangs.php:172
+#: /var/www/image.loc/_tempLangs.php:182
 msgid "Name"
 msgstr "Имя"
 
-#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:76
 msgid "Type"
 msgstr "Тип"
 
-#: /var/www/image.loc/_tempLangs.php:76
-#: /var/www/image.loc/_tempLangs.php:87
-#: /var/www/image.loc/_tempLangs.php:110
-#: /var/www/image.loc/_tempLangs.php:122
-#: /var/www/image.loc/_tempLangs.php:196
-#: /var/www/image.loc/_tempLangs.php:227
+#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:111
+#: /var/www/image.loc/_tempLangs.php:123
+#: /var/www/image.loc/_tempLangs.php:197
+#: /var/www/image.loc/_tempLangs.php:228
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_tempLangs.php:78
-#: /var/www/image.loc/_tempLangs.php:217
+#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:218
 msgid "Editing"
 msgstr "Редактирование"
 
-#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:80
 msgid "Module"
 msgstr "Модуль"
 
-#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:81
 msgid "HTML"
 msgstr "HTML"
 
-#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:83
 msgid "No widgets created"
 msgstr "Не создано виджетов"
 
-#: /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:84
 msgid "Roles groups list"
 msgstr "Список групп ролей"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:89
 msgid "List"
 msgstr "Список"
 
-#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:91
 msgid "Empty."
 msgstr "Пустой."
 
-#: /var/www/image.loc/_tempLangs.php:92
-#: /var/www/image.loc/_tempLangs.php:104
+#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:105
 msgid "Remove roles?"
 msgstr "Удалить  роли?"
 
-#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:94
 msgid "Cache"
 msgstr "Кеш"
 
-#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:95
 msgid "Delete cache"
 msgstr "Очистка кэша"
 
-#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:96
 msgid "Total file caching"
 msgstr "Всего файлов кэширования"
 
-#: /var/www/image.loc/_tempLangs.php:96
+#: /var/www/image.loc/_tempLangs.php:97
 msgid "Clear outdated"
 msgstr "Очистить устаревшие"
 
-#: /var/www/image.loc/_tempLangs.php:97
+#: /var/www/image.loc/_tempLangs.php:98
 msgid "Clear all"
 msgstr "Очистить полностью"
 
-#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:99
 msgid "Privileges list"
 msgstr "Список ролей"
 
-#: /var/www/image.loc/_tempLangs.php:99
+#: /var/www/image.loc/_tempLangs.php:100
 msgid "Create privilege"
 msgstr "Создать роль"
 
-#: /var/www/image.loc/_tempLangs.php:101
+#: /var/www/image.loc/_tempLangs.php:102
 msgid "Role remove"
 msgstr "Удаление роли"
 
-#: /var/www/image.loc/_tempLangs.php:102
+#: /var/www/image.loc/_tempLangs.php:103
 msgid "Remove selected roles?"
 msgstr "Удалить выбранные роли?"
 
-#: /var/www/image.loc/_tempLangs.php:105
+#: /var/www/image.loc/_tempLangs.php:106
 msgid "Delete the file to continue"
 msgstr "Удалить файл, чтобы продолжить"
 
-#: /var/www/image.loc/_tempLangs.php:106
+#: /var/www/image.loc/_tempLangs.php:107
 msgid "Roles group create"
 msgstr "Создать группу роли"
 
-#: /var/www/image.loc/_tempLangs.php:108
-#: /var/www/image.loc/_tempLangs.php:139
-#: /var/www/image.loc/_tempLangs.php:149
-#: /var/www/image.loc/_tempLangs.php:226
+#: /var/www/image.loc/_tempLangs.php:109
+#: /var/www/image.loc/_tempLangs.php:140
+#: /var/www/image.loc/_tempLangs.php:150
+#: /var/www/image.loc/_tempLangs.php:227
 msgid "Properties"
 msgstr "Свойства"
 
-#: /var/www/image.loc/_tempLangs.php:111
 #: /var/www/image.loc/_tempLangs.php:112
-#: /var/www/image.loc/_tempLangs.php:118
+#: /var/www/image.loc/_tempLangs.php:113
 #: /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:120
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
 
-#: /var/www/image.loc/_tempLangs.php:113
 #: /var/www/image.loc/_tempLangs.php:114
-#: /var/www/image.loc/_tempLangs.php:120
+#: /var/www/image.loc/_tempLangs.php:115
 #: /var/www/image.loc/_tempLangs.php:121
+#: /var/www/image.loc/_tempLangs.php:122
 msgid "Add an article"
 msgstr "Добавить статью"
 
-#: /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:116
 msgid "Double click to show all categories"
 msgstr "Дважды щелкните, чтобы показать все категории"
 
-#: /var/www/image.loc/_tempLangs.php:116
 #: /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:118
 msgid "Change category data"
 msgstr "Изменить данные категории"
 
-#: /var/www/image.loc/_tempLangs.php:123
+#: /var/www/image.loc/_tempLangs.php:124
 msgid "Author"
 msgstr "Автор"
 
-#: /var/www/image.loc/_tempLangs.php:124
-#: /var/www/image.loc/_tempLangs.php:233
+#: /var/www/image.loc/_tempLangs.php:125
+#: /var/www/image.loc/_tempLangs.php:234
 msgid "Version"
 msgstr "Версия"
 
-#: /var/www/image.loc/_tempLangs.php:125
 #: /var/www/image.loc/_tempLangs.php:126
+#: /var/www/image.loc/_tempLangs.php:127
 msgid "Install"
 msgstr "Установка"
 
-#: /var/www/image.loc/_tempLangs.php:127
+#: /var/www/image.loc/_tempLangs.php:128
 msgid "Download"
 msgstr "Скачать"
 
-#: /var/www/image.loc/_tempLangs.php:128
+#: /var/www/image.loc/_tempLangs.php:129
 msgid "FTP connection settings"
 msgstr "Настройки FTP соединения"
 
-#: /var/www/image.loc/_tempLangs.php:129
+#: /var/www/image.loc/_tempLangs.php:130
 msgid "Hostname"
 msgstr "Имя хоста"
 
-#: /var/www/image.loc/_tempLangs.php:130
+#: /var/www/image.loc/_tempLangs.php:131
 msgid "Port"
 msgstr "Порт"
 
-#: /var/www/image.loc/_tempLangs.php:131
+#: /var/www/image.loc/_tempLangs.php:132
 msgid "login"
 msgstr "Логин"
 
-#: /var/www/image.loc/_tempLangs.php:133
+#: /var/www/image.loc/_tempLangs.php:134
 msgid "Path to the root directory"
 msgstr "Путь к корневому каталогу"
 
-#: /var/www/image.loc/_tempLangs.php:134
+#: /var/www/image.loc/_tempLangs.php:135
 msgid "For example"
 msgstr "Например"
 
-#: /var/www/image.loc/_tempLangs.php:135
+#: /var/www/image.loc/_tempLangs.php:136
 msgid "Next"
-msgstr "Следующий"
+msgstr "Вперед"
 
-#: /var/www/image.loc/_tempLangs.php:137
-#: /var/www/image.loc/_tempLangs.php:221
+#: /var/www/image.loc/_tempLangs.php:138
+#: /var/www/image.loc/_tempLangs.php:222
 msgid "Save and go back"
 msgstr "Создать и выйти"
 
-#: /var/www/image.loc/_tempLangs.php:138
-#: /var/www/image.loc/_tempLangs.php:142
+#: /var/www/image.loc/_tempLangs.php:139
+#: /var/www/image.loc/_tempLangs.php:143
 msgid "Content"
 msgstr "Содержание"
 
-#: /var/www/image.loc/_tempLangs.php:140
+#: /var/www/image.loc/_tempLangs.php:141
 msgid "Additional fields"
 msgstr "Дополнительные поля"
 
-#: /var/www/image.loc/_tempLangs.php:143
+#: /var/www/image.loc/_tempLangs.php:144
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_tempLangs.php:144
-#: /var/www/image.loc/_tempLangs.php:170
-#: /var/www/image.loc/_tempLangs.php:174
-#: /var/www/image.loc/_tempLangs.php:176
+#: /var/www/image.loc/_tempLangs.php:145
+#: /var/www/image.loc/_tempLangs.php:171
+#: /var/www/image.loc/_tempLangs.php:175
+#: /var/www/image.loc/_tempLangs.php:177
 msgid "Create a category"
 msgstr "Создать категорию"
 
-#: /var/www/image.loc/_tempLangs.php:147
+#: /var/www/image.loc/_tempLangs.php:148
 msgid "Preliminary contents"
 msgstr "Предварительное содержание"
 
-#: /var/www/image.loc/_tempLangs.php:148
+#: /var/www/image.loc/_tempLangs.php:149
 msgid "Full contents"
 msgstr "Полное содержание"
 
-#: /var/www/image.loc/_tempLangs.php:150
-#: /var/www/image.loc/_tempLangs.php:182
+#: /var/www/image.loc/_tempLangs.php:151
+#: /var/www/image.loc/_tempLangs.php:183
 msgid "URL"
 msgstr "URL"
 
-#: /var/www/image.loc/_tempLangs.php:151
+#: /var/www/image.loc/_tempLangs.php:152
 msgid "Only Latin characters"
 msgstr "Только латинские буквы"
 
-#: /var/www/image.loc/_tempLangs.php:152
+#: /var/www/image.loc/_tempLangs.php:153
 msgid "Tags"
 msgstr "Тэги"
 
-#: /var/www/image.loc/_tempLangs.php:153
-#: /var/www/image.loc/_tempLangs.php:214
+#: /var/www/image.loc/_tempLangs.php:154
+#: /var/www/image.loc/_tempLangs.php:215
 msgid "Meta Title"
 msgstr "Meta Title"
 
-#: /var/www/image.loc/_tempLangs.php:154
-#: /var/www/image.loc/_tempLangs.php:215
+#: /var/www/image.loc/_tempLangs.php:155
+#: /var/www/image.loc/_tempLangs.php:216
 msgid "Meta Description"
 msgstr "Meta Description"
 
-#: /var/www/image.loc/_tempLangs.php:155
-#: /var/www/image.loc/_tempLangs.php:216
+#: /var/www/image.loc/_tempLangs.php:156
+#: /var/www/image.loc/_tempLangs.php:217
 msgid "Meta Keywords"
 msgstr "Meta Keywords"
 
-#: /var/www/image.loc/_tempLangs.php:156
-#: /var/www/image.loc/_tempLangs.php:207
+#: /var/www/image.loc/_tempLangs.php:157
+#: /var/www/image.loc/_tempLangs.php:208
 msgid "Main template"
 msgstr "Главный шаблон"
 
-#: /var/www/image.loc/_tempLangs.php:157
-#: /var/www/image.loc/_tempLangs.php:159
+#: /var/www/image.loc/_tempLangs.php:158
+#: /var/www/image.loc/_tempLangs.php:160
 msgid "by default"
 msgstr "по умолчанию"
 
-#: /var/www/image.loc/_tempLangs.php:158
+#: /var/www/image.loc/_tempLangs.php:159
 msgid "Page Template"
 msgstr "Шаблон страницы"
 
-#: /var/www/image.loc/_tempLangs.php:160
+#: /var/www/image.loc/_tempLangs.php:161
 msgid "Comment permission"
 msgstr "Разрешить комментирование"
 
-#: /var/www/image.loc/_tempLangs.php:162
+#: /var/www/image.loc/_tempLangs.php:163
 msgid "Publication status"
 msgstr "Статус публикации"
 
-#: /var/www/image.loc/_tempLangs.php:163
+#: /var/www/image.loc/_tempLangs.php:164
 msgid "Published"
 msgstr "Опубликованный"
 
-#: /var/www/image.loc/_tempLangs.php:164
+#: /var/www/image.loc/_tempLangs.php:165
 msgid "Waiting approval "
 msgstr "Ожидает одобрения"
 
-#: /var/www/image.loc/_tempLangs.php:165
+#: /var/www/image.loc/_tempLangs.php:166
 msgid "Unpublished"
 msgstr "Не опубликовано"
 
-#: /var/www/image.loc/_tempLangs.php:166
+#: /var/www/image.loc/_tempLangs.php:167
 msgid "Time and date of creation"
 msgstr " Дата и время создания"
 
-#: /var/www/image.loc/_tempLangs.php:167
+#: /var/www/image.loc/_tempLangs.php:168
 msgid "Time and date of publication"
 msgstr "Дата и время публикации"
 
-#: /var/www/image.loc/_tempLangs.php:168
+#: /var/www/image.loc/_tempLangs.php:169
 msgid "Access"
 msgstr "Доступ"
 
-#: /var/www/image.loc/_tempLangs.php:169
+#: /var/www/image.loc/_tempLangs.php:170
 msgid "All"
 msgstr "Все"
 
-#: /var/www/image.loc/_tempLangs.php:177
+#: /var/www/image.loc/_tempLangs.php:178
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
-#: /var/www/image.loc/_tempLangs.php:179
-#: /var/www/image.loc/_tempLangs.php:213
+#: /var/www/image.loc/_tempLangs.php:180
+#: /var/www/image.loc/_tempLangs.php:214
 msgid "Meta tags"
 msgstr "Мета теги"
 
-#: /var/www/image.loc/_tempLangs.php:183
+#: /var/www/image.loc/_tempLangs.php:184
 msgid "AutoFit"
 msgstr "Автоподбор"
 
-#: /var/www/image.loc/_tempLangs.php:185
+#: /var/www/image.loc/_tempLangs.php:186
 msgid "Field group"
 msgstr "Группа полей"
 
-#: /var/www/image.loc/_tempLangs.php:187
+#: /var/www/image.loc/_tempLangs.php:188
 msgid "Select  a field group  for a category"
 msgstr "Выберите группу полей для категории"
 
-#: /var/www/image.loc/_tempLangs.php:188
-#: /var/www/image.loc/_tempLangs.php:192
+#: /var/www/image.loc/_tempLangs.php:189
+#: /var/www/image.loc/_tempLangs.php:193
 msgid "Apply for subcategories"
 msgstr "Применить для подкатегории"
 
-#: /var/www/image.loc/_tempLangs.php:189
+#: /var/www/image.loc/_tempLangs.php:190
 msgid "Pages fields group"
 msgstr "Группа полей страницы"
 
-#: /var/www/image.loc/_tempLangs.php:191
+#: /var/www/image.loc/_tempLangs.php:192
 msgid "Select a field group to be displayed/ viewed  in the created category of the group or group category"
 msgstr "Выберите группу полей, которая будет отображаться при создании страниц в данной категории"
 
-#: /var/www/image.loc/_tempLangs.php:193
+#: /var/www/image.loc/_tempLangs.php:194
 msgid "Image"
 msgstr "Изображение"
 
-#: /var/www/image.loc/_tempLangs.php:194
+#: /var/www/image.loc/_tempLangs.php:195
 msgid "Choose an image "
 msgstr "Выберите изображение"
 
-#: /var/www/image.loc/_tempLangs.php:195
+#: /var/www/image.loc/_tempLangs.php:196
 msgid "Position"
 msgstr "Позиция"
 
-#: /var/www/image.loc/_tempLangs.php:197
+#: /var/www/image.loc/_tempLangs.php:198
 msgid "View page"
 msgstr "Просмотр страницы"
 
-#: /var/www/image.loc/_tempLangs.php:198
+#: /var/www/image.loc/_tempLangs.php:199
 msgid "Sort by"
 msgstr "Сортировать по"
 
-#: /var/www/image.loc/_tempLangs.php:199
+#: /var/www/image.loc/_tempLangs.php:200
 msgid "by date"
 msgstr "дате"
 
-#: /var/www/image.loc/_tempLangs.php:200
+#: /var/www/image.loc/_tempLangs.php:201
 msgid "By alphabet or  in the alphabetic order"
 msgstr "По алфавиту или в алфавитном порядке"
 
-#: /var/www/image.loc/_tempLangs.php:201
+#: /var/www/image.loc/_tempLangs.php:202
 msgid "By position"
 msgstr "По положению"
 
-#: /var/www/image.loc/_tempLangs.php:202
+#: /var/www/image.loc/_tempLangs.php:203
 msgid "In descending order"
 msgstr "В порядке убывания"
 
-#: /var/www/image.loc/_tempLangs.php:203
+#: /var/www/image.loc/_tempLangs.php:204
 msgid "In ascending order"
 msgstr "В порядке возрастания"
 
-#: /var/www/image.loc/_tempLangs.php:204
+#: /var/www/image.loc/_tempLangs.php:205
 msgid "Posts on page"
 msgstr "Записей на странице"
 
-#: /var/www/image.loc/_tempLangs.php:205
+#: /var/www/image.loc/_tempLangs.php:206
 msgid "Comment pages by default "
 msgstr "Страницы комментариев по умолчанию"
 
-#: /var/www/image.loc/_tempLangs.php:206
+#: /var/www/image.loc/_tempLangs.php:207
 msgid "Display pages of other categories"
 msgstr "Отображать страницы других категорий"
 
-#: /var/www/image.loc/_tempLangs.php:208
-#: /var/www/image.loc/_tempLangs.php:210
+#: /var/www/image.loc/_tempLangs.php:209
+#: /var/www/image.loc/_tempLangs.php:211
 msgid "Main category template by default"
 msgstr "Главный шаблон категории. По умолчанию "
 
-#: /var/www/image.loc/_tempLangs.php:209
+#: /var/www/image.loc/_tempLangs.php:210
 msgid "Category template"
 msgstr "Шаблон категории"
 
-#: /var/www/image.loc/_tempLangs.php:211
+#: /var/www/image.loc/_tempLangs.php:212
 msgid "Page template"
 msgstr "Шаблон страницы"
 
 # анг
-#: /var/www/image.loc/_tempLangs.php:212
+#: /var/www/image.loc/_tempLangs.php:213
 msgid "Page view template by default"
 msgstr "Шаблон просмотра страниц. По умолчанию"
 
-#: /var/www/image.loc/_tempLangs.php:218
+#: /var/www/image.loc/_tempLangs.php:219
 msgid "Privileges"
 msgstr "Привилегии"
 
-#: /var/www/image.loc/_tempLangs.php:222
-#: /var/www/image.loc/_tempLangs.php:225
+#: /var/www/image.loc/_tempLangs.php:223
+#: /var/www/image.loc/_tempLangs.php:226
 msgid "English"
 msgstr "English"
 
-#: /var/www/image.loc/_tempLangs.php:223
 #: /var/www/image.loc/_tempLangs.php:224
+#: /var/www/image.loc/_tempLangs.php:225
 msgid "Russian"
 msgstr "Русский"
 
-#: /var/www/image.loc/_tempLangs.php:228
+#: /var/www/image.loc/_tempLangs.php:229
 msgid "System information"
 msgstr "Информация системы"
 
-#: /var/www/image.loc/_tempLangs.php:229
+#: /var/www/image.loc/_tempLangs.php:230
 msgid "Level of server utilisation"
 msgstr "Уровень использования сервера"
 
-#: /var/www/image.loc/_tempLangs.php:230
+#: /var/www/image.loc/_tempLangs.php:231
 msgid "Server"
 msgstr "Сервер"
 
-#: /var/www/image.loc/_tempLangs.php:231
+#: /var/www/image.loc/_tempLangs.php:232
 msgid "Operating system"
 msgstr "Операционная система"
 
-#: /var/www/image.loc/_tempLangs.php:232
+#: /var/www/image.loc/_tempLangs.php:233
 msgid "Data base"
 msgstr "База данных"
 
-#: /var/www/image.loc/_tempLangs.php:234
+#: /var/www/image.loc/_tempLangs.php:235
 msgid "Period"
 msgstr "Период"
 
-#: /var/www/image.loc/_tempLangs.php:235
+#: /var/www/image.loc/_tempLangs.php:236
 msgid "Size"
 msgstr "Размер"
 
-#: /var/www/image.loc/_tempLangs.php:236
+#: /var/www/image.loc/_tempLangs.php:237
 msgid "Write permission"
 msgstr "Права записи"
 
@@ -1098,7 +1106,7 @@ msgstr "Проверить обновления версии"
 
 #: /var/www/image.loc/_tempLangs.php:76
 msgid "Latest/recent comments"
-msgstr "Последнее /недавние комментарии"
+msgstr "Последние/недавние комментарии"
 
 #: /var/www/image.loc/_tempLangs.php:77
 msgid "ImageCMS news"
@@ -3280,7 +3288,7 @@ msgstr "Товари без картинок"
 #: /var/www/image.loc/_tempLangs.php:70
 #: /var/www/image.loc/_tempLangs.php:71
 msgid "Latest/recent  comments"
-msgstr "Последнее /недавние комментарии"
+msgstr "Последние /недавние комментарии"
 
 #: /var/www/image.loc/_tempLangs.php:72
 #: /var/www/image.loc/_tempLangs.php:199
@@ -4800,7 +4808,7 @@ msgstr "Конфигурация сайта"
 
 #: /var/www/image.loc/_tempLangs.php:26
 msgid "Management of Meta Tags"
-msgstr "Управление Мета-тугами"
+msgstr "Управление Мета-тегами"
 
 #: /var/www/image.loc/_tempLangs.php:27
 #: /var/www/image.loc/_tempLangs.php:63
@@ -4837,7 +4845,7 @@ msgstr "ID Google Analytics"
 
 #: /var/www/image.loc/_tempLangs.php:40
 msgid "The code should be in the format ua-54545845"
-msgstr "Код должен біть в  формате ua-54545845"
+msgstr "Код должен быть в  формате ua-54545845"
 
 #: /var/www/image.loc/_tempLangs.php:41
 msgid "Ya.Webmaster"
@@ -4849,7 +4857,7 @@ msgstr "Id для Yandex метрики"
 
 #: /var/www/image.loc/_tempLangs.php:45
 msgid "Page"
-msgstr "странице"
+msgstr "Страница"
 
 #: /var/www/image.loc/_tempLangs.php:51
 msgid "Whether to display the site name in the title page"
@@ -5108,6 +5116,11 @@ msgstr "Неудача"
 #: sys_update.php:103
 msgid "Changes saved"
 msgstr "Изменения сохранены"
+
+#: admin_logs.php:49
+#: pages.php:995
+msgid "Prev"
+msgstr "Назад"
 
 #: admin.php:61
 msgid "Cleared the cache"
@@ -5926,11 +5939,11 @@ msgstr "Сумма до"
 msgid "Discount updated"
 msgstr "Скидка обновлена"
 
-#: ../../modules/shop/admin/comulativ.php:223
+#: ../../modules/shop/admin/comulativ.php:222
 msgid "refreshed successfully"
 msgstr "успешно обновлено"
 
-#: ../../modules/shop/admin/comulativ.php:258
+#: ../../modules/shop/admin/comulativ.php:257
 msgid "Cumulative discount removed"
 msgstr "Накопительная скидка удалена"
 
@@ -6291,9 +6304,6 @@ msgstr "Приватное поле"
 #: ../../modules/shop/models/build/classes/Shop/CustomFields.php:32
 msgid "Custom right field"
 msgstr "Правильное поле"
-
-#~ msgid "Edit page"
-#~ msgstr "Редактировать страницу"
 
 #~ msgid "Guest"
 #~ msgstr "Гость"
