@@ -458,7 +458,7 @@ class Permitions {
      */
     public function roleCreate() {
         if (!empty($_POST)) {
-            $this->form_validation->set_rules('Name', 'Идентификатор', 'required');
+            $this->form_validation->set_rules('Name', 'Имя', 'required');
             $this->form_validation->set_rules('Importance', 'Важность', 'numeric');
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');

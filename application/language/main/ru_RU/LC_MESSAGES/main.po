@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-18 15:35+0300\n"
+"POT-Creation-Date: 2013-09-23 10:13+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -23,10 +23,31 @@ msgstr ""
 "X-Poedit-SearchPath-5: ../../../../../application/modules/shop/classes\n"
 "X-Poedit-SearchPath-6: ../../../../../application/modules/shop/helpers\n"
 "X-Poedit-SearchPath-7: ../../../../../system/language/form_validation\n"
+"X-Poedit-SearchPath-8: ../../../../../system/language/email_lang\n"
 
 #: ../../../../../application/helpers/category_helper.php:86
 msgid "No category"
 msgstr "Нет категории"
+
+#: ../../../../../application/helpers/javascript_helper.php:20
+msgid "Message"
+msgstr "Сообщение"
+
+#: ../../../../../application/helpers/javascript_helper.php:22
+msgid "Error"
+msgstr "Ошибка"
+
+#: ../../../../../application/helpers/javascript_helper.php:25
+msgid "Success"
+msgstr "Успех"
+
+#: ../../../../../application/helpers/javascript_helper.php:29
+msgid "Requests to the database"
+msgstr "Запросов к базе"
+
+#: ../../../../../application/helpers/javascript_helper.php:47
+msgid "Redirecting"
+msgstr "Перенаправление"
 
 #: ../../../../../application/helpers/rules_helper.php:45
 msgid "No rights for"
@@ -236,9 +257,9 @@ msgstr "Редактирование файлов"
 msgid "Edit Folders"
 msgstr "Редактирование папок"
 
-#: ../../../../../application/libraries/DX_Auth.php:1232
-#: ../../../../../application/libraries/DX_Auth.php:1237
-#: ../../../../../application/libraries/DX_Auth.php:1240
+#: ../../../../../application/libraries/DX_Auth.php:1230
+#: ../../../../../application/libraries/DX_Auth.php:1235
+#: ../../../../../application/libraries/DX_Auth.php:1238
 msgid "Improper protection code"
 msgstr "Неправильная защита кода"
 
@@ -313,14 +334,12 @@ msgstr "Счет получателя"
 #: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:121
 #: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:150
 #: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:151
-#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:127
 msgid "Merchant settings"
 msgstr "Настройки мерчанта"
 
 #: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:125
 #: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:154
 #: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:156
-#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:131
 msgid "The method of sending data for all requests: GET"
 msgstr "Метод отсылки данных для всех запросов: GET"
 
@@ -610,6 +629,10 @@ msgstr "Поле %s должно содержать число менее %s."
 #: ../../../../../system/language/form_validation/form_validation.php:31
 msgid "greater_than"
 msgstr "Поле %s должно содержать число, большее, чем %s."
+
+#: ../../../../../system/language/email_lang/email_lang.php:22
+msgid "email_sent"
+msgstr "Ваше сообщение успешно отправлено"
 
 #~ msgid "Января"
 #~ msgstr "Января"
