@@ -45,31 +45,24 @@ class MY_Lang extends MX_Lang {
     }
 
     public function getLangCode($language) {
-        $langs = array(
-            'russian' => array('ru', 'ru_RU'),
-            'english' => array('en', 'en_US'),
-            'german' => array('de', 'de_CH'),
-            'ukrainian' => array('uk', 'uk_UA')
-        );
+        $this->ci = & get_instance();
+        $langs = $this->ci->config->item('languages');
 
         return isset($langs[$language]) ? $langs[$language] : array('en', 'en_US');
     }
 
     public function getFrontLangCode($language) {
-        $langs = array(
-            'ru' => array('ru', 'ru_RU'),
-            'en' => array('en', 'en_US'),
-            'ge' => array('de', 'de_CH'),
-            'uk' => array('uk', 'uk_UA')
-        );
+        $langs = $this->ci->config->item('languages');
+        foreach ($langs as $lang) {
+            if (in_array($language, $lang)) {
+                return $lang;
+            }
+        }
 
-        return isset($langs[$language]) ? $langs[$language] : array('en', 'en_US');
+        return array('ru', 'ru_RU');
     }
 
     private function _init() {
-//        if (strstr($_SERVER['PATH_INFO'], 'install'))
-//            return;
-
         if (!isset($this->ci))
             $this->ci = & get_instance();
 
@@ -82,7 +75,6 @@ class MY_Lang extends MX_Lang {
         } else {
             $this->gettext_language = $this->ci->session->userdata('language');
         }
-//        var_dump($sett->lang_sel);
 
         unset($sett);
 
@@ -118,9 +110,6 @@ class MY_Lang extends MX_Lang {
      * @return	mixed
      */
     public function load($module = 'main') {
-//        if (strstr($_SERVER['REQUEST_URI'], 'install'))
-//            return;
-
         if (!$this->gettext)
             $this->_init();
 
@@ -139,20 +128,15 @@ class MY_Lang extends MX_Lang {
                 $lang = $languageFront[1];
             }
         }
-//        var_dump($lang);
-//        $lang = 'de_DE';
-//            var_dumps($module);
-//        if (strstr($_SERVER['PATH_INFO'], 'install'))
-//            return;
 
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->gettext->addDomain('application/language/main/', 'main', $lang);
             $this->gettext->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
         } else {
-            if($module=='admin')
+            if ($module == 'admin')
                 $this->gettext->addDomain('application/language/main/', 'main', $lang);
-            
+
             $this->gettext->addDomain('application/modules/' . $module . '/language', $module, $lang);
         }
     }
@@ -202,8 +186,6 @@ class MY_Lang extends MX_Lang {
 
         log_message('debug', 'Gettext Class the domain: ' . $this->gettext_domain);
 
-//        var_dump($this->gettext_domain);
-
         return true;
     }
 
@@ -230,10 +212,6 @@ class MY_Lang extends MX_Lang {
      * @return	string
      */
     public function line($line = '', $params = FALSE) {
-//        if (strstr($_SERVER['PATH_INFO'], 'install'))
-//            return;
-//        if (!$this->gettext)
-//            $this->_init();
         return gettext($line);
     }
 

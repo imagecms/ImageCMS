@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-20 14:07+0300\n"
+"POT-Creation-Date: 2013-09-23 09:30+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -1633,7 +1633,6 @@ msgid "User"
 msgstr "Пользователь"
 
 #: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:80
 msgid "Reference"
 msgstr "Ссылка"
 
@@ -1767,6 +1766,10 @@ msgstr "Акция"
 #: /var/www/image.loc/_tempLangs.php:74
 msgid "Move to category"
 msgstr "Переместить в категорию"
+
+#: /var/www/image.loc/_tempLangs.php:80
+msgid "Article"
+msgstr "Артикул"
 
 #: /var/www/image.loc/_tempLangs.php:86
 msgid "Yes"
@@ -1985,7 +1988,7 @@ msgstr "Создание тему запроса"
 
 #: /var/www/image.loc/_tempLangs.php:233
 msgid "Browse topics collback"
-msgstr "Просмотр тем callback'ов"
+msgstr "Просмотр тем колбеков"
 
 #: /var/www/image.loc/_tempLangs.php:234
 msgid "Add a new topic"
@@ -4665,79 +4668,125 @@ msgstr "Список желаний"
 msgid "Pcs"
 msgstr "Штук"
 
-#: /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "File name"
+msgstr "Название файла"
+
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "Source"
+msgstr "Источник"
+
+#: /var/www/image.loc/_tempLangs.php:29
+msgid "Lock"
+msgstr "Блокировать"
+
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "No files"
+msgstr "Нет файлов"
+
+#: /var/www/image.loc/_tempLangs.php:33
+msgid "Autocleaning"
+msgstr "Автоочистка"
+
+#: /var/www/image.loc/_tempLangs.php:34
+msgid "Off"
+msgstr "Включить"
+
+#: /var/www/image.loc/_tempLangs.php:35
+msgid "On"
+msgstr "Выключить"
+
+#: /var/www/image.loc/_tempLangs.php:36
+msgid "Warning! Files will be deleted automaticly on backup creating"
+msgstr "Warning! Files will be deleted automatically on backup creator"
+
+#: /var/www/image.loc/_tempLangs.php:37
+msgid "Delete after date"
+msgstr "Удалить после даты"
+
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:40
+msgid "month"
+msgstr "месяц"
+
+#: /var/www/image.loc/_tempLangs.php:41
+msgid "Maximum backup size"
+msgstr "Максимальный размер резервной копии"
+
+#: /var/www/image.loc/_tempLangs.php:42
 msgid "Update information"
 msgstr "Информация обновления"
 
-#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:44
 msgid "BackUp and Update"
 msgstr "Бэкап и Обновление"
 
-#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:46
 msgid "Current version"
 msgstr "Текущая версия"
 
-#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:47
 msgid "New version"
 msgstr "Новая версия"
 
-#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:48
 msgid "Date of release"
 msgstr "Дата релиза"
 
-#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:50
 msgid "You have actual system version."
 msgstr "Вы используете последнюю версию системы"
 
-#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:83
 msgid "Date/time"
 msgstr "Дата"
 
-#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:84
 msgid "Action"
 msgstr "Акцыя"
 
-#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:85
 msgid "Language edit"
 msgstr "Редактирование языка"
 
-#: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:113
 msgid "Locale"
 msgstr "Локаль"
 
-#: /var/www/image.loc/_tempLangs.php:71
-#: /var/www/image.loc/_tempLangs.php:72
-#: /var/www/image.loc/_tempLangs.php:91
-#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:115
 msgid "Image URL"
 msgstr "URL изображения"
 
-#: /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:95
 msgid "Choose an image"
 msgstr "Выберите изображение"
 
-#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:101
 msgid "Copy to the local computer"
 msgstr "Скопируйте на локальный компьютер"
 
-#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:102
 msgid "Save on the server"
 msgstr "Сохранить на сервере "
 
-#: /var/www/image.loc/_tempLangs.php:81
+#: /var/www/image.loc/_tempLangs.php:103
 msgid "File will be saved in the directory"
 msgstr "Файл будет сохранен в каталоге"
 
-#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:104
 msgid "Send email"
 msgstr "Отправить  email"
 
-#: /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:105
 msgid "File format"
 msgstr "Формат файла"
 
-#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:107
 msgid "The creation of a new language"
 msgstr "Создание нового языка"
 
@@ -4944,7 +4993,6 @@ msgid "Here you can search for modules and set them to automatic mode"
 msgstr "Здесь Вы можете искать модули и установить их в автоматический режим"
 
 #: /var/www/image.loc/_tempLangs.php:177
-#, fuzzy
 msgid "G.Webmaster"
 msgstr "Ya.Webmaster"
 
@@ -5061,52 +5109,52 @@ msgstr "Неудача"
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
-#: admin.php:62
+#: admin.php:61
 msgid "Cleared the cache"
 msgstr "Кэш очищен"
 
-#: admin.php:68
+#: admin.php:67
 msgid "Files deleted"
 msgstr "Файлы удалены"
 
-#: admin.php:70
-#: admin.php:78
+#: admin.php:69
+#: admin.php:77
 msgid "Cache has been cleared"
 msgstr "Кэш очищен"
 
-#: admin.php:76
+#: admin.php:75
 msgid "Outdated files  have been deleted"
 msgstr "Устаревшие файлы удалены"
 
-#: admin.php:81
+#: admin.php:80
 msgid "Clearing cache error"
 msgstr "Ошибка очистки кэша"
 
-#: admin.php:162
+#: admin.php:161
 msgid "exited the control panel"
 msgstr "вышли с контрольной панели"
 
-#: admin.php:177
+#: admin.php:176
 msgid "page"
 msgstr "страница"
 
-#: admin.php:177
+#: admin.php:176
 msgid "ip-address"
 msgstr "IP-адрес"
 
-#: admin.php:177
+#: admin.php:176
 msgid "user name"
 msgstr "имя пользователя"
 
-#: admin.php:187
+#: admin.php:186
 msgid "An error occurred while sending a message"
 msgstr "Произошла ошибка при отправке сообщения"
 
-#: admin.php:190
+#: admin.php:189
 msgid "Your message has been sent"
 msgstr "Ваше сообщение было отправлено"
 
-#: admin.php:193
+#: admin.php:192
 msgid "Comment is a required field"
 msgstr "Поле комментарий обязательное"
 
@@ -5294,7 +5342,7 @@ msgstr "Виджет изменен"
 
 #: widgets_manager.php:294
 #: widgets_manager.php:327
-#: languages.php:263
+#: languages.php:206
 msgid "Changes has been saved"
 msgstr "Изменения сохранены"
 
@@ -5330,42 +5378,42 @@ msgstr "Ошибка при загрузке файлов обновления"
 msgid "Updating has been completed"
 msgstr "Обновление завершено"
 
-#: languages.php:147
+#: languages.php:90
 msgid "Create a language"
 msgstr "Создать язык"
 
-#: languages.php:153
+#: languages.php:96
 msgid "Language has been created"
 msgstr "Язык создан"
 
-#: languages.php:255
+#: languages.php:198
 msgid "Changed a language"
 msgstr "Язык изменен"
 
-#: languages.php:286
-#: languages.php:302
+#: languages.php:229
+#: languages.php:245
 msgid "This language has been used by default and can not be deleted"
 msgstr "Этот язык был использован по умолчанию и не может быть удален"
 
-#: languages.php:286
-#: languages.php:302
+#: languages.php:229
+#: languages.php:245
 msgid "Blocking"
 msgstr "Блокировка"
 
-#: languages.php:294
-#: languages.php:314
+#: languages.php:237
+#: languages.php:257
 msgid "Deleted the ID language"
 msgstr "ID удаленого языка"
 
-#: languages.php:316
+#: languages.php:259
 msgid "the language has been deleted"
 msgstr "язык удален"
 
-#: languages.php:337
+#: languages.php:280
 msgid "Specified a language or selected a language"
 msgstr "Указажите язык"
 
-#: languages.php:339
+#: languages.php:282
 msgid "The language has been installed by default"
 msgstr "Язык был установлен по умолчанию"
 
@@ -5385,11 +5433,19 @@ msgstr "Настройки сайта изменены"
 msgid "Settings have been saved"
 msgstr "Настройки сохранены"
 
-#: backup.php:42
+#: backup.php:43
+msgid "Some of settings not saved"
+msgstr "Некоторые настройки не сохранены"
+
+#: backup.php:45
+msgid "Settings saved"
+msgstr "Настройки сохранены"
+
+#: backup.php:121
 msgid "Directory ./application/backups has no writing permission"
 msgstr "Каталог ./application/backups  не имеет прав записи"
 
-#: backup.php:113
+#: backup.php:195
 msgid "Backup copying has been completed"
 msgstr "Резервное копирование завершено"
 
@@ -6172,6 +6228,10 @@ msgstr "Исрользовать в  категориях"
 msgid "Banner text created"
 msgstr "Текст баннера создан"
 
+#: ../../modules/shop/models/build/classes/Shop/SBrands.php:23
+msgid "Описание"
+msgstr "Описание"
+
 #: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:26
 msgid "Start date"
 msgstr "Дата начала"
@@ -6386,9 +6446,6 @@ msgstr "Правильное поле"
 #~ msgid "tie-in sales"
 #~ msgstr "врезки в продаже"
 
-#~ msgid "Article"
-#~ msgstr "Артикул"
-
 #~ msgid "Regular discounts"
 #~ msgstr "Постоянные скидки"
 
@@ -6436,9 +6493,6 @@ msgstr "Правильное поле"
 #, fuzzy
 #~ msgid "User-roles management"
 #~ msgstr "Имя пользователя"
-
-#~ msgid "Delete a category"
-#~ msgstr "Удалить категорию"
 
 #~ msgid "Control or Operation"
 #~ msgstr "Внимание или Осторожно"
