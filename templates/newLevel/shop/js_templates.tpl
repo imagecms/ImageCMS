@@ -118,6 +118,7 @@
         <!-- for product kit -->
         <% var i=0 %>
         <% var names = item.name %>
+        <% if (typeof names == "string") JSON.parse(names) %>
         <% var prices = item.prices %>
         <% var addprices = item.addprices %>
         <% var origprices = item.origprices %>
@@ -481,6 +482,7 @@
         <!-- for product kit -->
         <% var i=0 %>
         <% var names = item.name %>
+        <% if (typeof names == "string") JSON.parse(names); %>
         <% var prices = item.prices %>
         <% var addprices = item.addprices %>
         <% var origprices = item.origprices %>
