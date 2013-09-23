@@ -111,6 +111,7 @@ class Admin extends BaseAdminController {
      * Display categories list
      */
     public function index() {
+        
         $categories = $this->gallery_m->get_categories('position', 'asc');
         $this->template->add_array(array(
             'categories' => $categories,

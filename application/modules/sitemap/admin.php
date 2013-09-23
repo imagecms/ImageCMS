@@ -24,13 +24,14 @@ class Admin extends BaseAdminController {
         $this->render('settings', array(
             'settings' => $this->_load_settings(),
             'changefreq_options' => array(
-                'always' => 'always',
-                'hourly' => 'hourly',
-                'daily' => 'daily',
-                'weekly' => 'weekly',
-                'monthly' => 'monthly',
-                'yearly' => 'yearly',
-                'never' => 'never')
+                'always' => lang('always', 'sitemap'),
+                'hourly' => lang('hourly', 'sitemap'),
+                'daily' => lang('daily', 'sitemap'),
+                'weekly' => lang('weekly', 'sitemap'),
+                'monthly' => lang('monthly', 'sitemap'),
+                'yearly' => lang('yearly', 'sitemap'),
+                'never' => lang('never', 'sitemap')
+                )
         ));
     }
 

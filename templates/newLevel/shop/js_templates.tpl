@@ -30,10 +30,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(item.prodstatus, function(item, i){%>
-        <% if (!$.isFunction(productStatus[i])){%>
-        <%= productStatus[i]%>
-        <%}})%>
         </span>
         <span class="title"><%- item.name %>
         </a>
@@ -122,15 +118,15 @@
         <!-- for product kit -->
         <% var i=0 %>
         <% var names = item.name %>
-        <% var ids = item.id %>
+        <% if (typeof names == "string") JSON.parse(names) %>
         <% var prices = item.prices %>
         <% var addprices = item.addprices %>
         <% var origprices = item.origprices %>
         <% var images = item.img %>
         <% var urls = item.url %>
         <% var prodstatus = item.prodstatus %>
-
-        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
+        
+        <tr class="row-kits" data-prodid="<%- item.id %>" data-kitId="<%- item.kitId %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
         <td colspan="4">
         <table>
         <tbody>
@@ -138,7 +134,7 @@
         <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
-        <% var idsL = ids.length; _.each(ids, function(id){  %>
+        <% _.each(names, function(id){  %>
         <li>
         <% if (i != 0){ %>
         <div class="next-kit">+</div>
@@ -149,12 +145,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
-        <% if ($.isFunction(productStatus[i]))%>
-        <%= productStatus[i](parseFloat(item))%>
-        <%else%>
-        <%= productStatus[i]%>
-        <%})%>
         </span>
         <span class="title"><%- names[i] %></span>
         </a>
@@ -192,12 +182,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
-        <% if ($.isFunction(productStatus[i]))%>
-        <%= productStatus[i](parseFloat(item))%>
-        <%else%>
-        <%= productStatus[i]%>
-        <%})%>
         </span>
         <span class="title"><%-names[i]%></span>
         </a>
@@ -272,7 +256,7 @@
         <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count) * parseFloat(item.addprice).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count * item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr"><%-nextCs%></span>
         </span>
         </span>
@@ -377,7 +361,6 @@
         </button>
         </div>
         <% } %>
-        </div>
         </div>
         </div>
         </div>
@@ -498,19 +481,19 @@
         <!-- for product kit -->
         <% var i=0 %>
         <% var names = item.name %>
-        <% var ids = item.id %>
+        <% if (typeof names == "string") JSON.parse(names); %>
         <% var prices = item.prices %>
         <% var addprices = item.addprices %>
         <% var origprices = item.origprices %>
         <% var images = item.img %>
         <% var urls = item.url %>
         <% var prodstatus = item.prodstatus %>
-
-        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
+        
+        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-kitId="<%- item.kitId %>" data-id="popupKit_<%- item.kitId %>">
         <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
-        <% var idsL = ids.length; _.each(ids, function(id){  %>
+        <% _.each(names, function(id){  %>
         <li>
         <% if (i != 0){ %>
         <div class="next-kit">+</div>
@@ -521,7 +504,7 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
+        <% _.each(item.prodstatus[i], function(item, i){%>
         <% if ($.isFunction(productStatus[i]))%>
         <%= productStatus[i](parseFloat(item))%>
         <%else%>
@@ -558,12 +541,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
-        <% if ($.isFunction(productStatus[i]))%>
-        <%= productStatus[i](parseFloat(item))%>
-        <%else%>
-        <%= productStatus[i]%>
-        <%})%>
         </span>
         <span class="title"><%-names[i]%></span>
         </a>
@@ -648,7 +625,7 @@
         <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count) * parseFloat(item.addprice).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count * item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
@@ -853,7 +830,7 @@
     <span class="tooltip"></span>
     <div class="apply">
         <div class="content-apply">
-            <a href="#">{lang('Filter','newLevel')}</a>
+            <a href="#">{lang('Фильтр','newLevel')}</a>
             <div class="description">{lang('Найдено','newLevel')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
         <button type="button" class="icon_times_drop icon_times_apply"></button>

@@ -144,10 +144,11 @@
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
                 </tr>
-                {if $model->getUserEmail()}
+                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}{echo $s_field.field_data}
+                {if $s_field}
                     <tr>
-                        <th>{lang('Город:','newLevel')}:</th>
-                        <td>{$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}{echo $s_field.field_data}</td>
+                        <th>{lang('Город','newLevel')}:</th>
+                        <td>{echo $s_field}</td>
                     </tr>
                 {/if}
                 {if $model->getUserDeliverTo()}
@@ -196,7 +197,7 @@
                                                 <div class="description">
                                                     <span class="frame-variant-name-code">
                                                     {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name">{lang("Вариант",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
-                                                {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-code">{lang("Код",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
+                                                {if trim(ShopCore::encode($orderProduct->variant_id) != '')}<span class="frame-variant-code">{lang("Артикул",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_id)}</span></span>{/if}
                                             </span>
                                             <span class="frame-prices">
                                                 <span class="current-prices f-s_0">

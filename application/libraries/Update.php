@@ -276,9 +276,7 @@ class Update {
     public function db_backup() {
         if (is_really_writable('./application/backups')) {
             $this->ci->load->dbutil();
-            $backup = & $this->ci->dbutil->backup(array('format' => 'sql'));
-            $name = "backup.sql";
-            write_file('./application/backups/' . $name, $backup);
+            \libraries\Backup::create()->createBackup("sql", "backup", TRUE);
         } else {
             showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }

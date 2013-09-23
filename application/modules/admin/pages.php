@@ -991,8 +991,8 @@ class Pages extends BaseAdminController {
             $config['full_tag_close'] = '</ul></div>';
             $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
             $config['controls_tag_close'] = '</ul></div>';
-            $config['next_link'] = 'Next&nbsp;&gt;';
-            $config['prev_link'] = '&lt;&nbsp;Prev';
+            $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
+            $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
             $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
             $config['cur_tag_close'] = '</span></li>';
             $config['prev_tag_open'] = '<li>';
@@ -1021,7 +1021,7 @@ class Pages extends BaseAdminController {
                 'tree' => $this->lib_category->build(),
                 'show_cat_list' => $main_settings['cat_list'],
             ));
-            $this->template->show('pages', FALSE);
+            $this->template->show('pages_list', FALSE);
         } else {
 
             $this->template->add_array(array('no_pages' => TRUE,
@@ -1030,7 +1030,7 @@ class Pages extends BaseAdminController {
                 'cat_id' => $cat_id,
                 'show_cat_list' => $main_settings['cat_list'],
             ));
-            $this->template->show('pages', FALSE);
+            $this->template->show('pages_list', FALSE);
         }
     }
 

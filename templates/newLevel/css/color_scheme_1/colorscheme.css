@@ -1,4 +1,4 @@
- @charset "utf-8";
+@charset "utf-8";
 
 /*colors style*/
 
@@ -43,7 +43,7 @@ body{background: #faf8f6;color: #333;}
 
 input[type="text"], input[type="password"], textarea{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
 
-.preloader, .lazy, .baner img{background-color: #fff;background-color: rgba(255,255,255, 0.5);background-image: url("images/preloader.gif");background-repeat: no-repeat;background-position: 50% 50%;}
+.preloader, .lazy{background-color: #fff;background-color: rgba(255,255,255, 0.5);background-image: url("images/preloader.gif");background-repeat: no-repeat;background-position: 50% 50%;}
 .wo-i.preloader{background-image: none;}
 
 .c_3{color: #333 !important;}
