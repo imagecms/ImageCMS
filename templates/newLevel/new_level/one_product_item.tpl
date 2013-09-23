@@ -153,7 +153,6 @@
                                         data-id="{echo $pv->getId()}"
                                         data-prodid="{echo $p->getId()}"
                                         data-varid="{echo $pv->getId()}"
-                                        data-price="{echo $pv->toCurrency()}"
                                         data-count="1"
                                         data-name="{echo ShopCore::encode($p->getName())}"
                                         data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
@@ -162,6 +161,7 @@
                                         data-mediumImage="{echo $pv->getMediumPhoto()}"
                                         data-img="{echo $pv->getSmallPhoto()}"
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                        data-price="{echo $pv->toCurrency()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
@@ -183,6 +183,7 @@
                                     data-varid="{echo $pv->getId()}"
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
+                                    data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                     data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                     data-name="{echo ShopCore::encode($p->getName())}"
                                     data-vname="{echo trim(ShopCore::encode($pv->getName()))}"

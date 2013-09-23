@@ -260,7 +260,7 @@ function afterAjaxInitializeFilter() {
 
                     $this.find('.title > span').bind('click.filter', function(e) {
                         var $thisi = $(this);
-                        $thisi.parent().next()[e.eff != undefined ? e.eff : cleaverFilterObj.dropDownEff](e.dur != undefined ? e.dur : cleaverFilterObj.dropDownEffDur, function() {
+                        $thisi.parent().next()[cleaverFilterObj.dropDownEff](cleaverFilterObj.dropDownEffDur, function() {
                             if ($(this).is(':visible')) {
                                 cleaverFilterObj.dropDownArr.push($this.attr('id'));
                             }
@@ -276,18 +276,23 @@ function afterAjaxInitializeFilter() {
                     var el = filtersContent.show().jScrollPane(scrollPane);
                     if (cleaverFilterObj.currentPosScroll[$this.index()])
                         el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll[$this.index()]);
+                    $this.hide();
                 }
                 if (n == 'dropDown') {
                     filtersContent.hide();
                 }
                 if (arrL - 1 == i) {
-                    $this.fadeIn();
+                    $this.show();
                     $this.next(preloader).hide()
                 }
             });
-            if ($.inArray($this.attr('id'), cleaverFilterObj.dropDownArr) != -1) {
+            if ($.inArray($this.attr('id'), cleaverFilterObj.dropDownArr) != -1 || $thisRel.match('dropDown') == undefined) {
                 filtersContent.show();
                 $this.find('.title').children().addClass('valuePD');
+            }
+            else{
+                filtersContent.hide();
+                $this.find('.title').children().removeClass('valuePD');
             }
         }
     });
