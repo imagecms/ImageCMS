@@ -76,16 +76,13 @@
                         scriptsL = scripts.length;
 
                 $.map(scripts, function(i, n) {
-                    var element = document.createElement("script");
-                    element.src = theme + 'js/' + i + '.js?{/literal}{echo rand()}{literal}';
-                    document.body.appendChild(element);
-                    $(element).load(function() {
+                    $.getScript( theme + 'js/' + i + '.js?{/literal}{echo rand()}{literal}', function() {
                         cL++;
                         if (cL == scriptsL) {
                             $(document).trigger({'type': 'scriptDefer'});
                             init();
                         }
-                    })
+                    });
                 })
             }
 
