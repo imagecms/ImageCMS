@@ -74,6 +74,10 @@ class MY_Lang extends MX_Lang {
             $this->gettext_language = $this->ci->config->item('language');
         } else {
             $this->gettext_language = $this->ci->session->userdata('language');
+            if (!$this->gettext_language) {
+                $this->gettext_language = 'russian';
+                $this->ci->session->set_userdata('language', 'russian');
+            }
         }
 
         unset($sett);
@@ -111,7 +115,7 @@ class MY_Lang extends MX_Lang {
      */
     public function load($module = 'main') {
 //        if (!$this->gettext)
-            $this->_init();
+        $this->_init();
 
         if (strstr(uri_string(), 'admin')) {
             $languageAdmin = $this->getLangCode($this->gettext_language);
@@ -136,7 +140,7 @@ class MY_Lang extends MX_Lang {
         } else {
             if ($module == 'admin')
                 $this->gettext->addDomain('application/language/main/', 'main', $lang);
-            
+
             $this->gettext->addDomain('application/modules/' . $module . '/language', $module, $lang);
         }
     }
