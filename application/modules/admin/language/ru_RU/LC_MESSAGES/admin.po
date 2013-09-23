@@ -4808,7 +4808,7 @@ msgstr "Конфигурация сайта"
 
 #: /var/www/image.loc/_tempLangs.php:26
 msgid "Management of Meta Tags"
-msgstr "Управление Мета-тугами"
+msgstr "Управление Мета-тегами"
 
 #: /var/www/image.loc/_tempLangs.php:27
 #: /var/www/image.loc/_tempLangs.php:63
@@ -4845,7 +4845,7 @@ msgstr "ID Google Analytics"
 
 #: /var/www/image.loc/_tempLangs.php:40
 msgid "The code should be in the format ua-54545845"
-msgstr "Код должен біть в  формате ua-54545845"
+msgstr "Код должен быть в  формате ua-54545845"
 
 #: /var/www/image.loc/_tempLangs.php:41
 msgid "Ya.Webmaster"
@@ -4857,7 +4857,7 @@ msgstr "Id для Yandex метрики"
 
 #: /var/www/image.loc/_tempLangs.php:45
 msgid "Page"
-msgstr "странице"
+msgstr "Страница"
 
 #: /var/www/image.loc/_tempLangs.php:51
 msgid "Whether to display the site name in the title page"
