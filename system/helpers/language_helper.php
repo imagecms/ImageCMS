@@ -114,6 +114,18 @@ function get_main_lang($flag = null) {
     if ($flag == null)
         return array('id' => $lang_id, 'identif' => $lang_ident);
 }
+/*
+ * Get admin locale name
+ */
+function get_admin_locale(){
+    $ci = & get_instance();
+    $admin_language = $ci->config->item('language');
+    $all_languages = $ci->config->item('languages');
+    
+    return isset($all_languages[$admin_language][0]) ? $all_languages[$admin_language][0] : 'ru';
+    
+}
+
 
 // ------------------------------------------------------------------------
 /* End of file language_helper.php */
