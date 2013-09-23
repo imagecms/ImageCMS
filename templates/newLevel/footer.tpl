@@ -83,7 +83,7 @@
         <div class="f_r">
             <a class="f-s_0 c_w">
                 <span class="icon_phone_footer"></span>
-                <span class="text-el">{lang('Мобильная версия','newLevel')}</span>
+                <span class="text-el"><a href="http://{mobile_site_address()}">{lang('Мобильная версия','newLevel')}</a></span>
             </a>
         </div>
     </div>
