@@ -220,7 +220,7 @@ class Admin extends BaseAdminController {
                 } else {
                     $this->db->insert('menus_data', $item_data);
                     $lastId = $this->db->insert_id();
-                    showMessage(lang('The menu item was successfully created'));
+                    showMessage(lang('The menu item was successfully created', 'menu'));
                     $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
                     if ($_POST['action'] == 'tomain') {
                         pjax('/admin/components/cp/menu/menu_item/' . $row['name']);

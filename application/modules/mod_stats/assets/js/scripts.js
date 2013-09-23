@@ -495,5 +495,18 @@ $(document).ready(function() {
 
         $('#refreshIntervalsButton').trigger('click');
     });
-
+    
+    /** 
+     * Start analisis brands in search results
+     */
+    $('#startBrandsAnalisInSearch').unbind('click').bind('click',function(){
+        var wordsQuantity = $('#quantityOfWordsStatsSearch').val();
+        var resultsQuantity = $('#resultsStatsSearch').val();
+        var useLocale = $('#useLocaleCheckbox').prop('checked');
+        
+        console.log(wordsQuantity);
+        console.log(resultsQuantity);
+        console.log(useLocale);
+        
+    });
 });

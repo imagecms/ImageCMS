@@ -40,7 +40,6 @@ class Admin extends MY_Controller {
     }
 
     public function index() {
-
         //just show dashboard
         $this->load->module('admin/dashboard');
         $this->dashboard->index();

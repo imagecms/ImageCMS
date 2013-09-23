@@ -153,7 +153,6 @@
                                         data-id="{echo $pv->getId()}"
                                         data-prodid="{echo $p->getId()}"
                                         data-varid="{echo $pv->getId()}"
-                                        data-price="{echo $pv->toCurrency()}"
                                         data-count="1"
                                         data-name="{echo ShopCore::encode($p->getName())}"
                                         data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
@@ -162,6 +161,7 @@
                                         data-mediumImage="{echo $pv->getMediumPhoto()}"
                                         data-img="{echo $pv->getSmallPhoto()}"
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                        data-price="{echo $pv->toCurrency()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
@@ -183,6 +183,7 @@
                                     data-varid="{echo $pv->getId()}"
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
+                                    data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                     data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                     data-name="{echo ShopCore::encode($p->getName())}"
                                     data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
@@ -205,27 +206,29 @@
                         {if $wishlist}
                             <!-- Wish List buttons -->
                             {foreach $variants as $key => $pv}
-                                <div class="variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                <div class="frame-btn-wish variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                             {/foreach}
                             <!-- end of Wish List buttons -->
                         {/if}
                         {if !$compare}
-                            <!-- compare buttons -->
-                            <div class="btn-compare">
-                                <button class="toCompare"
-                                        data-prodid="{echo $p->getId()}"
-                                        type="button"
-                                        data-title="{lang('В список сравнений','newLevel')}"
-                                        data-firtitle="{lang('В список сравнений','newLevel')}"
-                                        data-sectitle="{lang('В списке сравнений','newLevel')}"
-                                        data-rel="tooltip">
-                                    <span class="icon_compare"></span>
-                                    <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
-                                </button>
+                            <div class="frame-btn-comp">
+                                <!-- compare buttons -->
+                                <div class="btn-compare">
+                                    <button class="toCompare"
+                                            data-prodid="{echo $p->getId()}"
+                                            type="button"
+                                            data-title="{lang('В список сравнений','newLevel')}"
+                                            data-firtitle="{lang('В список сравнений','newLevel')}"
+                                            data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                            data-rel="tooltip">
+                                        <span class="icon_compare"></span>
+                                        <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
+                                    </button>
+                                </div>
+                                <!-- end of compare buttons -->
                             </div>
-                            <!-- end of compare buttons -->
                         {/if}
                     </div>
                 </div>
