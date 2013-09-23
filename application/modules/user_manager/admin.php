@@ -14,7 +14,7 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
-         $lang = new MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('user_manager');
 
         // only admin access
@@ -91,8 +91,8 @@ class Admin extends BaseAdminController {
             $config['full_tag_close'] = '</ul></div>';
             $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
             $config['controls_tag_close'] = '</ul></div>';
-            $config['next_link'] = 'Next&nbsp;&gt;';
-            $config['prev_link'] = '&lt;&nbsp;Prev';
+            $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
+            $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
             $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
             $config['cur_tag_close'] = '</span></li>';
             $config['prev_tag_open'] = '<li>';

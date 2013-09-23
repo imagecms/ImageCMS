@@ -58,6 +58,7 @@ class Admin extends BaseAdminController {
     }
 
     public function mailTest($config) {
+        lang('email_sent', 'admin');
         echo $this->email->mailTest();
     }
 
