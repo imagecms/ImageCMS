@@ -30,6 +30,8 @@
         {/if}
         <script type="text/javascript">
             var lang = "{echo $lang}";
+            var langs = "{echo $lang}";
+            
         </script>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <!--[if lte IE 8]>

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:27+0300\n"
+"POT-Creation-Date: 2013-09-24 10:29+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,32 +17,36 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:5
+#: /var/www/image.loc/_tempLangs.php:5
 msgid "Navigation"
 msgstr "Навигация"
 
-#: ../../../navigation_widgets.php:70
-#: ../../../navigation_widgets.php:76
+#: navigation_widgets.php:71
+#: navigation_widgets.php:77
 msgid "Brands"
 msgstr "Бренды"
 
-#: ../../../navigation_widgets.php:85
+#: navigation_widgets.php:86
 msgid "Compare"
 msgstr "Сравнение"
 
-#: ../../../navigation_widgets.php:90
+#: navigation_widgets.php:91
 msgid "Wish List"
 msgstr "Список Желаний"
 
-#: ../../../navigation_widgets.php:95
+#: navigation_widgets.php:96
 msgid "Profile"
 msgstr "Профиль"
 
-#: ../../../navigation_widgets.php:100
+#: navigation_widgets.php:101
+msgid "Search"
+msgstr "Поиск"
+
+#: navigation_widgets.php:106
 msgid "Cart"
 msgstr "Корзина"
 
-#: ../../../module_info.php:5
+#: module_info.php:5
 msgid "Widget"
 msgstr "Виджети"
 

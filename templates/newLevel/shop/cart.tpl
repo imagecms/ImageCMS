@@ -97,7 +97,7 @@
                             </div>
                             <div class="groups-form">
                                 <div class="frame-label">
-                                    <span class="title">{lang('Доставка:','newLevel')}</span>
+                                    <span class="title">{lang('Варианты доставки','newLevel')}:</span>
                                     <div class="frame-form-field check-variant-delivery">
                                         {/*<div class="lineForm">
                                                 <select id="method_deliv" name="deliveryMethodId">
@@ -213,7 +213,7 @@
                                 <div class="frame-form-field">
                                     <ul class="items items-order-gen-info">
                                         <li>
-                                            <span class="s-t">{lang('Варианты доставки: ','newLevel')}</span>
+                                            <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
                                             <span class="price-item">
                                                 <span>
                                                     <span class="price"><span class="text-el">+</span><span id="shipping"></span></span>
