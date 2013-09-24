@@ -30,7 +30,7 @@
                             <button type="button" onclick="location = '{site_url('shop/profile')}'" title="{lang('Личный кабинет','newLevel')}">{lang('Личный кабинет','newLevel')}</button>
                         </li>
                         <li>
-                            <button type="button" onclick="location = '{site_url('shop/wish_list')}'" title="{lang('Список желаний','newLevel')}">{lang('Список желаний','newLevel')}</button>
+                            <button type="button" onclick="location = '{site_url('wishlist')}'" title="{lang('Список желаний','newLevel')}">{lang('Список желаний','newLevel')}</button>
                         </li>
                     {else:}
                         <li>
@@ -83,7 +83,7 @@
         <div class="f_r">
             <a class="f-s_0 c_w">
                 <span class="icon_phone_footer"></span>
-                <span class="text-el">{lang('Мобильная версия','newLevel')}</span>
+                <span class="text-el"><a href="http://{if function_exists('mobile_site_address')}{mobile_site_address()}{/if}">{lang('Мобильная версия','newLevel')}</a></span>
             </a>
         </div>
     </div>

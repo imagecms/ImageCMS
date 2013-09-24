@@ -4,11 +4,6 @@
     <h1>{echo $gallery_category[0]['name']}</h1>
     <p>{echo $gallery_category[0]['description']}</p>
 </div>
-{else:}
-    <div>
-    <h1>{echo $gallery_category['name']}</h1>
-    <p>{echo $gallery_category['description']}</p>
-</div>
 {/if}
 {if is_array($albums)}
     <ul class="products">
