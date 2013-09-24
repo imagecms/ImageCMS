@@ -82,9 +82,9 @@
                         </div>
                     </div>
                     <h4>{lang('Field groups', 'cfcm')}</h4>
-                    {if $groups[0] == lang('Without group',"cfcm")}
+                    {if !$groups}
                         <div class="alert alert-info">
-                            {echo $groups[0]}
+                           {lang("No groups", "cfcm")}
                         </div>
                     {else:}
                         <table class="table table-striped table-bordered table-hover table-condensed pages-table">
