@@ -70,7 +70,7 @@
                             <span class="current-prices f-s_0">
                                 <span class="price-new">
                                     <span>
-                                        <span class="price">{echo $total}</span>
+                                        <span class="price">{echo $model->getTotalPrice()}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>
