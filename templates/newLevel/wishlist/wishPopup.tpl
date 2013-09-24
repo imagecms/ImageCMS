@@ -11,14 +11,27 @@
                 <form method="post" action="" onsubmit="return false;">
                     <div class="frame-radio">
                         {foreach $wish_lists as $key => $wish_list}
-                            <div class="frame-label">
-                                <span class="niceRadio b_n">
-                                    <input type="radio" name="wishlist" value="{$wish_list.id}" {if $key==0}checked="checked"{/if}>
-                                </span>
-                                <div class="name-count">
-                                    <span class="text-el">{$wish_list.title}</span>
+                            {if $wish_list_id}
+                                {if  $wish_list_id!=$wish_list.id}
+                                    <div class="frame-label">
+                                        <span class="niceRadio b_n">
+                                            <input type="radio" name="wishlist" value="{$wish_list.id}" {if $key==0}checked="checked"{/if}>
+                                        </span>
+                                        <div class="name-count">
+                                            <span class="text-el">{$wish_list.title}</span>
+                                        </div>
+                                    </div>
+                                {/if}
+                            {else:}
+                                <div class="frame-label">
+                                    <span class="niceRadio b_n">
+                                        <input type="radio" name="wishlist" value="{$wish_list.id}" {if $key==0}checked="checked"{/if}>
+                                    </span>
+                                    <div class="name-count">
+                                        <span class="text-el">{$wish_list.title}</span>
+                                    </div>
                                 </div>
-                            </div>
+                            {/if}
                         {/foreach}
                         {if count($wish_lists) < $max_lists_count}
                             <div class="frame-label">
