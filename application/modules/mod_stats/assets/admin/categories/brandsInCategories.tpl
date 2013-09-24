@@ -25,4 +25,4 @@
 <div id="barChart" class="hideChart span12" style="display: none;">
     <svg style="height: 500px; width: 800px;"></svg>
 </div>
-</div>
+
