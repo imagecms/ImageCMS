@@ -1106,7 +1106,7 @@ msgstr "Проверить обновления версии"
 
 #: /var/www/image.loc/_tempLangs.php:76
 msgid "Latest/recent comments"
-msgstr "Последние/недавние комментарии"
+msgstr "Последние/Недавние комментарии"
 
 #: /var/www/image.loc/_tempLangs.php:77
 msgid "ImageCMS news"
@@ -3288,7 +3288,7 @@ msgstr "Товари без картинок"
 #: /var/www/image.loc/_tempLangs.php:70
 #: /var/www/image.loc/_tempLangs.php:71
 msgid "Latest/recent  comments"
-msgstr "Последние /недавние комментарии"
+msgstr "Последние/Недавние комментарии"
 
 #: /var/www/image.loc/_tempLangs.php:72
 #: /var/www/image.loc/_tempLangs.php:199
@@ -4919,7 +4919,7 @@ msgstr "Главный телефон"
 
 #: /var/www/image.loc/_tempLangs.php:74
 msgid "Admin email"
-msgstr " Email  админимстратора"
+msgstr " Email  администратора"
 
 #: /var/www/image.loc/_tempLangs.php:75
 msgid "Contacts"
