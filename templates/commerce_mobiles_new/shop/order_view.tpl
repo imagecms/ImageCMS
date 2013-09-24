@@ -5,7 +5,7 @@
 #}
 <div class="content_head">
     <h1>Заказ №{echo $model->getId()}</h1>
-{if $CI->session->flashdata('makeOrder') === true}<h2>Спасибо за Ваш заказ.</h2>{/if}
+{if $CI->session->flashdata('makeOrder') === true}<h2>{lang('Спасибо за Ваш заказ','commerce_mobiles_new')}.</h2>{/if}
 </div>
 <table class="tableOrderData">
     <!-- Start. Render Order number -->
@@ -18,7 +18,7 @@
     <!-- Start. Display Paid status -->
     <tr>
         <th>{lang('Оплачен','commerce_mobiles_new')}:</th>
-        <td>{if $model->getPaid() == true} {lang('s_yes')}{else:}{lang('s_no')}{/if}</td>
+        <td>{if $model->getPaid() == true} {lang('Да','commerce_mobiles_new')}{else:}{lang('Нет','commerce_mobiles_new')}{/if}</td>
     </tr>
     <!-- End. Display Paid status -->
 

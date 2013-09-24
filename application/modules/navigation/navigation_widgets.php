@@ -97,6 +97,11 @@ class Navigation_Widgets extends MY_Controller {
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
+            case 'search':
+                $navi_cats[] = array('path_url' => 'shop/search/', 'name' => lang('Search', 'navigation'));
+                $tpl_data = array('navi_cats' => $navi_cats);
+                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
             case 'cart':
                 $navi_cats[] = array('path_url' => 'shop/cart/', 'name' => lang('Cart', 'navigation'));
                 $tpl_data = array('navi_cats' => $navi_cats);

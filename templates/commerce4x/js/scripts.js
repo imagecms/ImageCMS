@@ -523,8 +523,6 @@ $(document).ready(function() {
         effoff: 'fadeOut',
         duration: 500,
         before: function(el, dropEl) {
-            //check for drop-report
-
             if ($(dropEl).hasClass('drop-report')) {
 
                 $(dropEl).find(genObj.parentBtnBuy).remove();
@@ -534,6 +532,8 @@ $(document).ready(function() {
                 //adding product info into form
                 var formCont = $('#data-report');
                 var productId = $(el).attr('data-prodid');
+
+                //alert(productId);
                 formCont.find('input[name="ProductId"]').val(productId)
 
                 elWrap.find('.photo').prependTo(elWrap)
@@ -541,8 +541,19 @@ $(document).ready(function() {
                 if (!dropEl.parent().hasClass('active')) {
                     if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
-                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd ').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
 
+                    dropEl.find('.frame-search-thumbail')
+                            .append(elWrap)
+                            .find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd ')
+                            .remove()
+                            .end()
+                            .parent()
+                            .find('[data-clone="data-report"]')
+                            .remove()
+                            .end()
+                            .append($('[data-clone="data-report"]')
+                            .clone()
+                            .removeClass('d_n'));
                 }
                 return $(el);
 
