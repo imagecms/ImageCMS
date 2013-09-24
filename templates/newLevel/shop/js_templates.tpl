@@ -66,7 +66,7 @@
         </td>
         <td class="frame-count">
         <span class="countOrCompl"><%-pcs%></span>
-        <div class="number" data-title="{/literal}{lang('Количество на складе','newLevel')} {literal}<%-item.maxcount%>">
+        <div class="number" data-title="{/literal}{lang('Количество на складе','newLevel')} {literal}<%-' '+item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
         <div class="btn-plus">
         <button type="button">
@@ -221,7 +221,7 @@
         </td>
         <td class="frame-count">
         <span class="countOrCompl"><%-kits%></span>
-        <div class="number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-item.maxcount%>">
+        <div class="number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-' '+item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>">
         <div class="btn-plus">
         <button type="button">
@@ -427,7 +427,7 @@
         </div>
         <div class="frame-frame-count">
         <div class="frame-count">
-        <div class="number d_i-b" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-item.maxcount%>">
+        <div class="number d_i-b" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-' '+item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
         <div class="btn-plus">
         <button type="button">
@@ -830,7 +830,7 @@
     <span class="tooltip"></span>
     <div class="apply">
         <div class="content-apply">
-            <a href="#">{lang('Filter','newLevel')}</a>
+            <a href="#">{lang('Фильтр','newLevel')}</a>
             <div class="description">{lang('Найдено','newLevel')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
         <button type="button" class="icon_times_drop icon_times_apply"></button>

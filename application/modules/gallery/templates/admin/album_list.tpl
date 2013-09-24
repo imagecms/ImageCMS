@@ -61,7 +61,7 @@
                                                     <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}"
                                                        class="btn btn-small"
                                                        data-rel="tooltip"
-                                                       data-title="{lang('Edit', 'gallery)}">
+                                                       data-title="{lang('Edit', 'gallery')}">
                                                         <i class="icon-edit"></i> {lang('Edit albums', 'gallery')}
                                                     </a>
                                                     <button type="button"
