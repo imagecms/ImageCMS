@@ -13,7 +13,7 @@
                                     hideDrop(DS.drop, form, DS.durationHideForm);
                                 }
                             }}{/literal});
-                        return false;">
+                                return false;">
                     <label>
                         <span class="title">{lang('Имя: ','newLevel')}</span>
                         <span class="frame-form-field">
