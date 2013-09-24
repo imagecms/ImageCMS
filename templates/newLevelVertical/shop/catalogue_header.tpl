@@ -2,7 +2,7 @@
     <div class="header-category clearfix">
         <!-- Start. Order by block -->
         <div class="f_l frame-sort f-s_0">
-            <span class="title">{lang('Показивать:','newLevel')}:</span>
+            <span class="title">{lang('Показывать','newLevel')}:</span>
             <div class="lineForm">
                 <select class="sort" id="sort" name="order">
                     {$sort =ShopCore::app()->SSettings->getSortingFront()}
