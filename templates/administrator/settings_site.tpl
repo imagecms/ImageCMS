@@ -180,7 +180,7 @@
 
                                                                 <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
 
-                                                                <select name="main_page_cat" class="input-small">
+                                                                <select name="main_page_cat" class="input-large">
                                                                     { $this->view("cats_select.tpl", $this->template_vars); }
                                                                 </select>
                                                             </div>
@@ -201,7 +201,7 @@
 
                                                                 <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
 
-                                                                <select name="main_page_module"  class="input-small">
+                                                                <select name="main_page_module"  class="input-large">
                                                                     {foreach $modules as $m}
                                                                         {$mData = modules::run('admin/components/get_module_info',$m['name'])}
                                                                         {//if $mData['main_page'] === true}
