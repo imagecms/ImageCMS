@@ -232,6 +232,8 @@ var Notification = {
                                 $(Notification.formClass + ' form#' + selector).show();
                                 $('.msg').remove();
                             }), 4000);
+                            
+                            
                         }
                     }
                 }
