@@ -5,7 +5,7 @@
     </div>
     <div class="drop-content">
         <div class="inside-padd" data-rel="pastehere">
-            
+
         </div>
     </div>
     <div class="drop-footer"></div>
@@ -41,6 +41,10 @@
                 <span class="frame-form-field">
                     <input type="text" id="" name="UserPhone"/>
                 </span>
+            </label>
+            <label>
+                <span class="title">{lang('Комментарий:','newLevel')}</span>
+                <span class="frame-form-field"><textarea name="UserComment"></textarea></span>
             </label>
             <div class="frame-label">
                 <span class="title">&nbsp;</span>
