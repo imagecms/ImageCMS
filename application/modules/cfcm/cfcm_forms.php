@@ -179,7 +179,7 @@ class Cfcm_forms extends MY_Controller {
         $this->db->select('id, name');
         $groups = $this->db->get('content_field_groups');
 
-        $list = array('-1' => lang('Without group', 'cfcm'));
+        $list = array();
         if ($groups->num_rows() > 0)
         { 
             foreach ($groups->result_array() as $group)
