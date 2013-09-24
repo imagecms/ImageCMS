@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-18 15:35+0300\n"
-"PO-Revision-Date: 2013-09-19 17:16+0300\n"
+"PO-Revision-Date: 2013-09-24 13:06+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -404,7 +404,7 @@ msgstr "Водяной знак"
 
 #: /var/www/image.loc/_temp2.php:156
 msgid "horizontal alignment"
-msgstr "горизонтальное выравнивание"
+msgstr "Горизонтальное выравнивание"
 
 #: /var/www/image.loc/_temp2.php:157
 msgid "left or on the left"
@@ -420,7 +420,7 @@ msgstr "справа"
 
 #: /var/www/image.loc/_temp2.php:160
 msgid "vertical alignment"
-msgstr "вертикальное выравнивание"
+msgstr "Вертикальное выравнивание"
 
 #: /var/www/image.loc/_temp2.php:161
 msgid "at the top"
@@ -474,7 +474,7 @@ msgstr "Цвет шрифта"
 
 #: /var/www/image.loc/_temp2.php:178
 msgid "Path to font"
-msgstr "Путь к шрифта"
+msgstr "Путь к шрифту"
 
 #: /var/www/image.loc/_temp2.php:179
 #: /var/www/image.loc/_temp2.php:196

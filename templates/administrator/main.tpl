@@ -246,7 +246,7 @@
                     <input type=text name="email"/>
                 </label>
                 <label>
-                    {lang("Your remark","admin")}:
+                    {lang('Your remark', "admin")}:
                     <textarea></textarea>
                 </label>
                 <input type="submit" value="{lang("Send","admin")}" class="btn btn-info"/>

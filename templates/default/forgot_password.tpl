@@ -1,4 +1,4 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang("Forgot your password?","admin")}</span></h5></div>
+<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang("Забыли пароль?", "admin")}</span></h5></div>
 
 {if validation_errors() OR $info_message}
     <div class="errors"> 
@@ -16,14 +16,14 @@
     </div>
 	
 	<br /><br /><br /><br />
-    <input type="submit" id="submit" class="submit" value="{lang("Send","admin")}" />
+    <input type="submit" id="submit" class="submit" value="{lang("Отправить","admin")}" />
 	
     <br/><br />
 	</div>
     <label class="left">&nbsp;</label> 
     <a href="{site_url('auth/login')}">Вход</a>
     &nbsp;
-    <a href="{site_url($modules.auth . '/register')}">{lang("Registration","admin")}</a>
+    <a href="{site_url($modules.auth . '/register')}">{lang("Регистрация","admin")}</a>
 
 {form_csrf()}
 </form>
