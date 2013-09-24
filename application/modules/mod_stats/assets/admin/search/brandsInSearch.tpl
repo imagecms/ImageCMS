@@ -8,19 +8,26 @@
                             <div class="control-group">
                                 <label class="control-label"> {lang('Quantity of words', 'mod_stats')} :</label>
                                 <div class="controls number">
-                                    <input id="quantityOfWordsStatsSearch" class="input-small required f_l" style="display: block; " type="text" name="value" maxlength="1">
+                                    <input id="quantityOfWordsStatsSearch" class="input-small required f_l" 
+                                           value="{if $_COOKIE['words_quantity_search_stats'] != null}{echo $_COOKIE['words_quantity_search_stats']}{else:}0{/if}" 
+                                           style="display: block; " type="text" name="value" maxlength="1"/>
+                                    
                                     <span class="frame_label no_connection m-r_15 m-l_40 m-t_10">
-                                        <span class="niceCheck"style="background-position: -46px 0px;">
-                                            <input type="checkbox" id="useLocaleCheckbox">
+                                        <span class="" style="background-position: -46px 0px;">
+                                            <input type="checkbox" id="useLocaleCheckbox" {if $_COOKIE['use_locale_search_stats'] == 'true'} checked="checked" {/if}/>
                                         </span> 
                                         {lang('Consider the current language', 'mod_stats')}
                                     </span>
+                                    
+                                
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"> {lang('Count of results', 'mod_stats')} :</label>
                                 <div class="controls number">
-                                    <input id="resultsStatsSearch" class="input-small required" type="text" name="value" maxlength="2">
+                                    <input id="resultsStatsSearch" class="input-small required" 
+                                           value="{if $_COOKIE['results_quantity_search_stats'] != null}{echo $_COOKIE['results_quantity_search_stats']}{else:}0{/if}" 
+                                           type="text" name="value" maxlength="2">
                                 </div>
                             </div>
                             <div class="control-group">
@@ -39,18 +46,19 @@
         </tr>
     </tbody>
 </table>
-<div class="span2 chartTypeSwitcher" style="display: none;">
-    <div class="d-i_b">
-        <select id="selectChartType">
-            <option value="pieChart">{lang('pie', 'mod_stats')}   </option>
-            <option value="barChart">{lang('bar', 'mod_stats')}   </option>
-        </select>
+<div class="chartBlock" style="display: none;">                                    
+    <div class="span2 chartTypeSwitcher">
+        <div class="d-i_b">
+            <select id="selectChartType">
+                <option value="pieChart">{lang('pie', 'mod_stats')}   </option>
+                <option value="barChart">{lang('bar', 'mod_stats')}   </option>
+            </select>
+        </div>
+    </div>
+    <div id="pieChart" class="hideChart">
+        <svg style="height: 500px;"></svg>
+    </div>
+    <div id="barChart" class="hideChart span12" style="display: none;">
+        <svg style="height: 500px; width: 800px;"></svg>
     </div>
 </div>
-<div id="pieChart" class="hideChart">
-    <svg style="height: 500px;"></svg>
-</div>
-<div id="barChart" class="hideChart span12" style="display: none;">
-    <svg style="height: 500px; width: 800px;"></svg>
-</div>
-
