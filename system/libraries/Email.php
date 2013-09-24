@@ -1520,7 +1520,7 @@ class CI_Email {
 
 		}
 
-		$this->_set_error_message('lang:email_sent', $this->_get_protocol());
+		$this->_set_error_message(lang('email_sent'), $this->_get_protocol());
 		return TRUE;
 	}
 

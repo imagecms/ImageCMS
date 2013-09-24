@@ -11,9 +11,6 @@ class Stats_model_search extends CI_Model {
      * Default params for method getOrdersByDateRange
      * @var array
      */
-    protected $dateRangeParams = array(
-        'paid' => NULL, // TRUE|FALSE|NULL (paid, unpaid, all)
-    );
 
     function __construct() {
         parent::__construct();
@@ -28,24 +25,13 @@ class Stats_model_search extends CI_Model {
     public function getKeywordsByDateRange() {
         $lineDiagramBase = new \mod_stats\classes\LineDiagramBase();
 
-        $query = "
-            SELECT  `mod_stats_search`.`key` ,
-                    DATE_FORMAT( FROM_UNIXTIME(  `mod_stats_search`.`date` ) , '" . $lineDiagramBase->prepareDatePattern() . "' ) AS  `date_search` , 
-                    COUNT(  `mod_stats_search`.`key` ) AS  `key_count` 
-            FROM  
-                `mod_stats_search` 
-            WHERE 1
-                " . $lineDiagramBase->prepareDateBetweenCondition('date','mod_stats_search') . " 
-            GROUP BY  
-                `mod_stats_search`.`key` 
-            ORDER BY 
-                key_count DESC
-            LIMIT 0 , 100";
-
-        $result = $this->db->query($query);
+        $result = $this->queryKeywordsByDateRange($lineDiagramBase);
+        
         if ($result === FALSE) {
             return FALSE;
         }
+        
+        
         $keysData = array();
         foreach ($result->result_array() as $row) {
             $keysData[] = $row;
@@ -54,20 +40,37 @@ class Stats_model_search extends CI_Model {
         return $keysData;
     }
 
-    /**
-     * Helper function for getOrdersByDateRange()
-     * @return string
-     */
-    protected function preparePaidCondition() {
-        if ($this->dateRangeParams['paid'] === TRUE)
-            return "AND `paid` = 1";
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public function queryKeywordsByDateRange (mod_stats\classes\LineDiagramBase $obj, $resultsLimit = 100 ){
+        if (!$obj){
+            return FALSE;
+        }
+        /**Prepare and run query **/
+        $query = "
+            SELECT  `mod_stats_search`.`key` ,
+                    DATE_FORMAT( FROM_UNIXTIME(  `mod_stats_search`.`date` ) , '" . $obj->prepareDatePattern() . "' ) AS  `date_search` , 
+                    COUNT(  `mod_stats_search`.`key` ) AS  `key_count` 
+            FROM  
+                `mod_stats_search` 
+            WHERE 1
+                " . $obj->prepareDateBetweenCondition('date','mod_stats_search') . " 
+            GROUP BY  
+                `mod_stats_search`.`key` 
+            ORDER BY 
+                key_count DESC
+            LIMIT 0 , ".$resultsLimit;
 
-        if ($this->dateRangeParams['paid'] === FALSE)
-            return "AND (`paid` <> 1 OR `paid` IS NULL)";
-
-        return "";
+        return $this->db->query($query);
     }
-
 }
 
 ?>

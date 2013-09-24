@@ -25,9 +25,10 @@ function resetPie(nabir){
 };
 
 $(document).ready(function(){
-    $('.refresh_price').live('click', function() {
-        $('#recount').val('1')
-        $('#form').submit();
+    $('.refresh_price').bind('click', function() {
+        $('#recount').val('1');
+        $('#makeOrderMobile').val('0');
+        $('#cartForm').submit();
     });
     $('.main_menu li a').click(function(e){
         var $this = $(this).parent().toggleClass('active');
