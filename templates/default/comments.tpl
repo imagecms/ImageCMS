@@ -20,7 +20,7 @@
 {/if}
 
 <div id="detail">
-    <h3>{lang('post_comment')}</h3>
+    <h3>{lang('Оставить отзыв')}</h3>
 
     {if $comment_errors}
         <div class="errors"> 
@@ -29,7 +29,7 @@
     {/if}
 
     {if $can_comment === 1 AND !is_logged_in}
-        <p>{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
+        <p>{sprintf(lang('Ввойдите для комментирования'), site_url($modules.auth))}</p>
     {/if}
 
     <form action="" method="post" class="form">
@@ -37,7 +37,7 @@
         <input type="hidden" name="redirect" value="{uri_string()}" />
 
         {if $is_logged_in} 
-            <p>{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang("Exit","admin")}</a></p>         
+            <p>{lang('Вы ввошли как')} {$username}. <a href="{site_url('auth/logout')}">{lang("Выход","admin")}</a></p>         
             {else:}
 
             <div class="comment_form_info">
@@ -81,7 +81,7 @@
             {/if}
 
         {/if}
-        <input type="submit" class="submit" value="{lang('lang_comment_button')}" />
+        <input type="submit" class="submit" value="{lang('Отправить')}" />
 
         {form_csrf()}
     </form>
