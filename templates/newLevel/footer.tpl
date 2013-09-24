@@ -30,7 +30,7 @@
                             <button type="button" onclick="location = '{site_url('shop/profile')}'" title="{lang('Личный кабинет','newLevel')}">{lang('Личный кабинет','newLevel')}</button>
                         </li>
                         <li>
-                            <button type="button" onclick="location = '{site_url('shop/wish_list')}'" title="{lang('Список желаний','newLevel')}">{lang('Список желаний','newLevel')}</button>
+                            <button type="button" onclick="location = '{site_url('wishlist')}'" title="{lang('Список желаний','newLevel')}">{lang('Список желаний','newLevel')}</button>
                         </li>
                     {else:}
                         <li>

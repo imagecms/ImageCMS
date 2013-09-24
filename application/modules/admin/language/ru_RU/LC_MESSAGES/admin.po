@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-23 11:20+0300\n"
+"POT-Creation-Date: 2013-09-24 11:58+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -53,12 +53,12 @@ msgid "choose date"
 msgstr "выберите дату"
 
 #: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:49
 msgid "Cancel"
 msgstr "Отменить"
 
 #: /var/www/image.loc/_tempLangs.php:31
-#: /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:48
 msgid "Create"
 msgstr "Создать"
 
@@ -108,92 +108,96 @@ msgid "Your Email"
 msgstr "Ваш E-mail"
 
 #: /var/www/image.loc/_tempLangs.php:44
+msgid "Your remark"
+msgstr "Ваше замечание"
+
+#: /var/www/image.loc/_tempLangs.php:45
 msgid "Return"
 msgstr "Возвращение"
 
-#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:46
 msgid "Full description"
 msgstr "Полное описание"
 
-#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:47
 msgid "Parent"
 msgstr "Родитель"
 
-#: /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:50
 msgid "Your search did not found"
 msgstr "Ничего не найдено"
 
-#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:51
 msgid "Confirm"
 msgstr "Подтвердите"
 
-#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:52
 msgid "Delete pages"
 msgstr "Удалить страницы"
 
-#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:53
 msgid "Delete selected pages?"
 msgstr "Удалить выбранные страницы?"
 
-#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:54
 msgid "Content list"
 msgstr "Список содержимого"
 
-#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:55
 msgid "Filter"
 msgstr "Фильтр"
 
-#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:56
 msgid "Create copy"
 msgstr "Создайте копию"
 
-#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:57
 msgid "Move"
 msgstr "Переместить"
 
-#: /var/www/image.loc/_tempLangs.php:57
+#: /var/www/image.loc/_tempLangs.php:58
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:58
 #: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:60
 msgid "Create page"
 msgstr "Создать страницу"
 
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:67
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:68
 msgid "All categories"
 msgstr "Все категории"
 
-#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:62
 msgid "Title"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:63
 msgid "Url"
 msgstr "Url"
 
-#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:64
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:65
 msgid "Creation date"
 msgstr "Дата создания"
 
-#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:66
 msgid "Status"
 msgstr "Статус"
 
-#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:67
 msgid "Digits only"
 msgstr "Только цифры"
 
-#: /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:69
 msgid "Without category"
 msgstr "Без категории"
 
-#: /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:70
 msgid ""
 "don\");\n"
 "_("
@@ -540,7 +544,7 @@ msgstr "Вперед"
 #: /var/www/image.loc/_tempLangs.php:138
 #: /var/www/image.loc/_tempLangs.php:222
 msgid "Save and go back"
-msgstr "Создать и выйти"
+msgstr "Сохранить и выйти"
 
 #: /var/www/image.loc/_tempLangs.php:139
 #: /var/www/image.loc/_tempLangs.php:143
@@ -1106,7 +1110,7 @@ msgstr "Проверить обновления версии"
 
 #: /var/www/image.loc/_tempLangs.php:76
 msgid "Latest/recent comments"
-msgstr "Последние/недавние комментарии"
+msgstr "Последние/Недавние комментарии"
 
 #: /var/www/image.loc/_tempLangs.php:77
 msgid "ImageCMS news"
@@ -2978,7 +2982,7 @@ msgstr "История статусов"
 
 #: /var/www/image.loc/_tempLangs.php:340
 msgid "Product addition"
-msgstr "Додатковые товары"
+msgstr "Дополнительные товары"
 
 #: /var/www/image.loc/_tempLangs.php:342
 msgid "Add"
@@ -3288,7 +3292,7 @@ msgstr "Товари без картинок"
 #: /var/www/image.loc/_tempLangs.php:70
 #: /var/www/image.loc/_tempLangs.php:71
 msgid "Latest/recent  comments"
-msgstr "Последние /недавние комментарии"
+msgstr "Последние/Недавние комментарии"
 
 #: /var/www/image.loc/_tempLangs.php:72
 #: /var/www/image.loc/_tempLangs.php:199
@@ -4919,7 +4923,7 @@ msgstr "Главный телефон"
 
 #: /var/www/image.loc/_tempLangs.php:74
 msgid "Admin email"
-msgstr " Email  админимстратора"
+msgstr " Email  администратора"
 
 #: /var/www/image.loc/_tempLangs.php:75
 msgid "Contacts"
@@ -6307,9 +6311,6 @@ msgstr "Правильное поле"
 
 #~ msgid "Guest"
 #~ msgstr "Гость"
-
-#~ msgid "Your remark"
-#~ msgstr "Ваше замечание"
 
 #~ msgid "URL access on"
 #~ msgstr "URL доступ на"
