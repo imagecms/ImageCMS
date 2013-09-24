@@ -658,4 +658,4 @@
         </div>
     </div> 
 </section>
-<div id="elFinder"></div>
+<!--div id="elFinder"></div-->

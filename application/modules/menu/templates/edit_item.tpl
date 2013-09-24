@@ -146,7 +146,7 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');return false;"><i class="icon-picture"></i>  {lang("Choose image ", "menu")}</button>
+                                                    <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img0');return false;"><i class="icon-picture"></i>  {lang("Choose image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="page_item_image" id="Img0" value="{$item.item_image}">
@@ -300,7 +300,7 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                    <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img1');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="cat_item_image" id="Img1" value="{$item.item_image}">
@@ -447,7 +447,7 @@
                                                     </label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">            
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                            <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img2');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                         </div>
                                                         <div class="o_h">		            
                                                             <input type="text" name="module_item_image" id="Img2" value="{$item.item_image}">
@@ -592,7 +592,7 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                    <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img3');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="url_item_image" id="Img3" value="{$item.item_image}">

@@ -8,16 +8,9 @@
 # @var cart_data
 #}
 <div class="content_head">
-    {widget('path')}
     <div class="crumbs">
-        <h1>{echo ShopCore::encode($category->getTitle())}</h1>
+        <h1>{echo ShopCore::encode($model->getName())}</h1>
     </div>
-    {if strstr($_SERVER["REQUEST_URI"],'?')}
-        {$full_url = $_SERVER["REQUEST_URI"] . '&filtermobile=1'}
-    {else:}
-        {$full_url = $_SERVER["REQUEST_URI"] . '?filtermobile=1'}
-    {/if}
-    <a href="{echo $full_url}" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
 </div>
 <ul class="catalog">
     {foreach $products as $product}

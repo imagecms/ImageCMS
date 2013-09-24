@@ -48,7 +48,7 @@ class MY_Lang extends MX_Lang {
         $this->ci = & get_instance();
         $langs = $this->ci->config->item('languages');
 
-        return isset($langs[$language]) ? $langs[$language] : array('en', 'en_US');
+        return isset($langs[$language]) ? $langs[$language] : array('ru', 'ru_RU');
     }
 
     public function getFrontLangCode($language) {
@@ -74,6 +74,10 @@ class MY_Lang extends MX_Lang {
             $this->gettext_language = $this->ci->config->item('language');
         } else {
             $this->gettext_language = $this->ci->session->userdata('language');
+            if (!$this->gettext_language) {
+                $this->gettext_language = 'russian';
+                $this->ci->session->set_userdata('language', 'russian');
+            }
         }
 
         unset($sett);
@@ -110,8 +114,8 @@ class MY_Lang extends MX_Lang {
      * @return	mixed
      */
     public function load($module = 'main') {
-        if (!$this->gettext)
-            $this->_init();
+//        if (!$this->gettext)
+        $this->_init();
 
         if (strstr(uri_string(), 'admin')) {
             $languageAdmin = $this->getLangCode($this->gettext_language);

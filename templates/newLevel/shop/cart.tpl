@@ -53,28 +53,28 @@
                             <label>
                                 <span class="title">{lang('Имя: ','newLevel')}</span>
                                 <span class="frame-form-field">
-                                    <input type="text" value="{$profile.name}" name="userInfo[fullName]">
                                     {if $isRequired['userInfo[fullName]']}
                                         <span class="must">*</span>
                                     {/if}
+                                    <input type="text" value="{$profile.name}" name="userInfo[fullName]">
                                 </span>
                             </label>
                             <label>
                                 <span class="title">{lang('Телефон','newLevel')}:</span>
                                 <span class="frame-form-field">
-                                    <input type="text" name="userInfo[phone]" value="{$profile.phone}">
                                     {if $isRequired['userInfo[phone]']}
                                         <span class="must">*</span>
                                     {/if}
+                                    <input type="text" name="userInfo[phone]" value="{$profile.phone}">
                                 </span>
                             </label>
                             <label>
                                 <span class="title">{lang('Email','newLevel')}:</span>
                                 <span class="frame-form-field">
-                                    <input type="text" value="{$profile.email}" name="userInfo[email]">
                                     {if $isRequired['userInfo[email]']}
                                         <span class="must">*</span>
                                     {/if}
+                                    <input type="text" value="{$profile.email}" name="userInfo[email]">
                                 </span>
                             </label>
                             {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
@@ -83,10 +83,10 @@
                             <label>
                                 <span class="title">{lang('Город','newLevel')}:</span>
                                 <span class="frame-form-field">
-                                    <textarea name="userInfo[deliverTo]">{echo $profile.address}</textarea>
                                     {if $isRequired['userInfo[deliverTo]']}
                                         <span class="must">*</span>
                                     {/if}
+                                    <textarea name="userInfo[deliverTo]">{echo $profile.address}</textarea>
                                 </span>
                             </label>
                             <label>

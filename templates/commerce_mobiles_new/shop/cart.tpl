@@ -1,10 +1,76 @@
 {if count($items) > 0}
-    <div class="content_head">
-        <h1>Оформление заказа</h1>
-        <p class="alert">Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа.</p>
-    </div>
-    <hr class="head_cle_foot"/>
     <form method="post" action="{site_url(uri_string())}" id="cartForm">
+        <div class="content_head">
+            <div class="title_h1">{lang('Ваш заказ','commerce_mobiles_new')}</div>
+        </div>
+        <ul class="catalog">
+            {foreach $items as $key=>$item}
+                {$variants = $item.model->getProductVariants()}
+                {foreach $variants as $v}
+                    {if $v->getId() == $item.variantId}
+                        {$variant = $v}
+                    {/if}
+                {/foreach}
+                <li>
+                    <div class="top_frame_tov">
+                        <a href="{shop_url('product/' . $item.model->getUrl())}" class="t-d_n">
+                            <span class="figure">
+                                <img src="{echo $variant->getMainPhoto()}"/>
+                            </span>
+                            <span class="descr">
+                                <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
+                                {if $item.variantName}
+                                    <span class="code_v">{lang('Варіант','commerce_mobiles_new')}: {echo $item.variantName}</span>
+                                {/if}
+                                {if $variant->getNumber()}
+                                    <span class="divider">/</span>
+                                    <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $variant->getNumber()}</span>
+                                {/if}
+                                <input name="products[{$key}]" type="hidden" value="{$item.quantity}"/>
+                                <span class="d_b price">{$summary = $variant->getPrice() * $item.quantity}{echo $summary} {$CS}</span>
+                            </span>
+                        </a>
+                        <span class="descr">
+                            <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> Удалить</a>
+                            <input type="text"
+                                   name="products[{$key}]"
+                                   price="{echo $variant->getPrice()}"
+                                   value="{$item.quantity}"
+                                   autocomplete="off"
+                                   onblur=""/>
+                            <span class="frame_count">
+                                <span class="refresh_price"></span>
+                                <span class="count">шт.</span>
+                            </span>
+
+                        </span>
+                    </div>
+                </li>
+                {$summary = $item.price * $item.quantity}
+                {$total     += $summary}
+                {$total_nc  += $summary_nextc}
+            {/foreach}
+        </ul>
+        <div class="main_frame_inside">
+            <div class="gen_sum">
+                <span class="total_pay">Всего к оплате:</span>
+                <span class="price">
+                    {if $total < $item.delivery_free_from}
+                        {$total += $item.delivery_price}
+                    {/if}
+                    {if isset($item.gift_cert_price)}
+                        {$total -= $item.gift_cert_price}
+                    {/if}
+                    {echo $total} {$CS}
+                </span>
+            </div>
+        </div>
+        <div class="main_f_i_f-r"></div>
+        <div class="content_head">
+            <h1>Оформление заказа</h1>
+            <p class="alert">Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа.</p>
+        </div>
+        <hr class="head_cle_foot"/>
         <div class="main_frame_inside">
             {if validation_errors()}
                 <label><span class="red d_b">{validation_errors()}</span></label>
@@ -65,65 +131,8 @@
                 <textarea name="userInfo[commentText]"></textarea>
             </label>
         </div>
-        <div class="main_f_i_f-r"></div>
-        <div class="content_head">
-            <div class="title_h1">{lang('Ваш заказ','commerce_mobiles_new')}</div>
-        </div>
-        <ul class="catalog">
-            {foreach $items as $key=>$item}
-                {$variants = $item.model->getProductVariants()}
-                {foreach $variants as $v}
-                    {if $v->getId() == $item.variantId}
-                        {$variant = $v}
-                    {/if}
-                {/foreach}
-                <li>
-                    <div class="top_frame_tov">
-                        <a href="{shop_url('product/' . $item.model->getUrl())}" class="t-d_n">
-                            <span class="figure">
-                                <img src="{echo $variant->getMainPhoto()}"/>
-                            </span>
-                            <span class="descr">
-                                <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
-                                {if $item.variantName}
-                                    <span class="code_v">{lang('Варіант','commerce_mobiles_new')}: {echo $item.variantName}</span>
-                                {/if}
-                                {if $variant->getNumber()}
-                                    <span class="divider">/</span>
-                                    <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $variant->getNumber()}</span>
-                                {/if}
-                                <input name="products[{$key}]" type="hidden" value="{$item.quantity}"/>
-                                <span class="d_b price">{$summary = $variant->getPrice() * $item.quantity}{echo $summary} {$CS}</span>
-                            </span>
-                        </a>
-                        <span class="descr">
-                            <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> Удалить</a>
-                            <input type="text"
-                                   price="{echo $variant->getPrice()}"
-                                   value="{$item.quantity}"
-                                   readonly="readonly"
-                                   onblur=""/>
-                            <span class="count">шт.</span>
-                        </span>
-                    </div>
-                </li>
-                {$total     += $summary}
-                {$total_nc  += $summary_nextc}
-            {/foreach}
-        </ul>
         <div class="main_frame_inside">
-            <div class="gen_sum">
-                <span class="total_pay">Всего к оплате:</span>
-                <span class="price">
-                    {if $total < $item.delivery_free_from}
-                        {$total += $item.delivery_price}
-                    {/if}
-                    {if isset($item.gift_cert_price)}
-                        {$total -= $item.gift_cert_price}
-                    {/if}
-                    {echo $total} {$CS}
-                </span>
-            </div>
+
             <span class="but_buy inp">
                 <span class="b_buy_in">
                     <span class="helper"></span>
@@ -134,15 +143,13 @@
             </span>
         </div>
         <!-- <input type="hidden" name="userInfo[email]" value="mobile@device.order" /> -->
-        <input type="hidden" name="setOrderMobile" value="1"/>
-        <input type="hidden" name="makeOrder" value="1"/>
+        <input id="recount" type="hidden" name="recount" value="0" />
+        <!-- <input type="hidden" name="setOrderMobile" value="1"/>-->
+        <input id="makeOrderMobile" type="hidden" name="makeOrder" value="1"/>
         {form_csrf()}
     </form>
     <div class="main_f_i_f-r"></div>
 {else:}
-    <div class="content_head">
-        <h1>Оформление заказа</h1>
-    </div>
     <div class="main_frame_inside">
         <div class="gen_sum">
             <span class="total_pay">{echo ShopCore::t('Корзина пуста')}</span>
