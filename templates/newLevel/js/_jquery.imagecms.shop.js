@@ -1,4 +1,4 @@
-length/*
+/*
  *imagecms frontend plugins
  ** @author Domovoj
  * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
