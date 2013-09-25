@@ -57,12 +57,9 @@ class Gettext_Extension extends Gettext {
      * @return mixed|void
      */
     public function addDomain($directory, $domain, $locale) {
-//        var_dumps(setlocale(LC_ALL, 'rus'));
-//        setlocale(LC_ALL, 'rus');
-//        $locale = 'rus';
         if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
             // Set current locale
-            var_dumps(setlocale(LC_ALL, ''));
+            setlocale(LC_ALL, '');
         }
         
         putenv('LC_ALL=' . $locale);
