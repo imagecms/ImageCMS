@@ -29,7 +29,7 @@
                     <div class="control-group">
                         <label class="control-label" for="name">{lang("Name", 'gallery')}:</label>
                         <div class="controls">
-                            <input type="text" name="name" id="name" value="" required/>
+                            <input type="text" name="name" id="name" value=""/>
                         </div>
                     </div>
                     <div class="control-group">

@@ -143,8 +143,9 @@ class Search extends \MY_Controller {
      * @return array
      */
     public function prepareParamsFromCookiesForAnalysis() {
-        $params = [];
-        /** Words quantity * */
+
+        $params = array();
+        /** Words quantity **/
         if ($_COOKIE['words_quantity_search_stats'] != null) {
             $params['words_quantity'] = $_COOKIE['words_quantity_search_stats'];
         } else {

@@ -78,7 +78,7 @@
             <div class="left-catalog">
                 <form method="GET" action="" id="catalog_form">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
-                    <input type="hidden" name="text" value="{$searched_text}">
+                    <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
                     <input type="hidden" name="category" value="{echo $_GET[category]}">
                 </form>
                 <div class="frame-category-menu layout-highlight">

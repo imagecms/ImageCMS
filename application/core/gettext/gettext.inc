@@ -39,7 +39,7 @@ if (!defined('LC_MESSAGES')) {
 }
 
 require('streams.php');
-require('gettext2.php');
+require('gettext.php');
 
 
 // Variables
