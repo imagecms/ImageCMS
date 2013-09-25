@@ -241,7 +241,7 @@ msgstr "Порт"
 
 #: /var/www/image.loc/_tempLangs.php:75
 msgid "Check email sending"
-msgstr "Дата отправки электронной почты"
+msgstr "Проверка отправки электронной почты"
 
 #: /var/www/image.loc/_tempLangs.php:76
 msgid "Email template editing"
@@ -253,7 +253,7 @@ msgstr "Настройки шаблона"
 
 #: /var/www/image.loc/_tempLangs.php:81
 msgid "Template variables"
-msgstr "Переменный шаблона"
+msgstr "Переменные шаблона"
 
 #: /var/www/image.loc/_tempLangs.php:83
 msgid "Template name(only latin)"

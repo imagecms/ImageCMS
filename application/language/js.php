@@ -36,11 +36,13 @@ $domain = array();
 // check domain
 // check is it modules
 preg_match('/modules\/([a-zA-Z_]+)/', $found_in[0], $domain);
+//$domain[2] = $found_in[0];
 
 // check is it admin
 if (!$domain) {
     if (strstr($found_in[0], 'admin')) {
         $domain[1] = 'admin';
+        $domain[2] = $found_in[0];
     }
 }
 if (!$domain) {
@@ -75,10 +77,10 @@ if ($mod) {
         $admin_file = str_replace('application/language', 'templates/administrator/inc/jsLangs.tpl', dirname(__FILE__));
         file_put_contents($admin_file, $result);
     } else {
-        if (strstr($domain[1], 'modules')) {
+        if (strstr($found_in[0], 'modules')) {
             file_put_contents('assets/jsLangs.tpl', $result);
         }else{
-            if(!strstr($domain[1], 'application')){
+            if(!strstr($found_in[0], 'application')){
                 file_put_contents('jsLangs.tpl', $result);                
             }
         }

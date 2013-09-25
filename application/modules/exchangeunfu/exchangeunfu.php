@@ -297,9 +297,8 @@ class Exchangeunfu extends MY_Controller {
                 ->setData('partners', $partners)
                 ->fetchAdminTemplate('main');
 
-            \CMSFactory\assetManager::create()
-                    ->appendData('moduleAdditions', $view);
-
+        \CMSFactory\assetManager::create()
+                ->appendData('moduleAdditions', $view);
     }
 
     /**
@@ -591,21 +590,21 @@ class Exchangeunfu extends MY_Controller {
      */
     public function getPriceForRegion($model) {
         // TEST SET COOKIE
-        set_cookie('site_region', '1', 10000);
-        $partner_id = get_cookie('site_region');
+        set_cookie('site_region', 'м. Львів', 10000);
+        $region = get_cookie('site_region');
         $external_ids = array();
 
         if (count($model) == 1) {
             // product
-            if ($model->getExternalId()) {
-                $ids[] = $model->getExternalId();
+            if ($model->getId()) {
+                $ids[] = $model->getId();
                 $external_ids[$model->getExternalId()] = $model->getId();
             }
         } elseif (count($model) > 1) {
             // category/brand/search
             foreach ($model as $product) {
-                if ($product->getExternalId()) {
-                    $ids[] = $product->getExternalId();
+                if ($product->getId()) {
+                    $ids[] = $product->getId();
                     $external_ids[$product->getExternalId()] = $product->getId();
                 }
             }
@@ -613,23 +612,48 @@ class Exchangeunfu extends MY_Controller {
             // an empty model
             return false;
         }
+        $regions = $this->db
+                ->select('external_id')
+                ->where('region', $region)
+                ->get('mod_exchangeunfu_partners');
+
+        if ($regions) {
+            $regions = $regions->result_array();
+        } else {
+            $regions = array();
+        }
+
+        $partners_external_ids = array();
+        foreach ($regions as $region) {
+            $partners_external_ids[] = $region['external_id'];
+        }
 
         $products_by_region = $this->db
-                ->where('partner_external_id', $partner_id)
-                ->where_in('product_external_id', $ids)
+                ->where_in('partner_external_id', $partners_external_ids)
+                ->where_in('product_id', $ids)
                 ->get('mod_exchangeunfu_prices');
 
         $region_prices = array();
         foreach ($products_by_region->result_array() as $product) {
-            $product_id = $external_ids[$product['product_external_id']];
+            $product_id = $product['product_id'];
             $price = $product['price'];
             $discount = $this->load->module('mod_discount/discount_api')
                     ->get_discount_product_api(array('id' => $product_id, 'vid' => null), null, $price);
 
             if ($discount) {
-                $region_prices[$product_id] = $price - $discount['discount_value'];
+                if ((int)$region_prices[$product_id] - $discount < $price) {
+                    $region_prices[$product_id] = $price - $discount['discount_value'];
+                }else{
+                    $region_prices[$product_id] = $price - $discount['discount_value'];
+                }
             } else {
-                $region_prices[$product_id] = $price;
+                if ((int)$region_prices[$product_id] < $price) {
+                    $region_prices[$product_id] = $price;
+                }else{
+                    if(!$region_prices[$product_id]){
+                        $region_prices[$product_id] = $price;
+                    }
+                }
             }
         }
 
@@ -637,6 +661,22 @@ class Exchangeunfu extends MY_Controller {
             return $region_prices;
         } else {
             return 0;
+        }
+    }
+    
+    /**
+     * get regions names 
+     * @return array
+     */
+    public function getRegions(){
+        $regions = $this->db
+                ->select('region')
+                ->get('mod_exchangeunfu_partners');
+
+        if ($regions) {
+            return $regions = array_unique($regions->result_array());
+        } else {
+            return  $regions = array();
         }
     }
 

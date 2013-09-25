@@ -95,7 +95,7 @@ class Admin extends BaseAdminController {
             $this->load->library('Form_validation');
             /** Set Validation reles */
             $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
-            $this->form_validation->set_rules('photo', lang('Photo', 'banners'), 'required|xss_clean');
+            $this->form_validation->set_rules('photo', lang('Image', 'banners'), 'required|xss_clean');
 
             if ($this->form_validation->run($this) !== FALSE) {
                 /** Set Instart data */
