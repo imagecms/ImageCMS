@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Отправка писем',     // Menu name
-	'description' => 'Отправка писем группам пользователей.',                  // Module Description
+	'menu_name'   => lang('Email sending', 'group_mailer'),     // Menu name
+	'description' => lang('Users group email sending module', 'group_mailer'),                  // Module Description
 	'admin_type'  => 'inside',            // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
     'w'           => 600,                 // Window width

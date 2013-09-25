@@ -382,7 +382,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        Параметры:
+                                        {lang('Parameters', 'menu')}:
                                     </th>
                                 </tr>
                             </thead>
@@ -658,4 +658,4 @@
         </div>
     </div> 
 </section>
-<div id="elFinder"></div>
+<!--div id="elFinder"></div-->

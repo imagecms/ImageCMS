@@ -13,7 +13,7 @@ $(document).ready(function() {
             url: '/admin/components/change_autoload',
             success: function(obj) {
                 if (obj.result === false) {
-                    showMessage(lang.error, lang.errorSomethingWereWrong);
+                    showMessage(langs.error, langs.errorSomethingWereWrong);
                 }
             }
         });
@@ -34,7 +34,7 @@ $(document).ready(function() {
                 url: '/admin/components/change_url_access',
                 success: function(obj) {
                     if (obj.result === false) {
-                        showMessage(lang.error, lang.errorUrlAccess);
+                        showMessage(langs.error, langs.errorUrlAccess);
                     } else {
                         if (obj.result.enabled === 1)
                         {
@@ -63,16 +63,16 @@ $(document).ready(function() {
                     trin.children('td.fdel').remove();
                     trin.children('td.fdel2').remove();
                     trin.append('<td><p> - <p></td>');
-                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + lang.turnOn + '"  data-off="' + lang.turnOff + '"><span class="prod-on_off autoload_ch" data-mid="{$module.id}"></span></div></td>')
-                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + lang.turnOff + '"  data-off="' + lang.turnOff + '"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
+                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + langs.turnOn + '"  data-off="' + langs.turnOff + '"><span class="prod-on_off autoload_ch" data-mid="{$module.id}"></span></div></td>')
+                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + langs.turnOff + '"  data-off="' + langs.turnOff + '"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
                     $('#mtbl').append(trin);
                     $this.parents('tr:first').remove();
                     if ($('tbody.nim').children('tr').contents().length === 0)
                     {
                         $('#nimt').remove();
-                        $('#nimc').html('</br><div class="alert alert-info">' + lang.haveNotModulesToInstall + '</div>');
+                        $('#nimc').html('</br><div class="alert alert-info">' + langs.haveNotModulesToInstall + '</div>');
                     }
-                    showMessage(lang.moduleInstall, lang.moduleSuccessInstall);
+                    showMessage(langs.moduleInstall, langs.moduleSuccessInstall);
                     location.reload();
                 }
             }
@@ -151,10 +151,10 @@ $(document).ready(function() {
             success: function(obj) {
                 if (obj.result === false)
                 {
-                    showMessage(lang.creatingWidget, lang.error + obj.message);
+                    showMessage(langs.creatingWidget, langs.error + obj.message);
                 } else {
                     var url = '/admin/widgets_manager';
-                    showMessage(lang.creatingWidget, lang.createdSuccessfullyWidget);
+                    showMessage(langs.creatingWidget, langs.createdSuccessfullyWidget);
                     redirect_url(url);
                 }
             }
@@ -168,10 +168,10 @@ $(document).ready(function() {
             success: function(obj) {
                 if (obj.result === false)
                 {
-                    showMessage(lang.creatingWidget, lang.error + obj.message);
+                    showMessage(langs.creatingWidget, langs.error + obj.message);
                 } else {
                     var url = '/admin/widgets_manager/create_tpl';
-                    showMessage(lang.creatingWidget, lang.createdSuccessfullyWidget);
+                    showMessage(langs.creatingWidget, langs.createdSuccessfullyWidget);
                     redirect_url(url);
                 }
             }
@@ -267,7 +267,7 @@ $(document).ready(function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
-//            if (confirm(lang.deleteGroup))
+//            if (confirm(langs.deleteGroup))
 //            {
 //                var arr = getcheckedvalues();
 //                $.post('/admin/components/run/shop/rbac/group_delete', {
@@ -285,7 +285,7 @@ $(document).ready(function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
-//            if (confirm(lang.deleteGroup))
+//            if (confirm(langs.deleteGroup))
 //            {
 //                var arr = getcheckedvalues();
 //                $.post('/admin/components/run/shop/rbac/privilege_delete', {
@@ -490,7 +490,7 @@ $(document).ready(function() {
     });
 
     $('#create_tpl').live('click', function() {
-        var name = prompt(lang.enterTemplateName, '');
+        var name = prompt(langs.enterTemplateName, '');
         if (name != null && name != "") {
             $.ajax({
                 type: "post",
@@ -649,7 +649,7 @@ $(document).ready(function() {
                     });
                     $('#pages_list_holder').html('<ul class="nav myTab nav-tabs nav-stacked">' + st + '</ul>');
                 } else {
-                    $('#pages_list_holder').html(lang.categoryHaveNotPage);
+                    $('#pages_list_holder').html(langs.categoryHaveNotPage);
                 }
             }
         });
@@ -1077,7 +1077,7 @@ $(document).ready(function() {
     $('#resizeAll').live('click', function() {
 
         window.onbeforeunload = (function() {
-            return lang.waitForResizeEnding + '!';
+            return langs.waitForResizeEnding + '!';
         });
         /* */
         $.ajax({
@@ -1105,13 +1105,13 @@ $(document).ready(function() {
                                 $('.bar').css('width', ((done / countAll) * 100) + '%');
                                 $('.bar').text(parseInt((done / countAll) * 100) + '%');
 
-                                $('#progressLabel').html('<b>' + lang.resizeImagesForProducts + '</b> <br/>' + lang.allFindingProducts + ': ' + countAll + '  (' + lang.processed + ' : ' + done + ' )');
+                                $('#progressLabel').html('<b>' + langs.resizeImagesForProducts + '</b> <br/>' + langs.allFindingProducts + ': ' + countAll + '  (' + langs.processed + ' : ' + done + ' )');
 //                                console.log((done / countAll) * 100);
                                 if (done == countAll) {
                                     $('#fixPage').fadeOut(100);
                                     if ($('#useAdditionalImages').attr('checked') != 'checked') {
                                         $('#progressBlock').fadeOut(1000);
-                                        showMessage(lang.imagesUpdated, lang.completed);
+                                        showMessage(langs.imagesUpdated, langs.completed);
                                     }
                                     window.onbeforeunload = null;
                                 }
@@ -1120,7 +1120,7 @@ $(document).ready(function() {
                     }
                     ;
 
-                    $('#progressLabel').html('<b>' + lang.resizeProductsImages + '</b><br/>' + lang.productsFound + ': ' + countAll);
+                    $('#progressLabel').html('<b>' + langs.resizeProductsImages + '</b><br/>' + langs.productsFound + ': ' + countAll);
                     $('#progressBlock').fadeIn(100);
 
                     //Prepare portion of images
@@ -1168,12 +1168,12 @@ $(document).ready(function() {
                                 complete: function() {
                                     doneAdditional += array.length;
                                     $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
-                                    $('#progressLabel').html('<b>' + lang.additionalImagesResize + '</b><br/>' + lang.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + lang.processed + ': ' + doneAdditional + ' )');
+                                    $('#progressLabel').html('<b>' + langs.additionalImagesResize + '</b><br/>' + langs.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + langs.processed + ': ' + doneAdditional + ' )');
                                     //                                    console.log((doneAdditional / countAllAdditional) * 100);
                                     if (doneAdditional == countAllAdditional) {
                                         $('#fixPage').fadeOut(100);
                                         $('#progressBlock').fadeOut(1000);
-                                        showMessage(lang.imagesUpdated, lang.completed);
+                                        showMessage(langs.imagesUpdated, langs.completed);
                                         window.onbeforeunload = null;
                                     }
                                 }
@@ -1181,7 +1181,7 @@ $(document).ready(function() {
                         }
                         ;
 
-                        $('#progressLabel').html('<b>' + lang.additionalImagesResize + '</b><br/>' + lang.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + lang.processed + ': 0 )');
+                        $('#progressLabel').html('<b>' + langs.additionalImagesResize + '</b><br/>' + langs.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + langs.processed + ': 0 )');
                         $('#progressBlock').fadeIn(100);
                         $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
 
@@ -1201,7 +1201,7 @@ $(document).ready(function() {
                         }
                     } else {
                         $('#progressBlock').fadeOut(100);
-                        showMessage(lang.imagesUpdated, lang.completed);
+                        showMessage(langs.imagesUpdated, langs.completed);
                     }
                 }
             });
@@ -1253,6 +1253,20 @@ $(document).ready(function() {
             url: '/admin/components/run/shop/orders/index/?' + query_string,
             container: '#mainContent'
         });
+    });
+
+
+
+    // shop - settings - count of products on site
+    $("#arrayFrontProductsPerPage").live('keyup', function() {
+        var currentValue = $(this).val();
+        var pattern = /^[0-9\,]*$/;
+        if (!currentValue.match(pattern)) { // has banned symbols
+            var caretPosition = caret($(this)); // get the caret position
+            var newValue = currentValue.replace(/[^0-9\,]/, '');
+            $(this).val(newValue);
+            caret(this, caretPosition.begin)
+        }
     });
 
 
@@ -1453,9 +1467,58 @@ $(document).ready(function() {
         placement: 'top'
     });
 
-
-
     /* --------------------- end of Siteinfo -------------------------*/
+
+
+
+
+    /* --------------------- Backup -------------------------*/
+
+    $(".backup_container #backup_save_settings").live('click', function() {
+        var settings = {};
+
+        $(".backup_container .backup_settings").each(function() {
+            var id = $(this).attr("id");
+            var value = $(this).val();
+            settings[id] = value;
+        });
+
+        $.post(base_url + 'admin/backup/save_settings', settings, function(data) {
+            //alert(data);
+            $(".backup_container #backup_temp").html(data);
+        });
+    });
+
+    $(".backup_container #backups_list .backup_lock").live("click", function() {
+        var params = {};
+        params.action = 'backup_lock';
+        params.file = $(this).parents("tr").find(".backup_filename").text();
+        params.locked = $(this).hasClass('active') ? "1" : "0";
+        $.post(base_url + "admin/backup/file_actions", params, function() {
+        }, "json");
+    });
+
+    $(".backup_container #backups_list .backup_delete").live("click", function() {
+        var params = {};
+        var tr = $(this).parents("tr").remove();
+        params.action = 'backup_delete';
+        params.file = $(this).parents("tr").find(".backup_filename").text();
+        $.post(base_url + "admin/backup/file_actions", params, function(data) {
+        }, "json");
+
+    });
+
+    $(".backup_container #backups_list .backup_download").live("click", function() {
+        var file = $(this).parents("tr").find(".backup_filename").text();
+        $("#download_file_form input").val(file);
+        $("#download_file_form").submit();
+
+    });
+
+    /* --------------------- end of Backup -------------------------*/
+
+
+
 });
 
 

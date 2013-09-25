@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 11:58+0300\n"
+"POT-Creation-Date: 2013-09-23 10:13+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -12,1062 +12,697 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../../../../templates/commerce4x\n"
+"X-Poedit-Basepath: .\n"
 "X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ../../application/core\n"
-"X-Poedit-SearchPath-2: ../../application/errors\n"
-"X-Poedit-SearchPath-3: ../../application/helpers\n"
-"X-Poedit-SearchPath-4: ../../application/libraries\n"
-"X-Poedit-SearchPath-5: ../../application/modules/shop/classes\n"
-"X-Poedit-SearchPath-6: ../../application/modules/shop/helpers\n"
-
-#: /var/www/image.loc/_temp2.php:20
-msgid "search_find"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:21
-msgid "Phone"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:33
-#: /var/www/image.loc/_temp2.php:51
-#: /var/www/image.loc/_temp2.php:55
-#: /var/www/image.loc/_temp2.php:62
-msgid "Email"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:23
-msgid "Skype"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:24
-msgid "s_footer_create"
-msgstr "Создание сайта"
-
-#: /var/www/image.loc/_temp2.php:25
-msgid "s_footer_seo"
-msgstr "Футер сео"
-
-#: /var/www/image.loc/_temp2.php:26
-msgid "Already in basket"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:27
-msgid "Buy"
-msgstr "Купить"
-
-#: /var/www/image.loc/_temp2.php:28
-msgid "Search this site"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:29
-msgid "Request Call"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:31
-#: /var/www/image.loc/_temp2.php:56
-#: /var/www/image.loc/_temp2.php:60
-#: /var/www/image.loc/_temp2.php:73
-msgid "Send"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:32
-#: /var/www/image.loc/_temp2.php:50
-#: /var/www/image.loc/_temp2.php:70
-msgid "Authorization"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:34
-#: /var/www/image.loc/_temp2.php:35
-#: /var/www/image.loc/_temp2.php:36
-#: /var/www/image.loc/_temp2.php:37
-#: /var/www/image.loc/_temp2.php:52
-#: /var/www/image.loc/_temp2.php:58
-#: /var/www/image.loc/_temp2.php:64
-msgid "Password"
-msgstr "Пароль"
-
-#: /var/www/image.loc/_temp2.php:38
-#: /var/www/image.loc/_temp2.php:39
-#: /var/www/image.loc/_temp2.php:40
-#: /var/www/image.loc/_temp2.php:41
-#: /var/www/image.loc/_temp2.php:66
-#: /var/www/image.loc/_temp2.php:67
-#: /var/www/image.loc/_temp2.php:68
-msgid "Code protection"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:42
-msgid "Remember me"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:43
-#: /var/www/image.loc/_temp2.php:53
-#: /var/www/image.loc/_temp2.php:54
-#: /var/www/image.loc/_temp2.php:71
-msgid "Forgot your password?"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:44
-#: /var/www/image.loc/_temp2.php:57
-#: /var/www/image.loc/_temp2.php:61
-msgid "Registration"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:45
-#, fuzzy
-msgid "Site under construction"
-msgstr "Настройки сайта"
-
-#: /var/www/image.loc/_temp2.php:46
-msgid "Control of the site"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:47
-msgid "Send mail"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:48
-msgid "Ltd."
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:49
-msgid "ImageCMS actively developed in the creation of quality online stores"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:59
-#: /var/www/image.loc/_temp2.php:65
-msgid "Repeat Password"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:63
-msgid "Name"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:69
-msgid "Sign up"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:72
-msgid "You have successfully registered. Sign In"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:20
-#: /var/www/image.loc/_temp2.php:49
-msgid "s_buy"
-msgstr "купить"
-
-#: /var/www/image.loc/_temp2.php:21
-#: /var/www/image.loc/_temp2.php:50
-msgid "s_message_o_report"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:25
-#: /var/www/image.loc/_temp2.php:51
-#: /var/www/image.loc/_temp2.php:52
-#: /var/www/image.loc/_temp2.php:54
-msgid "s_add_to_compare"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:24
-#: /var/www/image.loc/_temp2.php:53
-msgid "s_in_compare"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:26
-#: /var/www/image.loc/_temp2.php:27
-#: /var/www/image.loc/_temp2.php:29
-#: /var/www/image.loc/_temp2.php:55
-#: /var/www/image.loc/_temp2.php:56
-#: /var/www/image.loc/_temp2.php:58
-msgid "s_add_to_wish_list"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:28
-#: /var/www/image.loc/_temp2.php:57
-msgid "s_in_wish_list"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:59
-msgid "Hit"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:31
-msgid "s_product"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:32
-msgid "Certificate"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:33
-msgid "s_order"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:34
-msgid "s_c_uoy_user_el"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:35
-msgid "s_phone"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:36
-msgid "s_addresrec"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:37
-msgid "s_cert_code"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:38
-msgid "s_apply_sertif"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:39
-msgid "s_comment"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:40
-msgid "s_close"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:41
-msgid "s_sea_found_in_categories"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:42
-msgid "s_sea_search_for"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:43
-msgid "s_product_o"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:44
-msgid "s_product_t"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:45
-msgid "s_product_tr"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:46
-msgid "s_products_per_page"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:47
-msgid "s_in_images"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:48
-msgid "s_in_list"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:60
-msgid "lang_submit"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:61
-msgid "Found"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:62
-#: /var/www/image.loc/_temp2.php:63
-#: /var/www/image.loc/_temp2.php:64
-#: /var/www/image.loc/_temp2.php:113
-#: /var/www/image.loc/_temp2.php:114
-#: /var/www/image.loc/_temp2.php:115
-msgid "product"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:65
-msgid "Order by"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:66
-msgid "Products per page"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:67
-msgid "Image view"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:68
-msgid "List view"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:69
-#: /var/www/image.loc/_temp2.php:122
-msgid "New"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:70
-#: /var/www/image.loc/_temp2.php:123
-msgid "Promotion"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:71
-#: /var/www/image.loc/_temp2.php:72
-msgid "Product"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:73
-#: /var/www/image.loc/_temp2.php:74
-#: /var/www/image.loc/_temp2.php:107
-#: /var/www/image.loc/_temp2.php:126
-#: /var/www/image.loc/_temp2.php:128
-#: /var/www/image.loc/_temp2.php:132
-msgid "Wish List"
-msgstr "Список желаний"
-
-#: /var/www/image.loc/_temp2.php:75
-msgid "Thank you for your order."
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:76
-msgid "Go to profile"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:77
-#, fuzzy
-msgid "Order data"
-msgstr "Cписок замовлень"
-
-#: /var/www/image.loc/_temp2.php:78
-msgid "Order"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:79
-msgid "Paid"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:80
-msgid "Yes"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:81
-msgid "No"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:82
-#: /var/www/image.loc/_temp2.php:104
-msgid "Status"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:83
-msgid "Delivery"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:84
-#: /var/www/image.loc/_temp2.php:85
-msgid "List of comparisons"
-msgstr "Список порівнянь"
-
-#: /var/www/image.loc/_temp2.php:86
-msgid "Private office"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:87
-msgid "My Account"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:88
-msgid "Change Password"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:89
-#, fuzzy
-msgid "Order History"
-msgstr "Cписок замовлень"
-
-#: /var/www/image.loc/_temp2.php:90
-#: /var/www/image.loc/_temp2.php:106
-msgid "You name"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:91
-msgid "At least 4 characters long"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:92
-msgid "E-mail Address"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:93
-msgid "E-mail is login"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:95
-msgid "Address for service"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:96
-msgid "Edit"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:97
-msgid "Old Password"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:98
-msgid "The new password"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:99
-msgid "Confirm new password"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:100
-msgid "Save"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:101
-#, fuzzy
-msgid "Order date"
-msgstr "Cписок замовлень"
-
-#: /var/www/image.loc/_temp2.php:102
-msgid "Updated"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:103
-#: /var/www/image.loc/_temp2.php:131
-msgid "Total"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:105
-msgid "Payment"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:108
-#: /var/www/image.loc/_temp2.php:127
-#: /var/www/image.loc/_temp2.php:133
-msgid "Your Wish List is empty "
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:110
-#: /var/www/image.loc/_temp2.php:130
-msgid "Report the appearance of"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:111
-msgid "View all results"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:112
-#: /var/www/image.loc/_temp2.php:125
-msgid "Your search did not match"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:116
-msgid "with filters"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:117
-msgid "of"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:118
-msgid "to"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:119
-msgid "Reset all filters"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:120
-msgid "Price"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:121
-msgid "Brands in category"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:124
-msgid "You searched for"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:25
-#: /var/www/image.loc/_temp2.php:26
-#: /var/www/image.loc/_temp2.php:28
-#: /var/www/image.loc/_temp2.php:34
-msgid "Add to wish list"
-msgstr "Додать в список желаний"
-
-#: /var/www/image.loc/_temp2.php:27
-#: /var/www/image.loc/_temp2.php:35
-msgid "In wish list"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:29
-msgid "Properties"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:30
-msgid "Accessories"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:32
-msgid "Add to compare"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:33
-msgid "In compare"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:36
-msgid "s_spec_promotion"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:42
-msgid "s_order_by"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:50
-#: /var/www/image.loc/_temp2.php:68
-msgid "add to wish list"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:52
-#: /var/www/image.loc/_temp2.php:53
-msgid "Basket"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:55
-#: /var/www/image.loc/_temp2.php:59
-#: /var/www/image.loc/_temp2.php:61
-msgid "Compare Products"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:56
-msgid "All the parameters"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:57
-msgid "Only Differences"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:58
-msgid "Category"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:60
-msgid "Comparison list is empty"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:62
-msgid "Compare list is empty"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:67
-msgid "add to compare"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:28
-msgid "Recently Reviewed"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:29
-msgid "Similar products"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:31
-msgid "News"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Января"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Февраля"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Марта"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Апреля"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Мая"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Июня"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Июля"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Августа"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Сентября"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Октября"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Ноября"
-msgstr ""
-
-#: shop/helper.php:35
-msgid "Декабря"
-msgstr ""
-
-#: ../../application/helpers/category_helper.php:86
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ../../../../../application/core\n"
+"X-Poedit-SearchPath-2: ../../../../../application/errors\n"
+"X-Poedit-SearchPath-3: ../../../../../application/helpers\n"
+"X-Poedit-SearchPath-4: ../../../../../application/libraries\n"
+"X-Poedit-SearchPath-5: ../../../../../application/modules/shop/classes\n"
+"X-Poedit-SearchPath-6: ../../../../../application/modules/shop/helpers\n"
+"X-Poedit-SearchPath-7: ../../../../../system/language/form_validation\n"
+"X-Poedit-SearchPath-8: ../../../../../system/language/email_lang\n"
+
+#: ../../../../../application/helpers/category_helper.php:86
 msgid "No category"
-msgstr ""
+msgstr "Нет категории"
 
-#: ../../application/helpers/rules_helper.php:45
+#: ../../../../../application/helpers/javascript_helper.php:20
+msgid "Message"
+msgstr "Сообщение"
+
+#: ../../../../../application/helpers/javascript_helper.php:22
+msgid "Error"
+msgstr "Ошибка"
+
+#: ../../../../../application/helpers/javascript_helper.php:25
+msgid "Success"
+msgstr "Успех"
+
+#: ../../../../../application/helpers/javascript_helper.php:29
+msgid "Requests to the database"
+msgstr "Запросов к базе"
+
+#: ../../../../../application/helpers/javascript_helper.php:47
+msgid "Redirecting"
+msgstr "Перенаправление"
+
+#: ../../../../../application/helpers/rules_helper.php:45
 msgid "No rights for"
-msgstr ""
+msgstr "Нет прав для"
 
-#: ../../application/helpers/rules_helper.php:57
+#: ../../../../../application/helpers/rules_helper.php:57
 msgid "Error checking permissions"
-msgstr ""
+msgstr "Ошибка проверки прав"
 
-#: ../../application/helpers/rules_helper.php:87
+#: ../../../../../application/helpers/rules_helper.php:87
 msgid "Operation panel"
-msgstr ""
+msgstr "Панель управления"
 
-#: ../../application/helpers/rules_helper.php:88
+#: ../../../../../application/helpers/rules_helper.php:88
 msgid "Languages"
-msgstr ""
+msgstr "Языки"
 
-#: ../../application/helpers/rules_helper.php:89
+#: ../../../../../application/helpers/rules_helper.php:89
 msgid "Cache"
-msgstr ""
+msgstr "Кэш"
 
-#: ../../application/helpers/rules_helper.php:90
+#: ../../../../../application/helpers/rules_helper.php:90
 msgid "Pages"
-msgstr ""
+msgstr "Страницы"
 
-#: ../../application/helpers/rules_helper.php:91
+#: ../../../../../application/helpers/rules_helper.php:91
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
-#: ../../application/helpers/rules_helper.php:92
+#: ../../../../../application/helpers/rules_helper.php:92
 msgid "Modules"
 msgstr "Модулі"
 
-#: ../../application/helpers/rules_helper.php:93
+#: ../../../../../application/helpers/rules_helper.php:93
 msgid "Widgets"
-msgstr ""
+msgstr "Виджеты"
 
-#: ../../application/helpers/rules_helper.php:94
+#: ../../../../../application/helpers/rules_helper.php:94
 msgid "Menu"
-msgstr ""
+msgstr "Меню"
 
-#: ../../application/helpers/rules_helper.php:95
+#: ../../../../../application/helpers/rules_helper.php:95
 msgid "Members"
-msgstr ""
+msgstr "Пользователи"
 
-#: ../../application/helpers/rules_helper.php:96
+#: ../../../../../application/helpers/rules_helper.php:96
 msgid "Group"
-msgstr ""
+msgstr "Группа"
 
-#: ../../application/helpers/rules_helper.php:97
+#: ../../../../../application/helpers/rules_helper.php:97
 msgid "Logs"
-msgstr ""
+msgstr "Журналы"
 
-#: ../../application/helpers/rules_helper.php:98
+#: ../../../../../application/helpers/rules_helper.php:98
 msgid "Backup copying"
-msgstr ""
+msgstr "Резервное копирование"
 
-#: ../../application/helpers/rules_helper.php:99
+#: ../../../../../application/helpers/rules_helper.php:99
 msgid "File Editor"
-msgstr ""
+msgstr "Редактор файлов"
 
-#: ../../application/helpers/rules_helper.php:113
+#: ../../../../../application/helpers/rules_helper.php:113
 msgid "Access Control Panel"
-msgstr ""
+msgstr "Доступ к панели управления"
 
-#: ../../application/helpers/rules_helper.php:114
+#: ../../../../../application/helpers/rules_helper.php:114
 msgid "System update"
-msgstr ""
+msgstr "Обновление системы"
 
-#: ../../application/helpers/rules_helper.php:115
+#: ../../../../../application/helpers/rules_helper.php:115
 msgid "Find pages in the control panel"
-msgstr ""
+msgstr "Найти страницы на панели управления"
 
-#: ../../application/helpers/rules_helper.php:116
+#: ../../../../../application/helpers/rules_helper.php:116
 msgid "Creating a language"
-msgstr ""
+msgstr "Создание языка"
 
-#: ../../application/helpers/rules_helper.php:117
+#: ../../../../../application/helpers/rules_helper.php:117
 msgid "Changing the language"
-msgstr ""
+msgstr "Изменение языка"
 
-#: ../../application/helpers/rules_helper.php:118
-#, fuzzy
+#: ../../../../../application/helpers/rules_helper.php:118
 msgid "Remove languages"
-msgstr "Модулі"
+msgstr "Удалить языках"
 
-#: ../../application/helpers/rules_helper.php:119
+#: ../../../../../application/helpers/rules_helper.php:119
 msgid "Changing site settings"
-msgstr ""
+msgstr "Изменение настроек сайта"
 
-#: ../../application/helpers/rules_helper.php:120
+#: ../../../../../application/helpers/rules_helper.php:120
 msgid "Clearing the cache"
-msgstr ""
+msgstr "Очистка кэша"
 
-#: ../../application/helpers/rules_helper.php:121
+#: ../../../../../application/helpers/rules_helper.php:121
 msgid "Creating pages"
-msgstr ""
+msgstr "Создание страниц"
 
-#: ../../application/helpers/rules_helper.php:122
+#: ../../../../../application/helpers/rules_helper.php:122
 msgid "Editing pages"
-msgstr ""
+msgstr "Редактирование страниц"
 
-#: ../../application/helpers/rules_helper.php:123
+#: ../../../../../application/helpers/rules_helper.php:123
 msgid "Delete pages"
-msgstr ""
+msgstr "Удаление страниц"
 
-#: ../../application/helpers/rules_helper.php:124
+#: ../../../../../application/helpers/rules_helper.php:124
 msgid "Creating categories"
-msgstr ""
+msgstr "Создание категорий"
 
-#: ../../application/helpers/rules_helper.php:125
+#: ../../../../../application/helpers/rules_helper.php:125
 msgid "Edit Categories"
-msgstr ""
+msgstr "Редактирование категорий"
 
-#: ../../application/helpers/rules_helper.php:126
+#: ../../../../../application/helpers/rules_helper.php:126
 msgid "Category delete"
-msgstr ""
+msgstr "Удалить категорию"
 
-#: ../../application/helpers/rules_helper.php:127
-#, fuzzy
+#: ../../../../../application/helpers/rules_helper.php:127
 msgid "Install Modules"
-msgstr "Модулі"
+msgstr "Установка модулей"
 
-#: ../../application/helpers/rules_helper.php:128
-#, fuzzy
+#: ../../../../../application/helpers/rules_helper.php:128
 msgid "Removing Modules"
-msgstr "Модулі"
+msgstr "Удаление модулей"
 
-#: ../../application/helpers/rules_helper.php:129
+#: ../../../../../application/helpers/rules_helper.php:129
 msgid "Administration module"
-msgstr ""
+msgstr "Модуль администрирования"
 
-#: ../../application/helpers/rules_helper.php:130
+#: ../../../../../application/helpers/rules_helper.php:130
 msgid "Creating widgets"
-msgstr ""
+msgstr "Создание виджетов"
 
-#: ../../application/helpers/rules_helper.php:131
-#, fuzzy
+#: ../../../../../application/helpers/rules_helper.php:131
 msgid "Removing widgets"
-msgstr "Модулі"
+msgstr "Удаление виджетов"
 
-#: ../../application/helpers/rules_helper.php:132
+#: ../../../../../application/helpers/rules_helper.php:132
 msgid "Access to the widget settings"
-msgstr ""
+msgstr "Доступ к настройкам виджета"
 
-#: ../../application/helpers/rules_helper.php:133
+#: ../../../../../application/helpers/rules_helper.php:133
 msgid "Create a menu"
-msgstr ""
+msgstr "Создать меню"
 
-#: ../../application/helpers/rules_helper.php:134
+#: ../../../../../application/helpers/rules_helper.php:134
 msgid "Edit menu"
-msgstr ""
+msgstr "Редактирование меню"
 
-#: ../../application/helpers/rules_helper.php:135
+#: ../../../../../application/helpers/rules_helper.php:135
 msgid "Menu deleting"
-msgstr ""
+msgstr "Удаление меню"
 
-#: ../../application/helpers/rules_helper.php:136
+#: ../../../../../application/helpers/rules_helper.php:136
 msgid "Create users of their group"
-msgstr ""
+msgstr "Создать пользователей их группы"
 
-#: ../../application/helpers/rules_helper.php:137
+#: ../../../../../application/helpers/rules_helper.php:137
 msgid "Create users of all groups"
-msgstr ""
+msgstr "Создать пользователей всех групп"
 
-#: ../../application/helpers/rules_helper.php:138
+#: ../../../../../application/helpers/rules_helper.php:138
 msgid "Edit Users"
-msgstr ""
+msgstr "Редактирование пользователей"
 
-#: ../../application/helpers/rules_helper.php:139
+#: ../../../../../application/helpers/rules_helper.php:139
 msgid "Remove Users"
-msgstr ""
+msgstr "Удаление пользователей"
 
-#: ../../application/helpers/rules_helper.php:140
+#: ../../../../../application/helpers/rules_helper.php:140
 msgid "Viewing member"
-msgstr ""
+msgstr "Просмотр пользователя"
 
-#: ../../application/helpers/rules_helper.php:141
+#: ../../../../../application/helpers/rules_helper.php:141
 msgid "Creating Groups"
-msgstr ""
+msgstr "Создание групп"
 
-#: ../../application/helpers/rules_helper.php:142
+#: ../../../../../application/helpers/rules_helper.php:142
 msgid "Editing Groups"
-msgstr ""
+msgstr "Редактирование групп"
 
-#: ../../application/helpers/rules_helper.php:143
+#: ../../../../../application/helpers/rules_helper.php:143
 msgid "Deleting Groups"
-msgstr ""
+msgstr "Удаление групп"
 
-#: ../../application/helpers/rules_helper.php:144
+#: ../../../../../application/helpers/rules_helper.php:144
 msgid "View Log"
-msgstr ""
+msgstr "Просмотр журнала"
 
-#: ../../application/helpers/rules_helper.php:145
+#: ../../../../../application/helpers/rules_helper.php:145
 msgid "Backing up"
-msgstr ""
+msgstr "Резервное копирование"
 
-#: ../../application/helpers/rules_helper.php:146
+#: ../../../../../application/helpers/rules_helper.php:146
 msgid "Access to the file editor"
-msgstr ""
+msgstr "Доступ к файлу редактору"
 
-#: ../../application/helpers/rules_helper.php:147
+#: ../../../../../application/helpers/rules_helper.php:147
 msgid "Download files"
-msgstr ""
+msgstr "Скачать файлы"
 
-#: ../../application/helpers/rules_helper.php:148
+#: ../../../../../application/helpers/rules_helper.php:148
 msgid "Editing Files"
-msgstr ""
+msgstr "Редактирование файлов"
 
-#: ../../application/helpers/rules_helper.php:149
+#: ../../../../../application/helpers/rules_helper.php:149
 msgid "Edit Folders"
-msgstr ""
+msgstr "Редактирование папок"
 
-#: ../../application/libraries/DX_Auth.php:1218
-#: ../../application/libraries/DX_Auth.php:1223
-#: ../../application/libraries/DX_Auth.php:1226
+#: ../../../../../application/libraries/DX_Auth.php:1230
+#: ../../../../../application/libraries/DX_Auth.php:1235
+#: ../../../../../application/libraries/DX_Auth.php:1238
 msgid "Improper protection code"
-msgstr ""
+msgstr "Неправильная защита кода"
 
-#: ../../application/libraries/Permitions.php:481
-#: ../../application/libraries/Permitions.php:552
-#: ../../application/libraries/Permitions.php:615
-#: ../../application/libraries/Permitions.php:798
+#: ../../../../../application/libraries/Permitions.php:481
+#: ../../../../../application/libraries/Permitions.php:552
+#: ../../../../../application/libraries/Permitions.php:615
+#: ../../../../../application/libraries/Permitions.php:798
 msgid "Changes have been saved"
-msgstr ""
+msgstr "Изменения сохранены"
 
-#: ../../application/libraries/Permitions.php:585
+#: ../../../../../application/libraries/Permitions.php:585
 msgid "Role not found"
-msgstr ""
+msgstr "Роль не найдена"
 
-#: ../../application/libraries/Permitions.php:749
+#: ../../../../../application/libraries/Permitions.php:749
 msgid "Privilege created"
-msgstr ""
+msgstr "Привилегия создана"
 
-#: ../../application/libraries/Permitions.php:787
+#: ../../../../../application/libraries/Permitions.php:787
 msgid "The privilege is not found"
-msgstr ""
+msgstr "Привилегия не найдена"
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:274
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:274
 msgid "Recipient"
 msgstr "Получатель"
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:281
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:281
 msgid "Identifier code"
 msgstr "Идентификационный код"
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:284
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:284
 msgid "Integer. The maximum length of 10 characters."
 msgstr "Целое число. Максимальная длина 10 символов"
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:289
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:289
 msgid "Current account"
-msgstr "Расчетный счет"
+msgstr "Текущий акаунт"
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:292
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:292
 msgid "Integer. The maximum length of 14 characters."
 msgstr "Целое число. Максимальная длина 14 символов"
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:297
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:297
 msgid "Bank MFI"
 msgstr "МФО банку"
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:300
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:300
 msgid "Integer. The maximum length of 6 characters."
 msgstr "Целое число. Максимальная длина 6 символов."
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:306
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:306
 msgid "Money sign"
 msgstr "Денежный знак"
 
-#: ../../application/modules/shop/classes/OschadBankInvoiceSystem.php:309
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:309
 msgid "For example: rub"
 msgstr "Например: руб"
 
-#: ../../application/modules/shop/classes/ShopAdminController.php:55
-#: ../../application/modules/shop/classes/ShopAdminController.php:56
-msgid "a_field_translate"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/ShopAdminController.php:58
+#: ../../../../../application/modules/shop/classes/ShopAdminController.php:59
+msgid "Translate"
+msgstr "Перевести"
 
-#: ../../application/modules/shop/classes/Search/BaseSearch.php:235
-msgid "s_all_result"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Search/BaseSearch.php:238
+msgid "All result"
+msgstr "Все результаты"
 
-#: ../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:115
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:115
 msgid "Recipient account"
 msgstr "Счет получателя"
 
-#: ../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:121
-#: ../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:150
-#: ../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:151
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:121
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:150
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:151
 msgid "Merchant settings"
 msgstr "Настройки мерчанта"
 
-#: ../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:125
-#: ../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:154
-#: ../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:156
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:125
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:154
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:156
 msgid "The method of sending data for all requests: GET"
 msgstr "Метод отсылки данных для всех запросов: GET"
 
-#: ../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:138
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:138
 msgid "E-mail"
-msgstr ""
+msgstr "Электронная почта"
 
-#: ../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:144
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:144
 msgid "Information about transaction"
 msgstr "Информация о трансакции"
 
-#: ../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:129
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:129
 msgid "Login"
 msgstr "Логин"
 
-#: ../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:152
-#: ../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:128
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:136
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:143
+msgid "Password"
+msgstr "Пароль"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:152
 msgid "Merchant id"
 msgstr "Мерчант ID"
 
-#: ../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:155
-#: ../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:162
-#: ../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:169
-#: ../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:161
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:155
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:162
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:169
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:161
 msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
 msgstr "Кошелек продавца, на который покупатель должен совершить платеж. Формат – буква и 12 цифр."
 
-#: ../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
 msgid "Merchant password"
 msgstr "Пароль Мерчанта"
 
-#: ../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:158
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:158
 msgid "Trick seller"
 msgstr "Кошелек продавца Trick seller"
 
-#: ../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:168
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:168
 msgid "Secret Key:"
 msgstr "Секретний ключ:"
 
-#: ../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:115
+#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:115
 msgid "Account number"
 msgstr "Номер счета"
 
-#: ../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:121
+#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:121
 msgid "The lifetime of the account"
 msgstr "Время жизни счета"
 
-#: ../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:134
+#: ../../../../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:134
 msgid "Signature"
 msgstr "Подпись"
 
-#: ../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:195
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:195
 msgid "Name of recipient"
 msgstr "Имя получателя"
 
-#: ../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:202
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:202
 msgid "Recipient bank"
 msgstr "Банк получателя"
 
-#: ../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:209
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:209
 msgid "TIN address"
 msgstr "ИНН Получателя"
 
-#: ../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:224
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:224
 msgid "BIC"
 msgstr "БИК"
 
-#: ../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:232
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:232
 msgid "Correspondent account"
 msgstr "Корреспондентский Счет"
 
-#: ../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:239
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:239
 msgid "Bank notes"
 msgstr "Денежный знак"
 
-#: ../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:246
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:246
 msgid "Kopeck"
 msgstr "Копейка"
 
-#: ../../application/modules/shop/classes/Compare/BaseCompare.php:35
-msgid "s_list_comp"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Compare/BaseCompare.php:35
+msgid "Compare list"
+msgstr "Список сравнения"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:43
-msgid "s_profile"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:43
+msgid "Profile"
+msgstr "Профиль"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:81
-msgid "s_name"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:81
+msgid "Name"
+msgstr "Название"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:82
-msgid "s_email"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:82
+msgid "Email"
+msgstr "E-mail"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:83
-msgid "s_address"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:83
+msgid "Address"
+msgstr "Адрес"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:84
-msgid "s_nomer_telephona"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:84
+msgid "Phone number"
+msgstr "Номер телефона"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:99
-msgid "s_user_profile_succes"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:99
+msgid "Data is saved"
+msgstr "Данные сохраняются"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:105
-msgid "lang_old_password"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:105
+msgid "Old password"
+msgstr "Старый пароль"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:106
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:113
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:115
-msgid "lang_password"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:107
+msgid "Confirm password"
+msgstr "Подтвердите пароль"
 
-#: ../../application/modules/shop/classes/Profile/BaseProfile.php:107
-msgid "s_profile_confirm_pass"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:113
+msgid "wrong"
+msgstr "неправильный"
 
-#: ../../application/modules/shop/helpers/shop_helper.php:114
-#: ../../application/modules/shop/helpers/shop_helper.php:155
-#: ../../application/modules/shop/helpers/shop_helper.php:168
-msgid "s_home"
-msgstr ""
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:115
+msgid "successfully saved."
+msgstr "успешно сохранены."
 
-#: ../../application/modules/shop/helpers/shop_helper.php:319
-msgid "s_MO"
-msgstr ""
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
+msgid "January"
+msgstr "Января"
 
-#: ../../application/modules/shop/helpers/shop_helper.php:338
-msgid "s_c_of_z_"
-msgstr ""
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
+msgid "February"
+msgstr "Февраля"
 
-#: ../../application/modules/shop/helpers/shop_helper.php:339
-msgid "s_message_not_found"
-msgstr ""
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
+msgid "March"
+msgstr "Марта"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
+msgid "April"
+msgstr "Апреля"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
+msgid "May"
+msgstr "Мая"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
+msgid "June"
+msgstr "Июня"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
+msgid "July"
+msgstr "Июля"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
+msgid "August"
+msgstr "Августа"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
+msgid "September"
+msgstr "Сентября"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
+msgid "October"
+msgstr "Октября"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
+msgid "November"
+msgstr "Ноября"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
+msgid "December"
+msgstr "Декабря"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:115
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:156
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:169
+msgid "Home"
+msgstr "Главная"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:319
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:338
+msgid "Buy"
+msgstr "Купить"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:320
+msgid "Formulation <br/> order"
+msgstr "Порядок <br/> формулирования"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:339
+msgid "Formulation order"
+msgstr "Порядок формулирования"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:340
+msgid "Announce a"
+msgstr "Объявить"
+
+#: ../../../../../system/language/form_validation/form_validation.php:9
+msgid "required"
+msgstr "Поле %s является обязательным."
+
+#: ../../../../../system/language/form_validation/form_validation.php:10
+msgid "isset"
+msgstr "Поле %s должно иметь значение."
+
+#: ../../../../../system/language/form_validation/form_validation.php:11
+msgid "valid_email"
+msgstr "Поле %s должно содержать корректный адрес электронной почты."
+
+#: ../../../../../system/language/form_validation/form_validation.php:12
+msgid "valid_emails"
+msgstr "Поле %s должнj содержать все действительные адреса электронной почты."
+
+#: ../../../../../system/language/form_validation/form_validation.php:13
+msgid "valid_url"
+msgstr "Поле %s должно содержать корректный URL."
+
+#: ../../../../../system/language/form_validation/form_validation.php:14
+msgid "valid_ip"
+msgstr "Поле %s должно содержать корректный IP."
+
+#: ../../../../../system/language/form_validation/form_validation.php:15
+msgid "min_length"
+msgstr "Поле %s должно быть не менее %s символов  в длину."
+
+#: ../../../../../system/language/form_validation/form_validation.php:16
+msgid "max_length"
+msgstr "Поле %s не может превышать %s символов в длину."
+
+#: ../../../../../system/language/form_validation/form_validation.php:17
+msgid "exact_length"
+msgstr "Поле %s должно быть %s символов в длину."
+
+#: ../../../../../system/language/form_validation/form_validation.php:18
+msgid "alpha"
+msgstr "Поле %s может содержать только буквы алфавита."
+
+#: ../../../../../system/language/form_validation/form_validation.php:19
+msgid "alpha_numeric"
+msgstr "Поле %s может содержать только алфавитно-цифровых символы."
+
+#: ../../../../../system/language/form_validation/form_validation.php:20
+msgid "alpha_dash"
+msgstr "Поле %s может содержать только алфавитно-цифровых символы, подчеркивания и тире."
+
+#: ../../../../../system/language/form_validation/form_validation.php:21
+msgid "numeric"
+msgstr "Поле %s должно содержать только цифры."
+
+#: ../../../../../system/language/form_validation/form_validation.php:22
+msgid "is_numeric"
+msgstr "Поле %s должно содержать только цифры."
+
+#: ../../../../../system/language/form_validation/form_validation.php:23
+msgid "integer"
+msgstr "Поле %s должно содержать целое число."
+
+#: ../../../../../system/language/form_validation/form_validation.php:24
+msgid "regex_match"
+msgstr "Поле %s не в правильном формате."
+
+#: ../../../../../system/language/form_validation/form_validation.php:25
+msgid "matches"
+msgstr "Поле %s не совпадает с полем %s."
+
+#: ../../../../../system/language/form_validation/form_validation.php:26
+msgid "is_unique"
+msgstr "Поле %s должно содержать уникальное значение."
+
+#: ../../../../../system/language/form_validation/form_validation.php:27
+msgid "is_natural"
+msgstr "Поле %s должно содержать только положительные числа."
+
+#: ../../../../../system/language/form_validation/form_validation.php:28
+msgid "is_natural_no_zero"
+msgstr "Поле %s должно содержать число больше нуля."
+
+#: ../../../../../system/language/form_validation/form_validation.php:29
+msgid "decimal"
+msgstr "Поле %s должно содержать десятичное число."
+
+#: ../../../../../system/language/form_validation/form_validation.php:30
+msgid "less_than"
+msgstr "Поле %s должно содержать число менее %s."
+
+#: ../../../../../system/language/form_validation/form_validation.php:31
+msgid "greater_than"
+msgstr "Поле %s должно содержать число, большее, чем %s."
+
+#: ../../../../../system/language/email_lang/email_lang.php:22
+msgid "email_sent"
+msgstr "Ваше сообщение успешно отправлено"
+
+#~ msgid "Января"
+#~ msgstr "Января"
+
+#~ msgid "Февраля"
+#~ msgstr "Февраля"
+
+#~ msgid "Марта"
+#~ msgstr "Марта"
+
+#~ msgid "Апреля"
+#~ msgstr "Апреля"
+
+#~ msgid "Мая"
+#~ msgstr "Мая"
+
+#~ msgid "Июня"
+#~ msgstr "Июня"
+
+#~ msgid "Июля"
+#~ msgstr "Июля"
+
+#~ msgid "Августа"
+#~ msgstr "Августа"
+
+#~ msgid "Сентября"
+#~ msgstr "Сентября"
+
+#~ msgid "Октября"
+#~ msgstr "Октября"
+
+#~ msgid "Ноября"
+#~ msgstr "Ноября"
+
+#~ msgid "Декабря"
+#~ msgstr "Декабря"
+
+#~ msgid "s_buy"
+#~ msgstr "купить"
+
+#~ msgid "s_footer_create"
+#~ msgstr "Создание сайта"
+
+#~ msgid "s_footer_seo"
+#~ msgstr "Футер сео"
+
+#, fuzzy
+#~ msgid "Site under construction"
+#~ msgstr "Настройки сайта"
+
+#~ msgid "Wish List"
+#~ msgstr "Список желаний"
+
+#, fuzzy
+#~ msgid "Order data"
+#~ msgstr "Cписок замовлень"
+
+#~ msgid "List of comparisons"
+#~ msgstr "Список порівнянь"
+
+#, fuzzy
+#~ msgid "Order History"
+#~ msgstr "Cписок замовлень"
+
+#, fuzzy
+#~ msgid "Order date"
+#~ msgstr "Cписок замовлень"
+
+#~ msgid "Add to wish list"
+#~ msgstr "Додать в список желаний"
 
 #~ msgid "a_web_m_sall"
 #~ msgstr "asdasd"
@@ -1130,10 +765,6 @@ msgstr ""
 #~ msgstr "Cписок замовлень"
 
 #, fuzzy
-#~ msgid "Create order"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
 #~ msgid "Edit order"
 #~ msgstr "Нові замовлення"
 
@@ -1172,10 +803,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Remove roles?"
 #~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Roles list"
-#~ msgstr "Cписок замовлень"
 
 #, fuzzy
 #~ msgid "New Role"

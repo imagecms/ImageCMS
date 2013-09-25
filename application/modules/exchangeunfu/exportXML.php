@@ -442,8 +442,8 @@ class ExportXML {
         $export_body .=
                 $this->partners_export .
                 $this->users_export .
-                $this->product_export .
                 $this->categories_export .
+                $this->product_export .
                 $this->price_export .
                 $this->productivity_export .
 //                $this->invoice_export .

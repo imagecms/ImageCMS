@@ -27,7 +27,7 @@
             </div>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).live('scriptDefer', function() {
-                    Shop.Cart.clear();
+                Shop.Cart.clear();
                 }){/literal}
             </script>
         {else:}
@@ -44,7 +44,7 @@
             <div class="title-h3">{lang('Параметры заказа','newLevel')}</div>
             <table class="table-info-order">
                 <tr>
-                    <th>{lang('Дата заказа','newLevel')}</th>
+                    <th>{lang('Дата заказа','newLevel')}:</th>
                     <td>{date('d.m.Y, H:i:s.',$model->getDateCreated())} </td>
                 </tr>
                 <!-- Start. Render certificate -->
@@ -70,7 +70,7 @@
                             <span class="current-prices f-s_0">
                                 <span class="price-new">
                                     <span>
-                                        <span class="price">{echo $total}</span>
+                                        <span class="price">{echo $model->getTotalPrice()}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>
@@ -81,7 +81,7 @@
 
                 <!-- Start. Render payment button and payment description -->
                 <tr>
-                    <th>{lang('Способ оплаты:','newLevel')}:</th>
+                    <th>{lang('Способ оплаты','newLevel')}:</th>
                     <td>
                         {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
                             {if $paymentMethod->getDescription()}
@@ -104,20 +104,20 @@
 
                 <!--                Start. Order status-->
                 <tr>
-                    <th>{lang('Статус заказа','newLevel')}</th>
+                    <th>{lang('Статус заказа','newLevel')}:</th>
                     <td><span class="status-order">{echo SOrders::getStatusName('Id',$model->getStatus())}</span></td>
                 </tr>
                 <!--                End. Order status-->
                 <!--                    Start. Paid or not-->
                 <tr>
-                    <th>{lang('Статус заказа','newLevel')}</th>
-                    <td><span class="status-pay">{if $model->getPaid() == true}{lang('Paid','newLevel')}{else:}{lang('Not paid','newLevel')}{/if}</span></td>
+                    <th>{lang('Оплачен','newLevel')}:</th>
+                    <td><span class="status-pay">{if $model->getPaid() == true}{lang('Да','newLevel')}{else:}{lang('Нет','newLevel')}{/if}</span></td>
                 </tr>
                 <!--                    End. Paid or not-->
 
                 <!-- Start. Delivery Method name -->
                 <tr>
-                    <th>{lang('Способ доставки','newLevel')}</th>
+                    <th>{lang('Способ доставки','newLevel')}:</th>
                     <td>
                         {if $model->getDeliveryMethod() > 0}
                             {echo $model->getSDeliveryMethods()->getName()}
@@ -131,12 +131,12 @@
             <!--                Start. User info block-->
             <table class="table-info-order">
                 <tr>
-                    <th>{lang('Ваше имя:','newLevel')}:</th>
+                    <th>{lang('Ваше имя','newLevel')}:</th>
                     <td>{echo $model->getUserFullName()}</td>
                 </tr>
                 {if $model->getUserPhone()}
                     <tr>
-                        <th>{lang('Телефон:','newLevel')}:</th>
+                        <th>{lang('Телефон','newLevel')}:</th>
                         <td>{echo $model->getUserPhone()}</td>
                     </tr>
                 {/if}
@@ -144,21 +144,22 @@
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
                 </tr>
-                {if $model->getUserEmail()}
+                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}{echo $s_field.field_data}
+                {if $s_field}
                     <tr>
-                        <th>{lang('Город:','newLevel')}:</th>
-                        <td>{$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}{echo $s_field.field_data}</td>
+                        <th>{lang('Город','newLevel')}:</th>
+                        <td>{echo $s_field}</td>
                     </tr>
                 {/if}
                 {if $model->getUserDeliverTo()}
                     <tr>
-                        <th>{lang('Адрес:','newLevel')}:</th>
+                        <th>{lang('Адрес','newLevel')}:</th>
                         <td>{echo $model->getUserDeliverTo()}</td>
                     </tr>
                 {/if}
                 {if $model->getUserComment()}
                     <tr>
-                        <th>{lang('Комментарий к заказу','newLevel')}</th>
+                        <th>{lang('Комментарий к заказу','newLevel')}:</th>
                         <td>{echo $model->getUserComment()}</td>
                     </tr>
                 {/if}
@@ -196,7 +197,7 @@
                                                 <div class="description">
                                                     <span class="frame-variant-name-code">
                                                     {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name">{lang("Вариант",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
-                                                {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-code">{lang("Код",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
+                                                {if trim(ShopCore::encode($orderProduct->variant_id) != '')}<span class="frame-variant-code">{lang("Артикул",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_id)}</span></span>{/if}
                                             </span>
                                             <span class="frame-prices">
                                                 <span class="current-prices f-s_0">
@@ -384,7 +385,7 @@
                                 <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
                                 <span class="price-item">
                                     <span>
-                                        <span class="text-discount current-discount">{echo $discount}{$CS}</span>
+                                        <span class="text-discount current-discount">{echo $discount} <span class="curr">{$CS}</span></span>
                                     </span>
                             </li>
                         {/if}

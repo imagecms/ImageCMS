@@ -37,8 +37,8 @@
                         <div class="topmenu_r">
                             <ul>
                                 {if $is_logged_in}
-                                    <li class="first">{lang('lang_logged_in_as')} <b>{$username}</b></li>
-                                    <li><a href="{site_url('auth/logout')}">{lang('lang_logout')}</a></li>
+                                    <li class="first">{lang('Вы вошли как')} <b>{$username}</b></li>
+                                    <li><a href="{site_url('auth/logout')}">{lang('Выход')}</a></li>
                                     {else:}
                                     <li class="first"><a href="{site_url('auth/login')}">Вход</a></li>
                                     <li><a href="{site_url('auth/register')}">Регистрация</a></li>
@@ -178,7 +178,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                     {elseif $category.id == 58}
 

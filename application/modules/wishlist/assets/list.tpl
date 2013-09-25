@@ -12,9 +12,9 @@
                 </tr>
                 <tr>
                     <th>№</th>
-                    <th>Отписатся</th>
-                    <th>Товар</th>
-                    <th>Коментарий</th>
+                    <th>{lang('Unsubscribe', 'wishlist')}</th>
+                    <th>{lang('Product', 'wishlist')}</th>
+                    <th>{lang('Comment', 'wishlist')}</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +22,7 @@
                     <tr>
                         <td>{echo $key+1}</td>
                         <td>
-                            <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                            <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang('delete', 'wishlist')}</a>
                         </td>
                         <td>
                             <a href="{shop_url('product/'.$w[url])}"
@@ -38,6 +38,6 @@
             </tbody>
         </table>
     {else:}
-        Список порожній
+        {lang('Emty list', 'wishlist')}
     {/if}
 </article>

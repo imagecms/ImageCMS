@@ -7,10 +7,14 @@ function get_discount(discTpl) {
         success: function(data) {
             if (data != '') {
                 _discount = JSON.parse(data);
-                if (discTpl)
+                if (discTpl) {
                     $.post('/mod_discount/discount_api/get_discount_tpl_from_json_api', {json: data}, function(tpl) {
                         displayInfoDiscount(tpl);
                     })
+                }
+                else {
+                    displayInfoDiscount('');
+                }
             }
             else {
                 displayInfoDiscount('');
@@ -29,6 +33,7 @@ function load_certificat() {
         });
     else {
         gift = Shop.Cart.gift;
+        console.log(gift);
         if (gift.error) {
             giftError(gift.mes);
         } else {

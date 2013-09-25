@@ -5,26 +5,26 @@
 #}
 <div class="content_head">
     <h1>Заказ №{echo $model->getId()}</h1>
-{if $CI->session->flashdata('makeOrder') === true}<h2>Спасибо за Ваш заказ.</h2>{/if}
+{if $CI->session->flashdata('makeOrder') === true}<h2>{lang('Спасибо за Ваш заказ','commerce_mobiles_new')}.</h2>{/if}
 </div>
 <table class="tableOrderData">
     <!-- Start. Render Order number -->
     <tr>
-        <th>{lang('s_order')} #:</th>
+        <th>{lang('Заказ','commerce_mobiles_new')} #:</th>
         <td>{echo ShopCore::encode($model->getId())}</td>
     </tr>
     <!-- End. Render Order number -->
 
     <!-- Start. Display Paid status -->
     <tr>
-        <th>{lang('s_paid')}:</th>
-        <td>{if $model->getPaid() == true} {lang('s_yes')}{else:}{lang('s_no')}{/if}</td>
+        <th>{lang('Оплачен','commerce_mobiles_new')}:</th>
+        <td>{if $model->getPaid() == true} {lang('Да','commerce_mobiles_new')}{else:}{lang('Нет','commerce_mobiles_new')}{/if}</td>
     </tr>
     <!-- End. Display Paid status -->
 
     <!-- Start. Show Order status name -->
     <tr>
-        <th>{lang('s_status')}:</th>
+        <th>{lang('Статус','commerce_mobiles_new')}:</th>
         <td>{echo SOrders::getStatusName('Id', $model->getStatus())}</td>
     </tr>
     <!-- End. Show Order status name -->
@@ -32,7 +32,7 @@
     <!-- Start. Render certificate -->
     {if $model->getGiftCertKey() != null}
         <tr>
-            <th>{lang('s_do_you_cer_tif')}: </th>
+            <th>{lang('Подарочний сертификат','commerce_mobiles_new')}: </th>
             <td>-{echo $model->getGiftCertPrice()} {$CS}</td>
         </tr>
     {/if}
@@ -41,17 +41,18 @@
     <!-- Start. Delivery Method name -->
     {if $model->getDeliveryMethod() > 0}
         <tr>
-            <th>{lang('s_dostavka')}:</th>
+            <th>{lang('Доставка','commerce_mobiles_new')}:</th>
             <td>{echo $model->getSDeliveryMethods()->getName()}</td>
         </tr>
     {/if}
     <!-- End. Delivery Method name -->
 
     <!-- Start. Render payment button and payment description -->
-    {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
+    {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0 && $paymentMethod != null}
         <tr class="b_n">
             <th></th>
-            <td>{echo $paymentMethod->getPaymentForm($model)}
+            <td>
+                {echo $paymentMethod->getPaymentForm($model)}
                 {if $paymentMethod->getDescription()}
                     <div class="m-t_10" style="font-style: italic">{echo ShopCore::t($paymentMethod->getDescription())}</div>
                 {/if}
@@ -96,7 +97,7 @@
 </ul>
 <div class="main_frame_inside">
     <div class="gen_sum">
-        <span class="total_pay">Всего к оплате:</span>
+        <span class="total_pay">{lang('Всего к оплате','commerce_mobiles_new')}:</span>
         <span class="price">
             {echo $total} {$CS}
         </span>

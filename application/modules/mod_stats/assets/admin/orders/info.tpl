@@ -1,11 +1,11 @@
 <table class="table table-striped table-bordered table-condensed content_big_td">
     <thead>
         <tr>
-            <th>Период</th>
-            <th>Заказов</th>
-            <th>Уникальних товаров</th>
-            <th>Всего товаров</th>
-            <th>Сума</th>
+            <th>{lang('Period', 'mod_stats')}</th>
+            <th>{lang('Orders', 'mod_stats')}</th>
+            <th>{lang('Unique products', 'mod_stats')}</th>
+            <th>{lang('Total products', 'mod_stats')}</th>
+            <th>{lang('Sum', 'mod_stats')}</th>
         </tr>
     </thead>
     <tbody>

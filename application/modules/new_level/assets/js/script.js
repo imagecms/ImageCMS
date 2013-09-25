@@ -23,7 +23,7 @@ $(document).ready(function() {
             },
             url: url,
             success: function(data) {
-                showMessage('Сообщение', 'Тип свойства обновлен');
+                showMessage(lang('Message'), lang('Property type updated'));
             }
         });
     });
@@ -52,7 +52,7 @@ $(document).ready(function() {
             },
             url: '/new_level/admin/saveCategories',
             success: function(res) {
-                showMessage('Сообщение', 'Колонка ' + column + ' обновлена');
+                showMessage(lang('Message'),  lang('Column') + column + lang('updated'));
             }
         });
     });
@@ -97,7 +97,7 @@ var PropertiesTypes = {
                     url: '/new_level/admin/deletePropertyType',
                     success: function(data) {
                         curElement.closest('tr').remove();
-                        showMessage('Сообщение', 'Тип свойства успешно удален');
+                        showMessage(lang('Message'), lang('Type of property successfully removed'));
                     }
                 });
             },
@@ -112,7 +112,7 @@ var PropertiesTypes = {
                 url: '/new_level/admin/editPropertyType',
                 success: function(data) {
                     curElement.parent('div').text(newType);
-                    showMessage('Сообщение', 'Тип свойства успешно обновлен');
+                    showMessage(lang('Message'), lang('Type of property successfully updated'));
                 }
             });
         },
@@ -128,7 +128,7 @@ var PropertiesTypes = {
                     curElement.parent('div').find('.typeAdd').val('');
                     $('.addTypeContainer').css('display','none');
                     $(data).insertBefore('table.propertyTypes .addTypeContainer');
-                    showMessage('Сообщение', 'Тип свойства успешно додано');
+                    showMessage(lang('Message'), lang('Type of property successfully added'));
                 }
             });
     }
@@ -145,7 +145,7 @@ var PropertiesTypes = {
                     url: '/new_level/admin/deleteColumn',
                     success: function(data) {
                         curElement.closest('tr').remove();
-                        showMessage('Сообщение', 'Колонка ' + column + ' успешно удалена');
+                        showMessage(lang('Message'), lang('Column') + column + lang('removed'));
                     }
                 });
             },
@@ -160,7 +160,7 @@ var PropertiesTypes = {
                 url: '/new_level/admin/editColumn',
                 success: function(data) {
                     curElement.parent('div').text(newColumn);
-                    showMessage('Сообщение', 'Колонка успешно обновлена');
+                    showMessage(lang('Message'), lang('Column successfully removed'));
                 }
             });
         },
@@ -176,7 +176,7 @@ var PropertiesTypes = {
                     curElement.parent('div').find('.columnAdd').val('');
                     $('.addColumnContainer').css('display','none');
                     $(data).insertBefore('table.columns .addColumnContainer');
-                    showMessage('Сообщение', 'Колонка ' + newColumn + ' успешно додана');
+                    showMessage(lang('Message'),  lang('Column') + newColumn + lang('successfully added'));
                 }
             });
     }

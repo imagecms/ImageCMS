@@ -180,7 +180,7 @@
 
                                                                 <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
 
-                                                                <select name="main_page_cat" class="input-small">
+                                                                <select name="main_page_cat" class="input-large">
                                                                     { $this->view("cats_select.tpl", $this->template_vars); }
                                                                 </select>
                                                             </div>
@@ -201,7 +201,7 @@
 
                                                                 <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
 
-                                                                <select name="main_page_module"  class="input-small">
+                                                                <select name="main_page_module"  class="input-large">
                                                                     {foreach $modules as $m}
                                                                         {$mData = modules::run('admin/components/get_module_info',$m['name'])}
                                                                         {//if $mData['main_page'] === true}
@@ -379,7 +379,7 @@
 
                         </div>
                         <div class="tab-pane" id="site_info_tab"> <!-- Інформація про сайт -->
-                            {$tooltipText = "Воспользуйтесь функцией siteinfo() с параметром"}
+                            {$tooltipText = lang('Please use function siteinfo() with the parameter', 'admin')}
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -425,17 +425,17 @@
 
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label" for="">Контакты <i class="icon-info-sign" data-original-title="{$tooltipText} который вы ввели в качестве типа контакта"></i></label>  
+                                                            <label class="control-label" for="">{lang('Contacts', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} {lang('that you entered as a contact type', 'admin')}"></i></label>  
                                                             <div class="controls">
                                                                 <table id="siteinfo_contacts_table">
                                                                     {if count($contacts) > 0}
                                                                         {foreach $contacts as $contact_name => $contact_value}
                                                                             <tr class="siteinfo_contact_row">
                                                                                 <td>
-                                                                                    <input type='text' placeholder="Тип конатакта" class="siteinfo_contactkey" name="siteinfo_contactkey[]" value="{$contact_name}">
+                                                                                    <input type='text' placeholder="{lang('Contact type',  'admin')}" class="siteinfo_contactkey" name="siteinfo_contactkey[]" value="{$contact_name}">
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea rows="1" placeholder="Значение" class="siteinfo_contactvalue" name="siteinfo_contactvalue[]">{$contact_value}</textarea>
+                                                                                    <textarea rows="1" placeholder="{lang('Value', 'admin')}" class="siteinfo_contactvalue" name="siteinfo_contactvalue[]">{$contact_value}</textarea>
                                                                                 </td>
                                                                                 <td>
                                                                                     <button type="button" class="btn btn-small btn-danger si_remove_contact_row">
@@ -502,7 +502,7 @@
                                                                         </button>
                                                                         <img class="img-polaroid" src="{$siteinfo_favicon}" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {else:}
-                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="Кликните для выбора изображения" />
+                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {/if}
                                                                 </div>
                                                             </div>

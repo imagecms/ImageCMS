@@ -13,7 +13,7 @@ class Sys_update extends BaseAdminController {
 
     public function __construct() {
         if (!extension_loaded('soap')) {
-            showMessage('Расширение PHP SOAP неустановлено', '', 'r');
+            showMessage(lang('PHP SOAP extension is not installed'), '', 'r');
             pjax('/admin');
         }
 
@@ -28,7 +28,6 @@ class Sys_update extends BaseAdminController {
     public function index() {
         if (!file_exists('md5.txt'))
             write_file('md5.txt', json_encode($this->update->parse_md5()));
-
 
         if (extension_loaded('soap')) {
             $array = $this->update->getStatus();
@@ -58,7 +57,7 @@ class Sys_update extends BaseAdminController {
         $this->update->createBackUp();
         $this->update->getUpdate();
         $this->cache->delete_all();
-//        $this->update->restoreFromZIP('./application/backups/updates.zip');
+        $this->update->restoreFromZIP('./application/backups/updates.zip');
     }
 
     public function update($sort_by = "create_date", $order = 'asc') {
@@ -101,9 +100,9 @@ class Sys_update extends BaseAdminController {
     public function properties() {
         if ($this->input->post("careKey")) {
             if ($this->update->setSettings(array("careKey" => trim($this->input->post("careKey")))))
-                showMessage('Изминения сохранены');
+                showMessage(lang('Changes saved', 'admin'));
             else
-                showMessage('Изминения не сохранены', 'Ошибка', 'r');
+                showMessage(lang('Changes not saved', 'admin'), lang('Error', 'admin'), 'r');
         } else {
             $data = array(
                 'careKey' => $this->update->getSettings('careKey')
@@ -118,8 +117,10 @@ class Sys_update extends BaseAdminController {
         else
             echo 0;
     }
-
-    public function get_update() { // method controller's server's update
+    /*
+     * test method dont work
+     */
+    private function get_update() { // method controller's server's update
         ini_set("soap.wsdl_cache_enabled", "0");
         try {
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 13:22+0300\n"
-"PO-Revision-Date: 2013-09-09 13:24+0300\n"
+"POT-Creation-Date: 2013-09-19 17:12+0300\n"
+"PO-Revision-Date: 2013-09-19 17:12+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -11,108 +11,107 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: ../../../\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:7
+#: /var/www/image.loc/_tempLangs.php:7
 msgid "Related topics"
-msgstr ""
+msgstr "Связанные темы"
 
-#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_tempLangs.php:8
 msgid "Widget settings"
 msgstr "Настройки виджета"
 
-#: /var/www/image.loc/_temp2.php:9
+#: /var/www/image.loc/_tempLangs.php:9
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
-#: /var/www/image.loc/_temp2.php:10
+#: /var/www/image.loc/_tempLangs.php:10
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
-#: /var/www/image.loc/_temp2.php:11
-#, fuzzy
+#: /var/www/image.loc/_tempLangs.php:11
 msgid "Save and go back"
-msgstr "Позиція"
+msgstr "Сохранить и выйти"
 
-#: /var/www/image.loc/_temp2.php:12
+#: /var/www/image.loc/_tempLangs.php:12
 msgid "Settings"
 msgstr "Настройки"
 
-#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_tempLangs.php:13
 msgid "Pages"
 msgstr "Страницы"
 
-#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_tempLangs.php:14
 msgid "Latest"
-msgstr ""
+msgstr "Последний"
 
-#: /var/www/image.loc/_temp2.php:15
+#: /var/www/image.loc/_tempLangs.php:15
 msgid "Popular"
-msgstr ""
+msgstr "Популярный"
 
-#: /var/www/image.loc/_temp2.php:16
+#: /var/www/image.loc/_tempLangs.php:16
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_tempLangs.php:17
 msgid "Without a category"
 msgstr "Без категории"
 
-#: /var/www/image.loc/_temp2.php:18
+#: /var/www/image.loc/_tempLangs.php:18
 msgid "Number of news for display"
 msgstr "Количество новостей для отображения"
 
-#: /var/www/image.loc/_temp2.php:19
+#: /var/www/image.loc/_tempLangs.php:19
 msgid "Maximum number of characters"
 msgstr "Максимальное количество символов"
 
-#: ../../..//core_widgets.php:85
+#: core_widgets.php:87
 msgid "Amount of news"
-msgstr ""
+msgstr "Количество новостей"
 
-#: ../../..//core_widgets.php:99
+#: core_widgets.php:102
 #, fuzzy
-msgid "Settings have been saved or settings were saved"
+msgid "Settings have been saved"
 msgstr "Сохранение настроек прошло успешно"
 
-#: ../../..//core.php:341
+#: core.php:345
 msgid "Home page not found."
-msgstr ""
+msgstr "Главная страница не найдена."
 
-#: ../../..//core.php:388
+#: core.php:392
 msgid "Module uploading or loading  error"
-msgstr ""
+msgstr "Загрузки модуля или ошибка загрузки"
 
-#: ../../..//core.php:525
+#: core.php:534
 msgid "The first"
-msgstr ""
+msgstr "Первый"
 
-#: ../../..//core.php:526
+#: core.php:535
 msgid "Last"
-msgstr ""
+msgstr "Последний"
 
-#: ../../..//core.php:555
+#: core.php:564
 msgid "Can't locate category template file."
-msgstr ""
+msgstr "Не удается найти файл шаблона категории."
 
-#: ../../..//core.php:563
+#: core.php:572
 msgid "In the category has no pages."
-msgstr ""
+msgstr "В категории не имеет страниц."
 
-#: ../../..//core.php:692
+#: core.php:704
 msgid "Page not found"
-msgstr ""
+msgstr "Страница не найдена"
 
-#: ../../..//core.php:694
+#: core.php:706
 msgid "Page not found."
-msgstr ""
+msgstr "Страница не найдена."
 
 #, fuzzy
-#~ msgid "Have been saved"
+#~ msgid "Settings have been saved or settings were saved"
 #~ msgstr "Сохранение настроек прошло успешно"
 
 #, fuzzy

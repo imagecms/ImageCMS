@@ -33,6 +33,8 @@ class Search extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('search');
         //$this->output->enable_profiler(TRUE);
     }
 

@@ -6,15 +6,11 @@
  * @property DX_Auth $dx_auth
  */
 class Stats_model_search extends CI_Model {
-
+    public $locale;
     /**
      * Default params for method getOrdersByDateRange
      * @var array
      */
-    protected $dateRangeParams = array(
-        'paid' => NULL, // TRUE|FALSE|NULL (paid, unpaid, all)
-    );
-
     function __construct() {
         parent::__construct();
         $this->locale = \MY_Controller::getCurrentLocale();
@@ -28,24 +24,13 @@ class Stats_model_search extends CI_Model {
     public function getKeywordsByDateRange() {
         $lineDiagramBase = new \mod_stats\classes\LineDiagramBase();
 
-        $query = "
-            SELECT  `mod_stats_search`.`key` ,
-                    DATE_FORMAT( FROM_UNIXTIME(  `mod_stats_search`.`date` ) , '" . $lineDiagramBase->prepareDatePattern() . "' ) AS  `date_search` , 
-                    COUNT(  `mod_stats_search`.`key` ) AS  `key_count` 
-            FROM  
-                `mod_stats_search` 
-            WHERE 1
-                " . $lineDiagramBase->prepareDateBetweenCondition('date','mod_stats_search') . " 
-            GROUP BY  
-                `mod_stats_search`.`key` 
-            ORDER BY 
-                key_count DESC
-            LIMIT 0 , 100";
+        $result = $this->queryKeywordsByDateRange($lineDiagramBase);
 
-        $result = $this->db->query($query);
         if ($result === FALSE) {
             return FALSE;
         }
+
+
         $keysData = array();
         foreach ($result->result_array() as $row) {
             $keysData[] = $row;
@@ -55,17 +40,64 @@ class Stats_model_search extends CI_Model {
     }
 
     /**
-     * Helper function for getOrdersByDateRange()
-     * @return string
+     * Get searched keywords by time interval
+     * @param mod_stats\classes\LineDiagramBase $obj
+     * @param int $resultsLimit
+     * @return query
      */
-    protected function preparePaidCondition() {
-        if ($this->dateRangeParams['paid'] === TRUE)
-            return "AND `paid` = 1";
+    public function queryKeywordsByDateRange(mod_stats\classes\LineDiagramBase $obj, $resultsLimit = 100) {
+        if (!$obj) {
+            return FALSE;
+        }
+        /*         * Prepare and run query * */
+        $query = "
+            SELECT  `mod_stats_search`.`key` ,
+                    DATE_FORMAT( FROM_UNIXTIME(  `mod_stats_search`.`date` ) , '" . $obj->prepareDatePattern() . "' ) AS  `date_search` , 
+                    COUNT(  `mod_stats_search`.`key` ) AS  `key_count` 
+            FROM  
+                `mod_stats_search` 
+            WHERE 1
+                " . $obj->prepareDateBetweenCondition('date', 'mod_stats_search') . " 
+            GROUP BY  
+                `mod_stats_search`.`key` 
+            ORDER BY 
+                key_count DESC
+            LIMIT 0 , " . $resultsLimit;
 
-        if ($this->dateRangeParams['paid'] === FALSE)
-            return "AND (`paid` <> 1 OR `paid` IS NULL)";
+        return $this->db->query($query);
+    }
 
-        return "";
+    /**
+     * Get brands in search results
+     * @param type $param
+     * @return boolean
+     */
+    public function analysisBrands($whereQuery = '') {
+        if (!$whereQuery) {
+            return FALSE;
+        }
+        /** Get params for analysis **/
+        $params = mod_stats\classes\Search::create()->prepareParamsFromCookiesForAnalysis();
+
+        /** Prepare and run query * */
+        $query = "
+            SELECT  `shop_products`.`brand_id` ,`shop_brands_i18n`.`name`, COUNT(`shop_products`.`brand_id` ) as 'count'
+            FROM  `shop_products` 
+            JOIN  `shop_products_i18n` ON  `shop_products`.`id` =  `shop_products_i18n`.`id` 
+            JOIN `shop_brands_i18n` ON `shop_products`.`brand_id` = `shop_brands_i18n`.`id`
+            WHERE " . $whereQuery . $params['useLocale'] . "
+            AND`shop_brands_i18n`.`locale` = '" . $this->locale . "'
+            GROUP BY  `shop_products`.`brand_id` 
+            ORDER BY `count` DESC
+            LIMIT " . $params['results_quantity']
+        ;
+        
+        $res = $this->db->query($query)->result_array();
+        if ($res != null) {
+            return $res;
+        } else {
+            return FALSE;
+        }
     }
 
 }

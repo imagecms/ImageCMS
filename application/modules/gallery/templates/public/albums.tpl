@@ -1,13 +1,8 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('Gallery')}</span></h5></div>
+<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('Gallery', 'gallery')}</span></h5></div>
 {if $gallery_category[0]}
 <div>
     <h1>{echo $gallery_category[0]['name']}</h1>
     <p>{echo $gallery_category[0]['description']}</p>
-</div>
-{else:}
-    <div>
-    <h1>{echo $gallery_category['name']}</h1>
-    <p>{echo $gallery_category['description']}</p>
 </div>
 {/if}
 {if is_array($albums)}
@@ -26,5 +21,5 @@
     </ul>
 
 {else:}
-    {lang('Albums not found')}.
+    {lang('Albums not found', 'gallery')}.
 {/if}

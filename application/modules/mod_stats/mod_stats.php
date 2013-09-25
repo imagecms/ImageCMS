@@ -11,6 +11,8 @@ class Mod_stats extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('stats_model');
+        $lang = new MY_Lang();
+        $lang->load('mod_stats');
     }
 
     public function index() {
