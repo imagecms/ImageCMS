@@ -61,11 +61,19 @@ class Gettext_Extension extends Gettext {
             // Set current locale
             setlocale(LC_ALL, '');
         }
-
+        
         putenv('LC_ALL=' . $locale);
         putenv('LANG=' . $locale);
         putenv('LANGUAGE=' . $locale);
-        bindtextdomain($domain, $directory);
+        
+        if (!extension_loaded('gettext')) {
+            include_once('gettext.inc');
+            bindtextdomain($domain, $directory, $locale);
+            $_SESSION['GETTEXT_EXIST'] = FALSE;
+        } else {
+            $_SESSION['GETTEXT_EXIST'] = TRUE;
+            bindtextdomain($domain, $directory);
+        }
     }
 
     public function switchDomain($directory, $domain, $locale) {
