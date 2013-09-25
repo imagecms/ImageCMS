@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/modules_table"
+                <a href="{$BASE_URL}admin/components/init_window/new_level/"
                    class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('Back', 'new_level')}</span>
@@ -117,12 +117,12 @@
                                                                 </div>
                                                             </td>
                                                             <td class="span1">
-                                                                <button class="btn my_btn_s btn-small" type="button" onclick="Columns.delete('{$column}', $(this))">
+                                                                <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="Columns.delete('{$column}', $(this))">
                                                                     <i class="icon-trash"></i>
                                                                 </button>
                                                             </td>
                                                             <td class="span1">
-                                                                <button class="btn my_btn_s btn-small" type="button">
+                                                                <button class="btn my_btn_s btn-small btn-success" type="button">
                                                                     <i class="icon-edit"></i>
                                                                 </button>
                                                             </td>
