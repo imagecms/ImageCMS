@@ -544,7 +544,7 @@ class Commentsapi extends Comments {
 
         foreach ((array) $ids as $id)
             if (!$result[$id])
-                $result[$id] = 0 . ' ' . $this->Pluralize('0', array(lang("review", 'comments'), lang("reviews", 'comments'), lang("review", 'comments')));
+                $result[$id] = 0 . ' ' . $this->Pluralize('0', array(lang("review", 'comments'), lang("reviews", 'comments'), lang("comments", 'comments')));
 
         return $result;
     }

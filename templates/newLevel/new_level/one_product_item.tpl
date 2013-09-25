@@ -39,17 +39,19 @@
                             {/if}
                         </span>
                     </span>
-                    {$brand = $p->getBrand()->getName()}
-                    {$hasBrand = trim($brand) != ''}
-                    <span class="frame-item-brand">{lang('Бренд','newLevel')}:
-                        <span class="code">
-                            {if $hasBrand}
-                                <a href="{echo $p->getBrand()->getUrl()}">
-                                    {echo trim($brand)}
-                                </a>
-                            {/if}
+                    {if $brand = $p->getBrand()}
+                        {$brand = $brand->getName()}
+                        {$hasBrand = trim($brand) != ''}
+                        <span class="frame-item-brand">{lang('Бренд','newLevel')}:
+                            <span class="code">
+                                {if $hasBrand}
+                                    <a href="{echo $p->getBrand()->getUrl()}">
+                                        {echo trim($brand)}
+                                    </a>
+                                {/if}
+                            </span>
                         </span>
-                    </span>
+                    {/if}
                 </div>
             {/if}
             {if !$vertical}
