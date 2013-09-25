@@ -17,7 +17,7 @@
                         hideDrop(DS.drop, form, DS.durationHideForm);
                     }
                 }}{/literal});
-            return false;">
+                    return false;">
         <div class="horizontal-form">
             <label>
                 <span class="title">{lang('Ваше имя:','newLevel')}</span>
@@ -30,8 +30,6 @@
                 <span class="title">E-mail</span>
                 <span class="frame-form-field">
                     <input type="text" id="" name="UserEmail" value="{echo $user_email}"/>
-                    <input type="hidden" name="ProductId" value=""/>
-                    <input type="hidden" name="notifme" value="true"/>
                     <span class="must">*</span>
                     <span class="help-block">{lang('Вы получите письмо, когда товар будет доступен','newLevel')}</span>
                 </span>
@@ -57,6 +55,8 @@
                 </span>
             </div>
         </div>
+        <input type="hidden" name="ProductId" value=""/>
+        <input type="hidden" name="notifme" value="true"/>
         {form_csrf()}
     </form>
 </div>
