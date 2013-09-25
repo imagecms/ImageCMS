@@ -47,7 +47,7 @@ class Orders extends \MY_Controller {
      * 
      */
     public function getPrice() {
-        $params = $this->getParamsFromCookies();
+        $params = \mod_stats\classes\LineDiagramBase::create()->getParamsFromCookies();
         $paid = $this->getOrders_LineDiagram($params, 'price_sum');
 
         $result = array(
@@ -62,7 +62,7 @@ class Orders extends \MY_Controller {
         return json_encode($result);
     }
 
-    public function getCount() {        
+    public function getCount() {
         $params['paid'] = TRUE;
         $paid = $this->getOrders_LineDiagram($params, 'orders_count');
 
@@ -113,7 +113,7 @@ class Orders extends \MY_Controller {
         $filledWithZeros = $lineDiagramBase->fillMissingWithZero($dataByField);
         unset($dataByField);
 
-       
+
 
         // timestamp for diagram
         $tsOrders = array();
