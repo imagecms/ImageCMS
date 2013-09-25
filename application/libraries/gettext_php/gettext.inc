@@ -114,11 +114,13 @@ function get_list_of_locales($locale) {
  * Utility function to get a StreamReader for the given text domain.
  */
 function _get_reader($domain=null, $category=5, $enable_cache=true) {
-    global $text_domains, $default_domain, $LC_CATEGORIES;
+    global $text_domains, $default_domain, $LC_CATEGORIES, $current_locale;
     if (!isset($domain)) $domain = $default_domain;
     if (!isset($text_domains[$domain]->l10n)) {
         // get the current locale
-        $locale = _setlocale(LC_MESSAGES, 0);
+        $locale = $current_locale;
+//                _setlocale(LC_MESSAGES, 0);
+//        var_dump($locale);
         $bound_path = isset($text_domains[$domain]->path) ?
           $text_domains[$domain]->path : './';
         $subpath = $LC_CATEGORIES[$category] ."/$domain.mo";
@@ -238,8 +240,9 @@ function _setlocale($category, $locale) {
 /**
  * Sets the path for a domain.
  */
-function _bindtextdomain($domain, $path) {
-    global $text_domains;
+function _bindtextdomain($domain, $path, $locale) {
+    global $text_domains, $current_locale;
+    $current_locale = $locale;
     // ensure $path ends with a slash ('/' should work for both, but lets still play nice)
     if (substr(php_uname(), 0, 7) == "Windows") {
       if ($path[strlen($path)-1] != '\\' and $path[strlen($path)-1] != '/')
@@ -481,8 +484,8 @@ function T_dcnpgettext($domain, $context, $singular, $plural,
 // Wrappers used as a drop in replacement for the standard gettext functions
 
 if (!function_exists('gettext')) {
-    function bindtextdomain($domain, $path) {
-        return _bindtextdomain($domain, $path);
+    function bindtextdomain($domain, $path, $locale) {
+        return _bindtextdomain($domain, $path, $locale);
     }
     function bind_textdomain_codeset($domain, $codeset) {
         return _bind_textdomain_codeset($domain, $codeset);
