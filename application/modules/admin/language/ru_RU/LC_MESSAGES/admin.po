@@ -4710,7 +4710,7 @@ msgstr "Выключить"
 
 #: /var/www/image.loc/_tempLangs.php:36
 msgid "Warning! Files will be deleted automaticly on backup creating"
-msgstr "Warning! Files will be deleted automatically on backup creator"
+msgstr "Внимание! Файлы будут удалены автоматически на создании резервной копии"
 
 #: /var/www/image.loc/_tempLangs.php:37
 msgid "Delete after date"
@@ -4780,7 +4780,7 @@ msgstr "Выберите изображение"
 
 #: /var/www/image.loc/_tempLangs.php:101
 msgid "Copy to the local computer"
-msgstr "Скопируйте на локальный компьютер"
+msgstr "Скопировать на локальный компьютер"
 
 #: /var/www/image.loc/_tempLangs.php:102
 msgid "Save on the server"
