@@ -39,6 +39,17 @@
                             {/if}
                         </span>
                     </span>
+                    {$brand = $model->getBrand()->getName()}
+                    {$hasBrand = trim($brand) != ''}
+                    <span class="frame-item-brand">{lang('Бренд','newLevel')}:
+                        <span class="code">
+                            {if $hasBrand}
+                                <a href="{echo $model->getBrand()->getUrl()}">
+                                    {echo trim($brand)}
+                                </a>
+                            {/if}
+                        </span>
+                    </span>
                 </span>
             </div>
             <div class="right-product">
@@ -114,6 +125,7 @@
                                 <div class="funcs-buttons">
                                     {foreach $variants as $key => $productVariant}
                                         {$discount = 0}
+                                        {$hasDiscounts = $model->hasDiscounts()}
                                         {if $hasDiscounts}
                                             {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                         {/if}
@@ -540,13 +552,13 @@
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
-                {/if}
-                {if $fullDescription = $model->getFullDescription()}
+            {/if}
+            {if $fullDescription = $model->getFullDescription()}
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
-                {/if}
-                {if $accessories}
+            {/if}
+            {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
-                {/if}
+            {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
@@ -679,7 +691,7 @@
 </div>
 {widget('latest_news')}
 <script type="text/javascript">
-                    var hrefCategoryProduct = "{$category_url}";
+    var hrefCategoryProduct = "{$category_url}";
 </script>
 {literal}
     <script type="text/javascript">
