@@ -22,7 +22,6 @@
                             <div class="photo-block m-b_5">
                                 <span class="helper"></span>
                                 <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}">
-                                    {var_dump($user['user_image'])}
                                     {if $user['user_image']!=''}
                                         <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
                                     {else:}
@@ -38,12 +37,12 @@
                                     </label>
                                     {if $user['user_image']!=''}
                                         <div class="btn-remove-photo-wishlist">
-                                            <button 
+                                            <button
                                                 type="button"
                                                 data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
                                                 data-type="json"
                                                 data-modal="true"
-                                                
+
                                                 data-drop="#notification"
                                                 data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
                                                 data-callback="deleteImage"
@@ -101,7 +100,7 @@
                                         data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
                                         data-type="json"
                                         data-modal="true"
-                                        
+
                                         data-drop="#notification"
                                         onclick="serializeForm(this)"
                                         data-callback="changeDataWishlist"
@@ -167,7 +166,7 @@
                                             data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
                                             data-type="json"
                                             data-modal="true"
-                                            
+
                                             data-always="true"
                                             onclick="serializeForm(this)"
                                             data-drop="#notification"
@@ -240,12 +239,12 @@
                                         </button>
                                     </div>
                                     <div class="btn-remove-WL">
-                                        <button 
+                                        <button
                                             type="button"
                                             data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
                                             data-type="json"
                                             data-modal="true"
-                                            
+
                                             data-drop="#notification"
                                             data-callback="removeWL"
                                             data-confirm="true"
@@ -263,7 +262,7 @@
                                             {$price += $p.price;}
                                             {$i++}
                                         {/foreach}
-                                        <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')} 
+                                        <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')}
                                             <span class="frame-prices f-s_0">
                                                 <span class="current-prices">
                                                     <span class="price-new">

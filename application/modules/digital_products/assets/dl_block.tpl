@@ -1,7 +1,7 @@
 { if $paid}
-    Congratulations! You can download this digital content!
+    {lang('Congratulations! You can download this digital content!', 'digital_products')}
     <br />
     { anchor($link)}
 { else:}
-    You must pay to download this digital content.
+    {lang('You must pay to download this digital content.', 'digital_products')}
 { /if}

@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title w-s_n">{lang("Edit page","admin")}</span>
+            <span class="title w-s_n">{lang('Edit page', "admin")}</span>
         </div>
         <div class="pull-right">
             <span class="help-inline"></span>
@@ -145,7 +145,7 @@
                                         </label>
                                         <div class="controls">
                                             {if $defLang.id == $page_lang}
-                                                <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplite','admin')}</button>
+                                                <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
                                                 <div class="o_h">
                                                     <input type="text" name="page_url" value="{$url}" id="page_url" />
                                                 </div>
@@ -180,7 +180,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_description" class="textarea" id="page_description" >{$description}</textarea>
-                                            <button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplite','admin')}</button>
+                                            <button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
                                         </div>
                                     </div>
 
@@ -190,7 +190,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_keywords" id="page_keywords">{$keywords}</textarea>
-                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplite words','admin')}</button>
+                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete words','admin')}</button>
                                             <div id="keywords_list">
                                             </div>
                                         </div>
@@ -308,7 +308,7 @@
                                             <select multiple="multiple" name="roles[]" id="roles[]">
                                                 <option value="0" {$all_selected} >{lang("All","admin")}</option>
                                                 {foreach $roles as $role}
-                                                    <option {$role.selected} value="{$role.id}">{$role.name}</option>
+                                                    <option {$role.selected} value="{$role.id}">{$role.alt_name}</option>
                                                 {/foreach}
                                             </select>
                                         </div>

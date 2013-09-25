@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-29 12:37+0300\n"
+"POT-Creation-Date: 2013-09-16 18:23+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -12,10 +12,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Tagalog\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: /var/www/image.loc/_temp2.php:7
+msgid "Comment status"
+msgstr "Статус комментария"
+
+#: /var/www/image.loc/_temp2.php:8
+msgid "has been updated successfully"
+msgstr "успешно обновлены"
+
+#: /var/www/image.loc/_temp2.php:9
+msgid "Go to the page with the comment"
+msgstr "Перейти на страницу с комментарием"
+
+#: /var/www/image.loc/_temp2.php:10
+msgid "Example module"
+msgstr "Пример модуля"
+
+#: /var/www/image.loc/_temp2.php:11
+msgid "Administrator E-mail"
+msgstr "E-mail администратора"
+
+#: /var/www/image.loc/_temp2.php:12
+msgid "Notify by E-mail"
+msgstr "Уведомить с помощью E-mail"
+
+#: /var/www/image.loc/_temp2.php:13
+msgid "Yes"
+msgstr "Да"
+
+#: /var/www/image.loc/_temp2.php:14
+msgid "No"
+msgstr "Нет"
+
+#: /var/www/image.loc/_temp2.php:15
+msgid "Secret key"
+msgstr "Секретный ключ"
+
+#: /var/www/image.loc/_temp2.php:16
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:17
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_temp2.php:18
+msgid "Save and go back"
+msgstr "Сохранить и вернутся"
+
+#: /var/www/image.loc/_temp2.php:19
+msgid "Properties"
+msgstr "Свойства"
+
+#: ../../../admin.php:32
+msgid "Settings saved"
+msgstr "Настройки сохранены"
+
+#: ../../../module_info.php:7
+msgid "Notification about new comments"
+msgstr "Уведомление о новых комментариях"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"
@@ -60,10 +119,6 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Move to category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create status"
 #~ msgstr "Создать категорию"
 
 #, fuzzy

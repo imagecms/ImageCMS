@@ -18,6 +18,8 @@ class Found_less_expensive extends MY_Controller {
         parent::__construct();
         $this->load->model('found_less_expensive_model');
         $this->load->library('email');
+        $lang = new MY_Lang();
+        $lang->load('found_less_expensive');
     }
 
     public static function adminAutoload() {
@@ -63,7 +65,7 @@ class Found_less_expensive extends MY_Controller {
      * @param type $email
      */
     public function sendEmail($fromEmail, $toEmail, $subject, $message, $messageData) {
-        
+
         /*
          * use module cms email
          * you need create new letter 'expensive' in database "admin/components/cp/cmsemail/index" with variables and other information 
@@ -72,12 +74,12 @@ class Found_less_expensive extends MY_Controller {
           // variables
           //
           $data = array(
-            //variables
+          //variables
           );
           // comand for send letter use module cms email
           \cmsemail\email::getInstance()->sendEmail($toEmail, 'expensive', $data);
          */
-        
+
         // Init email config
         $config['wordwrap'] = TRUE;
         $config['charset'] = 'UTF-8';

@@ -19,6 +19,9 @@ class Admin extends BaseAdminController {
 
         $locale = $this->db->where('default', 1)->get('languages')->result_array();
         $this->def_locale = $locale[0]['identif'];
+        
+        $lang = new MY_Lang();
+        $lang->load('banners');
 
         
         $this->is_shop = SHOP_INSTALLED;
@@ -91,8 +94,8 @@ class Admin extends BaseAdminController {
         if ($this->input->post()) {
             $this->load->library('Form_validation');
             /** Set Validation reles */
-            $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]');
-            $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean');
+            $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
+            $this->form_validation->set_rules('photo', lang('Photo', 'banners'), 'required|xss_clean');
 
             if ($this->form_validation->run($this) !== FALSE) {
                 /** Set Instart data */
@@ -150,8 +153,8 @@ class Admin extends BaseAdminController {
         if ($_POST) {
 
             $this->load->library('Form_validation');
-            $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]');
-            $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean');
+            $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
+            $this->form_validation->set_rules('photo', lang('Photo', 'banners'), 'required|xss_clean');
 
 
             if ($this->form_validation->run($this) != FALSE) {
@@ -173,7 +176,7 @@ class Admin extends BaseAdminController {
                 $this->banner_model->edit_banner($data);
 
                 /** Show successful message and redirect */
-                showMessage('Даные сохранены');
+                showMessage(lang('Data saved', 'banners'));
             } else {
                 /** Show validation error message */
                 showMessage(validation_errors(), false, 'r');
@@ -216,7 +219,7 @@ class Admin extends BaseAdminController {
                 $entity = $this->db->select('id as Id')->select('title as Name')->get('content')->result_array();
                 break;
             case 'main':
-                $entity = array(array('Id' => 0, 'Name' => 'Главная'));
+                $entity = array(array('Id' => 0, 'Name' => lang('Main', 'banners')));
                 break;
             default:
                 break;

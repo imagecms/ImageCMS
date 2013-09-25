@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Баннер',     // Menu name
-	'description' => 'Модуль управления баннерами',                  // Module Description
+	'menu_name'   => lang('Banner', 'banners'),     // Menu name
+	'description' => lang('Banner management module', 'banners'),                  // Module Description
 	'admin_type'  => 'inside',            // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
         'w'           => 600,                 // Window width

@@ -47,7 +47,7 @@
                     </li>
                     <li>
                         <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/users/register" class="linkChart"> &nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Register', 'mod_stats')}                                        
+                            <span class="simple_tree">↳</span>{lang('Registered', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
@@ -79,12 +79,7 @@
                     </li>
                     <li>
                         <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/productInfo" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Product info', 'mod_stats')}                                      
-                        </a>
-                    </li>
-                    <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/receiptOfGoods" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Receipt of goods', 'mod_stats')}                                      
+                            <span class="simple_tree">↳</span>{lang('Product information', 'mod_stats')}                                      
                         </a>
                     </li>
                 </div>
@@ -95,17 +90,12 @@
                 </li>
                 <div class="submenu" style="display: none;">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/most_visited" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/mostVisited" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Most visited', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/products_in_categories" class="linkChart"> &nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Products in categories', 'mod_stats')}                                        
-                        </a>
-                    </li>
-                    <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/brands_in_categories" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/brandsInCategories" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Brands in category', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -118,7 +108,7 @@
                 <div class="submenu" style="display: none;">
                     <li>
                         <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/keywordsSearched" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Keywords searched', 'mod_stats')}     
+                            <span class="simple_tree">↳</span>{lang('Searched keywords', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
@@ -189,6 +179,7 @@
                 </div>
 
             </div>
+            <hr class="m-t_5" />
             <div id="chartContainer" class="span12" style="margin-left: 0 !important;">
             </div>
         </div>

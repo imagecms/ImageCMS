@@ -30,7 +30,7 @@
                                 <div class="control-group m-t_10">
                                     <label class="control-label" for="Name">{lang("Name","admin")}:</label>
                                     <div class="controls">
-                                        <input type="text" name="Name" id="Name" value="" required/>
+                                        <input type="text" name="Name" id="Name" value=""/>
                                     </div>
                                 </div>
                                 <div class="control-group">

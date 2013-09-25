@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">На страницу:</label>
+                                            <label class="control-label">{lang('On page', 'menu')}:</label>
                                             <div class="controls">
                                                 <select id="per_page">
                                                     <option value="10" selected="selected">10</option>
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">Список страниц:</label>
+                                            <label class="control-label">{lang('Pages list', 'menu')}:</label>
                                             <div class="controls">
                                                 <div id="pages_list_holder" class="span3">
                                                     <ul class="nav myTab nav-tabs nav-stacked">
@@ -90,7 +90,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                Параметры:
+                                {lang('Parameters', 'menu')}:
                             </th>
                         </tr>
                     </thead>
@@ -146,7 +146,7 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');return false;"><i class="icon-picture"></i>  {lang("Choose image ", "menu")}</button>
+                                                    <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img0');return false;"><i class="icon-picture"></i>  {lang("Choose image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="page_item_image" id="Img0" value="{$item.item_image}">
@@ -244,7 +244,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                Параметры:
+                                {lang('Parameters', 'menu')}:
                             </th>
                         </tr>
                     </thead>
@@ -300,7 +300,7 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                    <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img1');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="cat_item_image" id="Img1" value="{$item.item_image}">
@@ -382,7 +382,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        Параметры:
+                                        {lang('Parameters', 'menu')}:
                                     </th>
                                 </tr>
                             </thead>
@@ -412,10 +412,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">Функция:</label>
+                                                    <label class="control-label">{lang('Method', 'menu')}:</label>
                                                     <div class="controls">
                                                         <input type="text" value="{$data.method}" name="mod_method"/>
-                                                        <span class="help-inline">Например: func_name/param1/param2</span>
+                                                        <span class="help-inline">{lang('Example', 'menu')}: func_name/param1/param2</span>
                                                     </div>
                                                 </div>    
                                                 <div class="control-group">
@@ -447,7 +447,7 @@
                                                     </label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">            
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                            <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img2');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                         </div>
                                                         <div class="o_h">		            
                                                             <input type="text" name="module_item_image" id="Img2" value="{$item.item_image}">
@@ -592,7 +592,7 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                    <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img3');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="url_item_image" id="Img3" value="{$item.item_image}">

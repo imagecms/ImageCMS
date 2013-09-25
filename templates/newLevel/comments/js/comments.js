@@ -239,6 +239,7 @@ renderPosts = function(el, data) {
                         initComments();
                     }
                 });
+                console.log(obj);
                 if (obj.commentsCount != 0 && obj.commentsCount) {
                     $('#cc').html('');
                     $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), plurComments));

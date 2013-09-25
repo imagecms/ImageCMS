@@ -58,6 +58,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('gallery');
 
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
@@ -83,7 +85,7 @@ class Admin extends BaseAdminController {
 
         if (!is_really_writable($this->conf['upload_path']) OR !file_exists($this->conf['upload_path'])) {
             $this->template->add_array(array(
-                'error' => lang("Create a directory to continue your work with the gallery") . $this->conf['upload_path'] . lang("Set the write access")
+                'error' => lang("Create a directory to continue your work with the gallery", 'gallery') . $this->conf['upload_path'] . lang("Set the write access", 'gallery')
             ));
 
             $this->display_tpl('error');
@@ -109,6 +111,7 @@ class Admin extends BaseAdminController {
      * Display categories list
      */
     public function index() {
+        
         $categories = $this->gallery_m->get_categories('position', 'asc');
         $this->template->add_array(array(
             'categories' => $categories,
@@ -173,17 +176,17 @@ class Admin extends BaseAdminController {
                 $this->load->library('Form_validation');
                 $val = $this->form_validation;
 
-                $val->set_rules('max_file_size', lang("File size"), 'required|is_natural');
-                $val->set_rules('max_width', lang("Maximum width"), 'required|is_natural');
-                $val->set_rules('max_height', lang("Maximum height"), 'required|is_natural');
-                $val->set_rules('quality', lang("Quality"), 'required|is_natural');
-                $val->set_rules('prev_img_width', lang("Pre-image width"), 'required|is_natural');
-                $val->set_rules('prev_img_height', lang("pre-image height"), 'required|is_natural');
-                $val->set_rules('thumb_width', lang("Icon width"), 'required|is_natural');
-                $val->set_rules('thumb_height', lang("Icon height"), 'required|is_natural');
-                $val->set_rules('watermark_text', lang("Watermark text"), 'max_length[100]');
-                $val->set_rules('watermark_font_size', lang("Font size"), 'required|is_natural');
-                $val->set_rules('watermark_image_opacity', lang("Transparency"), 'required|is_natural|min_length[1]|max_length[3]');
+                $val->set_rules('max_file_size', lang("File size", 'gallery'), 'required|is_natural');
+                $val->set_rules('max_width', lang("Maximum width", 'gallery'), 'required|is_natural');
+                $val->set_rules('max_height', lang("Maximum height", 'gallery'), 'required|is_natural');
+                $val->set_rules('quality', lang("Quality", 'gallery'), 'required|is_natural');
+                $val->set_rules('prev_img_width', lang("Pre-image width", 'gallery'), 'required|is_natural');
+                $val->set_rules('prev_img_height', lang("pre-image height", 'gallery'), 'required|is_natural');
+                $val->set_rules('thumb_width', lang("Icon width", 'gallery'), 'required|is_natural');
+                $val->set_rules('thumb_height', lang("Icon height", 'gallery'), 'required|is_natural');
+                $val->set_rules('watermark_text', lang("Watermark text", 'gallery'), 'max_length[100]');
+                $val->set_rules('watermark_font_size', lang("Font size", 'gallery'), 'required|is_natural');
+                $val->set_rules('watermark_image_opacity', lang("Transparency", 'gallery'), 'required|is_natural|min_length[1]|max_length[3]');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
@@ -192,13 +195,13 @@ class Admin extends BaseAdminController {
 
                 // Check if watermark image exists.
                 if ($_POST['watermark_type'] == 'overlay' AND !file_exists($_POST['watermark_image'])) {
-                    showMessage(lang("Specify the correct path to watermark image"), false, 'r');
+                    showMessage(lang("Specify the correct path to watermark image", 'gallery'), false, 'r');
                     return FALSE;
                 }
 
                 // Check if watermark font exists.
                 if ($_POST['watermark_type'] == 'text' AND !file_exists($_POST['watermark_font_path'])) {
-                    showMessage(lang("Specify the correct path to font"), false, 'r');
+                    showMessage(lang("Specify the correct path to font", 'gallery'), false, 'r');
                     return FALSE;
                 }
 
@@ -236,7 +239,7 @@ class Admin extends BaseAdminController {
                 $this->db->where('name', 'gallery');
                 $this->db->update('components', array('settings' => serialize($params)));
 
-                showMessage(lang("Settings have been saved or settings were saved"));
+                showMessage(lang("Settings have been saved", 'gallery'));
 
                 break;
         }
@@ -250,9 +253,9 @@ class Admin extends BaseAdminController {
     public function create_album() {
         $this->load->library('Form_validation');
 
-        $this->form_validation->set_rules('name', lang("Name"), 'required|min_length[3]|max_length[250]');
-        $this->form_validation->set_rules('email', lang("Description"), 'max_length[500]');
-        $this->form_validation->set_rules('category_id', lang("Categories"), 'required');
+        $this->form_validation->set_rules('name', lang("Name", 'gallery'), 'required|min_length[3]|max_length[250]');
+        $this->form_validation->set_rules('email', lang("Description", 'gallery'), 'max_length[500]');
+        $this->form_validation->set_rules('category_id', lang("Categories", 'gallery'), 'required');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), false, 'r');
@@ -270,7 +273,7 @@ class Admin extends BaseAdminController {
             // Create folder for admin thumbs
             @mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');
 
-            showMessage(lang('Album created'));
+            showMessage(lang('Album created', 'gallery'));
 
             pjax(site_url('admin/components/cp/gallery/edit_album_params/' . $album_id));
         }
@@ -280,12 +283,12 @@ class Admin extends BaseAdminController {
      * Update album info
      */
     public function update_album($id, $locale) {
-        $this->form_validation->set_rules('name', lang("Name"), 'required');
+        $this->form_validation->set_rules('name', lang("Name", 'gallery'), 'required');
         if ($this->form_validation->run() == false) {
             showMessage(validation_errors(), '', 'r');
             exit();
         } else {
-            showMessage(lang("Changes have been saved"));
+            showMessage(lang("Changes have been saved", 'gallery'));
         }
         $data = array(
             'category_id' => (int) $this->input->post('category_id'),
@@ -338,7 +341,7 @@ class Admin extends BaseAdminController {
 
             $this->display_tpl('album_params');
         } else {
-            show_error(lang("Can't load album information"));
+            show_error(lang("Can't load album information", 'gallery'));
         }
     }
 
@@ -367,7 +370,7 @@ class Admin extends BaseAdminController {
 //            echo 'deleted';
 //            exit;
         } else {
-            showMessage(lang("Can't load album information"));
+            showMessage(lang("Can't load album information", 'gallery'));
         }
     }
 
@@ -422,7 +425,7 @@ class Admin extends BaseAdminController {
 
             $this->display_tpl('edit_image');
         } else {
-            show_error(lang("Can't load image information"));
+            show_error(lang("Can't load image information", 'gallery'));
         }
     }
 
@@ -435,7 +438,7 @@ class Admin extends BaseAdminController {
         if ($image != FALSE) {
             $this->load->library('Form_validation');
 
-            $this->form_validation->set_rules('new_name', lang("Name"), 'trim|required');
+            $this->form_validation->set_rules('new_name', lang("Name", 'gallery'), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -461,10 +464,10 @@ class Admin extends BaseAdminController {
                 $this->gallery_m->rename_image($id, $new_name);
 
                 pjax('/admin/components/cp/gallery/edit_image/' . $image['id']);
-                showMessage(lang("Changes have been saved"));
+                showMessage(lang("Changes have been saved", 'gallery'));
             }
         } else {
-            showMessage(lang("Can't load image information"), false, 'r');
+            showMessage(lang("Can't load image information", 'gallery'), false, 'r');
         }
     }
 
@@ -495,7 +498,7 @@ class Admin extends BaseAdminController {
 
                 // Delete image info.
                 $this->gallery_m->delete_image($image['id']);
-                showMessage(lang("Photos removed"));
+                showMessage(lang("Photos removed", 'gallery'));
             }
         }
     }
@@ -504,7 +507,7 @@ class Admin extends BaseAdminController {
      * Update image description/position
      */
     public function update_info($id, $locale = null) {
-        
+
         if (null === $locale)
             $locale = $this->gallery_m->chose_locale();
         $image = $this->gallery_m->get_image_info($id);
@@ -522,11 +525,11 @@ class Admin extends BaseAdminController {
                 $this->gallery_m->set_album_cover($image['album_id'], NULL);
             }
 
-            //showMessage(lang('Changes are saved'));
+            //showMessage(lang('Changes are saved', 'gallery'));
 
             pjax('/admin/components/cp/gallery/edit_album/' . $image['album_id']);
         } else {
-            showMessage(lang("Can't load image information"), false, 'r');
+            showMessage(lang("Can't load image information", 'gallery'), false, 'r');
         }
     }
 
@@ -535,7 +538,7 @@ class Admin extends BaseAdminController {
         foreach ($positions as $key => $value) {
             $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_category');
         }
-        showMessage(lang("Positions updated"));
+        showMessage(lang("Positions updated", 'gallery'));
     }
 
     public function update_album_positions() {
@@ -543,7 +546,7 @@ class Admin extends BaseAdminController {
         foreach ($positions as $key => $value) {
             $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_albums');
         }
-        showMessage(lang("Positions updated"));
+        showMessage(lang("Positions updated", 'gallery'));
     }
 
     public function update_img_positions() {
@@ -551,7 +554,7 @@ class Admin extends BaseAdminController {
         foreach ($positions as $key => $value) {
             $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_images');
         }
-        showMessage(lang("Positions updated"));
+        showMessage(lang("Positions updated", 'gallery'));
     }
 
     /**
@@ -609,9 +612,9 @@ class Admin extends BaseAdminController {
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
-        $val->set_rules('name', lang("Name"), 'trim|required|max_length[250]|min_length[1]');
-        $val->set_rules('description', lang("Description"), 'max_length[500]');
-        $val->set_rules('position', lang("Position"), 'numeric');
+        $val->set_rules('name', lang("Name", 'gallery'), 'trim|required|max_length[250]|min_length[1]');
+        $val->set_rules('description', lang("Description", 'gallery'), 'max_length[500]');
+        $val->set_rules('position', lang("Position", 'gallery'), 'numeric');
 
         if ($val->run() == FALSE) {
             showMessage(validation_errors(), false, 'r');
@@ -664,9 +667,9 @@ class Admin extends BaseAdminController {
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
-        $val->set_rules('name', lang("Name"), 'trim|required|max_length[250]|min_length[1]');
-        $val->set_rules('description', lang("Description"), 'max_length[500]');
-        $val->set_rules('position', lang("Position"), 'numeric');
+        $val->set_rules('name', lang("Name", 'gallery'), 'trim|required|max_length[250]|min_length[1]');
+        $val->set_rules('description', lang("Description", 'gallery'), 'max_length[500]');
+        $val->set_rules('position', lang("Position", 'gallery'), 'numeric');
 
         if ($val->run() == FALSE) {
             showMessage(validation_errors(), false, 'r');
@@ -695,7 +698,7 @@ class Admin extends BaseAdminController {
 
 
 
-            showMessage(lang("Changes have been saved"));
+            showMessage(lang("Changes have been saved", 'gallery'));
 
             //updateDiv('page', site_url('admin/components/cp/gallery'));
             $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';

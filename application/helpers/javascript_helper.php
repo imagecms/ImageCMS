@@ -17,16 +17,16 @@ function showMessage($message, $title = FALSE, $class = '', $ret = false) {
 
 
     if ($title == FALSE) {
-        $title = 'Сообщение: ';
+        $title = lang('Message') . ": ";
         if ($class == 'r') {
-            $title = 'Ошибка: ';
+            $title = lang('Error') . ": ";
         }
         if ($class == 'g') {
-            $title = 'Успех: ';
+            $title = lang('Success') . ": ";
         }
     }
     $CI = & get_instance();
-    $message .= '<br/><strong>Запросов к базе: ' . $CI->db->total_queries() . '</strong>';
+    $message .= '<br/><strong>' . lang('Requests to the database') . ': ' . $CI->db->total_queries() . '</strong>';
     $message = str_replace("\n", '<br/>', $message);
     $message = str_replace("<p>", '', $message);
     $message = str_replace("</p>", '', $message);
@@ -44,7 +44,7 @@ function pjax($url, $selector = '#mainContent') {
  * Redirect function
  */
 function ajax_redirect($location) {
-    echo 'Перенаправляю: <b>' . $location . '</b> ' . "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "';\",3000); </script>";
+    echo lang('Redirecting') . ': <b>' . $location . '</b> ' . "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "';\",3000); </script>";
 }
 
 /*

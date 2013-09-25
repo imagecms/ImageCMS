@@ -21,6 +21,8 @@ class Banners extends MY_Controller {
             $this->no_install = false;
         $this->load->module('core');
         $this->load->model('banner_model');
+        $lang = new MY_Lang();
+        $lang->load('banners');
     }
 
     public function index() {
@@ -46,7 +48,7 @@ class Banners extends MY_Controller {
         $lang = $this->get_main_lang('identif');
         $painting = $type . '_' . (int) $id;
 
-        $hash = 'baners' . $type . $id;
+        $hash = 'baners' . $type . $id . \CI_Controller::get_instance()->config->item('template');
         if ($cahe = Cache_html::get_html($hash)) {
             \CMSFactory\assetManager::create()
                     ->registerScript('jquery.cycle.all.min', TRUE);

@@ -1,4 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 /*
  * Image CMS
@@ -8,385 +11,331 @@
  */
 
 interface CFormObject {
-	public function renderHtml();
-	public function setInitial();
-	public function rePopulate();
-	public function getUserData();
+
+    public function renderHtml();
+
+    public function setInitial();
+
+    public function rePopulate();
+
+    public function getUserData();
 }
 
 class Forms extends MY_Controller {
 
-	public $ci;
-	public $instance     = NULL;
-	public $fields       = array();
-	public $_config      = array();
-	public $field_errors = array();
-	public $upload_data  = array();
+    public $ci;
+    public $instance = NULL;
+    public $fields = array();
+    public $_config = array();
+    public $field_errors = array();
+    public $upload_data = array();
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct() {
+        parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('forms');
 
-		$this->load->library('form_validation');
+        $this->load->library('form_validation');
 
-		// Load config
-		$this->config->load('forms', TRUE);
-		$this->_config = $this->config->item('forms');
+        // Load config
+        $this->config->load('forms', TRUE);
+        $this->_config = $this->config->item('forms');
 
-		/** Standart object
+        /** Standart object
 
-			array(
-				'username' => array (
-						'type'       => 'field_type',
-						'id'         => 'field id',
-						'label'      => 'Username',
-						'initial'    => 'Initial text',
-						'validation' => 'min_length[3]|max_length[50]'
-						'help_text'  => 'Field description text',
-						'attributes' => 'Html object attributes',
-						'style'      => 'color:#fff',
-						'class'      => 'css class name',
-						'error_text' => 'Custom error text',
-					),
-			);
+          array(
+          'username' => array (
+          'type'       => 'field_type',
+          'id'         => 'field id',
+          'label'      => 'Username',
+          'initial'    => 'Initial text',
+          'validation' => 'min_length[3]|max_length[50]'
+          'help_text'  => 'Field description text',
+          'attributes' => 'Html object attributes',
+          'style'      => 'color:#fff',
+          'class'      => 'css class name',
+          'error_text' => 'Custom error text',
+          ),
+          );
 
-			select/radiogroup/checkgroup:
-				initial: array with values, or coma separated string
-				selected: array with selected values, or coma separated string
-				multiple: boolean
+          select/radiogroup/checkgroup:
+          initial: array with values, or coma separated string
+          selected: array with selected values, or coma separated string
+          multiple: boolean
 
-			checkbox:
-				checked: boolean
-		**/
-		return $this;
-	}
+          checkbox:
+          checked: boolean
+         * */
+        return $this;
+    }
 
-	// Set config
-	public function set_config($config = array())
-	{ 
-		if (count($config))
-		{
-			foreach ($config as $key => $val)
-			{
-				$this->_config[$key] = $val;
-			}
+    // Set config
+    public function set_config($config = array()) {
+        if (count($config)) {
+            foreach ($config as $key => $val) {
+                $this->_config[$key] = $val;
+            }
 
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
-	}
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
-	// Add fields array
-	public function add_fields($fields = array())
-	{
-		$defaults = $this->_config['default_attr'];
+    // Add fields array
+    public function add_fields($fields = array()) {
+        $defaults = $this->_config['default_attr'];
 
-		// Parse default settings
-		foreach ($fields as $key => $field)
-		{
-			$class = ucfirst($field['type']);
-			$class_name = 'CForm_'.$class;
+        // Parse default settings
+        foreach ($fields as $key => $field) {
+            $class = ucfirst($field['type']);
+            $class_name = 'CForm_' . $class;
 
-			if (isset($defaults[$field['type']]))
-			{
-				$def = $defaults[$field['type']];
-				$fields[$key] = array_merge($field, $def);
-				$field = array_merge($field, $def);
-			}
+            if (isset($defaults[$field['type']])) {
+                $def = $defaults[$field['type']];
+                $fields[$key] = array_merge($field, $def);
+                $field = array_merge($field, $def);
+            }
 
-			// Load form classes.
-			if (!class_exists('CForm_'.$class))
-				require 'elements/CForm_'.$class.EXT;
-                        
-                        if (isset($field['type']) && 'textarea' == $field['type'])
-                            $field['class'] = 'elRTE';
-                        
-                        if ($field['required'])
-                            $field['class'] .= ' required';
+            // Load form classes.
+            if (!class_exists('CForm_' . $class))
+                require 'elements/CForm_' . $class . EXT;
 
-			if (isset($field['type']) AND class_exists('CForm_'.$class))
-			{
-				$this->$key = new $class_name($key, $field);
-			}
-			
-		}
+            if (isset($field['type']) && 'textarea' == $field['type'])
+                $field['class'] = 'elRTE';
 
-		$this->fields = $fields;
+            if ($field['required'])
+                $field['class'] .= ' required';
 
-		return $this;
-	}
+            if (isset($field['type']) AND class_exists('CForm_' . $class)) {
+                $this->$key = new $class_name($key, $field);
+            }
+        }
 
-	// Standart form renderer
-	public function render()
-	{
-		$result  = '';
-		foreach ($this->fields as $name => $field)
-		{
-			//$pos  = array_search($name, $keys = array_keys($this->fields));
-			//$next = $keys[$pos + 1];
+        $this->fields = $fields;
 
-			$result .= $this->$name->render();
-		}
+        return $this;
+    }
 
-		if (!$this->_config['error_inline'])
-				$result = $this->_validation_errors().$result;
+    // Standart form renderer
+    public function render() {
+        $result = '';
+        foreach ($this->fields as $name => $field) {
+            //$pos  = array_search($name, $keys = array_keys($this->fields));
+            //$next = $keys[$pos + 1];
 
-		return $result;
-	}
+            $result .= $this->$name->render();
+        }
 
-	public function renderTable()
-	{
-		$result = '';
-		foreach ($this->fields as $key => $field)
-		{
-			if ($field['type'] != 'hidden')
-			{
-				$result .= '<tr>';
-				$result .= '<td>'.$this->label($key, $field['label']).'</td>';
-				$result .= '<td>';
-					$result .= $this->_get_inline_error($key);
-					$result .= $this->$key->renderHtml();
-					$result .= $this->_get_element_help_text($key);
-				$result .= '</td>';
-				$result .= '</tr>';
-			}
-			else
-			{
-				$result .= $this->$key->renderHtml();
-			}
-		}
+        if (!$this->_config['error_inline'])
+            $result = $this->_validation_errors() . $result;
 
-		return $result;
-	}
+        return $result;
+    }
 
-	public function standartRender($name, $field)
-	{
-		$result = '';
-		$result .= $this->_config['element_prefix'];
-		$result .= $this->_get_inline_error($name);
-		$result .= $this->label($name, $field->label);
-		$result .= $field->html;
-		$result .= $this->_get_element_help_text($name);
-		$result .= $this->_config['element_suffix'];
-		return $result;
-	}
+    public function renderTable() {
+        $result = '';
+        foreach ($this->fields as $key => $field) {
+            if ($field['type'] != 'hidden') {
+                $result .= '<tr>';
+                $result .= '<td>' . $this->label($key, $field['label']) . '</td>';
+                $result .= '<td>';
+                $result .= $this->_get_inline_error($key);
+                $result .= $this->$key->renderHtml();
+                $result .= $this->_get_element_help_text($key);
+                $result .= '</td>';
+                $result .= '</tr>';
+            } else {
+                $result .= $this->$key->renderHtml();
+            }
+        }
 
-	public function asArray()
-	{
-		$result = array();
+        return $result;
+    }
 
-		foreach ($this->fields as $key => $html)
-		{
-			$result[$key] = array(
-				'label'     => $this->label($key, $this->fields[$key]['label']),
-				'field'     => $this->$key->renderHtml(),
-				'help_text' => $this->_get_element_help_text($key),
-				'error_text'=> $this->_get_inline_error($key),
-				'info'=>$this->fields[$key],
-				'name'=>$key,
-			);
-		}
+    public function standartRender($name, $field) {
+        $result = '';
+        $result .= $this->_config['element_prefix'];
+        $result .= $this->_get_inline_error($name);
+        $result .= $this->label($name, $field->label);
+        $result .= $field->html;
+        $result .= $this->_get_element_help_text($name);
+        $result .= $this->_config['element_suffix'];
+        return $result;
+    }
 
-		//$result['form_errors'] = sprintf($this->config['error_block_html'], $this->_validation_errors());
+    public function asArray() {
+        $result = array();
 
-		return $result;
-	}
+        foreach ($this->fields as $key => $html) {
+            $result[$key] = array(
+                'label' => $this->label($key, $this->fields[$key]['label']),
+                'field' => $this->$key->renderHtml(),
+                'help_text' => $this->_get_element_help_text($key),
+                'error_text' => $this->_get_inline_error($key),
+                'info' => $this->fields[$key],
+                'name' => $key,
+            );
+        }
 
-	public function _get_element_help_text($name)
-	{
-		$field = $this->fields[$name];
+        //$result['form_errors'] = sprintf($this->config['error_block_html'], $this->_validation_errors());
 
-		if (isset($field['help_text']))
-		{
-			return sprintf($this->_config['help_text_html'], $field['help_text']);
-		}
-		else
-		{
-			return '';
-		}
-	}
+        return $result;
+    }
 
-	public function _get_inline_error($key)
-	{
-		if (array_key_exists($key, $this->field_errors) AND $this->_config['error_inline'] === TRUE)
-		{
-			return sprintf($this->_config['error_inline_html'], $this->field_errors[$key]);
-		}
-		else
-		{
-			return '';
-		}
-	}
+    public function _get_element_help_text($name) {
+        $field = $this->fields[$name];
 
-	public function _validation_errors()
-	{
-		if (count($this->field_errors) > 0)
-		{
-			$result = '';
+        if (isset($field['help_text'])) {
+            return sprintf($this->_config['help_text_html'], $field['help_text']);
+        } else {
+            return '';
+        }
+    }
 
-			foreach ($this->field_errors as $key => $val)
-			{
-				$result .= $this->_config['validation_errors_prefix'].$val.$this->_config['validation_errors_suffix'];
-			}
+    public function _get_inline_error($key) {
+        if (array_key_exists($key, $this->field_errors) AND $this->_config['error_inline'] === TRUE) {
+            return sprintf($this->_config['error_inline_html'], $this->field_errors[$key]);
+        } else {
+            return '';
+        }
+    }
 
-			$result = sprintf($this->_config['error_block_html'], $result);
+    public function _validation_errors() {
+        if (count($this->field_errors) > 0) {
+            $result = '';
 
-			return $result;
-		}
-	}
+            foreach ($this->field_errors as $key => $val) {
+                $result .= $this->_config['validation_errors_prefix'] . $val . $this->_config['validation_errors_suffix'];
+            }
 
-	public function getErrors()
-	{
-		if (count($this->field_errors) > 0)
-			return $this->field_errors;
-		else
-			return FALSE;
-	}
+            $result = sprintf($this->_config['error_block_html'], $result);
 
-	// Set each field initial value.
-	public function setInitial($data = array())
-	{
-		if (count($data))
-			foreach ($data as $key => $val)
-			{
-				if (isset($this->$key) AND method_exists($this->$key, 'setInitial'))
-					$this->$key->setAttributes($val);
-			}
-	}
+            return $result;
+        }
+    }
 
-	// Repopulate form fields from $_POST or user data.
-	public function setAttributes($data = array())
-	{
-		if (count($data) > 0 AND $data != FALSE)
-		{
-			foreach ($data as $key => $val)
-			{
-				if (isset($this->$key) AND method_exists($this->$key, 'setAttributes'))
-					$this->$key->setAttributes($val);
-			}
-		}
-	}
+    public function getErrors() {
+        if (count($this->field_errors) > 0)
+            return $this->field_errors;
+        else
+            return FALSE;
+    }
 
-	public function isValid()
-	{
-		$this->runValidation();
+    // Set each field initial value.
+    public function setInitial($data = array()) {
+        if (count($data))
+            foreach ($data as $key => $val) {
+                if (isset($this->$key) AND method_exists($this->$key, 'setInitial'))
+                    $this->$key->setAttributes($val);
+            }
+    }
 
-		if (count($this->field_errors) > 0 OR count($_POST) == 0)
-			return FALSE;
-		else
-			return TRUE;
-	}
+    // Repopulate form fields from $_POST or user data.
+    public function setAttributes($data = array()) {
+        if (count($data) > 0 AND $data != FALSE) {
+            foreach ($data as $key => $val) {
+                if (isset($this->$key) AND method_exists($this->$key, 'setAttributes'))
+                    $this->$key->setAttributes($val);
+            }
+        }
+    }
 
-	public function getData()
-	{
-		$data = array();
-		foreach ($this->fields as $key => $val)
-		{
-			if (isset($this->$key) AND method_exists($this->$key, 'getData'))
-			{
-				$result = $this->$key->getData();
-				if ($result !== FALSE AND $result !== NULL)
-					$data[$key] = $result;
-			}
-		}
-		return $data;
-	}
+    public function isValid() {
+        $this->runValidation();
 
-	public function runValidation()
-	{
-		if (count($_POST))
-			foreach ($this->fields as $key => $val)
-			{
-				if (isset($this->$key) AND method_exists($this->$key, 'runValidation'))
-				{
-					if(($result = $this->$key->runValidation()))
-						$this->field_errors[$key] = $result;
-				}
-			}
-	}
+        if (count($this->field_errors) > 0 OR count($_POST) == 0)
+            return FALSE;
+        else
+            return TRUE;
+    }
 
-	// Splits name, id, class, style and other attributes into one string
-	function _check_attr($name = '', $field)
-	{
-		$return = '';
+    public function getData() {
+        $data = array();
+        foreach ($this->fields as $key => $val) {
+            if (isset($this->$key) AND method_exists($this->$key, 'getData')) {
+                $result = $this->$key->getData();
+                if ($result !== FALSE AND $result !== NULL)
+                    $data[$key] = $result;
+            }
+        }
+        return $data;
+    }
 
-		if ($name)
-		{
-			$result .= ' name="'.$name.'" ';
-		}
+    public function runValidation() {
+        if (count($_POST))
+            foreach ($this->fields as $key => $val) {
+                if (isset($this->$key) AND method_exists($this->$key, 'runValidation')) {
+                    if (($result = $this->$key->runValidation()))
+                        $this->field_errors[$key] = $result;
+                }
+            }
+    }
 
-		$name = str_replace('[]', '', $name);
+    // Splits name, id, class, style and other attributes into one string
+    function _check_attr($name = '', $field) {
+        $return = '';
 
-		if (isset($field->id))
-		{
-			$result .= ' id="'.$field->id.'" ';
-		}
-		else
-		{
-			$result .= ' id="'.$name.'" ';
-		}
+        if ($name) {
+            $result .= ' name="' . $name . '" ';
+        }
 
-		if (isset($field->class) OR $this->field_errors[$name] != '')
-		{
-			$class = $field->class;
-			if ($this->field_errors[$name] != '')
-			{
-				if ($class != NULL)
-				{
-					$class .= ' ';
-				}
+        $name = str_replace('[]', '', $name);
 
-				$class .= $this->_config['field_error_class'];
-			}
+        if (isset($field->id)) {
+            $result .= ' id="' . $field->id . '" ';
+        } else {
+            $result .= ' id="' . $name . '" ';
+        }
 
-			$result .= ' class="'.$class.'" ';
-		}
+        if (isset($field->class) OR $this->field_errors[$name] != '') {
+            $class = $field->class;
+            if ($this->field_errors[$name] != '') {
+                if ($class != NULL) {
+                    $class .= ' ';
+                }
 
-		if (isset($field->attributes))
-		{
-			$result .= ' '.$field->attributes.' ';
-		}
+                $class .= $this->_config['field_error_class'];
+            }
 
-		if (isset($field->style))
-		{
-			$result .= ' style="'.$field->style.'" ';
-		}
+            $result .= ' class="' . $class . '" ';
+        }
 
-	if (isset($field->enable_tinymce_editor) && ($field->enable_tinymce_editor == 1))
-	{
-		$field->class .= ' mceEditor2';
-	}
+        if (isset($field->attributes)) {
+            $result .= ' ' . $field->attributes . ' ';
+        }
 
-		return $result;
-	}
+        if (isset($field->style)) {
+            $result .= ' style="' . $field->style . '" ';
+        }
 
-	public function label($for = '', $text = '')
-	{
-		$r_class = '';
+        if (isset($field->enable_tinymce_editor) && ($field->enable_tinymce_editor == 1)) {
+            $field->class .= ' mceEditor2';
+        }
 
-		if (isset($this->$for) AND method_exists($this->$for, 'label'))
-			return $this->$for->label();
+        return $result;
+    }
+
+    public function label($for = '', $text = '') {
+        $r_class = '';
+
+        if (isset($this->$for) AND method_exists($this->$for, 'label'))
+            return $this->$for->label();
 
 
-		if ($text == '')
-		{
-			return '';
-		}
+        if ($text == '') {
+            return '';
+        }
 
-		// Add required flag to label text
-		if (isset($this->fields[$for]['validation']) AND strpos($this->fields[$for]['validation'], 'required') !== FALSE)
-		{
-			$text .= $this->_config['required_flag'];
-			$r_class = ' '.$this->_config['required_label_class'];
-		}
+        // Add required flag to label text
+        if (isset($this->fields[$for]['validation']) AND strpos($this->fields[$for]['validation'], 'required') !== FALSE) {
+            $text .= $this->_config['required_flag'];
+            $r_class = ' ' . $this->_config['required_label_class'];
+        }
 
-		return '<label for="'.$for.'" class="'.$this->_config['label_class'].$r_class.'">'.$text.'</label>';
-	}
+        return '<label for="' . $for . '" class="' . $this->_config['label_class'] . $r_class . '">' . $text . '</label>';
+    }
+
 }
-
-
 
 /* End of file ./application/modules/forms/forms.php */

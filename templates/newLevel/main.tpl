@@ -18,8 +18,8 @@
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
         <meta name = "format-detection" content = "telephone=no" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.min.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.min.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
             {$lang = '/' . \MY_Controller::getCurrentLocale()} 
@@ -41,7 +41,9 @@
         <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
     </head>
-    <body class="is{echo $agent[0]} not-js">        
+    <body class="is{echo $agent[0]} not-js"> 
+        {include_tpl('language/jsLangsDefine.tpl')}
+        {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
             <div class="fon-header">
                 <header>
@@ -64,33 +66,32 @@
 
         <!-- scripts -->
         {include_tpl('config.js')}
+        <script src="{$THEME}js/_jquery.imagecms.shop.js"></script>
+        <script src="{$THEME}js/_scripts.js"></script>
         {literal}
             <script>
-                function downloadJSAtOnload() {
+            function downloadJSAtOnload() {
                 var cL = 0,
-                scripts = ['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'],
-                scriptsL = scripts.length;
+                        scripts = ['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'],
+                        scriptsL = scripts.length;
 
                 $.map(scripts, function(i, n) {
-                var element = document.createElement("script");
-                element.src = theme + 'js/' + i + '.js?{/literal}{echo rand()}{literal}';
-                document.body.appendChild(element);
-                $(element).load(function() {
-                cL++;
-                if (cL == scriptsL) {
-                $(document).trigger({'type': 'scriptDefer'});
-                init();
-                }
+                    $.getScript( theme + 'js/' + i + '.js?{/literal}{echo rand()}{literal}', function() {
+                        cL++;
+                        if (cL == scriptsL) {
+                            $(document).trigger({'type': 'scriptDefer'});
+                            init();
+                        }
+                    });
                 })
-                })
-                }
+            }
 
-                // Check for browser support of event handling capability
-                if (window.addEventListener)
+            // Check for browser support of event handling capability
+            if (window.addEventListener)
                 window.addEventListener("load", downloadJSAtOnload, false);
-                else if (window.attachEvent)
+            else if (window.attachEvent)
                 window.attachEvent("onload", downloadJSAtOnload);
-                else
+            else
                 window.onload = downloadJSAtOnload;
             </script>
         {/literal}

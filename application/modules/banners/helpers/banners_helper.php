@@ -34,7 +34,7 @@ if (!function_exists('get_entity_mod')){
                     return 'category - ' . $page[0]['name'];
                 break;
             case strstr($w, 'main'):
-                return 'main - Главная';
+                return 'main - ' . lang('Main', 'banners');
                 break;
 
             default:

@@ -1,6 +1,6 @@
 <!-- floating elements-->
 <div id="popupCart" style="display: none;" class="drop drop-bask drop-style"></div>
-<a href="#" data-drop="#popupCart" id="showCart" style="display: none;"></a>
+<a href="#" data-drop="#popupCart" id="showCart" data-animate="true" style="display: none;"></a>
 
 <script type="text/template" id="cartPopupTemplate">
     {literal}
@@ -30,10 +30,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(item.prodstatus, function(item, i){%>
-        <% if (!$.isFunction(productStatus[i])){%>
-        <%= productStatus[i]%>
-        <%}})%>
         </span>
         <span class="title"><%- item.name %>
         </a>
@@ -70,7 +66,7 @@
         </td>
         <td class="frame-count">
         <span class="countOrCompl"><%-pcs%></span>
-        <div class="number" data-title="{/literal}{lang('Количество на складе','newLevel')} {literal}<%-item.maxcount%>">
+        <div class="number" data-title="{/literal}{lang('Количество на складе','newLevel')} {literal}<%-' '+item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
         <div class="btn-plus">
         <button type="button">
@@ -87,7 +83,7 @@
         </div>
         </td>
         <td class="frame-cur-sum-price">
-        <span class="title">{/literal}{lang('Всего','newLevel')}{literal}: </span>
+        <span class="title">{/literal}{lang('Сумма','newLevel')}{literal}: </span>
         <div class="frame-cur-sum-price">
         <div class="frame-prices f-s_0">
         <%if (item.origprice) { %>
@@ -122,15 +118,15 @@
         <!-- for product kit -->
         <% var i=0 %>
         <% var names = item.name %>
-        <% var ids = item.id %>
+        <% if (typeof names == "string") JSON.parse(names) %>
         <% var prices = item.prices %>
         <% var addprices = item.addprices %>
         <% var origprices = item.origprices %>
         <% var images = item.img %>
         <% var urls = item.url %>
         <% var prodstatus = item.prodstatus %>
-
-        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
+        
+        <tr class="row-kits" data-prodid="<%- item.id %>" data-kitId="<%- item.kitId %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
         <td colspan="4">
         <table>
         <tbody>
@@ -138,7 +134,7 @@
         <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
-        <% var idsL = ids.length; _.each(ids, function(id){  %>
+        <% _.each(names, function(id){  %>
         <li>
         <% if (i != 0){ %>
         <div class="next-kit">+</div>
@@ -149,12 +145,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
-        <% if ($.isFunction(productStatus[i]))%>
-        <%= productStatus[i](parseFloat(item))%>
-        <%else%>
-        <%= productStatus[i]%>
-        <%})%>
         </span>
         <span class="title"><%- names[i] %></span>
         </a>
@@ -192,12 +182,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
-        <% if ($.isFunction(productStatus[i]))%>
-        <%= productStatus[i](parseFloat(item))%>
-        <%else%>
-        <%= productStatus[i]%>
-        <%})%>
         </span>
         <span class="title"><%-names[i]%></span>
         </a>
@@ -237,7 +221,7 @@
         </td>
         <td class="frame-count">
         <span class="countOrCompl"><%-kits%></span>
-        <div class="number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-item.maxcount%>">
+        <div class="number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-' '+item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>">
         <div class="btn-plus">
         <button type="button">
@@ -254,7 +238,7 @@
         </div>
         </td>
         <td class="frame-cur-sum-price">
-        <span class="title">{/literal}{lang('Всего','newLevel')}{literal}: </span>
+        <span class="title">{/literal}{lang('Сумма','newLevel')}{literal}: </span>
         <div class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
@@ -265,14 +249,14 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count) * parseFloat(item.price).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count * item.price).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
         <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count) * parseFloat(item.addprice).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count * item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr"><%-nextCs%></span>
         </span>
         </span>
@@ -299,12 +283,18 @@
         <div class="frame-foot drop-footer">
         <div class="header-frame-foot">
         <div class="inside-padd">
+        <div class="clearfix">
         <span class="frame-discount">
-
         <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevel')}{literal}:</span>
         <span class="text-discount current-discount"><span class="genDiscount"><% if (discC) parseFloat(Shop.Cart.discount.sum_discount_product + Shop.Cart.kitDiscount).toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
-
         </span>
+        <% if (orderDetails) { %>
+        <div class="btn-form f_l">
+        <button type="button" data-closed="closed-js">
+        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к оформлению','newLevel')}{literal}</span>
+        </button>
+        </div>
+        <% } %>
         <span class="s-t">{/literal}{lang('Всего','newLevel')}{literal}:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
@@ -332,6 +322,7 @@
         <%}%>
         </span>
         </span>
+        </div>
         </div>
         <% if (!orderDetails) { %>
         <div class="content-frame-foot">
@@ -363,13 +354,13 @@
         <div class="msg f-s_0">
         <div class="success"><span class="icon_info"></span><span class="text-el">{/literal}{lang('Вы удалили все элементы из корзины','newLevel')}{literal}</span></div>
         </div>
+        <% if (!orderDetails) { %>
         <div class="btn-form">
         <button type="button" data-closed="closed-js">
-
         <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevel')}{literal}</span>
         </button>
         </div>
-        </div>
+        <% } %>
         </div>
         </div>
         </div>
@@ -392,6 +383,7 @@
         <!-- for single product -->
         <% if (!item.kit) { %>
         <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
+        <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
         <td class="frame-items">
         <a href="<%-item.url%>" class="frame-photo-title">
         <span class="photo-block">
@@ -435,7 +427,7 @@
         </div>
         <div class="frame-frame-count">
         <div class="frame-count">
-        <div class="number d_i-b" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-item.maxcount%>">
+        <div class="number d_i-b" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-' '+item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
         <div class="btn-plus">
         <button type="button">
@@ -489,18 +481,19 @@
         <!-- for product kit -->
         <% var i=0 %>
         <% var names = item.name %>
-        <% var ids = item.id %>
+        <% if (typeof names == "string") JSON.parse(names); %>
         <% var prices = item.prices %>
         <% var addprices = item.addprices %>
         <% var origprices = item.origprices %>
         <% var images = item.img %>
         <% var urls = item.url %>
         <% var prodstatus = item.prodstatus %>
-
-        <tr class="row-kits" data-id="popupKit_<%- item.kitId %>">
+        
+        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-kitId="<%- item.kitId %>" data-id="popupKit_<%- item.kitId %>">
+        <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
-        <% var idsL = ids.length; _.each(ids, function(id){  %>
+        <% _.each(names, function(id){  %>
         <li>
         <% if (i != 0){ %>
         <div class="next-kit">+</div>
@@ -511,7 +504,7 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
+        <% _.each(item.prodstatus[i], function(item, i){%>
         <% if ($.isFunction(productStatus[i]))%>
         <%= productStatus[i](parseFloat(item))%>
         <%else%>
@@ -548,12 +541,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
-        <% if ($.isFunction(productStatus[i]))%>
-        <%= productStatus[i](parseFloat(item))%>
-        <%else%>
-        <%= productStatus[i]%>
-        <%})%>
         </span>
         <span class="title"><%-names[i]%></span>
         </a>
@@ -593,7 +580,7 @@
         </td>
         </tr>
         <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
-        <td class="frame-kits-gen-sum">
+        <td class="frame-kits-gen-sum" colspan="2">
         <div class="kits-gen-sum">
         <img src="<%-theme%>/images/kits_sum.png" />
         </div>
@@ -631,14 +618,14 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count) * parseFloat(item.price).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count * item.price).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
         <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count) * parseFloat(item.addprice).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count * item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
@@ -796,10 +783,54 @@
     </div>
 </script>
 {/literal}
+    {literal}
+        <script type="text/template" id="reportappearance">
+            <% var nextCsCond = nextCs == '' ? false : true %>
+            <ul class="items items-bask item-report">
+            <li>
+            <a href="<%-item.url%>" class="frame-photo-title" title="<%-item.name%>">
+            <span class="photo-block">
+            <span class="helper"></span>
+            <img src="<%-item.img%>" alt="<%-item.name%>">
+            </span>
+            <span class="title"><%-item.name%></span>
+            </a>
+            <div class="description">
+            <div class="frame-prices f-s_0">
+            <%if (item.origprice) { %>
+            <span class="price-discount">
+            <span>
+            <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %><%-item.origprice%></span>
+            <span class="curr"><%-curr%></span>
+            </span>
+            </span>
+            <% } %>
+            <span class="current-prices f-s_0">
+            <span class="price-new">
+            <span>
+            <span class="price priceVariant"><%-parseFloat(item.price).toFixed(pricePrecision)%></span>
+            <span class="curr"><%-curr%></span>
+            </span>
+            </span>
+            <%if (nextCsCond){%>
+            <span class="price-add">
+            <span>
+            (<span class="price addCurrPrice"><%-parseFloat(item.addprice).toFixed(pricePrecision)%></span>
+            <span class="curr-add"><%-nextCs%></span>)
+            </span>
+            </span>
+            <%}%>
+            </span>
+            </div>
+            </div>
+            </li>
+            </ul>
+        </script>
+    {/literal}
     <span class="tooltip"></span>
     <div class="apply">
         <div class="content-apply">
-            <a href="#">{lang('Filter','newLevel')}</a>
+            <a href="#">{lang('Фильтр','newLevel')}</a>
             <div class="description">{lang('Найдено','newLevel')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
         <button type="button" class="icon_times_drop icon_times_apply"></button>
@@ -821,7 +852,7 @@
         <div class="drop-content-confirm">
             <div class="inside-padd cofirm w-s_n-w">
                 <div class="btn-def">
-                    <button type="button" data-button-confirm>
+                    <button type="button" data-button-confirm data-modal="true">
                         <spna class="text-el">{lang('Подтвердить' , 'newLevel')}</spna>
                     </button>
                 </div>

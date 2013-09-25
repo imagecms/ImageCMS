@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang(user_lists)}: {echo $user[user_name]}</span>
+                <span class="title">{lang('User lists', 'wishlist')}: {echo $user[user_name]}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -14,7 +14,7 @@
                     </a>
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
                         <i class="icon-wrench"></i>
-                        {lang(settings)}
+                        {lang('Settings', 'wishlist')}
                     </a>
                 </div>
             </div>
@@ -23,9 +23,9 @@
         <div class="row-fluid">
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                    <a href="#user" class="btn btn-small active">{lang(user)}</a>
-                    <a href="#lists" class="btn btn-small">{lang(lists)}</a>
-                    <a href="#create_list" class="btn btn-small">{lang(create_list)}</a>
+                    <a href="#user" class="btn btn-small active">{lang('User', 'wishlist')}</a>
+                    <a href="#lists" class="btn btn-small">{lang('Lists', 'wishlist')}</a>
+                    <a href="#create_list" class="btn btn-small">{lang('Create list', 'wishlist')}</a>
                 </div>
             </div>
             <div class="tab-content">
@@ -33,7 +33,7 @@
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th colspan="6">{lang(user)}</th>
+                                <th colspan="6">{lang('User', 'wishlist')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,7 +50,7 @@
                                                 <div class="controls">
                                                     <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}"
                                                          class="img-polaroid"
-                                                         alt='{lang(ava)}'
+                                                         alt='{lang('Ava', 'wishlist')}'
                                                          width="{echo $settings[maxImageWidth]}"
                                                          height="{echo $settings[maxImageHeight]}"/>
                                                 </div>
@@ -64,7 +64,7 @@
                                                            accept="image/gif, image/jpeg, image/png, image/jpg"
                                                            style="position: relative!important; opacity: 2!important;"/>
                                                     <input type="hidden" value="{echo $user[id]}" name="userID"/>
-                                                    <input type="submit" value="Загрузить" class="btn" />
+                                                    <input type="submit" value="{lang('Download', 'wishlist')}" class="btn" />
                                                     {form_csrf()}
                                                     </form>
                                                 </div>
@@ -72,7 +72,7 @@
                                                     <form method="POST" action="/admin/components/cp/wishlist/deleteImage">
                                                         <input type="hidden" value="{echo $user[user_image]}" name="image"/>
                                                         <input type="hidden" value="{echo $user[id]}" name="user_id"/>
-                                                        <input type="submit" value="Удалить картинку" class="btn btn-danger btn-small"/>
+                                                        <input type="submit" value="{lang('Delete image', 'wishlist')}" class="btn btn-danger btn-small"/>
                                                         {form_csrf()}
                                                     </form>
                                                 </div>
@@ -83,26 +83,26 @@
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">{lang(name)}</label>
+                                                    <label class="control-label" for="banner_type">{lang('Name', 'wishlist')}</label>
                                                     <div class="controls">
                                                         <input type="text" value="{echo $user[user_name]}" name="user_name"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">{lang(birthday)}:</label>
+                                                    <label class="control-label" for="banner_type">{lang('Birthday', 'wishlist')}:</label>
                                                     <div class="controls">
                                                         <input type="text" id='datepicker' value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">{lang(last)}:</label>
+                                                    <label class="control-label" for="banner_type">{lang('Last', 'wishlist')}:</label>
                                                     <div class="controls">
                                                         <textarea name="description">{echo $user[description]}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" class="btn btn-small btn-success" value="{lang(save)}"/>
+                                                        <input type="submit" class="btn btn-small btn-success" value="{lang('Save', 'wishlist')}"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,10 +122,10 @@
                                     <h4 class="title">
                                         <b>{$wishlist[0][title]}</b>
                                     </h4>
-                                    <h5>{lang(list_type)}:
+                                    <h5>{lang('List type', 'wishlist')}:
                                         <i>{echo $wishlist[0][access]}</i>
                                     </h5>
-                                    <h5 style="margin-right: 10px;">Описание:
+                                    <h5 style="margin-right: 10px;">{lang('Description', 'wishlist')}:
                                         <br>
                                         <i>{echo $wishlist[0][description]}</i>
                                     </h5>
@@ -133,11 +133,11 @@
                                 <div class="pull-right" style="margin-top: 37px; margin-right: 20px ">
                                     <a class="btn btn-danger btn-small" href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">
                                         <i class="icon-trash icon-white"></i>
-                                        {lang(delete)}
+                                        {lang('Delete', 'wishlist')}
                                     </a>
                                     <a class="btn btn-small" href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">
                                         <i class="icon-edit"></i>
-                                        {lang(edit)}
+                                        {lang('Edit', 'wishlist')}
                                     </a>
                                 </div>
                             </div>
@@ -148,9 +148,9 @@
                                         <thead>
                                             <tr>
                                                 <th>№</th>
-                                                <th>{lang(unsubscribe)}</th>
-                                                <th>{lang(product)}</th>
-                                                <th>{lang(comment)}</th>
+                                                <th>{lang('Unsubscribe', 'wishlist')}</th>
+                                                <th>{lang('Product', 'wishlist')}</th>
+                                                <th>{lang('Comment', 'wishlist')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -159,8 +159,8 @@
                                                 <tr>
                                                     <td>{echo $key+1}</td>
                                                     <td>
-                                                        <a href="/admin/components/cp/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
-                                                        <a href="/admin/components/cp/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}/{echo $user[id]}">{lang(move)}</a>
+                                                        <a href="/admin/components/cp/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang('Delete', 'wishlist')}</a>
+                                                        <a href="/admin/components/cp/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}/{echo $user[id]}">{lang('Move', 'wishlist')}</a>
                                                     </td>
                                                     <td>
                                                         <a href="{shop_url('product/'.$w[url])}"
@@ -180,14 +180,14 @@
                                 </form>
                             {else:}
                                 <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                                    {lang(empty_list)}
+                                    {lang('Empty list', 'wishlist')}
                                 </div>
                             {/if}
 
                         {/foreach}
                     {else:}
                         <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                            {lang(no_lists)}
+                            {lang('No lists', 'wishlist')}
                         </div>
 
                     {/if}
@@ -196,7 +196,7 @@
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th colspan="6">{lang(create_list)}</th>
+                                <th colspan="6">{lang('Create list', 'wishlist')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -207,30 +207,30 @@
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
                                                  <div class="control-group">
-                                                    <label class="control-label" for="banner_type">{lang('Type')}:</label>
+                                                    <label class="control-label" for="banner_type">{lang('Type', 'wishlist')}:</label>
                                                     <div class="controls">
                                                         <select name="wlTypes">
-                                                            <option value="shared">Shared</option>
-                                                            <option value="public">Public</option>
-                                                            <option value="private">Private</option>
+                                                            <option value="shared">{lang('shared', 'wishlist')}</option>
+                                                            <option value="public">{lang('public', 'wishlist')}</option>
+                                                            <option value="private">{lang('private', 'wishlist')}</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">{lang(list_name)}:</label>
+                                                    <label class="control-label" for="banner_type">{lang('List name', 'wishlist')}:</label>
                                                     <div class="controls">
                                                         <input type="text" value="" name="wishListName"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">{lang('Description')}:</label>
+                                                    <label class="control-label" for="banner_type">{lang('Description','wishlist')}:</label>
                                                     <div class="controls">
                                                         <textarea name="wlDescription"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" value="{lang(create_list)}" class="btn btn-small btn-success"/>
+                                                        <input type="submit" value="{lang('Create list', 'wishlist')}" class="btn btn-small btn-success"/>
                                                     </div>
                                                 </div>
                                             </div>

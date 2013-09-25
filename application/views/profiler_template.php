@@ -402,7 +402,7 @@ window.onload = function() {
 	
 <?php else: ?>
 
-	<p class="ci-profiler-box"><?php echo lang('profiler_no_profiles') ?></p>
+	<p class="ci-profiler-box"><?php echo lang('No profiles') ?></p>
 
 <?php endif; ?>
 

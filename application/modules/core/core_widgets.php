@@ -84,8 +84,8 @@ class Core_Widgets extends MY_Controller {
                 break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('news_count', lang("Amount of news"), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('max_symdols', lang("Maximum number of characters"), 'trim|required|is_natural|min_length[1]');
+                $this->form_validation->set_rules('news_count', lang("Amount of news", "core"), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('max_symdols', lang("Maximum number of characters", "core"), 'trim|required|is_natural|min_length[1]');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors());
@@ -98,12 +98,14 @@ class Core_Widgets extends MY_Controller {
                     );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang("Settings have been saved or settings were saved"));
+
+                    showMessage(lang("Settings have been saved", 'core'));
+
                     if($_POST['action'] == 'tomain')
                         pjax('/admin/widgets_manager/index');
                 }
                 break;
-
+            
             case 'install_defaults':
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);
                 break;

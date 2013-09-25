@@ -419,8 +419,99 @@ $(document).ready(function() {
             }
         });
     }
-    
-    
-    
 
+    /**
+     * Show info about product
+     */
+    $('#productInfoButtonShow').unbind('click').bind('click', function() {
+        var productId = $('#statsProductId').val();
+        var responseArray;
+        if (productId === '' || productId === undefined) {
+            return;
+        }
+
+        $.ajax({
+            async: false,
+            type: 'get',
+            data: 'notLoadMain=true',
+            url: base_url + 'admin/components/cp/mod_stats/ajaxGetProductInfoById/' + productId,
+            success: function(response) {
+                if (response !== 'false') {
+                    try {
+                        responseArray = $.parseJSON(response);
+                    } catch (e) {
+                        return 'error parsing jsone';
+                    }
+                    $('#productInfoTableContainer').show();
+                    $.each(responseArray, function(index, value) {
+                        $('#productInfoTableValue' + index).html(value);
+                    });
+                }
+            }
+        });
+    });
+
+    /** 
+     * Select category change
+     */
+    $('#selectCategoryId').unbind('change').bind('change', function() {
+        var selectElement = $(this);
+        var categoryId = selectElement.find("option:selected").val();
+        var CookieDate = new Date();
+
+        /** Date for saving cookies **/
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+        document.cookie = "cat_id_for_stats=" + categoryId + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+        $('#refreshIntervalsButton').trigger('click');
+
+    });
+
+    /** 
+     * Show/Hide select with categories list
+     */
+    $('#selectCategoryHideShow').unbind('click').bind('click', function() {
+        $('#categoriesMultiSelectBlock').toggle();
+    });
+
+    /**
+     * Re draw chart with new selected categorie's ids
+     */
+    $('#withSelectedCategoriesDrawChartButton').unbind('click').bind('click', function() {
+        var catIds = [];
+        var CookieDate = new Date();
+        var jsonCategoriesIds;
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+
+        $('#selectCategoriesIds option:selected').each(function(i, selected) {
+            catIds[i] = $(selected).val();
+        });
+        
+        try {
+            jsonCategoriesIds = JSON.stringify(catIds);
+        } catch (e) {
+            console.log(e.name);
+        }
+        document.cookie = "selected_cat_ids_prod_stat=" + jsonCategoriesIds + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+
+        $('#refreshIntervalsButton').trigger('click');
+    });
+    
+    /** 
+     * Start analisis brands in search results
+     */
+    $('#startBrandsAnalisInSearch').unbind('click').bind('click',function(){
+        var wordsQuantity = $('#quantityOfWordsStatsSearch').val();
+        var resultsQuantity = $('#resultsStatsSearch').val();
+        var useLocale = $('#useLocaleCheckbox').prop('checked');
+        var CookieDate = new Date();
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+        
+        document.cookie = "words_quantity_search_stats=" + wordsQuantity + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+        document.cookie = "results_quantity_search_stats=" + resultsQuantity + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+        document.cookie = "use_locale_search_stats=" + useLocale + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+        
+        $('#refreshIntervalsButton').trigger('click');
+        $('.chartBlock').show();
+        
+    });
 });

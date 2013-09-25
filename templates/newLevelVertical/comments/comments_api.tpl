@@ -155,7 +155,7 @@
                             </label>
                             {if $use_captcha}
                                 <label>
-                                    <span class="title__icsi-css">{lang('lang_captcha')}</span>
+                                    <span class="title__icsi-css">{lang('Код защиты')}</span>
                                     {$cap_image}
                                     <span class="frame_form_field__icsi-css">
                                         <input type="text" name="captcha" id="captcha"/>

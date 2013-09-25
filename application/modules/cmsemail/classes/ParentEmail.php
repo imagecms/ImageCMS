@@ -102,6 +102,8 @@ class ParentEmail extends \MY_Controller {
         parent::__construct();
 
         $this->load->model('../modules/cmsemail/models/cmsemail_model');
+        $lang = new \MY_Lang();
+        $lang->load('cmsemail');
     }
 
     /**
@@ -160,7 +162,7 @@ class ParentEmail extends \MY_Controller {
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['user_message'], $variables);
             if (!$this->_sendEmail()) {
-                $this->errors[] = lang('error_user_message_doesnt_send');
+                $this->errors[] = lang('User message doesnt send', 'cmsemail');
             } else {
                 \CMSFactory\Events::create()->registerEvent(
                         array(
@@ -189,7 +191,7 @@ class ParentEmail extends \MY_Controller {
             $this->message = $this->replaceVariables($patern_settings['admin_message'], $variables);
             
             if (!$this->_sendEmail()) {
-                $this->errors[] = lang('error_user_message_doesnt_send');
+                $this->errors[] = lang('User message doesnt send', 'cmsemail');
             } else {
                 \CMSFactory\Events::create()->registerEvent(
                         array(
@@ -229,22 +231,22 @@ class ParentEmail extends \MY_Controller {
      */
     public function create($data = array()) {
         if ($_POST) {
-            $this->form_validation->set_rules('mail_name', lang('Template_name'), 'required|xss_clean');
-            $this->form_validation->set_rules('sender_name', lang('from'), 'xss_clean');
-            $this->form_validation->set_rules('from_email', lang('From_email'), 'xss_clean|valid_email');
-            $this->form_validation->set_rules('mail_theme', lang('Template_theme'), 'xss_clean|required');
+            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|xss_clean');
+            $this->form_validation->set_rules('sender_name', lang('from', 'cmsemail'), 'xss_clean');
+            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'xss_clean|valid_email');
+            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'xss_clean|required');
 
             if ($_POST['userMailTextRadio'])
-                $this->form_validation->set_rules('userMailText', lang('Template_user_mail'), 'required|xss_clean');
+                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required|xss_clean');
             else
-                $this->form_validation->set_rules('userMailText', lang('Template_user_mail'), 'xss_clean');
+                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'xss_clean');
 
             if ($_POST['adminMailTextRadio'])
-                $this->form_validation->set_rules('adminMailText', lang('Template_admin_mail'), 'required|xss_clean');
+                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required|xss_clean');
             else
-                $this->form_validation->set_rules('adminMailText', lang('Template_admin_mail'), 'xss_clean');
+                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'xss_clean');
 
-            $this->form_validation->set_rules('admin_email', lang('Admin_address'), 'xss_clean|valid_email');
+            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'xss_clean|valid_email');
 
             if ($this->form_validation->run($this) == FALSE) {
                 $this->errors = validation_errors();
@@ -285,21 +287,21 @@ class ParentEmail extends \MY_Controller {
      */
     public function edit($id, $data = array()) {
         if ($_POST) {
-            $this->form_validation->set_rules('sender_name', lang('from'), 'xss_clean');
-            $this->form_validation->set_rules('from_email', lang('From_email'), 'xss_clean|valid_email');
-            $this->form_validation->set_rules('mail_theme', lang('Template_theme'), 'xss_clean|required');
+            $this->form_validation->set_rules('sender_name', lang('from', 'cmsemail'), 'xss_clean');
+            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'xss_clean|valid_email');
+            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'xss_clean|required');
 
             if ($_POST['userMailTextRadio'])
-                $this->form_validation->set_rules('userMailText', lang('Template_user_mail'), 'required|xss_clean');
+                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required|xss_clean');
             else
-                $this->form_validation->set_rules('userMailText', lang('Template_user_mail'), 'xss_clean');
+                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'xss_clean');
 
             if ($_POST['adminMailTextRadio'])
-                $this->form_validation->set_rules('adminMailText', lang('Template_admin_mail'), 'required|xss_clean');
+                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required|xss_clean');
             else
-                $this->form_validation->set_rules('adminMailText', lang('Template_admin_mail'), 'xss_clean');
+                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'xss_clean');
 
-            $this->form_validation->set_rules('admin_email', lang('Admin_address'), 'xss_clean|valid_email');
+            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'xss_clean|valid_email');
 
             if ($this->form_validation->run($this) == FALSE) {
                 $this->errors = validation_errors();
@@ -376,7 +378,7 @@ class ParentEmail extends \MY_Controller {
         $this->email->from($this->from_email, $this->from);
         $this->email->to($this->send_to);
         $this->email->subject($this->theme);
-        $this->email->message(lang('Check_email_sending'));
+        $this->email->message(lang('Check email sending', 'cmsemail'));
 
         $this->email->send();
 

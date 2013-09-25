@@ -14,6 +14,8 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('user_manager');
 
         // only admin access
         $this->load->library('DX_Auth');
@@ -89,8 +91,8 @@ class Admin extends BaseAdminController {
             $config['full_tag_close'] = '</ul></div>';
             $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
             $config['controls_tag_close'] = '</ul></div>';
-            $config['next_link'] = 'Next&nbsp;&gt;';
-            $config['prev_link'] = '&lt;&nbsp;Prev';
+            $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
+            $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
             $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
             $config['cur_tag_close'] = '</span></li>';
             $config['prev_tag_open'] = '<li>';
@@ -167,10 +169,10 @@ class Admin extends BaseAdminController {
             $this->load->model('dx_auth/users', 'user2');
             $val = $this->form_validation;
 
-            $val->set_rules('username', lang('Login'), 'trim|required|xss_clean');
-            $val->set_rules('password', lang('Password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
-            $val->set_rules('password_conf', lang('Confirm the password'), 'matches[password]|required');
-            $val->set_rules('email', lang('E-Mail'), 'trim|required|xss_clean|valid_email');
+            $val->set_rules('username', lang('Login', 'user_manager'), 'trim|required|xss_clean');
+            $val->set_rules('password', lang('Password', 'user_manager'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
+            $val->set_rules('password_conf', lang('Confirm the password', 'user_manager'), 'matches[password]|required');
+            $val->set_rules('email', lang('E-Mail', 'user_manager'), 'trim|required|xss_clean|valid_email');
 
             ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
@@ -180,7 +182,7 @@ class Admin extends BaseAdminController {
 
             // check user mail
             if ($this->user2->check_email($email)->num_rows() > 0) {
-                showMessage(lang('User with the same e-mail has been registered'), '', 'r');
+                showMessage(lang('User with the same e-mail has been registered', 'user_manager'), '', 'r');
                 exit;
             }
 
@@ -200,11 +202,11 @@ class Admin extends BaseAdminController {
                 $this->user2->set_role($user_info['id'], $role);
 
                 $this->lib_admin->log(
-                        lang('Create a user or the username has been created') .
+                        lang('Create a user or the username has been created', 'user_manager') .
                         '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_info['id']) . '">' . $val->set_value('username') . '</a>'
                 );
 
-                showMessage(lang('Username has been created or user has been created'));
+                showMessage(lang('Username has been created or user has been created', 'user_manager'));
 
                 $action = $_POST['action'];
 
@@ -243,7 +245,7 @@ class Admin extends BaseAdminController {
                 ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
                 $this->users->ban_user($value);
                 $this->lib_admin->log(
-                        lang('Ban the user  or the user has been banned') .
+                        lang('Ban the user  or the user has been banned', 'user_manager') .
                         '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
                 );
             } else {
@@ -252,7 +254,7 @@ class Admin extends BaseAdminController {
                 ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
                 $this->users->unban_user($value);
                 $this->lib_admin->log(
-                        lang('The user has been unbanned ') .
+                        lang('The user has been unbanned ', 'user_manager') .
                         '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
                 );
             }
@@ -272,13 +274,17 @@ class Admin extends BaseAdminController {
             @$s_email = $this->input->get('s_email');
             $role = $this->input->get('role');
             $page = (int) $this->uri->segment(8);
+            
+            
+            $loale = BaseAdminController::getCurrentLocale();
 
-            $this->db->select("users.*", FALSE);
-            $this->db->select("shop_rbac_roles.name AS role_name", FALSE);
-            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);
-            $this->db->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id");
-            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id");
-            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->select(
+                            "users.*, 
+                        shop_rbac_roles.name AS role_name, 
+                        shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE)
+                    ->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id")
+                    ->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id")
+                    ->where('shop_rbac_roles_i18n.locale', $loale);
             if (!empty($s_data)) {
                 $this->db->like('username', $s_data);
             } elseif (!empty($s_email)) {
@@ -289,7 +295,7 @@ class Admin extends BaseAdminController {
             $query = $this->db->get('users');
 
             if ($query->num_rows() == 0) {
-                showMessage(lang('User has not been found '), '', 'r');
+                showMessage(lang('User has not been found ', 'user_manager'), '', 'r');
                 pjax('/admin/components/init_window/user_manager');
                 exit();
             } else {
@@ -306,7 +312,7 @@ class Admin extends BaseAdminController {
 
                 // recount users
                 if (count($users) == 0) {
-                    showMessage(lang('User has not been found '), '', 'r');
+                    showMessage(lang('User has not been found ', 'user_manager'), '', 'r');
                     pjax('/admin/components/init_window/user_manager');
                     exit();
                 }
@@ -318,7 +324,7 @@ class Admin extends BaseAdminController {
                 echo $rezult_table;
             }
         } else {
-            showMessage(lang('You do not pass search'), '', 'r');
+            showMessage(lang('You do not pass search', 'user_manager'), '', 'r');
             pjax('/admin/components/init_window/user_manager');
             exit();
         }
@@ -336,7 +342,7 @@ class Admin extends BaseAdminController {
         $user = $this->users->get_user_by_id($user_id);
 
         if ($user->num_rows() == 0) {
-            showMessage(lang('User has not been found '), '', 'r');
+            showMessage(lang('User has not been found ', 'user_manager'), '', 'r');
             exit;
         } else {
             $this->template->add_array($user->row_array());
@@ -359,22 +365,22 @@ class Admin extends BaseAdminController {
 
         $val = $this->form_validation;
 
-        $val->set_rules('username', lang('Login'), 'trim|xss_clean');
-        $val->set_rules('new_pass', lang('Password'), 'trim|max_length[' . $this->config->item('DX_login_max_length') . ']|xss_clean');
-        $val->set_rules('new_pass_conf', lang('Confirm the password'), 'matches[new_pass]');
+        $val->set_rules('username', lang('Login', 'user_manager'), 'trim|xss_clean');
+        $val->set_rules('new_pass', lang('Password', 'user_manager'), 'trim|max_length[' . $this->config->item('DX_login_max_length') . ']|xss_clean');
+        $val->set_rules('new_pass_conf', lang('Confirm the password', 'user_manager'), 'matches[new_pass]');
 
-        $val->set_rules('email', lang('E-Mail'), 'trim|required|xss_clean|valid_email');
+        $val->set_rules('email', lang('E-Mail', 'user_manager'), 'trim|required|xss_clean|valid_email');
 
         $user_data = $this->user2->get_user_field($user_id, array('username', 'email'))->row_array();
 
         if (strlen($this->input->post('new_pass')) !== 0) {
-            $val->set_rules('new_pass', lang('Password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
-            $val->set_rules('new_pass_conf', lang('Confirm the password'), 'matches[new_pass]|required');
+            $val->set_rules('new_pass', lang('Password', 'user_manager'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
+            $val->set_rules('new_pass_conf', lang('Confirm the password', 'user_manager'), 'matches[new_pass]|required');
         }
 
         if ($user_data['email'] != $this->input->post('email')) {
             if ($this->user2->check_email($this->input->post('email'))->num_rows() > 0) {
-                showMessage(lang('User with the same e-mail has been registered'), false, 'r');
+                showMessage(lang('User with the same e-mail has been registered', 'user_manager'), false, 'r');
                 exit;
             }
         }
@@ -402,12 +408,12 @@ class Admin extends BaseAdminController {
 
 
             $this->lib_admin->log(
-                    lang('Updated a user') .
+                    lang('Updated a user', 'user_manager') .
                     '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_id) . '">' . $data['username'] . '</a>'
             );
 
 
-            showMessage(lang('Changes have been saved'));
+            showMessage(lang('Changes have been saved', 'user_manager'));
 
             $action = $_POST['action'];
 
@@ -440,9 +446,9 @@ class Admin extends BaseAdminController {
 
         if ($_POST) {
 
-            $this->form_validation->set_rules('name', lang('Identifier'), 'required|trim|max_length[150]|min_length[2]|alpha_dash');
-            $this->form_validation->set_rules('alt_name', lang('Name'), 'required|trim|max_length[150]|min_length[2]');
-            $this->form_validation->set_rules('desc', lang('Description'), 'trim|max_length[300]|min_length[2]');
+            $this->form_validation->set_rules('name', lang('Identifier', 'user_manager'), 'required|trim|max_length[150]|min_length[2]|alpha_dash');
+            $this->form_validation->set_rules('alt_name', lang('Name', 'user_manager'), 'required|trim|max_length[150]|min_length[2]');
+            $this->form_validation->set_rules('desc', lang('Description', 'user_manager'), 'trim|max_length[300]|min_length[2]');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -457,8 +463,8 @@ class Admin extends BaseAdminController {
 
                 $this->db->insert('roles', $data);
 
-                $this->lib_admin->log(lang('Created a group') . $data['name']);
-                showMessage(lang('Group has been created'));
+                $this->lib_admin->log(lang('Created a group', 'user_manager') . $data['name']);
+                showMessage(lang('Group has been created', 'user_manager'));
 
                 $action = $_POST['action'];
 
@@ -476,7 +482,7 @@ class Admin extends BaseAdminController {
 
     public function deleteAll() {
         if (empty($_POST['ids'])) {
-            showMessage(lang('No data transmitted'), '', 'r');
+            showMessage(lang('No data transmitted', 'user_manager'), '', 'r');
             exit;
         }
         if ($_POST['ids'])
@@ -486,7 +492,7 @@ class Admin extends BaseAdminController {
             //cp_check_perm('user_delete');
             ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
             $this->users->delete_user($id);
-            $this->lib_admin->log(lang('Deleted a user') . $id);
+            $this->lib_admin->log(lang('Deleted a user', 'user_manager') . $id);
         }
     }
 
@@ -512,7 +518,7 @@ class Admin extends BaseAdminController {
             $this->db->delete('permissions');
         }
 
-        showMessage(lang('Changes have been saved'));
+        showMessage(lang('Changes have been saved', 'user_manager'));
     }
 
     function show_edit_prems_tpl($id) {

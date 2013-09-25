@@ -24,7 +24,7 @@
                 </div>
                 <span class="frame-variant-name-code">
                     <span class="frame-variant-code" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
-                        {lang('Артикул:','newLevel')}:
+                        {lang('Артикул','newLevel')}:
                         <span class="code">
                             {if $model->firstVariant->getNumber()}
                                 {trim($model->firstVariant->getNumber())}
@@ -84,7 +84,7 @@
                                     {if $oldoprice && !$hasDiscounts}
                                         <span class="price-discount">
                                             <span>
-                                                <span class="price priceOrigVariant">{echo $model->getOldPrice()}</span>
+                                                <span class="price priceOrigVariant">{echo intval($model->getOldPrice())}</span>
                                                 <span class="curr">{$CS}</span>
                                             </span>
                                         </span>
@@ -113,11 +113,11 @@
                                 <!-- Start button for main & variants prod -->
                                 <div class="funcs-buttons">
                                     {foreach $variants as $key => $productVariant}
+                                        {$discount = 0}
+                                        {if $hasDiscounts}
+                                            {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
+                                        {/if}
                                         {if $productVariant->getStock() > 0}
-                                            {$discount = 0}
-                                            {if $hasDiscounts}
-                                                {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
-                                            {/if}
                                             <div class="frame-count-buy variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                                 <div class="frame-count">
                                                     <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}" data-rel="frameplusminus">
@@ -138,6 +138,7 @@
                                                 </div>
                                                 <div class="btn-buy btn-buy-p">
                                                     <button class="btnBuy infoBut"
+                                                            disabled="disabled"
                                                             type="button"
                                                             data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"
@@ -174,10 +175,15 @@
                                                             data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"
                                                             data-varid="{echo $productVariant->getId()}"
+                                                            data-url="{echo shop_url('product/'.$model->getUrl())}"
+                                                            data-price="{echo $productVariant->toCurrency()}"
+                                                            data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             class="infoBut">
@@ -259,7 +265,7 @@
                 <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     <span class="photo-block">
                         <span class="helper"></span>
-                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
+                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" id="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
                         {$discount = 0}
                         {if $hasDiscounts}
                             {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency('origprice')*100}
@@ -269,19 +275,14 @@
                 </a>
                 <!-- End. Photo block-->
                 <!-- Star rating -->
-                {if $model->enable_comments && $Comments[$model->getId()] !== 0}
+                {if $model->enable_comments && intval($Comments[$model->getId()]) !== 0}
                     <div class="frame-star t-a_j">
                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
                         <div class="d-i_b">
-
-                            <span class="s-t">{lang('Оставить отзыв','newLevel')}</span>
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">
-
                                 {intval($Comments[$model->getId()])}
                                 {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
-
                             </button>
-
                         </div>
                     </div>
                 {else:}
@@ -352,184 +353,182 @@
         </div>
     </div>
     <!--Kit start-->
+    {if $model->getShopKits() && $model->getShopKits()->count() > 0}
+        <div class="container">
+            <section class="frame-complect horizontal-carousel">
+                <div class="title-complect">
+                    <div class="title">{lang('Специальное предложение! Купить установить и получить скидку на аксессуары!','newLevel')}</div>
+                </div>
+                <div class="carousel_js products-carousel complects-carousel">
+                    <div class="content-carousel">
+                        <ul class="items-complect items">
+                            {foreach $model->getShopKits() as $key => $kitProducts}
+                                <li>
+                                    <ul class="items items-bask row-kits">
+                                        <!-- main product -->
 
-    {if $model->getShopKits()}
-        {if $model->getShopKits()->count() > 0}
-            <div class="container">
-                <section class="frame-complect horizontal-carousel">
-                    <div class="title-complect">
-                        <div class="title">{lang('Специальное предложение! Купить установить и получить скидку на аксессуары!','newLevel')}</div>
-                    </div>
-                    <div class="carousel_js products-carousel complects-carousel">
-                        <div class="content-carousel">
-                            <ul class="items-complect items">
-                                {foreach $model->getShopKits() as $key => $kitProducts}
-                                    <li>
-                                        <ul class="items items-bask row-kits">
-                                            <!-- main product -->
+                                        <li>
+                                            <div class="frame-kit main-product">
+                                                <div class="frame-photo-title">
+                                                    <span class="photo-block">
+                                                        <span class="helper"></span>
+                                                        <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                        {promoLabel($kitProducts->getSProducts()->getAction(), $kitProducts->getSProducts()->getHot(), $kitProducts->getSProducts()->getHit(), 0)}
+                                                    </span>
+                                                    <span class="title">{echo ShopCore::encode($model->getName())}</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="frame-prices f-s_0">
+                                                        <!-- Start. Product price-->
+                                                        <span class="current-prices f-s_0">
+                                                            <span class="price-new">
+                                                                <span>
+                                                                    <span class="price priceVariant">{echo $kitProducts->getMainProductPrice()}</span>
+                                                                    <span class="curr">{$CS}</span>
+                                                                </span>
+                                                            </span>
+                                                            {if $NextCSIdCond}
+                                                                <span class="price-add">
+                                                                    <span>
 
+                                                                        (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice($NextCSId)}</span>
+
+                                                                        <span class="curr-add">{$NextCS}</span>)
+                                                                    </span>
+                                                                </span>
+                                                            {/if}
+                                                        </span>
+                                                        <!-- End. Product price-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- /end main product -->
+                                        {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
+                                            <!-- additional product -->
                                             <li>
-                                                <div class="frame-kit main-product">
-                                                    <div class="frame-photo-title">
+                                                <div class="next-kit">+</div>
+                                                <div class="frame-kit">
+                                                    <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="frame-photo-title">
                                                         <span class="photo-block">
                                                             <span class="helper"></span>
-                                                            <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
-                                                            {promoLabel($kitProducts->getSProducts()->getAction(), $kitProducts->getSProducts()->getHot(), $kitProducts->getSProducts()->getHit(), 0)}
+                                                            <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+
+                                                            {$discount = $kitProduct->getDiscount()}
+
+                                                            {promoLabel($kitProduct->getSProducts()->getAction(), $kitProduct->getSProducts()->getHot(), $kitProduct->getSProducts()->getHit(), $discount)}
                                                         </span>
-                                                        <span class="title">{echo ShopCore::encode($model->getName())}</span>
-                                                    </div>
+                                                        <span class="title">{echo ShopCore::encode($kitProduct->getSProducts()->getName())}</span>
+                                                    </a>
                                                     <div class="description">
                                                         <div class="frame-prices f-s_0">
+                                                            <!-- Check for discount-->
+                                                            {if $kitProduct->getDiscount()}
+                                                                <span class="price-discount">
+                                                                    <span>
+                                                                        <span class="price priceOrigVariant">{echo $kitProduct->getKitProductPrice()}</span>
+                                                                        <span class="curr">{$CS}</span>
+                                                                    </span>
+                                                                </span>
+                                                            {/if}
                                                             <!-- Start. Product price-->
+
                                                             <span class="current-prices f-s_0">
                                                                 <span class="price-new">
                                                                     <span>
-                                                                        <span class="price priceVariant">{echo $kitProducts->getMainProductPrice()}</span>
+                                                                        <span class="price priceVariant">{echo $kitProduct->getKitNewPrice()}</span>
                                                                         <span class="curr">{$CS}</span>
                                                                     </span>
                                                                 </span>
                                                                 {if $NextCSIdCond}
                                                                     <span class="price-add">
                                                                         <span>
-
-                                                                            (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice($NextCSId)}</span>
-
+                                                                            (<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
                                                                             <span class="curr-add">{$NextCS}</span>)
                                                                         </span>
                                                                     </span>
                                                                 {/if}
                                                             </span>
+
                                                             <!-- End. Product price-->
                                                         </div>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <!-- /end main product -->
-                                            {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
-                                                <!-- additional product -->
-                                                <li>
-                                                    <div class="next-kit">+</div>
-                                                    <div class="frame-kit">
-                                                        <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="frame-photo-title">
-                                                            <span class="photo-block">
-                                                                <span class="helper"></span>
-                                                                <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
-
-                                                                {$discount = $kitProduct->getDiscount()}
-
-                                                                {promoLabel($kitProduct->getSProducts()->getAction(), $kitProduct->getSProducts()->getHot(), $kitProduct->getSProducts()->getHit(), $discount)}
-                                                            </span>
-                                                            <span class="title">{echo ShopCore::encode($kitProduct->getSProducts()->getName())}</span>
-                                                        </a>
-                                                        <div class="description">
-                                                            <div class="frame-prices f-s_0">
-                                                                <!-- Check for discount-->
-                                                                {if $kitProduct->getDiscount()}
-                                                                    <span class="price-discount">
-                                                                        <span>
-                                                                            <span class="price priceOrigVariant">{echo $kitProduct->getKitProductPrice()}</span>
-                                                                            <span class="curr">{$CS}</span>
-                                                                        </span>
-                                                                    </span>
-                                                                {/if}
-                                                                <!-- Start. Product price-->
-
-                                                                <span class="current-prices f-s_0">
-                                                                    <span class="price-new">
-                                                                        <span>
-                                                                            <span class="price priceVariant">{echo $kitProduct->getKitNewPrice()}</span>
-                                                                            <span class="curr">{$CS}</span>
-                                                                        </span>
-                                                                    </span>
-                                                                    {if $NextCSIdCond}
-                                                                        <span class="price-add">
-                                                                            <span>
-                                                                                (<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
-                                                                                <span class="curr-add">{$NextCS}</span>)
-                                                                            </span>
-                                                                        </span>
-                                                                    {/if}
-                                                                </span>
-
-                                                                <!-- End. Product price-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <!-- /additional product -->
-                                            {/foreach}
-                                        </ul>
-                                        <!-- total -->
-                                        <div class="complect-gen-sum">
-                                            <div class="gen-sum-kit">=</div>
-                                            <div class="frame-gen-price-buy-complect">
-                                                <div class="frame-prices f-s_0">
-                                                    <span class="price-discount">
+                                            <!-- /additional product -->
+                                        {/foreach}
+                                    </ul>
+                                    <!-- total -->
+                                    <div class="complect-gen-sum">
+                                        <div class="gen-sum-kit">=</div>
+                                        <div class="frame-gen-price-buy-complect">
+                                            <div class="frame-prices f-s_0">
+                                                <span class="price-discount">
+                                                    <span>
+                                                        <span class="price">{echo $kitProducts->getTotalPriceOld()}</span>
+                                                        <span class="curr">{$CS}</span>
+                                                    </span>
+                                                </span>
+                                                <span class="current-prices f-s_0">
+                                                    <span class="price-new">
                                                         <span>
-                                                            <span class="price">{echo $kitProducts->getTotalPriceOld()}</span>
+                                                            <span class="price">{echo $kitProducts->getTotalPrice()}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
-                                                    <span class="current-prices f-s_0">
-                                                        <span class="price-new">
+                                                    {if $NextCSIdCond}
+                                                        <span class="price-add">
                                                             <span>
-                                                                <span class="price">{echo $kitProducts->getTotalPrice()}</span>
-                                                                <span class="curr">{$CS}</span>
+                                                                (<span class="price">{echo $kitProducts->getTotalPrice($NextCSId)}</span>
+                                                                <span class="curr-add">{$NextCS}</span>)
                                                             </span>
                                                         </span>
-                                                        {if $NextCSIdCond}
-                                                            <span class="price-add">
-                                                                <span>
-                                                                    (<span class="price">{echo $kitProducts->getTotalPrice($NextCSId)}</span>
-                                                                    <span class="curr-add">{$NextCS}</span>)
-                                                                </span>
-                                                            </span>
-                                                        {/if}
-                                                    </span>
-                                                </div>
-                                                <div class="btn-buy">
-                                                    <button class="btnBuy" type="button"
-                                                            data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
-                                                            data-price="{echo $kitProducts->getTotalPrice()}"
-                                                            data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
-                                                            data-addprice="{if $NextCSIdCond}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
-                                                            data-addprices="{if $NextCSIdCond}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
-                                                            data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
-                                                            data-origprice='{echo $kitProducts->getTotalPriceOld()}'
-                                                            data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
-                                                            data-kit="true"
-                                                            data-kitId="{echo $kitProducts->getId()}"
-                                                            data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
-                                                            data-url='{echo json_encode($kitProducts->getUrls())}'
-                                                            data-img='{echo json_encode($kitProducts->getImgs())}'
-                                                            data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
-                                                            data-prodstatus='{json_encode($kitProducts->getKitStatus())}'
-                                                            >
-                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                        <span class="text-el">{lang('Купить')}</span>
-                                                    </button>
-                                                </div>
+                                                    {/if}
+                                                </span>
+                                            </div>
+                                            <div class="btn-buy">
+                                                <button class="btnBuy" type="button"
+                                                        data-prodid="{echo implode(',', $kitProducts->getProductIdCart())}"
+                                                        data-price="{echo $kitProducts->getTotalPrice()}"
+                                                        data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
+                                                        data-addprice="{if $NextCSIdCond}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
+                                                        data-addprices="{if $NextCSIdCond}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
+                                                        data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
+                                                        data-origprice='{echo $kitProducts->getTotalPriceOld()}'
+                                                        data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
+                                                        data-kit="true"
+                                                        data-kitId="{echo $kitProducts->getId()}"
+                                                        data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
+                                                        data-url='{echo json_encode($kitProducts->getUrls())}'
+                                                        data-img='{echo json_encode($kitProducts->getImgs())}'
+                                                        data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
+                                                        data-count='1'
+                                                        data-prodstatus='{json_encode($kitProducts->getKitStatus())}'
+                                                        >
+                                                    <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                    <span class="text-el">{lang('Купить')}</span>
+                                                </button>
                                             </div>
                                         </div>
-                                        <!-- /total -->
-                                    </li>
-                                {/foreach}
-                            </ul>
-                        </div>
-                        <!-- Start. Buttons for next/prev kit-->
-                        <div class="group-button-carousel">
-                            <button type="button" class="prev arrow">
-                                <span class="icon_arrow_p"></span>
-                            </button>
-                            <button type="button" class="next arrow">
-                                <span class="icon_arrow_n"></span>
-                            </button>
-                        </div>
-                        <!-- Start. Buttons for next/prev kit-->
+                                    </div>
+                                    <!-- /total -->
+                                </li>
+                            {/foreach}
+                        </ul>
                     </div>
-                </section>
-            </div>
-        {/if}
+                    <!-- Start. Buttons for next/prev kit-->
+                    <div class="group-button-carousel">
+                        <button type="button" class="prev arrow">
+                            <span class="icon_arrow_p"></span>
+                        </button>
+                        <button type="button" class="next arrow">
+                            <span class="icon_arrow_n"></span>
+                        </button>
+                    </div>
+                    <!-- Start. Buttons for next/prev kit-->
+                </div>
+            </section>
+        </div>
     {/if}
     <!--        End. Buy kits-->
     <div class="container f-s_0">
@@ -555,7 +554,7 @@
                         <span class="icon_comment-tab"></span>
                         <span class="text-el">
                             <span id="cc">
-                                {if $Comments[$model->getId()][0] !== '0'}
+                                {if intval($Comments[$model->getId()][0]) !== 0}
                                     {echo intval($Comments[$model->getId()])}
                                     {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
                                 {else:}
