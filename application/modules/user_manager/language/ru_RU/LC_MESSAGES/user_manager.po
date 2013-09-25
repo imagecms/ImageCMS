@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-19 13:07+0300\n"
-"PO-Revision-Date: 2013-09-19 13:07+0300\n"
+"PO-Revision-Date: 2013-09-25 12:36+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -33,7 +33,7 @@ msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "User create"
-msgstr "Пользователь создан"
+msgstr "Создать пользователя"
 
 #: /var/www/image.loc/_temp2.php:17
 msgid "Create a Group"
@@ -164,7 +164,6 @@ msgid "New password"
 msgstr "Новый пароль"
 
 #: /var/www/image.loc/_temp2.php:53
-#, fuzzy
 msgid "Password confirm"
 msgstr "Подтвердить пароль"
 

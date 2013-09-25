@@ -761,8 +761,8 @@ CREATE TABLE IF NOT EXISTS `menus` (
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
-(1, 'main_menu', 'Главное меню', 'main_menu', 1, '', '2012-11-12 21:57:53'),
-(4, 'bottom_menu', 'Нижнее меню', '', 0, '', '2010-12-07 13:56:59');
+(1, 'main_menu', 'Главное меню', 'main_menu', 1, 'Главное меню шаблона', '2012-11-12 21:57:53'),
+(4, 'bottom_menu', 'Нижнее меню', '', 0, 'Нижнее меню шаблона', '2010-12-07 13:56:59');
 
 -- --------------------------------------------------------
 
@@ -985,6 +985,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `text_editor` varchar(30) NOT NULL,
   `siteinfo` text NOT NULL,
   `update` text,
+  `backup` text,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
