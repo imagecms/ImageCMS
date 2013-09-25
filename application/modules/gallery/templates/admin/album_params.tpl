@@ -31,7 +31,7 @@
                     <div class="control-group">
                         <label class="control-label" for="name">{lang("Name", 'gallery')}:</label>
                         <div class="controls">
-                            <input type="text" name="name" id="name" value="{htmlspecialchars($album.name)}" required=""/>
+                            <input type="text" name="name" id="name" value="{htmlspecialchars($album.name)}"/>
                         </div>
                     </div>
                     <div class="control-group">
