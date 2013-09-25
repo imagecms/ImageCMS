@@ -25,7 +25,7 @@ $(document).ready(function() {
         var partners = new Array();
         $('.regionName').each(function() {
             if ($(this).html() && $(this).html() != '--' + lang('Not choose') + '--') {
-                partners.push($(this).html());
+                partners.push($(this).data('partnercode'));
             }
 
         });
@@ -33,12 +33,12 @@ $(document).ready(function() {
         current.removeClass('partnersSelected');
         $('.partnersSelected option:selected').each(function() {
             if ($(this).text() && $(this).text() != '--' + lang('Not choose') + '--') {
-                partners.push($(this).text());
+                partners.push($(this).val());
             }
         });
         current.addClass('partnersSelected');
 
-        var inArr = $.inArray(current.find('option:selected').text(), partners);
+        var inArr = $.inArray(current.find('option:selected').val(), partners);
         if (inArr >= 0) {
             current.val('false')
             showMessage(lang('Error'), lang('Can not create a price twice for partner'));

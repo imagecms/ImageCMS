@@ -33,7 +33,7 @@ class Admin extends \BaseAdminController {
                     ->setData(array('saveSearchResults' => $saveSearchResults))
                     ->registerStyle('style')
                     ->registerStyle('nvd3/nv.d3')
-                    ->registerScript('main', FALSE, 'after')
+                    ->registerScript('scripts', FALSE, 'after')
                     ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
                     ->registerScript('nvd3/nv.d3', FALSE, 'before')
                     ->renderAdmin('main', true);
