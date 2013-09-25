@@ -354,7 +354,9 @@ class Components extends BaseAdminController {
 
         $info_file = realpath(APPPATH . 'modules/' . $mod_name) . '/module_info.php';
         if (file_exists($info_file)) {
-            include ($info_file);
+            $lang = new MY_Lang();
+            $lang->load($module);
+            include($info_file);
             return $com_info;
         } else {
             return FALSE;

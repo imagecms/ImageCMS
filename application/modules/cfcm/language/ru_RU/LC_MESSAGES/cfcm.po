@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 12:08+0300\n"
-"PO-Revision-Date: 2013-09-25 10:32+0200\n"
-"Last-Translator: Mark <sheme4ko@mail.ru>\n"
+"POT-Creation-Date: 2013-09-25 11:59+0300\n"
+"PO-Revision-Date: 2013-09-25 11:59+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
 "MIME-Version: 1.0\n"
@@ -16,299 +16,311 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: .\n"
 
-# my comment
-#: /var/www/image.loc/_temp2.php:10
-#, fuzzy
-msgid "Fields groupssssssssss sssssssssssssssssssssssssss"
+#: /var/www/image.loc/_tempLangs.php:10
+msgid "Fields groups"
 msgstr "Группы полей"
 
-#: /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_tempLangs.php:11
 msgid "Add field"
 msgstr "Добавить поле"
 
-#: /var/www/image.loc/_temp2.php:12
+#: /var/www/image.loc/_tempLangs.php:12
 msgid "Without catagory"
 msgstr "Без категории"
 
-# your comment
-#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_tempLangs.php:13
 msgid "List of additional fields is empty"
 msgstr "Список дополнительных полей пуст"
 
-#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_tempLangs.php:14
 msgid "Create group"
 msgstr "Создать группу"
 
-#: /var/www/image.loc/_temp2.php:15
+#: /var/www/image.loc/_tempLangs.php:15
 msgid "Field groups"
 msgstr "Группы полей"
 
-#: /var/www/image.loc/_temp2.php:16
-msgid "Without group"
-msgstr "Без группы"
-
-#: /var/www/image.loc/_temp2.php:17 /var/www/image.loc/_temp2.php:56
+#: /var/www/image.loc/_tempLangs.php:16
+#: /var/www/image.loc/_tempLangs.php:56
 msgid "Fields"
 msgstr "Поля"
 
-#: /var/www/image.loc/_temp2.php:18
+#: /var/www/image.loc/_tempLangs.php:17
 msgid "Delete group"
 msgstr "Удалить группу"
 
-#: /var/www/image.loc/_temp2.php:19 /var/www/image.loc/_temp2.php:47
-#, fuzzy
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:47
 msgid "Field constructor"
 msgstr "Конструктор полей"
 
-#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_tempLangs.php:19
 msgid "All modules"
 msgstr "Все модули"
 
-#: /var/www/image.loc/_temp2.php:21 /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:38 /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:39
 msgid "Additional fields"
 msgstr "Дополнительные поля"
 
-#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_tempLangs.php:21
 msgid "Install modules"
 msgstr "Установите модули"
 
-#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_tempLangs.php:23
 msgid "Label"
 msgstr "Метка"
 
-#: /var/www/image.loc/_temp2.php:25 /var/www/image.loc/_temp2.php:31
-#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:54
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_tempLangs.php:25
 msgid "Type"
 msgstr "Тип"
 
-#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_tempLangs.php:26
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:33 /var/www/image.loc/_temp2.php:34
-#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_tempLangs.php:27
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:58
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_tempLangs.php:28
 msgid "Editing"
 msgstr "Редактирование"
 
-#: /var/www/image.loc/_temp2.php:32 /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "No groups"
+msgstr "Список груп пуст"
+
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:55
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_temp2.php:35 /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:48
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_temp2.php:36 /var/www/image.loc/_temp2.php:49
+#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:49
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_tempLangs.php:37
 msgid "Information"
 msgstr "Информация"
 
-#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_tempLangs.php:40
 msgid "Select an image"
 msgstr "Выберите изображение"
 
-#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_tempLangs.php:41
 msgid "Select a file"
 msgstr "Выберите файл"
 
-#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_tempLangs.php:42
 msgid "Field Constructor"
 msgstr "Конструктор поля"
 
-#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_tempLangs.php:43
 msgid "Field list"
 msgstr "Список полей"
 
-#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_tempLangs.php:44
 msgid "Create a field"
 msgstr "Создать поле"
 
-#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_tempLangs.php:45
 msgid "Group list"
 msgstr "Список групп"
 
-#: /var/www/image.loc/_temp2.php:46 /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:60
 msgid "Create a group"
 msgstr "Создать группу"
 
-#: /var/www/image.loc/_temp2.php:50
+#: /var/www/image.loc/_tempLangs.php:50
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_tempLangs.php:51
 msgid "Russian"
 msgstr "Русский"
 
-#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_tempLangs.php:52
 msgid "English"
 msgstr "Английский"
 
-#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_tempLangs.php:53
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_tempLangs.php:57
 msgid "Edit"
 msgstr "Редактировать"
 
 # а
-#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_tempLangs.php:59
 msgid "Empty group list or group list is empty"
 msgstr "Пустой список группы или группы список пуст"
 
 # а
-#: ../../..//cfcm_forms.php:29
+#: cfcm_forms.php:31
 msgid "To name will be prefixed with"
 msgstr "К имени будет добавлен префикс "
 
-#: ../../..//cfcm_forms.php:40
+#: cfcm_forms.php:42
 msgid "Participate in search"
 msgstr "Участвует в поиске"
 
-#: ../../..//cfcm_forms.php:50 ../../..//cfcm_forms.php:149
+#: cfcm_forms.php:52
+#: cfcm_forms.php:151
 msgid "Group"
 msgstr "Группа"
 
-#: ../../..//cfcm_forms.php:77
+#: cfcm_forms.php:79
 msgid "The initial value"
 msgstr "Начальное значение"
 
-#: ../../..//cfcm_forms.php:81
+#: cfcm_forms.php:83
 msgid "Hint"
 msgstr "Подсказка"
 
-#: ../../..//cfcm_forms.php:82
+#: cfcm_forms.php:84
 msgid "Field description "
 msgstr "Описание поля "
 
-#: ../../..//cfcm_forms.php:86
+#: cfcm_forms.php:88
 msgid "Required field"
 msgstr "Обязательное поле"
 
-#: ../../..//cfcm_forms.php:96
+#: cfcm_forms.php:98
 msgid "Specify the possible values in the new row"
 msgstr "Укажите возможные значения в новой строке"
 
-#: ../../..//cfcm_forms.php:118
+#: cfcm_forms.php:120
 msgid "Enable images viewing"
 msgstr "Включить просмотр изображений"
 
-#: ../../..//cfcm_forms.php:125
+#: cfcm_forms.php:127
 msgid "Enable file viewing"
 msgstr "Включить просмотр файлов"
 
-#: ../../..//cfcm_forms.php:144
+#: cfcm_forms.php:146
 msgid "Check conditions"
 msgstr "Условия проверки"
 
-#: ../../..//cfcm_forms.php:145
+#: cfcm_forms.php:147
 msgid "For example"
 msgstr "Например"
 
-#: ../../..//admin.php:60
+#: admin.php:60
 msgid "Protection code"
 msgstr "Защитный код"
 
-#: ../../..//admin.php:96
+#: admin.php:96
 msgid "Specify the field name"
 msgstr "Укажите имя поля"
 
-#: ../../..//admin.php:100
+#: admin.php:100
 msgid "Specify <b>Label</b> field"
 msgstr "Укажите <b> Метка</ B> поле"
 
-#: ../../..//admin.php:104
+#: admin.php:104
 msgid "Only Latin characters"
 msgstr "Только латинские буквы"
 
-#: ../../..//admin.php:117
+#: admin.php:117
 msgid "Select another  name"
 msgstr "Выберите другое имя"
 
-#: ../../..//admin.php:138
+#: admin.php:138
 msgid "Field created"
 msgstr "Поле создано"
 
-#: ../../..//admin.php:160
+#: admin.php:160
 msgid "Field editing"
 msgstr "Редактирования поля"
 
-#: ../../..//admin.php:178 ../../..//admin.php:266
+#: admin.php:178
+#: admin.php:266
 msgid "Field has been updated"
 msgstr "Поле обновлено"
 
-#: ../../..//admin.php:212
+#: admin.php:212
 msgid "Field deleted successfuly"
 msgstr "Поле успешно удалено"
 
-#: ../../..//admin.php:227
+#: admin.php:227
 msgid "Field editing "
 msgstr "Редактирования поля "
 
-#: ../../..//admin.php:282
+#: admin.php:284
 msgid "Field has not been found"
 msgstr "Поле не найдено"
 
-#: ../../..//admin.php:288
+#: admin.php:290
 msgid "Creating a group"
 msgstr "Создание группы"
 
-#: ../../..//admin.php:292
+#: admin.php:294
 msgid "Specify the group name"
 msgstr "Укажите название группы"
 
-#: ../../..//admin.php:298
+#: admin.php:300
 msgid "Group has been created"
 msgstr "Группа была создана"
 
-#: ../../..//admin.php:323
+#: admin.php:325
 msgid "Group has not been found"
 msgstr "Группа не была найдена"
 
-#: ../../..//admin.php:329
+#: admin.php:331
 msgid "ID group editing"
 msgstr "Редактирование группы ID"
 
-#: ../../..//admin.php:338
+#: admin.php:340
 msgid "Group has been updated"
 msgstr "Группа обновлена"
 
-#: ../../..//admin.php:372
+#: admin.php:374
 msgid "Group deleted successfuly"
 msgstr "Группа успешно удалена"
 
-#: ../../..//admin.php:453
+#: admin.php:455
 msgid "Group without any fields"
 msgstr "Группа без полей"
 
-#: ../../..//admin.php:458
+#: admin.php:460
 msgid "For category"
 msgstr "Для категории"
 
-#: ../../..//admin.php:458
+#: admin.php:460
 msgid "Field group has not been selected"
 msgstr "Группа полей не выбрана"
 
-#: ../../..//module_info.php:4
+#: module_info.php:4
 msgid "Fields designer"
 msgstr "Дизайнер полей"
 
-#: ../../..//module_info.php:5
+#: module_info.php:5
 msgid "Additional fields designer for pages and categories"
 msgstr "Дизайнер  дополнительных полей для  страницы и категории"
+
+#~ msgid "Without group"
+#~ msgstr "Без группы"
 
 #~ msgid "Have been saved"
 #~ msgstr "Сохранены"

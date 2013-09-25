@@ -44,7 +44,7 @@
                                 </span>
                             </th>
                             <th>{lang('Old URL', 'trash')}</th>
-                            <th>{lang('Redirect type)', 'trash'}</th>
+                            <th>{lang('Redirect type', 'trash')}</th>
                             <th>{lang('Redirect kind', 'trash')}</th>
                             <th>{lang('Redirect', 'trash')}</th>
                         </tr>    

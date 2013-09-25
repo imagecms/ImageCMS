@@ -18,7 +18,11 @@ class Admin extends \BaseAdminController {
 
     public function __construct() {
 
-        $b = new \libraries\Backup();
+       
+//        $fp = \CMSFactory\assetManager::create()->checkTemplatePath();
+//        echo $fp;
+//        exit;
+//        
 
         parent::__construct();
         $lang = new MY_Lang();
@@ -26,19 +30,16 @@ class Admin extends \BaseAdminController {
         /** Load model * */
         $this->load->model('stats_model');
 
-        $this->mainTpl = \CMSFactory\assetManager::create()
-                ->registerScript('scripts');
-
         /** Variable for main.tpl wich contain value of setting "save_search_result" * */
         $saveSearchResults = $this->getSetting('save_search_results');
 
         /** Show main.tpl with scripts, styles and data * */
         if ($this->input->get('notLoadMain') != 'true') {
-            $this->mainTpl
+            \CMSFactory\assetManager::create()
                     ->setData(array('saveSearchResults' => $saveSearchResults))
                     ->registerStyle('style')
                     ->registerStyle('nvd3/nv.d3')
-                    ->registerScript('main', FALSE, 'after')
+                    ->registerScript('scripts', FALSE, 'after')
                     ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
                     ->registerScript('nvd3/nv.d3', FALSE, 'before')
                     ->renderAdmin('main', true);
@@ -83,7 +84,7 @@ class Admin extends \BaseAdminController {
     }
 
     /**
-     * Some templates may have their own data - this method is used to obtain them
+     * Some templates may have their own data - this method obtain them
      * @param string $folder
      * @param string $template
      * @return array associative array with current template data
