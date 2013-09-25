@@ -60,7 +60,7 @@ msgstr "Категории"
 #: /var/www/image.loc/_tempLangs.php:15
 #: /var/www/image.loc/_tempLangs.php:19
 msgid "Regular or usual pages"
-msgstr "Звичайні сторінки"
+msgstr "Обычные страницы"
 
 #: /var/www/image.loc/_tempLangs.php:16
 msgid "Page change frequency"

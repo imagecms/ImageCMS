@@ -142,7 +142,7 @@
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label" for="Img0">
-                                               {lang("Image", "menu")}::
+                                               {lang("Image", "menu")}:
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
