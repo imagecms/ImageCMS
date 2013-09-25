@@ -127,7 +127,7 @@ class MY_Lang extends MX_Lang {
             $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
             $lang = $languageFront[1];
         }
-//        $lang = 'de_DE';
+//        $lang = 'ru_RU';
 
 //            var_dumps($module);
         if (strstr($_SERVER['PATH_INFO'], 'install'))
