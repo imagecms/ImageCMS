@@ -736,11 +736,11 @@ CREATE TABLE IF NOT EXISTS `menus` (
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
-(1, 'main_menu', 'Главное меню', 'shop_menu', 0, '', '2012-02-07 15:34:41'),
-(4, 'top_menu', 'Top menu', 'top_menu', 0, 'Menu at the top of template', '2012-05-11 14:53:24'),
-(5, 'footer_menu', 'Footer menu', 'footer_menu', 0, '', '2012-05-25 11:43:06'),
-(11, 'left_menu', 'left_menu', 'left_menu', 1, 'left_menu', '2013-03-18 16:13:38'),
-(12, 'footer_menu_mobile', 'footer_menu_mobile', '', 0, 'footer mobile menu', '2013-09-19 17:42:17');
+(1, 'main_menu', 'Главное меню', 'shop_menu', 0, 'Главное меню шаблона', '2012-02-07 15:34:41'),
+(4, 'top_menu', 'Top menu', 'top_menu', 0, 'Меню в верхней части шаблона', '2012-05-11 14:53:24'),
+(5, 'footer_menu', 'Footer menu', 'footer_menu', 0, 'Нижнее меню шаблона', '2012-05-25 11:43:06'),
+(11, 'left_menu', 'left_menu', 'left_menu', 1, 'Меню в левой части шаблона', '2013-03-18 16:13:38'),
+(12, 'footer_menu_mobile', 'footer_menu_mobile', '', 0, 'Меню нижней части мобильной версии', '2013-09-19 17:42:17');
 
 -- --------------------------------------------------------
 
