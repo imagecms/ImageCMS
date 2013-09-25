@@ -4756,7 +4756,7 @@ msgstr "Дата"
 
 #: /var/www/image.loc/_tempLangs.php:84
 msgid "Action"
-msgstr "Акцыя"
+msgstr "Акция"
 
 #: /var/www/image.loc/_tempLangs.php:85
 msgid "Language edit"
