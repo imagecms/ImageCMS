@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 17:12+0300\n"
+"POT-Creation-Date: 2013-09-25 14:46+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Mark <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -16,111 +16,122 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_temp2.php:7
+#: /var/www/image.loc/_tempLangs.php:7
 msgid "Redirect links removing"
 msgstr "Удаление ссылки редиректа"
 
-#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_tempLangs.php:8
 msgid "Remove links?"
 msgstr "Удалить ссылки?"
 
-#: /var/www/image.loc/_temp2.php:9 /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_tempLangs.php:9
+#: /var/www/image.loc/_tempLangs.php:14
 msgid "Redirect"
 msgstr "Редирект"
 
-#: /var/www/image.loc/_temp2.php:10
+#: /var/www/image.loc/_tempLangs.php:10
 msgid "Create redirect"
 msgstr "Создать редирект"
 
-#: /var/www/image.loc/_temp2.php:11 /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_tempLangs.php:11
+#: /var/www/image.loc/_tempLangs.php:27
 msgid "Old URL"
 msgstr "Старый URL"
 
-#: /var/www/image.loc/_temp2.php:12
-msgid "Redirect type)"
+#: /var/www/image.loc/_tempLangs.php:12
+msgid "Redirect type"
 msgstr "Тип редиректа"
 
-#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_tempLangs.php:13
 msgid "Redirect kind"
 msgstr "Вид редиректа"
 
-#: /var/www/image.loc/_temp2.php:15
+#: /var/www/image.loc/_tempLangs.php:15
 msgid "New redirect creation"
 msgstr "Создание нового редиректа"
 
-#: /var/www/image.loc/_temp2.php:16
+#: /var/www/image.loc/_tempLangs.php:16
 msgid "New trash data"
 msgstr "Новые данные"
 
-#: /var/www/image.loc/_temp2.php:17 /var/www/image.loc/_temp2.php:21
-#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_tempLangs.php:17
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:32
 msgid "Type"
 msgstr "Тип"
 
-#: /var/www/image.loc/_temp2.php:18 /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:29 /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:34
 msgid "Product"
 msgstr "Продукт"
 
-#: /var/www/image.loc/_temp2.php:19 /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_tempLangs.php:19
+#: /var/www/image.loc/_tempLangs.php:30
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_temp2.php:20 /var/www/image.loc/_temp2.php:24
-#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:31
 msgid "Category of Base"
 msgstr "Категория Базы"
 
-#: /var/www/image.loc/_temp2.php:23 /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:35
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_tempLangs.php:25
 msgid "Link editing"
 msgstr "Редактирования ссылки"
 
-#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_tempLangs.php:26
 msgid "Link edit"
 msgstr "Редактирования ссылки"
 
-#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_tempLangs.php:33
 msgid "Redirect Url"
 msgstr "URL редиректа"
 
-#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_tempLangs.php:36
 msgid "Categories of Base"
 msgstr "Категории базы"
 
-#: /var/www/image.loc/_temp2.php:37 /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:40
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_tempLangs.php:38
 msgid "Cancel"
 msgstr "Отменить"
 
-#: /var/www/image.loc/_temp2.php:39 /var/www/image.loc/_temp2.php:42
-#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:45
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_tempLangs.php:41
 msgid "Editing"
 msgstr "Редактирование"
 
-#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_tempLangs.php:43
 msgid "Create"
 msgstr "Создать"
 
-#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_tempLangs.php:44
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
-#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_tempLangs.php:46
 msgid "Save"
-msgstr "Создать"
+msgstr "Сохранить"
 
-#: /var/www/image.loc/_temp2.php:47
+#: /var/www/image.loc/_tempLangs.php:47
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
@@ -130,12 +141,8 @@ msgstr "Модуль редирект с удаленных товаров"
 
 # хз
 #: ../../../module_info.php:8
-msgid ""
-"Module for creating a link from remote product to category, product, "
-"article, 404, or another site"
-msgstr ""
-"Модуль для создания связи с удаленного товара к категорие, товару, странице, "
-"404 или другому сайту"
+msgid "Module for creating a link from remote product to category, product, article, 404, or another site"
+msgstr "Модуль для создания связи с удаленного товара к категорие, товару, странице, 404 или другому сайту"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

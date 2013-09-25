@@ -1,2 +1,2 @@
-<script> langs['text'] = "{lang('text33333', 'newLevel')}";
+<script> langs['tyyyyyyy'] = "{lang('tyyyyyyy', 'newLevel')}";
  </script>
