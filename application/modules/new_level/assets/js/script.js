@@ -83,7 +83,7 @@ $(document).ready(function() {
         $('.addColumnContainer').css('display', 'block');
     });
 
-    $('.themeSave').on('click', function() {
+    $('.themeSave').die().live('click', function() {
         var theme = $('#template').val();
         $.ajax({
             type: 'POST',
