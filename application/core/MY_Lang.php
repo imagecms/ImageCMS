@@ -42,6 +42,16 @@ class MY_Lang extends MX_Lang {
      */
     function __construct() {
         parent::__construct();
+        if (!extension_loaded('gettext')) {
+            include_once('gettext/gettext.inc');
+            $_SESSION['GETTEXT_EXIST'] = FALSE;
+            //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
+            //      echo "gettext is not installed\n";
+        } else {
+            $_SESSION['GETTEXT_EXIST'] = TRUE;
+            //      echo "gettext is supported\n";
+            //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
+        }
     }
 
     public function getLangCode($language) {
@@ -82,8 +92,8 @@ class MY_Lang extends MX_Lang {
 
         unset($sett);
 
-        $this->ci->load->library('gettext_php/gettext_extension', array());
-        $this->gettext = & $this->ci->gettext_extension->getInstance();
+//        $this->ci->load->library('gettext_php/gettext_extension', array());
+//        $this->gettext = & $this->ci->gettext_extension->getInstance();
     }
 
     private function _language() {
@@ -132,17 +142,47 @@ class MY_Lang extends MX_Lang {
                 $lang = $languageFront[1];
             }
         }
+//        $lang = 'ru_RU';
 
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
-            $this->gettext->addDomain('application/language/main/', 'main', $lang);
-            $this->gettext->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
+            $this->addDomain('application/language/main/', 'main', $lang);
+            $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
         } else {
             if ($module == 'admin')
-                $this->gettext->addDomain('application/language/main/', 'main', $lang);
+                $this->addDomain('application/language/main/', 'main', $lang);
 
-            $this->gettext->addDomain('application/modules/' . $module . '/language', $module, $lang);
+            $this->addDomain('application/modules/' . $module . '/language', $module, $lang);
         }
+    }
+
+    /**
+     * @param String $directory
+     * @param String $domain
+     * @param String $locale
+     * @return mixed|void
+     */
+    public function addDomain($directory, $domain, $locale) {
+        if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
+            // Set current locale
+            setlocale(LC_ALL, '');
+        }
+        putenv('LC_ALL=' . $locale);
+        putenv('LANG=' . $locale);
+        putenv('LANGUAGE=' . $locale);
+
+        if (!extension_loaded('gettext')) {
+            bindtextdomain($domain, $directory, $locale);
+            $_SESSION['GETTEXT_EXIST'] = FALSE;
+        } else {
+            $_SESSION['GETTEXT_EXIST'] = TRUE;
+            bindtextdomain($domain, $directory);
+        }
+    }
+
+    public function switchDomain($directory, $domain, $locale) {
+        $this->addDomain($directory, $domain, $locale);
+        textdomain($domain);
     }
 
     /**
