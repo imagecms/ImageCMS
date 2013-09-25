@@ -32,19 +32,19 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="subject">{lang("Theme", 'group_mailer')}</label>
                                                 <div class="controls">
-                                                    <input type="text" name="subject" id="subject" value="" required/>
+                                                    <input type="text" name="subject" id="subject" value="" />
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label" for="name">{lang("Your name", 'group_mailer')}</label>
                                                 <div class="controls">
-                                                    <input type="text" name="name" id="name" value="" required/>
+                                                    <input type="text" name="name" id="name" value="" />
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label" for="email">{lang("Your e-mail", 'group_mailer')}</label>
                                                 <div class="controls">
-                                                    <input type="text" id="email" name="email" value="{$admin_mail}" class="required email"/>
+                                                    <input type="text" id="email" name="email" value="{$admin_mail}"/>
                                                 </div>
                                             </div>
                                         </div>
