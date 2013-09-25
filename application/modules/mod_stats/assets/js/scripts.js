@@ -503,10 +503,15 @@ $(document).ready(function() {
         var wordsQuantity = $('#quantityOfWordsStatsSearch').val();
         var resultsQuantity = $('#resultsStatsSearch').val();
         var useLocale = $('#useLocaleCheckbox').prop('checked');
+        var CookieDate = new Date();
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
         
-        console.log(wordsQuantity);
-        console.log(resultsQuantity);
-        console.log(useLocale);
+        document.cookie = "words_quantity_search_stats=" + wordsQuantity + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+        document.cookie = "results_quantity_search_stats=" + resultsQuantity + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+        document.cookie = "use_locale_search_stats=" + useLocale + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+        
+        $('#refreshIntervalsButton').trigger('click');
+        $('.chartBlock').show();
         
     });
 });

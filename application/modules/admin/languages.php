@@ -27,13 +27,17 @@ class Languages extends BaseAdminController {
      * @return array - locales
      */
     function getLocales() {
-        $langs = $this->config->item('locales');
-
+        $langs_config = $this->config->item('locales');
+        $langs = $langs_config;
+        
         foreach ($langs as $key => $lang) {
             $locale = setlocale(LC_ALL, $lang . '.utf8', $lang . '.utf-8', $lang . '.UTF8', $lang . '.UTF-8', $lang . '.utf-8', $lang . '.UTF-8', $lang);
             if (!$locale) {
                 unset($langs[$key]);
             }
+        }
+        if(!$lang){
+            return $langs_config;
         }
 
         return $langs;
