@@ -14,7 +14,7 @@
                             <thead>
                                 <tr>                                              
                                     <th class="span2">{lang("User","admin")}</th>
-                                    <th class="span3">{lang("Date/time")}</th>
+                                    <th class="span3">{lang("Date/time", "admin")}</th>
                                     <th class="span5">{lang("Action","admin")}</th>
                                 </tr>
                             </thead>

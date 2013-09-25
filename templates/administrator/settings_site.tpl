@@ -472,7 +472,7 @@
 
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_logo">{lang('Logo', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_logo'"></i></label>
+                                                            <label class="control-label">{lang('Logo', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_logo'"></i></label>
                                                             <input type="file" id="siteinfo_logo" name="siteinfo_logo" data-url="file">
                                                             <input type="hidden" id="si_delete_logo" class="si_delete_image" name="si_delete_logo" value="0">
 
@@ -490,7 +490,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_favicon">Favicon <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_favicon'"></i></label>
+                                                            <label class="control-label">Favicon <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_favicon'"></i></label>
                                                             <input type="file" id="siteinfo_favicon" name="siteinfo_favicon" data-url="file">
                                                             <input type="hidden" id="si_delete_favicon" class="si_delete_image" name="si_delete_favicon" value="0">
 

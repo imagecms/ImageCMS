@@ -42,9 +42,11 @@ class New_level_model extends CI_Model {
      * @return array
      */
     public function getProperties() {
+        $locale = MY_Controller::getCurrentLocale();
         return $this->db
                     ->select('shop_product_properties_i18n.id, shop_product_properties_i18n.name, mod_new_level_product_properties_types.type as type')
                     ->join('mod_new_level_product_properties_types','mod_new_level_product_properties_types.property_id=shop_product_properties_i18n.id', 'left')
+                    ->where('shop_product_properties_i18n.locale',$locale)
                     ->get('shop_product_properties_i18n')
                     ->result_array();
     }
