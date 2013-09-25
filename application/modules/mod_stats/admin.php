@@ -18,7 +18,11 @@ class Admin extends \BaseAdminController {
 
     public function __construct() {
 
-        $b = new \libraries\Backup();
+       
+        $fp = \CMSFactory\assetManager::create()->checkTemplatePath();
+        echo $fp;
+        exit;
+        
 
         parent::__construct();
         $lang = new MY_Lang();
