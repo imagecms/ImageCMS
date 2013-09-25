@@ -66,8 +66,6 @@
 
         <!-- scripts -->
         {include_tpl('config.js')}
-        <script src="{$THEME}js/_jquery.imagecms.shop.js"></script>
-        <script src="{$THEME}js/_scripts.js"></script>
         {literal}
             <script>
             function downloadJSAtOnload() {
@@ -76,7 +74,7 @@
                         scriptsL = scripts.length;
 
                 $.map(scripts, function(i, n) {
-                    $.getScript( theme + 'js/' + i + '.js?{/literal}{echo rand()}{literal}', function() {
+                    $.getScript( theme + 'js/' + i + '.js', function() {
                         cL++;
                         if (cL == scriptsL) {
                             $(document).trigger({'type': 'scriptDefer'});

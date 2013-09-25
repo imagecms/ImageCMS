@@ -257,6 +257,8 @@ class Components extends BaseAdminController {
 
     // Load component admin class in iframe/xhr
     function init_window($module) {
+        $lang = new MY_Lang();
+        $lang->load($module);
         // buildWindow($id,$title,$contentURL,$width,$height,$method = 'iframe')
         //$module = $this->input->post('component');
         $info_file = realpath(APPPATH . 'modules/' . $module) . '/module_info.php';
@@ -352,7 +354,7 @@ class Components extends BaseAdminController {
 
         $info_file = realpath(APPPATH . 'modules/' . $mod_name) . '/module_info.php';
         if (file_exists($info_file)) {
-            include ($info_file);
+            include($info_file);
             return $com_info;
         } else {
             return FALSE;

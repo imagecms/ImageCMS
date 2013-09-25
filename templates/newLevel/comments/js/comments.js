@@ -147,7 +147,7 @@
 })(jQuery);
 function initComments() {
     $(".star-big").starRating({
-        width: 29,
+        width: 26,
         afterClick: function(el, value) {
             if (el.hasClass("clicktemprate")) {
                 $('.productRate > div.for_comment').css("width", value * 20 + '%');
@@ -239,8 +239,7 @@ renderPosts = function(el, data) {
                         initComments();
                     }
                 });
-                console.log(obj);
-                if (obj.commentsCount != 0 && obj.commentsCount) {
+                if (parseInt(obj.commentsCount) != 0) {
                     $('#cc').html('');
                     $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), plurComments));
                 }

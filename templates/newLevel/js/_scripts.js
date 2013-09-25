@@ -1407,12 +1407,9 @@ function init() {
             dropElRep.html(_.template($('#reportappearance').html(), {
                 item: Shop.composeCartItem(el)
             }));
-            //form initialize
-            //adding product info into form
-            $('#data-report').find('input[name="ProductId"]').val(el.data('prodid'));
-            ///*form initialize
 
             dropElRep.append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
+            dropElRep.find('input[name="ProductId"]').val(el.data('prodid'));
             return el;
         }
         if (dropEl.hasClass('frame-already-show')) {

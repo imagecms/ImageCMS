@@ -36,7 +36,7 @@ class Languages extends BaseAdminController {
                 unset($langs[$key]);
             }
         }
-        if(!$lang){
+        if(!$langs){
             return $langs_config;
         }
 
