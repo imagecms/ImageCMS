@@ -258,7 +258,7 @@ class assetManager {
 //            $obj->load($this->getTrace());
             if (isset($view)) {
                 return $view . \CI_Controller::get_instance()->template->fetch('file:' . $this->buildAdminTemplatePath($tpl));
-            }else{
+            } else {
                 return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildAdminTemplatePath($tpl));
             }
             /** Start. Return template file */
@@ -340,7 +340,7 @@ class assetManager {
      */
     private function buildScriptPath($tpl) {
 //        if (!$this->template)
-            $this->template = \CI_Controller::get_instance()->config->item('template');
+        $this->template = \CI_Controller::get_instance()->config->item('template');
 
         if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/js/' . $tpl . '.js'))
             return sprintf('templates/%s/%s/js/%s.js', $this->template, $this->getTrace(), $tpl);
@@ -398,6 +398,8 @@ class assetManager {
 
         return $css;
     }
+
+    
 
 }
 
