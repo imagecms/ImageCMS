@@ -44,8 +44,6 @@ if (!function_exists('lang')) {
         
         textdomain($name);
         $CI = & get_instance();
-//        $CI->load->
-//        var_dump($CI->lang);
         $line_tmp = $line;
         $line = $CI->lang->line($line);
         if(!$line)
