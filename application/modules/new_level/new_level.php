@@ -20,7 +20,7 @@ class New_level extends MY_Controller {
     }
 
     public function autoload() {
-        //require_once './templates/' . $this->config->item('template') . '/shop/helper.php';
+        
         $settings = $this->new_level_model->getthema();
 
         if (!$settings)

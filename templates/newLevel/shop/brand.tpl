@@ -68,7 +68,7 @@
             <!--End. Show brand description-->
 
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
+                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} table{else:} list{/if}" id="items-catalog-main">
                     {$CI->load->module('new_level')->OPI($products, array('wishlist'=>true))}
                 </ul>
             {/if}

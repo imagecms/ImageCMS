@@ -117,14 +117,14 @@
         <% } else { %>
         <!-- for product kit -->
         <% var i=0 %>
-        <% var names = item.name %>
-        <% if (typeof names == "string") JSON.parse(names) %>
-        <% var prices = item.prices %>
-        <% var addprices = item.addprices %>
-        <% var origprices = item.origprices %>
-        <% var images = item.img %>
-        <% var urls = item.url %>
-        <% var prodstatus = item.prodstatus %>
+                <% var names = typeof item.name == "string" ? JSON.parse(item.name) : item.name %>
+        <% var images = typeof item.img == "string" ? JSON.parse(item.img) : item.img %>
+        <% var urls = typeof item.url == "string" ? JSON.parse(item.url) : item.url %>
+        
+        <% var prices = typeof item.prices == "string" ? JSON.parse(item.prices) : item.prices %>
+        <% var addprices = typeof item.addprices == "string" ? JSON.parse(item.addprices) : item.addprices %>
+        <% var origprices = typeof item.origprices == "string" ? JSON.parse(item.origprices) : item.origprices %>
+        <% var prodstatus = typeof item.prodstatus == "string" ? JSON.parse(item.prodstatus) : item.prodstatus %>
         
         <tr class="row-kits" data-prodid="<%- item.id %>" data-kitId="<%- item.kitId %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
         <td colspan="4">
@@ -134,7 +134,7 @@
         <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
-        <% _.each(names, function(id){  %>
+        <% _.each(prices, function(id){  %>
         <li>
         <% if (i != 0){ %>
         <div class="next-kit">+</div>
@@ -269,7 +269,6 @@
         </table>
         </td>
         </tr>
-
         <% } %>
 
         <% }); %>
@@ -480,20 +479,20 @@
         <% } else { %>
         <!-- for product kit -->
         <% var i=0 %>
-        <% var names = item.name %>
-        <% if (typeof names == "string") JSON.parse(names); %>
-        <% var prices = item.prices %>
-        <% var addprices = item.addprices %>
-        <% var origprices = item.origprices %>
-        <% var images = item.img %>
-        <% var urls = item.url %>
-        <% var prodstatus = item.prodstatus %>
+        <% var names = typeof item.name == "string" ? JSON.parse(item.name) : item.name %>
+        <% var images = typeof item.img == "string" ? JSON.parse(item.img) : item.img %>
+        <% var urls = typeof item.url == "string" ? JSON.parse(item.url) : item.url %>
+        
+        <% var prices = typeof item.prices == "string" ? JSON.parse(item.prices) : item.prices %>
+        <% var addprices = typeof item.addprices == "string" ? JSON.parse(item.addprices) : item.addprices %>
+        <% var origprices = typeof item.origprices == "string" ? JSON.parse(item.origprices) : item.origprices %>
+        <% var prodstatus = typeof item.prodstatus == "string" ? JSON.parse(item.prodstatus) : item.prodstatus %>
         
         <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-kitId="<%- item.kitId %>" data-id="popupKit_<%- item.kitId %>">
         <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
-        <% _.each(names, function(id){  %>
+        <% _.each(prices, function(id){  %>
         <li>
         <% if (i != 0){ %>
         <div class="next-kit">+</div>
@@ -800,7 +799,7 @@
             <%if (item.origprice) { %>
             <span class="price-discount">
             <span>
-            <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %><%-item.origprice%></span>
+            <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %></span>
             <span class="curr"><%-curr%></span>
             </span>
             </span>

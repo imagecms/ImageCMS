@@ -1,0 +1,257 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-07 18:56+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "s_buy"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "s_saction"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "s_shot"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "s_shit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "s_site_under"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "s_control_site"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "s_send_mail_admin"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "s_site_ltd"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "s_IMGCMS"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "login_for_comments"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:51
+msgid "s_leave_comment"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "s_lang_logged"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "lang_comment_author"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:49
+msgid "lang_comment_email"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "lang_comment_site"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "s_you_raiting"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:50
+msgid "s_text_comment_one"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:42
+msgid "s_plus"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:43
+msgid "s_cons"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "lang_captcha"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_temp2.php:52
+msgid "s_on_comment"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:44
+msgid "s_comment_answer"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:45
+msgid "s_review_comment"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "s_yes"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:47
+msgid "s_no"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:53
+msgid "lang_login_page"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:54
+msgid "lang_email"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "lang_password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:56
+#: /var/www/image.loc/_temp2.php:57
+msgid "lang_forgot_password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:58
+msgid "search_find"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:59
+msgid "s_se_thi_sit"
+msgstr "ererererererer"
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "s_apply_sertif"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "s_c_uoy_name_u"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "s_email_4_sumbls"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:27
+msgid "s_phone"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "s_email_is_login"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "lang_old_password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "lang_new_password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "s_newpassword"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "s_email"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "s_address"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "s_comment"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "s_dostavka"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "s_all_result"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "s_not_found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:23
+msgid "s_message_o_report"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:27
+msgid "s_add_to_wish_list"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "s_in_wish_list"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:31
+msgid "s_add_to_compare"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "s_in_compare"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "ddddddddd1"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "s_all_par"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "s_only_diff"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "s_home"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "s_clients_comment"
+msgstr ""
+
+#~ msgid "STAAAAAr"
+#~ msgstr "Зірка"
