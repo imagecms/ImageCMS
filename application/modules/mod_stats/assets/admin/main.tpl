@@ -1,4 +1,4 @@
-<section class="mini-layout">
+<section class="mini-layout mod_stats">
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
