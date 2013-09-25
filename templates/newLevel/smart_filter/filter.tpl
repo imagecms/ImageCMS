@@ -28,9 +28,9 @@
             </div>
         </div>
     </div>
-    <div class="frame-group-checks">
-        <div class="inside-padd">
-            {if count($brands) > 0}
+    {if count($brands) > 0}
+        <div class="frame-group-checks">
+            <div class="inside-padd">
                 <div class="title">Производитель</div>
                 <ul class="list-filters">
                     {foreach $brands as $brand}
@@ -57,10 +57,9 @@
                         </li>
                     {/foreach}
                 </ul>
-            {/if}
+            </div>
         </div>
-    </div>
-
+    {/if}
 
     {if count($propertiesInCat) > 0}
         {$flagScroll = 0}

@@ -1,15 +1,15 @@
-length/*
+/*
  *imagecms frontend plugins
  ** @author Domovoj
  * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
  */
 
 var isTouch = 'ontouchstart' in document.documentElement,
-        activeClass = 'active',
-        clonedC = 'cloned';
+activeClass = 'active',
+clonedC = 'cloned';
 wnd = $(window),
-        body = $('body'),
-        checkProdStock = checkProdStock == "" ? false : true;
+    body = $('body'),
+    checkProdStock = checkProdStock == "" ? false : true;
 function pluralStr(i, str) {
     function plural(a) {
         if (a % 10 == 1 && a % 100 != 11)
@@ -31,14 +31,14 @@ function pluralStr(i, str) {
 }
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
-            validLabels = /^(data|css):/,
-            attr = {
+    validLabels = /^(data|css):/,
+    attr = {
         method: matchParams[0].match(validLabels) ?
-                matchParams[0].split(':')[0] : 'attr',
+        matchParams[0].split(':')[0] : 'attr',
         property: matchParams.shift().replace(validLabels, '')
     },
     regexFlags = 'ig',
-            regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
+    regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
     return regex.test(jQuery(elem)[attr.method](attr.property));
 }
 
@@ -82,7 +82,13 @@ $.onlyNumber = function(el) {
 $.fn.pricetext = function(e, rank) {
     var $this = $(this);
     rank != undefined ? rank = rank : rank = true;
-    $(document).trigger({type: 'textanimatechange', el: $this, ovalue: parseFloat($this.text().replace(/\s+/g, '')), nvalue: e, rank: rank})
+    $(document).trigger({
+        type: 'textanimatechange', 
+        el: $this, 
+        ovalue: parseFloat($this.text().replace(/\s+/g, '')), 
+        nvalue: e, 
+        rank: rank
+    })
     return $this;
 }
 $.fn.setCursorPosition = function(pos) {
@@ -101,22 +107,22 @@ $.fn.setCursorPosition = function(pos) {
 };
 $(document).on('textanimatechange', function(e) {
     var $this = e.el,
-            nv = e.nvalue,
-            ov = e.ovalue,
-            rank = e.rank,
-            dif = nv - ov,
-            temp = ov;
+    nv = e.nvalue,
+    ov = e.ovalue,
+    rank = e.rank,
+    dif = nv - ov,
+    temp = ov;
     if (dif > 0) {
         var ndif = dif,
-                step = Math.floor(dif / 100);
+        step = Math.floor(dif / 100);
     }
     else
     {
         ndif = Math.abs(dif),
-                step = -Math.floor(ndif / 100);
+        step = -Math.floor(ndif / 100);
     }
     var cond = '',
-            numb = setInterval(function() {
+    numb = setInterval(function() {
         temp += step;
         cond = temp < nv;
         if (dif < 0)
@@ -141,15 +147,15 @@ function setcookie(name, value, expires, path, domain, secure)
     }
     var expiresDate = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
-            ((domain) ? ";domain=" + domain : "") +
-            ((secure) ? ";secure" : "");
+    ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+    ((domain) ? ";domain=" + domain : "") +
+    ((secure) ? ";secure" : "");
 }
 
 var ie = jQuery.browser.msie,
-        ieV = jQuery.browser.version,
-        ltie7 = ie && (ieV <= 7),
-        ltie8 = ie && (ieV <= 8);
+ieV = jQuery.browser.version,
+ltie7 = ie && (ieV <= 7),
+ltie8 = ie && (ieV <= 8);
 (function($) {
     var methods = {
         init: function(options) {
@@ -165,19 +171,19 @@ var ie = jQuery.browser.msie,
                     }
                 }, options);
                 var frameChecks = $(this),
-                        wrapper = settings.wrapper,
-                        elCheckWrap = settings.elCheckWrap,
-                        evCond = settings.evCond,
-                        classRemove = settings.classRemove,
-                        frameChecks = frameChecks.selector.split(','),
-                        after = settings.after;
+                wrapper = settings.wrapper,
+                elCheckWrap = settings.elCheckWrap,
+                evCond = settings.evCond,
+                classRemove = settings.classRemove,
+                frameChecks = frameChecks.selector.split(','),
+                after = settings.after;
                 $.map(frameChecks, function(i, n) {
                     var frameChecks = $(i.replace(' ', ''));
                     frameChecks.each(function() {
                         var thisFrameChecks = $(this);
                         thisFrameChecks.find(elCheckWrap).each(function() {
                             var $this = $(this).removeClass(classRemove),
-                                    $thisInput = $this.children();
+                            $thisInput = $this.children();
                             if (!$thisInput.is('[disabled="disabled"]')) {
                                 methods.changeCheckStart($this, $thisInput);
                             }
@@ -188,8 +194,8 @@ var ie = jQuery.browser.msie,
                         })
                     }).find(wrapper).unbind('click.nstcheck').on('click.nstcheck', function(e) {
                         var $this = $(this),
-                                $thisD = $this.is('.disabled'),
-                                nstcheck = $this.find(elCheckWrap);
+                        $thisD = $this.is('.disabled'),
+                        nstcheck = $this.find(elCheckWrap);
                         if (nstcheck.length == 0)
                             nstcheck = $this
                         if (!$thisD) {
@@ -218,7 +224,7 @@ var ie = jQuery.browser.msie,
         },
         changeCheckStart: function(el, input) {
             var el = el,
-                    input = input;
+            input = input;
             if (input.attr("checked") != undefined) {
                 methods.checkChecked(el, input);
             }
@@ -235,7 +241,11 @@ var ie = jQuery.browser.msie,
                 input = $(this).find("input");
             el.addClass(activeClass).parent().addClass(activeClass);
             input.attr("checked", 'checked');
-            $(document).trigger({'type': 'nstCheck.CC', 'el': el, 'input': input});
+            $(document).trigger({
+                'type': 'nstCheck.CC', 
+                'el': el, 
+                'input': input
+            });
         },
         checkUnChecked: function(el, input) {
             var el = el;
@@ -246,7 +256,11 @@ var ie = jQuery.browser.msie,
                 input = $(this).find("input");
             el.removeClass(activeClass).parent().removeClass(activeClass);
             input.removeAttr("checked");
-            $(document).trigger({'type': 'nstCheck.CUC', 'el': el, 'input': input});
+            $(document).trigger({
+                'type': 'nstCheck.CUC', 
+                'el': el, 
+                'input': input
+            });
         },
         changeCheck: function(el)
         {
@@ -331,17 +345,17 @@ var ie = jQuery.browser.msie,
                 after: function() {
                 }
             }, options),
-                    settings = optionsRadio;
+            settings = optionsRadio;
             var $this = $(this);
             if ($.existsN($this)) {
                 $this.each(function() {
                     var $this = $(this),
-                            after = settings.after,
-                            before = settings.before,
-                            classRemove = settings.classRemove,
-                            wrapper = settings.wrapper,
-                            elCheckWrap = settings.elCheckWrap,
-                            input = $this.find(elCheckWrap).find('input');
+                    after = settings.after,
+                    before = settings.before,
+                    classRemove = settings.classRemove,
+                    wrapper = settings.wrapper,
+                    elCheckWrap = settings.elCheckWrap,
+                    input = $this.find(elCheckWrap).find('input');
                     $this.find(elCheckWrap).each(function() {
                         methods.changeRadioStart($(this), classRemove, after, true);
                     });
@@ -387,13 +401,21 @@ var ie = jQuery.browser.msie,
                 methods.radioUnCheck($(this).parent(), $(this))
             });
             after(el, start);
-            $(document).trigger({'type': 'nStRadio.RC', 'el': el, 'input': input});
+            $(document).trigger({
+                'type': 'nStRadio.RC', 
+                'el': el, 
+                'input': input
+            });
         },
         radioUnCheck: function(el, input) {
             el.removeClass(activeClass);
             el.parent().removeClass(activeClass);
             input.attr("checked", false);
-            $(document).trigger({'type': 'nStRadio.RUC', 'el': el, 'input': input});
+            $(document).trigger({
+                'type': 'nStRadio.RUC', 
+                'el': el, 
+                'input': input
+            });
         }
     };
     $.fn.nStRadio = function(method) {
@@ -420,13 +442,16 @@ var ie = jQuery.browser.msie,
                 minValue: 3
             }, options);
             function postSearch() {
-                $(document).trigger({'type': 'autocomplete.before', 'el': inputString});
+                $(document).trigger({
+                    'type': 'autocomplete.before', 
+                    'el': inputString
+                });
                 $.post(searchPath, {
                     queryString: inputString.val()
                 }, function(data) {
                     try {
                         var dataObj = JSON.parse(data),
-                                html = _.template($('#searchResultsTemplate').html(), {
+                        html = _.template($('#searchResultsTemplate').html(), {
                             'items': dataObj
                         });
                     } catch (e) {
@@ -434,7 +459,11 @@ var ie = jQuery.browser.msie,
                     }
                     $thisS.html(html);
                     $thisS.fadeIn(durationA, function() {
-                        $(document).trigger({'type': 'autocomplete.after', 'el': $thisS, 'input': inputString});
+                        $(document).trigger({
+                            'type': 'autocomplete.after', 
+                            'el': $thisS, 
+                            'input': inputString
+                        });
                         $thisS.unbind('click.autocomplete').on('click.autocomplete', function(e) {
                             e.stopImmediatePropagation();
                         })
@@ -510,24 +539,31 @@ var ie = jQuery.browser.msie,
             }
 
             function closeFrame() {
-                $(document).trigger({'type': 'autocomplete.close', 'el': $thisS});
+                $(document).trigger({
+                    'type': 'autocomplete.close', 
+                    'el': $thisS
+                });
                 $thisS.stop().fadeOut(durationA);
                 $thisS.unbind('click.autocomplete');
                 body.unbind('click.autocomplete').unbind('keydown.autocomplete');
             }
 
             var $thisS = $(this),
-                    itemA = settings.item,
-                    durationA = settings.duration,
-                    searchPath = settings.searchPath,
-                    selectorPosition = -1,
-                    inputString = settings.inputString,
-                    minValue = settings.minValue;
+            itemA = settings.item,
+            durationA = settings.duration,
+            searchPath = settings.searchPath,
+            selectorPosition = -1,
+            inputString = settings.inputString,
+            minValue = settings.minValue;
             var submit = inputString.closest('form').find('[type="submit"]');
             submit.on('click.autocomplete', function(e) {
                 e.preventDefault();
                 inputString.focus();
-                $(document).trigger({type: 'autocomplete.fewLength', el: inputString, value: minValue});
+                $(document).trigger({
+                    type: 'autocomplete.fewLength', 
+                    el: inputString, 
+                    value: minValue
+                });
             })
             inputString.keyup(function(event) {
                 var $this = $(this);
@@ -543,13 +579,21 @@ var ie = jQuery.browser.msie,
                         closeFrame();
                 }
                 else
-                    $(document).trigger({type: 'autocomplete.fewLength', el: $this, value: minValue});
+                    $(document).trigger({
+                        type: 'autocomplete.fewLength', 
+                        el: $this, 
+                        value: minValue
+                    });
                 var iL = inputString.val().length;
                 if (iL <= minValue)
                     submit.unbind('click.autocomplete').on('click.autocomplete', function(e) {
                         e.preventDefault();
                         inputString.focus();
-                        $(document).trigger({type: 'autocomplete.fewLength', el: inputString, value: minValue});
+                        $(document).trigger({
+                            type: 'autocomplete.fewLength', 
+                            el: inputString, 
+                            value: minValue
+                        });
                     })
                 else {
                     submit.unbind('click.autocomplete');
@@ -583,14 +627,14 @@ var ie = jQuery.browser.msie,
     var methods = {
         init: function(options) {
             var tooltip = $('.tooltip').not('.' + clonedC),
-                    settings = $.extend({
+            settings = $.extend({
                 title: this.attr('data-title'),
                 otherClass: false,
                 effect: 'notalways',
                 me: true
             }, options);
             var $this = $(this), textEl = $this.find(genObj.textEl),
-                    me = settings.me;
+            me = settings.me;
             if (textEl.is(':visible') && $.existsN(textEl) && me)
                 return false;
             tooltip.text(settings.title);
@@ -610,7 +654,10 @@ var ie = jQuery.browser.msie,
                     'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
                     'top': this.offset().top - tooltip.actual('outerHeight')
                 }).stop().fadeIn(300, function() {
-                    $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
+                    $(document).trigger({
+                        'type': 'tooltip.show', 
+                        'el': $(this)
+                    });
                 });
             }
             else {
@@ -618,7 +665,10 @@ var ie = jQuery.browser.msie,
                     'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
                     'top': this.offset().top - tooltip.actual('outerHeight')
                 }).fadeIn(300, function() {
-                    $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
+                    $(document).trigger({
+                        'type': 'tooltip.show', 
+                        'el': $(this)
+                    });
                 });
             }
             $this.unbind('mouseout.tooltip').on('mouseout.tooltip', function() {
@@ -631,7 +681,10 @@ var ie = jQuery.browser.msie,
         },
         remove: function() {
             $('.tooltip').stop().fadeOut(300, function() {
-                $(document).trigger({'type': 'tooltip.hide', 'el': $(this)});
+                $(document).trigger({
+                    'type': 'tooltip.hide', 
+                    'el': $(this)
+                });
             });
         }
     };
@@ -681,7 +734,7 @@ var ie = jQuery.browser.msie,
             var menu = $(this);
             if ($.existsN(menu)) {
                 var sH = 0,
-                        settings = $.extend({
+                settings = $.extend({
                     item: this.find('li'),
                     direction: null,
                     effectOn: 'fadeIn',
@@ -707,32 +760,32 @@ var ie = jQuery.browser.msie,
                     refresh: false
                 }, options);
                 var menuW = menu.width(),
-                        menuItem = settings.item,
-                        direction = settings.direction,
-                        drop = settings.drop,
-                        dropOJ = $(drop),
-                        effOn = settings.effectOn,
-                        effOff = settings.effectOff,
-                        countColumn = settings.countColumn,
-                        columnPart = settings.columnPart,
-                        columnPart2 = settings.columnPart2,
-                        sub3Frame = settings.sub3Frame,
-                        columnClassPref = settings.columnClassPref,
-                        columnClassPref2 = settings.columnClassPref2,
-                        itemMenuL = menuItem.length,
-                        dropW = settings.dropWidth,
-                        sub2Frame = settings.sub2Frame,
-                        duration = timeDurM = settings.duration,
-                        durationOn = settings.durationOn,
-                        durationOff = settings.durationOff,
-                        evLF = settings.evLF,
-                        evLS = settings.evLS,
-                        hM = settings.frAClass,
-                        refresh = settings.refresh,
-                        menuCache = settings.menuCache,
-                        activeFl = settings.activeFl,
-                        parentTl = settings.parentTl,
-                        otherPage = settings.otherPage;
+                menuItem = settings.item,
+                direction = settings.direction,
+                drop = settings.drop,
+                dropOJ = $(drop),
+                effOn = settings.effectOn,
+                effOff = settings.effectOff,
+                countColumn = settings.countColumn,
+                columnPart = settings.columnPart,
+                columnPart2 = settings.columnPart2,
+                sub3Frame = settings.sub3Frame,
+                columnClassPref = settings.columnClassPref,
+                columnClassPref2 = settings.columnClassPref2,
+                itemMenuL = menuItem.length,
+                dropW = settings.dropWidth,
+                sub2Frame = settings.sub2Frame,
+                duration = timeDurM = settings.duration,
+                durationOn = settings.durationOn,
+                durationOff = settings.durationOff,
+                evLF = settings.evLF,
+                evLS = settings.evLS,
+                hM = settings.frAClass,
+                refresh = settings.refresh,
+                menuCache = settings.menuCache,
+                activeFl = settings.activeFl,
+                parentTl = settings.parentTl,
+                otherPage = settings.otherPage;
                 if (menuCache && !refresh) {
                     menu.find('a').each(function() {//if start without cache and remove active item
                         var $this = $(this);
@@ -756,8 +809,8 @@ var ie = jQuery.browser.msie,
                     if (columnPart2) {
                         dropOJ.find(sub3Frame).each(function() {
                             var $this = $(this),
-                                    columnsObj = $this.find(':regex(class,' + columnClassPref2 + '([0-9]+))'),
-                                    numbColumn = [];
+                            columnsObj = $this.find(':regex(class,' + columnClassPref2 + '([0-9]+))'),
+                            numbColumn = [];
                             columnsObj.each(function(i) {
                                 numbColumn[i] = $(this).attr('class').match(new RegExp(columnClassPref2 + '([0-9]+)'))[0];
                             })
@@ -766,7 +819,7 @@ var ie = jQuery.browser.msie,
                             if (numbColumnL > 1) {
                                 $.map(numbColumn, function(n, i) {
                                     var currC = columnsObj.filter('.' + n),
-                                            classCuurC = currC.first().attr('class');
+                                    classCuurC = currC.first().attr('class');
                                     $this.children().append('<li class="' + classCuurC + '" data-column="' + n + '"><ul></ul></li>');
                                     $this.find('[data-column="' + n + '"]').children().append(currC.clone());
                                     if (sub2Frame)
@@ -781,8 +834,8 @@ var ie = jQuery.browser.msie,
                     if (columnPart && !sub2Frame)
                         dropOJ.each(function() {
                             var $this = $(this),
-                                    columnsObj = $this.find(':regex(class,' + columnClassPref + '([0-9]+))'),
-                                    numbColumn = [];
+                            columnsObj = $this.find(':regex(class,' + columnClassPref + '([0-9]+))'),
+                            numbColumn = [];
                             columnsObj.each(function(i) {
                                 numbColumn[i] = $(this).attr('class').match(/([0-9]+)/)[0];
                             })
@@ -790,7 +843,7 @@ var ie = jQuery.browser.msie,
                             if (numbColumn.length > 1) {
                                 $.map(numbColumn, function(n, i) {
                                     var $thisLi = columnsObj.filter('.' + columnClassPref + n),
-                                            sumx = 0;
+                                    sumx = 0;
                                     $thisLi.each(function() {
                                         var datax = $(this).attr('data-x');
                                         sumx = parseInt(datax == 0 || datax == undefined ? 1 : datax) > sumx ? parseInt(datax == 0 || datax == undefined ? 1 : datax) : sumx;
@@ -801,8 +854,8 @@ var ie = jQuery.browser.msie,
                                 columnsObj.remove();
                             }
                             var sumx = 0,
-                                    $thisLi = $this.children().children(),
-                                    $thisLiL = $thisLi.length;
+                            $thisLi = $this.children().children(),
+                            $thisLiL = $thisLi.length;
                             $thisLi.each(function() {
                                 var datax = $(this).attr('data-x');
                                 sumx = sumx + parseInt(datax == 0 || datax == undefined ? 1 : datax);
@@ -810,16 +863,19 @@ var ie = jQuery.browser.msie,
                             if ($thisLiL != sumx)
                                 $this.addClass('x' + sumx);
                         })
-                    $(document).trigger({type: 'columnRenderComplete', el: dropOJ})
+                    $(document).trigger({
+                        type: 'columnRenderComplete', 
+                        el: dropOJ
+                    })
                 }
                 var k = [];
                 menuItem.add(menuItem.find('.helper:first')).css('height', '');
                 menuItem.each(function(index) {
                     var $this = $(this),
-                            $thisW = $this.width(),
-                            $thisL = $this.position().left,
-                            $thisH = $this.height(),
-                            $thisDrop = $this.find(drop);
+                    $thisW = $this.width(),
+                    $thisL = $this.position().left,
+                    $thisH = $this.height(),
+                    $thisDrop = $this.find(drop);
                     k[index] = false;
                     if ($thisH > sH)
                         sH = $thisH;
@@ -842,7 +898,7 @@ var ie = jQuery.browser.msie,
                 var hoverTO = '';
                 function closeMenu(el, e) {
                     var $this = el,
-                            $thisDrop = $this.find(drop);
+                    $thisDrop = $this.find(drop);
                     if ($thisDrop.length != 0)
                         menu.removeClass(hM);
                     var menuItemH = menuItem.filter('.' + hM)
@@ -856,142 +912,145 @@ var ie = jQuery.browser.msie,
                     clearTimeout(hoverTO);
                 }
                 menuItem.unbind(evLF)[evLF](
-                        function(e) {
-                            var $this = $(this),
-                                    $thisI = $this.index();
-                            $this = $(this).addClass(hM),
-                                    $thisDrop = $this.find(drop);
-                            if (e.type == 'click' && evLF == 'toggle') {
-                                $this.siblings().filter('.' + hM).click()
-                            }
-                            var subH = dropOJ.children().children('.' + hM);
-                            if (e.type == 'click' && evLS == 'toggle')
-                                subH.click();
-                            if ($thisI == 0)
-                                $this.addClass('firstH');
-                            if ($thisI == itemMenuL - 1)
-                                $this.addClass('lastH');
-                            if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') == 0)
-                                k[$thisI] = true;
-                            if (k[$thisI]) {
-                                hoverTO = setTimeout(function() {
-                                    $thisDrop[effOn](durationOn, function() {
-                                        $this.data('kk', $this.data('kk') + 1);
-                                        $(document).trigger({type: 'menu.showDrop', el: $thisDrop})
-                                        if ($thisDrop.length != 0)
-                                            menu.addClass(hM);
-                                        if (sub2Frame) {
-                                            var listDrop = $thisDrop.children();
-                                            if (!listDrop.is('[data-height]')) {
-                                                var sumHL1 = listDrop.height(),
-                                                        dropW = $thisDrop.width();
-                                                listDrop.attr('data-height', sumHL1);
-                                                isSub2W = $thisDrop.find(sub2Frame).addClass('is-side').actual('width');
-                                            }
-
-                                            listDrop.children().each(function() {
-                                                var $this = $(this),
-                                                        isSub2 = $this.find(sub2Frame);
-                                                if ($.existsN(isSub2)) {
-                                                    var sumHL2 = isSub2.actual('height');
-                                                    if (sumHL2 > sumHL1)
-                                                        var koef = Math.ceil(sumHL2 / sumHL1);
-                                                    if (koef != undefined) {
-                                                        subWL2 = isSub2W * koef;
-                                                        if (subWL2 + dropW > menuW) {
-                                                            subWL2 = menuW - dropW;
-                                                        }
-                                                        isSub2.css('width', dropW);
-                                                    }
-                                                }
-                                            }).unbind(evLS)[evLS](function(e) {
-                                                var $this = $(this),
-                                                        subFrame = $this.find(sub2Frame);
-                                                $this.siblings().removeClass(hM);
-                                                if ($.existsN($this.children(':first').next())) {
-                                                    if (e.type == 'click' && evLS == 'toggle') {
-                                                        $this.addClass(hM).siblings().filter('.' + hM).click()
-                                                    }
-                                                    else
-                                                        $this.has(sub2Frame).addClass(hM);
-                                                    $thisDrop.css('width', '');
-                                                    $thisDrop.children().removeClass(hM).add(subFrame).css('height', '');
-                                                    var dropW = $this.parent().parent().width(),
-                                                            sumW = dropW + subFrame.width(),
-                                                            subHL2 = subFrame.height(),
-                                                            dropDH = $thisDrop.children().data('height');
-                                                    if (subHL2 < dropDH)
-                                                        subHL2 = dropDH;
-                                                    $thisDrop.css('width', sumW);
-                                                    $thisDrop.children().add(subFrame).css('height', subHL2);
-                                                    e.preventDefault();
-                                                }
-                                                else {
-                                                    return true;
-                                                }
-                                            }
-                                            , function(e) {
-                                                var $this = $(this),
-                                                        subFrame = $this.find(sub2Frame);
-                                                if ($.existsN($this.next())) {
-                                                    $thisDrop.css('width', '')
-                                                    $thisDrop.children().add(subFrame).css('height', '')
-                                                    $this.removeClass(hM)
-                                                }
-                                            });
+                    function(e) {
+                        var $this = $(this),
+                        $thisI = $this.index();
+                        $this = $(this).addClass(hM),
+                        $thisDrop = $this.find(drop);
+                        if (e.type == 'click' && evLF == 'toggle') {
+                            $this.siblings().filter('.' + hM).click()
+                        }
+                        var subH = dropOJ.children().children('.' + hM);
+                        if (e.type == 'click' && evLS == 'toggle')
+                            subH.click();
+                        if ($thisI == 0)
+                            $this.addClass('firstH');
+                        if ($thisI == itemMenuL - 1)
+                            $this.addClass('lastH');
+                        if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') == 0)
+                            k[$thisI] = true;
+                        if (k[$thisI]) {
+                            hoverTO = setTimeout(function() {
+                                $thisDrop[effOn](durationOn, function() {
+                                    $this.data('kk', $this.data('kk') + 1);
+                                    $(document).trigger({
+                                        type: 'menu.showDrop', 
+                                        el: $thisDrop
+                                    })
+                                    if ($thisDrop.length != 0)
+                                        menu.addClass(hM);
+                                    if (sub2Frame) {
+                                        var listDrop = $thisDrop.children();
+                                        if (!listDrop.is('[data-height]')) {
+                                            var sumHL1 = listDrop.height(),
+                                            dropW = $thisDrop.width();
+                                            listDrop.attr('data-height', sumHL1);
+                                            isSub2W = $thisDrop.find(sub2Frame).addClass('is-side').actual('width');
                                         }
-                                    });
-                                }, timeDurM);
+
+                                        listDrop.children().each(function() {
+                                            var $this = $(this),
+                                            isSub2 = $this.find(sub2Frame);
+                                            if ($.existsN(isSub2)) {
+                                            var sumHL2 = isSub2.actual('height');
+                                            if (sumHL2 > sumHL1)
+                                            var koef = Math.ceil(sumHL2 / sumHL1);
+                                            if (koef != undefined) {
+                                            subWL2 = isSub2W * koef;
+                                            if (subWL2 + dropW > menuW) {
+                                            subWL2 = menuW - dropW;
+                                            }
+                                            isSub2.css('width', dropW);
+                                            }
+                                            }
+                                            }).unbind(evLS)[evLS](function(e) {
+                                            var $this = $(this),
+                                            subFrame = $this.find(sub2Frame);
+                                            $this.siblings().removeClass(hM);
+                                            if ($.existsN($this.children(':first').next())) {
+                                                if (e.type == 'click' && evLS == 'toggle') {
+                                                    $this.addClass(hM).siblings().filter('.' + hM).click()
+                                                }
+                                                else
+                                                    $this.has(sub2Frame).addClass(hM);
+                                                $thisDrop.css('width', '');
+                                                $thisDrop.children().removeClass(hM).add(subFrame).css('height', '');
+                                                var dropW = $this.parent().parent().width(),
+                                                sumW = dropW + subFrame.width(),
+                                                subHL2 = subFrame.height(),
+                                                dropDH = $thisDrop.children().data('height');
+                                                if (subHL2 < dropDH)
+                                                    subHL2 = dropDH;
+                                                $thisDrop.css('width', sumW);
+                                                $thisDrop.children().add(subFrame).css('height', subHL2);
+                                                e.preventDefault();
+                                            }
+                                            else {
+                                                return true;
+                                            }
+                                        }
+                                        , function(e) {
+                                            var $this = $(this),
+                                            subFrame = $this.find(sub2Frame);
+                                            if ($.existsN($this.next())) {
+                                                $thisDrop.css('width', '')
+                                                $thisDrop.children().add(subFrame).css('height', '')
+                                                $this.removeClass(hM)
+                                            }
+                                        });
+                                    }
+                                });
+                            }, timeDurM);
+                        }
+                    }, function(e) {
+                        var $this = $(this),
+                        $thisI = $this.index();
+                        k[$thisI] = true;
+                        if ($this.index() == 0)
+                            $this.removeClass('firstH');
+                        if ($this.index() == itemMenuL - 1)
+                            $this.removeClass('lastH');
+                        var $thisDrop = $this.find(drop);
+                        if ($.existsN($thisDrop)) {
+                            if (sub2Frame) {
+                                $this.find(drop)[effOff](durationOff, function() {
+                                    $this.removeClass(hM);
+                                });
                             }
-                        }, function(e) {
-                    var $this = $(this),
-                            $thisI = $this.index();
-                    k[$thisI] = true;
-                    if ($this.index() == 0)
-                        $this.removeClass('firstH');
-                    if ($this.index() == itemMenuL - 1)
-                        $this.removeClass('lastH');
-                    var $thisDrop = $this.find(drop);
-                    if ($.existsN($thisDrop)) {
-                        if (sub2Frame) {
-                            $this.find(drop)[effOff](durationOff, function() {
-                                $this.removeClass(hM);
-                            });
+                            else {
+                                $this.find(drop).stop()[effOff](durationOff, function() {
+                                    $this.removeClass(hM);
+                                });
+                            }
                         }
                         else {
-                            $this.find(drop).stop()[effOff](durationOff, function() {
-                                $this.removeClass(hM);
-                            });
-                        }
-                    }
-                    else {
-                        setTimeout(function() {
-                            $this.removeClass(hM);
-                        }, durationOff)
-                    }
-                })
-                menu.unbind('hover')['hover'](
-                        function(e) {
-                            menuItem.each(function() {
-                                $(this).data('kk', 0);
-                            })
-                            e.stopImmediatePropagation();
-                            return timeDurM = 0;
-                        },
-                        function(e) {
-                            menuItem.each(function() {
-                                $(this).data('kk', -1);
-                            })
-                            e.stopImmediatePropagation();
-                            if (evLF == 'toggle' || evLS == 'toggle') {
-                                $(this).find('.' + hM).click();
-                            }
                             setTimeout(function() {
-                                dropOJ[effOff](durationOff);
-                            }, duration)
-                            closeMenu(menu, e);
-                            return timeDurM = duration;
-                        });
+                                $this.removeClass(hM);
+                            }, durationOff)
+                        }
+                    })
+                menu.unbind('hover')['hover'](
+                    function(e) {
+                        menuItem.each(function() {
+                            $(this).data('kk', 0);
+                        })
+                        e.stopImmediatePropagation();
+                        return timeDurM = 0;
+                    },
+                    function(e) {
+                        menuItem.each(function() {
+                            $(this).data('kk', -1);
+                        })
+                        e.stopImmediatePropagation();
+                        if (evLF == 'toggle' || evLS == 'toggle') {
+                            $(this).find('.' + hM).click();
+                        }
+                        setTimeout(function() {
+                            dropOJ[effOff](durationOff);
+                        }, duration)
+                        closeMenu(menu, e);
+                        return timeDurM = duration;
+                    });
                 body.unbind('click.menu').on('click.menu', function(e) {
                     closeMenu(menu, e);
                 }).unbind('keydown.menu').on('keydown.menu', function(e) {
@@ -1021,7 +1080,9 @@ var ie = jQuery.browser.msie,
             return menu;
         },
         refresh: function() {
-            methods.init.call($(this), $.extend({}, optionsMenu, {refresh: true}));
+            methods.init.call($(this), $.extend({}, optionsMenu, {
+                refresh: true
+            }));
             return $(this);
         }
     };
@@ -1056,25 +1117,25 @@ var ie = jQuery.browser.msie,
                     }
                 }, options);
                 var tabsDiv = [],
-                        tabsId = [],
-                        navTabsLi = [],
-                        regRefs = [],
-                        thisL = this.length,
-                        k = true,
-                        refs = [],
-                        attrOrdata = [];
+                tabsId = [],
+                navTabsLi = [],
+                regRefs = [],
+                thisL = this.length,
+                k = true,
+                refs = [],
+                attrOrdata = [];
                 $this.each(function(index) {
                     var $thiss = $(this),
-                            effectOn = settings.effectOn,
-                            effectOff = settings.effectOff,
-                            durationOn = settings.durationOn,
-                            durationOff = settings.durationOff;
+                    effectOn = settings.effectOn,
+                    effectOff = settings.effectOff,
+                    durationOn = settings.durationOn,
+                    durationOff = settings.durationOff;
                     navTabsLi[index] = $thiss.children();
                     refs[index] = navTabsLi[index].children();
                     attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';
                     var tempO = $([]),
-                            tempO2 = $([]),
-                            tempRefs = [];
+                    tempO2 = $([]),
+                    tempRefs = [];
                     refs[index].each(function(ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
                         tempO = tempO.add($(tHref));
@@ -1092,15 +1153,15 @@ var ie = jQuery.browser.msie,
                             if ($this.is('a'))
                                 e.preventDefault();
                             var condRadio = $thiss.data('type') == 'radio',
-                                    condStart = !e.start;
+                            condStart = !e.start;
                             if (!$this.parent().hasClass('disabled')) {
                                 var $thisA = $this[attrOrdata[index]]('href'),
-                                        $thisAOld = navTabsLi[index].filter('.' + activeClass).children()[attrOrdata[index]]('href'),
-                                        $thisAO = $($thisA),
-                                        $thisS = $this.data('source'),
-                                        $thisData = $this.data('data'),
-                                        $thisSel = $this.data('selector'),
-                                        $thisDD = $this.data('drop') != undefined;
+                                $thisAOld = navTabsLi[index].filter('.' + activeClass).children()[attrOrdata[index]]('href'),
+                                $thisAO = $($thisA),
+                                $thisS = $this.data('source'),
+                                $thisData = $this.data('data'),
+                                $thisSel = $this.data('selector'),
+                                $thisDD = $this.data('drop') != undefined;
                                 function tabsDivT() {
                                     tabsDiv[index].add(tabsId[index])[effectOff](durationOff).removeClass(activeClass);
                                     $thisAO.add('[data-id=' + $thisA + ']')[effectOn](durationOn, function() {
@@ -1116,7 +1177,11 @@ var ie = jQuery.browser.msie,
                                                 tabsDivT()
                                             if ($thisS != undefined && !$thisAO.hasClass('visited')) {
                                                 $thisAO.addClass('visited');
-                                                $(document).trigger({'type': 'tabs.beforeload', "els": tabsDiv[index], "el": $thisAO});
+                                                $(document).trigger({
+                                                    'type': 'tabs.beforeload', 
+                                                    "els": tabsDiv[index], 
+                                                    "el": $thisAO
+                                                });
                                                 if ($thisData != undefined)
                                                     $.ajax({
                                                         type: 'post',
@@ -1125,12 +1190,20 @@ var ie = jQuery.browser.msie,
                                                         success: function(data) {
                                                             tabsDivT();
                                                             $thisAO.find($thisSel).html(data)
-                                                            $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
+                                                            $(document).trigger({
+                                                                'type': 'tabs.afterload', 
+                                                                "els": tabsDiv[index], 
+                                                                "el": $thisAO
+                                                            })
                                                         }
                                                     })
                                                 else
                                                     $thisAO.load($thisS, function() {
-                                                        $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
+                                                        $(document).trigger({
+                                                            'type': 'tabs.afterload', 
+                                                            "els": tabsDiv[index], 
+                                                            "el": $thisAO
+                                                        })
                                                         tabsDivT()
                                                     })
                                             }
@@ -1140,7 +1213,10 @@ var ie = jQuery.browser.msie,
 
                                             if (e.scroll)
                                                 wnd.scrollTop($this.offset().top);
-                                            $(document).trigger({'type': 'tabs.showtabs', 'el': $thisAO})
+                                            $(document).trigger({
+                                                'type': 'tabs.showtabs', 
+                                                'el': $thisAO
+                                            })
                                         }
                                         else {
                                             setcookie('listtable', $this.parent().index(), 0, '/');
@@ -1158,7 +1234,7 @@ var ie = jQuery.browser.msie,
                                 if ((!condRadio && attrOrdata[index] != 'data') || (($.inArray($thisA, regRefs[index]) > -1 && reg != null))) {
                                     if (condStart) {
                                         var reg = null,
-                                                temp = wLH;
+                                        temp = wLH;
                                         try {
                                             reg = wLH.match(new RegExp(regRefs[index].join('|').toString()));
                                         } catch (err) {
@@ -1219,14 +1295,14 @@ var ie = jQuery.browser.msie,
         },
         location: function(regrefs, refs) {
             var hashs1 = [],
-                    hashs2 = [];
+            hashs2 = [];
             if (location.hash == '')
             {
                 var i = 0,
-                        j = 0;
+                j = 0;
                 _.map(refs, function(n, i) {
                     var $this = n.first(),
-                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
                         hashs1[i] = $this[attrOrdataL]('href');
                         i++;
@@ -1241,17 +1317,17 @@ var ie = jQuery.browser.msie,
             else {
                 _.map(refs, function(n, i) {
                     var j = 0,
-                            $this = n.first(),
-                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                    $this = n.first(),
+                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
                     if (attrOrdataL == 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
                         j++;
                     }
                 });
                 var t = location.hash,
-                        s = '#',
-                        m = s.length, res = 0,
-                        i = 0, pos = [];
+                s = '#',
+                m = s.length, res = 0,
+                i = 0, pos = [];
                 while (i < t.length - 1)
                 {
                     var ch = t.substr(i, m)
@@ -1275,11 +1351,11 @@ var ie = jQuery.browser.msie,
         },
         startCheck: function(regrefs, hashs) {
             var hashs = hashs[0].concat(hashs[1]),
-                    regrefsL = regrefs.length,
-                    sim = 0;
+            regrefsL = regrefs.length,
+            sim = 0;
             $.map(regrefs, function(n, k) {
                 var i = 0,
-                        hashs2 = [].concat(hashs);
+                hashs2 = [].concat(hashs);
                 $.map(hashs, function(n, j) {
                     if ($.inArray(n, regrefs[k]) >= 0)
                         i++;
@@ -1293,7 +1369,10 @@ var ie = jQuery.browser.msie,
                     $.map(hashs2, function(n, i) {
                         var attrOrdataNew = "";
                         $('[href=' + n + ']').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
-                        $('[' + attrOrdataNew + '=' + n + ']').trigger({'type': 'click.tabs', 'start': true});
+                        $('[' + attrOrdataNew + '=' + n + ']').trigger({
+                            'type': 'click.tabs', 
+                            'start': true
+                        });
                     });
             });
         }
@@ -1357,13 +1436,16 @@ var ie = jQuery.browser.msie,
                 }
             }, options);
             var settings = optionsDrop,
-                    modal = settings.modal,
-                    confirm = settings.confirm,
-                    confirmSel = settings.confirmSel,
-                    always = settings.always,
-                    arrDrop = [];
+            modal = settings.modal,
+            confirm = settings.confirm,
+            confirmSel = settings.confirmSel,
+            always = settings.always,
+            arrDrop = [];
             $(this).add($('[data-drop]')).unbind('click.drop').on('click.drop', function(e) {
-                $(document).trigger({'type': 'drop.click', 'el': $this})
+                $(document).trigger({
+                    'type': 'drop.click', 
+                    'el': $this
+                })
                 methods.closeModal();
                 function confirmF() {
                     if ($.inArray(elSet.source, arrDrop) != 0 || newModal || newAlways) {
@@ -1379,10 +1461,18 @@ var ie = jQuery.browser.msie,
                                 if (elSet.type != 'html' && elSet.type != undefined && newModal) {
                                     if (elSet.callback != undefined)
                                         eval(elSet.callback)($this, data, elSetSource);
-                                    $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
+                                    $(document).trigger({
+                                        type: 'drop.successJson', 
+                                        el: elSetSource, 
+                                        datas: data
+                                    })
                                 }
                                 else {
-                                    $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
+                                    $(document).trigger({
+                                        type: 'drop.successHtml', 
+                                        el: elSetSource, 
+                                        datas: data
+                                    })
                                     if (elSet.callback != undefined)
                                         eval(elSet.callback)($this, data, elSetSource);
                                     if (elSet.place != 'inherit' && elSet.place != 'noinherit') {
@@ -1397,7 +1487,8 @@ var ie = jQuery.browser.msie,
                                 elSetSource = $(elSet.drop);
                                 methods.init.call(elSetSource.find('[data-drop]'), $.extend({}, optionsDrop));
                                 methods.showDrop($this, e, optionsDrop, true);
-                            }})
+                            }
+                        })
                     }
                 }
                 var $this = $(this);
@@ -1406,9 +1497,9 @@ var ie = jQuery.browser.msie,
                     e.preventDefault();
                     var elSet = $this.data();
                     var elSetSource = $(elSet.drop),
-                            newModal = elSet.modal || modal,
-                            newConfirm = elSet.confirm || confirm,
-                            newAlways = elSet.always || always;
+                    newModal = elSet.modal || modal,
+                    newConfirm = elSet.confirm || confirm,
+                    newAlways = elSet.always || always;
 
                     if (elSet.before != undefined)
                         var res = eval(elSet.before)($this, elSetSource);
@@ -1461,27 +1552,27 @@ var ie = jQuery.browser.msie,
             if (!e)
                 var e = window.event;
             var set = !set ? optionsDrop : set,
-                    isajax = !isajax ? false : true,
-                    elSet = $this.data(),
-                    place = elSet.place || set.place,
-                    placement = elSet.placement || set.placement,
-                    $thisEOff = elSet.effectOff || set.effoff,
-                    $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || set.duration,
-                    $thisA = elSet.animate != undefined ? elSet.animate : set.animate,
-                    $thisEOn = elSet.effectOn || set.effon,
-                    overlayColor = elSet.overlaycolor || set.overlayColor,
-                    overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || set.overlayOpacity,
-                    modal = elSet.modal || set.modal,
-                    timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
-                    confirm = elSet.confirm || set.confirm,
-                    moreoneNC = elSet.moreoneNC || set.moreoneNC,
-                    dropContent = elSet.dropContent || set.dropContent,
-                    before = set.before,
-                    after = set.after,
-                    close = set.close,
-                    closed = set.closed,
-                    elSetSource = $(elSet.drop),
-                    $thisSource = elSet.drop;
+            isajax = !isajax ? false : true,
+            elSet = $this.data(),
+            place = elSet.place || set.place,
+            placement = elSet.placement || set.placement,
+            $thisEOff = elSet.effectOff || set.effoff,
+            $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || set.duration,
+            $thisA = elSet.animate != undefined ? elSet.animate : set.animate,
+            $thisEOn = elSet.effectOn || set.effon,
+            overlayColor = elSet.overlaycolor || set.overlayColor,
+            overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || set.overlayOpacity,
+            modal = elSet.modal || set.modal,
+            timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
+            confirm = elSet.confirm || set.confirm,
+            moreoneNC = elSet.moreoneNC || set.moreoneNC,
+            dropContent = elSet.dropContent || set.dropContent,
+            before = set.before,
+            after = set.after,
+            close = set.close,
+            closed = set.closed,
+            elSetSource = $(elSet.drop),
+            $thisSource = elSet.drop;
             $this.attr('data-drop', $this.data('drop')).parent().addClass(activeClass);
             $($thisSource).data({
                 'effect-off': $thisEOff,
@@ -1567,7 +1658,11 @@ var ie = jQuery.browser.msie,
                 function show() {
                     elSetSource.stop()[$thisEOn]($thisD, function(e) {
                         var $this = $(this);
-                        $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
+                        $(document).trigger({
+                            type: 'drop.contentHeight', 
+                            el: dC, 
+                            drop: $this
+                        });
                         $this.addClass(activeClass);
                         if (!confirm && modal)
                             setTimeout(function() {
@@ -1575,7 +1670,10 @@ var ie = jQuery.browser.msie,
                             }, timeclosemodal)
                         after($this, elSetSource, isajax);
                     });
-                    $(document).trigger({'type': 'drop.show', el: elSetSource})
+                    $(document).trigger({
+                        'type': 'drop.show', 
+                        el: elSetSource
+                    })
                 }
                 if (place == 'center' && !(elSet.modal || modal)) {
                     $('.for-center').stop().show();
@@ -1587,9 +1685,9 @@ var ie = jQuery.browser.msie,
                 if (elSet.href != undefined)
                     $('<img src="' + elSet.href + '">').load(function() {
                         var $this = $(this),
-                                place = elSet.placeHref || set.hrefOptions.placeHref,
-                                bS = elSet.beforeShowHref || set.hrefOptions.beforeShowHref,
-                                cB = elSet.callback || set.hrefOptions.callback;
+                        place = elSet.placeHref || set.hrefOptions.placeHref,
+                        bS = elSet.beforeShowHref || set.hrefOptions.beforeShowHref,
+                        cB = elSet.callback || set.hrefOptions.callback;
                         $(place).empty();
                         $this.appendTo(place);
                         eval(bS)($this, elSetSource);
@@ -1622,15 +1720,18 @@ var ie = jQuery.browser.msie,
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this),
-                            overlayColor = drop.data('overlayColor'),
-                            overlayOpacity = drop.data('overlayOpacity') != undefined ? drop.data('overlayOpacity').toString() : drop.data('overlayOpacity'),
-                            condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
+                    overlayColor = drop.data('overlayColor'),
+                    overlayOpacity = drop.data('overlayOpacity') != undefined ? drop.data('overlayOpacity').toString() : drop.data('overlayOpacity'),
+                    condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
                     if (drop.data('modal') || sel || condOverlay || drop.data('place') == 'noinherit') {
-                        $(document).trigger({'type': 'drop.beforeClose', 'el': drop})
+                        $(document).trigger({
+                            'type': 'drop.beforeClose', 
+                            'el': drop
+                        })
                         drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
                             var $this = $(this),
-                                    $thisEOff = $this.data('effect-off'),
-                                    $thisD = $this.data('duration');
+                            $thisEOff = $this.data('effect-off'),
+                            $thisD = $this.data('duration');
                             $thisB = $this.data('elrun');
                             if ($this.data('close') != undefined)
                                 $this.data('close')($thisB, $(this));
@@ -1638,8 +1739,8 @@ var ie = jQuery.browser.msie,
                             var $thisHref = $thisB.attr('href');
                             if ($thisHref != undefined) {
                                 var $thisHrefL = $thisHref.length,
-                                        wLH = location.hash,
-                                        wLHL = wLH.length;
+                                wLH = location.hash,
+                                wLHL = wLH.length;
                                 try {
                                     var indH = wLH.match($thisHref + '(?![a-z])').index;
                                     location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
@@ -1655,7 +1756,10 @@ var ie = jQuery.browser.msie,
                                 $(this).removeAttr('style');
                                 if ($this.data('closed') != undefined)
                                     $this.data('closed')($thisB, $(this));
-                                $(document).trigger({'type': 'drop.hide', el: $this})
+                                $(document).trigger({
+                                    'type': 'drop.hide', 
+                                    el: $this
+                                })
                             });
                         });
                     }
@@ -1673,7 +1777,10 @@ var ie = jQuery.browser.msie,
                         queue: false
                     });
                 else
-                    elSetSource.css({'bottom': 'auto', 'right': 'auto'})[method]({
+                    elSetSource.css({
+                        'bottom': 'auto', 
+                        'right': 'auto'
+                    })[method]({
                         'top': (body.height() - elSetSource.actual('outerHeight')) / 2 + wnd.scrollTop(),
                         'left': (body.width() - elSetSource.actual('outerWidth')) / 2 + wnd.scrollLeft()
                     }, {
@@ -1692,10 +1799,10 @@ var ie = jQuery.browser.msie,
                 if (placement == undefined)
                     placement = elSetSource.data('placement');
                 var $this = elSetSource.data().elrun,
-                        dataSourceH = 0,
-                        dataSourceW = 0,
-                        $thisW = $this.width(),
-                        $thisH = $this.height();
+                dataSourceH = 0,
+                dataSourceW = 0,
+                $thisW = $this.width(),
+                $thisH = $this.height();
                 var $thisPMT = placement.toLowerCase().split(' ');
                 if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
                     dataSourceH = elSetSource.actual('height');
@@ -1737,7 +1844,7 @@ var ie = jQuery.browser.msie,
         },
         scrollEmulateRemove: function(dur) {
             var dur = !dur ? 0 : dur,
-                    conDropOver = optionsDrop.dropOver != undefined;
+            conDropOver = optionsDrop.dropOver != undefined;
             if (conDropOver)
                 optionsDrop.dropOver.hide();
             scrollemulatetimeout = setTimeout(function() {
@@ -1763,7 +1870,8 @@ var ie = jQuery.browser.msie,
     };
 })(jQuery);
 (function($) {
-    var methods = {init: function(options) {
+    var methods = {
+        init: function(options) {
             var settings = $.extend({
                 prev: '',
                 next: '',
@@ -1776,12 +1884,12 @@ var ie = jQuery.browser.msie,
             if (this.length > 0) {
                 return this.each(function() {
                     var $this = $(this),
-                            prev = settings.prev.split('.'),
-                            next = settings.next.split('.'),
-                            ajax = settings.ajax,
-                            $thisPrev = $this,
-                            $thisNext = $this,
-                            regS = '', regM = '';
+                    prev = settings.prev.split('.'),
+                    next = settings.next.split('.'),
+                    ajax = settings.ajax,
+                    $thisPrev = $this,
+                    $thisNext = $this,
+                    regS = '', regM = '';
                     $.each(prev, function(i, v) {
                         regS = v.match(/\(.*\)/);
                         if (regS != null) {
@@ -1807,7 +1915,7 @@ var ie = jQuery.browser.msie,
                         $thisPrev.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
                             var input = $this,
-                                    inputVal = parseInt(input.val());
+                            inputVal = parseInt(input.val());
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
@@ -1817,10 +1925,14 @@ var ie = jQuery.browser.msie,
                                 else
                                     input.val(inputVal + 1);
                                 if (ajax && !checkProdStock)
-                                    $(document).trigger({'type': 'showActivity'})
+                                    $(document).trigger({
+                                        'type': 'showActivity'
+                                    })
 
                                 if (ajax && inputVal + 1 <= input.data('max') && checkProdStock)
-                                    $(document).trigger({'type': 'showActivity'})
+                                    $(document).trigger({
+                                        'type': 'showActivity'
+                                    })
                                 if (ajax && inputVal + 1 == input.data('max'))
                                     $thisNext.attr('disabled', 'disabled')
 
@@ -1835,7 +1947,7 @@ var ie = jQuery.browser.msie,
                         $thisNext.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
                             var input = $this,
-                                    inputVal = parseInt(input.val());
+                            inputVal = parseInt(input.val());
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
@@ -1844,7 +1956,9 @@ var ie = jQuery.browser.msie,
                                     input.val(1)
                                 else if (inputVal > 1) {
                                     if (ajax) {
-                                        $(document).trigger({'type': 'showActivity'})
+                                        $(document).trigger({
+                                            'type': 'showActivity'
+                                        })
                                     }
                                     input.val(inputVal - 1)
                                     if (ajax && inputVal - 1 == input.data('min'))
@@ -1876,8 +1990,8 @@ var ie = jQuery.browser.msie,
     var methods = {
         init: function(e) {
             var $this = $(this),
-                    $min = $(this).attr('data-min'),
-                    $thisVal = $this.val();
+            $min = $(this).attr('data-min'),
+            $thisVal = $this.val();
             if (!e)
                 var e = window.event;
             var key = e.keyCode;
@@ -1903,9 +2017,9 @@ var ie = jQuery.browser.msie,
     })
     $('[data-min]').die('keypress').live('keypress', function(e) {
         var key = e.keyCode,
-                keyChar = parseInt(String.fromCharCode(key));
+        keyChar = parseInt(String.fromCharCode(key));
         var $this = $(this),
-                $min = $this.attr('data-min');
+        $min = $this.attr('data-min');
         if ($this.val() == "" && keyChar == 0) {
             $this.val($min);
             return false;
@@ -1916,11 +2030,11 @@ var ie = jQuery.browser.msie,
     var methods = {
         init: function(e, f) {
             var $this = $(this), $thisVal = $this.val(),
-                    $max = parseInt($this.attr('data-max'));
+            $max = parseInt($this.attr('data-max'));
             if (!e)
                 var e = window.event;
             var key = e.keyCode,
-                    keyChar = parseInt(String.fromCharCode(key));
+            keyChar = parseInt(String.fromCharCode(key));
             if ((keyChar > $max || $thisVal > $max) && checkProdStock) {
                 $this.val($max);
                 if (typeof f == 'function')
@@ -1968,34 +2082,34 @@ var ie = jQuery.browser.msie,
                     }
                 }, options);
                 var item = settings.item,
-                        prev = settings.prev,
-                        next = settings.next,
-                        content = settings.content,
-                        groupButtons = settings.groupButtons,
-                        hCarousel = settings.hCarousel,
-                        vCarousel = settings.vCarousel,
-                        addO = settings.adding,
-                        nS = '.mycarousel';
+                prev = settings.prev,
+                next = settings.next,
+                content = settings.content,
+                groupButtons = settings.groupButtons,
+                hCarousel = settings.hCarousel,
+                vCarousel = settings.vCarousel,
+                addO = settings.adding,
+                nS = '.mycarousel';
                 $jsCarousel.each(function() {
                     var $this = $(this),
-                            $item = $this.find(content).children().children(item + ':visible'),
-                            $content = $this.find(content),
-                            $itemL = $item.filter(':visible').length,
-                            $itemW = $item.outerWidth(true),
-                            $itemH = $item.outerHeight(true),
-                            $thisPrev = $this.find(prev),
-                            $thisNext = $this.find(next),
-                            $marginR = $itemW - $item.outerWidth(),
-                            $marginB = $itemH - $item.outerHeight(),
-                            contW = $content.width(),
-                            contH = $content.height(),
-                            groupButton = $this.find(groupButtons);
+                    $item = $this.find(content).children().children(item + ':visible'),
+                    $content = $this.find(content),
+                    $itemL = $item.filter(':visible').length,
+                    $itemW = $item.outerWidth(true),
+                    $itemH = $item.outerHeight(true),
+                    $thisPrev = $this.find(prev),
+                    $thisNext = $this.find(next),
+                    $marginR = $itemW - $item.outerWidth(),
+                    $marginB = $itemH - $item.outerHeight(),
+                    contW = $content.width(),
+                    contH = $content.height(),
+                    groupButton = $this.find(groupButtons);
                     settings.before($this);
                     var $countV = (contW / $itemW).toFixed(1);
                     var k = false, isVert = $.existsN($this.closest(vCarousel)),
-                            isHorz = $.existsN($this.closest(hCarousel)),
-                            condH = $itemW * $itemL - $marginR > contW && isHorz,
-                            condV = ($itemH * $itemL - $marginB > contH) && isVert;
+                    isHorz = $.existsN($this.closest(hCarousel)),
+                    condH = $itemW * $itemL - $marginR > contW && isHorz,
+                    condV = ($itemH * $itemL - $marginB > contH) && isVert;
                     var vertical = condV ? true : false;
                     if (condH || condV)
                         k = true;
@@ -2008,8 +2122,8 @@ var ie = jQuery.browser.msie,
                             vertical: vertical
                         }
                         $this.jcarousel($.extend(
-                                mainO
-                                , addO)).addClass('iscarousel');
+                            mainO
+                            , addO)).addClass('iscarousel');
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
                         groupButton.append($thisNext.add($thisPrev));
@@ -2139,14 +2253,14 @@ var Shop = {
             }
 
             $.post(url, data,
-                    function() {
-                        try {
-                            Shop.Cart._add(cartItem, show);
-                            //save item to storage
-                        } catch (e) {
-                            return;
-                        }
-                    });
+                function() {
+                    try {
+                        Shop.Cart._add(cartItem, show);
+                    //save item to storage
+                    } catch (e) {
+                        return;
+                    }
+                });
             return;
         },
         _add: function(cartItem, show) {
@@ -2219,20 +2333,20 @@ var Shop = {
         },
         clear: function() {
             $.getJSON('/shop/cart_api/clear',
-                    function() {
-                        var items = Shop.Cart.getAllItems();
-                        for (var i = 0; i < items.length; i++)
-                            localStorage.removeItem(items[i].storageId());
-                        delete items;
-                        $(document).trigger({
-                            type: 'cart_changed'
-                        });
-                        $(document).trigger({
-                            type: 'cart_clear'
-                        });
-                        Shop.Cart.totalRecount();
-                    }
-            );
+                function() {
+                    var items = Shop.Cart.getAllItems();
+                    for (var i = 0; i < items.length; i++)
+                        localStorage.removeItem(items[i].storageId());
+                    delete items;
+                    $(document).trigger({
+                        type: 'cart_changed'
+                    });
+                    $(document).trigger({
+                        type: 'cart_clear'
+                    });
+                    Shop.Cart.totalRecount();
+                }
+                );
         },
         //work with storage
         load: function(key) {
@@ -2327,10 +2441,14 @@ var Shop = {
             });
             $.getJSON('/shop/cart_api/sync', function(data) {
                 if (typeof(data) == 'object') {
-
+                    var pattern = /cartItem_*/;
                     var items = Shop.Cart.getAllItems();
+                    
                     for (var i = 0; i < items.length; i++) {
-                        localStorage.removeItem('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
+                        try {
+                            if (localStorage.key(i).match(pattern))
+                                localStorage.removeItem('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
+                        }catch(err){}
                     }
                     delete items;
                     _.each(_.keys(data.data.items), function(key) {
@@ -2363,7 +2481,8 @@ var Shop = {
                 vname: false,
                 url: false
             };
-        return prototype = {id: obj.id ? obj.id : 0,
+        return prototype = {
+            id: obj.id ? obj.id : 0,
             vId: obj.vId ? obj.vId : 0,
             price: obj.price ? obj.price : 0,
             prices: obj.prices ? obj.prices : 0,
@@ -2491,7 +2610,9 @@ if (typeof(wishList) != 'object')
         sync: function() {
             $.post('/wishlist/wishlistApi/sync', function(data) {
                 localStorage.setItem('wishList', data);
-                $(document).trigger({'type': 'wish_list_sync'});
+                $(document).trigger({
+                    'type': 'wish_list_sync'
+                });
             })
         }
     }
@@ -2538,7 +2659,9 @@ var ImageCMSApi = {
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
         //send api request to api controller
-        $(document).trigger({'type': 'showActivity'});
+        $(document).trigger({
+            'type': 'showActivity'
+        });
         $.ajax({
             type: "post",
             data: dataSend,
@@ -2548,7 +2671,9 @@ var ImageCMSApi = {
                 ImageCMSApi.returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
-                $(document).trigger({'type': 'hideActivity'});
+                $(document).trigger({
+                    'type': 'hideActivity'
+                });
                 if (obj !== null) {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
@@ -2574,7 +2699,10 @@ var ImageCMSApi = {
                             $(message.success(obj.msg)).prependTo(form.parent());
                         if (DS.messagePlace == 'behind')
                             $(message.success(obj.msg)).appendTo(form.parent());
-                        $(document).trigger({'type': 'imageapi.pastemsg', 'el': form.parent()})
+                        $(document).trigger({
+                            'type': 'imageapi.pastemsg', 
+                            'el': form.parent()
+                        })
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image, DS);
@@ -2584,13 +2712,16 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').unbind('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                                form = $this.closest('form'),
-                                $thisТ = $this.attr('name'),
-                                elMsg = form.find('[for=' + $thisТ + ']');
+                        form = $this.closest('form'),
+                        $thisТ = $this.attr('name'),
+                        elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(genObj.err + ' ' + genObj.scs);
                             elMsg.hide();
-                            $(document).trigger({'type': 'imageapi.hidemsg', 'el': form})
+                            $(document).trigger({
+                                'type': 'imageapi.hidemsg', 
+                                'el': form
+                            })
                         }
                     });
                 }
@@ -2626,7 +2757,10 @@ var ImageCMSApi = {
                     thisSelector.find(':input.' + genObj.err + ':first').focus();
                 }
                 if (i == Object.keys(validations).length)
-                    $(document).trigger({'type': 'imageapi.pastemsg', 'el': thisSelector})
+                    $(document).trigger({
+                        'type': 'imageapi.pastemsg', 
+                        'el': thisSelector
+                    })
                 i++;
             }
         } else {
