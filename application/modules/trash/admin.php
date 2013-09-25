@@ -6,7 +6,7 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-           $lang = new MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('trash');
 
         $this->load->library('DX_Auth');
@@ -21,6 +21,7 @@ class Admin extends BaseAdminController {
     }
 
     function create_trash() {
+        $this->form_validation->set_rules('url', 'Url', 'required');
         if (count($this->db->get_where('components', array('name' => 'shop'))->row()) > 0) {
             $this->db->order_by("name", "asc");
             $query = $this->db->get('shop_products_i18n');
@@ -38,77 +39,81 @@ class Admin extends BaseAdminController {
         ($this->ajaxRequest) OR $this->display_tpl('create_trash');
 
         if ($_POST) {
+            if ($this->form_validation->run($this) == FALSE) {
+                showMessage(validation_errors(), '', 'r');
+            } else {
 
-            switch ($this->input->post('redirect_type')) {
+                switch ($this->input->post('redirect_type')) {
 
-                case "url":
-                    $array = array(
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => 'http://' . ltrim($this->input->post('redirect_url'), 'http://')
-                    );
-                    break;
+                    case "url":
+                        $array = array(
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => $this->input->post('redirect_type'),
+                            'trash_type' => $this->input->post('type'),
+                            'trash_redirect' => 'http://' . ltrim($this->input->post('redirect_url'), 'http://')
+                        );
+                        break;
 
-                case "product":
-                    $query = $this->db->get_where('shop_products', array('id' => $this->input->post('products')));
-                    $url = $query->row();
-                    $array = array(
-                        'trash_id' => $this->input->post('products'),
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . 'shop/product/' . $url->url
-                    );
-                    break;
+                    case "product":
+                        $query = $this->db->get_where('shop_products', array('id' => $this->input->post('products')));
+                        $url = $query->row();
+                        $array = array(
+                            'trash_id' => $this->input->post('products'),
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => $this->input->post('redirect_type'),
+                            'trash_type' => $this->input->post('type'),
+                            'trash_redirect' => site_url() . 'shop/product/' . $url->url
+                        );
+                        break;
 
-                case "category":
-                    $query = $this->db->get_where('shop_category', array('id' => $this->input->post('category')));
-                    $url = $query->row();
-                    $array = array(
-                        'trash_id' => $this->input->post('category'),
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
-                    );
-                    break;
+                    case "category":
+                        $query = $this->db->get_where('shop_category', array('id' => $this->input->post('category')));
+                        $url = $query->row();
+                        $array = array(
+                            'trash_id' => $this->input->post('category'),
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => $this->input->post('redirect_type'),
+                            'trash_type' => $this->input->post('type'),
+                            'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
+                        );
+                        break;
 
-                case "basecategory":
-                    $query = $this->db->get_where('category', array('id' => $this->input->post('category_base')));
-                    $url = $query->row();
-                    $array = array(
-                        'trash_id' => $this->input->post('category_base'),
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . $url->url
-                    );
-                    break;
+                    case "basecategory":
+                        $query = $this->db->get_where('category', array('id' => $this->input->post('category_base')));
+                        $url = $query->row();
+                        $array = array(
+                            'trash_id' => $this->input->post('category_base'),
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => $this->input->post('redirect_type'),
+                            'trash_type' => $this->input->post('type'),
+                            'trash_redirect' => site_url() . $url->url
+                        );
+                        break;
 
-                case "404":
-                    $array = array(
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => '404'
-                    );
-                    break;
+                    case "404":
+                        $array = array(
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => '404'
+                        );
+                        break;
 
-                default :
-                    $array = array(
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => '404'
-                    );
-                    break;
+                    default :
+                        $array = array(
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => '404'
+                        );
+                        break;
+                }
+
+                $this->db->set($array);
+                $this->db->insert('trash');
+                $lastId = $this->db->insert_id();
+
+                if ($this->input->post('action') == 'create')
+                    pjax('/admin/components/init_window/trash/edit_trash/' . $lastId);
+                if ($this->input->post('action') == 'exit')
+                    pjax('/admin/components/init_window/trash');
             }
-
-            $this->db->set($array);
-            $this->db->insert('trash');
-            $lastId = $this->db->insert_id();
-
-            if ($this->input->post('action') == 'create')
-                pjax('/admin/components/init_window/trash/edit_trash/' . $lastId);
-            if ($this->input->post('action') == 'exit')
-                pjax('/admin/components/init_window/trash');
         }
     }
 

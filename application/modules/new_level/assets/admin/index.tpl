@@ -26,7 +26,7 @@
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                     <a href="#properties" class="btn btn-small active">{lang('Properties', 'new_level')}</a>
                     <a href="#columns" class="btn btn-small">{lang('Columns', 'new_level')}</a>
-                    <a href="/admin/components/init_window/new_level/get_thema" class="btn btn-small">{lang('Colour scheme', 'new_level')}</a>
+                    <a href="#theme" class="btn btn-small">{lang('Colour scheme', 'new_level')}</a>
                 </div>
             </div>
             <div class="tab-content">
@@ -117,6 +117,46 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="theme">
+                    <div class="inside_padd">
+                        <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed" style="clear:both;">
+                            <thead>
+                            <th class="span1">{lang('Settings', 'new_level')}</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <form method="post" class="form-horizontal" id="saveMenu">
+                                            <div class="inside_padd">
+                                                <div class="form-horizontal">
+                                                    <div class="row-fluid">
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="template">{lang('Colour scheme', 'new_level')}:</label>
+                                                            <div class="controls">                                           
+                                                                <select onchange="changethema(this)" style="width:25% !important" name="thema" id="template">
+                                                                    {foreach $thema as $k => $tm}
+                                                                        <option value="{echo $tm}" {if $cur_thema == $tm} selected="selected" {/if} >{echo $k}</option>
+                                                                    {/foreach}
+                                                                </select> 
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <div class="controls"> 
+                                                                <img id="logo" style="max-width: 200px" src="{echo $img . 'screenshot.png'}" />
+                                                            </div>
+                                                        </div>        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {form_csrf()}
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-small btn-primary themeSave" data-form="#saveMenu" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('Save', 'new_level')}</button>
                     </div>
                 </div>
             </div>
