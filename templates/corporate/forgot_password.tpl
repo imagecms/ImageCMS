@@ -1,7 +1,7 @@
 <div class="drop drop-style drop-forgot">
     <div class="icon-times-drop" data-closed="closed-js"></div>
     <div class="drop-header">
-        <div class="title">{lang('lang_forgot_password')}</div>
+        <div class="title">{lang('Забыли Пароль?','corporate')}</div>
     </div>
     <div class="drop-content">
         <div class="inside-padd">
@@ -23,7 +23,7 @@
                             }}{/literal});
                         return false;">
                     <label>
-                        <span class="title">{lang('lang_email')}</span>
+                        <span class="title">{lang('Почта','corporate')}</span>
                         <span class="frame-form-field">
                             <input type="text" size="30" name="email"/>
                         </span>
@@ -33,12 +33,12 @@
                         <div class="frame-form-field">
                             <div class="frame-label">
                                 <div class="btn">
-                                    <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" />
+                                    <input type="submit" id="submit" class="submit" value="{lang('Отправить','corporate')}" />
                                 </div>
                             </div>
                             <div>
                                 <button class="d_l" data-drop=".drop-enter" data-source="{site_url('auth')}">Вход</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{site_url('auth/register')}">{lang('lang_register')}</a>
+                                <a href="{site_url('auth/register')}">{lang('Регистрация','corporate')}</a>
                             </div>
                         </div>
                     </div>
