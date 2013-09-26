@@ -634,6 +634,13 @@ class Exchangeunfu extends MY_Controller {
                 ->get('mod_exchangeunfu_prices');
 
         $region_prices = array();
+        
+        if ($products_by_region) {
+            $products_by_region = $products_by_region->result_array();
+        } else {
+            $products_by_region = array();
+        }
+
         foreach ($products_by_region->result_array() as $product) {
             $product_id = $product['product_id'];
             $price = $product['price'];
@@ -641,16 +648,16 @@ class Exchangeunfu extends MY_Controller {
                     ->get_discount_product_api(array('id' => $product_id, 'vid' => null), null, $price);
 
             if ($discount) {
-                if ((int)$region_prices[$product_id] - $discount < $price) {
+                if ((int) $region_prices[$product_id] - $discount < $price) {
                     $region_prices[$product_id] = $price - $discount['discount_value'];
-                }else{
+                } else {
                     $region_prices[$product_id] = $price - $discount['discount_value'];
                 }
             } else {
-                if ((int)$region_prices[$product_id] < $price) {
+                if ((int) $region_prices[$product_id] < $price) {
                     $region_prices[$product_id] = $price;
-                }else{
-                    if(!$region_prices[$product_id]){
+                } else {
+                    if (!$region_prices[$product_id]) {
                         $region_prices[$product_id] = $price;
                     }
                 }
@@ -663,12 +670,12 @@ class Exchangeunfu extends MY_Controller {
             return 0;
         }
     }
-    
+
     /**
      * get regions names 
      * @return array
      */
-    public function getRegions(){
+    public function getRegions() {
         $regions = $this->db
                 ->select('region')
                 ->get('mod_exchangeunfu_partners');
@@ -676,7 +683,7 @@ class Exchangeunfu extends MY_Controller {
         if ($regions) {
             return $regions = array_unique($regions->result_array());
         } else {
-            return  $regions = array();
+            return $regions = array();
         }
     }
 

@@ -139,12 +139,12 @@ class Backup extends BaseAdminController {
                     $deleteData = NULL;
                 }
                 if (FALSE !== $fileName = $backup->createBackup($_POST['file_type'])) {
-                    $message = "Backup copying has been completed ";
+                    $message = lang('Backup copying has been completed', 'admin');
                     if (is_array($deleteData)) {
                         $mb = number_format($deleteData['size'] / 1024 / 1024, 2);
                         $message .= "<br /> Deleted {$deleteData['count']} files on {$mb} Mb";
                     }
-                    showMessage(lang($message, "admin"));
+                    showMessage($message);
                 }
                 break;
 
