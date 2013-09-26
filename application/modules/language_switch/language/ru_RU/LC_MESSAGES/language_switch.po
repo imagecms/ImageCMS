@@ -20,16 +20,16 @@ msgstr ""
 #: /var/www/image.loc/_tempLangs.php:7
 #: /var/www/image.loc/_tempLangs.php:8
 msgid "Not choose"
-msgstr ""
+msgstr "Не обрано"
 
 #: /var/www/image.loc/_tempLangs.php:9
 #: /var/www/image.loc/_tempLangs.php:29
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: /var/www/image.loc/_tempLangs.php:10
 msgid "Can not create a price twice for partner"
-msgstr ""
+msgstr "Невозможно создать цену дважды для партнера"
 
 #: /var/www/image.loc/_tempLangs.php:11
 #: /var/www/image.loc/_tempLangs.php:13
@@ -41,41 +41,41 @@ msgstr ""
 #: /var/www/image.loc/_tempLangs.php:25
 #: /var/www/image.loc/_tempLangs.php:27
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 #: /var/www/image.loc/_tempLangs.php:12
 msgid "Upgrade successful."
-msgstr ""
+msgstr "Обновление завершено."
 
 #: /var/www/image.loc/_tempLangs.php:14
 msgid "Successful deleting."
-msgstr ""
+msgstr "Успешное удаление."
 
 #: /var/www/image.loc/_tempLangs.php:16
 #: /var/www/image.loc/_tempLangs.php:18
 #: /var/www/image.loc/_tempLangs.php:20
 msgid "Value is changed."
-msgstr ""
+msgstr "Значение изменено."
 
 #: /var/www/image.loc/_tempLangs.php:22
 msgid "Partner updated"
-msgstr ""
+msgstr "Партнер обновлен"
 
 #: /var/www/image.loc/_tempLangs.php:24
 msgid "Partner successfully deleted"
-msgstr ""
+msgstr "Партнер успешно удален"
 
 #: /var/www/image.loc/_tempLangs.php:26
 msgid "Partner not deleted"
-msgstr ""
+msgstr "Партнер не удален"
 
 #: /var/www/image.loc/_tempLangs.php:28
 msgid "Partner successfully added"
-msgstr ""
+msgstr "Партнер успешно добавлен"
 
 #: /var/www/image.loc/_tempLangs.php:30
 msgid "Partner not added"
-msgstr ""
+msgstr "Партнер не додан"
 
 #: /var/www/image.loc/_tempLangs.php:31
 msgid "Language Switch module"
@@ -103,23 +103,23 @@ msgstr "Переключение языка"
 
 #: module_info.php:6
 msgid "Adds widget to switch languages"
-msgstr ""
+msgstr "Виджет для переключения языков"
 
 #: language_switch_widgets.php:57
 msgid "Image"
-msgstr ""
+msgstr "Изображение"
 
 #: language_switch_widgets.php:58
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: language_switch_widgets.php:59
 msgid "passage Url"
-msgstr ""
+msgstr "адрес прохода"
 
 #: language_switch_widgets.php:72
 msgid "Settings saved"
-msgstr ""
+msgstr "Настройки сохранены"
 
 #~ msgid "Site configuration"
 #~ msgstr "Настр1"
