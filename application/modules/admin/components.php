@@ -171,6 +171,9 @@ class Components extends BaseAdminController {
                     $info_file = APPPATH . 'modules/' . $file . '/module_info.php';
                     $com_file_admin = APPPATH . 'modules/' . $file . '/admin.php';
 
+                    $lang = new MY_Lang();
+                    $lang->load($file);
+
                     if (file_exists($info_file)) {
                         include ($info_file);
 
