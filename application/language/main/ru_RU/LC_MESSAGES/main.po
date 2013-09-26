@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-23 10:13+0300\n"
+"POT-Creation-Date: 2013-09-26 16:05+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -323,7 +323,7 @@ msgstr "Например: руб"
 msgid "Translate"
 msgstr "Перевести"
 
-#: ../../../../../application/modules/shop/classes/Search/BaseSearch.php:238
+#: ../../../../../application/modules/shop/classes/Search/BaseSearch.php:246
 msgid "All result"
 msgstr "Все результаты"
 
@@ -361,6 +361,7 @@ msgid "Password"
 msgstr "Пароль"
 
 #: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:152
+#: ../../../../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:128
 msgid "Merchant id"
 msgstr "Мерчант ID"
 
@@ -467,74 +468,26 @@ msgstr "неправильный"
 msgid "successfully saved."
 msgstr "успешно сохранены."
 
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
-msgid "January"
-msgstr "Января"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
-msgid "February"
-msgstr "Февраля"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
-msgid "March"
-msgstr "Марта"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
-msgid "April"
-msgstr "Апреля"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
-msgid "May"
-msgstr "Мая"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:44
-msgid "June"
-msgstr "Июня"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
-msgid "July"
-msgstr "Июля"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
-msgid "August"
-msgstr "Августа"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
-msgid "September"
-msgstr "Сентября"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
-msgid "October"
-msgstr "Октября"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
-msgid "November"
-msgstr "Ноября"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:45
-msgid "December"
-msgstr "Декабря"
-
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:115
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:156
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:169
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:107
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:148
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:161
 msgid "Home"
 msgstr "Главная"
 
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:319
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:338
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:311
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:330
 msgid "Buy"
 msgstr "Купить"
 
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:320
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:312
 msgid "Formulation <br/> order"
 msgstr "Порядок <br/> формулирования"
 
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:339
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:331
 msgid "Formulation order"
 msgstr "Порядок формулирования"
 
-#: ../../../../../application/modules/shop/helpers/shop_helper.php:340
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:332
 msgid "Announce a"
 msgstr "Объявить"
 
@@ -633,6 +586,42 @@ msgstr "Поле %s должно содержать число, большее, 
 #: ../../../../../system/language/email_lang/email_lang.php:22
 msgid "email_sent"
 msgstr "Ваше сообщение успешно отправлено"
+
+#~ msgid "January"
+#~ msgstr "Января"
+
+#~ msgid "February"
+#~ msgstr "Февраля"
+
+#~ msgid "March"
+#~ msgstr "Марта"
+
+#~ msgid "April"
+#~ msgstr "Апреля"
+
+#~ msgid "May"
+#~ msgstr "Мая"
+
+#~ msgid "June"
+#~ msgstr "Июня"
+
+#~ msgid "July"
+#~ msgstr "Июля"
+
+#~ msgid "August"
+#~ msgstr "Августа"
+
+#~ msgid "September"
+#~ msgstr "Сентября"
+
+#~ msgid "October"
+#~ msgstr "Октября"
+
+#~ msgid "November"
+#~ msgstr "Ноября"
+
+#~ msgid "December"
+#~ msgstr "Декабря"
 
 #~ msgid "Января"
 #~ msgstr "Января"
