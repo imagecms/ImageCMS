@@ -2733,7 +2733,7 @@ msgstr "Общий"
 
 #: /var/www/image.loc/_tempLangs.php:152
 msgid "Create new"
-msgstr "Создать новый"
+msgstr "Создать"
 
 #: /var/www/image.loc/_tempLangs.php:153
 msgid "Create new user"
