@@ -652,7 +652,7 @@
 
         </span>
 
-        <span class="s-t">{/literal}{lang('Всего:','newLevel')}{literal}:</span>
+        <span class="s-t">{/literal}{lang('Всего','newLevel')}{literal}:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
