@@ -76,7 +76,7 @@ class MY_Lang extends MX_Lang {
         if (!isset($this->ci))
             $this->ci = & get_instance();
 
-        if (!strstr($_SERVER['PATH_INFO'], 'install')) {
+        if (!strstr($_SERVER['REQUEST_URI'], 'install')) {
             $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
             if ($sett->lang_sel) {
                 $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));

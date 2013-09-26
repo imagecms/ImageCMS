@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-19 16:30+0300\n"
+"POT-Creation-Date: 2013-09-26 17:15+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,307 +17,314 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:14
+#: /var/www/image.loc/_tempLangs.php:26
 msgid "Certificate code"
 msgstr "Код сертификата"
 
-#: /var/www/image.loc/_tempLangs.php:14
+#: /var/www/image.loc/_tempLangs.php:15
 msgid "on amount"
 msgstr "на сумму"
 
-#: /var/www/image.loc/_tempLangs.php:15
+#: /var/www/image.loc/_tempLangs.php:16
 msgid "Maximum possible discount is using"
 msgstr "Используется максимально возможная скидка"
 
-#: /var/www/image.loc/_tempLangs.php:16
+#: /var/www/image.loc/_tempLangs.php:17
 msgid "discount type: product"
 msgstr "тип скидки: наименования"
 
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:25
 msgid "discount amount"
 msgstr "размер скидки"
 
-#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:19
 msgid "number"
 msgstr "число"
 
-#: /var/www/image.loc/_tempLangs.php:19
+#: /var/www/image.loc/_tempLangs.php:20
 msgid "discount name"
 msgstr "название скидки"
 
-#: /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:21
 msgid "discount key"
 msgstr "ключ скидки"
 
-#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:22
 msgid "discount type"
 msgstr "тип скидки"
 
-#: /var/www/image.loc/_tempLangs.php:22
-#, fuzzy
+#: /var/www/image.loc/_tempLangs.php:23
 msgid "discount charge type"
 msgstr "тип  скидки"
 
-#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:24
 msgid "discount size"
 msgstr "размер скидки"
 
-#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:27
 msgid "Apply sertificate"
 msgstr "Применить сертификат"
 
-#: /var/www/image.loc/_tempLangs.php:27
+#: /var/www/image.loc/_tempLangs.php:28
+msgid "Status changed"
+msgstr "Статус изменен"
+
+#: /var/www/image.loc/_tempLangs.php:29
+msgid "Discount deleted"
+msgstr "Скидка удалена"
+
+#: /var/www/image.loc/_tempLangs.php:30
 msgid "Discount creating"
 msgstr "Создание скидки"
 
-#: /var/www/image.loc/_tempLangs.php:28
-#: /var/www/image.loc/_tempLangs.php:86
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:89
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:29
-#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:90
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:67
 msgid "Create"
 msgstr "Создать"
 
-#: /var/www/image.loc/_tempLangs.php:31
-#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:93
 msgid "Discount details"
 msgstr "Детали скидки"
 
-#: /var/www/image.loc/_tempLangs.php:32
-#: /var/www/image.loc/_tempLangs.php:91
+#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:94
 msgid "Discount name"
 msgstr "Название скидки"
 
-#: /var/www/image.loc/_tempLangs.php:33
-#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:95
 msgid "Discount code"
 msgstr "Код скидки"
 
-#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:37
 msgid "Users count"
 msgstr "Количество пользователей"
 
-#: /var/www/image.loc/_tempLangs.php:35
-#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:97
 msgid "Unlimit"
 msgstr "Неограничено"
 
-#: /var/www/image.loc/_tempLangs.php:36
-#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:98
 msgid "Method of calculation"
 msgstr "Метод подсчета"
 
-#: /var/www/image.loc/_tempLangs.php:37
-#: /var/www/image.loc/_tempLangs.php:96
+#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:99
 msgid "Choose method"
 msgstr "Выберите метод"
 
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:97
+#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:100
 msgid "Percents"
 msgstr "Проценты"
 
-#: /var/www/image.loc/_tempLangs.php:39
-#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:101
 msgid "Fixed"
 msgstr "Фиксированный"
 
-#: /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:99
+#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:102
 msgid "Discount type"
 msgstr "Тип скидки"
 
-#: /var/www/image.loc/_tempLangs.php:41
-#: /var/www/image.loc/_tempLangs.php:100
+#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:103
 msgid "Choose type"
 msgstr "Выберите тип"
 
-#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:45
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:67
-#: /var/www/image.loc/_tempLangs.php:101
+#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:104
 msgid "Order amount of more than"
 msgstr "Сумма заказа на больше чем"
-
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:68
-#: /var/www/image.loc/_tempLangs.php:102
-msgid "Cumulative discount"
-msgstr "Накопительная скидка"
-
-#: /var/www/image.loc/_tempLangs.php:45
-#: /var/www/image.loc/_tempLangs.php:69
-#: /var/www/image.loc/_tempLangs.php:103
-msgid "User"
-msgstr "Пользователь"
-
-#: /var/www/image.loc/_tempLangs.php:46
-msgid "Users group"
-msgstr "Группа пользователей"
 
 #: /var/www/image.loc/_tempLangs.php:47
 #: /var/www/image.loc/_tempLangs.php:71
 #: /var/www/image.loc/_tempLangs.php:105
-msgid "Category"
-msgstr "Категория"
+msgid "Cumulative discount"
+msgstr "Накопительная скидка"
 
 #: /var/www/image.loc/_tempLangs.php:48
 #: /var/www/image.loc/_tempLangs.php:72
 #: /var/www/image.loc/_tempLangs.php:106
+msgid "User"
+msgstr "Пользователь"
+
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Users group"
+msgstr "Группа пользователей"
+
+#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:108
+msgid "Category"
+msgstr "Категория"
+
+#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:109
 msgid "Product"
 msgstr "Товар"
 
-#: /var/www/image.loc/_tempLangs.php:49
-#: /var/www/image.loc/_tempLangs.php:73
-#: /var/www/image.loc/_tempLangs.php:107
+#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:76
+#: /var/www/image.loc/_tempLangs.php:110
 msgid "Brand"
 msgstr "Бренд"
 
-#: /var/www/image.loc/_tempLangs.php:50
-#: /var/www/image.loc/_tempLangs.php:108
+#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:111
 msgid "Only for registered"
 msgstr "Только для зарегистрированных"
 
-#: /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:109
+#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:112
 msgid "Gift Certificate"
 msgstr "Подарочный сертификат"
 
-#: /var/www/image.loc/_tempLangs.php:52
-#: /var/www/image.loc/_tempLangs.php:110
+#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:113
 msgid "from"
 msgstr "от"
 
-#: /var/www/image.loc/_tempLangs.php:53
-#: /var/www/image.loc/_tempLangs.php:61
-#: /var/www/image.loc/_tempLangs.php:111
-#: /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:122
 msgid "to"
 msgstr "до"
 
-#: /var/www/image.loc/_tempLangs.php:54
-#: /var/www/image.loc/_tempLangs.php:112
+#: /var/www/image.loc/_tempLangs.php:57
+#: /var/www/image.loc/_tempLangs.php:115
 msgid "Maximum"
 msgstr "Максимальный"
 
-#: /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:113
+#: /var/www/image.loc/_tempLangs.php:58
+#: /var/www/image.loc/_tempLangs.php:116
 msgid "Current user"
 msgstr "Текущий пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:56
-#: /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:117
 msgid "ID / Name / E-mail"
 msgstr "ID / Имя / Электронная почта"
 
-#: /var/www/image.loc/_tempLangs.php:57
-#: /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:118
 msgid "Current product"
 msgstr "Текущий товар"
 
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:116
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:119
 msgid "Name / ID"
 msgstr "Имя / ID"
 
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:120
 msgid "Allowed time for discounts"
 msgstr "Допустимое время для скидок"
 
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:118
+#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:121
 msgid "Period of the discount from"
 msgstr "Период действия скидки от"
 
-#: /var/www/image.loc/_tempLangs.php:62
-#: /var/www/image.loc/_tempLangs.php:120
+#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:123
 msgid "Constant discount"
 msgstr "Постоянная скидка"
 
-#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:66
 msgid "Discounts"
 msgstr "Скидки"
 
-#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:68
 msgid "Choose discount type"
 msgstr "Выберите тип скидки"
 
-#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:69
 msgid "All"
 msgstr "Все"
 
-#: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:104
+#: /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:107
 msgid "User group"
 msgstr "Группа пользователей"
 
-#: /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:77
 msgid "Key"
 msgstr "Ключ"
 
-#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:78
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_tempLangs.php:76
+#: /var/www/image.loc/_tempLangs.php:79
 msgid "Limit"
 msgstr "Лимит"
 
-#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:80
 msgid "Used"
 msgstr "Используемый"
 
-#: /var/www/image.loc/_tempLangs.php:78
+#: /var/www/image.loc/_tempLangs.php:81
 msgid "Beggining time"
 msgstr "Время начала"
 
-#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:82
 msgid "End time"
 msgstr "Время окончания"
 
-#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:83
 msgid "Active"
 msgstr "Активен"
 
-#: /var/www/image.loc/_tempLangs.php:81
 #: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:87
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:85
 msgid "Unlimited"
 msgstr "Неограничено"
 
-#: /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:86
 msgid "show"
 msgstr "показать"
 
-#: /var/www/image.loc/_tempLangs.php:85
+#: /var/www/image.loc/_tempLangs.php:88
 msgid "Discount editing"
 msgstr "Редактирование скидки"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:91
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:92
 msgid "Edit"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:96
 msgid "Count of usage"
 msgstr "Количество использования"
 
