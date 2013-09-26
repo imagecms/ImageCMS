@@ -399,21 +399,6 @@ class assetManager {
         return $css;
     }
 
-    /**
-     * Check if specified template exists
-     * @return string
-     */
-    public function checkTemplatePath($module = NULL) {
-        $tpl = "some_template";
-        if (!$this->template)
-            $this->template = \CI_Controller::get_instance()->config->item('template');
-
-        if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/' . $tpl . '.tpl'))
-            return sprintf('templates/%s/%s/%s', $this->template, $this->getTrace(), $tpl);
-        else
-            return sprintf('%smodules/%s/assets/%s', APPPATH, $this->getTrace(), $tpl);
-    }
-
 }
 
 /** End of file /application/modules/CMSFactory/assetManager.php */

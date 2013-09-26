@@ -127,6 +127,18 @@ class Pages extends BaseAdminController {
      * ************************************************* */
 
     /**
+     * Validation for template name field
+     * @param string $tpl
+     */
+    public function tpl_validation($tpl) {
+        if (preg_match('/^[A-Za-z\_\.]{0,50}$/', $tpl)) {
+            return TRUE;
+        }
+        $this->form_validation->set_message('tpl_validation', lang('The %s field can only contain Latin characters', 'admin'));
+        return FALSE;
+    }
+
+    /**
      * Add new page
      * Language default
      */
@@ -138,13 +150,13 @@ class Pages extends BaseAdminController {
         $this->form_validation->set_rules('page_url', lang("URL", "admin"), 'alpha_dash');
         $this->form_validation->set_rules('prev_text', lang("Preliminary contents", "admin"), 'trim|required');
         $this->form_validation->set_rules('page_description', lang("Description ", "admin"), 'trim');
-        $this->form_validation->set_rules('full_tpl', lang("Page template", "admin"), 'trim|max_length[150]|min_length[2]');
+        $this->form_validation->set_rules('full_tpl', lang("Page template", "admin"), 'trim|max_length[150]|min_length[2]|callback_tpl_validation');
         $this->form_validation->set_rules('create_date', lang("Creation date", "admin"), 'required|valid_date');
         $this->form_validation->set_rules('create_time', lang("Creation time", "admin"), 'required|valid_time');
         $this->form_validation->set_rules('publish_date', lang("Publication date", "admin"), 'required|valid_date');
         $this->form_validation->set_rules('publish_time', lang("Publication time", "admin"), 'required|valid_time');
 
-        $this->form_validation->set_rules('main_tpl', lang("Main page template", "admin"), 'trim|max_length[50]|min_length[2]');
+        $this->form_validation->set_rules('main_tpl', lang("Main page template", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
 
         $groupId = (int) $this->input->post('cfcm_use_group');
 
@@ -153,6 +165,7 @@ class Pages extends BaseAdminController {
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
             $error = $this->form_validation->error_string('<p>', '</p>');
+
             showMessage(lang('From validation error: <br />' . $error, 'admin'), false, 'r');
         } else {
             // load site settings
@@ -471,8 +484,8 @@ class Pages extends BaseAdminController {
         $this->form_validation->set_rules('page_keywords', lang("Keywords", "admin"), 'trim');
         $this->form_validation->set_rules('prev_text', lang("Preliminary contents", "admin"), 'trim|required');
         $this->form_validation->set_rules('page_description', lang("Description ", "admin"), 'trim');
-        $this->form_validation->set_rules('full_tpl', lang("Page template", "admin"), 'trim|max_length[50]|min_length[2]');
-        $this->form_validation->set_rules('main_tpl', lang("Main page template ", "admin"), 'trim|max_length[50]|min_length[2]');
+        $this->form_validation->set_rules('full_tpl', lang("Page template", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
+        $this->form_validation->set_rules('main_tpl', lang("Main page template ", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation'); 
         $this->form_validation->set_rules('create_date', lang("Creation date", "admin"), 'required|valid_date');
         $this->form_validation->set_rules('create_time', lang("Creation time", "admin"), 'required|valid_time');
         $this->form_validation->set_rules('publish_date', lang("Publication date", "admin"), 'required|valid_date');

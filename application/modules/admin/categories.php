@@ -118,6 +118,18 @@ class Categories extends BaseAdminController {
         return $this->temp_cats;
     }
 
+    /**
+     * Validation for template name field
+     * @param string $tpl
+     */
+    public function tpl_validation($tpl) {
+        if (preg_match('/^[A-Za-z\_\.]{0,50}$/', $tpl)) {
+            return TRUE;
+        }
+        $this->form_validation->set_message('tpl_validation', lang('The %s field can only contain Latin characters', 'admin'));
+        return FALSE;
+    }
+
     /*
      * Create or update new category
      *
@@ -137,8 +149,8 @@ class Categories extends BaseAdminController {
         $this->form_validation->set_rules('short_desc', lang("Short description", "admin"), 'trim');
         $this->form_validation->set_rules('title', lang("Title", "admin"), 'trim|max_length[250]');
         $this->form_validation->set_rules('tpl', lang("Template", "admin"), 'trim|max_length[50]');
-        $this->form_validation->set_rules('page_tpl', lang("Page template", "admin"), 'trim|max_length[50]');
-        $this->form_validation->set_rules('main_tpl', lang("Main template", "admin"), 'trim|max_length[50]');
+        $this->form_validation->set_rules('page_tpl', lang("Page template", "admin"), 'trim|max_length[50]|callback_tpl_validation');
+        $this->form_validation->set_rules('main_tpl', lang("Main template", "admin"), 'trim|max_length[50]|callback_tpl_validation');
         $this->form_validation->set_rules('per_page', lang("Per page", "admin"), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
 
         $groupId = (int) $this->input->post('category_field_group');

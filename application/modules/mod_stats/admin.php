@@ -18,12 +18,6 @@ class Admin extends \BaseAdminController {
 
     public function __construct() {
 
-       
-//        $fp = \CMSFactory\assetManager::create()->checkTemplatePath();
-//        echo $fp;
-//        exit;
-//        
-
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('mod_stats');
@@ -61,10 +55,9 @@ class Admin extends \BaseAdminController {
             $data = array();
         }
 
-        $templateData = \CMSFactory\assetManager::create()
+        echo \CMSFactory\assetManager::create()
                 ->setData(array('data' => $data))
                 ->fetchAdminTemplate($template, TRUE);
-        echo $templateData;
     }
 
     /**
