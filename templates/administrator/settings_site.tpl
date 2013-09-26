@@ -58,10 +58,8 @@
                                                             <label class="control-label" for="lang_sel">{lang('Select admin language', "admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="lang_sel" id="lang_sel">
-                                                                    {$arr = get_lang_admin_folders()}
-                                                                    {foreach $arr as $a}
-                                                                        <option value="{$a}" {if $lang_sel == $a}selected="selected"{/if}> {echo str_replace('_lang', '', $a)} {if $a == 'english_lang'}(beta){/if} </option>
-                                                                    {/foreach}
+                                                                        <option value="english_lang" {if strstr($lang_sel, 'english')}selected="selected"{/if}> {lang('English', 'admin')}</option>
+                                                                        <option value="russian_lang" {if strstr($lang_sel, 'russian')}selected="selected"{/if}> {lang('Russian', 'admin')}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
