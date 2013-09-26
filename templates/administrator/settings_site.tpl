@@ -63,7 +63,6 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-
                                                         <div class="control-group">
                                                             <label class="control-label" for="template">{lang('Template', 'admin')}:</label>
                                                             <div class="controls">
