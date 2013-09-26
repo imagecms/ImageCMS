@@ -18,8 +18,6 @@ class Admin extends \BaseAdminController {
 
     public function __construct() {
 
-        $b = new \libraries\Backup();
-
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('mod_stats');
@@ -35,7 +33,7 @@ class Admin extends \BaseAdminController {
                     ->setData(array('saveSearchResults' => $saveSearchResults))
                     ->registerStyle('style')
                     ->registerStyle('nvd3/nv.d3')
-                    ->registerScript('main', FALSE, 'after')
+                    ->registerScript('scripts', FALSE, 'after')
                     ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
                     ->registerScript('nvd3/nv.d3', FALSE, 'before')
                     ->renderAdmin('main', true);
@@ -57,10 +55,9 @@ class Admin extends \BaseAdminController {
             $data = array();
         }
 
-        $templateData = \CMSFactory\assetManager::create()
+        echo \CMSFactory\assetManager::create()
                 ->setData(array('data' => $data))
                 ->fetchAdminTemplate($template, TRUE);
-        echo $templateData;
     }
 
     /**
