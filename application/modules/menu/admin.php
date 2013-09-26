@@ -896,7 +896,7 @@ class Admin extends BaseAdminController {
 //            $title = lang("message", 'menu');
 //            $message = lang("Menu Update");
 //            $result = true;
-            showMessage(lang('Changes saved'));
+            showMessage(lang('Changes saved', 'menu'));
             if ($_POST['action'] == 'tomain')
                 pjax('/admin/components/cp/menu');
         }
