@@ -326,7 +326,7 @@ class Settings extends BaseAdminController {
         // saving admin's email in application/config/auth.php
         $authFullPath = "./application/config/auth.php";
         $authContents = file_get_contents($authFullPath);
-        $pattern = '/(\$config\[\'DX_webmaster_email\'\][\s\=]{1,})[\'\"A-Za-z\@\.\-]+/i';
+        $pattern = '/(\$config\[\'DX_webmaster_email\'\][\s\=]{1,})[\'\"0-9A-Za-z\@\.\-]+/i';
         $replacement = '$1\'' . $siteinfo['siteinfo_adminemail'] . '\'';
         $newAuthContents = preg_replace($pattern, $replacement, $authContents);
         if (is_writable($authFullPath)) {
