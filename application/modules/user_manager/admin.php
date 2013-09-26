@@ -318,6 +318,7 @@ class Admin extends BaseAdminController {
                 }
 
                 $this->template->assign('users', $users);
+                $this->template->assign('role_id', $role);
                 $this->template->add_array($this->show_edit_prems_tpl($id = 2));
                 $rezult_table = $this->fetch_tpl('main');
 
