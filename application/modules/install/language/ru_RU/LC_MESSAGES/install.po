@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-18 11:06+0300\n"
+"POT-Creation-Date: 2013-09-26 16:53+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,43 +17,43 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: ../../../install.php:156
+#: ../../../_install.php:156
 msgid "Site name"
 msgstr "Название сайта"
 
-#: ../../../install.php:157
+#: ../../../_install.php:157
 #: ../../../views/step_2.php:42
 msgid "Host"
 msgstr "Хост"
 
-#: ../../../install.php:158
+#: ../../../_install.php:158
 msgid "Database username"
 msgstr "Имя пользователя базы данных"
 
-#: ../../../install.php:160
+#: ../../../_install.php:160
 #: ../../../views/step_2.php:60
 msgid "Database name"
 msgstr "Имя базы данных"
 
-#: ../../../install.php:162
+#: ../../../_install.php:162
 #: ../../../views/step_2.php:66
 msgid "Administrator name"
 msgstr "Имя администратора"
 
-#: ../../../install.php:163
+#: ../../../_install.php:163
 msgid "Administrator E-mail"
 msgstr " E-mail администратора"
 
-#: ../../../install.php:164
+#: ../../../_install.php:164
 #: ../../../views/main.php:150
 msgid "Language"
 msgstr "Язык"
 
-#: ../../../install.php:171
+#: ../../../_install.php:171
 msgid "Database connection error"
 msgstr "Ошибка подключения к базе данных"
 
-#: ../../../install.php:366
+#: ../../../_install.php:366
 msgid "Error writing file config.php"
 msgstr "Ошибка записи файла config.php"
 
@@ -74,6 +74,7 @@ msgid "Language of the administrative part"
 msgstr "Язык административной части"
 
 #: ../../../views/step_2.php:20
+#: ../../../views/main.php:147
 msgid "Russian"
 msgstr "Русский"
 
@@ -82,8 +83,8 @@ msgid "English (beta)"
 msgstr "Английский (бета)"
 
 #: ../../../views/step_2.php:26
-msgid "Install products examples"
-msgstr "Установите примеры товаров"
+msgid "Install demo data"
+msgstr "Установить демо-данные"
 
 #: ../../../views/step_2.php:33
 msgid "Database connection"
@@ -143,6 +144,11 @@ msgstr "Отмена"
 msgid "Installing"
 msgstr "Установка"
 
+#: ../../../views/main.php:148
+#, fuzzy
+msgid "English"
+msgstr "Английский (бета)"
+
 #: ../../../views/step_1.php:1
 msgid "Directories checking"
 msgstr "Проверка директорий"
@@ -174,6 +180,9 @@ msgstr "Для лучшей производительности, установ
 #: ../../../views/step_1.php:38
 msgid "Update"
 msgstr "Обновить"
+
+#~ msgid "Install products examples"
+#~ msgstr "Установите примеры товаров"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"
