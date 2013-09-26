@@ -29,7 +29,7 @@
                                 </span>
                             </span>
                             <span class="d_b">
-                                <button type="button" class="d_l" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">{lang('lang_forgot_password')}</button>
+                                <button type="button" class="d_l" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">{lang('Забыли Пароль?','corporate')}</button>
                             </span>
                         </span>
                     </div>

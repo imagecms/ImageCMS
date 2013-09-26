@@ -6,7 +6,7 @@
         <h2>Результаты поиска: <span class="result">"{$search_title}"</span></h2>
         <div class="text">
             {if !$items}
-                <p>{lang('no_pages_found')}</p>
+                <p>{lang('Ничего не найдено','corporate')}</p>
             {/if}
             <ul class="items items-row items-search">
                 {foreach $items as $page}

@@ -16,9 +16,8 @@
         </ul>
     </div>
 {/if}
-
 <div class="vertical-form">
-    <h3>{lang('post_comment')}</h3>
+    <h3>{lang('Оставить комментарий','corporate')}</h3>
     {if $comment_errors}
         <div class="msg">
             <div class="error">
@@ -30,7 +29,7 @@
     {/if}
 
     {if $can_comment === 1 AND !is_logged_in}
-        <p>{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
+        <p>{sprintf(lang('Только авторизованные пользователи могут оставлять комментарии. <a href="%s" class="loginAjax">Авторизуйтесь</a>, пожалуйста.','corporate'), site_url($modules.auth))}</p>
     {/if}
 
     <form action="" method="post">
@@ -38,7 +37,7 @@
         <input type="hidden" name="redirect" value="{uri_string()}" />
 
         {if $is_logged_in} 
-            <p>{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang('lang_logout')}</a></p>         
+            <p>{lang('Вы вошли как','corporate')} {$username}. <a href="{site_url('auth/logout')}">{lang('Выход','corporate')}</a></p>         
             {else:}
             <label>
                 <span class="title">Имя</span>
@@ -71,7 +70,7 @@
             {/if}
         {/if}
         <div class="btn">
-            <input type="submit" class="submit" value="{lang('lang_comment_button')}"/>
+            <input type="submit" class="submit" value="{lang('Написать &rarr;','corporate')}"/>
         </div>
         {form_csrf()}
     </form>
