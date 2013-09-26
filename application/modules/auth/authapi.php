@@ -151,7 +151,7 @@ class Authapi extends MY_Controller {
                 //create json array for ajax request
                 $json = array();
                 $json['status'] = true;
-                $json['msg'] = 'Register success';
+                $json['msg'] = lang('Register success', 'auth');
                 $json['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : false;
                 $json['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : false;
                 echo json_encode($json);
