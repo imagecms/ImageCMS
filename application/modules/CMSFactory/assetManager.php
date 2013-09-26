@@ -399,8 +399,6 @@ class assetManager {
         return $css;
     }
 
-    
-
 }
 
 /** End of file /application/modules/CMSFactory/assetManager.php */

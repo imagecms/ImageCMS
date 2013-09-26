@@ -58,10 +58,8 @@
                                                             <label class="control-label" for="lang_sel">{lang('Select admin language', "admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="lang_sel" id="lang_sel">
-                                                                    {$arr = get_lang_admin_folders()}
-                                                                    {foreach $arr as $a}
-                                                                        <option value="{$a}" {if $lang_sel == $a}selected="selected"{/if}> {echo str_replace('_lang', '', $a)} {if $a == 'english_lang'}(beta){/if} </option>
-                                                                    {/foreach}
+                                                                        <option value="english_lang" {if strstr($lang_sel, 'english')}selected="selected"{/if}> {lang('English', 'admin')}</option>
+                                                                        <option value="russian_lang" {if strstr($lang_sel, 'russian')}selected="selected"{/if}> {lang('Russian', 'admin')}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -472,7 +470,7 @@
 
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_logo">{lang('Logo', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_logo'"></i></label>
+                                                            <label class="control-label">{lang('Logo', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_logo'"></i></label>
                                                             <input type="file" id="siteinfo_logo" name="siteinfo_logo" data-url="file">
                                                             <input type="hidden" id="si_delete_logo" class="si_delete_image" name="si_delete_logo" value="0">
 
@@ -490,7 +488,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_favicon">Favicon <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_favicon'"></i></label>
+                                                            <label class="control-label">Favicon <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_favicon'"></i></label>
                                                             <input type="file" id="siteinfo_favicon" name="siteinfo_favicon" data-url="file">
                                                             <input type="hidden" id="si_delete_favicon" class="si_delete_image" name="si_delete_favicon" value="0">
 

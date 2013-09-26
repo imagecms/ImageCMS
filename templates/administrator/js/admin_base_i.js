@@ -1258,12 +1258,12 @@ $(document).ready(function() {
 
 
     // shop - settings - count of products on site
-    $("#arrayFrontProductsPerPage").live('keyup', function() {
+    $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {
         var currentValue = $(this).val();
         var pattern = /^[0-9\,]*$/;
         if (!currentValue.match(pattern)) { // has banned symbols
             var caretPosition = caret($(this)); // get the caret position
-            var newValue = currentValue.replace(/[^0-9\,]/, '');
+            var newValue = currentValue.replace(/[^0-9\,]+/, '');
             $(this).val(newValue);
             caret(this, caretPosition.begin)
         }
