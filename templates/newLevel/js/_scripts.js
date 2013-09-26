@@ -533,7 +533,6 @@ function displayDiscount(obj) {
     else {
         $(genObj.frameCurDiscount).hide();
     }
-    console.log(obj)
     if (parseFloat(obj.result_sum_discount_convert) > 0)
         $(genObj.frameGenDiscount).show();
 }
