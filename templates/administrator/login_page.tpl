@@ -37,11 +37,11 @@
                         {$login_failed}
                     {/if}
                     <label>
-                        <input type="text" name="login" placeholder="{lang('E-mail', 'admin')}"/>{$login_error}
+                        <input type="text" name="login" placeholder="{lang("E-mail", "admin")}"/>{$login_error}
                         <span class="icon-user"></span>
                     </label>
                     <label>
-                        <input type="password" name="password" placeholder="{lang('Password','admin')}"/>{$password_error}
+                        <input type="password" name="password" placeholder="{lang("Password", "admin")}"/>{$password_error}
                         <span class="icon-lock"></span>
                     </label>
                     {if $use_captcha == "1"}
@@ -49,7 +49,8 @@
                         <label style="margin-bottom:50px">
                             {lang('Security code', 'admin')}:<br/>
                             <div id="captcha">{$cap_image}</div>
-                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');return false;">{lang('Update the code',"admin")}</a>
+                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');
+                                    return false;">{lang('Update the code',"admin")}</a>
                             <input type="text" name="captcha" />{$captcha_error}
                         </label>
                     {/if}
