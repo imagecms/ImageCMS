@@ -92,16 +92,9 @@ $.fn.pricetext = function(e, rank) {
     return $this;
 }
 $.fn.setCursorPosition = function(pos) {
-    this.each(function(index, elem) {
-        if (elem.setSelectionRange) {
-            elem.setSelectionRange(pos, pos);
-        } else if (elem.createTextRange) {
-            var range = elem.createTextRange();
-            range.collapse(true);
-            range.moveEnd('character', pos);
-            range.moveStart('character', pos);
-            range.select();
-        }
+    this.each(function() {
+        this.select();
+        this.setSelectionRange(pos, pos);
     });
     return this;
 };
@@ -584,8 +577,7 @@ ltie8 = ie && (ieV <= 8);
                         el: $this, 
                         value: minValue
                     });
-                var iL = inputString.val().length;
-                if (iL <= minValue)
+                if (inputString.val().length <= minValue)
                     submit.unbind('click.autocomplete').on('click.autocomplete', function(e) {
                         e.preventDefault();
                         inputString.focus();
@@ -605,7 +597,7 @@ ltie8 = ie && (ieV <= 8);
                 if (!event)
                     var event = window.event;
                 var code = event.keyCode;
-                if (code == 13 && iL <= minValue)
+                if (code == 13 && $(this).val().length <= minValue)
                     return false;
             })
         }
