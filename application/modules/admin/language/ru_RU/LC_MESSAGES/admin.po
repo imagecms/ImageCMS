@@ -323,7 +323,7 @@ msgstr "Создать новую страницу"
 
 #: /var/www/image.loc/_tempLangs.php:51
 msgid "back"
-msgstr "назад"
+msgstr "Назад"
 
 #: /var/www/image.loc/_tempLangs.php:61
 msgid "Parent category"
