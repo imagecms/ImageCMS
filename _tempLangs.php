@@ -106,7 +106,7 @@ _("Change product");
 _("The file is loaded. Slot ");
 _("Error in the script. Please notify the administrator");
 _("This field is required");
-_("Please filangx this field.");
+_("Please fix this field.");
 _("Enter a valid email address.");
 _("Please enter a valid URL.");
 _("Please enter a valid date.");
