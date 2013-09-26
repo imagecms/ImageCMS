@@ -9,7 +9,6 @@
 *   $model->firstVariant->toCurrency() : variable which contains price of product;
 *
 */}
-{var_dumps($CI->load->module('exchangeunfu')->getRegions())}
 {$Comments = $CI->load->module('comments')->init($model)}
 {$NextCSIdCond = $NextCS != null}
 <div class="frame-crumbs">

@@ -3,7 +3,7 @@
  */
 /* User Information */
 $(document).ready(function() {
-    $('section.mod_stats').on('click', '#diagramField', function() {
+    $('section.mod_stats').on('change', '#diagramField', function() {
         var field = $(this).find("option:selected").val();
         var CookieDate = new Date();
         CookieDate.setFullYear(CookieDate.getFullYear() + 1);
@@ -40,7 +40,7 @@ $(document).ready(function() {
     /**
      * Choose chart type 
      */
-    $('section.mod_stats').on('click', '#selectChartType', function() {
+    $('section.mod_stats').on('change', '#selectChartType', function() {
         var selectElement = $(this);
         var chartType = selectElement.find("option:selected").val();
 //        drawChartsAndRefresh('products', 'brands');
