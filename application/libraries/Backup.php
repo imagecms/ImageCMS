@@ -99,7 +99,12 @@ class Backup {
      */
     public function getSetting($key = NULL) {
         $result = $this->ci->db->select('backup')->get('settings');
-        $row = $result->result_array();
+        if($result){
+            $row = $result->result_array();
+        }else{
+            $row = array();
+        }
+        
         $backupSettings = unserialize($row[0]['backup']);
         if (!is_array($backupSettings)) { // no settings yet
             return NULL;

@@ -458,7 +458,7 @@ class ParentWishlist extends \MY_Controller {
         if ($forReturn == 0)
             $this->errors[] = lang('Can not remove items from wishlist', 'wishlist');
         else
-            $this->dataModel = lang('Successful operation', 'wishlist');
+            $this->dataModel = lang('Item deleted', 'wishlist');
 
         return $forReturn;
     }
