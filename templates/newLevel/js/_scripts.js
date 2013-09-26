@@ -1085,46 +1085,46 @@ function decorElemntItemProduct(el) {
                 noVisT = $thisLi.find('.no-vis-table'),
                 noVisTL = noVisT.length,
                 $thisS = $thisLi.data('pos').match(/top|bottom|left|right/)[0];
+                $thisLi.css('overflow', 'hidden');
                 noVisT.each(function() {
                     var $this = $(this);
                     if ($thisS) {
                         var descW = $thisLi.find('.description').width()
-                        $this.css('width', descW);
                         switch ($thisS) {
                             case 'top':
                                 $this.parent().css('top', sumH)
-                                sumH = sumH + $this.actual('outerHeight');
-                                break
+                                sumH = sumH + $this.outerHeight(true);
+                                break;
                             case 'left':
                                 $this.parent().css({
                                     'left': descW, 
                                     'top': sumH
                                 })
-                                sumH = sumH + $this.actual('outerHeight');
-                                sumW = sumW + $this.actual('outerWidth');
-                                break
+                                sumH = sumH + $this.outerHeight(true);
+                                sumW = sumW + $this.outerWidth(true);
+                                break;
                         }
-                        $this.css({
-                            'width': '', 
-                            'height': ''
-                        });
                     }
                 })
+                $thisLi.css({
+                    'width': '', 
+                    'height': '',
+                    'overflow': ''
+                });
                 switch ($thisS) {
                     case 'top':
                         decEl.css({
                             'height': sumH + decElH
                         })
-                        break
+                        break;
                     case 'left':
                         decEl.css({
                             'width': sumW / noVisTL + decElW, 
                             'height': sumH > decElH ? sumH : decElH
                         })
-                        break
+                        break;
                 }
             });
-            $('[data-elchange="#items-catalog-main"]').addClass('visited');
             wnd.scroll(); //if lazyload
         }
         setTimeout(curFunc, 400)
@@ -1598,7 +1598,7 @@ function init() {
     }
     /*/call front plugins and functions*/
     /*sample of events front*/
-    $(document).on('lazy.after', function(e) {
+    $(document).live('lazy.after', function(e) {
         e.el.addClass('load');
     });
     $(document).on('drop.contentHeight', function(e) {
@@ -1962,27 +1962,24 @@ function init() {
     /*/sample of events shop/*/
 
     wnd.focus(function() {
-        //        processBtnBuyCount();
-        //        checkSyncs();
-        //        processComp();
-        //        processWish();
-        //        compareListCount();
-        //        wishListCount();
-        //
-        //
+        processBtnBuyCount();
+        checkSyncs();
+        processComp();
+        processWish();
+        compareListCount();
+        wishListCount();
+        
         //initShopPage(false);
-
-        //        if ($(genObj.popupCart).is(':visible'))
-        //            $.drop('closeDrop')($(genObj.popupCart))
-        //        processCarts();
-        //        countSumBask();
-        //        //shipping changing, re-render cart page
-        //        if (orderDetails) {
-        //            renderOrderDetails();
-        //            //shipping changing, re-render cart page
-        //            recountCartPage(selectDeliv, methodDeliv());
-        //        }
-        })
+        if ($(genObj.popupCart).is(':visible'))
+            $.drop('closeDrop')($(genObj.popupCart))
+        
+        processCarts();
+        countSumBask();
+        if (orderDetails) {
+            renderOrderDetails();
+            recountCartPage(selectDeliv, methodDeliv());
+        }
+    })
 }
 var genTimeout = "";
 wnd.resize(function() {
