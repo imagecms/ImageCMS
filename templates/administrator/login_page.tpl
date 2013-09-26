@@ -47,7 +47,7 @@
                     {if $use_captcha == "1"}
 
                         <label style="margin-bottom:50px">
-                            {$lang_captcha}:<br/>
+                            {lang('Security code', 'admin')}:<br/>
                             <div id="captcha">{$cap_image}</div>
                             <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');return false;">{lang('Update the code',"admin")}</a>
                             <input type="text" name="captcha" />{$captcha_error}
