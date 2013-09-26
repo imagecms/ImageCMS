@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-19 17:03+0300\n"
+"POT-Creation-Date: 2013-09-26 11:25+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -458,13 +458,8 @@ msgid "Added to wishlist"
 msgstr "Добавлено в Список Желаний"
 
 #: classes/ParentWishlist.php:461
-#: classes/BaseApi.php:65
-#: classes/BaseApi.php:95
-#: classes/BaseApi.php:322
-#: classes/BaseWishlist.php:71
-#: classes/BaseWishlist.php:299
-msgid "Successful operation"
-msgstr "Успешная операция"
+msgid "Item deleted"
+msgstr "Товар удален"
 
 #: classes/ParentWishlist.php:501
 msgid "User data is not found"
@@ -485,6 +480,14 @@ msgstr "Превышена максимальная высота изображ�
 #: classes/ParentWishlist.php:567
 msgid "Invalid file format"
 msgstr "Неверный формат файла"
+
+#: classes/BaseApi.php:65
+#: classes/BaseApi.php:95
+#: classes/BaseApi.php:322
+#: classes/BaseWishlist.php:71
+#: classes/BaseWishlist.php:299
+msgid "Successful operation"
+msgstr "Успешная операция"
 
 #: classes/BaseApi.php:67
 #: classes/BaseApi.php:97

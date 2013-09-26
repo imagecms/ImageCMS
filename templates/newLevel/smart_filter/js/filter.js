@@ -82,8 +82,9 @@ function changeSelectFilter(el) {
                             minS = minCost.data('mins');
                     if (parseInt(value1) > parseInt(value2)) {
                         value1 = value2;
-                        maxCost.val(value1);
+                        minCost.val(minS);
                     }
+                    
                     if (parseInt(value1) < minS) {
                         minCost.val(minS);
                         value1 = minS;
@@ -100,8 +101,8 @@ function changeSelectFilter(el) {
                     }
 
                     if (parseInt(value1) > parseInt(value2)) {
-                        value2 = value1;
-                        maxCost.val(value2);
+                        value2 = maxS;
+                        maxCost.val(maxS);
                     }
                     if (parseInt(value2) > maxS) {
                         maxCost.val(maxS);

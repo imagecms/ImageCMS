@@ -288,7 +288,7 @@
                             <label>
                                 <span class="title">{lang('Дата рождения:','newLevel')}</span>
                                 <span class="frame-form-field">
-                                    <input type="text" id='datepicker' value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
+                                    <input type="text" id='datepicker' onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" value="{if $user[user_birthday]}{echo date('Y-m-d', $user[user_birthday])}{/if}" name="user_birthday"/>
                                 </span>
                             </label>
                             <label>

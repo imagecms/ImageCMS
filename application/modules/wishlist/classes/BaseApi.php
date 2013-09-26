@@ -149,19 +149,25 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     public function userUpdate() {
 
         if ($this->settings['maxDescLenght'] < iconv_strlen($this->input->post('description'), 'UTF-8'))
-            $desc = substr($this->input->post('description'), 0, $this->settings['maxDescLenght']);
+            $desc = mb_substr($this->input->post('description'), 0, $this->settings['maxDescLenght'], 'UTF-8');
         else
             $desc = $this->input->post('description');
 
-        if (!(strtotime($this->input->post('user_birthday')) + 50000))
-            return false;
+        if ($this->input->post('user_birthday')) {
+            if (!(strtotime($this->input->post('user_birthday')) + 50000))
+                return false;
+            $user_birthday = strtotime($this->input->post('user_birthday')) + 50000;
+        }else {
+            $user_birthday = '';
+        }
+
 
         $userName = $this->input->post('user_name');
 
         if ($this->settings['maxUserName'] < iconv_strlen($userName, 'UTF-8'))
             $desc = mb_substr($userName, 0, $this->settings['maxUserName'], 'UTF-8');
 
-        $updated = parent::userUpdate($this->input->post('user_id'), $userName, strtotime($this->input->post('user_birthday')) + 50000, $desc);
+        $updated = parent::userUpdate($this->input->post('user_id'), $userName, $user_birthday, $desc);
         if ($updated) {
             return $this->dataModel = lang('Updated', 'wishlist');
         } else {
