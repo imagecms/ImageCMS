@@ -152,12 +152,6 @@
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
         <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
-        <span class="price-discount">
-        <span>
-        <span class="price"><%-parseFloat(origprices[i]).toFixed(pricePrecision)%></span>
-        <span class="curr"><%-curr%></span>
-        </span>
-        </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
