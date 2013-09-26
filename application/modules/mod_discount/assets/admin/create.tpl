@@ -50,7 +50,7 @@ var currencySymbolJS = '{echo $CS}';
                                 </span>
                             </label>
                             <div class="noLimitC">
-                                <div class="span4"><i class="icon-info-sign"></i>{lang('Users count', 'mod_discount')}:</div>
+                                <div class="span4">{lang('Users count', 'mod_discount')}:</div>
                                 <div class="span8">
                                     <span class="d-i_b m-r_10">
                                         <input class="input-small onlyNumbersInput " id="how-much" type="text" name="max_apply"  disabled='disabled' maxlength="7"/>
@@ -78,7 +78,7 @@ var currencySymbolJS = '{echo $CS}';
                             <div class="span8 title-bonus">{lang('Method of calculation', 'mod_discount')}</div>
                         </div>
                         <div class="">
-                            <div class="span4"><i class="icon-info-sign"></i>{lang('Choose method', 'mod_discount')}:</div>
+                            <div class="span4">{lang('Choose method', 'mod_discount')}:</div>
                             <div class="span8">
                                 <div class="d-i_b m-r_15">
                                     <select name="type_value" id="selectTypeValue">
@@ -108,7 +108,7 @@ var currencySymbolJS = '{echo $CS}';
             </div>
             <!-- Start. Choose type discount -->
             <div class="m-b_15">
-                <div class="span4"><i class="icon-info-sign"></i>{lang('Choose type', 'mod_discount')}:</div>
+                <div class="span4">{lang('Choose type', 'mod_discount')}:</div>
                 <div class="span8">
 
                     <select name="type_discount" id="selectDiscountType" class="required no_color">
@@ -259,12 +259,12 @@ var currencySymbolJS = '{echo $CS}';
             <div class="span8 title-bonus">{lang('Allowed time for discounts', 'mod_discount')}</div>
         </div>
         <div class="">
-            <div class="span4"><i class="icon-info-sign"></i>{lang('Period of the discount from', 'mod_discount')}:</div>
+            <div class="span4">{lang('Period of the discount from', 'mod_discount')}:</div>
             <div class="span8">
                 <div class="">
                     <span class="d-i_b">
                         <label class="p_r">
-                            <input class="datepicker required discountDate" type="text" value="" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
+                            <input class="required discountDate beginDateDiscount" type="text" value="" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
                             <span class="icon-calendar"></span>
                         </label>
                     </span>

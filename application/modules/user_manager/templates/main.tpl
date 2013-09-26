@@ -76,7 +76,7 @@
                                 <td><select name="role" id="role">
                                         <option value ="0">{lang('All groups', 'user_manager')}</option>
                                         {foreach $roles as $role}
-                                            <option value ="{$role.id}">{$role.alt_name}</option>
+                                            <option value ="{$role.id}" {if $role.id==$role_id}selected{/if}>{$role.alt_name}</option>
                                         {/foreach}
                                     </select>
                                 </td>

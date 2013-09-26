@@ -54,7 +54,7 @@
                                     </span>
                                 </label>
                                 <div class="noLimitC">
-                                    <div class="span4"><i class="icon-info-sign"></i>{lang('Count of usage', 'mod_discount')}:</div>
+                                    <div class="span4">{lang('Count of usage', 'mod_discount')}:</div>
                                     <div class="span8">
                                         {if $discount['max_apply'] != null && $discount['max_apply'] != '0'}
                                             {$maxApply = true;}
@@ -85,7 +85,7 @@
                                     <div class="span8 title-bonus">{lang('Method of calculation', 'mod_discount')}</div>
                                 </div>
                                 <div class="">
-                                    <div class="span4"><i class="icon-info-sign"></i>{lang('Choose method', 'mod_discount')}:</div>
+                                    <div class="span4">{lang('Choose method', 'mod_discount')}:</div>
                                     <div class="span8">
                                         <div class="d-i_b m-r_15">
                                             <select name="type_value" id="selectTypeValue">
@@ -116,7 +116,7 @@
                         </div>
                         <!-- Start. Choose type discount -->
                         <div class="m-b_15">
-                            <div class="span4"><i class="icon-info-sign"></i>{lang('Choose type', 'mod_discount')}:</div>
+                            <div class="span4">{lang('Choose type', 'mod_discount')}:</div>
                             <div class="span8">
                                 <select name="type_discount" id="selectDiscountType" class="required no_color">
                                     <option value="all_order" {if $discount['type_discount'] == 'all_order'} selected {/if}>{lang('Order amount of more than', 'mod_discount')}</option>
@@ -268,7 +268,7 @@
                     <div class="span8 title-bonus">{lang('Allowed time for discounts', 'mod_discount')}</div>
                 </div>
                 <div class="">
-                    <div class="span4"><i class="icon-info-sign"></i>{lang('Period of the discount from', 'mod_discount')}:</div>
+                    <div class="span4">{lang('Period of the discount from', 'mod_discount')}:</div>
                     <div class="span8">
                         <div class="">
                             <span class="d-i_b">

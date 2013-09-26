@@ -45,7 +45,7 @@
                     <span class="frame-item-brand">{lang('Бренд','newLevel')}:
                         <span class="code">
                             {if $hasBrand}
-                                <a href="{echo $model->getBrand()->getUrl()}">
+                                <a href="{shop_url('brand/'.$model->getBrand()->getUrl())}">
                                     {echo trim($brand)}
                                 </a>
                             {/if}
