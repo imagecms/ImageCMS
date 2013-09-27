@@ -177,7 +177,7 @@
                             <table class="table-order">
                                 <tbody>
                                     <!-- for single product -->
-                                    {foreach $model->getSOrderProductss() as $orderProduct}
+                                    {foreach $model->getSOrderProducts() as $orderProduct}
                                         {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
                                             {if $v->getid() == $orderProduct->variant_id}
                                                 {$Variant = $v}
