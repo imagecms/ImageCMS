@@ -30,8 +30,9 @@
                     <label for="theme">{lang('Subject', 'feedback')}</label>
                     <input type="text" id="theme" name="theme" class="text" value="{if $_POST.theme}{$_POST.theme}{/if}" placeholder="{lang('Subject', 'feedback')}"/>
             </div>
-            <label for="theme">{lang('Message', 'feedback')}</label>
+            <div class="clearfix"></div>
             <div class="textbox" style="margin-top: 15px;">
+                <label for="theme">{lang('Message', 'feedback')}</label>
                 <textarea cols="45" rows="10" name="message" id="message" placeholder="{lang('Message text', 'feedback')}">{if $_POST.message}{$_POST.message}{/if}</textarea>
 
             </div>
@@ -50,7 +51,7 @@
 
 
             <div style="margin-top: 15px;">
-                <input type="submit" id="submit" class="submit" value="{lang('Send', 'feedback')}" />
+                <input type="submit" id="submit" class="submit" value="{lang('Отправить', 'feedback')}" />
             </div>
             {form_csrf()}
             </form>
