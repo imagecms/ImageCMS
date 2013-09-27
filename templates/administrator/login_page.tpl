@@ -29,9 +29,9 @@
                 <div class="o_h" style="margin-top: 20px; text-align: right; margin-right: -50px">
                     <a href="/admin/login/switch_admin_lang/english" class="d-i_b">
                         {if $CI->config->item('language') == 'english'}
-                            <img width="100%" height="100p%" src="{$THEME}img/EN.png"/>
+                            <img  width="100%" height="100p%" src="{$THEME}img/EN.png"/>
                         {else:}
-                            <img style="height: 14px; margin-top: 3px; margin-right: 10px " width="70%" height="70p%" src="{$THEME}img/EN.png"/>
+                            <img  style="height: 13px; width: 22px; margin-top: 3px; margin-right: 10px " width="70%" height="70p%" src="{$THEME}img/EN.png"/>
                         {/if}
                     </a>
                     <a href="/admin/login/switch_admin_lang/russian" class="d-i_b">
