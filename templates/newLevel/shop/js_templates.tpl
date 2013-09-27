@@ -382,11 +382,7 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(item.prodstatus, function(item, i){%>
-        <% if (!$.isFunction(productStatus[i]))%>
-        <%= productStatus[i]%>
-        <%})%>
-        </span>
+         </span>
         <span class="title"><%- item.name %>
         </a>
         <div class="description">
@@ -497,12 +493,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(item.prodstatus[i], function(item, i){%>
-        <% if ($.isFunction(productStatus[i]))%>
-        <%= productStatus[i](parseFloat(item))%>
-        <%else%>
-        <%= productStatus[i]%>
-        <%})%>
         </span>
         <span class="title"><%- names[i] %></span>
         </a>
