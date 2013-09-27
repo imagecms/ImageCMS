@@ -177,13 +177,17 @@
                             <table class="table-order">
                                 <tbody>
                                     <!-- for single product -->
-                                    {foreach $model->getSOrderProducts() as $orderProduct}
-                                        {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
-                                            {if $v->getid() == $orderProduct->variant_id}
-                                                {$Variant = $v}
-                                                {break;}
-                                            {/if}
-                                        {/foreach}
+                                    {foreach $model->getOrderProducts() as $orderProduct}
+                                            {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
+                                                {if $v->getid() == $orderProduct->variant_id}
+                                                    {$Variant = $v}
+                                                    {break;}
+                                                {/if}
+                                            {/foreach}
+                            
+                                        
+                                        
+                            
                                         <tr class="items items-bask items-order cartProduct">
                                             <td class="frame-items">
                                                 <!-- Start. Render Ordered Products -->            
