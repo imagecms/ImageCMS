@@ -5,25 +5,23 @@ function get_discount(discTpl) {
         type: "POST",
         async: false,
         success: function(data) {
+            _discount = data != '' ? JSON.parse(data) : null;
+            Shop.Cart.discount = _discount;
             if (data != '') {
-                _discount = JSON.parse(data);
                 if (discTpl) {
                     $.post('/mod_discount/discount_api/get_discount_tpl_from_json_api', {
                         json: data
                     }, function(tpl) {
-                        Shop.Cart.discount = _discount;
                         displayDiscount(_discount);
                         displayInfoDiscount(tpl);
                     })
                 }
                 else {
-                    Shop.Cart.discount = _discount;
                     displayDiscount(_discount);
                     displayInfoDiscount('');
                 }
             }
             else {
-                Shop.Cart.discount = _discount;
                 displayDiscount(_discount);
                 displayInfoDiscount('');
             }
@@ -39,7 +37,6 @@ function load_certificat() {
         });
     else {
         gift = Shop.Cart.gift;
-        console.log(gift);
         if (gift.error) {
             giftError(gift.mes);
         } else {
