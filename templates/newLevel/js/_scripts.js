@@ -519,11 +519,17 @@ function displayDiscount(obj) {
     var kitDiscount = parseFloat(getKitDiscount());
     kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
     Shop.Cart.kitDiscount = kitDiscount;
-    var discC = (obj.sum_discount_product != 0 && obj.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || parseFloat(Shop.Cart.kitDiscount) != 0;
+    var tempdisc = false;
+    if (obj != null)
+        tempdisc =  parseFloat(obj.sum_discount_product) != 0;
+    var discC = tempdisc || parseFloat(Shop.Cart.kitDiscount) != 0;
     if (discC) {
-        var condDisc = (obj.sum_discount_product == null || obj.sum_discount_product == undefined);
         $(genObj.genDiscount).each(function() {
-            $(this).html((parseFloat(condDisc ? 0 : obj.sum_discount_product) + kitDiscount).toFixed(pricePrecision));
+            var gend = 0;
+            if (obj != null)
+                gend += parseFloat(obj.sum_discount_product == null ? 0 : obj.sum_discount_product);
+            gend += kitDiscount;
+            $(this).html(gend.toFixed(pricePrecision));
         });
         $(genObj.genSumDiscount).each(function() {
             $(this).html(Shop.Cart.totalPriceOrigin.toFixed(pricePrecision));
@@ -533,8 +539,9 @@ function displayDiscount(obj) {
     else {
         $(genObj.frameCurDiscount).hide();
     }
-    if (parseFloat(obj.result_sum_discount_convert) > 0)
-        $(genObj.frameGenDiscount).show();
+    if (obj != null)
+        if (parseFloat(obj.result_sum_discount_convert) > 0)
+            $(genObj.frameGenDiscount).show();
 }
 function applyGift(el) {
     $(genObj.gift).find(preloader).show();
