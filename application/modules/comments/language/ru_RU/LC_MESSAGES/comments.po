@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-26 16:03+0300\n"
-"PO-Revision-Date: 2013-09-26 16:03+0300\n"
+"PO-Revision-Date: 2013-09-27 10:21+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -358,7 +358,7 @@ msgstr "Успех"
 
 #: admin.php:205
 msgid "Change saved"
-msgstr "Изменить сохранены"
+msgstr "Изменения сохранены"
 
 #: admin.php:225
 msgid "Status updated"

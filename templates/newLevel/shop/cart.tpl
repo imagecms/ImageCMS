@@ -212,7 +212,7 @@
                     <div class="frame-form-field">
                         <ul class="items items-order-gen-info">
                             <li>
-                                <span class="s-t">{lang('Варианты доставки: ','newLevel')}</span>
+                                <span class="s-t">{lang('Доставка: ','newLevel')}</span>
                                 <span class="price-item">
                                     <span>
                                         <span class="price"><span class="text-el">+</span><span id="shipping"></span></span>
@@ -242,9 +242,9 @@
                             <span class="title">{lang('Всего к оплате:','newLevel')}</span>
                             <span class="frame-prices f-s_0">
                                 <span class="price-discount">
-                                    <span class="frame-gen-discount">
-                                        <span class="price" id="totalPrice"></span>
-                                        <span class="curr">{$CS}</span>
+                                    <span>
+                                        <span class="price frame-gen-discount" id="totalPrice"></span>
+                                        <span class="curr frame-gen-discount">{$CS}</span>
                                     </span>
                                 </span>
                                 <span class="current-prices f-s_0">

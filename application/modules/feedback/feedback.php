@@ -89,7 +89,7 @@ class Feedback extends MY_Controller {
                 foreach ($fields as $field => $name) {
                     $error = $this->form_validation->error($field);
                     if (!empty($error)) {
-                        $error_ = isset($this->formErrors[$error]) ? $this->formErrors[$error] : 'Error';
+                        $error_ = isset($this->formErrors[$error]) ? $this->formErrors[$error] : lang('Error', 'feedback');
                         $errors .= "<div style=\"color:red\">{$name} - {$error_}</div>";
                     }
                 }
