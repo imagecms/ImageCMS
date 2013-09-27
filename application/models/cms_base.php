@@ -124,7 +124,7 @@ class Cms_base extends CI_Model {
      * @return array
      */
     public function get_categories() {
-        $this->db->cache_on();
+//        $this->db->cache_on();
         $this->db->order_by('position', 'ASC');
         $query = $this->db->get('category');
 
@@ -136,7 +136,7 @@ class Cms_base extends CI_Model {
             return $categories;
         }
 
-        $this->db->cache_on();
+//        $this->db->cache_on();
         return FALSE;
     }
 
