@@ -12,9 +12,11 @@
                 {/foreach}
             </ul>
         </div>
-        <div class="comments w_50">
-            {$comments}
-        </div>
+        { /* }
+            <div class="comments w_50">
+                {$comments}
+            </div>
+        { */ }
     </div>
 </div>
 <link rel="stylesheet" type="text/css" href="{$THEME}css/fancybox.css" media="all" />
