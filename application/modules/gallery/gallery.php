@@ -128,11 +128,7 @@ class Gallery extends MY_Controller {
 
             $prev_img['url'] = $this->conf['upload_url'] . $album['id'] . '/' . $prev_img['file_name'] . '_prev' . $prev_img['file_ext'];
 
-            // Comments
-            $this->load->module('comments');
-            $this->comments->module = 'gallery';
-            $this->comments->comment_controller = 'gallery/post_comment';
-            $this->comments->build_comments($prev_img['id']);
+
 
             $data = array(
                 'album' => $album,

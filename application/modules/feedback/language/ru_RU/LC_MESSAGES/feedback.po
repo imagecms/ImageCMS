@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 17:27+0300\n"
-"PO-Revision-Date: 2013-09-19 17:15+0300\n"
+"POT-Creation-Date: 2013-09-27 10:11+0300\n"
+"PO-Revision-Date: 2013-09-27 10:11+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -17,93 +17,131 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:6
+#: /var/www/image.loc/_tempLangs.php:6
 msgid "Contacts"
 msgstr "Контакты"
 
-#: /var/www/image.loc/_temp2.php:7
+#: /var/www/image.loc/_tempLangs.php:7
 msgid "Your message has been sent."
 msgstr "Ваше сообщение было отправлено."
 
-#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_tempLangs.php:8
+#: /var/www/image.loc/_tempLangs.php:9
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: /var/www/image.loc/_temp2.php:9
-msgid "Theme"
+#: /var/www/image.loc/_tempLangs.php:10
+#: /var/www/image.loc/_tempLangs.php:11
+msgid "Email"
+msgstr "Email"
+
+#: /var/www/image.loc/_tempLangs.php:12
+#: /var/www/image.loc/_tempLangs.php:13
+msgid "Subject"
 msgstr "Тема"
 
-#: /var/www/image.loc/_temp2.php:10
-msgid "Message text"
-msgstr "Текст сообщения"
-
-#: /var/www/image.loc/_temp2.php:11
-msgid "Protection code"
-msgstr "Защитный код"
-
-#: /var/www/image.loc/_temp2.php:12
-msgid "Comment"
-msgstr "Комментарий"
-
-#: /var/www/image.loc/_temp2.php:13
-msgid "Feedback settings"
-msgstr "Настройки обратной связи"
-
-#: /var/www/image.loc/_temp2.php:14
-msgid "Go back"
-msgstr "Назад"
-
-#: /var/www/image.loc/_temp2.php:15
-msgid "Save"
-msgstr "Сохранить"
-
-#: /var/www/image.loc/_temp2.php:16
-msgid "Properties"
-msgstr "Свойства"
-
-#: /var/www/image.loc/_temp2.php:17
-msgid "E-Mail"
-msgstr "E-Mail"
-
-#: /var/www/image.loc/_temp2.php:18
-msgid "Specify the e-mail address for mailing"
-msgstr "Укажите адрес электронной почты для рассылки"
-
-#: /var/www/image.loc/_temp2.php:19
-msgid "Maximum message length"
-msgstr "Максимальная длина сообщения"
-
-#: ../../..//admin.php:65
-msgid "Settings have been saved"
-msgstr "Настройки сохранены"
-
-#: ../../..//module_info.php:4
-#: ../../..//feedback.php:49
-msgid "Feedback"
-msgstr "Обратная связь"
-
-#: ../../..//feedback.php:41
-msgid "Improper protection code"
-msgstr "Неправильная защита кода"
-
-#: ../../..//feedback.php:60
-#: ../../..//feedback.php:77
-msgid "Name"
-msgstr "Название"
-
-#: ../../..//feedback.php:66
-#: ../../..//feedback.php:68
-msgid "Code protection"
-msgstr "Защитный код"
-
-#: ../../..//feedback.php:70
-#: ../../..//feedback.php:79
+#: /var/www/image.loc/_tempLangs.php:14
 msgid "Message"
 msgstr "Сообщение"
 
-#: ../../..//feedback.php:78
+#: /var/www/image.loc/_tempLangs.php:15
+msgid "Message text"
+msgstr "Текст сообщения"
+
+#: /var/www/image.loc/_tempLangs.php:16
+#: /var/www/image.loc/_tempLangs.php:17
+msgid "Protection code"
+msgstr "Защитный код"
+
+#: /var/www/image.loc/_tempLangs.php:18
+msgid "Send"
+msgstr "Отправить"
+
+#: /var/www/image.loc/_tempLangs.php:19
+msgid "Feedback settings"
+msgstr "Настройки обратной связи"
+
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_tempLangs.php:22
+msgid "Properties"
+msgstr "Свойства"
+
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "Specify the e-mail address for mailing"
+msgstr "Укажите адрес электронной почты для рассылки"
+
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Maximum message length"
+msgstr "Максимальная длина сообщения"
+
+#: admin.php:59
+msgid "Settings have been saved"
+msgstr "Настройки сохранены"
+
+#: module_info.php:4
+#: feedback.php:58
+msgid "Feedback"
+msgstr "Обратная связь"
+
+#: feedback.php:26
+msgid "Field is required"
+msgstr "Поле необходимо заполнить"
+
+#: feedback.php:27
+msgid "Length is less than the minimum"
+msgstr "Длина меньше минимальной"
+
+#: feedback.php:28
+msgid "Email is not valid"
+msgstr "Не правильный Email"
+
+#: feedback.php:29
+msgid "Length greater than the maximum"
+msgstr "Длина больше максимальной"
+
+#: feedback.php:50
+msgid "Improper protection code"
+msgstr "Неправильная защита кода"
+
+#: feedback.php:69
+#: feedback.php:83
+#: feedback.php:100
+msgid "Name"
+msgstr "Название"
+
+#: feedback.php:71
+#: feedback.php:82
+#: feedback.php:99
+msgid "Theme"
+msgstr "Тема"
+
+#: feedback.php:74
+#: feedback.php:76
+msgid "Code protection"
+msgstr "Защитный код"
+
+#: feedback.php:84
+#: feedback.php:101
 msgid "E-mail"
 msgstr "Электронная почта"
+
+#: feedback.php:92
+msgid "Error"
+msgstr "Ошибка"
+
+#~ msgid "Comment"
+#~ msgstr "Комментарий"
 
 #, fuzzy
 #~ msgid "Settings have been saved or settings were saved"
