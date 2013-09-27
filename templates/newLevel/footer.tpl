@@ -80,12 +80,14 @@
             <div class="c_9">Все права защищены</div>
             {/*widget('copy_right')*/}
         </div>
-        <div class="f_r">
-            <a class="f-s_0 c_w">
-                <span class="icon_phone_footer"></span>
-                <span class="text-el"><a href="http://{if function_exists('mobile_site_address')}{mobile_site_address()}{/if}">{lang('Мобильная версия','newLevel')}</a></span>
-            </a>
-        </div>
+        {if function_exists('mobile_site_address')}
+            <div class="f_r">
+                <a class="f-s_0 c_w">
+                    <span class="icon_phone_footer"></span>
+                    <span class="text-el"><a href="{mobile_site_address()}">{lang('Мобильная версия','newLevel')}</a></span>
+                </a>
+            </div>
+        {/if}
     </div>
 </div>
 

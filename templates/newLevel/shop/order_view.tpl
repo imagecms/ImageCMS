@@ -177,13 +177,17 @@
                             <table class="table-order">
                                 <tbody>
                                     <!-- for single product -->
-                                    {foreach $model->getSOrderProducts() as $orderProduct}
-                                        {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
-                                            {if $v->getid() == $orderProduct->variant_id}
-                                                {$Variant = $v}
-                                                {break;}
-                                            {/if}
-                                        {/foreach}
+                                    {foreach $model->getOrderProducts() as $orderProduct}
+                                            {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
+                                                {if $v->getid() == $orderProduct->variant_id}
+                                                    {$Variant = $v}
+                                                    {break;}
+                                                {/if}
+                                            {/foreach}
+                            
+                                        
+                                        
+                            
                                         <tr class="items items-bask items-order cartProduct">
                                             <td class="frame-items">
                                                 <!-- Start. Render Ordered Products -->            
@@ -416,14 +420,14 @@
                             <span class="current-prices f-s_0">
                                 <span class="price-new">
                                     <span>
-                                        <span class="price">{echo $model->gettotalprice()}</span>
+                                        <span class="price">{echo $model->gettotalprice() + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>
                                 {if $NextCSIdCond}     
                                     <span class="price-add">
                                         <span>
-                                            (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId)}</span>
+                                            (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId) + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice(),$NextCSId)}</span>
                                             <span class="curr-add">{$NextCS}</span>)
                                         </span>
                                     </span>
