@@ -86,7 +86,7 @@
                     {/if}
                     {if $variant->getNumber()}
                         <span class="divider">/</span>
-                        <span class="code">{lang('Артикул', 'commerce_mobiles_new'')}: {echo $variant->getNumber()}</span>
+                        <span class="code">{lang('Артикул', 'commerce_mobiles_new'}: {echo $variant->getNumber()}</span>
                     {/if}
                     <span class="d_b price">{echo $item->getPrice()} {$CS}</span>
                     <span class="count">{echo $item->getQuantity()} шт.</span>
