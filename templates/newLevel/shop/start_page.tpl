@@ -12,12 +12,12 @@
         {widget('popular_products', TRUE)}
     </div>
     <div id="action_products">
-        <div class="preloader"></div>
-        {widget_ajax('action_products', '#action_products')}
+        
+        {widget('action_products')}
     </div>
     <div id="new_products">
-        <div class="preloader"></div>
-        {widget_ajax('new_products', '#new_products')}
+        
+        {widget('new_products')}
     </div>
 </div>
 {widget('brands')}
