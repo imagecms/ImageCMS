@@ -153,7 +153,6 @@ class Settings extends BaseAdminController {
      */
     function _get_templates() {
         $new_arr = array();
-
         if ($handle = opendir(TEMPLATES_PATH)) {
             while (false !== ($file = readdir($handle))) {
                 if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
@@ -244,7 +243,7 @@ class Settings extends BaseAdminController {
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors())
-            showMessage(lang("Settings have been saved","admin"));
+            showMessage(lang("Settings have been saved", "admin"));
     }
 
     /**
@@ -360,7 +359,7 @@ class Settings extends BaseAdminController {
      * @access public
      */
     function save_main() {
-
+        
     }
 
 }
