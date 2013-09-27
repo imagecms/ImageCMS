@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-26 15:26+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -5550,7 +5550,7 @@ msgstr "Резервное копирование завершено"
 
 #: categories.php:63
 msgid "The position has been successfully saved"
-msgstr "Позицыя сохранена"
+msgstr "Позиция сохранена"
 
 #: categories.php:143
 msgid "URL categories"

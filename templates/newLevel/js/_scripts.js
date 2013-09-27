@@ -23,7 +23,7 @@ var optionsMenu = {
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
-    countColumn: 5, //if not drop-side
+    //countColumn: 5, //if not drop-side
     sub2Frame: '.frame-l2', //if drop-side
     dropWidth: 475, //if not define than will be actual width needs when drop-side
 
@@ -581,7 +581,7 @@ function renderGiftSucces(tpl, gift) {
     $(genObj.gift).html(tpl);
 }
 function btnbuyInitialize(el) {
-    el.find(genObj.btnBuy).bind('click.buy', function(e) {
+    el.find(genObj.btnBuy).unbind('click.buy').bind('click.buy', function(e) {
         $(document).trigger('showActivity');
         $(this).attr('disabled', 'disabled');
         var cartItem = Shop.composeCartItem($(this));
@@ -1605,6 +1605,48 @@ function init() {
         }
     }
     /*/call front plugins and functions*/
+    
+    /*call functions for shop objects*/
+    checkSyncs();
+    btnbuyInitialize(body);//where find
+    processBtnBuyCount();
+    initShopPage(false);
+    countSumBask();
+    tovarChangeVariant();
+    tovarChangeCount();
+    //if !selectDeliv
+    $(".check-variant-delivery").nStRadio({
+        wrapper: $(".frame-radio > .frame-label"),
+        elCheckWrap: '.niceRadio',
+        before: function(el) {
+            $(document).trigger('showActivity');
+            $('[name="' + $(el).find('input').attr('name') + '"]').attr('disabled', 'disabled');
+        },
+        after: function(el, start) {
+            if (!start) {
+                var activeVal = el.find('input').val();
+                changeDeliveryMethod(activeVal, selectDeliv);
+                recountCartPage(selectDeliv, methodDeliv());
+                $('[name="' + $(el).find('input').attr('name') + '"]').removeAttr('disabled')
+            }
+        }
+    });
+    genObj.pM.nStRadio({
+        wrapper: $(".frame-radio > .frame-label"),
+        elCheckWrap: '.niceRadio'
+    //classRemove: 'b_n',//if not standart
+    });
+    if (orderDetails) {
+        renderOrderDetails();
+        //shipping changing, re-render cart page
+        recountCartPage(selectDeliv, methodDeliv());
+    }
+    processWish();
+    processComp();
+    compareListCount();
+    wishListCount();
+    /*/ call functions for shop objects*/
+    
     /*sample of events front*/
     $(document).live('lazy.after', function(e) {
         e.el.addClass('load');
@@ -1814,47 +1856,6 @@ function init() {
         pasteItemsTovars(e.el);
     });
     /*/sample of events front*/
-    
-    /*call functions for shop objects*/
-    checkSyncs();
-    btnbuyInitialize(body); //where find
-    processBtnBuyCount();
-    initShopPage(false);
-    countSumBask();
-    tovarChangeVariant();
-    tovarChangeCount();
-    //if !selectDeliv
-    $(".check-variant-delivery").nStRadio({
-        wrapper: $(".frame-radio > .frame-label"),
-        elCheckWrap: '.niceRadio',
-        before: function(el) {
-            $(document).trigger('showActivity');
-            $('[name="' + $(el).find('input').attr('name') + '"]').attr('disabled', 'disabled');
-        },
-        after: function(el, start) {
-            if (!start) {
-                var activeVal = el.find('input').val();
-                changeDeliveryMethod(activeVal, selectDeliv);
-                recountCartPage(selectDeliv, methodDeliv());
-                $('[name="' + $(el).find('input').attr('name') + '"]').removeAttr('disabled')
-            }
-        }
-    });
-    genObj.pM.nStRadio({
-        wrapper: $(".frame-radio > .frame-label"),
-        elCheckWrap: '.niceRadio'
-    //classRemove: 'b_n',//if not standart
-    });
-    if (orderDetails) {
-        renderOrderDetails();
-        //shipping changing, re-render cart page
-        recountCartPage(selectDeliv, methodDeliv());
-    }
-    processWish();
-    processComp();
-    compareListCount();
-    wishListCount();
-    /*/ call functions for shop objects*/
 
     /*sample of events shop*/
     if ($.existsN(methodDeliv()) && selectDeliv)
