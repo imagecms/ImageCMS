@@ -183,7 +183,7 @@
                                 {/if}
                             {/foreach}
                         </div>
-                        <button class="btn btn-more d_i-b m-b_15 m-r_10">
+                        <button onclick="location.href = '{echo shop_url('product/' . $model->geturl())}'" class="btn btn-more d_i-b m-b_15 m-r_10">
                             <a href="{shop_url('product/' . $model->geturl())}">{lang('Подробнее', 'product_slider')}</a>
                         </button>
                         <div class="v-a_b d_i-b m-b_15 add_func_btn">
@@ -239,26 +239,6 @@
                 <div id="characteristic" data-height="55">
                     <table border="0" cellpadding="4" cellspacing="0" class="characteristic">
                         <tbody>
-                            {foreach $renderProperties as $prop}
-                                <tr>
-                                    <td>
-                                        {if $prop.Desc && $prop.ShowFaq}
-                                            <div class="item_add d_i-b">
-                                                <span class="icon-infoM"></span><span>{echo $prop.Name}</span>
-                                                <div class="drop drop_down">
-                                                    <div class="drop-content">
-                                                        {echo $prop.Desc}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        {else:}
-                                            {echo $prop.Name}                                               
-                                        {/if}
-                                    </td>
-                                    <td>{echo $prop.Value}</td>
-                                </tr>
-                            {/foreach}
                             {foreach $renderProperties as $prop}
                                 <tr>
                                     <td>
