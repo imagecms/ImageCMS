@@ -8,19 +8,25 @@ function get_discount(discTpl) {
             if (data != '') {
                 _discount = JSON.parse(data);
                 if (discTpl) {
-                    $.post('/mod_discount/discount_api/get_discount_tpl_from_json_api', {json: data}, function(tpl) {
+                    $.post('/mod_discount/discount_api/get_discount_tpl_from_json_api', {
+                        json: data
+                    }, function(tpl) {
+                        Shop.Cart.discount = _discount;
+                        displayDiscount(_discount);
                         displayInfoDiscount(tpl);
                     })
                 }
                 else {
+                    Shop.Cart.discount = _discount;
+                    displayDiscount(_discount);
                     displayInfoDiscount('');
                 }
             }
             else {
+                Shop.Cart.discount = _discount;
+                displayDiscount(_discount);
                 displayInfoDiscount('');
             }
-            displayDiscount(_discount);
-            Shop.Cart.discount = _discount;
         }
     })
 }
@@ -37,7 +43,9 @@ function load_certificat() {
         if (gift.error) {
             giftError(gift.mes);
         } else {
-            $.post('/mod_discount/gift/render_gift_succes', {json: JSON.stringify(gift)}, function(tpl) {
+            $.post('/mod_discount/gift/render_gift_succes', {
+                json: JSON.stringify(gift)
+            }, function(tpl) {
                 renderGiftSucces(tpl, gift);
             })
         }
