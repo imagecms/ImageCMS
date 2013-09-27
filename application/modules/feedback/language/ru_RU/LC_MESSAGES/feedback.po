@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27 10:11+0300\n"
-"PO-Revision-Date: 2013-09-27 10:11+0300\n"
+"POT-Creation-Date: 2013-09-27 14:43+0300\n"
+"PO-Revision-Date: 2013-09-27 14:44+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -49,9 +49,12 @@ msgid "Message text"
 msgstr "Текст сообщения"
 
 #: /var/www/image.loc/_tempLangs.php:16
-#: /var/www/image.loc/_tempLangs.php:17
 msgid "Protection code"
 msgstr "Защитный код"
+
+#: /var/www/image.loc/_tempLangs.php:17
+msgid "Enter protection code"
+msgstr "Введите код защиты"
 
 #: /var/www/image.loc/_tempLangs.php:18
 msgid "Send"

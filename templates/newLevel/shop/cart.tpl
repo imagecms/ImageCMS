@@ -182,9 +182,8 @@
                                                     <input type="radio"
                                                            {if $counter} checked="checked"
                                                                {$counter = false}
-                                                               {$pay_id = $paymentMethod->getId()}
                                                            {/if}
-                                                           value="{echo $pay_id}"
+                                                           value="{echo $paymentMethod->getId()}"
                                                            name="paymentMethodId"
                                                            />
                                                 </span>

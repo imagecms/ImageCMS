@@ -14,7 +14,7 @@ _("Subject");
 _("Message");
 _("Message text");
 _("Protection code");
-_("Protection code");
+_("Enter protection code");
 _("Send");
 _("Feedback settings");
 _("Go back");
