@@ -16,7 +16,7 @@
 
 
     <div id="delete_dialog" title="{lang("Deleting a user", 'user_manager')}" style="display: none">
-             {lang("Delete a user?", 'user_manager')}
+        {lang("Delete a user?", 'user_manager')}
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
     <section class="mini-layout">
@@ -102,7 +102,9 @@
                                     <td><p>{$user.role_alt_name}</p></td>
                                     <td>
                                         <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/actions/{echo $user.id}');" >
-                                            <span class="prod-on_off {if $user.banned == 1}disable_tovar{/if}" ></span>
+                                            {if $user.id != $CI->dx_auth->get_user_id()}
+                                                <span class="prod-on_off {if $user.banned == 1}disable_tovar{/if}" ></span>  
+                                            {/if}
                                         </div>
                                         </div>
                                     </td>

@@ -331,7 +331,7 @@ class Gallery_m extends CI_Model {
                 break;
 
             case 'name':
-                $this->db->order_by('name', $sort_order);
+                $this->db->order_by('gallery_category_i18n.name', $sort_order);
                 break;
 
             case 'position':
