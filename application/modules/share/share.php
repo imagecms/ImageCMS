@@ -104,7 +104,7 @@ class Share extends MY_Controller {
                         <script type='text/javascript' src='//vk.com/js/api/openapi.js?101'></script>
 
                         <script type='text/javascript'>
-                          VK.init({apiId: {$settings['vk_apiid']}, onlyWidgets: true});
+                          VK.init({apiId: '{$settings['vk_apiid']}', onlyWidgets: true});
                         </script>
 
                         <!-- Put this div tag to the place, where the Like block will be -->
