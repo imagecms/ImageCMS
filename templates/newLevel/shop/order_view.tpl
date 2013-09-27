@@ -247,7 +247,7 @@
                             <!-- end for single product -->
                             <!-- Start. Render Ordered kit products  -->
                             {foreach $model->getOrderKits() as $orderProduct}
-                                <tr class="row-kits">
+                                <tr class="row-kits items-order">
                                     <td class="frame-items frame-items-kit">
                                         <ul class="items items-bask">
                                             <li>

@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                          {lang('User data', 'user_manager')}
+                            {lang('User data', 'user_manager')}
                         </th>
                     </tr>
                 </thead>
@@ -73,21 +73,23 @@
                                                 <input type="password" name="new_pass_conf" id="new_pass_conf" value=""/>
                                             </div>
                                         </div>
-                                        <div class="control-group">
-                                            <label class="control-label" for="banned">{lang('Ban', 'user_manager')}</label>
-                                            <div class="controls">
-                                                <select name="banned" id="banned">
-                                                    <option value ="0" selected="selected" >{lang('No', 'user_manager')}</option>
-                                                    <option value ="1" {if $banned == "1"} selected="selected" {/if}>{lang('Yes', 'user_manager')}</option>
-                                                </select>
+                                        {if $id != $CI->dx_auth->get_user_id()}
+                                            <div class="control-group">
+                                                <label class="control-label" for="banned">{lang('Ban', 'user_manager')}</label>
+                                                <div class="controls">
+                                                    <select name="banned" id="banned">
+                                                        <option value ="0" selected="selected" >{lang('No', 'user_manager')}</option>
+                                                        <option value ="1" {if $banned == "1"} selected="selected" {/if}>{lang('Yes', 'user_manager')}</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label" for="ban_reason">{lang('Ban Reason', 'user_manager')}</label>
-                                            <div class="controls">
-                                                <input type="text" name="ban_reason" id="ban_reason" value="{$ban_reason}"/>
-                                            </div>
-                                        </div>                                                
+                                            <div class="control-group">
+                                                <label class="control-label" for="ban_reason">{lang('Ban Reason', 'user_manager')}</label>
+                                                <div class="controls">
+                                                    <input type="text" name="ban_reason" id="ban_reason" value="{$ban_reason}"/>
+                                                </div>
+                                            </div>  
+                                        {/if}                                                
                                     </form>
                                 </div>
                             </div>
