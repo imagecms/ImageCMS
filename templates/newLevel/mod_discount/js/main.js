@@ -5,7 +5,7 @@ function get_discount(discTpl) {
         type: "POST",
         async: false,
         success: function(data) {
-            _discount = JSON.parse(data);
+            _discount = data != '' ? JSON.parse(data) : null;
             Shop.Cart.discount = _discount;
             if (data != '') {
                 if (discTpl) {
@@ -37,7 +37,6 @@ function load_certificat() {
         });
     else {
         gift = Shop.Cart.gift;
-        console.log(gift);
         if (gift.error) {
             giftError(gift.mes);
         } else {
