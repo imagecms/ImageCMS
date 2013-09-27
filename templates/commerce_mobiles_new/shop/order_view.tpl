@@ -82,11 +82,11 @@
                 <span class="descr">
                     <a href="{mobile_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->getName())}</a>
                     {if $variant->getName()}
-                        <span class="code_v">{lang('s_variant')}: {echo $variant->getName()}</span>
+                        <span class="code_v">{lang('Вариант', 'commerce_mobiles_new')}: {echo $variant->getName()}</span>
                     {/if}
                     {if $variant->getNumber()}
                         <span class="divider">/</span>
-                        <span class="code">{lang('s_article')}: {echo $variant->getNumber()}</span>
+                        <span class="code">{lang('Артикул', 'commerce_mobiles_new'')}: {echo $variant->getNumber()}</span>
                     {/if}
                     <span class="d_b price">{echo $item->getPrice()} {$CS}</span>
                     <span class="count">{echo $item->getQuantity()} шт.</span>
