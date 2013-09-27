@@ -420,14 +420,14 @@
                             <span class="current-prices f-s_0">
                                 <span class="price-new">
                                     <span>
-                                        <span class="price">{echo $model->gettotalprice()}</span>
+                                        <span class="price">{echo $model->gettotalprice() + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>
                                 {if $NextCSIdCond}     
                                     <span class="price-add">
                                         <span>
-                                            (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId)}</span>
+                                            (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId) + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice(),$NextCSId)}</span>
                                             <span class="curr-add">{$NextCS}</span>)
                                         </span>
                                     </span>
