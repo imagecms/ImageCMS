@@ -1,64 +1,27 @@
 <?php
 /*
-../top_menu/level_0/container.tpl
-../language/jsLangs.tpl
-../language/jsLangsDefine.tpl
-../new_level/one_product_item.tpl
-../new_level/array_product_item.tpl
-../comments/comments_api.tpl
-../star_rating/product_star_rating.tpl
-../star_rating/star_rating.tpl*/
+./templates/feedback.tpl
+./templates/admin/settings.tpl*/
 
-_("Артикул");
-_("Вариант");
-_("Бренд");
-_("Количество на складе");
-_("Только цифры");
-_("Купить");
-_("Сообщить о появлении");
-_("В список сравнений");
-_("В список сравнений");
-_("В списке сравнений");
-_("В список сравнений");
-_("количество на складе");
-_("только цифры");
-_("Купить");
-_("Сообщить о появлении");
-_("Удалить");
-_("Переместить");
-_("login_for_comments");
-_("Отзывы покупателей");
-_("Оставить комментарий");
-_("Комментарий будет отправлен на модерацию");
-_("Ваше имя");
-_("Ваш email:");
-_("Текст комментария:");
-_("Ваша оценка:");
-_("Код защиты");
-_("Комментировать");
-_("Оценка товара:");
-_("s_plus");
-_("s_cons");
-_("Ответить");
-_("Отзыв полезен?");
-_("Да");
-_("Нет");
-_("Комментарий от");
-_("Скрыть");
-_("Смотреть все ответы");
-_("Смотреть все ответы");
-_("Ваш ответ");
-_("Ваше имя:");
-_("Ваш email:");
-_("Комментарий будет отправлен на модерацию");
-_("Текст ответа:");
-_("Комментировать");
-_("Leav");
-_("people(s)");
-_("Leav");
-_("people(s)");
-_("отзыв");
-_("отзыва");
-_("отзывов");
+_("Contacts");
+_("Your message has been sent.");
+_("Your name");
+_("Your name");
+_("Email");
+_("Email");
+_("Subject");
+_("Subject");
+_("Message");
+_("Message text");
+_("Protection code");
+_("Enter protection code");
+_("Send");
+_("Feedback settings");
+_("Go back");
+_("Save");
+_("Properties");
+_("E-Mail");
+_("Specify the e-mail address for mailing");
+_("Maximum message length");
 
 ?>
