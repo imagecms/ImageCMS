@@ -9,7 +9,18 @@
                 <div class="description">
                     {$page.full_text}
                 </div>
-                {$comments}
+                {$Comments = $CI->load->module('comments')->init($page)}
+
+                <script type="text/javascript">
+                    {literal}
+                        $(function() {
+                            renderPosts($('.for_comments'));
+                        })
+                    {/literal}
+                </script>
+                <div id="comment">
+                    <div class="for_comments"></div>
+                </div>
             </div>
             <div class="right">
                 {widget('news')}
