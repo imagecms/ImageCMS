@@ -188,18 +188,18 @@ class Sys_update extends BaseAdminController {
     }
 
     public function Querys() {
-//        foreach ($_POST['data'] as $query) {
-//            if ($query) {
-//                if (!$this->db->query($query)) {
-//                    echo 'Невозможно виполнить запрос: <br>';
-//                    return FALSE;
-//                } else {
-////                    echo 'ok';
-////                    return TRUE;
-//                }
-//            }
-//        }
-//        echo $this->db->total_queries();
+        foreach ($_POST['data'] as $query) {
+            if ($query) {
+                if (!$this->db->query($query)) {
+                    echo 'Невозможно виполнить запрос: <br>';
+                    return FALSE;
+                } else {
+//                    echo 'ok';
+//                    return TRUE;
+                }
+            }
+        }
+        echo $this->db->total_queries();
     }
 
 }
