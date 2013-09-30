@@ -1,6 +1,6 @@
 {if $can_comment == 1 AND !$is_logged_in}
     <label>
-        <span class="title__icsi-css">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</span>
+        <span class="title__icsi-css"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'newLevel'), site_url($modules.auth))}</b></span>
     </label>
 {/if}
 <div class="comment__icsi-css" id="comment__icsi-css">
@@ -107,13 +107,13 @@
                             <p>{$comment.text}</p>
                             {if $comment.text_plus != Null}
                                 <p>
-                                    <b>{lang('s_plus')}</b><br>
+                                    <b>{lang('Да', 'newLevel')}</b><br>
                                     {$comment.text_plus}
                                 </p>
                             {/if}
                             {if $comment.text_minus != Null}
                                 <p>
-                                    <b>{lang('s_cons')}</b><br>
+                                    <b>{lang('Нет', 'newLevel')}</b><br>
                                     {$comment.text_minus}
                                 </p>
                             {/if}
