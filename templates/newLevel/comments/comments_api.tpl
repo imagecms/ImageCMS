@@ -107,13 +107,13 @@
                             <p>{$comment.text}</p>
                             {if $comment.text_plus != Null}
                                 <p>
-                                    <b>{lang('s_plus')}</b><br>
+                                    <b>{lang('Да', 'newLevel')}</b><br>
                                     {$comment.text_plus}
                                 </p>
                             {/if}
                             {if $comment.text_minus != Null}
                                 <p>
-                                    <b>{lang('s_cons')}</b><br>
+                                    <b>{lang('Нет', 'newLevel')}</b><br>
                                     {$comment.text_minus}
                                 </p>
                             {/if}
