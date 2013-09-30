@@ -19,12 +19,21 @@
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
+
+                    <button type="button" class="pull-left visible-xs navbar-toggle" data-toggle="offcanvas">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                    </button>
+
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">ImageCMS Documentation</a>
+
+                    <a class="navbar-brand" href="#">
+                        ImageCMS Documentation
+                    </a>
+
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -32,22 +41,122 @@
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
-                        <form class="navbar-form navbar-right">
+                    {if !$CI->dx_auth->is_logged_in()}
+                        <form class="navbar-form navbar-right" method="post" id="login_form" action="/auth/login">
                             <div class="form-group">
-                                <input type="text" placeholder="Email" class="form-control">
+                                <input type="text" name="email" placeholder="Email" class="form-control"/>
                             </div>
                             <div class="form-group">
-                                <input type="password" placeholder="Password" class="form-control">
+                                <input type="password" name="password" placeholder="Password" class="form-control"/>
                             </div>
-                            <button type="submit" class="btn btn-success">Sign in</button>
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                Sign in
+                            </button>
+                            {form_csrf()}
                         </form>
+                    {else:}
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-success navbar-btn ">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Редактировать
+                            </button>
+                            <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                                Выйти
+                            </a>
+                        </div>
+                    {/if}
+
                 </div><!-- /.nav-collapse -->
             </div><!-- /.container -->
         </div>
         <div class="container">
-            <div class="row row-offcanvas row-offcanvas-right">
+            <div class="row row-offcanvas row-offcanvas-left">
+                <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                    
+                    <img src="{$THEME}images/logo.png"></img>
+
+                    <div class="well-small sidebar-nav">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                            Collapsible Group Item #1
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <ul class="nav">
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                            Collapsible Group Item #2
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav">
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                            Collapsible Group Item #3
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse3" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav">
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Link</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-xs-12 col-sm-9">
-                    <p class="pull-right visible-xs">
+                    <p class="pull-left visible-xs">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
                     <div class="jumbotron">
@@ -56,29 +165,9 @@
                     </div>
                     <div class="row">
                         {$content}
-
-                    </div><!--/row-->
-                </div><!--/span-->
-
-                <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-                    <div class="well sidebar-nav">
-                        <ul class="nav">
-                            <li>Sidebar</li>
-                            <li class="active"><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li>Sidebar</li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li>Sidebar</li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                        </ul>
-                    </div><!--/.well -->
-                </div><!--/span-->
-            </div><!--/row-->
-
+                    </div>
+                </div>
+            </div>
             <hr/>
 
             <footer>
