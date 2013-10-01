@@ -38,9 +38,6 @@
         {/literal}
     </head>
     <body>
-        <form method="post">
-            <textarea class="MCE"></textarea>
-        </form>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -82,17 +79,19 @@
                         </form>
                     {else:}
                         <div class="pull-right">
-                            <button type="button" class="btn btn-success navbar-btn ">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                Редактировать
-                            </button>
+                            {if $CI->dx_auth->is_admin()}
+                                <button type="button" class="btn btn-success navbar-btn ">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    Редактировать
+                                </button>
+                            {/if}
                             <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
                                 <span class="glyphicon glyphicon-log-out"></span>
                                 Выйти
                             </a>
                         </div>
                     {/if}
-
+                    {var_dump($CI->dx_auth->is_admin())}
                 </div><!-- /.nav-collapse -->
             </div><!-- /.container -->
         </div>
