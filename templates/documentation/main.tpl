@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="{$THEME}css/bootstrap.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/bootstrap-theme.min.css" rel="stylesheet" media="screen"/>
+        <link href="{$THEME}css/style.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/offcanvas.css" rel="stylesheet" media="screen"/>
         <!--[if lt IE 9]>
             <script src="{$THEME}js/html5shiv.js"></script>
@@ -13,6 +14,13 @@
         <![endif]-->
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
         <link rel="SHORTCUT ICON" href="favicon.ico" />
+
+        <link media="screen" rel="stylesheet" href="{$THEME}js/highlight/styles/default.css"/>
+        <script type="text/javascript" src="{$THEME}js/highlight/highlight.pack.js"></script>
+        
+        {literal}
+            <script>hljs.initHighlightingOnLoad();</script>
+        {/literal}
 
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
         {literal}
@@ -25,28 +33,51 @@
                         "searchreplace visualblocks code fullscreen",
                         "insertdatetime media table contextmenu paste"
                     ],
-                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                    toolbar: "insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode",
+                    setup: function(editor) {
+                        editor.addButton('save_button', {
+                            text: 'Сохранить',
+                            icon: 'save',
+                            onclick: function() {
+                                editor.insertContent('Main button');
+                            }
+                        });
+                        editor.addButton('highlightcode', {
+                            text: 'Код',
+                            icon: 'code',
+                            onclick: function() {
+                                editor.insertContent('<pre> <code class="php"></code> </pre>');
+                            }
+                        });
+                    }
+
                 });
 
                 tinymce.init({
                     selector: "h1",
                     inline: true,
-                    toolbar: "undo redo",
-                    menubar: false
+                    toolbar: "undo redo | save_button",
+                    menubar: false,
+                    setup: function(editor) {
+                        editor.addButton('save_button', {
+                            text: 'Сохранить',
+                            icon: 'save',
+                            onclick: function() {
+                                editor.insertContent('Main button');
+                            }
+                        });
+                    }
                 });
             </script>
         {/literal}
     </head>
     <body>
-        <form method="post">
-            <textarea class="MCE"></textarea>
-        </form>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
 
                     <button type="button" class="pull-left visible-xs navbar-toggle" data-toggle="offcanvas">
-                        <span class="glyphicon glyphicon-th-list"></span>
+                        <span class="glyphicon glyphicon-th-list white"></span>
                     </button>
 
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -86,7 +117,7 @@
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 Редактировать
                             </button>
-                            <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
+                            <a href="/auth/logout" type="button" class="btn btn-success navbar-btn">
                                 <span class="glyphicon glyphicon-log-out"></span>
                                 Выйти
                             </a>
@@ -181,9 +212,6 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-9">
-                    <p class="pull-left visible-xs">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-                    </p>
                     <div class="jumbotron">
                         <h1>Hello, world!</h1>
                         <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
