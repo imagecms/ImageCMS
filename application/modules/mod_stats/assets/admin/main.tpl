@@ -134,16 +134,19 @@
                 <div class="settingsContainer">
                     <span id="saveSearchResultsSpan" class="frame_label no_connection m-r_15" style="display: block;">
                         <span class="niceCheck"  style="background-position: -46px -17px;">
+
                             <input type="checkbox" {if $saveSearchResults == '1'}checked="checked" {/if} id="saveSearchResultsCheckbox">
                         </span>
                         {lang('save search results','mod_stats')}
                     </span>
-                    <span id="saveUrlData" class="frame_label no_connection m-r_15" style="display: block;">
+
+                    <!--span id="saveUrlData" class="frame_label no_connection m-r_15" style="display: block;">
                         <span class="niceCheck"  style="background-position: -46px -17px;">
                             <input type="checkbox" {if $savePageUrls == '1'}checked="checked" {/if} id="saveUrlDataCheckbox">
                         </span>
                         {lang('save page URLs','mod_stats')}
-                    </span>
+                    </span-->
+
                 </div>
             </div>
         </div>

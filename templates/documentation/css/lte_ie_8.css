@@ -1,0 +1,8 @@
+@charset "utf-8";
+.block-filter .title_h3{zoom: 1;}
+.menu-main {filter:none;}
+.frame-company {width:680px;}
+.menu-main {border-left: 1px solid #b2b2b2; border-top: 1px solid #b2b2b2;}
+.menu-main td > .frame-item-menu > div > .title{ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e0e0e0',GradientType=0 );}
+.frame-thumbail > li{}
+select,input[type="text"],input[type="password"] {line-height:35px;}

@@ -153,6 +153,26 @@ class Login extends BaseAdminController {
             return 'Browser based on Gecko'; // unrecognized browser check to see if they are on the engine, Gecko, and returns a message about this
         return $browserIn = array('0' => $browser, '1' => $version); // for the rest of the browser and return the version
     }
+    
+     function switch_admin_lang($lang) {
+        $langs = Array(
+            'english',
+            'russian',
+            'german'
+        );
+        
+        if(!$lang){
+            $lang = $this->input->get('language');
+        }
+
+        if (in_array($lang, $langs) && $this->config->item('language') != $lang) {
+            $this->db->set('lang_sel', $lang . '_lang')
+                    ->update('settings');
+
+            $this->session->set_userdata('language', $lang);
+        }
+        redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/login');
+    }
 
 }
 
