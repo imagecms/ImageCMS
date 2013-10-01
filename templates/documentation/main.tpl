@@ -14,8 +14,17 @@
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
         <link rel="SHORTCUT ICON" href="favicon.ico" />
 
+        <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+            tinymce.init({
+                selector: "textarea"
+            });
+        </script>
     </head>
     <body>
+        <form method="post">
+            <textarea></textarea>
+        </form>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -74,7 +83,7 @@
         <div class="container">
             <div class="row row-offcanvas row-offcanvas-left">
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-                    
+
                     <img src="{$THEME}images/logo.png"></img>
 
                     <div class="well-small sidebar-nav">
