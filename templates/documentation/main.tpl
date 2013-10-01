@@ -39,7 +39,7 @@
     </head>
     <body>
         <form method="post">
-            <textarea></textarea>
+            <textarea class="MCE"></textarea>
         </form>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
@@ -56,7 +56,7 @@
                     </button>
 
                     <a class="navbar-brand" href="#">
-                        ImageCMS Documentation
+                        {lang('ImageCMS Documentation','documentation')}
                     </a>
 
                 </div>
