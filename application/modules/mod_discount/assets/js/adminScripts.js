@@ -141,7 +141,7 @@ $(document).ready(function() {
         /**
          * Remove discount from list
          */
-        $('.removeDiscountLink').bind('click',function (){
+        $('.removeDiscountLink').die().live('click',function (){
             var discountRow = $(this).closest('tr');
             var discountId= discountRow.data('id');
             $.ajax({
