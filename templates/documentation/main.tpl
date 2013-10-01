@@ -113,17 +113,19 @@
                         </form>
                     {else:}
                         <div class="pull-right">
-                            <button type="button" class="btn btn-success navbar-btn ">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                Редактировать
-                            </button>
-                            <a href="/auth/logout" type="button" class="btn btn-success navbar-btn">
+                            {if $CI->dx_auth->is_admin()}
+                                <button type="button" class="btn btn-success navbar-btn ">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    Редактировать
+                                </button>
+                            {/if}
+                            <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
                                 <span class="glyphicon glyphicon-log-out"></span>
                                 Выйти
                             </a>
                         </div>
                     {/if}
-
+                    {var_dump($CI->dx_auth->is_admin())}
                 </div><!-- /.nav-collapse -->
             </div><!-- /.container -->
         </div>
@@ -229,6 +231,7 @@
 
         </div>
         <script type="text/javascript" src="{$THEME}js/jquery.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/documentation.js"></script>
         <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
     </body>
