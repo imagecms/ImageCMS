@@ -413,8 +413,8 @@ class ParentEmail extends \MY_Controller {
         return $this->cmsemail_model->addVariable($template_id, $variable, $variableValue, $locale);
     }
 
-    public function getTemplateVariables($template_id) {
-        return $this->cmsemail_model->getTemplateVariables($template_id);
+    public function getTemplateVariables($template_id, $locale) {
+        return $this->cmsemail_model->getTemplateVariables($template_id, $locale);
     }
 
 }
