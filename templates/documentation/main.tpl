@@ -15,11 +15,13 @@
         <link rel="SHORTCUT ICON" href="favicon.ico" />
 
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript">
-            tinymce.init({
-                selector: "textarea"
-            });
-        </script>
+        {literal}
+            <script type="text/javascript">
+                tinymce.init({
+                    selector: "textarea"
+                });
+            </script>
+        {/literal}
     </head>
     <body>
         <form method="post">
@@ -185,6 +187,7 @@
 
         </div>
         <script type="text/javascript" src="{$THEME}js/jquery.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/documentation.js"></script>
         <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
     </body>
