@@ -39,3 +39,9 @@
 #user_information table thead th {width: 10%;}
 #user_information table thead th:nth-child(5) {width: 28%;}
 #user_information table thead th:nth-child(6) {width: 12%;}
+
+
+.mod_stats_no_online {
+    text-align: center;
+    color: #696969;
+}
