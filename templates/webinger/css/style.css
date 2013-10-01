@@ -880,11 +880,10 @@ time .day{font-size: 24px;vertical-align: middle;}
 .item_tovar .frame_response{margin-bottom: 9px;}
 .item_tovar .price_f-s_24{margin-bottom: 3px; color: #909f1b;}
 #variantProd .title{color: 4f4f4f;display: block;margin-bottom: 7px;font-size: 16px;font-weight: bold;}
-.share_tov{margin-bottom: 10px; margin-top: 1px;
-           margin-left: 1px;}
-.item_tovar .photo{margin-top: 15px;height: 270px;padding-left: 20px;}
+.share_tov{margin-bottom: 10px; margin-top: 1px;margin-left: 1px;}
 .item_tovar .frame_thumbs{margin-left: -18px;margin-bottom: 20px;}
 .item_tovar .frame_thumbs + .photo-block{margin-bottom: 20px;}
+.item_tovar .frame_thumbs + .photo-block > .photo{margin-top: 15px;height: 270px;padding-left: 20px;}
 .item_tovar .frame_thumbs > li{float: left;margin-left: 18px;margin-top: 10px;text-align: center;font-size: 0;}
 .item_tovar .frame_thumbs > li.active{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;}
 .item_tovar .frame_thumbs > li > a{display: block;width: 52px;height: 52px;border: 1px solid #adadad;padding: 5px;margin-top: 0;background-color: #fff;}
@@ -920,7 +919,7 @@ time .day{font-size: 24px;vertical-align: middle;}
 .frame-comment{background-color: #f0f0f0;padding: 12px 20px 10px;position: relative;margin-bottom: 9px;}
 .frame-comment:after, .ie_15{content: "";border-width: 6px 8px;border-style: solid;border-color: transparent;border-top-color: #f0f0f0;position: absolute;left: 20px;bottom: -12px;}
 
-#accessories .photo-block{height: 100px;}
+#accessories .photo-block{height: 98px;}
 #accessories .items_catalog .description{margin-top: 100px;}
 /*item tovar end*/
 

@@ -40,20 +40,23 @@ $(document).ready(function() {
 
                 function heightDesrcCharc() {
                     var $rightFrameProduct = $('#right_popup_product'),
-                            $whoClonded = '.frame_tabs',
-                            frameWDesc = $('.frame_w_desc'),
-                            $elWrapCH = $rightFrameProduct.find($whoClonded),
-                            elWrapCHMH = hF - 90 - frameWDesc.height(),
-                            $elWrapCHH = $elWrapCH.height(),
-                            $elsCH = $elWrapCH.children();
+                    $whoClonded = '.frame_tabs',
+                    frameWDesc = $('.frame_w_desc'),
+                    $elWrapCH = $rightFrameProduct.find($whoClonded),
+                    elWrapCHMH = hF - 90 - frameWDesc.height(),
+                    $elWrapCHH = $elWrapCH.height(),
+                    $elsCH = $elWrapCH.children();
 
                     if ($elWrapCHH > elWrapCHMH) {
                         var losth = 0;
                         $elsCH.each(function() {
                             var $this = $(this),
-                                    thisH = $this.outerHeight(),
-                                    dataH = parseInt(elWrapCHMH * $this.data('height') / 100);
-                            $this.attr({'data-height': dataH, 'data-orig-height': thisH});
+                            thisH = $this.outerHeight(),
+                            dataH = parseInt(elWrapCHMH * $this.data('height') / 100);
+                            $this.attr({
+                                'data-height': dataH, 
+                                'data-orig-height': thisH
+                            });
 
                             if (dataH < thisH) {
                                 $this.height(dataH);
@@ -64,10 +67,10 @@ $(document).ready(function() {
                             }
                         })
                         var lH = $elsCH.filter('.hideAfter'),
-                                partH = losth / lH.length;
+                        partH = losth / lH.length;
                         lH.each(function() {
                             var $this = $(this),
-                                    newH = $this.outerHeight() + partH;
+                            newH = $this.outerHeight() + partH;
                             $this.css('height', newH);
                             if (newH >= $this.attr('data-orig-height'))
                                 $this.removeClass('hideAfter');
@@ -81,48 +84,48 @@ $(document).ready(function() {
                     e.preventDefault();
                 });
 
-                popupProduct.fadeIn(200);
+                popupProduct.fadeIn(200, function(){
+                    changeVariant(popupProduct);
+                    if ($.exists('.lineForm')) {
+                        cuSel(paramsSelect);
+                    }
 
-                changeVariant(popupProduct);
-                if ($.exists('.lineForm')) {
-                    cuSel(paramsSelect);
-                }
+                    function thumbsPhotoToggle() {
+                        $('.item_tovar .frame_thumbs > li > a').bind('click', function(e) {
+                            var $this = $(this);
+                            $this.parent().siblings().removeClass('active').end().addClass('active');
+                            if (zoom_off == 0 && !isTouch) {
+                                $('.mousetrap').remove();
+                            }
+                            else {
+                                e.preventDefault();
+                                $('#photoGroup').find('img').attr('src', $this.attr('href'));
+                            }
+                        })
+                    }
+                    thumbsPhotoToggle();
 
-                function thumbsPhotoToggle() {
-                    $('.item_tovar .frame_thumbs > li > a').bind('click', function(e) {
-                        var $this = $(this);
-                        $this.parent().siblings().removeClass('active').end().addClass('active');
-                        if (zoom_off == 0 && !isTouch) {
-                            $('.mousetrap').remove();
-                        }
-                        else {
-                            e.preventDefault();
-                            $('#photoGroup').find('img').attr('src', $this.attr('href'));
-                        }
-                    })
-                }
-                thumbsPhotoToggle();
+                    processPage();
+                    checkSyncs();
+                    processWish();
+                    recountCartPage();
+                    checkCompareWishLink();
+                    wishListCount();
+                    compareListCount();
 
-                processPage();
-                checkSyncs();
-                processWish();
-                recountCartPage();
-                checkCompareWishLink();
-                wishListCount();
-                compareListCount();
-
-                initBtnBuy();
-                if (zoom_off == 0 && !isTouch) {
-                    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-                    body.append('<style id="forCloudZomm"></style>')
-                    margZoomLens();
-                    $('#photoGroup').find('img').load(function() {
+                    initBtnBuy();
+                    if (zoom_off == 0 && !isTouch) {
+                        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+                        body.append('<style id="forCloudZomm"></style>')
                         margZoomLens();
-                    })
-                }
+                        $('#photoGroup').find('img').load(function() {
+                            margZoomLens();
+                        })
+                    }
 
-                $('#fancybox-content').next().fadeOut(function() {
-                    $(this).remove();
+                    $('#fancybox-content').next().fadeOut(function() {
+                        $(this).remove();
+                    });
                 });
             },
             onClosed: function() {
