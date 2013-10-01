@@ -164,11 +164,35 @@ $(document).ready(function() {
             newValue = 1;
         }
 
-        /** Send ajax for saving new value **/
+        setModStatsSetting('save_search_results', newValue);
+
+    });
+
+
+    /**
+     * Save page url setting value
+     */
+    $('section.mod_stats').on('click', '#saveUrlData', function() {
+        var spanBlock = $(this);
+        var checkBox = spanBlock.find('#saveUrlDataCheckbox');
+        var newValue; // new value for saving to database
+
+        /** Get new property **/
+        if (checkBox.prop('checked') === true) {
+            newValue = 0;
+        } else {
+            newValue = 1;
+        }
+
+        setModStatsSetting('save_page_urls', newValue);
+    });
+
+
+    function setModStatsSetting(name, value) {
         $.ajax({
             async: false,
             type: 'get',
-            data: 'notLoadMain=true&setting=save_search_results&value=' + newValue,
+            data: 'notLoadMain=true&setting=' + name + '&value=' + value,
             url: base_url + 'admin/components/cp/mod_stats/ajaxUpdateSettingValue',
             success: function(response) {
                 if (response !== 'false') {
@@ -178,8 +202,7 @@ $(document).ready(function() {
                 }
             }
         });
-
-    });
+    }
 
     /**
      * Autocomplete products
