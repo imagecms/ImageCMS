@@ -9,7 +9,6 @@ $(document).ready(function() {
         }
     });
 
-lang('4444dd');
     $('.niceCheck').on('click', function() {
         if ($(this).find('.wraper_activSettings').attr('checked')) {
             $('.wraperControlGroup').slideUp(500);
@@ -18,11 +17,11 @@ lang('4444dd');
         }
     });
 
-    $('#userMailVariables').on('click', function() {
+    $('#userMailVariables').die().live('click', function() {
         $('#userMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
     });
 
-    $('#adminMailVariables').on('click', function() {
+    $('#adminMailVariables').die().live('click', function() {
         $('#adminMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
     });
 
