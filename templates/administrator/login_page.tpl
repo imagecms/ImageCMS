@@ -26,9 +26,26 @@
 
         <div class="main_body">
             <div class="form_login t-a_c">
+                <div class="o_h" style="margin-top: 20px; text-align: right; margin-right: -50px">
+                    <a href="/admin/login/switch_admin_lang/english" class="d-i_b">
+                        {if $CI->config->item('language') == 'english'}
+                            <img  width="100%" height="100p%" src="{$THEME}img/EN.png"/>
+                        {else:}
+                            <img  style="height: 13px; width: 22px; margin-top: 3px; margin-right: 10px " width="70%" height="70p%" src="{$THEME}img/EN.png"/>
+                        {/if}
+                    </a>
+                    <a href="/admin/login/switch_admin_lang/russian" class="d-i_b">
+                        {if $CI->config->item('language') == 'russian'}
+                            <img width="100%" height="100%"  src="{$THEME}img/Ru.png"/>
+                        {else:}
+                            <img width="70%" height="70%" src="{$THEME}img/Ru.png"/>
+                        {/if}
+                    </a>
+                </div>
                 <a href="/admin/dashboard" class="d-i_b">
                     <img src="{$THEME}img/logo.png"/>
-                </a><br/>
+                </a>
+
                 <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
                     {if $login_failed}
                         <label>
@@ -68,6 +85,18 @@
                     <input type="submit" value="{lang('Log in',"admin")}" class="btn btn-info" style="margin-top: 26px;"/>
                     {form_csrf()}
                 </form>
+                { /* }
+                <div class="o_h" style="margin-bottom: -20px;">
+                    <form action="/admin/login/switch_admin_lang" method="GET">
+                        <select name="language" onchange="this.form.submit()" style="float: right; width: 100px; margin-top: 25px;">
+                            <option value="russian" {if $CI->config->item('language') == 'russian'} {echo 'selected';}{/if}>{echo lang('Russian', 'install')}</option>
+                            <option value="english" {if $CI->config->item('language') == 'english' || !$CI->config->item('language')} {echo 'selected';}{/if}>{echo lang('English', 'install')}</option>
+                        </select>
+                        <div style="text-align: right; font-size: 17px; float: right; margin-right: 10px; margin-top: 20px;"><h5><b>{echo lang('Language', 'admin')}:</b></h5></div>
+                                    {form_csrf()}
+                    </form>
+                </div>
+                { */ }
             </div>
         </div>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
