@@ -26,11 +26,15 @@ class Admin extends \BaseAdminController {
 
         /** Variable for main.tpl wich contain value of setting "save_search_result" * */
         $saveSearchResults = $this->getSetting('save_search_results');
+        $savePageUrls = $this->getSetting('save_page_urls');
 
         /** Show main.tpl with scripts, styles and data * */
         if ($this->input->get('notLoadMain') != 'true') {
             \CMSFactory\assetManager::create()
-                    ->setData(array('saveSearchResults' => $saveSearchResults))
+                    ->setData(array(
+                        'saveSearchResults' => $saveSearchResults,
+                        'savePageUrls' => $savePageUrls
+                    ))
                     ->registerStyle('style')
                     ->registerStyle('nvd3/nv.d3')
                     ->registerScript('scripts', FALSE, 'after')

@@ -132,12 +132,21 @@
             <div class="m-t_20">
                 <span class="settingTitle"> {lang('Settings:','mod_stats')} </span>
                 <div class="settingsContainer">
-                    <span class="frame_label no_connection m-r_15 active" style="display: block; float: left;">
-                        <span class="niceCheck"  id="saveSearchResultsSpan" style="background-position: -46px -17px;">
+                    <span id="saveSearchResultsSpan" class="frame_label no_connection m-r_15" style="display: block;">
+                        <span class="niceCheck"  style="background-position: -46px -17px;">
+
                             <input type="checkbox" {if $saveSearchResults == '1'}checked="checked" {/if} id="saveSearchResultsCheckbox">
                         </span>
+                        {lang('save search results','mod_stats')}
                     </span>
-                    {lang('save search results','mod_stats')}
+
+                    <!--span id="saveUrlData" class="frame_label no_connection m-r_15" style="display: block;">
+                        <span class="niceCheck"  style="background-position: -46px -17px;">
+                            <input type="checkbox" {if $savePageUrls == '1'}checked="checked" {/if} id="saveUrlDataCheckbox">
+                        </span>
+                        {lang('save page URLs','mod_stats')}
+                    </span-->
+
                 </div>
             </div>
         </div>
