@@ -55,14 +55,8 @@ class Documentation extends MY_Controller {
         $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required');
 
-        /** Prepare category full url * */
-        $fullUrl = $this->lib_category->GetValue($dataPost['category'], 'path_url');
-        if ($fullUrl == FALSE) {
-            $fullUrl = '';
-        }
-
         /** If not validation errors * */
-        if ($this->form_validation->run() != FALSE) {
+        if ($dataPost != null && $this->form_validation->run() != FALSE) {
 
             /** Check repeat url or not  * */
             if ($this->documentation_model->checkUrl($dataPost['Url'])) {
@@ -124,11 +118,69 @@ class Documentation extends MY_Controller {
         if ($id == null || !$this->documentation_model->getPageById($id)) {
             $this->core->error_404();
         } else {
+
+            /** New page data from post array * */
+            $dataPost = $this->input->post('NewPage');
+            var_dump($dataPost);
+            /** Register meta tags * */
+            $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+
+            /** Set form validation rules * */
+            $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[100]');
+            $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required');
+
+            /** If not validation errors * */
+            if ($dataPost != null && $this->form_validation->run() != FALSE) {
+
+                /** Check repeat url or not  * */
+                if ($this->documentation_model->checkUrl($dataPost['Url'])) {
+                    $this->errors .= "<p>" . lang("URL can not be repeated", "documentation") . "</p>";
+                }
+
+                /** Translit url * */
+                $dataPost['url'] = translit_url($dataPost['url']);
+
+                /** Check if url is empty then use translit * */
+                if ($dataPost['url'] == null) {
+                    $dataPost['url'] = translit_url($dataPost['title']);
+                }
+
+                /** Prepare category full url * */
+                $fullUrl = $this->lib_category->GetValue($dataPost['category'], 'path_url');
+                if ($fullUrl == FALSE) {
+                    $fullUrl = '';
+                }
+
+                /** Prepare data for inserting into database * */
+                $data = array(
+                    'title' => trim($dataPost['title']),
+                    'url' => str_replace('.', '', trim($dataPost['url'])),
+                    'cat_url' => $fullUrl,
+                    'keywords' => $this->lib_seo->get_keywords($dataPost['prev_text']),
+                    'description' => $this->lib_seo->get_description($dataPost['prev_text']),
+                    'full_text' => trim($dataPost['prev_text']),
+                    'prev_text' => trim($dataPost['prev_text']),
+                    'category' => $dataPost['category'],
+                    'updated' => time(),
+                    'lang' => $this->defaultLang['id']
+                );
+
+                /** If page created succesful then show page on site * */
+                if (!$this->errors && $this->documentation_model->updatePage($id, $data)) {
+                    redirect(base_url($data['cat_url'] . $data['url']));
+                }
+            } else {
+                $this->errors .= $this->form_validation->error_string();
+            }
+
+
+            /** Page data by id * */
             $page = $this->documentation_model->getPageById($id);
 
             /** Set template data and show template * */
             if ($this->dx_auth->is_admin()) {
                 \CMSFactory\assetManager::create()
+                        ->setData('pageId', $id)
                         ->setData('tree', $this->lib_category->build()) // Load category tree)
                         ->setData('page', $page)
                         ->setData('errors', $this->errors)
@@ -139,27 +191,6 @@ class Documentation extends MY_Controller {
         }
     }
 
-    public function _install() {
-        /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
-        /**
-          $this->load->dbforge();
-
-          $fields = array(
-          'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE,),
-          'name' => array('type' => 'VARCHAR', 'constraint' => 50,),
-          'value' => array('type' => 'VARCHAR', 'constraint' => 100,)
-          );
-
-          $this->dbforge->add_key('id', TRUE);
-          $this->dbforge->add_field($fields);
-          $this->dbforge->create_table('mod_empty', TRUE);
-         */
-        /**
-          $this->db->where('name', 'module_frame')
-          ->update('components', array('autoload' => '1', 'enabled' => '1'));
-         */
-    }
-
     public function save_desc() {
         
     }
@@ -167,13 +198,14 @@ class Documentation extends MY_Controller {
     public function save_title() {
         
     }
-
+    /** Install and set settings **/
+    public function _install() {
+        $this->documentation_model->install();
+    }
+    
+    /** Deinstall **/
     public function _deinstall() {
-        /**
-          $this->load->dbforge();
-          $this->dbforge->drop_table('mod_empty');
-         *
-         */
+        $this->documentation_model->install();
     }
 
 }
