@@ -71,10 +71,12 @@
                                     <span class="glyphicon glyphicon-new-window"></span>
                                     {lang('Create','documentation')}
                                 </a>
-                                <button type="button" class="btn btn-success navbar-btn ">
+                                {if $CI->core->core_data['data_type'] == 'page'}
+                                <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                     {lang('Edit','documentation')}
-                                </button>
+                                </a>
+                                {/if}
                             {/if}
                             <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
                                 <span class="glyphicon glyphicon-log-out"></span>
