@@ -24,7 +24,7 @@
         {/literal}
 
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
-        
+
         <link href="{$THEME}css/docs_style.css" rel="stylesheet" media="screen"/>
 
         {literal}
@@ -35,11 +35,17 @@
                     plugins: [
                         "advlist autolink lists link image charmap print preview anchor",
                         "searchreplace visualblocks code fullscreen",
-                        "insertdatetime media table contextmenu paste spellchecker"
+                        "insertdatetime media table contextmenu paste spellchecker responsivefilemanager"
                     ],
+                    language: 'ru',
                     spellchecker_language: "ru",
                     spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
-                    toolbar: "insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode | spellchecker",
+                    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode | spellchecker",
+                    toolbar1: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor | print preview code ", 
+                    image_advtab: true, 
+                    external_filemanager_path: "/templates/documentation/js/tinymce/plugins/responsivefilemanager/", 
+                    filemanager_title: "Responsive Filemanager", 
+                    external_plugins: {"filemanager": "/templates/documentation/js/tinymce/plugins/responsivefilemanager/plugin.min.js"},
                     setup: function(editor) {
                         editor.addButton('save_button', {
                             text: 'Сохранить',
