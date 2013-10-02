@@ -52,7 +52,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/">
                         {lang('ImageCMS Documentation','documentation')}
                     </a>
 
@@ -73,25 +73,28 @@
                             </div>
                             <button type="submit" class="btn btn-success">
                                 <span class="glyphicon glyphicon-log-in"></span>
-                                Sign in
+                                {lang('Sign in','documentation')}
                             </button>
                             {form_csrf()}
                         </form>
                     {else:}
                         <div class="pull-right">
                             {if $CI->dx_auth->is_admin()}
+                                <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
+                                    <span class="glyphicon glyphicon-new-window"></span>
+                                    {lang('Create','documentation')}
+                                </a>
                                 <button type="button" class="btn btn-success navbar-btn ">
                                     <span class="glyphicon glyphicon-pencil"></span>
-                                    Редактировать
+                                    {lang('Edit','documentation')}
                                 </button>
                             {/if}
                             <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
                                 <span class="glyphicon glyphicon-log-out"></span>
-                                Выйти
+                                {lang('Exit','documentation')}
                             </a>
                         </div>
                     {/if}
-                    {var_dump($CI->dx_auth->is_admin())}
                 </div><!-- /.nav-collapse -->
             </div><!-- /.container -->
         </div>
@@ -183,24 +186,21 @@
                     <p class="pull-left visible-xs">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
-                    <div class="jumbotron">
+                    <!--<div class="jumbotron">
                         <h1>Hello, world!</h1>
                         <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-                    </div>
+                    </div>-->
                     <div class="row">
                         {$content}
                     </div>
                 </div>
             </div>
             <hr/>
-
             <footer>
                 <p>© Company 2013</p>
             </footer>
-
         </div>
         <script type="text/javascript" src="{$THEME}js/jquery.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/documentation.js"></script>
         <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
     </body>
