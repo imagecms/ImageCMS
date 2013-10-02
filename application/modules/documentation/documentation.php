@@ -100,9 +100,25 @@ class Documentation extends MY_Controller {
                     ->setData('errors', $this->errors)
                     ->render('create_new_page');
         }
-        else
+        else{
             $this->core->error_404();
+        }
     }
+    
+    public function edit_page ($id = null){
+        
+        /** If not page id **/
+        if ($id == null){
+             $this->core->error_404();
+        }
+        
+        /** Is any page with $id  **/
+        
+        
+    }
+
+
+
 
     public function _install() {
         /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
