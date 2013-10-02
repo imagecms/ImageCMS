@@ -1,0 +1,67 @@
+/* Стилі меню */
+.tree_menu {
+    background: #fafafa;
+    font-size: 11pt;
+    padding: 7px;
+}
+
+.tree_menu a {
+    color: #696969;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    padding: 5px;
+}
+
+.tree_menu a:hover {
+    color: #696969;
+    text-decoration: none;
+}
+
+.tree_menu ul {
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 25px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+/* Перший рівень меню зміщати не потрібно */
+.tree_menu > ul {
+    padding-left: 2px;
+}
+
+.tree_menu ul li {
+    padding: 0px;
+    position: relative;
+    margin: 0px;
+}
+
+.tree_menu ul li a:hover ~ .tree_menu_icon {
+    color: #ffffff;
+}
+
+.tree_menu ul li a:hover {
+    background: #eeeeee;
+}
+
+.tree_menu ul li a {
+    padding-left: 25px;
+}
+
+.tree_menu ul li .tree_menu_icon {
+    position: absolute;
+    left: 4px;
+    top: 7px;
+    color: #e4e4e4;
+}
+
+.tree_menu ul li.active > a {
+    /*color: rosybrown !important;*/
+    /*color: #9E4949 !important;*/
+    background: #e6e6e6;
+}
+
+.tree_menu ul li.active > a ~ .tree_menu_icon {
+    color: #ffffff;
+}
