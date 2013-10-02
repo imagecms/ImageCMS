@@ -101,6 +101,7 @@
                     </a>
 
                 </div>
+                    
                 <div class="collapse navbar-collapse">
                     {load_menu('top_menu')}
                     {if !$CI->dx_auth->is_logged_in()}
