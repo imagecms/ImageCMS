@@ -304,7 +304,7 @@ class Cmsemail_model extends \CI_Model {
 
         $sql = file_get_contents('./application/modules/cmsemail/models/paterns.sql');
         $this->db->query($sql);
-        $sql = file_get_contents('./application/modules/cmsemail/models/paterns_i18n.sql');
+        $sql = file_get_contents('./application/modules/cmsemail/models/patterns_i18n.sql');
         $this->db->query($sql);
 
         return TRUE;
