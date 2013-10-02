@@ -10,6 +10,9 @@
                     {$page.full_text}
                 </div>
             </div>
+            <div class="right">
+                {widget('news')}
+            </div>
         </div>
     </div>
 </div>
