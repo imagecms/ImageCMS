@@ -69,7 +69,7 @@
                                 {foreach $models as $model}
                                     <tr>
                                         <td class="t-a_c">
-                                            {if $model.id > 6}
+                                            {if $model.id > 7}
                                                 <span class="frame_label">
                                                     <span class="niceCheck b_n">
                                                         <input type="checkbox" name="ids" value="{echo $model.id}"/>
