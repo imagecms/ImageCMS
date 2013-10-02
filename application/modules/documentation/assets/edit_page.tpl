@@ -7,7 +7,7 @@
             {echo $errors}
         </div>
     {/if}
-    <form method="post" action="/documentation/create_new_page">
+    <form method="post" action="/documentation/edit_page/{echo $pageId}">
         <!-- Start. Select with categories names and ids-->
         <h4>{lang('Category','documentation')}:</h4>
         <div class="input-group">
