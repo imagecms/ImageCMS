@@ -10,7 +10,7 @@ tinymce.init({
     toolbar_items_size: 'small',
     spellchecker_language: "ru",
     spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
-    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode | spellchecker",
+    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | highlightcode | spellchecker | save_button",
     image_advtab: true,
     external_filemanager_path: "/templates/documentation/js/tinymce/plugins/responsivefilemanager/",
     filemanager_title: "Responsive Filemanager",
@@ -22,10 +22,13 @@ tinymce.init({
             onclick: function() {
                 $.ajax({
                     type: 'post',
-                    data: 'desc=' + tinyMCE.activeEditor.getContent(),
-                    dataType: "json",
+                    data: {
+                        "desc": tinyMCE.activeEditor.getContent().toString(),
+                        "id": id
+                    },
                     url: '/documentation/save_desc',
-                    success: function(obj) {
+                    complete: function(obj) {
+                        tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
                     }
                 });
             }
@@ -36,7 +39,7 @@ tinymce.init({
             onclick: function() {
                 var text = editor.selection.getContent({'format': 'text'});
                 if (text && text.length > 0) {
-                    editor.execCommand('mceInsertContent', false, '<pre><code class="php">' + text + '</code></pre><p>');
+                    editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
                 }
             }
         });
@@ -47,7 +50,7 @@ tinymce.init({
     selector: "h1",
     inline: true,
     toolbar_items_size: 'small',
-    toolbar: "undo redo | save_button | spellchecker",
+    toolbar: "undo redo | spellchecker | save_button",
     plugins: ["spellchecker"],
     spellchecker_language: "ru",
     spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
@@ -59,10 +62,13 @@ tinymce.init({
             onclick: function() {
                 $.ajax({
                     type: 'post',
-                    data: 'h1=' + tinyMCE.activeEditor.getContent(),
-                    dataType: "json",
+                    data: {
+                        "h1": tinyMCE.activeEditor.getContent().toString(),
+                        "id": id
+                    },
                     url: '/documentation/save_title',
-                    success: function(obj) {
+                    complete: function(obj) {
+                        tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
                     }
                 });
             }

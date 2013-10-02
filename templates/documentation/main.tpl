@@ -16,7 +16,7 @@
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
         <link rel="SHORTCUT ICON" href="favicon.ico" />
 
-        <link media="screen" rel="stylesheet" href="{$THEME}js/highlight/styles/default.css"/>
+        <link media="screen" rel="stylesheet" href="{$THEME}js/highlight/styles/googlecode.css"/>
         <script type="text/javascript" src="{$THEME}js/highlight/highlight.pack.js"></script>
 
         {literal}
@@ -24,6 +24,10 @@
         {/literal}
 
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.js"></script>
+        
+        <script type="text/javascript">
+            var id = {echo $CI->core->core_data['id']};
+        </script>
 
         <link href="{$THEME}css/docs_style.css" rel="stylesheet" media="screen"/>
     </head>

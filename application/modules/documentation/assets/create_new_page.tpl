@@ -36,11 +36,11 @@
         <!-- End. Textarea with content-->
         <!-- Start. Submit button-->
         <div class="buttonSave">
-            <button type="submit" class="btn btn-info">
-            {lang('Save','documentation')}
+            <button type="submit" class="btn btn-success pull-right">
+                {lang('Save','documentation')}
             </button>
         </div>
         <!-- End. Submit button -->
-            {form_csrf()}
+        {form_csrf()}
     </form>
 </div>
