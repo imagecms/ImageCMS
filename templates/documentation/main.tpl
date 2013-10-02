@@ -24,7 +24,7 @@
         {/literal}
 
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.js"></script>
-        
+
         <script type="text/javascript">
             var id = {echo $CI->core->core_data['id']};
         </script>
@@ -76,10 +76,10 @@
                                     {lang('Create','documentation')}
                                 </a>
                                 {if $CI->core->core_data['data_type'] == 'page'}
-                                <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                    {lang('Edit','documentation')}
-                                </a>
+                                    <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                        {lang('Edit','documentation')}
+                                    </a>
                                 {/if}
                             {/if}
                             <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
@@ -94,6 +94,15 @@
         <div class="container">
             <div class="row row-offcanvas row-offcanvas-left">
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                    {if $CI->core->core_data['data_type'] == 'main'}
+                        <span class="logo f_l">
+                            <img src="{$THEME}images/logo.png"/>
+                        </span>
+                    {else:}
+                        <a href="{site_url()}" class="logo f_l">
+                            <img src="{$THEME}images/logo.png"/>
+                        </a>
+                    {/if}
                     <div class="tree_menu">
                         {load_menu('left_menu')}
                     </div>

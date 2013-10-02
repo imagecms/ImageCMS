@@ -99,7 +99,7 @@ tinymce.init({
             onclick: function() {
                 var text = editor.selection.getContent({'format': 'text'});
                 if (text && text.length > 0) {
-                    editor.execCommand('mceInsertContent', false, '<pre><code class="php">' + text + '</code></pre>\n');
+                    editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
                 }
             }
         });
