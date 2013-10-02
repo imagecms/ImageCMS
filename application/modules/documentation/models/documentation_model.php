@@ -49,7 +49,20 @@ class Documentation_model extends CI_Model {
         }
         return false;
     }
-
+    
+    /**
+     * Get page by Id
+     * @param type $id
+     * @return boolean
+     */
+    public function getPageById($id = null){
+        $res = $this->db->where('id', $id)->get('content')->row_array();
+        if (!$res){
+            return false;
+        }else{
+            return $res;
+        }
+    }
 
 
 
