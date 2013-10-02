@@ -71,7 +71,7 @@
                                                                             return false;"><i class="icon-picture"></i>  {lang("Choose an image","admin")}</button>
                                                                 </div>
                                                                 <div class="o_h">		            
-                                                                    <input type="text" name="image" id="Img" value="{$image}">					
+                                                                    <input type="text" name="image" id="Img" value="{$image}" accept="image/gif, image/jpeg, image/png, image/jpg" >					
                                                                 </div>
                                                             </div>
                                                         </div>
