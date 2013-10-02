@@ -150,11 +150,30 @@ class Documentation extends MY_Controller {
     }
 
     public function save_desc() {
+        $this->make_backup();
         
+        $this->db
+                ->where('id', $this->input->post('id'))
+                ->set('full_text', $this->input->post('desc'))
+                ->update('content');
     }
 
     public function save_title() {
+        $this->make_backup();
         
+        $this->db
+                ->where('id', $this->input->post('id'))
+                ->set('title', $this->input->post('h1'))
+                ->update('content');
+    }
+
+    public function make_backup() {
+        $old_data = $this->db
+                ->where('id', $this->input->post('id'))
+                ->get('content')
+                ->row_array();
+
+//        $this->db->insert('mod_documentation', $old_data);
     }
 
     public function _deinstall() {
