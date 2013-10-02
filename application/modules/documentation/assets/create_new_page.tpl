@@ -11,7 +11,7 @@
         <!-- Start. Select with categories names and ids-->
         <h4>{lang('Category','documentation')}:</h4>
         <div class="input-group">
-
+                {var_dump($this->view("cats_select.tpl", array('tree' => $tree)))}
             <select name="NewPage[Category]" class="form-control">
                 {//foreach $pageCategories as $category}
                 <!--<option value="{$category['id']}">{$category['name']}</option>-->
