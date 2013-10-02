@@ -35,6 +35,7 @@ class Documentation extends MY_Controller {
     public function autoload() {
         if ($this->dx_auth->is_admin()) {
             \CMSFactory\assetManager::create()
+                    ->registerStyle('documentation', TRUE)
                     ->registerScript('documentation', FALSE, 'before');
         }
     }
@@ -106,10 +107,9 @@ class Documentation extends MY_Controller {
         } else {
             $this->errors .= $this->form_validation->error_string();
         }
-
+        /** Set template data and show template * */
         if ($this->dx_auth->is_admin()) {
             \CMSFactory\assetManager::create()
-                    ->registerStyle('documentation', TRUE)
                     ->setData('tree', $this->lib_category->build()) // Load category tree)
                     ->setData('errors', $this->errors)
                     ->render('create_new_page');
@@ -120,12 +120,23 @@ class Documentation extends MY_Controller {
 
     public function edit_page($id = null) {
 
-        /** If not page id * */
-        if ($id == null) {
+        /** If not page id and not any page with $id  * */
+        if ($id == null || !$this->documentation_model->getPageById($id)) {
             $this->core->error_404();
-        }
+        } else {
+            $page = $this->documentation_model->getPageById($id);
 
-        /** Is any page with $id  * */
+            /** Set template data and show template * */
+            if ($this->dx_auth->is_admin()) {
+                \CMSFactory\assetManager::create()
+                        ->setData('tree', $this->lib_category->build()) // Load category tree)
+                        ->setData('page', $page)
+                        ->setData('errors', $this->errors)
+                        ->render('edit_page');
+            } else {
+                $this->core->error_404();
+            }
+        }
     }
 
     public function _install() {
