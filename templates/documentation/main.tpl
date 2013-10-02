@@ -7,6 +7,7 @@
         <link href="{$THEME}css/bootstrap.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/bootstrap-theme.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/offcanvas.css" rel="stylesheet" media="screen"/>
+
         <!--[if lt IE 9]>
             <script src="{$THEME}js/html5shiv.js"></script>
             <script src="{$THEME}js/respond.min.js"></script>
@@ -15,16 +16,12 @@
         <link rel="SHORTCUT ICON" href="favicon.ico" />
 
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript">
-            tinymce.init({
-                selector: "textarea"
-            });
-        </script>
+
+        <link href="{$THEME}css/docs_style.css" rel="stylesheet" media="screen"/>
+
+
     </head>
     <body>
-        <form method="post">
-            <textarea></textarea>
-        </form>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -45,11 +42,7 @@
 
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+                    {load_menu('top_menu')}
                     {if !$CI->dx_auth->is_logged_in()}
                         <form class="navbar-form navbar-right" method="post" id="login_form" action="/auth/login">
                             <div class="form-group">
@@ -83,84 +76,8 @@
         <div class="container">
             <div class="row row-offcanvas row-offcanvas-left">
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-
-                    <img src="{$THEME}images/logo.png"></img>
-
-                    <div class="well-small sidebar-nav">
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                            Collapsible Group Item #1
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse1" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <ul class="nav">
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                            Collapsible Group Item #2
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse2" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav">
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                            Collapsible Group Item #3
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse3" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav">
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Link</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="tree_menu">
+                        {load_menu('left_menu')}
                     </div>
                 </div>
 
