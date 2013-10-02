@@ -19,26 +19,28 @@
         <!-- Start. Name input -->
         <h4>{lang('Name','documentation')}:</h4>
         <div class="input-group">
-            <input type="text" name="NewPage[title]" class="form-control" placeholder="{lang('Title','documentation')}">
+            <input type="text" name="NewPage[title]" value="{echo set_value('NewPage[title]')}" class="form-control" placeholder="{lang('Title','documentation')}">
         </div>
         <!-- End. Name input-->
         <!-- Start. Url input-->
         <h4>{lang('Url','documentation')}:</h4>
         <div class="input-group">
-            <input type="text" name="NewPage[url]" class="form-control" placeholder="{lang('Url','documentation')}">
+            <input type="text" name="NewPage[url]" value="{echo set_value('NewPage[url]')}" class="form-control" placeholder="{lang('Url','documentation')}">
         </div>
         <!-- End. Url input -->
         <!-- Start. Textarea with content-->
         <h4>{lang('Content','documentation')}:</h4>
-        <textarea class="TinyMCEForm" name="NewPage[prev_text]"></textarea>
+        <textarea class="TinyMCEForm" name="NewPage[prev_text]">
+            {echo set_value('NewPage[prev_text]')}
+        </textarea>
         <!-- End. Textarea with content-->
         <!-- Start. Submit button-->
         <div class="buttonSave">
             <button type="submit" class="btn btn-info">
-                {lang('Save','documentation')}
+            {lang('Save','documentation')}
             </button>
         </div>
         <!-- End. Submit button -->
-        {form_csrf()}
+            {form_csrf()}
     </form>
 </div>

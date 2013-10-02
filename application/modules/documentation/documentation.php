@@ -10,25 +10,29 @@ class Documentation extends MY_Controller {
 
     private $errors = false;
     private $defaultLang = false;
-    
+
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('documentation');
-        
-        /** Load libraries and models **/
+
+        /** Load libraries, helpers and models * */
         $this->load->library('form_validation');
         $this->load->library('lib_category');
+        
+        $this->load->helper('translit');
+        
         $this->load->model('documentation_model');
         $this->load->model('cms_admin');
-        
-        /** Get default lang **/
+
+        /** Get default lang * */
         $this->defaultLang = $this->cms_admin->get_default_lang();
     }
 
+    /**
+     * Create new page
+     */
     public function create_new_page() {
-
-//        var_dump($this->input->post('NewPage'));
 
         /** New page data from post array * */
         $dataPost = $this->input->post('NewPage');
@@ -36,30 +40,34 @@ class Documentation extends MY_Controller {
         /** Register meta tags * */
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
-        /** Prepare array with categories ids and names * */
-        $categories = $this->documentation_model->getPagesCategories();
-
         /** Set form validation rules * */
         $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('NewPage[url]', lang("URL", "documentation"), 'alpha_dash|required');
         $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required');
-        
-        
-        /** Prepare category full url **/
-        $fullUrl = $this->lib_category->GetValue($dataPost['category'], 'path_url');
-        if ($fullUrl == FALSE) {
-            $fullUrl = '';
-        }
-        
+
+
         /** If not validation errors * */
         if ($this->form_validation->run() != FALSE) {
+
             /** Check repeat url or not  * */
             if ($this->documentation_model->checkUrl($dataPost['Url'])) {
                 $this->errors .= "<p>" . lang("URL can not be repeated", "documentation") . "</p>";
             }
             
+            /** Translit url **/
+            $dataPost['url'] = translit_url($dataPost['url']);
             
-            /** Prepare data for inserting into database **/
+            /** Check if url is empty then use translit * */
+            if ($dataPost['url'] == null) {
+                $dataPost['url'] = translit_url($dataPost['title']);
+            }
+
+            /** Prepare category full url * */
+            $fullUrl = $this->lib_category->GetValue($dataPost['category'], 'path_url');
+            if ($fullUrl == FALSE) {
+                $fullUrl = '';
+            }
+
+            /** Prepare data for inserting into database * */
             $data = array(
                 'title' => trim($dataPost['title']),
                 'url' => str_replace('.', '', trim($dataPost['url'])),
@@ -72,13 +80,13 @@ class Documentation extends MY_Controller {
                 'author' => $this->dx_auth->get_username(),
                 'post_status' => 'publish',
                 'publish_date' => time(),
-                'created' =>time(),
+                'created' => time(),
                 'lang' => $this->defaultLang['id']
             );
-            
+
             /** If page created succesful then show page on site * */
             if (!$this->errors && $this->documentation_model->createNewPage($data)) {
-                redirect(base_url($data['cat_url'].$data['url']));
+                redirect(base_url($data['cat_url'] . $data['url']));
             }
         } else {
             $this->errors .= $this->form_validation->error_string();
