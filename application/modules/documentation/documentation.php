@@ -109,7 +109,6 @@ class Documentation extends MY_Controller {
 
         if ($this->dx_auth->is_admin()) {
             \CMSFactory\assetManager::create()
-                    ->registerScript('documentation')
                     ->registerStyle('documentation', TRUE)
                     ->setData('tree', $this->lib_category->build()) // Load category tree)
                     ->setData('errors', $this->errors)
