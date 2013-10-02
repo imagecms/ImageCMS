@@ -40,8 +40,7 @@
                     language: 'ru',
                     spellchecker_language: "ru",
                     spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
-                    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode | spellchecker",
-                    toolbar1: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor | print preview code ", 
+                    toolbar1: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode | spellchecker",
                     image_advtab: true, 
                     external_filemanager_path: "/templates/documentation/js/tinymce/plugins/responsivefilemanager/", 
                     filemanager_title: "Responsive Filemanager", 
@@ -160,6 +159,10 @@
                     <p class="pull-left visible-xs">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
+                    <div class="jumbotron">
+                        <h1>Hello, world!</h1>
+                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                    </div>
                     <div class="row">
                         {$content}
                     </div>
