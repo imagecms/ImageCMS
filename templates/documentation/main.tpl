@@ -23,8 +23,8 @@
             <script>hljs.initHighlightingOnLoad();</script>
         {/literal}
 
-        <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
-        
+        <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.js"></script>
+
         <link href="{$THEME}css/docs_style.css" rel="stylesheet" media="screen"/>
 
         {literal}
@@ -52,7 +52,10 @@
                             text: 'Код',
                             icon: 'code',
                             onclick: function() {
-                                editor.insertContent('<pre> <code class="php"></code> </pre>');
+                                var text = editor.selection.getContent({'format': 'text'});
+                                if (text && text.length > 0) {
+                                    editor.execCommand('mceInsertContent', false, '<pre><code class="php">' + text + '</code></pre>');
+                                }
                             }
                         });
                     }
@@ -101,7 +104,7 @@
                     </a>
 
                 </div>
-                    
+
                 <div class="collapse navbar-collapse">
                     {load_menu('top_menu')}
                     {if !$CI->dx_auth->is_logged_in()}
