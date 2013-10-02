@@ -17,7 +17,7 @@
 
         <link media="screen" rel="stylesheet" href="{$THEME}js/highlight/styles/default.css"/>
         <script type="text/javascript" src="{$THEME}js/highlight/highlight.pack.js"></script>
-        
+
         {literal}
             <script>hljs.initHighlightingOnLoad();</script>
         {/literal}
@@ -31,9 +31,11 @@
                     plugins: [
                         "advlist autolink lists link image charmap print preview anchor",
                         "searchreplace visualblocks code fullscreen",
-                        "insertdatetime media table contextmenu paste"
+                        "insertdatetime media table contextmenu paste spellchecker"
                     ],
-                    toolbar: "insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode",
+                    spellchecker_language: "ru",
+                    spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
+                    toolbar: "insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode | spellchecker",
                     setup: function(editor) {
                         editor.addButton('save_button', {
                             text: 'Сохранить',
@@ -56,7 +58,10 @@
                 tinymce.init({
                     selector: "h1",
                     inline: true,
-                    toolbar: "undo redo | save_button",
+                    toolbar: "undo redo | save_button | spellchecker",
+                    plugins: ["spellchecker"],
+                    spellchecker_language: "ru",
+                    spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
                     menubar: false,
                     setup: function(editor) {
                         editor.addButton('save_button', {
@@ -125,7 +130,6 @@
                             </a>
                         </div>
                     {/if}
-                    {var_dump($CI->dx_auth->is_admin())}
                 </div><!-- /.nav-collapse -->
             </div><!-- /.container -->
         </div>
