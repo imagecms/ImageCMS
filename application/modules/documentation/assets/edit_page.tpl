@@ -1,6 +1,15 @@
 <div class="container">
     <div class="page-header">
-        <h1>{lang('Edit page','documentation')}</h1>
+        <h1 style="display: inline-block;">{lang('Edit page','documentation')}</h1>
+        <div class="langSwitcher pull-right">
+            <label class="col-lg-4 control-label m-t_10">{lang('Language','documentation')}:</label>
+            <div class="col-lg-8">
+                <select name="NewPage[lang]" class="form-control">
+                    <option value="3">ru</option>
+                    <option value="31">en</option>
+                </select>
+            </div>
+        </div>
     </div>
     {if $errors}
         <div class="alert alert-block alert-danger fade in">
@@ -36,11 +45,11 @@
         <!-- End. Textarea with content-->
         <!-- Start. Submit button-->
         <div class="buttonSave">
-            <button type="submit" class="btn btn-info">
-            {lang('Save','documentation')}
+            <button type="submit" class="btn btn-info pull-right">
+                {lang('Save','documentation')}
             </button>
         </div>
         <!-- End. Submit button -->
-            {form_csrf()}
+        {form_csrf()}
     </form>
 </div>

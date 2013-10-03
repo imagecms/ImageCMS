@@ -36,13 +36,16 @@ class discount_api extends \mod_discount\discount {
      * @return ---
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_api() {
+    public function get_discount_api($render = null) {
         if (count(ShopCore::app()->SCart->getData()) > 0)
             if ($this->check_module_install())
                 $discount = $this->init()->get_result_discount(1);
-        if ($discount['result_sum_discount'])
-            echo json_encode($discount);
-        else
+        if ($discount['result_sum_discount']){
+            if ($render === null)
+                echo json_encode($discount);
+            else
+                return $discount;
+        }else
             echo '';
     }
 
