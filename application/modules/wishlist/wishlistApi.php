@@ -180,7 +180,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * @param int $varId
      * @return json
      */
-    public function renderWLButton($varId) {
+    public function renderWLButton($varId, $data = array()) {
         if ($this->dx_auth->is_logged_in()) {
             $data['href'] = '/wishlist/renderPopup/' . $varId;
         } else {
