@@ -5,6 +5,7 @@
 /**
  * Image CMS
  * Module Frame
+ * @property Documentation_model $documentation_model
  */
 class Documentation extends MY_Controller {
 
@@ -192,8 +193,8 @@ class Documentation extends MY_Controller {
     }
 
     public function save_desc() {
-        $this->make_backup();
-        
+        $this->documentation_model->make_backup();
+
         $this->db
                 ->where('id', $this->input->post('id'))
                 ->set('full_text', $this->input->post('desc'))
@@ -201,28 +202,20 @@ class Documentation extends MY_Controller {
     }
 
     public function save_title() {
-        $this->make_backup();
-        
+        $this->documentation_model->make_backup();
+
         $this->db
                 ->where('id', $this->input->post('id'))
                 ->set('title', $this->input->post('h1'))
                 ->update('content');
     }
 
-    public function make_backup() {
-        $old_data = $this->db
-                ->where('id', $this->input->post('id'))
-                ->get('content')
-                ->row_array();
-
-//        $this->db->insert('mod_documentation', $old_data);
-    }
-    /** Install and set settings **/
+    /** Install and set settings * */
     public function _install() {
         $this->documentation_model->install();
     }
-    
-    /** Deinstall **/
+
+    /** Deinstall * */
     public function _deinstall() {
         $this->documentation_model->install();
     }

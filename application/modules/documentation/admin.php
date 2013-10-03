@@ -15,7 +15,7 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        
+        \CMSFactory\assetManager::create()->renderAdmin("main");
     }
 
 }
