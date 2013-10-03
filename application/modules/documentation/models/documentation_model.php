@@ -82,7 +82,7 @@ class Documentation_model extends CI_Model {
 
         /** Query for creating module table * */
         $query = "
-            CREATE TABLE IF NOT EXISTS `mod_documentation_hystory` (
+            CREATE TABLE IF NOT EXISTS `mod_documentation_history` (
                   `id` bigint(11) NOT NULL AUTO_INCREMENT,
                   `title` varchar(500) NOT NULL,
                   `meta_title` varchar(300) DEFAULT NULL,
@@ -128,7 +128,7 @@ class Documentation_model extends CI_Model {
     public function deinstall() {
         ($this->dx_auth->is_admin()) OR exit;
         $this->load->dbforge();
-        $this->dbforge->drop_table('mod_documentation_hystory');
+        $this->dbforge->drop_table('mod_documentation_history');
     }
 
 }
