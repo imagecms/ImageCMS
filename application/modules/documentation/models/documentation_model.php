@@ -144,6 +144,48 @@ class Documentation_model extends CI_Model {
         $this->db->insert('mod_documentation_history', $old_data);
     }
 
+    /**
+     * Get count of `content` table by conditions
+     * @param array $params
+     * @return int
+     */
+    public function getContentsCount($params) {
+        if (is_array($params))
+            $this->db->where($params);
+
+        $this->db->from('content');
+        return (int) $this->db->count_all_results();
+    }
+
+    /**
+     * Get data from `content` table by conditions
+     * @param array $params params for AR where
+     * @return array
+     */
+    public function getContents($params = NULL) {
+        if (is_array($params)) {
+            $this->db->where($params);
+        }
+        $data = array();
+        $result = $this->db->get('content');
+        foreach ($result->result_array() as $row) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    /**
+     * Returns specified page data
+     * @param int $pageId
+     * @return array
+     */
+    public function getPageData($pageId) {
+        $this->db->where('id', $pageId);
+        $result = $this->db->get('content');
+        $data = $result->result_array();
+        return $data[0];
+    }
+
 }
 
 ?>

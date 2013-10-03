@@ -29,7 +29,7 @@
             var id = {echo $CI->core->core_data['id']};
         </script>
 
-        <link href="{$THEME}css/docs_style.css" rel="stylesheet" media="screen"/>
+        <link href="{$THEME}css/left_menu_style.css" rel="stylesheet" media="screen"/>
     </head>
     <body>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -95,11 +95,11 @@
             <div class="row row-offcanvas row-offcanvas-left">
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     {if $CI->core->core_data['data_type'] == 'main'}
-                        <span class="logo f_l">
+                        <span id="main_logo" class="logo f_l">
                             <img src="{$THEME}images/logo.png"/>
                         </span>
                     {else:}
-                        <a href="{site_url()}" class="logo f_l">
+                        <a id="main_logo" href="{site_url()}" class="logo f_l">
                             <img src="{$THEME}images/logo.png"/>
                         </a>
                     {/if}
