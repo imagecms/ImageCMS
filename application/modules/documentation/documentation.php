@@ -37,14 +37,20 @@ class Documentation extends MY_Controller {
         if ($this->dx_auth->is_admin()) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
-                    ->registerScript('documentation', FALSE, 'before');
+                    ->registerScript('documentation', FALSE, 'before')
+                    ->registerScript('documentation_scripts', FALSE, 'before');
         }
     }
 
     /**
      * Create new page
      */
-    public function create_new_page() {
+    public function create_new_page($mainPageId = null, $langId = null) {
+
+        /** If not langId then set default language id * */
+        if ($langId == null) {
+            $langId = $this->defaultLang['id'];
+        }
 
         /** New page data from post array * */
         $dataPost = $this->input->post('NewPage');
@@ -92,7 +98,8 @@ class Documentation extends MY_Controller {
                 'post_status' => 'publish',
                 'publish_date' => time(),
                 'created' => time(),
-                'lang' => $this->defaultLang['id']
+                'lang' => $langId,
+                'lang_alias' => $mainPageId
             );
 
             /** If page created succesful then show page on site * */
@@ -102,27 +109,45 @@ class Documentation extends MY_Controller {
         } else {
             $this->errors .= $this->form_validation->error_string();
         }
+
+        /** For form submit * */
+        $params = "";
+        if ($mainPageId != null) {
+            $params = "/" . $mainPageId . "/" . $langId;
+        }
+
         /** Set template data and show template * */
         if ($this->dx_auth->is_admin()) {
             \CMSFactory\assetManager::create()
                     ->setData('tree', $this->lib_category->build()) // Load category tree)
                     ->setData('errors', $this->errors)
+                    ->setData('params', $params)
                     ->render('create_new_page');
         } else {
             $this->core->error_404();
         }
     }
 
-    public function edit_page($id = null) {
+    public function edit_page($id = null, $langId = null) {
+        /** Page not found * */
+        if ($id == null) {
+            $this->core->error_404();
+        }
+        
+        /** If not langId then set default language id * */
+        if ($langId == null) {
+            $langId = $this->defaultLang['id'];
+        }
 
         /** If not page id and not any page with $id  * */
-        if ($id == null || !$this->documentation_model->getPageById($id)) {
-            $this->core->error_404();
+        if (!$this->documentation_model->getPageById($id, $langId)) {
+
+            redirect(base_url('documentation/create_new_page/' . $id . '/' . $langId));
         } else {
 
             /** New page data from post array * */
             $dataPost = $this->input->post('NewPage');
-            
+
             /** Register meta tags * */
             $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
@@ -163,27 +188,30 @@ class Documentation extends MY_Controller {
                     'prev_text' => trim($dataPost['prev_text']),
                     'category' => $dataPost['category'],
                     'updated' => time(),
-                    'lang' => $this->defaultLang['id']
+                    'lang' => $langId
                 );
-
-                /** If page created succesful then show page on site * */
-                if (!$this->errors && $this->documentation_model->updatePage($id, $data)) {
+               
+                if (!$this->errors && $this->documentation_model->updatePage($id, $langId, $data)) {
                     redirect(base_url($data['cat_url'] . $data['url']));
                 }
             } else {
                 $this->errors .= $this->form_validation->error_string();
             }
 
-
             /** Page data by id * */
-            $page = $this->documentation_model->getPageById($id);
+            $page = $this->documentation_model->getPageById($id, $langId);
+            
+            /** For form submit * */
+            $params = "/" . $langId;
 
             /** Set template data and show template * */
             if ($this->dx_auth->is_admin()) {
                 \CMSFactory\assetManager::create()
                         ->setData('pageId', $id)
+                        ->setData('langs', $this->documentation_model->getLangs())
                         ->setData('tree', $this->lib_category->build()) // Load category tree)
                         ->setData('page', $page)
+                        ->setData('params', $params)
                         ->setData('errors', $this->errors)
                         ->render('edit_page');
             } else {
