@@ -884,8 +884,9 @@ class DX_Auth {
         } else {
             // Create user
             $insert = $this->ci->users->create_user($new_user);
+            $last_user_id = $this->ci->db->insert_id();
             // Trigger event
-            $this->ci->dx_auth_event->user_activated($this->ci->db->insert_id());
+            $this->ci->dx_auth_event->user_activated($last_user_id);
         }
 
 
@@ -893,6 +894,7 @@ class DX_Auth {
 
             // Replace password with plain for email
             $new_user['password'] = $password;
+            $new_user['id_user'] = $last_user_id;
 
             $result = $new_user;
 

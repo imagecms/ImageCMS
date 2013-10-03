@@ -4,7 +4,7 @@
 
 /**
  * Image CMS
- * Module Frame
+ * Module Frame 
  * @property Documentation_model $documentation_model
  */
 class Documentation extends MY_Controller {
@@ -122,7 +122,7 @@ class Documentation extends MY_Controller {
 
             /** New page data from post array * */
             $dataPost = $this->input->post('NewPage');
-            var_dump($dataPost);
+            
             /** Register meta tags * */
             $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
@@ -222,4 +222,4 @@ class Documentation extends MY_Controller {
 
 }
 
-/* End of file sample_module.php */
+/* End of file documentation_module.php */
