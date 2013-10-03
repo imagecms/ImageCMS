@@ -57,8 +57,6 @@
 }
 
 .tree_menu ul li.active > a {
-    /*color: rosybrown !important;*/
-    /*color: #9E4949 !important;*/
     background: #e6e6e6;
 }
 
