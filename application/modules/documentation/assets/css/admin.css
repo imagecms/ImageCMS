@@ -1,0 +1,17 @@
+.filter_show_line {
+    height: 7px;
+}
+
+.filter_show_line td {
+    background: #e1e1e1;
+    height: 7px;
+    font-size: 7pt;
+    color: #696969;
+    text-align: center;
+}
+
+.filter_show_line td:hover {
+    background: #dadada;
+    cursor: pointer;
+    
+}
