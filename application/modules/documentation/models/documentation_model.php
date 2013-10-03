@@ -73,61 +73,62 @@ class Documentation_model extends CI_Model {
             return $res;
         }
     }
-    
+
     /**
      * Module install
      */
     public function install() {
         ($this->dx_auth->is_admin()) OR exit;
-        
-        /** Query for creating module table **/
-        $query = "CREATE TABLE IF NOT EXISTS `mod_documentation_hystory` (
-                    `id` bigint(11) NOT NULL AUTO_INCREMENT,
-                    `title` varchar(500) NOT NULL,
-                    `meta_title` varchar(300) DEFAULT NULL,
-                    `url` varchar(500) NOT NULL,
-                    `cat_url` varchar(260) DEFAULT NULL,
-                    `keywords` text,
-                    `description` text,
-                    `prev_text` text,
-                    `full_text` longtext NOT NULL,
-                    `category` int(11) NOT NULL,
-                    `full_tpl` varchar(50) DEFAULT NULL,
-                    `main_tpl` varchar(50) NOT NULL,
-                    `position` smallint(5) NOT NULL,
-                    `comments_status` smallint(1) NOT NULL,
-                    `comments_count` int(9) DEFAULT '0',
-                    `post_status` varchar(15) NOT NULL,
-                    `author` varchar(50) NOT NULL,
-                    `publish_date` int(11) NOT NULL,
-                    `created` int(11) NOT NULL,
-                    `updated` int(11) NOT NULL,
-                    `showed` int(11) NOT NULL,
-                    `lang` int(11) NOT NULL DEFAULT '0',
-                    `lang_alias` int(11) NOT NULL DEFAULT '0',
-                    PRIMARY KEY (`id`),
-                    KEY `url` (`url`(333)),
-                    KEY `lang` (`lang`),
-                    KEY `post_status` (`post_status`(4)),
-                    KEY `cat_url` (`cat_url`),
-                    KEY `publish_date` (`publish_date`),
-                    KEY `category` (`category`),
-                    KEY `created` (`created`),
-                    KEY `updated` (`updated`));
+
+        /** Query for creating module table * */
+        $query = "
+            CREATE TABLE IF NOT EXISTS `mod_documentation_hystory` (
+                  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+                  `title` varchar(500) NOT NULL,
+                  `meta_title` varchar(300) DEFAULT NULL,
+                  `url` varchar(500) NOT NULL,
+                  `cat_url` varchar(260) DEFAULT NULL,
+                  `keywords` text,
+                  `description` text,
+                  `prev_text` text,
+                  `full_text` longtext NOT NULL,
+                  `category` int(11) NOT NULL,
+                  `full_tpl` varchar(50) DEFAULT NULL,
+                  `main_tpl` varchar(50) NOT NULL,
+                  `position` smallint(5) NOT NULL,
+                  `comments_status` smallint(1) NOT NULL,
+                  `comments_count` int(9) DEFAULT '0',
+                  `post_status` varchar(15) NOT NULL,
+                  `author` varchar(50) NOT NULL,
+                  `publish_date` int(11) NOT NULL,
+                  `created` int(11) NOT NULL,
+                  `updated` int(11) NOT NULL,
+                  `showed` int(11) NOT NULL,
+                  `lang` int(11) NOT NULL DEFAULT '0',
+                  `lang_alias` int(11) NOT NULL DEFAULT '0',
+                  PRIMARY KEY (`id`),
+                  KEY `url` (`url`(333)),
+                  KEY `lang` (`lang`),
+                  KEY `post_status` (`post_status`(4)),
+                  KEY `cat_url` (`cat_url`),
+                  KEY `publish_date` (`publish_date`),
+                  KEY `category` (`category`),
+                  KEY `created` (`created`),
+                  KEY `updated` (`updated`)
+                ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
                 ";
         $this->db->query($query);
-        
-        /** Update module settings **/
+
+        /** Update module settings * */
         $this->db->where('name', 'documentation')
-          ->update('components', array('autoload' => '1', 'enabled' => '1'));
+                ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
-    
-    /** Module deinstall **/
-    public function deinstall(){
+
+    /** Module deinstall * */
+    public function deinstall() {
         ($this->dx_auth->is_admin()) OR exit;
-         $this->load->dbforge();
+        $this->load->dbforge();
         $this->dbforge->drop_table('mod_documentation_hystory');
-        
     }
 
 }

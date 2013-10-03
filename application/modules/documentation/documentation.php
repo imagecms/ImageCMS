@@ -5,6 +5,7 @@
 /**
  * Image CMS
  * Module Frame
+ * @property Documentation_model $documentation_model
  */
 class Documentation extends MY_Controller {
 
@@ -214,8 +215,8 @@ class Documentation extends MY_Controller {
                 ->where('id', $this->input->post('id'))
                 ->get('content')
                 ->row_array();
-
-//        $this->db->insert('mod_documentation', $old_data);
+        var_dump($old_data);
+        $this->db->insert('mod_documentation_hystory', $old_data);
     }
     /** Install and set settings **/
     public function _install() {
