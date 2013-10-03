@@ -4,7 +4,7 @@
 
 /**
  * Image CMS
- * Module Frame
+ * Module Frame 
  * @property Documentation_model $documentation_model
  */
 class Documentation extends MY_Controller {
@@ -222,4 +222,4 @@ class Documentation extends MY_Controller {
 
 }
 
-/* End of file sample_module.php */
+/* End of file documentation_module.php */
