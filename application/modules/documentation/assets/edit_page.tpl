@@ -21,11 +21,11 @@
         {echo $errors}
     </div>
 {/if}
-<form method="post" action="/documentation/edit_page/{echo $pageId}{echo $params}">
+<form method="post" action="/documentation/edit_page/{echo $page['id']}{echo $params}">
     <!-- Start. Select with categories names and ids-->
     <h4>{lang('Category','documentation')}:</h4>
     <div class="input-group">
-        <select name="NewPage[category]" class="form-control">
+        <select name="NewPage[category]" class="form-control" {if $page['lang_alias'] != 0}readonly="readonly"{/if}>
             {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $page['category']));}
         </select>
     </div>
@@ -39,7 +39,12 @@
     <!-- Start. Url input-->
     <h4>{lang('Url','documentation')}:</h4>
     <div class="input-group">
-        <input type="text" name="NewPage[url]" value="{echo $page['url']}" class="form-control" placeholder="{lang('Url','documentation')}">
+        <input {if $page['lang_alias'] != 0}readonly="readonly"{/if} 
+                    type="text" 
+                    name="NewPage[url]" 
+                    value="{echo $page['url']}" 
+                    class="form-control" 
+                    placeholder="{lang('Url','documentation')}">
     </div>
     <!-- End. Url input -->
     <!-- Start. Textarea with content-->

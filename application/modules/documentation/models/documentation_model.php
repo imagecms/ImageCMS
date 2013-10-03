@@ -53,12 +53,20 @@ class Documentation_model extends CI_Model {
      * @return boolean
      */
     public function getPageById($id = null, $langId = null) {
+        /** Check is it main page **/
+        $page = $this->db->where('id',$id)->get('content')->row_array();
+        if ($page['lang_alias'] != '0'){
+            $id = $page['lang_alias'];
+        }
+        
+        /** Get page data **/
         $query = "SELECT * 
                     FROM `content`
                     WHERE (`content`.`id` = '".$id."'
-                    OR `content`.`lang_alias` ='".$id."')
-                    AND `content`.`lang` = '".$langId."'
-                ";
+                    OR `content`.`lang_alias` ='".$id."')";
+        if ($langId != null){
+            $query .="AND `content`.`lang` = '".$langId."'";
+        }
         $res = $this->db->query($query)->row_array();
         if (!$res) {
             return false;
