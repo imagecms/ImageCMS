@@ -121,7 +121,7 @@ class Documentation extends MY_Controller {
 
             /** New page data from post array * */
             $dataPost = $this->input->post('NewPage');
-            var_dump($dataPost);
+            
             /** Register meta tags * */
             $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
