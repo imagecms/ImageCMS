@@ -25,7 +25,7 @@
         {/literal}
 
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.js"></script>
-        
+
         <script type="text/javascript">
             var id = "{echo $CI->core->core_data['id']}";
         </script>
@@ -38,6 +38,7 @@
                 <div class="navbar-header">
 
                     <button type="button" class="pull-left visible-xs navbar-toggle" data-toggle="offcanvas">
+                        <span class="glyphicon glyphicon-chevron-left white"></span>
                         <span class="glyphicon glyphicon-th-list white"></span>
                     </button>
 
@@ -110,9 +111,6 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-9">
-                    <p class="pull-left visible-xs">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-                    </p>
                     <div class="jumbotron">
                         <h1>Hello, world!</h1>
                         <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
@@ -127,7 +125,7 @@
                 <p>© Company 2013</p>
             </footer>
         </div>
-        
+
         <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
     </body>
