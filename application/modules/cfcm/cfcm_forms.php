@@ -33,7 +33,7 @@ class Cfcm_forms extends MY_Controller {
             ),
             'label' => array(
                 'type'       => 'text',
-                'label'      => 'Label',
+                'label'      => lang('Label', 'cfcm'),
                 'validation' => 'max_length[255]',
                 'class'      => 'required'
             ),
@@ -100,7 +100,7 @@ class Cfcm_forms extends MY_Controller {
         if ($type == 'select')
             $f['multiple'] = array(
                 'type'    => 'checkbox',
-                'label'   => 'Multiple',
+                'label'   => lang('Multiple', 'cfcm'),
                 'initial' => '1',
                 'checked' => FALSE,
             );
