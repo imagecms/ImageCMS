@@ -2,7 +2,7 @@
 
 /**
  * @property CI_DB_active_record $db
- * @property DX_Auth $dx_auth
+ * @property Documentation_model $documentation_model
  */
 class Documentation_model extends CI_Model {
 
@@ -47,9 +47,57 @@ class Documentation_model extends CI_Model {
         return false;
     }
 
-    public function updatePage($id = false, $data = false) {
+    /**
+     * Get page by Id
+     * @param type $id
+     * @return boolean
+     */
+    public function getPageById($id = null, $langId = null) {
+        /** Check is it main page **/
+        $page = $this->db->where('id',$id)->get('content')->row_array();
+        if ($page['lang_alias'] != '0'){
+            $id = $page['lang_alias'];
+        }
+        
+        /** Get page data **/
+        $query = "SELECT * 
+                    FROM `content`
+                    WHERE (`content`.`id` = '".$id."'
+                    OR `content`.`lang_alias` ='".$id."')";
+        if ($langId != null){
+            $query .="AND `content`.`lang` = '".$langId."'";
+        }
+        $res = $this->db->query($query)->row_array();
+        if (!$res) {
+            return false;
+        } else {
+            return $res;
+        }
+    }
+
+    /**
+     * Get languages
+     * @return boolean|array
+     */
+    public function getLangs() {
+        $res = $this->db->get('languages')->result_array();
+        if (!$res) {
+            return false;
+        } else {
+            return $res;
+        }
+    }
+
+    public function updatePage($id = false, $langId = false, $data = false) {
         if ($id != false && $data != false) {
-            $this->db->where('id', $id)->update('content', $data);
+            $query = "SELECT id 
+                    FROM `content`
+                    WHERE (`content`.`id` = '".$id."'
+                    OR `content`.`lang_alias` ='".$id."')
+                    AND `content`.`lang` = '".$langId."'
+                ";
+            $res = $this->db->query($query)->row_array();
+            $this->db->where('id', $res['id'])->update('content', $data);
             if ($this->db->last_query()) {
                 return true;
             } else {
@@ -59,18 +107,16 @@ class Documentation_model extends CI_Model {
         return false;
     }
 
-    /**
-     * Get page by Id
-     * @param type $id
-     * @return boolean
-     */
-    public function getPageById($id = null) {
-        $res = $this->db->where('id', $id)->get('content')->row_array();
-        if (!$res) {
-            return false;
-        } else {
-            return $res;
-        }
+    public function make_backup() {
+        $old_data = $this->db
+                ->where('id', $this->input->post('id'))
+                ->get('content')
+                ->row_array();
+
+        $old_data['page_id'] = $old_data['id'];
+        unset($old_data['id']);
+        $old_data['user_id'] = $this->dx_auth->get_user_id();
+        $this->db->insert('mod_documentation_history', $old_data);
     }
 
     /**
@@ -131,6 +177,7 @@ class Documentation_model extends CI_Model {
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_documentation_history');
     }
+
 
     public function make_backup() {
         $old_data = $this->db

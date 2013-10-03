@@ -193,7 +193,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
      * renser button for add to wishlist
      * @param type $varId
      */
-    public function renderWLButton($varId) {
+    public function renderWLButton($varId, $data = array()) {
         if ($this->dx_auth->is_logged_in()) {
             $href = '/wishlist/renderPopup/' . $varId;
         } else {
@@ -209,6 +209,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->setData('class', 'btn')
                     ->setData('href', $href)
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
+                    ->setData($data)
                     ->render('button', true);
         else
             \CMSFactory\assetManager::create()
@@ -219,6 +220,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->setData('value', lang('Already in Wish List', 'wishlist'))
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
+                    ->setData($data)
                     ->render('button', true);
     }
 

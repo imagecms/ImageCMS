@@ -18,15 +18,16 @@
 
         <link media="screen" rel="stylesheet" href="{$THEME}js/highlight/styles/googlecode.css"/>
         <script type="text/javascript" src="{$THEME}js/highlight/highlight.pack.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.min.js"></script>
 
         {literal}
             <script>hljs.initHighlightingOnLoad();</script>
         {/literal}
 
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.js"></script>
-
+        
         <script type="text/javascript">
-            var id = {echo $CI->core->core_data['id']};
+            var id = "{echo $CI->core->core_data['id']}";
         </script>
 
         <link href="{$THEME}css/left_menu_style.css" rel="stylesheet" media="screen"/>
@@ -126,7 +127,7 @@
                 <p>© Company 2013</p>
             </footer>
         </div>
-        <script type="text/javascript" src="{$THEME}js/jquery.min.js"></script>
+        
         <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
     </body>

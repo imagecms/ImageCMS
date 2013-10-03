@@ -4,7 +4,7 @@
 
 /**
  * Image CMS
- * Module Frame
+ * Module Frame 
  * @property Documentation_model $documentation_model
  */
 class Documentation extends MY_Controller {
@@ -44,7 +44,12 @@ class Documentation extends MY_Controller {
     /**
      * Create new page
      */
-    public function create_new_page() {
+    public function create_new_page($mainPageId = 0, $langId = null) {
+
+        /** If not langId then set default language id * */
+        if ($langId == null) {
+            $langId = $this->defaultLang['id'];
+        }
 
         /** New page data from post array * */
         $dataPost = $this->input->post('NewPage');
@@ -92,37 +97,66 @@ class Documentation extends MY_Controller {
                 'post_status' => 'publish',
                 'publish_date' => time(),
                 'created' => time(),
-                'lang' => $this->defaultLang['id']
+                'lang' => $langId,
+                'lang_alias' => $mainPageId
             );
 
             /** If page created succesful then show page on site * */
             if (!$this->errors && $this->documentation_model->createNewPage($data)) {
-                redirect(base_url($data['cat_url'] . $data['url']));
+                /** Get page lang identificator * */
+                $currentPageLang = $this->cms_admin->get_lang($langId);
+
+                /** Redirect to view page  * */
+                redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
             }
         } else {
             $this->errors .= $this->form_validation->error_string();
         }
+
+        /** For form submit * */
+        $params = "";
+        if ($mainPageId != null) {
+            $params = "/" . $mainPageId . "/" . $langId;
+        }
+
+        /** Page data by id * */
+        if ($mainPageId != 0) {
+            $mainPage = $this->documentation_model->getPageById($mainPageId);
+        }
+
         /** Set template data and show template * */
         if ($this->dx_auth->is_admin()) {
             \CMSFactory\assetManager::create()
                     ->setData('tree', $this->lib_category->build()) // Load category tree)
                     ->setData('errors', $this->errors)
+                    ->setData('mainPage', $mainPage)
+                    ->setData('params', $params)
                     ->render('create_new_page');
         } else {
             $this->core->error_404();
         }
     }
 
-    public function edit_page($id = null) {
-
-        /** If not page id and not any page with $id  * */
-        if ($id == null || !$this->documentation_model->getPageById($id)) {
+    public function edit_page($id = null, $langId = null) {
+        /** Page not found * */
+        if ($id == null) {
             $this->core->error_404();
+        }
+
+        /** If not langId then set default language id * */
+        if ($langId == null) {
+            $langId = $this->defaultLang['id'];
+        }
+        
+        /** If not page id and not any page with $id  * */
+        if (!$this->documentation_model->getPageById($id, $langId)) {
+
+            redirect(base_url('documentation/create_new_page/' . $id . '/' . $langId));
         } else {
 
             /** New page data from post array * */
             $dataPost = $this->input->post('NewPage');
-            var_dump($dataPost);
+
             /** Register meta tags * */
             $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
@@ -163,27 +197,34 @@ class Documentation extends MY_Controller {
                     'prev_text' => trim($dataPost['prev_text']),
                     'category' => $dataPost['category'],
                     'updated' => time(),
-                    'lang' => $this->defaultLang['id']
+                    'lang' => $langId
                 );
 
-                /** If page created succesful then show page on site * */
-                if (!$this->errors && $this->documentation_model->updatePage($id, $data)) {
-                    redirect(base_url($data['cat_url'] . $data['url']));
+                if (!$this->errors && $this->documentation_model->updatePage($id, $langId, $data)) {
+                    /** Get page lang identificator * */
+                    $currentPageLang = $this->cms_admin->get_lang($langId);
+
+                    /** Redirect to view page  * */
+                    redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
                 }
             } else {
                 $this->errors .= $this->form_validation->error_string();
             }
 
-
             /** Page data by id * */
-            $page = $this->documentation_model->getPageById($id);
+            $page = $this->documentation_model->getPageById($id, $langId);
+
+            /** For form submit * */
+            $params = "/" . $langId;
 
             /** Set template data and show template * */
             if ($this->dx_auth->is_admin()) {
                 \CMSFactory\assetManager::create()
-                        ->setData('pageId', $id)
-                        ->setData('tree', $this->lib_category->build()) // Load category tree)
+                        ->setData('langs', $this->documentation_model->getLangs())
+                        ->setData('tree', $this->lib_category->build()) // Load category tree
                         ->setData('page', $page)
+                        ->setData('params', $params)
+                        ->setData('defaultLang', $this->defaultLang)
                         ->setData('errors', $this->errors)
                         ->render('edit_page');
             } else {
@@ -222,4 +263,4 @@ class Documentation extends MY_Controller {
 
 }
 
-/* End of file sample_module.php */
+/* End of file documentation_module.php */

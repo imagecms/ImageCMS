@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-02 10:49+0300\n"
+"POT-Creation-Date: 2013-10-03 13:07+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -4719,45 +4719,46 @@ msgid "Remove selected users?"
 msgstr "Удалить выбранных пользователей?"
 
 #: /var/www/image.loc/_tempLangs.php:90
-#: /var/www/image.loc/_tempLangs.php:126
+#: /var/www/image.loc/_tempLangs.php:127
 msgid "Time of registration"
 msgstr "Время регистрации"
 
-#: /var/www/image.loc/_tempLangs.php:101
+#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:102
 msgid "Simple user"
 msgstr "Простой пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:104
+#: /var/www/image.loc/_tempLangs.php:105
 msgid "Export CSV gives <br />jumps file with <br />a list of all<br /> users."
 msgstr "Экспорт CSV дает <br /> скачать файл со <br /> списоком всех <br /> пользователей."
 
 # а
-#: /var/www/image.loc/_tempLangs.php:105
+#: /var/www/image.loc/_tempLangs.php:106
 msgid "Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku."
 msgstr "Экспорт Mailchimp отправляет <br /> всем пользователям на их e-mail <br /> <br /> форму подписки на Ваш <br /> россилки новостей."
 
-#: /var/www/image.loc/_tempLangs.php:106
+#: /var/www/image.loc/_tempLangs.php:107
 msgid "Orders history"
 msgstr "История заказов"
 
-#: /var/www/image.loc/_tempLangs.php:108
-#: /var/www/image.loc/_tempLangs.php:138
+#: /var/www/image.loc/_tempLangs.php:109
+#: /var/www/image.loc/_tempLangs.php:139
 msgid "Time of the order"
 msgstr "Время заказа"
 
-#: /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:120
 msgid "Delete order"
 msgstr "Удалить заказ"
 
-#: /var/www/image.loc/_tempLangs.php:124
+#: /var/www/image.loc/_tempLangs.php:125
 msgid "User data"
 msgstr "Данные пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:135
+#: /var/www/image.loc/_tempLangs.php:136
 msgid "WishList"
 msgstr "Список желаний"
 
-#: /var/www/image.loc/_tempLangs.php:145
+#: /var/www/image.loc/_tempLangs.php:146
 msgid "Pcs"
 msgstr "Штук"
 
@@ -5745,7 +5746,7 @@ msgid "Delivery method is not found"
 msgstr "Способ доставки не найден"
 
 #: ../../modules/shop/admin/deliverymethods.php:173
-#: ../../modules/shop/admin/users.php:496
+#: ../../modules/shop/admin/users.php:499
 #: ../../modules/shop/admin/banners.php:283
 msgid "No data transmitted"
 msgstr "Данные не переданы"
@@ -5760,23 +5761,23 @@ msgstr "Способ доставки удален"
 msgid "Positions saved"
 msgstr "Позиции сохранены"
 
-#: ../../modules/shop/admin/users.php:309
+#: ../../modules/shop/admin/users.php:312
 msgid "A user with this email is already registered."
 msgstr "Пользователь с таким E-mail уже зарегистрирован."
 
-#: ../../modules/shop/admin/users.php:339
+#: ../../modules/shop/admin/users.php:342
 msgid "Created by"
 msgstr "Созданный "
 
-#: ../../modules/shop/admin/users.php:341
+#: ../../modules/shop/admin/users.php:344
 msgid "User created"
 msgstr "Пользователь создан"
 
-#: ../../modules/shop/admin/users.php:373
+#: ../../modules/shop/admin/users.php:376
 msgid "User not found"
 msgstr "Пользователь не найден"
 
-#: ../../modules/shop/admin/users.php:508
+#: ../../modules/shop/admin/users.php:511
 msgid "Members removed"
 msgstr "Пользователи удалены"
 
@@ -6219,32 +6220,36 @@ msgstr "Вы не можете удалить последний элемент 
 msgid "Product is removed from the Order"
 msgstr "Продукт удален из Заказа"
 
-#: ../../modules/shop/admin/orders.php:795
-#: ../../modules/shop/admin/orders.php:822
+#: ../../modules/shop/admin/orders.php:720
+msgid "Very high price, please set smaller"
+msgstr "Очень высокая цена, пожалуйста, установите меньшую"
+
+#: ../../modules/shop/admin/orders.php:799
+#: ../../modules/shop/admin/orders.php:826
 msgid "Product updated"
 msgstr "Продукт обновлен"
 
-#: ../../modules/shop/admin/orders.php:868
+#: ../../modules/shop/admin/orders.php:872
 msgid "Item has been added to the order"
 msgstr "Товар добавлен к заказу"
 
-#: ../../modules/shop/admin/orders.php:872
+#: ../../modules/shop/admin/orders.php:876
 msgid "This product does not exist"
 msgstr "Этот товар не существует"
 
-#: ../../modules/shop/admin/orders.php:1085
+#: ../../modules/shop/admin/orders.php:1089
 msgid "Order was successfully created"
 msgstr "Заказ успешно создан"
 
-#: ../../modules/shop/admin/orders.php:1098
+#: ../../modules/shop/admin/orders.php:1102
 msgid "User is not selected"
 msgstr "Пользователь не выбран"
 
-#: ../../modules/shop/admin/orders.php:1100
+#: ../../modules/shop/admin/orders.php:1104
 msgid "Delivery method is not selected"
 msgstr "Способ доставки не выбран"
 
-#: ../../modules/shop/admin/orders.php:1102
+#: ../../modules/shop/admin/orders.php:1106
 msgid "Payment method is not selected"
 msgstr "Способ оплаты не выбран"
 
@@ -6260,27 +6265,27 @@ msgstr "Категория создана"
 msgid "Specified URL is busy"
 msgstr "Указаной URL занят"
 
-#: ../../modules/shop/admin/categories.php:292
+#: ../../modules/shop/admin/categories.php:294
 msgid "Category deleted successfully"
 msgstr "Категория успешно удалена"
 
-#: ../../modules/shop/admin/categories.php:298
+#: ../../modules/shop/admin/categories.php:300
 msgid "Categories deleted successfully"
 msgstr "Категории успешно удалены"
 
-#: ../../modules/shop/admin/categories.php:302
+#: ../../modules/shop/admin/categories.php:304
 msgid "Failed to delete the category"
 msgstr "Невозможно удалить категорию"
 
-#: ../../modules/shop/admin/categories.php:426
+#: ../../modules/shop/admin/categories.php:428
 msgid "Category was not found"
 msgstr "Категория не найдена"
 
-#: ../../modules/shop/admin/categories.php:492
+#: ../../modules/shop/admin/categories.php:494
 msgid "The file has been successfully created"
 msgstr "Файл успешно создан"
 
-#: ../../modules/shop/admin/categories.php:495
+#: ../../modules/shop/admin/categories.php:497
 msgid "Could not create file"
 msgstr "Не удалось создать файл"
 
