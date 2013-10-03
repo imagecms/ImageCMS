@@ -105,3 +105,15 @@ tinymce.init({
         });
     }
 });
+
+function translite_title(from, to) {
+    var url = '/documentation/ajax_translit';
+    $.post(
+            url, {
+                'str': $(from).val()
+            }, function(data)
+
+    {
+        $(to).val(data);
+    });
+}

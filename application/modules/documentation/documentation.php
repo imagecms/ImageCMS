@@ -133,7 +133,7 @@ class Documentation extends MY_Controller {
         if ($id == null) {
             $this->core->error_404();
         }
-        
+
         /** If not langId then set default language id * */
         if ($langId == null) {
             $langId = $this->defaultLang['id'];
@@ -190,7 +190,7 @@ class Documentation extends MY_Controller {
                     'updated' => time(),
                     'lang' => $langId
                 );
-               
+
                 if (!$this->errors && $this->documentation_model->updatePage($id, $langId, $data)) {
                     redirect(base_url($data['cat_url'] . $data['url']));
                 }
@@ -200,7 +200,7 @@ class Documentation extends MY_Controller {
 
             /** Page data by id * */
             $page = $this->documentation_model->getPageById($id, $langId);
-            
+
             /** For form submit * */
             $params = "/" . $langId;
 
@@ -246,6 +246,20 @@ class Documentation extends MY_Controller {
     /** Deinstall * */
     public function _deinstall() {
         $this->documentation_model->install();
+    }
+
+    function ajax_translit() {
+        $this->load->helper('translit');
+        $str = trim($this->input->post('str'));
+        echo translit_url($str);
+    }
+
+    public function create_cat() {
+        var_dump($this->input->post());
+
+        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[256]|required|xss_clean');
+        $this->form_validation->run();
+        var_dump($this->form_validation->error_string());
     }
 
 }
