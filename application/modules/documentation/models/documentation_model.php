@@ -107,18 +107,6 @@ class Documentation_model extends CI_Model {
         return false;
     }
 
-    public function make_backup() {
-        $old_data = $this->db
-                ->where('id', $this->input->post('id'))
-                ->get('content')
-                ->row_array();
-
-        $old_data['page_id'] = $old_data['id'];
-        unset($old_data['id']);
-        $old_data['user_id'] = $this->dx_auth->get_user_id();
-        $this->db->insert('mod_documentation_history', $old_data);
-    }
-
     /**
      * Module install
      */
