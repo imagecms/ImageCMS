@@ -16,70 +16,20 @@
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
         <link rel="SHORTCUT ICON" href="favicon.ico" />
 
-        <link media="screen" rel="stylesheet" href="{$THEME}js/highlight/styles/default.css"/>
+        <link media="screen" rel="stylesheet" href="{$THEME}js/highlight/styles/googlecode.css"/>
         <script type="text/javascript" src="{$THEME}js/highlight/highlight.pack.js"></script>
 
         {literal}
             <script>hljs.initHighlightingOnLoad();</script>
         {/literal}
 
-        <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
-        
+        <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.js"></script>
+
+        <script type="text/javascript">
+            var id = {echo $CI->core->core_data['id']};
+        </script>
+
         <link href="{$THEME}css/docs_style.css" rel="stylesheet" media="screen"/>
-
-        {literal}
-            <script type="text/javascript">
-                tinymce.init({
-                    selector: "div.description",
-                    inline: true,
-                    plugins: [
-                        "advlist autolink lists link image charmap print preview anchor",
-                        "searchreplace visualblocks code fullscreen",
-                        "insertdatetime media table contextmenu paste spellchecker"
-                    ],
-                    spellchecker_language: "ru",
-                    spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
-                    toolbar: "insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save_button | highlightcode | spellchecker",
-                    setup: function(editor) {
-                        editor.addButton('save_button', {
-                            text: 'Сохранить',
-                            icon: 'save',
-                            onclick: function() {
-                                editor.insertContent('Main button');
-                            }
-                        });
-                        editor.addButton('highlightcode', {
-                            text: 'Код',
-                            icon: 'code',
-                            onclick: function() {
-                                editor.insertContent('<pre> <code class="php"></code> </pre>');
-                            }
-                        });
-                    }
-
-                });
-
-                tinymce.init({
-                    selector: "h1",
-                    inline: true,
-                    toolbar: "undo redo | save_button | spellchecker",
-                    plugins: ["spellchecker"],
-                    spellchecker_language: "ru",
-                    spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
-                    menubar: false,
-                    setup: function(editor) {
-                        editor.addButton('save_button', {
-                            text: 'Сохранить',
-                            icon: 'save',
-                            onclick: function() {
-                                editor.insertContent('Main button');
-                            }
-                        });
-                    }
-                });
-            </script>
-        {/literal}
-
     </head>
     <body>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -101,6 +51,7 @@
                     </a>
 
                 </div>
+
                 <div class="collapse navbar-collapse">
                     {load_menu('top_menu')}
                     {if !$CI->dx_auth->is_logged_in()}
@@ -124,10 +75,12 @@
                                     <span class="glyphicon glyphicon-new-window"></span>
                                     {lang('Create','documentation')}
                                 </a>
-                                <button type="button" class="btn btn-success navbar-btn ">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                    {lang('Edit','documentation')}
-                                </button>
+                                {if $CI->core->core_data['data_type'] == 'page'}
+                                    <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                        {lang('Edit','documentation')}
+                                    </a>
+                                {/if}
                             {/if}
                             <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
                                 <span class="glyphicon glyphicon-log-out"></span>
@@ -141,6 +94,15 @@
         <div class="container">
             <div class="row row-offcanvas row-offcanvas-left">
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                    {if $CI->core->core_data['data_type'] == 'main'}
+                        <span class="logo f_l">
+                            <img src="{$THEME}images/logo.png"/>
+                        </span>
+                    {else:}
+                        <a href="{site_url()}" class="logo f_l">
+                            <img src="{$THEME}images/logo.png"/>
+                        </a>
+                    {/if}
                     <div class="tree_menu">
                         {load_menu('left_menu')}
                     </div>
@@ -150,6 +112,10 @@
                     <p class="pull-left visible-xs">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
+                    <div class="jumbotron">
+                        <h1>Hello, world!</h1>
+                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                    </div>
                     <div class="row">
                         {$content}
                     </div>

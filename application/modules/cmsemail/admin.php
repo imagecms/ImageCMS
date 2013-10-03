@@ -190,11 +190,13 @@ class Admin extends BaseAdminController {
      * import templates from file
      */
     public function import_templates(){
-        $this->db->where_in('id', array(1,2,3,4,5,6))->delete('mod_email_paterns');
+        $this->db->where_in('id', array(1,2,3,4,5,6,7))->delete('mod_email_paterns');
         $file = $this->load->file(dirname(__FILE__) . '/models/paterns.sql', true);
-        if($this->db->query($file)){
-              redirect('/admin/components/cp/cmsemail/');
-        }
+        $this->db->query($file);
+        $file = $this->load->file(dirname(__FILE__) . '/models/patterns_i18n.sql', true);
+        $this->db->query($file);
+        redirect('/admin/components/cp/cmsemail/');
+        
     }
 
 }
