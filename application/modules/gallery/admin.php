@@ -284,6 +284,11 @@ class Admin extends BaseAdminController {
      */
     public function update_album($id, $locale) {
         $this->form_validation->set_rules('name', lang("Name", 'gallery'), 'required');
+       // var_dump($_POST['tpl_file']);
+        if (!preg_match('/[a-z]/', $_POST['tpl_file']) && !empty($_POST['tpl_file'])) {
+            showMessage('wrong tpl name', '', 'r');
+            exit();
+        }
         if ($this->form_validation->run() == false) {
             showMessage(validation_errors(), '', 'r');
             exit();
