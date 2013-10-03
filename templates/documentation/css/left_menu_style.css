@@ -1,8 +1,10 @@
 /* Стилі меню */
 .tree_menu {
-    background: #fafafa;
+    background: #ffffff;
     font-size: 11pt;
     padding: 7px;
+    margin-top: 17px;
+    text-align: left;
 }
 
 .tree_menu a {
@@ -62,4 +64,10 @@
 
 .tree_menu ul li.active > a ~ .tree_menu_icon {
     color: #ffffff;
+}
+
+
+
+#sidebar {
+    text-align: center;
 }
