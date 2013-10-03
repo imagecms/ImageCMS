@@ -37,8 +37,7 @@ class Documentation extends MY_Controller {
         if ($this->dx_auth->is_admin()) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
-                    ->registerScript('documentation', FALSE, 'before')
-                    ->registerScript('documentation_scripts', FALSE, 'before');
+                    ->registerScript('documentation', FALSE, 'before');
         }
     }
 
