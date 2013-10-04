@@ -56,6 +56,15 @@
 
                 <div class="collapse navbar-collapse">
                     {load_menu('top_menu')}
+                    <form class="navbar-form navbar-right" action="{site_url('search')}" method="POST">
+                        <div class="form-group">
+                            <input type="text"class="form-control" name="text" placeholder="{lang("Search","documentation")}" />
+                        </div>
+                        <div class="form-group">
+                            <input class="btn" type="submit" value="{lang("Search","documentation")}"/>
+                        </div>
+                        {form_csrf()}
+                    </form>
                     {if !$CI->dx_auth->is_logged_in()}
                         <form class="navbar-form navbar-right" method="post" id="login_form" action="/auth/login">
                             <div class="form-group">
