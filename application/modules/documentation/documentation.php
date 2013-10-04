@@ -58,8 +58,9 @@ class Documentation extends MY_Controller {
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
         /** Set form validation rules * */
-        $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required');
+        $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[254]|xss_clean');
+        $this->form_validation->set_rules('NewPage[url]', lang("Contents", "documentation"), 'xss_clean|max_length[254]');
+        $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required|xss_clean');
 
         /** If not validation errors * */
         if ($dataPost != null && $this->form_validation->run() != FALSE) {
@@ -161,8 +162,9 @@ class Documentation extends MY_Controller {
             $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
             /** Set form validation rules * */
-            $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[100]');
-            $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required');
+            $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'xss_clean|trim|required|min_length[1]|max_length[254]');
+            $this->form_validation->set_rules('NewPage[url]', lang("Contents", "documentation"), 'xss_clean|max_length[254]');
+            $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'xss_clean|trim|required');
 
             /** If not validation errors * */
             if ($dataPost != null && $this->form_validation->run() != FALSE) {
