@@ -274,11 +274,53 @@ class Documentation extends MY_Controller {
     }
 
     public function create_cat() {
-        var_dump($this->input->post());
+        $this->load->library('lib_admin');
+        $this->load->library('lib_category');
+        $this->load->model('cms_admin');
 
         $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[256]|required|xss_clean');
         $this->form_validation->run();
-        var_dump($this->form_validation->error_string());
+
+        if (!$this->form_validation->error_string()) {
+            if ($this->input->post('url') == FALSE) {
+                $this->load->helper('translit');
+                $url = translit_url($this->input->post('name'));
+            } else {
+                $url = $this->input->post('url');
+            }
+
+            $data = array(
+                'name' => $this->input->post('name'),
+                'url' => $url,
+                'parent_id' => $this->input->post('category')
+            );
+
+            $parent = $this->lib_category->get_category($data['parent_id']);
+
+            if ($parent != 'NULL') {
+                $full_path = $parent['path_url'] . $data['url'] . '/';
+            } else {
+                $full_path = $data['url'] . '/';
+            }
+
+            if (($this->category_exists($full_path) == TRUE) AND ($action != 'update') AND ($data['url'] != 'core')) {
+                $data['url'] .= time();
+            }
+
+            $id = $this->cms_admin->create_category($data);
+
+            $this->lib_admin->log(
+                    lang("Category has been created or created a category", "admin") . " " .
+                    '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
+            );
+
+            /** Init Event. Create new Category */
+            \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())));
+        }
+    }
+
+    function category_exists($str) {
+        return $this->lib_category->get_category_by('path_url', $str);
     }
 
 }
