@@ -20,7 +20,7 @@
         <!-- Start. Name input -->
         <h4>{lang('Name','documentation')}:</h4>
         <div class="group">
-            <input type="text" name="NewPage[title]" value="{echo set_value('NewPage[title]')}" class="form-control" placeholder="{lang('Title','documentation')}">
+            <input type="text" name="NewPage[title]" maxlength="254" value="{echo set_value('NewPage[title]')}" class="form-control" placeholder="{lang('Title','documentation')}">
         </div>
         <!-- End. Name input-->
         <!-- Start. Url input-->
@@ -29,6 +29,7 @@
             <input {if $params != null}readonly="readonly"{/if} 
                     type="text" 
                     name="NewPage[url]" 
+                    maxlength="254"
                     value="{if set_value('NewPage[url]') != null}{echo set_value('NewPage[url]')}{else:}{echo $mainPage['url']}{/if}" 
                     class="form-control" 
                     placeholder="{lang('Url','documentation')}">
