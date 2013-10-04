@@ -73,6 +73,7 @@
         <select name="NewPage[category]" class="form-control" {if $page['lang_alias'] != 0}readonly="readonly"{/if}>
             {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $page['category']));}
         </select>
+        <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-small">{lang('Create category ','documentation')}</a>
     </div>
     <!-- End. Select with categories names and ids-->
     <!-- Start. Name input -->
