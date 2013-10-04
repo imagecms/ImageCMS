@@ -322,14 +322,13 @@ class Documentation extends MY_Controller {
                 echo json_encode($responseArray);
             } else {
                 $responseArray['success'] = 'false';
-                $responseArray['errors'] = lang("Ошибка при создании категории","documentation");
+                $responseArray['errors'] = lang("Ошибка при создании категории", "documentation");
                 echo json_encode($responseArray);
             }
 
-//            $this->lib_admin->log(
-//                    lang("Category has been created or created a category", "admin") . " " .
-//                    '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
-//            );
+
+            /** Init Event. Create new Category */
+            \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())));
         } else {
             $responseArray['success'] = 'false';
             $responseArray['errors'] = $this->form_validation->error_string();
