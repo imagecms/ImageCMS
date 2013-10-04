@@ -10,17 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="row-fluid">
-        <div class="span3">
-
-            <div class="m-t_20">
-                
-                <div class="settingsContainer">
-                    123123123
-
-                </div>
-            </div>
-        </div>
-
+    <div class="row-fluid">        
+        {$content}
     </div>
 </section>

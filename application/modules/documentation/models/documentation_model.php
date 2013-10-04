@@ -119,18 +119,6 @@ class Documentation_model extends CI_Model {
         return false;
     }
 
-    public function make_backup() {
-        $old_data = $this->db
-                ->where('id', $this->input->post('id'))
-                ->get('content')
-                ->row_array();
-
-        $old_data['page_id'] = $old_data['id'];
-        unset($old_data['id']);
-        $old_data['user_id'] = $this->dx_auth->get_user_id();
-        $this->db->insert('mod_documentation_history', $old_data);
-    }
-
     /**
      * Module install
      */
@@ -188,6 +176,61 @@ class Documentation_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_documentation_history');
+    }
+
+
+    public function make_backup() {
+        $old_data = $this->db
+                ->where('id', $this->input->post('id'))
+                ->get('content')
+                ->row_array();
+
+        $old_data['page_id'] = $old_data['id'];
+        unset($old_data['id']);
+        $old_data['user_id'] = $this->dx_auth->get_user_id();
+        $this->db->insert('mod_documentation_history', $old_data);
+    }
+
+    /**
+     * Get count of `content` table by conditions
+     * @param array $params
+     * @return int
+     */
+    public function getContentsCount($params) {
+        if (is_array($params))
+            $this->db->where($params);
+
+        $this->db->from('content');
+        return (int) $this->db->count_all_results();
+    }
+
+    /**
+     * Get data from `content` table by conditions
+     * @param array $params params for AR where
+     * @return array
+     */
+    public function getContents($params = NULL) {
+        if (is_array($params)) {
+            $this->db->where($params);
+        }
+        $data = array();
+        $result = $this->db->get('content');
+        foreach ($result->result_array() as $row) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    /**
+     * Returns specified page data
+     * @param int $pageId
+     * @return array
+     */
+    public function getPageData($pageId) {
+        $this->db->where('id', $pageId);
+        $result = $this->db->get('content');
+        $data = $result->result_array();
+        return $data[0];
     }
 
 }
