@@ -7,35 +7,46 @@
                 <h4 class="modal-title">{lang('Create category','documentation')}</h4>
             </div>
             <div class="modal-body">
-                <form role="form" id="create_cat" action="/documentation/create_cat" method="POST">
-                    <div class="form-group">
-                        <label for="name">{lang("Name","documentation")}:</label>
-                        <input type="text" class="form-control" id="name" name="name" required="required" placeholder="{lang("Name","documentation")}">
-                    </div>
+                <!-- Start. Modal validation errors block -->
+                <div class="alert alert-block alert-danger fade in modalErrosBlock" style="display: none;"></div>
+                <!-- End. Modal validation errors block -->
 
-                    <div class="form-group">
-                        <label for="url">{lang("URL","documentation")}:</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="url" name="url" required="required" placeholder="{lang("URL","documentation")}">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" onclick="translite_title('#name', '#url');">{lang("AutoFit","documentation")}</button>
-                            </span>
+                <!-- Start. Modal category created succes block -->
+                <div class="alert alert-block alert-success fade in modalCategoryCreatedSuccesBlock" style="display: none;">
+                    {lang("Category created success","documentation")}
+                </div>
+                <!-- End. Modal category created succes block -->
+
+                <div id="gideAfterCreatingCategory">
+                    <form role="form" id="create_cat" action="/documentation/create_cat" method="POST">
+                        <div class="form-group">
+                            <label for="name">{lang("Name","documentation")}:</label>
+                            <input type="text" class="form-control" id="name" name="name" required="required" placeholder="{lang("Name","documentation")}">
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="parent_id">{lang('Parent category','admin')}:</label>
-                        <select name="category" class="form-control">
-                            <option value="0" selected="selected">{lang("No","admin")}</option>
-                            {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $page['category']));}
-                        </select>
-                    </div>
-                    {form_csrf()}
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-info" onclick="$('form#create_cat').submit();">Save changes</button>
+                        <div class="form-group">
+                            <label for="url">{lang("URL","documentation")}:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="url" name="url" required="required" placeholder="{lang("URL","documentation")}">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" onclick="translite_title('#name', '#url');">{lang("AutoFit","documentation")}</button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parent_id">{lang('Parent category','admin')}:</label>
+                            <select name="category" class="form-control">
+                                <option value="0" selected="selected">{lang("No","admin")}</option>
+                                {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $page['category']));}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info" onclick="createCategory()">{lang("Save changes","documentation")}</button>
+                </div>
             </div>
         </div>
     </div>
@@ -95,14 +106,14 @@
                                             placeholder="{lang('Url','documentation')}">
     </div>
     <!-- End. Url input -->
-    
+
     <!-- Start. Keywords and description -->
     <h4>{lang('Keywords','documentation')}:</h4>
     <textarea name="NewPage[keywords]" class="form-control verticalResize" rows="3">{if set_value('NewPage[keywords]')}{echo set_value('NewPage[keywords]')}{else:}{echo $page['keywords']}{/if}</textarea>
     <h4>{lang('Description','documentation')}:</h4>
     <textarea name="NewPage[description]" class="form-control verticalResize" rows="3">{if set_value('NewPage[description]')}{echo set_value('NewPage[description]')}{else:}{echo $page['description']}{/if}</textarea>
     <!-- End. Keywords and description -->
-    
+
     <!-- Start. Textarea with content-->
     <h4>{lang('Content','documentation')}:</h4>
     <textarea class="TinyMCEForm" name="NewPage[prev_text]">

@@ -42,7 +42,9 @@ class Documentation extends MY_Controller {
     }
 
     /**
-     * Create new page
+     * Create page
+     * @param int $mainPageId
+     * @param int $langId
      */
     public function create_new_page($mainPageId = 0, $langId = null) {
 
@@ -140,6 +142,11 @@ class Documentation extends MY_Controller {
         }
     }
 
+    /**
+     * Edit page
+     * @param int $id
+     * @param int $langId
+     */
     public function edit_page($id = null, $langId = null) {
         /** Page not found * */
         if ($id == null) {
@@ -206,12 +213,18 @@ class Documentation extends MY_Controller {
                     'lang' => $langId
                 );
 
-                if (!$this->errors && $this->documentation_model->updatePage($id, $langId, $data)) {
-                    /** Get page lang identificator * */
-                    $currentPageLang = $this->cms_admin->get_lang($langId);
+                /** Check for errors and make backup * */
+                if (!$this->errors && $this->documentation_model->make_backup($this->documentation_model->getPageIdByMainPageIdAndLangId($id, $langId))) {
 
-                    /** Redirect to view page  * */
-                    redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
+                    /** Update page * */
+                    if ($this->documentation_model->updatePage($id, $langId, $data)) {
+
+                        /** Get page lang identificator * */
+                        $currentPageLang = $this->cms_admin->get_lang($langId);
+
+                        /** Redirect to view page  * */
+                        redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
+                    }
                 }
             } else {
                 $this->errors .= $this->form_validation->error_string();
@@ -257,16 +270,6 @@ class Documentation extends MY_Controller {
                 ->update('content');
     }
 
-    /** Install and set settings * */
-    public function _install() {
-        $this->documentation_model->install();
-    }
-
-    /** Deinstall * */
-    public function _deinstall() {
-        $this->documentation_model->install();
-    }
-
     function ajax_translit() {
         $this->load->helper('translit');
         $str = trim($this->input->post('str'));
@@ -303,24 +306,50 @@ class Documentation extends MY_Controller {
                 $full_path = $data['url'] . '/';
             }
 
-            if (($this->category_exists($full_path) == TRUE) AND ($action != 'update') AND ($data['url'] != 'core')) {
+
+
+            if (($this->category_exists($full_path) == TRUE) AND ($data['url'] != 'core')) {
                 $data['url'] .= time();
             }
 
             $id = $this->cms_admin->create_category($data);
+            $responseArray = array();
 
-            $this->lib_admin->log(
-                    lang("Category has been created or created a category", "admin") . " " .
-                    '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
-            );
+            /** Return true if category created success and return errors* */
+            if ($id != null) {
+                $responseArray['success'] = 'true';
+                $responseArray['errors'] = 'false';
+                $this->cache->delete_all();
+                echo json_encode($responseArray);
+            } else {
+                $responseArray['success'] = 'false';
+                $responseArray['errors'] = lang("Ошибка при создании категории","documentation");
+                echo json_encode($responseArray);
+            }
 
-            /** Init Event. Create new Category */
-            \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())));
+//            $this->lib_admin->log(
+//                    lang("Category has been created or created a category", "admin") . " " .
+//                    '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
+//            );
+        } else {
+            $responseArray['success'] = 'false';
+            $responseArray['errors'] = $this->form_validation->error_string();
+            echo json_encode($responseArray);
         }
     }
 
     function category_exists($str) {
         return $this->lib_category->get_category_by('path_url', $str);
+    }
+
+    /** Install and set settings * */
+    public function _install() {
+        $this->documentation_model->install();
+    }
+
+    /** Deinstall * */
+    public function _deinstall() {
+        $this->documentation_model->install();
     }
 
 }
