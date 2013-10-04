@@ -35,7 +35,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="$('form#create_cat').submit();">Save changes</button>
+                <button type="button" class="btn btn-info" onclick="$('form#create_cat').submit();">Save changes</button>
             </div>
         </div>
     </div>
@@ -52,14 +52,14 @@
                     {foreach $langs as $lang}
                         <option data-page_id="{if $page['lang_alias'] != 0}{echo $page['lang_alias']}{else:}{echo $page['id']}{/if}" 
                                 value="{echo $lang['id']}" 
-                                {if $page['lang']== $lang['id']}selected="selected"{/if}>
-                            {echo $lang['identif']}
-                        </option>
-                    {/foreach}
-                </select>
-            </div>
+                        {if $page['lang']== $lang['id']}selected="selected"{/if}>
+                        {echo $lang['identif']}
+                    </option>
+                {/foreach}
+            </select>
         </div>
     </div>
+</div>
 </div>
 {if $errors}
     <div class="alert alert-block alert-danger fade in">
@@ -70,10 +70,12 @@
     <!-- Start. Select with categories names and ids-->
     <h4>{lang('Category','documentation')}:</h4>
     <div class="input-group">
-        <select name="NewPage[category]" class="form-control" {if $page['lang_alias'] != 0}readonly="readonly"{/if}>
+        <select name="NewPage[category]" class="form-control" {if $page['lang_alias'] != 0}readonly="readonly" style="pointer-events: none; cursor: default;"{/if}>
             {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $page['category']));}
         </select>
-        <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-small">{lang('Create category ','documentation')}</a>
+        <div class="input-group-btn">
+            <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-small">{lang('Create category ','documentation')}</a>
+        </div>
     </div>
     <!-- End. Select with categories names and ids-->
     <!-- Start. Name input -->
@@ -93,6 +95,14 @@
                                             placeholder="{lang('Url','documentation')}">
     </div>
     <!-- End. Url input -->
+    
+    <!-- Start. Keywords and description -->
+    <h4>{lang('Keywords','documentation')}:</h4>
+    <textarea name="NewPage[keywords]" class="form-control verticalResize" rows="3">{if set_value('NewPage[keywords]')}{echo set_value('NewPage[keywords]')}{else:}{echo $page['keywords']}{/if}</textarea>
+    <h4>{lang('Description','documentation')}:</h4>
+    <textarea name="NewPage[description]" class="form-control verticalResize" rows="3">{if set_value('NewPage[description]')}{echo set_value('NewPage[description]')}{else:}{echo $page['description']}{/if}</textarea>
+    <!-- End. Keywords and description -->
+    
     <!-- Start. Textarea with content-->
     <h4>{lang('Content','documentation')}:</h4>
     <textarea class="TinyMCEForm" name="NewPage[prev_text]">
