@@ -59,8 +59,10 @@ class Documentation extends MY_Controller {
 
         /** Set form validation rules * */
         $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[254]|xss_clean');
-        $this->form_validation->set_rules('NewPage[url]', lang("Contents", "documentation"), 'xss_clean|max_length[254]');
-        $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('NewPage[url]', lang("URL", "documentation"), 'xss_clean|max_length[254]');
+        $this->form_validation->set_rules('NewPage[prev_text]', lang("Content", "documentation"), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('NewPage[keywords]', lang("Keywords", "documentation"), 'xss_clean|trim');
+        $this->form_validation->set_rules('NewPage[description]', lang("Description", "documentation"), 'xss_clean|trim');
 
         /** If not validation errors * */
         if ($dataPost != null && $this->form_validation->run() != FALSE) {
@@ -89,8 +91,8 @@ class Documentation extends MY_Controller {
                 'title' => trim($dataPost['title']),
                 'url' => str_replace('.', '', trim($dataPost['url'])),
                 'cat_url' => $fullUrl,
-                'keywords' => $this->lib_seo->get_keywords($dataPost['prev_text']),
-                'description' => $this->lib_seo->get_description($dataPost['prev_text']),
+                'keywords' => ($dataPost['keywords'] != null ? trim($dataPost['keywords']) : trim($this->lib_seo->get_keywords($dataPost['prev_text']))),
+                'description' => ($dataPost['description'] != null ? trim($dataPost['description']) : trim($this->lib_seo->get_description($dataPost['prev_text']))),
                 'full_text' => trim($dataPost['prev_text']),
                 'prev_text' => trim($dataPost['prev_text']),
                 'category' => $dataPost['category'],
@@ -148,7 +150,7 @@ class Documentation extends MY_Controller {
         if ($langId == null) {
             $langId = $this->defaultLang['id'];
         }
-        
+
         /** If not page id and not any page with $id  * */
         if (!$this->documentation_model->getPageById($id, $langId)) {
 
@@ -163,8 +165,10 @@ class Documentation extends MY_Controller {
 
             /** Set form validation rules * */
             $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'xss_clean|trim|required|min_length[1]|max_length[254]');
-            $this->form_validation->set_rules('NewPage[url]', lang("Contents", "documentation"), 'xss_clean|max_length[254]');
-            $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'xss_clean|trim|required');
+            $this->form_validation->set_rules('NewPage[url]', lang("URL", "documentation"), 'xss_clean|max_length[254]');
+            $this->form_validation->set_rules('NewPage[prev_text]', lang("Content", "documentation"), 'xss_clean|trim|required');
+            $this->form_validation->set_rules('NewPage[keywords]', lang("Keywords", "documentation"), 'xss_clean|trim');
+            $this->form_validation->set_rules('NewPage[description]', lang("Description", "documentation"), 'xss_clean|trim');
 
             /** If not validation errors * */
             if ($dataPost != null && $this->form_validation->run() != FALSE) {
@@ -193,8 +197,8 @@ class Documentation extends MY_Controller {
                     'title' => trim($dataPost['title']),
                     'url' => str_replace('.', '', trim($dataPost['url'])),
                     'cat_url' => $fullUrl,
-                    'keywords' => $this->lib_seo->get_keywords($dataPost['prev_text']),
-                    'description' => $this->lib_seo->get_description($dataPost['prev_text']),
+                    'keywords' => ($dataPost['keywords'] != null ? trim($dataPost['keywords']) : trim($this->lib_seo->get_keywords($dataPost['prev_text']))),
+                    'description' => ($dataPost['description'] != null ? trim($dataPost['description']) : trim($this->lib_seo->get_description($dataPost['prev_text']))),
                     'full_text' => trim($dataPost['prev_text']),
                     'prev_text' => trim($dataPost['prev_text']),
                     'category' => $dataPost['category'],
