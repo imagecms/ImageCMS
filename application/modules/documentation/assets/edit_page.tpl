@@ -32,13 +32,13 @@
     <!-- End. Select with categories names and ids-->
     <!-- Start. Name input -->
     <h4>{lang('Name','documentation')}:</h4>
-    <div class="input-group">
+    <div class="group">
         <input type="text" name="NewPage[title]" value="{echo $page['title']}" class="form-control" placeholder="{lang('Title','documentation')}">
     </div>
     <!-- End. Name input-->
     <!-- Start. Url input-->
     <h4>{lang('Url','documentation')}:</h4>
-    <div class="input-group">
+    <div class="group">
         <input {if $page['lang_alias'] != 0}readonly="readonly"{/if} 
                     type="text" 
                     name="NewPage[url]" 

@@ -53,19 +53,19 @@ class Documentation_model extends CI_Model {
      * @return boolean
      */
     public function getPageById($id = null, $langId = null) {
-        /** Check is it main page **/
-        $page = $this->db->where('id',$id)->get('content')->row_array();
-        if ($page['lang_alias'] != '0'){
+        /** Check is it main page * */
+        $page = $this->db->where('id', $id)->get('content')->row_array();
+        if ($page['lang_alias'] != '0') {
             $id = $page['lang_alias'];
         }
-        
-        /** Get page data **/
+
+        /** Get page data * */
         $query = "SELECT * 
                     FROM `content`
-                    WHERE (`content`.`id` = '".$id."'
-                    OR `content`.`lang_alias` ='".$id."')";
-        if ($langId != null){
-            $query .="AND `content`.`lang` = '".$langId."'";
+                    WHERE (`content`.`id` = '" . $id . "'
+                    OR `content`.`lang_alias` ='" . $id . "')";
+        if ($langId != null) {
+            $query .="AND `content`.`lang` = '" . $langId . "'";
         }
         $res = $this->db->query($query)->row_array();
         if (!$res) {
@@ -89,15 +89,27 @@ class Documentation_model extends CI_Model {
     }
 
     public function updatePage($id = false, $langId = false, $data = false) {
+
         if ($id != false && $data != false) {
+            /** Get page id * */
             $query = "SELECT id 
                     FROM `content`
-                    WHERE (`content`.`id` = '".$id."'
-                    OR `content`.`lang_alias` ='".$id."')
-                    AND `content`.`lang` = '".$langId."'
+                    WHERE (`content`.`id` = '" . $id . "'
+                    OR `content`.`lang_alias` ='" . $id . "')
+                    AND `content`.`lang` = '" . $langId . "'
                 ";
             $res = $this->db->query($query)->row_array();
+            /** Update page * */
             $this->db->where('id', $res['id'])->update('content', $data);
+
+            /** Update page category id and url on other languages * */
+            $this->db->where('lang_alias', $id)
+                    ->update('content', array(
+                        'url' => $data['url'],
+                        'category' => $data['category']
+                            )
+            );
+
             if ($this->db->last_query()) {
                 return true;
             } else {
