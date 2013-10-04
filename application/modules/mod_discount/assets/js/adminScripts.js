@@ -71,7 +71,7 @@ $(document).ready(function() {
                     $('#discountKey').val(response);
             }
         });
-    })
+    });
 
      /**
       *  Autocomplete users
