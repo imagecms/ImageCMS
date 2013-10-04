@@ -131,6 +131,7 @@ function createCategory() {
     $('.modalCategoryCreatedSuccesBlock').hide();
 
     $.ajax({
+        async: false,
         type: 'post',
         url: formIdent.attr('action'),
         data: formData,
@@ -141,10 +142,9 @@ function createCategory() {
             } catch (e) {
                 return 'error parsing jsone';
             }
-            console.log(location.href);
             /** Process results **/
             if (responseObj.success === 'false') {
-                console.log(responseObj.errors);
+                console.log(responseObj);
                 $('.modalErrosBlock').html(responseObj.errors);
                 $('.modalErrosBlock').show();
             } else {
