@@ -17,17 +17,17 @@
                 </div>
                 <!-- End. Modal category created succes block -->
 
-                <div id="gideAfterCreatingCategory">
+                <div id="hideAfterCreatingCategory">
                     <form role="form" id="create_cat" action="/documentation/create_cat" method="POST">
                         <div class="form-group">
                             <label for="name">{lang("Name","documentation")}:</label>
-                            <input type="text" class="form-control" id="name" name="name" required="required" placeholder="{lang("Name","documentation")}">
+                            <input type="text" class="form-control" maxlength="127" id="name" name="name" required="required" placeholder="{lang("Name","documentation")}">
                         </div>
 
                         <div class="form-group">
                             <label for="url">{lang("URL","documentation")}:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="url" name="url" required="required" placeholder="{lang("URL","documentation")}">
+                                <input type="text" class="form-control" id="url" maxlength="127" name="url" required="required" placeholder="{lang("URL","documentation")}">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button" onclick="translite_title('#name', '#url');">{lang("AutoFit","documentation")}</button>
                                 </span>
@@ -92,7 +92,7 @@
     <!-- Start. Name input -->
     <h4>{lang('Name','documentation')}:</h4>
     <div class="group">
-        <input type="text" name="NewPage[title]" value="{echo $page['title']}" class="form-control" placeholder="{lang('Title','documentation')}">
+        <input type="text" name="NewPage[title]" maxlength="254" value="{echo $page['title']}" class="form-control" placeholder="{lang('Title','documentation')}">
     </div>
     <!-- End. Name input-->
     <!-- Start. Url input-->
@@ -100,6 +100,7 @@
     <div class="group">
         <input {if $page['lang_alias'] != 0}readonly="readonly"{/if} 
                                             type="text" 
+                                            maxlength="254"
                                             name="NewPage[url]" 
                                             value="{echo $page['url']}" 
                                             class="form-control" 
