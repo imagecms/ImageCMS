@@ -274,7 +274,6 @@ class Documentation extends MY_Controller {
     }
 
     public function create_cat() {
-        $this->load->library('lib_admin');
         $this->load->library('lib_category');
         $this->load->model('cms_admin');
 
@@ -308,11 +307,6 @@ class Documentation extends MY_Controller {
             }
 
             $id = $this->cms_admin->create_category($data);
-
-            $this->lib_admin->log(
-                    lang("Category has been created or created a category", "admin") . " " .
-                    '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
-            );
 
             /** Init Event. Create new Category */
             \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())));
