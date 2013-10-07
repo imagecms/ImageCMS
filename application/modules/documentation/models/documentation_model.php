@@ -53,19 +53,24 @@ class Documentation_model extends CI_Model {
      * @return boolean
      */
     public function getPageById($id = null, $langId = null) {
-        /** Check is it main page **/
-        $page = $this->db->where('id',$id)->get('content')->row_array();
-        if ($page['lang_alias'] != '0'){
+        /** Check is it main page * */
+        $page = $this->db->where('id', $id)->get('content')->row_array();
+        if ($page['lang_alias'] != '0') {
             $id = $page['lang_alias'];
         }
-        
-        /** Get page data **/
-        $query = "SELECT * 
-                    FROM `content`
-                    WHERE (`content`.`id` = '".$id."'
-                    OR `content`.`lang_alias` ='".$id."')";
-        if ($langId != null){
-            $query .="AND `content`.`lang` = '".$langId."'";
+
+        /** Get page data * */
+        $query = "  
+                    SELECT 
+                        `content`.*,
+                        `category`.`name` as `category_name`
+                    FROM 
+                        `content` 
+                    LEFT JOIN `category` ON `content`.`category` = `category`.`id`
+                    WHERE (`content`.`id` = '" . $id . "'
+                    OR `content`.`lang_alias` ='" . $id . "')";
+        if ($langId != null) {
+            $query .="AND `content`.`lang` = '" . $langId . "'";
         }
         $res = $this->db->query($query)->row_array();
         if (!$res) {
@@ -92,11 +97,12 @@ class Documentation_model extends CI_Model {
         if ($id != false && $data != false) {
             $query = "SELECT id 
                     FROM `content`
-                    WHERE (`content`.`id` = '".$id."'
-                    OR `content`.`lang_alias` ='".$id."')
-                    AND `content`.`lang` = '".$langId."'
+                    WHERE (`content`.`id` = '" . $id . "'
+                    OR `content`.`lang_alias` ='" . $id . "')
+                    AND `content`.`lang` = '" . $langId . "'
                 ";
             $res = $this->db->query($query)->row_array();
+
             $this->db->where('id', $res['id'])->update('content', $data);
             if ($this->db->last_query()) {
                 return true;
@@ -166,15 +172,16 @@ class Documentation_model extends CI_Model {
         $this->dbforge->drop_table('mod_documentation_history');
     }
 
-
-    public function make_backup() {
+    public function make_backup($pageId = NULL) {
+        $id = $pageId != NULL ? $pageId : $this->input->post('id');
         $old_data = $this->db
-                ->where('id', $this->input->post('id'))
+                ->where('id', $id)
                 ->get('content')
                 ->row_array();
 
         $old_data['page_id'] = $old_data['id'];
         unset($old_data['id']);
+        $old_data['updated'] = (int) strtotime("now");
         $old_data['user_id'] = $this->dx_auth->get_user_id();
         $this->db->insert('mod_documentation_history', $old_data);
     }
@@ -193,32 +200,54 @@ class Documentation_model extends CI_Model {
     }
 
     /**
-     * Get data from `content` table by conditions
-     * @param array $params params for AR where
-     * @return array
+     * Returns page history
+     * @param int $pageId
      */
-    public function getContents($params = NULL) {
-        if (is_array($params)) {
+    public function getPageHistory($pageId, $perPage = 5, $offset = 0) {
+        $result = $this->db
+                ->select('mod_documentation_history.*,users.username')
+                ->where('page_id', $pageId)
+                ->order_by('id', 'DESC')
+                ->join('users', 'users.id = mod_documentation_history.user_id')
+                ->limit($perPage, $offset)
+                ->get('mod_documentation_history');
+        return $result->result_array();
+    }
+
+    public function getPageHistoryCount($params) {
+        if (is_array($params))
             $this->db->where($params);
-        }
-        $data = array();
-        $result = $this->db->get('content');
-        foreach ($result->result_array() as $row) {
-            $data[] = $row;
-        }
-        return $data;
+
+        $this->db->from('mod_documentation_history');
+        return (int) $this->db->count_all_results();
     }
 
     /**
-     * Returns specified page data
+     * Restosing article from history
      * @param int $pageId
-     * @return array
+     * @param int $historyId
      */
-    public function getPageData($pageId) {
-        $this->db->where('id', $pageId);
-        $result = $this->db->get('content');
-        $data = $result->result_array();
-        return $data[0];
+    public function restoreArticleFromHistory($pageId, $historyId) {
+        $this->make_backup($pageId);
+        $someOldData = $this->db
+                ->where('id', $historyId)
+                ->get('mod_documentation_history')
+                ->row_array();
+
+        //print_r($someOldData);
+        $delColumns = array(
+            'page_id', 'id', 'user_id'
+        );
+        foreach ($delColumns as $col) {
+            if (key_exists($col, $someOldData))
+                unset($someOldData[$col]);
+        }
+        var_dump($this->db->where('id', $pageId)->update('content', $someOldData));
+        echo $this->db->_error_message();
+    }
+
+    public function deleteHistoryRow($historyId) {
+        $this->db->delete('mod_documentation_history', array('id' => $historyId));
     }
 
 }

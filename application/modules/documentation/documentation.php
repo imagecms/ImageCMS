@@ -98,7 +98,8 @@ class Documentation extends MY_Controller {
                 'publish_date' => time(),
                 'created' => time(),
                 'lang' => $langId,
-                'lang_alias' => $mainPageId
+                'lang_alias' => $mainPageId,
+                'updated' => (int) strtotime("now")
             );
 
             /** If page created succesful then show page on site * */
@@ -147,7 +148,7 @@ class Documentation extends MY_Controller {
         if ($langId == null) {
             $langId = $this->defaultLang['id'];
         }
-        
+
         /** If not page id and not any page with $id  * */
         if (!$this->documentation_model->getPageById($id, $langId)) {
 
@@ -196,7 +197,7 @@ class Documentation extends MY_Controller {
                     'full_text' => trim($dataPost['prev_text']),
                     'prev_text' => trim($dataPost['prev_text']),
                     'category' => $dataPost['category'],
-                    'updated' => time(),
+                    'updated' => (int) strtotime("now"),
                     'lang' => $langId
                 );
 
