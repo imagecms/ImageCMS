@@ -8,12 +8,12 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form ">
-                <form method="post" id="data-callback" onsubmit="ImageCMSApi.formAction('/shop/callbackApi', '#data-callback', {literal}{drop: '.drop-order-call', callback: function(msg, status, form, DS) {
+                <form method="post" id="data-callback" onsubmit="ImageCMSApi.formAction('/shop/callbackApi', '#data-callback', {literal}{drop: '.drop-order-call', 'durationHideForm': 7000, callback: function(msg, status, form, DS) {
                                 if (status) {
                                     hideDrop(DS.drop, form, DS.durationHideForm);
                                 }
                             }}{/literal});
-                        return false;">
+                                return false;">
                     <label>
                         <span class="title">{lang('Имя: ','newLevel')}</span>
                         <span class="frame-form-field">
@@ -39,7 +39,7 @@
                         <div class="frame-form-field">
                             <div class="btn-form">
                                 <button type="submit">
-                                    <span class="text-el">{lang('Заказать звонок','newLevel')}</span>
+                                    <span class="text-el">{lang('Позвоните мне','newLevel')}</span>
                                 </button>
                             </div>
                         </div>
