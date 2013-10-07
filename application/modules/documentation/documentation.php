@@ -34,6 +34,9 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
+
+        \CMSFactory\assetManager::create()->registerScript('documentation_common');
+
         if ($this->dx_auth->is_admin()) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
@@ -111,9 +114,9 @@ class Documentation extends \MY_Controller {
             if (!$this->errors && $this->documentation_model->createNewPage($data)) {
                 /** Get page lang identificator * */
                 $currentPageLang = $this->cms_admin->get_lang($langId);
-                
+
                 $this->cache->delete_all();
-                
+
                 /** Redirect to view page  * */
                 redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
             }
@@ -224,9 +227,9 @@ class Documentation extends \MY_Controller {
 
                         /** Get page lang identificator * */
                         $currentPageLang = $this->cms_admin->get_lang($langId);
-                        
+
                         $this->cache->delete_all();
-                        
+
                         /** Redirect to view page  * */
                         redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
                     }
@@ -340,6 +343,7 @@ class Documentation extends \MY_Controller {
             echo json_encode($responseArray);
         }
     }
+
     /**
      * Check if category exists
      * @param type $str
@@ -353,30 +357,35 @@ class Documentation extends \MY_Controller {
      * Load category menu
      * @param string $groupId
      */
-    public function load_category_menu($group = null) {
+    public function load_category_menu($group = false) {
 
+        $categoryData = array();
         /** Full path if data_type is page * */
         if ($this->core->core_data['data_type'] == 'page') {
             $data = $this->documentation_model->getPageById($this->core->core_data['id']);
-            $full_path = $data['cat_url'];
+            $categoryData['id'] = $data['category'];
+            $categoryData['url'] = $data['cat_url'];
         }
-        
+
         /** Full path if data_type is category * */
         if ($this->core->core_data['data_type'] == 'category') {
             $data = $this->lib_category->get_category($this->core->core_data['id']);
             $parent = $this->lib_category->get_category($data['parent_id']);
+            $categoryData['id'] = $this->core->core_data['id'];
 
             if ($parent != 'NULL') {
                 $full_path = $parent['path_url'] . $data['url'] . '/';
             } else {
                 $full_path = $data['url'] . '/';
             }
+            $categoryData['url'] = $full_path;
         }
-        
-        /** Render category menu **/
+
+        /** Render category menu * */
         \CMSFactory\assetManager::create()
                 ->setData('tree', $this->lib_category->_build())
-                ->setData('cat_path', $full_path)
+                ->setData('group', $group)
+                ->setData('categoryData', $categoryData)
                 ->render('left_menu', true);
     }
 

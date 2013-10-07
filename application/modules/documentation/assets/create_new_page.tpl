@@ -1,3 +1,57 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{lang('Create category','documentation')}</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Start. Modal validation errors block -->
+                <div class="alert alert-block alert-danger fade in modalErrosBlock" style="display: none;"></div>
+                <!-- End. Modal validation errors block -->
+
+                <!-- Start. Modal category created succes block -->
+                <div class="alert alert-block alert-success fade in modalCategoryCreatedSuccesBlock" style="display: none;">
+                    {lang("Category created success","documentation")}
+                </div>
+                <!-- End. Modal category created succes block -->
+
+                <div id="hideAfterCreatingCategory">
+                    <form role="form" id="create_cat" action="/documentation/create_cat" method="POST">
+                        <div class="form-group">
+                            <label for="name">{lang("Name","documentation")}:</label>
+                            <input type="text" class="form-control" maxlength="127" id="name" name="name" required="required" placeholder="{lang("Name","documentation")}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="url">{lang("URL","documentation")}:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="url" maxlength="127" name="url" required="required" placeholder="{lang("URL","documentation")}">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" onclick="translite_title('#name', '#url');">{lang("AutoFit","documentation")}</button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parent_id">{lang('Parent category','documentation')}:</label>
+                            <select name="category" class="form-control">
+                                <option value="0" selected="selected">{lang("No","documentation")}</option>
+                                {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $page['category']));}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info" onclick="createCategory()">{lang("Save changes","documentation")}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
 <div class="container">
     <div class="page-header">
         <h1>{lang('Create new page','documentation')}</h1>
@@ -15,6 +69,9 @@
                 {if $_POST['NewPage']['category'] != null}{$sel_cat = $_POST['NewPage']['category']}{else:}{$sel_cat = $mainPage['category']}{/if}
                 {$this->view("cats_select_create.tpl", array('tree' => $tree,'sel_cat' => $sel_cat));}
             </select>
+            <div class="input-group-btn">
+                <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-small">{lang('Create category ','documentation')}</a>
+            </div>
         </div>
         <!-- End. Select with categories names and ids-->
         <!-- Start. Name input -->

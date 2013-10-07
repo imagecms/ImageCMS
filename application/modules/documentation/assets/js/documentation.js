@@ -156,7 +156,6 @@ function createCategory() {
 }
 
 
-
 /**  * */
 $(document).ready(function() {
 
@@ -167,5 +166,14 @@ $(document).ready(function() {
         var langId = selectElement.find("option:selected").val();
         document.location.href = '/documentation/edit_page/' + pageId + '/' + langId;
     });
-
+    
+    $('.editCategory').bind('click', function(){
+       alert(111); 
+    });
+    
+    $('#showLoginForm').bind('click', function(){
+//       $('#loginForm').show();
+        alert(111); 
+    });
+    
 });
