@@ -13,34 +13,72 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('module_frame');
         $this->load->model('documentation_model');
+        $this->load->library('pagination');
     }
 
     public function index() {
         $this->byCategory();
     }
 
-    public function create() {
-        \CMSFactory\assetManager::create()
-                ->setData(array(
-                    'content' => $templateContent
-                ))
-                ->renderAdmin("main");
-    }
+    public function history($pageId) {
+        $per_page = 6;
 
-    public function edit($pageId) {
+        $pageNum = $this->uri->segment(7) == FALSE ? 0 : $this->uri->segment(7);
 
-        $pageData = $this->documentation_model->getPageData($pageId);
+        $pageData = $this->documentation_model->getPageById($pageId);
+        $pageHistory = $this->documentation_model->getPageHistory($pageId, $per_page, $pageNum);
 
-        $categoriesTree = \CMSFactory\assetManager::create()
-                ->setData(array('tree' => $this->lib_category->build(), 'sel_cat' => $pageData['category']))
-                ->fetchAdminTemplate('cats_select');
+        $total_pages = $this->documentation_model->getPageHistoryCount(array('page_id' => $pageId));
+
+        $paginationConfig = array(
+            'base_url' => site_url('admin/components/cp/documentation/history/' . $pageId . '/'),
+            'container' => 'page',
+            'uri_segment' => 7,
+            'total_rows' => $total_pages,
+            'per_page' => $per_page,
+            'separate_controls' => true,
+            'full_tag_open' => '<div class="pagination pull-left"><ul>',
+            'full_tag_close' => '</ul></div>',
+            'controls_tag_open' => '<div class="pagination pull-right"><ul>',
+            'controls_tag_close' => '</ul></div>',
+            'next_link' => lang('Next', 'admin') . '&nbsp;&gt;',
+            'prev_link' => '&lt;&nbsp;' . lang('Prev', 'admin'),
+            'cur_tag_open' => '<li class="btn-primary active"><span>',
+            'cur_tag_close' => '</span></li>',
+            'prev_tag_open' => '<li>',
+            'prev_tag_close' => '</li>',
+            'next_tag_open' => '<li>',
+            'next_tag_close' => '</li>',
+            'num_tag_close' => '</li>',
+            'num_tag_open' => '<li>',
+            'num_tag_close' => '</li>'
+        );
+
+
+        $this->pagination->num_links = 5;
+        $this->pagination->initialize($paginationConfig);
+        // End pagination
+
+        $paginator = $this->pagination->create_links_ajax();
 
         \CMSFactory\assetManager::create()
                 ->setData(array(
                     'page' => $pageData,
-                    'categoriesTree' => $categoriesTree,
+                    'history' => $pageHistory,
+                    'paginator' => $paginator,
                 ))
-                ->renderAdmin('edit');
+                ->registerStyle('admin')
+                ->registerScript('dmp')
+                ->registerScript('admin')
+                ->renderAdmin('history');
+    }
+
+    public function makeRelevant($pageId, $historyId) {
+        $this->documentation_model->restoreArticleFromHistory($pageId, $historyId);
+    }
+
+    public function deleteHistoryRow($historyId) {
+        $this->documentation_model->deleteHistoryRow($historyId);
     }
 
     /**
@@ -101,7 +139,7 @@ class Admin extends BaseAdminController {
                 'num_tag_close' => '</li>'
             );
 
-            $this->load->library('pagination');
+
             $this->pagination->num_links = 5;
             $this->pagination->initialize($paginationConfig);
             // End pagination

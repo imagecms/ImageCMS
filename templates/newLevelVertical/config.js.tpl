@@ -14,24 +14,30 @@
     {else:}
         {$cnt_comp = 0}
     {/if}
-    var curr = '{$CS}',
-            nextCs = '{echo $NextCS}',
-            pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
-            checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
-            inCart = 'В корзине',
-            toCart = '{lang('Купить','newLevel')}',
-            pcs = 'Количество:',
-            kits = 'Комплектов:',
-            captchaText = 'Код протекции',
-            isLogin = "{$is_logged_in}" == '1' ? true : false,
-            inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
-            inServerCompare = parseInt("{$cnt_comp}"),
-            inServerWishList = parseInt("{$countWL}"),
-            countViewProd = parseInt("{$countSh}"),
-            theme = "{$THEME}";
-    plurProd = ['{lang("товар","newLevel")}', '{lang("товара","newLevel")}', '{lang("товаров","newLevel")}'];
-    plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'];
-    plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
+        var curr = '{$CS}',
+        nextCs = '{echo $NextCS}',
+        discountInPopup = false,
+        pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
+        checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
+        inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
+        inServerCompare = parseInt("{$cnt_comp}"),
+        inServerWishList = parseInt("{$countWL}"),
+        countViewProd = parseInt("{$countSh}"),
+        theme = "{$THEME}",
+        inCart = '{lang('В корзине','newLevel')}',
+        toCart = '{lang('Купить','newLevel')}',
+        pcs = '{lang('Количество:')}',
+        kits = '{lang('Комплектов:')}',
+        captchaText = '{lang('Код протекции')}',
+        isLogin = "{$is_logged_in}" == '1' ? true : false,
+        plurProd = ['{lang("товар","newLevel")}', '{lang("товара","newLevel")}', '{lang("товаров","newLevel")}'],
+        plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'],
+        plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'],
+        
+        selectDeliv = false,
+        selIcons = '[class*=icon_]',
+        preloader = '.preloader',
+        selScrollPane = '.frame-scroll-pane .content-carousel';
 
     {literal}
         text = {

@@ -35,9 +35,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="parent_id">{lang('Parent category','admin')}:</label>
+                            <label for="parent_id">{lang('Parent category','documentation')}:</label>
                             <select name="category" class="form-control">
-                                <option value="0" selected="selected">{lang("No","admin")}</option>
+                                <option value="0" selected="selected">{lang("No","documentation")}</option>
                                 {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $page['category']));}
                             </select>
                         </div>
@@ -63,14 +63,14 @@
                     {foreach $langs as $lang}
                         <option data-page_id="{if $page['lang_alias'] != 0}{echo $page['lang_alias']}{else:}{echo $page['id']}{/if}" 
                                 value="{echo $lang['id']}" 
-                        {if $page['lang']== $lang['id']}selected="selected"{/if}>
-                        {echo $lang['identif']}
-                    </option>
-                {/foreach}
-            </select>
+                                {if $page['lang']== $lang['id']}selected="selected"{/if}>
+                            {echo $lang['identif']}
+                        </option>
+                    {/foreach}
+                </select>
+            </div>
         </div>
     </div>
-</div>
 </div>
 {if $errors}
     <div class="alert alert-block alert-danger fade in">
@@ -107,7 +107,6 @@
                                             placeholder="{lang('Url','documentation')}">
     </div>
     <!-- End. Url input -->
-
     <!-- Start. Keywords and description -->
     <h4>{lang('Keywords','documentation')}:</h4>
     <textarea name="NewPage[keywords]" class="form-control verticalResize" rows="3">{if set_value('NewPage[keywords]')}{echo set_value('NewPage[keywords]')}{else:}{echo $page['keywords']}{/if}</textarea>
@@ -130,4 +129,3 @@
     <!-- End. Submit button -->
     {form_csrf()}
 </form>
-</div>
