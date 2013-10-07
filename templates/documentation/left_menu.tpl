@@ -1,12 +1,18 @@
 <ul class="" {if !$display} style="display: none;"{/if}>
     {foreach $tree as $item}
         {$active = false;}
-        {if strpos($cat_path, '/'.$item['url'].'/') !== false}{$active = true}{/if}
+        {if strpos($categoryData['url'], '/'.$item['url'].'/') !== false}{$active = true}{/if}
         <li {if $active}class="active"{/if}>
-            <a href="{base_url($item['path_url'])}">{$item['name']}</a>
+             <a href="{base_url($item['path_url'])}">{$item['name']}  
+             {if $categoryData['id'] == $item['id'] && $admin}
+                 <span class="glyphicon glyphicon-pencil pull-right editCategory" data-cat_id="{echo $item['id']}">
+                 </span>
+             {/if}
+             </a>
+            <!-- Show category sublevels -->
             {if $item['subtree'] && $item['level']<2}
                 <span class="tree_menu_icon glyphicon glyphicon-chevron-right"></span>
-                {$this->view('left_menu.tpl', array('tree' => $item['subtree'],'cat_path' => $cat_path, 'display' => $active))}
+                {$this->view('left_menu.tpl', array('tree' => $item['subtree'],'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData,'admin' => $admin))}
             {/if}
         </li>
     {/foreach}

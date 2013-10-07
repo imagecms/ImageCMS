@@ -60,7 +60,6 @@ class Documentation_model extends CI_Model {
         }
 
         /** Get page data * */
-
         $query = "  
                     SELECT 
                         `content`.*,
@@ -80,7 +79,7 @@ class Documentation_model extends CI_Model {
             return $res;
         }
     }
-  
+
     /**
      * Get languages
      * @return boolean|array
@@ -261,6 +260,9 @@ class Documentation_model extends CI_Model {
                 ";
         $this->db->query($query);
 
+        $query = "ALTER TABLE `category` ADD  `menu_cat` VARCHAR( 20 ) NULL ;";
+        $this->db->query($query);
+
         /** Update module settings * */
         $this->db->where('name', 'documentation')
                 ->update('components', array('autoload' => '1', 'enabled' => '1'));
@@ -271,10 +273,10 @@ class Documentation_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_documentation_history');
+        
+        $query = "ALTER TABLE `category` DROP `menu_cat`;";
+        $this->db->query($query);
     }
-
-
-
 
     /**
      * Returns page history

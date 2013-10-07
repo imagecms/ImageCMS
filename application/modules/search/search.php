@@ -128,6 +128,7 @@ class Search extends MY_Controller {
         $data = $this->_highlight_text($data, $s_text);
 
         $this->core->set_meta_tags(array(lang("Search", 'search'), $this->search_title));
+        $this->core->core_data['data_type'] = 'search';
         $this->_display($data);
     }
 
