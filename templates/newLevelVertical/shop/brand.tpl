@@ -23,6 +23,7 @@
 <div class="frame-crumbs">
     {widget('path')}
 </div>
+{$totalProducts = count($products)}
 <div class="frame-inside">
     <div class="container">
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
@@ -30,9 +31,8 @@
                 <div class="frame-title">
                     <h1 class="d_i">{echo $model->getName()}</h1>
                 </div>
-                <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('{lang("товар","newLevel")}','{lang("товара","newLevel")}','{lang("товаров","newLevel")}'))})</span>
+                <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
             </div>
-
             {if $totalProducts == 0}
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
@@ -68,7 +68,7 @@
             <!--End. Show brand description-->
 
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
+                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} table{else:} list{/if}" id="items-catalog-main">
                     {$CI->load->module('new_level')->OPI($products, array('wishlist'=>true))}
                 </ul>
             {/if}
@@ -76,9 +76,9 @@
         </div>
         {if $totalProducts > 0}
             <div class="left-catalog">
-                <form method="GET" action="" id="seacrh_p_form">
+                <form method="GET" action="" id="catalog_form">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
-                    <input type="hidden" name="text" value="{$searched_text}">
+                    <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
                     <input type="hidden" name="category" value="{echo $_GET[category]}">
                 </form>
                 <div class="frame-category-menu layout-highlight">

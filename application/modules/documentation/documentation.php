@@ -103,7 +103,8 @@ class Documentation extends \MY_Controller {
                 'publish_date' => time(),
                 'created' => time(),
                 'lang' => $langId,
-                'lang_alias' => $mainPageId
+                'lang_alias' => $mainPageId,
+                'updated' => time()
             );
 
             /** If page created succesful then show page on site * */
@@ -310,8 +311,6 @@ class Documentation extends \MY_Controller {
             } else {
                 $full_path = $data['url'] . '/';
             }
-
-
 
             if (($this->category_exists($full_path) == TRUE) AND ($data['url'] != 'core')) {
                 $data['url'] .= time();
