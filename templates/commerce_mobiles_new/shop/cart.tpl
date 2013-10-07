@@ -53,15 +53,21 @@
         </ul>
         <div class="main_frame_inside">
             <div class="gen_sum">
+                {$discount = $CI->load->module('mod_discount/discount_api')->get_discount_api(1);}
+                {if $discount['result_sum_discount']}
+                    Скидка: {echo $discount['result_sum_discount_convert']} {$CS} <br/>
+                {/if}
                 <span class="total_pay">Всего к оплате:</span>
+                
                 <span class="price">
+
                     {if $total < $item.delivery_free_from}
                         {$total += $item.delivery_price}
                     {/if}
                     {if isset($item.gift_cert_price)}
                         {$total -= $item.gift_cert_price}
                     {/if}
-                    {echo $total} {$CS}
+                    {echo $total - $discount['result_sum_discount_convert']} {$CS}
                 </span>
             </div>
         </div>

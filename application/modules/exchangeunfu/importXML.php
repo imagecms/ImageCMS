@@ -9,7 +9,6 @@ namespace exchangeunfu;
  * Module Frame
  */
 class ImportXML {
-
     /**
      * Path to upload dir
      * @var string
@@ -66,7 +65,7 @@ class ImportXML {
     }
 
     public function index() {
-
+        
     }
 
     public function getXML($file) {
@@ -253,8 +252,7 @@ class ImportXML {
                     if ($categ) {
                         $categoryId = $categ['id'];
                         $data['category_id'] = $categoryId;
-                    }
-                    else
+                    } else
                         $data['category_id'] = 0;
                 }
 
@@ -649,21 +647,21 @@ class ImportXML {
             $data = array();
 
             $data['username'] = $user->Наименование . '';
-            if($user->Пароль . ''){
+            if ($user->Пароль . '') {
                 $data['password'] = $user->Пароль . '';
             }
-            
-            if($user->Емейл . ''){
+
+            if ($user->Емейл . '') {
                 $data['email'] = $user->Емейл . '';
             }
-            
+
             $data['phone'] = $user->Телефон . '';
             $data['code'] = $user->Код . '';
             $data['address'] = $user->Адрес . '';
             $data['external_id'] = $user->ID . '';
 
-            if ($user->IDWeb || $id = is_user((string) $user->ID, $this->users)) {
-                $data['id'] = (string) $user->IDWeb ? (string) $user->IDWeb : $id['id'];
+            if ((string) $user->IDWeb != '') {
+                $data['id'] = (string) $user->IDWeb;
                 $this->update[] = $data;
             } else {
                 $this->insert[] = $data;
@@ -707,7 +705,7 @@ class ImportXML {
 
             $data['status'] = 1;
             if ($statuses[$data['external_id']]) {
-                $data['status'] = 2;
+                $data['status'] = 1;
                 $data['invoice_external_id'] = $statuses[$data['external_id']]['id'];
                 $data['invoice_code'] = $statuses[$data['external_id']]['code'];
                 $data['invoice_date'] = $statuses[$data['external_id']]['date'];
@@ -717,12 +715,12 @@ class ImportXML {
             if ($user) {
                 $data['user_id'] = $user['id'];
             } else {
-                return false;
+                return;
             }
             $order_exist = is_order($data['external_id'], $this->orders);
-
-            if ($order->IDWeb || $order_exist) {
-                $data['id'] = $order->IDWeb . '' ? $order->IDWeb . '' : $order_exist['id'];
+//            var_dump($order_exist);
+            if ((string) $order->IDWeb) {
+                $data['id'] = (string) $order->IDWeb . '' ? (string) $order->IDWeb . '' : $order_exist['id'];
                 $this->updateOrder($order, $data);
             } else {
                 $this->insertOrder($order, $data);
@@ -895,7 +893,12 @@ class ImportXML {
      */
     private function updateData($table, $where = '') {
         if (!empty($this->update)) {
+            if ($table == 'shop_orders') {
 
+                var_dumps($where);
+                var_dumps($table);
+                var_dumps($this->update);
+            }
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
 

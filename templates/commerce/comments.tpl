@@ -3,7 +3,7 @@
     var currentProductId = '{echo $item_id}';
 </script>
 {if $can_comment == 1 AND !$is_logged_in}
-    <p class="m-l_10">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
+    <p class="m-l_10">{sprintf(lang('Please login for commenting', 'comments'), site_url($modules.auth))}</p>
 {/if}
 
 {if $can_comment == 0 OR $is_logged_in}

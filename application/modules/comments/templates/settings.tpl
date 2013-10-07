@@ -27,7 +27,8 @@
                             <div class="control-group m-t_10">
                                 <label class="control-label" for="max_comment_length">{lang("Maximum comment length", 'comments')}:</label>
                                 <div class="controls number">
-                                    <input type="text" value="{$settings.max_comment_length}" name="max_comment_length" id="max_comment_length"/> 
+                                    <input type="text" value="{$settings.max_comment_length}" name="max_comment_length" id="max_comment_length"/>
+                                     <span class="help-block">{lang("O - unlimited comment length", 'comments')}</span>
                                 </div>
                             </div>
                             <div class="control-group">

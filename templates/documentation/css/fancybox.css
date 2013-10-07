@@ -1,0 +1,36 @@
+.right-personal{width: 260px;float: right;}
+.frame-thumbail{margin-left: -112px; margin-bottom: 20px; margin-top: 10px;}
+.frame-thumbail > li{margin-left: 112px; color:#999999; width:231px; vertical-align: top;}
+.frame-thumbail > li .photo-block{display: block;width: 231px;height: 208px; text-align: center;}
+.left-personal .characteristic{width: 100% !important;}
+.frame-complect ul{width: 20000px;}
+.frame-complect li{width: 815px !important;}
+.frame-complect .title_h1{color: #a5d23e;}
+.photo-block{position: relative;font-size: 0;}
+.photo-block img{max-height: 100%;}
+.photo-block a{display: block;}
+.photo-number {color:#333333;}
+#fancybox-overlay{position:absolute;top:0;left:0;width:100%;z-index:1100;display:none}
+#fancybox-tmp{border:0;overflow:auto;display:none;margin:0;padding:0}
+#fancybox-wrap{position:absolute;top:0;left:0;z-index:1101;outline:none;display:none;padding:0;}
+#fancybox-hide-sel-frame{position:absolute;top:0;left:0;width:100%;height:100%;background:transparent;z-index:1101}
+#fancybox-error{color:#444;font:normal 12px/20px Arial;margin:0;padding:14px}
+#fancybox-img{width:100%;height:100%;border:none;outline:none;line-height:0;vertical-align:top;margin:0;padding:0}
+#fancybox-frame{width:100%;height:100%;border:none;display:block}
+#fancybox-left,#fancybox-right{position:absolute;bottom:0;height:100%;width:50px;cursor:pointer;outline:none;z-index:1102; background-color: #050505; opacity: .3;}
+#fancybox-left:hover ,#fancybox-right:hover {opacity: 1;}
+#fancybox-left{left:-50px;}
+#fancybox-right{right:-50px;}
+#fancybox-left:hover,#fancybox-right:hover{visibility:visible}
+#fancybox-outer{position:relative;width:100%;height:100%;}
+#fancybox-content{width:0;height:0;outline:none;position:relative;overflow:hidden;z-index:1102;padding:0;border:0 solid #fff;-moz-box-shadow: 0 2px 13px #333;-webkit-box-shadow: 0 2px 13px #333;box-shadow: 0 2px 13px #333;}
+#fancybox-left-ico,#fancybox-right-ico{position:absolute;top:50%;cursor:pointer;z-index:1102;}
+#fancybox-left-ico, #fancybox-right-ico{width: 22px;height: 48px;margin-top: -24px;}
+#fancybox-left-ico{background-position: 0 -100px; margin-left: 13px}
+#fancybox-right-ico{background-position: 0 -40px; margin-left: 15px;}
+#fancybox-left-ico:active{background-position: -580px -140px;}
+#fancybox-right-ico:active{background-position: -620px -140px;}
+#fancybox-title-over {padding: 10px;background-image: url('../images/fancy_title_over.png');display: block;color: #FFF;text-align: left;}
+
+#fancybox-title p{margin-bottom: 5px;}
+#fancybox-title:first-letter{}
