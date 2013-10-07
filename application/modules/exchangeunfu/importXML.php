@@ -705,7 +705,7 @@ class ImportXML {
 
             $data['status'] = 1;
             if ($statuses[$data['external_id']]) {
-                $data['status'] = 2;
+                $data['status'] = 1;
                 $data['invoice_external_id'] = $statuses[$data['external_id']]['id'];
                 $data['invoice_code'] = $statuses[$data['external_id']]['code'];
                 $data['invoice_date'] = $statuses[$data['external_id']]['date'];

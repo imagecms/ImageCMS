@@ -36,7 +36,7 @@
                         </td>
                         </span>
                         <td>{echo $order->getSOrderStatuses()->getName()}</td>
-                        <td>{if $order->getPaid()} {lang('Оплачиваемый','newLevel')} {else:} {lang('Not paid','newLevel')}{/if}</td>
+                        <td>{if $order->getPaid()} {lang('Оплачиваемый','newLevel')} {else:} {lang('Не оплачен','newLevel')}{/if}</td>
                     </tr>
                 {/foreach}
             </tbody>

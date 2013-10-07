@@ -1,6 +1,6 @@
 <!-- floating elements-->
 <div id="popupCart" style="display: none;" class="drop drop-bask drop-style"></div>
-<a href="#" data-drop="#popupCart" id="showCart" data-animate="true" style="display: none;"></a>
+<button data-drop="#popupCart" id="showCart" data-animate="true" style="display: none;"></button>
 
 <script type="text/template" id="cartPopupTemplate">
     {literal}
@@ -295,7 +295,7 @@
                                     <span class="frame-prices f-s_0">
                                         <span class="price-discount">
                                             <span class="frame-discount">
-                                                <span class="price genSumDiscount"><% if(discC){ %><%- parseFloat(Shop.Cart.totalPriceOrigin).toFixed(pricePrecision)%><% } %></span>
+                                                <span class="price genSumDiscount"><% if (discC) parseFloat(Shop.Cart.totalPriceOrigin).toFixed(pricePrecision)%></span>
                                                 <span class="curr"><%-curr%></span>
                                             </span>
                                         </span>
@@ -620,7 +620,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        </div>
+                                    </td>
                                 </tr>
                                 <% } %>
 
@@ -636,7 +636,7 @@
                             <span class="frame-discount">
 
                                 <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevel')}{literal}:</span>
-                                <span class="text-discount current-discount"><span class="genDiscount"><%if(discC){%><%- parseFloat(Shop.Cart.discount.sum_discount_product).toFixed(pricePrecision)%><%}%></span> <span class="curr"><%-curr%></span></span>
+                                <span class="text-discount current-discount"><span class="genDiscount"><%if(discC) parseFloat(Shop.Cart.discount.sum_discount_product).toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
 
                             </span>
 
@@ -645,7 +645,7 @@
                                 <span class="frame-prices f-s_0">
                                     <span class="price-discount">
                                         <span class="frame-discount">
-                                            <span class="price genSumDiscount"><%if(discC){%><%- parseFloat(Shop.Cart.totalPriceOrigin + Shop.Cart.kitDiscount).toFixed(pricePrecision) %><%}%></span>
+                                            <span class="price genSumDiscount"><%if(discC) parseFloat(Shop.Cart.totalPriceOrigin + Shop.Cart.kitDiscount).toFixed(pricePrecision) %></span>
                                             <span class="curr"><%-curr%></span>
                                         </span>
                                     </span>
