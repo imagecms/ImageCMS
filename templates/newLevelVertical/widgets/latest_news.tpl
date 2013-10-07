@@ -2,9 +2,9 @@
     <div class="frame-news">
         <div class="container">
             <div class="frame-title">
-                <div class="title-h1 d_i">{lang('News','newLevel')}</div>
+                <div class="title-h1 d_i">{lang('Новости','newLevel')}</div>
                 <span class="s-all-d s-all-marg">
-                    <a href="{site_url('novosti')}" class="t-d_n f-s_0"><span class="icon_arrow"></span><span class="text-el">{lang('Show all','newLevel')}</span></a>
+                    <a href="{site_url('novosti')}" class="t-d_n f-s_0"><span class="icon_arrow"></span><span class="text-el">{lang('Остальные новости','newLevel')}</span></a>
                 </span>
             </div>
             <ul class="items items-news">
@@ -12,11 +12,11 @@
                     {$item = $CI->load->module('cfcm')->connect_fields($item, 'page')}
                     <li>
                         <a href="{site_url($item.full_url)}" class="frame-photo-title">
-                            {if trim($item.field_field_img) != ""}
+                            {if trim($item.field_image) != ""}
                                 <span class="d_b">
                                     <span class="photo-block">
                                         <span class="helper"></span>
-                                        <img src="{$item.field_field_img}" alt="" />
+                                        <img src="{$item.field_image}" alt="" />
                                     </span>
                                 </span>
                             {/if}

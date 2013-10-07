@@ -13,12 +13,12 @@
             <span class="no-empty">
                 <span class="helper"></span>
                 <span>
-                    <span class="text-el topCartCount"></span>
+                    <span class="text-el topCartCount">{echo ShopCore::app()->SCart->totalItems()}</span>
                     <span class="text-el">&nbsp;</span>
-                    <span class="text-el plurProd">{lang('Товар','newLevel')}</span>
+                    <span class="text-el plurProd">{echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
                     <span class="divider text-el">&#8226;</span>
                     <span class="d_i-b">
-                        <span class="text-el topCartTotalPrice"></span>
+                        <span class="text-el topCartTotalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
                         <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>
                     </span>
                 </span>

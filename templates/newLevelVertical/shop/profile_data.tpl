@@ -125,9 +125,9 @@
                 <table class="">
                     <thead>
                         <tr>
-                            <th>{lang('Процентная скидка','newLevel')}</th>
-                            <th>{lang('Сумма покупок','newLevel')}</th>
-                            <th>{lang('Количество покупок','newLevel')}</th>
+                            <th>{lang('Размер скидки','newLevel')}</th>
+                            <th>{lang('От','newLevel')}</th>
+                            <th>{lang('До','newLevel')}</th>
                         </tr>
                     </thead>
                     <tbody>

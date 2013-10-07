@@ -72,7 +72,8 @@
                             <div class="frameLabel__icsi-css">
                                 <span class="frame_form_field__icsi-css">
                                     <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="post(this)"/>
+                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post
+                                            (this)"/>
                                     </div>
                                 </span>
                             </div>
@@ -224,7 +225,7 @@
                         <span class="frame_form_field__icsi-css">
                             <input type="hidden" id="parent" name="comment_parent" value="">
                             <span class="btn-form">
-                                <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="post(this)"/>
+                                <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this)"/>
                             </span>
                         </span>
                     </div>

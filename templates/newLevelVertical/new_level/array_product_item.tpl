@@ -24,7 +24,7 @@
                 {if $oldoprice}
                     <span class="price-discount">
                         <span>
-                            <span class="price priceOrigVariant">{echo round($p.old_price, $pricePrecision)}</span>
+                            <span class="price priceOrigVariant">{echo intval($p.old_price)}</span>
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>
@@ -70,6 +70,7 @@
                         </div>
                         <div class="btn-buy">
                             <button
+                                disabled="disabled"
                                 class="btnBuy infoBut"
                                 type="button"
                                 data-id="{echo $p.id}"
@@ -92,7 +93,7 @@
                         </div>
                     </div>
                 {else:}
-                    <div class="btn-not-avail variant_{echo $p.variant_id} variant" {if $key != 0}style="display:none"{/if}>
+                    <div class="btn-not-avail variant_{echo $p.variant_id} variant" >
                         <button
                             class="infoBut"
                             type="button"
@@ -103,10 +104,13 @@
                             data-prodid="{echo $p.id}"
                             data-varid="{echo $p.variant_id}"
                             data-price="{echo $p.price}"
+                            data-addPrice="{if $NextCS != null}{echo ShopCore::app()->SCurrencyHelper->convert($p.price, $NextCSId)}{/if}"
                             data-name="{echo ShopCore::encode($p.name)}"
                             data-maxcount="{echo $p.stock}"
                             data-number="{echo trim($p.number)}"
                             data-mediumImage="{echo $photo}"
+                            data-img="{echo $photo}"
+                            data-url="{echo shop_url('product/'.$p.url)}"
                             <span class="icon-but"></span>
                             <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                         </button>
@@ -114,9 +118,11 @@
                 {/if}
             </div>
         </div>
-        <p>
-            {$p[comment]}
-        </p>
+        {if trim($p[comment]) != ''}
+            <p>
+                {$p[comment]}
+            </p>
+        {/if}
         {if $p.access == 'private' || !$otherlist}
             <div class="funcs-buttons-WL-item">
                 <div class="btn-remove-item-wl">
@@ -124,7 +130,7 @@
                         type="button"
                         data-type="json"
                         data-modal="true"
-                        
+
                         data-drop="#notification"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                         data-callback="removeItem"
