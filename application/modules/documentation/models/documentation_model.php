@@ -74,7 +74,7 @@ class Documentation_model extends CI_Model {
             return $res;
         }
     }
-
+  
     /**
      * Get languages
      * @return boolean|array
@@ -118,6 +118,7 @@ class Documentation_model extends CI_Model {
         }
         return false;
     }
+
     /**
      * Get page id by main page id and lang id
      * @param int $mainPageId
@@ -135,18 +136,19 @@ class Documentation_model extends CI_Model {
                 ";
             $res = $this->db->query($query)->row_array();
         }
-        if ($res != null){
+        if ($res != null) {
             return $res['id'];
         }
         return false;
     }
+
     /**
      * Save page to history table after editing
      * @param int $id
      * @return boolean
      */
     public function make_backup($id = null) {
-        if ($id == null){
+        if ($id == null) {
             $id = $this->input->post('id');
         }
         $old_data = $this->db
@@ -157,7 +159,7 @@ class Documentation_model extends CI_Model {
         $old_data['page_id'] = $old_data['id'];
         unset($old_data['id']);
         $old_data['user_id'] = $this->dx_auth->get_user_id();
-        if ($this->db->insert('mod_documentation_history', $old_data)){
+        if ($this->db->insert('mod_documentation_history', $old_data)) {
             return true;
         }
         return false;

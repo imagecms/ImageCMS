@@ -106,7 +106,7 @@
                         </a>
                     {/if}
                     <div class="tree_menu">
-                        {load_menu('left_menu')}
+                        {$CI->load->module('documentation')->load_category_menu()}
                     </div>
                 </div>
 
