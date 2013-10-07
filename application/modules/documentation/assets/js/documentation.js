@@ -107,6 +107,55 @@ tinymce.init({
 });
 
 
+function translite_title(from, to) {
+    var url = '/documentation/ajax_translit';
+    $.post(
+            url, {
+        'str': $(from).val()
+    }, function(data)
+
+    {
+        $(to).val(data);
+    });
+}
+
+
+/** 
+ * Create category check validation and display result 
+ * @returns {undefined} 
+ * */
+function createCategory() {
+    var formIdent = $('#create_cat');
+    var formData = formIdent.serialize();
+    $('.modalErrosBlock').hide();
+    $('.modalCategoryCreatedSuccesBlock').hide();
+
+    $.ajax({
+        async: false,
+        type: 'post',
+        url: formIdent.attr('action'),
+        data: formData,
+        success: function(response) {
+            /** Parse json response **/
+            try {
+                responseObj = $.parseJSON(response);
+            } catch (e) {
+                return 'error parsing jsone';
+            }
+            /** Process results **/
+            if (responseObj.success === 'false') {
+                console.log(responseObj);
+                $('.modalErrosBlock').html(responseObj.errors);
+                $('.modalErrosBlock').show();
+            } else {
+                $('.modalCategoryCreatedSuccesBlock').show();
+                setTimeout("location.reload(true);", 1000);
+            }
+        }
+    });
+}
+
+
 
 /**  * */
 $(document).ready(function() {

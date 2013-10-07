@@ -18,13 +18,13 @@
             <span class="title">{lang('Смотреть','newLevel')}:</span>
             <ul class="tabs groups-buttons tabs-list-table" data-type="radio" data-elchange="#items-catalog-main">
                 <li class="btn-def {if $_COOKIE['listtable'] == 0}active{/if}">
-                    <button type="button" data-href="list" data-title="{lang('Список','newLevel')}" data-rel="tooltip">
-                        <span class="icon_list_cat"></span><span class="text-el">{lang('Список','newLevel')}</span>
+                    <button type="button" data-href="table" data-title="{lang('Таблица','newLevel')}" data-rel="tooltip">
+                        <span class="icon_table_cat"></span><span class="text-el">{lang('Таблица','newLevel')}</span>
                     </button>
                 </li>
                 <li class="btn-def {if $_COOKIE['listtable'] == 1}active{/if}">
-                    <button type="button" data-href="table" data-title="{lang('Таблица','newLevel')}" data-rel="tooltip">
-                        <span class="icon_table_cat"></span><span class="text-el">{lang('Таблица','newLevel')}</span>
+                    <button type="button" data-href="list" data-title="{lang('Список','newLevel')}" data-rel="tooltip">
+                        <span class="icon_list_cat"></span><span class="text-el">{lang('Список','newLevel')}</span>
                     </button>
                 </li>
             </ul>

@@ -1,4 +1,3 @@
-
 <div class="frame-inside page-cart">
     <div class="container">
         <div class="empty {if count($items) == 0}d_b{/if}">

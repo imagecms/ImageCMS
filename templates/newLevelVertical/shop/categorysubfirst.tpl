@@ -9,13 +9,12 @@
                     <h1 class="d_i">{echo $category->getName()}</h1>
                 </div>
             </div>
-
             {$CI->load->module('banners')->render($category->getId())}
 
             {\Category\RenderMenu::create()->load('category_menu_first')}
         </div>
         <div class="right-catalog-first">
-            {widget('popular_products_category')}
+            {widget('popular_products_category_v')}
         </div>
 
     </div>

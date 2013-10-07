@@ -42,7 +42,9 @@ class Documentation extends MY_Controller {
     }
 
     /**
-     * Create new page
+     * Create page
+     * @param int $mainPageId
+     * @param int $langId
      */
     public function create_new_page($mainPageId = 0, $langId = null) {
 
@@ -58,8 +60,11 @@ class Documentation extends MY_Controller {
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
         /** Set form validation rules * */
-        $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required');
+        $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[254]|xss_clean');
+        $this->form_validation->set_rules('NewPage[url]', lang("URL", "documentation"), 'xss_clean|max_length[254]');
+        $this->form_validation->set_rules('NewPage[prev_text]', lang("Content", "documentation"), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('NewPage[keywords]', lang("Keywords", "documentation"), 'xss_clean|trim');
+        $this->form_validation->set_rules('NewPage[description]', lang("Description", "documentation"), 'xss_clean|trim');
 
         /** If not validation errors * */
         if ($dataPost != null && $this->form_validation->run() != FALSE) {
@@ -88,8 +93,8 @@ class Documentation extends MY_Controller {
                 'title' => trim($dataPost['title']),
                 'url' => str_replace('.', '', trim($dataPost['url'])),
                 'cat_url' => $fullUrl,
-                'keywords' => $this->lib_seo->get_keywords($dataPost['prev_text']),
-                'description' => $this->lib_seo->get_description($dataPost['prev_text']),
+                'keywords' => ($dataPost['keywords'] != null ? trim($dataPost['keywords']) : trim($this->lib_seo->get_keywords($dataPost['prev_text']))),
+                'description' => ($dataPost['description'] != null ? trim($dataPost['description']) : trim($this->lib_seo->get_description($dataPost['prev_text']))),
                 'full_text' => trim($dataPost['prev_text']),
                 'prev_text' => trim($dataPost['prev_text']),
                 'category' => $dataPost['category'],
@@ -99,7 +104,7 @@ class Documentation extends MY_Controller {
                 'created' => time(),
                 'lang' => $langId,
                 'lang_alias' => $mainPageId,
-                'updated' => (int) strtotime("now")
+                'updated' => time()
             );
 
             /** If page created succesful then show page on site * */
@@ -138,6 +143,11 @@ class Documentation extends MY_Controller {
         }
     }
 
+    /**
+     * Edit page
+     * @param int $id
+     * @param int $langId
+     */
     public function edit_page($id = null, $langId = null) {
         /** Page not found * */
         if ($id == null) {
@@ -162,8 +172,11 @@ class Documentation extends MY_Controller {
             $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
             /** Set form validation rules * */
-            $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[100]');
-            $this->form_validation->set_rules('NewPage[prev_text]', lang("Contents", "documentation"), 'trim|required');
+            $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'xss_clean|trim|required|min_length[1]|max_length[254]');
+            $this->form_validation->set_rules('NewPage[url]', lang("URL", "documentation"), 'xss_clean|max_length[254]');
+            $this->form_validation->set_rules('NewPage[prev_text]', lang("Content", "documentation"), 'xss_clean|trim|required');
+            $this->form_validation->set_rules('NewPage[keywords]', lang("Keywords", "documentation"), 'xss_clean|trim');
+            $this->form_validation->set_rules('NewPage[description]', lang("Description", "documentation"), 'xss_clean|trim');
 
             /** If not validation errors * */
             if ($dataPost != null && $this->form_validation->run() != FALSE) {
@@ -192,21 +205,27 @@ class Documentation extends MY_Controller {
                     'title' => trim($dataPost['title']),
                     'url' => str_replace('.', '', trim($dataPost['url'])),
                     'cat_url' => $fullUrl,
-                    'keywords' => $this->lib_seo->get_keywords($dataPost['prev_text']),
-                    'description' => $this->lib_seo->get_description($dataPost['prev_text']),
+                    'keywords' => ($dataPost['keywords'] != null ? trim($dataPost['keywords']) : trim($this->lib_seo->get_keywords($dataPost['prev_text']))),
+                    'description' => ($dataPost['description'] != null ? trim($dataPost['description']) : trim($this->lib_seo->get_description($dataPost['prev_text']))),
                     'full_text' => trim($dataPost['prev_text']),
                     'prev_text' => trim($dataPost['prev_text']),
                     'category' => $dataPost['category'],
-                    'updated' => (int) strtotime("now"),
+                    'updated' => time(),
                     'lang' => $langId
                 );
 
-                if (!$this->errors && $this->documentation_model->updatePage($id, $langId, $data)) {
-                    /** Get page lang identificator * */
-                    $currentPageLang = $this->cms_admin->get_lang($langId);
+                /** Check for errors and make backup * */
+                if (!$this->errors && $this->documentation_model->make_backup($this->documentation_model->getPageIdByMainPageIdAndLangId($id, $langId))) {
 
-                    /** Redirect to view page  * */
-                    redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
+                    /** Update page * */
+                    if ($this->documentation_model->updatePage($id, $langId, $data)) {
+
+                        /** Get page lang identificator * */
+                        $currentPageLang = $this->cms_admin->get_lang($langId);
+
+                        /** Redirect to view page  * */
+                        redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
+                    }
                 }
             } else {
                 $this->errors .= $this->form_validation->error_string();
@@ -250,6 +269,74 @@ class Documentation extends MY_Controller {
                 ->where('id', $this->input->post('id'))
                 ->set('title', $this->input->post('h1'))
                 ->update('content');
+    }
+
+    function ajax_translit() {
+        $this->load->helper('translit');
+        $str = trim($this->input->post('str'));
+        echo translit_url($str);
+    }
+
+    public function create_cat() {
+        $this->load->library('lib_admin');
+        
+        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[127]|required|xss_clean');
+        $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[127]');
+        $this->form_validation->run();
+
+        if (!$this->form_validation->error_string()) {
+            if ($this->input->post('url') == FALSE) {
+                $this->load->helper('translit');
+                $url = translit_url($this->input->post('name'));
+            } else {
+                $url = $this->input->post('url');
+            }
+
+            $data = array(
+                'name' => $this->input->post('name'),
+                'url' => $url,
+                'parent_id' => $this->input->post('category')
+            );
+
+            $parent = $this->lib_category->get_category($data['parent_id']);
+
+            if ($parent != 'NULL') {
+                $full_path = $parent['path_url'] . $data['url'] . '/';
+            } else {
+                $full_path = $data['url'] . '/';
+            }
+
+            if (($this->category_exists($full_path) == TRUE) AND ($data['url'] != 'core')) {
+                $data['url'] .= time();
+            }
+
+            $id = $this->cms_admin->create_category($data);
+            $responseArray = array();
+
+            /** Return true if category created success and return errors* */
+            if ($id != null) {
+                $responseArray['success'] = 'true';
+                $responseArray['errors'] = 'false';
+                $this->cache->delete_all();
+                echo json_encode($responseArray);
+            } else {
+                $responseArray['success'] = 'false';
+                $responseArray['errors'] = lang("Ошибка при создании категории", "documentation");
+                echo json_encode($responseArray);
+            }
+
+
+            /** Init Event. Create new Category */
+            \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())));
+        } else {
+            $responseArray['success'] = 'false';
+            $responseArray['errors'] = $this->form_validation->error_string();
+            echo json_encode($responseArray);
+        }
+    }
+
+    function category_exists($str) {
+        return $this->lib_category->get_category_by('path_url', $str);
     }
 
     /** Install and set settings * */
