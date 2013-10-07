@@ -33,6 +33,7 @@
         <link href="{$THEME}css/left_menu_style.css" rel="stylesheet" media="screen"/>
     </head>
     <body>
+        
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -56,15 +57,7 @@
 
                 <div class="collapse navbar-collapse">
                     {load_menu('top_menu')}
-                    <form class="navbar-form navbar-right" action="{site_url('search')}" method="POST">
-                        <div class="form-group">
-                            <input type="text"class="form-control" name="text" placeholder="{lang("Search","documentation")}" />
-                        </div>
-                        <div class="form-group">
-                            <input class="btn" type="submit" value="{lang("Search","documentation")}"/>
-                        </div>
-                        {form_csrf()}
-                    </form>
+
                     {if !$CI->dx_auth->is_logged_in()}
                         <form class="navbar-form navbar-right" method="post" id="login_form" action="/auth/login">
                             <div class="form-group">
@@ -124,6 +117,15 @@
                         <h1>Hello, world!</h1>
                         <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
                     </div>
+                    <form class="form-group form-inline pull-right" action="{site_url('search')}" method="POST">
+                        <div class="form-group">
+                            <input type="text"class="form-control" name="text" placeholder="{lang("Search","documentation")}" />
+                        </div>
+                        <div class="form-group">
+                            <input class="btn" type="submit" value="{lang("Search","documentation")}"/>
+                        </div>
+                        {form_csrf()}
+                    </form>
                     <div class="row">
                         {$content}
                     </div>
