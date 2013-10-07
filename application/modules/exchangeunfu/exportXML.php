@@ -60,7 +60,7 @@ class ExportXML {
         $this->prices = $this->ci->export_model->getPrices($partner_id);
         $this->productivity = $this->ci->export_model->getProductivity($partner_id);
 
-        if ($partner_id) {
+//        if ($partner_id) {
             /** export partners */
             if ($this->partners) {
                 $this->exportPartners();
@@ -85,7 +85,7 @@ class ExportXML {
             if ($this->products) {
                 $this->exportProducts();
             }
-        } else {
+//        } else {
             /** all export */
             /** export users */
             if ($this->users) {
@@ -93,24 +93,24 @@ class ExportXML {
             }
 
             /** export partners */
-            if ($this->partners) {
-                $this->exportPartners();
-            }
+//            if ($this->partners) {
+//                $this->exportPartners();
+//            }
 
             /** export productivity */
-            if ($this->productivity) {
-                $this->exportProductivity();
-            }
+//            if ($this->productivity) {
+//                $this->exportProductivity();
+//            }
 
             /** export prices */
-            if ($this->prices) {
-                $this->exportPrices();
-            }
+//            if ($this->prices) {
+//                $this->exportPrices();
+//            }
 
             /** export orders */
-            if ($this->orders) {
-                $this->exportOrder();
-            }
+//            if ($this->orders) {
+//                $this->exportOrder();
+//            }
 
             /** export categories */
             if ($this->categories) {
@@ -118,10 +118,10 @@ class ExportXML {
             }
 
             /** export products */
-            if ($this->products) {
-                $this->exportProducts();
-            }
-        }
+//            if ($this->products) {
+//                $this->exportProducts();
+//            }
+//        }
 
         /** wrao export  */
         $this->exportWrap();
