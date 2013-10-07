@@ -46,7 +46,7 @@ class ExportXML {
     }
 
     public function index() {
-
+        
     }
 
     /** export */
@@ -81,14 +81,9 @@ class ExportXML {
                 $this->exportOrder();
             }
 
-            /** products export for partner */
-            if (!empty($this->products_ids)) {
-                $this->products = $this->ci->export_model->getProducts($this->products_ids);
-
-                /** export products */
-                if ($this->products) {
-                    $this->exportProducts();
-                }
+            /** export products */
+            if ($this->products) {
+                $this->exportProducts();
             }
         } else {
             /** all export */
@@ -250,7 +245,7 @@ class ExportXML {
                     "\t\t<IDWeb>" . $price['id'] . "</IDWeb>\r\n" .
                     "\t\t<ЭтоАкционнаяЦена>" . $price_bool . "</ЭтоАкционнаяЦена>\r\n" .
                     "\t\t<Цена>" . $price['price'] . "</Цена>\r\n" .
-                    "\t\t<IDНоменклатура>" . $products[$price['product_id']]  . "</IDНоменклатура>\r\n" .
+                    "\t\t<IDНоменклатура>" . $products[$price['product_id']] . "</IDНоменклатура>\r\n" .
                     "\t\t<IDWebНоменклатура>" . $price['product_id'] . "</IDWebНоменклатура>\r\n" .
                     "\t\t<IDОрганизация>" . $price['partner_external_id'] . "</IDОрганизация>\r\n" .
                     "\t\t<IDWebОрганизация>" . $partners[$price['partner_external_id']] . "</IDWebОрганизация>\r\n" .
