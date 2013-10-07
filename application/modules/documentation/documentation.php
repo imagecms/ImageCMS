@@ -7,7 +7,7 @@
  * Module Frame 
  * @property Documentation_model $documentation_model
  */
-class Documentation extends MY_Controller {
+class Documentation extends \MY_Controller {
 
     private $errors = false;
     private $defaultLang = false;
@@ -110,7 +110,9 @@ class Documentation extends MY_Controller {
             if (!$this->errors && $this->documentation_model->createNewPage($data)) {
                 /** Get page lang identificator * */
                 $currentPageLang = $this->cms_admin->get_lang($langId);
-
+                
+                $this->cache->delete_all();
+                
                 /** Redirect to view page  * */
                 redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
             }
@@ -221,7 +223,9 @@ class Documentation extends MY_Controller {
 
                         /** Get page lang identificator * */
                         $currentPageLang = $this->cms_admin->get_lang($langId);
-
+                        
+                        $this->cache->delete_all();
+                        
                         /** Redirect to view page  * */
                         redirect(base_url($currentPageLang['identif'] . '/' . $data['cat_url'] . $data['url']));
                     }
@@ -278,23 +282,25 @@ class Documentation extends MY_Controller {
 
     public function create_cat() {
         $this->load->library('lib_admin');
-        
+
         $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[127]|required|xss_clean');
         $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[127]');
         $this->form_validation->run();
 
         if (!$this->form_validation->error_string()) {
             if ($this->input->post('url') == FALSE) {
-                $this->load->helper('translit');
                 $url = translit_url($this->input->post('name'));
             } else {
-                $url = $this->input->post('url');
+                $url = translit_url($this->input->post('url'));
             }
 
             $data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,
-                'parent_id' => $this->input->post('category')
+                'parent_id' => $this->input->post('category'),
+                'order_by' => 'publish_date',
+                'sort_order' => 'desc',
+                'tpl' => 'blog'
             );
 
             $parent = $this->lib_category->get_category($data['parent_id']);
@@ -335,9 +341,44 @@ class Documentation extends MY_Controller {
             echo json_encode($responseArray);
         }
     }
-
+    /**
+     * Check if category exists
+     * @param type $str
+     * @return type
+     */
     function category_exists($str) {
         return $this->lib_category->get_category_by('path_url', $str);
+    }
+
+    /**
+     * Load category menu
+     * @param string $groupId
+     */
+    public function load_category_menu($group = null) {
+
+        /** Full path if data_type is page * */
+        if ($this->core->core_data['data_type'] == 'page') {
+            $data = $this->documentation_model->getPageById($this->core->core_data['id']);
+            $full_path = $data['cat_url'];
+        }
+        
+        /** Full path if data_type is category * */
+        if ($this->core->core_data['data_type'] == 'category') {
+            $data = $this->lib_category->get_category($this->core->core_data['id']);
+            $parent = $this->lib_category->get_category($data['parent_id']);
+
+            if ($parent != 'NULL') {
+                $full_path = $parent['path_url'] . $data['url'] . '/';
+            } else {
+                $full_path = $data['url'] . '/';
+            }
+        }
+        
+        /** Render category menu **/
+        \CMSFactory\assetManager::create()
+                ->setData('tree', $this->lib_category->_build())
+                ->setData('cat_path', $full_path)
+                ->render('left_menu', true);
     }
 
     /** Install and set settings * */
