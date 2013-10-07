@@ -2,15 +2,15 @@
     <section class="special-proposition">
         <div class="frame-title">
             <div class="title">
-                <span class="text-el">{$title}</span>
+                <span class="text-el text-proposition-h">{$title}</span>
             </div>
         </div>
         <div class="big-container">
             <div class="products-carousel frame-scroll-pane">
-                {/*frame-scroll-pane || carousel_js*/}
+                {/*frame-scroll-pane || carousel_js || ''*/}
                 <div class="content-carousel container">
                     <ul class="items items-catalog items-h-carousel">
-                        {$CI->load->module('new_level')->OPI($simProduct)}
+                        {$CI->load->module('new_level')->OPI($simProduct, array('widget'=>true))}
                     </ul>
                 </div>
                 <div class="group-button-carousel">
