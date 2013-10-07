@@ -564,7 +564,7 @@
                 <!--Output of the block comments-->
                 {if $Comments && $model->enable_comments}
                     <li>
-                        <button type="button" data-href="#comment" onclick="renderPosts($('#comment .inside-padd'))">
+                        <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'))">
                             <span class="icon_comment-tab"></span>
                             <span class="text-el">
                                 <span id="cc">
