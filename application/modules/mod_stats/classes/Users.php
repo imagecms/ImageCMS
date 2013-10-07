@@ -32,8 +32,9 @@ class Users extends \MY_Controller {
     /**
      * 
      */
-    public function getOnline() {
-        
+    public function templateOnline() {
+        $this->load->model('stats_model_urls');
+        return $this->stats_model_urls->getOnline();
     }
 
     /**

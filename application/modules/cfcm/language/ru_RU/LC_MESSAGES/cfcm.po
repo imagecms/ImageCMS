@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-25 11:59+0300\n"
-"PO-Revision-Date: 2013-09-25 11:59+0300\n"
+"POT-Creation-Date: 2013-10-02 13:39+0300\n"
+"PO-Revision-Date: 2013-10-02 13:41+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -209,6 +209,10 @@ msgstr "Обязательное поле"
 #: cfcm_forms.php:98
 msgid "Specify the possible values in the new row"
 msgstr "Укажите возможные значения в новой строке"
+
+#: cfcm_forms.php:103
+msgid "Multiple"
+msgstr "	Множественный"
 
 #: cfcm_forms.php:120
 msgid "Enable images viewing"

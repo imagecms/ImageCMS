@@ -132,6 +132,7 @@ class Authapi extends MY_Controller {
             $val->set_rules('username', lang("Name"), 'trim|xss_clean');
             $val->set_rules('password', lang("Password"), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang("Repeat Password"), 'trim|required|xss_clean');
+
             if ($this->dx_auth->captcha_registration) {
                 if ($this->dx_auth->use_recaptcha)
                     $val->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|xss_clean|required|callback_captcha_check');
@@ -141,7 +142,7 @@ class Authapi extends MY_Controller {
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
             $key = random_string('alnum', 5);
-            if ($val->run($this) AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', $key, '')) {
+            if ($val->run($this) AND $last_user = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', $key, '')) {
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = lang("You have successfully registered. Please check your email to activate your account.");
@@ -154,6 +155,10 @@ class Authapi extends MY_Controller {
                 $json['msg'] = lang('Register success', 'auth');
                 $json['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : false;
                 $json['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : false;
+                
+                $user_Prof = SUserProfileQuery::create()->findPk($last_user['id_user']);
+                $user_Prof->save();
+                
                 echo json_encode($json);
             } else {
                 // Is registration using captcha

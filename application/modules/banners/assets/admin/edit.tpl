@@ -121,7 +121,7 @@
                                         </div>
                                         <div id="Img-preview" style="width: 400px;" >
                                             {if $banner['photo']}
-                                                <img src="{echo $banner['photo']}?{rand(1,9999)}" class="img-polaroid" style="width: 100px;">
+                                                <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 100px;">
                                             {/if}
                                         </div>
                                     </div>

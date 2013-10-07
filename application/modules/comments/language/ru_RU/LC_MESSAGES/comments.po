@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 16:03+0300\n"
-"PO-Revision-Date: 2013-09-27 10:21+0300\n"
+"POT-Creation-Date: 2013-10-02 10:15+0300\n"
+"PO-Revision-Date: 2013-10-02 10:16+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -44,8 +44,8 @@ msgstr "В утверждении"
 
 #: /var/www/image.loc/_tempLangs.php:17
 #: /var/www/image.loc/_tempLangs.php:68
-#: /var/www/image.loc/_tempLangs.php:93
-#: /var/www/image.loc/_tempLangs.php:105
+#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:106
 msgid "Settings"
 msgstr "Настройки"
 
@@ -62,8 +62,8 @@ msgstr "E-mail пользователя"
 #: /var/www/image.loc/_tempLangs.php:32
 #: /var/www/image.loc/_tempLangs.php:66
 #: /var/www/image.loc/_tempLangs.php:73
-#: /var/www/image.loc/_tempLangs.php:92
-#: /var/www/image.loc/_tempLangs.php:103
+#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:104
 msgid "Save"
 msgstr "Сохранить"
 
@@ -80,7 +80,7 @@ msgstr "Ожидание модерации"
 #: /var/www/image.loc/_tempLangs.php:25
 #: /var/www/image.loc/_tempLangs.php:31
 #: /var/www/image.loc/_tempLangs.php:37
-#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:83
 msgid "Delete"
 msgstr "Удалить"
 
@@ -173,27 +173,27 @@ msgid "Leave comment"
 msgstr "Оставить комментарий"
 
 #: /var/www/image.loc/_tempLangs.php:64
-#: /var/www/image.loc/_tempLangs.php:101
+#: /var/www/image.loc/_tempLangs.php:102
 msgid "Widget settings"
 msgstr "Настройки виджета"
 
 #: /var/www/image.loc/_tempLangs.php:65
-#: /var/www/image.loc/_tempLangs.php:102
+#: /var/www/image.loc/_tempLangs.php:103
 msgid "Go back"
 msgstr "Назад"
 
 #: /var/www/image.loc/_tempLangs.php:67
-#: /var/www/image.loc/_tempLangs.php:104
+#: /var/www/image.loc/_tempLangs.php:105
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
 #: /var/www/image.loc/_tempLangs.php:69
-#: /var/www/image.loc/_tempLangs.php:106
+#: /var/www/image.loc/_tempLangs.php:107
 msgid "Number of comments for display"
 msgstr "Количество комментариев для отображения"
 
 #: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:107
+#: /var/www/image.loc/_tempLangs.php:108
 msgid "Maximum number of characters"
 msgstr "Максимальное количество символов"
 
@@ -214,97 +214,101 @@ msgid "Maximum comment length"
 msgstr "Максимальная длина комментария"
 
 #: /var/www/image.loc/_tempLangs.php:76
+msgid "O - unlimited comment length"
+msgstr "0 - длина комментария не ограничивается"
+
+#: /var/www/image.loc/_tempLangs.php:77
 msgid "Comment restrictions"
 msgstr "Ограничение комментирования"
 
 # а
-#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:78
 msgid "Comment frequency restriction  per minute . O - check off"
 msgstr "Ограничение частоты  комментирования в минутах. 0 - Отключить проверку"
 
-#: /var/www/image.loc/_tempLangs.php:78
+#: /var/www/image.loc/_tempLangs.php:79
 msgid "Forbid comments for unregistered users"
 msgstr "Запретить комментирование для незарегистрированных пользователей"
 
-#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:80
 msgid "Enable administrator comments approval"
 msgstr "Включить одобрение комментариев администратором. "
 
-#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:81
 msgid "Use the protection code"
 msgstr "Использовать защитный код"
 
-#: /var/www/image.loc/_tempLangs.php:81
+#: /var/www/image.loc/_tempLangs.php:82
 msgid "Designate"
 msgstr "Обозначить"
 
-#: /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:84
 msgid "All comments"
 msgstr "Все комментарии"
 
-#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:85
 msgid "Waiting for moderation"
 msgstr "Ожидают модерации "
 
-#: /var/www/image.loc/_tempLangs.php:85
+#: /var/www/image.loc/_tempLangs.php:86
 msgid "Approval"
 msgstr "Одобренные"
 
-#: /var/www/image.loc/_tempLangs.php:86
-#: /var/www/image.loc/_tempLangs.php:99
+#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:100
 msgid "Spam"
 msgstr "Спам"
 
-#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:88
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:89
 msgid "Text"
 msgstr "Текст"
 
-#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:90
 msgid "User"
 msgstr "Пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:91
 msgid "Page"
 msgstr "Страница"
 
 # а
-#: /var/www/image.loc/_tempLangs.php:91
+#: /var/www/image.loc/_tempLangs.php:92
 msgid "No data has been found"
 msgstr "Ничего не найдено"
 
-#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:95
 msgid "Author"
 msgstr "Автор"
 
-#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:96
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: /var/www/image.loc/_tempLangs.php:96
+#: /var/www/image.loc/_tempLangs.php:97
 msgid "Status"
 msgstr "Статус "
 
-#: /var/www/image.loc/_tempLangs.php:97
+#: /var/www/image.loc/_tempLangs.php:98
 msgid "Approved"
 msgstr "Одобрено"
 
-#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:99
 msgid "Pending approval"
 msgstr "В ожидании одобрения"
 
-#: /var/www/image.loc/_tempLangs.php:100
+#: /var/www/image.loc/_tempLangs.php:101
 msgid "Contents"
 msgstr "Содержание"
 
-#: /var/www/image.loc/_tempLangs.php:108
+#: /var/www/image.loc/_tempLangs.php:109
 msgid "log in"
 msgstr "войдите"
 
-#: /var/www/image.loc/_tempLangs.php:109
+#: /var/www/image.loc/_tempLangs.php:110
 msgid "please"
 msgstr "пожалуйста"
 
