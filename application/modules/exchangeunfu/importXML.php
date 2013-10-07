@@ -718,7 +718,7 @@ class ImportXML {
                 return;
             }
             $order_exist = is_order($data['external_id'], $this->orders);
-//            var_dump($order_exist);
+
             if ((string) $order->IDWeb) {
                 $data['id'] = (string) $order->IDWeb . '' ? (string) $order->IDWeb . '' : $order_exist['id'];
                 $this->updateOrder($order, $data);

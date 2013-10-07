@@ -305,8 +305,6 @@ class Documentation extends MY_Controller {
                 $full_path = $data['url'] . '/';
             }
 
-
-
             if (($this->category_exists($full_path) == TRUE) AND ($data['url'] != 'core')) {
                 $data['url'] .= time();
             }
