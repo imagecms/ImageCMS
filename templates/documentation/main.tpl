@@ -62,26 +62,12 @@
                     {load_menu('top_menu')}
 
                     {if !$CI->dx_auth->is_logged_in()}
-                        <div class="pull-right navbar-brand">
-                            <span class="glyphicon glyphicon-log-in "> 
-                            </span>
-                            <a href="/auth/login" id="showLoginForm" style="cursor: pointer;" >{lang('Log in','documentation')}</a>
+                        <div class="pull-right">
+                            <a href="/auth/login" class="btn btn btn-default navbar-btn">
+                                <span class="glyphicon glyphicon-log-in "></span>
+                                {lang('Log in','documentation')}
+                            </a>
                         </div>
-                        <!--<div id="loginForm" class="" style="display: none;">
-                            <form class="navbar-form navbar-right pull-right" method="post" id="login_form" action="/auth/login">
-                                <div class="form-group">
-                                    <input type="text" name="email" placeholder="Email" class="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" placeholder="Password" class="form-control"/>
-                                </div>
-                                <button type="submit" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-log-in"></span>
-                                    {lang('Sign in','documentation')}
-                                </button>
-                                {form_csrf()}
-                            </form>
-                        </div>-->
                     {else:}
                         <div class="pull-right">
                             {if $CI->dx_auth->is_admin()}
@@ -96,7 +82,7 @@
                                     </a>
                                 {/if}
                             {/if}
-                            <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
+                            <a href="/auth/logout" type="button" class="btn btn-warning navbar-btn">
                                 <span class="glyphicon glyphicon-log-out"></span>
                                 {lang('Exit','documentation')}
                             </a>

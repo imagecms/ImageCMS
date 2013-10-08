@@ -381,15 +381,14 @@ class Documentation extends \MY_Controller {
             }
 
             $category = $this->documentation_model->updateCategory($data, $id);
-            
-            /** Prepare and return answer **/
+
+            /** Prepare and return answer * */
             $responseArray = array();
             $responseArray['success'] = 'true';
             $responseArray['errors'] = 'false';
             $responseArray['data']['full_url'] = $category['full_url'];
             $this->cache->delete_all();
             echo json_encode($responseArray);
-          
         } else {
             $responseArray['success'] = 'false';
             $responseArray['errors'] = $this->form_validation->error_string();
@@ -417,7 +416,7 @@ class Documentation extends \MY_Controller {
         if ($this->core->core_data['data_type'] == 'page') {
             $data = $this->documentation_model->getPageById($this->core->core_data['id']);
             $category = $this->lib_category->get_category($data['category']);
-            
+
             /** Prepare category info * */
             $categoryData['id'] = $data['category'];
             $categoryData['url'] = $data['cat_url'];
@@ -451,6 +450,17 @@ class Documentation extends \MY_Controller {
                 ->setData('group', $group)
                 ->setData('categoryData', $categoryData)
                 ->render('left_menu', true);
+    }
+
+    public function delete_page($id = null) {
+        if ($id == null) {
+            return false;
+        } else {
+            $page = $this->documentation_model->getPageById($id);
+            $this->documentation_model->deletePage($id);
+            $this->cache->delete_all();
+            redirect(base_url($page['cat_url']));
+        }
     }
 
     /** Install and set settings * */
