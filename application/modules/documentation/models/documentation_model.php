@@ -256,7 +256,7 @@ class Documentation_model extends CI_Model {
     }
 
     /**
-     * 
+     * Update urls after category move
      */
     private function updateUrls() {
         $categories = $this->lib_category->unsorted();
@@ -265,6 +265,18 @@ class Documentation_model extends CI_Model {
             $this->db->where('category', $category['id']);
             $this->db->update('content', array('cat_url' => $category['path_url']));
         }
+    }
+    
+    /**
+     * Delete page by id
+     * @param int $id
+     * @return boolean 
+     */
+    public function deletePage($id = null){
+       if($this->db->where('id',$id)->delete('content')){
+           return true;
+       }
+       return false;
     }
 
     /**
