@@ -530,7 +530,7 @@ function getCookie(c_name)
                     'type': 'autocomplete.close', 
                     'el': $thisS
                 });
-                $thisS.stop().fadeOut(durationA);
+                $thisS.stop(true, false).fadeOut(durationA);
                 $thisS.unbind('click.autocomplete');
                 body.unbind('click.autocomplete').unbind('keydown.autocomplete');
             }
@@ -639,7 +639,7 @@ function getCookie(c_name)
                 tooltip.css({
                     'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
                     'top': this.offset().top - tooltip.actual('outerHeight')
-                }).stop().fadeIn(300, function() {
+                }).stop(true, false).fadeIn(300, function() {
                     $(document).trigger({
                         'type': 'tooltip.show', 
                         'el': $(this)
@@ -666,7 +666,7 @@ function getCookie(c_name)
 
         },
         remove: function() {
-            $('.tooltip').stop().fadeOut(300, function() {
+            $('.tooltip').stop(true, false).fadeOut(300, function() {
                 $(document).trigger({
                     'type': 'tooltip.hide', 
                     'el': $(this)
@@ -748,7 +748,8 @@ function getCookie(c_name)
                     menuCache: false,
                     activeFl: activeClass,
                     parentTl: 'li',
-                    refresh: false
+                    refresh: false,
+                    vertical: false
                 }, options);
                 var menuW = menu.width(),
                 menuItem = settings.item,
@@ -781,7 +782,8 @@ function getCookie(c_name)
                 menuCache = settings.menuCache,
                 activeFl = settings.activeFl,
                 parentTl = settings.parentTl,
-                otherPage = settings.otherPage;
+                otherPage = settings.otherPage,
+                vertical = settings.vertical;
                 if (menuCache && !refresh) {
                     menu.find('a').each(function() {//if start without cache and remove active item
                         var $this = $(this);
@@ -873,7 +875,9 @@ function getCookie(c_name)
                     })
                 }
                 var k = [];
-                menuItem.add(menuItem.find('.helper:first')).css('height', '');
+                if (!vertical)
+                    menuItem.add(menuItem.find('.helper:first')).css('height', '');
+            
                 menuItem.each(function(index) {
                     var $this = $(this),
                     $thisW = $this.width(),
@@ -893,19 +897,24 @@ function getCookie(c_name)
                         methods.position(menuW, $thisL, dropW, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                     }
                     $this.data('kk', 0);
-                }).css('height', sH);
-                menuItem.find('.helper:first').css('height', sH)
+                })
+                if (!vertical){
+                    menuItem.css('height', sH);
+                    menuItem.find('.helper:first').css('height', sH);
+                }
 
                 $('.not-js').removeClass('not-js');
                 var hoverTO = '';
-                function closeMenu(el, e) {
-                    var $this = el,
-                    $thisDrop = $this.find(drop);
+                function closeMenu() {
+                    var $thisDrop = menu.find(drop);
                     if ($thisDrop.length != 0)
                         menu.removeClass(hM);
-                    if (evLS == 'toggle' || evLF == 'toggle')
-                        $this.find('.' + hM).click()
-
+                    
+                    if (evLS == 'toggle' || evLF == 'toggle'){
+                        menu.find('.' + hM).click()
+                        dropOJ.hide();
+                    }
+                    
                     $('.firstH, .lastH').removeClass('firstH lastH');
                     
                     clearTimeout(hoverTO);
@@ -913,7 +922,7 @@ function getCookie(c_name)
                 menuItem.unbind(evLF)[evLF](
                     function(e) {
                         clearTimeout(hoverTO);
-                        closeMenu(menu, e);
+                        closeMenu();
                         var $this = $(this),
                         $thisI = $this.index();
                         $this = $(this).addClass(hM),
@@ -947,20 +956,19 @@ function getCookie(c_name)
                                             var $this = $(this),
                                             isSub2 = $this.find(sub2Frame);
                                             if ($.existsN(isSub2)) {
-                                                $this.css('overflow', 'hidden');
-                                                var sumHL2 = isSub2.show().height();
-                                                isSub2.hide();
-                                                $this.css('overflow', '');
-                                                if (sumHL2 > sumHL1)
-                                                    var koef = Math.ceil(sumHL2 / sumHL1);
-                                                if (koef != undefined) {
-                                                    subWL2 = isSub2W * koef;
-                                                    if (subWL2 + dropW > menuW) subWL2 = menuW - dropW;
-                                                    isSub2.css('width', dropW);
-                                                }
+                                            $this.css('overflow', 'hidden');
+                                            var sumHL2 = isSub2.show().height();
+                                            isSub2.hide();
+                                            $this.css('overflow', '');
+                                            if (sumHL2 > sumHL1)
+                                            var koef = Math.ceil(sumHL2 / sumHL1);
+                                            if (koef != undefined) {
+                                            subWL2 = isSub2W * koef;
+                                            if (subWL2 + dropW > menuW) subWL2 = menuW - dropW;
+                                            isSub2.css('width', dropW);
                                             }
-                                        }).unbind(evLS)[evLS](function(e) {
-                                            e.stopPropagation();
+                                            }
+                                            }).unbind(evLS)[evLS](function(e) {
                                             var $this = $(this),
                                             subFrame = $this.find(sub2Frame);
                                             if (e.type != 'click' && evLS != 'toggle') {
@@ -968,6 +976,7 @@ function getCookie(c_name)
                                             }
                                             if ($.existsN(subFrame)) {
                                                 if (e.type == 'click' && evLS == 'toggle') {
+                                                    e.stopPropagation();
                                                     $this.siblings().filter('.' + hM).click();
                                                     $this.addClass(hM);
                                                 }
@@ -975,23 +984,23 @@ function getCookie(c_name)
                                                     $this.has(sub2Frame).addClass(hM);
                                                 }
                                                 $thisDrop.css('width', '');
-                                                $thisDrop.children().add(subFrame).css('height', '');
+                                                listDrop.add(subFrame).css('height', '');
                                                 var dropW = $this.parent().parent().width(),
                                                 sumW = dropW + subFrame.width(),
                                                 subHL2 = subFrame.height(),
-                                                dropDH = $thisDrop.children().data('height');
+                                                dropDH = listDrop.data('height');
                                                 if (subHL2 < dropDH)
                                                     subHL2 = dropDH;
                                                 
                                                 if (animatesub3){
-                                                    $thisDrop.children().stop().animate({
+                                                    listDrop.stop(true, false).animate({
                                                         'height': subHL2
                                                     }, durationOnS);
                                                 }
                                                 else
-                                                    $thisDrop.children().css('height', subHL2);
+                                                    listDrop.css('height', subHL2);
                                                 if (animatesub3)
-                                                    $thisDrop.stop().animate({
+                                                    $thisDrop.stop(true, false).animate({
                                                         'width': sumW
                                                     }, durationOnS);
                                                 else
@@ -1003,13 +1012,15 @@ function getCookie(c_name)
                                             }
                                             else return true;
                                         }, function(e){
-                                            e.stopPropagation();
+                                            if (e.type == 'click' && evLS == 'toggle') {
+                                                e.stopPropagation();
+                                            }
                                             var $this = $(this),
                                             subFrame = $this.find(sub2Frame);
                                             if ($.existsN(subFrame)) {
-                                                subFrame.stop()[effOffS](durationOffS);
+                                                subFrame.hide();
                                                 $thisDrop.stop().css('width', '')
-                                                $thisDrop.children().add(subFrame).css('height', '')
+                                                listDrop.add(subFrame).stop().css('height', '')
                                                 $this.removeClass(hM)
                                             }
                                         });
@@ -1027,52 +1038,31 @@ function getCookie(c_name)
                             $this.removeClass('lastH');
                         var $thisDrop = $this.find(drop);
                         if ($.existsN($thisDrop)) {
-                            if (sub2Frame) {
-                                $thisDrop.stop()[effOff](durationOff, function() {
-                                    $this.removeClass(hM);
-                                });
-                            }
-                            else {
-                                $thisDrop.stop()[effOff](durationOff, function() {
-                                    $this.removeClass(hM);
-                                });
-                            }
+                            $thisDrop.stop(true, false)[effOff](durationOff);
                         }
-                        else {
-                            setTimeout(function() {
-                                $this.removeClass(hM);
-                            }, durationOff)
-                        }
+                        $this.removeClass(hM);
                     });
                 menu.unbind('hover')['hover'](
                     function(e) {
                         menuItem.each(function() {
                             $(this).data('kk', 0);
                         })
-                        e.stopImmediatePropagation();
-                        return timeDurM = 0;
+                        timeDurM = 0;
                     },
                     function(e) {
+                        closeMenu();
                         menuItem.each(function() {
                             $(this).data('kk', -1);
                         })
-                        e.stopImmediatePropagation();
-                        if (evLF == 'toggle' || evLS == 'toggle') {
-                            $(this).find('.' + hM).click();
-                        }
-                        setTimeout(function() {
-                            dropOJ.stop()[effOff](durationOff);
-                        }, duration)
-                        closeMenu(menu, e);
-                        return timeDurM = duration;
+                        timeDurM = duration;
                     });
                 body.unbind('click.menu').on('click.menu', function(e) {
-                    closeMenu(menu, e);
+                    closeMenu();
                 }).unbind('keydown.menu').on('keydown.menu', function(e) {
                     if (!e)
                         var e = window.event;
                     if (e.keyCode == 27) {
-                        closeMenu(menu, e);
+                        closeMenu();
                     }
                 });
                 dropOJ.find('a').unbind('click.menuref').on('click.menuref', function(e) {
@@ -1665,7 +1655,7 @@ function getCookie(c_name)
                 })
                 elSetSource.addClass(place);
                 function show() {
-                    elSetSource.stop()[$thisEOn]($thisD, function(e) {
+                    elSetSource.stop(true, false)[$thisEOn]($thisD, function(e) {
                         var $this = $(this);
                         $(document).trigger({
                             type: 'drop.contentHeight', 
@@ -1685,7 +1675,7 @@ function getCookie(c_name)
                     })
                 }
                 if (place == 'center' && !(elSet.modal || modal)) {
-                    $('.for-center').stop().show();
+                    $('.for-center').stop(true, false).show();
                     if ($(document).height() - wnd.height() > 0) {
                         optionsDrop.wST = wnd.scrollTop();
                         methods.scrollEmulate();

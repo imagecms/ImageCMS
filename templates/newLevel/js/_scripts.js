@@ -50,7 +50,9 @@ var optionsMenu = {
     menuCache: true,
     activeFl: '.frame-item-menu > .frame-title > a', //
     parentTl: '.frame-l2', //prev a level 2
-    otherPage: hrefCategoryProduct //for product [undefined or value not other]
+    otherPage: hrefCategoryProduct, //for product [undefined or value not other]
+    
+    vertical: false
 };
 var scrollPane = {
     animateScroll: true,

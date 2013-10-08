@@ -49,7 +49,9 @@
                 <header>
                     {include_tpl('header')}
                 </header>
-                {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                <div class="frame-menu-main horizontal-menu">
+                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                </div>
             </div>
             <div class="content">
                 {$content}
