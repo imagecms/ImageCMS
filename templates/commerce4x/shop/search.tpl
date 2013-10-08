@@ -23,7 +23,7 @@
                 <div class="filter">
                     <!-- Start. Categories tree with navigation -->
                     <div class="boxFilter">
-                        <div class="title">{lang('s_sea_found_in_categories')}:</div>
+                        <div class="title">{lang('Найдено в категориях','commerce4x')}:</div>
                         <nav>
                             <ul>
                             {foreach $categories as $key => $category}
@@ -53,10 +53,10 @@
             </aside>
             <div class="span9 right">
                 {if !empty(ShopCore::$_GET['text'])}
-                    <h1 class="d_i">  {lang('s_sea_search_for')}: "{encode(trim($_GET['text']))}" </h1>
+                    <h1 class="d_i">  {lang('Вы искали','commerce4x')}: "{encode(trim($_GET['text']))}" </h1>
                 {/if}
                 <span class="c_97">
-                    Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                    Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','commerce4x'), lang('товара','commerce4x'), lang('товаров','commerce4x')))}
                 </span>
                 <div class=" clearfix t-a_ccatalog_frame">
                     <div class="clearfix t-a_c frame_func_catalog">
@@ -78,7 +78,7 @@
                             <!-- End. Sort by block -->
                             <!-- Start. Per page block -->
                             <div class="f_r">
-                                <span class="v-a_m">{lang('s_products_per_page')}:</span>
+                                <span class="v-a_m">{lang('Товаров на странице','commerce4x')}:</span>
                                 <div class="lineForm w_70">
                                     {if ShopCore::$_GET['user_per_page'] == null}
                                         {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
@@ -98,8 +98,8 @@
                         <!-- End. Per page block -->
                         <!-- Start. Buttons for change view mode (list/images) -->
                         <div class="groupButton list_pic_btn">
-                            <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                            <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
+                            <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('Таблицей','commerce4x')}</span></button>
+                            <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('Списком','commerce4x')}</span></button>
                         </div>
                         <!-- End. Buttons for change view mode (list/images) -->
                     </div>
@@ -195,7 +195,7 @@
                                             data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                             data-stock="{echo $pv->getStock()}"
                                             >
-                                            {lang('s_buy')}
+                                            {lang('Купить','commerce4x')}
                                     </button>
                                     {else:}
                                     <button {if $key != 0}style="display:none"{/if}
@@ -220,7 +220,7 @@
                                         type="button"
                                         class="btn btn_not_avail variant_{echo $pv->getId()} variant">
                                         <span class="icon-but"></span>
-                                        <span class="text-el">{lang('s_message_o_report')}</span>
+                                        <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                                     </button>
                                     {/if}
                                     {/foreach}
@@ -234,14 +234,14 @@
                                     <button class="btn btn_small_p toCompare"
                                             data-prodid="{echo $product->getId()}"
                                             type="button"
-                                            data-title="{lang('s_add_to_compare')}"
-                                            data-firtitle="{lang('s_add_to_compare')}"
-                                            data-sectitle="{lang('s_in_compare')}"
+                                            data-title="{lang('В список сравнений','commerce4x')}"
+                                            data-firtitle="{lang('В список сравнений','commerce4x')}"
+                                            data-sectitle="{lang('В списке сравнений','commerce4x')}"
                                             data-rel="tooltip">
                                         <span class="icon-comprasion_2"></span>
-                                        <span class="text-el">{lang('s_add_to_compare')}</span>
+                                        <span class="text-el">{lang('В список сравнений','commerce4x')}</span>
                                     </button>
-
+{/*}
                                     {foreach $product->getProductVariants() as $key => $pv}
                                     <!-- to wish list button -->
                                     <button  {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant" 
@@ -249,14 +249,15 @@
                                         data-prodid="{echo $product->getId()}"
                                         data-varid="{echo $pv->getId()}"
                                         type="button"
-                                        data-title="{lang('s_add_to_wish_list')}"
-                                        data-firtitle="{lang('s_add_to_wish_list')}"
-                                        data-sectitle="{lang('s_in_wish_list')}"
+                                        data-title="{lang('В список желаний','commerce4x')}"
+                                        data-firtitle="{lang('В список желаний','commerce4x')}"
+                                        data-sectitle="{lang('В списке желаний','commerce4x')}"
                                         data-rel="tooltip">
                                         <span class="icon-wish_2"></span>
-                                        <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                        <span class="text-el">{lang('В список желаний','commerce4x')}</span>
                                     </button>
                                     {/foreach}
+{ */}
                                 </div>
                             </div>
                             <div class="short_description">

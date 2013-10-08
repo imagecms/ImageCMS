@@ -341,7 +341,6 @@ class assetManager {
     private function buildScriptPath($tpl) {
 //        if (!$this->template)
         $this->template = \CI_Controller::get_instance()->config->item('template');
-
         if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/js/' . $tpl . '.js'))
             return sprintf('templates/%s/%s/js/%s.js', $this->template, $this->getTrace(), $tpl);
         else
