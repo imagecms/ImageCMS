@@ -1,3 +1,23 @@
+<!--Start. Modal confirm delete page -->
+<div class="modal fade" id="confirmDeletePage">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">{lang("Warning","documentation")}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{lang("Are you really want delete this page?", "documentation")}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{lang("Close","Documentation")}</button>
+        <a href="/documentation/delete_page/{echo $page['id']}" class="btn btn-danger"/>{lang("Delete","Documentation")}</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--End. Modal confirm delete page -->
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -55,7 +75,7 @@
 
 <div class="container">
     <div class="page-header">
-        <h1 style="display: inline-block;">{lang('Edit page','documentation')}</h1>
+        <h1 style="display: inline-block;">{lang('Edit page','documentation')}</h1> 
         <div class="langSwitcher pull-right">
             <label class="col-lg-4 control-label m-t_10">{lang('Language','documentation')}:</label>
             <div class="col-lg-8">
@@ -63,14 +83,14 @@
                     {foreach $langs as $lang}
                         <option data-page_id="{if $page['lang_alias'] != 0}{echo $page['lang_alias']}{else:}{echo $page['id']}{/if}" 
                                 value="{echo $lang['id']}" 
-                                {if $page['lang']== $lang['id']}selected="selected"{/if}>
-                            {echo $lang['identif']}
-                        </option>
-                    {/foreach}
-                </select>
-            </div>
+                        {if $page['lang']== $lang['id']}selected="selected"{/if}>
+                        {echo $lang['identif']}
+                    </option>
+                {/foreach}
+            </select>
         </div>
     </div>
+</div>
 </div>
 {if $errors}
     <div class="alert alert-block alert-danger fade in">
@@ -121,11 +141,16 @@
     </textarea>
     <!-- End. Textarea with content-->
     <!-- Start. Submit button-->
-    <div class="buttonSave">
-        <button type="submit" class="btn btn-info pull-right">
+    
+    <div class="buttonSave pull-right">
+        <a data-toggle="modal" href="#confirmDeletePage"  class="btn btn-danger"/>
+            {lang('Delete','documentation')}
+        </a>
+        <button type="submit" class="btn btn-info">
             {lang('Save','documentation')}
         </button>
+
     </div>
-    <!-- End. Submit button -->
-    {form_csrf()}
+<!-- End. Submit button -->
+{form_csrf()}
 </form>
