@@ -1,4 +1,4 @@
-function get_discount(discTpl) {
+function getDiscountBack(discTpl) {
     var _discount = 0;
     $.ajax({
         url: '/mod_discount/discount_api/get_discount_api',
@@ -12,38 +12,37 @@ function get_discount(discTpl) {
                     $.post('/mod_discount/discount_api/get_discount_tpl_from_json_api', {
                         json: data
                     }, function(tpl) {
-                        displayDiscount(_discount);
-                        displayInfoDiscount(tpl);
+                        $(document).trigger({'type': 'discount.display', 'discount': _discount, 'tpl': tpl});
                     })
                 }
                 else {
-                    displayDiscount(_discount);
-                    displayInfoDiscount('');
+                    $(document).trigger({'type': 'discount.display', 'discount': _discount, 'tpl': ''});
                 }
             }
             else {
-                displayDiscount(_discount);
-                displayInfoDiscount('');
+                $(document).trigger({'type': 'discount.display', 'discount': _discount, 'tpl': ''});
             }
         }
+    }).fail(function(){
+        $(document).trigger({'type': 'discount.display', 'discount': null, 'tpl': ''});
     })
 }
 
-function load_certificat() {
+function loadCertificat() {
     var gift = 0;
     if (Shop.Cart.gift == undefined)
-        $.post('/mod_discount/gift/render_gift_input', function(tpl) {
-            renderGiftInput(tpl);
+        $.get('/mod_discount/gift/render_gift_input', function(tpl) {
+            $(document).trigger({'type': 'discount.renderGiftInput', 'tpl': tpl});
         });
     else {
         gift = Shop.Cart.gift;
         if (gift.error) {
-            giftError(gift.mes);
+            $(document).trigger({'type': 'discount.giftError', 'data': gift.mes});
         } else {
-            $.post('/mod_discount/gift/render_gift_succes', {
+            $.get('/mod_discount/gift/render_gift_succes', {
                 json: JSON.stringify(gift)
             }, function(tpl) {
-                renderGiftSucces(tpl, gift);
+                $(document).trigger({'type': 'discount.renderGiftSucces', 'data': gift, 'tpl': tpl});
             })
         }
     }

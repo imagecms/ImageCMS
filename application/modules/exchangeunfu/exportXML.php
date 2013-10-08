@@ -46,7 +46,7 @@ class ExportXML {
     }
 
     public function index() {
-
+        
     }
 
     /** export */
@@ -60,7 +60,7 @@ class ExportXML {
         $this->prices = $this->ci->export_model->getPrices($partner_id);
         $this->productivity = $this->ci->export_model->getProductivity($partner_id);
 
-        if ($partner_id) {
+//        if ($partner_id) {
             /** export partners */
             if ($this->partners) {
                 $this->exportPartners();
@@ -81,16 +81,11 @@ class ExportXML {
                 $this->exportOrder();
             }
 
-            /** products export for partner */
-            if (!empty($this->products_ids)) {
-                $this->products = $this->ci->export_model->getProducts($this->products_ids);
-
-                /** export products */
-                if ($this->products) {
-                    $this->exportProducts();
-                }
+            /** export products */
+            if ($this->products) {
+                $this->exportProducts();
             }
-        } else {
+//        } else {
             /** all export */
             /** export users */
             if ($this->users) {
@@ -98,24 +93,24 @@ class ExportXML {
             }
 
             /** export partners */
-            if ($this->partners) {
-                $this->exportPartners();
-            }
+//            if ($this->partners) {
+//                $this->exportPartners();
+//            }
 
             /** export productivity */
-            if ($this->productivity) {
-                $this->exportProductivity();
-            }
+//            if ($this->productivity) {
+//                $this->exportProductivity();
+//            }
 
             /** export prices */
-            if ($this->prices) {
-                $this->exportPrices();
-            }
+//            if ($this->prices) {
+//                $this->exportPrices();
+//            }
 
             /** export orders */
-            if ($this->orders) {
-                $this->exportOrder();
-            }
+//            if ($this->orders) {
+//                $this->exportOrder();
+//            }
 
             /** export categories */
             if ($this->categories) {
@@ -123,10 +118,10 @@ class ExportXML {
             }
 
             /** export products */
-            if ($this->products) {
-                $this->exportProducts();
-            }
-        }
+//            if ($this->products) {
+//                $this->exportProducts();
+//            }
+//        }
 
         /** wrao export  */
         $this->exportWrap();
@@ -250,7 +245,7 @@ class ExportXML {
                     "\t\t<IDWeb>" . $price['id'] . "</IDWeb>\r\n" .
                     "\t\t<ЭтоАкционнаяЦена>" . $price_bool . "</ЭтоАкционнаяЦена>\r\n" .
                     "\t\t<Цена>" . $price['price'] . "</Цена>\r\n" .
-                    "\t\t<IDНоменклатура>" . $products[$price['product_id']]  . "</IDНоменклатура>\r\n" .
+                    "\t\t<IDНоменклатура>" . $products[$price['product_id']] . "</IDНоменклатура>\r\n" .
                     "\t\t<IDWebНоменклатура>" . $price['product_id'] . "</IDWebНоменклатура>\r\n" .
                     "\t\t<IDОрганизация>" . $price['partner_external_id'] . "</IDОрганизация>\r\n" .
                     "\t\t<IDWebОрганизация>" . $partners[$price['partner_external_id']] . "</IDWebОрганизация>\r\n" .

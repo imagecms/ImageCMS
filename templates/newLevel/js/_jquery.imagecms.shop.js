@@ -3,33 +3,13 @@
  ** @author Domovoj
  * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
  */
-
 var isTouch = 'ontouchstart' in document.documentElement,
 activeClass = 'active',
 clonedC = 'cloned';
 wnd = $(window),
     body = $('body'),
     checkProdStock = checkProdStock == "" ? false : true;
-function pluralStr(i, str) {
-    function plural(a) {
-        if (a % 10 == 1 && a % 100 != 11)
-            return 0
-        else if (a % 10 >= 2 && a % 10 <= 4 && (a % 100 < 10 || a % 100 >= 20))
-            return 1
-        else
-            return 2;
-    }
-
-    switch (plural(i)) {
-        case 0:
-            return str[0];
-        case 1:
-            return str[1];
-        default:
-            return str[2];
-    }
-}
-jQuery.expr[':'].regex = function(elem, index, match) {
+$.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
     validLabels = /^(data|css):/,
     attr = {
@@ -39,7 +19,7 @@ jQuery.expr[':'].regex = function(elem, index, match) {
     },
     regexFlags = 'ig',
     regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
-    return regex.test(jQuery(elem)[attr.method](attr.property));
+    return regex.test($(elem)[attr.method](attr.property));
 }
 
 String.prototype.trimMiddle = function()
@@ -163,10 +143,6 @@ function getCookie(c_name)
     return c_value;
 }
 
-var ie = jQuery.browser.msie,
-ieV = jQuery.browser.version,
-ltie7 = ie && (ieV <= 7),
-ltie8 = ie && (ieV <= 8);
 (function($) {
     var methods = {
         init: function(options) {
@@ -337,13 +313,13 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.nStCheck');
+            $.error('Method ' + method + ' does not exist on $.nStCheck');
         }
     };
     $.nStCheck = function(m) {
         return methods[m];
     };
-})(jQuery);
+})($);
 (function($) {
     var methods = {
         init: function(options) {
@@ -435,13 +411,13 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.nStRadio');
+            $.error('Method ' + method + ' does not exist on $.nStRadio');
         }
     };
     $.nStRadio = function(m) {
         return methods[m];
     };
-})(jQuery);
+})($);
 (function($) {
     var methods = {
         init: function(options) {
@@ -626,13 +602,13 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.autocomplete');
+            $.error('Method ' + method + ' does not exist on $.autocomplete');
         }
     };
     $.autocomplete = function(m) {
         return methods[m];
     };
-})(jQuery);
+})($);
 (function($) {
     var methods = {
         init: function(options) {
@@ -704,7 +680,7 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.tooltip');
+            $.error('Method ' + method + ' does not exist on $.tooltip');
         }
     };
     $.tooltip = function(m) {
@@ -715,7 +691,7 @@ ltie8 = ie && (ieV <= 8);
     }).live('mouseout', function() {
         $(this).tooltip('remove');
     })
-})(jQuery);
+})($);
 /*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
@@ -749,6 +725,8 @@ ltie8 = ie && (ieV <= 8);
                     direction: null,
                     effectOn: 'fadeIn',
                     effectOff: 'fadeOut',
+                    effectOnS: 'fadeIn',
+                    effectOffS: 'fadeOut',
                     duration: 0,
                     drop: 'li > ul',
                     countColumn: 'none',
@@ -759,6 +737,9 @@ ltie8 = ie && (ieV <= 8);
                     columnClassPref2: 'column2_',
                     durationOn: 0,
                     durationOff: 0,
+                    durationOnS: 0,
+                    durationOffS: 0,
+                    animatesub3: false,
                     dropWidth: null,
                     sub2Frame: null,
                     evLF: 'hover',
@@ -776,6 +757,8 @@ ltie8 = ie && (ieV <= 8);
                 dropOJ = $(drop),
                 effOn = settings.effectOn,
                 effOff = settings.effectOff,
+                effOnS = settings.effectOnS,
+                effOffS = settings.effectOffS,
                 countColumn = settings.countColumn,
                 columnPart = settings.columnPart,
                 columnPart2 = settings.columnPart2,
@@ -788,6 +771,9 @@ ltie8 = ie && (ieV <= 8);
                 duration = timeDurM = settings.duration,
                 durationOn = settings.durationOn,
                 durationOff = settings.durationOff,
+                durationOnS = settings.durationOnS,
+                durationOffS = settings.durationOffS,
+                animatesub3 = settings.animatesub3,
                 evLF = settings.evLF,
                 evLS = settings.evLS,
                 hM = settings.frAClass,
@@ -827,6 +813,10 @@ ltie8 = ie && (ieV <= 8);
                             numbColumn = $.unique(numbColumn).sort();
                             var numbColumnL = numbColumn.length;
                             if (numbColumnL > 1) {
+                                if ($.inArray('0', numbColumn) == 0){
+                                    numbColumn.shift();
+                                    numbColumn.push('0');
+                                }
                                 $.map(numbColumn, function(n, i) {
                                     var currC = columnsObj.filter('.' + n),
                                     classCuurC = currC.first().attr('class');
@@ -834,8 +824,10 @@ ltie8 = ie && (ieV <= 8);
                                     $this.find('[data-column="' + n + '"]').children().append(currC.clone());
                                     if (sub2Frame)
                                         $this.addClass('x' + numbColumnL);
-                                    else
+                                    else{
                                         $this.closest('li').addClass('x' + numbColumnL).attr('data-x', numbColumnL);
+                                    }
+   
                                 })
                                 columnsObj.remove();
                             }
@@ -850,7 +842,12 @@ ltie8 = ie && (ieV <= 8);
                                 numbColumn[i] = $(this).attr('class').match(/([0-9]+)/)[0];
                             })
                             numbColumn = $.unique(numbColumn).sort();
-                            if (numbColumn.length > 1) {
+                            var numbColumnL = numbColumn.length;
+                            if (numbColumnL > 1) {
+                                if ($.inArray('0', numbColumn) == 0){
+                                    numbColumn.shift();
+                                    numbColumn.push('0');
+                                }
                                 $.map(numbColumn, function(n, i) {
                                     var $thisLi = columnsObj.filter('.' + columnClassPref + n),
                                     sumx = 0;
@@ -863,15 +860,12 @@ ltie8 = ie && (ieV <= 8);
                                 })
                                 columnsObj.remove();
                             }
-                            var sumx = 0,
-                            $thisLi = $this.children().children(),
-                            $thisLiL = $thisLi.length;
-                            $thisLi.each(function() {
+                            var sumx = 0;
+                            $this.children().children().each(function() {
                                 var datax = $(this).attr('data-x');
                                 sumx = sumx + parseInt(datax == 0 || datax == undefined ? 1 : datax);
                             })
-                            if ($thisLiL != sumx)
-                                $this.addClass('x' + sumx);
+                            $this.addClass('x' + sumx);
                         })
                     $(document).trigger({
                         type: 'columnRenderComplete', 
@@ -892,13 +886,11 @@ ltie8 = ie && (ieV <= 8);
                     if ($.existsN($thisDrop)) {
                         if (!dropW) {
                             menu.css('overflow', 'hidden');
-                            dropW2 = $thisDrop.show().width();
+                            dropW = $thisDrop.show().width();
                             $thisDrop.hide();
                             menu.css('overflow', '');
                         }
-                        else
-                            dropW2 = dropW;
-                        methods.position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
+                        methods.position(menuW, $thisL, dropW, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                     }
                     $this.data('kk', 0);
                 }).css('height', sH);
@@ -923,6 +915,7 @@ ltie8 = ie && (ieV <= 8);
                 }
                 menuItem.unbind(evLF)[evLF](
                     function(e) {
+                        clearTimeout(hoverTO);
                         var $this = $(this),
                         $thisI = $this.index();
                         $this = $(this).addClass(hM),
@@ -962,7 +955,10 @@ ltie8 = ie && (ieV <= 8);
                                             var $this = $(this),
                                             isSub2 = $this.find(sub2Frame);
                                             if ($.existsN(isSub2)) {
-                                            var sumHL2 = isSub2.actual('height');
+                                            $this.css('overflow', 'hidden');
+                                            var sumHL2 = isSub2.show().height();
+                                            isSub2.hide();
+                                            $this.css('overflow', '');
                                             if (sumHL2 > sumHL1)
                                             var koef = Math.ceil(sumHL2 / sumHL1);
                                             if (koef != undefined) {
@@ -991,8 +987,20 @@ ltie8 = ie && (ieV <= 8);
                                                 dropDH = $thisDrop.children().data('height');
                                                 if (subHL2 < dropDH)
                                                     subHL2 = dropDH;
-                                                $thisDrop.css('width', sumW);
-                                                $thisDrop.children().add(subFrame).css('height', subHL2);
+                                                
+                                                if (animatesub3)
+                                                    $thisDrop.children().add(subFrame).stop().animate({
+                                                        'height': subHL2
+                                                    }, durationOnS);
+                                                else
+                                                    $thisDrop.children().add(subFrame).css('height', subHL2);
+                                                if (animatesub3)
+                                                    $thisDrop.stop().animate({
+                                                        'width': sumW
+                                                    }, durationOnS);
+                                                else
+                                                    $thisDrop.css('width', sumW);
+                                                subFrame.stop()[effOnS](durationOnS);
                                                 e.preventDefault();
                                             }
                                             else {
@@ -1002,8 +1010,9 @@ ltie8 = ie && (ieV <= 8);
                                         , function(e) {
                                             var $this = $(this),
                                             subFrame = $this.find(sub2Frame);
-                                            if ($.existsN($this.next())) {
-                                                $thisDrop.css('width', '')
+                                            if ($.existsN(subFrame)) {
+                                                subFrame.stop()[effOffS](durationOffS);
+                                                $thisDrop.stop().css('width', '')
                                                 $thisDrop.children().add(subFrame).css('height', '')
                                                 $this.removeClass(hM)
                                             }
@@ -1023,7 +1032,7 @@ ltie8 = ie && (ieV <= 8);
                         var $thisDrop = $this.find(drop);
                         if ($.existsN($thisDrop)) {
                             if (sub2Frame) {
-                                $this.find(drop)[effOff](durationOff, function() {
+                                $this.find(drop).stop()[effOff](durationOff, function() {
                                     $this.removeClass(hM);
                                 });
                             }
@@ -1038,7 +1047,7 @@ ltie8 = ie && (ieV <= 8);
                                 $this.removeClass(hM);
                             }, durationOff)
                         }
-                    })
+                    });
                 menu.unbind('hover')['hover'](
                     function(e) {
                         menuItem.each(function() {
@@ -1102,13 +1111,13 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.menuImageCms');
+            $.error('Method ' + method + ' does not exist on $.menuImageCms');
         }
     };
     $.menuImageCms = function(m) {
         return methods[m];
     };
-})(jQuery);
+})($);
 /*plugin menuImageCms end*/
 /*plugin tabs*/
 (function($) {
@@ -1393,13 +1402,13 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.tabs');
+            $.error('Method ' + method + ' does not exist on $.tabs');
         }
     }
     $.tabs = function(m) {
         return methods[m];
     };
-})(jQuery);
+})($);
 /*/plugin tabs end*/
 (function($) {
     $.fn.actual = function() {
@@ -1417,7 +1426,7 @@ ltie8 = ie && (ieV <= 8);
         }
         return undefined;
     };
-}(jQuery));
+}($));
 (function($) {
     var methods = {
         init: function(options) {
@@ -1432,6 +1441,8 @@ ltie8 = ie && (ieV <= 8);
                 modal: false,
                 confirm: false,
                 confirmSel: '#confirm',
+                overlayOpacity: '0',
+                overlayColor: '#fff',
                 always: false,
                 animate: false,
                 moreoneNC: true,
@@ -1604,19 +1615,13 @@ ltie8 = ie && (ieV <= 8);
             $(set.exit).die('click.drop').live('click.drop', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
-            var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
-            if (condOverlay) {
-                if (!$.exists('.overlayDrop')) {
-                    body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
-                }
-                optionsDrop.dropOver = $('.overlayDrop').css({
-                    'background-color': overlayColor,
-                    'opacity': overlayOpacity
-                });
+            if (!$.exists('.overlayDrop')) {
+                body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
             }
-            else {
-                optionsDrop.dropOver == undefined;
-            }
+            optionsDrop.dropOver = $('.overlayDrop').css({
+                'background-color': overlayColor,
+                'opacity': overlayOpacity
+            });
             if (elSetSource.is('.' + activeClass) && e.button != undefined) {
                 methods.closeDrop(elSetSource);
             }
@@ -1656,14 +1661,12 @@ ltie8 = ie && (ieV <= 8);
                     }, 300)
                 });
 
-                if (condOverlay) {
-                    optionsDrop.dropOver.show().add($('.for-center')).unbind('click.drop').on('click.drop', function(e) {
-                        if (!$.existsN($(e.target).closest(elSetSource)) && !$.existsN($(e.target).is(elSetSource))) {
-                            e.stopPropagation();
-                            methods.closeDrop(false);
-                        }
-                    })
-                }
+                optionsDrop.dropOver.show().add($('.for-center')).unbind('click.drop').on('click.drop', function(e) {
+                    if (!$.existsN($(e.target).closest(elSetSource)) && !$.existsN($(e.target).is(elSetSource))) {
+                        e.stopPropagation();
+                        methods.closeDrop(false);
+                    }
+                })
                 elSetSource.addClass(place);
                 function show() {
                     elSetSource.stop()[$thisEOn]($thisD, function(e) {
@@ -1741,7 +1744,7 @@ ltie8 = ie && (ieV <= 8);
                         drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
                             var $this = $(this),
                             $thisEOff = $this.data('effect-off'),
-                            $thisD = $this.data('duration');
+                            $thisD = $this.data('duration'),
                             $thisB = $this.data('elrun');
                             if ($this.data('close') != undefined)
                                 $this.data('close')($thisB, $(this));
@@ -1757,9 +1760,8 @@ ltie8 = ie && (ieV <= 8);
                                 } catch (err) {
                                 }
                             }
-                            optionsDrop.dropOver = $('.overlayDrop');
-                            if (optionsDrop.dropOver.is(':visible') && condOverlay)
-                                methods.scrollEmulateRemove($thisD);
+                            
+                            methods.scrollEmulateRemove($thisD);
 
                             $('.for-center').fadeOut($thisD);
                             $this[$thisEOff]($thisD, function() {
@@ -1872,19 +1874,19 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.drop');
+            $.error('Method ' + method + ' does not exist on $.drop');
         }
     };
     $.drop = function(m) {
         return methods[m];
     };
-})(jQuery);
+})($);
 (function($) {
     var methods = {
         init: function(options) {
             var settings = $.extend({
-                prev: '',
-                next: '',
+                prev: 'prev',
+                next: 'next',
                 ajax: false,
                 after: function() {
                 },
@@ -1989,13 +1991,13 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.plusminus');
+            $.error('Method ' + method + ' does not exist on $.plusminus');
         }
     };
     $.plusminus = function(m) {
         return methods[m];
     };
-})(jQuery);
+})($);
 (function($) {
     var methods = {
         init: function(e) {
@@ -2016,7 +2018,7 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.minValue');
+            $.error('Method ' + method + ' does not exist on $.minValue');
         }
     };
     $.minValue = function(m) {
@@ -2035,7 +2037,7 @@ ltie8 = ie && (ieV <= 8);
             return false;
         }
     })
-})(jQuery);
+})($);
 (function($) {
     var methods = {
         init: function(e, f) {
@@ -2061,7 +2063,7 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.maxValue');
+            $.error('Method ' + method + ' does not exist on $.maxValue');
         }
     };
     $.maxValue = function(m) {
@@ -2070,7 +2072,7 @@ ltie8 = ie && (ieV <= 8);
     $('[data-max]').die('keydown keyup').live('keydown keyup', function(e) {
         $(this).maxValue(e);
     })
-})(jQuery);
+})($);
 /*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/
 (function($) {
     var methods = {
@@ -2207,13 +2209,13 @@ ltie8 = ie && (ieV <= 8);
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.myCarousel');
+            $.error('Method ' + method + ' does not exist on $.myCarousel');
         }
     }
     $.myCarousel = function(m) {
         return methods[m];
     };
-})(jQuery);
+})($);
 /*
  *imagecms shop plugins
  **/
@@ -2764,7 +2766,8 @@ var ImageCMSApi = {
                     var input = thisSelector.find('[name=' + key + ']');
                     input.addClass(genObj.err);
                     input[DS.cMsgPlace](DS.cMsg(key, validations[key], genObj.err, thisSelector));
-                    thisSelector.find(':input.' + genObj.err + ':first').focus();
+                    var finput = thisSelector.find(':input.' + genObj.err + ':first');
+                    finput.setCursorPosition(finput.val().length);
                 }
                 if (i == Object.keys(validations).length)
                     $(document).trigger({
