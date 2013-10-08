@@ -36,7 +36,7 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_c_uoy_user_el')}</span>
+                                        <span class="title">{lang('Электронный адрес','commerce4x')}</span>
                                         <span class="frame_form_field">
                                             {if $isRequired['userInfo[email]']}
                                                 <span class="must">*</span>
@@ -46,7 +46,7 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_phone')}</span>
+                                        <span class="title">{lang('Телефон','commerce4x')}</span>
                                         {if $isRequired['userInfo[phone]']}
                                             <span class="must">*</span>
                                         {/if}
@@ -56,7 +56,7 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_addresrec')}</span>
+                                        <span class="title">{lang('Адрес получателя','commerce4x')}</span>
                                         <span class="frame_form_field">
                                             {if $isRequired['userInfo[deliverTo]']}
                                                 <span class="must">*</span>
@@ -125,9 +125,9 @@
                                     {if ShopCore::app()->SSettings->usegifts == 1}
                                         <div class="groups_form" >
                                             <label for="giftcert">
-                                                <span class="title">{lang('s_cert_code')}</span>
+                                                <span class="title">{lang('Код сертификата','commerce4x')}</span>
                                                 <span class="frame_form_field">
-                                                    <button class="btn f_r" id="applyGiftCert">{lang('s_apply_sertif')}</button>
+                                                    <button class="btn f_r" id="applyGiftCert">{lang('Применить','commerce4x')}</button>
                                                     <div class="o_h">
                                                         <input type="text" name="giftcert" value="">
                                                     </div>
@@ -141,7 +141,7 @@
                                     { */}
                                     <div class="groups_form">
                                         <label>
-                                            <span class="title">{lang('s_comment')}</span>
+                                            <span class="title">{lang('Комментарий','commerce4x')}</span>
                                             <span class="frame_form_field"><textarea name="userInfo[commentText]" ></textarea></span>
                                         </label>
                                         <div class="frameLabel c_t" style="position: relative; z-index: 4;">
