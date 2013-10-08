@@ -2,8 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>{$site_title}</title>
+        <meta name="description" content="{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="generator" content="ImageCMS" />
         <link href="{$THEME}css/bootstrap.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/bootstrap-theme.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/style.css" rel="stylesheet" media="screen"/>
