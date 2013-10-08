@@ -62,9 +62,9 @@
                         <div class="pull-right navbar-brand">
                             <span class="glyphicon glyphicon-log-in "> 
                             </span>
-                            <a id="showLoginForm" style="cursor: pointer;" >{lang('Log in','documentation')}</a>
+                            <a href="/auth/login" id="showLoginForm" style="cursor: pointer;" >{lang('Log in','documentation')}</a>
                         </div>
-                        <div id="loginForm" class="" style="display: none;">
+                        <!--<div id="loginForm" class="" style="display: none;">
                             <form class="navbar-form navbar-right pull-right" method="post" id="login_form" action="/auth/login">
                                 <div class="form-group">
                                     <input type="text" name="email" placeholder="Email" class="form-control"/>
@@ -78,7 +78,7 @@
                                 </button>
                                 {form_csrf()}
                             </form>
-                        </div>
+                        </div>-->
                     {else:}
                         <div class="pull-right">
                             {if $CI->dx_auth->is_admin()}
