@@ -20,8 +20,10 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
+    
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
     //countColumn: 5, //if not drop-side
+    
     sub2Frame: '.frame-l2', //if drop-side
     dropWidth: 475, //if not define than will be actual width needs when drop-side
 
@@ -1571,7 +1573,7 @@ function init() {
             }
         }
     });
-    $(genObj.plusMinus).plusminus({
+    $('.items-catalog '+genObj.plusMinus + ', .item-product '+genObj.plusMinus).plusminus({
         prev: 'prev.children(:eq(1)).children',
         next: 'prev.children(:eq(0)).children',
         after: function(e, el, input) {
