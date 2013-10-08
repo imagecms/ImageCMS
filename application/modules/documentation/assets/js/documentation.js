@@ -155,6 +155,43 @@ function createCategory() {
     });
 }
 
+/** 
+ * Edit category check validation and display result 
+ * @returns {undefined} 
+ * */
+function editCategory() {
+    var formIdent = $('#edit_cat');
+    var formData = formIdent.serialize();
+    $('.modalErrosBlock').hide();
+    $('.modalCategoryCreatedSuccesBlock').hide();
+    console.log(formData);
+    $.ajax({
+        async: false,
+        type: 'post',
+        url: formIdent.attr('action'),
+        data: formData,
+        success: function(response) {
+            /** Parse json response **/
+            try {
+                responseObj = $.parseJSON(response);
+            } catch (e) {
+                return 'error parsing jsone';
+            }
+            /** Process results **/
+            if (responseObj.success === 'false') {
+                console.log(responseObj);
+                $('.modalErrosBlock').html(responseObj.errors);
+                $('.modalErrosBlock').show();
+            } else {
+                $('.modalCategoryCreatedSuccesBlock').show();
+                console.log(responseObj.data.full_url);
+                setTimeout(function() {
+                    window.location = "/"+responseObj.data.full_url;
+                }, 1000);
+            }
+        }
+    });
+}
 
 
 /**  * */
@@ -167,5 +204,6 @@ $(document).ready(function() {
         var langId = selectElement.find("option:selected").val();
         document.location.href = '/documentation/edit_page/' + pageId + '/' + langId;
     });
+
 
 });

@@ -99,7 +99,7 @@
     <div class="gen_sum">
         <span class="total_pay">{lang('Всего к оплате','commerce_mobiles_new')}:</span>
         <span class="price">
-            {echo $total - $model->getDiscount()} {$CS}
+            {echo $total - $model->getDiscount() + $model->getDeliveryPrice()} {$CS}
         </span>
     </div>
 </div>

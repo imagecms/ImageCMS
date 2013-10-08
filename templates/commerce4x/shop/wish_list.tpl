@@ -130,7 +130,7 @@
                 <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
                     <div class="span6">
                         <div class="standart_form horizontal_form t-a_r">
-                            <input type="submit" value="{lang('lang_submit')}" name="sendwish" class="btn btn_cart f_r m-l_10"/>
+                            <input type="submit" value="{lang('Отправить','commerce4x')}" name="sendwish" class="btn btn_cart f_r m-l_10"/>
                             <div class="o_h">
                                 <input type="text" placeholder="E-mail получателя" name="friendsMail"/>
                             </div>
