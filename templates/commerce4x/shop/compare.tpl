@@ -114,6 +114,7 @@
                                             {/if}
                                             <!-- End. Check amount of goods -->
                                             <!-- to wish list button -->
+                                            {/*}
                                             <button class="btn btn_small_p toWishlist"
                                                     data-price="{echo $product->firstVariant->toCurrency()}"
                                                     data-prodid="{echo $product->getId()}"
@@ -124,6 +125,7 @@
                                                     data-rel="tooltip">
                                                 <span class="icon-wish_2"></span>
                                             </button>
+                                             { */}
                                         </div>
                                         <!-- End. Product info -->
                                         <div class="photo-block">

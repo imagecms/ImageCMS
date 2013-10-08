@@ -200,7 +200,7 @@
                                     <span class="text-el">{lang("add to compare","admin")}</span>
                                 </button>
                                 <!-- to wish list button -->
-
+{/*}
                                 <button class="btn btn_small_p toWishlist"
                                         data-price="{echo $product->firstVariant->toCurrency()}"
                                         data-prodid="{echo $product->getId()}"
@@ -213,6 +213,7 @@
                                     <span class="icon-wish_2"></span>
                                     <span class="text-el">{lang("add to wish list","admin")}</span>
                                 </button>
+{ */}
                             </div>
 
                             <div class="photo-block">
