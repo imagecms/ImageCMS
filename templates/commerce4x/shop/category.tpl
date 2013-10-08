@@ -227,6 +227,7 @@
                                             <span class="icon-comprasion_2"></span>
                                             <span class="text-el">{lang('s_add_to_compare')}</span>
                                         </button>
+{/*}
                                         {$CI->load->module('wishlist')->renderWLButton($product->firstvariant->getId())}
                                         {foreach $variants as $key => $pv}
                                             <!-- to wish list button -->
@@ -243,6 +244,7 @@
                                                 <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                             </button>
                                         {/foreach}
+{ */}
                                     </div>
                                 </div>
                                 <div class="short_description">

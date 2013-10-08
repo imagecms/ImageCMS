@@ -193,6 +193,7 @@
                                 <!-- End. Block "Add to Compare" -->
 
                                 <!--Block Wishlist Start-->
+                                {/*}
                                 {foreach $variants as $key => $pv}
                                     <div {if $key != 0}style="display:none"{/if} class="variant_{echo $pv->getId()} variant m-t_5">
                                         <!-- to wish list button -->
@@ -210,6 +211,7 @@
                                         </button>
                                     </div>
                                 {/foreach}
+                                { */}
                                 <!-- Stop. Block "Add to Wishlist" -->
                                 <!--Block Follow the price Start-->
                             </div>

@@ -241,7 +241,7 @@
                                         <span class="icon-comprasion_2"></span>
                                         <span class="text-el">{lang('s_add_to_compare')}</span>
                                     </button>
-
+{/*}
                                     {foreach $product->getProductVariants() as $key => $pv}
                                     <!-- to wish list button -->
                                     <button  {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant" 
@@ -257,6 +257,7 @@
                                         <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                     </button>
                                     {/foreach}
+{ */}
                                 </div>
                             </div>
                             <div class="short_description">
