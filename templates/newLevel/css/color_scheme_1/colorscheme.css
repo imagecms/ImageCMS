@@ -43,6 +43,10 @@ input[type="text"], input[type="password"], textarea{-moz-border-radius: 3px;-we
 .text-discount{color: #ff7e00;}
 .name-check-filter{color: #0c9acb;}
 
+.list-style-1 li{position: relative;padding-left: 22px;}
+.list-style-1 li:before{content: "\b7";position: absolute;left: 9px;top: -6px;color: #0c9acb;font-size: 25px;}
+.date{color: #a0a0a0;}
+
 /*active*/
 button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #999 !important;}
 .active > span, .active > a, .active > button{cursor: default;color: #999;}
@@ -105,9 +109,43 @@ a:focus, a:active {color: #51d2ff;}
 .btn-already-show > button:hover .d_l_1, .btn-already-show > button:hover .text-el, .frames-checks-sliders .title > .f-s_0:hover .d_l{color: #51d2fe;border-bottom-color: #51d2fe;}
 /*/dotted lines*/
 
-.list-style-1 li{position: relative;padding-left: 22px;}
-.list-style-1 li:before{content: "\b7";position: absolute;left: 9px;top: -6px;color: #0c9acb;font-size: 25px;}
-.date{color: #a0a0a0;}
+/*for delete*/
+/*fill*/
+.group-button-carousel .arrow[disabled="disabled"] path{fill:#999;}
+.not-avail path{fill: #999 !important;}
+.active > button .icon_table_cat path, .active > button .icon_list_cat path{fill: #999;}
+.icon_times_cart:hover path{fill:#0c9acb;}
+.icon_times:hover path{fill:#0c9acb;}
+.group-button-carousel .arrow:not([disabled="disabled"]):hover path{fill: #0eb3eb;}
+.btn-reset-filter path{fill: #fff;}
+.btn-wish > button:hover path, .btn-compare > button:hover path, .btn-wish > button:focus path, .btn-compare > button:focus path{fill: #51d2ff;}
+.btn-wish-in path, .btn-comp-in path{fill: #699200;}
+.btn-already-show.active > button path{fill: #0c9acb;}
+.btn-bask.pointer:hover path, .btn-bask.pointer:active path{fill: #fff;}
+.btn-bask.pointer path{fill: #0c9acb;}
+/*/fill*/
+
+/*groups selectors*/
+.frame-item-menu > .frame-title .text-el, .frame-drop-menu .title-category-l1 > .text-el, .cusel, .compare-characteristic > li > span{font-size: 12px;}
+.frame-kit, .items-default > li, .frame-item-menu > .frame-title > .title > .text-el, .tabs-data > li > a, .tabs-data > li > button, .drop-bask .frame-items .price, .drop-bask .frame-items .curr, .frame-bask-order .description > .frame-prices .price, .frame-bask-order .description > .frame-prices .curr, .table-info-order .price-new .price, .table-profile .price-new .price, .nav > li > a, .nav > li > span, .nav.nav-vertical ul{font-size: 13px;}
+.table-info-order .price-new .price, .table-profile .price-new .price, .cusel, .characteristic, .table-info-order td{font-weight: normal;}
+.title-default > .title, .gen-sum-order .title, footer [class^="box"] .main-title, .drop-header > .title, .frame-menu-category-first .title-category-l1 > .text-el{font-size: 18px;}
+.price-new .price, .price-discount .price{font-size: 15px;}
+.header-frame-foot .price-new .price{font-size: 22px;}
+.left-header > .nav > li > a, .left-header > .nav > li > span{font-size: 11px;}
+.next-kit, .gen-sum-kit{font-size: 32px;}
+.item-report .description .title{font-size: 16px;}
+.frame-prices-buy .price-new .price, .complect-gen-sum .price-new .price, .gen-sum-order .price-new .price{font-size: 25px;}
+.text th, .text dt, .phones-header .phone, .next-kit, .gen-sum-kit, .items-order-gen-info .price-item, .items-register-add-ref .divider, .frame-description-benefit .title, .price-discount .price, .price-new .price, form .frame-label > .title, form label > .title, .msg .text-el, .frames-checks-sliders .title, .header-category .title, .characteristic th, .drop-bask .drop-header .add-info, .tabs-compare-diferent .text-el{font-weight: bold;}
+/*/groups selectors*/
+
+.items a .title{font-weight: bold;border-bottom: 1px solid #b2dce9;}
+.frame-check-filter, .frames-checks-sliders, .header-category, .frame-prices-buy-wish-compare, .layout-highlight-msg, .frame-bask-order, .frame-category-menu, .nav-static-pages{border: 1px solid #efece8;background-color: #fefefe;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-moz-box-shadow: 0 1px 1px #ece9e6;-webkit-box-shadow: 0 1px 1px #ece9e6;box-shadow: 0 1px 1px #ece9e6;}
+.frames-checks-sliders, .header-category, .item-product .frame-prices-buy, .tabs-data > li.active, .layout-highlight, .frame-bask-order{position: relative;}
+.frames-checks-sliders:before, .header-category:before, .item-product .frame-prices-buy:before, .tabs-data > li.active:before, .layout-highlight:before, .frame-bask-order:before{content: "";width: 100%;height: 3px;background-color: #0c9acb;-moz-border-radius: 5px 5px 0 0;-webkit-border-radius: 5px 5px 0 0;border-radius: 5px 5px 0 0;position: absolute;top: -3px;z-index: -1;left: 0;}
+.form-comment__icsi-css.layout-highlight:before{height: 4px;-moz-border-radius: 4px 4px 0 0;-webkit-border-radius: 4px 4px 0 0;border-radius: 4px 4px 0 0;}
+.tabs-data > li.active:before{padding: 0 2px;left: -2px;}
+/*/for delete*/
 
 /*main-menu*/
 .menu-main{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
@@ -543,7 +581,7 @@ footer [class^="box"] .main-title{color: #9c9c9c;}
 .frame-icon-benefit > .icon-benefits_2{width: 33px;height: 30px;background-position: -34px 0;margin-left: 5px;}
 .frame-icon-benefit > .icon-benefits_3{width: 32px;height: 34px;background-position: -67px 0;}
 .frame-icon-benefit > .icon-benefits_4{width: 26px;height: 31px;background-position: -100px 0;}
-.frame-description-benefit{margin-left: 70px;height: 58px;}
+.frame-description-benefit{margin-left: 70px;height: 58px;padding-right: 10px;}
 /*/benefits*/
 
 .text table {border: 1px solid #000;}
@@ -1319,41 +1357,3 @@ footer .box-4{overflow: visible;}
 /*/colors style*/
 
 .frame-category-brand .inside-padd{border: 1px solid #e7e2dd;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
-
-/*for delete*/
-/*fill*/
-.group-button-carousel .arrow[disabled="disabled"] path{fill:#999;}
-.not-avail path{fill: #999 !important;}
-.active > button .icon_table_cat path, .active > button .icon_list_cat path{fill: #999;}
-.icon_times_cart:hover path{fill:#0c9acb;}
-.icon_times:hover path{fill:#0c9acb;}
-.group-button-carousel .arrow:not([disabled="disabled"]):hover path{fill: #0eb3eb;}
-.btn-reset-filter path{fill: #fff;}
-.btn-wish > button:hover path, .btn-compare > button:hover path, .btn-wish > button:focus path, .btn-compare > button:focus path{fill: #51d2ff;}
-.btn-wish-in path, .btn-comp-in path{fill: #699200;}
-.btn-already-show.active > button path{fill: #0c9acb;}
-.btn-bask.pointer:hover path, .btn-bask.pointer:active path{fill: #fff;}
-.btn-bask.pointer path{fill: #0c9acb;}
-/*/fill*/
-
-/*groups selectors*/
-.frame-item-menu > .frame-title .text-el, .frame-drop-menu .title-category-l1 > .text-el, .cusel, .compare-characteristic > li > span{font-size: 12px;}
-.frame-kit, .items-default > li, .frame-item-menu > .frame-title > .title > .text-el, .tabs-data > li > a, .tabs-data > li > button, .drop-bask .frame-items .price, .drop-bask .frame-items .curr, .frame-bask-order .description > .frame-prices .price, .frame-bask-order .description > .frame-prices .curr, .table-info-order .price-new .price, .table-profile .price-new .price, .nav > li > a, .nav > li > span, .nav.nav-vertical ul{font-size: 13px;}
-.table-info-order .price-new .price, .table-profile .price-new .price, .cusel, .characteristic, .table-info-order td{font-weight: normal;}
-.title-default > .title, .gen-sum-order .title, footer [class^="box"] .main-title, .drop-header > .title, .frame-menu-category-first .title-category-l1 > .text-el{font-size: 18px;}
-.price-new .price, .price-discount .price{font-size: 15px;}
-.header-frame-foot .price-new .price{font-size: 22px;}
-.left-header > .nav > li > a, .left-header > .nav > li > span{font-size: 11px;}
-.next-kit, .gen-sum-kit{font-size: 32px;}
-.item-report .description .title{font-size: 16px;}
-.frame-prices-buy .price-new .price, .complect-gen-sum .price-new .price, .gen-sum-order .price-new .price{font-size: 25px;}
-.text th, .text dt, .phones-header .phone, .next-kit, .gen-sum-kit, .items-order-gen-info .price-item, .items-register-add-ref .divider, .frame-description-benefit .title, .price-discount .price, .price-new .price, form .frame-label > .title, form label > .title, .msg .text-el, .frames-checks-sliders .title, .header-category .title, .characteristic th, .drop-bask .drop-header .add-info, .tabs-compare-diferent .text-el{font-weight: bold;}
-/*/groups selectors*/
-
-.items a .title{font-weight: bold;border-bottom: 1px solid #b2dce9;}
-.frame-check-filter, .frames-checks-sliders, .header-category, .frame-prices-buy-wish-compare, .layout-highlight-msg, .frame-bask-order, .frame-category-menu, .nav-static-pages{border: 1px solid #efece8;background-color: #fefefe;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-moz-box-shadow: 0 1px 1px #ece9e6;-webkit-box-shadow: 0 1px 1px #ece9e6;box-shadow: 0 1px 1px #ece9e6;}
-.frames-checks-sliders, .header-category, .item-product .frame-prices-buy, .tabs-data > li.active, .layout-highlight, .frame-bask-order{position: relative;}
-.frames-checks-sliders:before, .header-category:before, .item-product .frame-prices-buy:before, .tabs-data > li.active:before, .layout-highlight:before, .frame-bask-order:before{content: "";width: 100%;height: 3px;background-color: #0c9acb;-moz-border-radius: 5px 5px 0 0;-webkit-border-radius: 5px 5px 0 0;border-radius: 5px 5px 0 0;position: absolute;top: -3px;z-index: -1;left: 0;}
-.form-comment__icsi-css.layout-highlight:before{height: 4px;-moz-border-radius: 4px 4px 0 0;-webkit-border-radius: 4px 4px 0 0;border-radius: 4px 4px 0 0;}
-.tabs-data > li.active:before{padding: 0 2px;left: -2px;}
-/*/for delete*/
