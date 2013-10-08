@@ -100,7 +100,7 @@
                                                     data-origprice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                                                     data-stock="{echo $product->firstVariant->getStock()}"
                                                     >
-                                                {lang('s_buy')}
+                                                {lang('Купить','commerce4x')}
                                             </button>
                                             {else:}
                                             <button
@@ -109,7 +109,7 @@
                                                     type="button"
                                                     class="btn btn_not_avail">
                                                 <span class="icon-but"></span>
-                                                <span class="text-el">{lang('s_message_o_report')}</span>
+                                                <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                                             </button>
                                             {/if}
                                             <!-- End. Check amount of goods -->
@@ -120,8 +120,8 @@
                                                     data-prodid="{echo $product->getId()}"
                                                     data-varid="{echo $product->firstVariant->getId()}"
                                                     type="button"
-                                                    data-title="{lang('s_add_to_wish_list')}"
-                                                    data-sectitle="{lang('s_in_wish_list')}"
+                                                    data-title="{lang('В список желаний','commerce4x')}"
+                                                    data-sectitle="{lang('В списке желаний','commerce4x')}"
                                                     data-rel="tooltip">
                                                 <span class="icon-wish_2"></span>
                                             </button>

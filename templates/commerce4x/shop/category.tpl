@@ -181,7 +181,7 @@
                                                                       data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                       data-stock="{echo $pv->getStock()}"
                                                                       >
-                                                    {lang('s_buy')}
+                                                    {lang('Купить','commerce4x')}
                                                 </button>
                                             {else:}
                                                 <button {if $key != 0}style="display:none"{/if}
@@ -206,7 +206,7 @@
                                                                       type="button"
                                                                       class="btn btn_not_avail variant_{echo $pv->getId()} variant">
                                                     <span class="icon-but"></span>
-                                                    <span class="text-el">{lang('s_message_o_report')}</span>
+                                                    <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                                                 </button>
                                             {/if}
                                         {/foreach}
@@ -220,12 +220,12 @@
                                         <button class="btn btn_small_p toCompare"
                                                 data-prodid="{echo $product->getId()}"
                                                 type="button"
-                                                data-title="{lang('s_add_to_compare')}"
-                                                data-firtitle="{lang('s_add_to_compare')}"
-                                                data-sectitle="{lang('s_in_compare')}"
+                                                data-title="{lang('В список сравнений','commerce4x')}"
+                                                data-firtitle="{lang('В список сравнений','commerce4x')}"
+                                                data-sectitle="{lang('В списке сравнений','commerce4x')}"
                                                 data-rel="tooltip">
                                             <span class="icon-comprasion_2"></span>
-                                            <span class="text-el">{lang('s_add_to_compare')}</span>
+                                            <span class="text-el">{lang('В список сравнений','commerce4x')}</span>
                                         </button>
 {/*}
                                         {$CI->load->module('wishlist')->renderWLButton($product->firstvariant->getId())}
@@ -236,12 +236,12 @@
                                                                   data-prodid="{echo $product->getId()}"
                                                                   data-varid="{echo $pv->getId()}"
                                                                   type="button"
-                                                                  data-title="{lang('s_add_to_wish_list')}"
-                                                                  data-firtitle="{lang('s_add_to_wish_list')}"
-                                                                  data-sectitle="{lang('s_in_wish_list')}"
+                                                                  data-title="{lang('В список желаний','commerce4x')}"
+                                                                  data-firtitle="{lang('В список желаний','commerce4x')}"
+                                                                  data-sectitle="{lang('В списке желаний','commerce4x')}"
                                                                   data-rel="tooltip">
                                                 <span class="icon-wish_2"></span>
-                                                <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                                <span class="text-el">{lang('В список желаний','commerce4x')}</span>
                                             </button>
                                         {/foreach}
 { */}

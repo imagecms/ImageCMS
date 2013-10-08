@@ -197,7 +197,7 @@
                             <% setTimeout("location.href = '/';", 2000); %>
                             <% } %>
                             <td colspan="4" class="t-a_r">
-                                <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('s_close')}{literal}</a>
+                                <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('Закрыть','commerce4x')}{literal}</a>
                             </td>
                             <% } else { %>
                             <td colspan="4">

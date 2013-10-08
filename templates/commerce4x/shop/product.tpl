@@ -171,7 +171,7 @@
                                                                    data-stock="{echo $pv->getStock()}"
                                                                    >
                                                 <span class="icon-but"></span>
-                                                <span class="text-el">{lang('s_message_o_report')}</span>
+                                                <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                                             </button>
                                         {/if}
                                     {/foreach}
@@ -182,13 +182,13 @@
                                 <button class="btn btn_small_p toCompare"
                                         data-prodid="{echo $model->getId()}"
                                         type="button"
-                                        data-title="{lang('s_add_to_compare')}"
-                                        data-firtitle="{lang('s_add_to_compare')}"
-                                        data-sectitle="{lang('s_in_compare')}"
+                                        data-title="{lang('В список сравнений','commerce4x')}"
+                                        data-firtitle="{lang('В список сравнений','commerce4x')}"
+                                        data-sectitle="{lang('В списке сравнений','commerce4x')}"
                                         data-rel="tooltip"
                                         >
                                     <span class="icon-comprasion_2"></span>
-                                    <span class="text-el">{lang('s_add_to_compare')}</span>
+                                    <span class="text-el">{lang('В список сравнений','commerce4x')}</span>
                                 </button>
                                 <!-- End. Block "Add to Compare" -->
 
@@ -402,7 +402,7 @@
         {if $model->getShopKits()->count() > 0}
             <div class="frame_carousel_product carousel_js c_b frameSet">
                 <div class="m-b_20">
-                    <div class="title_h1 d_i-b v-a_m promotion_text">{lang('s_spec_promotion')}</div>
+                    <div class="title_h1 d_i-b v-a_m promotion_text">{lang('Акционное предложение','commerce4x')}</div>
                     <div class="d_i-b groupButton v-a_m">
                         <button type="button" class="btn btn_prev">
                             <span class="icon prev"></span>

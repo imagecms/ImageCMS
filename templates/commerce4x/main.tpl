@@ -194,7 +194,7 @@
                                               id="autocomlete">
                                             <button class="f_r btn" type="submit">
                                                 <span class="icon-search"></span>
-                                                <span class="text-el">{lang('search_find')}</span>
+                                                <span class="text-el">{lang('Найти','commerce4x')}</span>
                                             </button>
                                             <div class="o_h">
                                                 <input type="text"
@@ -307,8 +307,8 @@
                                     <a href="#" class="odnoklasniki"></a>
                                 </div>
                             </div>
-                            <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
-                            {lang('s_footer_seo')}
+                            <a href="http://imagecms.net" target="_blank">{lang('Создание интернет магазина','commerce4x')}</a><br/>
+                            {lang('SEO оптимизация сайта','commerce4x')}
                         </div>
                         <!--End-->
                     </div>
