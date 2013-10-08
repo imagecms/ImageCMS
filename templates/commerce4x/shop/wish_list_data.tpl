@@ -1,7 +1,7 @@
 {# Useful methods:
  # @method   ShopCore::app()->SWishList->totalItems()
  # @method   ShopCore::app()->SWishList->totalPrice()
- # @method   SStringHelper::Pluralize(ShopCore::app()->SWishList->totalItems(), array( lang('s_product']),lang("Product","admin"),lang("Product","admin")))
+ # @method   SStringHelper::Pluralize(ShopCore::app()->SWishList->totalItems(), array( lang('Товар']),lang("Product","admin"),lang("Product","admin")))
  # @var      $CS
 }
 <div style="margin-top: 9px;" id="wishListData">
