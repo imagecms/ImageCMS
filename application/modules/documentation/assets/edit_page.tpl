@@ -1,20 +1,20 @@
 <!--Start. Modal confirm delete page -->
 <div class="modal fade" id="confirmDeletePage">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">{lang("Warning","documentation")}</h4>
-      </div>
-      <div class="modal-body">
-        <p>{lang("Are you really want delete this page?", "documentation")}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{lang("Close","Documentation")}</button>
-        <a href="/documentation/delete_page/{echo $page['id']}" class="btn btn-danger"/>{lang("Delete","Documentation")}</a>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{lang("Warning","documentation")}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{lang("Are you really want delete this page?", "documentation")}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{lang("Close","Documentation")}</button>
+                <a href="/documentation/delete_page/{echo $page['id']}" class="btn btn-danger"/>{lang("Delete","Documentation")}</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!--End. Modal confirm delete page -->
 
@@ -52,6 +52,14 @@
                                     <button class="btn btn-default" type="button" onclick="translite_title('#name', '#url');">{lang("AutoFit","documentation")}</button>
                                 </span>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="keywords">{lang("Keywords","documentation")}:</label>
+                            <input type="text" value="" class="form-control" maxlength="127" name="keywords" required="required" placeholder="{lang("keywords","documentation")}">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">{lang("Description","documentation")}:</label>
+                            <input type="text" value="" class="form-control" maxlength="127" name="description" required="required" placeholder="{lang("description","documentation")}">
                         </div>
 
                         <div class="form-group">
@@ -141,16 +149,16 @@
     </textarea>
     <!-- End. Textarea with content-->
     <!-- Start. Submit button-->
-    
+
     <div class="buttonSave pull-right">
         <a data-toggle="modal" href="#confirmDeletePage"  class="btn btn-danger"/>
-            {lang('Delete','documentation')}
+        {lang('Delete','documentation')}
         </a>
         <button type="submit" class="btn btn-info">
             {lang('Save','documentation')}
         </button>
 
     </div>
-<!-- End. Submit button -->
-{form_csrf()}
+    <!-- End. Submit button -->
+    {form_csrf()}
 </form>

@@ -32,12 +32,20 @@
                             </span>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="keywords">{lang("Keywords","documentation")}:</label>
+                        <input type="text" value="{echo $categoryData['keywords']}" class="form-control" maxlength="127" name="keywords" required="required" placeholder="{lang("keywords","documentation")}">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">{lang("Description","documentation")}:</label>
+                        <input type="text" value="{echo $categoryData['description']}" class="form-control" maxlength="127" name="description" required="required" placeholder="{lang("description","documentation")}">
+                    </div>
 
                     <div class="form-group">
                         <label for="parent_id">{lang('Parent category','documentation')}:</label>
                         <select name="category" class="form-control">
                             <option value="0" selected="selected">{lang("No","documentation")}</option>
-                            {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $categoryData['parent_id']));}
+                            {$this->view("cats_select_move.tpl", array('tree' => $tree,'sel_cat' => $categoryData['parent_id'],'categoryData'=>$categoryData));}
                         </select>
                     </div>
                 </form>
@@ -65,7 +73,7 @@
             </a>
             <!-- Show category sublevels -->
             {if $item['subtree']}
-                <span class="tree_menu_icon glyphicon glyphicon-chevron-right"></span>
+                <span class="tree_menu_icon glyphicon {if $active}glyphicon-chevron-down{else:}glyphicon-chevron-right{/if}"></span>
                 {$this->view('left_menu.tpl', array('tree' => $item['subtree'], 'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData, 'admin' =>$admin))}
             {/if}
         </li>
