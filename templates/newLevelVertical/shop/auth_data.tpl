@@ -31,8 +31,10 @@
             <li class="btn-exit-shop">
                 <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', {literal}{callback: function(msg, status, form, DS) {
                                 if (status) {
-                                    Shop.Cart.clear();
-                                    localStorage.setItem('wishList', []);
+                                    var items = Shop.Cart.getAllItems();
+                                    for (var i = 0; i < items.length; i++)
+                                        localStorage.removeItem(items[i].storageId());
+                                    localStorage.removeItem('wishList');
                                 }
                             }}{/literal});
                         return false;">

@@ -105,3 +105,75 @@ tinymce.init({
         });
     }
 });
+
+
+function translite_title(from, to) {
+    var url = '/documentation/ajax_translit';
+    $.post(
+            url, {
+        'str': $(from).val()
+    }, function(data)
+
+    {
+        $(to).val(data);
+    });
+}
+
+
+/** 
+ * Create category check validation and display result 
+ * @returns {undefined} 
+ * */
+function createCategory() {
+    var formIdent = $('#create_cat');
+    var formData = formIdent.serialize();
+    $('.modalErrosBlock').hide();
+    $('.modalCategoryCreatedSuccesBlock').hide();
+
+    $.ajax({
+        async: false,
+        type: 'post',
+        url: formIdent.attr('action'),
+        data: formData,
+        success: function(response) {
+            /** Parse json response **/
+            try {
+                responseObj = $.parseJSON(response);
+            } catch (e) {
+                return 'error parsing jsone';
+            }
+            /** Process results **/
+            if (responseObj.success === 'false') {
+                console.log(responseObj);
+                $('.modalErrosBlock').html(responseObj.errors);
+                $('.modalErrosBlock').show();
+            } else {
+                $('.modalCategoryCreatedSuccesBlock').show();
+                setTimeout("location.reload(true);", 1000);
+            }
+        }
+    });
+}
+
+
+/**  * */
+$(document).ready(function() {
+
+    /** Page edit (front) **/
+    $('#changeLangSelect').bind('change', function() {
+        var selectElement = $(this);
+        var pageId = selectElement.find("option:selected").data('page_id');
+        var langId = selectElement.find("option:selected").val();
+        document.location.href = '/documentation/edit_page/' + pageId + '/' + langId;
+    });
+    
+    $('.editCategory').bind('click', function(){
+       alert(111); 
+    });
+    
+    $('#showLoginForm').bind('click', function(){
+//       $('#loginForm').show();
+        alert(111); 
+    });
+    
+});

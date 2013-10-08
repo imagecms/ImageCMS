@@ -22,7 +22,7 @@
                     <div class="frame-title">
                         <h1 class="d_i"><span class="s-t">{lang('Результаты поиска','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
                     </div>
-                    <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('товар','newLevel')}","{lang('товара','newLevel')}","{lang('товаров','newLevel')}"))})</span>
+                <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
                 </div>
             {/if}
             {if $totalProducts == 0}
@@ -35,7 +35,7 @@
             {/if}
             {include_tpl('catalogue_header')}
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
+                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} table{else:} list{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
                     {$CI->load->module('new_level')->OPI($model, array('wishlist'=>true))}
                 </ul>
@@ -48,7 +48,7 @@
 
         {if $totalProducts > 0}
             <div class="left-catalog">
-                <form method="GET" action="" id="seacrh_p_form">
+                <form method="GET" action="" id="catalog_form">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
                     <input type="hidden" name="text" value="{echo $_GET[text]}">
                     <input type="hidden" name="category" value="{echo $_GET[category]}">

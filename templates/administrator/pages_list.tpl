@@ -1,4 +1,5 @@
-{ /* }lang('Your search did not found', 'admin'){ */ }<div class="modal hide fade" id="pages_action_dialog">
+{ /* }lang('Your search did not found', 'admin'){ */ }
+<div class="modal hide fade" id="pages_action_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3 id="mvMv">{lang("Copy/Move pages")}</h3>
