@@ -49,10 +49,17 @@
                 <header>
                     {include_tpl('header')}
                 </header>
-                {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
             </div>
-            <div class="content">
-                {$content}
+            <div class="vertical-layout container">
+                <!--    vertical-menu || horizontal-menu-->
+                <div class="frame-menu-main vertical-menu">
+                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                    {widget('latest_news')}
+                </div>
+                <div class="content">
+                    {$content}
+                </div>
+                <div class="h-footer"></div>
             </div>
             <div class="h-footer"></div>
         </div>

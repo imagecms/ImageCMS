@@ -12,7 +12,7 @@
         <div id="shopCartPage">
             <h1>Оформление заказа</h1>
             <div class="row">
-                <div class="span6">
+                <div class="span5">
                     <div class="frameGroupsForm">
                         <div class="header_title">Данные заказа</div>
                         <div class="standart_form horizontal_form">
@@ -26,7 +26,7 @@
                                 {/if}
                                 <div class="groups_form">
                                     <label>
-                                        <span class="title">{lang('s_c_uoy_name_u')}</span>
+                                        <span class="title">{lang("You name","admin")}</span>
                                         <span class="frame_form_field">
                                             {if $isRequired['userInfo[fullName]']}
                                                 <span class="must">*</span>
@@ -36,7 +36,7 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_c_uoy_user_el')}</span>
+                                        <span class="title">{lang('Электронный адрес','commerce4x')}</span>
                                         <span class="frame_form_field">
                                             {if $isRequired['userInfo[email]']}
                                                 <span class="must">*</span>
@@ -46,7 +46,7 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_phone')}</span>
+                                        <span class="title">{lang('Телефон','commerce4x')}</span>
                                         {if $isRequired['userInfo[phone]']}
                                             <span class="must">*</span>
                                         {/if}
@@ -56,7 +56,7 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_addresrec')}</span>
+                                        <span class="title">{lang('Адрес получателя','commerce4x')}</span>
                                         <span class="frame_form_field">
                                             {if $isRequired['userInfo[deliverTo]']}
                                                 <span class="must">*</span>
@@ -64,9 +64,7 @@
                                             <span class="icon-address"></span>
                                             <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
                                     </label>
-
                                     {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getCustomFields('order',$profile.id,'user')->asHtml()}
-
                                     <div class="groups_form">
                                         <div class="frameLabel" style="position: relative; z-index: 6;">
                                             <span class="title">Способ доставки</span>
@@ -85,11 +83,9 @@
                                                                     {/if}
                                                                     name="met_del"
                                                                     class="met_del"
-                                                                    value="{echo $del_id}"
-                                                                    data-price="{echo ceil($deliveryMethod->getPrice())}"
-                                                                    data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
-                                                                {echo $deliveryMethod->getName()}
-                                                                </option>
+                                                                    data-price="{echo ShopCore::app()->SCurrencyHelper->convert(ceil($deliveryMethod->getPrice()))}"
+                                                                    data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"
+                                                                    value="{echo $del_id}">{echo $deliveryMethod->getName()}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -112,8 +108,7 @@
                                                                                 {$counter = false}
                                                                                 {$pay_id = $paymentMethod->getId()}
                                                                             {/if}
-                                                                            value="{echo $pay_id}"
-                                                                            />
+                                                                            value="{echo $pay_id}">
                                                                         {echo $paymentMethod->getName()}
                                                                         </option>
                                                                     </label>
@@ -125,12 +120,14 @@
                                             </div>
                                         {/if}
                                     </div>
+                                    <div id="gift"></div>
+                                    {/*}
                                     {if ShopCore::app()->SSettings->usegifts == 1}
                                         <div class="groups_form" >
                                             <label for="giftcert">
-                                                <span class="title">{lang('s_cert_code')}</span>
+                                                <span class="title">{lang('Код сертификата','commerce4x')}</span>
                                                 <span class="frame_form_field">
-                                                    <button class="btn f_r" id="applyGiftCert">{lang('s_apply_sertif')}</button>
+                                                    <button class="btn f_r" id="applyGiftCert">{lang('Применить','commerce4x')}</button>
                                                     <div class="o_h">
                                                         <input type="text" name="giftcert" value="">
                                                     </div>
@@ -141,9 +138,10 @@
                                             </label>
                                         </div>
                                     {/if}
+                                    { */}
                                     <div class="groups_form">
                                         <label>
-                                            <span class="title">{lang('s_comment')}</span>
+                                            <span class="title">{lang('Комментарий','commerce4x')}</span>
                                             <span class="frame_form_field"><textarea name="userInfo[commentText]" ></textarea></span>
                                         </label>
                                         <div class="frameLabel c_t" style="position: relative; z-index: 4;">
@@ -152,10 +150,11 @@
                                                 <div class="form_alert">
                                                     <div style="margin-bottom: 4px;" class="c_97">(Сумма товаров: <span class="f-w_b" id="totalPrice"></span> <span class="curr"></span> + Доставка: <span class="f-w_b" id="shipping"></span> <span class="curr"></span>)
                                                         <br/><span id="giftCertSpan" style="display: none;" >(Скидка подарочного сертификата: <span id="giftCertPrice" class="f-w_b"></span> )</span>
+                                                        <br/><span id="Discount" style="display: none;" ></span>
                                                     </div>
 
                                                     <span class="f-s_18">Сумма:</span> <span class="f-s_24" id="finalAmount"></span> <span class="f-s_14 curr"></span>
-
+                                                    <input type="hidden" name="totalprice" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -174,7 +173,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="span6" id="orderDetails">
+                <div class="span4" id="orderDetails">
 
                 </div>
             </div>

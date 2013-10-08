@@ -265,7 +265,6 @@ a:focus, a:active {color: #51d2ff;}
 .apply{border: 2px solid #0c9acb;background-color: #faf8f6;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);-webkit-box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);}
 .apply:before{border-style: solid;border-width: 6px 7px;border-color: transparent;border-right-color: #0c9acb;}
 .apply.left:before{border-right-color: transparent;border-left-color: #0c9acb;}
-.icon_times_apply{position: absolute;right: 4px;top: 2px;color: #0c9acb !important;width: 9px;height: 9px;margin: 23px 0 0 23px;}
 /*/filter*/
 
 /*items*/
@@ -867,10 +866,11 @@ button > [class*="icon_"]{margin-right: 3px;}
 .icon_phone_footer{color: #9c9c9c;margin: 12px 8px 0 16px;}
 .icon_phone_product{color: #0c9acb;margin: 23px 6px 0 20px;top: 3px;}
 .icon_exit{color: #0c9acb;margin: 11px 6px 0 9px;}
-.icon_times_drop{color: #fff !important;margin: 20px 0 0 20px;z-index: 1;}
+.icon_times_drop{color: #fff;margin: 20px 0 0 20px;z-index: 1;}
 .icon_times_drop[style]:after{width: 20px;height: 20px;background-color: #ddd;position: absolute;content: "";left: -5px;top: -5px;z-index: -1;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
 .icon_times_drop:hover:after{background-color: #ccc;}
 .icon_times_cart{color: #999;margin: 25px 0 0 23px;}
+.icon_times_apply{position: absolute;right: 4px;top: 2px;color: #0c9acb !important;width: 9px;height: 9px;margin: 23px 0 0 23px;}
 .icon_times{color: #999;margin: 25px 0 0 23px;}
 .btn-toggle-toolbar .icon_times{color: #fff;margin-right: 4px;}
 .icon_wish, .icon_wish_list{color: #fff;margin: 14px 7px 0 13px;}

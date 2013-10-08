@@ -1,8 +1,5 @@
 <div class="container">
     <div class="row">
-        <div class="span3">
-            {load_menu('left_menu')}
-        </div>
         <div class="span6">
             <article>
                 <div class="text">
@@ -16,7 +13,13 @@
                         {$p.prev_text}
                     {/foreach}
                 </div>
+                {$pagination}
             </article>
+        </div>
+        <div class="span3">
+            {if  $CI->uri->uri_string() != ''}
+                {load_menu('left_menu')}
+            {/if}
         </div>
     </div>
 </div>
