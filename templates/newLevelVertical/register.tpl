@@ -36,6 +36,11 @@
                             <span class="must">*</span>
                         </div>
                     </div>
+                      
+                    {echo ShopCore::app()->CustomFieldsHelper
+                                        ->setRequiredHtml(' ')
+                                        ->setPatternMain('pattern_custom_field')
+                                        ->getOneCustomFieldsByName('city','user')->asHtml()}   
                     {if $cap_image}
                         <label>
                             <span class="title">{$cap_image}</span>

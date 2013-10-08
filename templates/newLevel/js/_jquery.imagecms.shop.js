@@ -721,7 +721,7 @@ function getCookie(c_name)
             if ($.existsN(menu)) {
                 var sH = 0,
                 settings = $.extend({
-                    item: this.find('li'),
+                    item: $(this).find('li:first'),
                     direction: null,
                     effectOn: 'fadeIn',
                     effectOff: 'fadeOut',
@@ -903,29 +903,22 @@ function getCookie(c_name)
                     $thisDrop = $this.find(drop);
                     if ($thisDrop.length != 0)
                         menu.removeClass(hM);
-                    var menuItemH = menuItem.filter('.' + hM)
-                    if (e.type == 'click' && evLF == 'toggle')
-                        menuItemH.click()
+                    if (evLS == 'toggle' || evLF == 'toggle')
+                        $this.find('.' + hM).click()
 
-                    var subH = $thisDrop.children().children('.' + hM);
-                    if (e.type == 'click' && evLS == 'toggle')
-                        subH.click();
                     $('.firstH, .lastH').removeClass('firstH lastH');
+                    
                     clearTimeout(hoverTO);
                 }
                 menuItem.unbind(evLF)[evLF](
                     function(e) {
                         clearTimeout(hoverTO);
+                        closeMenu(menu, e);
                         var $this = $(this),
                         $thisI = $this.index();
                         $this = $(this).addClass(hM),
                         $thisDrop = $this.find(drop);
-                        if (e.type == 'click' && evLF == 'toggle') {
-                            $this.siblings().filter('.' + hM).click()
-                        }
-                        var subH = dropOJ.children().children('.' + hM);
-                        if (e.type == 'click' && evLS == 'toggle')
-                            subH.click();
+            
                         if ($thisI == 0)
                             $this.addClass('firstH');
                         if ($thisI == itemMenuL - 1)
@@ -950,37 +943,39 @@ function getCookie(c_name)
                                             listDrop.attr('data-height', sumHL1);
                                             isSub2W = $thisDrop.find(sub2Frame).addClass('is-side').actual('width');
                                         }
-
                                         listDrop.children().each(function() {
                                             var $this = $(this),
                                             isSub2 = $this.find(sub2Frame);
                                             if ($.existsN(isSub2)) {
-                                            $this.css('overflow', 'hidden');
-                                            var sumHL2 = isSub2.show().height();
-                                            isSub2.hide();
-                                            $this.css('overflow', '');
-                                            if (sumHL2 > sumHL1)
-                                            var koef = Math.ceil(sumHL2 / sumHL1);
-                                            if (koef != undefined) {
-                                            subWL2 = isSub2W * koef;
-                                            if (subWL2 + dropW > menuW) {
-                                            subWL2 = menuW - dropW;
+                                                $this.css('overflow', 'hidden');
+                                                var sumHL2 = isSub2.show().height();
+                                                isSub2.hide();
+                                                $this.css('overflow', '');
+                                                if (sumHL2 > sumHL1)
+                                                    var koef = Math.ceil(sumHL2 / sumHL1);
+                                                if (koef != undefined) {
+                                                    subWL2 = isSub2W * koef;
+                                                    if (subWL2 + dropW > menuW) subWL2 = menuW - dropW;
+                                                    isSub2.css('width', dropW);
+                                                }
                                             }
-                                            isSub2.css('width', dropW);
-                                            }
-                                            }
-                                            }).unbind(evLS)[evLS](function(e) {
+                                        }).unbind(evLS)[evLS](function(e) {
+                                            e.stopPropagation();
                                             var $this = $(this),
                                             subFrame = $this.find(sub2Frame);
-                                            $this.siblings().removeClass(hM);
-                                            if ($.existsN($this.children(':first').next())) {
+                                            if (e.type != 'click' && evLS != 'toggle') {
+                                                $this.siblings().removeClass(hM);
+                                            }
+                                            if ($.existsN(subFrame)) {
                                                 if (e.type == 'click' && evLS == 'toggle') {
-                                                    $this.addClass(hM).siblings().filter('.' + hM).click()
+                                                    $this.siblings().filter('.' + hM).click();
+                                                    $this.addClass(hM);
                                                 }
-                                                else
+                                                else{
                                                     $this.has(sub2Frame).addClass(hM);
+                                                }
                                                 $thisDrop.css('width', '');
-                                                $thisDrop.children().removeClass(hM).add(subFrame).css('height', '');
+                                                $thisDrop.children().add(subFrame).css('height', '');
                                                 var dropW = $this.parent().parent().width(),
                                                 sumW = dropW + subFrame.width(),
                                                 subHL2 = subFrame.height(),
@@ -988,26 +983,27 @@ function getCookie(c_name)
                                                 if (subHL2 < dropDH)
                                                     subHL2 = dropDH;
                                                 
-                                                if (animatesub3)
-                                                    $thisDrop.children().add(subFrame).stop().animate({
+                                                if (animatesub3){
+                                                    $thisDrop.children().stop().animate({
                                                         'height': subHL2
                                                     }, durationOnS);
+                                                }
                                                 else
-                                                    $thisDrop.children().add(subFrame).css('height', subHL2);
+                                                    $thisDrop.children().css('height', subHL2);
                                                 if (animatesub3)
                                                     $thisDrop.stop().animate({
                                                         'width': sumW
                                                     }, durationOnS);
                                                 else
                                                     $thisDrop.css('width', sumW);
-                                                subFrame.stop()[effOnS](durationOnS);
-                                                e.preventDefault();
+                                                
+                                                subFrame[effOnS](durationOnS, function(){
+                                                    subFrame.css('height', subHL2);
+                                                });
                                             }
-                                            else {
-                                                return true;
-                                            }
-                                        }
-                                        , function(e) {
+                                            else return true;
+                                        }, function(e){
+                                            e.stopPropagation();
                                             var $this = $(this),
                                             subFrame = $this.find(sub2Frame);
                                             if ($.existsN(subFrame)) {
@@ -1032,12 +1028,12 @@ function getCookie(c_name)
                         var $thisDrop = $this.find(drop);
                         if ($.existsN($thisDrop)) {
                             if (sub2Frame) {
-                                $this.find(drop).stop()[effOff](durationOff, function() {
+                                $thisDrop.stop()[effOff](durationOff, function() {
                                     $this.removeClass(hM);
                                 });
                             }
                             else {
-                                $this.find(drop).stop()[effOff](durationOff, function() {
+                                $thisDrop.stop()[effOff](durationOff, function() {
                                     $this.removeClass(hM);
                                 });
                             }
@@ -1065,7 +1061,7 @@ function getCookie(c_name)
                             $(this).find('.' + hM).click();
                         }
                         setTimeout(function() {
-                            dropOJ[effOff](durationOff);
+                            dropOJ.stop()[effOff](durationOff);
                         }, duration)
                         closeMenu(menu, e);
                         return timeDurM = duration;
@@ -2217,8 +2213,8 @@ function getCookie(c_name)
     };
 })($);
 /*
- *imagecms shop plugins
- **/
+*imagecms shop plugins
+**/
 if (!Array.indexOf) {
     Array.prototype.indexOf = function(obj, start) {
         for (var i = (start || 0); i < this.length; i++) {
@@ -2629,32 +2625,32 @@ if (typeof(wishList) != 'object')
         }
     }
 /**
- * AuthApi ajax client
- * Makes simple request to api controllers and get return data in json
- * 
- * @author Avgustus
- * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
- * 
- * Get JSON object with fields list:
- *      'status'    -   true/false - if the operation was successful,
- *      'msg'       -   info message about result,
- *      'refresh'   -   true/false - if true refreshes the page,
- *      'redirect'  -   url - redirects to needed url
- *    
- * List of api methods:
- *      Auth.php:
- *          '/auth/authapi/login',
- *          '/auth/authapi/logout',
- *          '/auth/authapi/register',
- *          '/auth/authapi/forgot_password',
- *          '/auth/authapi/reset_password',
- *          '/auth/authapi/change_password',
- *          '/auth/authapi/cancel_account',
- *          '/auth/authapi/banned',
- *          '/shop/ajax/getApiNotifyingRequest',
- *          '/shop/callbackApi'
- * 
- **/
+* AuthApi ajax client
+* Makes simple request to api controllers and get return data in json
+* 
+* @author Avgustus
+* @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
+* 
+* Get JSON object with fields list:
+*      'status'    -   true/false - if the operation was successful,
+*      'msg'       -   info message about result,
+*      'refresh'   -   true/false - if true refreshes the page,
+*      'redirect'  -   url - redirects to needed url
+*    
+* List of api methods:
+*      Auth.php:
+*          '/auth/authapi/login',
+*          '/auth/authapi/logout',
+*          '/auth/authapi/register',
+*          '/auth/authapi/forgot_password',
+*          '/auth/authapi/reset_password',
+*          '/auth/authapi/change_password',
+*          '/auth/authapi/cancel_account',
+*          '/auth/authapi/banned',
+*          '/shop/ajax/getApiNotifyingRequest',
+*          '/shop/callbackApi'
+* 
+**/
 
 var ImageCMSApi = {
     defSet: function() {
@@ -2753,10 +2749,10 @@ var ImageCMSApi = {
         return queryString;
     },
     /**
-     * for displaying validation messages 
-     * in the form, which needs validation, for each validate input
-     * 
-     * */
+* for displaying validation messages 
+* in the form, which needs validation, for each validate input
+* 
+* */
     sendValidations: function(validations, selector, DS) {
         var thisSelector = $(selector);
         if (typeof validations === 'object') {
@@ -2781,9 +2777,9 @@ var ImageCMSApi = {
         }
     },
     /**
-     * add captcha block if needed
-     * @param {type} captcha_image
-     */
+* add captcha block if needed
+* @param {type} captcha_image
+*/
     addCaptcha: function(cI, DS) {
         DS.captchaBlock.html(DS.captcha(cI));
         return false;
