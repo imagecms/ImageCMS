@@ -214,6 +214,60 @@ class Documentation_model extends CI_Model {
     }
 
     /**
+     * Update category data
+     * @param array $data
+     * @param int $id
+     * @return boolean|array
+     */
+    public function updateCategory($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('category', $data);
+
+        $this->load->library('lib_category');
+        $query = $this->db->where('id', $id)->get('category')->row_array();
+        if ($query == null) {
+            return false;
+        }
+
+        $parentCategory = $this->lib_category->get_category($query['parent_id']);
+        if ($parentCategory != NULL) {
+            $newFullPath = $parentCategory['path_url'] . $query['url'];
+        } else {
+            $newFullPath = $query['url'];
+        }
+        $this->load->module('cfcm')->save_item_data($cat_id, 'category');
+
+        $this->cache->delete_all();
+
+        // Clear lib_category data
+        $this->lib_category->categories = array();
+        $this->lib_category->level = 0;
+        $this->lib_category->path = array();
+        $this->lib_category->unsorted_arr = FALSE;
+        $this->lib_category->unsorted = FALSE;
+
+        $this->lib_category->build();
+
+        $this->updateUrls();
+
+
+        $query['full_url'] = $newFullPath;
+        return $query;
+    }
+
+    /**
+     * 
+     */
+    private function updateUrls() {
+        $categories = $this->lib_category->unsorted();
+
+        foreach ($categories as $category) {
+            $this->db->where('category', $category['id']);
+            $this->db->update('content', array('cat_url' => $category['path_url']));
+        }
+    }
+
+    /**
      * Module install
      */
     public function install() {
@@ -273,7 +327,7 @@ class Documentation_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_documentation_history');
-        
+
         $query = "ALTER TABLE `category` DROP `menu_cat`;";
         $this->db->query($query);
     }

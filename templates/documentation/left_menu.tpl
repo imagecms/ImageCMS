@@ -5,7 +5,7 @@
         <li {if $active}class="active"{/if}>
              <a href="{base_url($item['path_url'])}">{$item['name']}  
              {if $categoryData['id'] == $item['id'] && $admin}
-                 <span class="glyphicon glyphicon-pencil pull-right editCategory" data-cat_id="{echo $item['id']}">
+                 <span data-toggle="modal" href="#myModalEdit" class="glyphicon glyphicon-pencil pull-right editCategory">
                  </span>
              {/if}
              </a>
