@@ -301,6 +301,8 @@ class Documentation extends \MY_Controller {
             $data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,
+                'keywords' => $this->input->post('keywords'),
+                'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('category'),
                 'order_by' => 'publish_date',
                 'sort_order' => 'desc',
@@ -365,6 +367,8 @@ class Documentation extends \MY_Controller {
             $data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,
+                'keywords' => $this->input->post('keywords'),
+                'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('category')
             );
 
@@ -423,23 +427,28 @@ class Documentation extends \MY_Controller {
             $categoryData['url_simple'] = $category['url'];
             $categoryData['name'] = $category['name'];
             $categoryData['parent_id'] = $category['parent_id'];
+            $categoryData['description'] = $category['description'];
+            $categoryData['keywords'] = $category['keywords'];
         }
 
         /** Full path if data_type is category * */
         if ($this->core->core_data['data_type'] == 'category') {
-            $data = $this->lib_category->get_category($this->core->core_data['id']);
-            $parent = $this->lib_category->get_category($data['parent_id']);
+            $category = $this->lib_category->get_category($this->core->core_data['id']);
+            $parent = $this->lib_category->get_category($category['parent_id']);
 
             /** Prepare category info * */
             $categoryData['id'] = $this->core->core_data['id'];
-            $categoryData['name'] = $data['name'];
-            $categoryData['parent_id'] = $data['parent_id'];
-            $categoryData['url_simple'] = $data['url'];
-
+            $categoryData['name'] = $category['name'];
+            $categoryData['parent_id'] = $category['parent_id'];
+            $categoryData['url_simple'] = $category['url'];
+            $categoryData['description'] = $category['description'];
+            $categoryData['keywords'] = $category['keywords'];
+            
+            /** build category fullpath **/
             if ($parent != 'NULL') {
-                $full_path = $parent['path_url'] . $data['url'] . '/';
+                $full_path = $parent['path_url'] . $category['url'] . '/';
             } else {
-                $full_path = $data['url'] . '/';
+                $full_path = $category['url'] . '/';
             }
             $categoryData['url'] = $full_path;
         }
