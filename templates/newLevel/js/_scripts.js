@@ -22,10 +22,10 @@ var optionsMenu = {
     drop: '.frame-item-menu > .frame-drop-menu',
     
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
-    //countColumn: 5, //if not drop-side
+    countColumn: 5, //if not drop-side
     
-    sub2Frame: '.frame-l2', //if drop-side
-    dropWidth: 475, //if not define than will be actual width needs when drop-side
+    //sub2Frame: '.frame-l2', //if drop-side
+    //dropWidth: 475, //if not define than will be actual width needs when drop-side
 
     //if need column partition level 2
     columnPart: true,
@@ -50,7 +50,9 @@ var optionsMenu = {
     menuCache: true,
     activeFl: '.frame-item-menu > .frame-title > a', //
     parentTl: '.frame-l2', //prev a level 2
-    otherPage: hrefCategoryProduct //for product [undefined or value not other]
+    otherPage: hrefCategoryProduct, //for product [undefined or value not other]
+    
+    vertical: false
 };
 var scrollPane = {
     animateScroll: true,

@@ -75,6 +75,7 @@
                         <% var images = item.img %>
                         <% var urls = item.url %>
 
+
                         <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.kitId %>">
                             <td colspan="5">
                                 <table>
@@ -90,6 +91,8 @@
                                         <% _.each(ids, function(id){  %>
 
                                         <% if (0==i) { %>
+                                            
+                                        
 
                                         <tr>
                                             <td rowspan="<%- names.length %>"><button type="button" class="times d_i-b" onclick="rmFromPopupCart(this, true);">×</button></td>
@@ -134,6 +137,7 @@
                                         </tr>
 
                                         <% } else { %> 
+                                        
 
                                         <tr>
                                             <td>
@@ -193,7 +197,7 @@
                             <% setTimeout("location.href = '/';", 2000); %>
                             <% } %>
                             <td colspan="4" class="t-a_r">
-                                <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('s_close')}{literal}</a>
+                                <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('Закрыть','commerce4x')}{literal}</a>
                             </td>
                             <% } else { %>
                             <td colspan="4">

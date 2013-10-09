@@ -50,7 +50,9 @@ var optionsMenu = {
     menuCache: true,
     activeFl: '.frame-item-menu > .frame-title > a', //
     parentTl: '.frame-l2', //prev a level 2
-    otherPage: hrefCategoryProduct //for product [undefined or value not other]
+    otherPage: hrefCategoryProduct, //for product [undefined or value not other]
+    
+    vertical: true
 };
 var scrollPane = {
     animateScroll: true,
@@ -158,8 +160,8 @@ cleaverFilterObj = {
     effectIn: 'fadeIn',
     effectOff: 'fadeOut',
     duration: '300',
-    location: 'right', //if vertical has be left
-    //addingClass: 'left',//if vertical has be left
+    location: 'left', //if vertical has be left
+    addingClass: 'left',//if vertical has be left
     elPos: '.frame-group-checks .frame-label',
     dropDownEff: 'slideToggle',
     dropDownEffDur: '400',

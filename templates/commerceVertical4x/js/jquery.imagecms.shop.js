@@ -18,15 +18,15 @@ function setcookie(name, value, expires, path, domain, secure)
     }
     var expires_date = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-    ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
-    ((path) ? ";path=" + path : "") +
-    ((domain) ? ";domain=" + domain : "") +
-    ((secure) ? ";secure" : "");
+            ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
+            ((path) ? ";path=" + path : "") +
+            ((domain) ? ";domain=" + domain : "") +
+            ((secure) ? ";secure" : "");
 }
 var ie = jQuery.browser.msie,
-ieV = jQuery.browser.version,
-ltie7 = ie && (ieV <= 7),
-ltie8 = ie && (ieV <= 8);
+        ieV = jQuery.browser.version,
+        ltie7 = ie && (ieV <= 7),
+        ltie8 = ie && (ieV <= 8);
 
 function ieInput(els) {
     els = $('input[type="text"], textarea, input[type="password"]');
@@ -193,12 +193,12 @@ function ieInput(els) {
                 }
             })
             var $this = $(this),
-            text_el = $this.find('.text-el'),
-            me = settings.me;
+                    text_el = $this.find('.text-el'),
+                    me = settings.me;
 
             if (text_el.is(':visible') && $.exists_nabir(text_el) && me)
                 return false;
-            
+
             if (settings.effect == 'notalways') {
                 $('.tooltip').remove();
                 body.append('<span class="tooltip">' + settings.title + '</span>');
@@ -233,7 +233,7 @@ function ieInput(els) {
                 event.stopPropagation();
                 if ($(event.target).parents().is($this) || $(event.target).is($this))
                     return;
-                else{
+                else {
                     $('.tooltip').fadeOut(300, function() {
                         $(this).remove()
                     });
@@ -278,7 +278,7 @@ function ieInput(els) {
                 var settings = $.extend({}, options);
 
             var sH = 0,
-            menu = "";
+                    menu = "";
 
             if (options.menu == undefined)
                 menu = $(this)
@@ -286,12 +286,12 @@ function ieInput(els) {
                 menu = settings.menu;
 
             var menuW = menu.width(),
-            menuItem = settings.item,
-            vertical = false,
-            menuItemSub = settings.itemSub,
-            item_menu_l = menuItem.length,
-            frameSub = $(settings.frameSub),
-            dropW = 520;
+                    menuItem = settings.item,
+                    vertical = false,
+                    menuItemSub = settings.itemSub,
+                    item_menu_l = menuItem.length,
+                    frameSub = $(settings.frameSub),
+                    dropW = 520;
             duration = time_dur_m = settings.duration;
             drop = menuItem.next(settings.drop);
             menuItemCltd = menuItem.closest('td');
@@ -306,10 +306,10 @@ function ieInput(els) {
             $thisOH = 0;
             menuItemCltd.each(function(index) {
                 var $this = $(this),
-                $thisW = $this.width(),
-                $thisL = $this.position().left,
-                $drop = $this.find(drop).first(),
-                $thisH = $this.height();
+                        $thisW = $this.width(),
+                        $thisL = $this.position().left,
+                        $drop = $this.find(drop).first(),
+                        $thisH = $this.height();
                 if ($thisH > sH) {
                     sH = $thisH;
                 }
@@ -354,7 +354,7 @@ function ieInput(els) {
                 }
                 $thisOH += $this.outerHeight(true);
             })
-            
+
             if (!vertical) {
                 menuItemCltd.css('height', sH);
                 menuItem.find('.helper:first').css('height', sH - 4)
@@ -367,7 +367,7 @@ function ieInput(els) {
 
             function itemSubEv(el, event) {
                 var $this = el,
-                cond = $.exists_nabir($this.next('div'))
+                        cond = $.exists_nabir($this.next('div'))
                 if (cond) {
                     event.preventDefault();
                     $thisP = $this.parent();
@@ -401,7 +401,7 @@ function ieInput(els) {
 
             function unhov(el) {
                 var $this = el,
-                $thisDrop = $this.next();
+                        $thisDrop = $this.next();
                 $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
 
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
@@ -413,7 +413,7 @@ function ieInput(els) {
             function hov(el) {
                 drop.removeClass('d_n');
                 var $this = el,
-                $thisDrop = $this.next();
+                        $thisDrop = $this.next();
 
                 menuItemCltd.removeClass('hover');
 
@@ -434,32 +434,32 @@ function ieInput(els) {
             }
             if (isTouch) {
                 menuItem.unbind(evDrop)[evDrop](
-                    function() {
-                        hov($(this));
-                    }, function() {
-                        unhov($(this));
-                    });
+                        function() {
+                            hov($(this));
+                        }, function() {
+                    unhov($(this));
+                });
                 menu[evDrop](
-                    function(event) {
-                        time_dur_m = 0;
-                    },
-                    function(event) {
-                        time_dur_m = duration;
-                    });
+                        function(event) {
+                            time_dur_m = 0;
+                        },
+                        function(event) {
+                            time_dur_m = duration;
+                        });
             }
             else {
                 menuItem.unbind(evDropF)[evDropF](function() {
                     hov($(this));
-                    }).unbind(evDropS)[evDropS](function() {
+                }).unbind(evDropS)[evDropS](function() {
                     unhov($(this));
                 })
                 menu.unbind(evDropF)[evDropF](function() {
                     return time_dur_m = 0;
-                    }).unbind(evDropS)[evDropS](
-                    function() {
-                        methods.fadeDrop();
-                        return time_dur_m = duration;
-                    });
+                }).unbind(evDropS)[evDropS](
+                        function() {
+                            methods.fadeDrop();
+                            return time_dur_m = duration;
+                        });
             }
             drop.find('li li a').click(function(event) {
                 event.stopPropagation();
@@ -506,8 +506,8 @@ function ieInput(els) {
                 var settings = $.extend({}, options);
 
                 var rel = $(this),
-                minCost = settings.minCost,
-                maxCost = settings.maxCost;
+                        minCost = settings.minCost,
+                        maxCost = settings.maxCost;
 
                 if (options.minCost == undefined || options.maxCost == undefined) {
                     minCost = $('<input type="text"/>', {
@@ -530,8 +530,8 @@ function ieInput(els) {
                 });
                 minCost.change(function() {
                     var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    minS = minCost.data('mins');
+                            value2 = maxCost.val(),
+                            minS = minCost.data('mins');
 
                     if (parseInt(value1) > parseInt(value2)) {
                         value1 = value2;
@@ -545,8 +545,8 @@ function ieInput(els) {
                 });
                 maxCost.change(function() {
                     var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    maxS = maxCost.data('maxs');
+                            value2 = maxCost.val(),
+                            maxS = maxCost.data('maxs');
 
                     if (value2 > def_max) {
                         value2 = def_max;
@@ -589,8 +589,8 @@ function ieInput(els) {
             }, options);
             $this = this;
             var tabs_div = [],
-            nav_tabs_li = [],
-            reg_refs = [];
+                    nav_tabs_li = [],
+                    reg_refs = [];
             refs = [];
             attrOrdata = [];
             this_l = this.length;
@@ -688,11 +688,11 @@ function ieInput(els) {
             if (location.hash == '')
             {
                 var i = 0,
-                j = 0;
+                        j = 0;
                 $(refs).each(function(index) {
                     var index = index;
                     $this = refs[index].first(),
-                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
 
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
                         hashs[i] = $this[attrOrdataL]('href');
@@ -708,10 +708,10 @@ function ieInput(els) {
             else {
                 $(refs).each(function(index) {
                     var index = index,
-                    j = 0;
+                            j = 0;
 
                     $this = refs[index].first(),
-                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
 
                     if (attrOrdataL == 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
@@ -719,10 +719,10 @@ function ieInput(els) {
                     }
                 });
                 var t = location.hash,
-                s = '#',
-                m = s.length,
-                res = 0,
-                i = 0;
+                        s = '#',
+                        m = s.length,
+                        res = 0,
+                        i = 0;
                 pos = [];
 
                 while (i < t.length - 1)
@@ -751,7 +751,7 @@ function ieInput(els) {
             });
             $(hashs[0].join(',')).each(function(index) {
                 var $thisId = $(this).attr('id'),
-                attrOrdataNew = '';
+                        attrOrdataNew = '';
 
                 $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                 $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
@@ -772,7 +772,7 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var settings = $.extend({}, options),
-            mouseWhell = settings.mouseWhell;
+                    mouseWhell = settings.mouseWhell;
             elEven = settings.elEven;
             elEvens = $(settings.right).find(elEven);
             onlyDif = settings.onlyDif;
@@ -780,19 +780,19 @@ function ieInput(els) {
             hoverParent = settings.hoverParent;
             this.each(function(index) {
                 var $this = $(this),
-                visThis = $this.is(':visible');
+                        visThis = $this.is(':visible');
                 if (visThis) {
                     var left = $this.find(settings.left),
-                    right = $this.find(settings.right);
+                            right = $this.find(settings.right);
                     li_i_length = left.length;
                 }
 
                 if (visThis && !$this.is('[data-equalHorizCell]')) {
                     var h = 0,
-                    li_i_h = [],
-                    frameScroll = $this.find(settings.frameScroll),
-                    frame_scrollC = frameScroll.children(),
-                    frame_scrollCL = frame_scrollC.length;
+                            li_i_h = [],
+                            frameScroll = $this.find(settings.frameScroll),
+                            frame_scrollC = frameScroll.children(),
+                            frame_scrollCL = frame_scrollC.length;
                     scrollNSP = settings.scrollNSP && $.exists(frameScroll);
                     scrollNSPT = settings.scrollNSPT;
                     for (var j = 0; j < li_i_length; j++) {
@@ -825,7 +825,7 @@ function ieInput(els) {
                         $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
                     }
                     var firstScrl = frameScroll.parent(),
-                    secScrl = $([]);
+                            secScrl = $([]);
                     if (scrollNSP) {
                         secScrl = $this.children('.scrollNSP');
                         secScrl.css({
@@ -856,7 +856,7 @@ function ieInput(els) {
                 }
                 if (visThis) {
                     var right = right.find(hoverParent),
-                    left = left.parent(hoverParent).children();
+                            left = left.parent(hoverParent).children();
                     left.each(function(ind) {
                         if (ind % 2 == 0)
                             $(this).removeClass('evenC').addClass('oddC');
@@ -895,22 +895,22 @@ function ieInput(els) {
         hoverComprasion: function(left, right) {
             left.add(right.find(elEven)).hover(function() {
                 var $this = $(this),
-                index = $this.index(),
-                nab = $([]);
+                        index = $this.index(),
+                        nab = $([]);
                 right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(index))
                 })
                 $([]).add(left.eq(index)).add(nab).addClass('hover')
             },
-            function() {
-                var $this = $(this),
-                index = $this.index(),
-                nab = $([]);
-                right.each(function() {
-                    nab = nab.add($(this).find(elEven).eq(index))
-                })
-                $([]).add(left.eq(index)).add(nab).removeClass('hover')
-            });
+                    function() {
+                        var $this = $(this),
+                                index = $this.index(),
+                                nab = $([]);
+                        right.each(function() {
+                            nab = nab.add($(this).find(elEven).eq(index))
+                        })
+                        $([]).add(left.eq(index)).add(nab).removeClass('hover')
+                    });
         },
         onlyDifM: function(left, right) {
             li_i_h = [];
@@ -997,7 +997,7 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            if ($.exists_nabir($(this))){
+            if ($.exists_nabir($(this))) {
                 settings = $.extend({
                     exit: '[data-closed = "closed-js"]',
                     effon: 'show',
@@ -1017,45 +1017,45 @@ function ieInput(els) {
                 }, options);
 
                 var $thisD = this,
-                selector = $thisD.selector,
-                dataSource = $('[data-drop]'),
-                exit = $(settings.exit),
-                effon = settings.effon,
-                effoff = settings.effoff,
-                duration = settings.duration,
-                place = settings.place,
-                placement = settings.placement,
-                overlayColor = settings.overlayColor,
-                overlayOpacity = settings.overlayOpacity;
+                        selector = $thisD.selector,
+                        dataSource = $('[data-drop]'),
+                        exit = $(settings.exit),
+                        effon = settings.effon,
+                        effoff = settings.effoff,
+                        duration = settings.duration,
+                        place = settings.place,
+                        placement = settings.placement,
+                        overlayColor = settings.overlayColor,
+                        overlayOpacity = settings.overlayOpacity;
 
                 dataSource.live('click', function(event) {
                     event.stopPropagation();
                     event.preventDefault();
-                    
+
                     var $this = $(this);
-                    if ($(event.target).parents('[data-simple="yes"]').length == 0){//for propagation with tabs
+                    if ($(event.target).parents('[data-simple="yes"]').length == 0) {//for propagation with tabs
                         elSet = $this.data();
-                        
-                        function showDrop(elSetSource, isajax){
-                            var place = $this.data('place') ||  settings.place,
-                            placement = $this.data('placement') || settings.placement,
-                            $thisEOff = effoff || $this.data('effect-off'),
-                            $thisD = duration || $this.data('duration');
-                            
+
+                        function showDrop(elSetSource, isajax) {
+                            var place = $this.data('place') || settings.place,
+                                    placement = $this.data('placement') || settings.placement,
+                                    $thisEOff = effoff || $this.data('effect-off'),
+                                    $thisD = duration || $this.data('duration');
+
                             $this.each(function() {
                                 var $this = $(this),
-                                $thisSource = $this.data('drop');
-                        
+                                        $thisSource = $this.data('drop');
+
                                 $this.attr('data-placement', placement);
                                 $this.attr('data-place', place);
                                 $($thisSource).attr('data-effect-off', $thisEOff).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
                             });
-                    
+
                             var $thisEOn = elSet.effectOn || effon,
-                            $thisEOff = elSet.effectOff || effoff,
-                            $thisD = elSet.duration || duration,
-                            overlayColor = elSet.overlaycolor || settings.overlayColor,
-                            overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
+                                    $thisEOff = elSet.effectOff || effoff,
+                                    $thisD = elSet.duration || duration,
+                                    overlayColor = elSet.overlaycolor || settings.overlayColor,
+                                    overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
                             if (overlayColor != undefined || overlayOpacity != undefined) {
                                 if (!$.exists('.overlayDrop')) {
@@ -1076,8 +1076,8 @@ function ieInput(els) {
                                 $thisHref = $(this).attr('href');
                                 if ($thisHref != undefined) {
                                     var $thisHrefL = $thisHref.length,
-                                    wLH = location.hash,
-                                    wLHL = wLH.length;
+                                            wLH = location.hash,
+                                            wLHL = wLH.length;
                                     try {
                                         indH = wLH.match($thisHref + '(?![a-z])').index;
                                         location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
@@ -1089,27 +1089,32 @@ function ieInput(els) {
                                 settings.before($this, elSetSource, isajax);
                                 //                                $newthis = settings.before(this, elSetSource, isajax);
                                 //                                if ($newthis != undefined) $this = $newthis;
-                            
+
                                 $thisDrop = $this.closest('[data-elrun]');
-                                if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
-                            
-                                if (event.button == undefined && place != "center") wnd.scrollTop($this.offset().top)
+                                if ($.exists_nabir($thisDrop))
+                                    methods.triggerBtnClick($thisDrop, selector);
+
+                                if (event.button == undefined && place != "center")
+                                    wnd.scrollTop($this.offset().top)
 
                                 var wndW = wnd.width();
-                                if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
-                                else elSetSource.removeAttr('style');
-                    
+                                if (elSetSource.actual('width') > wnd.width())
+                                    elSetSource.css('width', wndW - 40);
+                                else
+                                    elSetSource.removeAttr('style');
+
                                 methods.positionDrop($this, placement, place);
-                            
-                                if (place == "center") methods.dropScroll(elSetSource);
+
+                                if (place == "center")
+                                    methods.dropScroll(elSetSource);
 
                                 $this.parent().addClass(activeClass);
-                                
+
                                 //if (place == "center"){
                                 drop_over.show()
-                                drop_over.unbind('click').bind('click', function(e){
+                                drop_over.unbind('click').bind('click', function(e) {
                                     e.stopPropagation();
-                                    methods.triggerBtnClick(false,selector);
+                                    methods.triggerBtnClick(false, selector);
                                 })
                                 //}
                                 elSetSource[$thisEOn]($thisD, function() {
@@ -1120,14 +1125,14 @@ function ieInput(els) {
                                 });
                             }
                         }
-                        
+
                         elSetSource = $(elSet.drop);
-                        if ($.exists_nabir(elSetSource)){
+                        if ($.exists_nabir(elSetSource)) {
                             showDrop(elSetSource);
                         }
-                        else{
-                            if (elSet.source){
-                                $.post(elSet.source, function(data){
+                        else {
+                            if (elSet.source) {
+                                $.post(elSet.source, function(data) {
                                     body.append(data);
                                     elSetSource = $(elSet.drop);
                                     showDrop(elSetSource, true);
@@ -1137,17 +1142,17 @@ function ieInput(els) {
                         }
                     }
                 })
-                exit.live('click', function(){
+                exit.live('click', function() {
                     methods.triggerBtnClick($(this).closest('[data-elrun]'), selector);
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    if (event.button == 0){
+                    if (event.button == 0) {
                         if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
                             return;
                         else
                         {
-                            methods.triggerBtnClick(false,selector);
+                            methods.triggerBtnClick(false, selector);
                         }
                     }
                 }).live('keydown', function(e) {
@@ -1161,31 +1166,33 @@ function ieInput(els) {
                         key = e.which;
 
                     if (key == 27) {
-                        methods.triggerBtnClick(false,selector);
+                        methods.triggerBtnClick(false, selector);
                     }
                 });
             }
         },
         triggerBtnClick: function(sel, selector) {
-            if (!sel) var drop = $('[data-elrun].' + activeClass);
-            else var drop = sel;
-            
+            if (!sel)
+                var drop = $('[data-elrun].' + activeClass);
+            else
+                var drop = sel;
+
             drop.removeClass(activeClass).each(function() {
                 var $this = $(this),
-                $thisEOff = $this.attr('data-effect-off'),
-                $thisD = $this.attr('data-duration');
-                
+                        $thisEOff = $this.attr('data-effect-off'),
+                        $thisD = $this.attr('data-duration');
+
                 var $thisB = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
                 $thisB.parent().removeClass(activeClass);
-                
-                if (!$.exists_nabir($(selector+'.'+activeClass))) {
-                    if ($(document).height()-wnd.height() > 0){
+
+                if (!$.exists_nabir($(selector + '.' + activeClass))) {
+                    if ($(document).height() - wnd.height() > 0) {
                         drop_over.removeClass('drop_overlay_fixed');
                         body.removeClass('isScroll')
                     }
                     drop_over.hide();
                 }
-                $this[$thisEOff]($thisD, function(){
+                $this[$thisEOff]($thisD, function() {
                     $(this).removeAttr('style');
                     settings.close($thisB, $this);
                 });
@@ -1200,19 +1207,22 @@ function ieInput(els) {
                 queue: false
             });
         },
-        positionDrop: function($this, placement, place){
+        positionDrop: function($this, placement, place) {
             var $this = $this;
-            if ($this == undefined) $this = $(this);
-            if (placement == undefined) placement = $this.data('placement');
-            if (place == undefined) place = $this.data('place');
-            
+            if ($this == undefined)
+                $this = $(this);
+            if (placement == undefined)
+                placement = $this.data('placement');
+            if (place == undefined)
+                place = $this.data('place');
+
             var elSetSource = $($this.data().drop);
-            
+
             var $thisP = place;
             dataSourceH = 0,
-            dataSourceW = 0,
-            $thisW = $this.width(),
-            $thisH = $this.height();
+                    dataSourceW = 0,
+                    $thisW = $this.width(),
+                    $thisH = $this.height();
 
             if ($thisP == 'noinherit') {
                 var $thisPMT = placement.toLowerCase().split(' ');
@@ -1228,26 +1238,29 @@ function ieInput(els) {
 
                 if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
                     dataSourceW = -elSetSource.actual('width') + $thisW;
-                
+
 
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
-                if ($thisL < 0) $thisL = 0;
+                if ($thisL < 0)
+                    $thisL = 0;
 
                 elSetSource.css({
                     'top': $thisT,
                     'left': $thisL
                 });
-                if ($thisL == 0) elSetSource.css('margin-left', 0);
+                if ($thisL == 0)
+                    elSetSource.css('margin-left', 0);
             }
-            if ($(document).height()-wnd.height() > 0){
+            if ($(document).height() - wnd.height() > 0) {
                 body.addClass('isScroll');
                 drop_over.addClass('drop_overlay_fixed');
             }
-            wnd.bind('resize.drop', function(){
+            wnd.bind('resize.drop', function() {
                 methods.dropScroll(elSetSource)
             });
-            if (this instanceof $) methods.dropScroll(elSetSource);
+            if (this instanceof $)
+                methods.dropScroll(elSetSource);
         }
     };
     $.fn.drop = function(method) {
@@ -1270,12 +1283,12 @@ function ieInput(els) {
             if (this.length > 0) {
                 return this.each(function() {
                     var $this = $(this),
-                    prev = settings.prev.split('.'),
-                    next = settings.next.split('.'),
-                    $thisPrev = $this,
-                    $thisNext = $this,
-                    regS = '',
-                    regM = '';
+                            prev = settings.prev.split('.'),
+                            next = settings.next.split('.'),
+                            $thisPrev = $this,
+                            $thisNext = $this,
+                            regS = '',
+                            regM = '';
 
                     $.each(prev, function(i, v) {
                         regS = v.match(/\(.*\)/);
@@ -1314,12 +1327,12 @@ function ieInput(els) {
                     $thisPrev.click(function() {
                         var input = $this.focus();
                         var inputVal = parseInt(input.val());
-                                                
+
                         if (isNaN(inputVal))
                             input.val(1)
                         else if (inputVal > 1)
                             input.val(inputVal - 1)
-                        
+
                     })
                     $this.die('keyup').live('keyup', function() {
                         if (checkProdStock)
@@ -1392,7 +1405,7 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var $this = $(this),
-            $max = parseInt($(this).attr('data-max'));
+                    $max = parseInt($(this).attr('data-max'));
 
             $thisVal = $this.val();
 
@@ -1433,22 +1446,22 @@ function ieInput(els) {
                     }
                 }, options);
                 var item = settings.item,
-                prev = settings.prev,
-                next = settings.next,
-                content = settings.content,
-                groupButtons = settings.groupButtons,
-                adding = settings.adding;
-					
+                        prev = settings.prev,
+                        next = settings.next,
+                        content = settings.content,
+                        groupButtons = settings.groupButtons,
+                        adding = settings.adding;
+
                 $js_carousel.each(function(index) {
                     var $this = $(this),
-                    $item = $this.find(content).children().children(item),
-                    $item_l = $item.length,
-                    $item_w = $item.outerWidth(true),
-                    $this_prev = $this.find(prev),
-                    $this_next = $this.find(next),
-                    $marginR = $item_w - $item.outerWidth(),
-                    cont_width = $this.find(content).width(),
-                    group_button = $this.find(groupButtons);
+                            $item = $this.find(content).children().children(item),
+                            $item_l = $item.length,
+                            $item_w = $item.outerWidth(true),
+                            $this_prev = $this.find(prev),
+                            $this_next = $this.find(next),
+                            $marginR = $item_w - $item.outerWidth(),
+                            cont_width = $this.find(content).width(),
+                            group_button = $this.find(groupButtons);
 
                     settings.before($this);
 
@@ -1461,8 +1474,8 @@ function ieInput(els) {
                             scroll: 1
                         }
                         $this.jcarousel($.extend(
-                            adding
-                            , main_obj));
+                                adding
+                                , main_obj));
 
                         group_button.append($this_next.add($this_prev).css('display', 'inline-block'));
                     }
@@ -1489,7 +1502,7 @@ function ieInput(els) {
  *imagecms shop plugins
  **/
 if (!Array.indexOf) {
-    Array.prototype.indexOf = function (obj, start) {
+    Array.prototype.indexOf = function(obj, start) {
         for (var i = (start || 0); i < this.length; i++) {
             if (this[i] == obj) {
                 return i;
@@ -1502,104 +1515,105 @@ if (!Array.indexOf) {
 var Shop = {
     //var Cart = new Object();
     currentItem: {},
-    Cart:{
-        totalPrice:0,
-        totalCount:0,
-        popupCartSelector:'script#cartPopupTemplate',
-        countChanged:false,
-        shipping:0,
-        shipFreeFrom:0,
+    Cart: {
+        totalPrice: 0,
+        totalPriceOrigin: 0,
+        discount:0,
+        totalCount: 0,
+        popupCartSelector: 'script#cartPopupTemplate',
+        countChanged: false,
+        shipping: 0,
+        shipFreeFrom: 0,
         giftCertPrice: 0,
-
-        add:function (cartItem) {
+        add: function(cartItem) {
             //trigger before_add_to_cart
             $(document).trigger({
-                type:'before_add_to_cart',
-                cartItem:_.clone(cartItem)
+                type: 'before_add_to_cart',
+                cartItem: _.clone(cartItem)
             });
             //
             var data = {
-                'quantity':cartItem.count,
-                'productId':cartItem.id,
-                'variantId':cartItem.vId
+                'quantity': cartItem.count,
+                'productId': cartItem.id,
+                'variantId': cartItem.vId
             };
             var url = '/shop/cart_api/add';
 
             if (cartItem.kit) {
                 data = {
-                    'quantity':cartItem.count,
-                    'kitId':cartItem.kitId
+                    'quantity': cartItem.count,
+                    'kitId': cartItem.kitId
                 };
 
                 url += '/ShopKit';
             }
-
+            
             Shop.currentItem = cartItem;
             $.post(url, data,
-                function (data) {
-                    try {
-                        responseObj = JSON.parse(data);
+                    function(data) {
+                        try {
+                            responseObj = JSON.parse(data);
 
-                        //save item to storage
-                        Shop.Cart._add(Shop.currentItem);
-                    } catch (e) {
-                        return;
-                    }
-                });
+                            //save item to storage
+                            Shop.Cart._add(Shop.currentItem);
+                        } catch (e) {
+                            return;
+                        }
+                    });
             return;
 
         },
-        _add:function (cartItem) {
-
+        _add: function(cartItem) {
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
                 currentItem.count += cartItem.count;
             else
                 currentItem = cartItem;
-
+                                        
+            //console.log(currentItem)
             this.save(currentItem);
 
 
             ////trigger after_add_to_cart
             $(document).trigger({
-                type:'after_add_to_cart',
-                cartItem:_.clone(cartItem)
+                type: 'after_add_to_cart',
+                cartItem: _.clone(cartItem)
             });
 
             $(document).trigger({
-                type:'cart_changed'
+                type: 'cart_changed'
             });
             //
 
             return this;
         },
-        rm:function (cartItem) {
+        rm: function(cartItem) {
             Shop.currentItem = this.load('cartItem_' + cartItem.id + '_' + cartItem.vId);
 
             if (Shop.currentItem.kit)
                 var key = 'ShopKit_' + Shop.currentItem.kitId;
             else
-                var key = 'SProducts_' + Shop.currentItem.id+'_'+Shop.currentItem.vId;
+                var key = 'SProducts_' + Shop.currentItem.id + '_' + Shop.currentItem.vId;
 
             //Shop.currentItem = cartItem;
-            $.getJSON('/shop/cart_api/delete/' + key, function () {
-                localStorage.removeItem('cartItem_' + Shop.currentItem.id +'_'+ Shop.currentItem.vId);
+            $.getJSON('/shop/cart_api/delete/' + key, function() {
+                localStorage.removeItem('cartItem_' + Shop.currentItem.id + '_' + Shop.currentItem.vId);
 
                 Shop.Cart.totalRecount();
 
                 $(document).trigger({
-                    type:'cart_rm',
+                    type: 'cart_rm',
                     cartItem: Shop.currentItem
                 });
 
                 $(document).trigger({
-                    type:'cart_changed'
+                    type: 'cart_changed'
                 });
             });
 
             return this;
         },
-        chCount:function (cartItem, f) {
+        chCount: function(cartItem, f) {
 
             Shop.Cart.currentItem = this.load(cartItem.storageId());
             if (Shop.Cart.currentItem) {
@@ -1611,15 +1625,15 @@ var Shop = {
                 Shop.currentCallbackFn = f;
 
                 if (cartItem.kit)
-                    var postName = 'kits[ShopKit_'+Shop.Cart.currentItem.kitId+']';
+                    var postName = 'kits[ShopKit_' + Shop.Cart.currentItem.kitId + ']';
                 else
-                    var postName = 'products[SProducts_'+cartItem.id+'_'+cartItem.vId+']';
+                    var postName = 'products[SProducts_' + cartItem.id + '_' + cartItem.vId + ']';
 
                 var postData = {
-                    recount:1
+                    recount: 1
                 };
                 postData[postName] = cartItem.count;
-                $.post('/shop/cart_api/recount', postData, function(data){
+                $.post('/shop/cart_api/recount', postData, function(data) {
 
                     var dataObj = JSON.parse(data);
                     if (dataObj.hasOwnProperty('count'))
@@ -1627,15 +1641,15 @@ var Shop = {
 
                     Shop.Cart.save(Shop.Cart.currentItem);
 
-                    (Shop.currentCallbackFn () );
+                    (Shop.currentCallbackFn());
 
                     $(document).trigger({
-                        type:'count_changed',
-                        cartItem:_.clone(cartItem)
+                        type: 'count_changed',
+                        cartItem: _.clone(cartItem)
                     });
 
                     $(document).trigger({
-                        type:'cart_changed'
+                        type: 'cart_changed'
                     });
 
                 });
@@ -1644,63 +1658,59 @@ var Shop = {
 
             }
         },
-
-        clear:function () {
+        clear: function() {
             $.getJSON('/shop/cart_api/clear',
-                function () {
-                    var items = Shop.Cart.getAllItems();
-                    for (var i = 0; i < items.length; i++)
-                        localStorage.removeItem(items[i].storageId());
-                    delete items;
+                    function() {
+                        var items = Shop.Cart.getAllItems();
+                        for (var i = 0; i < items.length; i++)
+                            localStorage.removeItem(items[i].storageId());
+                        delete items;
 
-                    $(document).trigger({
-                        type:'cart_changed'
-                    });
+                        $(document).trigger({
+                            type: 'cart_changed'
+                        });
 
-                    Shop.Cart.totalRecount();
-                }
-                );
+                        Shop.Cart.totalRecount();
+                    }
+            );
         },
-
         //work with storage
-        load:function (key) {
+        load: function(key) {
             try {
                 return new Shop.cartItem(JSON.parse(localStorage.getItem(key)));
             } catch (e) {
                 return false;
             }
         },
-
-        save:function (cartItem) {
+        save: function(cartItem) {
             if (!cartItem.storageId().match(/undefined/)) {
                 localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
                 this.totalRecount();
 
                 ////trigger cart_changed
                 $(document).trigger({
-                    type:'cart_changed'
+                    type: 'cart_changed'
                 });
-            //
+                //
             }
             return this;
         },
-
-        getAllItems:function () {
+        getAllItems: function() {
             var pattern = /cartItem_*/;
 
             var items = [];
             for (var i = 0; i < localStorage.length; i++) {
-
+                
                 var key = localStorage.key(i);
-                try{
+                try {
                     if (key.match(pattern))
                         items.push(this.load(key));
-                }catch(err){}
+                } catch (err) {
+                }
             }
             return items;
         },
-
-        length:function () {
+        length: function() {
             var pattern = /cartItem_*/;
             var length = 0;
             for (var i = 0; i < localStorage.length; i++)
@@ -1709,37 +1719,46 @@ var Shop = {
 
             return length;
         },
-
-        totalRecount:function () {
+        totalRecount: function() {
             var items = this.getAllItems();
 
             this.totalPrice = 0;
             this.totalCount = 0;
-            
+            this.totalPriceOrigin = 0;
+
             for (var i = 0; i < items.length; i++) {
+                if (items[i].origprice != '')
+                    this.totalPriceOrigin += items[i].origprice * items[i].count;
+                else
+                    this.totalPriceOrigin += items[i].price * items[i].count;
                 this.totalPrice += items[i].price * items[i].count;
                 this.totalCount += parseInt(items[i].count);
             }
 
+
             return this;
         },
 
-        getTotalPrice:function () {
+        getTotalPrice: function() {
             if (this.totalPrice == 0)
                 return this.totalRecount().totalPrice;
             else
                 return this.totalPrice;
         },
-
-        getFinalAmount:function () {
+        getTotalPriceOrigin: function() {
+            if (this.totalPrice == 0)
+                return this.totalRecount().totalPriceOrigin;
+            else
+                return this.totalPriceOrigin;
+        },
+        getFinalAmount: function() {
             if (this.shipFreeFrom > 0)
-                if (this.shipFreeFrom <= this.getTotalPrice())
+                if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0.0;
 
-            return (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice))>=0?(this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)):0;
+            return (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
         },
-
-        renderPopupCart:function (selector) {
+        renderPopupCart: function(selector) {
             if (typeof selector == 'undefined' || selector == '')
                 selector = this.popupCartSelector;
 
@@ -1747,19 +1766,17 @@ var Shop = {
             return template = _.template($(selector).html(), Shop.Cart);
 
         },
-
-        showPopupCart:function () {
-        //$.fancybox(this.renderPopupCart());
+        showPopupCart: function() {
+            //$.fancybox(this.renderPopupCart());
         },
-
-        sync: function (){
-            $.getJSON('/shop/cart_api/sync', function(data){
-                if (typeof(data) == 'object'){
+        sync: function() {
+            $.getJSON('/shop/cart_api/sync', function(data) {
+                if (typeof(data) == 'object') {
 
                     var items = Shop.Cart.getAllItems();
                     for (var i = 0; i < items.length; i++)
                         if (!items[i].kit)
-                            localStorage.removeItem('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
+                            localStorage.removeItem('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
                     delete items;
 
                     _.each(_.keys(data.data.items), function(key) {
@@ -1768,61 +1785,61 @@ var Shop = {
                         else
                         {
                             try {
-                                var kit = Shop.Cart.load('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
+                                var kit = Shop.Cart.load('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
                                 kit.count = data.data.items[key].count;
-                                Shop.Cart.save('cartItem_'+kit['id']+'_'+kit['vId']);
-                            }catch(err){}
+                                Shop.Cart.save('cartItem_' + kit['id'] + '_' + kit['vId']);
+                            } catch (err) {
+                            }
                         }
                     });
 
                     $(document).trigger({
-                        type:'cart_changed'
+                        type: 'cart_changed'
                     });
                 }
-                if ( data ==  false )
+                if (data == false)
                     Shop.Cart.clear();
             });
         },
-
-        updatePage:function () {
+        updatePage: function() {
 
         }
     },
-    cartItem:function (obj) {
+    cartItem: function(obj) {
         if (typeof obj == 'undefined' || obj == false)
             obj = {
-                id:false,
-                vId:false,
-                name:false,
-                count:false,
-                kit:false,
-                maxcount:0,
-                number:'',
-                vname:false,
-                url:false
+                id: false,
+                vId: false,
+                name: false,
+                count: false,
+                kit: false,
+                maxcount: 0,
+                number: '',
+                vname: false,
+                url: false
             };
 
         return prototype = {
-            id:obj.id ? obj.id : 0,
-            vId:obj.vId ? obj.vId : 0,
-            price:obj.price ? obj.price : 0,
-            name:obj.name ? obj.name : '',
-            count:obj.count ? obj.count : 1,
-            kit:obj.kit ? obj.kit : false,
-            prices:obj.prices ? obj.prices : 0,
-            kitId:obj.kitId ? obj.kitId : 0,
-            maxcount:obj.maxcount ? obj.maxcount : 0,
-            number:obj.number ? obj.number : 0,
-            vname:obj.vname ? obj.vname : '',
-            url:obj.url ? obj.url : '',
-            img:obj.img ? obj.img : '',
-            storageId:function () {
+            id: obj.id ? obj.id : 0,
+            vId: obj.vId ? obj.vId : 0,
+            price: obj.price ? obj.price : 0,
+            name: obj.name ? obj.name : '',
+            count: obj.count ? obj.count : 1,
+            kit: obj.kit ? obj.kit : false,
+            prices: obj.prices ? obj.prices : 0,
+            kitId: obj.kitId ? obj.kitId : 0,
+            maxcount: obj.maxcount ? obj.maxcount : 0,
+            number: obj.number ? obj.number : 0,
+            vname: obj.vname ? obj.vname : '',
+            url: obj.url ? obj.url : '',
+            img: obj.img ? obj.img : '',
+            origprice: obj.origprice ? obj.origprice : '',
+            storageId: function() {
                 return 'cartItem_' + this.id + '_' + this.vId;
             }
         };
     },
-
-    composeCartItem:function ($context) {
+    composeCartItem: function($context) {
         var cartItem = new Shop.cartItem();
 
         cartItem.id = $context.data('prodid');
@@ -1835,39 +1852,40 @@ var Shop = {
         cartItem.maxcount = $context.data('maxcount');
         cartItem.number = $context.data('number');
         cartItem.vname = $context.data('vname');
-        cartItem.url = $context.data('url'); 
+        cartItem.url = $context.data('url');
         cartItem.img = $context.data('img');
+        cartItem.origprice = $context.data('origprice')
+        
+
         return cartItem;
     },
-
     //settings manager
-    Settings:{
-        get:function (key) {
+    Settings: {
+        get: function(key) {
             return localStorage.getItem(key);
         },
-        set:function (key, value) {
+        set: function(key, value) {
             localStorage.setItem(key, value);
             return this;
         }
     },
-
-    WishList:{
-        items:[],
-        all:function () {
+    WishList: {
+        items: [],
+        all: function() {
             return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
         },
-        add:function (key, vid, price, curentEl) {
+        add: function(key, vid, price, curentEl) {
             Shop.WishList.items = this.all();
-            localStorage.setItem('wishList_'+key+'_'+vid, JSON.stringify({
-                id: key, 
-                vid: vid, 
+            localStorage.setItem('wishList_' + key + '_' + vid, JSON.stringify({
+                id: key,
+                vid: vid,
                 price: price
             }));
             if (this.items.indexOf(key) == -1) {
                 $.post('/shop/wish_list_api/add', {
-                    productId_:key,
-                    variantId_:vid
-                }, function (data) {
+                    productId_: key,
+                    variantId_: vid
+                }, function(data) {
                     try {
                         var dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -1875,16 +1893,16 @@ var Shop = {
                             Shop.WishList.items.push(key);
                             //localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
                             var arr = JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
-                            arr.push(key+'_'+vid)
+                            arr.push(key + '_' + vid)
                             localStorage.setItem('wishList', JSON.stringify(arr));
-                            
+
                             if (Shop.WishList.items.length != dataObj.count) {
                                 Shop.WishList.sync();
                                 return;
                             }
                             $(document).trigger({
-                                type:'wish_list_add',
-                                dataObj:dataObj
+                                type: 'wish_list_add',
+                                dataObj: dataObj
                             });
                         }
                         else {
@@ -1892,15 +1910,15 @@ var Shop = {
                                 $(loginButton).click();
                             }
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                    }
                 });
             }
         },
-
-        rm:function (key, el, vid, price) {
+        rm: function(key, el, vid, price) {
             this.items = this.all();
-            
-            $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function (data) {
+
+            $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function(data) {
                 try {
                     dataObj = JSON.parse(data);
                     dataObj.id = key;
@@ -1910,17 +1928,18 @@ var Shop = {
                         localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
 
                         $(document).trigger({
-                            type:'wish_list_rm',
-                            dataObj:dataObj
+                            type: 'wish_list_rm',
+                            dataObj: dataObj
                         });
 
                     }
-                } catch (e) {}
+                } catch (e) {
+                }
             });
-            deleteWishListItem($(el),key, vid, price);
+            deleteWishListItem($(el), key, vid, price);
         },
-        sync: function(){
-            $.getJSON('/shop/wish_list_api/sync', function(data){
+        sync: function() {
+            $.getJSON('/shop/wish_list_api/sync', function(data) {
                 if (typeof(data) == 'Array' || typeof(data) == 'object') {
                     localStorage.setItem('wishList', JSON.stringify(data));
                 }
@@ -1929,21 +1948,20 @@ var Shop = {
                 }
 
                 $(document).trigger({
-                    type:'wish_list_sync'
+                    type: 'wish_list_sync'
                 });
             });
         }
     },
-
-    CompareList:{
-        items:[],
-        all:function () {
+    CompareList: {
+        items: [],
+        all: function() {
             return JSON.parse(localStorage.getItem('compareList')) ? _.compact(JSON.parse(localStorage.getItem('compareList'))) : [];
         },
-        add:function (key) {
+        add: function(key) {
             this.items = this.all();
             if (this.items.indexOf(key) === -1) {
-                $.get('/shop/compare_api/add/' + key, function (data) {
+                $.get('/shop/compare_api/add/' + key, function(data) {
                     try {
                         dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -1953,17 +1971,17 @@ var Shop = {
                             localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
 
                             $(document).trigger({
-                                type:'compare_list_add',
-                                dataObj:dataObj
+                                type: 'compare_list_add',
+                                dataObj: dataObj
                             });
 
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                    }
                 });
             }
         },
-
-        rm:function (key, el) {
+        rm: function(key, el) {
             this.items = JSON.parse(localStorage.getItem('compareList')) ? JSON.parse(localStorage.getItem('compareList')) : [];
 
             if (this.items.indexOf(key) !== -1) {
@@ -1971,7 +1989,7 @@ var Shop = {
                 this.items = _.without(this.items, key);
                 this.items = this.all();
 
-                $.get('/shop/compare_api/remove/' + key, function (data) {
+                $.get('/shop/compare_api/remove/' + key, function(data) {
                     try {
                         dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -1981,30 +1999,31 @@ var Shop = {
                             localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
 
                             $(document).trigger({
-                                type:'compare_list_rm',
-                                dataObj:dataObj
+                                type: 'compare_list_rm',
+                                dataObj: dataObj
                             });
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                    }
                 });
             }
             deleteComprasionItem($(el));
         },
-        sync: function(){
-            $.getJSON('/shop/compare_api/sync', function(data){
+        sync: function() {
+            $.getJSON('/shop/compare_api/sync', function(data) {
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
-                    localStorage.setItem('compareList', JSON.parse(data));
+                    localStorage.setItem('wishList', JSON.stringify(data));
 
                     $(document).trigger({
-                        type:'compare_list_sync'
+                        type: 'compare_list_sync'
                     });
                 }
                 else
-                if(data === false) {
+                if (data === false) {
                     localStorage.removeItem('compareList');
 
                     $(document).trigger({
-                        type:'compare_list_sync'
+                        type: 'compare_list_sync'
                     });
                 }
             });
