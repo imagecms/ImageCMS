@@ -17,42 +17,35 @@
 
 <!-- Start.Show search results block, if $totalProduct > 0 -->
 {if $totalProducts > 0}
-    <div class="container">
+    <div id="search" class="container">
         <div class="row">
             <aside class="span3">
                 <div class="filter">
                     <!-- Start. Categories tree with navigation -->
                     <div class="boxFilter">
-                        <div class="title">{lang('s_sea_found_in_categories')}:</div>
+                        <div class="title">{lang('Найдено в категориях','commerce4x')}:</div>
                         <nav>
                             <ul>
-                                {foreach $tree as $item}
-                                    <ul data-cid="{echo $item->getId()}" {if $item->getParentId() != 0} data-level="3" data-pid="{echo $item->getParentId()}"{/if}>
-                                        {$title=false}
-                                        {foreach $item->getSubtree() as $subItem}
-                                            {$count_item = $categories[$subItem->getId()];}
-                                            {if $count_item}
-                                                {if !$title}
-                                                    <div class="title">
-                                                        {echo trim($item->getName())}
-                                                        {$title=true}
-                                                    </div>
+                            {foreach $categories as $key => $category}
+                                <ul  data-pid="{echo $key}">
+                                    <div class="title">
+                                        {echo trim(key($category))}
+                                    </div>
+                                    {foreach $category[key($category)] as $subItem}
+                                        <li{if $_GET['category'] && $_GET['category'] == $subItem['id']} class="active"{/if}>
+                                            <span>
+                                                {if $_GET['category'] && $_GET['category'] == $subItem['id']}
+                                                    {echo $subItem['name']}
+                                                {else:}
+                                                    <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"> {echo $subItem['name']}</a>
                                                 {/if}
-                                                <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
-                                                    <span>
-                                                        {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
-                                                            {echo $subItem->getName()}
-                                                        {else:}
-                                                            <a class="filter_by_cat" rel="nofollow" data-id="{echo $subItem->getId()}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>
-                                                        {/if}
-                                                        <span class="count">({echo $count_item})</span>
-                                                    </span>
-                                                </li>
-                                            {/if}
-                                        {/foreach}
-                                    </ul>
-                                {/foreach}
-                            </ul>
+                                                <span class="count">({echo $subItem['count']})</span>
+                                            </span>
+                                        </li>
+
+                                    {/foreach}
+                                </ul>
+                            {/foreach}
                         </nav>
                     </div>
                     <!-- End. Categories tree with navigation -->
@@ -60,10 +53,10 @@
             </aside>
             <div class="span9 right">
                 {if !empty(ShopCore::$_GET['text'])}
-                    <h1 class="d_i">  {lang('s_sea_search_for')}: "{encode(trim($_GET['text']))}" </h1>
+                    <h1 class="d_i">  {lang('Вы искали','commerce4x')}: "{encode(trim($_GET['text']))}" </h1>
                 {/if}
                 <span class="c_97">
-                    Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                    Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','commerce4x'), lang('товара','commerce4x'), lang('товаров','commerce4x')))}
                 </span>
                 <div class=" clearfix t-a_ccatalog_frame">
                     <div class="clearfix t-a_c frame_func_catalog">
@@ -85,7 +78,7 @@
                             <!-- End. Sort by block -->
                             <!-- Start. Per page block -->
                             <div class="f_r">
-                                <span class="v-a_m">{lang('s_products_per_page')}:</span>
+                                <span class="v-a_m">{lang('Товаров на странице','commerce4x')}:</span>
                                 <div class="lineForm w_70">
                                     {if ShopCore::$_GET['user_per_page'] == null}
                                         {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
@@ -105,8 +98,8 @@
                         <!-- End. Per page block -->
                         <!-- Start. Buttons for change view mode (list/images) -->
                         <div class="groupButton list_pic_btn">
-                            <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                            <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
+                            <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('Таблицей','commerce4x')}</span></button>
+                            <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('Списком','commerce4x')}</span></button>
                         </div>
                         <!-- End. Buttons for change view mode (list/images) -->
                     </div>
@@ -199,10 +192,10 @@
                                             data-url="{echo shop_url('product/'.$product->getUrl())}"
                                             data-price="{echo $pv->toCurrency()}"
                                             {if trim(ShopCore::encode($pv->getNumber())) != ''} data-number="{echo $pv->getNumber()}"{/if}
-                                            data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                            data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                             data-stock="{echo $pv->getStock()}"
                                             >
-                                            {lang('s_buy')}
+                                            {lang('Купить','commerce4x')}
                                     </button>
                                     {else:}
                                     <button {if $key != 0}style="display:none"{/if}
@@ -221,13 +214,13 @@
                                         data-url="{echo shop_url('product/'.$product->getUrl())}"
                                         data-price="{echo $pv->toCurrency()}"
                                         {if trim(ShopCore::encode($pv->getNumber())) != ''} data-number="{echo $pv->getNumber()}"{/if}
-                                        data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                        data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-stock="{echo $pv->getStock()}"
 
                                         type="button"
                                         class="btn btn_not_avail variant_{echo $pv->getId()} variant">
                                         <span class="icon-but"></span>
-                                        <span class="text-el">{lang('s_message_o_report')}</span>
+                                        <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                                     </button>
                                     {/if}
                                     {/foreach}
@@ -241,14 +234,14 @@
                                     <button class="btn btn_small_p toCompare"
                                             data-prodid="{echo $product->getId()}"
                                             type="button"
-                                            data-title="{lang('s_add_to_compare')}"
-                                            data-firtitle="{lang('s_add_to_compare')}"
-                                            data-sectitle="{lang('s_in_compare')}"
+                                            data-title="{lang('В список сравнений','commerce4x')}"
+                                            data-firtitle="{lang('В список сравнений','commerce4x')}"
+                                            data-sectitle="{lang('В списке сравнений','commerce4x')}"
                                             data-rel="tooltip">
                                         <span class="icon-comprasion_2"></span>
-                                        <span class="text-el">{lang('s_add_to_compare')}</span>
+                                        <span class="text-el">{lang('В список сравнений','commerce4x')}</span>
                                     </button>
-
+{/*}
                                     {foreach $product->getProductVariants() as $key => $pv}
                                     <!-- to wish list button -->
                                     <button  {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant" 
@@ -256,14 +249,15 @@
                                         data-prodid="{echo $product->getId()}"
                                         data-varid="{echo $pv->getId()}"
                                         type="button"
-                                        data-title="{lang('s_add_to_wish_list')}"
-                                        data-firtitle="{lang('s_add_to_wish_list')}"
-                                        data-sectitle="{lang('s_in_wish_list')}"
+                                        data-title="{lang('В список желаний','commerce4x')}"
+                                        data-firtitle="{lang('В список желаний','commerce4x')}"
+                                        data-sectitle="{lang('В списке желаний','commerce4x')}"
                                         data-rel="tooltip">
                                         <span class="icon-wish_2"></span>
-                                        <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                        <span class="text-el">{lang('В список желаний','commerce4x')}</span>
                                     </button>
                                     {/foreach}
+{ */}
                                 </div>
                             </div>
                             <div class="short_description">
@@ -286,17 +280,17 @@
 
                         <!-- creating hot bubble for products image if product is hot -->
                         {if $product->getHot()}
-                        <span class="top_tovar nowelty">{lang('s_shot')}</span>
+                            <span class="top_tovar nowelty">{lang("New","admin")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is action -->
                         {if $product->getAction()}
-                        <span class="top_tovar promotion">{lang('s_saction')}</span>
+                            <span class="top_tovar promotion">{lang("Promotion","admin")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is hit -->
                         {if $product->getHit()}
-                        <span class="top_tovar discount">{lang('s_shit')}</span>
+                        <span class="top_tovar discount">{lang('Hit')}</span>
                         {/if}
                     </li>
                     {/foreach}
@@ -314,18 +308,19 @@
     </div>
 {else:}
     <!--Start. Show message not found-->
-    <article class="container">
+    <article id="search" class="container">
         <div class="bot_border_grey m-b_10">
             {if !empty(ShopCore::$_GET['text'])}
-                <div class="d_i title_h1">{lang('s_sea_search_for')} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
+                <div class="d_i title_h1">{lang("You searched for","admin")} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
             {/if}
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_not_found'))}</div>
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your search did not match","admin"))}</div>
         </div>
     </article>
     <!-- End. Show message -->
 {/if}
 
+{//widget_ajax('view_product', '#search')}
 {widget('view_product')}
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

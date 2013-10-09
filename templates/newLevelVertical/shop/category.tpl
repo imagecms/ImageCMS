@@ -81,7 +81,6 @@
         <!--widget for popular products in this category-->
     </div>
 </div>
-{widget('latest_news')}
 {if trim($category->getDescription()) != ""}
     <div class="frame-seo-text">
         <div class="container">

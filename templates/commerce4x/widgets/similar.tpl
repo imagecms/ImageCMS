@@ -59,7 +59,7 @@
                         data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                         data-stock="{echo $product->firstVariant->getStock()}"
                         >
-                        {lang('s_buy')}
+                        {lang('Купить','commerce4x')}
                     </button>
                     {else:}
                     <button
@@ -68,7 +68,7 @@
                         type="button"
                         class="btn btn_not_avail variant">
                         <span class="icon-but"></span>
-                        <span class="text-el">{lang('s_message_o_report')}</span>
+                        <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                     </button>
                     {/if}
                 </div>

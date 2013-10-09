@@ -691,7 +691,6 @@
 <div class="horizontal-carousel">
     {widget('similar')}
 </div>
-{widget('latest_news')}
 <script type="text/javascript">
                         var hrefCategoryProduct = "{$category_url}";
 </script>

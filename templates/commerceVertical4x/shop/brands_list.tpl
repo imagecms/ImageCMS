@@ -1,27 +1,34 @@
 <article class="container">
-    <div>
-        <div class="clearfix frame_brand main">
-            <ul class="items items-list">
+    <div class="row">
+        <div class="columnBrandsHolder">
+            <div class="columnBrand">
+                {$counter=0}
                 {foreach $alphabet as $key => $char}
                     {if $model[$char] != null}
-                        <li>
-                            <a href="#{$char}" class="c_3 f-w_b">
-                                {$char}
+                        {if $counter >= $iteration-1}
+                        </div>
+                        <div class="columnBrand">
+                            {$counter=0}
+                        {/if}
+                        <div href="#{$char}" class="brandName" >
+                            {$char}
+                        </div>
+                        {foreach $model[$char] as $m}
+                            {if $counter >= $iteration}
+                            </div>
+                            <div class="columnBrand">
+                                {$counter=0}
+                            {/if}
+                            <a href="{shop_url('brand/'.$m[url])}" title="{echo $m[name]}">
+                                {echo $m[name]}
                             </a>
-                            <ul>
-                                {foreach $model[$char] as $m}
-                                    <li>
-                                        <a href="{shop_url('brand/'.$m[url])}" 
-                                           title="{echo $m[name]}">
-                                            {echo $m[name]}
-                                        </a>
-                                    </li>
-                                {/foreach}
-                            </ul>
-                        </li>
+
+                            <br>
+                            {$counter++}
+                        {/foreach}
                     {/if}
                 {/foreach}
-            </ul>
-        </div>                            
+            </div>
+        </div>
     </div>
 </article>
