@@ -695,15 +695,16 @@ function getCookie(c_name)
 /*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
-        position: function(menuW, $thisL, dropW, drop, $thisW, countColumn, sub2, direction) {
+        _position: function(menuW, $thisL, dropW, drop, $thisW, countColumn, sub2, direction) {
             if ((menuW - $thisL < dropW && dropW < menuW && direction != 'left') || direction == 'right') {
                 drop.removeClass('left-drop')
                 if (drop.children().children().length >= countColumn && !sub2)
                     drop.css('right', 0).addClass('right-drop');
                 else {
                     var right = menuW - $thisW - $thisL;
-                    if ($thisL + $thisW < dropW)
+                    if ($thisL + $thisW < dropW){
                         right = menuW - dropW;
+                    }
                     drop.css('right', right).addClass('right-drop');
                 }
             } else if (direction != 'right' || direction == 'left') {
@@ -749,6 +750,7 @@ function getCookie(c_name)
                     activeFl: activeClass,
                     parentTl: 'li',
                     refresh: false,
+                    otherPage: undefined,
                     vertical: false
                 }, options);
                 var menuW = menu.width(),
@@ -890,11 +892,11 @@ function getCookie(c_name)
                     if ($.existsN($thisDrop)) {
                         if (!dropW) {
                             menu.css('overflow', 'hidden');
-                            dropW = $thisDrop.show().width();
+                            var dropW2 = $thisDrop.show().width();
                             $thisDrop.hide();
                             menu.css('overflow', '');
                         }
-                        methods.position(menuW, $thisL, dropW, $thisDrop, $thisW, countColumn, sub2Frame, direction);
+                        methods._position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                     }
                     $this.data('kk', 0);
                 }).css('height', sH);
