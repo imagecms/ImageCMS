@@ -95,7 +95,7 @@
                         </a>
                     {/if}
                     <div class="tree_menu">
-                        {$CI->load->module('documentation')->load_category_menu('developers')}
+                        {$CI->load->module('documentation')->load_category_menu($_COOKIE['menu_category'])}
                     </div>
                 </div>
 
