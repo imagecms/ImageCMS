@@ -38,6 +38,13 @@
                 <span class="help-inline"></span>
                 <span class="title">{lang('Content list', 'admin')}</span>
             </div>
+
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="{$_SERVER['HTTP_REFERER']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                    <a href="{$BASE_URL}admin/components/cp/documentation/settings" class="btn btn-small action_on"><i class="icon-wrench"></i>{lang('Settings','admin')}</a>
+                </div>
+            </div>
             <!--div class="pull-right">
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
