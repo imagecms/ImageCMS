@@ -177,21 +177,35 @@
                                                     {foreach $li.subMenu as $sli}
                                                         <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
                                                             {if $sli.link}
-                                                                <a href="{site_url($sli.link)}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>
+                                                                <a href="{site_url($sli.link)}" class="pjax">{echo (bool)$sli.text?lang($sli.text):$sli.text}</a>
                                                             {else:}
-                                                                {echo (bool)lang($sli.text)?lang($sli.text):$sli.text}
+                                                                {echo $sli.text?lang($sli.text):$sli.text}
                                                             {/if}
+                                                            
                                                         </li>
-                                                    {/foreach}
-                                                </ul>
-                                            {else:}
-                                                <a href="{$li.link}" class="pjax">
-                                                    <i class="{$li.icon}"></i>
-                                                    <span>{$li.text}</span>
-                                                </a>
-                                            {/if}
-                                        </li>
-                                    {/foreach}
+                                                        {if $sli.modulesList}
+                                                            {if !$components}
+                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
+                                                            {/if}
+                                                            {foreach $components as $component}
+                                                                {if $component['installed'] == TRUE AND $component['admin_file'] == 1 AND $component['type'] == 'shop'}
+                                                                <li><a href="/admin/components/cp/{$component.com_name}" class="pjax">{$component.menu_name}</a></li>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <li class="divider"></li>
+                                                            <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
+                                                        {/if}
+                                                
+                                            {/foreach}
+                                        </ul>
+                                    {else:}
+                                        <a href="{$li.link}" class="pjax">
+                                            <i class="{$li.icon}"></i>
+                                            <span>{$li.text}</span>
+                                        </a>
+                                    {/if}
+                                    </li>
+                                {/foreach}
                                 </ul>
                                 <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site','admin')} </a>
                             </nav>
@@ -256,15 +270,15 @@
         </div>
         <script>
             {$settings = $CI->cms_admin->get_settings();}
-            var textEditor = '{$settings.text_editor}';
+                                    var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
-            var userLogined = true;
+                                    var userLogined = true;
             {else:}
-            var userLogined = false;
+                                    var userLogined = false;
             {/if}
 
-            var locale = '{echo $this->CI->config->item('language')}';
-            var base_url = "{site_url()}";
+                                    var locale = '{echo $this->CI->config->item('language')}';
+                                    var base_url = "{site_url()}";
         </script>
 
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -276,7 +290,7 @@
 
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
-        
+
 
         <script src="{$THEME}js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
@@ -306,13 +320,13 @@
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
-            var isShop = true;
+                                    var isShop = true;
             {else:}
-            var isShop = false;
+                                    var isShop = false;
             {/if}
-            var lang_only_number = "{lang("numbers only","admin")}";
-            var show_tovar_text = "{lang("show","admin")}";
-            var hide_tovar_text = "{lang("don't show", 'admin')}";
+                                    var lang_only_number = "{lang("numbers only","admin")}";
+                                    var show_tovar_text = "{lang("show","admin")}";
+                                    var hide_tovar_text = "{lang("don't show", 'admin')}";
             {literal}
 
                 $(document).ready(function() {
