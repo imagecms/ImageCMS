@@ -2,8 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>{$site_title}</title>
+        <meta name="description" content="{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="generator" content="ImageCMS" />
         <link href="{$THEME}css/bootstrap.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/bootstrap-theme.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/style.css" rel="stylesheet" media="screen"/>
@@ -33,11 +36,10 @@
         <link href="{$THEME}css/left_menu_style.css" rel="stylesheet" media="screen"/>
     </head>
     <body>
-        
+
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-
                     <button type="button" class="pull-left visible-xs navbar-toggle" data-toggle="offcanvas">
                         <span class="glyphicon glyphicon-chevron-left white"></span>
                         <span class="glyphicon glyphicon-th-list white"></span>
@@ -52,27 +54,12 @@
                     <a class="navbar-brand" href="/">
                         {lang('ImageCMS Documentation','documentation')}
                     </a>
-
                 </div>
 
                 <div class="collapse navbar-collapse">
                     {load_menu('top_menu')}
+                    {if $CI->dx_auth->is_logged_in()}
 
-                    {if !$CI->dx_auth->is_logged_in()}
-                        <form class="navbar-form navbar-right" method="post" id="login_form" action="/auth/login">
-                            <div class="form-group">
-                                <input type="text" name="email" placeholder="Email" class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" placeholder="Password" class="form-control"/>
-                            </div>
-                            <button type="submit" class="btn btn-success">
-                                <span class="glyphicon glyphicon-log-in"></span>
-                                {lang('Sign in','documentation')}
-                            </button>
-                            {form_csrf()}
-                        </form>
-                    {else:}
                         <div class="pull-right">
                             {if $CI->dx_auth->is_admin()}
                                 <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
@@ -86,7 +73,7 @@
                                     </a>
                                 {/if}
                             {/if}
-                            <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
+                            <a href="/auth/logout" type="button" class="btn btn-warning navbar-btn">
                                 <span class="glyphicon glyphicon-log-out"></span>
                                 {lang('Exit','documentation')}
                             </a>
@@ -108,7 +95,7 @@
                         </a>
                     {/if}
                     <div class="tree_menu">
-                        {load_menu('left_menu')}
+                        {$CI->load->module('documentation')->load_category_menu($_COOKIE['menu_category'])}
                     </div>
                 </div>
 
@@ -117,23 +104,50 @@
                         <h1>Hello, world!</h1>
                         <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
                     </div>
-                    <form class="form-group form-inline pull-right" action="{site_url('search')}" method="POST">
-                        <div class="form-group">
-                            <input type="text"class="form-control" name="text" placeholder="{lang("Search","documentation")}" />
+                    {if $CI->core->core_data['data_type'] != '404'}
+                        <div class="row">
+                            <form class="form-group form-inline pull-right" action="{site_url('search')}" method="POST">
+                                <div class="form-group">
+                                    <input type="text"class="form-control" name="text" placeholder="{lang("Search","documentation")}" />
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn" type="submit" value="{lang("Search","documentation")}"/>
+                                </div>
+                                {form_csrf()}
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <input class="btn" type="submit" value="{lang("Search","documentation")}"/>
-                        </div>
-                        {form_csrf()}
-                    </form>
+                    {/if}
                     <div class="row">
                         {$content}
                     </div>
                 </div>
             </div>
-            <hr/>
             <footer>
-                <p>© Company 2013</p>
+                <div class="navbar-inner">
+                    <div class="container">
+                        <hr/>
+                        © Company 2013
+                        {if !$CI->dx_auth->is_logged_in()}
+                            <div class="pull-right">
+                                <a href="/auth/login" class="navbar-btn">
+                                    <span class="glyphicon glyphicon-log-in "></span>
+                                    {lang('Log in','documentation')}
+                                </a>
+                                <a href="/auth/register" class="navbar-btn">
+                                    <span class="glyphicon glyphicon-log-in "></span>
+                                    {lang('Registration','documentation')}
+                                </a>
+                            </div>
+                        {else:}
+                            <div class="pull-right">
+                                <a href="/auth/logout" type="button">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    {lang('Exit','documentation')}
+                                </a>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
             </footer>
         </div>
 

@@ -1,4 +1,3 @@
-
 {if $no_pages}
     <p>{$no_pages}</p>
 {/if}

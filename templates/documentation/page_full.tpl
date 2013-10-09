@@ -5,13 +5,10 @@
         </div>
         <div class="clearfix">
             <div class="text left">
-                <h1>{$page.title}</h1>
-                <div class="description">
+                <h1 class="titleEditTinyMCE">{$page.title}</h1>
+                <div class="descriptionEditTinyMCE">
                     {$page.full_text}
                 </div>
-            </div>
-            <div class="right">
-                {widget('news')}
             </div>
         </div>
     </div>

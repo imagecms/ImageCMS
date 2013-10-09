@@ -69,10 +69,10 @@
                                 data-number="{echo $hotProduct->firstVariant->getNumber()}"
                                 data-img="{echo $hotProduct->firstVariant->getSmallPhoto()}"
                                 data-url="{echo shop_url('product/'.$hotProduct->getUrl())}"
-                                data-origPrice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                data-origprice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $hotProduct->firstVariant->getStock()}"
                                 >
-                            {lang('s_buy')}
+                            {lang('Купить','commerce4x')}
                         </button>
                         {else:}
                         <button
@@ -81,7 +81,7 @@
                                 type="button"
                                 class="btn btn_not_avail">
                             <span class="icon-but"></span>
-                            {lang('s_message_o_report')}
+                            {lang('Сообщить о появлении','commerce4x')}
                         </button> 
                         {/if} 
 

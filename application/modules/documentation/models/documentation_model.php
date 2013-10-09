@@ -214,62 +214,78 @@ class Documentation_model extends CI_Model {
     }
 
     /**
-     * Module install
+     * Update category data
+     * @param array $data
+     * @param int $id
+     * @return boolean|array
      */
-    public function install() {
-        ($this->dx_auth->is_admin()) OR exit;
+    public function updateCategory($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('category', $data);
 
-        /** Query for creating module table * */
-        $query = "
-            CREATE TABLE IF NOT EXISTS `mod_documentation_history` (
-                  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-                  `page_id` bigint(11) NOT NULL,
-                  `title` varchar(500) NOT NULL,
-                  `meta_title` varchar(300) DEFAULT NULL,
-                  `url` varchar(500) NOT NULL,
-                  `cat_url` varchar(260) DEFAULT NULL,
-                  `keywords` text,
-                  `description` text,
-                  `prev_text` text,
-                  `full_text` longtext NOT NULL,
-                  `category` int(11) NOT NULL,
-                  `full_tpl` varchar(50) DEFAULT NULL,
-                  `main_tpl` varchar(50) NOT NULL,
-                  `position` smallint(5) NOT NULL,
-                  `comments_status` smallint(1) NOT NULL,
-                  `comments_count` int(9) DEFAULT '0',
-                  `post_status` varchar(15) NOT NULL,
-                  `author` varchar(50) NOT NULL,
-                  `publish_date` int(11) NOT NULL,
-                  `created` int(11) NOT NULL,
-                  `updated` int(11) NOT NULL,
-                  `showed` int(11) NOT NULL,
-                  `lang` int(11) NOT NULL DEFAULT '0',
-                  `lang_alias` int(11) NOT NULL DEFAULT '0',
-                  `user_id` int(11) NOT NULL DEFAULT '0',
-                  PRIMARY KEY (`id`),
-                  KEY `url` (`url`(333)),
-                  KEY `lang` (`lang`),
-                  KEY `post_status` (`post_status`(4)),
-                  KEY `cat_url` (`cat_url`),
-                  KEY `publish_date` (`publish_date`),
-                  KEY `category` (`category`),
-                  KEY `created` (`created`),
-                  KEY `updated` (`updated`)
-                ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-                ";
-        $this->db->query($query);
+        $this->load->library('lib_category');
+        $query = $this->db->where('id', $id)->get('category')->row_array();
+        if ($query == null) {
+            return false;
+        }
 
-        /** Update module settings * */
-        $this->db->where('name', 'documentation')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+        $parentCategory = $this->lib_category->get_category($query['parent_id']);
+        if ($parentCategory != NULL) {
+            $newFullPath = $parentCategory['path_url'] . $query['url'];
+        } else {
+            $newFullPath = $query['url'];
+        }
+        $this->load->module('cfcm')->save_item_data($cat_id, 'category');
+
+        $this->cache->delete_all();
+
+        // Clear lib_category data
+        $this->lib_category->categories = array();
+        $this->lib_category->level = 0;
+        $this->lib_category->path = array();
+        $this->lib_category->unsorted_arr = FALSE;
+        $this->lib_category->unsorted = FALSE;
+
+        $this->lib_category->build();
+
+        $this->updateUrls();
+
+
+        $query['full_url'] = $newFullPath;
+        return $query;
     }
 
-    /** Module deinstall * */
-    public function deinstall() {
-        ($this->dx_auth->is_admin()) OR exit;
-        $this->load->dbforge();
-        $this->dbforge->drop_table('mod_documentation_history');
+    public function updateMenuCategory($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('category', $data);
+    }
+
+    /**
+     * Update urls after category move
+     */
+    private function updateUrls() {
+        $categories = $this->lib_category->unsorted();
+
+        foreach ($categories as $category) {
+            $this->db->where('category', $category['id']);
+            $this->db->update('content', array('cat_url' => $category['path_url']));
+        }
+    }
+
+    /**
+     * Delete page by id
+     * @param int $id
+     * @return boolean 
+     */
+    public function deletePage($id = null) {
+        if ($this->db->where('id', $id)->delete('content')) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getFirstLevelCategories() {
+        return $this->db->where('parent_id', '0')->order_by('position', 'asc')->get('category')->result_array();
     }
 
     /**
@@ -324,6 +340,7 @@ class Documentation_model extends CI_Model {
     }
 
     /**
+      <<<<<<< HEAD
      * Get module settings
      * @return array
      */
@@ -359,6 +376,71 @@ class Documentation_model extends CI_Model {
                 ->where('shop_rbac_roles_i18n.locale', $locale)
                 ->get('shop_rbac_roles');
         return $result->result_array();
+    }
+
+    /**
+     * Module install
+     */
+    public function install() {
+        ($this->dx_auth->is_admin()) OR exit;
+
+        /** Query for creating module table * */
+        $query = "
+            CREATE TABLE IF NOT EXISTS `mod_documentation_history` (
+                  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+                  `page_id` bigint(11) NOT NULL,
+                  `title` varchar(500) NOT NULL,
+                  `meta_title` varchar(300) DEFAULT NULL,
+                  `url` varchar(500) NOT NULL,
+                  `cat_url` varchar(260) DEFAULT NULL,
+                  `keywords` text,
+                  `description` text,
+                  `prev_text` text,
+                  `full_text` longtext NOT NULL,
+                  `category` int(11) NOT NULL,
+                  `full_tpl` varchar(50) DEFAULT NULL,
+                  `main_tpl` varchar(50) NOT NULL,
+                  `position` smallint(5) NOT NULL,
+                  `comments_status` smallint(1) NOT NULL,
+                  `comments_count` int(9) DEFAULT '0',
+                  `post_status` varchar(15) NOT NULL,
+                  `author` varchar(50) NOT NULL,
+                  `publish_date` int(11) NOT NULL,
+                  `created` int(11) NOT NULL,
+                  `updated` int(11) NOT NULL,
+                  `showed` int(11) NOT NULL,
+                  `lang` int(11) NOT NULL DEFAULT '0',
+                  `lang_alias` int(11) NOT NULL DEFAULT '0',
+                  `user_id` int(11) NOT NULL DEFAULT '0',
+                  PRIMARY KEY (`id`),
+                  KEY `url` (`url`(333)),
+                  KEY `lang` (`lang`),
+                  KEY `post_status` (`post_status`(4)),
+                  KEY `cat_url` (`cat_url`),
+                  KEY `publish_date` (`publish_date`),
+                  KEY `category` (`category`),
+                  KEY `created` (`created`),
+                  KEY `updated` (`updated`)
+                ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+                ";
+        $this->db->query($query);
+
+        $query = "ALTER TABLE `category` ADD  `menu_cat` VARCHAR( 20 ) NULL ;";
+        $this->db->query($query);
+
+        /** Update module settings * */
+        $this->db->where('name', 'documentation')
+                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+    }
+
+    /** Module deinstall * */
+    public function deinstall() {
+        ($this->dx_auth->is_admin()) OR exit;
+        $this->load->dbforge();
+        $this->dbforge->drop_table('mod_documentation_history');
+
+        $query = "ALTER TABLE `category` DROP `menu_cat`;";
+        $this->db->query($query);
     }
 
 }

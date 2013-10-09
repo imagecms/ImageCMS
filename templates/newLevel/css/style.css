@@ -367,6 +367,7 @@ input.input-search{height: 33px;}
 .items-news .date{display: block;margin-bottom: 2px;}
 .frame-news{padding-top: 6px;}
 .frame-news .frame-title{margin-bottom: 13px;}
+.frame-news .frame-title .title{margin-right: 7px;}
 
 .items-search-autocomplete > li{width: 100%;}
 .items-search-autocomplete .frame-photo-title{display: block;padding: 13px 15px;}
@@ -626,6 +627,14 @@ input.input-search{height: 33px;}
 .menu-col-category .frame-drop-menu > ul > li{width: 176px;padding-right: 8px;padding-bottom: 10px;}
 .is-side > ul > li{width: 100%;}
 
+.is-side.x1{width: 200px !important;}
+.is-side.x2{width: 400px !important;}
+.is-side.x3{width: 600px !important;}
+.is-side.x4{width: 800px !important;}
+.is-side.x5{width: 1000px !important;}
+.is-side.x6{width: 1200px !important;}
+.is-side.x7{width: 1400px !important;}
+.is-side.x8{width: 1600px !important;}
 .menu-col-category .frame-drop-menu .x9{width: 1652px;}
 .frame-drop-menu.x9{width: 1694px;}
 .x9 > ul > li, .x9 .frame-l2 > ul > li[data-column]{width: 11%;}
@@ -661,14 +670,6 @@ input.input-search{height: 33px;}
 
 .menu-row-category .title-category-l1{display: inline-block;padding: 7px 14px;width: 172px;position: relative;text-transform: capitalize;}
 .menu-row-category .frame-drop-menu > ul > li{display: block;width: 200px;}
-.is-side.x1{width: 200px !important;}
-.is-side.x2{width: 400px !important;}
-.is-side.x3{width: 600px !important;}
-.is-side.x4{width: 800px !important;}
-.is-side.x5{width: 1000px !important;}
-.is-side.x6{width: 1200px !important;}
-.is-side.x7{width: 1400px !important;}
-.is-side.x8{width: 1600px !important;}
 .not-js .menu-row-category .frame-drop-menu > ul > li:hover .frame-l2{display: block;}
 
 .frame-drop-menu.right-drop{margin-right: -1px;}
@@ -719,7 +720,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .frame-benefits-product{margin-bottom: 30px;padding-bottom: 5px;overflow: hidden;}
 .items-benefits > li{position: relative;width: 25%;padding-top: 5px;}
 .items-benefits > li:before{content: "";width: 2px;height: 67px;position: absolute;top: 0;left: -27px;}
-.vertical-layout .items-benefits > li:before{left: -5px;}
+.vertical-layout .items-benefits > li:before{left: -7px;}
 .items-benefits > li:first-child:before{display: none;}
 .frame-icon-benefit > [class*="icon-"]{position: relative;z-index: 2;}
 .frame-description-benefit p{margin-bottom: 0;}
