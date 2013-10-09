@@ -40,7 +40,6 @@
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-
                     <button type="button" class="pull-left visible-xs navbar-toggle" data-toggle="offcanvas">
                         <span class="glyphicon glyphicon-chevron-left white"></span>
                         <span class="glyphicon glyphicon-th-list white"></span>
@@ -55,20 +54,12 @@
                     <a class="navbar-brand" href="/">
                         {lang('ImageCMS Documentation','documentation')}
                     </a>
-
                 </div>
 
                 <div class="collapse navbar-collapse">
                     {load_menu('top_menu')}
+                    {if $CI->dx_auth->is_logged_in()}
 
-                    {if !$CI->dx_auth->is_logged_in()}
-                        <div class="pull-right">
-                            <a href="/auth/login" class="btn btn btn-default navbar-btn">
-                                <span class="glyphicon glyphicon-log-in "></span>
-                                {lang('Log in','documentation')}
-                            </a>
-                        </div>
-                    {else:}
                         <div class="pull-right">
                             {if $CI->dx_auth->is_admin()}
                                 <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
@@ -104,7 +95,7 @@
                         </a>
                     {/if}
                     <div class="tree_menu">
-                        {$CI->load->module('documentation')->load_category_menu('developers')}
+                        {$CI->load->module('documentation')->load_category_menu($_COOKIE['menu_category'])}
                     </div>
                 </div>
 
@@ -131,9 +122,32 @@
                     </div>
                 </div>
             </div>
-            <hr/>
             <footer>
-                <p>© Company 2013</p>
+                <div class="navbar-inner">
+                    <div class="container">
+                        <hr/>
+                        © Company 2013
+                        {if !$CI->dx_auth->is_logged_in()}
+                            <div class="pull-right">
+                                <a href="/auth/login" class="navbar-btn">
+                                    <span class="glyphicon glyphicon-log-in "></span>
+                                    {lang('Log in','documentation')}
+                                </a>
+                                <a href="/auth/register" class="navbar-btn">
+                                    <span class="glyphicon glyphicon-log-in "></span>
+                                    {lang('Registration','documentation')}
+                                </a>
+                            </div>
+                        {else:}
+                            <div class="pull-right">
+                                <a href="/auth/logout" type="button">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    {lang('Exit','documentation')}
+                                </a>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
             </footer>
         </div>
 

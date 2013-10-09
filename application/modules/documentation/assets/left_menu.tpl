@@ -62,7 +62,7 @@
 <ul class="">
     {foreach $tree as $item}
         <!-- Check show category for group -->
-        {if $item['menu_cat'] == null || $item['menu_cat'] == 'all' || $item['menu_cat'] == $group}
+        {if $item['menu_cat'] == null || $item['menu_cat'] == $group || $group == null}
             {$active = false;$admin = $CI->dx_auth->is_admin();}
         {if strpos($categoryData['url'], $item['url'].'/') !== false}{$active = true}{/if}
         <li {if $active}class="active"{/if}>
