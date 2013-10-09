@@ -8,7 +8,8 @@ $com_info = array(
         'w'           => 600,                 // Window width
 	'h'           => 550,                 // Window height
 	'version'     => '1.1b',               // Module version
-	'author'      => 'DevImageCMS' // Author info DevImageCMS
+	'author'      => 'DevImageCMS', // Author info DevImageCMS
+        'type' => 'shop'                // CMS version
 );
 
 /* End of file module_info.php */
