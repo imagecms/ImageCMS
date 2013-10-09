@@ -24,17 +24,17 @@ class Language_switch_Widgets extends MY_Controller {
         }
 
         $current_address = '';
-        $current_address .=  '/' . $this->uri->uri_string();
+        $current_address .= $this->uri->uri_string();
 
 
         if ($this->input->server('QUERY_STRING'))
             $current_address .= '?' . $this->input->server('QUERY_STRING');
         if ($this->uri->segment(1))
             if (array_key_exists($this->uri->segment(1), $this->core->langs)) {                
-                $current_address = str_replace('/' . $this->uri->segment(1), '', $current_address);
+                $current_address = substr_replace($current_address, '', 0, strlen($this->uri->segment(1)));
             }
             else
-                $current_address = $current_address;
+                $current_address = '/' . $current_address;
 
 
         $languages = $this->db->get('languages')->result_array();
