@@ -5,6 +5,7 @@
 /**
  * Image CMS 
  * Sample Module Admin
+ * @property Documentation_model $documentation_model
  */
 class Admin extends BaseAdminController {
 
@@ -152,6 +153,7 @@ class Admin extends BaseAdminController {
                 'cat_id' => $cat_id,
                 'tree' => $this->lib_category->build(),
                 'show_cat_list' => 'yes',
+                'categories' => $this->documentation_model->getFirstLevelCategories(),
             );
         } else {
             $data = array('no_pages' => TRUE,
@@ -166,6 +168,21 @@ class Admin extends BaseAdminController {
                 ->registerStyle('admin')
                 ->registerScript('admin')
                 ->renderAdmin("list");
+    }
+
+    public function ajaxUpdateMenuCategory() {
+        $id = $this->input->post('id');
+        $newValue = $this->input->post('newValue');
+        if ($id != null) {
+            $data = array(
+                'menu_cat' => $newValue
+            );
+            
+            $this->documentation_model->updateMenuCategory($data, $id);
+            echo 'true';
+            return;
+        }
+        echo 'false';
     }
 
 }

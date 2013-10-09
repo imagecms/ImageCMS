@@ -255,6 +255,11 @@ class Documentation_model extends CI_Model {
         return $query;
     }
 
+    public function updateMenuCategory($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('category', $data);
+    }
+
     /**
      * Update urls after category move
      */
@@ -266,17 +271,72 @@ class Documentation_model extends CI_Model {
             $this->db->update('content', array('cat_url' => $category['path_url']));
         }
     }
-    
+
     /**
      * Delete page by id
      * @param int $id
      * @return boolean 
      */
-    public function deletePage($id = null){
-       if($this->db->where('id',$id)->delete('content')){
-           return true;
-       }
-       return false;
+    public function deletePage($id = null) {
+        if ($this->db->where('id', $id)->delete('content')) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getFirstLevelCategories() {
+        return $this->db->where('parent_id', '0')->order_by('position', 'asc')->get('category')->result_array();
+    }
+
+    /**
+     * Returns page history
+     * @param int $pageId
+     */
+    public function getPageHistory($pageId, $perPage = 5, $offset = 0) {
+        $result = $this->db
+                ->select('mod_documentation_history.*,users.username')
+                ->where('page_id', $pageId)
+                ->order_by('id', 'DESC')
+                ->join('users', 'users.id = mod_documentation_history.user_id')
+                ->limit($perPage, $offset)
+                ->get('mod_documentation_history');
+        return $result->result_array();
+    }
+
+    public function getPageHistoryCount($params) {
+        if (is_array($params))
+            $this->db->where($params);
+
+        $this->db->from('mod_documentation_history');
+        return (int) $this->db->count_all_results();
+    }
+
+    /**
+     * Restosing article from history
+     * @param int $pageId
+     * @param int $historyId
+     */
+    public function restoreArticleFromHistory($pageId, $historyId) {
+        $this->make_backup($pageId);
+        $someOldData = $this->db
+                ->where('id', $historyId)
+                ->get('mod_documentation_history')
+                ->row_array();
+
+        //print_r($someOldData);
+        $delColumns = array(
+            'page_id', 'id', 'user_id'
+        );
+        foreach ($delColumns as $col) {
+            if (key_exists($col, $someOldData))
+                unset($someOldData[$col]);
+        }
+        var_dump($this->db->where('id', $pageId)->update('content', $someOldData));
+        echo $this->db->_error_message();
+    }
+
+    public function deleteHistoryRow($historyId) {
+        $this->db->delete('mod_documentation_history', array('id' => $historyId));
     }
 
     /**
@@ -342,57 +402,6 @@ class Documentation_model extends CI_Model {
 
         $query = "ALTER TABLE `category` DROP `menu_cat`;";
         $this->db->query($query);
-    }
-
-    /**
-     * Returns page history
-     * @param int $pageId
-     */
-    public function getPageHistory($pageId, $perPage = 5, $offset = 0) {
-        $result = $this->db
-                ->select('mod_documentation_history.*,users.username')
-                ->where('page_id', $pageId)
-                ->order_by('id', 'DESC')
-                ->join('users', 'users.id = mod_documentation_history.user_id')
-                ->limit($perPage, $offset)
-                ->get('mod_documentation_history');
-        return $result->result_array();
-    }
-
-    public function getPageHistoryCount($params) {
-        if (is_array($params))
-            $this->db->where($params);
-
-        $this->db->from('mod_documentation_history');
-        return (int) $this->db->count_all_results();
-    }
-
-    /**
-     * Restosing article from history
-     * @param int $pageId
-     * @param int $historyId
-     */
-    public function restoreArticleFromHistory($pageId, $historyId) {
-        $this->make_backup($pageId);
-        $someOldData = $this->db
-                ->where('id', $historyId)
-                ->get('mod_documentation_history')
-                ->row_array();
-
-        //print_r($someOldData);
-        $delColumns = array(
-            'page_id', 'id', 'user_id'
-        );
-        foreach ($delColumns as $col) {
-            if (key_exists($col, $someOldData))
-                unset($someOldData[$col]);
-        }
-        var_dump($this->db->where('id', $pageId)->update('content', $someOldData));
-        echo $this->db->_error_message();
-    }
-
-    public function deleteHistoryRow($historyId) {
-        $this->db->delete('mod_documentation_history', array('id' => $historyId));
     }
 
 }
