@@ -9,7 +9,7 @@
                 <form method="post">
                     <div class="groups_form">
                         <label>
-                            <span class="title">{lang('s_email')}</span>
+                            <span class="title">{lang("Email","admin")}</span>
                             <span class="frame_form_field">
                                 <span class="icon-email"></span>
                                 <input type="text" name="email" id="login" />
@@ -19,7 +19,7 @@
                         <div class="frameLabel c_t">
                             <span class="title">&nbsp;</span>
                             <span class="frame_form_field">
-                                <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}"/>
+                                <input type="submit" class="btn btn_cart" value="{lang("Send","admin")}"/>
                             </span>
                         </div>
                     </div>
