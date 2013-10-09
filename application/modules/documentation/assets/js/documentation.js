@@ -1,5 +1,5 @@
 tinymce.init({
-    selector: "div.description",
+    selector: "div.descriptionEditTinyMCE",
     inline: true,
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
@@ -47,7 +47,7 @@ tinymce.init({
 });
 
 tinymce.init({
-    selector: "h1",
+    selector: ".titleEditTinyMCE",
     inline: true,
     toolbar_items_size: 'small',
     toolbar: "undo redo | spellchecker | save_button",
