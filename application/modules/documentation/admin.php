@@ -54,7 +54,6 @@ class Admin extends BaseAdminController {
             'num_tag_close' => '</li>'
         );
 
-
         $this->pagination->num_links = 5;
         $this->pagination->initialize($paginationConfig);
         // End pagination
@@ -71,6 +70,35 @@ class Admin extends BaseAdminController {
                 ->registerScript('dmp')
                 ->registerScript('admin')
                 ->renderAdmin('history');
+    }
+
+    public function settings($action = NULL) {
+        if ($action == 'save') {
+            $settings = array();
+            foreach ($_POST['ids'] as $key => $id) {
+                if ($_POST['values'][$key] == 1) {
+                    $settings[] = $id;
+                }
+            }
+            $this->documentation_model->setSettings($settings);
+        }
+
+        if (!is_array($settings))
+            $settings = $this->documentation_model->getSettings();
+
+        $roles = $this->documentation_model->getRoles();
+        foreach ($roles as $key => $role) {
+            if (in_array($role['id'], $settings)) {
+                $roles[$key]['edit'] = '1';
+            } else {
+                $roles[$key]['edit'] = '0';
+            }
+        }
+        \CMSFactory\assetManager::create()
+                ->registerScript('admin')
+                ->setData('roles', $roles)
+                ->renderAdmin('settings');
+        return;
     }
 
     public function makeRelevant($pageId, $historyId) {

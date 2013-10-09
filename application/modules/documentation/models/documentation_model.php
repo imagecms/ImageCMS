@@ -60,7 +60,6 @@ class Documentation_model extends CI_Model {
         }
 
         /** Get page data * */
-
         $query = "  
                     SELECT 
                         `content`.*,
@@ -125,6 +124,7 @@ class Documentation_model extends CI_Model {
         }
         return false;
     }
+
     /**
      * Get page id by main page id and lang id
      * @param int $mainPageId
@@ -142,18 +142,19 @@ class Documentation_model extends CI_Model {
                 ";
             $res = $this->db->query($query)->row_array();
         }
-        if ($res != null){
+        if ($res != null) {
             return $res['id'];
         }
         return false;
     }
+
     /**
      * Save page to history table after editing
      * @param int $id
      * @return boolean
      */
     public function make_backup($id = null) {
-        if ($id == null){
+        if ($id == null) {
             $id = $this->input->post('id');
         }
         $old_data = $this->db
@@ -164,7 +165,7 @@ class Documentation_model extends CI_Model {
         $old_data['page_id'] = $old_data['id'];
         unset($old_data['id']);
         $old_data['user_id'] = $this->dx_auth->get_user_id();
-        if ($this->db->insert('mod_documentation_history', $old_data)){
+        if ($this->db->insert('mod_documentation_history', $old_data)) {
             return true;
         }
         return false;
@@ -271,9 +272,6 @@ class Documentation_model extends CI_Model {
         $this->dbforge->drop_table('mod_documentation_history');
     }
 
-
-
-
     /**
      * Returns page history
      * @param int $pageId
@@ -303,7 +301,7 @@ class Documentation_model extends CI_Model {
      * @param int $historyId
      */
     public function restoreArticleFromHistory($pageId, $historyId) {
-        $this->make_backup($pageId);
+//        $this->make_backup($pageId);
         $someOldData = $this->db
                 ->where('id', $historyId)
                 ->get('mod_documentation_history')
@@ -323,6 +321,44 @@ class Documentation_model extends CI_Model {
 
     public function deleteHistoryRow($historyId) {
         $this->db->delete('mod_documentation_history', array('id' => $historyId));
+    }
+
+    /**
+     * Get module settings
+     * @return array
+     */
+    public function getSettings() {
+        $settings = $this->db->select('settings')
+                ->where('identif', 'documentation')
+                ->get('components')
+                ->row_array();
+        $settings = unserialize($settings['settings']);
+
+        if (is_array($settings)) {
+            return $settings;
+        }
+
+        return array();
+    }
+
+    /**
+     * Save settings
+     * @param array $settings
+     * @return boolean
+     */
+    public function setSettings($settings) {
+        return $this->db->where('identif', 'documentation')
+                        ->update('components', array('settings' => serialize($settings)
+        ));
+    }
+
+    public function getRoles() {
+        $locale = \MY_Controller::getCurrentLocale();
+        $result = $this->db
+                ->join('shop_rbac_roles_i18n', 'shop_rbac_roles_i18n.id = shop_rbac_roles.id')
+                ->where('shop_rbac_roles_i18n.locale', $locale)
+                ->get('shop_rbac_roles');
+        return $result->result_array();
     }
 
 }

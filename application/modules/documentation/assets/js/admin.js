@@ -30,3 +30,10 @@ $("a.compareWithOriginal").on('click', function() {
             .html(diffHtmlResult);
     $("#articles_diff").modal("show");
 });
+
+
+
+$(".role_checkbox").on('click', function() {
+    var val = $(this).hasClass('active') ? 0 : 1;
+    $(this).find(".edit_value").val(val);
+});

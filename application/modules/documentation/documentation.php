@@ -34,7 +34,8 @@ class Documentation extends MY_Controller {
      * Autoload function
      */
     public function autoload() {
-        if ($this->dx_auth->is_admin()) {
+        $settings = $this->documentation_model->getSettings();
+        if (in_array($this->dx_auth->get_role_id(), $settings)) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
                     ->registerScript('documentation', FALSE, 'before');
@@ -279,7 +280,7 @@ class Documentation extends MY_Controller {
 
     public function create_cat() {
         $this->load->library('lib_admin');
-        
+
         $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[127]|required|xss_clean');
         $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[127]');
         $this->form_validation->run();
