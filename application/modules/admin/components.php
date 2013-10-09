@@ -194,7 +194,8 @@ class Components extends BaseAdminController {
                             'menu_name' => $com_info['menu_name'],
                             'com_name' => $file,
                             'admin_file' => $admin_file,
-                            'installed' => $ins
+                            'installed' => $ins,
+                            'type' =>$com_info['type'],
                         );
 
                         array_push($components, $new_com);
