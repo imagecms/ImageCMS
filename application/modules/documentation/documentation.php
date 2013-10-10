@@ -34,10 +34,8 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
-
-//        \CMSFactory\assetManager::create()->registerScript('documentation_common');
-
-        if ($this->dx_auth->is_admin()) {
+        $settings = $this->documentation_model->getSettings();
+        if (in_array($this->dx_auth->get_role_id(), $settings)) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
                     ->registerScript('documentation', FALSE, 'before');
@@ -443,8 +441,8 @@ class Documentation extends \MY_Controller {
             $categoryData['url_simple'] = $category['url'];
             $categoryData['description'] = $category['description'];
             $categoryData['keywords'] = $category['keywords'];
-            
-            /** build category fullpath **/
+
+            /** build category fullpath * */
             if ($parent != 'NULL') {
                 $full_path = $parent['path_url'] . $category['url'] . '/';
             } else {
