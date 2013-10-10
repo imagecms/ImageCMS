@@ -64,7 +64,7 @@
                             {if $CI->dx_auth->is_admin()}
                                 <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
                                     <span class="glyphicon glyphicon-new-window"></span>
-                                    {lang('Create','documentation')}
+                                    {lang('Create page','documentation')}
                                 </a>
                                 {if $CI->core->core_data['data_type'] == 'page'}
                                     <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
@@ -73,10 +73,6 @@
                                     </a>
                                 {/if}
                             {/if}
-                            <a href="/auth/logout" type="button" class="btn btn-warning navbar-btn">
-                                <span class="glyphicon glyphicon-log-out"></span>
-                                {lang('Exit','documentation')}
-                            </a>
                         </div>
                     {/if}
                 </div><!-- /.nav-collapse -->
