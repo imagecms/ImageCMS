@@ -34,12 +34,12 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
-//        $settings = $this->documentation_model->getSettings();
-//        if (in_array($this->dx_auth->get_role_id(), $settings)) {
+        $settings = $this->documentation_model->getSettings();
+        if (in_array($this->dx_auth->get_role_id(), $settings)) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
                     ->registerScript('documentation', FALSE, 'before');
-//        }
+        }
     }
 
     /**
