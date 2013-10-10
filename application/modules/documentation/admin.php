@@ -74,18 +74,7 @@ class Admin extends BaseAdminController {
     }
 
     public function settings($action = NULL) {
-        if ($action == 'save') {
-            $settings = array();
-            foreach ($_POST['ids'] as $key => $id) {
-                if ($_POST['values'][$key] == 1) {
-                    $settings[] = $id;
-                }
-            }
-            $this->documentation_model->setSettings($settings);
-        }
-
-        if (!is_array($settings))
-            $settings = $this->documentation_model->getSettings();
+        $settings = $this->documentation_model->getSettings();
 
         $roles = $this->documentation_model->getRoles();
         foreach ($roles as $key => $role) {
@@ -100,6 +89,19 @@ class Admin extends BaseAdminController {
                 ->setData('roles', $roles)
                 ->renderAdmin('settings');
         return;
+    }
+
+    public function saveSettings() {
+        var_dump($_POST);
+        if ($_POST['action'] == 'save') {
+            $settings = array();
+            foreach ($_POST['ids'] as $key => $id) {
+                if ($_POST['values'][$key] == 1) {
+                    $settings[] = $id;
+                }
+            }
+            $this->documentation_model->setSettings($settings);
+        }
     }
 
     public function makeRelevant($pageId, $historyId) {
@@ -205,7 +207,7 @@ class Admin extends BaseAdminController {
             $data = array(
                 'menu_cat' => $newValue
             );
-            
+
             $this->documentation_model->updateMenuCategory($data, $id);
             echo 'true';
             return;
