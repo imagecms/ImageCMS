@@ -1300,7 +1300,7 @@ function ieInput(els) {
         }).addClass('visited');
     });
 }
-function onComplete(elSet, elS, el) {
+function onComplete(el, elS, isajax, data, elSet) {
     var next = $(optionsDrop.hrefOptions.next),
     prev = $(optionsDrop.hrefOptions.prev),
     cycle = optionsDrop.hrefOptions.cycle;
@@ -1426,6 +1426,14 @@ function beforeShowHref(el, elS) {
 }
 /*/declaration front functions*/
 function init() {
+    /*call general functions and plugins*/
+    if ($.exists('.lineForm:visible')) {
+        cuSel(cuselOptions);
+        if (ltie7)
+            ieInput($('.cuselText'));
+    }
+    /*call general functions and plugins*/
+    
     /*call functions for shop objects*/
     checkSyncs();
     btnbuyInitialize(body);//where find
@@ -1487,12 +1495,6 @@ function init() {
     if (ltie7) {
         ieInput();
         ieInput($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
-    }
-
-    if ($.exists('.lineForm:visible')) {
-        cuSel(cuselOptions);
-        if (ltie7)
-            ieInput($('.cuselText'));
     }
 
     optionsDrop.before = function(el, dropEl, isajax) {
@@ -1732,7 +1734,7 @@ function init() {
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     })
 
-    $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
+    $('#bask_block').on('click.toTiny', genObj.tinyBask + '.' + genObj.isAvail, function() {
         initShopPage(true);
     })
     $(document).live('cart_changed', function() {
