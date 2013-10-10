@@ -52,7 +52,7 @@ var optionsMenu = {
     parentTl: '.frame-l2', //prev a level 2
     otherPage: hrefCategoryProduct, //for product [undefined or value not other]
     
-    vertical: false
+    vertical: true
 };
 var scrollPane = {
     animateScroll: true,
@@ -160,8 +160,8 @@ cleaverFilterObj = {
     effectIn: 'fadeIn',
     effectOff: 'fadeOut',
     duration: '300',
-    location: 'right', //if vertical has be left
-    //addingClass: 'left',//if vertical has be left
+    location: 'left', //if vertical has be left
+    addingClass: 'left',//if vertical has be left
     elPos: '.frame-group-checks .frame-label',
     dropDownEff: 'slideToggle',
     dropDownEffDur: '400',
@@ -1426,6 +1426,14 @@ function beforeShowHref(el, elS) {
 }
 /*/declaration front functions*/
 function init() {
+    /*call general functions and plugins*/
+    if ($.exists('.lineForm:visible')) {
+        cuSel(cuselOptions);
+        if (ltie7)
+            ieInput($('.cuselText'));
+    }
+    /*call general functions and plugins*/
+    
     /*call functions for shop objects*/
     checkSyncs();
     btnbuyInitialize(body);//where find
@@ -1487,12 +1495,6 @@ function init() {
     if (ltie7) {
         ieInput();
         ieInput($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
-    }
-
-    if ($.exists('.lineForm:visible')) {
-        cuSel(cuselOptions);
-        if (ltie7)
-            ieInput($('.cuselText'));
     }
 
     optionsDrop.before = function(el, dropEl, isajax) {
