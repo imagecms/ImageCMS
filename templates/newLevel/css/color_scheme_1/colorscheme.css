@@ -392,7 +392,6 @@ a:focus, a:active {color: #51d2ff;}
     background: linear-gradient(to bottom,  #fcfbfa 0%,#f5f1ed 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfbfa', endColorstr='#f5f1ed',GradientType=0 ); /* IE6-9 */
 }
-.frame-thumbs .group-button-carousel .arrow{background: none;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;border: 0;width: 20px;}
 .items-v-carousel > li{border-top: 1px solid #eae5e1;}/*because border*/
 .items-v-carousel > li:first-child{border-top: 0;}
 .group-button-carousel .arrow > [class*="icon_arrow"], .btn-to-up [class*="icon_arrow"]{width: 14px;height: 21px;top: 3px;}
@@ -401,6 +400,7 @@ a:focus, a:active {color: #51d2ff;}
 .vertical-carousel .group-button-carousel .prev{top: 9px;}
 .vertical-carousel .group-button-carousel .next{bottom: 9px;top: auto;}
 .fancy-gallery .group-button-carousel .arrow{width: 30px;height: 30px;margin-top: -15px;}
+.horizontal-carousel .frame-thumbs .group-button-carousel .arrow{background: none;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;border: 0;width: 20px;}
 .vertical-layout .products-carousel .group-button-carousel{position: absolute;right: 0;top: -49px;}
 .vertical-layout .group-button-carousel{background-color: #faf8f6;}
 
