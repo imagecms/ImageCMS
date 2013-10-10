@@ -44,18 +44,20 @@ $.testNumber = function(e) {
     var key = e.keyCode;
     if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
         return true;
-    var keyChar = String.fromCharCode(key);
-    if (!/\d/.test(keyChar)) {
-        return false;
+    if ((key >= 48 && key <= 57) || (key >= 96 && key <= 105)) {
+        return true;
     }
     else
-        return true;
+        return false;
 }
 $.onlyNumber = function(el) {
-    $(el).live('keypress', function(e) {
+    body.on('keydown', el, function(e) {
         if (!$.testNumber(e)) {
             $(this).tooltip();
             return false;
+        }
+        else{
+            $(this).tooltip('remove');
         }
     });
 }
@@ -373,6 +375,9 @@ function getCookie(c_name)
             if (input.is(":checked")) {
                 methods.radioCheck(el, input, after, start);
             }
+            if (input.is(":disabled")) {
+                methods.radioDisabled(el, input);
+            }
             el.removeClass(classRemove);
             return false;
         },
@@ -382,8 +387,8 @@ function getCookie(c_name)
             methods.radioCheck(el, input, after, start);
         },
         radioCheck: function(el, input, after, start) {
-            el.addClass(activeClass);
-            el.parent().addClass(activeClass);
+            el.addClass(activeClass).removeClass(disabledClass);
+            el.parent().addClass(activeClass).removeClass(disabledClass);
             input.attr("checked", true);
             $(input.data('link')).focus();
             input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
@@ -405,6 +410,16 @@ function getCookie(c_name)
                 'el': el, 
                 'input': input
             });
+        },
+        radioDisabled: function(el, input) {
+            input.attr('disabled', 'disabled');
+            el.removeClass(activeClass).addClass(disabledClass);
+            el.parent().removeClass(activeClass).addClass(disabledClass);
+        },
+        radioUnDisabled: function(el, input) {
+            input.removeAttr('disabled');
+            el.removeClass(activeClass + ' ' + disabledClass);
+            el.parent().removeClass(activeClass + ' ' + disabledClass);
         }
     };
     $.fn.nStRadio = function(method) {
@@ -413,13 +428,13 @@ function getCookie(c_name)
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on $.nStRadio');
+            $.error('Method ' + method + ' does not exist on jQuery.nStRadio');
         }
     };
     $.nStRadio = function(m) {
         return methods[m];
     };
-})($);
+})(jQuery);
 (function($) {
     var methods = {
         init: function(options) {
@@ -1942,7 +1957,7 @@ function getCookie(c_name)
                                     $thisNext.attr('disabled', 'disabled')
 
                                 if (checkProdStock)
-                                    input.maxValue(e);
+                                    input.maxminValue(e);
                                 settings.after(e, el, input);
                             }
                         }
@@ -1993,79 +2008,47 @@ function getCookie(c_name)
 })($);
 (function($) {
     var methods = {
-        init: function(e) {
-            var $this = $(this),
-            $min = $(this).attr('data-min'),
-            $thisVal = $this.val();
-            if (!e)
-                var e = window.event;
-            var key = e.keyCode;
-            if ((key == 48 || key == 96) && ($thisVal.length == 0 || parseInt($thisVal) == 0)) {
-                $this.val($min);
-            }
-        }
-    };
-    $.fn.minValue = function(method) {
-        if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
-        } else {
-            $.error('Method ' + method + ' does not exist on $.minValue');
-        }
-    };
-    $.minValue = function(m) {
-        return methods[m];
-    };
-    $('[data-min]').die('keyup').live('keyup', function(e) {
-        $(this).minValue(e);
-    })
-    $('[data-min]').die('keypress').live('keypress', function(e) {
-        var key = e.keyCode,
-        keyChar = parseInt(String.fromCharCode(key));
-        var $this = $(this),
-        $min = $this.attr('data-min');
-        if ($this.val() == "" && keyChar == 0) {
-            $this.val($min);
-            return false;
-        }
-    })
-})($);
-(function($) {
-    var methods = {
         init: function(e, f) {
             var $this = $(this), $thisVal = $this.val(),
             $max = parseInt($this.attr('data-max'));
-            if (!e)
-                var e = window.event;
-            var key = e.keyCode,
-            keyChar = parseInt(String.fromCharCode(key));
-            if ((keyChar > $max || $thisVal > $max) && checkProdStock) {
+
+            if ($thisVal > $max && checkProdStock) {
                 $this.val($max);
                 if (typeof f == 'function')
                     f();
                 return $max;
             }
             else
-                return true;
+                return false;
         }
     };
-    $.fn.maxValue = function(method) {
+    $.fn.maxminValue = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on $.maxValue');
+            $.error('Method ' + method + ' does not exist on $.maxminValue');
         }
     };
-    $.maxValue = function(m) {
+    $.maxminValue = function(m) {
         return methods[m];
     };
-    $('[data-max]').die('keydown keyup').live('keydown keyup', function(e) {
-        $(this).maxValue(e);
+    $('[data-max]').die('keyup.max').live('keyup.max', function(e) {
+        $(this).maxminValue(e);
     })
 })($);
+$('[data-min]').die('keypress').live('keypress', function(e) {
+    var key = e.keyCode,
+    keyChar = parseInt(String.fromCharCode(key));
+    var $this = $(this),
+    $min = $this.attr('data-min');
+    if ($this.val() == "" && keyChar == 0) {
+        $this.val($min);
+        return false;
+    }
+});
+
 /*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/
 (function($) {
     var methods = {
