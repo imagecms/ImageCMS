@@ -46,3 +46,7 @@ footer {
     width: 50%; /* 6 columns */
   }
 }
+.bs-callout-danger {
+  background-color: #fcf2f2;
+  border-color: #dFb5b4;
+}

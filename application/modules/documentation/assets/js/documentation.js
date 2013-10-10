@@ -43,6 +43,15 @@ tinymce.init({
                 }
             }
         });
+        editor.addButton('highlightcode', {
+            text: 'Важное',
+            onclick: function() {
+                var text = editor.selection.getContent({'format': 'text'});
+                if (text && text.length > 0) {
+                    editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p></code></pre>');
+                }
+            }
+        });
     }
 });
 
