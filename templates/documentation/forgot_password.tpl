@@ -1,8 +1,8 @@
 <div class="drop drop-style drop-forgot">
-    <div class="icon-times-drop" data-closed="closed-js"></div>
-    <div class="drop-header">
-        <div class="title">{lang('Забыли Пароль?','corporate')}</div>
-    </div>
+
+
+    <h1>{lang('Forgot password?','corporate')}</h1>
+
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form">
@@ -22,26 +22,38 @@
                                 }
                             }}{/literal});
                         return false;">
-                    <label>
-                        <span class="title">{lang('Почта','corporate')}</span>
-                        <span class="frame-form-field">
-                            <input type="text" size="30" name="email"/>
-                        </span>
-                    </label>
-                    <div class="frame-label">
-                        <div class="title"></div>
-                        <div class="frame-form-field">
-                            <div class="frame-label">
-                                <div class="btn">
-                                    <input type="submit" id="submit" class="submit" value="{lang('Отправить','corporate')}" />
-                                </div>
-                            </div>
-                            <div>
-                                <button class="d_l" data-drop=".drop-enter" data-source="{site_url('auth')}">Вход</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{site_url('auth/register')}">{lang('Регистрация','corporate')}</a>
-                            </div>
-                        </div>
-                    </div>
+
+                    <table class="custom_form_table">
+                        <tr>
+                            <td>
+                                <label for="email">
+                                    {lang('Email','corporate')}
+                                </label>
+                            </td>
+                            <td>
+                                <input type="text" name="email" placeholder="Email" class="form-control"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="controls_table_row">
+                                <button type="button" class="btn" data-location="{site_url('auth/register')}" onclick="window.location = this.getAttribute('data-location')">
+                                    {lang('Sing up','corporate')}
+                                </button>
+                                <button type="button" class="btn" data-location="{site_url('auth/login')}" onclick="window.location = this.getAttribute('data-location')">
+                                    {lang('Sign in','corporate')}
+                                </button>
+                                <input type="submit" id="submit" class="btn btn-primary pull-right" value="{lang('Send','corporate')}" />
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
                     {form_csrf()}
                 </form>
             </div>

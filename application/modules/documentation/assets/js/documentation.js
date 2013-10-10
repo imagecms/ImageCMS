@@ -10,7 +10,7 @@ tinymce.init({
     toolbar_items_size: 'small',
     spellchecker_language: "ru",
     spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
-    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | highlightcode | spellchecker | save_button",
+    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | highlightcode | danger | spellchecker | save_button",
     image_advtab: true,
     external_filemanager_path: "/templates/documentation/js/tinymce/plugins/responsivefilemanager/",
     filemanager_title: "Responsive Filemanager",
@@ -40,6 +40,15 @@ tinymce.init({
                 var text = editor.selection.getContent({'format': 'text'});
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
+                }
+            }
+        });
+        editor.addButton('danger', {
+            text: 'Важное',
+            onclick: function() {
+                var text = editor.selection.getContent({'format': 'text'});
+                if (text && text.length > 0) {
+                    editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
                 }
             }
         });
@@ -86,7 +95,7 @@ tinymce.init({
     language: 'ru',
     spellchecker_language: "ru",
     spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
-    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | highlightcode | spellchecker",
+    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | highlightcode | danger | spellchecker",
     image_advtab: true,
     toolbar_items_size: 'small',
     external_filemanager_path: "/templates/documentation/js/tinymce/plugins/responsivefilemanager/",
@@ -100,6 +109,15 @@ tinymce.init({
                 var text = editor.selection.getContent({'format': 'text'});
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
+                }
+            }
+        });
+        editor.addButton('danger', {
+            text: 'Важное',
+            onclick: function() {
+                var text = editor.selection.getContent({'format': 'text'});
+                if (text && text.length > 0) {
+                    editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
                 }
             }
         });
