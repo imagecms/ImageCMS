@@ -5,6 +5,7 @@
  */
 var isTouch = 'ontouchstart' in document.documentElement,
 activeClass = 'active',
+disabledClass = 'disabled',
 clonedC = 'cloned';
 wnd = $(window),
     body = $('body'),
