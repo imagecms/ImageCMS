@@ -140,10 +140,10 @@
                             </div>
                         {else:}
                             <div class="pull-right">
-                            <a href="/auth/logout" type="button">
-                                <span class="glyphicon glyphicon-log-out"></span>
-                                {lang('Exit','documentation')}
-                            </a>
+                                <a href="/auth/logout" type="button">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    {lang('Exit','documentation')}
+                                </a>
                             </div>
                         {/if}
                     </div>

@@ -1732,7 +1732,7 @@ function init() {
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     })
 
-    $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
+    $('#bask_block').on('click.toTiny', genObj.tinyBask + '.' + genObj.isAvail, function() {
         initShopPage(true);
     })
     $(document).live('cart_changed', function() {
