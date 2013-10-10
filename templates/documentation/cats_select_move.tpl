@@ -3,7 +3,7 @@
         {if $item['id'] == $categoryData['id']} disabled="disabled" {$item['subtree'] = null}{/if}>
 	{for $i=0; $i < $item['level'];$i++}-{/for} {$item['name']}
 	</option>
-        {if $item['subtree'] && $item['level'] <2}
+        {if $item['subtree'] && $item['level'] <3}
             {$this->view('cats_select_move.tpl', array('tree' => $item['subtree'], 'sel_cat' => $sel_cat,'categoryData' => $categoryData))}
         {/if}
 {/foreach}
