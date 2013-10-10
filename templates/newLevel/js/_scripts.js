@@ -1300,7 +1300,7 @@ function ieInput(els) {
         }).addClass('visited');
     });
 }
-function onComplete(elSet, elS, el) {
+function onComplete(el, elS, isajax, data, elSet) {
     var next = $(optionsDrop.hrefOptions.next),
     prev = $(optionsDrop.hrefOptions.prev),
     cycle = optionsDrop.hrefOptions.cycle;
