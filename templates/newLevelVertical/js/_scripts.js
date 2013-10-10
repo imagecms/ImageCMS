@@ -22,10 +22,10 @@ var optionsMenu = {
     drop: '.frame-item-menu > .frame-drop-menu',
     
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
-    //countColumn: 5, //if not drop-side
+    countColumn: 5, //if not drop-side
     
-    sub2Frame: '.frame-l2', //if drop-side
-    dropWidth: 475, //if not define than will be actual width needs when drop-side
+    //sub2Frame: '.frame-l2', //if drop-side
+    //dropWidth: 475, //if not define than will be actual width needs when drop-side
 
     //if need column partition level 2
     columnPart: true,
@@ -52,7 +52,7 @@ var optionsMenu = {
     parentTl: '.frame-l2', //prev a level 2
     otherPage: hrefCategoryProduct, //for product [undefined or value not other]
     
-    vertical: true
+    vertical: false
 };
 var scrollPane = {
     animateScroll: true,
@@ -160,8 +160,8 @@ cleaverFilterObj = {
     effectIn: 'fadeIn',
     effectOff: 'fadeOut',
     duration: '300',
-    location: 'left', //if vertical has be left
-    addingClass: 'left',//if vertical has be left
+    location: 'right', //if vertical has be left
+    //addingClass: 'left',//if vertical has be left
     elPos: '.frame-group-checks .frame-label',
     dropDownEff: 'slideToggle',
     dropDownEffDur: '400',
@@ -1300,7 +1300,7 @@ function ieInput(els) {
         }).addClass('visited');
     });
 }
-function onComplete(elSet, elS, el) {
+function onComplete(el, elS, isajax, data, elSet) {
     var next = $(optionsDrop.hrefOptions.next),
     prev = $(optionsDrop.hrefOptions.prev),
     cycle = optionsDrop.hrefOptions.cycle;
@@ -1732,7 +1732,7 @@ function init() {
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     })
 
-    $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
+    $('#bask_block').on('click.toTiny', genObj.tinyBask + '.' + genObj.isAvail, function() {
         initShopPage(true);
     })
     $(document).live('cart_changed', function() {
