@@ -1467,8 +1467,6 @@ function getCookie(c_name)
                             dataType: elSet.type ? elSet.type : 'html',
                             success: function(data) {
                                 if (elSet.type != 'html' && elSet.type != undefined && newModal) {
-                                    if (elSet.callback != undefined)
-                                        eval(elSet.callback)($this, data, elSetSource);
                                     $(document).trigger({
                                         type: 'drop.successJson', 
                                         el: elSetSource, 
@@ -1481,8 +1479,6 @@ function getCookie(c_name)
                                         el: elSetSource, 
                                         datas: data
                                     })
-                                    if (elSet.callback != undefined)
-                                        eval(elSet.callback)($this, data, elSetSource);
                                     if (elSet.place != 'inherit' && elSet.place != 'noinherit') {
                                         if (!$.exists('.for-center')) {
                                             body.append('<div class="for-center" style="position: absolute;left: 0;top: 0;z-index: 1103;width: 100%;height: 100%;dispaly:none;"></div>');
@@ -1494,7 +1490,7 @@ function getCookie(c_name)
                                 }
                                 elSetSource = $(elSet.drop);
                                 methods.init.call(elSetSource.find('[data-drop]'), $.extend({}, optionsDrop));
-                                methods.showDrop($this, e, optionsDrop, true);
+                                methods.showDrop($this, e, optionsDrop, true, data);
                             }
                         })
                     }
@@ -1556,13 +1552,14 @@ function getCookie(c_name)
                     methods.closeDrop($(this))
             })
         },
-        showDrop: function($this, e, set, isajax) {
+        showDrop: function($this, e, set, isajax, data) {
             if (!e)
                 var e = window.event;
             var set = !set ? optionsDrop : set,
             isajax = !isajax ? false : true,
             elSet = $this.data(),
             place = elSet.place || set.place,
+            callback = elSet.callback,
             placement = elSet.placement || set.placement,
             $thisEOff = elSet.effectOff || set.effoff,
             $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || set.duration,
@@ -1579,10 +1576,11 @@ function getCookie(c_name)
             after = set.after,
             close = set.close,
             closed = set.closed,
-            elSetSource = $(elSet.drop),
-            $thisSource = elSet.drop;
+            $thisSource = elSet.drop,
+            elSetSource = $($thisSource);
+
             $this.attr('data-drop', $this.data('drop')).parent().addClass(activeClass);
-            $($thisSource).data({
+            elSetSource.data({
                 'effect-off': $thisEOff,
                 'elrun': $this,
                 'place': place,
@@ -1597,7 +1595,9 @@ function getCookie(c_name)
                 'modal': modal,
                 'confirm': confirm,
                 'timeclosemodal': timeclosemodal,
-                'moreoneNC': moreoneNC
+                'moreoneNC': moreoneNC,
+                'callback': callback,
+                'data-elrun': elSetSource
             }).attr('data-elrun', $thisSource);
             $(set.exit).die('click.drop').live('click.drop', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
@@ -1655,20 +1655,23 @@ function getCookie(c_name)
                     }
                 })
                 elSetSource.addClass(place);
-                function show() {
+                function _show() {
                     elSetSource.stop(true, false)[$thisEOn]($thisD, function(e) {
-                        var $this = $(this);
+                        var $thisD = $(this);
                         $(document).trigger({
                             type: 'drop.contentHeight', 
                             el: dC, 
-                            drop: $this
+                            drop: $thisD
                         });
-                        $this.addClass(activeClass);
+                        $thisD.addClass(activeClass);
                         if (!confirm && modal)
                             setTimeout(function() {
-                                methods.closeDrop($this)
+                                methods.closeDrop($thisD)
                             }, timeclosemodal)
-                        after($this, elSetSource, isajax);
+                        after($this, $thisD, isajax);
+                        var cB = elSet.href != undefined ? set.hrefOptions.callback : elSet.callback
+                        if (cB != undefined)
+                            eval(cB)($this, $thisD, isajax, data, elSet)
                     });
                     $(document).trigger({
                         'type': 'drop.show', 
@@ -1686,17 +1689,15 @@ function getCookie(c_name)
                     $('<img src="' + elSet.href + '">').load(function() {
                         var $this = $(this),
                         place = elSet.placeHref || set.hrefOptions.placeHref,
-                        bS = elSet.beforeShowHref || set.hrefOptions.beforeShowHref,
-                        cB = elSet.callback || set.hrefOptions.callback;
+                        bS = elSet.beforeShowHref || set.hrefOptions.beforeShowHref;
                         $(place).empty();
                         $this.appendTo(place);
                         eval(bS)($this, elSetSource);
-                        show();
-                        eval(cB)(elSet, elSetSource, $this);
+                        _show();
                         $this.unbind('load');
                     });
                 else {
-                    show();
+                    _show();
                 }
             }
             body.unbind('click.drop').unbind('keydown.drop').on('click.drop', function(e) {
