@@ -309,8 +309,6 @@ class Menu extends MY_Controller {
 
         $is_active_hard = $this->arranged_menu_array[$index]['link'] == $this->current_uri ? 1 : 0;
 
-
-
         $data = array(
             'id' => $this->arranged_menu_array[$index]['id'],
             'title' => $this->arranged_menu_array[$index]['title'],
