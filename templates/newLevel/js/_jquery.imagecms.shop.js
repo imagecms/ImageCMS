@@ -1730,36 +1730,39 @@ function getCookie(c_name)
                         })
                         drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
                             var $this = $(this),
-                            $thisEOff = $this.data('effect-off'),
-                            $thisD = $this.data('duration'),
                             $thisB = $this.data('elrun');
-                            if ($this.data('close') != undefined)
-                                $this.data('close')($thisB, $(this));
-                            $thisB.parent().removeClass(activeClass);
-                            var $thisHref = $thisB.attr('href');
-                            if ($thisHref != undefined) {
-                                var $thisHrefL = $thisHref.length,
-                                wLH = location.hash,
-                                wLHL = wLH.length;
-                                try {
-                                    var indH = wLH.match($thisHref + '(?![a-z])').index;
-                                    location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                                } catch (err) {
-                                }
-                            }
+                            if ($thisB != undefined){
+                                var $thisEOff = $this.data('effect-off'),
+                                $thisD = $this.data('duration');
                             
-                            methods.scrollEmulateRemove($thisD);
+                                if ($this.data('close') != undefined)
+                                    $this.data('close')($thisB, $(this));
+                                $thisB.parent().removeClass(activeClass);
+                                var $thisHref = $thisB.attr('href');
+                                if ($thisHref != undefined) {
+                                    var $thisHrefL = $thisHref.length,
+                                    wLH = location.hash,
+                                    wLHL = wLH.length;
+                                    try {
+                                        var indH = wLH.match($thisHref + '(?![a-z])').index;
+                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                                    } catch (err) {
+                                    }
+                                }
+                            
+                                methods.scrollEmulateRemove($thisD);
 
-                            $('.for-center').fadeOut($thisD);
-                            $this[$thisEOff]($thisD, function() {
-                                $(this).removeAttr('style');
-                                if ($this.data('closed') != undefined)
-                                    $this.data('closed')($thisB, $(this));
-                                $(document).trigger({
-                                    'type': 'drop.hide', 
-                                    el: $this
-                                })
-                            });
+                                $('.for-center').fadeOut($thisD);
+                                $this[$thisEOff]($thisD, function() {
+                                    $(this).removeAttr('style');
+                                    if ($this.data('closed') != undefined)
+                                        $this.data('closed')($thisB, $(this));
+                                    $(document).trigger({
+                                        'type': 'drop.hide', 
+                                        el: $this
+                                    })
+                                });
+                            }
                         });
                     }
                 })
