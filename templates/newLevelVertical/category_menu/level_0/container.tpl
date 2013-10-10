@@ -1,6 +1,6 @@
 <!--    menu-row-category || menu-col-category-->
 <div>
-    <div class="nav menu-main not-js menu-row-category">
+    <div class="nav menu-main not-js menu-col-category">
         <nav>
             <table>
                 <tbody>
