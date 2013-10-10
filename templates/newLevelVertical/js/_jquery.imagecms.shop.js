@@ -1482,6 +1482,11 @@ function getCookie(c_name)
                             type: "post",
                             data: elSet.data,
                             url: elSet.source,
+                            beforeSend: function(){
+                                $(document).trigger({
+                                    'type': 'showActivity'
+                                })  
+                            },
                             dataType: elSet.type ? elSet.type : 'html',
                             success: function(data) {
                                 if (elSet.type != 'html' && elSet.type != undefined && newModal) {
@@ -1620,13 +1625,18 @@ function getCookie(c_name)
             $(set.exit).die('click.drop').live('click.drop', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
-            if (!$.exists('.overlayDrop')) {
-                body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
+            var overlayColor = overlayColor,
+            overlayOpacity = overlayOpacity != undefined ? overlayOpacity.toString() : overlayOpacity,
+            condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
+            if (condOverlay){
+                if (!$.exists('.overlayDrop')) {
+                    body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
+                }
+                optionsDrop.dropOver = $('.overlayDrop').css({
+                    'background-color': overlayColor,
+                    'opacity': overlayOpacity
+                });
             }
-            optionsDrop.dropOver = $('.overlayDrop').css({
-                'background-color': overlayColor,
-                'opacity': overlayOpacity
-            });
             if (elSetSource.is('.' + activeClass) && e.button != undefined) {
                 methods.closeDrop(elSetSource);
             }
@@ -1665,13 +1675,13 @@ function getCookie(c_name)
                         methods.dropCenter(elSetSource);
                     }, 300)
                 });
-
-                optionsDrop.dropOver.show().add($('.for-center')).unbind('click.drop').on('click.drop', function(e) {
-                    if (!$.existsN($(e.target).closest(elSetSource)) && !$.existsN($(e.target).is(elSetSource))) {
-                        e.stopPropagation();
-                        methods.closeDrop(false);
-                    }
-                })
+                if (condOverlay)
+                    optionsDrop.dropOver.show().add($('.for-center')).unbind('click.drop').on('click.drop', function(e) {
+                        if (!$.existsN($(e.target).closest(elSetSource)) && !$.existsN($(e.target).is(elSetSource))) {
+                            e.stopPropagation();
+                            methods.closeDrop(false);
+                        }
+                    })
                 elSetSource.addClass(place);
                 function _show() {
                     elSetSource.stop(true, false)[$thisEOn]($thisD, function(e) {
@@ -1747,7 +1757,7 @@ function getCookie(c_name)
                             'type': 'drop.beforeClose', 
                             'el': drop
                         })
-                        drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
+                        drop.each(function() {
                             var $this = $(this),
                             $thisB = $this.data('elrun');
                             if ($thisB != undefined){
@@ -1773,7 +1783,7 @@ function getCookie(c_name)
 
                                 $('.for-center').fadeOut($thisD);
                                 $this[$thisEOff]($thisD, function() {
-                                    $(this).removeAttr('style');
+                                    $(this).removeClass(activeClass + ' ' + drop.data('place')).removeAttr('style');
                                     if ($this.data('closed') != undefined)
                                         $this.data('closed')($thisB, $(this));
                                     $(document).trigger({
