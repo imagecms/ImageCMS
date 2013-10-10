@@ -34,13 +34,13 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
-        $settings = $this->documentation_model->getSettings();
-        if (in_array($this->dx_auth->get_role_id(), $settings)) {
+//        $settings = $this->documentation_model->getSettings();
+//        if (in_array($this->dx_auth->get_role_id(), $settings)) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
                     ->registerScript('documentation', FALSE, 'before');
         }
-    }
+//    }
 
     /**
      * Create page
@@ -299,6 +299,7 @@ class Documentation extends \MY_Controller {
             $data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,
+                'title' => $this->input->post('meta_title'),
                 'keywords' => $this->input->post('keywords'),
                 'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('category'),
