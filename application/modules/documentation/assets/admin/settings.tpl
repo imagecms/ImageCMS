@@ -8,12 +8,17 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$_SERVER['HTTP_REFERER']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
-                <button type="button" class="btn btn-small" onclick="$('form#doc_roles_settings').submit()"><i class="icon-ok"></i>{lang('Save','admin')}</button>
+                <button type="button"
+                        class="btn btn-small btn-success action_on formSubmit"
+                        data-form="#doc_roles_settings"
+                        data-action="save">
+                    <i class="icon-ok icon-white"></i>{lang('Save', 'admin')}
+                </button>
             </div>
         </div>
     </div>
     <div class="row-fluid">
-        <form action="{$BASE_URL}admin/components/cp/documentation/settings/save" method="POST" id="doc_roles_settings">
+        <form action="{$BASE_URL}admin/components/cp/documentation/settings/saveSettings" method="POST" id="doc_roles_settings">
             <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
@@ -37,10 +42,8 @@
                                 <td>                                            
                                     <span class="frame_label role_checkbox {if $role.edit == '1'}active{/if}" data-id="{$role.id}">
                                         <span class="niceCheck" style="background-position: -46px 0px;">
-                                            <input type="checkbox" {if $role.edit == '1'}checked="checked"{/if}>
+                                            <input type="checkbox" name="ids[]"{if $role.edit == '1'}checked="checked"{/if} value="{$role.id}">
                                         </span>
-                                        <input type="hidden" value="{$role.id}" name="ids[]">
-                                        <input type="hidden" value="{$role.edit}" name="values[]" class="edit_value">
                                     </span>
                                 </td>
                                 <td>{$role.id}</td>
