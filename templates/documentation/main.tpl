@@ -62,12 +62,12 @@
 
                         <div class="pull-right">
                             {if $CI->dx_auth->is_admin()}
-                                <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
+                                <a href="/documentation/create_new_page" type="button" class="btn btn-success">
                                     <span class="glyphicon glyphicon-new-window"></span>
                                     {lang('Create page','documentation')}
                                 </a>
                                 {if $CI->core->core_data['data_type'] == 'page'}
-                                    <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
+                                    <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                         {lang('Edit','documentation')}
                                     </a>
