@@ -317,7 +317,7 @@ class Documentation_model extends CI_Model {
      * @param int $historyId
      */
     public function restoreArticleFromHistory($pageId, $historyId) {
-        $this->make_backup($pageId);
+//        $this->make_backup($pageId);
         $someOldData = $this->db
                 ->where('id', $historyId)
                 ->get('mod_documentation_history')
@@ -337,6 +337,45 @@ class Documentation_model extends CI_Model {
 
     public function deleteHistoryRow($historyId) {
         $this->db->delete('mod_documentation_history', array('id' => $historyId));
+    }
+
+    /**
+      <<<<<<< HEAD
+     * Get module settings
+     * @return array
+     */
+    public function getSettings() {
+        $settings = $this->db->select('settings')
+                ->where('identif', 'documentation')
+                ->get('components')
+                ->row_array();
+        $settings = unserialize($settings['settings']);
+
+        if (is_array($settings)) {
+            return $settings;
+        }
+
+        return array();
+    }
+
+    /**
+     * Save settings
+     * @param array $settings
+     * @return boolean
+     */
+    public function setSettings($settings) {
+        return $this->db->where('identif', 'documentation')
+                        ->update('components', array('settings' => serialize($settings)
+        ));
+    }
+
+    public function getRoles() {
+        $locale = \MY_Controller::getCurrentLocale();
+        $result = $this->db
+                ->join('shop_rbac_roles_i18n', 'shop_rbac_roles_i18n.id = shop_rbac_roles.id')
+                ->where('shop_rbac_roles_i18n.locale', $locale)
+                ->get('shop_rbac_roles');
+        return $result->result_array();
     }
 
     /**

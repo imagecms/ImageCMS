@@ -17,6 +17,11 @@
             <span class="help-inline"></span>
             <span class="title">{$page.title}</span>
         </div>
+        <div class="pull-right">
+            <div class="d-i_b">
+                <a href="{$_SERVER['HTTP_REFERER']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+            </div>
+        </div>
     </div>
     <div class="row-fluid">
         <div class="article-view" data-page-id="{$page.id}">
