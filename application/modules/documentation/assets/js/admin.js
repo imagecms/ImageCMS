@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("a.articleHistoryControl").on('click', function() {
+   $("a.articleHistoryControl").on('click', function() {
         var url = $(this).attr("data-url");
         $.ajax({
             url: url,
@@ -31,15 +31,6 @@ $(document).ready(function() {
                 .html(diffHtmlResult);
         $("#articles_diff").modal("show");
     });
-
-
-
-    $("#articles_diff .modal-body")
-            .empty()
-            .html(diffHtmlResult);
-    $("#articles_diff").modal("show");
-
-
 
 
     $(".role_checkbox").on('click', function() {

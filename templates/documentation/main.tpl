@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
         <title>{$site_title}</title>
         <meta name="description" content="{$site_description}" />
@@ -100,10 +100,10 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-9">
-                    <div class="jumbotron">
+                    <!--div class="jumbotron">
                         <h1>Hello, world!</h1>
                         <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-                    </div>
+                    </div-->
                     {if $CI->core->core_data['data_type'] != '404'}
                         <div class="row">
                             <form class="form-group form-inline pull-right" action="{site_url('search')}" method="POST">
@@ -123,7 +123,7 @@
                 </div>
             </div>
             <footer>
-                <div class="navbar-inner">
+                <div class="navbar-inner" style="margin: 8px;">
                     <div class="container">
                         <hr/>
                         © Company 2013
@@ -132,7 +132,7 @@
                                 <a href="/auth/login" class="navbar-btn">
                                     <span class="glyphicon glyphicon-log-in "></span>
                                     {lang('Log in','documentation')}
-                                </a>
+                                </a>&nbsp;
                                 <a href="/auth/register" class="navbar-btn">
                                     <span class="glyphicon glyphicon-log-in "></span>
                                     {lang('Registration','documentation')}
