@@ -200,7 +200,7 @@ class Admin extends BaseAdminController {
 
                 $this->lib_admin->log(
                         lang('amt_create_user') .
-                        '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_info['id']) . '">' . $val->set_value('username') . '</a>'
+                        ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_info['id']) . '">' . $val->set_value('username') . '</a>'
                 );
 
                 showMessage(lang('amt_user_created'));
@@ -243,7 +243,7 @@ class Admin extends BaseAdminController {
                 $this->users->ban_user($value);
                 $this->lib_admin->log(
                         lang('amt_banned_user') .
-                        '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
+                        ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
                 );
             } else {
 
@@ -252,7 +252,7 @@ class Admin extends BaseAdminController {
                 $this->users->unban_user($value);
                 $this->lib_admin->log(
                         lang('amt_unbanned_user') .
-                        '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
+                        ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
                 );
             }
         }
@@ -402,7 +402,7 @@ class Admin extends BaseAdminController {
 
             $this->lib_admin->log(
                     lang('amt_updated_user') .
-                    '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_id) . '">' . $data['username'] . '</a>'
+                    ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_id) . '">' . $data['username'] . '</a>'
             );
 
 
