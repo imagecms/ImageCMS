@@ -5,6 +5,7 @@
  */
 var isTouch = 'ontouchstart' in document.documentElement,
 activeClass = 'active',
+disabledClass = 'disabled',
 clonedC = 'cloned';
 wnd = $(window),
     body = $('body'),
@@ -44,18 +45,20 @@ $.testNumber = function(e) {
     var key = e.keyCode;
     if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
         return true;
-    var keyChar = String.fromCharCode(key);
-    if (!/\d/.test(keyChar)) {
-        return false;
+    if ((key >= 48 && key <= 57) || (key >= 96 && key <= 105)) {
+        return true;
     }
     else
-        return true;
+        return false;
 }
 $.onlyNumber = function(el) {
-    $(el).live('keypress', function(e) {
+    body.on('keydown', el, function(e) {
         if (!$.testNumber(e)) {
             $(this).tooltip();
             return false;
+        }
+        else{
+            $(this).tooltip('remove');
         }
     });
 }
@@ -373,6 +376,9 @@ function getCookie(c_name)
             if (input.is(":checked")) {
                 methods.radioCheck(el, input, after, start);
             }
+            if (input.is(":disabled")) {
+                methods.radioDisabled(el, input);
+            }
             el.removeClass(classRemove);
             return false;
         },
@@ -382,8 +388,8 @@ function getCookie(c_name)
             methods.radioCheck(el, input, after, start);
         },
         radioCheck: function(el, input, after, start) {
-            el.addClass(activeClass);
-            el.parent().addClass(activeClass);
+            el.addClass(activeClass).removeClass(disabledClass);
+            el.parent().addClass(activeClass).removeClass(disabledClass);
             input.attr("checked", true);
             $(input.data('link')).focus();
             input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
@@ -405,6 +411,16 @@ function getCookie(c_name)
                 'el': el, 
                 'input': input
             });
+        },
+        radioDisabled: function(el, input) {
+            input.attr('disabled', 'disabled');
+            el.removeClass(activeClass).addClass(disabledClass);
+            el.parent().removeClass(activeClass).addClass(disabledClass);
+        },
+        radioUnDisabled: function(el, input) {
+            input.removeAttr('disabled');
+            el.removeClass(activeClass + ' ' + disabledClass);
+            el.parent().removeClass(activeClass + ' ' + disabledClass);
         }
     };
     $.fn.nStRadio = function(method) {
@@ -413,13 +429,13 @@ function getCookie(c_name)
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on $.nStRadio');
+            $.error('Method ' + method + ' does not exist on jQuery.nStRadio');
         }
     };
     $.nStRadio = function(m) {
         return methods[m];
     };
-})($);
+})(jQuery);
 (function($) {
     var methods = {
         init: function(options) {
@@ -1466,6 +1482,11 @@ function getCookie(c_name)
                             type: "post",
                             data: elSet.data,
                             url: elSet.source,
+                            beforeSend: function(){
+                                $(document).trigger({
+                                    'type': 'showActivity'
+                                })  
+                            },
                             dataType: elSet.type ? elSet.type : 'html',
                             success: function(data) {
                                 if (elSet.type != 'html' && elSet.type != undefined && newModal) {
@@ -1604,13 +1625,18 @@ function getCookie(c_name)
             $(set.exit).die('click.drop').live('click.drop', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
-            if (!$.exists('.overlayDrop')) {
-                body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
+            var overlayColor = overlayColor,
+            overlayOpacity = overlayOpacity != undefined ? overlayOpacity.toString() : overlayOpacity,
+            condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
+            if (condOverlay){
+                if (!$.exists('.overlayDrop')) {
+                    body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
+                }
+                optionsDrop.dropOver = $('.overlayDrop').css({
+                    'background-color': overlayColor,
+                    'opacity': overlayOpacity
+                });
             }
-            optionsDrop.dropOver = $('.overlayDrop').css({
-                'background-color': overlayColor,
-                'opacity': overlayOpacity
-            });
             if (elSetSource.is('.' + activeClass) && e.button != undefined) {
                 methods.closeDrop(elSetSource);
             }
@@ -1649,13 +1675,13 @@ function getCookie(c_name)
                         methods.dropCenter(elSetSource);
                     }, 300)
                 });
-
-                optionsDrop.dropOver.show().add($('.for-center')).unbind('click.drop').on('click.drop', function(e) {
-                    if (!$.existsN($(e.target).closest(elSetSource)) && !$.existsN($(e.target).is(elSetSource))) {
-                        e.stopPropagation();
-                        methods.closeDrop(false);
-                    }
-                })
+                if (condOverlay)
+                    optionsDrop.dropOver.show().add($('.for-center')).unbind('click.drop').on('click.drop', function(e) {
+                        if (!$.existsN($(e.target).closest(elSetSource)) && !$.existsN($(e.target).is(elSetSource))) {
+                            e.stopPropagation();
+                            methods.closeDrop(false);
+                        }
+                    })
                 elSetSource.addClass(place);
                 function _show() {
                     elSetSource.stop(true, false)[$thisEOn]($thisD, function(e) {
@@ -1731,7 +1757,7 @@ function getCookie(c_name)
                             'type': 'drop.beforeClose', 
                             'el': drop
                         })
-                        drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
+                        drop.each(function() {
                             var $this = $(this),
                             $thisB = $this.data('elrun');
                             if ($thisB != undefined){
@@ -1757,7 +1783,7 @@ function getCookie(c_name)
 
                                 $('.for-center').fadeOut($thisD);
                                 $this[$thisEOff]($thisD, function() {
-                                    $(this).removeAttr('style');
+                                    $(this).removeClass(activeClass + ' ' + drop.data('place')).removeAttr('style');
                                     if ($this.data('closed') != undefined)
                                         $this.data('closed')($thisB, $(this));
                                     $(document).trigger({
@@ -1942,7 +1968,7 @@ function getCookie(c_name)
                                     $thisNext.attr('disabled', 'disabled')
 
                                 if (checkProdStock)
-                                    input.maxValue(e);
+                                    input.maxminValue(e);
                                 settings.after(e, el, input);
                             }
                         }
@@ -1993,79 +2019,47 @@ function getCookie(c_name)
 })($);
 (function($) {
     var methods = {
-        init: function(e) {
-            var $this = $(this),
-            $min = $(this).attr('data-min'),
-            $thisVal = $this.val();
-            if (!e)
-                var e = window.event;
-            var key = e.keyCode;
-            if ((key == 48 || key == 96) && ($thisVal.length == 0 || parseInt($thisVal) == 0)) {
-                $this.val($min);
-            }
-        }
-    };
-    $.fn.minValue = function(method) {
-        if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
-        } else {
-            $.error('Method ' + method + ' does not exist on $.minValue');
-        }
-    };
-    $.minValue = function(m) {
-        return methods[m];
-    };
-    $('[data-min]').die('keyup').live('keyup', function(e) {
-        $(this).minValue(e);
-    })
-    $('[data-min]').die('keypress').live('keypress', function(e) {
-        var key = e.keyCode,
-        keyChar = parseInt(String.fromCharCode(key));
-        var $this = $(this),
-        $min = $this.attr('data-min');
-        if ($this.val() == "" && keyChar == 0) {
-            $this.val($min);
-            return false;
-        }
-    })
-})($);
-(function($) {
-    var methods = {
         init: function(e, f) {
             var $this = $(this), $thisVal = $this.val(),
             $max = parseInt($this.attr('data-max'));
-            if (!e)
-                var e = window.event;
-            var key = e.keyCode,
-            keyChar = parseInt(String.fromCharCode(key));
-            if ((keyChar > $max || $thisVal > $max) && checkProdStock) {
+
+            if ($thisVal > $max && checkProdStock) {
                 $this.val($max);
                 if (typeof f == 'function')
                     f();
                 return $max;
             }
             else
-                return true;
+                return false;
         }
     };
-    $.fn.maxValue = function(method) {
+    $.fn.maxminValue = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on $.maxValue');
+            $.error('Method ' + method + ' does not exist on $.maxminValue');
         }
     };
-    $.maxValue = function(m) {
+    $.maxminValue = function(m) {
         return methods[m];
     };
-    $('[data-max]').die('keydown keyup').live('keydown keyup', function(e) {
-        $(this).maxValue(e);
+    $('[data-max]').die('keyup.max').live('keyup.max', function(e) {
+        $(this).maxminValue(e);
     })
 })($);
+$('[data-min]').die('keypress').live('keypress', function(e) {
+    var key = e.keyCode,
+    keyChar = parseInt(String.fromCharCode(key));
+    var $this = $(this),
+    $min = $this.attr('data-min');
+    if ($this.val() == "" && keyChar == 0) {
+        $this.val($min);
+        return false;
+    }
+});
+
 /*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/
 (function($) {
     var methods = {
