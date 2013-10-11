@@ -55,7 +55,7 @@ class Admin extends BaseAdminController {
             'first_tag_open' => '<li>',
             'first_tag_close' => '</li>',
             'last_tag_open' => '<li>',
-            'last_tag_close' => '</li>',
+            'last_tag_close' => '</li>'
         );
 
         $this->pagination->num_links = 5;
