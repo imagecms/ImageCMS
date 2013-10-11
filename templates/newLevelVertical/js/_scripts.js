@@ -373,8 +373,12 @@ function tovarChangeCount(el) {
         });
     })
     $('.frame-count-buy ' + genObj.plusMinus).keyup(function(e) {
-        var $this = $(this);
-        $this.maxValue();
+        var $this = $(this),
+        condTooltip = checkProdStock && $this.val() >= $this.data('max');
+
+        if (condTooltip)
+            $this.closest(genObj.numberC).tooltip();
+        
         $this.closest(genObj.frameCount).next().children().attr('data-count', $this.val())
         $(document).trigger({
             'type': 'change_count_product', 
@@ -684,14 +688,9 @@ function initShopPage(showWindow, item) {
             pdTr.find(genObj.countOrCompl).html(word);
         })
     }
-    $(genObj.frameBasks + ' input').unbind('keyup').on('keyup', function(e) {
+    $(genObj.frameBasks + ' input').unbind('keyup.count').on('keyup.count', function(e) {
         var $this = $(this);
-        if ($this.maxValue(e, function() {
-            $this.closest(genObj.numberC).tooltip()
-        }) && !$.testNumber(e)) {
-            $this.minValue(e);
-            chCountInCart($this.prev('div'));
-        }
+        chCountInCart($this.prev('div'));
         if (!e)
             var e = window.event;
         var key = e.keyCode;
@@ -1966,7 +1965,7 @@ function init() {
             drop: $this
         });
     });
-    $(document).on('autocomplete.before drop.click showActivity before_sync_cart', function(e) {
+    $(document).on('autocomplete.before showActivity before_sync_cart', function(e) {
         $.fancybox.showActivity();
     })
     $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart end_sync_cart cart_changed', function(e) {

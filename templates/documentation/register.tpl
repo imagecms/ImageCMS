@@ -12,8 +12,8 @@
                     </div>
                 </div>
             {/if}
-            <form id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', '#register-form');
-                    return false;">
+            
+            <form id="register-form" method="POST">
                 <table class="custom_form_table">
                     <tr>
                         <td>
