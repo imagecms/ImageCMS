@@ -7,60 +7,61 @@
 if (!$ADMIN_URL) $ADMIN_URL = '/admin/components/run/shop/';
 
 $baseMenu = array(
+    
     array(
         'link'      => '/admin/dashboard',
-        'text'      => 'Главная',
+        'text'      => lang('Dashboard', 'admin'),
         'class'     => 'homeAnchor',
         'icon'      => 'icon-home'
     ),
     array(
         'link'      => '',
-        'text'      => 'a_cont',
+        'text'      => lang('Content', 'admin'),
         'icon'      => 'icon-align-justify',
         'subMenu'   => array(
             array(
-                'link'      => '/admin/pages/GetPagesByCategory',
-                'text'      => 'a_cont_list',
+                'link'      => '/admin/pages',
+                'text'      => lang('Create page', 'admin'),
             ),
             array(
-                'link'      => '/admin/pages',
-                'text'      => 'a_create_page',
+                'link'      => '/admin/pages/GetPagesByCategory',
+                'text'      => lang('Articles list', 'admin'),
             ),
             array(
                 'divider'   => true
             ),
             array(
                 'header'    => true,
-                'text'      => 'a_field_constructor',
+                'text'      => lang('Custom fields constructor', 'admin'),
             ),
             array(
                 'link'      => '/admin/components/cp/cfcm/index#additional_fields',
-                'text'      => 'Список полей',
+                'text'      => lang('Fields list', 'admin'),
             ),
             array(
                 'link'      => '/admin/components/cp/cfcm/index#fields_groups',
-                'text'      => 'Список групп',
+                'text'      => lang("Group's list ", 'admin'),
             ),
         )
     ),
     array(
         'link'      => '',
-        'text'      => 'Категории',
+        'text'      => lang('Categories', 'admin'),
         'icon'      => 'icon-list',
         'subMenu'   => array(
             array(
                 'link'      => '/admin/categories/create_form',
-                'text'      => 'a_create',
+                'text'      => lang('Create new', 'admin'),
             ),
             array(
                 'link'      => '/admin/categories/cat_list',
-                'text'      => 'a_edit',
+                'text'      => lang('Categories list', 'admin'),
             )
         )
     ),
     array(
         'link'      => '',
-        'text'      => 'a_menu',
+        'text'      => lang('Menu', 'admin'),
         'icon'      => 'icon-list-alt',
         'subMenu'   => array(
             array(
@@ -70,12 +71,12 @@ $baseMenu = array(
     ),
     array(
         'link'      => '',
-        'text'      => 'a_modules',
+        'text'      => lang('Modules', 'admin'),
         'icon'      => 'icon-circle-arrow-down',
         'subMenu'   => array(
             array(
                 'link'      => '/admin/components/modules_table',
-                'text'      => 'a_all_modules',
+                'text'      => lang('All modules', 'admin'),
             ),
             array(
                 'divider'   => true
@@ -87,54 +88,54 @@ $baseMenu = array(
     ),
     array(
         'link'      => '',
-        'text'      => 'a_widgets',
+        'text'      => lang('Widgets', 'admin'),
         'icon'      => 'icon-th',
         'subMenu'   => array(
             array(
                 'link'      => '/admin/widgets_manager/create_tpl',
-                'text'      => 'a_create',
+                'text'      => lang('Create widget', 'admin'),
             ),
             array(
                 'link'      => '/admin/widgets_manager',
-                'text'      => 'a_edit',
+                'text'      => lang('Widgets list', 'admin'),
             )
         )
     ),
     array(
         'link'      => '',
-        'text'      => 'a_system',
+        'text'      => lang('System', 'admin'),
         'icon'      => 'icon-hdd',
         'subMenu'   => array(
             array(
                 'link'      => '/admin/settings',
-                'text'      => 'a_sett_global_sett_menu',
+                'text'      => lang('Global settings', 'admin'),
             ),
             array(
                 'link'      => '/admin/components/cp/template_editor',
-                'text'      => 'Редактор шаблонов',
+                'text'      => lang('Template editor', 'admin'),
             ),
             array(
                 'link'      => '/admin/languages',
-                'text'      => 'a_languages',
+                'text'      => lang('Languages', 'admin'),
             ),
             array(
                 'link'      => '/admin/cache_all',
-                'text'      => 'a_cache',
+                'text'      => lang('Cache', 'admin'),
             ),
             array(
                 'divider'   => true
             ),
             array(
                 'link'      => '/admin/admin_logs',
-                'text'      => 'a_event_journal',
+                'text'      => lang('Events journal', 'admin'),
             ),
             array(
                 'link'      => '/admin/backup',
-                'text'      => 'a_backup_copy',
+                'text'      => lang('Backup', 'admin'),
             ),
             array(
                 'link'      => '/admin/rbac/roleList',
-                'text'      => 'Список ролей',
+                'text'      => lang('Roles list', 'admin'),
             ),
         )
     )
@@ -143,181 +144,181 @@ $baseMenu = array(
 $shopMenu = array(
     array(
         'link'      => $ADMIN_URL.'dashboard',
-        'text'      => 'Главная',
+        'text'      => lang('Shop dashboard', 'admin'),
         'icon'      => 'icon-home'
 
     ),
+    /** Orders **/
     array(
         'link'      => '',
-        'text'      => 'a_orders',
+        'text'      => lang('Orders', 'admin'),
         'icon'      => 'icon-shopping-cart',
         'subMenu'   => array(
             array(
                 'header'    => true,
-                'text'      => 'a_orders',
+                'text'      => lang('Orders', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'orders/index',
-                'text'      => 'a_orders_all',
+                'text'      => lang('Orders list', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'orderstatuses',
-                'text'      => 'a_orderstatuses',
+                'text'      => lang('Order statuses', 'admin'),
             ),
             array(
                 'header'    => true,
-                'text'      => 'a_callbacks',
+                'text'      => lang('Callbacks', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'callbacks',
-                'text'      => 'a_callbacks',
+                'text'      => lang('Callbacks list', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'callbacks/statuses',
-                'text'      => 'a_callbacks_statuses',
+                'text'      => lang('Callback statuses', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'callbacks/themes',
-                'text'      => 'a_callbacks_themes',
+                'text'      => lang('Callback themes', 'admin'),
             ),
             array(
                 'header'    => true,
-                'text'      => 'a_notifications',
+                'text'      => lang('Notifications', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'notifications',
-                'text'      => 'a_notifications',
+                'text'      => lang('Notifications list', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'notificationstatuses/index',
-                'text'      => 'a_notificationstatuses',
+                'text'      => lang('Notification statuses', 'admin'),
             ),
             array(
                 'header'    => true,
-                'text'      => 'a_others',
+                'text'      => lang('Other', 'admin'),
             ),
             array(
                 'link'      => '/admin/components/cp/comments',
-                'text'      => 'a_comments',
+                'text'      => lang('Comments', 'admin'),
             ),
         )
     ),
+    /** Products **/
     array(
         'link'      => '',
-        'text'      => 'a_products_catalog',
+        'text'      => lang('Products catalogue', 'admin'),
         'icon'      => 'icon-list-alt',
         'subMenu'   => array(
             array(
                 'link'      => $ADMIN_URL.'categories/index',
-                'text'      => 'a_categories_m',
+                'text'      => lang('Product categories', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'search/index',
-                'text'      => 'a_products',
+                'text'      => lang('Products list', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'properties/index',
-                'text'      => 'a_products_properties',
+                'text'      => lang('Products properties', 'admin'),
+            ),
+            array(
+                'link'      => $ADMIN_URL.'brands/index',
+                'text'      => lang('Brands', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'kits/index',
-                'text'      => 'a_shop_kits',
+                'text'      => lang('Produkts kits', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'search/index?WithoutImages=1',
-                'text'      => 'a_products_without_images',
+                'text'      => lang('Products without images', 'admin'),
             )
         )
     ),
+    /** Users **/
     array(
         'link'      => '',
-        'text'      => 'a_users',
+        'text'      => lang('Users management', 'admin'),
         'icon'      => 'icon-user',
         'subMenu'   => array(
             array(
                 'link'      => $ADMIN_URL.'users/index',
-                'text'      => 'a_users_list',
+                'text'      => lang('List of users', 'admin'),
             ),
             array(
                 'link'      => '/admin/rbac/roleList',
-                'text'      => 'a_rbac_control',
+                'text'      => lang('RBAC control', 'admin'),
             ),
         )
     ),
+    /** Modules **/
     array(
         'link'      => '',
-        'text'      => 'a_components',
-        'icon'      => 'icon-briefcase',
+        'text'      => lang('Modules', 'admin'),
+        'icon'      => 'icon-circle-arrow-down',
         'subMenu'   => array(
+//            array(
+//                'link'      => '/admin/components/modules_table',
+//                'text'      => lang('All modules', 'admin'),
+//            ),
+//            array(
+//                'divider'   => true
+//            ),
             array(
-                'link'      => $ADMIN_URL.'brands/index',
-                'text'      => 'a_brands',
-            ),
-            array(
-                'link'      => $ADMIN_URL.'warehouses/index',
-                'text'      => 'a_stocks',
-            ),
-            array(
-                'link'      => $ADMIN_URL.'banners/index',
-                'text'      => 'a_banners',
-            ),
-            /*array(
-                'link'      => $ADMIN_URL.'discounts/index',
-                'text'      => 'a_reg_discount_sh',
-            ),
-            array(
-                'link'      => $ADMIN_URL.'comulativ/index',
-                'text'      => 'a_comulative_discounts',
-            ),
-            array(
-                'link'      => $ADMIN_URL.'gifts',
-                'text'      => 'a_gift_certs',
-            ),*/
-            array(
-                'link'      => $ADMIN_URL.'customfields',
-                'text'      => 'a_customfields',
+                'modulesList'   => true
             ),
         )
     ),
+    /** Statistics **/
     array(
         'link'      => '',
-        'text'      => 'a_statistics',
+        'text'      => lang('Statistics', 'admin'),
         'icon'      => 'icon-statistic',
         'subMenu'   => array(
             array(
                 'link'      => $ADMIN_URL.'charts/brands',
-                'text'      => 'a_brands',
+                'text'      => lang('Brands', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'charts/orders',
-                'text'      => 'a_orders',
+                'text'      => lang('Orders', 'admin'),
             )
         )
     ),
+    /** Shop settings **/
     array(
         'link'      => '',
-        'text'      => 'a_settings',
+        'text'      => lang('Shop settings', 'admin'),
         'icon'      => 'icon-cog',
         'subMenu'   => array(
             array(
                 'link'      => $ADMIN_URL.'settings',
-                'text'      => 'a_global_settings',
+                'text'      => lang('Global settings', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'currencies',
-                'text'      => 'a_currencies',
+                'text'      => lang('Currencies', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'deliverymethods/index',
-                'text'      => 'a_deliverymethods',
+                'text'      => lang('Delivery methods (shipping)', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'paymentmethods/index',
-                'text'      => 'a_paymentmethods',
+                'text'      => lang('Payment methods', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'system/import',
-                'text'      => 'a_automation',
+                'text'      => lang('Import-Export CSV/XLS', 'admin'),
+            ),
+            array(
+                'link'      => '/admin/widgets_manager',
+                'text'      => lang('Widgets', 'admin'),
+            ),
+            array(
+                'link'      => $ADMIN_URL.'customfields',
+                'text'      => lang('Custom fields', 'admin'),
             ),
         )
     )

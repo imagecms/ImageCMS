@@ -9,13 +9,13 @@
     <img src="/application/modules/socauth/assets/images/g.png" 
          onclick="unlinkSocial('google')"
          style="opacity: 0.3;"
-         title="Отписатся"/>
+         title="{lang('Unsubscribe', 'socauth')}"/>
 {/if}
 
 {if $useVk == 'on' && $vk != 'linked'}
     {if $vk != 'main'}
         <a href="http://oauth.vk.com/authorize?client_id={$vkClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=PERMISSIONS&display=popup" 
-           title="ВКонтакте">
+           title="{lang('VK', 'socauth')}">
             <img src="/application/modules/socauth/assets/images/vk.png"/>
         </a>
     {/if}
@@ -23,7 +23,7 @@
     <img src="/application/modules/socauth/assets/images/vk.png" 
          onclick="unlinkSocial('vk')"
          style="opacity: 0.3;"
-         title="Отписатся"/>
+         title="{lang('Unsubscribe', 'socauth')}"/>
 {/if}
 
 {if $useFaceBook == 'on' && $fb != 'linked'}
@@ -37,13 +37,13 @@
     <img src="/application/modules/socauth/assets/images/fb.png" 
          onclick="unlinkSocial('fb')"
          style="opacity: 0.3;"
-         title="Отписатся"/>
+         title="{lang('Unsubscribe', 'socauth')}"/>
 {/if}
 
 {if $useYandex == 'on' && $ya != 'linked'}
     {if $ya != 'main'}
         <a href="https://oauth.yandex.ru/authorize?response_type=code&client_id={$yandexClientID}&display=popup" 
-           title="Яндекс">
+           title="{lang('Yandex', 'socauth')}">
             <img src="/application/modules/socauth/assets/images/ya.png"/>
         </a>
     {/if}
@@ -51,5 +51,5 @@
     <img src="/application/modules/socauth/assets/images/ya.png" 
          onclick="unlinkSocial('ya')"
          style="opacity: 0.3;"
-         title="Отписатся"/>
+         title="{lang('Unsubscribe', 'socauth')}"/>
 {/if}

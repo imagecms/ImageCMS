@@ -13,6 +13,8 @@ class Language_switch_Widgets extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+         $lang = new MY_Lang();
+        $lang->load('language_switch');
     }
 
     // Get and display recent comments
@@ -52,9 +54,9 @@ class Language_switch_Widgets extends MY_Controller {
                 break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('image_url', 'Изображение', 'trim|required');
-                $this->form_validation->set_rules('image_title', 'Описание', 'trim');
-                $this->form_validation->set_rules('href', 'URL перехода', 'trim');
+                $this->form_validation->set_rules('image_url', lang('Image', 'language_switch'), 'trim|required');
+                $this->form_validation->set_rules('image_title', lang('Description', 'language_switch'), 'trim');
+                $this->form_validation->set_rules('href', lang('passage Url', 'language_switch'), 'trim');
 
 
                 if ($this->form_validation->run() == FALSE) {
@@ -67,7 +69,7 @@ class Language_switch_Widgets extends MY_Controller {
                     );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage('Настройки сохранены.');
+                    showMessage(lang('Settings saved', 'language_switch'));
                 }
                 break;
 

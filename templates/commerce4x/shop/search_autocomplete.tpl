@@ -37,12 +37,12 @@
             <!-- Start. Show link see all results if amount products >0  -->
             <div class="btn-form">{/literal}
                 <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0">
-                    <span class="icon-show-all"></span><span class="text-el">{lang('s_all_result')}</span>
+                    <span class="icon-show-all"></span><span class="text-el">{lang("View all results","admin")}</span>
                 </a>
             </div>{literal}
             <!-- End. Show link  -->
             <% } else {%>    
-        {/literal}<div class="p_lr_10">{echo ShopCore::t(lang('s_not_found'))}</div>{literal}
+        {/literal}<div class="p_lr_10">{echo ShopCore::t(lang("Your search did not match","admin"))}</div>{literal}
             <% }%>
         </div>
     </script>

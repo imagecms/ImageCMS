@@ -13,6 +13,8 @@ class ImageBox extends MY_Controller {
     function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $lang = new MY_Lang();
+        $lang->load('imagebox');
     }
 
     // Index function

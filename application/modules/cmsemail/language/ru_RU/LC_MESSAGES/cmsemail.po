@@ -1,0 +1,548 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-23 10:00+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: /var/www/image.loc/_tempLangs.php:11
+msgid "4444dd"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:12
+#: /var/www/image.loc/_tempLangs.php:16
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "Error"
+msgstr "Ошибка"
+
+#: /var/www/image.loc/_tempLangs.php:13
+msgid "Variable is not removed"
+msgstr "Переменная не удалена"
+
+#: /var/www/image.loc/_tempLangs.php:14
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:26
+msgid "Message"
+msgstr "Сообщение"
+
+#: /var/www/image.loc/_tempLangs.php:15
+msgid "Variable successfully removed"
+msgstr "Переменная успешно удалена"
+
+#: /var/www/image.loc/_tempLangs.php:17
+msgid "Variable is not updated"
+msgstr "Переменная не обновлена"
+
+#: /var/www/image.loc/_tempLangs.php:19
+msgid "Variable successfully updated"
+msgstr "Переменная успешно обновлена"
+
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "Variable is not added"
+msgstr "Переменная не додана"
+
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "Variable successfully added"
+msgstr "Переменная успешно додана"
+
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Variable must be surrounded by $"
+msgstr "Переменная должна быть окружена $"
+
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Variable must have a value"
+msgstr "Переменная должна иметь значение"
+
+#: /var/www/image.loc/_tempLangs.php:28
+msgid "Creating mail template"
+msgstr "Создать шаблон письма"
+
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:77
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:78
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:79
+msgid "Save and go back"
+msgstr "Сохранить и вернуться"
+
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:82
+msgid "Settings"
+msgstr "Настройки"
+
+#: /var/www/image.loc/_tempLangs.php:33
+msgid "Template name (only latin)"
+msgstr "Имя шаблона (только латинские)"
+
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:103
+msgid "From"
+msgstr "От"
+
+#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:67
+#: /var/www/image.loc/_tempLangs.php:85
+msgid "From email"
+msgstr "От кого (email)"
+
+#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:86
+msgid "Theme"
+msgstr "Тема"
+
+#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:87
+msgid "Message type"
+msgstr "Тип сообщения"
+
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:88
+msgid "Template user mail"
+msgstr "Шаблон письма пользователю"
+
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:89
+msgid "Send email to user"
+msgstr "Отправить  сообщение пользователю"
+
+#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:94
+msgid "Yes"
+msgstr "Да"
+
+#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:91
+#: /var/www/image.loc/_tempLangs.php:95
+msgid "No"
+msgstr "Нет"
+
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:92
+msgid "Admin mail template"
+msgstr "Шаблона письма администратору"
+
+#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:93
+msgid "Send email to admin"
+msgstr "Отправлять письмо администратору"
+
+#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:96
+msgid "Admin address"
+msgstr "Адрес администратора"
+
+#: /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:97
+msgid "Template description"
+msgstr "Описание шаблона"
+
+#: /var/www/image.loc/_tempLangs.php:48
+msgid "Template email deleting"
+msgstr "Удаление шаблона письма "
+
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Delete selected templates"
+msgstr "Удалить выбрание шаблоны"
+
+#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:101
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/image.loc/_tempLangs.php:51
+msgid "Cancel"
+msgstr "Отменить"
+
+#: /var/www/image.loc/_tempLangs.php:52
+msgid "Template list view"
+msgstr "Просмотр  списка шаблонов"
+
+#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:62
+msgid "Back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_tempLangs.php:56
+msgid "Create template"
+msgstr "Создать шаблон"
+
+#: /var/www/image.loc/_tempLangs.php:57
+msgid "Name"
+msgstr "Название"
+
+#: /var/www/image.loc/_tempLangs.php:58
+msgid "Description"
+msgstr "Описание"
+
+#: /var/www/image.loc/_tempLangs.php:60
+msgid "Templates list empty"
+msgstr "Список шаблонов пуст"
+
+#: /var/www/image.loc/_tempLangs.php:65
+msgid "Install standart templates"
+msgstr "Установите стандартные шаблоны"
+
+#: /var/www/image.loc/_tempLangs.php:68
+msgid "Admin email"
+msgstr "Email администратора"
+
+#: /var/www/image.loc/_tempLangs.php:70
+msgid "Use wraper"
+msgstr "Использувать обгортку"
+
+#: /var/www/image.loc/_tempLangs.php:71
+msgid "Wraper"
+msgstr "Обгортка"
+
+#: /var/www/image.loc/_tempLangs.php:72
+msgid "Server path to sendmail"
+msgstr "Серверный путь к Sendmail"
+
+#: /var/www/image.loc/_tempLangs.php:73
+msgid "Protocol"
+msgstr "Протокол"
+
+#: /var/www/image.loc/_tempLangs.php:74
+msgid "Port"
+msgstr "Порт"
+
+#: /var/www/image.loc/_tempLangs.php:75
+msgid "Check email sending"
+msgstr "Проверка отправки электронной почты"
+
+#: /var/www/image.loc/_tempLangs.php:76
+msgid "Email template editing"
+msgstr "Редактирование  шаблона письма"
+
+#: /var/www/image.loc/_tempLangs.php:80
+msgid "Template settings"
+msgstr "Настройки шаблона"
+
+#: /var/www/image.loc/_tempLangs.php:81
+msgid "Template variables"
+msgstr "Переменные шаблона"
+
+#: /var/www/image.loc/_tempLangs.php:83
+msgid "Template name(only latin)"
+msgstr "Имя шаблона (только латинские)"
+
+#: /var/www/image.loc/_tempLangs.php:98
+msgid "Variables"
+msgstr "Переменные"
+
+#: /var/www/image.loc/_tempLangs.php:99
+msgid "Values"
+msgstr "Величины"
+
+#: /var/www/image.loc/_tempLangs.php:100
+msgid "Edit"
+msgstr "Редактировать"
+
+#: /var/www/image.loc/_tempLangs.php:102
+msgid "Add new variable"
+msgstr "Добавить новую переменную"
+
+#: admin.php:44
+msgid "Template created"
+msgstr "Шаблон создан"
+
+#: admin.php:61
+msgid "email_sent"
+msgstr "Ваше сообщение успешно отправлено"
+
+#: admin.php:84
+msgid "Template edited"
+msgstr "Шаблон отредактирован"
+
+#: admin.php:109
+msgid "Email sender"
+msgstr "От кого"
+
+#: admin.php:122
+msgid "Settings saved"
+msgstr "Настройки сохранены"
+
+#: admin.php:133
+msgid "Field"
+msgstr "Поле"
+
+#: admin.php:133
+msgid "Must contain variable"
+msgstr "Должен содержать переменную"
+
+#: module_info.php:6
+msgid "CMSEmail"
+msgstr "CMSEmail"
+
+#: module_info.php:7
+msgid "Email module"
+msgstr "Модуль писем"
+
+#: classes/ParentEmail.php:165
+#: classes/ParentEmail.php:194
+msgid "User message doesnt send"
+msgstr "Письмо пользователю не отослано"
+
+#: classes/ParentEmail.php:234
+msgid "Template name"
+msgstr "Название шаблона"
+
+#: classes/ParentEmail.php:235
+#: classes/ParentEmail.php:290
+msgid "from"
+msgstr "от"
+
+#: classes/ParentEmail.php:237
+#: classes/ParentEmail.php:292
+msgid "Template theme"
+msgstr "Тема шаблона"
+
+#: classes/ParentEmail.php:245
+#: classes/ParentEmail.php:247
+#: classes/ParentEmail.php:300
+#: classes/ParentEmail.php:302
+msgid "Template admin mail"
+msgstr "Шаблон письма админу"
+
+#, fuzzy
+#~ msgid "Message6"
+#~ msgstr "Сообщение"
+
+#, fuzzy
+#~ msgid "Message4"
+#~ msgstr "Сообщение"
+
+#~ msgid "Send_email_to_user"
+#~ msgstr "Send_email_to_user"
+
+#~ msgid "Admin_email"
+#~ msgstr "ADMIN_EMAIL"
+
+#~ msgid "From_email"
+#~ msgstr "From_email"
+
+#~ msgid "Template_user_mail"
+#~ msgstr "Template_user_mail"
+
+#~ msgid "Admin_address"
+#~ msgstr "Admin_address"
+
+#~ msgid "Check_email_sending"
+#~ msgstr "Check_email_sending"
+
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "System information"
+#~ msgstr "Настр"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Date of creation"
+#~ msgstr "Настр"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Widget title"
+#~ msgstr "Виджети"
+
+#~ msgid "New pages"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить"
+
+#, fuzzy
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "turn category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Drug category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Basic information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "General information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Orders list"
+#~ msgstr "Список замовлень"
+
+#~ msgid "Create order"
+#~ msgstr "Создатьзаказ"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
+
+#, fuzzy
+#~ msgid "Date of order"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
+
+#, fuzzy
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Pages and categories"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Product creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Banner creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a banner"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
+
+#, fuzzy
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Additional information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Галерея', 
-	'description' => 'Модуль фотогалереи.',
+	'menu_name'   => lang('Gallery', 'gallery'), 
+	'description' => lang('Gallery module', 'gallery') . '.',
 	'admin_type'  => 'inside',      
 	'window_type' => 'xhr', 
     'w'           => 600,                   

@@ -3,20 +3,20 @@
 <div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('a_base_mailer_del_user_1')}</h3>
+        <h3>{lang("Removing subscribers", 'mailer')}</h3>
     </div>
     <div class="modal-body">
-        <p>{lang('a_base_mailer_del_user_2')}</p>
+        <p>{lang("Delete all checked?", 'mailer')}</p>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}admin/components/cp/mailer/deleteUsers')" >{lang('a_delete')}</a>
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}admin/components/cp/mailer/deleteUsers')" >{lang("Delete", 'mailer')}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel", 'mailer')}</a>
     </div>
 </div>
 
 
-<div id="delete_dialog" title="{lang('a_s_brand_del_1')}" style="display: none">
-    {lang('a_s_brand_del_3')}
+<div id="delete_dialog" title="{lang("Removing brand", 'mailer')}" style="display: none">
+    {lang("Remove brands?", 'mailer')}
 </div>
 <!-- ---------------------------------------------------Delete block---------------------------------------------------- -->
 <div class="container">
@@ -24,20 +24,20 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_sub_notif_later')}</span>
+                <span class="title">{lang("Subscription and Notification letters", 'mailer')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
 
-                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                    <button type="button" class="btn btn-small formSubmit" data-form="#send" ><i class="icon-list-alt"></i>{lang('a_mailer_send_mail')}</button>
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_brand"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'mailer')}</span></a>
+                    <button type="button" class="btn btn-small formSubmit" data-form="#send" ><i class="icon-list-alt"></i>{lang("Send a letter", 'mailer')}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_brand"><i class="icon-trash icon-white"></i>{lang("Delete", 'mailer')}</button>
                 </div>
             </div>                            
         </div>
         <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-            <a href="#mail" class="btn btn-small active">{lang('a_settings_mail')}</a>
-            <a href="#user" class="btn btn-small">{lang('a_subscri_mail')}</a>
+            <a href="#mail" class="btn btn-small active">{lang("Message parameters", 'mailer')}</a>
+            <a href="#user" class="btn btn-small">{lang("Subscribers", 'mailer')}</a>
         </div>        
         <div class="tab-content">
             <!-----------------------------------------------------SETTINGS MAIL-------------------------------------------------------------->
@@ -46,7 +46,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('a_param')}
+                                {lang("Properties", 'mailer')}
                             </th>
                         </tr>
                     </thead>
@@ -60,28 +60,28 @@
 
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="subject">{lang('amt_theme')}</label>
+                                                    <label class="control-label" for="subject">{lang("Theme", 'mailer')}</label>
                                                     <div class="controls">
                                                         <input type="text" name="subject" id="subject" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="name">{lang('amt_your_name')}</label>
+                                                    <label class="control-label" for="name">{lang("Your name", 'mailer')}</label>
                                                     <div class="controls">
                                                         <input type="text" name="name" id="name" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="email">{lang('amt_your_email')}</label>
+                                                    <label class="control-label" for="email">{lang("Your e-mail", 'mailer')}</label>
                                                     <div class="controls">
                                                         <input type="text" name="email" id="email" value="{$admin_mail}"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="message">{lang('amt_message')}</label>
+                                                    <label class="control-label" for="message">{lang("Message", 'mailer')}</label>
                                                     <div class="controls">
                                                         <textarea name="message" id="message" class="elRTE">
-                                                            {lang('amt_hello')}.
+                                                            {lang("Hello", 'mailer')}.
 
 
 
@@ -89,7 +89,7 @@
 
 
 --------------------------------
-                                                            {lang('amt_best_regards')} {$site_settings.site_title}
+                                                            {lang("best regards, administration", 'mailer')} {$site_settings.site_title}
 
                                                             {site_url()}
 
@@ -97,11 +97,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="mailtype">{lang('amt_format')}</label>
+                                                    <label class="control-label" for="mailtype">{lang("Formatting", 'mailer')}</label>
                                                     <div class="controls">
                                                         <select name="mailtype" id="mailtype">
-                                                            <option value="html" selected="selected">{lang('amt_html')}</option>
-                                                            <option value="text">{lang('amt_plain_text')}</option>
+                                                            <option value="html" selected="selected">{lang("HTML", 'mailer')}</option>
+                                                            <option value="text">{lang("Plain Text", 'mailer')}</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -128,9 +128,9 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang('amt_id')}</th>
-                                <th class="span3">{lang('a_email')}</th>
-                                <th class="span3">{lang('a_date')}</th>
+                                <th class="span1">{lang("ID", 'mailer')}</th>
+                                <th class="span3">{lang("E-mail", 'mailer')}</th>
+                                <th class="span3">{lang("Date", 'mailer')}</th>
                             </tr>                        
                         </thead>
                         <tbody class="sortable">
@@ -154,7 +154,7 @@
                     </table>
                 {else:}
                     <div class="alert alert-info" style="margin-top: 19px;">
-                        {lang('a_mailer_user_empty')}
+                        {lang("Subscribers list is empty", 'mailer')}
                     </div>
                 {/if}
             </div>

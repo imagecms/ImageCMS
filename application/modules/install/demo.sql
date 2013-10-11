@@ -161,7 +161,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:3:"100";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"200";s:12:"thumb_height";s:3:"200";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', NULL),
 (55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:22:"Блог ImageRobotics";s:11:"description";s:64:"Последние тенденции в мире роботов";s:10:"categories";a:7:{i:0;s:2:"56";i:1;s:2:"57";i:2;s:2:"55";i:3;s:2:"58";i:4;s:2:"59";i:5;s:2:"60";i:6;s:2:"61";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', NULL),
 (60, 'menu', 'menu', 0, 1, 1, NULL, NULL),
-(58, 'sitemap', 'sitemap', 1, 0, 1, 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}', NULL),
+(58, 'sitemap', 'sitemap', 0, 0, 1, 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}', NULL),
 (80, 'search', 'search', 1, 0, 0, NULL, NULL),
 (84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', NULL),
 (117, 'template_editor', 'template_editor', 0, 0, 0, NULL, NULL),
@@ -403,43 +403,52 @@ INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
 (126, 78, 29);
 
 -- --------------------------------------------------------
-
 --
 -- Структура таблиці `custom_fields`
 --
-
 DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
   `field_name` varchar(64) NOT NULL,
-  `field_label` varchar(64) NOT NULL,
-  `field_description` text,
   `is_required` tinyint(1) NOT NULL DEFAULT '1',
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `is_private` tinyint(1) NOT NULL DEFAULT '0',
-  `possible_values` text,
   `validators` varchar(255) DEFAULT NULL,
-  `field_access_rules` text,
   `entity` varchar(32) DEFAULT NULL,
   `options` varchar(65) DEFAULT NULL,
+  `classes` text,
+  `position` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96 ;
+
+--
+-- Структура таблиці `custom_fields_i18n`
+--
+DROP TABLE IF EXISTS `custom_fields_i18n`;
+CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(4) NOT NULL,
+  `field_label` varchar(255) DEFAULT NULL,
+  `field_description` text,
+  `possible_values` text,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Структура таблиці `custom_fields_data`
 --
-
 DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
   `entity_id` int(11) NOT NULL,
   `field_data` text,
+  `locale` varchar(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=514 ;
 
 -- --------------------------------------------------------
 
@@ -546,6 +555,51 @@ INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_s
 (87, 3, 'kuhonniye-roboty', '.jpg', '29.1 Кб', 44, 450, 380, NULL, 1291656641, 13),
 (74, 2, 'rabochiye-roboty', '.jpg', '34.9 Кб', 32, 500, 400, NULL, 1291655886, 4);
 
+--
+-- Структура таблиці `gallery_images_i18n`
+--
+DROP TABLE IF EXISTS `gallery_images_i18n`;
+CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+--
+-- Структура таблиці `gallery_category_i18n`
+--
+DROP TABLE IF EXISTS `gallery_category_i18n`;
+CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` text,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `gallery_category_i18n` (`id`, `locale`, `name`, `description`) VALUES
+('5', 'ru', 'Галерея', '');
+
+--
+-- Структура таблиці `gallery_albums_i18n`
+--
+DROP TABLE IF EXISTS `gallery_albums_i18n`;
+CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` text NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `name`, `description`) VALUES
+('2', 'ru', 'Космические роботы', '<p>Image Robotics выпускает лучших космических роботов в нашей галактике.  Их дальность полетов составляет более 10 световых лет, а скорость полета  близка к скорости света.</p>'),
+('3', 'ru', 'Человеко роботы', ''),
+('4', 'ru', 'Боевые роботы', '');
+
 -- --------------------------------------------------------
 
 --
@@ -561,18 +615,18 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `folder` varchar(100) NOT NULL,
   `template` varchar(100) NOT NULL,
   `default` int(1) NOT NULL,
+`locale` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `identif` (`identif`),
   KEY `default` (`default`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Дамп даних таблиці `languages`
 --
 
-INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
-(3, 'Русский', 'ru', '', 'russian', 'default', 1),
-(29, 'eng', 'en', '', 'english', 'default', 0);
+INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
+(3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU');
 
 -- --------------------------------------------------------
 
@@ -707,8 +761,8 @@ CREATE TABLE IF NOT EXISTS `menus` (
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
-(1, 'main_menu', 'Главное меню', 'main_menu', 1, '', '2012-11-12 21:57:53'),
-(4, 'bottom_menu', 'Нижнее меню', '', 0, '', '2010-12-07 13:56:59');
+(1, 'main_menu', 'Главное меню', 'main_menu', 1, 'Главное меню шаблона', '2012-11-12 21:57:53'),
+(4, 'bottom_menu', 'Нижнее меню', '', 0, 'Нижнее меню шаблона', '2010-12-07 13:56:59');
 
 -- --------------------------------------------------------
 
@@ -929,6 +983,9 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `ss` varchar(255) NOT NULL,
   `cat_list` varchar(10) NOT NULL,
   `text_editor` varchar(30) NOT NULL,
+  `siteinfo` text NOT NULL,
+  `update` text,
+  `backup` text,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -937,8 +994,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Дамп даних таблиці `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'default', 'no', '', 'page', 69, '56', 'user_manager', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce');
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor` ,`siteinfo`) VALUES
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'default', 'no', '', 'page', 69, '56', 'user_manager', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:7:{s:20:"siteinfo_compatytype";s:0:"";s:16:"siteinfo_address";s:0:"";s:18:"siteinfo_mainphone";s:18:"+8 (090) 500-50-50";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:13:"siteinfo_logo";s:0:"";s:16:"siteinfo_favicon";s:0:"";s:8:"contacts";a:3:{s:5:"Email";s:17:"Info@imagecms.net";s:5:"Skype";s:8:"ImageCMS";s:7:"Тел.";s:38:"+8 (090) 500-50-50, +8 (100) 500-50-50";}}');
 
 -- --------------------------------------------------------
 
@@ -2124,6 +2181,17 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (13, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1291657789),
 (14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084);
 
+DROP TABLE IF EXISTS `widget_i18n`;
+CREATE TABLE IF NOT EXISTS `widget_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(11) CHARACTER SET utf8 NOT NULL,
+  `data` text CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`,`locale`),
+  KEY `locale` (`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
+('10', 'ru','<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>');
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

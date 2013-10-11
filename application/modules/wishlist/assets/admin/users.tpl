@@ -3,14 +3,14 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Удаление пользователей</h3>
+            <h3>{lang('Users removing', 'wishlist')}</h3>
         </div>
         <div class="modal-body">
-            <p>Удалить пользователей?</p>
+            <p>{lang('Remove users?', 'wishlist')}</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/init_window/wishlist/delete_user/')">{lang('a_delete')}</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_footer_cancel')}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/init_window/wishlist/delete_user/')">{lang('Delete', 'wishlist')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel', 'wishlist')}</a>
         </div>
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
@@ -18,24 +18,24 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_users_list')}</span>
+                <span class="title">{lang('Users list', 'wishlist')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="{$BASE_URL}admin/components/modules_table"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('a_back')}</span>
+                        <span class="t-d_u">{lang('Back', 'wishlist')}</span>
                     </a>
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
                         <i class="icon-wrench"></i>
-                        {lang(settings)}
+                        {lang('Settings', 'wishlist')}
                     </a>
                     <button type="button"
                             class="btn btn-small btn-danger disabled action_on"
                             id="trash_del"
                             onclick="delete_function.deleteFunction()">
-                        <i class="icon-trash icon-white"></i>{lang('a_delete')}
+                        <i class="icon-trash icon-white"></i>{lang('Delete', 'wishlist')}
                     </button>
                 </div>
             </div>
@@ -54,10 +54,10 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang('a_ID')}</th>
-                                <th class="span5">{lang('a_user')}</th>
-                                <th class="span5">{lang('lists_count')}</th>
-                                <th class="span5">{lang('items_count')}</th>
+                                <th class="span1">{lang('ID', 'wishlist')}</th>
+                                <th class="span5">{lang('User', 'wishlist')}</th>
+                                <th class="span5">{lang('Lists count','wishlist')}</th>
+                                <th class="span5">{lang('Lists items count','wishlist')}</th>
                             </tr>
                         </thead>
                         <tbody>

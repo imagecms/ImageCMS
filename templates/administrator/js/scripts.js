@@ -591,11 +591,11 @@ function autocomplete() {
                         '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
-                        '<span class="help-inline d_b">Имя</span>' +
+                        '<span class="help-inline d_b">' + langs.name + '</span>' +
                         '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">Скидка %</span>' +
+                        '<span class="help-inline d_b">' + langs.discount + ' %</span>' +
                         '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
@@ -1211,7 +1211,6 @@ $(document).ready(
 
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
-            console.log(txt_val);
 
 
             $('.main_body').append('<div class="overlay"></div>');
@@ -1368,7 +1367,8 @@ $(document).ready(
                 var column = btn.parent().find('input').val();
 
                 if (!parseInt(column) && parseInt(column) != 0)
-                    showMessage('Сообщение', 'Введите номер колонки', 'r');
+                    showMessage(langs.message, langs.enterColumnNum, 'r');
+
 
                 $.ajax({
                     type: 'POST',
@@ -1376,10 +1376,12 @@ $(document).ready(
                     url: base_url + 'admin/components/run/shop/categories/ajaxUpdateCategoryColumn/',
                     success: function(data) {
                         if (data == true) {
-                            showMessage('Сообщение', 'Номер колонки обновлен', 'success');
+
+                            showMessage(langs.message, langs.columnNumUpdated, 'success');
                             btn.hide();
                         } else {
-                            showMessage('Сообщение', 'Не удалось обновить номер колонки', 'errror');
+                            showMessage(langs.message, langs.failColumnNumUodate, 'errror');
+
                         }
                     }
                 });
@@ -1398,12 +1400,15 @@ $(window).load(function() {
         difTooltip();
     }).resize();
 
-    if (window.hasOwnProperty('userLogined') && !notificationsInitialized)
+    if (window.hasOwnProperty('userLogined') && !notificationsInitialized && $.exists('#topPanelNotifications'))
     {
         window.setInterval('updateNotificationsTotal()', 20000);
         notificationsInitialized = true;
     }
+
 });
+
+
 //add new imageSizes block
 $('#addImageSizesBlock').live('click', function() {
     var clonedSizesBlock = $('#CloneImageSizesBlock').clone();
@@ -1482,13 +1487,14 @@ $('#variantsForOrders').live('change', function() {
     var stock = $('#variantsForOrders option:selected').data('stock');
     var currency = $('#variantsForOrders option:selected').data('productcurrency');
 
-    $('#productText').html('<b>Товар: ' + productName + '</b>');
+    $('#productText').html('<b>' + langs.product + ': ' + productName + '</b>');
     if (variantName != '')
-        $('#productText').append('<br/>Вариант: ' + variantName + '');
+        $('#productText').append('<br/>' + langs.variant + ': ' + variantName);
 
-    $('#productText').append('<br/>Цена: ' + parseFloat(variantPrice).toFixed(pricePrecision) + '' + currency);
+    $('#productText').append('<br/>' + langs.price + ': ' + parseFloat(variantPrice).toFixed(pricePrecision) + ' ' + currency);
+
     $("#imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName);
-    $('#productStock').html('<br/>Остаток: ' + stock);
+    $('#productStock').html('<br/>' + langs.balance + ': ' + stock);
 
     //Show info product block
     if (variantId != undefined)
@@ -1496,13 +1502,13 @@ $('#variantsForOrders').live('change', function() {
 
     //Disable button if stock =0
     if (checkProdStock == 1 && stock == 0) {
-        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html('Нет в наличии');
+        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
     } else {
-        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html('В корзину');
+        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     }
     // Check is element in cart
     if (orders.isInCart(variantId) == 'true') {
-        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html('В корзине');
+        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html(langs.inTheCart);
     }
 
     dataForButton = $('#variantsForOrders option:selected').data();
@@ -1513,7 +1519,7 @@ $('#variantsForOrders').live('change', function() {
 $('#addVariantToCart').die().live('click', function() {
     if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
-        $(this).removeClass('btn-success').addClass('btn-primary').html('В корзине');
+        $(this).removeClass('btn-success').addClass('btn-primary').html(langs.inTheCart);
     }
 
 });
@@ -1537,7 +1543,7 @@ $('#createUserButton').live('click', function() {
             data: "name=" + userName + "&email=" + userEmail + "&phone=" + userPhone + "&address=" + userAddress,
             success: function(response) {
                 if (response == 'email') {
-                    showMessage("Сообщение", "Пользователь с такой почтой уже существует", "error");
+                    showMessage(langs.message, langs.thisEmailUserExists, "error");
                 } else if (response != 'false') {
                     $('#collapsed').click();
                     $('#createUserName').val('');
@@ -1556,14 +1562,14 @@ $('#createUserButton').live('click', function() {
                         $('#userPhoneforOrder').html(data.phone);
                         $('#userAddressforOrder').html(data.address);
                     }
-                    showMessage("Сообщение", "Создан новый пользователь", "success");
+                    showMessage(langs.message, langs.newUserCreated, "success");
                 } else {
-                    showMessage("Ошибка", "Не удалось создать пользователя,", "error");
+                    showMessage(langs.error, langs.failToCreateUser, "error");
                 }
             }
         });
     } else {
-        showMessage("Ошибка", "Проверьте правильность ввода данных и заполните все обязательные поля", "error");
+        showMessage(langs.error, langs.checkAndFillAll, "error");
     }
 });
 
@@ -1651,7 +1657,7 @@ $('#checkOrderGiftCert').live('click', function() {
             totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
             $('#shopOrdersTotalPrice').val(totalProductPrice);
             $('#shopOrdersCheckGiftCert').attr('disabled', 'disabled');
-            $('#giftPrice').html('Текущий сертификат (сумма):' + data.price);
+            $('#giftPrice').html(langs.curCertificate + data.price);
             $('#currentGiftCertInfo').show();
         }
     });
@@ -1674,23 +1680,6 @@ $('.removeGiftCert').live('click', function() {
 
 });
 
-$(window).load(function() {
-    $(window).scroll(function() {
-        fixed_frame_title();
-    });
-    $(window).resize(function(event) {
-        $(this).trigger('scroll');
-
-        $('.fade.in').remove();
-        difTooltip();
-    }).resize();
-
-    if (window.hasOwnProperty('userLogined') && !notificationsInitialized)
-    {
-        window.setInterval('updateNotificationsTotal()', 20000);
-        notificationsInitialized = true;
-    }
-});
 
 $('table.orderMethodsTable .orderMethodsEdit').on('click', function() {
     $(this).next('.orderMethodsRefresh').css('display', 'block');
@@ -1717,7 +1706,8 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
     var get = closestTr.find('[name=get]').val();
     var tooltip = closestTr.find('[name=tooltip]').val();
     var locale = closestTr.data('locale');
-    var id = closestTr.data('id');
+    var ids = closestTr.data('id');
+
 
 
     closestTr.find('.name').text(name).css('display', 'block');
@@ -1733,7 +1723,7 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
     $.ajax({
         type: "POST",
         data: {
-            id: id,
+            id: ids,
             locale: locale,
             name: name,
             name_front: name_front,
@@ -1748,20 +1738,33 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 });
 
 var Update = {
-    processDB: function(file_name) {
+    processBackup: function() {
         $.ajax({
             type: "POST",
-            asunc: false,
-            data: {
-                file_name: file_name
-            },
-            url: '/admin/sys_update/getQuerys',
-            success: function(res) {
-                var obj = JSON.parse(res);
-                var portion = (parseInt(obj.length / 100) + 1);
-                $('#progres').css('width', '0%');
-                $('.progressDB').fadeIn(600);
-                Update.restoreDBprocess(0, 0, portion, obj);
+            url: '/admin/sys_update/backup',
+            complete: function(res) {
+                showMessage('Резервное копирование', 'Успешно');
+                window.location.reload();
+            }
+        });
+    },
+    processUpdate: function() {
+        $.ajax({
+            type: "POST",
+            url: '/admin/sys_update/do_update',
+            complete: function(res) {
+                $.ajax({
+                    type: "POST",
+                    asunc: false,
+                    url: '/admin/sys_update/getQuerys',
+                    success: function(res) {
+                        var obj = JSON.parse(res);
+                        var portion = (parseInt(obj.length / 100) + 1);
+                        $('#progres').css('width', '0%');
+                        $('.progressDB').fadeIn(600);
+                        Update.restoreDBprocess(0, 0, portion, obj);
+                    }
+                });
             }
         });
     },
@@ -1781,13 +1784,14 @@ var Update = {
             url: '/admin/sys_update/Querys',
             complete: function(res) {
                 array = [];
-                if (i < 10) {
+                if (i < 100) {
                     $('#progres').css('width', i + 1 + '%');
                     $('#progres').text(i + 1 + '%');
                     Update.restoreDBprocess(i + 1, j, portion, obj);
                 } else {
                     $('#progres').css('width', '0%');
                     $('.progressDB').fadeOut(600);
+                    showMessage('Обновление', 'Обновление успешно');
                 }
             }
         });
@@ -1803,7 +1807,7 @@ var Update = {
                 if (res) {
                     showMessage('Сообщение', 'Успешно воставлено');
                 } else {
-                    showMessage('Ошибка', 'Ошибка востановления', 'r');
+                    showMessage('Ошибка', 'Ошибка востановления. Целевая папка недоступна', 'r');
                 }
             }
         });

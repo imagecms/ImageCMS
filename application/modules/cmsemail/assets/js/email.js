@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    
+    
     $('.protocolSettings').on('change', function() {
         if ($(this).val() === "SMTP") {
             $('.portControlGroup').css('display', 'block');
@@ -15,11 +17,11 @@ $(document).ready(function() {
         }
     });
 
-    $('#userMailVariables').on('click', function() {
+    $('#userMailVariables').die().live('click', function() {
         $('#userMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
     });
 
-    $('#adminMailVariables').on('click', function() {
+    $('#adminMailVariables').die().live('click', function() {
         $('#adminMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
     });
 
@@ -85,25 +87,25 @@ function mailTest() {
 }
 
 var EmailTemplateVariables = {
-    delete: function(template_id, variable, curElement) {
+    delete: function(template_id, variable, curElement, locale) {
         $.ajax({
             type: 'POST',
             data: {
                 template_id: template_id,
                 variable: variable
             },
-            url: '/admin/components/cp/cmsemail/deleteVariable',
+            url: '/admin/components/cp/cmsemail/deleteVariable/' + locale,
             success: function(data) {
                 if(!data){
-                    showMessage('Ошибка', 'Переменная не удалена', 'r');
+                    showMessage(lang('Error'), lang('Variable is not removed'), 'r');
                     return false;
                 }
                 curElement.closest('tr').remove();
-                showMessage('Сообщение', 'Переменная ' + variable + ' успешно удалена');
+                showMessage(lang('Message'), lang('Variable successfully removed'));
             }
         });
     },
-    update: function(curElement, template_id, oldVariable) {
+    update: function(curElement, template_id, oldVariable, locale) {
         var closestTr = curElement.closest('tr');
         var variable = closestTr.find('.variableEdit');
         var variableValue = closestTr.find('.variableValueEdit');
@@ -118,10 +120,10 @@ var EmailTemplateVariables = {
                 oldVariable: oldVariable,
                 template_id: template_id
             },
-            url: '/admin/components/cp/cmsemail/updateVariable',
+            url: '/admin/components/cp/cmsemail/updateVariable/' + locale,
             success: function(data) {
                 if(!data){
-                    showMessage('Ошибка', 'Переменная не обновлена', 'r');
+                    showMessage(lang('Error'), lang('Variable is not updated'), 'r');
                     return false;
                 }
                 closestTr.find('.variable').text(variable.val());
@@ -130,11 +132,11 @@ var EmailTemplateVariables = {
                 variableValue.css('display', 'none');
                 closestTr.find('.editVariable').css('display', 'block');
                 closestTr.find('.refreshVariable').css('display', 'none');
-                showMessage('Сообщение', 'Переменная успешно обновлена');
+                showMessage(lang('Message'), lang('Variable successfully updated'));
             }
         });
     },
-    add: function(curElement, template_id) {
+    add: function(curElement, template_id, locale) {
         var variable = curElement.closest('tr').find('.variableEdit');
         var variableValue = curElement.closest('tr').find('.variableValueEdit');
 
@@ -147,27 +149,27 @@ var EmailTemplateVariables = {
                 variableValue: variableValue.val(),
                 template_id: template_id
             },
-            url: '/admin/components/cp/cmsemail/addVariable',
+            url: '/admin/components/cp/cmsemail/addVariable/' + locale,
             success: function(data) {
                 if(!data){
-                    showMessage('Ошибка', 'Переменная не додана', 'r');
+                    showMessage(lang('Error'), lang('Variable is not added'), 'r');
                     return false;
                 }
                 curElement.parent('div').find('.typeVariable').val('');
                 $('.addVariableContainer').css('display', 'none');
                 $(data).insertBefore('table.variablesTable .addVariableContainer');
-                showMessage('Сообщение', 'Переменная ' + variable.val() + ' успешно додана');
+                showMessage(lang('Message'), lang('Variable successfully added'));
             }
         });
     },
-    updateVariablesList: function(curElement, template_id) {
+    updateVariablesList: function(curElement, template_id, locale) {
         if (!curElement.hasClass('active')) {
             $.ajax({
                 type: 'POST',
                 data: {
                     template_id: template_id
                 },
-                url: '/admin/components/cp/cmsemail/getTemplateVariables',
+                url: '/admin/components/cp/cmsemail/getTemplateVariables/' + locale,
                 success: function(data) {
                     $('#userMailVariables').html(data);
                     $('#adminMailVariables').html(data);
@@ -177,11 +179,11 @@ var EmailTemplateVariables = {
     },
     validateVariable: function(variable, variableValue) {
         if (variable[0] != '$' || variable[variable.length - 1] != '$') {
-            showMessage('Сообщение', 'Переменну должни окружать $', 'r');
+            showMessage(lang('Message'), lang('Variable must be surrounded by $'), 'r');
             exit;
         }
         if (!variableValue) {
-            showMessage('Сообщение', 'Переменная должна иметь значение', 'r');
+            showMessage(lang('Message'), lang('Variable must have a value'), 'r');
             exit;
         }
     }

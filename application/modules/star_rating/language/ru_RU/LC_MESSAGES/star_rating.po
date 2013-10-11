@@ -1,0 +1,212 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-13 17:30+0300\n"
+"PO-Revision-Date: 2013-09-19 17:27+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: ru_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: /var/www/image.loc/_temp2.php:7
+#: /var/www/image.loc/_temp2.php:9
+msgid "Leav"
+msgstr "Оставить"
+
+#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_temp2.php:10
+msgid "people(s)"
+msgstr "человек (ов)"
+
+#: /var/www/image.loc/_temp2.php:11
+msgid "Show on pages"
+msgstr "Показать на страницах"
+
+#: /var/www/image.loc/_temp2.php:12
+msgid "Main"
+msgstr "Главная"
+
+#: /var/www/image.loc/_temp2.php:13
+msgid "Contains"
+msgstr "Содержимое"
+
+#: /var/www/image.loc/_temp2.php:14
+msgid "Category"
+msgstr "Категория"
+
+#: /var/www/image.loc/_temp2.php:15
+msgid "Product"
+msgstr "Товар"
+
+#: /var/www/image.loc/_temp2.php:16
+msgid "Products category"
+msgstr "Категория товаров"
+
+#: /var/www/image.loc/_temp2.php:17
+msgid "Brands"
+msgstr "Бренды"
+
+#: /var/www/image.loc/_temp2.php:18
+msgid "Module settings starRating"
+msgstr "Настройки модуля Рейтинг"
+
+#: /var/www/image.loc/_temp2.php:19
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "Save and go back"
+msgstr "Сохранить и вернуться"
+
+#: ../../../admin.php:39
+msgid "Settings saved success"
+msgstr "Сохранение настроек прошло успешно"
+
+#: ../../../module_info.php:4
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: ../../../module_info.php:5
+msgid "Star Rating "
+msgstr "Рейтинг"
+
+#~ msgid "STAAAAAr"
+#~ msgstr "Зііііірка"
+
+#~ msgid "e5555eeeeee"
+#~ msgstr "пяяяять"
+
+#, fuzzy
+#~ msgid "STAAAAArкк22222"
+#~ msgstr "Зііііірка"
+
+#~ msgid "eee777"
+#~ msgstr "сііііім"
+
+#~ msgid "fghgh"
+#~ msgstr "АААААААААААААААААААААААААААА"
+
+#, fuzzy
+#~ msgid "amt_settings"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_save"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_to_sort"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_by_date"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_by_position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_images"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_in_mb"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_save_ratio"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_yes"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_left"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_center"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_top"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_bottom"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_type"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_text"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_offset"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#~ msgid "amt_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_album"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#~ msgid "amt_position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_crea"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_gallery"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_downloaded"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_cancel"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_new_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#~ msgid "a_positions_updated"
+#~ msgstr "Позиція змінена"

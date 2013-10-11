@@ -27,7 +27,7 @@
                 <div class="frame-title">
                     <h1 class="d_i title">{echo $title}</h1>
                 </div>
-                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
+                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}
@@ -35,7 +35,7 @@
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">По вашему запросу товаров не найдено</span>
+                        <span class="text-el">{lang('Не найдено товаров','newLevel')}</span>
                     </div>
                 </div>
                 <!-- End. Empty category-->
@@ -47,9 +47,9 @@
             {include_tpl('catalogue_header')}
             <!-- Start.If count products in category > 0 then show products list and pagination links -->
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
+                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} table{else:} list{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
-                    {$CI->load->module('new_level')->OPI($model)}
+                    {$CI->load->module('new_level')->OPI($model, array('wishlist'=>true, 'codeArticle' => true))}
                 </ul>
                 <!-- render pagination-->
                 {$pagination}
@@ -57,6 +57,24 @@
             <!-- End.If count products in category > 0 then show products and pagination links -->
         </div>
         <div class="filter left-catalog">
+            {if $category->hasSubCats()}
+                <div class="frame-category-menu layout-highlight">
+                    <div class="title-menu-category">
+                        <div class="title-default">
+                            <div class="title-h3 title">Категории:</div>
+                        </div>
+                    </div>
+                    <div class="inside-padd">
+                        <nav>
+                            <ul class="nav nav-vertical nav-category" data-pid="{echo $key}">
+                                {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
+                                    <li class="title"><a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
+                                    {/foreach}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            {/if}
             <!-- Load filter-->
             {$CI->load->module('smart_filter')->init()}
         </div>
@@ -75,7 +93,7 @@
 {/if}
 <!--Start. Popular products -->
 <div class="horizontal-carousel">
-    {widget('popular_products')}
+    {widget('popular_products_cartogory_h')}
 </div>
 <!--End. Popular products -->
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

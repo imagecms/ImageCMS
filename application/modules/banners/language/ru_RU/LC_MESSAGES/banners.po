@@ -1,0 +1,387 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-16 18:39+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: /var/www/image.loc/_temp2.php:12
+msgid "Banner creating"
+msgstr "Создание баннера"
+
+#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_temp2.php:48
+msgid "Back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_temp2.php:49
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_temp2.php:15
+#: /var/www/image.loc/_temp2.php:50
+msgid "Save and exit"
+msgstr "Сохранить и выйти"
+
+#: /var/www/image.loc/_temp2.php:16
+#: /var/www/image.loc/_temp2.php:51
+msgid "Options"
+msgstr "Опции"
+
+#: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:52
+msgid "Name"
+msgstr "Название"
+
+#: /var/www/image.loc/_temp2.php:18
+#: /var/www/image.loc/_temp2.php:53
+msgid "Active"
+msgstr "Активный"
+
+#: /var/www/image.loc/_temp2.php:19
+#: /var/www/image.loc/_temp2.php:54
+msgid "Text banner"
+msgstr "Текст баннера"
+
+#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:55
+msgid "URL"
+msgstr "URL"
+
+#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:56
+msgid "Selected items"
+msgstr "Выбранные элементы"
+
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:57
+msgid "Double click to deleting"
+msgstr "Дважды щелкните для удаления"
+
+#: /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:58
+msgid "Show in categories (select items)"
+msgstr "Показать в категориях (выборание элементы)"
+
+#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:59
+msgid "select essence"
+msgstr "выберите сущность"
+
+#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:60
+msgid "Main"
+msgstr "Главная"
+
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:61
+msgid "Product"
+msgstr "Товар"
+
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:62
+msgid "Product category"
+msgstr "Категория товара"
+
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:63
+msgid "Brand"
+msgstr "Бренд"
+
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:64
+msgid "Pages categories"
+msgstr "Категории страниц"
+
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:65
+msgid "Pages"
+msgstr "Страницы"
+
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:66
+msgid "Active until"
+msgstr "Активно до"
+
+#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:67
+msgid "Image"
+msgstr "Изображение"
+
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:68
+msgid "Choose an image "
+msgstr "Выберите изображение "
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Banner list"
+msgstr "Список баннеров"
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "Template settings"
+msgstr "Настройки шаблона"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Use different templates for different pages"
+msgstr "Используйте различные шаблоны для разных страниц"
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "Create a banner"
+msgstr "Создать баннер"
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "ID"
+msgstr "ID"
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "Active to"
+msgstr "Активно на"
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "Status"
+msgstr "Статус"
+
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:44
+msgid "Editing"
+msgstr "Редактирование"
+
+#: /var/www/image.loc/_temp2.php:45
+msgid "show"
+msgstr "показывать"
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "Empty banner list."
+msgstr "Список баннеров пуст."
+
+#: /var/www/image.loc/_temp2.php:47
+msgid "Editing banner"
+msgstr "Редактирование баннера"
+
+#: /var/www/image.loc/_temp2.php:69
+msgid "don't show"
+msgstr "не показывать"
+
+#: ../../../admin.php:94
+#: ../../../admin.php:153
+msgid "Banner name"
+msgstr "Название баннера"
+
+#: ../../../admin.php:95
+#: ../../../admin.php:154
+msgid "Photo"
+msgstr "Фото"
+
+#: ../../../admin.php:176
+msgid "Data saved"
+msgstr "Данные сохраненны"
+
+#: ../../../module_info.php:4
+msgid "Banner"
+msgstr "Баннер"
+
+#: ../../../module_info.php:5
+msgid "Banner management module"
+msgstr "Модуль управления баннерами"
+
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "System information"
+#~ msgstr "Настр"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Date of creation"
+#~ msgstr "Настр"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Widget title"
+#~ msgstr "Виджети"
+
+#~ msgid "New pages"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить"
+
+#, fuzzy
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "turn category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Basic information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "General information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Orders list"
+#~ msgstr "Список замовлень"
+
+#~ msgid "Create order"
+#~ msgstr "Создатьзаказ"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
+
+#, fuzzy
+#~ msgid "Date of order"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
+
+#, fuzzy
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Product creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
+
+#, fuzzy
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create user"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Additional information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Category created"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

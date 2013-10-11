@@ -9,12 +9,12 @@
         </div>
     </td>
     <td>
-        <button class="btn my_btn_s btn-small" type="button" onclick="PropertiesTypes.delete('{$type}', $(this))">
+        <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="PropertiesTypes.delete('{$type}', $(this))">
             <i class="icon-trash"></i>
         </button>
     </td>
     <td>
-        <button class="btn my_btn_s btn-small" type="button">
+        <button class="btn my_btn_s btn-small btn-success" type="button">
             <i class="icon-edit"></i>
         </button>
     </td>

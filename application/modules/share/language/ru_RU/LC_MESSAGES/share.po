@@ -1,0 +1,336 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-19 12:53+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: /var/www/image.loc/_temp2.php:5
+msgid "Button social networks module settings"
+msgstr "Настройки модуля кнопок социальных сетей"
+
+#: /var/www/image.loc/_temp2.php:6
+msgid "Services set"
+msgstr "Набор услуг"
+
+#: /var/www/image.loc/_temp2.php:7
+msgid "Button I like"
+msgstr "Кнопка \"Мне нравится \""
+
+#: /var/www/image.loc/_temp2.php:8
+msgid "Я.ру"
+msgstr "Я.ру"
+
+#: /var/www/image.loc/_temp2.php:9
+msgid "VK"
+msgstr "В.К."
+
+#: /var/www/image.loc/_temp2.php:10
+#: /var/www/image.loc/_temp2.php:23
+msgid "Facebook"
+msgstr "Facebook"
+
+#: /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_temp2.php:27
+msgid "Twitter"
+msgstr "Twitter"
+
+#: /var/www/image.loc/_temp2.php:12
+msgid "Odnoklassniki"
+msgstr "Одноклассники"
+
+#: /var/www/image.loc/_temp2.php:13
+msgid "My World"
+msgstr "Мой Мир"
+
+#: /var/www/image.loc/_temp2.php:14
+msgid "Livejournal"
+msgstr "Livejournal"
+
+#: /var/www/image.loc/_temp2.php:15
+msgid "Friendfeed"
+msgstr "Friendfeed"
+
+#: /var/www/image.loc/_temp2.php:16
+msgid "My circle"
+msgstr "Мой круг"
+
+#: /var/www/image.loc/_temp2.php:17
+msgid "Google+"
+msgstr "Google+"
+
+#: /var/www/image.loc/_temp2.php:18
+msgid "External view"
+msgstr "Внешний вид"
+
+#: /var/www/image.loc/_temp2.php:19
+msgid "button"
+msgstr "кнопка"
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "link"
+msgstr "ссылка"
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "icon and menu"
+msgstr "значок и меню"
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "only icons"
+msgstr "только иконки"
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "Вконтакте"
+msgstr "Вконтакте"
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "Ваш API ID"
+msgstr "Ваш API ID"
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "Google +"
+msgstr "Google +"
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "Save and go back"
+msgstr "Сохранить и вернуться"
+
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:32
+msgid "Settings"
+msgstr "Настройки"
+
+#: ../../../admin.php:44
+msgid "Settings successfully saved"
+msgstr "Настройки успешно сохранены"
+
+#: ../../../module_info.php:4
+msgid "Social Networking"
+msgstr "Социальные сети"
+
+#: ../../../module_info.php:5
+msgid "Social Networking button module"
+msgstr "Модуль кнопок социальных сетей"
+
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "System information"
+#~ msgstr "Настр"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Date of creation"
+#~ msgstr "Настр"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Widget settings"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Widget title"
+#~ msgstr "Виджети"
+
+#~ msgid "New pages"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить"
+
+#, fuzzy
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "turn category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Drug category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Basic information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "General information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Orders list"
+#~ msgstr "Список замовлень"
+
+#~ msgid "Create order"
+#~ msgstr "Создатьзаказ"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
+
+#, fuzzy
+#~ msgid "Date of order"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
+
+#, fuzzy
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Pages and categories"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Product creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Banner creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a banner"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
+
+#, fuzzy
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create user"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Additional information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Category created"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

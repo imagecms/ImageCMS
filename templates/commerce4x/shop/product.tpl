@@ -11,6 +11,8 @@
 *
 */
 #}
+
+
 {$Comments = $CI->load->module('comments')->init($model)}
 <article class="container">
     <!-- Making bread crumbs -->
@@ -45,6 +47,8 @@
                     <!-- End. Show additional images -->
                 </ul>
             </div>
+                    
+                     
             <!--Photo block for main product end-->
             <div class="span7">
                 <div class="description" data-rel="frameP">
@@ -144,14 +148,13 @@
                                                                   data-origprice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                   data-stock="{echo $pv->getStock()}"
                                                                   >
-                                                {lang('s_buy')}
+                                               {lang("Buy","admin")}
                                             </button>
                                         {else:}
                                             <button  {if $key != 0}style="display:none"{/if}
                                                                    class="btn btn_not_avail variant_{echo $pv->getId()} variant"
                                                                    type="button"
                                                                    data-drop=".drop-report"
-
                                                                    data-id="{echo $pv->getId()}"
                                                                    data-prodid="{echo $model->getId()}"
                                                                    data-varid="{echo $pv->getId()}"
@@ -168,7 +171,7 @@
                                                                    data-stock="{echo $pv->getStock()}"
                                                                    >
                                                 <span class="icon-but"></span>
-                                                <span class="text-el">{lang('s_message_o_report')}</span>
+                                                <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                                             </button>
                                         {/if}
                                     {/foreach}
@@ -179,17 +182,18 @@
                                 <button class="btn btn_small_p toCompare"
                                         data-prodid="{echo $model->getId()}"
                                         type="button"
-                                        data-title="{lang('s_add_to_compare')}"
-                                        data-firtitle="{lang('s_add_to_compare')}"
-                                        data-sectitle="{lang('s_in_compare')}"
+                                        data-title="{lang('В список сравнений','commerce4x')}"
+                                        data-firtitle="{lang('В список сравнений','commerce4x')}"
+                                        data-sectitle="{lang('В списке сравнений','commerce4x')}"
                                         data-rel="tooltip"
                                         >
                                     <span class="icon-comprasion_2"></span>
-                                    <span class="text-el">{lang('s_add_to_compare')}</span>
+                                    <span class="text-el">{lang('В список сравнений','commerce4x')}</span>
                                 </button>
                                 <!-- End. Block "Add to Compare" -->
 
                                 <!--Block Wishlist Start-->
+                                {/*}
                                 {foreach $variants as $key => $pv}
                                     <div {if $key != 0}style="display:none"{/if} class="variant_{echo $pv->getId()} variant m-t_5">
                                         <!-- to wish list button -->
@@ -198,15 +202,16 @@
                                                 data-prodid="{echo $model->getId()}"
                                                 data-varid="{echo $pv->getId()}"
                                                 type="button"
-                                                data-title="{lang('s_add_to_wish_list')}"
-                                                data-firtitle="{lang('s_add_to_wish_list')}"
-                                                data-sectitle="{lang('s_in_wish_list')}"
+                                                data-title="{lang('Add to wish list')}"
+                                                data-firtitle="{lang('Add to wish list')}"
+                                                data-sectitle="{lang('In wish list')}"
                                                 data-rel="tooltip">
                                             <span class="icon-wish_2"></span>
-                                            <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                            <span class="text-el">{lang('Add to wish list')}</span>
                                         </button>
                                     </div>
                                 {/foreach}
+                                { */}
                                 <!-- Stop. Block "Add to Wishlist" -->
                                 <!--Block Follow the price Start-->
                             </div>
@@ -235,7 +240,7 @@
                         <li>
                             <button type="button" data-href="#characteristic">
                                 <span class="icon-charack"></span>
-                                <span class="text-el">{lang('s_properties')}</span>
+                                <span class="text-el">{lang('Properties')}</span>
                             </button>
                         </li>
                     {/if}
@@ -246,7 +251,7 @@
                         <li>
                             <button type="button" data-href="#accessories">
                                 <span class="icon-accss"></span>
-                                <span class="text-el">{lang('s_accessories')}</span>
+                                <span class="text-el">{lang('Accessories')}</span>
                             </button>
                         </li>
                     {/if}
@@ -342,15 +347,15 @@
                                                     data-origprice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
                                                     data-stock="{echo $p->firstVariant->getStock()}"
                                                     >
-                                                {lang('s_buy')}
+                                                {lang('Buy')}
                                             </button>
                                             <div class="d_i-b">
                                                 <!-- to compare button -->
                                                 <button class="btn btn_small_p toCompare"
                                                         data-prodid="{echo $p->getId()}"
                                                         type="button"
-                                                        data-title="{lang('s_add_to_compare')}"
-                                                        data-sectitle="{lang('s_in_compare')}"
+                                                        data-title="{lang('Add to compare')}"
+                                                        data-sectitle="{lang('In compare')}"
                                                         data-rel="tooltip">
                                                     <span class="icon-comprasion_2"></span>
                                                 </button>
@@ -361,8 +366,8 @@
                                                         data-prodid="{echo $p->getId()}"
                                                         data-varid="{echo $p->firstVariant->getId()}"
                                                         type="button"
-                                                        data-title="{lang('s_add_to_wish_list')}"
-                                                        data-sectitle="{lang('s_in_wish_list')}"
+                                                        data-title="{lang('Add to wish list')}"
+                                                        data-sectitle="{lang('In wish list')}"
                                                         data-rel="tooltip">
                                                     <span class="icon-wish_2"></span>
                                                 </button>
@@ -397,7 +402,7 @@
         {if $model->getShopKits()->count() > 0}
             <div class="frame_carousel_product carousel_js c_b frameSet">
                 <div class="m-b_20">
-                    <div class="title_h1 d_i-b v-a_m promotion_text">{lang('s_spec_promotion')}</div>
+                    <div class="title_h1 d_i-b v-a_m promotion_text">{lang('Акционное предложение','commerce4x')}</div>
                     <div class="d_i-b groupButton v-a_m">
                         <button type="button" class="btn btn_prev">
                             <span class="icon prev"></span>
@@ -500,9 +505,8 @@
                                             data-img='{echo json_encode($kitProducts->getImgs())}'
                                             data-maxcount='{echo $kitProducts->getSProducts()->firstVariant->getStock()}'
                                             >
-                                        {lang('s_buy')}
+                                        {lang('Buy')}
                                     </button>
-
                                 </li>
                             </ul>
                         </li>

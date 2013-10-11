@@ -49,15 +49,28 @@
  * @property Lib_csrf $lib_csrf
  * @property Template $template Description
  * @property Console $console Description
+ * @property CI_DB_Cache $cache
  */
 class MY_Controller extends MX_Controller {
 
     public $pjaxRequest = false;
     public $ajaxRequest = false;
     public static $currentLocale = null;
+    public static $detect_load_admin = array();
+    public static $detect_load = array();
 
     public function __construct() {
         parent::__construct();
+
+
+//        $settings = $this->cms_base->get_settings();
+//        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
+//        if (file_exists($path_helper))
+//            require_once $path_helper;
+//        $this->load->library('gettext_php/gettext_extension');
+//        $this->gettext_extension->switchDomain('application/modules/admin/language', 'admin', 'ru_RU');
+//        $this->gettext->switchDomain('application/modules/admin/language', $module, $this->getLangCode($this->gettext_language)[1]);
+
 
         if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true) {
             $this->pjaxRequest = true;
@@ -89,8 +102,12 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
+
         if (self::$currentLocale)
             return self::$currentLocale;
+
+        if (strstr($_SERVER['PATH_INFO'], 'install'))
+            return;
 
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
@@ -105,11 +122,16 @@ class MY_Controller extends MX_Controller {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        } else {
-            $defaultLanguage = self::getDefaultLanguage();
-            self::$currentLocale = $defaultLanguage['identif'];
         }
+        else
+            self::$currentLocale = chose_language();
+
         return self::$currentLocale;
+    }
+
+    public static function defaultLocale() {
+        $lang = self::getDefaultLanguage();
+        return $lang['identif'];
     }
 
     /**
@@ -138,11 +160,11 @@ class MY_Controller extends MX_Controller {
 }
 
 //trait Imagecms {
-//    
+//
 //    public static function whoAmI()
 //    {
 //        echo get_class($this);
 //        return get_class($this);
 //    }
-//    
+//
 //}

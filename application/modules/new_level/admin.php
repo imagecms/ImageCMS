@@ -10,6 +10,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('new_level');
         $this->load->model('new_level_model');
         $this->path = TEMPLATES_PATH . 'newLevel';
     }
@@ -21,6 +23,28 @@ class Admin extends BaseAdminController {
         $settings = $this->new_level_model->getSettings();
         $categories = $this->new_level_model->getCategories();
 
+        $thema = array();
+
+        if ($handle = opendir($this->path . '/css/')) {
+            while (false !== ($file = readdir($handle))) {
+                if ($file != "." && $file != "..") {
+                    if (!is_file($this->path . '/css/' . $file)) {
+                        $thema[$file] = "css/$file";
+                    }
+                }
+            }
+            closedir($handle);
+        }
+
+        $cur_thema = $this->new_level_model->getthema();
+
+
+//        \CMSFactory\assetManager::create()
+//                ->registerScript('script')
+//                ->setData(array('cur_thema' => $cur_thema, 'thema' => $thema, 'img' => '/templates/newLevel/' . $cur_thema . '/'))
+//                ->renderAdmin('settings_thema');
+//        }
+
         \CMSFactory\assetManager::create()
                 ->registerScript('script')
                 ->registerStyle('style')
@@ -29,6 +53,7 @@ class Admin extends BaseAdminController {
                 ->setData('categories', $categories)
                 ->setData('columnCategories', $this->new_level_model->getColumnCategories())
                 ->setData('columns', $settings['columns'])
+                ->setData(array('cur_thema' => $cur_thema, 'thema' => $thema, 'img' => '/templates/newLevel/' . $cur_thema . '/'))
                 ->renderAdmin('index');
     }
 
@@ -36,37 +61,12 @@ class Admin extends BaseAdminController {
      * render settings page for theme
      */
     public function get_thema() {
-        
-               
         if ($_POST) {
             $settings = $this->new_level_model->getSettings();
-            $settings['thema'] = $_POST['thema'];
+            $settings['thema'] = $_POST['theme'];
             $sql = "update components set settings = '" . serialize($settings) . "' where name = 'new_level'";
             $this->db->query($sql);
-            showMessage('Даные сохранены');
-        } else {
-
-            $thema = array();
-
-            if ($handle = opendir($this->path . '/css/')) {
-                while (false !== ($file = readdir($handle))) {
-                    if ($file != "." && $file != "..") {
-                        if (!is_file($this->path . '/css/' . $file)) {
-                            $thema[$file] = "css/$file";
-                        }
-                    }
-                }
-                closedir($handle);
-            }
-
-            $cur_thema = $this->new_level_model->getthema();
-            
-
-            \CMSFactory\assetManager::create()
-                    ->registerScript('script')
-                    ->setData(array('cur_thema' => $cur_thema, 'thema' => $thema, 'img' => '/templates/newLevel/' . $cur_thema . '/'))
-                    ->renderAdmin('settings_thema');
-        }
+        } 
     }
 
     /**
@@ -162,7 +162,7 @@ class Admin extends BaseAdminController {
             return 'error';
         }
     }
-    
+
     /**
      * delete column
      * @return type
@@ -182,7 +182,7 @@ class Admin extends BaseAdminController {
         $this->new_level_model->addColumn($newColumn);
         return $this->renderNewColumn($newColumn);
     }
-    
+
     /**
      * render new column template
      * @param string $column
@@ -193,7 +193,7 @@ class Admin extends BaseAdminController {
                         ->setData('column', $column)
                         ->render('newColumn', true);
     }
-    
+
     /**
      * edit column
      */
@@ -203,5 +203,5 @@ class Admin extends BaseAdminController {
 
         $this->new_level_model->editColumn($oldColumn, $newColumn);
     }
-    
+
 }

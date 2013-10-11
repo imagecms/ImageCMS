@@ -1,0 +1,338 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-25 14:46+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: /var/www/image.loc/_tempLangs.php:7
+msgid "Redirect links removing"
+msgstr "Удаление ссылки редиректа"
+
+#: /var/www/image.loc/_tempLangs.php:8
+msgid "Remove links?"
+msgstr "Удалить ссылки?"
+
+#: /var/www/image.loc/_tempLangs.php:9
+#: /var/www/image.loc/_tempLangs.php:14
+msgid "Redirect"
+msgstr "Редирект"
+
+#: /var/www/image.loc/_tempLangs.php:10
+msgid "Create redirect"
+msgstr "Создать редирект"
+
+#: /var/www/image.loc/_tempLangs.php:11
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Old URL"
+msgstr "Старый URL"
+
+#: /var/www/image.loc/_tempLangs.php:12
+msgid "Redirect type"
+msgstr "Тип редиректа"
+
+#: /var/www/image.loc/_tempLangs.php:13
+msgid "Redirect kind"
+msgstr "Вид редиректа"
+
+#: /var/www/image.loc/_tempLangs.php:15
+msgid "New redirect creation"
+msgstr "Создание нового редиректа"
+
+#: /var/www/image.loc/_tempLangs.php:16
+msgid "New trash data"
+msgstr "Новые данные"
+
+#: /var/www/image.loc/_tempLangs.php:17
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:32
+msgid "Type"
+msgstr "Тип"
+
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:34
+msgid "Product"
+msgstr "Продукт"
+
+#: /var/www/image.loc/_tempLangs.php:19
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "Category"
+msgstr "Категория"
+
+#: /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:31
+msgid "Category of Base"
+msgstr "Категория Базы"
+
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:35
+msgid "Categories"
+msgstr "Категории"
+
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Link editing"
+msgstr "Редактирования ссылки"
+
+#: /var/www/image.loc/_tempLangs.php:26
+msgid "Link edit"
+msgstr "Редактирования ссылки"
+
+#: /var/www/image.loc/_tempLangs.php:33
+msgid "Redirect Url"
+msgstr "URL редиректа"
+
+#: /var/www/image.loc/_tempLangs.php:36
+msgid "Categories of Base"
+msgstr "Категории базы"
+
+#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:40
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/image.loc/_tempLangs.php:38
+msgid "Cancel"
+msgstr "Отменить"
+
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:45
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_tempLangs.php:41
+msgid "Editing"
+msgstr "Редактирование"
+
+#: /var/www/image.loc/_tempLangs.php:43
+msgid "Create"
+msgstr "Создать"
+
+#: /var/www/image.loc/_tempLangs.php:44
+msgid "Create and exit"
+msgstr "Создать и выйти"
+
+#: /var/www/image.loc/_tempLangs.php:46
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_tempLangs.php:47
+msgid "Save and exit"
+msgstr "Сохранить и выйти"
+
+#: ../../../module_info.php:7
+msgid "Module of redirects from remote products"
+msgstr "Модуль редирект с удаленных товаров"
+
+# хз
+#: ../../../module_info.php:8
+msgid "Module for creating a link from remote product to category, product, article, 404, or another site"
+msgstr "Модуль для создания связи с удаленного товара к категорие, товару, странице, 404 или другому сайту"
+
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "System information"
+#~ msgstr "Настр"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Date of creation"
+#~ msgstr "Настр"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Widget settings"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Widget title"
+#~ msgstr "Виджети"
+
+#~ msgid "New pages"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить"
+
+#, fuzzy
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "turn category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Drug category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Basic information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "General information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Orders list"
+#~ msgstr "Список замовлень"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
+
+#, fuzzy
+#~ msgid "Date of order"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
+
+#, fuzzy
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Pages and categories"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Banner creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a banner"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
+
+#, fuzzy
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create user"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Additional information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

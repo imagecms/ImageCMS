@@ -5,20 +5,20 @@
             <div class="span6">
                 <div class="frameGroupsForm">
                     <div class="header_title">
-                        {lang('lang_login_page')}
+                        {lang('Login page', 'socauth')}
                     </div>
                     <div class="inside_padd">
                         <div class="horizontal_form standart_form">
                             <!-- login form -->
                             <form action="/socauth/vk" method="POST">
                                 <label>
-                                    <span class="title">{lang('lang_email')}</span>
+                                    <span class="title">{lang('Email', 'socauth')}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-email"></span>
                                         <!-- input for email -->
-                                        <input value="Введите Ваш Email" type="text" name="email" onfocus="if (this.value == 'Введите Ваш Email')
+                                        <input value="{lang('Enter your email', 'socauth')}" type="text" name="email" onfocus="if (this.value == '{lang('Enter your email', 'socauth')}')
                                                     this.value = '';" onblur="if (this.value == '')
-                                                    this.value = 'Введите Ваш Email';"/>
+                                                    this.value = '{lang('Enter your email', 'socauth')}';"/>
                                         <!-- validation error container -->
                                         <label id="for_email" class="for_validations"></label>
                                     </span>
@@ -26,7 +26,7 @@
                                 <div class="frameLabel">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame_form_field c_n">
-                                        <input type="submit" value="Войти" class="btn btn_cart f_r" />
+                                        <input type="submit" value="{lang('Enter', 'socauth')}" class="btn btn_cart f_r" />
                                     </span>
                                 </div>
                                 <input type="hidden" name="name" value="{echo $data->first_name . ' ' . $data->last_name}">

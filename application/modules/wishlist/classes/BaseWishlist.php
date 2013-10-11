@@ -15,6 +15,8 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     public function __construct() {
         parent::__construct();
+        $lang = new \MY_Lang();
+        $lang->load('wishlist');
     }
 
     /**
@@ -62,13 +64,13 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $listName = $this->input->post('wishListName');
 
         if ((!$listId && !$listName)) {
-            return $this->errors[] = lang('error_cant_move');
+            return $this->errors[] = lang('Unable to move', 'wishlist');
         }
 
         if (parent::moveItem($varId, $wish_list_id, $listId, $listName, $user_id)) {
-            return $this->dataModel = lang('success');
+            return $this->dataModel = lang('Successful operation', 'wishlist');
         } else {
-            return $this->errors[] = lang('error_cant_move');
+            return $this->errors[] = lang('Unable to move', 'wishlist');
         }
     }
 
@@ -136,7 +138,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $wlDescription = $this->input->post('wlDescription');
 
         if (parent::createWishList($user_id, $listName, $wlType, $wlDescription)) {
-            return $this->dataModel = lang('created');
+            return $this->dataModel = lang('Created', 'wishlist');
         } else {
             return $this->errors;
         }
@@ -153,19 +155,25 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         else
             $desc = $this->input->post('description');
 
-        if (!(strtotime($this->input->post('user_birthday')) + 50000))
-            return false;
+        if ($this->input->post('user_birthday')) {
+            if (!(strtotime($this->input->post('user_birthday')) + 50000))
+                return false;
+            $user_birthday = strtotime($this->input->post('user_birthday')) + 50000;
+        }else{
+            $user_birthday = '';
+        }
+
 
         $userName = $this->input->post('user_name');
 
         if ($this->settings['maxUserName'] < iconv_strlen($userName, 'UTF-8'))
             $desc = mb_substr($userName, 0, $this->settings['maxUserName'], 'UTF-8');
 
-        $updated = parent::userUpdate($this->input->post('user_id'), $userName, strtotime($this->input->post('user_birthday')) + 50000, $desc);
+        $updated = parent::userUpdate($this->input->post('user_id'), $userName, $user_birthday, $desc);
         if ($updated) {
-            return $this->dataModel = lang('updated');
+            return $this->dataModel = lang('Updated', 'wishlist');
         } else {
-            return $this->errors = lang('error_cant_update');
+            return $this->errors = lang('Not updated', 'wishlist');
         }
     }
 
@@ -179,7 +187,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
         if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
             $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
-            $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
+            $this->errors[] = lang('List description limit exhausted', 'wishlist') . '. ' . lang('List description max count', 'wishlist') . ' - ' . $this->settings['maxWLDescLenght'];
         }
 
         foreach ($this->input->post('comment') as $key => $comment) {
@@ -224,9 +232,9 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $items = $this->input->post('listItem');
         if ($items) {
             if (parent::deleteItemsByIds($items)) {
-                return $this->dataModel = lang('deleted');
+                return $this->dataModel = lang('Successful deleted', 'wishlist');
             } else {
-                return $this->errors[] = lang('error_cant_delete');
+                return $this->errors[] = lang('Unable to delete', 'wishlist');
             }
         }
     }
@@ -244,9 +252,9 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
 
         if (parent::deleteImage($image, $user_id)) {
-            return $this->dataModel[] = lang('deleted');
+            return $this->dataModel[] = lang('Successful deleted', 'wishlist');
         } else {
-            return $this->errors[] = lang('error_cant_delete');
+            return $this->errors[] = lang('Unable to delete', 'wishlist');
         }
     }
 
@@ -269,20 +277,34 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function do_upload() {
         if (parent::do_upload($this->input->post('userID'))) {
             if (!$this->upload->do_upload('file')) {
-                
                 $this->errors[] = $this->upload->display_errors();
-                $f = fopen('/var/www/image.loc/baaaad.txt', "w+");
-                fwrite($f, print_r($this->errors, TRUE));
-                fclose($f);
                 return FALSE;
             } else {
                 $this->dataModel = array('upload_data' => $this->upload->data());
                 $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
                 return TRUE;
             }
-            return $this->dataModel[] = lang('picture_uploaded');
+            return $this->dataModel[] = lang('Image uploaded', 'wishlist');
         } else {
-            return $this->errors[] = lang('error_upload_photo');
+            return $this->errors[] = lang('Can not upload photo', 'wishlist');
+        }
+    }
+
+    /**
+     * send email
+     */
+    public function send_email() {
+        $this->load->helper('email');
+        $email = $this->input->post('email');
+        $wish_list_id = $this->input->post('wish_list_id');
+        if (!valid_email($email)) {
+            return $this->errors[] = lang('Invalid email', 'wishlist');
+        }
+
+        if (parent::send_email($wish_list_id, $email)) {
+            return $this->dataModel = lang('Successful operation', 'wishlist');
+        } else {
+            return $this->errors[] = lang('Error', 'wishlist');
         }
     }
 

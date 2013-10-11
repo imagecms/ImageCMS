@@ -58,15 +58,20 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('gallery');
 
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
+
+        $this->lang->load('gallery');
 
         $this->load->model('gallery_m');
         $this->init_settings();
 
         $this->test_uploads_folder($this->conf['upload_path']);
         $this->load->helper('file');
+        $this->load->helper('gallery');
     }
 
     /**
@@ -80,7 +85,7 @@ class Admin extends BaseAdminController {
 
         if (!is_really_writable($this->conf['upload_path']) OR !file_exists($this->conf['upload_path'])) {
             $this->template->add_array(array(
-                'error' => lang('amt_delete_folder_to_continue') . $this->conf['upload_path'] . lang('amt_write_perm')
+                'error' => lang("Create a directory to continue your work with the gallery", 'gallery') . $this->conf['upload_path'] . lang("Set the write access", 'gallery')
             ));
 
             $this->display_tpl('error');
@@ -106,26 +111,10 @@ class Admin extends BaseAdminController {
      * Display categories list
      */
     public function index() {
+
         $categories = $this->gallery_m->get_categories('position', 'asc');
-        $albums = $this->gallery_m->get_albums($this->conf['order_by'], $this->conf['sort_order']);
-
-        if ($categories !== FALSE) {
-            $cnt = count($categories);
-            for ($i = 0; $i < $cnt; $i++) {
-                $categories[$i]['albums_count'] = 0;
-
-                if ($albums !== FALSE)
-                    foreach ($albums as $album) {
-                        if ($album['category_id'] == $categories[$i]['id']) {
-                            $categories[$i]['albums_count']++;
-                        }
-                    }
-            }
-        }
-
         $this->template->add_array(array(
             'categories' => $categories,
-            'albums' => $albums,
         ));
 
         $this->display_tpl('categories');
@@ -187,17 +176,17 @@ class Admin extends BaseAdminController {
                 $this->load->library('Form_validation');
                 $val = $this->form_validation;
 
-                $val->set_rules('max_file_size', lang('amt_file_size'), 'required|is_natural');
-                $val->set_rules('max_width', lang('amt_max_width'), 'required|is_natural');
-                $val->set_rules('max_height', lang('amt_max_height'), 'required|is_natural');
-                $val->set_rules('quality', lang('amt_quality'), 'required|is_natural');
-                $val->set_rules('prev_img_width', lang('amt_previmage_width'), 'required|is_natural');
-                $val->set_rules('prev_img_height', lang('amt_previmage_height'), 'required|is_natural');
-                $val->set_rules('thumb_width', lang('amt_col_width'), 'required|is_natural');
-                $val->set_rules('thumb_height', lang('amt_col_height'), 'required|is_natural');
-                $val->set_rules('watermark_text', lang('amt_watermark_text'), 'max_length[100]');
-                $val->set_rules('watermark_font_size', lang('amt_font_size'), 'required|is_natural');
-                $val->set_rules('watermark_image_opacity', lang('amt_transparency'), 'required|is_natural|min_length[1]|max_length[3]');
+                $val->set_rules('max_file_size', lang("File size", 'gallery'), 'required|is_natural');
+                $val->set_rules('max_width', lang("Maximum width", 'gallery'), 'required|is_natural');
+                $val->set_rules('max_height', lang("Maximum height", 'gallery'), 'required|is_natural');
+                $val->set_rules('quality', lang("Quality", 'gallery'), 'required|is_natural');
+                $val->set_rules('prev_img_width', lang("Pre-image width", 'gallery'), 'required|is_natural');
+                $val->set_rules('prev_img_height', lang("pre-image height", 'gallery'), 'required|is_natural');
+                $val->set_rules('thumb_width', lang("Icon width", 'gallery'), 'required|is_natural');
+                $val->set_rules('thumb_height', lang("Icon height", 'gallery'), 'required|is_natural');
+                $val->set_rules('watermark_text', lang("Watermark text", 'gallery'), 'max_length[100]');
+                $val->set_rules('watermark_font_size', lang("Font size", 'gallery'), 'required|is_natural');
+                $val->set_rules('watermark_image_opacity', lang("Transparency", 'gallery'), 'required|is_natural|min_length[1]|max_length[3]');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
@@ -206,13 +195,13 @@ class Admin extends BaseAdminController {
 
                 // Check if watermark image exists.
                 if ($_POST['watermark_type'] == 'overlay' AND !file_exists($_POST['watermark_image'])) {
-                    showMessage(lang('amt_select_correct_path_to_image'), false, 'r');
+                    showMessage(lang("Specify the correct path to watermark image", 'gallery'), false, 'r');
                     return FALSE;
                 }
 
                 // Check if watermark font exists.
                 if ($_POST['watermark_type'] == 'text' AND !file_exists($_POST['watermark_font_path'])) {
-                    showMessage(lang('amt_select_correct_path_to_font'), false, 'r');
+                    showMessage(lang("Specify the correct path to font", 'gallery'), false, 'r');
                     return FALSE;
                 }
 
@@ -250,7 +239,7 @@ class Admin extends BaseAdminController {
                 $this->db->where('name', 'gallery');
                 $this->db->update('components', array('settings' => serialize($params)));
 
-                showMessage(lang('amt_settings_saved'));
+                showMessage(lang("Settings have been saved", 'gallery'));
 
                 break;
         }
@@ -264,9 +253,9 @@ class Admin extends BaseAdminController {
     public function create_album() {
         $this->load->library('Form_validation');
 
-        $this->form_validation->set_rules('name', lang('amt_name'), 'required|min_length[3]|max_length[250]');
-        $this->form_validation->set_rules('email', lang('amt_description'), 'max_length[500]');
-        $this->form_validation->set_rules('category_id', lang('amt_category'), 'required');
+        $this->form_validation->set_rules('name', lang("Name", 'gallery'), 'required|min_length[3]|max_length[250]');
+        $this->form_validation->set_rules('email', lang("Description", 'gallery'), 'max_length[500]');
+        $this->form_validation->set_rules('category_id', lang("Categories", 'gallery'), 'required');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), false, 'r');
@@ -284,7 +273,7 @@ class Admin extends BaseAdminController {
             // Create folder for admin thumbs
             @mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');
 
-            showMessage('Альбом создан');
+            showMessage(lang('Album created', 'gallery'));
 
             pjax(site_url('admin/components/cp/gallery/edit_album_params/' . $album_id));
         }
@@ -293,23 +282,42 @@ class Admin extends BaseAdminController {
     /**
      * Update album info
      */
-    public function update_album($id) {
-        $this->form_validation->set_rules('name', lang('a_name'), 'required');
+    public function update_album($id, $locale) {
+        $this->form_validation->set_rules('name', lang("Name", 'gallery'), 'required');
+       // var_dump($_POST['tpl_file']);
+        if (!preg_match('/[a-z]/', $_POST['tpl_file']) && !empty($_POST['tpl_file'])) {
+            showMessage('wrong tpl name', '', 'r');
+            exit();
+        }
         if ($this->form_validation->run() == false) {
             showMessage(validation_errors(), '', 'r');
             exit();
         } else {
-            showMessage(lang('amt_changes_saved'));
+            showMessage(lang("Changes have been saved", 'gallery'));
         }
         $data = array(
             'category_id' => (int) $this->input->post('category_id'),
-            'name' => $this->input->post('name'),
-            'description' => trim($this->input->post('description')),
+            // 'name' => $this->input->post('name'),
+            // 'description' => trim($this->input->post('description')),
             'position' => (int) $this->input->post('position'),
             'tpl_file' => $this->input->post('tpl_file')
         );
 
         $this->gallery_m->update_album($id, $data);
+
+        $data_locale = array(
+            'id' => $id,
+            'locale' => $locale,
+            'name' => $this->input->post('name'),
+            'description' => trim($this->input->post('description')),
+        );
+
+        if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_albums_i18n')->num_rows()) {
+            $this->db->where('id', $id)->where('locale', $locale);
+            $this->db->update('gallery_albums_i18n', $data_locale);
+        }
+        else
+            $this->db->insert('gallery_albums_i18n', $data_locale);
 
         $album = $this->gallery_m->get_album($id);
 
@@ -322,18 +330,23 @@ class Admin extends BaseAdminController {
             pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
     }
 
-    public function edit_album_params($id) {
-        $album = $this->gallery_m->get_album($id);
+    public function edit_album_params($id, $locale = null) {
+        if (null === $locale)
+            $locale = $this->gallery_m->chose_locale();
+
+        $album = $this->gallery_m->get_album($id, true, false, false, $locale);
 
         if ($album != FALSE) {
             $this->template->add_array(array(
+                'locale' => $locale,
+                'languages' => $this->db->get('languages')->result_array(),
                 'album' => $album,
                 'categories' => $this->gallery_m->get_categories($album['category_id']),
             ));
 
             $this->display_tpl('album_params');
         } else {
-            show_error(lang('amt_cant_load_album_info'));
+            show_error(lang("Can't load album information", 'gallery'));
         }
     }
 
@@ -362,7 +375,7 @@ class Admin extends BaseAdminController {
 //            echo 'deleted';
 //            exit;
         } else {
-            showMessage(lang('amt_cant_load_album_info'));
+            showMessage(lang("Can't load album information", 'gallery'));
         }
     }
 
@@ -371,7 +384,7 @@ class Admin extends BaseAdminController {
      */
     public function show_crate_album() {
         // Select only category id and name for selectbox
-        $this->db->select('id, name');
+        // $this->db->select('id, name');
         $cats = $this->gallery_m->get_categories();
 
         $this->template->add_array(array(
@@ -398,13 +411,17 @@ class Admin extends BaseAdminController {
 
     // --------------------------------------------------------------------
 
-    public function edit_image($id) {
-        $image = $this->gallery_m->get_image_info($id);
+    public function edit_image($id, $locale = null) {
+        if ($locale === null)
+            $locale = $this->gallery_m->chose_locale();
+        $image = $this->gallery_m->get_image_info($id, $locale);
 
         if ($image != FALSE) {
             $album = $this->gallery_m->get_album($image['album_id'], FALSE);
 
             $this->template->add_array(array(
+                'locale' => $locale,
+                'languages' => $this->db->get('languages')->result_array(),
                 'image' => $image,
                 'album' => $album,
                 'category' => $this->gallery_m->get_category($album['category_id']),
@@ -413,7 +430,7 @@ class Admin extends BaseAdminController {
 
             $this->display_tpl('edit_image');
         } else {
-            show_error(lang('amt_cant_load_image_info'));
+            show_error(lang("Can't load image information", 'gallery'));
         }
     }
 
@@ -426,7 +443,7 @@ class Admin extends BaseAdminController {
         if ($image != FALSE) {
             $this->load->library('Form_validation');
 
-            $this->form_validation->set_rules('new_name', lang('amt_name'), 'trim|required');
+            $this->form_validation->set_rules('new_name', lang("Name", 'gallery'), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -452,10 +469,10 @@ class Admin extends BaseAdminController {
                 $this->gallery_m->rename_image($id, $new_name);
 
                 pjax('/admin/components/cp/gallery/edit_image/' . $image['id']);
-                showMessage(lang('amt_changes_saved'));
+                showMessage(lang("Changes have been saved", 'gallery'));
             }
         } else {
-            showMessage(lang('amt_cant_load_image_info'), false, 'r');
+            showMessage(lang("Can't load image information", 'gallery'), false, 'r');
         }
     }
 
@@ -486,7 +503,7 @@ class Admin extends BaseAdminController {
 
                 // Delete image info.
                 $this->gallery_m->delete_image($image['id']);
-                showMessage(lang('a_photos_deleted'));
+                showMessage(lang("Photos removed", 'gallery'));
             }
         }
     }
@@ -494,13 +511,16 @@ class Admin extends BaseAdminController {
     /**
      * Update image description/position
      */
-    public function update_info($id) {
+    public function update_info($id, $locale = null) {
+
+        if (null === $locale)
+            $locale = $this->gallery_m->chose_locale();
         $image = $this->gallery_m->get_image_info($id);
 
         if ($image != FALSE) {
             $album = $this->gallery_m->get_album($image['album_id'], FALSE);
 
-            $this->gallery_m->update_description($id, trim($this->input->post('description')));
+            $this->gallery_m->update_description($id, trim($this->input->post('description')), $locale);
 
             $this->gallery_m->update_position($id, trim((int) $this->input->post('position')));
 
@@ -510,11 +530,11 @@ class Admin extends BaseAdminController {
                 $this->gallery_m->set_album_cover($image['album_id'], NULL);
             }
 
-            //showMessage('Изменения сохранены');
+            //showMessage(lang('Changes are saved', 'gallery'));
 
             pjax('/admin/components/cp/gallery/edit_album/' . $image['album_id']);
         } else {
-            showMessage(lang('amt_cant_load_image_info'), false, 'r');
+            showMessage(lang("Can't load image information", 'gallery'), false, 'r');
         }
     }
 
@@ -523,7 +543,7 @@ class Admin extends BaseAdminController {
         foreach ($positions as $key => $value) {
             $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_category');
         }
-        showMessage(lang('a_positions_updated'));
+        showMessage(lang("Positions updated", 'gallery'));
     }
 
     public function update_album_positions() {
@@ -531,7 +551,7 @@ class Admin extends BaseAdminController {
         foreach ($positions as $key => $value) {
             $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_albums');
         }
-        showMessage(lang('a_positions_updated'));
+        showMessage(lang("Positions updated", 'gallery'));
     }
 
     public function update_img_positions() {
@@ -539,7 +559,7 @@ class Admin extends BaseAdminController {
         foreach ($positions as $key => $value) {
             $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_images');
         }
-        showMessage(lang('a_positions_updated'));
+        showMessage(lang("Positions updated", 'gallery'));
     }
 
     /**
@@ -591,66 +611,99 @@ class Admin extends BaseAdminController {
     }
 
     public function create_category() {
+
+        $locale = $this->gallery_m->chose_locale();
+
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
-        $val->set_rules('name', lang('amt_name'), 'trim|required|max_length[250]|min_length[1]');
-        $val->set_rules('description', lang('amt_description'), 'max_length[500]');
-        $val->set_rules('position', lang('amt_position'), 'numeric');
+        $val->set_rules('name', lang("Name", 'gallery'), 'trim|required|max_length[250]|min_length[1]');
+        $val->set_rules('description', lang("Description", 'gallery'), 'max_length[500]');
+        $val->set_rules('position', lang("Position", 'gallery'), 'numeric');
 
         if ($val->run() == FALSE) {
             showMessage(validation_errors(), false, 'r');
         } else {
             $data = array(
-                'name' => $this->input->post('name'),
-                'description' => trim($this->input->post('description')),
+                //'name' => $this->input->post('name'),
+                //'description' => trim($this->input->post('description')),
                 'position' => $this->input->post('position'),
                 'created' => time(),
             );
 
             $last_id = $this->gallery_m->create_category($data);
 
+            $data_locale = array(
+                'id' => $last_id,
+                'locale' => $locale,
+                'name' => $this->input->post('name'),
+                'description' => trim($this->input->post('description')),
+            );
+
+            $this->db->insert('gallery_category_i18n', $data_locale);
+
             //updateDiv('page', site_url('admin/components/cp/gallery'));
+            //$_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
 
-            $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
-
-            if ($action == 'close')
-                pjax('/admin/components/cp/gallery/index');
-            if ($action == 'edit')
-                pjax('/admin/components/cp/gallery/edit_category/' . $last_id);
+            pjax('/admin/components/cp/gallery/index');
+//            if ($action == 'close')
+//                pjax('/admin/components/cp/gallery/index');
+//            if ($action == 'edit')
+//                pjax('/admin/components/cp/gallery/edit_category/' . $last_id);
         }
     }
 
-    public function edit_category($id) {
-        $category = $this->gallery_m->get_category($id);
+    public function edit_category($id, $locale = null) {
+
+        if (null === $locale)
+            $locale = $this->gallery_m->chose_locale();
+        $category = $this->gallery_m->get_category($id, $locale);
 
         $this->template->add_array(array(
-            'category' => $category
+            'category' => $category,
+            'locale' => $locale,
+            'languages' => $this->db->get('languages')->result_array()
         ));
 
         $this->display_tpl('edit_category');
     }
 
-    public function update_category($id) {
+    public function update_category($id, $locale) {
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
-        $val->set_rules('name', lang('amt_name'), 'trim|required|max_length[250]|min_length[1]');
-        $val->set_rules('description', lang('amt_description'), 'max_length[500]');
-        $val->set_rules('position', lang('amt_position'), 'numeric');
+        $val->set_rules('name', lang("Name", 'gallery'), 'trim|required|max_length[250]|min_length[1]');
+        $val->set_rules('description', lang("Description", 'gallery'), 'max_length[500]');
+        $val->set_rules('position', lang("Position", 'gallery'), 'numeric');
 
         if ($val->run() == FALSE) {
             showMessage(validation_errors(), false, 'r');
         } else {
             $data = array(
-                'name' => $this->input->post('name'),
-                'description' => trim($this->input->post('description')),
+                // 'name' => $this->input->post('name'),
+                //'description' => trim($this->input->post('description')),
                 'position' => $this->input->post('position')
             );
 
             $this->gallery_m->update_category($data, $id);
 
-            showMessage(lang('amt_changes_saved'));
+            $data_locale = array(
+                'id' => $id,
+                'locale' => $locale,
+                'name' => $this->input->post('name'),
+                'description' => trim($this->input->post('description')),
+            );
+
+            if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_category_i18n')->num_rows()) {
+                $this->db->where('id', $id)->where('locale', $locale);
+                $this->db->update('gallery_category_i18n', $data_locale);
+            }
+            else
+                $this->db->insert('gallery_category_i18n', $data_locale);
+
+
+
+            showMessage(lang("Changes have been saved", 'gallery'));
 
             //updateDiv('page', site_url('admin/components/cp/gallery'));
             $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';

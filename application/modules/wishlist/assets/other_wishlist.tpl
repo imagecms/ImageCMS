@@ -22,8 +22,8 @@
                     {if $wishlist[0][variant_id]}
                     <tr>
                         <th>№</th>
-                        <th>Товар</th>
-                        <th>Коментарий</th>
+                        <th>{lang('Product', 'wishlist')}</th>
+                        <th>{lang('Comment', 'wishlist')}</th>
                     </tr>
                     {/if}
                 </thead>
@@ -45,7 +45,7 @@
                     {/foreach}
                     {else:}
                         <tr>
-                            <td>Список пуст</td>
+                            <td>{lang('Emty list', 'wishlist')}</td>
                         </tr>
                     {/if}
                 </tbody>
@@ -54,7 +54,7 @@
         </form>
     {/foreach}
 {else:}
-    Список Желания пуст
+    {lang('Wish list is empty', 'wishlist')}
 {/if}
 </article>
 

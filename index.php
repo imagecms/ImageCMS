@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -194,13 +195,13 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.4.5 Premium');
+define('IMAGECMS_NUMBER', '4.5 Premium');
 
-define('IMAGECMS_VERSION', '20130806');
+define('IMAGECMS_VERSION', '20130926');
 
 define('IMAGECMS_BUILD_ID', '');
 
-define('BUILD_ID', 4451234);
+define('BUILD_ID', '45.1234');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*

@@ -1,14 +1,14 @@
 <div id="sortable">
 		  <table id="users_table2">
 		  	<thead>
-				<th axis="string" width="">{lang('amt_id')}</th>
-				<th axis="string">{lang('amt_user_login')}</th>
-				<th axis="string">{lang('amt_email')}</th>
-				<th axis="string">{lang('amt_group')}</th>
-				<th axis="string">{lang('amt_ban')}</th>
-				<th axis="string">{lang('amt_last_ip')}</th>
-				<th axis="date">{lang('amt_last_entry')}</th>
-				<th axis="date">{lang('amt_cr')}</th>
+				<th axis="string" width="">{lang('ID', 'user_manager')}</th>
+				<th axis="string">{lang('Login', 'user_manager')}</th>
+				<th axis="string">{lang('E-Mail', 'user_manager')}</th>
+				<th axis="string">{lang('Group', 'user_manager')}</th>
+				<th axis="string">{lang('Ban', 'user_manager')}</th>
+				<th axis="string">{lang('Last IP', 'user_manager')}</th>
+				<th axis="date">{lang('Latest Entry or Last Entry', 'user_manager')}</th>
+				<th axis="date">{lang('Created', 'user_manager')}</th>
 				<th axis="none"></th>
 			</thead>
 			<tbody>
@@ -25,7 +25,7 @@
 			<td>{$user.last_login}</td>
 			<td>{$user.created}</td>
 			<td  class="rightAlign">
-			<img onclick="edit_user({$user.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
+			<img onclick="edit_user({$user.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('Edit', 'user_manager')}" />
 			</td>
 		</tr>
 		{/foreach}

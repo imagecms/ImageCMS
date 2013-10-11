@@ -249,11 +249,7 @@ function processPage() {
                 Shop.Cart.countChanged = false;
                 togglePopupCart();
             }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
-        }
-    });
-    $(genObj.btnBuy + '.' + genObj.btnCartCss).each(function() {
-        var key = $(this).data('prodid') + '_' + $(this).data('varid');
-        if (keys.indexOf(key) == -1) {
+        } else {
             $(this).removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).html(toCart).removeAttr('disabled').unbind('click').on('click', function() {
                 Shop.Cart.countChanged = false;
                 var cartItem = Shop.composeCartItem($(this));
@@ -261,15 +257,17 @@ function processPage() {
             }).closest(genObj.parentBtnBuy).removeClass(genObj.inCart);
         }
     });
-}
-function initBtnBuy() {
-    $(genObj.btnBuy).unbind().on('click', function() {
-        Shop.Cart.countChanged = false;
-        $(this).attr('disabled', 'disabled');
-        var cartItem = Shop.composeCartItem($(this));
-        Shop.Cart.add(cartItem);
-        return true;
-    });
+
+//    $(genObj.btnBuy + '.' + genObj.btnBuyCss).each(function() {
+//        var key = $(this).data('prodid') + '_' + $(this).data('varid');
+//        if (keys.indexOf(key) == -1) {
+//            $(this).removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).html(toCart).removeAttr('disabled').unbind('click').on('click', function() {
+//                Shop.Cart.countChanged = false;
+//                var cartItem = Shop.composeCartItem($(this));
+//                Shop.Cart.add(cartItem);
+//            }).closest(genObj.parentBtnBuy).removeClass(genObj.inCart);
+//        }
+//    });
 }
 
 function initShopPage(showWindow) {
@@ -525,8 +523,6 @@ $(document).ready(function() {
         effoff: 'fadeOut',
         duration: 500,
         before: function(el, dropEl) {
-            //check for drop-report
-
             if ($(dropEl).hasClass('drop-report')) {
 
                 $(dropEl).find(genObj.parentBtnBuy).remove();
@@ -536,6 +532,8 @@ $(document).ready(function() {
                 //adding product info into form
                 var formCont = $('#data-report');
                 var productId = $(el).attr('data-prodid');
+
+                //alert(productId);
                 formCont.find('input[name="ProductId"]').val(productId)
 
                 elWrap.find('.photo').prependTo(elWrap)
@@ -543,8 +541,19 @@ $(document).ready(function() {
                 if (!dropEl.parent().hasClass('active')) {
                     if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
-                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd ').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
 
+                    dropEl.find('.frame-search-thumbail')
+                            .append(elWrap)
+                            .find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd ')
+                            .remove()
+                            .end()
+                            .parent()
+                            .find('[data-clone="data-report"]')
+                            .remove()
+                            .end()
+                            .append($('[data-clone="data-report"]')
+                            .clone()
+                            .removeClass('d_n'));
                 }
                 return $(el);
 
@@ -593,7 +602,7 @@ $(document).ready(function() {
     $('#popupCart').html(Shop.Cart.renderPopupCart())
 
     //click 'add to cart'
-    initBtnBuy();
+
 
     if ($('#orderDetails'))
         renderOrderDetails();
@@ -868,9 +877,9 @@ $(document).ready(function() {
     })
 
     $('.del_filter_item').bind('click', function() {
-        console.log($('input#' + $(this).attr('data-id')));
+        //console.log($('input#' + $(this).attr('data-id')));
         var data = $(this).attr('data-id').split("/");
-        $('input#' + data[0] + "[value='" + data[1] + "']").click();
+        $('input#' + $(this).attr('data-id')).click();
         return false;
     })
 

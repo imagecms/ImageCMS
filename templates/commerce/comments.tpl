@@ -3,17 +3,17 @@
     var currentProductId = '{echo $item_id}';
 </script>
 {if $can_comment == 1 AND !$is_logged_in}
-    <p class="m-l_10">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
+    <p class="m-l_10">{sprintf(lang('Please login for commenting', 'comments'), site_url($modules.auth))}</p>
 {/if}
 
 {if $can_comment == 0 OR $is_logged_in}
 <div class="di_b">
     <span class="comment_ajax_refer b-r_4 visible">
 
-        <a href="#" class="t-d_n"><span class="js">{lang('s_leave_comment')}</span><span class="blue_arrow"></span></a>
+        <a href="#" class="t-d_n"><span class="js">{lang("leave a comment","admin")}</span><span class="blue_arrow"></span></a>
 
         {if $is_logged_in}
-            {lang('s_lang_logged')} {$username}
+            {lang("You are logged in as","admin")} {$username}
         {else:}
 <!--            <span>Для того, чтобы оставить комментарий, Вы должны <a href="{site_url('auth/login')}" class="js red">авторизироваться</a> на сайте</span>-->
         {/if}
@@ -40,7 +40,7 @@
 
     {/if}
     <label>
-        {lang('s_you_raiting')}
+        {lang("You rating","admin")}
         <div class="star_rating">
             <div id="comment_block" class="rating {echo $r} star_rait" data-id="{echo $item_id}">
                 <div id="1" class="rate one">
@@ -63,22 +63,22 @@
         <input id="ratec" name="ratec" type="hidden" value=""/>
     </label><br/>
 
-    <label>{lang('s_text_comment_one')}<span style="color:red;">*</span>
+    <label>{lang("Text comments","admin")}<span style="color:red;">*</span>
         <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> 
     </label>
 
-    <label>{lang('s_plus')}
+    <label>{lang("Plus","admin")}
         <textarea name="comment_text_plus" id="comment_plus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
 
-    <label>{lang('s_cons')}
+    <label>{lang("Cons","admin")}
         <textarea name="comment_text_minus" id="comment_minus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
     {if $use_captcha}
         <div style="padding-bottom:4px;">
             <p class="clear">
                 {if $captcha_type == 'captcha'}
-                    <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}<span style="color:red;">*</span></label>
+                    <label for="captcha" style="width:140px;" class="left">{lang("Code protection","admin")}<span style="color:red;">*</span></label>
                     <input type="text" name="captcha" id="captcha" />
                 {/if}
                 <br/>
@@ -88,7 +88,7 @@
         </div>
     {/if}
     <label class="buttons button_middle_blue f_l">
-        <input type="submit" value="{lang('s_leave_comment')}" onclick="json()"/>
+        <input type="submit" value="{lang("leave a comment","admin")}" onclick="json()"/>
     </label>
 
     {form_csrf()}
@@ -122,14 +122,14 @@
                     </div>
                 {/if}
                 <b>{$comment.user_name}</b>
-                <div class="c_9 f-s_11">{lang('s_on_comment')} {date('d-m-Y H:i', $comment.date)}</div>
+                <div class="c_9 f-s_11">{lang("On","admin")} {date('d-m-Y H:i', $comment.date)}</div>
                 <p>{$comment.text}</p>
                 {if $comment.text_plus != Null}
-                    <p><b>{lang('s_plus')}</b></br>
+                    <p><b>{lang("Plus","admin")}</b></br>
                         {$comment.text_plus}</p>
                     {/if}
                     {if $comment.text_minus != Null}
-                    <p><b>{lang('s_cons')}</b></br>
+                    <p><b>{lang("Cons","admin")}</b></br>
                         {$comment.text_minus}</p>
                     {/if}
                 <div class="di_b">
@@ -137,17 +137,17 @@
 
                         {if $can_comment == 0 OR $is_logged_in}
                         <a href="#" class="t-d_n">
-                            <span class="js">{lang('s_comment_answer')}</span>
+                            <span class="js">{lang("Answer","admin")}</span>
 
                             <span class="blue_arrow"></span></a>
 
                         {/if}
 
-                        {lang('s_review_comment')}
+                        {lang("Review was helpful?","admin")}
                         <span></span>
 
-                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js">{lang('s_yes')}</span></span><span id="yesholder{$comment.id}">({echo $comment.like})</span>/
-                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">{lang('s_no')}</span></span><span id="noholder{$comment.id}">({echo $comment.disslike})</span>
+                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js">{lang("Yes","admin")}</span></span><span id="yesholder{$comment.id}">({echo $comment.like})</span>/
+                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">{lang("No","admin")}</span></span><span id="noholder{$comment.id}">({echo $comment.disslike})</span>
                     </span>
                 </div>
 
@@ -156,19 +156,19 @@
                     <input type="hidden" name="comment_item_id" value="{$item_id}"/>
                     <input type="hidden" name="redirect" value="{uri_string()}"/>
                     {if !$is_logged_in}
-                        <label>{lang('s_text_comment_one')} <span style="color:red;">*</span>
+                        <label>{lang("Text comments","admin")} <span style="color:red;">*</span>
                             <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
                         </label>
                         <label>{lang('lang_comment_email')} <span style="color:red;">*</span>
                             <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                         </label>
                     {/if}
-                    <label>{lang('s_text_comment_one')} <span style="color:red;">*</span>
+                    <label>{lang("Text comments","admin")} <span style="color:red;">*</span>
                         <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> 
                     </label>
                     <input type="hidden" name="parent" value="{echo $comment.id}">
                     <label class="buttons button_middle_blue f_l">
-                        <input type="submit" value="{lang('s_leave_comment')}" onclick="json()"/>
+                        <input type="submit" value="{lang("leave a comment","admin")}" onclick="json()"/>
                     </label>
 
                     {form_csrf()}
@@ -178,7 +178,7 @@
                     {if $com_ch.parent == $comment.id}
                     <li style="padding-left: 50px">
                         <b>{$com_ch.user_name}</b>
-                        <div class="c_9 f-s_11">{lang('s_on_comment')} {date('d-m-Y H:i', $com_ch.date)}</div>
+                        <div class="c_9 f-s_11">{lang("On","admin")} {date('d-m-Y H:i', $com_ch.date)}</div>
                         <p>{$com_ch.text}</p>
                     </li>
                 {/if}

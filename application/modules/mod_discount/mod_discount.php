@@ -14,6 +14,7 @@ if (!defined('BASEPATH'))
  */
 class Mod_discount extends \mod_discount\classes\BaseDiscount {
 
+    public static $cnt = 0;
     public $no_install = true;
     protected $result_discount = array();
 
@@ -26,6 +27,8 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
     public function __construct() {
 
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('mod_discount');
         $this->load->model('discount_model_admin');
     }
 
@@ -67,8 +70,11 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function make_order_with_discount($data) {
-        $obj = new \mod_discount\discount_order;
-        $obj->update_order_discount($data);
+        if (self::$cnt == 0) {
+            $obj = new \mod_discount\discount_order;
+            $obj->update_order_discount($data);
+            self::$cnt++;
+        }
     }
 
     public function register_script() {

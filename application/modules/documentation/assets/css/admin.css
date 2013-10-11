@@ -1,0 +1,70 @@
+.left-info {
+    /*padding: 15px;*/
+    height: 100%;
+    position: realtive;
+}
+
+.article-data {
+    padding: 15px;
+    border-left: 1px solid #e6e6e6;
+}
+
+.article-view {
+    min-height: 170px;
+    background: #f4f4f4;
+    margin-top: 10px;
+    border: 1px solid #e6e6e6;
+    position: relative;
+    border-radius: 5px;
+    position: relative;
+}
+
+.active-article-status {
+    background: #F0FFF0;
+}
+
+.history-article-status {
+    background: #FFF5EB;
+}
+
+.left-info table {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.left-info table tr:nth-child(odd) td {
+    background: #eaeaea;
+}
+
+.left-info table tr td:first-child {
+    padding-right: 10px;
+    color: #696969;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: right;
+}
+.left-info table tr td:last-child {
+    font-size: 11pt;
+    color: #484848;
+}
+
+.no_changes {
+    text-align: center;
+    padding: 10px;
+    padding-top: 20px;
+    color: #727272;
+    font-size: 12pt;
+}
+
+
+.history-bottom-link {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    text-align: left;
+}
+
+#articles_diff {
+    width: 900px;
+    margin-left: -450px;
+}

@@ -3,7 +3,7 @@
     <div class="frame-category-menu layout-highlight">
         <div class="title-menu-category">
             <div class="title-default">
-                <div class="title-h3 title">Категории:</div>
+                <div class="title-h3 title">{lang('Categories', 'smart_filter')}:</div>
             </div>
         </div>
         <div class="inside-padd">
@@ -20,10 +20,10 @@
 {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
     <div class="frame-check-filter">
         <div class="inside-padd">
-            <div class="title">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array('товар','товара','товаров'))} с фильтрами:</div>
+            <div class="title">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array(lang('product', 'smart_filter'), lang('product', 'smart_filter'), lang('products', 'smart_filter')'))} {lang('with filter', 'smart_filter')}:</div>
             <ul class="list-check-filter">
                 {if $curMin != $minPrice || $curMax != $maxPrice}
-                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">Цена от {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
+                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{lang('Price from', 'smart_filter')} {echo $_GET['lp']} {lang('to', 'smart_filter')} {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
                     {/if}
                     {if count($brands) > 0}
                         {foreach $brands as $brand}
@@ -49,7 +49,7 @@
             <div class="foot-check-filter">
                 <button type="button" onclick="location.href = '{site_url($CI->uri->uri_string())}'" class="btn-reset-filter">
                     <span class="icon_times icon_remove_all_filter f_l"></span>
-                    <span class="text-el d_l_r_f">Сбросить фильтр</span>
+                    <span class="text-el d_l_r_f">{lang('Reset filter', 'smart_filter')}</span>
                 </button>
             </div>
         </div>

@@ -15,19 +15,19 @@
     <div data-body="body">
         {if count($products) > 0}
         <!--Start. Show compare list if count products >0 -->
-        <h1 class="f_l">{lang('s_compare_tovars')}</h1>
+        <h1 class="f_l">{lang("Compare Products","admin")}</h1>
         <!-- Start. Buttons for change to show different or all properties -->
         <div class="f_l">
             <ul class="tabs tabs-dif-all_par groupButton">
-                <li class="active btn"><button type="button" data-href="#all-params">{lang('s_all_par')}</button></li>
-                <li class="btn"><button type="button" data-href="#only-dif">{lang('s_only_diff')}</button></li>
+                <li class="active btn"><button type="button" data-href="#all-params">{lang("All the parameters","admin")}</button></li>
+                <li class="btn"><button type="button" data-href="#only-dif">{lang("Only Differences","admin")}</button></li>
             </ul>
         </div>
         <!-- End. Buttons for change to show different or all properties -->
         <div class="p_r c_b">
             <!--Start. Show categories of products which are in list -->
             <div class="comprasion_head">
-                <div class="title_h2">{lang('s_category')}:</div>
+                <div class="title_h2">{lang("Category","admin")}:</div>
                 <ul class="tabs">
                     {foreach $categories as $category}
                     <li><span data-href="#{$category.Url}"><span class="d_l_b">{echo $category.Name}</span></span></li>
@@ -86,21 +86,21 @@
                                             <!-- End. Price -->
                                             <!--Start. Check amount of goods -->
                                             {if $product->firstvariant->getstock() != 0}
-                                            <button class="btn btn_buy btnBuy" 
-                                                    type="button" 
+                                            <button class="btn btn_buy btnBuy"
+                                                    type="button"
 
                                                     data-prodid="{echo $product->getId()}"
                                                     data-varid="{echo $product->firstVariant->getId()}"
-                                                    data-price="{echo $product->firstVariant->toCurrency()}" 
+                                                    data-price="{echo $product->firstVariant->toCurrency()}"
                                                     data-name="{echo ShopCore::encode($product->getName())}"
                                                     data-maxcount="{echo $product->firstVariant->getstock()}"
                                                     data-number="{echo $product->firstVariant->getNumber()}"
-                                                    data-img="{echo $product->firstVariant->getSmallPhoto()}"
+                                                    data-img="{echo $product->firstVariant->getMediumPhoto()}"
                                                     data-url="{echo shop_url('product/'.$product->getUrl())}"
-                                                    data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                                    data-origprice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                                                     data-stock="{echo $product->firstVariant->getStock()}"
                                                     >
-                                                {lang('s_buy')}
+                                                {lang('Купить','commerce4x')}
                                             </button>
                                             {else:}
                                             <button
@@ -109,28 +109,30 @@
                                                     type="button"
                                                     class="btn btn_not_avail">
                                                 <span class="icon-but"></span>
-                                                <span class="text-el">{lang('s_message_o_report')}</span>
+                                                <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                                             </button>
                                             {/if}
                                             <!-- End. Check amount of goods -->
                                             <!-- to wish list button -->
-                                            <button class="btn btn_small_p toWishlist" 
+                                            {/*}
+                                            <button class="btn btn_small_p toWishlist"
                                                     data-price="{echo $product->firstVariant->toCurrency()}"
-                                                    data-prodid="{echo $product->getId()}" 
-                                                    data-varid="{echo $product->firstVariant->getId()}"  
+                                                    data-prodid="{echo $product->getId()}"
+                                                    data-varid="{echo $product->firstVariant->getId()}"
                                                     type="button"
-                                                    data-title="{lang('s_add_to_wish_list')}"
-                                                    data-sectitle="{lang('s_in_wish_list')}"
+                                                    data-title="{lang('В список желаний','commerce4x')}"
+                                                    data-sectitle="{lang('В списке желаний','commerce4x')}"
                                                     data-rel="tooltip">
                                                 <span class="icon-wish_2"></span>
                                             </button>
+                                             { */}
                                         </div>
                                         <!-- End. Product info -->
                                         <div class="photo-block">
                                             <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                                                 <figure>
                                                     <span class="helper"></span>
-                                                    <img src="{echo $product->firstVariant->getSmallPhoto()}" alt="{echo $product->id}"/>
+                                                    <img src="{echo $product->firstVariant->getMediumPhoto()}" alt="{echo $product->id}"/>
                                                 </figure>
                                             </a>
                                         </div>
@@ -168,6 +170,7 @@
                                     {/if}
                                     {/foreach}
                                 </ul>
+
                                 <!--End. Product characteristics -->
                             </li>
                             {/if}
@@ -183,10 +186,10 @@
         <div data-body="message" class="d_b">
             <!--Start. Show message if compare list is empty -->
             <div class="bot_border_grey m-b_10">
-                <h1 class="d_i">{lang('s_compare_tovars')}</h1>
+                <h1 class="d_i">{lang("Compare Products","admin")}</h1>
             </div>
             <div class="alert alert-search-result">
-                <div class="title_h2 t-a_c">{lang('s_compare_list_em')}</div>
+                <div class="title_h2 t-a_c">{lang("Comparison list is empty","admin")}</div>
             </div>
             <!--End. Show message if compare list is empty -->
         </div>
@@ -195,11 +198,12 @@
     <div data-body="message">
         <!--Start. Show message if compare list is empty -->
         <div class="bot_border_grey m-b_10">
-            <h1 class="d_i">{lang('s_compare_tovars')}</h1>
+            <h1 class="d_i">{lang("Compare Products","admin")}</h1>
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{lang('s_compare_list_em')}</div>
+            <div class="title_h2 t-a_c">{lang("Compare list is empty","admin")}</div>
         </div>
         <!--End. Show message if compare list is empty -->
     </div>
 </article>
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

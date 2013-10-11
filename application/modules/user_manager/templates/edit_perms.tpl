@@ -30,15 +30,9 @@
         </script>
     {/literal}
 
-<!--
-<div style="padding-left: 15px; padding-top: 2px;">
-    <a href="#" onclick="check_all(); return false;">Отметить все</a> / <a href="#" onclick="uncheck_all(); return false;">Снять выделение</a>
-</div>
--->
-
     <form action="{$SELF_URL}/update_role_perms" id="edit_perms_form" method="post" style="width:100%">
 
-	<div class="form_text" style="width:150px;">{lang('amt_group')}:</div>
+	<div class="form_text" style="width:150px;">{lang('Group', 'user_manager')}:</div>
 	<div class="form_input">
 		<select name="role_id" id="role_id" onchange="load_perms_for_role();">
 	    {foreach $roles as $role}
@@ -66,8 +60,8 @@
 
 	<div class="form_text" style="width:150px;"></div>
 	<div class="form_input">
-		<input type="submit" class="button" value="{lang('amt_save')}" onclick="ajax_me('edit_perms_form');" />
-        <a href="#" onclick="check_all(); return false;">Отметить все</a>  /  <a href="#" onclick="uncheck_all(); return false;">{lang('amt_cancel_selection')}</a>
+		<input type="submit" class="button" value="{lang('Save', 'user_manager')}" onclick="ajax_me('edit_perms_form');" />
+        <a href="#" onclick="check_all(); return false;">{lang('Cancel all', 'user_manager')}</a>  /  <a href="#" onclick="uncheck_all(); return false;">{lang('Cancel selection', 'user_manager')}</a>
 	</div>
 	<div class="form_overflow"></div>
 

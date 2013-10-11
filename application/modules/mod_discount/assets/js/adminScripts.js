@@ -2,7 +2,7 @@ $(document).ready(function() {
     /**
      * set begin discount date to now date
      */
-    $(".discountDate").datepicker({minDate: new Date() });
+    $(".beginDateDiscount").datepicker({minDate: new Date(), dateFormat: "yy-mm-dd"  });
     /**
      * Change is discount active or not
      */
@@ -14,7 +14,7 @@ $(document).ready(function() {
             url: base_url+'admin/components/init_window/mod_discount/ajaxChangeActive',
             success: function(response) {
                 if (response == true)
-                    showMessage('Статус изменен','','g')
+                    showMessage(lang('Status changed'),'','g')
             }
         });
     });
@@ -71,7 +71,7 @@ $(document).ready(function() {
                     $('#discountKey').val(response);
             }
         });
-    })
+    });
 
      /**
       *  Autocomplete users
@@ -141,7 +141,7 @@ $(document).ready(function() {
         /**
          * Remove discount from list
          */
-        $('.removeDiscountLink').bind('click',function (){
+        $('.removeDiscountLink').die().live('click',function (){
             var discountRow = $(this).closest('tr');
             var discountId= discountRow.data('id');
             $.ajax({
@@ -152,7 +152,7 @@ $(document).ready(function() {
                 success: function(response) {
                     if (response == true)
                         discountRow.hide();
-                        showMessage('Cкидку удалено!','','g')
+                        showMessage(lang('Discount deleted'),'','g')
                 }
             })
             

@@ -2,7 +2,6 @@ $(function() {
     if($( "#datepicker" ).length){
         $( "#datepicker" ).datepicker();
     }
-    
  });
 
 function addToWL(varId) {
@@ -15,10 +14,10 @@ function addToWL(varId) {
         if (checkedList.hasClass('newWishList')) {
             listID = false;
             listName = $('.wish_list_name').val();
-            if (listName === "Создать список") {
-                $('#errors').css('display', 'block')
+            if (listName === lang('Create list')) {
+                $('#errors').css('display', 'block');
                 $('#wishCart .error').html('');
-                $('#wishCart .error').append('<p>Неверная назва списка</p>');
+                $('#wishCart .error').append('<p>' + lang('Wrong list name') + '</p>');
                 return false;
             }
         }
@@ -43,7 +42,7 @@ function addToWL(varId) {
                         for (var error in errors) {
                             outErrors += errors[error];
                         }
-                        $('#errors').css('display', 'block')
+                        $('#errors').css('display', 'block');
                         $('#wishCart .error').html('');
                         $('#wishCart .error').append(outErrors);
 
@@ -54,7 +53,7 @@ function addToWL(varId) {
 
                     //--------------------
 
-                    $('#' + varId).val('Уже в Списке Желания');
+                    $('#' + varId).val(lang('Already in Wish List'));
                     $('#' + varId).addClass('inWL');
                     $('#' + varId).bind('click');
                     $('#' + varId).die('click').on("click", function() {
@@ -65,9 +64,9 @@ function addToWL(varId) {
             }
         });
     } else {
-        $('#errors').css('display', 'block')
+        $('#errors').css('display', 'block');
         $('#wishCart .error').html('');
-        $('#wishCart .error').append('<p>Список не обран</p>');
+        $('#wishCart .error').append('<p>' + lang('List does not chosen') + '</p>');
     }
 }
 
@@ -113,7 +112,7 @@ function delWL($this, WLID) {
 
 function editWL() {
     var title = $('.wishListTitle').text();
-    $('.wishListTitle').replaceWith('<input type="text value="' + +'">')
+    $('.wishListTitle').replaceWith('<input type="text value="' + +'">');
 }
 
 function ajaxFileUpload(upload_field)
@@ -147,7 +146,7 @@ function renderPopup(varId, wlBtn) {
                     if (!$('.wishTMP').length) {
                         body.append(data.popup);
                     }
-                    body.append('<div class="overlayDrop drop_overlay_fixed" style="position: fixed; width: 100%; height: 100%; left: 0px; top: 0px; z-index: 1001; background-color: rgb(0, 0, 0); opacity: 0.6;"></div>')
+                    body.append('<div class="overlayDrop drop_overlay_fixed" style="position: fixed; width: 100%; height: 100%; left: 0px; top: 0px; z-index: 1001; background-color: rgb(0, 0, 0); opacity: 0.6;"></div>');
                     $('#wishCart').css('display', 'block');
                 }
             }
@@ -172,7 +171,7 @@ $('.newWishList').live('click', function() {
     var maxListsCount = $(this).data('maxlistscount');
     if (listCount >= maxListsCount) {
         if (!$('.listsLimit').length) {
-            $('.newWishListLable').append('<div class="listsLimit">Лимит вишлистов закончен</div>');
+            $('.newWishListLable').append('<div class="listsLimit">' + lang('Limit of Wish List finished ') + '</div>');
         }
 
         $(this).removeAttr('checked');
@@ -190,12 +189,12 @@ $('.APItester').live('click', function (){
          },
          url: 'wishlist/wishlistApi/show/49/9',
          success: function(data) {
-              console.log(data)
+              console.log(data);
              if(typeof data != Object){
                  $('.testAPI').replaceWith('<div style="border: 2px solid;">' + data + '</div>');
              }else{
                  $('.testAPI').text(JSON.stringify(data));
-                 console.log(data)
+                 console.log(data);
              }            
          }
      });

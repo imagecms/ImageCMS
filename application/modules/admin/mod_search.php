@@ -93,7 +93,7 @@ class Mod_search extends BaseAdminController {
 
         if ($module_data['module_data'] == FALSE)
         {
-            echo lang('ac_error_not_found');
+            echo lang("Error: Module information has not been found");
             return;
         }
 
@@ -120,7 +120,7 @@ class Mod_search extends BaseAdminController {
 
         if (!function_exists('ftp_connect') AND $use_dir == FALSE)
         {
-            showMessage(lang('ac_ftp_fun_dis'),false,'r');
+            showMessage(lang("FTP_connect function is not available","admin"),false,'r');
             exit;
         }
 
@@ -137,7 +137,7 @@ class Mod_search extends BaseAdminController {
 
             if ($this->ftp->connect($config) == FALSE)
             {
-                showMessage(lang('ac_err_conn_to_serv'));
+                showMessage(lang("Server connection error:Check username and password"));
             }
         }
         
@@ -164,7 +164,7 @@ class Mod_search extends BaseAdminController {
 
             if ($error == TRUE)
             {
-                showMessage(lang('ac_wrong_path_to_root'),false,'r');
+                showMessage(lang("Wrong path to the root directory","admin"),false,'r');
                 exit;
             }
             else
@@ -179,7 +179,7 @@ class Mod_search extends BaseAdminController {
 
         if(($fh = fopen($module_data['file'], 'r')) == FALSE)
         {
-            showMessage(lang('ac_error_down_file'),false,'r');
+            showMessage(lang("File downloading error","admin"),false,'r');
         }
         else
         {
@@ -204,7 +204,7 @@ class Mod_search extends BaseAdminController {
             {
                 if ( ! mkdir($tmp_folder.$name.'/'))
                 {
-                    showMessage(lang('ac_error_cr_temp_dir'),false,'r');
+                    showMessage(lang("Creation of temporary directory has been failed","admin"),false,'r');
                     fclose($fh);
 
                     if ($use_dir == FALSE)
@@ -228,13 +228,13 @@ class Mod_search extends BaseAdminController {
                 }
                 else
                 {
-                    showMessage(lang('ac_to_continue').APPPATH.'modules/'.$name,lang('ac_atten'),'r');
+                    showMessage(lang("Delete the directory to continue","admin").APPPATH.'modules/'.$name,lang("Attention or Caution","admin"),'r');
                     exit;
                 }
 
                 if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, APPPATH.'modules/'.$name.'/')) == 0)
                 {
-                    showMessage(lang('ac_error_extract'),false,'r');
+                    showMessage(lang("Exploding error","admin"),false,'r');
                     exit;
                 }
 
@@ -245,7 +245,7 @@ class Mod_search extends BaseAdminController {
             
                 if (!$this->components->install($name))
                 {
-                    showMessage(lang('ac_error_install_module'),false,'r');
+                    showMessage(lang("Module installation error","admin"),false,'r');
                 }
 
                 // Delete temp dir
@@ -255,7 +255,7 @@ class Mod_search extends BaseAdminController {
                 // Delete temp .zip file
                 @unlink($tmp_folder.$name.'.zip');
 
-                showMessage(lang('ac_module_installed'),false,'g');
+                showMessage(lang("Modul has been installed","admin"),false,'g');
 
                 // Close install window
                 closeWindow('mod_install_w');
@@ -265,7 +265,7 @@ class Mod_search extends BaseAdminController {
 
             if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, $tmp_folder.$name.'/')) == 0)
             {
-                showMessage(lang('ac_error_extract'),false,'r');
+                showMessage(lang("Exploding error","admin"),false,'r');
             }
             else
             {
@@ -284,7 +284,7 @@ class Mod_search extends BaseAdminController {
                 {
                     if (!$this->ftp->mirror($tmp_folder.$name.'/', $dest_folder))
                     {
-                        showMessage(lang('ac_error_cr_temp_dir'),false,'r'); 
+                        showMessage(lang("Creation of temporary directory has been failed","admin"),false,'r'); 
                     }
                 }
 
@@ -293,7 +293,7 @@ class Mod_search extends BaseAdminController {
             
                 if (!$this->components->install($name))
                 {
-                    showMessage(lang('ac_error_install_module'),false,'r');
+                    showMessage(lang("Module installation module","admin"),false,'r');
                 }
 
                 // Delete temp dir
@@ -303,7 +303,7 @@ class Mod_search extends BaseAdminController {
                 // Delete temp .zip file
                 @unlink($tmp_folder.$name.'.zip');
 
-                showMessage(lang('ac_module_installed'),false,'g');
+                showMessage(lang("Modul has been installed","admin"),false,'g');
 
                 // Close install window
                 closeWindow('mod_install_w');

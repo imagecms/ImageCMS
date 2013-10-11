@@ -33,7 +33,7 @@
     <input type="hidden" name="redirect" value="{uri_string()}" />
 
     {if $is_logged_in}
-        <p>{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang('lang_logout')}</a></p>
+        <p>{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang("Exit","admin")}</a></p>
     {else:}
     <p class="clear">
         <label for="comment_author" style="width:140px;" class="left">{lang('lang_comment_author')}</label>
@@ -60,7 +60,7 @@
     <div style="padding-bottom:4px;">
     <p class="clear">
         {if $captcha_type == 'captcha'}
-            <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}</label>
+            <label for="captcha" style="width:140px;" class="left">{lang("Code protection","admin")}</label>
             <input type="text" name="captcha" id="captcha" />  <span style="color:red;">*</span>
         {/if}
         <br/>

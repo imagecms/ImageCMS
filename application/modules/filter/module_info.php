@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Filter',     
-	'description' => 'Поиск страниц и категорий по доп. полях.',                  
+	'menu_name'   => lang('Filter', 'filter'),     
+	'description' => lang('Search pages and categories to add. fields', 'filter'),                  
 	'admin_type'  => 'window',            
 	'window_type' => 'xhr',               
         'w'           => 600,                 	

@@ -2,24 +2,24 @@
  * Translated default messages for the jQuery validation plugin.
  * Locale: RU (Russian; русский язык)
  */
-(function ($) {
+(function ($, langs) {
 	$.extend($.validator.messages, {
-		required: "Это поле необходимо заполнить.",
-		remote: "Пожалуйста, введите правильное значение.",
-		email: "Пожалуйста, введите корректный адрес электронной почты.",
-		url: "Пожалуйста, введите корректный URL.",
-		date: "Пожалуйста, введите корректную дату.",
-		dateISO: "Пожалуйста, введите корректную дату в формате ISO.",
-		number: "Пожалуйста, введите число.",
-		digits: "Пожалуйста, вводите только цифры.",
-		creditcard: "Пожалуйста, введите правильный номер кредитной карты.",
-		equalTo: "Пожалуйста, введите такое же значение ещё раз.",
-		accept: "Пожалуйста, выберите файл с правильным расширением.",
-		maxlength: $.validator.format("Пожалуйста, введите не больше {0} символов."),
-		minlength: $.validator.format("Пожалуйста, введите не меньше {0} символов."),
-		rangelength: $.validator.format("Пожалуйста, введите значение длиной от {0} до {1} символов."),
-		range: $.validator.format("Пожалуйста, введите число от {0} до {1}."),
-		max: $.validator.format("Пожалуйста, введите число, меньшее или равное {0}."),
-		min: $.validator.format("Пожалуйста, введите число, большее или равное {0}.")
+            	required: langs.needToFillField,
+		remote: langs.please + ", " + langs.enterCorrectValue +  ".",
+		email: langs.please + ", " + langs.enterValidEmailAddress + ".",
+		url: langs.please + ", " + langs.enterCorrectURL + ".",
+		date: langs.please +  ", " + langs.enterCorrectDate + ".",
+		dateISO: langs.please +  ", " + langs.enterCorrectDateFormatISO + ".",
+		number: langs.please +  ", " + langs.enterNumber + ".",
+		digits: langs.please + ", " + langs.enterOnlyNumbers + ".",
+		creditcard: langs.please +  ", " + langs.enterValidCreditCardNumber + ".",
+		equalTo: langs.please +  ", " + langs.enterTheSameValueAgain + ".",
+		accept:  langs.please + ", " + langs.selectFileWwithCorrectExtension + ".",
+		maxlength: $.validator.format(langs.please +  ", " + langs.enterNoMore + " {0} " + langs.characters + "."),
+		minlength: $.validator.format(langs.please +  ", " + langs.enterAtLeast + " {0} " + langs.characters + "."),
+		rangelength: $.validator.format(langs.please +  ", " + langs.enterValueFrom + " {0} " + langs.to + " {1} " + langs.characters + "."),
+		range: $.validator.format(langs.please +  ", " + langs.enterNumberFrom + "{0} " + langs.to + " {1}."),
+		max: $.validator.format(langs.please + ", " + langs.enterNumberLessThanOrEqualTo + " {0}."),
+		min: $.validator.format(langs.please +  ", " + langs.enterNumberMoreThanOrEqualTo + " {0}.")
 	});
-}(jQuery));
+}(jQuery, lang));

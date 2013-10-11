@@ -23,6 +23,16 @@
         <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
+            {$lang = '/' . \MY_Controller::getCurrentLocale()} 
+        {else:}
+            {$lang = ''} 
+        {/if}
+        <script type="text/javascript">
+            var lang = "{echo $lang}";
+            var langs = "{echo $lang}";
+            
+        </script>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <!--[if lte IE 8]>
             <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -46,6 +56,25 @@
         {/literal}
         {$canonical}
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
+
+        {literal}
+            <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-43984645-1']);
+            _gaq.push(['_setDomainName', 'none']);
+            _gaq.push(['_setAllowLinker', 'true']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            </script>
+        {/literal}
     </head>
     <body class="is{echo $agent[0]}">
         <div class="mainBody">
@@ -165,13 +194,13 @@
                                               id="autocomlete">
                                             <button class="f_r btn" type="submit">
                                                 <span class="icon-search"></span>
-                                                <span class="text-el">{lang('search_find')}</span>
+                                                <span class="text-el">{lang('Найти','commerce4x')}</span>
                                             </button>
                                             <div class="o_h">
                                                 <input type="text"
                                                        name="text"
                                                        value=""
-                                                       placeholder="{lang('s_se_thi_sit')}"
+                                                       placeholder="{lang("Search this site","admin")}"
                                                        autocomplete="off"
                                                        class="place_hold"
                                                        id="inputString"/>
@@ -196,7 +225,7 @@
                                                         data-drop=".drop-order-call">
                                                     <span class="icon-order-call"></span>
                                                     <span class="d_l_b">
-                                                        {lang('s_coll_order')}
+                                                        {lang("Request Call","admin")}
                                                     </span>
                                                 </button>
                                             </li>
@@ -246,17 +275,17 @@
                             <ul class="contacts_info">
                                 <li>
                                     <span class="icon-foot-phone"></span>
-                                    <span class="f-w_b">{lang('s_tel')}:</span>
+                                    <span class="f-w_b">{lang('Phone')}:</span>
                                     +8 (090) <span class="d_n">&minus;</span> 500-50-50,
                                     +8 (100)<span class="d_n">&minus;</span> 500-50-50
                                 </li>
                                 <li>
                                     <span class="icon-foot-email"></span>
-                                    <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                                    <span class="f-w_b">{lang('Email')}:</span> Info@imagecms.net
                                 </li>
                                 <li>
                                     <span class="icon-foot-skype"></span>
-                                    <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                                    <span class="f-w_b">{lang('Skype')}:</span> ImageCMS
                                 </li>
                                 <!--Load star rating-->
                                 {$CI->load->module('star_rating')->show_star_rating()}
@@ -278,11 +307,10 @@
                                     <a href="#" class="odnoklasniki"></a>
                                 </div>
                             </div>
-                            <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
-                            {lang('s_footer_seo')}
+                            <a href="http://imagecms.net" target="_blank">{lang('Создание интернет магазина','commerce4x')}</a><br/>
+                            {lang('SEO оптимизация сайта','commerce4x')}
                         </div>
                         <!--End-->
-
                     </div>
                 </div>
             </div>
@@ -291,13 +319,13 @@
 
         <!-- php vars to js -->
         <script type="text/javascript">
-                                                        var curr = '{$CS}';
-                                                        var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
-                                                        var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
-                                                        var inCart = '{lang('already_in_basket')}';
-                                                        var toCart = '{lang('s_buy')}';
-                                                        var pcs = 'шт.';
-                                                        var kits = 'компл.';
+            var curr = '{$CS}';
+            var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
+            var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
+            var inCart = '{lang('Already in basket')}';
+            var toCart = '{lang('Buy')}';
+            var pcs = 'шт.';
+            var kits = 'компл.';
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->
@@ -306,10 +334,12 @@
         {else:}
             {$cnt_comp = 0}
         {/if}
+
         <script>
             var inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}");
             var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
             var inServerCompare = parseInt("{$cnt_comp}");
+
         </script>
 
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>

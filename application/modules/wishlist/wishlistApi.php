@@ -11,6 +11,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('wishlist');
     }
 
     /**
@@ -178,7 +180,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * @param int $varId
      * @return json
      */
-    public function renderWLButton($varId) {
+    public function renderWLButton($varId, $data = array()) {
         if ($this->dx_auth->is_logged_in()) {
             $data['href'] = '/wishlist/renderPopup/' . $varId;
         } else {
@@ -187,12 +189,12 @@ class WishlistApi extends \wishlist\classes\BaseApi {
 
         if (!in_array($varId, $this->userWishProducts)) {
             $data['varId'] = $varId;
-            $data['value'] = lang('btn_add_2_WL');
+            $data['value'] = lang('Add to Wish List', 'wishlist');
             $data['max_lists_count'] = $this->settings['maxListsCount'];
             $data['class'] = 'btn';
         } else {
             $data['varId'] = $varId;
-            $data['value'] = lang('btn_already_in_WL');
+            $data['value'] = lang('Already in Wish List', 'wishlist');
             $data['max_lists_count'] = $this->settings['maxListsCount'];
             $data['class'] = 'btn inWL';
         }
@@ -221,7 +223,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         }
         return json_encode($data);
     }
-    
+
     /**
      * render popup for adding to wishlist
      * @param type $varId
@@ -269,7 +271,23 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         parent::do_upload();
         return $this->return_json();
     }
-    
+
+    /**
+     * send email
+     *
+     * @return json
+     */
+    public function send_email() {
+        parent::send_email();
+        return $this->return_json();
+    }
+
+    public function renderEmail($wish_list_id) {
+        \CMSFactory\assetManager::create()
+                ->setData('wish_list_id', $wish_list_id)
+                ->render('sendEmail', TRUE);
+    }
+
     /**
      * return sting format information about user wish list items
      */
@@ -279,7 +297,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
             $wish_lists = $this->wishlist_model->getUserWishListsByID($user_id);
             $str = '[';
             foreach ($wish_lists as $key => $value) {
-                $str .= '"' . $value['wish_list_id'] . '_' . $value['product_id'] . '_' . $value['variant_id'] . '",';
+                $str .= '"' . $value['product_id'] . '_' . $value['variant_id'] . '",';
             }
             echo rtrim($str, ',') . ']';
         }

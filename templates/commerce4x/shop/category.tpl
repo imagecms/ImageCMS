@@ -37,11 +37,11 @@
             <!-- category title and products count output -->
             <h1 class="d_i">{echo $title}</h1>
             {if count($products)>0}
-                <span class="c_97">{lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
+                <span class="c_97">{lang("Found","admin")} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product","admin"), lang("product","admin"), lang("product","admin")))}</span>
                 <div class="clearfix t-a_c frame_func_catalog">
                     <!-- sort block -->
                     <div class="f_l">
-                        <span class="v-a_m">{lang('s_order_by')}:</span>
+                        <span class="v-a_m">{lang("Order by","admin")}:</span>
                         <div class="lineForm w_170 sort">
                             <select class="sort" id="sort" name="order">
                                 {$sort =ShopCore::app()->SSettings->getSortingFront()}
@@ -54,7 +54,7 @@
 
                     <!-- products on page count -->
                     <div class="f_r">
-                        <span class="v-a_m">{lang('s_products_per_page')}:</span>
+                        <span class="v-a_m">{lang("Products per page","admin")}:</span>
                         <div class="lineForm w_70 sort">
                             {if ShopCore::$_GET['user_per_page'] == null}
                                 {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
@@ -72,8 +72,8 @@
 
                     <!-- selecting product list type -->
                     <div class="groupButton list_pic_btn">
-                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
+                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang("Image view","admin")}</span></button>
+                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang("List view","admin")}</span></button>
                     </div>
                 </div>
 
@@ -181,7 +181,7 @@
                                                                       data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                       data-stock="{echo $pv->getStock()}"
                                                                       >
-                                                    {lang('s_buy')}
+                                                    {lang('Купить','commerce4x')}
                                                 </button>
                                             {else:}
                                                 <button {if $key != 0}style="display:none"{/if}
@@ -206,7 +206,7 @@
                                                                       type="button"
                                                                       class="btn btn_not_avail variant_{echo $pv->getId()} variant">
                                                     <span class="icon-but"></span>
-                                                    <span class="text-el">{lang('s_message_o_report')}</span>
+                                                    <span class="text-el">{lang('Сообщить о появлении','commerce4x')}</span>
                                                 </button>
                                             {/if}
                                         {/foreach}
@@ -220,13 +220,14 @@
                                         <button class="btn btn_small_p toCompare"
                                                 data-prodid="{echo $product->getId()}"
                                                 type="button"
-                                                data-title="{lang('s_add_to_compare')}"
-                                                data-firtitle="{lang('s_add_to_compare')}"
-                                                data-sectitle="{lang('s_in_compare')}"
+                                                data-title="{lang('В список сравнений','commerce4x')}"
+                                                data-firtitle="{lang('В список сравнений','commerce4x')}"
+                                                data-sectitle="{lang('В списке сравнений','commerce4x')}"
                                                 data-rel="tooltip">
                                             <span class="icon-comprasion_2"></span>
-                                            <span class="text-el">{lang('s_add_to_compare')}</span>
+                                            <span class="text-el">{lang('В список сравнений','commerce4x')}</span>
                                         </button>
+{/*}
                                         {$CI->load->module('wishlist')->renderWLButton($product->firstvariant->getId())}
                                         {foreach $variants as $key => $pv}
                                             <!-- to wish list button -->
@@ -235,14 +236,15 @@
                                                                   data-prodid="{echo $product->getId()}"
                                                                   data-varid="{echo $pv->getId()}"
                                                                   type="button"
-                                                                  data-title="{lang('s_add_to_wish_list')}"
-                                                                  data-firtitle="{lang('s_add_to_wish_list')}"
-                                                                  data-sectitle="{lang('s_in_wish_list')}"
+                                                                  data-title="{lang('В список желаний','commerce4x')}"
+                                                                  data-firtitle="{lang('В список желаний','commerce4x')}"
+                                                                  data-sectitle="{lang('В списке желаний','commerce4x')}"
                                                                   data-rel="tooltip">
                                                 <span class="icon-wish_2"></span>
-                                                <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                                <span class="text-el">{lang('В список желаний','commerce4x')}</span>
                                             </button>
                                         {/foreach}
+{ */}
                                     </div>
                                 </div>
                                 <div class="short_description">
@@ -269,17 +271,17 @@
 
                             <!-- creating hot bubble for products image if product is hot -->
                             {if $product->getHot()}
-                                <span class="top_tovar nowelty">{lang('s_shot')}</span>
+                                <span class="top_tovar nowelty">{lang("New","admin")}</span>
                             {/if}
 
                             <!-- creating hot bubble for products image if product is action -->
                             {if $product->getAction()}
-                                <span class="top_tovar promotion">{lang('s_saction')}</span>
+                                <span class="top_tovar promotion">{lang("Promotion","admin")}</span>
                             {/if}
 
                             <!-- creating hot bubble for products image if product is hit -->
                             {if $product->getHit()}
-                                <span class="top_tovar discount">{lang('s_shit')}</span>
+                                <span class="top_tovar discount">{lang('Hit')}</span>
                             {/if}
                         </li>
                     {/foreach}

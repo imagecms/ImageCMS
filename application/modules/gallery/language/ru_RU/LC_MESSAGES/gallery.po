@@ -1,0 +1,689 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-18 15:35+0300\n"
+"PO-Revision-Date: 2013-09-24 13:06+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "My last photo"
+msgstr "Мое последнее фото"
+
+#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:195
+msgid "Gallery"
+msgstr "Галерея"
+
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:166
+msgid "Image"
+msgstr "Изображение"
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "from"
+msgstr "от"
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "All images"
+msgstr "Все изображения"
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "Previous"
+msgstr "Предыдущий"
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "Next"
+msgstr "Следующий"
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "Albums not found"
+msgstr "Альбомы не найдены"
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "All albums"
+msgstr "Все альбомы"
+
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:78
+#: /var/www/image.loc/_temp2.php:108
+#: /var/www/image.loc/_temp2.php:184
+msgid "Categories"
+msgstr "Категории"
+
+#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:41
+msgid "Removing categories"
+msgstr "Удаление категорий"
+
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:42
+msgid "Remove selected category"
+msgstr "Удалить выбранную категорию"
+
+#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:70
+msgid "View images"
+msgstr "Просмотр изображений"
+
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:48
+msgid "Edit"
+msgstr "Редактировать"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Edit albums"
+msgstr "Редактирование альбомов"
+
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:79
+#: /var/www/image.loc/_temp2.php:95
+#: /var/www/image.loc/_temp2.php:104
+#: /var/www/image.loc/_temp2.php:183
+#: /var/www/image.loc/_temp2.php:192
+#: /var/www/image.loc/_temp2.php:212
+#: /var/www/image.loc/_temp2.php:214
+#: /var/www/image.loc/_temp2.php:220
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "Delete albums"
+msgstr "Удалить альбомы"
+
+#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:65
+#: /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:103
+#: /var/www/image.loc/_temp2.php:191
+#: /var/www/image.loc/_temp2.php:206
+#: /var/www/image.loc/_temp2.php:219
+msgid "Cancel"
+msgstr "Отмена"
+
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:131
+#: /var/www/image.loc/_temp2.php:134
+#: /var/www/image.loc/_temp2.php:141
+#: /var/www/image.loc/_temp2.php:144
+#: /var/www/image.loc/_temp2.php:151
+#: /var/www/image.loc/_temp2.php:154
+msgid "No"
+msgstr "Нет"
+
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:45
+msgid "Height"
+msgstr "Высота"
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "Return"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:47
+msgid "Add pictures"
+msgstr "Додать картинки"
+
+#: /var/www/image.loc/_temp2.php:49
+msgid "Widget settings"
+msgstr "Настройки виджета"
+
+#: /var/www/image.loc/_temp2.php:50
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:98
+#: /var/www/image.loc/_temp2.php:115
+#: /var/www/image.loc/_temp2.php:181
+#: /var/www/image.loc/_temp2.php:205
+#: /var/www/image.loc/_temp2.php:208
+#: /var/www/image.loc/_temp2.php:211
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:182
+msgid "Save and go back"
+msgstr "Сохранить и вернуться"
+
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:82
+#: /var/www/image.loc/_temp2.php:113
+msgid "Settings"
+msgstr "Настройки"
+
+#: /var/www/image.loc/_temp2.php:54
+msgid "Images limit"
+msgstr "Лимит изображений"
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "Algorithm"
+msgstr "Алгоритм"
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "Last images"
+msgstr "Последние изображения"
+
+#: /var/www/image.loc/_temp2.php:57
+msgid "Random images"
+msgstr "Случайные изображения"
+
+#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:80
+msgid "Create a category"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:68
+#: /var/www/image.loc/_temp2.php:97
+#: /var/www/image.loc/_temp2.php:106
+#: /var/www/image.loc/_temp2.php:114
+#: /var/www/image.loc/_temp2.php:180
+#: /var/www/image.loc/_temp2.php:210
+msgid "Back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:69
+msgid "Create"
+msgstr "Создать"
+
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:99
+msgid "Save and exit"
+msgstr "Сохранить и выйти"
+
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:71
+#: /var/www/image.loc/_temp2.php:84
+#: /var/www/image.loc/_temp2.php:100
+#: /var/www/image.loc/_temp2.php:109
+#: /var/www/image.loc/_temp2.php:185
+#: /var/www/image.loc/_temp2.php:197
+#: /var/www/image.loc/_temp2.php:215
+msgid "Name"
+msgstr "Название"
+
+#: /var/www/image.loc/_temp2.php:63
+#: /var/www/image.loc/_temp2.php:75
+#: /var/www/image.loc/_temp2.php:86
+#: /var/www/image.loc/_temp2.php:101
+#: /var/www/image.loc/_temp2.php:110
+#: /var/www/image.loc/_temp2.php:186
+#: /var/www/image.loc/_temp2.php:204
+msgid "Description"
+msgstr "Описание"
+
+#: /var/www/image.loc/_temp2.php:64
+#: /var/www/image.loc/_temp2.php:102
+#: /var/www/image.loc/_temp2.php:187
+#: /var/www/image.loc/_temp2.php:203
+msgid "Position"
+msgstr "Позиция"
+
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:85
+msgid "Albums"
+msgstr "Альбомы"
+
+#: /var/www/image.loc/_temp2.php:72
+#: /var/www/image.loc/_temp2.php:87
+msgid "Created"
+msgstr "Создано"
+
+#: /var/www/image.loc/_temp2.php:73
+msgid "Has been updated"
+msgstr "Обновлен"
+
+#: /var/www/image.loc/_temp2.php:74
+#: /var/www/image.loc/_temp2.php:199
+msgid "Views"
+msgstr "Просмотров"
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "No albums found"
+msgstr "Альбомы не найдены"
+
+#: /var/www/image.loc/_temp2.php:77
+msgid "Delete album?"
+msgstr "Удалить альбом?"
+
+#: /var/www/image.loc/_temp2.php:81
+#: /var/www/image.loc/_temp2.php:105
+#: /var/www/image.loc/_temp2.php:107
+msgid "Create an album"
+msgstr "Создать альбом"
+
+#: /var/www/image.loc/_temp2.php:83
+msgid "ID"
+msgstr "ID"
+
+#: /var/www/image.loc/_temp2.php:88
+#: /var/www/image.loc/_temp2.php:89
+#: /var/www/image.loc/_temp2.php:96
+msgid "Edit the category"
+msgstr "Изменить категорию"
+
+#: /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:91
+msgid "View albums"
+msgstr "Просмотр альбомов"
+
+#: /var/www/image.loc/_temp2.php:92
+msgid "Category list is empty"
+msgstr "Список категорий пуст"
+
+#: /var/www/image.loc/_temp2.php:93
+msgid "Delete category?"
+msgstr "Удалить категорию?"
+
+#: /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:188
+msgid "Template file"
+msgstr "Файл шаблона"
+
+#: /var/www/image.loc/_temp2.php:112
+#: /var/www/image.loc/_temp2.php:189
+msgid "by default"
+msgstr "по умолчанию"
+
+#: /var/www/image.loc/_temp2.php:116
+msgid "Categories and albums"
+msgstr "Категории и альбомы"
+
+#: /var/www/image.loc/_temp2.php:117
+msgid "Sort"
+msgstr "Сортировать"
+
+#: /var/www/image.loc/_temp2.php:118
+msgid "By date"
+msgstr "По дате"
+
+#: /var/www/image.loc/_temp2.php:119
+msgid "in alphabetic order"
+msgstr "в алфавитном порядке"
+
+#: /var/www/image.loc/_temp2.php:120
+msgid "By position"
+msgstr "По позиции"
+
+#: /var/www/image.loc/_temp2.php:121
+msgid "in descending order"
+msgstr "в порядке убывания"
+
+#: /var/www/image.loc/_temp2.php:122
+msgid "in  ascending order"
+msgstr "в порядке возрастания"
+
+#: /var/www/image.loc/_temp2.php:123
+msgid "Images"
+msgstr "Изображения"
+
+#: /var/www/image.loc/_temp2.php:124
+msgid "maximum file size"
+msgstr "Максимальный размер файла"
+
+#: /var/www/image.loc/_temp2.php:125
+msgid "In megabites"
+msgstr "В мегабайтах"
+
+#: /var/www/image.loc/_temp2.php:126
+msgid "Maximum width"
+msgstr "Максимальная ширина"
+
+#: /var/www/image.loc/_temp2.php:127
+msgid "Maximum height"
+msgstr "Максимальная высота"
+
+#: /var/www/image.loc/_temp2.php:128
+msgid "Quality"
+msgstr "Качество"
+
+#: /var/www/image.loc/_temp2.php:129
+#: /var/www/image.loc/_temp2.php:139
+#: /var/www/image.loc/_temp2.php:149
+msgid "Save ratio"
+msgstr "Сохранить соотношение"
+
+#: /var/www/image.loc/_temp2.php:130
+#: /var/www/image.loc/_temp2.php:133
+#: /var/www/image.loc/_temp2.php:140
+#: /var/www/image.loc/_temp2.php:143
+#: /var/www/image.loc/_temp2.php:150
+#: /var/www/image.loc/_temp2.php:153
+msgid "Yes"
+msgstr "Да"
+
+#: /var/www/image.loc/_temp2.php:132
+#: /var/www/image.loc/_temp2.php:142
+#: /var/www/image.loc/_temp2.php:152
+msgid "Cut the borders"
+msgstr "Срезать границы"
+
+#: /var/www/image.loc/_temp2.php:135
+msgid "Image preview"
+msgstr "Предварительный просмотр изображения"
+
+#: /var/www/image.loc/_temp2.php:136
+#: /var/www/image.loc/_temp2.php:146
+msgid "Width"
+msgstr "Ширина"
+
+#: /var/www/image.loc/_temp2.php:137
+#: /var/www/image.loc/_temp2.php:138
+#: /var/www/image.loc/_temp2.php:147
+#: /var/www/image.loc/_temp2.php:148
+#: /var/www/image.loc/_temp2.php:172
+#: /var/www/image.loc/_temp2.php:177
+msgid "px"
+msgstr "px"
+
+#: /var/www/image.loc/_temp2.php:145
+msgid "Image icons"
+msgstr "Иконки изображения"
+
+#: /var/www/image.loc/_temp2.php:155
+msgid "Watermark"
+msgstr "Водяной знак"
+
+#: /var/www/image.loc/_temp2.php:156
+msgid "horizontal alignment"
+msgstr "Горизонтальное выравнивание"
+
+#: /var/www/image.loc/_temp2.php:157
+msgid "left or on the left"
+msgstr "налево или слева"
+
+#: /var/www/image.loc/_temp2.php:158
+msgid "in the center"
+msgstr "в центре"
+
+#: /var/www/image.loc/_temp2.php:159
+msgid "on the right"
+msgstr "справа"
+
+#: /var/www/image.loc/_temp2.php:160
+msgid "vertical alignment"
+msgstr "Вертикальное выравнивание"
+
+#: /var/www/image.loc/_temp2.php:161
+msgid "at the top"
+msgstr "в верху"
+
+#: /var/www/image.loc/_temp2.php:162
+msgid "in the middle"
+msgstr "в середине"
+
+#: /var/www/image.loc/_temp2.php:163
+msgid "at the bottom"
+msgstr "в низу"
+
+#: /var/www/image.loc/_temp2.php:164
+msgid "Type"
+msgstr "Тип"
+
+#: /var/www/image.loc/_temp2.php:165
+#: /var/www/image.loc/_temp2.php:173
+msgid "Text"
+msgstr "Текст"
+
+#: /var/www/image.loc/_temp2.php:167
+msgid "Path to the image"
+msgstr "Путь к изображению"
+
+#: /var/www/image.loc/_temp2.php:168
+msgid "File has to be located on the server. For example"
+msgstr "Файл должен быть расположен на сервере. Например"
+
+#: /var/www/image.loc/_temp2.php:169
+msgid "Transparency"
+msgstr "Прозрачность"
+
+#: /var/www/image.loc/_temp2.php:170
+msgid "Select a digit from 1 to 100"
+msgstr "Выбор одной из цифр от 1 до 100"
+
+#: /var/www/image.loc/_temp2.php:171
+#: /var/www/image.loc/_temp2.php:176
+msgid "Offset"
+msgstr "Смещение"
+
+#: /var/www/image.loc/_temp2.php:174
+msgid "Font size"
+msgstr "Размер шрифта"
+
+#: /var/www/image.loc/_temp2.php:175
+msgid "Font colour"
+msgstr "Цвет шрифта"
+
+#: /var/www/image.loc/_temp2.php:178
+msgid "Path to font"
+msgstr "Путь к шрифту"
+
+#: /var/www/image.loc/_temp2.php:179
+#: /var/www/image.loc/_temp2.php:196
+#: /var/www/image.loc/_temp2.php:209
+msgid "Album"
+msgstr "Альбом"
+
+#: /var/www/image.loc/_temp2.php:190
+msgid "Album deletion"
+msgstr "Удаление альбома"
+
+#: /var/www/image.loc/_temp2.php:193
+msgid "Select a file"
+msgstr "Выберите файл"
+
+#: /var/www/image.loc/_temp2.php:194
+msgid "Upload a file"
+msgstr "Загрузите файл"
+
+#: /var/www/image.loc/_temp2.php:198
+msgid "Has been downloaded"
+msgstr "Загружено"
+
+#: /var/www/image.loc/_temp2.php:200
+msgid "File size"
+msgstr "Размер файла"
+
+#: /var/www/image.loc/_temp2.php:201
+msgid "Image size"
+msgstr "Размер изображения"
+
+#: /var/www/image.loc/_temp2.php:202
+msgid "Preview"
+msgstr "Просмотр"
+
+#: /var/www/image.loc/_temp2.php:207
+msgid "New name"
+msgstr "Новое имя"
+
+#: /var/www/image.loc/_temp2.php:213
+msgid "Chose all photos"
+msgstr "Выбрать все фотографии"
+
+#: /var/www/image.loc/_temp2.php:216
+msgid "Size"
+msgstr "Размер"
+
+#: /var/www/image.loc/_temp2.php:217
+msgid "Album is empty"
+msgstr "Альбом пуст"
+
+#: /var/www/image.loc/_temp2.php:218
+msgid "Deleting photos"
+msgstr "Удаление фотографий"
+
+#: ../../..//admin.php:88
+msgid "Create a directory to continue your work with the gallery"
+msgstr "Создайте директорию, чтобы продолжить работу с галереей"
+
+#: ../../..//admin.php:88
+msgid "Set the write access"
+msgstr "Установите права на запись"
+
+#: ../../..//admin.php:182
+msgid "Pre-image width"
+msgstr "Прообраз ширины"
+
+#: ../../..//admin.php:183
+msgid "pre-image height"
+msgstr "Прообраз высоты"
+
+#: ../../..//admin.php:184
+msgid "Icon width"
+msgstr "Ширины иконки"
+
+#: ../../..//admin.php:185
+msgid "Icon height"
+msgstr "Высоты иконки"
+
+#: ../../..//admin.php:186
+msgid "Watermark text"
+msgstr "Текст водяного знака"
+
+#: ../../..//admin.php:197
+msgid "Specify the correct path to watermark image"
+msgstr "Укажите правильный путь к изображение водяного знака"
+
+#: ../../..//admin.php:203
+msgid "Specify the correct path to font"
+msgstr "Укажите правильный путь к шрифта"
+
+#: ../../..//admin.php:241
+#: ../../..//gallery_widgets.php:66
+msgid "Settings have been saved"
+msgstr "Настройки сохранены"
+
+#: ../../..//admin.php:275
+msgid "Album created"
+msgstr "Альбом создан"
+
+#: ../../..//admin.php:290
+#: ../../..//admin.php:466
+#: ../../..//admin.php:700
+msgid "Changes have been saved"
+msgstr "Изменения сохранены"
+
+#: ../../..//admin.php:343
+#: ../../..//admin.php:372
+msgid "Can't load album information"
+msgstr "Не удается загрузить информацию об альбоме"
+
+#: ../../..//admin.php:427
+#: ../../..//admin.php:469
+#: ../../..//admin.php:531
+msgid "Can't load image information"
+msgstr "Не удается загрузить информацию об изображении"
+
+#: ../../..//admin.php:500
+msgid "Photos removed"
+msgstr "Фото удалены"
+
+#: ../../..//admin.php:540
+#: ../../..//admin.php:548
+#: ../../..//admin.php:556
+msgid "Positions updated"
+msgstr "Позиции обновлены"
+
+#: ../../..//gallery_widgets.php:52
+msgid "Image limit"
+msgstr "Лимит изображений"
+
+#: ../../..//module_info.php:5
+msgid "Gallery module"
+msgstr "Модуль галереи"
+
+#~ msgid "a_to_edit"
+#~ msgstr "a_to_edit"
+
+#~ msgid "amt_height"
+#~ msgstr "amt_height"
+
+#~ msgid "Created or Has been created"
+#~ msgstr "Дата создания или были созданы"
+
+#~ msgid "Preview or skin or cover"
+#~ msgstr "Предварительный просмотр или кожи или крышку"
+
+#~ msgid "Settings have been saved or settings were saved"
+#~ msgstr "Настройки сохранены или настройки были сохранены"
+
+#, fuzzy
+#~ msgid "amt_save"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_to_sort"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_by_date"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_by_position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_in_mb"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_yes"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_left"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_top"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_type"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_text"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#~ msgid "amt_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_crea"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_downloaded"
+#~ msgstr "Нааааааааамеееееееееее"

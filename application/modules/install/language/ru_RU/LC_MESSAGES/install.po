@@ -1,0 +1,377 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-26 16:53+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../_install.php:156
+msgid "Site name"
+msgstr "Название сайта"
+
+#: ../../../_install.php:157
+#: ../../../views/step_2.php:42
+msgid "Host"
+msgstr "Хост"
+
+#: ../../../_install.php:158
+msgid "Database username"
+msgstr "Имя пользователя базы данных"
+
+#: ../../../_install.php:160
+#: ../../../views/step_2.php:60
+msgid "Database name"
+msgstr "Имя базы данных"
+
+#: ../../../_install.php:162
+#: ../../../views/step_2.php:66
+msgid "Administrator name"
+msgstr "Имя администратора"
+
+#: ../../../_install.php:163
+msgid "Administrator E-mail"
+msgstr " E-mail администратора"
+
+#: ../../../_install.php:164
+#: ../../../views/main.php:150
+msgid "Language"
+msgstr "Язык"
+
+#: ../../../_install.php:171
+msgid "Database connection error"
+msgstr "Ошибка подключения к базе данных"
+
+#: ../../../_install.php:366
+msgid "Error writing file config.php"
+msgstr "Ошибка записи файла config.php"
+
+#: ../../../views/step_2.php:3
+msgid "Was founded following errors"
+msgstr "Была найдены следующие ошибки"
+
+#: ../../../views/step_2.php:7
+msgid "Site Settings"
+msgstr "Настройки сайта"
+
+#: ../../../views/step_2.php:11
+msgid "Site title"
+msgstr "Название сайта"
+
+#: ../../../views/step_2.php:17
+msgid "Language of the administrative part"
+msgstr "Язык административной части"
+
+#: ../../../views/step_2.php:20
+#: ../../../views/main.php:147
+msgid "Russian"
+msgstr "Русский"
+
+#: ../../../views/step_2.php:21
+msgid "English (beta)"
+msgstr "Английский (бета)"
+
+#: ../../../views/step_2.php:26
+msgid "Install demo data"
+msgstr "Установить демо-данные"
+
+#: ../../../views/step_2.php:33
+msgid "Database connection"
+msgstr "Подключение к базе данных"
+
+#: ../../../views/step_2.php:37
+msgid "Attention"
+msgstr "Внимание"
+
+#: ../../../views/step_2.php:37
+msgid "All the data in this database will be destroyed"
+msgstr "Все данные в этой базе данных будет уничтожены"
+
+#: ../../../views/step_2.php:48
+msgid "User name"
+msgstr "Имя пользователя"
+
+#: ../../../views/step_2.php:54
+#: ../../../views/step_2.php:74
+msgid "Password"
+msgstr "Пароль"
+
+#: ../../../views/step_2.php:84
+#: ../../../views/step_1.php:37
+msgid "Next"
+msgstr "Следующий"
+
+#: ../../../views/step_2.php:89
+msgid "All fields are required"
+msgstr "Все поля обязательны для заполнения"
+
+#: ../../../views/done.php:1
+msgid "Installation complete"
+msgstr "Установка завершена"
+
+#: ../../../views/done.php:3
+msgid "Go to Control Panel"
+msgstr "Перейти в Панель управления"
+
+#: ../../../views/done.php:5
+msgid "Main page"
+msgstr "Главная страница"
+
+#: ../../../views/license_shop.php:1
+msgid "License Agreement"
+msgstr "Лицензионное Соглашение"
+
+#: ../../../views/license_shop.php:87
+msgid "Accept license"
+msgstr "Принять лицензию"
+
+#: ../../../views/license_shop.php:89
+msgid "Cancel"
+msgstr "Отмена"
+
+#: ../../../views/main.php:5
+msgid "Installing"
+msgstr "Установка"
+
+#: ../../../views/main.php:148
+#, fuzzy
+msgid "English"
+msgstr "Английский (бета)"
+
+#: ../../../views/step_1.php:1
+msgid "Directories checking"
+msgstr "Проверка директорий"
+
+#: ../../../views/step_1.php:3
+msgid "To continue the installation, install the write rights"
+msgstr "Для продолжения установки, установите права на запись"
+
+#: ../../../views/step_1.php:3
+msgid "to the following directories"
+msgstr "к следующим каталогам"
+
+#: ../../../views/step_1.php:12
+msgid "Verifying the PHP"
+msgstr "Проверка PHP"
+
+#: ../../../views/step_1.php:14
+msgid "In order to continue the installation of the system, set the PHP options"
+msgstr "Чтобы продолжить установку системы, установки PHP параметры"
+
+#: ../../../views/step_1.php:23
+msgid "Verifying the PHP modules"
+msgstr "Проверка модулей PHP"
+
+#: ../../../views/step_1.php:25
+msgid "For best performance, install the PHP modules"
+msgstr "Для лучшей производительности, установите PHP модули"
+
+#: ../../../views/step_1.php:38
+msgid "Update"
+msgstr "Обновить"
+
+#~ msgid "Install products examples"
+#~ msgstr "Установите примеры товаров"
+
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "System information"
+#~ msgstr "Настр"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
+
+#~ msgid "New pages"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить"
+
+#, fuzzy
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "turn category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Drug category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Basic information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "General information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Orders list"
+#~ msgstr "Список замовлень"
+
+#~ msgid "Create order"
+#~ msgstr "Создатьзаказ"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
+
+#, fuzzy
+#~ msgid "Date of order"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
+
+#, fuzzy
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Pages and categories"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Product creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Banner creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a banner"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
+
+#, fuzzy
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create user"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Additional information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Category created"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

@@ -3,25 +3,25 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_tools_panel')}</span>
+                <span class="title">{lang('Tools panel', 'admin')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a class="btn btn-small pjax btn-success" href="/admin/pages/index"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</a>
-                    <a class="btn btn-small pjax btn-success" href="/admin/categories/create_form"><i class="icon-plus-sign icon-white"></i>{lang('a_create_cat')}</a>
+                    <a class="btn btn-small pjax btn-success" href="/admin/pages/index"><i class="icon-plus-sign icon-white"></i>{lang("Create a page","admin")}</a>
+                    <a class="btn btn-small pjax btn-success" href="/admin/categories/create_form"><i class="icon-plus-sign icon-white"></i>{lang("Create a category","admin")}</a>
                 </div>
             </div>
         </div>
         <div class="row-fluid">
             <div class="span8 content_big_td">
-                <h4>{lang('a_new_pages')}</h4>
+                <h4>{lang("New pages","admin")}</h4>
                 <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                     <thead>
-                    <th>{lang('a_title')}</th>
+                    <th>{lang("Title","admin")}</th>
                         {if count($latest)>0}
-                        <th>{lang('a_category')}</th>
+                        <th>{lang("Categories","admin")}</th>
                         <th>URL</th>
-                        <th>{lang('a_date_and_time_cr')}</th>
+                        <th>{lang("Time and date of creation","admin")}</th>
                         <th class="span1"></th>
                         {/if}
                     </thead>
@@ -30,11 +30,11 @@
                             {foreach $latest as $l}
                                 <tr>
                                     <td>
-                                        <a href="{$BASE_URL}admin/pages/edit/{$l.id}" class="pjax" data-rel="tooltip" data-title="{lang('a_edit')}">{truncate($l.title, 40, '...')}</a>
+                                        <a href="{$BASE_URL}admin/pages/edit/{$l.id}" class="pjax" data-rel="tooltip" data-title="{lang("Editing","admin")}">{truncate($l.title, 40, '...')}</a>
                                     </td>
                                     <td>
                                         <a href="{$BASE_URL}admin/pages/GetPagesByCategory/{$l.category}" class="pjax">
-                                            {truncate(get_category_name($l.category), 20, '...Без категории')}
+                                            {truncate(get_category_name($l.category), 20, '...' . lang('Uncategorized','admin'))}
                                         </a>
                                     </td>
                                     <td>
@@ -42,7 +42,7 @@
                                     </td>
                                     <td>{date('Y-m-d H:i:s', $l['created'])}</td>
                                     <td>
-                                        <a class="btn btn-small my_btn_s pjax" data-rel="tooltip" data-title="{lang('a_edit')}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
+                                        <a class="btn btn-small my_btn_s pjax" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
                                             <i class="icon-edit"></i>
                                         </a>
                                     </td>
@@ -52,24 +52,24 @@
                             <tr>
                                 <td>
                                     <div class="alert alert-block">
-                                        <h4>Ошибка</h4>
-                                        Нет недавно добавленых страниц
+                                        <h4>{lang('Error','admin')}</h4>
+                                        {lang('No recently added pages','admin')}
                                     </div>
                                 </td>
                             </tr>
                         {/if}
                     </tbody>
                 </table>
-                <h4>{lang('a_updated_pages')}</h4>
+                <h4>{lang("Updated pages","admin")}</h4>
                 <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                     <thead>
                     <th>
-                        {lang('a_title')}
+                       {lang("Title","admin")}
                     </th>
                     {if count($latest)>0}
-                        <th>{lang('a_category')}</th>
+                        <th>{lang("Categories","admin")}</th>
                         <th>URL</th>
-                        <th>{lang('a_date_and_time_cr')}</th>
+                        <th>{lang("Time and date of creation","admin")}</th>
                         <th class="span1">
                         </th>
                     {/if}
@@ -79,7 +79,7 @@
                             {foreach $updated as $l}
                                 <tr>
                                     <td>
-                                        <a href="{$BASE_URL}admin/pages/edit/{$l.id}" class="pjax" data-rel="tooltip" data-title="{lang('a_edit')}">{truncate($l.title, 40, '...')}</a>
+                                        <a href="{$BASE_URL}admin/pages/edit/{$l.id}" class="pjax" data-rel="tooltip" data-title="{lang("Editing","admin")}">{truncate($l.title, 40, '...')}</a>
                                     </td>
                                     <td>
                                         <a href="{$BASE_URL}admin/pages/GetPagesByCategory/{$l.category}" class="pjax">
@@ -91,7 +91,7 @@
                                     </td>
                                     <td>{date('Y-m-d H:i:s', $l['created'])}</td>
                                     <td>
-                                        <a class="btn btn-small my_btn_s pjax" data-rel="tooltip" data-title="{lang('a_edit')}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
+                                        <a class="btn btn-small my_btn_s pjax" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
                                             <i class="icon-edit"></i>
                                         </a>
                                     </td>
@@ -101,8 +101,8 @@
                             <tr>
                                 <td>
                                     <div class="alert alert-block">
-                                        <h4>Ошибка</h4>
-                                        Нет недавно обновлённых страниц
+                                        <h4>{lang('Error','admin')}</h4>
+                                        {lang('No recently updated pages','admin')}
                                     </div>
                                 </td>
                             </tr>
@@ -113,18 +113,18 @@
             <div class="span4">
                 <table class="table table-striped table-bordered table-hover table-condensed content_big_td" style="margin-top: 40px;">
                     <thead>
-                    <th>{lang('a_system')}</th>
+                    <th>{lang("System","admin")}</th>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
                                 <p>
-                                    {lang('a_version')}: {$cms_number} <br />
+                                    {lang("Version","admin")}: {$cms_number} <br />
                                     <a class="pjax" href="/admin/sys_update">
-                                            Проверить обновления
+                                            {lang('Check version update' , 'admin')}
                                     </a>
                                     <br/>
-                                    <a href="/admin/sys_info" class="pjax">{lang('a_info')}</a>
+                                    <a href="/admin/sys_info" class="pjax">{lang("Information","admin")}</a>
                                 </p>
                             </td>
                         </tr>
@@ -132,24 +132,25 @@
                 </table>
                 <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                     <thead>
-                    <th>{lang('a_stat')}</th>
+                    <th>{lang("Statistics","admin")}</th>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
                                 <p>
-                                    {lang('a_pages')}: {$total_pages} <br />
-                                    {lang('a_cats')}: {$total_cats} <br />
-                                    {lang('a_comments')}: {$total_comments} <br />
+                                    {lang("Pages","admin")}: {$total_pages} <br />
+                                    {lang("Categories","admin")}: {$total_cats} <br />
+                                    {lang("Comments","admin")}: {$total_comments} <br />
                                 </p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 {if count($comments)>0}
+
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                        <th>{lang('a_last_comm')}</th>
+                        <th>{lang('Latest/recent comments', 'admin')}</th>
                         </thead>
                         <tbody>
                             {foreach $comments as $c}
@@ -170,7 +171,7 @@
                 {if count($api_news) > 1}
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                        <th>{lang('a_cms_news')}</th>
+                        <th>{lang('ImageCMS news',"admin")}</th>
                         </thead>
                         <tbody>
                             {foreach $api_news as $a}

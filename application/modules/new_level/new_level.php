@@ -11,15 +11,16 @@ class New_level extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('new_level_model');
+        $lang = new MY_Lang();
+        $lang->load('new_level');
     }
 
     public function index() {
-        
+
     }
 
     public function autoload() {
-
-
+        
         $settings = $this->new_level_model->getthema();
 
         if (!$settings)
@@ -30,9 +31,9 @@ class New_level extends MY_Controller {
 
     /**
      * get category columns
-     * 
+     *
      * use in template: {echo $CI->load->module('new_level')->getCategoryColumns($category_id)}
-     * 
+     *
      * @param int $category_id
      * @return string
      */
@@ -60,8 +61,8 @@ class New_level extends MY_Controller {
     }
 
     /**
-     * get property types 
-     * 
+     * get property types
+     *
      * @param int $property_id
      * @return type
      */

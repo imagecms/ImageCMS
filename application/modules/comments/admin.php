@@ -18,6 +18,9 @@ class Admin extends BaseAdminController {
         //cp_check_perm('module_admin');
 
         $this->load->model('base', 'comments');
+
+        $obj = new MY_Lang();
+        $obj->load('comments');
     }
 
     // Display comments list
@@ -100,8 +103,8 @@ class Admin extends BaseAdminController {
                 $config['full_tag_close'] = '</ul></div>';
                 $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
                 $config['controls_tag_close'] = '</ul></div>';
-                $config['next_link'] = 'Next&nbsp;&gt;';
-                $config['prev_link'] = '&lt;&nbsp;Prev';
+                $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
+                $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
                 $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
                 $config['cur_tag_close'] = '</span></li>';
                 $config['prev_tag_open'] = '<li>';
@@ -121,7 +124,7 @@ class Admin extends BaseAdminController {
 
         $this->load->helper('string');
 
-        if(is_array($comments))
+        if (is_array($comments))
             $comments = $this->proccess_child_comments($comments);
 
         $all_comments = count($this->db->get('comments')->result_array());
@@ -136,7 +139,7 @@ class Admin extends BaseAdminController {
         ));
     }
 
-     public function proccess_child_comments($comments = array()) {
+    public function proccess_child_comments($comments = array()) {
         $i = 0;
         foreach ($comments as $comment) {
             if ($comment['parent'] != 0) {
@@ -198,11 +201,11 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-        showMessage('Успех', 'Измениния сохранены');
 
-        if ($this->input->post('action')=='exit')
+        showMessage(lang('Success', 'comments'), lang('Change saved', 'comments'));
+
+        if ($this->input->post('action') == 'exit')
             pjax('/admin/components/run/shop/dashboard#last_comments');
-
     }
 
     public function update_status() {
@@ -213,26 +216,26 @@ class Admin extends BaseAdminController {
 //        $this->db->where_in('parent', $this->input->post('id'));
 //        $this->db->update('comments', array('status' => $this->input->post('status')));
         /*
-        $comment = $this->comments->get_one($this->input->post('id'));
+          $comment = $this->comments->get_one($this->input->post('id'));
 
-        $this->drop_cache($this->input->post('id'), $comment['module']);
+          $this->drop_cache($this->input->post('id'), $comment['module']);
 
-        $this->_recount_comments($comment['item_id'], $comment['module']);
-        */
-        showMessage("Успех", "Статус обновлен");
+          $this->_recount_comments($comment['item_id'], $comment['module']);
+         */
+        showMessage(lang('Success', 'comments'), lang('Status updated', 'comments'));
         $this->load->helper('url');
-        $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
+        $url = '/' . str_replace(base_url(), '', $_SERVER['HTTP_REFERER']);
         pjax($url);
     }
 
     // Delete comment
     public function delete() {
         $id = $this->input->post('id');
-        if(is_array($id)){
-            foreach($id as $item)
+        if (is_array($id)) {
+            foreach ($id as $item)
                 $this->drop_cache($item);
             $comment = $this->comments->get_many($id);
-        }else{
+        } else {
             $this->drop_cache($id);
             $comment = $this->comments->get_one($id);
         }
@@ -242,9 +245,10 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-        showMessage('Комментарий(и) успешно удален(ы)');
+        showMessage(lang('Comment(s) deleted', 'comments'));
+
         $this->load->helper('url');
-        $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
+        $url = '/' . str_replace(base_url(), '', $_SERVER['HTTP_REFERER']);
         pjax($url);
     }
 
@@ -285,7 +289,7 @@ class Admin extends BaseAdminController {
 //        $this->template->add_array(array(
 //            'settings' => $settings
 //        ));
-        $this->render('settings', array('settings'=>$settings));
+        $this->render('settings', array('settings' => $settings));
         //$this->display_tpl('settings');
     }
 
@@ -300,7 +304,7 @@ class Admin extends BaseAdminController {
 
         $this->comments->save_settings($data);
 
-        showMessage('Изменения сохранены');
+        showMessage(lang('Changes saved', 'comments'));
         pjax('/admin/components/cp/comments');
     }
 
@@ -322,18 +326,15 @@ class Admin extends BaseAdminController {
 
     // Template functions
 
-	private function display_tpl($file)
-	{
-        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;
-		$this->template->show('file:'.$file);
-	}
+    private function display_tpl($file) {
+        $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
+        $this->template->show('file:' . $file);
+    }
 
-	private function fetch_tpl($file)
-	{
-        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;
-		return $this->template->show('file:'.$file);
-	}
-
+    private function fetch_tpl($file) {
+        $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
+        return $this->template->show('file:' . $file);
+    }
 
 }
 

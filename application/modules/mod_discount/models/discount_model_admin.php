@@ -17,12 +17,15 @@ class Discount_model_admin extends CI_Model {
      * @return array
      */
     public function getDiscountsList($discountType = null, $rowCount = null, $offset = null) {
-
-        $query = $this->db->order_by('active', 'desc')->order_by('id', 'desc');
+        $locale = \MY_Controller::getCurrentLocale();
+        $query = $this->db->select("*, mod_shop_discounts.id as id")->join('mod_shop_discounts_i18n', "mod_shop_discounts_i18n.id = mod_shop_discounts.id and mod_shop_discounts_i18n.locale = '" . $locale . "'", 'left')
+                //->where("mod_shop_discounts_i18n.locale " , $locale )
+                ->order_by('mod_shop_discounts.active', 'desc')->order_by('mod_shop_discounts.id', 'desc');
         if ($discountType != null) {
-            $query = $query->where('type_discount', $discountType);
+            $query = $query->where('mod_shop_discounts.type_discount', $discountType);
         }
         $query = $query->get('mod_shop_discounts')->result_array();
+        
         return $query;
     }
 
@@ -163,7 +166,9 @@ class Discount_model_admin extends CI_Model {
      * @param array $data
      * @return boolean
      */
-    public function updateDiscountById($id, $data, $typeDiscountData) {
+    public function updateDiscountById($id, $data, $typeDiscountData, $locale) {
+        $name = $data['name'];
+        unset($data['name']);
         $discountType = $data['type_discount'];
         $previousDiscount = $this->getDiscountAllDataById($id);
 
@@ -172,6 +177,11 @@ class Discount_model_admin extends CI_Model {
 
         try {
             $this->db->where('id', $id)->update('mod_shop_discounts', $data);
+            if ($this->db->query("select * from mod_shop_discounts_i18n where id = '$id' and locale = '$locale'")->num_rows())
+                $this->db->query("update mod_shop_discounts_i18n set name = '$name' where id = '$id' and locale = '$locale'");
+            else
+                $this->db->query("insert into mod_shop_discounts_i18n(id,name,locale) values('$id','$name','$locale')");
+            
             $this->db->where('discount_id', $id)->delete($discountTypeTableNamePrevious);
             $typeDiscountData['discount_id'] = $id;
 
@@ -208,8 +218,12 @@ class Discount_model_admin extends CI_Model {
      * @param int $id
      * @return boolean|array
      */
-    public function getDiscountAllDataById($id) {
+    public function getDiscountAllDataById($id, $locale = null) {
+        if (null === $locale)
+            $locale = MY_Controller::getCurrentLocale();
         $query = $this->db->from('mod_shop_discounts')->where('id', $id)->get()->row_array();
+        $query_locale = $this->db->from('mod_shop_discounts_i18n')->where('id', $id)->where('locale', $locale)->get()->row();
+        $query['name'] = $query_locale->name;
         $discountType = $query['type_discount'];
 
         if ($discountType)
@@ -273,6 +287,7 @@ class Discount_model_admin extends CI_Model {
             return false;
         try {
             $this->db->where('id', $id)->delete('mod_shop_discounts');
+            $this->db->where('id', $id)->delete('mod_shop_discounts_i18n');
             $this->db->where('discount_id', $id)->delete('mod_discount_' . $discountType);
             return true;
         } catch (Exception $e) {
@@ -308,7 +323,6 @@ class Discount_model_admin extends CI_Model {
         $sql = "CREATE  TABLE IF NOT EXISTS `mod_shop_discounts` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `key` VARCHAR(25) NULL ,
-                  `name` VARCHAR(150) NULL ,
                   `active` TINYINT NULL ,
                   `max_apply` INT NULL ,
                   `count_apply` INT NULL ,
@@ -322,6 +336,17 @@ class Discount_model_admin extends CI_Model {
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
                 COLLATE = utf8_general_ci;";
+        $this->db->query($sql);
+        
+        $sql = "CREATE  TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
+                  `id` INT NOT NULL ,
+                  `locale` VARCHAR(5) NOT NULL ,
+                  `name` VARCHAR(150) NULL ,
+                  PRIMARY KEY (`id`,`locale`) )
+                ENGINE = MyISAM
+                DEFAULT CHARACTER SET = utf8
+                COLLATE = utf8_general_ci;";
+        
         $this->db->query($sql);
 
         $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_product` (
@@ -422,6 +447,7 @@ class Discount_model_admin extends CI_Model {
 
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_shop_discounts');
+        $this->dbforge->drop_table('mod_shop_discounts_i18n');
         $this->dbforge->drop_table('mod_discount_brand');
         $this->dbforge->drop_table('mod_discount_all_order');
         $this->dbforge->drop_table('mod_discount_comulativ');
@@ -437,7 +463,7 @@ class Discount_model_admin extends CI_Model {
      */
     public function attributeLabels() {
         return array(
-            'value' => ShopCore::t('Значение'),
+            'value' => ShopCore::t(lang('Value', 'mod_discount')),
         );
     }
 
@@ -449,7 +475,7 @@ class Discount_model_admin extends CI_Model {
         return array(
             array(
                 'field' => 'value',
-                'label' => 'Значение',
+                'label' => lang('Value', 'mod_discount'),
                 'rules' => 'required|integer',
             ),
         );

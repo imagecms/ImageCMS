@@ -29,7 +29,7 @@ class Sys_upgrade extends BaseAdminController {
 
         if (!function_exists('ftp_connect'))
         {
-            showMessage(lang('ac_ftp_fun_dis'),false,'r');
+            showMessage(lang("FTP_connect function is not available","admin"),false,'r');
             exit;
         }
 
@@ -45,7 +45,7 @@ class Sys_upgrade extends BaseAdminController {
         }
         else
         {
-            showMessage(lang('ac_ur_usign_last_ver'),lang('ac_congrat'),'g');
+            showMessage(lang("You are using the latest version","admin"),lang("Congratulations!","admin"),'g');
             exit;
         }
 
@@ -59,7 +59,7 @@ class Sys_upgrade extends BaseAdminController {
 
         if ($this->ftp->connect($config) == FALSE)
         {
-            showMessage(lang('ac_err_conn_to_serv'),false,'r');
+            showMessage(lang("Server connection error:Check username and password"),false,'r');
             exit;
         }
 
@@ -82,7 +82,7 @@ class Sys_upgrade extends BaseAdminController {
         if ($error == TRUE)
         {
             $this->ftp->close();
-            showMessage(lang('ac_err_wrong_path_to_root'),false,'r');
+            showMessage(lang("Error: Wrong path to the root directory."),false,'r');
             exit;
         }
         else
@@ -93,7 +93,7 @@ class Sys_upgrade extends BaseAdminController {
             if(($fh = fopen($file, 'r')) == FALSE)
             {
                 $this->ftp->close();
-                showMessage(lang('ac_err_down_update_files'),false,'r');
+                showMessage(lang("Error downloading update file","admin"),false,'r');
                 exit;
             }
             else
@@ -126,7 +126,7 @@ class Sys_upgrade extends BaseAdminController {
                     @rmdir($tmp_folder);
                     @unlink($tmp_file);
 
-                    showMessage(lang('ac_error_extract'),false,'r');
+                    showMessage(lang("Exploding error","admin"),false,'r');
                     exit;
                 }
 
@@ -159,7 +159,7 @@ class Sys_upgrade extends BaseAdminController {
                 $this->load->library('cms_hooks');
                 $this->cms_hooks->build_hooks();
 
-                showMessage(lang('ac_update_completed'),false,'g');
+                showMessage(lang("Updating has been completed","admin"),false,'g');
                 updateDiv('page', site_url('admin/dashboard/index'));
             }
         }
@@ -177,7 +177,7 @@ class Sys_upgrade extends BaseAdminController {
 
         if(($fh = @fopen($this->upgrade_server.'migrates.xml', 'r')) == FALSE)
         {
-            //die('Ошибка загрузки файла версий.');
+            //die(lang('Error loading file versions','admin') . '.');
             $is_update = FALSE;
         }
         else

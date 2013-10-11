@@ -8,12 +8,12 @@
 
                         <div class="pull-left">
                             <span class="title">
-                            Template editor
+                            {lang('Template editor', 'template_editor')}
                             </span>
                         </div>
                         <div class="pull-right">
                             <div class="d-i_b">
-                                <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                                <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'template_editor')}</span></a>
                             </div>
                         </div>                            
                     </div>               

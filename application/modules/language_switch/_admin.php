@@ -11,6 +11,8 @@ class Admin extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+                  $lang = new MY_Lang();
+        $lang->load('language_switch');
 
         // Only admin access 
         // Do not delete this code !

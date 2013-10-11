@@ -69,7 +69,10 @@ class Cmsemail_model extends \CI_Model {
     }
 
     public function getPaternSettings($patern_name) {
-        $query = $this->db->where('name', $patern_name)->get('mod_email_paterns');
+        $locale = \MY_Controller::getCurrentLocale();
+        $query = $this->db->select('*, mod_email_paterns.id as id')
+                ->join('mod_email_paterns_i18n', "mod_email_paterns_i18n.id = mod_email_paterns.id and mod_email_paterns_i18n.locale = '$locale'", 'left')
+                ->where('mod_email_paterns.name', $patern_name)->get('mod_email_paterns');
 
         if ($query) {
             return $query->row_array();
@@ -79,17 +82,70 @@ class Cmsemail_model extends \CI_Model {
     }
 
     public function create($data) {
-        $this->db->insert('mod_email_paterns', $data);
+        
+        $locale = chose_language();
+        $data_no_locale = array(
+            'name' => $data['name'],
+            'patern' => '',
+            'from' => $data['from'],
+            'from_email' => $data['from_email'],
+            'admin_email' => $data['admin_email'],
+            'type' => $data['type'],
+            'user_message_active' => $data['user_message_active'],
+            'admin_message_active' => $data['admin_message_active'],
+        );
+        $this->db->insert('mod_email_paterns', $data_no_locale);
+        $lid = $this->db->insert_id();
+        $data_locale = array(
+            'id' => $lid,
+            'locale' => $locale,
+            'theme' => $data['theme'],
+            'user_message' => $data['user_message'],
+            'admin_message' => $data['admin_message'],    
+            'description' => $data['description'],    
+            'variables' => ''
+        );
+        $this->db->insert('mod_email_paterns_i18n', $data_locale);
+        
+
     }
 
-    public function edit($id, $data) {
-        $this->db
-                ->where('id', $id)
-                ->update('mod_email_paterns', $data);
+    public function edit($id, $data, $locale) {
+        
+        $data_no_locale = array(
+            'patern' => '',
+            'from' => $data['from'],
+            'from_email' => $data['from_email'],
+            'admin_email' => $data['admin_email'],
+            'type' => $data['type'],
+            'user_message_active' => $data['user_message_active'],
+            'admin_message_active' => $data['admin_message_active'],
+        );
+        $this->db->where('id', $id)->update('mod_email_paterns', $data_no_locale);
+
+        $data_locale = array(
+            'id' => $id,
+            'locale' => $locale,
+            'theme' => $data['theme'],
+            'user_message' => $data['user_message'],
+            'admin_message' => $data['admin_message'],    
+            'description' => $data['description'],    
+        );
+        if ($this->db->where('id', $id)->where('locale',$locale)->get('mod_email_paterns_i18n')->num_rows())
+            $this->db->where('id', $id)->where('locale',$locale)->update('mod_email_paterns_i18n', $data_locale);
+        else{
+            $data_locale['variables'] = '';
+            $this->db->insert('mod_email_paterns_i18n', $data_locale);
+
+        }
+
     }
 
     public function getAllTemplates() {
+        $locale = chose_language();
         $query = $this->db
+                ->select('*, mod_email_paterns.id as id')
+                ->join('mod_email_paterns_i18n', "mod_email_paterns_i18n.id = mod_email_paterns.id and mod_email_paterns_i18n.locale = '$locale'", 'left')
                 ->get('mod_email_paterns');
 
         if ($query) {
@@ -99,11 +155,14 @@ class Cmsemail_model extends \CI_Model {
         }
     }
 
-    public function getTemplateById($id) {
-        return $this->db
-                        ->where('id', $id)
+    public function getTemplateById($id, $locale) {
+        return $this->db->select('*, mod_email_paterns.id as id')
+                ->join('mod_email_paterns_i18n', "mod_email_paterns_i18n.id = mod_email_paterns.id and mod_email_paterns_i18n.locale = '$locale'", 'left')
+                        ->where('mod_email_paterns.id', $id)
                         ->get('mod_email_paterns')
                         ->row_array();
+        
+        
     }
 
     public function getTemplateByName($name) {
@@ -117,6 +176,9 @@ class Cmsemail_model extends \CI_Model {
         $this->db
                 ->where_in('id', $ids)
                 ->delete('mod_email_paterns');
+        $this->db
+                ->where_in('id', $ids)
+                ->delete('mod_email_paterns_i18n');
     }
 
     public function deleteTemplateByNames($names) {
@@ -162,31 +224,47 @@ class Cmsemail_model extends \CI_Model {
                 'constraint' => '256',
                 'null' => FALSE
             ),
-            'theme' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '256',
-                'null' => FALSE
-            ),
             'type' => array(
                 'type' => 'ENUM',
                 'constraint' => "'HTML','Text'",
                 'default' => "HTML"
             ),
-            'user_message' => array(
-                'type' => 'TEXT',
-                'null' => FALSE
-            ),
             'user_message_active' => array(
                 'type' => 'TINYINT',
                 'constraint' => '1'
             ),
-            'admin_message' => array(
-                'type' => 'TEXT',
-                'null' => FALSE
-            ),
             'admin_message_active' => array(
                 'type' => 'TINYINT',
                 'constraint' => '1'
+            )
+        );
+
+
+        $this->dbforge->add_field($fields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_email_paterns');
+
+
+        $fields = array(
+            'id' => array(
+                'type' => 'INT',
+            ),
+            'locale' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '5',
+            ),
+            'theme' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '256',
+                'null' => FALSE
+            ),
+            'user_message' => array(
+                'type' => 'TEXT',
+                'null' => FALSE
+            ),
+            'admin_message' => array(
+                'type' => 'TEXT',
+                'null' => FALSE
             ),
             'description' => array(
                 'type' => 'TEXT',
@@ -198,10 +276,10 @@ class Cmsemail_model extends \CI_Model {
             )
         );
 
-
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_email_paterns');
+        $this->dbforge->add_key('locale', TRUE);
+        $this->dbforge->create_table('mod_email_paterns_i18n');
 
 
 
@@ -226,6 +304,8 @@ class Cmsemail_model extends \CI_Model {
 
         $sql = file_get_contents('./application/modules/cmsemail/models/paterns.sql');
         $this->db->query($sql);
+        $sql = file_get_contents('./application/modules/cmsemail/models/patterns_i18n.sql');
+        $this->db->query($sql);
 
         return TRUE;
     }
@@ -238,42 +318,43 @@ class Cmsemail_model extends \CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
 
         $this->dbforge->drop_table('mod_email_paterns');
+        $this->dbforge->drop_table('mod_email_paterns_i18n');
 
         return TRUE;
     }
 
-    public function deleteVariable($template_id, $variable) {
-        $paternVariables = $this->getTemplateVariables($template_id);
+    public function deleteVariable($template_id, $variable, $locale) {
+        $paternVariables = $this->getTemplateVariables($template_id, $locale);
         if ($paternVariables) {
             unset($paternVariables[$variable]);
 
-            return $this->setTemplateVariables($template_id, $paternVariables);
+            return $this->setTemplateVariables($template_id, $paternVariables, $locale);
         } else {
             return FALSE;
         }
     }
 
-    public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable) {
-        $paternVariables = $this->getTemplateVariables($template_id);
+    public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable, $locale) {
+        $paternVariables = $this->getTemplateVariables($template_id, $locale);
         if ($paternVariables) {
             unset($paternVariables[$oldVariable]);
             $paternVariables[$variable] = $variableNewValue;
 
-            return $this->setTemplateVariables($template_id, $paternVariables);
+            return $this->setTemplateVariables($template_id, $paternVariables, $locale);
         } else {
             return FALSE;
         }
     }
 
-    public function addVariable($template_id, $variable, $variableValue) {
-        $paternVariables = $this->getTemplateVariables($template_id);
+    public function addVariable($template_id, $variable, $variableValue, $locale) {
+        $paternVariables = $this->getTemplateVariables($template_id, $locale);
         $paternVariables[$variable] = $variableValue;
 
-        return $this->setTemplateVariables($template_id, $paternVariables);
+        return $this->setTemplateVariables($template_id, $paternVariables, $locale);
     }
 
-    public function getTemplateVariables($template_id) {
-        $query = $this->db->where('id', $template_id)->get('mod_email_paterns');
+    public function getTemplateVariables($template_id, $locale) {
+        $query = $this->db->where('id', $template_id)->where('locale',$locale)->get('mod_email_paterns_i18n');
         if ($query) {
             $patern = $query->row_array();
             return unserialize($patern['variables']);
@@ -282,10 +363,10 @@ class Cmsemail_model extends \CI_Model {
         }
     }
 
-    public function setTemplateVariables($template_id, $paternVariables) {
+    public function setTemplateVariables($template_id, $paternVariables, $locale) {
         return $this->db
-                        ->where('id', $template_id)
-                        ->update('mod_email_paterns', array('variables' => serialize($paternVariables)));
+                        ->where('id', $template_id)->where('locale', $locale)
+                        ->update('mod_email_paterns_i18n', array('variables' => serialize($paternVariables)));
     }
 
 }

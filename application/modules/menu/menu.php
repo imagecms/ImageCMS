@@ -44,6 +44,8 @@ class Menu extends MY_Controller {
         $this->load->module('core');
         $this->cache_key = 'menu_data_';
         $this->cache_key = $this->cache_key . $this->dx_auth->get_role_id();
+        $lang = new MY_Lang();
+        $lang->load('menu');
 
 
         $this->load->helper('string');
@@ -117,7 +119,7 @@ class Menu extends MY_Controller {
             $this->display_tpl('error', $data);
         } else {
             echo $this->arranged_menu_array[-1]['html'];
-    }
+        }
     }
 
     private function prepare_menu_recursion() {
@@ -199,7 +201,7 @@ class Menu extends MY_Controller {
                     $this->arranged_menu_array[$arranged_items_count]['is_active'] = TRUE;
                 } else {
                     // Make link active if link is / and no segments in url
-                   // if ($item['link'] == '/' AND $this->uri->total_segments() == 0) {
+                    // if ($item['link'] == '/' AND $this->uri->total_segments() == 0) {
                     if ($item['link'] == '/' AND get_main_lang('identif') == $this->uri->segment(1) AND $this->uri->total_segments() == 1 or $item['link'] == '/' AND get_main_lang('identif') != $this->uri->segment(1) AND $this->uri->total_segments() == 0 or $item['item_type'] == 'url' AND $item['link'] != '/' AND strstr($_SERVER['REQUEST_URI'], $item['link'])) {
                         $is_active = TRUE;
                         $this->arranged_menu_array[$arranged_items_count]['is_active'] = TRUE;
@@ -211,11 +213,11 @@ class Menu extends MY_Controller {
 
                 //$item['item_type'] == 'url' ? $href = $item['link'] : $href = site_url($item['link']);
                 //echo $item['item_type'];
-                if ($item['item_type'] == 'url' && strstr($item['link'],'http://') or $item['item_type'] == 'url' && strstr($item['link'], 'www')){
+                if ($item['item_type'] == 'url' && strstr($item['link'], 'http://') or $item['item_type'] == 'url' && strstr($item['link'], 'www')) {
                     $href = $item['link'];
                 }
                 else
-                    $href = rtrim(site_url($item['link']),'/');
+                    $href = rtrim(site_url($item['link']), '/');
 
 
                 $this->arranged_menu_array[$arranged_items_count]['link'] = $href;
@@ -245,6 +247,8 @@ class Menu extends MY_Controller {
 
 
                 $sub_menus = $this->_get_sub_menus($item['id']);
+
+                $this->arranged_menu_array[$arranged_items_count]['has_childs'] = count($sub_menus) > 0 ? 1 : 0;
 
                 if (isset($this->expand[$item['id']]) AND $this->expand[$item['id']] == TRUE AND count($sub_menus) > 0) {
                     $this->cur_level++;
@@ -303,6 +307,8 @@ class Menu extends MY_Controller {
             $wrapper = $this->_prepare_container_tpl($index, $wrapper);
         }
 
+        $is_active_hard = $this->arranged_menu_array[$index]['link'] == $this->current_uri ? 1 : 0;
+
         $data = array(
             'id' => $this->arranged_menu_array[$index]['id'],
             'title' => $this->arranged_menu_array[$index]['title'],
@@ -310,6 +316,8 @@ class Menu extends MY_Controller {
             'image' => $this->arranged_menu_array[$index]['image'],
             'wrapper' => $wrapper,
             'target' => $this->arranged_menu_array[$index]['target'],
+            'has_childs' => $this->arranged_menu_array[$index]['has_childs'],
+            'is_active_hard' => $is_active_hard,
         );
 
         if ($index == -1) {

@@ -1,0 +1,157 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-16 18:30+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: /var/www/image.loc/_temp2.php:11
+msgid "Invalid e-mail"
+msgstr "Неверный e-mail"
+
+#: /var/www/image.loc/_temp2.php:12
+#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_temp2.php:16
+#: /var/www/image.loc/_temp2.php:18
+#: /var/www/image.loc/_temp2.php:20
+msgid "Home"
+msgstr "Главная"
+
+#: /var/www/image.loc/_temp2.php:13
+msgid "The subscriber is not found"
+msgstr "Подписчик не найден"
+
+#: /var/www/image.loc/_temp2.php:15
+msgid "You have successfully subscribed"
+msgstr "Вы успешно подписались"
+
+#: /var/www/image.loc/_temp2.php:17
+msgid "You are already subscribed"
+msgstr "Вы уже подписаны"
+
+#: /var/www/image.loc/_temp2.php:19
+msgid "Unsubscribed"
+msgstr "Отписан"
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "Unsubscribe"
+msgstr "Отписаться"
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "Removing subscribers"
+msgstr "Удаление подписчиков"
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "Delete all checked?"
+msgstr "Удалить всех выбранных?"
+
+#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:32
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "Cancel"
+msgstr "Отмена"
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "Removing brand"
+msgstr "Удаление бренда"
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "Remove brands?"
+msgstr "Удалить бренды?"
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "Subscription and Notification letters"
+msgstr "Подписка и рассылка писем"
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Send a letter"
+msgstr "Отправить письмо"
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Message parameters"
+msgstr "Параметри сообщения"
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Subscribers"
+msgstr "Подписчики"
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "Properties"
+msgstr "Свойства"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Theme"
+msgstr "Тема"
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "Your name"
+msgstr "Ваше имя"
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "Your e-mail"
+msgstr "Ваш  e-mail"
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "Message"
+msgstr "Сообщение"
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "Hello"
+msgstr "Привет"
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "best regards, administration"
+msgstr "с уважением, администрация"
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "Formatting"
+msgstr "Форматирование"
+
+#: /var/www/image.loc/_temp2.php:43
+msgid "HTML"
+msgstr "HTML"
+
+#: /var/www/image.loc/_temp2.php:44
+msgid "Plain Text"
+msgstr "Обычный текст"
+
+#: /var/www/image.loc/_temp2.php:45
+msgid "ID"
+msgstr "ID"
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "E-mail"
+msgstr "E-mail"
+
+#: /var/www/image.loc/_temp2.php:47
+msgid "Date"
+msgstr "Дата"
+
+#: /var/www/image.loc/_temp2.php:48
+msgid "Subscribers list is empty"
+msgstr "Список подписчиков пуст"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр1"

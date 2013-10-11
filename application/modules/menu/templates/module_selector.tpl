@@ -2,11 +2,11 @@
     <table width="100%" border="0" cellpadding="2" cellspacing="2">
         <tr>
             <td width="100%" valign="top">
-                {lang('amt_select_module')}
+                {lang("Select module", "menu")}
             </td>
             <td valign="top">
                 <div style="width:350px;" id="item_params">
-                    <h3>{lang('amt_params')}:</h3>
+                    <h3>{lang('Options', "menu")}:</h3>
                 </div>
             </td>
         </tr>
@@ -24,24 +24,24 @@
                 <!-- Link params -->
                 <input type="hidden" id="owner_id" value="{$insert_id}" />
 
-                <div class="field_text">{lang('amt_type')}</div>
+                <div class="field_text">{lang('Type', "menu")}</div>
                 <div class="field_input" id="module_type">
-                    {lang('amt_module')}
+                    {lang('Module', "menu")}
                 </div>
                 <div class="form_overflow"></div>
 
-                <div class="field_text">{lang('amt_name')}</div>
+                <div class="field_text">{lang('Name', "menu")}</div>
                 <div class="field_input" id="module_name"></div>
                 <div class="form_overflow"></div>
 
 
-                <div class="field_text">{lang('amt_title')}</div>
+                <div class="field_text">{lang('Title', "menu")}</div>
                 <div class="field_input">
                     <input type="text" class="textbox" value="" name="module_title"  id="module_title" />
                 </div>
                 <div class="form_overflow"></div>
 
-                <div class="field_text">{lang('amt_function')}</div>
+                <div class="field_text">{lang('Function', "menu")}</div>
                 <div class="field_input">
                     <input type="text" class="textbox" value="" name="module_method"  id="module_method" />
                     <br/>
@@ -49,10 +49,10 @@
                 </div>
                 <div class="form_overflow"></div>
 
-                <div class="field_text">{lang('amt_parent')}</div>
+                <div class="field_text">{lang('Parent', "menu")}</div>
                 <div class="field_input">
                     <select name="module_parent_id" id="module_parent_id">
-                        <option value="0">{lang('amt_no')}</option>
+                        <option value="0">{lang('No', "menu")}</option>
                         {foreach $menu_result as $item}
                             <option  value="{$item.id}">{ for $i=0; $i < $item['padding']; $i++ }-{/for} {$item.title}</option>
                         {/foreach}
@@ -62,11 +62,11 @@
                 <div class="form_overflow"></div>
 
 
-                <div class="field_text">{lang('amt_position_after')}</div>
+                <div class="field_text">{lang("Position after", "menu")}</div>
                 <div class="field_input">
                     <select name="module_position_after" id="module_position_after">
-                        <option value="0">{lang('amt_no')}</option>
-                        <option value="first">{lang('amt_first')}</option>
+                        <option value="0">{lang('No', "menu")}</option>
+                        <option value="first">{lang('First', "menu")}</option>
                         {foreach $menu_result as $item}
                             <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++}-{/for} {$item.title}</option>
                         {/foreach}
@@ -75,17 +75,17 @@
                 <div class="form_overflow"></div>
 
 
-                <div class="field_text">{lang('amt_image')}</div>
+                <div class="field_text">{lang('Image', "menu")}</div>
                 <div class="field_input">
                     <input type="text" class="textbox" value="" name="mod_image"  id="mod_image" />
-                    <img width="16" height="16" align="absmiddle" src="{$THEME}images/images.png" title="{lang('amt_select_image')}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'mod_image');" />
+                    <img width="16" height="16" align="absmiddle" src="{$THEME}images/images.png" title="{lang('Select Image', "menu")}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'mod_image');" />
                 </div>
 
 
-                <div class="field_text">{lang('amt_access_level')}</div>
+                <div class="field_text">{lang('Access level', "menu")}</div>
                 <div class="field_input">
                     <select id="module_roles" name="module_roles[]" multiple="multiple">
-                        <option value="0">{lang('amt_all')}</option>
+                        <option value="0">{lang('All', "menu")}</option>
                         {foreach $roles as $role}
                             <option value ="{$role.id}">{$role.alt_name}</option>
                         {/foreach}
@@ -95,30 +95,30 @@
                 <div class="form_overflow"></div>
 
                 <div class="field_text">
-                    {lang('amt_hide')}
+                    {lang('Hide', "menu")}
                 </div>
                 <div class="field_input">
-                    <input type="radio" name="modhidden_v" id="mod_hidden" onclick="module_hidden = 1;" /> {lang('amt_yes')}
-                    <input type="radio" name="modhidden_v" id="mod_nohidden"  onclick="module_hidden = 0;"  checked="checked" /> {lang('amt_no')}
+                    <input type="radio" name="modhidden_v" id="mod_hidden" onclick="module_hidden = 1;" /> {lang('Yes', "menu")}
+                    <input type="radio" name="modhidden_v" id="mod_nohidden"  onclick="module_hidden = 0;"  checked="checked" /> {lang('No', "menu")}
                 </div>
 
                 <div class="form_overflow"></div>
 
                 <div class="field_text">
-                    {lang('amt_open_in_new_window')}
+                     {lang("Open in the new window", "menu")}
                 </div>
                 <div class="field_input">
-                    <input type="radio" name="modnew_page" id="mod_newpage"  onclick="mod_newpage = 1;" /> {lang('amt_yes')}
-                    <input type="radio" name="modnew_page" id="mod_nonewpage" onclick="mod_newpage = 0;"  checked="checked" /> {lang('amt_no')}
+                    <input type="radio" name="modnew_page" id="mod_newpage"  onclick="mod_newpage = 1;" /> {lang('Yes', "menu")}
+                    <input type="radio" name="modnew_page" id="mod_nonewpage" onclick="mod_newpage = 0;"  checked="checked" /> {lang('No', "menu")}
                 </div>
 
                 <div class="form_overflow"></div>
 
                 <div class="field_text"></div>
                 <div class="field_input">
-                    <input type="button" value="{lang('amt_to_create')}" id="mod_btn" class="button" onclick="insert_module();
+                    <input type="button" value="{lang('Create', "menu")}" id="mod_btn" class="button" onclick="insert_module();
                                     return false;" />
-                    <input type="button" value="{lang('amt_cancel')}" class="button" onclick="MochaUI.closeWindow($('createnewlink'));
+                    <input type="button" value="{lang('Cancel', "menu")}" class="button" onclick="MochaUI.closeWindow($('createnewlink'));
                                     return false;" />
                 </div>
 
@@ -126,7 +126,6 @@
             </td>
         </tr>
     </table>
-
 </div>
 
 {literal}

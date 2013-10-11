@@ -5,20 +5,20 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_s_banner_list_r')}</span>
+                <span class="title">{lang('Banner list', 'banners')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
                     
                     <span style="position: relative">
-                        <a href="#" onclick="$(this).next().slideToggle();return false" class="btn btn-small">Настройки шаблона</a>
+                        <a href="#" onclick="$(this).next().slideToggle();return false" class="btn btn-small">{lang('Template settings', 'banners')}</a>
                         <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px; border-radius: 5px; width: 335px;">
-                            <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> Использовать разные шаблоны для разных страниц
+                            <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> {lang('Use different templates for different pages', 'banners')}
                         </div>
                     </span>
 
-                    <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('a_s_banner_new_r')}</a>
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                    <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('Create a banner', 'banners')}</a>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash icon-white"></i>{lang('Delete', 'banners')}</button>
                 </div>
             </div>
         </div>
@@ -35,10 +35,10 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang('a_ID')}</th>
-                                <th class="span3">{lang('a_name')}</th>
-                                <th class="span2" style="width:80px;">Активен до</th>
-                                <th class="span1" style="width:60px;">{lang('a_status')}</th>
+                                <th class="span1">{lang('ID', 'banners')}</th>
+                                <th class="span3">{lang('Name', 'banners')}</th>
+                                <th class="span2" style="width:80px;">{lang('Active to', 'banners')}</th>
+                                <th class="span1" style="width:60px;">{lang('Status', 'banners')}</th>
 
                             </tr>
                         </thead>
@@ -52,15 +52,15 @@
                                             </span>
                                         </span>
                                     </td>
-                                    <td><p>{echo $b['id']}</p></td>
+                                    <td><a class="pjax" href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('Editing', 'banners')}">{echo $b['id']}</a></td>
                                     <td>
-                                        <a class="pjax" href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('a_edit')}">{echo $b['name']}</a>
+                                        <a class="pjax" href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('Editing', 'banners')}">{echo $b['name']}</a>
                                     </td>
 
                                     <td><p>{echo date('Y-m-d',$b['active_to'])}</p></td>
                                     <td>
-                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $b['active'] == 1}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" >
-                                            <span class="prod-on_off {if $b['active'] != 1 }disable_tovar{/if}" style="{if $b['active'] != 1 }left: -28px;{/if}" {if $b['active'] == 1 }rel="true"{else:}rel="false"{/if}
+                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $b['active'] == 1}{lang('show', 'banners')}{else:}{lang("don't show", 'banners')}{/if}" >
+                                            <span class="prod-on_off {if $b['active'] != 1}disable_tovar{/if}" style="{if $b['active'] != 1 }left: -28px;{/if}" {if $b['active'] == 1 }rel="true"{else:}rel="false"{/if}
                                                   onclick="ChangeBannerSliderActive(this,{echo $b['id']});"></span>
                                         </div>
                                     </td>
@@ -74,7 +74,7 @@
                     </table>
                                                       {else:}
                     <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                                                          {lang('a_empty_banners')}
+                                                          {lang('Empty banner list.', 'banners')}
                     </div>
                                                           {/if}
             </div>

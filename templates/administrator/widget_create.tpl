@@ -2,13 +2,13 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_widget_creating')}</span>
+            <span class="title">{lang("Widget creating","admin")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form" data-action="tomain" data-submit><i class="icon-plus-sign icon-white"></i>{lang('a_create')}</button>
-                <!--<button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>-->
+                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form" data-action="tomain" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
+                <!--<button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>-->
             </div>
         </div>                            
     </div>
@@ -19,7 +19,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('a_param')}
+                                {lang("Properties","admin")}
                             </th>
                         </tr>
                     </thead>
@@ -28,32 +28,32 @@
                             <td colspan="6">
                                 <div class="inside_padd">
                                     <div class="control-group m-t_10">
-                                        <label class="control-label" for="inputName">{lang('a_n')}:</label>
+                                        <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
                                         <div class="controls">
                                             <input type="text" name="name" id="inputName" class="required"/>
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="inputDesc">{lang('a_desc')}:</label>
+                                        <label class="control-label" for="inputDesc">{lang("Description","admin")}:</label>
                                         <div class="controls">
                                             <input type="text" name="desc" id="inputDesc">
-                                            <p class="help-block">{lang('a_short_widget_desc')}</p>
+                                            <p class="help-block">{lang("Short widget description","admin")}</p>
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="inputType">{lang('a_type')}:</label>
+                                        <label class="control-label" for="inputType">{lang("Type","admin")}:</label>
                                         <div class="controls">
                                             <select id="inputType" name="type">
-                                                <option value="module">{lang('a_module')}</option>
-                                                <option value="html">{lang('a_html')}</option>
+                                                <option value="module">{lang("Module","admin")}</option>
+                                                <option value="html">{lang("HTML","admin")}</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="control-group" id="mod_name">
-                                        <label class="control-label">{lang('a_module_name')}:</label>
+                                        <label class="control-label">{lang("Module name","admin")}:</label>
                                         <div class="controls">
-                                            <span class="selmod">Выберите тип модуля с таблицы ниже</span>
+                                            <span class="selmod">{lang('Select the module type to the table below','admin')}</span>
                                             <input type="hidden" class="required" name="module" value="" id="sw">
                                             <input type="hidden" name="method" value="" id="swm">
                                         </div>
@@ -75,9 +75,9 @@
                         <thead>
                             <tr>
                                 <th class="t-a_c span1"></th>
-                                <th class="span3">{lang('a_name')}</th>
-                                <th class="span5">{lang('a_desc')}</th>
-                                <th class="span2">{lang('a_type')}</th>
+                                <th class="span3">{lang("Name","admin")}</th>
+                                <th class="span5">{lang("Description","admin")}</th>
+                                <th class="span2">{lang("Type","admin")}</th>
                             </tr>
                         </thead>
                         <tbody class="sortable ui-sortable">

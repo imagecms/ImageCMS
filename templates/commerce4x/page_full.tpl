@@ -1,3 +1,4 @@
+{$page = $CI->load->module('cfcm')->connect_fields($page, 'page')}
 <div class="container">
     <div class="row">
         <div class="span3">

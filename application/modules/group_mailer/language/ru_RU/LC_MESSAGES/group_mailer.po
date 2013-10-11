@@ -1,0 +1,317 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-17 17:25+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: /var/www/image.loc/_temp2.php:5
+msgid "Batch"
+msgstr "Пакет"
+
+#: /var/www/image.loc/_temp2.php:6
+msgid "Sending emails"
+msgstr "Отправка электронной почты"
+
+#: /var/www/image.loc/_temp2.php:7
+msgid "Send a letter"
+msgstr "Отправить письмо"
+
+#: /var/www/image.loc/_temp2.php:8
+msgid "Properties"
+msgstr "Свойства"
+
+#: /var/www/image.loc/_temp2.php:9
+msgid "Theme"
+msgstr "Тема"
+
+#: /var/www/image.loc/_temp2.php:10
+msgid "Your name"
+msgstr "Ваше имя"
+
+#: /var/www/image.loc/_temp2.php:11
+msgid "Your e-mail"
+msgstr "Ваш e-mail"
+
+#: /var/www/image.loc/_temp2.php:12
+msgid "Message"
+msgstr "Сообщение"
+
+#: /var/www/image.loc/_temp2.php:13
+msgid "Hello"
+msgstr "Привет"
+
+#: /var/www/image.loc/_temp2.php:14
+msgid "best regards, administration"
+msgstr "с уважением, администрация"
+
+#: /var/www/image.loc/_temp2.php:15
+msgid "Send to groups"
+msgstr "Отправить группам"
+
+#: /var/www/image.loc/_temp2.php:16
+msgid "Formatting"
+msgstr "Форматирование"
+
+#: /var/www/image.loc/_temp2.php:17
+msgid "HTML"
+msgstr "HTML"
+
+#: /var/www/image.loc/_temp2.php:18
+msgid "Plain Text"
+msgstr "Обычный текст"
+
+#: ../../../admin.php:101
+msgid "Send"
+msgstr "Послать"
+
+#: ../../../admin.php:101
+msgid "users e-mail with a subject"
+msgstr "пользовательский e-mail с темой"
+
+#: ../../../admin.php:109
+msgid "message has been sent"
+msgstr "сообщение было отправлено"
+
+#: ../../../admin.php:109
+msgid "Number of e-mails sent"
+msgstr "Количество отправленных писем"
+
+#: ../../../admin.php:109
+msgid "pcs."
+msgstr "шт."
+
+#: ../../../admin.php:113
+msgid "none of the messages"
+msgstr "ни одно из сообщений"
+
+#: ../../../admin.php:113
+msgid "Number not"
+msgstr "Число не"
+
+#: ../../../module_info.php:4
+msgid "Email sending"
+msgstr "Отправка электронной почты"
+
+#: ../../../module_info.php:5
+msgid "Users group email sending module"
+msgstr "Модуль отправки электронной почты граппам пользователей"
+
+#~ msgid "Bach"
+#~ msgstr "Холостяк"
+
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "System information"
+#~ msgstr "Настр"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Date of creation"
+#~ msgstr "Настр"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Widget settings"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Widget title"
+#~ msgstr "Виджети"
+
+#~ msgid "New pages"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить"
+
+#, fuzzy
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "turn category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Drug category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Basic information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "General information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Orders list"
+#~ msgstr "Список замовлень"
+
+#~ msgid "Create order"
+#~ msgstr "Создатьзаказ"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
+
+#, fuzzy
+#~ msgid "Date of order"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
+
+#, fuzzy
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Pages and categories"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Product creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Banner creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a banner"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
+
+#, fuzzy
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create user"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Additional information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Category created"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

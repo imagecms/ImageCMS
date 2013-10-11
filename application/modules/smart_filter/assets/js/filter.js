@@ -142,8 +142,8 @@ function changeSelectFilter(el) {
                     }
                     cleaverFilterObj.mainWraper.css({
                         'left': left,
-                        'top': elPos.offset().top - cleaverFilterObj.currentPosScroll
-                    }).removeClass().addClass('apply').addClass(clas).addClass(cleaverFilterObj.addingClass);
+                        'top': elPos.offset().top - cleaverFilterObj.currentPosScroll[elPos.closest(framechecks).index()]
+                    }).removeClass().addClass('apply ' + clas + ' ' + cleaverFilterObj.addingClass);
                     cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function() {
                         $(document).trigger({'type': 'showCleaverFilter', 'el': $(this)});
                     });
@@ -215,7 +215,7 @@ function afterAjaxInitializeFilter(ready) {
         evCond: true,
         //classRemove: 'b_n',//if not standart
         //if evCond: true
-        before: function(a, b, c) {
+        before: function(a, b, c, e) {
             c.nStCheck('changeCheck');
             ajaxRecount('#' + b.attr('id'), false);
             var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
@@ -225,14 +225,14 @@ function afterAjaxInitializeFilter(ready) {
                             scrollabelH = scrollabel.height(),
                             posY = scrollabel.data('jsp').getContentPositionY(),
                             addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
-                    cleaverFilterObj.currentPosScroll = scrollabel.data('jsp').getContentPositionY() + addH;
+                    cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = scrollabel.data('jsp').getContentPositionY() + addH;
                 }
                 else {
-                    cleaverFilterObj.currentPosScroll = 0;
+                    cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = 0;
                 }
             }
             else {
-                cleaverFilterObj.currentPosScroll = 0;
+                cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = 0;
             }
         }
     });
@@ -263,7 +263,7 @@ function afterAjaxInitializeFilter(ready) {
                 if (n == 'scroll') {
                     $this.show();
                     var el = filtersContent.show().jScrollPane(scrollPane);
-                    el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
+                    el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll[$this.index()]);
                 }
                 if (n == 'dropDown') {
                     filtersContent.hide();
@@ -309,7 +309,7 @@ function ajaxRecount(el, slChk) {
 
     var catalogForm = $('#catalog_form'),
             $this = el,
-            data = catalogForm.serializeArray(),
+            data = catalogForm.serialize(),
             catUrl = window.location.pathname,
             catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
     $.ajax({
@@ -327,8 +327,9 @@ function ajaxRecount(el, slChk) {
             if (slChk) {
                 otherClass = slChk;
             }
-            if ($($this).closest(framechecks).data('rel') == undefined || $($this).closest(framechecks).data('rel').match('cusel')) {
-                cleaverFilterObj.currentPosScroll = 0;
+            var frameChecks = $($this).closest(framechecks);
+            if (frameChecks.data('rel') == undefined || frameChecks.data('rel').match('cusel')) {
+                cleaverFilterObj.currentPosScroll[frameChecks.index()] = 0;
                 cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
             }
             else {

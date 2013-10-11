@@ -1,6 +1,6 @@
-<h2>Проверка директорий</h2>
+<h2><?php echo lang('Directories checking', 'install')?></h2>
 <p>
-    Для того, чтобы продолжить установку системы, установите права на запись(chmod 0777) на следующие директории:
+    <?php echo lang('To continue the installation, install the write rights', 'install')?>(chmod 0777) <?php echo lang('to the following directories', 'install')?>:
 
     <ul class="list">
     <?php foreach ($dirs as $k => $v) { ?>
@@ -9,8 +9,9 @@
     </ul>
 </p>
 
-<h2>Проверка параметров PHP</h2>
+<h2><?php echo lang('Verifying the PHP', 'install')?></h2>
 <p>
+    <?php echo lang('In order to continue the installation of the system, set the PHP options', 'install') ?>:
     <ul class="list">
     <?php foreach ($allow_params as $k => $v) { ?>
         <li class="<?php echo $v ?>"><?php echo $k?><?php if('ok'==$v) { ?> <i class=" icon-ok-circle"></i> <?php } else { ?> <i class=" icon-minus-sign"></i> <?php } ?></li>
@@ -19,8 +20,9 @@
 </p>
 
 
-<h2>Проверка модулей PHP</h2>
+<h2><?php echo lang('Verifying the PHP modules', 'install')?></h2>
 <p>
+    <?php echo lang('For best performance, install the PHP modules', 'install') ?>:
     <ul class="list">
     <?php foreach ($exts as $k => $v) { ?>
         <li class="<?php echo $v ?>"><?php echo $k?><?php if('ok'==$v) { ?> <i class=" icon-ok-circle"></i> <?php } else { ?> <i class=" icon-minus-sign"></i> <?php } ?></li>
@@ -32,6 +34,6 @@
 
 <p align="left">
 <br/>
-<a href="<?php echo $next_link ?>" class="btn btn-success"><i class="icon-ok icon-white"></i> Далее</a>
-<a href="" type="submit" class="btn" ><i class="icon-refresh"></i> Обновить</a>
+<a href="<?php echo $next_link ?>" class="btn btn-success"><i class="icon-ok icon-white"></i><?php echo lang('Next', 'install') ?></a>
+<a href="" type="submit" class="btn" ><i class="icon-refresh"></i> <?php echo lang('Update', 'install')?></a>
 </p>

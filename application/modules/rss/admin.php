@@ -12,6 +12,8 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('rss');
 
         $this->load->library('DX_Auth');
         //cp_check_perm('module_admin');
@@ -55,7 +57,7 @@ class Admin extends BaseAdminController {
         $this->db->where('name', 'rss');
         $this->db->update('components', array('settings' => serialize($data)));
 
-        showMessage(lang('amt_changes_saved'));
+        showMessage(lang("Changes have been saved", 'rss'));
     }
 
     private function get_settings() {

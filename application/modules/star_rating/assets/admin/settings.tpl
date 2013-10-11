@@ -2,13 +2,13 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Настройки модуля Рейтинг</span>
+            <span class="title">{lang("Module settings starRating", 'star_rating')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/modules_table/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form"><i class="icon-ok"></i>{lang('a_save')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang('a_save_and_exit')}</button>
+                <a href="{$BASE_URL}admin/components/modules_table/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'star_rating')}</span></a>
+                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form"><i class="icon-ok"></i>{lang("Save", 'star_rating')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back", 'star_rating')}</button>
             </div>
         </div>                            
     </div>
@@ -18,7 +18,7 @@
                 <div class="row-fluid">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                            <th>Отображать на страницах:</th>
+                            <th>{lang('Show on pages', 'star_rating')}:</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -29,7 +29,7 @@
                                                  <span class="frame_label">
                                                      <span class="niceCheck">
                                                          <input type="checkbox" name="sr[main]" value="1" {if $settings->main == 1}checked="checked"{/if}/>
-                                                     </span> Главной
+                                                     </span> {lang('Main', 'star_rating')}
                                                  </span>
                                              </div>
                                              <hr style ='margin:5px'>
@@ -37,7 +37,7 @@
                                                  <span class="frame_label ">
                                                      <span class="niceCheck">
                                                          <input type="checkbox" name="sr[page]" value="1" {if $settings->page == 1}checked="checked"{/if}/>
-                                                     </span> Cодержимого
+                                                     </span> {lang('Contains', 'star_rating')}
                                                  </span>
                                              </div>
                                              <div class="controls-group" style ='padding:5px'>
@@ -45,7 +45,7 @@
                                                      <span class="niceCheck">
                                                          <input type="checkbox" name="sr[category]" value="1" {if $settings->category == 1}checked="checked"{/if}/>
                                                      </span>
-                                                         Категории
+                                                         {lang('Category', 'star_rating')}
                                                  </span>
                                              </div>
                                              {if $is_shop != null}
@@ -54,21 +54,21 @@
                                                      <span class="frame_label">
                                                          <span class="niceCheck">
                                                              <input type="checkbox" name="sr[product]" value="1" {if $settings->product == 1}checked="checked"{/if}/>
-                                                         </span> Продукта
+                                                         </span> {lang('Product', 'star_rating')}
                                                      </span>
                                                  </div>
                                                  <div class="controls-group" style ='padding:5px'>
                                                      <span class="frame_label">
                                                          <span class="niceCheck">
                                                              <input type="checkbox" name="sr[shop_category]" value="1" {if $settings->shop_category == 1}checked="checked"{/if}/>
-                                                         </span> Категории продуктов
+                                                         </span> {lang('Products category', 'star_rating')}
                                                      </span>
                                                  </div>
                                                  <div class="controls-group" style ='padding:5px'>
                                                      <span class="frame_label">
                                                          <span class="niceCheck">
                                                              <input type="checkbox" name="sr[brand]" value="1" {if $settings->brand == 1}checked="checked"{/if}/>
-                                                         </span> Брендов
+                                                         </span> {lang('Brands', 'star_rating')}
                                                      </span>
                                                  </div>
                                              {/if}

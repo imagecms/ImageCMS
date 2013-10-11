@@ -1,6 +1,5 @@
 AddDefaultCharset UTF-8
 
-
 Options +FollowSymLinks
 Options -Indexes
 
@@ -9,7 +8,7 @@ RewriteEngine on
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
 
-
+#apache2ctl -M && sudo a2enmod expires && sudo service apache2 restart (to enable mod_expires on ubuntu)
 <IfModule mod_expires.c>
 ExpiresActive On
 ExpiresDefault "access 7 days"
@@ -25,7 +24,10 @@ ExpiresByType text/css "access 1 year"
 ExpiresByType text/html "access 1 year"
 </IfModule>
 
-RewriteCond $1 !^(index\.php|test.php|application/modules/shop/admin/UpdateService.wsdl|test.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|application/modules/.*/assets/js|application/modules/.*/assets/css|application/modules/.*/assets/images|CHANGELOG.xml|templates|js|robots\.txt|application/controllers/install/images/.*)
+RewriteRule ^(.*)\.tpl$ [R=404]
+RewriteRule ^(.*)\.zip$ [R=404]
+
+RewriteCond $1 !^(index\.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|application/modules/.*/assets/js|application/modules/.*/assets/css|application/modules/.*/assets/images|CHANGELOG.xml|templates|js|robots\.txt)
 RewriteRule ^(.*)$ /index.php/$1 [L]
 
 ####################################

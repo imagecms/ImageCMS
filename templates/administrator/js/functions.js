@@ -1,6 +1,46 @@
 var editorsEnabled = false;
 //temporary
 
+// read cookie by name
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ')
+            c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// expand categories tree to show last visited category
+function expandCategories(button) {
+    var fullPathIds = JSON.parse(decodeURIComponent(readCookie('category_full_path_ids')));
+    for (var cat in fullPathIds) {
+        if (!$('.cat' + fullPathIds[cat]).hasClass('clicked')) {
+            $('.cat' + fullPathIds[cat]).trigger('click');
+            $('.cat' + fullPathIds[cat]).addClass('clicked')
+            $('.cat' + fullPathIds[cat]).css('display', 'none')
+            $('.cat' + fullPathIds[cat]).prev().css('display', 'inline-block')
+        }
+        if ($(button).hasClass('.cat' + fullPathIds[cat]) && !$(button).hasClass('clicked')) {
+            $(button).trigger('click')
+            $(button).addClass('clicked')
+            $(button).css('display', 'none')
+            $(button).prev().css('display', 'inline-block')
+        }
+    }
+}
+
+$(document).ready(function() {
+    // run function expandCategories in categoriest list view
+    if (window.location.pathname == '/admin/components/run/shop/categories/index') {
+        expandCategories();
+    }
+});
+
 function ajaxLoadChildCategory(el, id) {
 
     var container = $(el).closest('.row-category');
@@ -8,6 +48,7 @@ function ajaxLoadChildCategory(el, id) {
     if (container.next().attr('class') != 'frame_level sortable ui-sortable')
         $.post('/admin/components/run/shop/categories/ajax_load_parent', {id: id}, function(data) {
             $(data).insertAfter(container);
+            expandCategories($(data).find('.expandButton'))
             initNiceCheck();
             share_alt_init();
             sortInit();
@@ -881,6 +922,7 @@ var orders = new Object({
         });
     },
     getProductsInCategory: function(categoryId) {
+        console.log(categoryId)
         $('#variantInfoBlock').hide();
         $.ajax({
             url: '/admin/components/run/shop/orders/ajaxGetProductsInCategory/',
@@ -964,7 +1006,7 @@ var orders = new Object({
         var quantity = $(element).val();
         var price = row.find('.productCartPrice').html();
 
-        if (checkProdStock == 1 && quantity > stock){
+        if (checkProdStock == 1 && quantity > stock) {
             $(element).val(stock);
             quantity = stock;
         }
@@ -1209,13 +1251,13 @@ function clone_object() {
         var add_variants = {
             cloneObjectVariant: data.find('[data-rel="add_new_clone"]'),
             frameSetClone: data.find('tbody'),
-            frameСlone: function() {
+            frameClone: function() {
                 var variant_row = this.frameSetClone.find('tr:first').clone();
                 return this.frameSetClone.find('tr:first').clone().find('input').val('').parents('tr')
             },
             addNewVariant: function() {
                 btn_temp = btn_temp.clone().show();
-                return this.frameСlone().find('td:last').append(btn_temp).parents('tr');
+                return this.frameClone().find('td:last').append(btn_temp).parents('tr');
             }
         }
         add_variants.cloneObjectVariant.on('click', function() {

@@ -2,13 +2,13 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_s_banner_text_edit_b')}</span>
+            <span class="title">{lang('Editing banner', 'banners')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
-                <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
+                <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'banners')}</span></a>
+                <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('Save', 'banners')}</button>
+                <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit', 'banners')}</button>
                     {echo create_language_select($languages, $locale, "/admin/components/init_window/banners/edit/".$banner['id'])}
             </div>
         </div>                            
@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        {lang('param')}
+                        {lang('Options', 'banners')}
                     </th>
                 </tr>
             </thead>
@@ -29,7 +29,7 @@
                             <div class="form-horizontal">
                                 <div class="span9">
                                     <div class="control-group">
-                                        <label class="control-label" for="Name">{lang('a_name')} {$translatable}:</label>
+                                        <label class="control-label" for="Name">{lang('Name', 'banners')} {$translatable}:</label>
                                         <div class="controls">
                                             <input type="text" name="name" id="Name" value="{echo $banner['name']}" />
                                         </div>
@@ -38,20 +38,20 @@
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
                                                     <input type="checkbox" name="active" value="1" {if $banner['active'] == true}checked="checked"{/if}>
                                                 </span>
-                                                {lang('a_active')}
+                                                {lang('Active', 'banners')}
                                             </span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="Text">{lang('a_s_banner_text_create_b')} {$translatable}:</label>
+                                    <label class="control-label" for="Text">{lang('Text banner', 'banners')} {$translatable}:</label>
                                     <div class="controls">
                                         <textarea name="description" id="Text" class="elRTE" >{echo $banner['description']}</textarea> 
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Url"> {lang('a_url')} {$translatable}:</label>
+                                    <label class="control-label" for="Url"> {lang('URL', 'banners')} {$translatable}:</label>
                                     <div class="controls">
                                         <input type="text" name="url" id="Url" value="{if trim($banner['url'])}{echo $banner['url']}{/if}"/>
                                     </div>
@@ -61,7 +61,7 @@
 
 
                                 <div class="control-group">
-                                    <label class="control-label" for="data">Вибраные обекти:</label>
+                                    <label class="control-label" for="data">{lang('Selected items', 'banners')}:</label>
                                     <div class="controls">
                                         <select id="data" name="data[]" multiple="multiple" style="height:500px; max-width: 500px !important" >
                                             {foreach unserialize($banner['where_show']) as $w}
@@ -70,24 +70,24 @@
 
 
                                         </select> 
-                                        <span class="help-block">Для удаления двойной клик мыши</span>
+                                        <span class="help-block">{lang('Double click to deleting', 'banners')}</span>
                                     </div>
                                 </div>        
 
                                 <div class="control-group">
-                                    <label class="control-label" for="banner_type">Отображать в категориях (выберите объекты):</label>
+                                    <label class="control-label" for="banner_type">{lang('Show in categories (select items)', 'banners')}:</label>
                                     <div class="controls">
                                         <select id="banner_type" onchange="autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')">
 
-                                            <option value="default">--выберите сущность--</option>
-                                            <option value="main">Главная</option>
+                                            <option value="default">--{lang('select essence', 'banners')}--</option>
+                                            <option value="main">{lang('Main', 'banners')}</option>
                                             {if $is_shop}
-                                                <option value="product">Продукты</option>                                           
-                                                <option value="shop_category">Категории продуктов</option>
-                                                <option value="brand">Бренды</option>
+                                                <option value="product">{lang('Product', 'banners')}</option>                                           
+                                                <option value="shop_category">{lang('Product category', 'banners')}</option>
+                                                <option value="brand">{lang('Brand', 'banners')}</option>
                                             {/if}
-                                            <option value="category">Категории страниц</option>
-                                            <option value="page">Страницы</option>
+                                            <option value="category">{lang('Pages categories', 'banners')}</option>
+                                            <option value="page">{lang('Pages', 'banners')}</option>
 
 
                                         </select>
@@ -101,7 +101,7 @@
 
 
                                 <div class="control-group">
-                                    <label class="control-label">{lang('a_active_to')}:</label>
+                                    <label class="control-label">{lang('Active until', 'banners')}:</label>
                                     <div class="controls">
                                         <input class="datepicker" type="text" value="{if $banner['active_to']}{echo date('Y-m-d',$banner['active_to'])}{else:}{echo $date}{/if}" name="active_to" />
                                     </div>
@@ -109,19 +109,19 @@
 
                                 <div class="control-group">
                                     <label class="control-label" for="Img">
-                                        {lang('a_image')}:
+                                        {lang('Image', 'banners')}:
                                     </label>
                                     <div class="controls">
                                         <div class="group_icon pull-right">            
-                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                        return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                            <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                        return false;"><i class="icon-picture"></i>  {lang('Choose an image ', 'banners')}</button>
                                         </div>
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}">					
                                         </div>
                                         <div id="Img-preview" style="width: 400px;" >
                                             {if $banner['photo']}
-                                                <img src="{echo $banner['photo']}?{rand(1,9999)}" class="img-polaroid" style="width: 100px;">
+                                                <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 100px;">
                                             {/if}
                                         </div>
                                     </div>

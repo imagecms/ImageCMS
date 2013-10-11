@@ -23,6 +23,8 @@ class Gift extends \mod_discount\classes\BaseDiscount {
     public function __construct() {
 
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('mod_discount');
         $this->get_all_discount();
         $this->collect_type();
     }
@@ -51,10 +53,11 @@ class Gift extends \mod_discount\classes\BaseDiscount {
      * @return jsoon
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_gift_certificate($key = null) {
+    public function get_gift_certificate($key = null, $totalPrice = null) {
         
         $this->get_cart_data();
-        $totalPrice = $this->get_total_price();
+        if ($totalPrice === null)
+            $totalPrice = $this->get_total_price();
         if (null === $key)
             $key = strip_tags(trim($_POST['key']));
         foreach ($this->discount_type['all_order'] as $disc) 
@@ -64,7 +67,7 @@ class Gift extends \mod_discount\classes\BaseDiscount {
                 break;
             } 
         
-        return json_encode(array('error'=>true, 'mes'=>'Неверный код попробуйте еще раз'));
+        return json_encode(array('error'=>true, 'mes'=>lang('Invalid code try again', 'mod_discount')));
     }
       /**
      * render gift input

@@ -10,6 +10,7 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        
     }
 
     public function index() {
@@ -29,7 +30,7 @@ class Admin extends BaseAdminController {
         $this->db->update('mod_sample_settings', array('value' => $this->input->post('mailTo')), array('name' => 'mailTo'));
         $this->db->update('mod_sample_settings', array('value' => $this->input->post('useEmailNotification')), array('name' => 'useEmailNotification'));
         $this->db->update('mod_sample_settings', array('value' => $this->input->post('key')), array('name' => 'key'));
-        showMessage('Настройки сохранены');
+        showMessage(lang('Settings saved', 'sample_module'));
     }
 
 }

@@ -1,32 +1,31 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 /**
  * Image CMS
  *
  * Comments widgets
  */
-
 class Comments_Widgets extends MY_Controller {
 
     private $defaults = array(
-            'comments_count' => 100,
-            'symbols_count'  => 0,
-        );
+        'comments_count' => 100,
+        'symbols_count' => 0,
+    );
 
-   	public function __construct()
-	{
-		parent::__construct();
-    } 
+    public function __construct() {
+        parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('comments');
+    }
 
     // Get and display recent comments
-    public function recent_comments($widget = array())
-    {
-        if ( $widget['settings'] == FALSE)
-        {
+    public function recent_comments($widget = array()) {
+        if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
-        }
-        else
-        {
+        } else {
             $settings = $widget['settings'];
         }
 
@@ -35,30 +34,26 @@ class Comments_Widgets extends MY_Controller {
         $this->db->where('content.lang', $this->config->item('cur_lang'));
         $this->db->where('comments.module', 'core');
         $this->db->where('comments.status', 0);
-        $this->db->join('content','content.id = comments.item_id', 'left');
-        $this->db->order_by('date', 'desc'); 
+        $this->db->join('content', 'content.id = comments.item_id', 'left');
+        $this->db->order_by('date', 'desc');
         $query = $this->db->get('comments', $settings['comments_count']);
 
-        if ($query->num_rows() > 0)
-        {
+        if ($query->num_rows() > 0) {
             $comments = $query->result_array();
 
-            if ($settings['symbols_count'] > 0)
-            {
+            if ($settings['symbols_count'] > 0) {
                 $cnt = count($comments);
-                for ($i = 0; $i < $cnt; $i++) 
-                {
-                    if (mb_strlen($comments[$i]['text'], 'utf-8') > $settings['symbols_count'])
-                    {
-                        $comments[$i]['text'] = mb_substr($comments[$i]['text'], 0, $settings['symbols_count'], 'utf-8').'...';                     
+                for ($i = 0; $i < $cnt; $i++) {
+                    if (mb_strlen($comments[$i]['text'], 'utf-8') > $settings['symbols_count']) {
+                        $comments[$i]['text'] = mb_substr($comments[$i]['text'], 0, $settings['symbols_count'], 'utf-8') . '...';
                     }
                 }
             }
 
-            return $this->template->fetch('widgets/'.$widget['name'],  array('comments' => $comments) );
+            return $this->template->fetch('widgets/' . $widget['name'], array('comments' => $comments));
         }
     }
-    
+
     public function render($viewName, array $data = array(), $return = false) {
         if (!empty($data))
             $this->template->add_array($data);
@@ -73,52 +68,46 @@ class Comments_Widgets extends MY_Controller {
     }
 
     // Configure widget settings
-    public function recent_comments_configure($action = 'show_settings', $widget_data = array())
-    {
-        if( $this->dx_auth->is_admin() == FALSE) exit; // Only admin access 
- 
-        switch ($action)
-        {
+    public function recent_comments_configure($action = 'show_settings', $widget_data = array()) {
+        if ($this->dx_auth->is_admin() == FALSE)
+            exit; // Only admin access 
+
+        switch ($action) {
             case 'show_settings':
                 //$this->display_tpl('recent_comments_form', array('widget' => $widget_data));
                 $this->render('recent_comments_form', array('widget' => $widget_data));
-            break;
+                break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('comments_count', lang('amt_comments_count'), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('symbols_count', lang('amt_symbol_count'), 'required|trim|is_natural');
+                $this->form_validation->set_rules('comments_count', lang("Number of comments"), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('symbols_count', lang("Number of characters"), 'required|trim|is_natural');
 
-                if ($this->form_validation->run($this) == FALSE)
-                {
-                    showMessage( validation_errors() );
-                }
-                else{
+                if ($this->form_validation->run($this) == FALSE) {
+                    showMessage(validation_errors());
+                } else {
                     $data = array(
                         'comments_count' => $_POST['comments_count'],
-                        'symbols_count'  => $_POST['symbols_count']
-                    ); 
+                        'symbols_count' => $_POST['symbols_count']
+                    );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang('amt_settings_saved'));
-                    if($_POST['action'] == 'tomain')
+                    showMessage(lang("Settings have been saved or settings were saved"));
+                    if ($_POST['action'] == 'tomain')
                         pjax('/admin/widgets_manager/index');
                 }
-            break;
+                break;
 
             case 'install_defaults':
-                $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);            
-            break;
+                $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);
+                break;
         }
     }
+
     // Get and display recent product comments
-    public function recent_product_comments($widget = array())
-    {
-        if ( $widget['settings'] == FALSE)
-        {
+    public function recent_product_comments($widget = array()) {
+        if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
-        }
-        else
-        {
+        } else {
             $settings = $widget['settings'];
         }
 
@@ -126,85 +115,76 @@ class Comments_Widgets extends MY_Controller {
         $this->db->select('CONCAT_WS("", ,content.cat_url, content.url) as url', FALSE); // page full url
         $this->db->where('comments.module', 'shop');
         $this->db->where('comments.status', 0);
-        $this->db->join('content','content.id = comments.item_id', 'left');
-        $this->db->order_by('date', 'desc'); 
+        $this->db->join('content', 'content.id = comments.item_id', 'left');
+        $this->db->order_by('date', 'desc');
         $query = $this->db->get('comments', $settings['comments_count']);
 
 
-        if ($query->num_rows() > 0)
-        {
+        if ($query->num_rows() > 0) {
             $comments = $query->result_array();
 
-            if ($settings['symbols_count'] > 0)
-            {
+            if ($settings['symbols_count'] > 0) {
                 $cnt = count($comments);
-                for ($i = 0; $i < $cnt; $i++) 
-                {
-                    if (mb_strlen($comments[$i]['text'], 'utf-8') > $settings['symbols_count'])
-                    {
-                        $comments[$i]['text'] = mb_substr($comments[$i]['text'], 0, $settings['symbols_count'], 'utf-8').'...';                     
+                for ($i = 0; $i < $cnt; $i++) {
+                    if (mb_strlen($comments[$i]['text'], 'utf-8') > $settings['symbols_count']) {
+                        $comments[$i]['text'] = mb_substr($comments[$i]['text'], 0, $settings['symbols_count'], 'utf-8') . '...';
                     }
                 }
             }
 
-            return $this->template->fetch('widgets/'.$widget['name'],  array('comments' => $comments) );
+            return $this->template->fetch('widgets/' . $widget['name'], array('comments' => $comments));
         }
     }
 
     // Configure widget settings
-    public function recent_product_comments_configure($action = 'show_settings', $widget_data = array())
-    {
-        if( $this->dx_auth->is_admin() == FALSE) exit; // Only admin access 
- 
-        switch ($action)
-        {
+    public function recent_product_comments_configure($action = 'show_settings', $widget_data = array()) {
+        if ($this->dx_auth->is_admin() == FALSE)
+            exit; // Only admin access 
+
+        switch ($action) {
             case 'show_settings':
                 //$this->display_tpl('recent_product_comments_form', array('widget' => $widget_data));
                 $this->render('recent_product_comments_form', array('widget' => $widget_data));
-            break;
+                break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('comments_count', lang('amt_reviews_count'), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('symbols_count', lang('amt_symbol_count'), 'required|trim|is_natural');
+                $this->form_validation->set_rules('comments_count', lang("Number of responses"), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('symbols_count', lang("Number of characters"), 'required|trim|is_natural');
 
-                if ($this->form_validation->run($this) == FALSE)
-                {
-                    showMessage( validation_errors() );
-                }
-                else{
+                if ($this->form_validation->run($this) == FALSE) {
+                    showMessage(validation_errors());
+                } else {
                     $data = array(
                         'comments_count' => $_POST['comments_count'],
-                        'symbols_count'  => $_POST['symbols_count']
-                    ); 
+                        'symbols_count' => $_POST['symbols_count']
+                    );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang('amt_settings_saved'));
-                    if($_POST['action'] == 'tomain')
+                    showMessage(lang("Settings have been saved or settings were saved"));
+                    if ($_POST['action'] == 'tomain')
                         pjax('/admin/widgets_manager/index');
                 }
-            break;
+                break;
 
             case 'install_defaults':
-                $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);            
-            break;
+                $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);
+                break;
         }
-    } 
+    }
 
     // Template functions
-	function display_tpl($file, $vars = array())
-    {
+    function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
-        $file = realpath(dirname(__FILE__)).'/templates/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
-	}
+        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        $this->template->display('file:' . $file);
+    }
 
-	function fetch_tpl($file, $vars = array())
-    {
+    function fetch_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
-        $file = realpath(dirname(__FILE__)).'/templates/'.$file.'.tpl';  
-		return $this->template->fetch('file:'.$file);
-	}
+        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        return $this->template->fetch('file:' . $file);
+    }
 
 }

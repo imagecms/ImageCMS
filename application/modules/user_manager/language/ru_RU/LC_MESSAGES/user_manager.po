@@ -1,0 +1,658 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-19 13:07+0300\n"
+"PO-Revision-Date: 2013-09-25 12:36+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: ru_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+
+#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_temp2.php:21
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/image.loc/_temp2.php:14
+msgid "Cancel"
+msgstr "Отмена"
+
+#: /var/www/image.loc/_temp2.php:15
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:65
+msgid "Return"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:16
+msgid "User create"
+msgstr "Создать пользователя"
+
+#: /var/www/image.loc/_temp2.php:17
+msgid "Create a Group"
+msgstr "Создать Группу"
+
+#: /var/www/image.loc/_temp2.php:18
+msgid "Users"
+msgstr "Пользователи"
+
+#: /var/www/image.loc/_temp2.php:19
+msgid "Groups"
+msgstr "Группы"
+
+# хз
+#: /var/www/image.loc/_temp2.php:20
+msgid "Access rights differentiation system"
+msgstr "Права доступа разных систем"
+
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:23
+msgid "Cancel filter"
+msgstr "Отменить фильтр"
+
+# а
+#: /var/www/image.loc/_temp2.php:24
+msgid "Filter admin"
+msgstr "Фильтр"
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "All groups"
+msgstr "Все группы"
+
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:66
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "Properties"
+msgstr "Свойства"
+
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:50
+#: /var/www/image.loc/_temp2.php:82
+#: /var/www/image.loc/_temp2.php:101
+msgid "Group"
+msgstr "Группа"
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Cancel all"
+msgstr "Отменить все"
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "Cancel selection"
+msgstr "Отменить выбранное"
+
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:98
+#: /var/www/image.loc/_temp2.php:106
+msgid "ID"
+msgstr "ID"
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Login"
+msgstr "Войти"
+
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:47
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:54
+msgid "Ban"
+msgstr "Бан"
+
+#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:103
+msgid "Last IP"
+msgstr "Последний IP"
+
+# неее
+#: /var/www/image.loc/_temp2.php:39
+msgid "Latest Entry or Last Entry"
+msgstr "Последний Вход"
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "Created"
+msgstr "Создано"
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "Edit"
+msgstr "Редактировать"
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "Editing by"
+msgstr "Редактировать"
+
+#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_temp2.php:67
+msgid "Save and exit"
+msgstr "Создать и вийти"
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "User data"
+msgstr "Данные пользователя"
+
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:78
+msgid "Full name"
+msgstr "Полное имя"
+
+#: /var/www/image.loc/_temp2.php:49
+msgid "Phone"
+msgstr "Телефон"
+
+#: /var/www/image.loc/_temp2.php:51
+msgid "Without group"
+msgstr "Без группы"
+
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:80
+msgid "New password"
+msgstr "Новый пароль"
+
+#: /var/www/image.loc/_temp2.php:53
+msgid "Password confirm"
+msgstr "Подтвердить пароль"
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "No"
+msgstr "Нет"
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "Yes"
+msgstr "Да"
+
+#: /var/www/image.loc/_temp2.php:57
+msgid "Ban Reason"
+msgstr "Причина Бана"
+
+#: /var/www/image.loc/_temp2.php:58
+msgid "Options"
+msgstr "Опции"
+
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:64
+#: /var/www/image.loc/_temp2.php:86
+msgid "Create"
+msgstr "Создать"
+
+#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:68
+#: /var/www/image.loc/_temp2.php:89
+#: /var/www/image.loc/_temp2.php:107
+msgid "Name"
+msgstr "Название"
+
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:69
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:108
+msgid "Identifier"
+msgstr "Идентификатор"
+
+#: /var/www/image.loc/_temp2.php:62
+msgid "Just latin characters"
+msgstr "Только латинские буквы"
+
+#: /var/www/image.loc/_temp2.php:63
+#: /var/www/image.loc/_temp2.php:71
+#: /var/www/image.loc/_temp2.php:92
+#: /var/www/image.loc/_temp2.php:109
+msgid "Description"
+msgstr "Описание"
+
+#: /var/www/image.loc/_temp2.php:72
+msgid "Create a new user"
+msgstr "Создать новго пользователя"
+
+#: /var/www/image.loc/_temp2.php:73
+#: /var/www/image.loc/_temp2.php:85
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:74
+msgid "Сreate"
+msgstr "Создать"
+
+#: /var/www/image.loc/_temp2.php:75
+#: /var/www/image.loc/_temp2.php:87
+msgid "Create and exit"
+msgstr "Создать и выйти"
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "New user"
+msgstr "Новый пользователь"
+
+#: /var/www/image.loc/_temp2.php:77
+msgid "Email"
+msgstr "E-mail"
+
+#: /var/www/image.loc/_temp2.php:79
+msgid "Phone number"
+msgstr "Номер телефона"
+
+#: /var/www/image.loc/_temp2.php:81
+msgid "Confirm the password"
+msgstr "Подтвердите пароль"
+
+#: /var/www/image.loc/_temp2.php:83
+msgid "No group"
+msgstr "Нет групп"
+
+#: /var/www/image.loc/_temp2.php:84
+msgid "Creating a group"
+msgstr "Создать группу"
+
+#: /var/www/image.loc/_temp2.php:88
+msgid "Group details"
+msgstr "Детали группы"
+
+#: /var/www/image.loc/_temp2.php:91
+msgid "Only Latin characters"
+msgstr "Только латинские буквы"
+
+#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:95
+msgid "Deleting a user"
+msgstr "Удаление пользователя"
+
+#: /var/www/image.loc/_temp2.php:94
+msgid "Remove selected users?"
+msgstr "Удалить выбранных пользователей?"
+
+#: /var/www/image.loc/_temp2.php:96
+msgid "Delete a user?"
+msgstr "Удалить пользователя?"
+
+#: /var/www/image.loc/_temp2.php:97
+msgid "User Manager"
+msgstr "Управление пользователями"
+
+#: /var/www/image.loc/_temp2.php:99
+msgid "User"
+msgstr "Пользователь"
+
+#: /var/www/image.loc/_temp2.php:100
+msgid "E-mail"
+msgstr "E-mail"
+
+#: /var/www/image.loc/_temp2.php:102
+msgid "Banned"
+msgstr "Бан"
+
+#: /var/www/image.loc/_temp2.php:104
+msgid "Preliminary contents"
+msgstr "Предварительное содержание"
+
+#: /var/www/image.loc/_temp2.php:105
+msgid "Group list"
+msgstr "Список групп"
+
+#: /var/www/image.loc/_temp2.php:110
+msgid "Editing Groups"
+msgstr "Редактирование групп"
+
+#: /var/www/image.loc/_temp2.php:111
+msgid "Group data"
+msgstr "Данные группы"
+
+#: ../../..//admin.php:173
+#: ../../..//admin.php:365
+#: ../../..//admin.php:373
+msgid "Password"
+msgstr "Пароль"
+
+#: ../../..//admin.php:185
+#: ../../..//admin.php:379
+msgid "User with the same e-mail has been registered"
+msgstr "Пользователь с таким e-mail был зарегистрирован"
+
+# неее
+#: ../../..//admin.php:205
+msgid "Create a user or the username has been created"
+msgstr "Создать пользователя"
+
+# неее
+#: ../../..//admin.php:209
+msgid "Username has been created or user has been created"
+msgstr "Пользователь был создан"
+
+#: ../../..//admin.php:248
+msgid "Ban the user  or the user has been banned"
+msgstr "Пользователь забанен"
+
+#: ../../..//admin.php:257
+msgid "The user has been unbanned "
+msgstr "Пользователь был удален с бана"
+
+#: ../../..//admin.php:294
+#: ../../..//admin.php:311
+#: ../../..//admin.php:341
+msgid "User has not been found "
+msgstr "Пользователь не найден "
+
+#: ../../..//admin.php:323
+msgid "You do not pass search"
+msgstr "Вы не прошли поиска"
+
+#: ../../..//admin.php:407
+msgid "Updated a user"
+msgstr "Пользователь обновлен"
+
+#: ../../..//admin.php:412
+#: ../../..//admin.php:517
+msgid "Changes have been saved"
+msgstr "Изменения сохранены"
+
+#: ../../..//admin.php:462
+msgid "Created a group"
+msgstr "Группу создано"
+
+#: ../../..//admin.php:463
+msgid "Group has been created"
+msgstr "Группа была создана"
+
+#: ../../..//admin.php:481
+msgid "No data transmitted"
+msgstr "Данные не переданы"
+
+#: ../../..//admin.php:491
+msgid "Deleted a user"
+msgstr "Пользователь удален"
+
+#: ../../..//module_info.php:5
+msgid "Users manager"
+msgstr "Управление пользователями"
+
+#, fuzzy
+#~ msgid "Create user"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Description "
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Created a widget"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Positions updated"
+#~ msgstr "Позиція змінена"
+
+#~ msgid "Title"
+#~ msgstr "Заголовок"
+
+#, fuzzy
+#~ msgid "Changed wesite settings"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "by default"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Short description"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Settings"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Main page"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Meta Description"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Pages"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "goto site"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Create a widget"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "No widgets created"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Change category data"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "Site settings"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Languages"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#~ msgid "Hello"
+#~ msgstr "Привет"
+
+#, fuzzy
+#~ msgid "by date"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "By position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Download"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Create category"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "System update"
+#~ msgstr "Позиція змінена"
+
+#~ msgid "Preview"
+#~ msgstr "Смотреть"
+
+#~ msgid "site"
+#~ msgstr "сайт"
+
+#, fuzzy
+#~ msgid "Manage site"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Your remark"
+#~ msgstr "Вааааааааааааше замечание"
+
+#, fuzzy
+#~ msgid "ac_val_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_pub_date"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_creat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_page_cont_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_sett_saved"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_by_default"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "ac_created"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_save"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_sett"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_yes"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_cat_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_create_cat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_no_updates"
+#~ msgstr "Позиція змінена"
+
+#~ msgid "a_url"
+#~ msgstr "Посилання"
+
+#, fuzzy
+#~ msgid "a_date_create"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_select_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_type"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_footer_cancel"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_image_url"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_save_path"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_sort"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_by_pos"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_comm_by_def"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_turn_off"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_page_tpl"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "a_pub_stat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_enter_sys"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_create_group"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_ftp_sett"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_in_mb"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_left"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_top"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_bottom"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_text"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_album"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_gallery"
+#~ msgstr "Нааааааааамеееееееееее"

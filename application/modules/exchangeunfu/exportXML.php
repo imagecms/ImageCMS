@@ -46,7 +46,7 @@ class ExportXML {
     }
 
     public function index() {
-
+        
     }
 
     /** export */
@@ -60,7 +60,7 @@ class ExportXML {
         $this->prices = $this->ci->export_model->getPrices($partner_id);
         $this->productivity = $this->ci->export_model->getProductivity($partner_id);
 
-        if ($partner_id) {
+//        if ($partner_id) {
             /** export partners */
             if ($this->partners) {
                 $this->exportPartners();
@@ -81,16 +81,11 @@ class ExportXML {
                 $this->exportOrder();
             }
 
-            /** products export for partner */
-            if (!empty($this->products_ids)) {
-                $this->products = $this->ci->export_model->getProducts($this->products_ids);
-
-                /** export products */
-                if ($this->products) {
-                    $this->exportProducts();
-                }
+            /** export products */
+            if ($this->products) {
+                $this->exportProducts();
             }
-        } else {
+//        } else {
             /** all export */
             /** export users */
             if ($this->users) {
@@ -98,24 +93,24 @@ class ExportXML {
             }
 
             /** export partners */
-            if ($this->partners) {
-                $this->exportPartners();
-            }
+//            if ($this->partners) {
+//                $this->exportPartners();
+//            }
 
             /** export productivity */
-            if ($this->productivity) {
-                $this->exportProductivity();
-            }
+//            if ($this->productivity) {
+//                $this->exportProductivity();
+//            }
 
             /** export prices */
-            if ($this->prices) {
-                $this->exportPrices();
-            }
+//            if ($this->prices) {
+//                $this->exportPrices();
+//            }
 
             /** export orders */
-            if ($this->orders) {
-                $this->exportOrder();
-            }
+//            if ($this->orders) {
+//                $this->exportOrder();
+//            }
 
             /** export categories */
             if ($this->categories) {
@@ -123,10 +118,10 @@ class ExportXML {
             }
 
             /** export products */
-            if ($this->products) {
-                $this->exportProducts();
-            }
-        }
+//            if ($this->products) {
+//                $this->exportProducts();
+//            }
+//        }
 
         /** wrao export  */
         $this->exportWrap();
@@ -207,7 +202,7 @@ class ExportXML {
         foreach ($this->productivity as $productivity) {
             $this->productivity_export .=
                     "\t<СписокПродуктивность>\r\n" .
-//                    "\t\t<IDWeb>" . $productivity['id'] . "</IDWeb>\r\n" .
+                    "\t\t<IDWeb>" . $productivity['id'] . "</IDWeb>\r\n" .
                     "\t\t<Дата>" . date('Y-m-d\Th:m:s', $productivity['date']) . "</Дата>\r\n" .
                     "\t\t<Час>" . $productivity['hour'] . "</Час>\r\n" .
                     "\t\t<Количество>" . $productivity['count'] . "</Количество>\r\n" .
@@ -242,7 +237,7 @@ class ExportXML {
 
             $products = array();
             foreach ($this->products as $product) {
-                $products[$product['external_id']] = $product['id'];
+                $products[$product['id']] = $product['external_id'];
             }
 
             $this->price_export .=
@@ -250,8 +245,8 @@ class ExportXML {
                     "\t\t<IDWeb>" . $price['id'] . "</IDWeb>\r\n" .
                     "\t\t<ЭтоАкционнаяЦена>" . $price_bool . "</ЭтоАкционнаяЦена>\r\n" .
                     "\t\t<Цена>" . $price['price'] . "</Цена>\r\n" .
-                    "\t\t<IDНоменклатура>" . $price['product_external_id'] . "</IDНоменклатура>\r\n" .
-                    "\t\t<IDWebНоменклатура>" . $products[$price['product_external_id']] . "</IDWebНоменклатура>\r\n" .
+                    "\t\t<IDНоменклатура>" . $products[$price['product_id']] . "</IDНоменклатура>\r\n" .
+                    "\t\t<IDWebНоменклатура>" . $price['product_id'] . "</IDWebНоменклатура>\r\n" .
                     "\t\t<IDОрганизация>" . $price['partner_external_id'] . "</IDОрганизация>\r\n" .
                     "\t\t<IDWebОрганизация>" . $partners[$price['partner_external_id']] . "</IDWebОрганизация>\r\n" .
                     "\t\t<ID>" . $price['external_id'] . "</ID>\r\n" .
@@ -328,8 +323,6 @@ class ExportXML {
                 $order['paid'] = 'false';
             }
 
-
-//            var_dumps($users);
             /** order export data */
             $this->order_export .=
                     "\t<СписокЗаказыПокупателя>\r\n" .
@@ -444,24 +437,18 @@ class ExportXML {
         $export_body .=
                 $this->partners_export .
                 $this->users_export .
-                $this->product_export .
                 $this->categories_export .
+                $this->product_export .
                 $this->price_export .
                 $this->productivity_export .
-                $this->invoice_export .
+//                $this->invoice_export .
                 $this->order_export;
 
 
         if ($export_body) {
-            header('content-type: text/xml');
+            header('content-type: text/xml; charset=utf-8');
             $this->export .= "<?xml version='1.0' encoding='UTF-8'?>" . "\r\n" .
-                    "<КонтейнерСписков ВерсияСхемы='0.1'" .
-                    '
-                        xmlns="urn:abkt.com.ua:ozzimarket"
-                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    '
-                    . "  ДатаФормирования='" . date('Y-m-d h:m:s') . "'>" . "\r\n" .
+                    "<КонтейнерСписков xmlns='urn:abkt.com.ua:ozzimarket' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>\r\n" .
                     $export_body .
                     "</КонтейнерСписков>\r\n";
 

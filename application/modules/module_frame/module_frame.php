@@ -10,6 +10,8 @@ class Module_frame extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('module_frame');
     }
 
     public function index() {

@@ -35,8 +35,7 @@ class DX_Auth {
         $this->ci->load->config('auth');
 
         // Load DX Auth language
-        $this->ci->lang->load('dx_auth');
-
+//        $this->ci->lang->load('dx_auth');
         // Load DX Auth event
         $this->ci->load->library('DX_Auth_Event');
 
@@ -611,6 +610,19 @@ class DX_Auth {
         return $this->ci->session->userdata('DX_username');
     }
 
+    // Get useremail string
+    function get_user_email() {
+        $user = $this->ci->db
+                ->where('id', $this->get_user_id())
+                ->get('users');
+        if ($user) {
+            $user = $user->row_array();
+            return $user['email'];
+        } else {
+            return '';
+        }
+    }
+
     // Get user role id
     function get_role_id() {
         return $this->ci->session->userdata('DX_role_id');
@@ -868,12 +880,13 @@ class DX_Auth {
             $this->ci->dx_auth_event->sending_activation_email($new_user, $message);
 
             // Send email with activation link
-            $this->_email($email, $from, $subject, $message);
+//            $this->_email($email, $from, $subject, $message);
         } else {
             // Create user
             $insert = $this->ci->users->create_user($new_user);
+            $last_user_id = $this->ci->db->insert_id();
             // Trigger event
-            $this->ci->dx_auth_event->user_activated($this->ci->db->insert_id());
+            $this->ci->dx_auth_event->user_activated($last_user_id);
         }
 
 
@@ -881,6 +894,7 @@ class DX_Auth {
 
             // Replace password with plain for email
             $new_user['password'] = $password;
+            $new_user['id_user'] = $last_user_id;
 
             $result = $new_user;
 
@@ -898,7 +912,7 @@ class DX_Auth {
                 $this->ci->dx_auth_event->sending_account_email($new_user, $message);
 
                 // Send email with activation link
-                $this->_email($email, $from, $subject, $message);
+//                $this->_email($email, $from, $subject, $message);
             } else {
                 // Check if need to email account details
                 if ($this->ci->config->item('DX_email_account_details')) {
@@ -910,27 +924,27 @@ class DX_Auth {
                     $this->ci->dx_auth_event->sending_account_email($new_user, $message);
 
                     // Send email with account details
-                    $this->_email($email, $from, $subject, $message);
+//                    $this->_email($email, $from, $subject, $message);
                 }
 
-            $user_variables = array(
-                'user_name' => $username,
-                'user_password' => $password,
-                'user_address' => $address,
-                'user_email' => $email,
-                'user_phone' => $phone
+                $user_variables = array(
+                    'user_name' => $username,
+                    'user_password' => $password,
+                    'user_address' => $address,
+                    'user_email' => $email,
+                    'user_phone' => $phone
                 );
 
-            \cmsemail\email::getInstance()->sendEmail($email, 'create_user', $user_variables);
+                \cmsemail\email::getInstance()->sendEmail($email, 'create_user', $user_variables);
 
 
-                if($login_user){
+                if ($login_user) {
                     if ($this->login($email, $password)) {
                         if (class_exists('ShopCore'))
                             ShopCore::app()->SCart->transferCartData();
                         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest')
                             redirect('', 'location');
-    //                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                        //                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
                     }
                 }
             }
@@ -976,7 +990,7 @@ class DX_Auth {
                     $subject = $this->ci->lang->line('auth_forgot_password_subject');
 
                     // Trigger event and get email content
-                   // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
+                    // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
 
                     $replaceData = array(
                         'webSiteName' => $this->ci->config->item('DX_website_name'),
@@ -1096,9 +1110,9 @@ class DX_Auth {
                 $this->ci->dx_auth_event->user_changed_password($this->ci->session->userdata('DX_user_id'), $new_pass);
 
                 $replaceData = array(
-                        'user_name' => $row->username,
-                        'password' => $new_pass_for_user
-                    );
+                    'user_name' => $row->username,
+                    'password' => $new_pass_for_user
+                );
 
                 \cmsemail\email::getInstance()->sendEmail($row->email, 'change_password', $replaceData);
 
@@ -1215,15 +1229,15 @@ class DX_Auth {
         if ($this->use_recaptcha) {
             $result = $this->is_recaptcha_match();
             if (!$result) {
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
             }
         } else {
             if ($this->is_captcha_expired()) {
                 // Will replace this error msg with $lang
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
                 $result = FALSE;
             } elseif (!$this->is_captcha_match($code)) {
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
                 $result = FALSE;
             }
         }

@@ -24,6 +24,8 @@ class discount_api extends \mod_discount\discount {
      */
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('mod_discount');
     }
 
     /**
@@ -34,13 +36,16 @@ class discount_api extends \mod_discount\discount {
      * @return ---
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_api() {
+    public function get_discount_api($render = null) {
         if (count(ShopCore::app()->SCart->getData()) > 0)
             if ($this->check_module_install())
                 $discount = $this->init()->get_result_discount(1);
-        if ($discount['result_sum_discount'])
-            echo json_encode($discount);
-        else
+        if ($discount['result_sum_discount']){
+            if ($render === null)
+                echo json_encode($discount);
+            else
+                return $discount;
+        }else
             echo '';
     }
 
@@ -66,10 +71,10 @@ class discount_api extends \mod_discount\discount {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_product_api($product, $tpl = null) {
+    public function get_discount_product_api($product, $tpl = null, $price = null) {
         if ($this->check_module_install()) {
             $DiscProdObj = new \mod_discount\Discount_product;
-            if ($DiscProdObj->get_product_discount_event($product)) {
+            if ($DiscProdObj->get_product_discount_event($product, $price)) {
                 $arr = \CMSFactory\assetManager::create()->discount;
                 if (null === $tpl)
                     return $arr;
@@ -83,6 +88,8 @@ class discount_api extends \mod_discount\discount {
         }
         return false;
     }
+    
+    
 
     /**
      * get all discount information

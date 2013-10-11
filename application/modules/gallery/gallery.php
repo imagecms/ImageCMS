@@ -19,6 +19,8 @@ class Gallery extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('gallery');
 
         $this->load->module('core');
         $this->load->model('gallery_m');
@@ -36,21 +38,22 @@ class Gallery extends MY_Controller {
      * List categories and get albums from first category
      */
     function index() {
-        $this->core->set_meta_tags('Галерея');
+        $this->core->set_meta_tags(lang('Gallery'));
 
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
 
-        // Get covers
-        if (is_array($albums)) {
-            $this->template->add_array(array(
-                'albums' => $this->create_albums_covers($albums),
+        $data = array(
                 'gallery_category' => $categories,
                 'total' => $this->gallery_m->getTotalImages()
-            ));
-        }
+        );
 
-        $this->display_tpl('albums');
+        // Get covers
+        $data['albums'] = is_array($albums) ? $this->create_albums_covers($albums) : NULL;
+
+        \CMSFactory\assetManager::create()
+                ->setData($data)
+                ->render('albums');
     }
 
     /**
@@ -68,13 +71,15 @@ class Gallery extends MY_Controller {
                 $albums = $this->create_albums_covers($albums);
             }
 
-            $this->template->add_array(array(
+            $data = array(
                 'albums' => $albums,
                 'current_category' => $category,
                 'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
-            ));
+            );
 
-            $this->display_tpl('albums');
+            \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->render('albums');
         }
     }
 
@@ -123,13 +128,9 @@ class Gallery extends MY_Controller {
 
             $prev_img['url'] = $this->conf['upload_url'] . $album['id'] . '/' . $prev_img['file_name'] . '_prev' . $prev_img['file_ext'];
 
-            // Comments
-            $this->load->module('comments');
-            $this->comments->module = 'gallery';
-            $this->comments->comment_controller = 'gallery/post_comment';
-            $this->comments->build_comments($prev_img['id']);
 
-            $this->template->add_array(array(
+
+            $data = array(
                 'album' => $album,
                 'thumb_url' => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
                 'album_link' => 'gallery/album/' . $album['id'] . '/',
@@ -140,16 +141,20 @@ class Gallery extends MY_Controller {
                 'current_pos' => $current_pos,
                 'current_category' => $this->gallery_m->get_category($album['category_id']),
                 'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
-            ));
+            );
 
             $this->gallery_m->increase_image_views($prev_img['id']);
 
             $this->core->set_meta_tags(array($album['name']));
 
             if ($album['tpl_file']) {
-                echo $this->display_tpl($album['tpl_file']);
+                \CMSFactory\assetManager::create()
+                        ->setData($data)
+                        ->render($album['tpl_file']);
             } else {
-                $this->display_tpl('album');
+                \CMSFactory\assetManager::create()
+                        ->setData($data)
+                        ->render('album');
             }
         }
     }
@@ -176,18 +181,20 @@ class Gallery extends MY_Controller {
         $this->pagination->num_links = 3;
         $this->pagination->initialize($config);
 
-        $this->template->add_array(array(
+        $data = array(
             'album' => $album,
             'thumb_url' => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
             'album_link' => 'gallery/album/' . $album['id'] . '/',
             'album_url' => $this->conf['upload_url'] . $album['id'] . '/',
             'current_category' => $this->gallery_m->get_category($album['category_id']),
             'pagination' => $this->pagination->create_links(),
-        ));
+        );
 
         $this->core->set_meta_tags(array($album['name']));
 
-        $this->display_tpl('thumbnails');
+        \CMSFactory\assetManager::create()
+                ->setData($data)
+                ->render('thumbnails');
     }
 
     function post_comment() {
@@ -235,50 +242,6 @@ class Gallery extends MY_Controller {
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
         $this->load->model('install')->deinstall();
-    }
-
-    /**
-     * Display template file
-     */
-    private function display_tpl($file = '') {
-        /**
-          if ( file_exists($this->template->template_dir . 'gallery') )
-          {
-          if ( file_exists($this->template->template_dir . 'gallery/main.tpl')   )
-          {
-          $this->template->add_array(array(
-          'content' => $this->template->fetch('gallery/' . $file),
-          ));
-
-          $this->template->display('gallery/main');
-          }
-          else
-          {
-          $this->template->show('gallery/' . $file);
-          }
-          }
-          else
-          {
-          $this->template->add_array(array(
-          'content' => $this->fetch_tpl($file),
-          ));
-
-          $file = realpath(dirname(__FILE__)).'/templates/public/main.tpl';
-          $this->template->display('file:' . $file);
-          }
-         * */
-        $this->template->add_array(array(
-            'content' => $this->fetch_tpl($file),
-        ));
-
-        if (file_exists(realpath(dirname(__FILE__)) . '/templates/public/main.tpl')) {
-            $file = realpath(dirname(__FILE__)) . '/templates/public/main.tpl';
-            $this->template->display('file:' . $file);
-        } else {
-            // Use main site template
-            $this->template->show();
-            exit;
-        }
     }
 
     /**
