@@ -1,4 +1,3 @@
-{ /* }lang('Your search did not found', 'admin'){ */ }
 <div class="modal hide fade" id="pages_action_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -8,7 +7,7 @@
         {lang("Categories","admin")}:
         <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
             <option value="0">{lang("Without a category","admin")}</option>
-            { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] )); }
+            {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] ));}
         </select>
     </div>
     <div class="modal-footer">
@@ -70,8 +69,8 @@
                     {if $show_cat_list == 'yes'}
                         <div class="span3">
                             <ul class="nav nav-tabs nav-stacked m-t_10">
-                                <li {if '0'==$cat_id} class="active" {/if} ><a href="{$BASE_URL}admin/components/cp/documentation/byCategory/0" class="pjax">{lang("Without a category","admin")}</a></li>
-                                <li {if 'all'==$cat_id} class="active" {/if}><a href="{$BASE_URL}admin/components/cp/documentation/byCategory/" class="pjax">{lang('All categories','admin')}</a></li>
+                                <li {if '0' == $cat_id} class="active" {/if} ><a href="{$BASE_URL}admin/components/cp/documentation/byCategory/0" class="pjax">{lang("Without a category","admin")}</a></li>
+                                <li {if 'all' === $cat_id} class="active" {/if}><a href="{$BASE_URL}admin/components/cp/documentation/byCategory/" class="pjax">{lang('All categories','admin')}</a></li>
                             </ul>
                             <ul class="nav nav-tabs nav-stacked">
                                 {foreach $tree as $cat}

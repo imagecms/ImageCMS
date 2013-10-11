@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="row-fluid">
-        <form action="{$BASE_URL}admin/components/cp/documentation/settings/saveSettings" method="POST" id="doc_roles_settings">
+        <form action="{$BASE_URL}admin/components/cp/documentation/saveSettings" method="POST" id="doc_roles_settings">
             <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
