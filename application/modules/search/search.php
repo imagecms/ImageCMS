@@ -155,7 +155,7 @@ class Search extends MY_Controller {
 
             $tempText = mb_substr($tempText, $start, $stop, 'UTF-8');
             $tempText = str_replace($text, '<span style="background-color:' . $this->highlightColor . '">' . $text . '</span>', $tempText);
-            $data[$i]['parsedText'] = '...' . $tempText . '...';
+            $data[$i]['parsedText'] = '...' . mb_substr($tempText, 0, 500,'utf-8') . '...';
         }
 
         return $data;

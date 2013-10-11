@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-28 12:12+0300\n"
-"PO-Revision-Date: 2013-03-28 12:12+0300\n"
-"Last-Translator: koloda <koloda90@gmail.com>\n"
+"POT-Creation-Date: 2013-10-11 13:20+0300\n"
+"PO-Revision-Date: 2013-10-11 13:21+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -17,105 +17,97 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ../../../\n"
 
-#: ../../..//core.php:337
-msgid "Home page not found."
+#: /var/www/image.loc/_tempLangs.php:7
+msgid "Related topics"
 msgstr ""
 
-#: ../../..//core.php:384
-msgid "Module uploading or loading  error"
-msgstr ""
-
-#: ../../..//core.php:521
-msgid "The first"
-msgstr ""
-
-#: ../../..//core.php:522
-msgid "Last"
-msgstr ""
-
-#: ../../..//core.php:551
-msgid "Can't locate category template file."
-msgstr ""
-
-#: ../../..//core.php:559
-msgid "In the category has no pages."
-msgstr ""
-
-#: ../../..//core.php:688
-msgid "Page not found"
-msgstr ""
-
-#: ../../..//core.php:690
-msgid "Page not found."
-msgstr ""
-
-#: ../../..//_out.php:17
-#: ../../..//templates/recent_news_form.tpl:5
+#: /var/www/image.loc/_tempLangs.php:8
 msgid "Widget settings"
 msgstr ""
 
-#: ../../..//_out.php:21
-#: ../../..//templates/recent_news_form.tpl:9
+#: /var/www/image.loc/_tempLangs.php:9
 msgid "Go back"
 msgstr ""
 
-#: ../../..//_out.php:22
-#: ../../..//templates/recent_news_form.tpl:10
-msgid "Have been saved"
+#: /var/www/image.loc/_tempLangs.php:10
+msgid "Save"
 msgstr ""
 
-#: ../../..//_out.php:23
-#: ../../..//templates/recent_news_form.tpl:11
+#: /var/www/image.loc/_tempLangs.php:11
 msgid "Save and go back"
 msgstr ""
 
-#: ../../..//_out.php:30
-#: ../../..//templates/recent_news_form.tpl:18
+#: /var/www/image.loc/_tempLangs.php:12
 msgid "Settings"
 msgstr ""
 
-#: ../../..//_out.php:37
-#: ../../..//templates/recent_news_form.tpl:25
+#: /var/www/image.loc/_tempLangs.php:13
 msgid "Pages"
 msgstr ""
 
-#: ../../..//_out.php:40
-#: ../../..//templates/recent_news_form.tpl:28
+#: /var/www/image.loc/_tempLangs.php:14
 msgid "Latest"
 msgstr ""
 
-#: ../../..//_out.php:41
-#: ../../..//templates/recent_news_form.tpl:29
+#: /var/www/image.loc/_tempLangs.php:15
 msgid "Popular"
 msgstr ""
 
-#: ../../..//_out.php:46
-#: ../../..//templates/recent_news_form.tpl:34
+#: /var/www/image.loc/_tempLangs.php:16
 msgid "Categories"
 msgstr ""
 
-#: ../../..//_out.php:49
-#: ../../..//templates/recent_news_form.tpl:37
+#: /var/www/image.loc/_tempLangs.php:17
 msgid "Without a category"
 msgstr ""
 
-#: ../../..//_out.php:56
-#: ../../..//templates/recent_news_form.tpl:44
+#: /var/www/image.loc/_tempLangs.php:18
 msgid "Number of news for display"
 msgstr ""
 
-#: ../../..//_out.php:62
-#: ../../..//core_widgets.php:86
-#: ../../..//templates/recent_news_form.tpl:50
+#: /var/www/image.loc/_tempLangs.php:19
 msgid "Maximum number of characters"
 msgstr ""
 
-#: ../../..//core_widgets.php:85
+#: ../../..//core_widgets.php:87
 msgid "Amount of news"
 msgstr ""
 
-#: ../../..//core_widgets.php:99
-msgid "Settings have been saved or settings were saved"
+#: ../../..//core_widgets.php:102
+#, fuzzy
+msgid "Settings have been saved"
+msgstr "Settings saved success"
+
+#: ../../..//core.php:345
+msgid "Home page not found."
+msgstr ""
+
+#: ../../..//core.php:392
+msgid "Module uploading or loading  error"
+msgstr ""
+
+#: ../../..//core.php:534
+msgid "The first"
+msgstr ""
+
+#: ../../..//core.php:535
+msgid "Last"
+msgstr ""
+
+#: ../../..//core.php:564
+msgid "Can't locate category template file."
+msgstr ""
+
+#: ../../..//core.php:572
+msgid "In the category has no pages."
+msgstr ""
+
+#: ../../..//core.php:704
+msgid "Page not found"
+msgstr ""
+
+#: ../../..//core.php:706
+msgid "Page not found."
 msgstr ""
 
 #, fuzzy
@@ -132,9 +124,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "ac_val_position"
 #~ msgstr "Позиція"
-
-#~ msgid "Settings saved success"
-#~ msgstr "Settings saved success"
 
 #~ msgid "amt_name"
 #~ msgstr "User name"

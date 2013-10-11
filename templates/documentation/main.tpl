@@ -59,9 +59,9 @@
                 <div class="collapse navbar-collapse">
                     {load_menu('top_menu')}
                     {if $CI->dx_auth->is_logged_in()}
-
                         <div class="pull-right">
-                            {if $CI->dx_auth->is_admin()}
+                            {$CI->load->module('documentation')}
+                            {if $CI->documentation->hasCRUDAccess()}
                                 <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
                                     <span class="glyphicon glyphicon-new-window"></span>
                                     {lang('Create page','documentation')}

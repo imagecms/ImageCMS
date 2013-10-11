@@ -34,13 +34,20 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
-//        $settings = $this->documentation_model->getSettings();
-//        if (in_array($this->dx_auth->get_role_id(), $settings)) {
+        if ($this->hasCRUDAccess()) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
                     ->registerScript('documentation', FALSE, 'before');
         }
-//    }
+    }
+
+    public function hasCRUDAccess() {
+        $settings = $this->documentation_model->getSettings();
+        if (in_array($this->dx_auth->get_role_id(), $settings)) {
+            return TRUE;
+        }
+        return FALSE;
+    }
 
     /**
      * Create page
@@ -59,6 +66,8 @@ class Documentation extends \MY_Controller {
 
         /** Register meta tags * */
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+
+        $this->core->set_meta_tags(lang("Page Create", "documentation"));
 
         /** Set form validation rules * */
         $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[254]|xss_clean');
@@ -156,6 +165,8 @@ class Documentation extends \MY_Controller {
         if ($id == null) {
             $this->core->error_404();
         }
+
+        $this->core->set_meta_tags(lang("Page edit", "documentation"));
 
         /** If not langId then set default language id * */
         if ($langId == null) {
@@ -285,8 +296,8 @@ class Documentation extends \MY_Controller {
     public function create_cat() {
         $this->load->library('lib_admin');
 
-        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[127]|required|xss_clean');
-        $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[127]');
+        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[256]|required|xss_clean');
+        $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[256]');
         $this->form_validation->run();
 
         if (!$this->form_validation->error_string()) {
