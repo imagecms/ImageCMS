@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-11 13:25+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: /var/www/image.loc/_tempLangs.php:6
+msgid "Install"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:7
+msgid "Copy contents of the archive into a directory"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:8
+msgid "Install module through the control panel"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:9
+msgid "Create directory"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:10
+msgid "and set them to record rights"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:11
+msgid "Files uploading"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:12
+msgid "Select a file"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:13
+msgid "Or specify URL"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:14
+msgid "Upload a file"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:15
+msgid "Cancel"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:16
+msgid "Settings"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:17
+msgid "Maximum image width"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:18
+msgid "Maximum image height"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:19
+msgid "Icon width"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "Icon height"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "Image quality"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:22
+msgid "Save ratio"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "Yes"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "No"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Save"
+msgstr ""
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр1"
