@@ -52,7 +52,10 @@ class Admin extends BaseAdminController {
             'next_tag_close' => '</li>',
             'num_tag_close' => '</li>',
             'num_tag_open' => '<li>',
-            'num_tag_close' => '</li>'
+            'first_tag_open' => '<li>',
+            'first_tag_close' => '</li>',
+            'last_tag_open' => '<li>',
+            'last_tag_close' => '</li>'
         );
 
         $this->pagination->num_links = 5;
@@ -88,14 +91,13 @@ class Admin extends BaseAdminController {
                 ->registerScript('admin')
                 ->setData('roles', $roles)
                 ->renderAdmin('settings');
-        
     }
 
     public function saveSettings() {
         if ($_POST['action'] == 'save') {
             $this->documentation_model->setSettings($_POST['ids']);
         }
-        showMessage(lang("Saved",'documentation'));
+        showMessage(lang("Saved", 'documentation'));
     }
 
     public function makeRelevant($pageId, $historyId) {
@@ -161,7 +163,11 @@ class Admin extends BaseAdminController {
                 'next_tag_close' => '</li>',
                 'num_tag_close' => '</li>',
                 'num_tag_open' => '<li>',
-                'num_tag_close' => '</li>'
+                'num_tag_close' => '</li>',
+                'first_tag_open' => '<li>',
+                'first_tag_close' => '</li>',
+                'last_tag_open' => '<li>',
+                'last_tag_close' => '</li>',
             );
 
 
