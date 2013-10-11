@@ -1965,7 +1965,7 @@ function init() {
             drop: $this
         });
     });
-    $(document).on('autocomplete.before drop.click showActivity before_sync_cart', function(e) {
+    $(document).on('autocomplete.before showActivity before_sync_cart', function(e) {
         $.fancybox.showActivity();
     })
     $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart end_sync_cart cart_changed', function(e) {
