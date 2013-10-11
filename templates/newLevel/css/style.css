@@ -627,6 +627,14 @@ input.input-search{height: 33px;}
 .menu-col-category .frame-drop-menu > ul > li{width: 176px;padding-right: 8px;padding-bottom: 10px;}
 .is-side > ul > li{width: 100%;}
 
+.is-side.x1{width: 200px !important;}
+.is-side.x2{width: 400px !important;}
+.is-side.x3{width: 600px !important;}
+.is-side.x4{width: 800px !important;}
+.is-side.x5{width: 1000px !important;}
+.is-side.x6{width: 1200px !important;}
+.is-side.x7{width: 1400px !important;}
+.is-side.x8{width: 1600px !important;}
 .menu-col-category .frame-drop-menu .x9{width: 1652px;}
 .frame-drop-menu.x9{width: 1694px;}
 .x9 > ul > li, .x9 .frame-l2 > ul > li[data-column]{width: 11%;}
@@ -662,14 +670,6 @@ input.input-search{height: 33px;}
 
 .menu-row-category .title-category-l1{display: inline-block;padding: 7px 14px;width: 172px;position: relative;text-transform: capitalize;}
 .menu-row-category .frame-drop-menu > ul > li{display: block;width: 200px;}
-.is-side.x1{width: 200px !important;}
-.is-side.x2{width: 400px !important;}
-.is-side.x3{width: 600px !important;}
-.is-side.x4{width: 800px !important;}
-.is-side.x5{width: 1000px !important;}
-.is-side.x6{width: 1200px !important;}
-.is-side.x7{width: 1400px !important;}
-.is-side.x8{width: 1600px !important;}
 .not-js .menu-row-category .frame-drop-menu > ul > li:hover .frame-l2{display: block;}
 
 .frame-drop-menu.right-drop{margin-right: -1px;}
@@ -798,11 +798,11 @@ input + .msg{margin-top: 5px;}
 .horizontal-form label > .title, .horizontal-form .frame-label > .title{float: left;width: 100px;padding: 7px 10px 0 0;text-align:left;}
 .horizontal-form .frame-form-field{margin-left: 110px;}
 .horizontal-form .frame-radio{padding-top: 7px;}
-.horizontal-form.big-title label > .title, .horizontal-form.big-title .frame-label > .title{width: 130px;}
-.horizontal-form.big-title .frame-form-field{margin-left: 140px;}
 
 .drop .horizontal-form .title{width: 104px;text-align: right;}
 .drop .horizontal-form .frame-form-field{margin-left: 114px;}
+.horizontal-form.big-title label > .title, .horizontal-form.big-title .frame-label > .title{width: 130px;}
+.horizontal-form.big-title .frame-form-field{margin-left: 140px;}
 
 .vertical-form .control-label{margin-bottom: 2px;}
 .vertical-form .frame-label, .vertical-form label{margin: 17px 0 15px;display: block;}

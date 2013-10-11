@@ -1,49 +1,68 @@
 <div class="container">
-    <div class="page-header">
-        <h1 style="display: inline-block;">{lang('Authorization','documentation')}</h1>
-    </div>
-    <div class="pull-left">
+    
+        <h1>{lang('Authorization','documentation')}</h1>
+    
         {if $errors}
             <div class="alert alert-block alert-danger fade in">
                 {echo $errors}
             </div>
         {/if}
-        <form class="navbar-form navbar-right pull-right" method="post" id="login_form" onsubmit="'/auth/authapi/login';">
-            <label>
-                <span class="title">{lang('E-mail','newLevel')}</span>
-                <span class="must">*</span>
-            </label>
-            <div class="form-group">
-                <input type="text" name="email" placeholder="Email" class="form-control"/>
-
-            </div>
-            <label>
-                <span class="title">{lang('Password','newLevel')}</span>
-                <span class="must">*</span>
-            </label>
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Password" class="form-control"/>
-            </div>
-            <!-- captcha block -->
-            <div class="form-group">
-            <lable id="captcha_block">
+        <form method="post" id="login_form" onsubmit="'/auth/authapi/login';">
+            <table class="custom_form_table">
+                <tr>
+                    <td>
+                        <label for="email">
+                            {lang('Email','corporate')}
+                            <span class="must">*</span>
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="email" placeholder="Email" class="form-control"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">
+                            {lang('Password','newLevel')}
+                            <span class="must">*</span>
+                        </label>
+                    </td>
+                    <td>
+                        <input type="password" name="password" placeholder="Password" class="form-control"/>
+                    </td>
+                </tr>
                 {if $cap_image}
-                    <span class="title">{lang("Code protection","admin")}</span>
-                    <span class="frame_form_field">
-                        {if $captcha_type == 'captcha'}
-                            <input type="text" name="captcha" placeholder="{lang("Code protection","admin")}"/>
-                            <span class="help_inline">{$cap_image}</span>
-                            <label id="for_captcha" class="for_validations"></label>
-                        {/if}
-                    </span>
+                    <tr>
+                        <td colspan="2">
+                            {$cap_image}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="text" name="captcha" id="captcha" placeholder="{lang("Code protection","admin")}" />
+                        </td>
+                    </tr>
                 {/if}
-            </lable>
-            </div>
-            <button type="submit" class="btn btn-success">
-                <span class="glyphicon glyphicon-log-in"></span>
-                {lang('Sign in','documentation')}
-            </button>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="controls_table_row">
+                        <button type="button" class="btn" data-drop=".drop-enter" data-location="{site_url('auth/register')}" onclick="window.location = this.getAttribute('data-location')">
+                            {lang('Sign up','corporate')}
+                        </button>
+                        <button type="button" class="btn" data-drop=".drop-forgot" data-location="{site_url('auth/forgot_password')}" onclick="window.location = this.getAttribute('data-location')">
+                            {lang('Forgot password?','corporate')}
+                        </button>
+                        <button type="submit" class="btn btn-primary pull-right">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            {lang('Sign in','documentation')}
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
             {form_csrf()}
         </form>
-    </div>
+   
 </div>

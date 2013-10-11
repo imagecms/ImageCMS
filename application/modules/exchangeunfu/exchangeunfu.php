@@ -634,7 +634,7 @@ class Exchangeunfu extends MY_Controller {
                 ->get('mod_exchangeunfu_prices');
 
         $region_prices = array();
-        
+
         if ($products_by_region) {
             $products_by_region = $products_by_region->result_array();
         } else {
@@ -756,6 +756,17 @@ class Exchangeunfu extends MY_Controller {
 //            }
 //        }
         exit();
+    }
+
+    /**
+     * Use this function to make backup before import starts
+     */
+    protected function makeDBBackup() {
+        if (is_really_writable('./application/backups')) {
+            \libraries\Backup::create()->createBackup("zip", "exchange");
+        } else {
+            $this->error_log(lang('Can not create a database snapshot, check the folder', 'exchange') . ' /application/backups ' . lang('on writing possibility', 'exchange'));
+        }
     }
 
 }
