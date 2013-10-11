@@ -110,4 +110,4 @@ $(document).ready(function() {
     $(document).on('drop.show drop.hide hideActivity', function(e) {
         $.fancybox.hideActivity();
     })
-})
+});

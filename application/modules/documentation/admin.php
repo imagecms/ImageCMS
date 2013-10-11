@@ -55,7 +55,6 @@ class Admin extends BaseAdminController {
             'num_tag_close' => '</li>'
         );
 
-
         $this->pagination->num_links = 5;
         $this->pagination->initialize($paginationConfig);
         // End pagination
@@ -72,6 +71,31 @@ class Admin extends BaseAdminController {
                 ->registerScript('dmp')
                 ->registerScript('admin')
                 ->renderAdmin('history');
+    }
+
+    public function settings($action = NULL) {
+        $settings = $this->documentation_model->getSettings();
+
+        $roles = $this->documentation_model->getRoles();
+        foreach ($roles as $key => $role) {
+            if (in_array($role['id'], $settings)) {
+                $roles[$key]['edit'] = '1';
+            } else {
+                $roles[$key]['edit'] = '0';
+            }
+        }
+        \CMSFactory\assetManager::create()
+                ->registerScript('admin')
+                ->setData('roles', $roles)
+                ->renderAdmin('settings');
+        
+    }
+
+    public function saveSettings() {
+        if ($_POST['action'] == 'save') {
+            $this->documentation_model->setSettings($_POST['ids']);
+        }
+        showMessage(lang("Saved",'documentation'));
     }
 
     public function makeRelevant($pageId, $historyId) {
@@ -102,12 +126,12 @@ class Admin extends BaseAdminController {
 
         ($hook = get_hook('admin_get_pages_by_cat')) ? eval($hook) : NULL;
 
-        $pageNum = $this->uri->segment(7) == FALSE ? 0 : $this->uri->segment(7);
+        $offset = $this->uri->segment(7) == FALSE ? 0 : $this->uri->segment(7);
 
         $per_page = 12;
 
         $result = $this->db
-                ->limit($per_page, $per_page * $pageNum)
+                ->limit($per_page, $offset)
                 ->where($db_where)
                 ->get('content');
 
@@ -177,7 +201,7 @@ class Admin extends BaseAdminController {
             $data = array(
                 'menu_cat' => $newValue
             );
-            
+
             $this->documentation_model->updateMenuCategory($data, $id);
             echo 'true';
             return;
