@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-08 08:47+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <sheme4ko@mail.ru>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -13,15 +13,13 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp.php:20
 msgid "a_show_page"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:21
-#: /var/www/image.loc/_temp.php:22
+#: /var/www/image.loc/_temp.php:21 /var/www/image.loc/_temp.php:22
 msgid "Autocomplite"
 msgstr ""
 
@@ -29,28 +27,21 @@ msgstr ""
 msgid "Autocomplite words"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:24
-#: /var/www/image.loc/_temp.php:25
+#: /var/www/image.loc/_temp.php:24 /var/www/image.loc/_temp.php:25
 msgid "choose date"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:26
-#: /var/www/image.loc/_temp.php:44
-#: /var/www/image.loc/_temp.php:52
-#: /var/www/image.loc/_temp.php:117
-#: /var/www/image.loc/_temp.php:141
-#: /var/www/image.loc/_temp.php:190
+#: /var/www/image.loc/_temp.php:26 /var/www/image.loc/_temp.php:44
+#: /var/www/image.loc/_temp.php:52 /var/www/image.loc/_temp.php:117
+#: /var/www/image.loc/_temp.php:141 /var/www/image.loc/_temp.php:190
 msgid "Cancel"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:27
-#: /var/www/image.loc/_temp.php:43
-#: /var/www/image.loc/_temp.php:56
-#: /var/www/image.loc/_temp.php:120
-#: /var/www/image.loc/_temp.php:169
-#: /var/www/image.loc/_temp.php:178
+#: /var/www/image.loc/_temp.php:27 /var/www/image.loc/_temp.php:43
+#: /var/www/image.loc/_temp.php:56 /var/www/image.loc/_temp.php:120
+#: /var/www/image.loc/_temp.php:169 /var/www/image.loc/_temp.php:178
 msgid "Create"
-msgstr ""
+msgstr "Create discount"
 
 #: /var/www/image.loc/_temp.php:28
 msgid "Preview"
@@ -60,8 +51,7 @@ msgstr ""
 msgid "site"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:30
-#: /var/www/image.loc/_temp.php:31
+#: /var/www/image.loc/_temp.php:30 /var/www/image.loc/_temp.php:31
 msgid "Orders"
 msgstr ""
 
@@ -101,18 +91,15 @@ msgstr ""
 msgid "Full description"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:42
-#: /var/www/image.loc/_temp.php:102
+#: /var/www/image.loc/_temp.php:42 /var/www/image.loc/_temp.php:102
 msgid "Parent"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:45
-#: /var/www/image.loc/_temp.php:48
+#: /var/www/image.loc/_temp.php:45 /var/www/image.loc/_temp.php:48
 msgid "Create role group"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:46
-#: /var/www/image.loc/_temp.php:49
+#: /var/www/image.loc/_temp.php:46 /var/www/image.loc/_temp.php:49
 msgid "a_privilegy"
 msgstr ""
 
@@ -128,8 +115,7 @@ msgstr ""
 msgid "Delete group"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:53
-#: /var/www/image.loc/_temp.php:54
+#: /var/www/image.loc/_temp.php:53 /var/www/image.loc/_temp.php:54
 msgid "Clean"
 msgstr ""
 
@@ -137,49 +123,36 @@ msgstr ""
 msgid "Widget editing"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:57
-#: /var/www/image.loc/_temp.php:66
-#: /var/www/image.loc/_temp.php:122
-#: /var/www/image.loc/_temp.php:134
+#: /var/www/image.loc/_temp.php:57 /var/www/image.loc/_temp.php:66
+#: /var/www/image.loc/_temp.php:122 /var/www/image.loc/_temp.php:134
 #: /var/www/image.loc/_temp.php:158
 msgid "Have been saved"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:58
-#: /var/www/image.loc/_temp.php:67
+#: /var/www/image.loc/_temp.php:58 /var/www/image.loc/_temp.php:67
 #: /var/www/image.loc/_temp.php:159
 msgid "Save and go back"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:59
-#: /var/www/image.loc/_temp.php:69
-#: /var/www/image.loc/_temp.php:79
-#: /var/www/image.loc/_temp.php:124
-#: /var/www/image.loc/_temp.php:170
-#: /var/www/image.loc/_temp.php:179
+#: /var/www/image.loc/_temp.php:59 /var/www/image.loc/_temp.php:69
+#: /var/www/image.loc/_temp.php:79 /var/www/image.loc/_temp.php:124
+#: /var/www/image.loc/_temp.php:170 /var/www/image.loc/_temp.php:179
 msgid "Properties"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:60
-#: /var/www/image.loc/_temp.php:101
-#: /var/www/image.loc/_temp.php:125
-#: /var/www/image.loc/_temp.php:129
-#: /var/www/image.loc/_temp.php:161
-#: /var/www/image.loc/_temp.php:180
-#: /var/www/image.loc/_temp.php:195
-#: /var/www/image.loc/_temp.php:207
+#: /var/www/image.loc/_temp.php:60 /var/www/image.loc/_temp.php:101
+#: /var/www/image.loc/_temp.php:125 /var/www/image.loc/_temp.php:129
+#: /var/www/image.loc/_temp.php:161 /var/www/image.loc/_temp.php:180
+#: /var/www/image.loc/_temp.php:195 /var/www/image.loc/_temp.php:207
 msgid "Name"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:61
-#: /var/www/image.loc/_temp.php:81
+#: /var/www/image.loc/_temp.php:61 /var/www/image.loc/_temp.php:81
 msgid "Only Latin characters"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:62
-#: /var/www/image.loc/_temp.php:126
-#: /var/www/image.loc/_temp.php:197
-#: /var/www/image.loc/_temp.php:208
+#: /var/www/image.loc/_temp.php:62 /var/www/image.loc/_temp.php:126
+#: /var/www/image.loc/_temp.php:197 /var/www/image.loc/_temp.php:208
 msgid "Description"
 msgstr ""
 
@@ -195,8 +168,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:68
-#: /var/www/image.loc/_temp.php:72
+#: /var/www/image.loc/_temp.php:68 /var/www/image.loc/_temp.php:72
 msgid "Content"
 msgstr ""
 
@@ -204,10 +176,8 @@ msgstr ""
 msgid "Additional fields"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:71
-#: /var/www/image.loc/_temp.php:91
-#: /var/www/image.loc/_temp.php:160
-#: /var/www/image.loc/_temp.php:198
+#: /var/www/image.loc/_temp.php:71 /var/www/image.loc/_temp.php:91
+#: /var/www/image.loc/_temp.php:160 /var/www/image.loc/_temp.php:198
 #: /var/www/image.loc/_temp.php:202
 msgid "Settings"
 msgstr ""
@@ -216,13 +186,11 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:74
-#: /var/www/image.loc/_temp.php:100
+#: /var/www/image.loc/_temp.php:74 /var/www/image.loc/_temp.php:100
 msgid "Create a category"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:75
-#: /var/www/image.loc/_temp.php:103
+#: /var/www/image.loc/_temp.php:75 /var/www/image.loc/_temp.php:103
 #: /var/www/image.loc/_temp.php:130
 msgid "No"
 msgstr ""
@@ -263,8 +231,7 @@ msgstr ""
 msgid "Main template"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:87
-#: /var/www/image.loc/_temp.php:89
+#: /var/www/image.loc/_temp.php:87 /var/www/image.loc/_temp.php:89
 msgid "by default"
 msgstr ""
 
@@ -308,10 +275,8 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:104
-#: /var/www/image.loc/_temp.php:105
-#: /var/www/image.loc/_temp.php:143
-#: /var/www/image.loc/_temp.php:144
+#: /var/www/image.loc/_temp.php:104 /var/www/image.loc/_temp.php:105
+#: /var/www/image.loc/_temp.php:143 /var/www/image.loc/_temp.php:144
 msgid "Operation panel"
 msgstr ""
 
@@ -327,8 +292,7 @@ msgstr ""
 msgid "Products without icons"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:109
-#: /var/www/image.loc/_temp.php:110
+#: /var/www/image.loc/_temp.php:109 /var/www/image.loc/_temp.php:110
 msgid "Latest/recent  comments"
 msgstr ""
 
@@ -372,8 +336,7 @@ msgstr ""
 msgid "Save and exit"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:127
-#: /var/www/image.loc/_temp.php:138
+#: /var/www/image.loc/_temp.php:127 /var/www/image.loc/_temp.php:138
 #: /var/www/image.loc/_temp.php:210
 msgid "Group"
 msgstr ""
@@ -394,27 +357,21 @@ msgstr ""
 msgid "Add to the menu"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:135
-#: /var/www/image.loc/_temp.php:204
+#: /var/www/image.loc/_temp.php:135 /var/www/image.loc/_temp.php:204
 msgid "Roles groups list"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:136
-#: /var/www/image.loc/_temp.php:142
-#: /var/www/image.loc/_temp.php:189
-#: /var/www/image.loc/_temp.php:192
-#: /var/www/image.loc/_temp.php:205
-#: /var/www/image.loc/_temp.php:212
+#: /var/www/image.loc/_temp.php:136 /var/www/image.loc/_temp.php:142
+#: /var/www/image.loc/_temp.php:189 /var/www/image.loc/_temp.php:192
+#: /var/www/image.loc/_temp.php:205 /var/www/image.loc/_temp.php:212
 msgid "Delete"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:137
-#: /var/www/image.loc/_temp.php:209
+#: /var/www/image.loc/_temp.php:137 /var/www/image.loc/_temp.php:209
 msgid "List"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:139
-#: /var/www/image.loc/_temp.php:211
+#: /var/www/image.loc/_temp.php:139 /var/www/image.loc/_temp.php:211
 msgid "Empty."
 msgstr ""
 
@@ -470,20 +427,16 @@ msgstr ""
 msgid "Language edit"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:157
-#: /var/www/image.loc/_temp.php:177
+#: /var/www/image.loc/_temp.php:157 /var/www/image.loc/_temp.php:177
 msgid "Go back"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:162
-#: /var/www/image.loc/_temp.php:181
+#: /var/www/image.loc/_temp.php:162 /var/www/image.loc/_temp.php:181
 msgid "Identifier"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:163
-#: /var/www/image.loc/_temp.php:164
-#: /var/www/image.loc/_temp.php:182
-#: /var/www/image.loc/_temp.php:183
+#: /var/www/image.loc/_temp.php:163 /var/www/image.loc/_temp.php:164
+#: /var/www/image.loc/_temp.php:182 /var/www/image.loc/_temp.php:183
 msgid "Image URL"
 msgstr ""
 
@@ -491,13 +444,11 @@ msgstr ""
 msgid "Choose an image"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:166
-#: /var/www/image.loc/_temp.php:185
+#: /var/www/image.loc/_temp.php:166 /var/www/image.loc/_temp.php:185
 msgid "Folder"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:167
-#: /var/www/image.loc/_temp.php:186
+#: /var/www/image.loc/_temp.php:167 /var/www/image.loc/_temp.php:186
 msgid "Template"
 msgstr ""
 
@@ -549,8 +500,7 @@ msgstr ""
 msgid "Create a widget"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:194
-#: /var/www/image.loc/_temp.php:206
+#: /var/www/image.loc/_temp.php:194 /var/www/image.loc/_temp.php:206
 msgid "ID"
 msgstr ""
 
@@ -614,13 +564,11 @@ msgstr ""
 msgid "go to site"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:26
-#: /var/www/image.loc/_temp.php:42
+#: /var/www/image.loc/_temp.php:26 /var/www/image.loc/_temp.php:42
 msgid "Save and create a new group"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:27
-#: /var/www/image.loc/_temp.php:43
+#: /var/www/image.loc/_temp.php:27 /var/www/image.loc/_temp.php:43
 msgid "Save and edit"
 msgstr ""
 
@@ -636,8 +584,7 @@ msgstr ""
 msgid "Not enough rights to access"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:44
-#: /var/www/image.loc/_temp.php:63
+#: /var/www/image.loc/_temp.php:44 /var/www/image.loc/_temp.php:63
 msgid "Users"
 msgstr ""
 
@@ -789,17 +736,13 @@ msgstr ""
 msgid "Roles group create"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:95
-#: /var/www/image.loc/_temp.php:96
-#: /var/www/image.loc/_temp.php:102
-#: /var/www/image.loc/_temp.php:103
+#: /var/www/image.loc/_temp.php:95 /var/www/image.loc/_temp.php:96
+#: /var/www/image.loc/_temp.php:102 /var/www/image.loc/_temp.php:103
 msgid "Add a subcategory"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:97
-#: /var/www/image.loc/_temp.php:98
-#: /var/www/image.loc/_temp.php:104
-#: /var/www/image.loc/_temp.php:105
+#: /var/www/image.loc/_temp.php:97 /var/www/image.loc/_temp.php:98
+#: /var/www/image.loc/_temp.php:104 /var/www/image.loc/_temp.php:105
 msgid "Add an article"
 msgstr ""
 
@@ -807,8 +750,7 @@ msgstr ""
 msgid "Double click to show all categories"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:100
-#: /var/www/image.loc/_temp.php:101
+#: /var/www/image.loc/_temp.php:100 /var/www/image.loc/_temp.php:101
 msgid "Change category data"
 msgstr ""
 
@@ -816,10 +758,8 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:109
-#: /var/www/image.loc/_temp.php:110
-#: /var/www/image.loc/_temp.php:258
-#: /var/www/image.loc/_temp.php:259
+#: /var/www/image.loc/_temp.php:109 /var/www/image.loc/_temp.php:110
+#: /var/www/image.loc/_temp.php:258 /var/www/image.loc/_temp.php:259
 msgid "Install"
 msgstr ""
 
@@ -859,8 +799,7 @@ msgstr ""
 msgid "Create and exit"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:163
-#: /var/www/image.loc/_temp.php:197
+#: /var/www/image.loc/_temp.php:163 /var/www/image.loc/_temp.php:197
 msgid "Meta tags"
 msgstr ""
 
@@ -876,8 +815,7 @@ msgstr ""
 msgid "Select  a field group  for a category"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:172
-#: /var/www/image.loc/_temp.php:176
+#: /var/www/image.loc/_temp.php:172 /var/www/image.loc/_temp.php:176
 msgid "Apply for subcategories"
 msgstr ""
 
@@ -886,7 +824,9 @@ msgid "page field group"
 msgstr ""
 
 #: /var/www/image.loc/_temp.php:175
-msgid "Select a field group to be displayed/ viewed  in the created category of the group or group category"
+msgid ""
+"Select a field group to be displayed/ viewed  in the created category of the "
+"group or group category"
 msgstr ""
 
 #: /var/www/image.loc/_temp.php:177
@@ -937,8 +877,7 @@ msgstr ""
 msgid "Display pages of other categories"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:192
-#: /var/www/image.loc/_temp.php:194
+#: /var/www/image.loc/_temp.php:192 /var/www/image.loc/_temp.php:194
 msgid "Main category template by default"
 msgstr ""
 
@@ -990,8 +929,7 @@ msgstr ""
 msgid "Roles group edit"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:230
-#: /var/www/image.loc/_temp.php:234
+#: /var/www/image.loc/_temp.php:230 /var/www/image.loc/_temp.php:234
 msgid "Module deinstalling"
 msgstr ""
 
@@ -1003,8 +941,7 @@ msgstr ""
 msgid "Delete modules?"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:236
-#: /var/www/image.loc/_temp.php:238
+#: /var/www/image.loc/_temp.php:236 /var/www/image.loc/_temp.php:238
 msgid "All modules"
 msgstr ""
 
@@ -1012,8 +949,7 @@ msgstr ""
 msgid "Modules"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:240
-#: /var/www/image.loc/_temp.php:241
+#: /var/www/image.loc/_temp.php:240 /var/www/image.loc/_temp.php:241
 msgid "Install modules"
 msgstr ""
 
@@ -1025,14 +961,12 @@ msgstr ""
 msgid "Show in menu"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:248
-#: /var/www/image.loc/_temp.php:250
+#: /var/www/image.loc/_temp.php:248 /var/www/image.loc/_temp.php:250
 #: /var/www/image.loc/_temp.php:252
 msgid "switch on"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:249
-#: /var/www/image.loc/_temp.php:251
+#: /var/www/image.loc/_temp.php:249 /var/www/image.loc/_temp.php:251
 #: /var/www/image.loc/_temp.php:253
 msgid "switch off"
 msgstr ""
@@ -1089,10 +1023,8 @@ msgstr ""
 msgid "Administer the site"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:36
-#: /var/www/image.loc/_temp.php:37
-#: /var/www/image.loc/_temp.php:147
-#: /var/www/image.loc/_temp.php:276
+#: /var/www/image.loc/_temp.php:36 /var/www/image.loc/_temp.php:37
+#: /var/www/image.loc/_temp.php:147 /var/www/image.loc/_temp.php:276
 msgid "Search"
 msgstr ""
 
@@ -1112,8 +1044,7 @@ msgstr ""
 msgid "a_cont_list"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:44
-#: /var/www/image.loc/_temp.php:45
+#: /var/www/image.loc/_temp.php:44 /var/www/image.loc/_temp.php:45
 msgid "All catagories"
 msgstr ""
 
@@ -1133,8 +1064,7 @@ msgstr ""
 msgid "Display category tree in the content"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:51
-#: /var/www/image.loc/_temp.php:247
+#: /var/www/image.loc/_temp.php:51 /var/www/image.loc/_temp.php:247
 #: /var/www/image.loc/_temp.php:250
 msgid "Yes"
 msgstr ""
@@ -1167,14 +1097,12 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:61
-#: /var/www/image.loc/_temp.php:226
+#: /var/www/image.loc/_temp.php:61 /var/www/image.loc/_temp.php:226
 #: /var/www/image.loc/_temp.php:240
 msgid "Main page"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:82
-#: /var/www/image.loc/_temp.php:128
+#: /var/www/image.loc/_temp.php:82 /var/www/image.loc/_temp.php:128
 msgid "Information"
 msgstr ""
 
@@ -1186,46 +1114,37 @@ msgstr ""
 msgid "Category translation"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:138
-#: /var/www/image.loc/_temp.php:199
-#: /var/www/image.loc/_temp.php:211
-#: /var/www/image.loc/_temp.php:220
+#: /var/www/image.loc/_temp.php:138 /var/www/image.loc/_temp.php:199
+#: /var/www/image.loc/_temp.php:211 /var/www/image.loc/_temp.php:220
 #: /var/www/image.loc/_temp.php:267
 msgid "Without a category"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:139
-#: /var/www/image.loc/_temp.php:268
+#: /var/www/image.loc/_temp.php:139 /var/www/image.loc/_temp.php:268
 msgid "Field constructor"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:143
-#: /var/www/image.loc/_temp.php:272
+#: /var/www/image.loc/_temp.php:143 /var/www/image.loc/_temp.php:272
 msgid "Menu"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:148
-#: /var/www/image.loc/_temp.php:277
+#: /var/www/image.loc/_temp.php:148 /var/www/image.loc/_temp.php:277
 msgid "Widgets"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:151
-#: /var/www/image.loc/_temp.php:278
+#: /var/www/image.loc/_temp.php:151 /var/www/image.loc/_temp.php:278
 msgid "System"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:152
-#: /var/www/image.loc/_temp.php:279
+#: /var/www/image.loc/_temp.php:152 /var/www/image.loc/_temp.php:279
 msgid "Site settings"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:153
-#: /var/www/image.loc/_temp.php:280
+#: /var/www/image.loc/_temp.php:153 /var/www/image.loc/_temp.php:280
 msgid "Languages"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:159
-#: /var/www/image.loc/_temp.php:164
+#: /var/www/image.loc/_temp.php:159 /var/www/image.loc/_temp.php:164
 msgid "Delete category"
 msgstr ""
 
@@ -1301,8 +1220,7 @@ msgstr ""
 msgid "move or displace"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:209
-#: /var/www/image.loc/_temp.php:210
+#: /var/www/image.loc/_temp.php:209 /var/www/image.loc/_temp.php:210
 msgid "Create a page"
 msgstr ""
 
@@ -1314,8 +1232,7 @@ msgstr ""
 msgid "Site configuration"
 msgstr "Настр1"
 
-#: /var/www/image.loc/_temp.php:228
-#: /var/www/image.loc/_temp.php:246
+#: /var/www/image.loc/_temp.php:228 /var/www/image.loc/_temp.php:246
 msgid "Site name or site title"
 msgstr ""
 
@@ -1371,18 +1288,15 @@ msgstr ""
 msgid "Separator"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:254
-#: /var/www/image.loc/_temp.php:258
+#: /var/www/image.loc/_temp.php:254 /var/www/image.loc/_temp.php:258
 msgid "Auto formation"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:255
-#: /var/www/image.loc/_temp.php:259
+#: /var/www/image.loc/_temp.php:255 /var/www/image.loc/_temp.php:259
 msgid "Leave empty"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:256
-#: /var/www/image.loc/_temp.php:260
+#: /var/www/image.loc/_temp.php:256 /var/www/image.loc/_temp.php:260
 msgid "If not given or specified"
 msgstr ""
 
@@ -1438,8 +1352,7 @@ msgstr ""
 msgid "Uncategorized"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:25
-#: /var/www/image.loc/_temp.php:27
+#: /var/www/image.loc/_temp.php:25 /var/www/image.loc/_temp.php:27
 #: /var/www/image.loc/_temp.php:34
 msgid "Error"
 msgstr ""
@@ -1484,8 +1397,7 @@ msgstr ""
 msgid "Have not modules to install"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:40
-#: /var/www/image.loc/_temp.php:184
+#: /var/www/image.loc/_temp.php:40 /var/www/image.loc/_temp.php:184
 msgid "Widget creating"
 msgstr ""
 
@@ -1673,8 +1585,7 @@ msgstr ""
 msgid "For example:  /domains/mysite/public_html/"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:109
-#: /var/www/image.loc/_temp.php:159
+#: /var/www/image.loc/_temp.php:109 /var/www/image.loc/_temp.php:159
 msgid "Role edit"
 msgstr ""
 
@@ -1721,4 +1632,3 @@ msgstr ""
 #: /var/www/image.loc/_temp.php:195
 msgid "Module name"
 msgstr ""
-
