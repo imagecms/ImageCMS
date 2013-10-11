@@ -132,7 +132,7 @@
                         return false;">{lang("META","documentation")}</button>
         <div class="togle_fade" style="display: none">
             <h4>{lang('Meta Title','documentation')}:</h4>
-            <input name="NewPage[meta_title]" class="form-control verticalResize">{set_value('NewPage[meta_title]')}</input>
+            <input name="NewPage[meta_title]" class="form-control">{set_value('NewPage[meta_title]')}</input>
             <h4>{lang('Keywords','documentation')}:</h4>
             <textarea name="NewPage[keywords]" class="form-control verticalResize" rows="3">{set_value('NewPage[keywords]')}</textarea>
             <h4>{lang('Description','documentation')}:</h4>

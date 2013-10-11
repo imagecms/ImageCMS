@@ -40,22 +40,10 @@
 
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$_SERVER['HTTP_REFERER']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
                     <a href="{$BASE_URL}admin/components/cp/documentation/settings" class="btn btn-small action_on"><i class="icon-wrench"></i>{lang('Settings','admin')}</a>
                 </div>
             </div>
-
-            <!--div class="pull-right">
-                <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
-                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('Create copy','admin')}</button>
-                    <button onclick="$('#pages_action_dialog').modal(); pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
-                    <button onclick="$('#pages_delete_dialog').modal();
-                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Delete','admin')}</button>
-                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</button>
-                    <a class="btn btn-small btn-success pjax" href='{$BASE_URL}admin/pages'><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</a>
-                </div>
-            </div-->
         </div>
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
@@ -163,70 +151,70 @@
                                             </div>
                                         </td>
                                     </tr>
-                                {/foreach}
-                            {else:}
-                                <tr>
-                                    <td colspan="6">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'admin')}</div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            {/if}
-                        </tbody>
-                    </table>
-                </div>
-                {if $paginator > ''}
-                    <div class="clearfix">
-                        {$paginator}
+                                    {/foreach}
+                                    {else:}
+                                    <tr>
+                                        <td colspan="6">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'admin')}</div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    {/if}
+                                </tbody>
+                            </table>
+                        </div>
+                        {if $paginator > ''}
+                        <div class="clearfix">
+                            {$paginator}
+                        </div>
+                        {/if}
                     </div>
-                {/if}
-            </div>
-            <div class="tab-pane" id="menu_categories">
-                <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed pages-table">
-                        <thead>
-                            <tr>
-                                <th class="span1">ID</th>
-                                <th class="span8">{lang('Title','admin')}</th>
-                                <th class="span8">{lang('Category menu','admin')}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {foreach $categories as $category}
-                                <tr data-id="{echo $category['id']}">
-                                    <td class="t-a_c">
-                                        <span>{echo $category['id']}</span>
-                                    </td>
-                                    <td>
-                                        {echo $category['name']}
-                                    </td>
-                                    <td class="share_alt">
-                                        <div class="p_r o_h frame_price categoryMenuBlock">
-                                            <input type="text"
-                                                   maxlength="32"
-                                                   value="{echo $category['menu_cat']}"
-                                                   class="js_price"
-                                                   data-value="{echo $category['menu_cat']}">
-                                            <button class="btn btn-small documentationUpdateMenuCategory"
-                                                    data-id="{echo $category['id']}"
-                                                    type="button">
-                                                <i class="icon-refresh"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
+                    <div class="tab-pane" id="menu_categories">
+                        <div class="row-fluid">
+                            <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                                <thead>
+                                    <tr>
+                                        <th class="span1">ID</th>
+                                        <th class="span8">{lang('Title','admin')}</th>
+                                        <th class="span8">{lang('Category menu','admin')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach $categories as $category}
+                                    <tr data-id="{echo $category['id']}">
+                                        <td class="t-a_c">
+                                            <span>{echo $category['id']}</span>
+                                        </td>
+                                        <td>
+                                            {echo $category['name']}
+                                        </td>
+                                        <td class="share_alt">
+                                            <div class="p_r o_h frame_price categoryMenuBlock">
+                                                <input type="text"
+                                                       maxlength="32"
+                                                       value="{echo $category['menu_cat']}"
+                                                       class="js_price"
+                                                       data-value="{echo $category['menu_cat']}">
+                                                <button class="btn btn-small documentationUpdateMenuCategory"
+                                                        data-id="{echo $category['id']}"
+                                                        type="button">
+                                                    <i class="icon-refresh"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-</form>
+            </section>
+        </form>

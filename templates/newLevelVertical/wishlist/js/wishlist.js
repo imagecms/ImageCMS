@@ -185,7 +185,7 @@ function processWishPage() {
         }
     });
 }
-$(document).live('scriptDefer', function() {
+$(document).on('scriptDefer', function() {
     var wishPhoto = $('#wishlistphoto');
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var file = this.files[0],
@@ -243,7 +243,7 @@ $(document).live('scriptDefer', function() {
     $(document).on('processPageEnd change_count_product', function(e) {
         processWishPage();
     });
-    $('.' + genObj.inWishlist).live('click.inWish', function() {
+    $('body').on('click.inWish', '.' + genObj.inWishlist, function() {
         document.location.href = '/wishlist';
     });
     if (!isLogin) {
