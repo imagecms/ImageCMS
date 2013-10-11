@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-11 13:29+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -13,11 +13,9 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:14 /var/www/image.loc/_tempLangs.php:26
 msgid "Certificate code"
 msgstr ""
 
@@ -33,8 +31,7 @@ msgstr ""
 msgid "discount type: product"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:18 /var/www/image.loc/_tempLangs.php:25
 msgid "discount amount"
 msgstr ""
 
@@ -78,33 +75,27 @@ msgstr ""
 msgid "Discount creating"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:31
-#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:31 /var/www/image.loc/_tempLangs.php:89
 msgid "Back"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:32
-#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:32 /var/www/image.loc/_tempLangs.php:90
 msgid "Save"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:33
-#: /var/www/image.loc/_tempLangs.php:67
+#: /var/www/image.loc/_tempLangs.php:33 /var/www/image.loc/_tempLangs.php:67
 msgid "Create"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:34
-#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:34 /var/www/image.loc/_tempLangs.php:93
 msgid "Discount details"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:35
-#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:35 /var/www/image.loc/_tempLangs.php:94
 msgid "Discount name"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:36
-#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:36 /var/www/image.loc/_tempLangs.php:95
 msgid "Discount code"
 msgstr ""
 
@@ -112,38 +103,31 @@ msgstr ""
 msgid "Users count"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:97
+#: /var/www/image.loc/_tempLangs.php:38 /var/www/image.loc/_tempLangs.php:97
 msgid "Unlimit"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:39
-#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:39 /var/www/image.loc/_tempLangs.php:98
 msgid "Method of calculation"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:99
+#: /var/www/image.loc/_tempLangs.php:40 /var/www/image.loc/_tempLangs.php:99
 msgid "Choose method"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:41
-#: /var/www/image.loc/_tempLangs.php:100
+#: /var/www/image.loc/_tempLangs.php:41 /var/www/image.loc/_tempLangs.php:100
 msgid "Percents"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:42
-#: /var/www/image.loc/_tempLangs.php:101
+#: /var/www/image.loc/_tempLangs.php:42 /var/www/image.loc/_tempLangs.php:101
 msgid "Fixed"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:102
+#: /var/www/image.loc/_tempLangs.php:43 /var/www/image.loc/_tempLangs.php:102
 msgid "Discount type"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:103
+#: /var/www/image.loc/_tempLangs.php:44 /var/www/image.loc/_tempLangs.php:103
 msgid "Choose type"
 msgstr ""
 
@@ -151,20 +135,17 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:46
-#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:46 /var/www/image.loc/_tempLangs.php:70
 #: /var/www/image.loc/_tempLangs.php:104
 msgid "Order amount of more than"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:47
-#: /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:47 /var/www/image.loc/_tempLangs.php:71
 #: /var/www/image.loc/_tempLangs.php:105
 msgid "Cumulative discount"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:48
-#: /var/www/image.loc/_tempLangs.php:72
+#: /var/www/image.loc/_tempLangs.php:48 /var/www/image.loc/_tempLangs.php:72
 #: /var/www/image.loc/_tempLangs.php:106
 msgid "User"
 msgstr ""
@@ -173,83 +154,67 @@ msgstr ""
 msgid "Users group"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:50
-#: /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:50 /var/www/image.loc/_tempLangs.php:74
 #: /var/www/image.loc/_tempLangs.php:108
 msgid "Category"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:51 /var/www/image.loc/_tempLangs.php:75
 #: /var/www/image.loc/_tempLangs.php:109
 msgid "Product"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:52
-#: /var/www/image.loc/_tempLangs.php:76
+#: /var/www/image.loc/_tempLangs.php:52 /var/www/image.loc/_tempLangs.php:76
 #: /var/www/image.loc/_tempLangs.php:110
 msgid "Brand"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:53
-#: /var/www/image.loc/_tempLangs.php:111
+#: /var/www/image.loc/_tempLangs.php:53 /var/www/image.loc/_tempLangs.php:111
 msgid "Only for registered"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:54
-#: /var/www/image.loc/_tempLangs.php:112
+#: /var/www/image.loc/_tempLangs.php:54 /var/www/image.loc/_tempLangs.php:112
 msgid "Gift Certificate"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:113
+#: /var/www/image.loc/_tempLangs.php:55 /var/www/image.loc/_tempLangs.php:113
 msgid "from"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:56
-#: /var/www/image.loc/_tempLangs.php:64
-#: /var/www/image.loc/_tempLangs.php:114
-#: /var/www/image.loc/_tempLangs.php:122
+#: /var/www/image.loc/_tempLangs.php:56 /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:114 /var/www/image.loc/_tempLangs.php:122
 msgid "to"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:57
-#: /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:57 /var/www/image.loc/_tempLangs.php:115
 msgid "Maximum"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:116
+#: /var/www/image.loc/_tempLangs.php:58 /var/www/image.loc/_tempLangs.php:116
 msgid "Current user"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:59 /var/www/image.loc/_tempLangs.php:117
 msgid "ID / Name / E-mail"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:118
+#: /var/www/image.loc/_tempLangs.php:60 /var/www/image.loc/_tempLangs.php:118
 msgid "Current product"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:61
-#: /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:61 /var/www/image.loc/_tempLangs.php:119
 msgid "Name / ID"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:62
-#: /var/www/image.loc/_tempLangs.php:120
+#: /var/www/image.loc/_tempLangs.php:62 /var/www/image.loc/_tempLangs.php:120
 msgid "Allowed time for discounts"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:63
-#: /var/www/image.loc/_tempLangs.php:121
+#: /var/www/image.loc/_tempLangs.php:63 /var/www/image.loc/_tempLangs.php:121
 msgid "Period of the discount from"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:65
-#: /var/www/image.loc/_tempLangs.php:123
+#: /var/www/image.loc/_tempLangs.php:65 /var/www/image.loc/_tempLangs.php:123
 msgid "Constant discount"
 msgstr ""
 
@@ -265,8 +230,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:73
-#: /var/www/image.loc/_tempLangs.php:107
+#: /var/www/image.loc/_tempLangs.php:73 /var/www/image.loc/_tempLangs.php:107
 msgid "User group"
 msgstr ""
 
@@ -298,8 +262,7 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:84
-#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:84 /var/www/image.loc/_tempLangs.php:87
 msgid "Delete"
 msgstr ""
 
