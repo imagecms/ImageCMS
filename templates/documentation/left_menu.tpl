@@ -10,7 +10,7 @@
              {/if}
              </a>
             <!-- Show category sublevels -->
-            {if $item['subtree'] && $item['level']<2}
+            {if $item['subtree'] && $item['level']<3}
                 <span class="tree_menu_icon glyphicon {if $active}glyphicon-chevron-down{else:}glyphicon-chevron-right{/if}"></span>
                 {$this->view('left_menu.tpl', array('tree' => $item['subtree'],'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData,'admin' => $admin))}
             {/if}

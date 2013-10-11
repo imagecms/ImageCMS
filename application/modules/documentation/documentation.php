@@ -60,6 +60,8 @@ class Documentation extends \MY_Controller {
         /** Register meta tags * */
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
+        $this->core->set_meta_tags(lang("Page Create", "documentation"));
+
         /** Set form validation rules * */
         $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[254]|xss_clean');
         $this->form_validation->set_rules('NewPage[url]', lang("URL", "documentation"), 'xss_clean|max_length[254]');
@@ -156,6 +158,8 @@ class Documentation extends \MY_Controller {
         if ($id == null) {
             $this->core->error_404();
         }
+
+        $this->core->set_meta_tags(lang("Page edit", "documentation"));
 
         /** If not langId then set default language id * */
         if ($langId == null) {
@@ -285,8 +289,8 @@ class Documentation extends \MY_Controller {
     public function create_cat() {
         $this->load->library('lib_admin');
 
-        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[127]|required|xss_clean');
-        $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[127]');
+        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[256]|required|xss_clean');
+        $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[256]');
         $this->form_validation->run();
 
         if (!$this->form_validation->error_string()) {
@@ -299,6 +303,7 @@ class Documentation extends \MY_Controller {
             $data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,
+                'title' => $this->input->post('meta_title'),
                 'keywords' => $this->input->post('keywords'),
                 'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('category'),

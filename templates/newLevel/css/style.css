@@ -798,11 +798,11 @@ input + .msg{margin-top: 5px;}
 .horizontal-form label > .title, .horizontal-form .frame-label > .title{float: left;width: 100px;padding: 7px 10px 0 0;text-align:left;}
 .horizontal-form .frame-form-field{margin-left: 110px;}
 .horizontal-form .frame-radio{padding-top: 7px;}
-.horizontal-form.big-title label > .title, .horizontal-form.big-title .frame-label > .title{width: 130px;}
-.horizontal-form.big-title .frame-form-field{margin-left: 140px;}
 
 .drop .horizontal-form .title{width: 104px;text-align: right;}
 .drop .horizontal-form .frame-form-field{margin-left: 114px;}
+.horizontal-form.big-title label > .title, .horizontal-form.big-title .frame-label > .title{width: 130px;}
+.horizontal-form.big-title .frame-form-field{margin-left: 140px;}
 
 .vertical-form .control-label{margin-bottom: 2px;}
 .vertical-form .frame-label, .vertical-form label{margin: 17px 0 15px;display: block;}
