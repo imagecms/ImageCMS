@@ -2,9 +2,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-08 08:47+0300\n"
+"POT-Creation-Date: 2013-10-11 13:29+0300\n"
 "PO-Revision-Date: \n"
+<<<<<<< HEAD
 "Last-Translator: \n"
+=======
+"Last-Translator: mark <shfasdfsdf>\n"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -15,18 +19,25 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_temp.php:20
-msgid "a_show_page"
+#: /var/www/image.loc/_tempLangs.php:14
+#: /var/www/image.loc/_tempLangs.php:26
+msgid "Certificate code"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:21 /var/www/image.loc/_temp.php:22
 msgid "Autocomplite"
+=======
+#: /var/www/image.loc/_tempLangs.php:15
+msgid "on amount"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:23
-msgid "Autocomplite words"
+#: /var/www/image.loc/_tempLangs.php:16
+msgid "Maximum possible discount is using"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:24 /var/www/image.loc/_temp.php:25
 msgid "choose date"
 msgstr ""
@@ -85,12 +96,26 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:40
 msgid "Return"
+=======
+#: /var/www/image.loc/_tempLangs.php:17
+msgid "discount type: product"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:41
-msgid "Full description"
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "discount amount"
 msgstr ""
 
+#: /var/www/image.loc/_tempLangs.php:19
+msgid "number"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "discount name"
+msgstr ""
+
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:42 /var/www/image.loc/_temp.php:102
 msgid "Parent"
 msgstr ""
@@ -101,28 +126,46 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:46 /var/www/image.loc/_temp.php:49
 msgid "a_privilegy"
+=======
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "discount key"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:47
-msgid "Users with such Email not found"
+#: /var/www/image.loc/_tempLangs.php:22
+msgid "discount type"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:50
-msgid "Delete selected groups"
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "discount charge type"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:51
-msgid "Delete group"
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "discount size"
 msgstr ""
 
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Apply sertificate"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:28
+msgid "Status changed"
+msgstr ""
+
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:53 /var/www/image.loc/_temp.php:54
 msgid "Clean"
+=======
+#: /var/www/image.loc/_tempLangs.php:29
+msgid "Discount deleted"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:55
-msgid "Widget editing"
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "Discount creating"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:57 /var/www/image.loc/_temp.php:66
 #: /var/www/image.loc/_temp.php:122 /var/www/image.loc/_temp.php:134
 #: /var/www/image.loc/_temp.php:158
@@ -154,188 +197,287 @@ msgstr ""
 #: /var/www/image.loc/_temp.php:62 /var/www/image.loc/_temp.php:126
 #: /var/www/image.loc/_temp.php:197 /var/www/image.loc/_temp.php:208
 msgid "Description"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:63
-msgid "Short widget discription"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:64
-msgid "Edit page"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:65
+=======
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:89
 msgid "Back"
 msgstr ""
 
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:90
+msgid "Save"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:67
+msgid "Create"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:93
+msgid "Discount details"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:94
+msgid "Discount name"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:95
+msgid "Discount code"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:37
+msgid "Users count"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:97
+msgid "Unlimit"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:98
+msgid "Method of calculation"
+msgstr ""
+
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:68 /var/www/image.loc/_temp.php:72
 msgid "Content"
+=======
+#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:99
+msgid "Choose method"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:70
-msgid "Additional fields"
+#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:100
+msgid "Percents"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:71 /var/www/image.loc/_temp.php:91
 #: /var/www/image.loc/_temp.php:160 /var/www/image.loc/_temp.php:198
 #: /var/www/image.loc/_temp.php:202
 msgid "Settings"
+=======
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:101
+msgid "Fixed"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:73
-msgid "Categories"
+#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:102
+msgid "Discount type"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:74 /var/www/image.loc/_temp.php:100
 msgid "Create a category"
 msgstr ""
 
 #: /var/www/image.loc/_temp.php:75 /var/www/image.loc/_temp.php:103
 #: /var/www/image.loc/_temp.php:130
+=======
+#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:103
+msgid "Choose type"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:45
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgid "No"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:76
-msgid "Title"
+#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:104
+msgid "Order amount of more than"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:77
-msgid "Preliminary contents"
+#: /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:105
+msgid "Cumulative discount"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:78
-msgid "Full contents"
+#: /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:72
+#: /var/www/image.loc/_tempLangs.php:106
+msgid "User"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:80
-msgid "URL"
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Users group"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:82
-msgid "Tags"
+#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:108
+msgid "Category"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:83
-msgid "Meta Title"
+#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:109
+msgid "Product"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:84
-msgid "Meta Description"
+#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:76
+#: /var/www/image.loc/_tempLangs.php:110
+msgid "Brand"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:85
-msgid "Meta Keywords"
+#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:111
+msgid "Only for registered"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:86
-msgid "Main template"
+#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:112
+msgid "Gift Certificate"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:87 /var/www/image.loc/_temp.php:89
 msgid "by default"
+=======
+#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:113
+msgid "from"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:88
-msgid "Page Template"
+#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:122
+msgid "to"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:90
-msgid "Comment permission"
+#: /var/www/image.loc/_tempLangs.php:57
+#: /var/www/image.loc/_tempLangs.php:115
+msgid "Maximum"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:92
-msgid "Publication status"
+#: /var/www/image.loc/_tempLangs.php:58
+#: /var/www/image.loc/_tempLangs.php:116
+msgid "Current user"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:93
-msgid "Published or Has been published"
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:117
+msgid "ID / Name / E-mail"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:94
-msgid "Pending approval or Awaiting approval "
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:118
+msgid "Current product"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:95
-msgid "Has not been published"
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:119
+msgid "Name / ID"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:96
-msgid "Time and date of creation"
+#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:120
+msgid "Allowed time for discounts"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:97
-msgid "Time and date of publication"
+#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:121
+msgid "Period of the discount from"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:98
-msgid "Access"
+#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:123
+msgid "Constant discount"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:99
-msgid "All"
+#: /var/www/image.loc/_tempLangs.php:66
+msgid "Discounts"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:104 /var/www/image.loc/_temp.php:105
 #: /var/www/image.loc/_temp.php:143 /var/www/image.loc/_temp.php:144
 msgid "Operation panel"
+=======
+#: /var/www/image.loc/_tempLangs.php:68
+msgid "Choose discount type"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:106
-msgid "Hello"
+#: /var/www/image.loc/_tempLangs.php:69
+msgid "All"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:107
-msgid "Guest"
+#: /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:107
+msgid "User group"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:108
-msgid "Products without icons"
+#: /var/www/image.loc/_tempLangs.php:77
+msgid "Key"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:109 /var/www/image.loc/_temp.php:110
 msgid "Latest/recent  comments"
+=======
+#: /var/www/image.loc/_tempLangs.php:78
+msgid "Description"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:111
-msgid "Control or Operation"
+#: /var/www/image.loc/_tempLangs.php:79
+msgid "Limit"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:112
-msgid "English"
+#: /var/www/image.loc/_tempLangs.php:80
+msgid "Used"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:113
-msgid "Russian"
+#: /var/www/image.loc/_tempLangs.php:81
+msgid "Beggining time"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:114
-msgid "Version"
+#: /var/www/image.loc/_tempLangs.php:82
+msgid "End time"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:115
-msgid "Your remark"
+#: /var/www/image.loc/_tempLangs.php:83
+msgid "Active"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:116
-msgid "Send"
+#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:87
+msgid "Delete"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:118
-msgid "numbers only"
+#: /var/www/image.loc/_tempLangs.php:85
+msgid "Unlimited"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:119
+#: /var/www/image.loc/_tempLangs.php:86
 msgid "show"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:121
-msgid "Privileges"
+#: /var/www/image.loc/_tempLangs.php:88
+msgid "Discount editing"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:123
+#: /var/www/image.loc/_tempLangs.php:91
 msgid "Save and exit"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp.php:127 /var/www/image.loc/_temp.php:138
 #: /var/www/image.loc/_temp.php:210
 msgid "Group"
@@ -1627,8 +1769,18 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:176
 msgid "Create language"
+=======
+#: /var/www/image.loc/_tempLangs.php:92
+msgid "Edit"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:195
-msgid "Module name"
+#: /var/www/image.loc/_tempLangs.php:96
+msgid "Count of usage"
 msgstr ""
+<<<<<<< HEAD
+=======
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр1"
+>>>>>>> c43772a38c8cae4b188ac0a1f030528ab428f862

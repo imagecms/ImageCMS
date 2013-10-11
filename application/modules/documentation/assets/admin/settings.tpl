@@ -7,7 +7,7 @@
 
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$_SERVER['HTTP_REFERER']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                <a href="/admin/components/init_window/documentation" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
                 <button type="button"
                         class="btn btn-small btn-success action_on formSubmit"
                         data-form="#doc_roles_settings"
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="row-fluid">
-        <form action="{$BASE_URL}admin/components/cp/documentation/settings/saveSettings" method="POST" id="doc_roles_settings">
+        <form action="{$BASE_URL}admin/components/cp/documentation/saveSettings" method="POST" id="doc_roles_settings">
             <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>

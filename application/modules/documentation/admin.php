@@ -52,7 +52,10 @@ class Admin extends BaseAdminController {
             'next_tag_close' => '</li>',
             'num_tag_close' => '</li>',
             'num_tag_open' => '<li>',
-            'num_tag_close' => '</li>'
+            'first_tag_open' => '<li>',
+            'first_tag_close' => '</li>',
+            'last_tag_open' => '<li>',
+            'last_tag_close' => '</li>'
         );
 
         $this->pagination->num_links = 5;
@@ -88,20 +91,13 @@ class Admin extends BaseAdminController {
                 ->registerScript('admin')
                 ->setData('roles', $roles)
                 ->renderAdmin('settings');
-        return;
     }
 
     public function saveSettings() {
-        var_dump($_POST);
         if ($_POST['action'] == 'save') {
-            $settings = array();
-            foreach ($_POST['ids'] as $key => $id) {
-                if ($_POST['values'][$key] == 1) {
-                    $settings[] = $id;
-                }
-            }
-            $this->documentation_model->setSettings($settings);
+            $this->documentation_model->setSettings($_POST['ids']);
         }
+        showMessage(lang("Saved", 'documentation'));
     }
 
     public function makeRelevant($pageId, $historyId) {
@@ -132,12 +128,12 @@ class Admin extends BaseAdminController {
 
         ($hook = get_hook('admin_get_pages_by_cat')) ? eval($hook) : NULL;
 
-        $pageNum = $this->uri->segment(7) == FALSE ? 0 : $this->uri->segment(7);
+        $offset = $this->uri->segment(7) == FALSE ? 0 : $this->uri->segment(7);
 
         $per_page = 12;
 
         $result = $this->db
-                ->limit($per_page, $per_page * $pageNum)
+                ->limit($per_page, $offset)
                 ->where($db_where)
                 ->get('content');
 
@@ -167,7 +163,11 @@ class Admin extends BaseAdminController {
                 'next_tag_close' => '</li>',
                 'num_tag_close' => '</li>',
                 'num_tag_open' => '<li>',
-                'num_tag_close' => '</li>'
+                'num_tag_close' => '</li>',
+                'first_tag_open' => '<li>',
+                'first_tag_close' => '</li>',
+                'last_tag_open' => '<li>',
+                'last_tag_close' => '</li>',
             );
 
 

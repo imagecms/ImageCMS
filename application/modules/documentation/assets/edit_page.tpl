@@ -41,25 +41,46 @@
                     <form role="form" id="create_cat" action="/documentation/create_cat" method="POST">
                         <div class="form-group">
                             <label for="name">{lang("Name","documentation")}:</label>
-                            <input type="text" class="form-control" maxlength="127" id="name" name="name" required="required" placeholder="{lang("Name","documentation")}">
+                            <input type="text" class="form-control" maxlength="256" id="name" name="name" required="required" placeholder="{lang("Name","documentation")}">
                         </div>
 
                         <div class="form-group">
                             <label for="url">{lang("URL","documentation")}:</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="url" maxlength="127" name="url" required="required" placeholder="{lang("URL","documentation")}">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button" onclick="translite_title('#name', '#url');">{lang("AutoFit","documentation")}</button>
-                                </span>
+
+                            <input type="text" class="form-control" id="url" maxlength="256" name="url" required="required" placeholder="{lang("URL","documentation")}">
+                        </div>
+                        <button class="btn btn-xs pull-right"
+                                onclick="$('.togle_fade_modal').fadeToggle();
+                                        return false;">{lang("META","documentation")}</button>
+                        <div class="togle_fade_modal" style="display: none">
+
+                            <div class="form-group">
+                                <label for="meta_title">{lang("Meta Title","documentation")}:</label>
+                                <input type="text" 
+                                       value="" 
+                                       class="form-control" 
+                                       maxlength="256" 
+                                       name="meta_title" 
+                                       placeholder="{lang("Meta Title","documentation")}"/>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="keywords">{lang("Keywords","documentation")}:</label>
-                            <input type="text" value="" class="form-control" maxlength="127" name="keywords" required="required" placeholder="{lang("keywords","documentation")}">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">{lang("Description","documentation")}:</label>
-                            <input type="text" value="" class="form-control" maxlength="127" name="description" required="required" placeholder="{lang("description","documentation")}">
+                            <div class="form-group">
+                                <label for="keywords">{lang("Keywords","documentation")}:</label>
+                                <input type="text" 
+                                       value="" 
+                                       class="form-control" 
+                                       maxlength="256" 
+                                       name="keywords" 
+                                       placeholder="{lang("keywords","documentation")}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">{lang("Description","documentation")}:</label>
+                                <input type="text" 
+                                       value="" 
+                                       class="form-control" 
+                                       maxlength="256" 
+                                       name="description"  
+                                       placeholder="{lang("description","documentation")}"/>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -91,14 +112,14 @@
                     {foreach $langs as $lang}
                         <option data-page_id="{if $page['lang_alias'] != 0}{echo $page['lang_alias']}{else:}{echo $page['id']}{/if}" 
                                 value="{echo $lang['id']}" 
-                        {if $page['lang']== $lang['id']}selected="selected"{/if}>
-                        {echo $lang['identif']}
-                    </option>
-                {/foreach}
-            </select>
+                                {if $page['lang']== $lang['id']}selected="selected"{/if}>
+                            {echo $lang['identif']}
+                        </option>
+                    {/foreach}
+                </select>
+            </div>
         </div>
     </div>
-</div>
 </div>
 {if $errors}
     <div class="alert alert-block alert-danger fade in">
@@ -109,7 +130,10 @@
     <!-- Start. Select with categories names and ids-->
     <h4>{lang('Category','documentation')}:</h4>
     <div class="input-group">
-        <select name="NewPage[category]" class="form-control" {if $page['lang_alias'] != 0}readonly="readonly" style="pointer-events: none; cursor: default;"{/if}>
+        <select name="NewPage[category]" class="form-control" 
+                {if $page['lang_alias'] != 0}
+                    readonly="readonly" style="pointer-events: none; cursor: default;"
+                {/if}>
             {$this->view("cats_select_edit.tpl", array('tree' => $tree,'sel_cat' => $page['category']));}
         </select>
         <div class="input-group-btn">
@@ -135,11 +159,19 @@
                                             placeholder="{lang('Url','documentation')}">
     </div>
     <!-- End. Url input -->
+
     <!-- Start. Keywords and description -->
-    <h4>{lang('Keywords','documentation')}:</h4>
-    <textarea name="NewPage[keywords]" class="form-control verticalResize" rows="3">{if set_value('NewPage[keywords]')}{echo set_value('NewPage[keywords]')}{else:}{echo $page['keywords']}{/if}</textarea>
-    <h4>{lang('Description','documentation')}:</h4>
-    <textarea name="NewPage[description]" class="form-control verticalResize" rows="3">{if set_value('NewPage[description]')}{echo set_value('NewPage[description]')}{else:}{echo $page['description']}{/if}</textarea>
+    <button class="btn btn-xs pull-right"
+            onclick="$('.togle_fade').fadeToggle();
+                    return false;">{lang("META","documentation")}</button>
+    <div class="togle_fade" style="display: none">
+        <h4>{lang('Meta Title','documentation')}:</h4>
+        <input name="NewPage[meta_title]" class="form-control verticalResize">{set_value('NewPage[meta_title]')}</input>
+        <h4>{lang('Keywords','documentation')}:</h4>
+        <textarea name="NewPage[keywords]" class="form-control verticalResize" rows="3">{if set_value('NewPage[keywords]')}{echo set_value('NewPage[keywords]')}{else:}{echo $page['keywords']}{/if}</textarea>
+        <h4>{lang('Description','documentation')}:</h4>
+        <textarea name="NewPage[description]" class="form-control verticalResize" rows="3">{if set_value('NewPage[description]')}{echo set_value('NewPage[description]')}{else:}{echo $page['description']}{/if}</textarea>
+    </div>
     <!-- End. Keywords and description -->
 
     <!-- Start. Textarea with content-->

@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-28 12:31+0300\n"
-"PO-Revision-Date: 2013-03-28 12:31+0300\n"
-"Last-Translator: koloda <koloda90@gmail.com>\n"
+"POT-Creation-Date: 2013-10-11 13:25+0300\n"
+"PO-Revision-Date: 2013-10-11 13:25+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -17,570 +17,602 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ../../../\n"
 
-#: ../../..//gallery_widgets.php:50
-msgid "Image limit"
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "My last photo"
 msgstr ""
 
-#: ../../..//gallery_widgets.php:64
-#: ../../..//admin.php:253
-msgid "Settings have been saved or settings were saved"
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:27
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:195
+msgid "Gallery"
 msgstr ""
 
-#: ../../..//_out.php:5
-#: ../../..//templates/latest_fotos_form.tpl:5
-msgid "Widget settings"
-msgstr ""
-
-#: ../../..//_out.php:9
-#: ../../..//templates/latest_fotos_form.tpl:9
-msgid "Go back"
-msgstr ""
-
-#: ../../..//_out.php:10
-#: ../../..//_out.php:876
-#: ../../..//templates/latest_fotos_form.tpl:10
-msgid "Have been saved"
-msgstr ""
-
-#: ../../..//_out.php:11
-#: ../../..//_out.php:1003
-#: ../../..//templates/latest_fotos_form.tpl:11
-msgid "Save and go back"
-msgstr ""
-
-#: ../../..//_out.php:20
-#: ../../..//_out.php:282
-#: ../../..//_out.php:932
-#: ../../..//templates/latest_fotos_form.tpl:20
-msgid "Settings"
-msgstr ""
-
-#: ../../..//_out.php:28
-#: ../../..//templates/latest_fotos_form.tpl:28
-msgid "Images limit"
-msgstr ""
-
-#: ../../..//_out.php:34
-#: ../../..//templates/latest_fotos_form.tpl:34
-msgid "Algorithm"
-msgstr ""
-
-#: ../../..//_out.php:37
-#: ../../..//templates/latest_fotos_form.tpl:37
-msgid "Last images"
-msgstr ""
-
-#: ../../..//_out.php:38
-#: ../../..//templates/latest_fotos_form.tpl:38
-msgid "Random images"
-msgstr ""
-
-#: ../../..//_out.php:286
-#: ../../..//_out.php:637
-#: ../../..//_out.php:725
-#: ../../..//_out.php:821
-#: ../../..//_out.php:875
-#: ../../..//_out.php:1001
-#: ../../..//_out.php:1076
-msgid "Back"
-msgstr ""
-
-#: ../../..//_out.php:287
-#: ../../..//_out.php:729
-#: ../../..//_out.php:1002
-#: ../../..//_out.php:1198
-#: ../../..//_out.php:1206
-msgid "Save"
-msgstr ""
-
-#: ../../..//_out.php:299
-msgid "Categories and albums"
-msgstr ""
-
-#: ../../..//_out.php:309
-msgid "Sort"
-msgstr ""
-
-#: ../../..//_out.php:312
-msgid "By date"
-msgstr ""
-
-#: ../../..//_out.php:313
-msgid "in alphabetic order"
-msgstr ""
-
-#: ../../..//_out.php:314
-#, fuzzy
-msgid "By position"
-msgstr "Позиція"
-
-#: ../../..//_out.php:317
-msgid "in descending order"
-msgstr ""
-
-#: ../../..//_out.php:318
-msgid "in  ascending order"
-msgstr ""
-
-#: ../../..//_out.php:332
-msgid "Images"
-msgstr ""
-
-#: ../../..//_out.php:342
-msgid "maximum file size"
-msgstr ""
-
-#: ../../..//_out.php:344
-msgid "In megabites"
-msgstr ""
-
-#: ../../..//_out.php:351
-#: ../../..//admin.php:192
-msgid "Maximum width"
-msgstr ""
-
-#: ../../..//_out.php:360
-#: ../../..//admin.php:193
-msgid "Maximum height"
-msgstr ""
-
-#: ../../..//_out.php:368
-#: ../../..//admin.php:194
-msgid "Quality"
-msgstr ""
-
-#: ../../..//_out.php:377
-#: ../../..//_out.php:428
-#: ../../..//_out.php:479
-msgid "Save ratio"
-msgstr ""
-
-#: ../../..//_out.php:379
-#: ../../..//_out.php:386
-#: ../../..//_out.php:430
-#: ../../..//_out.php:437
-#: ../../..//_out.php:481
-#: ../../..//_out.php:488
-msgid "Yes"
-msgstr ""
-
-#: ../../..//_out.php:380
-#: ../../..//_out.php:387
-#: ../../..//_out.php:431
-#: ../../..//_out.php:438
-#: ../../..//_out.php:482
-#: ../../..//_out.php:489
-msgid "No"
-msgstr ""
-
-#: ../../..//_out.php:384
-#: ../../..//_out.php:435
-#: ../../..//_out.php:486
-msgid "Cut the borders"
-msgstr ""
-
-#: ../../..//_out.php:400
-msgid "Image preview"
-msgstr ""
-
-#: ../../..//_out.php:410
-#: ../../..//_out.php:461
-msgid "height"
-msgstr ""
-
-#: ../../..//_out.php:412
-#: ../../..//_out.php:421
-#: ../../..//_out.php:463
-#: ../../..//_out.php:472
-#: ../../..//_out.php:562
-#: ../../..//_out.php:591
-msgid "px"
-msgstr ""
-
-#: ../../..//_out.php:419
-#: ../../..//_out.php:470
-msgid "amt_height"
-msgstr ""
-
-#: ../../..//_out.php:451
-msgid "Image icons"
-msgstr ""
-
-#: ../../..//_out.php:502
-msgid "Watermark"
-msgstr ""
-
-#: ../../..//_out.php:512
-msgid "horizontal alignment"
-msgstr ""
-
-#: ../../..//_out.php:515
-msgid "left or on the left"
-msgstr ""
-
-#: ../../..//_out.php:516
-msgid "in the center"
-msgstr ""
-
-#: ../../..//_out.php:517
-msgid "on the right"
-msgstr ""
-
-#: ../../..//_out.php:522
-msgid "vertical alignment"
-msgstr ""
-
-#: ../../..//_out.php:525
-msgid "at the top"
-msgstr ""
-
-#: ../../..//_out.php:526
-msgid "in the middle"
-msgstr ""
-
-#: ../../..//_out.php:527
-msgid "at the bottom"
-msgstr ""
-
-#: ../../..//_out.php:532
-msgid "Type"
-msgstr ""
-
-#: ../../..//_out.php:535
-#: ../../..//_out.php:571
-msgid "Text"
-msgstr ""
-
-#: ../../..//_out.php:536
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:166
 msgid "Image"
 msgstr ""
 
-#: ../../..//_out.php:543
-msgid "Path to the image"
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "from"
 msgstr ""
 
-#: ../../..//_out.php:546
-msgid "File has to be located on the server. For example"
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "All images"
 msgstr ""
 
-#: ../../..//_out.php:550
-#: ../../..//admin.php:201
-msgid "Transparency"
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Previous"
 msgstr ""
 
-#: ../../..//_out.php:555
-msgid "Select a digit from 1 to 100"
+#: /var/www/image.loc/_tempLangs.php:26
+msgid "Next"
 msgstr ""
 
-#: ../../..//_out.php:560
-#: ../../..//_out.php:589
-msgid "Offset"
+#: /var/www/image.loc/_tempLangs.php:29
+msgid "Albums not found"
 msgstr ""
 
-#: ../../..//_out.php:577
-#: ../../..//admin.php:200
-msgid "Font size"
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "All albums"
 msgstr ""
 
-#: ../../..//_out.php:583
-msgid "Font colour"
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:78
+#: /var/www/image.loc/_tempLangs.php:108
+#: /var/www/image.loc/_tempLangs.php:184
+msgid "Categories"
 msgstr ""
 
-#: ../../..//_out.php:598
-msgid "Path to font"
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:41
+msgid "Removing categories"
 msgstr ""
 
-#: ../../..//_out.php:633
-#: ../../..//_out.php:948
-msgid "Albums"
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:42
+msgid "Remove selected category"
 msgstr ""
 
-#: ../../..//_out.php:638
-#: ../../..//_out.php:822
-msgid "Create"
-msgstr ""
-
-#: ../../..//_out.php:659
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:70
 msgid "View images"
 msgstr ""
 
-#: ../../..//_out.php:667
-#: ../../..//_out.php:774
-#: ../../..//_out.php:832
-#: ../../..//_out.php:886
-#: ../../..//_out.php:947
-#: ../../..//_out.php:1023
-#: ../../..//_out.php:1097
-#: ../../..//_out.php:1175
-#: ../../..//admin.php:267
-#: ../../..//admin.php:297
-#: ../../..//admin.php:429
-#: ../../..//admin.php:598
-#: ../../..//admin.php:639
-msgid "Name"
+#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:48
+msgid "Edit"
 msgstr ""
 
-#: ../../..//_out.php:671
-msgid "Created"
+#: /var/www/image.loc/_tempLangs.php:36
+msgid "Edit albums"
 msgstr ""
 
-#: ../../..//_out.php:675
-msgid "Has been updated or updated"
-msgstr ""
-
-#: ../../..//_out.php:679
-#: ../../..//_out.php:1179
-msgid "Views"
-msgstr ""
-
-#: ../../..//_out.php:683
-#: ../../..//_out.php:838
-#: ../../..//_out.php:892
-#: ../../..//_out.php:949
-#: ../../..//_out.php:1029
-#: ../../..//_out.php:1103
-#: ../../..//_out.php:1194
-#: ../../..//admin.php:268
-#: ../../..//admin.php:599
-#: ../../..//admin.php:640
-msgid "Description"
-msgstr ""
-
-#: ../../..//_out.php:689
-#: ../../..//_out.php:769
-msgid "a_to_edit"
-msgstr ""
-
-#: ../../..//_out.php:690
-#: ../../..//_out.php:715
-#: ../../..//_out.php:730
-#: ../../..//_out.php:768
-#: ../../..//_out.php:808
-#: ../../..//_out.php:865
-#: ../../..//_out.php:919
-#: ../../..//_out.php:929
-#: ../../..//_out.php:991
-#: ../../..//_out.php:1004
-#: ../../..//_out.php:1065
+#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:104
+#: /var/www/image.loc/_tempLangs.php:183
+#: /var/www/image.loc/_tempLangs.php:192
+#: /var/www/image.loc/_tempLangs.php:212
+#: /var/www/image.loc/_tempLangs.php:214
+#: /var/www/image.loc/_tempLangs.php:220
 msgid "Delete"
 msgstr ""
 
-#: ../../..//_out.php:704
-msgid "No albums found"
+#: /var/www/image.loc/_tempLangs.php:38
+msgid "Delete albums"
 msgstr ""
 
-#: ../../..//_out.php:711
-msgid "Delete album?"
-msgstr ""
-
-#: ../../..//_out.php:714
-#: ../../..//_out.php:807
-#: ../../..//_out.php:864
-#: ../../..//_out.php:918
-#: ../../..//_out.php:990
-#: ../../..//_out.php:1064
-#: ../../..//_out.php:1199
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:103
+#: /var/www/image.loc/_tempLangs.php:191
+#: /var/www/image.loc/_tempLangs.php:206
+#: /var/www/image.loc/_tempLangs.php:219
 msgid "Cancel"
 msgstr ""
 
-#: ../../..//_out.php:721
-#: ../../..//_out.php:997
-#: ../../..//_out.php:1158
-msgid "Album"
+#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:131
+#: /var/www/image.loc/_tempLangs.php:134
+#: /var/www/image.loc/_tempLangs.php:141
+#: /var/www/image.loc/_tempLangs.php:144
+#: /var/www/image.loc/_tempLangs.php:151
+#: /var/www/image.loc/_tempLangs.php:154
+msgid "No"
 msgstr ""
 
-#: ../../..//_out.php:727
-msgid "a_add_pictures"
+#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:45
+msgid "Height"
 msgstr ""
 
-#: ../../..//_out.php:749
-msgid "Chose all photos"
+#: /var/www/image.loc/_tempLangs.php:46
+msgid "Return"
 msgstr ""
 
-#: ../../..//_out.php:775
-msgid "Size"
+#: /var/www/image.loc/_tempLangs.php:47
+msgid "Add pictures"
 msgstr ""
 
-#: ../../..//_out.php:790
-msgid "Album is empty"
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Widget settings"
 msgstr ""
 
-#: ../../..//_out.php:804
-msgid "Deleting photos"
+#: /var/www/image.loc/_tempLangs.php:50
+msgid "Go back"
 msgstr ""
 
-#: ../../..//_out.php:817
-#: ../../..//_out.php:930
+#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:181
+#: /var/www/image.loc/_tempLangs.php:205
+#: /var/www/image.loc/_tempLangs.php:208
+#: /var/www/image.loc/_tempLangs.php:211
+msgid "Save"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:182
+msgid "Save and go back"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:113
+msgid "Settings"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:54
+msgid "Images limit"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:55
+msgid "Algorithm"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:56
+msgid "Last images"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:57
+msgid "Random images"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:58
+#: /var/www/image.loc/_tempLangs.php:80
 msgid "Create a category"
 msgstr ""
 
-#: ../../..//_out.php:823
-#: ../../..//_out.php:877
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:97
+#: /var/www/image.loc/_tempLangs.php:106
+#: /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:180
+#: /var/www/image.loc/_tempLangs.php:210
+msgid "Back"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:69
+msgid "Create"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:99
 msgid "Save and exit"
 msgstr ""
 
-#: ../../..//_out.php:844
-#: ../../..//_out.php:898
-#: ../../..//_out.php:1035
-#: ../../..//_out.php:1191
-#: ../../..//admin.php:600
-#: ../../..//admin.php:641
+#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:100
+#: /var/www/image.loc/_tempLangs.php:109
+#: /var/www/image.loc/_tempLangs.php:185
+#: /var/www/image.loc/_tempLangs.php:197
+#: /var/www/image.loc/_tempLangs.php:215
+msgid "Name"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:86
+#: /var/www/image.loc/_tempLangs.php:101
+#: /var/www/image.loc/_tempLangs.php:110
+#: /var/www/image.loc/_tempLangs.php:186
+#: /var/www/image.loc/_tempLangs.php:204
+msgid "Description"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:102
+#: /var/www/image.loc/_tempLangs.php:187
+#: /var/www/image.loc/_tempLangs.php:203
 #, fuzzy
 msgid "Position"
 msgstr "Позиція"
 
-#: ../../..//_out.php:871
-#: ../../..//_out.php:964
-msgid "Edit the category"
+#: /var/www/image.loc/_tempLangs.php:67
+#: /var/www/image.loc/_tempLangs.php:85
+msgid "Albums"
 msgstr ""
 
-#: ../../..//_out.php:925
-#: ../../..//_out.php:1013
-#: ../../..//_out.php:1086
-#: ../../..//admin.php:269
-msgid "Categories"
+#: /var/www/image.loc/_tempLangs.php:72
+#: /var/www/image.loc/_tempLangs.php:87
+msgid "Created"
 msgstr ""
 
-#: ../../..//_out.php:931
-#: ../../..//_out.php:1072
-#: ../../..//_out.php:1077
+#: /var/www/image.loc/_tempLangs.php:73
+#, fuzzy
+msgid "Has been updated"
+msgstr "Позиція змінена"
+
+#: /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:199
+msgid "Views"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:76
+msgid "No albums found"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:77
+msgid "Delete album?"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:81
+#: /var/www/image.loc/_tempLangs.php:105
+#: /var/www/image.loc/_tempLangs.php:107
 msgid "Create an album"
 msgstr ""
 
-#: ../../..//_out.php:946
+#: /var/www/image.loc/_tempLangs.php:83
 msgid "ID"
 msgstr ""
 
-#: ../../..//_out.php:950
-msgid "Created or Has been created"
+#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:96
+msgid "Edit the category"
 msgstr ""
 
-#: ../../..//_out.php:968
+#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:91
 msgid "View albums"
 msgstr ""
 
-#: ../../..//_out.php:980
+#: /var/www/image.loc/_tempLangs.php:92
 msgid "Category list is empty"
 msgstr ""
 
-#: ../../..//_out.php:987
+#: /var/www/image.loc/_tempLangs.php:93
 msgid "Delete category?"
 msgstr ""
 
-#: ../../..//_out.php:1041
-#: ../../..//_out.php:1109
+#: /var/www/image.loc/_tempLangs.php:111
+#: /var/www/image.loc/_tempLangs.php:188
 msgid "Template file"
 msgstr ""
 
-#: ../../..//_out.php:1046
-#: ../../..//_out.php:1114
+#: /var/www/image.loc/_tempLangs.php:112
+#: /var/www/image.loc/_tempLangs.php:189
 msgid "by default"
 msgstr ""
 
-#: ../../..//_out.php:1061
+#: /var/www/image.loc/_tempLangs.php:116
+msgid "Categories and albums"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:117
+msgid "Sort"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:118
+msgid "By date"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:119
+msgid "in alphabetic order"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:120
+#, fuzzy
+msgid "By position"
+msgstr "Позиція"
+
+#: /var/www/image.loc/_tempLangs.php:121
+msgid "in descending order"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:122
+msgid "in  ascending order"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:123
+msgid "Images"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:124
+msgid "maximum file size"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:125
+msgid "In megabites"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:126
+msgid "Maximum width"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:127
+msgid "Maximum height"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:128
+msgid "Quality"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:129
+#: /var/www/image.loc/_tempLangs.php:139
+#: /var/www/image.loc/_tempLangs.php:149
+msgid "Save ratio"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:130
+#: /var/www/image.loc/_tempLangs.php:133
+#: /var/www/image.loc/_tempLangs.php:140
+#: /var/www/image.loc/_tempLangs.php:143
+#: /var/www/image.loc/_tempLangs.php:150
+#: /var/www/image.loc/_tempLangs.php:153
+msgid "Yes"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:132
+#: /var/www/image.loc/_tempLangs.php:142
+#: /var/www/image.loc/_tempLangs.php:152
+msgid "Cut the borders"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:135
+msgid "Image preview"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:136
+#: /var/www/image.loc/_tempLangs.php:146
+msgid "Width"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:137
+#: /var/www/image.loc/_tempLangs.php:138
+#: /var/www/image.loc/_tempLangs.php:147
+#: /var/www/image.loc/_tempLangs.php:148
+#: /var/www/image.loc/_tempLangs.php:172
+#: /var/www/image.loc/_tempLangs.php:177
+msgid "px"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:145
+msgid "Image icons"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:155
+msgid "Watermark"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:156
+msgid "horizontal alignment"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:157
+msgid "left or on the left"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:158
+msgid "in the center"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:159
+msgid "on the right"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:160
+msgid "vertical alignment"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:161
+msgid "at the top"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:162
+msgid "in the middle"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:163
+msgid "at the bottom"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:164
+msgid "Type"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:165
+#: /var/www/image.loc/_tempLangs.php:173
+msgid "Text"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:167
+msgid "Path to the image"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:168
+msgid "File has to be located on the server. For example"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:169
+msgid "Transparency"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:170
+msgid "Select a digit from 1 to 100"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:171
+#: /var/www/image.loc/_tempLangs.php:176
+msgid "Offset"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:174
+msgid "Font size"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:175
+msgid "Font colour"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:178
+msgid "Path to font"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:179
+#: /var/www/image.loc/_tempLangs.php:196
+#: /var/www/image.loc/_tempLangs.php:209
+msgid "Album"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:190
 msgid "Album deletion"
 msgstr ""
 
-#: ../../..//_out.php:1131
+#: /var/www/image.loc/_tempLangs.php:193
 msgid "Select a file"
 msgstr ""
 
-#: ../../..//_out.php:1135
+#: /var/www/image.loc/_tempLangs.php:194
 msgid "Upload a file"
 msgstr ""
 
-#: ../../..//_out.php:1146
-msgid "Gallery"
+#: /var/www/image.loc/_tempLangs.php:198
+msgid "Has been downloaded"
 msgstr ""
 
-#: ../../..//_out.php:1177
-msgid "Has been downloaded or downloaded"
-msgstr ""
-
-#: ../../..//_out.php:1181
-#: ../../..//admin.php:191
+#: /var/www/image.loc/_tempLangs.php:200
 msgid "File size"
 msgstr ""
 
-#: ../../..//_out.php:1183
+#: /var/www/image.loc/_tempLangs.php:201
 msgid "Image size"
 msgstr ""
 
-#: ../../..//_out.php:1188
-msgid "Preview or skin or cover"
+#: /var/www/image.loc/_tempLangs.php:202
+msgid "Preview"
 msgstr ""
 
-#: ../../..//_out.php:1205
+#: /var/www/image.loc/_tempLangs.php:207
 msgid "New name"
 msgstr ""
 
-#: ../../..//_out.php:1212
-msgid "My last photo"
+#: /var/www/image.loc/_tempLangs.php:213
+msgid "Chose all photos"
 msgstr ""
 
-#: ../../..//admin.php:84
+#: /var/www/image.loc/_tempLangs.php:216
+msgid "Size"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:217
+msgid "Album is empty"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:218
+msgid "Deleting photos"
+msgstr ""
+
+#: ../../..//admin.php:88
 msgid "Create a directory to continue your work with the gallery"
 msgstr ""
 
-#: ../../..//admin.php:84
+#: ../../..//admin.php:88
 msgid "Set the write access"
 msgstr ""
 
-#: ../../..//admin.php:195
+#: ../../..//admin.php:183
 msgid "Pre-image width"
 msgstr ""
 
-#: ../../..//admin.php:196
+#: ../../..//admin.php:184
 msgid "pre-image height"
 msgstr ""
 
-#: ../../..//admin.php:197
+#: ../../..//admin.php:185
 msgid "Icon width"
 msgstr ""
 
-#: ../../..//admin.php:198
+#: ../../..//admin.php:186
 msgid "Icon height"
 msgstr ""
 
-#: ../../..//admin.php:199
+#: ../../..//admin.php:187
 msgid "Watermark text"
 msgstr ""
 
-#: ../../..//admin.php:210
+#: ../../..//admin.php:198
 msgid "Specify the correct path to watermark image"
 msgstr ""
 
-#: ../../..//admin.php:216
+#: ../../..//admin.php:204
 msgid "Specify the correct path to font"
 msgstr ""
 
-#: ../../..//admin.php:302
-#: ../../..//admin.php:455
-#: ../../..//admin.php:654
+#: ../../..//admin.php:242
+#: ../../..//gallery_widgets.php:66
+msgid "Settings have been saved"
+msgstr ""
+
+#: ../../..//admin.php:276
+msgid "Album created"
+msgstr ""
+
+#: ../../..//admin.php:296
+#: ../../..//admin.php:472
+#: ../../..//admin.php:706
 msgid "Changes have been saved"
 msgstr ""
 
-#: ../../..//admin.php:336
-#: ../../..//admin.php:365
+#: ../../..//admin.php:349
+#: ../../..//admin.php:378
 msgid "Can't load album information"
 msgstr ""
 
-#: ../../..//admin.php:416
-#: ../../..//admin.php:458
-#: ../../..//admin.php:518
+#: ../../..//admin.php:433
+#: ../../..//admin.php:475
+#: ../../..//admin.php:537
 msgid "Can't load image information"
 msgstr ""
 
-#: ../../..//admin.php:490
+#: ../../..//admin.php:506
 msgid "Photos removed"
 msgstr ""
 
-#: ../../..//admin.php:527
-#: ../../..//admin.php:535
-#: ../../..//admin.php:543
+#: ../../..//admin.php:546
+#: ../../..//admin.php:554
+#: ../../..//admin.php:562
 #, fuzzy
 msgid "Positions updated"
 msgstr "Позиція змінена"
+
+#: ../../..//gallery_widgets.php:52
+msgid "Image limit"
+msgstr ""
+
+#: ../../..//module_info.php:5
+msgid "Gallery module"
+msgstr ""
 
 #~ msgid "amt_name"
 #~ msgstr "User name"
