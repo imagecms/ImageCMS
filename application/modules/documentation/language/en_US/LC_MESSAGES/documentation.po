@@ -1,0 +1,211 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-11 13:22+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: /var/www/image.loc/_tempLangs.php:11
+#: /var/www/image.loc/_tempLangs.php:26
+msgid "Create category"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:12
+#: /var/www/image.loc/_tempLangs.php:27
+#: /var/www/image.loc/_tempLangs.php:40
+msgid "Parent category"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:13
+msgid "Edit page"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:14
+msgid "Language"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:15
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:43
+msgid "Category"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:16
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "Create category "
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:17
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:44
+msgid "Name"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:62
+msgid "Title"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:19
+#: /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:47
+msgid "Url"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:35
+msgid "Keywords"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:36
+msgid "Description"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:48
+msgid "Content"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:58
+msgid "Delete"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Save"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:28
+msgid "Create new page"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:39
+msgid "Edit category"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:54
+msgid "Documentation"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:42
+msgid "Back"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:50
+msgid "Your search did not found"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:51
+msgid "Confirm"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:52
+msgid "Delete pages"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:53
+msgid "Delete selected pages?"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:55
+msgid "Filter"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:56
+msgid "Create copy"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:57
+msgid "Move"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:60
+msgid "Create page"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:61
+msgid "All categories"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:63
+msgid "Created"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:64
+msgid "Last update"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:65
+msgid "Status"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:66
+msgid ""
+"don\");\n"
+"_("
+msgstr ""
+
+#: ../../../admin.php:45
+#: ../../../admin.php:130
+msgid "Next"
+msgstr ""
+
+#: ../../../admin.php:46
+#: ../../../admin.php:131
+msgid "Prev"
+msgstr ""
+
+#: ../../../documentation.php:67
+#: ../../../documentation.php:181
+#: ../../../documentation.php:291
+#: ../../../documentation.php:357
+msgid "URL"
+msgstr ""
+
+#: ../../../documentation.php:77
+#: ../../../documentation.php:191
+msgid "URL can not be repeated"
+msgstr ""
+
+#: ../../../documentation.php:335
+msgid "Ошибка при создании категории"
+msgstr ""
+
+#: jsLangs.php:8
+#: jsLangs.php:10
+msgid "Message"
+msgstr ""
+
+#: jsLangs.php:9
+msgid "Changes saved"
+msgstr ""
+
+#: jsLangs.php:11
+msgid "Changes not saved"
+msgstr ""
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр1"
