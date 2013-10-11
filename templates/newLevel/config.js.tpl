@@ -16,7 +16,7 @@
     {/if}
         var curr = '{$CS}',
         nextCs = '{echo $NextCS}',
-        discountInPopup = false,
+        discountInPopup = true,
         pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
         checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
         inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
