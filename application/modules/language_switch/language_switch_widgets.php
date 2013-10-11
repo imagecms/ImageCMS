@@ -8,12 +8,11 @@ if (!defined('BASEPATH'))
  */
 class Language_switch_Widgets extends MY_Controller {
 
-    private $defaults = array(
-    );
+    private $defaults = array();
 
     public function __construct() {
         parent::__construct();
-         $lang = new MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('language_switch');
     }
 
@@ -26,17 +25,19 @@ class Language_switch_Widgets extends MY_Controller {
         }
 
         $current_address = '';
-        $current_address .=  '/' . $this->uri->uri_string();
+        $current_address .= $this->uri->uri_string();
 
 
-        if ($this->input->server('QUERY_STRING'))
+        if ($this->input->server('QUERY_STRING')) {
             $current_address .= '?' . $this->input->server('QUERY_STRING');
-        if ($this->uri->segment(1))
-            if (array_key_exists($this->uri->segment(1), $this->core->langs)) {                
-                $current_address = str_replace('/' . $this->uri->segment(1), '', $current_address);
+        }
+        if ($this->uri->segment(1)) {
+            if (array_key_exists($this->uri->segment(1), $this->core->langs)) {
+                $current_address = substr_replace($current_address, '', 0, strlen($this->uri->segment(1)));
+            } else {
+                $current_address = '/' . $current_address;
             }
-            else
-                $current_address = $current_address;
+        }
 
 
         $languages = $this->db->get('languages')->result_array();
@@ -45,8 +46,9 @@ class Language_switch_Widgets extends MY_Controller {
 
     // Configure widget settings
     public function language_switch_show_configure($action = 'show_settings', $widget_data = array()) {
-        if ($this->dx_auth->is_admin() == FALSE)
-            exit; // Only admin access 
+        if ($this->dx_auth->is_admin() == FALSE) {
+            exit;
+        } // Only admin access 
 
         switch ($action) {
             case 'show_settings':

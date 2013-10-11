@@ -82,7 +82,7 @@
 {if strpos($CI->uri->uri_string, 'search') !== false}
     {literal}
         <script>
-            $(document).live('scriptDefer', function(){
+            $(document).on('scriptDefer', function(){
             var input = $('#inputString');
             input.setCursorPosition(input.val().length);
             });

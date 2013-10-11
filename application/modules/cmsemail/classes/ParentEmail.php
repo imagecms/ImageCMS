@@ -189,7 +189,7 @@ class ParentEmail extends \MY_Controller {
 
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['admin_message'], $variables);
-            
+
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('User message doesnt send', 'cmsemail');
             } else {
@@ -231,22 +231,19 @@ class ParentEmail extends \MY_Controller {
      */
     public function create($data = array()) {
         if ($_POST) {
-            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|xss_clean');
-            $this->form_validation->set_rules('sender_name', lang('from', 'cmsemail'), 'xss_clean');
-            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'xss_clean|valid_email');
-            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'xss_clean|required');
+            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|');
+            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
+            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
 
-            if ($_POST['userMailTextRadio'])
-                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required|xss_clean');
-            else
-                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'xss_clean');
+            if ($_POST['userMailTextRadio']) {
+                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required');
+            }
 
-            if ($_POST['adminMailTextRadio'])
-                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required|xss_clean');
-            else
-                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'xss_clean');
+            if ($_POST['adminMailTextRadio']) {
+                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
+            }
 
-            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'xss_clean|valid_email');
+            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'valid_email');
 
             if ($this->form_validation->run($this) == FALSE) {
                 $this->errors = validation_errors();
@@ -256,15 +253,17 @@ class ParentEmail extends \MY_Controller {
             }
         } else {
             if (is_array($data) && !empty($data)) {
-                foreach ($data as $key => $d)
-                    if (!in_array($key, $this->accepted_params))
+                foreach ($data as $key => $d) {
+                    if (!in_array($key, $this->accepted_params)) {
                         unset($data[$key]);
+                    }
+                }
 
                 $this->data_model = $data;
                 return TRUE;
-            }
-            else
+            } else {
                 return FALSE;
+            }
         }
     }
 
@@ -287,21 +286,18 @@ class ParentEmail extends \MY_Controller {
      */
     public function edit($id, $data = array()) {
         if ($_POST) {
-            $this->form_validation->set_rules('sender_name', lang('from', 'cmsemail'), 'xss_clean');
-            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'xss_clean|valid_email');
-            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'xss_clean|required');
+            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
+            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
 
-            if ($_POST['userMailTextRadio'])
-                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required|xss_clean');
-            else
-                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'xss_clean');
+            if ($_POST['userMailTextRadio']) {
+                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required');
+            }
 
-            if ($_POST['adminMailTextRadio'])
-                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required|xss_clean');
-            else
-                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'xss_clean');
+            if ($_POST['adminMailTextRadio']) {
+                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
+            }
 
-            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'xss_clean|valid_email');
+            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'valid_email');
 
             if ($this->form_validation->run($this) == FALSE) {
                 $this->errors = validation_errors();
@@ -311,15 +307,17 @@ class ParentEmail extends \MY_Controller {
             }
         } else {
             if (is_array($data) && !empty($data)) {
-                foreach ($data as $key => $d)
-                    if (!in_array($key, $this->accepted_params))
+                foreach ($data as $key => $d) {
+                    if (!in_array($key, $this->accepted_params)) {
                         unset($data[$key]);
+                    }
+                }
 
                 $this->data_model = $data;
                 return TRUE;
-            }
-            else
+            } else {
                 return FALSE;
+            }
         }
     }
 
