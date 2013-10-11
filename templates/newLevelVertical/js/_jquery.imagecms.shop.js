@@ -704,9 +704,9 @@ function getCookie(c_name)
     $.tooltip = function(m) {
         return methods[m];
     };
-    $('[data-rel="tooltip"]').live('mouseover', function() {
+    body.on('mouseover', '[data-rel="tooltip"]', function() {
         $(this).tooltip();
-    }).live('mouseout', function() {
+    }).on('mouseout', '[data-rel="tooltip"]', function() {
         $(this).tooltip('remove');
     })
 })($);
@@ -1450,7 +1450,6 @@ function getCookie(c_name)
                 overlayColor: '#fff',
                 always: false,
                 animate: false,
-                moreoneNC: true,
                 timeclosemodal: 2000,
                 before: function() {
                 },
@@ -1519,6 +1518,12 @@ function getCookie(c_name)
                     }
                 }
                 var $this = $(this);
+
+                if ($.existsN($this.closest('[data-elrun]')))
+                    methods.closeDrop($this.closest('[data-elrun]'));
+                if ($.existsN($('[data-elrun].center:visible')))
+                    methods.closeDrop($('[data-elrun].center:visible'));
+
                 if (!$this.is('[disabled]')) {
                     e.stopPropagation();
                     e.preventDefault();
@@ -1593,7 +1598,6 @@ function getCookie(c_name)
             modal = elSet.modal || set.modal,
             timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
             confirm = elSet.confirm || set.confirm,
-            moreoneNC = elSet.moreoneNC || set.moreoneNC,
             dropContent = elSet.dropContent || set.dropContent,
             before = set.before,
             after = set.after,
@@ -1604,7 +1608,8 @@ function getCookie(c_name)
 
             $this.attr('data-drop', $this.data('drop')).parent().addClass(activeClass);
             elSetSource.data({
-                'effect-off': $thisEOff,
+                'effectOn': $thisEOn,
+                'effectOff': $thisEOff,
                 'elrun': $this,
                 'place': place,
                 'placement': placement,
@@ -1618,11 +1623,9 @@ function getCookie(c_name)
                 'modal': modal,
                 'confirm': confirm,
                 'timeclosemodal': timeclosemodal,
-                'moreoneNC': moreoneNC,
-                'callback': callback,
-                'data-elrun': elSetSource
+                'callback': callback
             }).attr('data-elrun', $thisSource);
-            $(set.exit).die('click.drop').live('click.drop', function() {
+            elSetSource.off('click.drop', set.exit).on('click.drop', set.exit, function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
             var overlayColor = overlayColor,
@@ -1637,15 +1640,15 @@ function getCookie(c_name)
                     'opacity': overlayOpacity
                 });
             }
-            if (elSetSource.is('.' + activeClass) && e.button != undefined) {
+            if (elSetSource.hasClass(activeClass) && e.button != undefined) {
                 methods.closeDrop(elSetSource);
             }
             else {
                 before($this, elSetSource, isajax);
-                if (!moreoneNC || elSetSource.data('modal')) {
+                if (elSetSource.data('modal')) {
                     var objJ = $([]);
                     $('[data-elrun]:visible').each(function() {
-                        if (($(this).data('overlayOpacity') != '0' && $(this).data('moreoneNC') != 'true'))
+                        if (($(this).data('overlayOpacity') != '0'))
                             objJ = objJ.add($(this));
                     })
                     if ($.existsN(objJ))
@@ -1668,7 +1671,7 @@ function getCookie(c_name)
                     methods.dropCenter(elSetSource);
 
                 var dropTimeout = '';
-                wnd.on('resize.drop', function() {
+                wnd.off('resize.drop').on('resize.drop', function() {
                     clearTimeout(dropTimeout);
                     dropTimeout = setTimeout(function() {
                         methods.positionDrop(elSetSource);
@@ -1677,23 +1680,22 @@ function getCookie(c_name)
                 });
                 if (condOverlay)
                     optionsDrop.dropOver.show().add($('.for-center')).unbind('click.drop').on('click.drop', function(e) {
-                        if (!$.existsN($(e.target).closest(elSetSource)) && !$.existsN($(e.target).is(elSetSource))) {
-                            e.stopPropagation();
-                            methods.closeDrop(false);
+                        if ($(e.target).is(optionsDrop.dropOver) || $(e.target).is('.for-center')) {
+                            methods.closeDrop(elSetSource);
                         }
                     })
                 elSetSource.addClass(place);
                 function _show() {
-                    elSetSource.stop(true, false)[$thisEOn]($thisD, function(e) {
+                    elSetSource[$thisEOn]($thisD, function(e) {
                         var $thisD = $(this);
                         $(document).trigger({
-                            type: 'drop.contentHeight', 
-                            el: dC, 
-                            drop: $thisD
+                            type: 'drop.show', 
+                            el: $thisD, 
+                            dropC: dC
                         });
                         $thisD.addClass(activeClass);
                         if (!confirm && modal)
-                            setTimeout(function() {
+                            optionsDrop.closeDropTime= setTimeout(function() {
                                 methods.closeDrop($thisD)
                             }, timeclosemodal)
                         after($this, $thisD, isajax);
@@ -1701,10 +1703,6 @@ function getCookie(c_name)
                         if (cB != undefined)
                             eval(cB)($this, $thisD, isajax, data, elSet)
                     });
-                    $(document).trigger({
-                        'type': 'drop.show', 
-                        el: elSetSource
-                    })
                 }
                 if (place == 'center' && !(elSet.modal || modal)) {
                     $('.for-center').stop(true, false).show();
@@ -1744,6 +1742,7 @@ function getCookie(c_name)
             });
         },
         closeDrop: function(sel) {
+            clearTimeout(optionsDrop.closeDropTime);
             $('[data-button-confirm]').unbind('click.drop');
             var drop = sel == undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
             if ($.existsN(drop)) {
@@ -1761,12 +1760,12 @@ function getCookie(c_name)
                             var $this = $(this),
                             $thisB = $this.data('elrun');
                             if ($thisB != undefined){
+                                $thisB.parent().removeClass(activeClass);
                                 var $thisEOff = $this.data('effect-off'),
                                 $thisD = $this.data('duration');
                             
                                 if ($this.data('close') != undefined)
                                     $this.data('close')($thisB, $(this));
-                                $thisB.parent().removeClass(activeClass);
                                 var $thisHref = $thisB.attr('href');
                                 if ($thisHref != undefined) {
                                     var $thisHrefL = $thisHref.length,
@@ -1780,10 +1779,11 @@ function getCookie(c_name)
                                 }
                             
                                 methods.scrollEmulateRemove($thisD);
-
-                                $('.for-center').fadeOut($thisD);
+                                $this.removeClass(activeClass);
+                                $('.for-center').stop(true, false).fadeOut($thisD);
                                 $this[$thisEOff]($thisD, function() {
-                                    $(this).removeClass(activeClass + ' ' + drop.data('place')).removeAttr('style');
+                                    var $this = $(this);
+                                    $this.removeClass(drop.data('place'));
                                     if ($this.data('closed') != undefined)
                                         $this.data('closed')($thisB, $(this));
                                     $(document).trigger({
@@ -2045,11 +2045,11 @@ function getCookie(c_name)
     $.maxminValue = function(m) {
         return methods[m];
     };
-    $('[data-max]').die('keyup.max').live('keyup.max', function(e) {
+    body.off('keyup.max', '[data-max]').on('keyup.max', '[data-max]', function(e) {
         $(this).maxminValue(e);
     })
 })($);
-$('[data-min]').die('keypress').live('keypress', function(e) {
+body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
     var key = e.keyCode,
     keyChar = parseInt(String.fromCharCode(key));
     var $this = $(this),
@@ -2302,32 +2302,33 @@ var Shop = {
         chCount: function(cartItem, f) {
             Shop.Cart.currentItem = this.load(cartItem.storageId());
             if (Shop.Cart.currentItem) {
-
-                Shop.Cart.currentItem.count = cartItem.count;
-                Shop.currentCallbackFn = f;
-                if (cartItem.kit)
-                    var postName = 'kits[ShopKit_' + Shop.Cart.currentItem.kitId + ']';
-                else
-                    var postName = 'products[SProducts_' + cartItem.id + '_' + cartItem.vId + ']';
-                var postData = {
-                    recount: 1
-                };
-                postData[postName] = cartItem.count;
-                $.post('/shop/cart_api/recount', postData, function(data) {
-                    var dataObj = JSON.parse(data);
-                    if (dataObj.hasOwnProperty('count'))
-                        Shop.Cart.currentItem.count = dataObj.count;
-                    Shop.Cart.save(Shop.Cart.currentItem);
-                    (Shop.currentCallbackFn());
-                    $(document).trigger({
-                        type: 'count_changed',
-                        cartItem: _.clone(cartItem)
+                if (Shop.Cart.currentItem.count != cartItem.count){
+                    Shop.Cart.currentItem.count = cartItem.count;
+                    Shop.currentCallbackFn = f;
+                    if (cartItem.kit)
+                        var postName = 'kits[ShopKit_' + Shop.Cart.currentItem.kitId + ']';
+                    else
+                        var postName = 'products[SProducts_' + cartItem.id + '_' + cartItem.vId + ']';
+                    var postData = {
+                        recount: 1
+                    };
+                    postData[postName] = cartItem.count;
+                    $.post('/shop/cart_api/recount', postData, function(data) {
+                        var dataObj = JSON.parse(data);
+                        if (dataObj.hasOwnProperty('count'))
+                            Shop.Cart.currentItem.count = dataObj.count;
+                        Shop.Cart.save(Shop.Cart.currentItem);
+                        (Shop.currentCallbackFn());
+                        $(document).trigger({
+                            type: 'count_changed',
+                            cartItem: _.clone(cartItem)
+                        });
+                        $(document).trigger({
+                            type: 'cart_changed'
+                        });
                     });
-                    $(document).trigger({
-                        type: 'cart_changed'
-                    });
-                });
-                return this.totalRecount();
+                    return this.totalRecount();
+                }
             }
         },
         clear: function() {

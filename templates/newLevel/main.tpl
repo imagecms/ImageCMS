@@ -67,29 +67,29 @@
         {include_tpl('config.js')}
         {literal}
             <script>
-            function downloadJSAtOnload() {
-                var cL = 0,
-                        scripts = ['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'],
-                        scriptsL = scripts.length;
+                function downloadJSAtOnload() {
+                    var cL = 0,
+                            scripts = ['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'],
+                            scriptsL = scripts.length;
 
-                $.map(scripts, function(i, n) {
-                    $.getScript( theme + 'js/' + i + '.js', function() {
-                        cL++;
-                        if (cL == scriptsL) {
-                            $(document).trigger({'type': 'scriptDefer'});
-                            init();
-                        }
-                    });
-                })
-            }
+                    $.map(scripts, function(i, n) {
+                        $.getScript( theme + 'js/' + i + '.js', function() {
+                            cL++;
+                            if (cL == scriptsL) {
+                                $(document).trigger({'type': 'scriptDefer'});
+                                init();
+                            }
+                        });
+                    })
+                }
 
-            // Check for browser support of event handling capability
-            if (window.addEventListener)
-                window.addEventListener("load", downloadJSAtOnload, false);
-            else if (window.attachEvent)
-                window.attachEvent("onload", downloadJSAtOnload);
-            else
-                window.onload = downloadJSAtOnload;
+                // Check for browser support of event handling capability
+                if (window.addEventListener)
+                    window.addEventListener("load", downloadJSAtOnload, false);
+                else if (window.attachEvent)
+                    window.attachEvent("onload", downloadJSAtOnload);
+                else
+                    window.onload = downloadJSAtOnload; 
             </script>
         {/literal}
         {include_shop_tpl('js_templates')}

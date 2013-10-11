@@ -1,4 +1,4 @@
-$(document).live('scriptDefer', function() {
+$(document).on('scriptDefer', function() {
     (function($){
         var methods = {
             init : function(options) {
