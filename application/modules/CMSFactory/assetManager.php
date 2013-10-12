@@ -370,7 +370,8 @@ class assetManager {
      */
     private function compressJs($js) {
         /* remove comments */
-        $js = preg_replace("/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/", "", $js);
+        $js = preg_replace("/(?:\/\/.*)/", "", $js);
+        $js = preg_replace("/(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)/", "", $js);
         /* remove tabs, spaces, newlines, etc. */
         $js = str_replace(array("\r\n", "\r", "\t", "\n", '  ', '    ', '     '), '', $js);
         /* remove other spaces before/after ) */
@@ -401,4 +402,5 @@ class assetManager {
 }
 
 /** End of file /application/modules/CMSFactory/assetManager.php */
-?>
+?>))
+            return sprintf(
