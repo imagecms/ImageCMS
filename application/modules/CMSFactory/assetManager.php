@@ -402,5 +402,4 @@ class assetManager {
 }
 
 /** End of file /application/modules/CMSFactory/assetManager.php */
-?>))
-            return sprintf(
+?>
