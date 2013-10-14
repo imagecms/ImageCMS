@@ -41,6 +41,12 @@ class Documentation extends \MY_Controller {
         }
     }
 
+    public function preTags($text) {
+        return preg_replace_callback("/<pre>(.*?)[^>]<\/pre>/si", function($matches) {
+                    return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
+                }, $text);
+    }
+
     public function hasCRUDAccess() {
         $settings = $this->documentation_model->getSettings();
         if (in_array($this->dx_auth->get_role_id(), $settings)) {
