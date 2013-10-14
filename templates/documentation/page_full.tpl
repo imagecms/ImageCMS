@@ -8,8 +8,7 @@
                 <h1 class="titleEditTinyMCE">{$page.title}</h1>
                 <hr />
                 <div class="descriptionEditTinyMCE">
-                    {$CI->load->module('documentation')}
-                    {echo $CI->documentation->preTags($page.full_text)}
+                    {echo $CI->load->module('documentation')->preTags($page.full_text)}
                 </div>
             </div>
         </div>
