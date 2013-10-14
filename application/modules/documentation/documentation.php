@@ -322,7 +322,7 @@ class Documentation extends \MY_Controller {
                 'parent_id' => $this->input->post('category'),
                 'order_by' => 'publish_date',
                 'sort_order' => 'desc',
-                'tpl' => 'blog'
+                'tpl' => 'category'
             );
 
             $parent = $this->lib_category->get_category($data['parent_id']);
