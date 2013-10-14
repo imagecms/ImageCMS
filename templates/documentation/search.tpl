@@ -19,9 +19,9 @@
                 {/foreach}
             </ul>
             <div class="items-row" align="center">
-                <!--<ul class="pagination">-->
-                {$pagination}
-                <!--</ul>-->
+                <ul class="pagination">
+                    {$pagination}
+                </ul>
             </div>
         </div>
     </div>
