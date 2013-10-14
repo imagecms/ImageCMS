@@ -153,8 +153,8 @@ class ImportXML {
                 continue;
 
             $is_product = is_prod((string) $product->ID, $this->prod);
-
-            if (!$product->IDWeb || !$is_product) {
+            var_dump($is_product);
+            if (!((string) $product->IDWeb) || !$is_product) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
@@ -240,10 +240,10 @@ class ImportXML {
                 $data['measure'] = $product->ЕдиницаИзмерения . '';
                 $data['barcode'] = $product->ШтрихКод . '';
 
-                if (in_array(translit_url($product->Наименование), $this->urls)) {
-                    $data['url'] = translit_url($product->Наименование) . '-' . $product->Ид;
+                if (in_array(translit_url((string) $product->Наименование), $this->urls)) {
+                    $data['url'] = translit_url((string) $product->Наименование) . '-' . $product->Ид;
                 } else {
-                    $data['url'] = translit_url($product->Наименование);
+                    $data['url'] = translit_url((string) $product->Наименование);
 //                    $this->urls[] .= $data['url'];
                 }
 
