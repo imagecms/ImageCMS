@@ -23,7 +23,6 @@
 <div class="frame-crumbs">
     {widget('path')}
 </div>
-{$totalProducts = count($products)}
 <div class="frame-inside">
     <div class="container">
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
