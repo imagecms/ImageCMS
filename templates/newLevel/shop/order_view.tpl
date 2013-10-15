@@ -26,7 +26,7 @@
                 </div>
             </div>
             <!-- Clear Cart locale Storage -->
-            <script>{literal}$(document).live('scriptDefer', function() {
+            <script>{literal}$(document).on('scriptDefer', function() {
                 Shop.Cart.clear();
                 }){/literal}
             </script>
