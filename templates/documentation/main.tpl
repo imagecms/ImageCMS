@@ -67,25 +67,25 @@
                     </div>
 
                     <div class="collapse navbar-collapse">
-                                
+
                         {include_tpl('top_menu')}
-                        
+
 
                         {if $CI->dx_auth->is_logged_in()}
                             <div class="pull-right">
-                            {$CI->load->module('documentation')}
-                            {if $CI->documentation->hasCRUDAccess()}
+                                {$CI->load->module('documentation')}
+                                {if $CI->documentation->hasCRUDAccess()}
                                     <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
                                         <span class="glyphicon glyphicon-new-window"></span>
-                                {lang('Create page','documentation')}
+                                        {lang('Create page','documentation')}
                                     </a>
-                                {if $CI->core->core_data['data_type'] == 'page'}
+                                    {if $CI->core->core_data['data_type'] == 'page'}
                                         <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
                                             <span class="glyphicon glyphicon-pencil"></span>
-                                    {lang('Edit','documentation')}
+                                            {lang('Edit','documentation')}
                                         </a>
+                                    {/if}
                                 {/if}
-                            {/if}
                             </div>
                         {/if}
                     </div><!-- /.nav-collapse -->
@@ -104,7 +104,7 @@
                             </a>
                         {/if}
                         <div class="tree_menu">
-                        {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
+                            {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
                         </div>
                     </div>
 
@@ -122,12 +122,12 @@
                                     <div class="form-group">
                                         <input class="btn" type="submit" value="{lang("Search","documentation")}"/>
                                     </div>
-                            {form_csrf()}
+                                    {form_csrf()}
                                 </form>
                             </div>
                         {/if}
                         <div class="row">
-                        {$content}
+                            {$content}
                         </div>
                     </div>
                 </div>
@@ -136,25 +136,25 @@
                         <div class="container">
                             <hr/>
                             © Company 2013
-                        {if !$CI->dx_auth->is_logged_in()}
+                            {if !$CI->dx_auth->is_logged_in()}
                                 <div class="pull-right">
                                     <a href="/auth/login" class="navbar-btn">
                                         <span class="glyphicon glyphicon-log-in "></span>
-                            {lang('Log in','documentation')}
+                                        {lang('Log in','documentation')}
                                     </a>&nbsp;
                                     <a href="/auth/register" class="navbar-btn">
                                         <span class="glyphicon glyphicon-log-in "></span>
-                            {lang('Registration','documentation')}
+                                        {lang('Registration','documentation')}
                                     </a>
                                 </div>
-                        {else:}
+                            {else:}
                                 <div class="pull-right">
                                     <a href="/auth/logout" type="button">
                                         <span class="glyphicon glyphicon-log-out"></span>
-                            {lang('Exit','documentation')}
+                                        {lang('Exit','documentation')}
                                     </a>
                                 </div>
-                        {/if}
+                            {/if}
                         </div>
                     </div>
                 </footer>
