@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    
-    
+
+
     $('.protocolSettings').on('change', function() {
         if ($(this).val() === "SMTP") {
             $('.portControlGroup').css('display', 'block');
@@ -18,11 +18,12 @@ $(document).ready(function() {
     });
 
     $('#userMailVariables').die().live('click', function() {
-        $('#userMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
+        tinyMCE.execInstanceCommand('userMailText', "mceInsertContent", false, ' ' + $(this).val() + ' ');
     });
 
+
     $('#adminMailVariables').die().live('click', function() {
-        $('#adminMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
+        tinyMCE.execInstanceCommand('adminMailText', "mceInsertContent", false, ' ' + $(this).val() + ' ');
     });
 
     $('.mailTestResultsHide').on('click', function() {
@@ -96,7 +97,7 @@ var EmailTemplateVariables = {
             },
             url: '/admin/components/cp/cmsemail/deleteVariable/' + locale,
             success: function(data) {
-                if(!data){
+                if (!data) {
                     showMessage(lang('Error'), lang('Variable is not removed'), 'r');
                     return false;
                 }
@@ -122,7 +123,7 @@ var EmailTemplateVariables = {
             },
             url: '/admin/components/cp/cmsemail/updateVariable/' + locale,
             success: function(data) {
-                if(!data){
+                if (!data) {
                     showMessage(lang('Error'), lang('Variable is not updated'), 'r');
                     return false;
                 }
@@ -151,7 +152,7 @@ var EmailTemplateVariables = {
             },
             url: '/admin/components/cp/cmsemail/addVariable/' + locale,
             success: function(data) {
-                if(!data){
+                if (!data) {
                     showMessage(lang('Error'), lang('Variable is not added'), 'r');
                     return false;
                 }

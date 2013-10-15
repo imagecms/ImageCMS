@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-19 17:12+0300\n"
-"PO-Revision-Date: 2013-09-19 17:12+0300\n"
+"PO-Revision-Date: 2013-10-14 17:49+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -74,7 +74,6 @@ msgid "Amount of news"
 msgstr "Количество новостей"
 
 #: core_widgets.php:102
-#, fuzzy
 msgid "Settings have been saved"
 msgstr "Сохранение настроек прошло успешно"
 

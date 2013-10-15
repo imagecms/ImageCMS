@@ -8,6 +8,8 @@
     </div><!--/span-->
 
 {/foreach}
-<ul class="pagination">
-    {$pagination}
-</ul>
+<div class="items-row" align="center">
+    <ul class="pagination">
+        {$pagination}
+    </ul>
+</div>

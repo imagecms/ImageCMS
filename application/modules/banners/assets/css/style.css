@@ -7,3 +7,7 @@
 #data option:selected, #data ::-moz-selection {
     background: red;   
 }
+.finder{
+    height: 135px!important;
+    border-bottom: 1px dotted gray;
+}

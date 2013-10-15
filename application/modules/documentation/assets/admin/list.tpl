@@ -1,32 +1,32 @@
 <div class="modal hide fade" id="pages_action_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 id="mvMv">{lang("Copy/Move pages")}</h3>
+        <h3 id="mvMv">{lang("Copy/Move pages", 'documentation')}</h3>
     </div>
     <div class="modal-body">
-        {lang("Categories","admin")}:
+        {lang("Categories", 'documentation')}:
         <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-            <option value="0">{lang("Without a category","admin")}</option>
+            <option value="0">{lang("Without a category",'documentation')}</option>
             {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] ));}
         </select>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
-        <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('Confirm','admin')}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel",'documentation')}</a>
+        <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('Confirm','documentation')}</a>
     </div>
 </div>
 
 <div class="modal hide fade" id="pages_delete_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('Delete pages','admin')}</h3>
+        <h3>{lang('Delete pages','documentation')}</h3>
     </div>
     <div class="modal-body">
-        {lang('Delete selected pages?', 'admin')}
+        {lang('Delete selected pages?', 'documentation')}
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel",'admin')}</a>
-        <a href="#" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/delete_pages/')" >{lang("Delete","admin")}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel",'documentation')}</a>
+        <a href="#" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/delete_pages/')" >{lang("Delete",'documentation')}</a>
     </div>
 </div>
 
@@ -35,20 +35,20 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Documentation', 'admin')}</span>
+                <span class="title">{lang('Documentation', 'documentation')}</span>
             </div>
 
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
-                    <a href="{$BASE_URL}admin/components/cp/documentation/settings" class="btn btn-small action_on"><i class="icon-wrench"></i>{lang('Settings','admin')}</a>
+                    <a href="{$BASE_URL}admin/components/cp/documentation/settings" class="btn btn-small action_on"><i class="icon-wrench"></i>{lang('Settings','documentation')}</a>
                 </div>
             </div>
         </div>
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                <a href="#content_list" class="btn btn-small active">{lang("Content list","admin")}</a>
-                <a href="#menu_categories" class="btn btn-small ">{lang("Menu categories","admin")}</a>
+                <a href="#content_list" class="btn btn-small active">{lang("Content list", 'documentation')}</a>
+                <a href="#menu_categories" class="btn btn-small ">{lang("Menu categories", 'documentation')}</a>
             </div>
         </div>
         <div class="tab-content content_big_td">
@@ -57,8 +57,8 @@
                     {if $show_cat_list == 'yes'}
                         <div class="span3">
                             <ul class="nav nav-tabs nav-stacked m-t_10">
-                                <li {if '0' == $cat_id} class="active" {/if} ><a href="{$BASE_URL}admin/components/cp/documentation/byCategory/0" class="pjax">{lang("Without a category","admin")}</a></li>
-                                <li {if 'all' === $cat_id} class="active" {/if}><a href="{$BASE_URL}admin/components/cp/documentation/byCategory/" class="pjax">{lang('All categories','admin')}</a></li>
+                                <li {if '0' == $cat_id} class="active" {/if} ><a href="{$BASE_URL}admin/components/cp/documentation/byCategory/0" class="pjax">{lang("Without a category",'documentation')}</a></li>
+                                <li {if 'all' === $cat_id} class="active" {/if}><a href="{$BASE_URL}admin/components/cp/documentation/byCategory/" class="pjax">{lang('All categories','documentation')}</a></li>
                             </ul>
                             <ul class="nav nav-tabs nav-stacked">
                                 {foreach $tree as $cat}
@@ -117,10 +117,10 @@
                                     </span>
                                 </th>
                                 <th class="span1">ID</th>
-                                <th class="span4">{lang('Title','admin')}</th>
-                                <th class="span2">{lang('Created','admin')}</th>
-                                <th class="span2">{lang('Last update','admin')}</th>
-                                <th class="span1">{lang('Status','admin')}</th>
+                                <th class="span4">{lang('Title','documentation')}</th>
+                                <th class="span2">{lang('Created','documentation')}</th>
+                                <th class="span2">{lang('Last update','documentation')}</th>
+                                <th class="span1">{lang('Status','documentation')}</th>
                             </tr>
                         </thead>
                         <tbody data-url="" class="sortable ui-sortable">
@@ -136,8 +136,8 @@
                                         </td>
                                         <td><span>{$page.id}</span></td>
                                         <td class="share_alt">
-                                            <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site","admin")}"><i class="icon-share-alt"></i></a>
-                                            <a href="{$BASE_URL}admin/components/cp/documentation/history/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing","admin")}">{$page.title}</a>
+                                            <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site",'documentation')}"><i class="icon-share-alt"></i></a>
+                                            <a href="{$BASE_URL}admin/components/cp/documentation/history/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing",'documentation')}">{$page.title}</a>
                                         </td>
                                         <td>
                                             {date('d-m-Y H:i', $page.created)}
@@ -146,7 +146,7 @@
                                             {date('d-m-Y H:i', $page.updated)}
                                         </td>
                                         <td>
-                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show","admin")}{else:}{lang('don\'t show')}{/if}" onclick="change_page_status('{$page.id}');">
+                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show",'documentation')}{else:}{lang('dont show')}{/if}" onclick="change_page_status('{$page.id}');">
                                                 <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
                                             </div>
                                         </td>
@@ -159,7 +159,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'admin')}</div>
+                                                            <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'documentation')}</div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -182,8 +182,8 @@
                                 <thead>
                                     <tr>
                                         <th class="span1">ID</th>
-                                        <th class="span8">{lang('Title','admin')}</th>
-                                        <th class="span8">{lang('Category menu','admin')}</th>
+                                        <th class="span8">{lang('Title','documentation')}</th>
+                                        <th class="span8">{lang('Category menu','documentation')}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

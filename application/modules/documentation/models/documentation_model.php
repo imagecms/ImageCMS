@@ -412,6 +412,27 @@ class Documentation_model extends CI_Model {
                 ->get('shop_rbac_roles');
         return $result->result_array();
     }
+    
+    /**
+     * Get pages in category by id
+     * @param int $id
+     * @return boolean|array
+     */
+    public function getPagesInCategory($id = null, $langId){
+        if ($id != null){
+            $res = $this->db
+                    ->where('category',$id)
+                    ->where('post_status','publish')
+                    ->where('lang',$langId)
+                    ->get('content')->result_array();
+        }
+        
+        if ($res){
+            return $res;
+        }
+        
+        return false;
+    }
 
     /**
      * Module install
