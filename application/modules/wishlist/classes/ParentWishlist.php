@@ -568,6 +568,11 @@ class ParentWishlist extends \MY_Controller {
         if ($this->errors)
             return FALSE;
 
+        if(!file_exists('./uploads/mod_wishlist/')){
+            mkdir('./uploads/mod_wishlist/');
+            chmod('./uploads/mod_wishlist/', 0777);
+        }
+        
         $config['upload_path'] = './uploads/mod_wishlist/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = $this->settings['maxImageSize'];
