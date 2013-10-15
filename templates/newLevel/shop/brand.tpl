@@ -88,10 +88,10 @@
                         </div>
                     </div>
                     <div class="inside-padd">
-                        <nav class="nav-category">
+                        <nav>
                             {foreach $categories as $key => $category}
-                                <ul class="nav nav-vertical" data-pid="{echo $key}">
-                                    <li class="title">
+                                <ul class="nav nav-vertical nav-category">
+                                    <li>
                                         <span>{echo trim(key($category))}</span>
                                     </li>
                                     {foreach $category[key($category)] as $subItem}
