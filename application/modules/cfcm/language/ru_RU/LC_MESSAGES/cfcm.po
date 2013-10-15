@@ -1,5 +1,3 @@
-msgid ""
-msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-02 13:39+0300\n"
