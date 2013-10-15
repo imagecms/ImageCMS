@@ -39,7 +39,7 @@
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="inputWayImg">{lang("Name", "menu")}:</label>
+                                                <label class="control-label" for="inputWayImg">{lang("Title", "menu")}:</label>
                                                 <div class="controls">
                                                     <input type="text" class="textbox" name="main_title" value="{$main_title}" />
                                                 </div>

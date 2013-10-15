@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('Permission to edit', 'admin')}</span>
+            <span class="title">{lang('Permission to edit', 'documentation')}</span>
         </div>
 
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/documentation" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                <a href="/admin/components/init_window/documentation" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
                 <button type="button"
                         class="btn btn-small btn-success action_on formSubmit"
                         data-form="#doc_roles_settings"
