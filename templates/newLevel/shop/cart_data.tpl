@@ -1,19 +1,20 @@
+{$topCartCount = ShopCore::app()->SCart->totalItems()}
 <div class="btn-bask tiny-bask">
     <button>
         <span class="frame-icon">
             <span class="icon_cleaner"></span>
         </span>
         <span class="text-cleaner bask">
-            <span class="empty">
+            <span class="empty" {if $topCartCount == 0}style="display: inline"{/if}>
                 <span class="helper"></span>
                 <span>
                     <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
                 </span>
             </span>
-            <span class="no-empty">
+            <span class="no-empty" {if $topCartCount != 0}style="display: inline"{/if}>
                 <span class="helper"></span>
                 <span>
-                    <span class="text-el topCartCount">{echo ShopCore::app()->SCart->totalItems()}</span>
+                    <span class="text-el topCartCount">{echo $topCartCount}</span>
                     <span class="text-el">&nbsp;</span>
                     <span class="text-el plurProd">{echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
                     <span class="divider text-el">&#8226;</span>
