@@ -40,7 +40,7 @@
 
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'documentation')}</span></a>
                     <a href="{$BASE_URL}admin/components/cp/documentation/settings" class="btn btn-small action_on"><i class="icon-wrench"></i>{lang('Settings','documentation')}</a>
                 </div>
             </div>
