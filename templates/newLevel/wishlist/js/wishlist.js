@@ -275,7 +275,8 @@ $(document).on('scriptDefer', function() {
             $("#datepicker").datepicker({
                 "dateFormat": "yy-mm-dd",
                 changeMonth: true,
-                changeYear: true
+                changeYear: true,
+                yearRange: "1930:2030"
             });
         } catch (err) {
         }
