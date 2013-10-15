@@ -1456,14 +1456,18 @@ function beforeShowHref(el, elS) {
     elS.children().hide();
     elS.find('.drop-content-photo .inside-padd').prepend('<span class="helper"></span>')
 }
+function cuselInit(el){
+    var el = el == undefined ? body : el;
+    if ($.existsN(el.find('.lineForm:visible'))) {
+        cuSel(cuselOptions);
+        if (ltie7)
+            ieInput(el.find('.cuselText'));
+    }
+}
 /*/declaration front functions*/
 function init() {
     /*call general functions and plugins*/
-    if ($.exists('.lineForm:visible')) {
-        cuSel(cuselOptions);
-        if (ltie7)
-            ieInput($('.cuselText'));
-    }
+    cuselInit();
     /*call general functions and plugins*/
     
     /*call functions for shop objects*/

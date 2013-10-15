@@ -49,8 +49,8 @@ input[type="text"], input[type="password"], textarea{-moz-border-radius: 3px;-we
 
 /*active*/
 button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #999 !important;}
-.active > span > .text-el, .active > a > .text-el{cursor: default;color: #999;}
-.active > button > .text-el{color: #fff;}
+.active > span, .active > a{cursor: default;color: #999;}
+.active > button{color: #fff;}
 input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, button:focus, .frame-item-menu > .frame-title > .title:focus{outline: 1px solid #75d9ff;}
 /*/active*/
 

@@ -1056,9 +1056,9 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .frame-category-menu > .inside-padd{padding: 12px;}
 .nav-category{margin-bottom: 10px;}
 .nav-category > li{margin-left: 10px;}
-.nav-category > li.title{margin-left: 0;}
-.nav-category > li.title > span{font-size: 14px;}
-.nav-category > li.title + li.title{margin-top:6px;}
+.nav-category > li{margin-left: 0;}
+.nav-category > li > span{font-size: 14px;}
+.nav-category > li + li{margin-top:6px;}
 /*/category-menu*/
 
 /*text page*/
