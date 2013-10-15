@@ -914,6 +914,8 @@ function getCookie(c_name)
                             $thisDrop.hide();
                             menu.css('overflow', '');
                         }
+                        else
+                            var dropW2 = dropW;
                         methods._position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                     }
                     $this.data('kk', 0);

@@ -211,6 +211,7 @@ $(document).on('scriptDefer', function() {
                 $('[data-drop="#notification"].trigger').removeData('timeclosemodal');
                 wishPhoto.empty();
                 $(this).val('');
+                $('[data-wishlist="do_upload"]').attr('disabled', 'disabled').parent().addClass('disabled');
             }
             else {
                 $('[data-wishlist="do_upload"]').removeAttr('disabled').parent().removeClass('disabled');
