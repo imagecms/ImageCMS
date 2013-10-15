@@ -49,7 +49,7 @@
 
                         {/if}
 
-                        <div class="f_r__icsi-css">
+                        <div class="f_r__icsi-css" style="margin-right: 10px">
                             <span class="helper__icsi-css" style="height: 35px;"></span>
                             <span>
                                 <span class="btn__icsi-css like__icsi-css">
