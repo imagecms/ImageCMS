@@ -91,7 +91,7 @@ class Comments_Widgets extends MY_Controller {
                     );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang("Settings have been saved or settings were saved"));
+                    showMessage(lang("Settings have been saved", 'comments'));
                     if ($_POST['action'] == 'tomain')
                         pjax('/admin/widgets_manager/index');
                 }
@@ -160,7 +160,7 @@ class Comments_Widgets extends MY_Controller {
                     );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang("Settings have been saved or settings were saved"));
+                    showMessage(lang("Settings have been saved", 'comments'));
                     if ($_POST['action'] == 'tomain')
                         pjax('/admin/widgets_manager/index');
                 }

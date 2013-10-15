@@ -139,7 +139,7 @@ class Categories extends BaseAdminController {
     function create($action, $cat_id = 0) {
         //cp_check_perm('category_create');
 
-        $this->form_validation->set_rules('name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[160]');
+        $this->form_validation->set_rules('name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[160]|xss_clean');
         $this->form_validation->set_rules('url', lang("URL categories", "admin"), 'trim|min_length[2]|max_length[300]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('position', lang("Position", "admin"), 'required|integer|max_length[11]');

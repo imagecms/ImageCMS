@@ -88,7 +88,7 @@
 
 
                                         </select>
-                                        <div id="autodrop">
+                                        <div id="autodrop" ">
                                         </div>
 
                                     </div>
@@ -111,7 +111,10 @@
                                     <div class="controls">
                                         <div class="group_icon pull-right">            
                                             <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                        return false;"><i class="icon-picture"></i>  {lang('Choose an image ', 'banners')}</button>
+                        return false;">
+                                                <i class="icon-picture"></i>
+                                                {lang('Choose an image ', 'banners')}
+                                            </button>
                                         </div>
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="">					
