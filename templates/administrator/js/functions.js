@@ -626,7 +626,7 @@ function elFinderPopup(type, id, path)
             commandsOptions: {
                 getfile: {
                     oncomplete: 'close' // close/hide elFinder
-                }
+                },
             },
             getFileCallback: function(file) {
                 if (path != '')
@@ -665,7 +665,8 @@ function elFinderPopup(type, id, path)
             customData: {
                 cms_token: elfToken,
                 path: path
-            }
+            },
+            onlyMimes: [type]
         });
     }
     else

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-02 10:15+0300\n"
-"PO-Revision-Date: 2013-10-02 10:16+0300\n"
+"POT-Creation-Date: 2013-10-14 17:00+0300\n"
+"PO-Revision-Date: 2013-10-14 17:00+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -408,19 +408,18 @@ msgstr "Количество комментариев"
 msgid "Number of characters"
 msgstr "Количество символов"
 
-# а
 #: comments_widgets.php:94
 #: comments_widgets.php:163
-msgid "Settings have been saved or settings were saved"
-msgstr "Настройки сохранены или настройки были сохранены"
+msgid "Settings have been saved"
+msgstr "Настройки сохранены"
 
 #: comments_widgets.php:151
 msgid "Number of responses"
 msgstr "Количество ответов"
 
-#~ msgid "Have been saved"
-#~ msgstr "Сохранены"
-
+# а
+#~ msgid "Settings have been saved or settings were saved"
+#~ msgstr "Настройки сохранены или настройки были сохранены"
 # а
 #, fuzzy
 #~ msgid "Only authorized users can leave comments. <a href="
