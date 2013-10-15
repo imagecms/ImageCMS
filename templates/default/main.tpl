@@ -38,11 +38,16 @@
                             <ul>
                                 {if $is_logged_in}
                                     <li class="first">{lang('Вы вошли как')} <b>{$username}</b></li>
-                                    <li><a href="{site_url('auth/logout')}">{lang('Выход')}</a></li>
-                                    {else:}
-                                    <li class="first"><a href="{site_url('auth/login')}">Вход</a></li>
-                                    <li><a href="{site_url('auth/register')}">Регистрация</a></li>
-                                    {/if}
+                                    <li>
+                                        <a href="{site_url('auth/logout')}">{lang('Выход')}</a>
+                                    </li>
+                                {else:}
+                                    <li class="first"><a href="{site_url('auth/login')}">Вход</a>
+                                    </li>
+                                    <li>
+                                        <a href="{site_url('auth/register')}">Регистрация</a>
+                                    </li>
+                                {/if}
                             </ul>
                         </div>
                     </div>
@@ -114,8 +119,8 @@
                                     <form action="{site_url('search')}" method="POST">
                                         <input type="submit" class="submit" value=""/>
                                         <input type="text" class="text" name="text" value="Поиск" onfocus="if (this.value == 'Поиск')
-                            this.value = '';" onblur="if (this.value == '')
-                            this.value = 'Поиск';"/>
+                                                    this.value = '';" onblur="if (this.value == '')
+                                                                this.value = 'Поиск';"/>
                                         {form_csrf()}
                                     </form>
                                 </div>

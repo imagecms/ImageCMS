@@ -49,7 +49,6 @@
                 <header>
                     {include_tpl('header')}
                 </header>
-                <!--    vertical-menu || horizontal-menu-->
                 <div class="frame-menu-main horizontal-menu">
                     {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
                 </div>
@@ -66,33 +65,31 @@
 
         <!-- scripts -->
         {include_tpl('config.js')}
-        <script type="text/javascript" src="{$THEME}js/_jquery.imagecms.shop.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         {literal}
             <script>
-            function downloadJSAtOnload() {
-                var cL = 0,
-                        scripts = ['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'],
-                        scriptsL = scripts.length;
+                function downloadJSAtOnload() {
+                    var cL = 0,
+                            scripts = ['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'],
+                            scriptsL = scripts.length;
 
-                $.map(scripts, function(i, n) {
-                    $.getScript( theme + 'js/' + i + '.js', function() {
-                        cL++;
-                        if (cL == scriptsL) {
-                            $(document).trigger({'type': 'scriptDefer'});
-                            init();
-                        }
-                    });
-                })
-            }
+                    $.map(scripts, function(i, n) {
+                        $.getScript( theme + 'js/' + i + '.js', function() {
+                            cL++;
+                            if (cL == scriptsL) {
+                                $(document).trigger({'type': 'scriptDefer'});
+                                init();
+                            }
+                        });
+                    })
+                }
 
-            // Check for browser support of event handling capability
-            if (window.addEventListener)
-                window.addEventListener("load", downloadJSAtOnload, false);
-            else if (window.attachEvent)
-                window.attachEvent("onload", downloadJSAtOnload);
-            else
-                window.onload = downloadJSAtOnload;
+                // Check for browser support of event handling capability
+                if (window.addEventListener)
+                    window.addEventListener("load", downloadJSAtOnload, false);
+                else if (window.attachEvent)
+                    window.attachEvent("onload", downloadJSAtOnload);
+                else
+                    window.onload = downloadJSAtOnload; 
             </script>
         {/literal}
         {include_shop_tpl('js_templates')}

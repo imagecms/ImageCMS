@@ -37,7 +37,7 @@
                     </span>
                     <ul class="tabs">
                         <li class="btn-order-call">
-                            <a href="#ordercall" data-drop=".drop-order-call" data-source="{site_url('shop/callback')}">
+                            <a href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
                                 <span class="icon_order_call"></span>
                                 <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
                             </a>
@@ -63,7 +63,7 @@
                 <!--                Start. Show search form-->
                 <div class="frame-search-form">
                     <div class="p_r">
-                        <form name="search" method="get" action="{shop_url('search')}"  id="autocomlete">
+                        <form name="search" method="get" action="{shop_url('search')}">
                             <span class="btn-search">
                                 <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('Найти','newLevel')}</span></button>
                             </span>
@@ -82,7 +82,7 @@
 {if strpos($CI->uri->uri_string, 'search') !== false}
     {literal}
         <script>
-            $(document).live('scriptDefer', function(){
+            $(document).on('scriptDefer', function(){
             var input = $('#inputString');
             input.setCursorPosition(input.val().length);
             });

@@ -1,9 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
         <title>{$site_title}</title>
+        <meta name="description" content="{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="generator" content="ImageCMS" />
         <link href="{$THEME}css/bootstrap.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/bootstrap-theme.min.css" rel="stylesheet" media="screen"/>
         <link href="{$THEME}css/style.css" rel="stylesheet" media="screen"/>
@@ -27,128 +30,134 @@
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.js"></script>
 
         <script type="text/javascript">
-            var id = "{echo $CI->core->core_data['id']}";
-        </script>
+            var id = "{echo $CI->core->core_data['id']}";{literal}
+            $(document).ready(function() {
+                $(".top_menu_documentation li a").on('click', function() {
+                    var categoyMenu = $(this).data('category_menu');
+                    var CookieDate = new Date();
+                    CookieDate.setFullYear(CookieDate.getFullYear() + 1);
+                    document.cookie = "category_menu=" + categoyMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+                    window.location = '/';
+                });
+            });
+            {/literal}
+            </script>
 
-        <link href="{$THEME}css/left_menu_style.css" rel="stylesheet" media="screen"/>
-    </head>
-    <body>
+            <link href="{$THEME}css/left_menu_style.css" rel="stylesheet" media="screen"/>
+        </head>
+        <body>
 
-        <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
+            <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="pull-left visible-xs navbar-toggle" data-toggle="offcanvas">
+                            <span class="glyphicon glyphicon-chevron-left white"></span>
+                            <span class="glyphicon glyphicon-th-list white"></span>
+                        </button>
 
-                    <button type="button" class="pull-left visible-xs navbar-toggle" data-toggle="offcanvas">
-                        <span class="glyphicon glyphicon-chevron-left white"></span>
-                        <span class="glyphicon glyphicon-th-list white"></span>
-                    </button>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
 
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                        <a class="navbar-brand" href="/">
+                            {lang('ImageCMS Documentation','documentation')}
+                        </a>
+                    </div>
 
-                    <a class="navbar-brand" href="/">
-                        {lang('ImageCMS Documentation','documentation')}
-                    </a>
-
-                </div>
-
-                <div class="collapse navbar-collapse">
-                    {load_menu('top_menu')}
-
-                    {if !$CI->dx_auth->is_logged_in()}
-                        <div class="pull-right navbar-brand">
-                            <span class="glyphicon glyphicon-log-in "> 
-                            </span>
-                            <a id="showLoginForm" style="cursor: pointer;" >{lang('Log in','documentation')}</a>
-                        </div>
-                        <div id="loginForm" class="" style="display: none;">
-                            <form class="navbar-form navbar-right pull-right" method="post" id="login_form" action="/auth/login">
-                                <div class="form-group">
-                                    <input type="text" name="email" placeholder="Email" class="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" placeholder="Password" class="form-control"/>
-                                </div>
-                                <button type="submit" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-log-in"></span>
-                                    {lang('Sign in','documentation')}
-                                </button>
-                                {form_csrf()}
-                            </form>
-                        </div>
-                    {else:}
-                        <div class="pull-right">
-                            {if $CI->dx_auth->is_admin()}
-                                <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
-                                    <span class="glyphicon glyphicon-new-window"></span>
-                                    {lang('Create','documentation')}
-                                </a>
-                                {if $CI->core->core_data['data_type'] == 'page'}
-                                    <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                        {lang('Edit','documentation')}
+                    <div class="collapse navbar-collapse">   
+                        {include_tpl('top_menu')}
+                        {if $CI->dx_auth->is_logged_in()}
+                            <div class="pull-right">
+                            {$CI->load->module('documentation')}
+                            {if $CI->documentation->hasCRUDAccess()}
+                                    <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
+                                        <span class="glyphicon glyphicon-new-window"></span>
+                                {lang('Create page','documentation')}
                                     </a>
+                                {if $CI->core->core_data['data_type'] == 'page'}
+                                        <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                    {lang('Edit','documentation')}
+                                        </a>
                                 {/if}
                             {/if}
-                            <a href="/auth/logout" type="button" class="btn btn-success navbar-btn ">
-                                <span class="glyphicon glyphicon-log-out"></span>
-                                {lang('Exit','documentation')}
-                            </a>
-                        </div>
-                    {/if}
-                </div><!-- /.nav-collapse -->
-            </div><!-- /.container -->
-        </div>
-        <div class="container">
-            <div class="row row-offcanvas row-offcanvas-left">
-                <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-                    {if $CI->core->core_data['data_type'] == 'main'}
-                        <span id="main_logo" class="logo f_l">
-                            <img src="{$THEME}images/logo.png"/>
-                        </span>
-                    {else:}
-                        <a id="main_logo" href="{site_url()}" class="logo f_l">
-                            <img src="{$THEME}images/logo.png"/>
-                        </a>
-                    {/if}
-                    <div class="tree_menu">
-                        {$CI->load->module('documentation')->load_category_menu('developers')}
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-9">
-                    <div class="jumbotron">
-                        <h1>Hello, world!</h1>
-                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-                    </div>
-                    {if $CI->core->core_data['data_type'] != '404'}
-                        <div class="row">
-                            <form class="form-group form-inline pull-right" action="{site_url('search')}" method="POST">
-                                <div class="form-group">
-                                    <input type="text"class="form-control" name="text" placeholder="{lang("Search","documentation")}" />
-                                </div>
-                                <div class="form-group">
-                                    <input class="btn" type="submit" value="{lang("Search","documentation")}"/>
-                                </div>
-                                {form_csrf()}
-                            </form>
-                        </div>
-                    {/if}
-                    <div class="row">
-                        {$content}
-                    </div>
-                </div>
+                            </div>
+                        {/if}
+                    </div><!-- /.nav-collapse -->
+                </div><!-- /.container -->
             </div>
-            <hr/>
-            <footer>
-                <p>© Company 2013</p>
-            </footer>
-        </div>
+            <div class="container">
+                <div class="row row-offcanvas row-offcanvas-left">
+                    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                        {if $CI->core->core_data['data_type'] == 'main'}
+                            <span id="main_logo" class="logo f_l">
+                                <img src="{$THEME}images/logo.png"/>
+                            </span>
+                        {else:}
+                            <a id="main_logo" href="{site_url()}" class="logo f_l">
+                                <img src="{$THEME}images/logo.png"/>
+                            </a>
+                        {/if}
+                        <div class="tree_menu">
+                        {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
+                        </div>
+                    </div>
 
-        <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
-    </body>
-</html>
+                    <div class="col-xs-12 col-sm-9">
+                        <!--div class="jumbotron">
+                            <h1>Hello, world!</h1>
+                            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                        </div-->
+                        {if $CI->core->core_data['data_type'] != '404'}
+                            <div class="row">
+                                <form class="form-group form-inline pull-right" action="{site_url('search')}" method="POST">
+                                    <div class="form-group">
+                                        <input type="text"class="form-control" name="text" placeholder="{lang("Search","documentation")}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="btn" type="submit" value="{lang("Search","documentation")}"/>
+                                    </div>
+                            {form_csrf()}
+                                </form>
+                            </div>
+                        {/if}
+                        <div class="row">
+                        {$content}
+                        </div>
+                    </div>
+                </div>
+                <footer>
+                    <div class="navbar-inner" style="margin: 8px;">
+                        <div class="container">
+                            <hr/>
+                            © Company 2013
+                        {if !$CI->dx_auth->is_logged_in()}
+                                <div class="pull-right">
+                                    <a href="/auth/login" class="navbar-btn">
+                                        <span class="glyphicon glyphicon-log-in "></span>
+                            {lang('Log in','documentation')}
+                                    </a>&nbsp;
+                                    <a href="/auth/register" class="navbar-btn">
+                                        <span class="glyphicon glyphicon-log-in "></span>
+                            {lang('Registration','documentation')}
+                                    </a>
+                                </div>
+                        {else:}
+                                <div class="pull-right">
+                                    <a href="/auth/logout" type="button">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                            {lang('Exit','documentation')}
+                                    </a>
+                                </div>
+                        {/if}
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+            <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
+        </body>
+    </html>

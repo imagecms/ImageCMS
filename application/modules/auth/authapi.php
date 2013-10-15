@@ -142,6 +142,7 @@ class Authapi extends MY_Controller {
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
             $key = random_string('alnum', 5);
+
             if ($val->run($this) AND $last_user = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', $key, '')) {
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
@@ -155,10 +156,10 @@ class Authapi extends MY_Controller {
                 $json['msg'] = lang('Register success', 'auth');
                 $json['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : false;
                 $json['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : false;
-                
+
                 $user_Prof = SUserProfileQuery::create()->findPk($last_user['id_user']);
                 $user_Prof->save();
-                
+
                 echo json_encode($json);
             } else {
                 // Is registration using captcha
@@ -184,6 +185,7 @@ class Authapi extends MY_Controller {
                     'recaptcha_response_field' => form_error('recaptcha_response_field'),
                 );
                 $json['status'] = false;
+                $json['anotherone'] = false;
                 echo json_encode($json);
             }
         } elseif (!$this->dx_auth->allow_registration) {

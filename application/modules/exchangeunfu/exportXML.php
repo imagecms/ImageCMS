@@ -61,63 +61,63 @@ class ExportXML {
         $this->productivity = $this->ci->export_model->getProductivity($partner_id);
 
 //        if ($partner_id) {
-            /** export partners */
-            if ($this->partners) {
-                $this->exportPartners();
-            }
+        /** export partners */
+        if ($this->partners) {
+            $this->exportPartners();
+        }
 
-            /** export productivity */
-            if ($this->productivity) {
-                $this->exportProductivity();
-            }
+        /** export productivity */
+        if ($this->productivity) {
+            $this->exportProductivity();
+        }
 
-            /** export prices */
-            if ($this->prices) {
-                $this->exportPrices();
-            }
+        /** export prices */
+        if ($this->prices) {
+            $this->exportPrices();
+        }
 
-            /** export orders */
-            if ($this->orders) {
-                $this->exportOrder();
-            }
+        /** export orders */
+        if ($this->orders) {
+            $this->exportOrder();
+        }
 
-            /** export products */
-            if ($this->products) {
-                $this->exportProducts();
-            }
+        /** export products */
+        if ($this->products) {
+            $this->exportProducts();
+        }
 //        } else {
-            /** all export */
-            /** export users */
-            if ($this->users) {
-                $this->exportUsers();
-            }
+        /** all export */
+        /** export users */
+        if ($this->users) {
+            $this->exportUsers();
+        }
 
-            /** export partners */
+        /** export partners */
 //            if ($this->partners) {
 //                $this->exportPartners();
 //            }
 
-            /** export productivity */
+        /** export productivity */
 //            if ($this->productivity) {
 //                $this->exportProductivity();
 //            }
 
-            /** export prices */
+        /** export prices */
 //            if ($this->prices) {
 //                $this->exportPrices();
 //            }
 
-            /** export orders */
+        /** export orders */
 //            if ($this->orders) {
 //                $this->exportOrder();
 //            }
 
-            /** export categories */
-            if ($this->categories) {
-                $this->exportCategories();
-            }
+        /** export categories */
+        if ($this->categories) {
+            $this->exportCategories();
+        }
 
-            /** export products */
+        /** export products */
 //            if ($this->products) {
 //                $this->exportProducts();
 //            }
@@ -386,15 +386,26 @@ class ExportXML {
             $parents[$category['id']] = $category['external_id'];
         }
         foreach ($this->categories as $category) {
-            $this->categories_export .=
-                    "\t<СписокГруппНоменклатуры>\r\n" .
-                    "\t\t<IDWeb>" . $category['id'] . "</IDWeb>\r\n" .
-                    "\t\t<ID>" . $category['external_id'] . "</ID>\r\n" .
-                    "\t\t<Наименование>" . htmlspecialchars($category['name']) . "</Наименование>\r\n" .
-                    "\t\t<Код>" . $category['code'] . "</Код>\r\n" .
-                    "\t\t<IDРодитель>" . $parents[$category['parent_id']] . "</IDРодитель>\r\n" .
-                    "\t\t<IDWebРодитель>" . $category['parent_id'] . "</IDWebРодитель>\r\n" .
-                    "\t</СписокГруппНоменклатуры>\r\n";
+            if ($category['parent_id']) {
+                $this->categories_export .=
+                        "\t<СписокГруппНоменклатуры>\r\n" .
+                        "\t\t<IDWeb>" . $category['id'] . "</IDWeb>\r\n" .
+                        "\t\t<ID>" . $category['external_id'] . "</ID>\r\n" .
+                        "\t\t<Наименование>" . htmlspecialchars($category['name']) . "</Наименование>\r\n" .
+                        "\t\t<Код>" . $category['code'] . "</Код>\r\n" .
+                        "\t\t<IDРодитель>" . $parents[$category['parent_id']] . "</IDРодитель>\r\n" .
+                        "\t\t<IDWebРодитель>" . $category['parent_id'] . "</IDWebРодитель>\r\n" .
+                        "\t</СписокГруппНоменклатуры>\r\n";
+            } else {
+                $this->categories_export .=
+                        "\t<СписокГруппНоменклатуры>\r\n" .
+                        "\t\t<IDWeb>" . $category['id'] . "</IDWeb>\r\n" .
+                        "\t\t<ID>" . $category['external_id'] . "</ID>\r\n" .
+                        "\t\t<Наименование>" . htmlspecialchars($category['name']) . "</Наименование>\r\n" .
+                        "\t\t<Код>" . $category['code'] . "</Код>\r\n" .
+                        "\t\t<IDРодитель>" . $parents[$category['parent_id']] . "</IDРодитель>\r\n" .
+                        "\t</СписокГруппНоменклатуры>\r\n";
+            }
         }
     }
 

@@ -533,11 +533,11 @@ msgstr "Поле %s может содержать только буквы алф
 
 #: ../../../../../system/language/form_validation/form_validation.php:19
 msgid "alpha_numeric"
-msgstr "Поле %s может содержать только алфавитно-цифровых символы."
+msgstr "Поле %s может содержать только алфавитно-цифровые символы."
 
 #: ../../../../../system/language/form_validation/form_validation.php:20
 msgid "alpha_dash"
-msgstr "Поле %s может содержать только алфавитно-цифровых символы, подчеркивания и тире."
+msgstr "Поле %s может содержать только символы латиницы, цифры, подчеркивания и тире."
 
 #: ../../../../../system/language/form_validation/form_validation.php:21
 msgid "numeric"

@@ -10,22 +10,23 @@
 #}
 
 <article class="container">
+    {widget('path')}
     <!--If empty list show message -->
     {if !$items}
         <div data-body="message" class="d_b">
             <!--Start. Show message if compare list is empty -->
             <div class="bot_border_grey m-b_10">
-                <h1 class="d_i">{lang('s_WL')}</h1>
+                <h1 class="d_i">{lang("Wish List","admin")}</h1>
             </div>
             <div class="alert alert-search-result">
-                <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+                <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty ","admin"))}</div>
             </div>
             <!--End. Show message if compare list is empty -->
         </div>
     {else:}
 
         <div data-body="body">
-            <h1>{lang('s_WL')}</h1>
+            <h1>{lang("Wish List","admin")}</h1>
             <!--If not empty list show list of products -->
             <div class="bot_border_grey">
                 <ul class="items items_catalog itemsFrameNS">
@@ -92,7 +93,7 @@
                                             data-origPrice="{if $item.model->hasDiscounts()}{echo $variant->toCurrency('OrigPrice')}{/if}"
                                             data-stock="{echo $variant->getStock()}"
                                             >
-                                        {lang('s_buy')}
+                                       {lang("Buy","admin")}
                                     </button>
                                 {else:}
                                     <button
@@ -101,8 +102,8 @@
                                             type="button"
                                             class="btn btn_not_avail">
                                         <span class="icon-but"></span>
-                                        <span class="text-el">{lang('s_message_o_report')}</span>
-                                    </button>
+                                        <span class="text-el">{lang("Report the appearance of","admin")}</span>
+                                    </button>              
                                 {/if}
                                 <!-- End. Check is product available -->
                             </div>
@@ -121,7 +122,7 @@
             </div>
             <div class="row footer_wish-list">
                 <div class="span6">
-                    <div class="d_i-b title">{lang('s_summ')}:</div>
+                    <div class="d_i-b title">{lang("Total","admin")}:</div>
                     <div class="price price_f-s_24 d_i-b">
                         <span class="first_cash"><span class="f-w_b" id="wishListTotal">{echo $total_price}</span> {$CS}</span>
                     </div>
@@ -129,7 +130,7 @@
                 <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
                     <div class="span6">
                         <div class="standart_form horizontal_form t-a_r">
-                            <input type="submit" value="{lang('lang_submit')}" name="sendwish" class="btn btn_cart f_r m-l_10"/>
+                            <input type="submit" value="{lang('Отправить','commerce4x')}" name="sendwish" class="btn btn_cart f_r m-l_10"/>
                             <div class="o_h">
                                 <input type="text" placeholder="E-mail получателя" name="friendsMail"/>
                             </div>
@@ -143,10 +144,10 @@
     <div data-body="message">
         <!--Start. Show message if compare list is empty -->
         <div class="bot_border_grey m-b_10">
-            <h1 class="d_i">{lang('s_WL')}</h1>
+            <h1 class="d_i">{lang("Wish List","admin")}</h1>
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty ","admin"))}</div>
         </div>
         <!--End. Show message if compare list is empty -->
     </div>

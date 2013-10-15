@@ -148,6 +148,7 @@ $shopMenu = array(
         'icon'      => 'icon-home'
 
     ),
+    /** Orders **/
     array(
         'link'      => '',
         'text'      => lang('Orders', 'admin'),
@@ -203,6 +204,7 @@ $shopMenu = array(
             ),
         )
     ),
+    /** Products **/
     array(
         'link'      => '',
         'text'      => lang('Products catalogue', 'admin'),
@@ -221,6 +223,10 @@ $shopMenu = array(
                 'text'      => lang('Products properties', 'admin'),
             ),
             array(
+                'link'      => $ADMIN_URL.'brands/index',
+                'text'      => lang('Brands', 'admin'),
+            ),
+            array(
                 'link'      => $ADMIN_URL.'kits/index',
                 'text'      => lang('Produkts kits', 'admin'),
             ),
@@ -230,6 +236,7 @@ $shopMenu = array(
             )
         )
     ),
+    /** Users **/
     array(
         'link'      => '',
         'text'      => lang('Users management', 'admin'),
@@ -245,41 +252,25 @@ $shopMenu = array(
             ),
         )
     ),
+    /** Modules **/
     array(
         'link'      => '',
-        'text'      => lang('Components', 'admin'),
-        'icon'      => 'icon-briefcase',
+        'text'      => lang('Modules', 'admin'),
+        'icon'      => 'icon-circle-arrow-down',
         'subMenu'   => array(
+//            array(
+//                'link'      => '/admin/components/modules_table',
+//                'text'      => lang('All modules', 'admin'),
+//            ),
+//            array(
+//                'divider'   => true
+//            ),
             array(
-                'link'      => $ADMIN_URL.'brands/index',
-                'text'      => lang('Brands', 'admin'),
-            ),
-            array(
-                'link'      => $ADMIN_URL.'warehouses/index',
-                'text'      => lang('Stocks', 'admin'),
-            ),
-            array(
-                'link'      => $ADMIN_URL.'banners/index',
-                'text'      => lang('Banners', 'admin'),
-            ),
-            /*array(
-                'link'      => $ADMIN_URL.'discounts/index',
-                'text'      => lang('Regular discounts', 'admin'),
-            ),
-            array(
-                'link'      => $ADMIN_URL.'comulativ/index',
-                'text'      => lang('Comulative discounts', 'admin'),
-            ),
-            array(
-                'link'      => $ADMIN_URL.'gifts',
-                'text'      => lang('a_gift_certs', 'admin'),
-            ),*/
-            array(
-                'link'      => $ADMIN_URL.'customfields',
-                'text'      => lang('Custom fields', 'admin'),
+                'modulesList'   => true
             ),
         )
     ),
+    /** Statistics **/
     array(
         'link'      => '',
         'text'      => lang('Statistics', 'admin'),
@@ -295,6 +286,7 @@ $shopMenu = array(
             )
         )
     ),
+    /** Shop settings **/
     array(
         'link'      => '',
         'text'      => lang('Shop settings', 'admin'),
@@ -318,7 +310,15 @@ $shopMenu = array(
             ),
             array(
                 'link'      => $ADMIN_URL.'system/import',
-                'text'      => lang('Automation', 'admin'),
+                'text'      => lang('Import-Export CSV/XLS', 'admin'),
+            ),
+            array(
+                'link'      => '/admin/widgets_manager',
+                'text'      => lang('Widgets', 'admin'),
+            ),
+            array(
+                'link'      => $ADMIN_URL.'customfields',
+                'text'      => lang('Custom fields', 'admin'),
             ),
         )
     )
