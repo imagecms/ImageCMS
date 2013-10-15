@@ -66,11 +66,8 @@
                         </a>
                     </div>
 
-                    <div class="collapse navbar-collapse">
-                                
+                    <div class="collapse navbar-collapse">   
                         {include_tpl('top_menu')}
-                        
-
                         {if $CI->dx_auth->is_logged_in()}
                             <div class="pull-right">
                             {$CI->load->module('documentation')}

@@ -80,6 +80,41 @@ class Documentation_model extends CI_Model {
         }
     }
 
+    public function getCategories() {
+        $query = "
+            SELECT 
+                `id`,
+                `parent_id`
+            FROM `category`
+            ORDER BY `id`
+        ";
+        $result = $this->db->query($query);
+        if ($result) {
+            $categories = array();
+            foreach ($result->result_array() as $row) {
+                $categories[$row['id']] = $row['parent_id'];
+            }
+            return $categories;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function includeAllInnerCategories($serializedInnerCategories) {
+        foreach ($serializedInnerCategories as $categoryId => $innerString) {
+            $query = "
+                UPDATE 
+                    `category` 
+                SET 
+                    `fetch_pages` = '{$innerString}' 
+                WHERE 
+                    `id` = {$categoryId} 
+                LIMIT 1; 
+            ";
+            $this->db->query($query);
+        }
+    }
+
     /**
      * Get languages
      * @return boolean|array
