@@ -64,24 +64,24 @@
         <!-- Check show category for group -->
         {if $item['menu_cat'] == null || $item['menu_cat'] == $group || $group == null}
             {$active = false;$admin = $CI->dx_auth->is_admin();}
-        {if strpos($categoryData['url'], $item['url'].'/') !== false}
-            {$active = true}
-            {if $item['level'] == 0 && $item['url'].'/' != $categoryData['url'] && !$item['subtree']}
-                {$active = false;}
-            {/if}
-        {/if}
-        <li {if $active}class="active"{/if}>
-            <a href="{base_url($item['path_url'])}">{$item['name']}  
-                {if $categoryData['id'] == $item['id'] && $admin}
-                    <span data-toggle="modal" href="#myModalEdit" class="glyphicon glyphicon-pencil pull-right editCategory"></span>
+            {if strpos($categoryData['url'], $item['url'].'/') !== false}
+                {$active = true}
+                {if $item['level'] == 0 && $item['url'].'/' != $categoryData['url'] && !$item['subtree']}
+                    {$active = false;}
                 {/if}
-            </a>
-            <!-- Show category sublevels -->
-            {if $item['subtree']}
-                <span class="tree_menu_icon glyphicon {if $active}glyphicon-chevron-down{else:}glyphicon-chevron-right{/if}"></span>
-                {$this->view('left_menu.tpl', array('tree' => $item['subtree'], 'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData, 'admin' =>$admin))}
             {/if}
-        </li>
-    {/if}
-{/foreach}
+            <li {if $active}class="active"{/if}>
+                <a href="{base_url($item['path_url'])}">{$item['name']}  
+                    {if $categoryData['id'] == $item['id'] && $admin}
+                        <span data-toggle="modal" href="#myModalEdit" class="glyphicon glyphicon-pencil pull-right editCategory"></span>
+                    {/if}
+                </a>
+                <!-- Show category sublevels -->
+                {if $item['subtree']}
+                    <span class="tree_menu_icon glyphicon {if $active}glyphicon-chevron-down{else:}glyphicon-chevron-right{/if}"></span>
+                    {$this->view('left_menu.tpl', array('tree' => $item['subtree'], 'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData, 'admin' =>$admin))}
+                {/if}
+            </li>
+        {/if}
+    {/foreach}
 </ul>

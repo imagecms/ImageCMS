@@ -31,6 +31,17 @@
 
         <script type="text/javascript">
             var id = "{echo $CI->core->core_data['id']}";
+            {literal}
+                        $(document).ready(function() {
+                            $(".top_menu_documentation li a").on('click', function() {
+                                var categoyMenu = $(this).data('category_menu');
+                                var CookieDate = new Date();
+                                CookieDate.setFullYear(CookieDate.getFullYear() + 1);
+                                document.cookie = "category_menu=" + categoyMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+                                window.location = '/';
+                            });
+                        });
+            {/literal}
         </script>
 
         <link href="{$THEME}css/left_menu_style.css" rel="stylesheet" media="screen"/>
@@ -56,8 +67,8 @@
                     </a>
                 </div>
 
-                <div class="collapse navbar-collapse">
-                    {load_menu('top_menu')}
+                <div class="collapse navbar-collapse">   
+                    {include_tpl('top_menu')}
                     {if $CI->dx_auth->is_logged_in()}
                         <div class="pull-right">
                             {$CI->load->module('documentation')}
@@ -91,7 +102,7 @@
                         </a>
                     {/if}
                     <div class="tree_menu">
-                        {$CI->load->module('documentation')->load_category_menu($_COOKIE['menu_category'])}
+                        {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
                     </div>
                 </div>
 

@@ -1,11 +1,5 @@
 <?php
 /*
-/var/www/image.loc/templates/administrator/js/admin_base_r.js
-/var/www/image.loc/templates/administrator/js/jquery.form.js
-/var/www/image.loc/templates/administrator/js/admin_base_i.js
-/var/www/image.loc/templates/administrator/js/jquery.main.js
-/var/www/image.loc/templates/administrator/js/bootstrap-notify.js
-/var/www/image.loc/templates/administrator/js/pjax/jquery.pjax.js
 /var/www/image.loc/templates/administrator/js/pjax/jquery.pjax.min.js
 /var/www/image.loc/templates/administrator/js/jquery-validate/jquery.validate.min.js
 /var/www/image.loc/templates/administrator/js/jquery-validate/additional-methods.min.js
@@ -15,7 +9,12 @@
 /var/www/image.loc/templates/administrator/js/jquery-dialog/jquery-ui-1.7.3.custom.min.js
 /var/www/image.loc/templates/administrator/js/jquery-dialog/jquery.ui.core.min.js
 /var/www/image.loc/templates/administrator/js/jquery-dialog/jquery.ui.widget.min.js
-/var/www/image.loc/templates/administrator/js/jquery-dialog/jquery-1.3.2.min.js*/
+/var/www/image.loc/templates/administrator/js/jquery-dialog/jquery-1.3.2.min.js
+/var/www/image.loc/templates/administrator/js/jquery-dialog/jquery-ui-1.8.23.custom.min.js
+/var/www/image.loc/templates/administrator/js/jquery-dialog/jquery-1.8.0.min.js
+/var/www/image.loc/templates/administrator/js/jquery-dialog/jquery.ui.dialog.min.js
+/var/www/image.loc/templates/administrator/js/jquery-dialog/jquery.ui.position.min.js
+/var/www/image.loc/templates/administrator/js/jquery-dialog/jquery-ui-1.8.23.custom.js*/
 
 echo " <script> langs = {}; langs['This field is required'] = ". lang('This field is required', 'admin') .";
 langs['Please fix this field.'] = ". lang('Please fix this field.', 'admin') .";
