@@ -24,7 +24,9 @@ class Login extends BaseAdminController {
     }
 
     function index() {
+//        var_dumps($this->session->all_userdata());
         if ($this->dx_auth->is_max_login_attempts_exceeded()) {
+            
             $this->dx_auth->captcha();
             $this->template->assign('use_captcha', '1');
             $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
@@ -118,12 +120,12 @@ class Login extends BaseAdminController {
 
         if ($this->dx_auth->is_captcha_expired()) {
             $this->form_validation->set_message('captcha_check', lang("Wrong protection code", "admin"));
-//			$result = FALSE;
-            $result = TRUE;
+			$result = FALSE;
+//            $result = TRUE;
         } elseif (!$this->dx_auth->is_captcha_match($code)) {
             $this->form_validation->set_message('captcha_check', lang("Wrong protection code", "admin"));
-//			$result = FALSE;
-            $result = TRUE;
+			$result = FALSE;
+//            $result = TRUE;
         }
 
         return $result;

@@ -41,6 +41,8 @@ class Documentation extends \MY_Controller {
         }
     }
 
+   
+
     public function preTags($text) {
         return preg_replace_callback("/<pre>(.*?)[^>]<\/pre>/si", function($matches) {
                     return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
@@ -120,7 +122,8 @@ class Documentation extends \MY_Controller {
                 'created' => time(),
                 'lang' => $langId,
                 'lang_alias' => $mainPageId,
-                'updated' => time()
+                'updated' => time(),
+                'comments_status' => '1'
             );
 
             /** If page created succesful then show page on site * */
@@ -486,6 +489,11 @@ class Documentation extends \MY_Controller {
             $this->cache->delete_all();
             redirect(base_url($page['cat_url']));
         }
+    }
+    
+    
+    public function get_pages_in_category($id){
+        return $this->documentation_model->getPagesInCategory($id, $this->defaultLang['id']);
     }
 
     /** Install and set settings * */

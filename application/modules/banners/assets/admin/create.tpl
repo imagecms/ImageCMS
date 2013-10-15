@@ -9,8 +9,6 @@
             <div class="d-i_b">
                 <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'banners')}</span></a>
                 <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('Save', 'banners')}</button>
-                <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit', 'banners')}</button>
-
             </div>
         </div>                            
     </div>

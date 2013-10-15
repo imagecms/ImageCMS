@@ -80,6 +80,41 @@ class Documentation_model extends CI_Model {
         }
     }
 
+    public function getCategories() {
+        $query = "
+            SELECT 
+                `id`,
+                `parent_id`
+            FROM `category`
+            ORDER BY `id`
+        ";
+        $result = $this->db->query($query);
+        if ($result) {
+            $categories = array();
+            foreach ($result->result_array() as $row) {
+                $categories[$row['id']] = $row['parent_id'];
+            }
+            return $categories;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function includeAllInnerCategories($serializedInnerCategories) {
+        foreach ($serializedInnerCategories as $categoryId => $innerString) {
+            $query = "
+                UPDATE 
+                    `category` 
+                SET 
+                    `fetch_pages` = '{$innerString}' 
+                WHERE 
+                    `id` = {$categoryId} 
+                LIMIT 1; 
+            ";
+            $this->db->query($query);
+        }
+    }
+
     /**
      * Get languages
      * @return boolean|array
@@ -376,6 +411,27 @@ class Documentation_model extends CI_Model {
                 ->where('shop_rbac_roles_i18n.locale', $locale)
                 ->get('shop_rbac_roles');
         return $result->result_array();
+    }
+    
+    /**
+     * Get pages in category by id
+     * @param int $id
+     * @return boolean|array
+     */
+    public function getPagesInCategory($id = null, $langId){
+        if ($id != null){
+            $res = $this->db
+                    ->where('category',$id)
+                    ->where('post_status','publish')
+                    ->where('lang',$langId)
+                    ->get('content')->result_array();
+        }
+        
+        if ($res){
+            return $res;
+        }
+        
+        return false;
     }
 
     /**
