@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-11 13:19+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -13,116 +13,94 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_tempLangs.php:12
 msgid "Banner creating"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:13 /var/www/image.loc/_tempLangs.php:48
 msgid "Back"
-msgstr ""
+msgstr "Return"
 
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:14 /var/www/image.loc/_tempLangs.php:49
 msgid "Save"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:15
-#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:15 /var/www/image.loc/_tempLangs.php:50
 msgid "Save and exit"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:16
-#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:16 /var/www/image.loc/_tempLangs.php:51
 msgid "Options"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:17 /var/www/image.loc/_tempLangs.php:40
 #: /var/www/image.loc/_tempLangs.php:52
 msgid "Name"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:18 /var/www/image.loc/_tempLangs.php:53
 msgid "Active"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:19
-#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:19 /var/www/image.loc/_tempLangs.php:54
 msgid "Text banner"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:20
-#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:20 /var/www/image.loc/_tempLangs.php:55
 msgid "URL"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:21 /var/www/image.loc/_tempLangs.php:56
 msgid "Selected items"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:57
+#: /var/www/image.loc/_tempLangs.php:22 /var/www/image.loc/_tempLangs.php:57
 msgid "Double click to deleting"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:58
+#: /var/www/image.loc/_tempLangs.php:23 /var/www/image.loc/_tempLangs.php:58
 msgid "Show in categories (select items)"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:24
-#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:24 /var/www/image.loc/_tempLangs.php:59
 msgid "select essence"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:25 /var/www/image.loc/_tempLangs.php:60
 msgid "Main"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:26 /var/www/image.loc/_tempLangs.php:61
 msgid "Product"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:27
-#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:27 /var/www/image.loc/_tempLangs.php:62
 msgid "Product category"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:28
-#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:28 /var/www/image.loc/_tempLangs.php:63
 msgid "Brand"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:29
-#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:29 /var/www/image.loc/_tempLangs.php:64
 msgid "Pages categories"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:30 /var/www/image.loc/_tempLangs.php:65
 msgid "Pages"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:31
-#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:31 /var/www/image.loc/_tempLangs.php:66
 msgid "Active until"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:32
-#: /var/www/image.loc/_tempLangs.php:67
+#: /var/www/image.loc/_tempLangs.php:32 /var/www/image.loc/_tempLangs.php:67
 msgid "Image"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:33
-#: /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:33 /var/www/image.loc/_tempLangs.php:68
 msgid "Choose an image "
 msgstr ""
 
@@ -158,8 +136,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:43 /var/www/image.loc/_tempLangs.php:44
 msgid "Editing"
 msgstr ""
 

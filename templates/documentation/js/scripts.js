@@ -102,12 +102,19 @@ $(document).ready(function() {
         duration: 300,
         drop: '.frame-item-menu > ul',
         dropWidth: 500
-    })
+    });
     $('[data-drop]').drop(optionsDrop);
     $(document).on('drop.click showActivity', function(e) {
         $.fancybox.showActivity();
-    })
+    });
     $(document).on('drop.show drop.hide hideActivity', function(e) {
         $.fancybox.hideActivity();
-    })
+    });
+
+    
+
 });
+
+
+alert('1234');
+

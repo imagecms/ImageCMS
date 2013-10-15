@@ -6,7 +6,7 @@
         <h3>{lang("Widget delete","admin")}</h3>
     </div>
     <div class="modal-body">
-        <p>{lang("Delete selected widget(s)?")}</p>
+        <p>{lang("Delete selected widget(s)?","admin")}</p>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/widgets_manager/delete')" >{lang("Delete","admin")}</a>
