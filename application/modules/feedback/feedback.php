@@ -55,6 +55,7 @@ class Feedback extends MY_Controller {
 
     // Index function
     public function index() {
+        
         $this->core->set_meta_tags(lang('Feedback', 'feedback'));
 
         $this->load->library('form_validation');

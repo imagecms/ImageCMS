@@ -67,7 +67,7 @@ if (!function_exists('widget_ajax')) {
                             $.ajax({
                                 async : 'false',
                                 type : 'post',
-                                url : '/shop/ajax/widget/$name',
+                                url : locale+'/shop/ajax/widget/$name',
                                 success : function(data){
                                     $('$container').html(data);
                                     $(document).trigger({type: 'widget_ajax', el: $('$container')})

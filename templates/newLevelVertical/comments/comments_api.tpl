@@ -129,7 +129,7 @@
                                 </div>
                             {/if}
 
-                            <div class="f_r__icsi-css">
+                            <div class="f_r__icsi-css" style="margin-right: 10px">
                                 <span>
                                     <span class="s-t">{lang('Отзыв полезен?','newLevel')}</span>
                                     <span class="btn__icsi-css like__icsi-css">
