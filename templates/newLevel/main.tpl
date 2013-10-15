@@ -27,7 +27,7 @@
             {$lang = ''} 
         {/if}
         <script type="text/javascript">
-            var lang = "{echo $lang}";
+            var locale = "{echo $lang}";
         </script>
 
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -65,6 +65,8 @@
 
         <!-- scripts -->
         {include_tpl('config.js')}
+        <script type="text/javascript" src="{$THEME}js/_jquery.imagecms.shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         {literal}
             <script>
                 function downloadJSAtOnload() {
