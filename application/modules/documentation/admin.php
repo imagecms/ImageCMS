@@ -12,7 +12,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('module_frame');
+        $lang->load('documentation');
         $this->load->model('documentation_model');
         $this->load->library('pagination');
     }
