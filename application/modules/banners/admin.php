@@ -177,6 +177,9 @@ class Admin extends BaseAdminController {
 
                 /** Show successful message and redirect */
                 showMessage(lang('Data saved', 'banners'));
+                if ($this->input->post('action') == 'tomain')
+                    pjax('/admin/components/init_window/banners');
+                
             } else {
                 /** Show validation error message */
                 showMessage(validation_errors(), false, 'r');

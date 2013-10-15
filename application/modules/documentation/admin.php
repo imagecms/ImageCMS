@@ -5,13 +5,14 @@
 /**
  * Image CMS 
  * Sample Module Admin
+ * @property Documentation_model $documentation_model
  */
 class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('module_frame');
+        $lang->load('documentation');
         $this->load->model('documentation_model');
         $this->load->library('pagination');
     }
@@ -51,9 +52,11 @@ class Admin extends BaseAdminController {
             'next_tag_close' => '</li>',
             'num_tag_close' => '</li>',
             'num_tag_open' => '<li>',
-            'num_tag_close' => '</li>'
+            'first_tag_open' => '<li>',
+            'first_tag_close' => '</li>',
+            'last_tag_open' => '<li>',
+            'last_tag_close' => '</li>'
         );
-
 
         $this->pagination->num_links = 5;
         $this->pagination->initialize($paginationConfig);
@@ -71,6 +74,75 @@ class Admin extends BaseAdminController {
                 ->registerScript('dmp')
                 ->registerScript('admin')
                 ->renderAdmin('history');
+    }
+
+    /**
+     * Включає відображення статтей всіх підкатегорій в категоріях 
+     */
+    public function include_all_subcategories() {
+        $categories = $this->documentation_model->getCategories();
+
+        $innerCategories = array();
+        // Отримання структури
+        foreach ($categories as $id => $parentId) {
+            foreach ($categories as $id_ => $parentId_) {
+                if ($id == $parentId_) {
+                    $innerCategories[$id][] = $id_;
+                }
+            }
+        }
+        // включення під-під... категорій
+        do {
+            $wasChanges = FALSE;
+            foreach ($innerCategories as $parentId => $childs) {
+                foreach ($childs as $id) {
+                    if (key_exists($id, $innerCategories)) {
+                        if (!in_array($innerCategories[$id][0], $childs)) {
+                            $wasChanges = TRUE;
+                            $innerCategories[$parentId] = array_merge($innerCategories[$parentId], $innerCategories[$id]);
+                        }
+                    }
+                }
+            }
+        } while ($wasChanges == TRUE);
+
+        // серіалізація всіх категорій
+        $innerCatsSerialized = array();
+        foreach ($innerCategories as $parentId => $allInners) {
+            $innerCatsSerialized[$parentId] = serialize($allInners);
+        }
+
+        echo '<h3>Categories map</h3>';
+        echo '<pre>';
+        print_r($innerCategories);
+        echo '</pre>';
+
+        // зміна значень в БД
+        $this->documentation_model->includeAllInnerCategories($innerCatsSerialized);
+    }
+
+    public function settings($action = NULL) {
+        $settings = $this->documentation_model->getSettings();
+
+        $roles = $this->documentation_model->getRoles();
+        foreach ($roles as $key => $role) {
+            if (in_array($role['id'], $settings)) {
+                $roles[$key]['edit'] = '1';
+            } else {
+                $roles[$key]['edit'] = '0';
+            }
+        }
+        \CMSFactory\assetManager::create()
+                ->registerScript('admin')
+                ->setData('roles', $roles)
+                ->renderAdmin('settings');
+    }
+
+    public function saveSettings() {
+        if ($_POST['action'] == 'save') {
+            $this->documentation_model->setSettings($_POST['ids']);
+        }
+        showMessage(lang("Saved", 'documentation'));
     }
 
     public function makeRelevant($pageId, $historyId) {
@@ -101,12 +173,12 @@ class Admin extends BaseAdminController {
 
         ($hook = get_hook('admin_get_pages_by_cat')) ? eval($hook) : NULL;
 
-        $pageNum = $this->uri->segment(7) == FALSE ? 0 : $this->uri->segment(7);
+        $offset = $this->uri->segment(7) == FALSE ? 0 : $this->uri->segment(7);
 
         $per_page = 12;
 
         $result = $this->db
-                ->limit($per_page, $per_page * $pageNum)
+                ->limit($per_page, $offset)
                 ->where($db_where)
                 ->get('content');
 
@@ -136,7 +208,11 @@ class Admin extends BaseAdminController {
                 'next_tag_close' => '</li>',
                 'num_tag_close' => '</li>',
                 'num_tag_open' => '<li>',
-                'num_tag_close' => '</li>'
+                'num_tag_close' => '</li>',
+                'first_tag_open' => '<li>',
+                'first_tag_close' => '</li>',
+                'last_tag_open' => '<li>',
+                'last_tag_close' => '</li>',
             );
 
 
@@ -152,6 +228,7 @@ class Admin extends BaseAdminController {
                 'cat_id' => $cat_id,
                 'tree' => $this->lib_category->build(),
                 'show_cat_list' => 'yes',
+                'categories' => $this->documentation_model->getFirstLevelCategories(),
             );
         } else {
             $data = array('no_pages' => TRUE,
@@ -166,6 +243,21 @@ class Admin extends BaseAdminController {
                 ->registerStyle('admin')
                 ->registerScript('admin')
                 ->renderAdmin("list");
+    }
+
+    public function ajaxUpdateMenuCategory() {
+        $id = $this->input->post('id');
+        $newValue = $this->input->post('newValue');
+        if ($id != null) {
+            $data = array(
+                'menu_cat' => $newValue
+            );
+
+            $this->documentation_model->updateMenuCategory($data, $id);
+            echo 'true';
+            return;
+        }
+        echo 'false';
     }
 
 }

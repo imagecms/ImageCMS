@@ -18,7 +18,7 @@
 
                 <script type="text/javascript">
                     {literal}
-                        $(document).live('scriptDefer', function(){
+                        $(document).on('scriptDefer', function(){
                             Comments.renderPosts($('.for_comments'));
                         })
                     {/literal}

@@ -295,6 +295,6 @@ var Comments = {
         });
     }
 };
-$(document).live('scriptDefer', function(){
+$(document).on('scriptDefer', function(){
     Comments.initComments();
 });

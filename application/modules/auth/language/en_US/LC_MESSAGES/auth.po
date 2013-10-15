@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-28 12:08+0300\n"
-"PO-Revision-Date: 2013-03-28 12:08+0300\n"
-"Last-Translator: koloda <koloda90@gmail.com>\n"
+"POT-Creation-Date: 2013-10-11 13:19+0300\n"
+"PO-Revision-Date: 2013-10-11 13:19+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -17,168 +17,206 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ../../../\n"
 
-#: ../../..//authapi.php:35
-msgid "mod_auth_email"
-msgstr ""
-
-#: ../../..//authapi.php:36
-msgid "mod_auth_psw"
-msgstr ""
-
-#: ../../..//authapi.php:37
-msgid "mod_auth_remember_me"
-msgstr ""
-
-#: ../../..//authapi.php:60
-#: ../../..//authapi.php:61
-msgid "mod_auth_usr_notfound"
-msgstr ""
-
-#: ../../..//authapi.php:96
-msgid "mod_auth_scfl_logout"
-msgstr ""
-
-#: ../../..//authapi.php:121
-#: ../../..//authapi.php:196
+#: ../../..//module_info.php:4
 #: ../../..//auth.php:103
-#: ../../..//auth.php:198
-#: ../../..//auth.php:296
+#: ../../..//auth.php:133
+msgid "Authorization"
+msgstr ""
+
+#: ../../..//module_info.php:5
+msgid "The authorization module and user registration"
+msgstr ""
+
+#: ../../..//authapi.php:38
+#: ../../..//authapi.php:131
+#: ../../..//authapi.php:212
+#: ../../..//auth.php:108
+#: ../../..//auth.php:205
+#: ../../..//auth.php:304
 msgid "Email"
 msgstr ""
 
-#: ../../..//authapi.php:122
-#: ../../..//auth.php:199
-msgid "Name"
-msgstr ""
-
-#: ../../..//authapi.php:123
-#: ../../..//authapi.php:309
-#: ../../..//auth.php:104
-#: ../../..//auth.php:200
-#: ../../..//auth.php:382
+#: ../../..//authapi.php:39
+#: ../../..//authapi.php:133
+#: ../../..//authapi.php:332
+#: ../../..//auth.php:109
+#: ../../..//auth.php:207
+#: ../../..//auth.php:390
 msgid "Password"
 msgstr ""
 
-#: ../../..//authapi.php:124
-#: ../../..//auth.php:201
+#: ../../..//authapi.php:40
+msgid "Remeber me"
+msgstr ""
+
+#: ../../..//authapi.php:50
+msgid "User logged in success"
+msgstr ""
+
+#: ../../..//authapi.php:65
+#: ../../..//authapi.php:66
+msgid "User with this name and password is not found"
+msgstr ""
+
+#: ../../..//authapi.php:105
+msgid "Logout completed"
+msgstr ""
+
+#: ../../..//authapi.php:132
+#: ../../..//auth.php:206
+msgid "Name"
+msgstr ""
+
+#: ../../..//authapi.php:134
+#: ../../..//auth.php:208
 msgid "Repeat Password"
 msgstr ""
 
-#: ../../..//authapi.php:127
-#: ../../..//authapi.php:129
-#: ../../..//auth.php:110
-#: ../../..//auth.php:112
-#: ../../..//auth.php:207
-#: ../../..//auth.php:209
+#: ../../..//authapi.php:138
+#: ../../..//authapi.php:140
+#: ../../..//auth.php:115
+#: ../../..//auth.php:117
+#: ../../..//auth.php:214
+#: ../../..//auth.php:216
 msgid "Code protection"
 msgstr ""
 
-#: ../../..//authapi.php:137
-#: ../../..//auth.php:219
+#: ../../..//authapi.php:148
+#: ../../..//auth.php:226
 msgid "You have successfully registered. Please check your email to activate your account."
 msgstr ""
 
-#: ../../..//authapi.php:139
-#: ../../..//auth.php:221
+#: ../../..//authapi.php:150
+#: ../../..//auth.php:228
 msgid "You have successfully registered. "
 msgstr ""
 
-#: ../../..//authapi.php:139
-#: ../../..//auth.php:221
-#: ../../..//auth.php:276
+#: ../../..//authapi.php:150
+#: ../../..//auth.php:228
+#: ../../..//auth.php:283
 msgid "Login"
 msgstr ""
 
-#: ../../..//authapi.php:228
-#: ../../..//auth.php:329
+#: ../../..//authapi.php:155
+#, fuzzy
+msgid "Register success"
+msgstr "Settings saved success"
+
+#: ../../..//authapi.php:249
+#: ../../..//auth.php:337
 msgid "You have successfully zeroed my password. "
 msgstr ""
 
-#: ../../..//authapi.php:228
-#: ../../..//auth.php:329
+#: ../../..//authapi.php:249
+#: ../../..//auth.php:337
 msgid "Login Here"
 msgstr ""
 
-#: ../../..//authapi.php:259
-msgid "mod_auth_old_psw"
+#: ../../..//authapi.php:280
+msgid "Old password"
 msgstr ""
 
-#: ../../..//authapi.php:260
-msgid "mod_auth_new_psw"
+#: ../../..//authapi.php:281
+msgid "New password"
 msgstr ""
 
-#: ../../..//authapi.php:261
-msgid "mod_auth_cfrm_n_psw"
-msgstr ""
-
-#: ../../..//authapi.php:269
-#: ../../..//auth.php:359
-msgid "Your password was successfully changed."
-msgstr ""
-
-#: ../../..//authapi.php:278
-msgid "mod_auth_error_old_psw"
-msgstr ""
-
-#: ../../..//authapi.php:295
-#: ../../..//auth.php:56
-msgid "A user with this email is already registered."
-msgstr ""
-
-#: ../../..//authapi.php:338
-#: ../../..//auth.php:411
-msgid "Your account has been blocked."
-msgstr ""
-
-#: ../../..//auth.php:83
-msgid "Improper protection code"
-msgstr ""
-
-#: ../../..//auth.php:174
-msgid "You are already logged."
-msgstr ""
-
-#: ../../..//auth.php:191
-msgid "Registration"
-msgstr ""
-
-#: ../../..//auth.php:253
-msgid "Registration is prohibited."
-msgstr ""
-
-#: ../../..//auth.php:276
-msgid "Your account has been successfully activated. "
-msgstr ""
-
-#: ../../..//auth.php:281
-msgid "You have provided an incorrect activation code sent to the e-mail the new code."
-msgstr ""
-
-#: ../../..//auth.php:290
-msgid "Forgot password"
-msgstr ""
-
-#: ../../..//auth.php:300
-msgid "Please check your email for instructions on how to activate the new password."
-msgstr ""
-
-#: ../../..//auth.php:336
-msgid "Reset failed. Not a valid user name and / or password. Check your email and follow the instructions."
-msgstr ""
-
-#: ../../..//auth.php:353
-msgid "Old Password"
-msgstr ""
-
-#: ../../..//auth.php:354
-msgid "The new password"
-msgstr ""
-
-#: ../../..//auth.php:355
+#: ../../..//authapi.php:282
+#: ../../..//auth.php:363
 msgid "Repeat new password"
 msgstr ""
 
-#: ../../..//auth.php:404
+#: ../../..//authapi.php:290
+#: ../../..//auth.php:367
+msgid "Your password was successfully changed."
+msgstr ""
+
+#: ../../..//authapi.php:299
+msgid "Field Old password is not correct"
+msgstr ""
+
+#: ../../..//authapi.php:304
+msgid "You are not logged in to change password"
+msgstr ""
+
+#: ../../..//authapi.php:318
+#: ../../..//auth.php:61
+msgid "A user with this email is already registered."
+msgstr ""
+
+#: ../../..//authapi.php:336
+msgid "Deleting account completed"
+msgstr ""
+
+#: ../../..//authapi.php:350
+msgid "You are not logged in, you dont have any account to delete"
+msgstr ""
+
+#: ../../..//authapi.php:361
+#: ../../..//auth.php:419
+msgid "Your account has been blocked."
+msgstr ""
+
+#: ../../..//authapi.php:372
+msgid "User is already login in"
+msgstr ""
+
+#: ../../..//authapi.php:377
+msgid "User not logined"
+msgstr ""
+
+#: ../../..//authapi.php:392
+msgid "A user with such mail is not found in the database"
+msgstr ""
+
+#: ../../..//auth.php:88
+msgid "Improper protection code"
+msgstr ""
+
+#: ../../..//auth.php:133
+msgid "Authorization successfully completed"
+msgstr ""
+
+#: ../../..//auth.php:180
+msgid "You are already logged."
+msgstr ""
+
+#: ../../..//auth.php:197
+msgid "Registration"
+msgstr ""
+
+#: ../../..//auth.php:260
+msgid "Registration is prohibited."
+msgstr ""
+
+#: ../../..//auth.php:283
+msgid "Your account has been successfully activated. "
+msgstr ""
+
+#: ../../..//auth.php:288
+msgid "You have provided an incorrect activation code."
+msgstr ""
+
+#: ../../..//auth.php:297
+msgid "Forgot password"
+msgstr ""
+
+#: ../../..//auth.php:308
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr ""
+
+#: ../../..//auth.php:344
+msgid "Reset failed. Not a valid user name and / or password. Check your email and follow the instructions."
+msgstr ""
+
+#: ../../..//auth.php:361
+msgid "Old Password"
+msgstr ""
+
+#: ../../..//auth.php:362
+msgid "The new password"
+msgstr ""
+
+#: ../../..//auth.php:412
 msgid "You are not allowed to view the page."
 msgstr ""
 
@@ -196,9 +234,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "ac_val_position"
 #~ msgstr "Позиція"
-
-#~ msgid "Settings saved success"
-#~ msgstr "Settings saved success"
 
 #~ msgid "amt_name"
 #~ msgstr "User name"

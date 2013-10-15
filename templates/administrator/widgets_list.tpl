@@ -6,7 +6,7 @@
         <h3>{lang("Widget delete","admin")}</h3>
     </div>
     <div class="modal-body">
-        <p>{lang("Delete selected widget(s)?")}</p>
+        <p>{lang("Delete selected widget(s)?","admin")}</p>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/widgets_manager/delete')" >{lang("Delete","admin")}</a>
@@ -67,12 +67,13 @@
                                 <td> 
                                     <a 
                                         {if $widget.config == TRUE} 
-                                            class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}"
+                                            class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}" 
+                                            data-rel="tooltip" data-title="{lang("Editing","admin")}"
                                         {/if}  
                                         {if $widget.type == 'html'} 
                                             class="pjax" href="/admin/widgets_manager/edit_html_widget/{$widget.id}"
                                         {/if}
-                                        data-rel="tooltip" data-title="{lang("Editing","admin")}">{$widget.name}</a>
+                                        >{$widget.name}</a>
                                 </td>
                                 <td>
                                     {switch $widget.type}

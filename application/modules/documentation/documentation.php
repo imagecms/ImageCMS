@@ -34,14 +34,27 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
-
-        \CMSFactory\assetManager::create()->registerScript('documentation_common');
-
-        if ($this->dx_auth->is_admin()) {
+        if ($this->hasCRUDAccess()) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
                     ->registerScript('documentation', FALSE, 'before');
         }
+    }
+
+   
+
+    public function preTags($text) {
+        return preg_replace_callback("/<pre>(.*?)[^>]<\/pre>/si", function($matches) {
+                    return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
+                }, $text);
+    }
+
+    public function hasCRUDAccess() {
+        $settings = $this->documentation_model->getSettings();
+        if (in_array($this->dx_auth->get_role_id(), $settings)) {
+            return TRUE;
+        }
+        return FALSE;
     }
 
     /**
@@ -61,6 +74,8 @@ class Documentation extends \MY_Controller {
 
         /** Register meta tags * */
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+
+        $this->core->set_meta_tags(lang("Page Create", "documentation"));
 
         /** Set form validation rules * */
         $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'trim|required|min_length[1]|max_length[254]|xss_clean');
@@ -107,7 +122,8 @@ class Documentation extends \MY_Controller {
                 'created' => time(),
                 'lang' => $langId,
                 'lang_alias' => $mainPageId,
-                'updated' => time()
+                'updated' => time(),
+                'comments_status' => '1'
             );
 
             /** If page created succesful then show page on site * */
@@ -158,6 +174,8 @@ class Documentation extends \MY_Controller {
         if ($id == null) {
             $this->core->error_404();
         }
+
+        $this->core->set_meta_tags(lang("Page edit", "documentation"));
 
         /** If not langId then set default language id * */
         if ($langId == null) {
@@ -287,8 +305,8 @@ class Documentation extends \MY_Controller {
     public function create_cat() {
         $this->load->library('lib_admin');
 
-        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[127]|required|xss_clean');
-        $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[127]');
+        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[256]|required|xss_clean');
+        $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[256]');
         $this->form_validation->run();
 
         if (!$this->form_validation->error_string()) {
@@ -301,10 +319,13 @@ class Documentation extends \MY_Controller {
             $data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,
+                'title' => $this->input->post('meta_title'),
+                'keywords' => $this->input->post('keywords'),
+                'description' => $this->input->post('description'),
                 'parent_id' => $this->input->post('category'),
                 'order_by' => 'publish_date',
                 'sort_order' => 'desc',
-                'tpl' => 'blog'
+                'tpl' => 'category'
             );
 
             $parent = $this->lib_category->get_category($data['parent_id']);
@@ -344,6 +365,60 @@ class Documentation extends \MY_Controller {
         }
     }
 
+    public function edit_cat($id = null) {
+        if ($id == null) {
+            return;
+        }
+
+        $this->load->library('lib_admin');
+
+        $this->form_validation->set_rules('name', lang("Name", "documentation"), 'trim|min_length[1]|max_length[127]|required|xss_clean');
+        $this->form_validation->set_rules('url', lang("URL", "documentation"), 'xss_clean|max_length[127]');
+        $this->form_validation->run();
+
+        if (!$this->form_validation->error_string()) {
+            if ($this->input->post('url') == FALSE) {
+                $url = translit_url($this->input->post('name'));
+            } else {
+                $url = translit_url($this->input->post('url'));
+            }
+
+            $data = array(
+                'name' => $this->input->post('name'),
+                'url' => $url,
+                'keywords' => $this->input->post('keywords'),
+                'description' => $this->input->post('description'),
+                'parent_id' => $this->input->post('category')
+            );
+
+            $parent = $this->lib_category->get_category($data['parent_id']);
+
+            if ($parent != 'NULL') {
+                $full_path = $parent['path_url'] . $data['url'] . '/';
+            } else {
+                $full_path = $data['url'] . '/';
+            }
+
+            if (($this->category_exists($full_path) == TRUE) AND ($data['url'] != 'core')) {
+                $data['url'] .= time();
+            }
+
+            $category = $this->documentation_model->updateCategory($data, $id);
+
+            /** Prepare and return answer * */
+            $responseArray = array();
+            $responseArray['success'] = 'true';
+            $responseArray['errors'] = 'false';
+            $responseArray['data']['full_url'] = $category['full_url'];
+            $this->cache->delete_all();
+            echo json_encode($responseArray);
+        } else {
+            $responseArray['success'] = 'false';
+            $responseArray['errors'] = $this->form_validation->error_string();
+            echo json_encode($responseArray);
+        }
+    }
+
     /**
      * Check if category exists
      * @param type $str
@@ -363,20 +438,36 @@ class Documentation extends \MY_Controller {
         /** Full path if data_type is page * */
         if ($this->core->core_data['data_type'] == 'page') {
             $data = $this->documentation_model->getPageById($this->core->core_data['id']);
+            $category = $this->lib_category->get_category($data['category']);
+
+            /** Prepare category info * */
             $categoryData['id'] = $data['category'];
             $categoryData['url'] = $data['cat_url'];
+            $categoryData['url_simple'] = $category['url'];
+            $categoryData['name'] = $category['name'];
+            $categoryData['parent_id'] = $category['parent_id'];
+            $categoryData['description'] = $category['description'];
+            $categoryData['keywords'] = $category['keywords'];
         }
 
         /** Full path if data_type is category * */
         if ($this->core->core_data['data_type'] == 'category') {
-            $data = $this->lib_category->get_category($this->core->core_data['id']);
-            $parent = $this->lib_category->get_category($data['parent_id']);
-            $categoryData['id'] = $this->core->core_data['id'];
+            $category = $this->lib_category->get_category($this->core->core_data['id']);
+            $parent = $this->lib_category->get_category($category['parent_id']);
 
+            /** Prepare category info * */
+            $categoryData['id'] = $this->core->core_data['id'];
+            $categoryData['name'] = $category['name'];
+            $categoryData['parent_id'] = $category['parent_id'];
+            $categoryData['url_simple'] = $category['url'];
+            $categoryData['description'] = $category['description'];
+            $categoryData['keywords'] = $category['keywords'];
+
+            /** build category fullpath * */
             if ($parent != 'NULL') {
-                $full_path = $parent['path_url'] . $data['url'] . '/';
+                $full_path = $parent['path_url'] . $category['url'] . '/';
             } else {
-                $full_path = $data['url'] . '/';
+                $full_path = $category['url'] . '/';
             }
             $categoryData['url'] = $full_path;
         }
@@ -387,6 +478,22 @@ class Documentation extends \MY_Controller {
                 ->setData('group', $group)
                 ->setData('categoryData', $categoryData)
                 ->render('left_menu', true);
+    }
+
+    public function delete_page($id = null) {
+        if ($id == null) {
+            return false;
+        } else {
+            $page = $this->documentation_model->getPageById($id);
+            $this->documentation_model->deletePage($id);
+            $this->cache->delete_all();
+            redirect(base_url($page['cat_url']));
+        }
+    }
+    
+    
+    public function get_pages_in_category($id){
+        return $this->documentation_model->getPagesInCategory($id, $this->defaultLang['id']);
     }
 
     /** Install and set settings * */

@@ -59,6 +59,7 @@
                 <div class="content">
                     {$content}
                 </div>
+                <div class="h-footer"></div>
             </div>
             <div class="h-footer"></div>
         </div>
@@ -69,8 +70,6 @@
 
         <!-- scripts -->
         {include_tpl('config.js')}
-        <script type="text/javascript" src="{$THEME}js/_jquery.imagecms.shop.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         {literal}
             <script>
             function downloadJSAtOnload() {

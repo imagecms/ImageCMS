@@ -280,7 +280,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
                 $this->errors[] = $this->upload->display_errors();
                 return FALSE;
             } else {
-                $this->dataModel = array('upload_data' => $this->upload->data());
+                $this->dataModel = array('upload_data' => (array)$this->upload);
                 $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
                 return TRUE;
             }

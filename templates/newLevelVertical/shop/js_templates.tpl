@@ -1,6 +1,6 @@
 <!-- floating elements-->
 <div id="popupCart" style="display: none;" class="drop drop-bask drop-style"></div>
-<button data-drop="#popupCart" id="showCart" data-animate="true" style="display: none;"></button>
+<button data-drop="#popupCart" id="showCart" style="display: none;"></button>
 
 <script type="text/template" id="cartPopupTemplate">
     {literal}

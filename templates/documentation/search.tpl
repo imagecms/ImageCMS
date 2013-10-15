@@ -18,8 +18,10 @@
                     </li>
                 {/foreach}
             </ul>
-            <div class="pagination" align="center">
-                {$pagination}
+            <div class="items-row pagination" align="center">
+                <ul class="pagination">
+                    {$pagination}
+                </ul>
             </div>
         </div>
     </div>

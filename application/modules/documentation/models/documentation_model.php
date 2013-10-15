@@ -80,6 +80,41 @@ class Documentation_model extends CI_Model {
         }
     }
 
+    public function getCategories() {
+        $query = "
+            SELECT 
+                `id`,
+                `parent_id`
+            FROM `category`
+            ORDER BY `id`
+        ";
+        $result = $this->db->query($query);
+        if ($result) {
+            $categories = array();
+            foreach ($result->result_array() as $row) {
+                $categories[$row['id']] = $row['parent_id'];
+            }
+            return $categories;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function includeAllInnerCategories($serializedInnerCategories) {
+        foreach ($serializedInnerCategories as $categoryId => $innerString) {
+            $query = "
+                UPDATE 
+                    `category` 
+                SET 
+                    `fetch_pages` = '{$innerString}' 
+                WHERE 
+                    `id` = {$categoryId} 
+                LIMIT 1; 
+            ";
+            $this->db->query($query);
+        }
+    }
+
     /**
      * Get languages
      * @return boolean|array
@@ -214,6 +249,192 @@ class Documentation_model extends CI_Model {
     }
 
     /**
+     * Update category data
+     * @param array $data
+     * @param int $id
+     * @return boolean|array
+     */
+    public function updateCategory($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('category', $data);
+
+        $this->load->library('lib_category');
+        $query = $this->db->where('id', $id)->get('category')->row_array();
+        if ($query == null) {
+            return false;
+        }
+
+        $parentCategory = $this->lib_category->get_category($query['parent_id']);
+        if ($parentCategory != NULL) {
+            $newFullPath = $parentCategory['path_url'] . $query['url'];
+        } else {
+            $newFullPath = $query['url'];
+        }
+        $this->load->module('cfcm')->save_item_data($cat_id, 'category');
+
+        $this->cache->delete_all();
+
+        // Clear lib_category data
+        $this->lib_category->categories = array();
+        $this->lib_category->level = 0;
+        $this->lib_category->path = array();
+        $this->lib_category->unsorted_arr = FALSE;
+        $this->lib_category->unsorted = FALSE;
+
+        $this->lib_category->build();
+
+        $this->updateUrls();
+
+
+        $query['full_url'] = $newFullPath;
+        return $query;
+    }
+
+    public function updateMenuCategory($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('category', $data);
+    }
+
+    /**
+     * Update urls after category move
+     */
+    private function updateUrls() {
+        $categories = $this->lib_category->unsorted();
+
+        foreach ($categories as $category) {
+            $this->db->where('category', $category['id']);
+            $this->db->update('content', array('cat_url' => $category['path_url']));
+        }
+    }
+
+    /**
+     * Delete page by id
+     * @param int $id
+     * @return boolean 
+     */
+    public function deletePage($id = null) {
+        if ($this->db->where('id', $id)->delete('content')) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getFirstLevelCategories() {
+        return $this->db->where('parent_id', '0')->order_by('position', 'asc')->get('category')->result_array();
+    }
+
+    /**
+     * Returns page history
+     * @param int $pageId
+     */
+    public function getPageHistory($pageId, $perPage = 5, $offset = 0) {
+        $result = $this->db
+                ->select('mod_documentation_history.*,users.username')
+                ->where('page_id', $pageId)
+                ->order_by('id', 'DESC')
+                ->join('users', 'users.id = mod_documentation_history.user_id')
+                ->limit($perPage, $offset)
+                ->get('mod_documentation_history');
+        return $result->result_array();
+    }
+
+    public function getPageHistoryCount($params) {
+        if (is_array($params))
+            $this->db->where($params);
+
+        $this->db->from('mod_documentation_history');
+        return (int) $this->db->count_all_results();
+    }
+
+    /**
+     * Restosing article from history
+     * @param int $pageId
+     * @param int $historyId
+     */
+    public function restoreArticleFromHistory($pageId, $historyId) {
+//        $this->make_backup($pageId);
+        $someOldData = $this->db
+                ->where('id', $historyId)
+                ->get('mod_documentation_history')
+                ->row_array();
+
+        //print_r($someOldData);
+        $delColumns = array(
+            'page_id', 'id', 'user_id'
+        );
+        foreach ($delColumns as $col) {
+            if (key_exists($col, $someOldData))
+                unset($someOldData[$col]);
+        }
+        var_dump($this->db->where('id', $pageId)->update('content', $someOldData));
+        echo $this->db->_error_message();
+    }
+
+    public function deleteHistoryRow($historyId) {
+        $this->db->delete('mod_documentation_history', array('id' => $historyId));
+    }
+
+    /**
+      <<<<<<< HEAD
+     * Get module settings
+     * @return array
+     */
+    public function getSettings() {
+        $settings = $this->db->select('settings')
+                ->where('identif', 'documentation')
+                ->get('components')
+                ->row_array();
+        $settings = unserialize($settings['settings']);
+
+        if (is_array($settings)) {
+            return $settings;
+        }
+
+        return array();
+    }
+
+    /**
+     * Save settings
+     * @param array $settings
+     * @return boolean
+     */
+    public function setSettings($settings) {
+        return $this->db->where('identif', 'documentation')
+                        ->update('components', array('settings' => serialize($settings)
+        ));
+    }
+
+    public function getRoles() {
+        $locale = \MY_Controller::getCurrentLocale();
+        $result = $this->db
+                ->join('shop_rbac_roles_i18n', 'shop_rbac_roles_i18n.id = shop_rbac_roles.id')
+                ->where('shop_rbac_roles_i18n.locale', $locale)
+                ->get('shop_rbac_roles');
+        return $result->result_array();
+    }
+    
+    /**
+     * Get pages in category by id
+     * @param int $id
+     * @return boolean|array
+     */
+    public function getPagesInCategory($id = null, $langId){
+        if ($id != null){
+            $res = $this->db
+                    ->where('category',$id)
+                    ->where('post_status','publish')
+                    ->where('lang',$langId)
+                    ->get('content')->result_array();
+        }
+        
+        if ($res){
+            return $res;
+        }
+        
+        return false;
+    }
+
+    /**
      * Module install
      */
     public function install() {
@@ -273,60 +494,9 @@ class Documentation_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_documentation_history');
-        
+
         $query = "ALTER TABLE `category` DROP `menu_cat`;";
         $this->db->query($query);
-    }
-
-    /**
-     * Returns page history
-     * @param int $pageId
-     */
-    public function getPageHistory($pageId, $perPage = 5, $offset = 0) {
-        $result = $this->db
-                ->select('mod_documentation_history.*,users.username')
-                ->where('page_id', $pageId)
-                ->order_by('id', 'DESC')
-                ->join('users', 'users.id = mod_documentation_history.user_id')
-                ->limit($perPage, $offset)
-                ->get('mod_documentation_history');
-        return $result->result_array();
-    }
-
-    public function getPageHistoryCount($params) {
-        if (is_array($params))
-            $this->db->where($params);
-
-        $this->db->from('mod_documentation_history');
-        return (int) $this->db->count_all_results();
-    }
-
-    /**
-     * Restosing article from history
-     * @param int $pageId
-     * @param int $historyId
-     */
-    public function restoreArticleFromHistory($pageId, $historyId) {
-        $this->make_backup($pageId);
-        $someOldData = $this->db
-                ->where('id', $historyId)
-                ->get('mod_documentation_history')
-                ->row_array();
-
-        //print_r($someOldData);
-        $delColumns = array(
-            'page_id', 'id', 'user_id'
-        );
-        foreach ($delColumns as $col) {
-            if (key_exists($col, $someOldData))
-                unset($someOldData[$col]);
-        }
-        var_dump($this->db->where('id', $pageId)->update('content', $someOldData));
-        echo $this->db->_error_message();
-    }
-
-    public function deleteHistoryRow($historyId) {
-        $this->db->delete('mod_documentation_history', array('id' => $historyId));
     }
 
 }

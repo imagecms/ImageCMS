@@ -87,7 +87,7 @@ class Widgets_manager extends BaseAdminController {
         $type = $this->input->post('type');
 
         if ($this->db->get_where('widgets', array('name' => $this->input->post('name')))->num_rows() > 0) {
-            showMessage(lang("Widget with the same name already exists. Choose or select another name."), false, 'r');
+            showMessage(lang("Widget with the same name already exists. Choose or select another name", 'admin'), false, 'r');
             return FALSE;
         }
 

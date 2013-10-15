@@ -33,7 +33,9 @@ var wishList = {
     sync: function() {
         $.post('/wishlist/wishlistApi/sync', function(data) {
             localStorage.setItem('wishList', data);
-            $(document).trigger({'type': 'wish_list_sync'});
+            $(document).trigger({
+                'type': 'wish_list_sync'
+            });
         })
     }
 };
@@ -48,17 +50,23 @@ function changeDataWishlist(el) {
         $this.html(el.closest('form').find('[name=' + $this.data('wishlistName') + ']').val());
     });
 }
-function createWishList(el, data) {
-    if (data.answer == 'success') {
-        location.reload();
+function createWishList(el, elS, isajax, data, elSet) {
+    if (data) {
+        if (data.answer == 'success') {
+            location.reload();
+        }
     }
 }
 function validateWishPopup($this, elSetSource) {
     function removeErr() {
         name.next(genObj.msgF).remove();
-        $(document).trigger({'type': 'imageapi.pastemsg', el: drop});
+        $(document).trigger({
+            'type': 'imageapi.pastemsg',
+            el: drop
+        });
         drop.find('[type="submit"]').parent().removeClass('active');
-    };
+    }
+    ;
     var name = $('[name="wishListName"]'),
             drop = name.closest('[data-elrun]');
     if (name.val() == "" && $('[data-link]').is(':checked')) {
@@ -66,7 +74,10 @@ function validateWishPopup($this, elSetSource) {
         name.after(message.error(text.error.enterName));
         $(document).trigger('hideActivity');
         name.focus();
-        $(document).trigger({'type': 'imageapi.pastemsg', el: drop});
+        $(document).trigger({
+            'type': 'imageapi.pastemsg',
+            el: drop
+        });
         name.unbind('keypress').keypress(function() {
             removeErr();
         });
@@ -81,48 +92,56 @@ function validateWishPopup($this, elSetSource) {
         return true;
     }
 }
-function reload(el, data) {
-    if (data.answer == 'success') {
-        location.reload();
+function reload(el, elS, isajax, data, elSet) {
+    if (data) {
+        if (data.answer == 'success') {
+            location.reload();
+        }
     }
 }
-function addToWL(el, data) {
-    if (data.answer == 'success') {
-        var btnWish = wishList.curEl.closest(genObj.btnWish),
-                id = btnWish.parent().data('id'),
-                varid = btnWish.parent().data('varid');
-        wishList.add(id, varid);
-        wishList.curEl = '';
-        processWish();
-        wishListCount();
+function addToWL(el, elS, isajax, data, elSet) {
+    if (data) {
+        if (data.answer == 'success') {
+            var btnWish = wishList.curEl.closest(genObj.btnWish),
+                    id = btnWish.parent().data('id'),
+                    varid = btnWish.parent().data('varid');
+            wishList.add(id, varid);
+            wishList.curEl = '';
+            processWish();
+            wishListCount();
+        }
     }
 }
-function removeItem(el, data) {
-    if (data.answer == 'success') {
-        var li = el.closest(genObj.parentBtnBuy),
-                infoBut = li.find(genObj.infoBut),
-                id = infoBut.data('id'),
-                varid = infoBut.data('varid');
-        li.remove();
-        processWishPage();
-        wishList.rm(id, varid);
-        processWish();
-        wishListCount();
-    }
-}
-function removeWL(el, data) {
-    if (data.answer == 'success') {
-        var frame = el.closest(wishList.frameWL),
-                li = frame.find(genObj.parentBtnBuy);
-        li.each(function() {
-            var infoBut = $(this).find(genObj.infoBut),
+function removeItem(el, elS, isajax, data, elSet) {
+    if (data) {
+        if (data.answer == 'success') {
+            var li = el.closest(genObj.parentBtnBuy),
+                    infoBut = li.find(genObj.infoBut),
                     id = infoBut.data('id'),
                     varid = infoBut.data('varid');
+            li.remove();
+            processWishPage();
             wishList.rm(id, varid);
-        });
-        frame.remove();
-        processWish();
-        wishListCount();
+            processWish();
+            wishListCount();
+        }
+    }
+}
+function removeWL(el, elS, isajax, data, elSet) {
+    if (data) {
+        if (data.answer == 'success') {
+            var frame = el.closest(wishList.frameWL),
+                    li = frame.find(genObj.parentBtnBuy);
+            li.each(function() {
+                var infoBut = $(this).find(genObj.infoBut),
+                        id = infoBut.data('id'),
+                        varid = infoBut.data('varid');
+                wishList.rm(id, varid);
+            });
+            frame.remove();
+            processWish();
+            wishListCount();
+        }
     }
 }
 function changeBtnBuyWL(btnBuy, cond) {
@@ -167,7 +186,7 @@ function processWishPage() {
         }
     });
 }
-$(document).live('scriptDefer', function() {
+$(document).on('scriptDefer', function() {
     var wishPhoto = $('#wishlistphoto');
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var file = this.files[0],
@@ -180,7 +199,14 @@ $(document).live('scriptDefer', function() {
         wishPhoto.html($(img));
         $(img).load(function() {
             if ($(this).actual('width') > wishPhoto.data('widht') || $(this).actual('height') > wishPhoto.data('height')) {
-                $(document).trigger({type: 'drop.successJson', el: $('#notification'), datas: {'answer': true, 'data': text.error.fewsize(wishPhoto.data('width') + '&times' + wishPhoto.data('height'))}});
+                $(document).trigger({
+                    type: 'drop.successJson',
+                    el: $('#notification'),
+                    datas: {
+                        'answer': true,
+                        'data': text.error.fewsize(wishPhoto.data('width') + '&times' + wishPhoto.data('height'))
+                    }
+                });
                 $('[data-drop="#notification"].trigger').data('timeclosemodal', 3000).click();
                 $('[data-drop="#notification"].trigger').removeData('timeclosemodal');
                 wishPhoto.empty();
@@ -218,22 +244,38 @@ $(document).live('scriptDefer', function() {
     $(document).on('processPageEnd change_count_product', function(e) {
         processWishPage();
     });
-    $('.' + genObj.inWishlist).live('click.inWish', function() {
+    $('body').on('click.inWish', '.' + genObj.inWishlist, function() {
         document.location.href = '/wishlist';
     });
     if (!isLogin) {
         $('.' + genObj.toWishlist).on('click.toWish', function(e) {
-            $(document).trigger({type: 'drop.successJson', el: $('#notification'), datas: {'answer': true, 'data': text.error.notLogin}});
+            $(document).trigger({
+                type: 'drop.successJson',
+                el: $('#notification'),
+                datas: {
+                    'answer': true,
+                    'data': text.error.notLogin
+                }
+            });
         });
     }
     else {
-        $('.' + genObj.toWishlist).data({'always': true, 'data': {"ignoreWrap": true}}).on('click.toWish', function(e) {
+        $('.' + genObj.toWishlist).data({
+            'always': true,
+            'data': {
+                "ignoreWrap": true
+            }
+        }).on('click.toWish', function(e) {
             wishList.curEl = $(this);
         });
     }
     if ($.exists("#datepicker"))
         try {
-            $("#datepicker").datepicker({"dateFormat": "yy-mm-dd"});
+            $("#datepicker").datepicker({
+                "dateFormat": "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
         } catch (err) {
         }
 });
