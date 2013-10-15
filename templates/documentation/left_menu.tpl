@@ -16,7 +16,7 @@
         {else:}
             {$CI = & get_instance()}
             {$menuPages = $CI->load->module('documentation')->get_pages_in_category($item['id'])}
-            <ul>
+            <ul {if !$active}style="display: none;"{/if}>
                 {foreach $menuPages as $page}
                     <li {if $CI->core->core_data['data_type'] == 'page' && $CI->core->core_data['id'] == $page['id']}class="active"{/if}>
                         <a href="{base_url($page['cat_url'].$page['url'])}">
