@@ -76,6 +76,51 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('history');
     }
 
+    /**
+     * Включає відображення статтей всіх підкатегорій в категоріях 
+     */
+    public function include_all_subcategories() {
+        $categories = $this->documentation_model->getCategories();
+
+        $innerCategories = array();
+        // Отримання структури
+        foreach ($categories as $id => $parentId) {
+            foreach ($categories as $id_ => $parentId_) {
+                if ($id == $parentId_) {
+                    $innerCategories[$id][] = $id_;
+                }
+            }
+        }
+        // включення під-під... категорій
+        do {
+            $wasChanges = FALSE;
+            foreach ($innerCategories as $parentId => $childs) {
+                foreach ($childs as $id) {
+                    if (key_exists($id, $innerCategories)) {
+                        if (!in_array($innerCategories[$id][0], $childs)) {
+                            $wasChanges = TRUE;
+                            $innerCategories[$parentId] = array_merge($innerCategories[$parentId], $innerCategories[$id]);
+                        }
+                    }
+                }
+            }
+        } while ($wasChanges == TRUE);
+
+        // серіалізація всіх категорій
+        $innerCatsSerialized = array();
+        foreach ($innerCategories as $parentId => $allInners) {
+            $innerCatsSerialized[$parentId] = serialize($allInners);
+        }
+
+        echo '<h3>Categories map</h3>';
+        echo '<pre>';
+        print_r($innerCategories);
+        echo '</pre>';
+
+        // зміна значень в БД
+        $this->documentation_model->includeAllInnerCategories($innerCatsSerialized);
+    }
+
     public function settings($action = NULL) {
         $settings = $this->documentation_model->getSettings();
 
