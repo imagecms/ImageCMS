@@ -44,7 +44,7 @@
                         </li>
                     </ul>
                 </div>
-                <a href="skype:icon_skype" class="f-s_0">
+                <a href="skype:imagecms" class="f-s_0">
                     <span class="icon_skype"></span>
                     <span class="text-el">imagecms</span>
                 </a>

@@ -16,7 +16,7 @@ if (!defined('BASEPATH'))
  */
 class BaseDiscount extends \MY_Controller {
 
-    protected $discount;
+    protected static $discount;
     protected $cart_data;
     protected $total_price;
     protected $discount_type;
@@ -141,9 +141,10 @@ class BaseDiscount extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_all_discount() {
-
-        $this->discount = $this->join_discount_settings($this->discount_model_front->get_discount());
-        return $this->discount;
+        
+        if (!self::$discount)
+            self::$discount = $this->join_discount_settings($this->discount_model_front->get_discount());
+        return self::$discount;
     }
      /**
      * joined discount whith his type
@@ -173,7 +174,7 @@ class BaseDiscount extends \MY_Controller {
     public function collect_type($discount = null) {
 
         if (null === $discount)
-            $discount = $this->discount;
+            $discount = self::$discount;
         $arr = array();
         foreach ($discount as $disc)
             $arr[$disc['type_discount']][] = $disc;

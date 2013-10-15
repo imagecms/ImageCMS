@@ -221,7 +221,7 @@ msgstr "Email администратора"
 
 #: /var/www/image.loc/_tempLangs.php:70
 msgid "Use wraper"
-msgstr "Использувать обгортку"
+msgstr "Использовать обгортку"
 
 #: /var/www/image.loc/_tempLangs.php:71
 msgid "Wraper"

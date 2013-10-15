@@ -1058,7 +1058,7 @@ function hideDrop(drop, form, durationHideForm) {
         }
     })
 }
-function showHidePart(el) {
+function showHidePart(el, absolute) {
     el.each(function() {
         var $this = $(this),
         $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
@@ -1066,7 +1066,8 @@ function showHidePart(el) {
         sumHeight = 0;
         $this.data('maxHeight', $thisH);
         $item.each(function() {
-            sumHeight += $(this).outerHeight();
+            tempH = $(this).outerHeight();
+            sumHeight += tempH;
         })
         if (sumHeight > $thisH) {
             $this.css({
@@ -1079,19 +1080,39 @@ function showHidePart(el) {
             if (!btn.is('[data-trigger]')) {
                 textEl.html(textEl.data('show'))
                 btn.toggle(function() {
-                    var $this = $(this).addClass('showPart').removeClass('hidePart'),
-                    textEl = $this.find(genObj.textEl);
-                    $this.prev().stop().animate({
+                    var $thisB = $(this).addClass('showPart').removeClass('hidePart'),
+                    textEl = $thisB.find(genObj.textEl);
+                    sHH = 0;
+                    $this.parents('li').children(':not(.wrapper-h)').each(function(){
+                        sHH += $(this).height();
+                    });
+                    $thisB.prev().stop().animate({
                         'height': sumHeight
                     }, 300, function() {
+                        var sH = 0;
+                        $this.parents('li').children(':not(.wrapper-h)').each(function(){
+                            sH += $(this).height();
+                        });
+                        $this.data('heightDecor', sHH);
+                        var wrapperH = $this.parent().nextAll('.wrapper-h');
+                        wrapperH.css({
+                            'width': '100%', 
+                            'height': sH
+                        }).fadeIn();
+                        wrapperH.addClass('active')
                         $(this).removeClass('cut-height').addClass('full-height');
                         textEl.hide().html(textEl.data('hide')).fadeIn(200)
                     });
                 },
                 function() {
-                    var $this = $(this).removeClass('showPart').addClass('hidePart'),
-                    textEl = $this.find(genObj.textEl);
-                    $this.prev().stop().animate({
+                    var $thisB = $(this).removeClass('showPart').addClass('hidePart'),
+                    textEl = $thisB.find(genObj.textEl);
+                    $thisB.parent().nextAll('.wrapper-h').animate({
+                        'height': $this.data('heightDecor')
+                    }, 300, function(){
+                        $(this).removeClass('active').fadeOut()
+                    });
+                    $thisB.prev().stop().animate({
                         'height': $thisH
                     }, 300, function() {
                         $(this).removeClass('full-height').addClass('cut-height');
@@ -1101,6 +1122,17 @@ function showHidePart(el) {
             }
         }
     });
+    if (absolute){
+        var sH = 0;
+        var li = el.parents('ul').children();
+        li.each(function(){
+            var $this = $(this);
+            tempH = $this.outerHeight();
+            sH = tempH > sH ? tempH : sH;
+            $this.append('<div class="wrapper-h"></div>')
+        }).css('height', sH)
+        
+    }
 }
 function dropBaskResize() {
     var popupCart = $(genObj.popupCart);
@@ -1424,14 +1456,18 @@ function beforeShowHref(el, elS) {
     elS.children().hide();
     elS.find('.drop-content-photo .inside-padd').prepend('<span class="helper"></span>')
 }
+function cuselInit(el){
+    var el = el == undefined ? body : el;
+    if ($.existsN(el.find('.lineForm:visible'))) {
+        cuSel(cuselOptions);
+        if (ltie7)
+            ieInput(el.find('.cuselText'));
+    }
+}
 /*/declaration front functions*/
 function init() {
     /*call general functions and plugins*/
-    if ($.exists('.lineForm:visible')) {
-        cuSel(cuselOptions);
-        if (ltie7)
-            ieInput($('.cuselText'));
-    }
+    cuselInit();
     /*call general functions and plugins*/
     
     /*call functions for shop objects*/

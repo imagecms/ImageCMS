@@ -57,7 +57,7 @@ class New_level extends MY_Controller {
         \CMSFactory\assetManager::create()
                 ->setData('products', $model)
                 ->setData($data)
-                ->render($tpl, TRUE);
+                ->render($tpl, TRUE, FALSE);
     }
 
     /**
