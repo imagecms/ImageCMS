@@ -1,31 +1,15 @@
-<div class="frame-inside">
-    <div class="container">
-        <div class="frame-crumbs">
-            {widget('path')}
-        </div>
-        <div class="clearfix">
-            <div class="text">
-                <h1>Заголовок1</h1>
-                <h2>Заголовок2</h2>
-                <h3>Заголовок3</h3>
-                <ul class="f_l">
-                    <li>
-                        Мы всегда заботимся о качестве нашей продукции и  безопасности нашего товара.
-                    </li>
-                    <li>
-                        Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право считаться лучшими в своей сфере.
-                    </li>
-                    <li>
-                        Мы можем в любое время вернуть вам всю сумму, оплаченную за товар, если он еще не привык к Вам и Вашей семье!
-                    </li>
-                    <li>
-                        Мы заботимся не только о правах человека, но и о правах роботов, согласно галактического законодательства.
-                    </li>
-                    <li>
-                        Мы боремся с теми, кто выгоняет роботов на улицу и согласны на бесплатную утилизацию ввиду отсутствия интереса к таковому.
-                    </li>
-                </ul>
-            </div> 
-        </div>  
-    </div>    
+<div id="titleExt"><h4>{widget('path')}</h4></div>
+
+{foreach $pages as $page}
+    <div class="col-6 col-sm-6 col-lg-4">
+        <h3>{$page.title}</h3>
+        <p>{truncate($page.prev_text,200)}</p>
+        <p><a class="btn btn-default" href="{site_url($page.full_url)}">Детальнее &raquo;</a></p>
+    </div><!--/span-->
+
+{/foreach}
+<div class="items-row" align="center">
+    <ul class="pagination">
+        {$pagination}
+    </ul>
 </div>

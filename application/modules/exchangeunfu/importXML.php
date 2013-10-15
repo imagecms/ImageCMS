@@ -149,12 +149,13 @@ class ImportXML {
 
         foreach ($this->xml->СписокНоменклатуры as $product) {
 //            $searchedProduct = is_prod($product->ID, $this->prod);
-            if (!isset($product->IDРодитель))
+            if (!isset($product->IDРодитель)) {
                 continue;
+            }
 
             $is_product = is_prod((string) $product->ID, $this->prod);
 
-            if (!$product->IDWeb || !$is_product) {
+            if (!((string) $product->IDWeb) || !$is_product) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
@@ -219,8 +220,9 @@ class ImportXML {
                 $data['stock'] = 0;
                 $data['position'] = 0;
                 $mainCurrencyId = $this->ci->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
-                if (!empty($mainCurrencyId))
+                if (!empty($mainCurrencyId)) {
                     $mainCurrencyId = $mainCurrencyId['id'];
+                }
                 $data['currency'] = $mainCurrencyId;
                 $data['price_in_main'] = '0.00000';
                 $insert_product_variants[] = $data;
@@ -240,10 +242,10 @@ class ImportXML {
                 $data['measure'] = $product->ЕдиницаИзмерения . '';
                 $data['barcode'] = $product->ШтрихКод . '';
 
-                if (in_array(translit_url($product->Наименование), $this->urls)) {
-                    $data['url'] = translit_url($product->Наименование) . '-' . $product->Ид;
+                if (in_array(translit_url((string) $product->Наименование), $this->urls)) {
+                    $data['url'] = translit_url((string) $product->Наименование) . '-' . $product->Ид;
                 } else {
-                    $data['url'] = translit_url($product->Наименование);
+                    $data['url'] = translit_url((string) $product->Наименование);
 //                    $this->urls[] .= $data['url'];
                 }
 
@@ -252,12 +254,14 @@ class ImportXML {
                     if ($categ) {
                         $categoryId = $categ['id'];
                         $data['category_id'] = $categoryId;
-                    } else
+                    } else {
                         $data['category_id'] = 0;
+                    }
                 }
 
                 $data['updated'] = time();
                 $data['id'] = $product->IDWeb . '';
+                $data['external_id'] = $product->ID . "";
                 $this->update[] = $data;
 
                 //preparing data for shop_products_i18n table
@@ -287,7 +291,6 @@ class ImportXML {
         }
 
         //update products
-//        var_dumps($this->update);
         $this->updateData($this->products_table, 'id');
         //update products_i18n
         $this->update = $update_products_i18n;

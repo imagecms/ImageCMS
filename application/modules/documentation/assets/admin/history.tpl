@@ -1,13 +1,13 @@
 <div class="modal hide fade" id="articles_diff">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 id="mvMv">{lang("Diff")}</h3>
+        <h3 id="mvMv">{lang("Diff", 'documentation')}</h3>
     </div>
     <div class="modal-body">
         1111
     </div>
     <div class="modal-footer">
-        <a class="btn" onclick="$('.modal').modal('hide');">{lang("Close","admin")}</a>
+        <a class="btn" onclick="$('.modal').modal('hide');">{lang("Close", "documentation")}</a>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$_SERVER['HTTP_REFERER']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                <a href="{$_SERVER['HTTP_REFERER']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'documentation')}</span></a>
             </div>
         </div>
     </div>

@@ -836,7 +836,7 @@ class Admin extends BaseAdminController {
 
             $this->menu_model->insert_menu($data);
 
-            showMessage(lang("Create menu", 'menu'));
+            showMessage(lang("Menu created", 'menu'));
             if ($this->input->post('action') == 'tomain')
                 pjax('/admin/components/cp/menu');
             else
