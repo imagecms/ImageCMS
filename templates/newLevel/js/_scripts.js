@@ -377,7 +377,7 @@ function tovarChangeCount(el) {
             'el': input
         });
     })
-    $('.frame-count-buy ' + genObj.plusMinus).keyup(function(e) {
+    el.find('.frame-count-buy ' + genObj.plusMinus).keyup(function(e) {
         var $this = $(this),
         condTooltip = checkProdStock && $this.val() >= $this.data('max');
 
@@ -675,6 +675,7 @@ function initShopPage(showWindow, item) {
 
         if (condTooltip) {
             pd.closest(genObj.numberC).tooltip();
+            inputVal = input.data('max');
             $(document).trigger('hideActivity');
         }
         cartItem.count = inputVal;
@@ -694,14 +695,17 @@ function initShopPage(showWindow, item) {
             pdTr.find(genObj.countOrCompl).html(word);
         })
     }
-    $(genObj.frameBasks + ' input').unbind('keyup.count').on('keyup.count', function(e) {
-        var $this = $(this);
+    $(genObj.frameBasks + ' input').off('maxminValue').on('maxminValue', function(e){
+        var e = e.event,
+        $this = $(this);
         if (!e)
             var e = window.event;
         var key = e.keyCode;
         if (key == 0 || key == 8 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))
             chCountInCart($this.prev('div'));
-    });
+    })
+    $(genObj.frameBasks + ' input').unbind('keyup.count').on('keyup.count', function(e) {
+        });
     if (showWindow) {
         togglePopupCart();
     }
