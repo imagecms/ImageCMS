@@ -458,7 +458,7 @@ class Pages extends BaseAdminController {
                 $new_p_id = $this->cms_admin->add_page($new_data);
 
                 if ($new_p_id > 0) {
-                    showMessage(lang("Language of the page", "admin") . '<b>' . $cur_lang['lang_name'] . '</b>' . lang("Created. ID") . '<b>' . $new_p_id . '</b>');
+                    showMessage(lang("Language of the page", "admin") . '<b> ' . $cur_lang['lang_name'] . '. </b>' . lang("ID", 'admin') . ' <b>' . $new_p_id . '.</b>');
                     if ($this->pjaxRequest)
                         pjax('/admin/pages/edit/' . $page_id . '/' . $lang);
                     else
