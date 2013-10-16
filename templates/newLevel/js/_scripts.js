@@ -33,6 +33,7 @@ var optionsMenu = {
     //if need column partition level 3
     columnPart2: true,
     columnClassPref2: 'column2_',
+    maxC: 9,
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     effectOnS: 'fadeIn',
@@ -134,6 +135,9 @@ var productStatus = {
     }
 }
 imageCmsApiDefaults = {
+    msgF: '.msg',
+    err: 'error', //клас
+    scs: 'success', //клас
     hideForm: true,
     messagePlace: 'ahead', // behind
     durationHideForm: 3000,
@@ -367,8 +371,9 @@ function tovarChangeCount(el) {
         var $this = $(this),
         input = $this.closest(genObj.frameChangeCount).next();
         $this.closest(genObj.frameCount).next().children().attr('data-count', input.val())
-        $(document).trigger({
-            'type': 'change_count_product', 
+        
+        $(document).trigger({ //for wishlist
+            'type': 'change_count_product',
             'el': input
         });
     })
@@ -380,7 +385,7 @@ function tovarChangeCount(el) {
             $this.closest(genObj.numberC).tooltip();
         
         $this.closest(genObj.frameCount).next().children().attr('data-count', $this.val())
-        $(document).trigger({
+        $(document).trigger({ //for wishlist
             'type': 'change_count_product', 
             'el': $this
         });
@@ -454,11 +459,11 @@ function processBtnBuyCount(el) {
         key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {
             $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(inCart);
+            decorElemntItemProduct($this.closest(genObj.parentBtnBuy));
             $this.unbind('click.buy').bind('click.buy', function(e) {
                 $(document).trigger('showActivity');
                 initShopPage(true);
-                decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
-            }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
+            }).closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart);
         }
     }).removeAttr('disabled');
     el.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).each(function() {
@@ -466,11 +471,12 @@ function processBtnBuyCount(el) {
         key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) == -1) {
             $this.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).children().removeAttr('disabled').find(genObj.textEl).html(toCart)
+            decorElemntItemProduct($this.closest(genObj.parentBtnBuy));
             $this.unbind('click.buy').bind('click.buy', function(e) {
                 $(document).trigger('showActivity');
                 var cartItem = Shop.composeCartItem($(this));
                 Shop.Cart.add(cartItem, e.button == undefined ? false : true);
-            }).closest(genObj.parentBtnBuy).removeClass(genObj.inCart);
+            }).closest(genObj.parentBtnBuy).removeClass(genObj.inCart).addClass(genObj.toCart);
         }
     }).removeAttr('disabled');
     el.find('[data-rel="frameplusminus"]').each(function() {
@@ -749,14 +755,12 @@ function changeDeliveryMethod(id, selectDeliv) {
         genObj.pM.html(replaceStr);
         genObj.pM.next().hide();
         if (selectDeliv)
-            cuSel({
-                changedEl: '#paymentMethod'
-            });
+            cuselInit(genObj.pM, '#paymentMethod');
         else
             genObj.pM.nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //classRemove: 'b_n',//if not standart
+            //,classRemove: 'b_n'//if not standart
             });
     });
 }
@@ -885,7 +889,7 @@ function existsVnames(vName, liBlock) {
     }
 }
 function condProduct(vStock, liBlock, btnBuy) {
-    liBlock.removeClass(genObj.notAvail + ' ' + genObj.inCart);
+    liBlock.removeClass(genObj.notAvail + ' ' + genObj.inCart + ' ' + genObj.toCart);
     if (vStock == 0)
         liBlock.addClass(genObj.notAvail);
     else if (btnBuy.parent().hasClass(genObj.btnCartCss))
@@ -1043,14 +1047,14 @@ function hideDrop(drop, form, durationHideForm) {
         drop.find(genObj.msgF).hide().remove();
         form.show();
         $(document).trigger({
-            type: 'drop.show', 
+            type: 'dropafter', 
             el: drop, 
             dropC: drop.find(drop.data('dropContent')).first()
         });
     }, durationHideForm)
 
     //    if close "esc" or click on body
-    $(document).unbind('drop.beforeClose').on('drop.beforeClose', function(e) {
+    $(document).off('drop.beforeClose').on('drop.beforeClose', function(e) {
         clearTimeout(closedrop);
         if (e.el.is(drop)) {
             e.el.find(genObj.msgF).hide().remove();
@@ -1137,7 +1141,7 @@ function showHidePart(el, absolute) {
 function dropBaskResize() {
     var popupCart = $(genObj.popupCart);
     $(document).trigger({
-        type: 'drop.show', 
+        type: 'dropafter', 
         el: popupCart, 
         dropC: popupCart.find(popupCart.data('dropContent')).first()
     });
@@ -1253,7 +1257,7 @@ function itemUserToolbar() {
                 })
             }
         }).not('.activeUT').trigger('click.UT');
-        wnd.unbind('scroll.UT').on('scroll.UT', function() {
+        wnd.off('scroll.UT').on('scroll.UT', function() {
             if (wnd.scrollTop() > wnd.height())
                 btnUp.fadeIn();
             else
@@ -1331,9 +1335,6 @@ function ieInput(els) {
     });
 }
 function onComplete(el, elS, isajax, data, elSet) {
-    var next = $(optionsDrop.hrefOptions.next),
-    prev = $(optionsDrop.hrefOptions.prev),
-    cycle = optionsDrop.hrefOptions.cycle;
     function resizePhoto() {
         fancyFrame.css({
             'height': elS.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20, 
@@ -1387,14 +1388,24 @@ function onComplete(el, elS, isajax, data, elSet) {
         thumbsA.eq(acA).parent().addClass('active');
         mainImg.attr('src', optionsDrop.hrefOptions.thumbs[acA]);
     }
-    var fancyC = elS,
-    fancyFooter = fancyC.find('.drop-footer').append($('.frame-prices-buy').clone(true)),
+    var next = $(optionsDrop.hrefOptions.next),
+    prev = $(optionsDrop.hrefOptions.prev),
+    cycle = optionsDrop.hrefOptions.cycle,
+    fancyFooter = elS.find('.drop-footer').append($('.frame-prices-buy').clone(true)),
     frameThumbs = $('.frame-thumbs'),
     frameButton = frameThumbs.children('.group-button-carousel'),
     fancyTitle = elS.find('.drop-header'),
-    carGal = frameThumbs.children('.content-carousel').clone(true).insertAfter(fancyTitle).wrap('<div class="frame-fancy-gallery frame-thumbs horizontal-carousel"></div>').wrap('<div class="fancy-gallery carousel_js"></div>').after(frameButton.clone());
+    carGal = frameThumbs.children('.content-carousel').clone(true).insertAfter(fancyTitle).wrap('<div class="frame-fancy-gallery frame-thumbs horizontal-carousel"></div>').wrap('<div class="fancy-gallery carousel_js"></div>').after(frameButton.clone()),
+    itemThumbs = carGal.find('.items-thumbs'),
+    itemGal = carGal.find('.items-thumbs > li'),
+    itemGalL = itemGal.length,
+    thumbsA = $(itemGal).find('a'),
+    thumbsAP = thumbsA.parent(),
+    fancyFrame = elS.find('.drop-content-photo'),
+    mainImg = fancyFrame.find('img');
+    
     fancyTitle.find('.title').text(elSet.title);
-    fancyC.find(genObj.plusMinus).plusminus({
+    elS.find(genObj.plusMinus).plusminus({
         prev: 'prev.children(:eq(1)).children',
         next: 'prev.children(:eq(0)).children',
         after: function(e, el, input) {
@@ -1402,52 +1413,45 @@ function onComplete(el, elS, isajax, data, elSet) {
                 el.closest(genObj.numberC).tooltip();
         }
     });
-    var itemThumbs = carGal.find('.items-thumbs');
     itemThumbs.removeAttr('style').children().removeAttr('style');
     if ($.existsN(itemThumbs.parent('.jcarousel-clip')))
         itemThumbs.unwrap();
-    var itemGal = carGal.find('.items-thumbs > li'),
-    thumbsA = $(itemGal).find('a'),
-    thumbsAP = thumbsA.parent();
     optionsDrop.hrefOptions.thumbs = new Array();
     thumbsA.each(function() {
         optionsDrop.hrefOptions.thumbs.push($(this).attr('href'))
     })
 
-    var mainImg = fancyC.find('.drop-content-photo img'),
-    acA = ($.inArray(mainImg.attr('src'), optionsDrop.hrefOptions.thumbs)),
-    itemGalL = itemGal.length,
+    var acA = ($.inArray(mainImg.attr('src'), optionsDrop.hrefOptions.thumbs)),
     pActEl = acA < itemGalL ? acA : acA - itemGalL,
     adding = {
         start: pActEl
-    },
-    fancyFrame = elS.find('.drop-content-photo');
+    };
+    
     if (itemGalL) {
-        next.add(prev).fadeIn();
+        var btns = prev.add(next).removeAttr('disabled').fadeIn();
 
         itemGal.eq(pActEl).addClass('active');
         carGal.parent().myCarousel($.extend({}, carousel, {
             adding: adding
         }));
-        btns = prev.add(next).removeAttr('disabled');
-        thumbsA.unbind('click').on('click', function(e) {
+        thumbsA.off('click').on('click', function(e) {
+            e.preventDefault();
             btns.removeAttr('disabled');
             thumbsAP.removeClass('active');
-            $(this).parent().addClass('active')
+            $(this).parent().addClass('active');
             var href = $(this).attr('href'),
             acA = ($.inArray(href, optionsDrop.hrefOptions.thumbs));
-            e.preventDefault();
             mainImg.attr('src', href);
             condBtn(acA);
         })
-        next.add(prev).unbind('click').on('click', function(e) {
+        next.add(prev).off('click').on('click', function(e) {
             btnSClick($(this))
         });
         condBtn(acA);
     }
 
     resizePhoto();
-    wnd.unbind('resize.photo').bind('resize.photo', function() {
+    wnd.off('resize.photo').on('resize.photo', function() {
         resizePhoto();
     });
     elS.children()[elS.data().effectOn](200);
@@ -1456,10 +1460,13 @@ function beforeShowHref(el, elS) {
     elS.children().hide();
     elS.find('.drop-content-photo .inside-padd').prepend('<span class="helper"></span>')
 }
-function cuselInit(el){
-    var el = el == undefined ? body : el;
+function cuselInit(el, sel){
+    var el = el == undefined ? body : el,
+    sel = sel == undefined ? '.lineForm:visible select' : sel;
     if ($.existsN(el.find('.lineForm:visible'))) {
-        cuSel(cuselOptions);
+        cuSel($.extend({}, cuselOptions, {
+            changedEl: sel
+        }));
         if (ltie7)
             ieInput(el.find('.cuselText'));
     }
@@ -1477,11 +1484,11 @@ function init() {
     initShopPage(false);
     countSumBask();
     tovarChangeVariant();
-    tovarChangeCount();
     //if !selectDeliv
     $(".check-variant-delivery").nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio',
+        //classRemove: 'b_n', //if not standart
         before: function(el) {
             $(document).trigger('showActivity');
             $('[name="' + $(el).find('input').attr('name') + '"]').attr('disabled', 'disabled');
@@ -1498,7 +1505,7 @@ function init() {
     genObj.pM.nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio'
-    //classRemove: 'b_n',//if not standart
+    //,classRemove: 'b_n'//if not standart
     });
     $(document).on('discount.display', function(e) {
         displayDiscount(e.discount);
@@ -1566,19 +1573,14 @@ function init() {
             dropEl.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
+            //,classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]'))) {
             var input = dropEl.find('form input[type="text"]:first');
             input.setCursorPosition(input.val().length);
         }
-        if ($.existsN(dropEl.find('.lineForm:visible'))) {
-            cuSel($.extend({}, cuselOptions, {
-                changedEl: '.drop:visible .lineForm select'
-            }));
-            if (ltie7)
-                ieInput(dropEl.find('.cuselText'));
-        }
+        cuselInit(dropEl, '.drop:visible .lineForm select');
     };
     optionsDrop.close = function(el, dropEl) {};
     optionsDrop.closed = function(el, dropEl) {
@@ -1613,6 +1615,8 @@ function init() {
             }
         }
     });
+    
+    /*changecount product in category and product*/
     $('.items-catalog '+genObj.plusMinus + ', .item-product '+genObj.plusMinus).plusminus({
         prev: 'prev.children(:eq(1)).children',
         next: 'prev.children(:eq(0)).children',
@@ -1621,6 +1625,9 @@ function init() {
                 el.closest(genObj.numberC).tooltip();
         }
     });
+    tovarChangeCount();
+    /*/changecount product in category and product*/
+    
     $('#suggestions').autocomplete();
     drawIcons($(selIcons));
     showHidePart($('.sub-category'));
@@ -1851,7 +1858,7 @@ function init() {
     $(document).on('lazy.after', function(e) {
         e.el.addClass('load');
     });
-    $(document).on('drop.show', function(e) {
+    $(document).on('dropafter', function(e) {
         var wndH = wnd.height(),
         el = e.dropC,
         elDrop = e.el;
@@ -1924,7 +1931,7 @@ function init() {
                 dropContent = $this.find($this.data('dropContent'));
                 if ($.existsN(dropContent))
                     $(document).trigger({
-                        type: 'drop.show', 
+                        type: 'dropafter', 
                         el: $this, 
                         dropC: dropContent
                     })
@@ -2000,7 +2007,7 @@ function init() {
         var $this = e.el.closest('[data-elrun]'),
         dropContent = $this.find($this.data('dropContent'));
         $(document).trigger({
-            type: 'drop.show', 
+            type: 'dropafter', 
             el: $this, 
             dropC: dropContent
         });
@@ -2008,11 +2015,11 @@ function init() {
     $(document).on('autocomplete.before showActivity before_sync_cart', function(e) {
         $.fancybox.showActivity();
     })
-    $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart end_sync_cart cart_changed', function(e) {
+    $(document).on('autocomplete.after dropafter drop.hide hideActivity sync_cart end_sync_cart cart_changed', function(e) {
         $.fancybox.hideActivity();
     })
 
-    $(document).on('comments.showformreply tabs.showtabs drop.show', function(e) {
+    $(document).on('comments.showformreply tabs.showtabs dropafter', function(e) {
         if (ltie7)
             ieInput(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
     })
