@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-25 12:53+0300\n"
-"PO-Revision-Date: 2013-09-25 12:53+0300\n"
+"POT-Creation-Date: 2013-10-15 16:49+0300\n"
+"PO-Revision-Date: 2013-10-15 16:49+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -55,10 +55,8 @@ msgstr "Модуль"
 #: /var/www/image.loc/_tempLangs.php:152
 #: /var/www/image.loc/_tempLangs.php:197
 #: /var/www/image.loc/_tempLangs.php:204
-#: /var/www/image.loc/_tempLangs.php:205
 #: /var/www/image.loc/_tempLangs.php:330
 #: /var/www/image.loc/_tempLangs.php:370
-#: /var/www/image.loc/_tempLangs.php:371
 #: /var/www/image.loc/_tempLangs.php:384
 #: /var/www/image.loc/_tempLangs.php:441
 msgid "Name"
@@ -69,6 +67,7 @@ msgstr "Имя"
 #: /var/www/image.loc/_tempLangs.php:133
 #: /var/www/image.loc/_tempLangs.php:153
 #: /var/www/image.loc/_tempLangs.php:172
+#: /var/www/image.loc/_tempLangs.php:205
 #: /var/www/image.loc/_tempLangs.php:212
 #: /var/www/image.loc/_tempLangs.php:237
 #: /var/www/image.loc/_tempLangs.php:257
@@ -76,6 +75,7 @@ msgstr "Имя"
 #: /var/www/image.loc/_tempLangs.php:311
 #: /var/www/image.loc/_tempLangs.php:331
 #: /var/www/image.loc/_tempLangs.php:350
+#: /var/www/image.loc/_tempLangs.php:371
 #: /var/www/image.loc/_tempLangs.php:403
 #: /var/www/image.loc/_tempLangs.php:423
 #: /var/www/image.loc/_tempLangs.php:442
@@ -753,8 +753,8 @@ msgid "Nesting level"
 msgstr "Уровень вложенности"
 
 #: admin.php:839
-msgid "Create menu"
-msgstr "Создать меню"
+msgid "Menu created"
+msgstr "Меню создано"
 
 #: admin.php:899
 #: admin.php:1160
@@ -773,6 +773,9 @@ msgstr "Без категории"
 #: module_info.php:5
 msgid "Site Menu Editor"
 msgstr "Редактор Меню Сайта"
+
+#~ msgid "Create menu"
+#~ msgstr "Создать меню"
 
 # а
 #~ msgid "Created or Has been created"

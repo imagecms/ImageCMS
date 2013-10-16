@@ -6,7 +6,7 @@
         </div>
         <!--div class="pull-right">
             <div class="d-i_b">
-                <a href="" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                <a href="" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'documentation')}</span></a>
             </div>
         </div-->
     </div>

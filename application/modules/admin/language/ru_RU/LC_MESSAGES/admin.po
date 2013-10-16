@@ -4009,7 +4009,7 @@ msgstr "Посредине"
 
 #: /var/www/image.loc/_tempLangs.php:280
 msgid "At the bottom"
-msgstr "В низу"
+msgstr "Внизу"
 
 #: /var/www/image.loc/_tempLangs.php:281
 msgid "The ratio of the size of the watermark to the size of photos"
@@ -4376,7 +4376,7 @@ msgstr "Настройки Яндекс.Маркет"
 
 #: /var/www/image.loc/_tempLangs.php:460
 msgid "Displayed categories selection"
-msgstr "Просмотреть выбраные категории"
+msgstr "Просмотреть выбранные категории"
 
 #: /var/www/image.loc/_tempLangs.php:461
 msgid "Yandex.Market document"

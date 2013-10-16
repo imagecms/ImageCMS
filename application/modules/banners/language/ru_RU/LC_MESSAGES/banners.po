@@ -75,7 +75,7 @@ msgstr "Дважды щелкните для удаления"
 #: /var/www/image.loc/_temp2.php:23
 #: /var/www/image.loc/_temp2.php:58
 msgid "Show in categories (select items)"
-msgstr "Показать в категориях (выбрание элементы)"
+msgstr "Показать в категориях (выбранные элементы)"
 
 #: /var/www/image.loc/_temp2.php:24
 #: /var/www/image.loc/_temp2.php:59
