@@ -29,7 +29,7 @@
             {$lang = ''} 
         {/if}
         <script type="text/javascript">
-            var lang = "{echo $lang}";
+            var locale = "{echo $lang}";
             var langs = "{echo $lang}";
             
         </script>

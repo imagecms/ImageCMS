@@ -635,11 +635,10 @@ function getCookie(c_name)
                 title: this.attr('data-title'),
                 otherClass: false,
                 effect: 'notalways',
-                me: true
+                textEl: '.text-el'
             }, options);
-            var $this = $(this), textEl = $this.find(genObj.textEl),
-            me = settings.me;
-            if (textEl.is(':visible') && $.existsN(textEl) && me)
+            var $this = $(this), textEl = $this.find(settings.textEl);
+            if (textEl.is(':visible') && $.existsN(textEl))
                 return false;
             tooltip.text(settings.title);
             if (settings.otherClass !== false)
@@ -751,6 +750,7 @@ function getCookie(c_name)
                     countColumn: 'none',
                     columnPart: false,
                     columnPart2: false,
+                    maxC: 10,
                     sub3Frame: 'ul ul',
                     columnClassPref: 'column_',
                     columnClassPref2: 'column2_',
@@ -783,6 +783,7 @@ function getCookie(c_name)
                 countColumn = settings.countColumn,
                 columnPart = settings.columnPart,
                 columnPart2 = settings.columnPart2,
+                maxC = settings.maxC,
                 sub3Frame = settings.sub3Frame,
                 columnClassPref = settings.columnClassPref,
                 columnClassPref2 = settings.columnClassPref2,
@@ -844,6 +845,7 @@ function getCookie(c_name)
                                     classCuurC = currC.first().attr('class');
                                     $this.children().append('<li class="' + classCuurC + '" data-column="' + n + '"><ul></ul></li>');
                                     $this.find('[data-column="' + n + '"]').children().append(currC.clone());
+                                    numbColumnL = numbColumnL > maxC ? maxC : numbColumnL;
                                     if (sub2Frame)
                                         $this.addClass('x' + numbColumnL);
                                     else{
@@ -886,7 +888,8 @@ function getCookie(c_name)
                             $this.children().children().each(function() {
                                 var datax = $(this).attr('data-x');
                                 sumx = sumx + parseInt(datax == 0 || datax == undefined ? 1 : datax);
-                            })
+                            });
+                            sumx = sumx > maxC ? maxC : sumx;
                             $this.addClass('x' + sumx);
                         })
                     $(document).trigger({
@@ -914,6 +917,8 @@ function getCookie(c_name)
                             $thisDrop.hide();
                             menu.css('overflow', '');
                         }
+                        else
+                            var dropW2 = dropW;
                         methods._position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                     }
                     $this.data('kk', 0);
@@ -1517,27 +1522,27 @@ function getCookie(c_name)
                         })
                     }
                 }
-                var $this = $(this);
+                var $this = $(this),
+                elSet = $this.data(),
+                elSetSource = $(elSet.drop);
 
-                if ($.existsN($this.closest('[data-elrun]')))
+                if ($.existsN($this.closest('[data-elrun]')) && elSet.start == undefined)
                     methods.closeDrop($this.closest('[data-elrun]'));
-                if ($.existsN($('[data-elrun].center:visible')))
+                if ($.existsN($('[data-elrun].center:visible')) && elSet.start == undefined)
                     methods.closeDrop($('[data-elrun].center:visible'));
 
                 if (!$this.is('[disabled]')) {
                     e.stopPropagation();
                     e.preventDefault();
-                    var elSet = $this.data();
-                    var elSetSource = $(elSet.drop),
-                    newModal = elSet.modal || modal,
+                    var newModal = elSet.modal || modal,
                     newConfirm = elSet.confirm || confirm,
                     newAlways = elSet.always || always;
 
-                    if (elSet.before != undefined)
-                        var res = eval(elSet.before)($this, elSetSource);
-                    if (elSet.before != undefined && !res)
+                    if (elSet.start != undefined)
+                        var res = eval(elSet.start)($this, elSetSource);
+                    if (elSet.start != undefined && !res)
                         return false;
-                    if (elSet.before == undefined || (elSet.before != undefined && res)) {
+                    if (elSet.start == undefined || (elSet.start != undefined && res)) {
                         if ($.existsN(elSetSource) && !newModal && !newAlways) {
                             if (!$.existsN(elSetSource.parent('.for-center')) && elSet.place != 'inherit')
                             {
@@ -1599,6 +1604,7 @@ function getCookie(c_name)
             timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
             confirm = elSet.confirm || set.confirm,
             dropContent = elSet.dropContent || set.dropContent,
+            start = elSet.start,
             before = set.before,
             after = set.after,
             close = set.close,
@@ -1616,6 +1622,8 @@ function getCookie(c_name)
                 'duration': $thisD,
                 'dropContent': dropContent,
                 'animate': $thisA,
+                'before': before,
+                'after': after,
                 'close': close,
                 'closed': closed,
                 'overlayOpacity': overlayOpacity,
@@ -1645,6 +1653,11 @@ function getCookie(c_name)
             }
             else {
                 before($this, elSetSource, isajax);
+                $(document).trigger({
+                    type: 'dropbefore', 
+                    el: $this, 
+                    drop: elSetSource
+                });
                 if (elSetSource.data('modal')) {
                     var objJ = $([]);
                     $('[data-elrun]:visible').each(function() {
@@ -1666,7 +1679,7 @@ function getCookie(c_name)
 
                 if (place == 'noinherit')
                     methods.positionDrop(elSetSource, placement, place);
-                var dC = elSetSource.find(elSetSource.data('dropContent')).first();
+                
                 if (place == 'center')
                     methods.dropCenter(elSetSource);
 
@@ -1687,21 +1700,28 @@ function getCookie(c_name)
                 elSetSource.addClass(place);
                 function _show() {
                     elSetSource[$thisEOn]($thisD, function(e) {
-                        var $thisD = $(this);
-                        $(document).trigger({
-                            type: 'drop.show', 
-                            el: $thisD, 
-                            dropC: dC
-                        });
+                        var $thisD = $(this),
+                        dC = elSetSource.find(elSetSource.data('dropContent')).first();
                         $thisD.addClass(activeClass);
-                        if (!confirm && modal)
+
+                        if ((!confirm && modal) || typeof data == 'object')
                             optionsDrop.closeDropTime= setTimeout(function() {
                                 methods.closeDrop($thisD)
                             }, timeclosemodal)
-                        after($this, $thisD, isajax);
+                        
+                        $(document).trigger({
+                            type: 'dropafter', 
+                            elC: $this,
+                            el: $thisD,
+                            isajax: isajax,
+                            data: data,
+                            elSet: elSet,
+                            dropC: dC
+                        });
+                        after($this, $thisD, isajax, data, elSet, dC);
                         var cB = elSet.href != undefined ? set.hrefOptions.callback : elSet.callback
                         if (cB != undefined)
-                            eval(cB)($this, $thisD, isajax, data, elSet)
+                            eval(cB)($this, $thisD, isajax, data, elSet, dC)
                     });
                 }
                 if (place == 'center' && !(elSet.modal || modal)) {
@@ -2682,7 +2702,7 @@ var ImageCMSApi = {
                         DS.callback(obj.msg, obj.status, form, DS);
                     else
                         setTimeout((function() {
-                            form.parent().find(genObj.msgF).fadeOut(function() {
+                            form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
                             });
                             if (DS.hideForm)
@@ -2716,7 +2736,7 @@ var ImageCMSApi = {
                         $thisТ = $this.attr('name'),
                         elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
-                            $this.removeClass(genObj.err + ' ' + genObj.scs);
+                            $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.hide();
                             $(document).trigger({
                                 'type': 'imageapi.hidemsg', 
@@ -2752,9 +2772,9 @@ var ImageCMSApi = {
             for (var key in validations) {
                 if (validations[key] != "") {
                     var input = thisSelector.find('[name=' + key + ']');
-                    input.addClass(genObj.err);
-                    input[DS.cMsgPlace](DS.cMsg(key, validations[key], genObj.err, thisSelector));
-                    var finput = thisSelector.find(':input.' + genObj.err + ':first');
+                    input.addClass(DS.err);
+                    input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, thisSelector));
+                    var finput = thisSelector.find(':input.' + DS.err + ':first');
                     finput.setCursorPosition(finput.val().length);
                 }
                 if (i == Object.keys(validations).length)
