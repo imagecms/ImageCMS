@@ -75,7 +75,7 @@
                             scriptsL = scripts.length;
 
                     $.map(scripts, function(i, n) {
-                        $.getScript( theme + 'js/' + i + '.js', function() {
+                        $.getScript(theme + 'js/' + i + '.js', function() {
                             cL++;
                             if (cL == scriptsL) {
                                 $(document).trigger({'type': 'scriptDefer'});
@@ -91,7 +91,7 @@
                 else if (window.attachEvent)
                     window.attachEvent("onload", downloadJSAtOnload);
                 else
-                    window.onload = downloadJSAtOnload; 
+                    window.onload = downloadJSAtOnload;
             </script>
         {/literal}
         {include_shop_tpl('js_templates')}
