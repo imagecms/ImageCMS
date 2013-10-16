@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-15 11:13+0300\n"
+"POT-Creation-Date: 2013-10-16 15:16+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -4891,205 +4891,215 @@ msgstr "Установка модулей"
 msgid "Site configuration"
 msgstr "Конфигурация сайта"
 
-#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "General Settings"
+msgstr "Общие настройки"
+
+#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:41
+msgid "Analysts settings"
+msgstr "Настройки аналитики"
+
+#: /var/www/image.loc/_tempLangs.php:27
 msgid "Management of Meta Tags"
 msgstr "Управление Мета-тегами"
 
-#: /var/www/image.loc/_tempLangs.php:27
-#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:66
 msgid "Enter Meta Tags"
 msgstr "Ввести мета-теги"
 
-#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:29
 msgid "Site information"
 msgstr "Информация системы"
 
-#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:31
 msgid "Site shutdown"
 msgstr "Отключение сайта"
 
-#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:32
 msgid "The site will be available only to the Administrator"
 msgstr "Сайт будет доступен только для Администратора"
 
-#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:33
 msgid "Select admin language"
 msgstr "Выбор языка для админ панели"
 
-#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:37
 msgid "Display category tree in the content"
 msgstr "Отображать дерево категорий в списке содержимого"
 
-#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:40
 msgid "Text editor"
 msgstr "Текстовый редактор"
 
-#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:42
 msgid "ID Google Analytics"
 msgstr "ID Google Analytics"
 
-#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:43
 msgid "The code should be in the format ua-54545845"
 msgstr "Код должен быть в  формате ua-54545845"
 
-#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:44
 msgid "Ya.Webmaster"
 msgstr "Ya.Webmaster"
 
-#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:45
 msgid "ID for yandex metric"
 msgstr "Id для Yandex метрики"
 
-#: /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:48
 msgid "Page"
 msgstr "Страница"
 
-#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:54
 msgid "Whether to display the site name in the title page"
 msgstr " Будет ли отображатся название сайта в тайтле страницы "
 
-#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:55
 msgid "Category name"
 msgstr "Название категории"
 
-#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:56
 msgid "Whether to display the category name in the title page"
 msgstr "Будет ли отображатся название категории в тайтле страницы"
 
-#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:57
 msgid "Separator"
 msgstr "Разделитель"
 
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:63
 msgid "Auto formation"
 msgstr "Сформировать автоматически "
 
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:64
 msgid "Leave empty"
 msgstr "Оставить пустым"
 
-#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:61
 msgid "If not given or specified"
 msgstr "Если не указаны"
 
-#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:65
 msgid "If not specified"
 msgstr "Если не указано"
 
-#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:67
 msgid "Choose language"
 msgstr "Выберите язык"
 
-#: /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:69
 msgid "Short site name"
 msgstr "Краткое название сайта"
 
-#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:71
 msgid "Keywords"
 msgstr "Ключевые слова"
 
-#: /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:72
 msgid "Please use function siteinfo() with the parameter"
 msgstr "Пожалуйста, используйте функцию siteinfo () с параметром"
 
-#: /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:74
 msgid "Company type"
 msgstr "Тип предприятия"
 
-#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:76
 msgid "Main phone"
 msgstr "Главный телефон"
 
-#: /var/www/image.loc/_tempLangs.php:76
+#: /var/www/image.loc/_tempLangs.php:77
 msgid "Admin email"
 msgstr " Email  администратора"
 
-#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:78
 msgid "Contacts"
 msgstr "Контакты"
 
-#: /var/www/image.loc/_tempLangs.php:78
+#: /var/www/image.loc/_tempLangs.php:79
 msgid "that you entered as a contact type"
 msgstr "которие Вы  ввели как тип контакту"
 
-#: /var/www/image.loc/_tempLangs.php:79
-#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:83
 msgid "Contact type"
 msgstr "Тип контакта"
 
-#: /var/www/image.loc/_tempLangs.php:80
-#: /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:81
+#: /var/www/image.loc/_tempLangs.php:84
 msgid "Value"
 msgstr "Значение"
 
-#: /var/www/image.loc/_tempLangs.php:81
+#: /var/www/image.loc/_tempLangs.php:82
 msgid "you entered as a contact type"
 msgstr "Вы ввели как тип контакту"
 
-#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:85
 msgid "Add contact"
 msgstr "Добавить контакт"
 
-#: /var/www/image.loc/_tempLangs.php:85
+#: /var/www/image.loc/_tempLangs.php:86
 msgid "Logo"
 msgstr "Лого"
 
-#: /var/www/image.loc/_tempLangs.php:86
 #: /var/www/image.loc/_tempLangs.php:87
 #: /var/www/image.loc/_tempLangs.php:88
 #: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:90
 msgid "Click to select the image"
 msgstr "Кликните для выбора изображения"
 
-#: /var/www/image.loc/_tempLangs.php:91
+#: /var/www/image.loc/_tempLangs.php:92
 msgid "Basic"
 msgstr "Базовые"
 
-#: /var/www/image.loc/_tempLangs.php:152
-#: /var/www/image.loc/_tempLangs.php:156
+#: /var/www/image.loc/_tempLangs.php:153
 #: /var/www/image.loc/_tempLangs.php:157
+#: /var/www/image.loc/_tempLangs.php:158
 msgid "Delete category"
 msgstr "Удалить категорию"
 
-#: /var/www/image.loc/_tempLangs.php:160
+#: /var/www/image.loc/_tempLangs.php:161
 msgid "Create category"
 msgstr "Создать категорию"
 
-#: /var/www/image.loc/_tempLangs.php:165
+#: /var/www/image.loc/_tempLangs.php:166
 msgid "message"
 msgstr "сообщение"
 
-#: /var/www/image.loc/_tempLangs.php:166
+#: /var/www/image.loc/_tempLangs.php:167
 msgid "Module search is being developed"
 msgstr "Модуль поиска в настоящее время разрабатывается"
 
-#: /var/www/image.loc/_tempLangs.php:167
+#: /var/www/image.loc/_tempLangs.php:168
 msgid "set write rights  on the directory for  simple module installation"
 msgstr "установить права на запись для каталога, для простой установки модулей"
 
-#: /var/www/image.loc/_tempLangs.php:171
+#: /var/www/image.loc/_tempLangs.php:172
 msgid "Actions"
 msgstr "Акции"
 
-#: /var/www/image.loc/_tempLangs.php:173
+#: /var/www/image.loc/_tempLangs.php:174
 msgid "No  modules have been found at your request"
 msgstr "Ни один из модулей не было найдено по Вашему запросу"
 
-#: /var/www/image.loc/_tempLangs.php:174
+#: /var/www/image.loc/_tempLangs.php:175
 msgid "Module search"
 msgstr "Модуль поиск"
 
-#: /var/www/image.loc/_tempLangs.php:175
+#: /var/www/image.loc/_tempLangs.php:176
 msgid "Here you can search for modules and set them to automatic mode"
 msgstr "Здесь Вы можете искать модули и установить их в автоматический режим"
 
-#: /var/www/image.loc/_tempLangs.php:179
+#: /var/www/image.loc/_tempLangs.php:180
 msgid "G.Webmaster"
 msgstr "Ya.Webmaster"
 
-#: /var/www/image.loc/_tempLangs.php:180
+#: /var/www/image.loc/_tempLangs.php:181
 msgid "Page ID"
 msgstr " ID страницы"
 
@@ -5327,10 +5337,6 @@ msgstr "не найдены"
 msgid "Language of the page"
 msgstr "Язык страницы"
 
-#: pages.php:461
-msgid "Created. ID"
-msgstr "Дата создания. ID"
-
 #: pages.php:488
 msgid "Main page template "
 msgstr "Основной шаблон страницы "
@@ -5384,24 +5390,24 @@ msgstr "Строка нулевой длины"
 msgid "Status change success"
 msgstr "Статус был изменен"
 
-#: login.php:59
+#: login.php:61
 msgid "Protection code"
 msgstr "Защитный код"
 
-#: login.php:74
+#: login.php:76
 msgid "Entered the IP control panel"
 msgstr "Введен IP панели управления"
 
-#: login.php:78
+#: login.php:80
 msgid "Username and password have not been found"
 msgstr "Имя пользователя и пароль не были найдены"
 
-#: login.php:98
+#: login.php:100
 msgid "Please check your email for instructions on how to activate the new password."
 msgstr "Пожалуйста, проверьте свою электронную почту для получения инструкций о том, как активировать новый пароль."
 
-#: login.php:120
-#: login.php:124
+#: login.php:122
+#: login.php:126
 msgid "Wrong protection code"
 msgstr "Неправильный код защиты"
 
@@ -5714,7 +5720,7 @@ msgstr "Управление правами доступа"
 
 #: ../../../templates/administrator/inc/menus.php:292
 msgid "Shop settings"
-msgstr "Настройки"
+msgstr "Настройки магазина"
 
 #: ../../../templates/administrator/inc/menus.php:301
 msgid "Currencies"
@@ -6403,6 +6409,9 @@ msgstr "Приватное поле"
 #: ../../modules/shop/models/build/classes/Shop/CustomFields.php:32
 msgid "Custom right field"
 msgstr "Правильное поле"
+
+#~ msgid "Created. ID"
+#~ msgstr "Дата создания. ID"
 
 #~ msgid "Registration"
 #~ msgstr "Регистрация"
