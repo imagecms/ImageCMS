@@ -26,22 +26,24 @@
 
         <div class="main_body">
             <div class="form_login t-a_c">
+                <!--
                 <div class="o_h" style="margin-top: 20px; text-align: right; margin-right: -50px">
                     <a href="/admin/login/switch_admin_lang/english" class="d-i_b">
-                        {if $CI->config->item('language') == 'english'}
-                            <img  width="100%" height="100p%" src="{$THEME}img/EN.png"/>
-                        {else:}
-                            <img  style="height: 13px; width: 22px; margin-top: 3px; margin-right: 10px " width="70%" height="70p%" src="{$THEME}img/EN.png"/>
-                        {/if}
-                    </a>
-                    <a href="/admin/login/switch_admin_lang/russian" class="d-i_b">
-                        {if $CI->config->item('language') == 'russian'}
-                            <img width="100%" height="100%"  src="{$THEME}img/Ru.png"/>
-                        {else:}
-                            <img width="70%" height="70%" src="{$THEME}img/Ru.png"/>
-                        {/if}
-                    </a>
-                </div>
+                {if $CI->config->item('language') == 'english'}
+                    <img  width="100%" height="100p%" src="{$THEME}img/EN.png"/>
+                {else:}
+                    <img  style="height: 13px; width: 22px; margin-top: 3px; margin-right: 10px " width="70%" height="70p%" src="{$THEME}img/EN.png"/>
+                {/if}
+            </a>
+            <a href="/admin/login/switch_admin_lang/russian" class="d-i_b">
+                {if $CI->config->item('language') == 'russian'}
+                    <img width="100%" height="100%"  src="{$THEME}img/Ru.png"/>
+                {else:}
+                    <img width="70%" height="70%" src="{$THEME}img/Ru.png"/>
+                {/if}
+            </a>
+        </div>
+                -->
                 <a href="/admin/dashboard" class="d-i_b">
                     <img src="{$THEME}img/logo.png"/>
                 </a>

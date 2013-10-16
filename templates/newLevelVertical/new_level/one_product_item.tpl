@@ -1,5 +1,14 @@
+{var_dump($limit != false && $limit != NULL)}
+{$widget = $widget != false && $widget != NULL}
+{$default = $defaultItem != false && $defaultItem != NULL}
+{$wishlist = $wishlist != false && $wishlist != NULL}
+{$compare = $compare != false && $compare != NULL}
+{$codeArticle = $codeArticle != false && $codeArticle != NULL}
+{$defaultItem = $defaultItem != false && $defaultItem != NULL}
+{$limit = $limit != false && $limit != NULL}
+
 {foreach $products as $key => $p}
-    {if $key >= $limit && isset($limit)}
+    {if $key >= $limit && $limit}
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
@@ -130,92 +139,87 @@
             <div class="funcs-buttons">
                 <!-- Start. Collect information about Variants, for future processing -->
                 {foreach $variants as $key => $pv}
-                    {$widgetWOV = ($widget && $key < 1) || !$widget}
-                    {$defoultWOV = ($defaultItem && $key < 1) || !$defaultItem}
-                    {if $widgetWOV || $defoultWOV}
-                        {if $pv->getStock() > 0}
-                            <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
-                                {if !widget && !$defaultItem}
-                                    <div class="frame-count">
-                                        <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
-                                            <div class="frame-change-count">
-                                                <div class="btn-plus">
-                                                    <button type="button">
-                                                        <span class="icon-plus"></span>
-                                                    </button>
-                                                </div>
-                                                <div class="btn-minus">
-                                                    <button type="button">
-                                                        <span class="icon-minus"></span>
-                                                    </button>
-                                                </div>
+                    {if $pv->getStock() > 0}
+                        <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                            {if !$widget && !$default}
+                                <div class="frame-count">
+                                    <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
+                                        <div class="frame-change-count">
+                                            <div class="btn-plus">
+                                                <button type="button">
+                                                    <span class="icon-plus"></span>
+                                                </button>
                                             </div>
-                                            <input type="text" value="1" data-rel="plusminus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
+                                            <div class="btn-minus">
+                                                <button type="button">
+                                                    <span class="icon-minus"></span>
+                                                </button>
+                                            </div>
                                         </div>
+                                        <input type="text" value="1" data-rel="plusminus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
                                     </div>
-                                {/if}
-                                <div class="btn-buy">
-                                    <button
-                                        {$discount = 0}
-                                        {if $hasDiscounts}
-                                            {$discount = $pv->getvirtual('numDiscount')/$pv->toCurrency()*100}
-                                        {/if}
-                                        disabled="disabled"
-                                        class="btnBuy infoBut"
-                                        type="button"
-                                        data-id="{echo $pv->getId()}"
-                                        data-prodid="{echo $p->getId()}"
-                                        data-varid="{echo $pv->getId()}"
-                                        data-count="1"
-                                        data-name="{echo ShopCore::encode($p->getName())}"
-                                        data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
-                                        data-maxcount="{echo $pv->getstock()}"
-                                        data-number="{echo trim($pv->getNumber())}"
-                                        data-mediumImage="{echo $pv->getMediumPhoto()}"
-                                        data-img="{echo $pv->getSmallPhoto()}"
-                                        data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                        data-price="{echo $pv->toCurrency()}"
-                                        data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                        data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                        data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
-                                        <span class="icon_cleaner icon_cleaner_buy"></span>
-                                        <span class="text-el">{lang('Купить', 'newLevel')}</span>
-                                    </button>
                                 </div>
-                            </div>
-                        {else:}
-                            <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                            {/if}
+                            <div class="btn-buy">
                                 <button
-                                    class="infoBut"
+                                    {$discount = 0}
+                                    {if $hasDiscounts}
+                                        {$discount = $pv->getvirtual('numDiscount')/$pv->toCurrency()*100}
+                                    {/if}
+                                    disabled="disabled"
+                                    class="btnBuy infoBut"
                                     type="button"
-                                    data-drop=".drop-report"
-                                    data-source="/shop/ajax/getNotifyingRequest"
-
                                     data-id="{echo $pv->getId()}"
                                     data-prodid="{echo $p->getId()}"
                                     data-varid="{echo $pv->getId()}"
-                                    data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                    data-price="{echo $pv->toCurrency()}"
-                                    data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                    data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                    data-count="1"
                                     data-name="{echo ShopCore::encode($p->getName())}"
                                     data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-number="{echo trim($pv->getNumber())}"
-                                    data-img="{echo $pv->getSmallPhoto()}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
-                                    <span class="icon-but"></span>
-                                    <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                    data-img="{echo $pv->getSmallPhoto()}"
+                                    data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                    data-price="{echo $pv->toCurrency()}"
+                                    data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                    data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                    data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
+                                    <span class="icon_cleaner icon_cleaner_buy"></span>
+                                    <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                 </button>
                             </div>
-                        {/if}
+                        </div>
+                    {else:}
+                        <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                            <button
+                                class="infoBut"
+                                type="button"
+                                data-drop=".drop-report"
+                                data-source="/shop/ajax/getNotifyingRequest"
+
+                                data-id="{echo $pv->getId()}"
+                                data-prodid="{echo $p->getId()}"
+                                data-varid="{echo $pv->getId()}"
+                                data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                data-price="{echo $pv->toCurrency()}"
+                                data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                data-name="{echo ShopCore::encode($p->getName())}"
+                                data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
+                                data-maxcount="{echo $pv->getstock()}"
+                                data-number="{echo trim($pv->getNumber())}"
+                                data-img="{echo $pv->getSmallPhoto()}"
+                                data-mediumImage="{echo $pv->getMediumPhoto()}"
+                                <span class="icon-but"></span>
+                                <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                            </button>
+                        </div>
                     {/if}
                 {/foreach}
             </div>
             {if !$widget && !$defaultItem}
                 <div class="p_r frame-without-top">
                     <div class="frame-wish-compare-list no-vis-table">
-                        <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
                         {if $wishlist}
                             <!-- Wish List buttons -->
                             {foreach $variants as $key => $pv}
