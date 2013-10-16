@@ -5401,7 +5401,7 @@ msgstr "Способы оплаты"
 
 #: ../../../templates/administrator/inc/menus.php:313
 msgid "Import-Export CSV/XLS"
-msgstr "Импорт-Експорт CSV/XLS"
+msgstr "Импорт-Экспорт CSV/XLS"
 
 #: ../../../templates/administrator/inc/menus.php:321
 msgid "Custom fields"
