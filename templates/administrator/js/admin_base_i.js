@@ -996,6 +996,7 @@ $(document).ready(function() {
             }
             return true;
         }
+
         // go furter if one image is selected
         var selectedImageUrl = $("span.selected_image img").attr("src");
         $("#" + trId + " input.changeImage").val(selectedImageUrl);
@@ -1005,7 +1006,8 @@ $(document).ready(function() {
         $(img).addClass('img-polaroid').css({
             width: '100px'
         });
-        $("#" + trId).find('.control-group .controls').html(img);
+        $("#" + trId).find('.control-group .controls img').remove().html(img);
+        $("#" + trId).find('.control-group .controls').append(img);
         // hiding and clearing modal
         $('#images_modal').modal("hide");
         $("#url_image").val("");
@@ -1260,10 +1262,11 @@ $(document).ready(function() {
     // shop - settings - count of products on site
     $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {
         var currentValue = $(this).val();
-        var pattern = /^[0-9\,]*$/;
+        var pattern = /^[0-9\,[^\,\,]]+$/;
         if (!currentValue.match(pattern)) { // has banned symbols
+            console.log(currentValue);
             var caretPosition = caret($(this)); // get the caret position
-            var newValue = currentValue.replace(/[^0-9\,]+/, '');
+            var newValue = currentValue.replace(/([^0-9\,]{1,}|[\,]{2})/, '');
             $(this).val(newValue);
             caret(this, caretPosition.begin)
         }
@@ -1407,6 +1410,7 @@ $(document).ready(function() {
             $(this).parents(".siteinfo_contact_row").remove();
         } else {
             $(this).parents(".siteinfo_contact_row").find("textarea").val("");
+            $(this).parents(".siteinfo_contact_row").find("input").val("");
         }
     });
 

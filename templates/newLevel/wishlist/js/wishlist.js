@@ -67,9 +67,10 @@ function validateWishPopup($this, elSetSource) {
         drop.find('[type="submit"]').parent().removeClass('active');
     }
     ;
-    var name = $('[name="wishListName"]'),
+    var name = $('[name="wishListName"]:last'),
             drop = name.closest('[data-elrun]');
-    if (name.val() == "" && $('[data-link]').is(':checked')) {
+
+    if (name.val() == "" && drop.find('[data-link]').is(':checked')) {
         removeErr();
         name.after(message.error(text.error.enterName));
         $(document).trigger('hideActivity');
@@ -275,7 +276,8 @@ $(document).on('scriptDefer', function() {
             $("#datepicker").datepicker({
                 "dateFormat": "yy-mm-dd",
                 changeMonth: true,
-                changeYear: true
+                changeYear: true,
+                yearRange: "1930:2030"
             });
         } catch (err) {
         }

@@ -393,9 +393,9 @@
                                                     <div class="row-fluid">
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_compatytype">{lang('Company type', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_compatytype'"></i></label>
+                                                            <label class="control-label" for="siteinfo_companytype">{lang('Company type', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_companytype'"></i></label>
                                                             <div class="controls">
-                                                                <textarea rows="1" id="siteinfo_compatytype" name="siteinfo_compatytype">{$siteinfo_compatytype}</textarea>
+                                                                <textarea rows="1" id="siteinfo_companytype" name="siteinfo_companytype">{$siteinfo_companytype}</textarea>
                                                             </div>
                                                         </div>
 
