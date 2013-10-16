@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 16:53+0300\n"
+"POT-Creation-Date: 2013-10-16 11:24+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,43 +17,43 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: ../../../_install.php:156
+#: ../../../install.php:167
 msgid "Site name"
 msgstr "Название сайта"
 
-#: ../../../_install.php:157
+#: ../../../install.php:168
 #: ../../../views/step_2.php:42
 msgid "Host"
 msgstr "Хост"
 
-#: ../../../_install.php:158
+#: ../../../install.php:169
 msgid "Database username"
 msgstr "Имя пользователя базы данных"
 
-#: ../../../_install.php:160
+#: ../../../install.php:171
 #: ../../../views/step_2.php:60
 msgid "Database name"
 msgstr "Имя базы данных"
 
-#: ../../../_install.php:162
+#: ../../../install.php:173
 #: ../../../views/step_2.php:66
 msgid "Administrator name"
 msgstr "Имя администратора"
 
-#: ../../../_install.php:163
+#: ../../../install.php:174
 msgid "Administrator E-mail"
 msgstr " E-mail администратора"
 
-#: ../../../_install.php:164
+#: ../../../install.php:175
 #: ../../../views/main.php:150
 msgid "Language"
 msgstr "Язык"
 
-#: ../../../_install.php:171
+#: ../../../install.php:182
 msgid "Database connection error"
 msgstr "Ошибка подключения к базе данных"
 
-#: ../../../_install.php:366
+#: ../../../install.php:377
 msgid "Error writing file config.php"
 msgstr "Ошибка записи файла config.php"
 
@@ -108,7 +108,7 @@ msgid "Password"
 msgstr "Пароль"
 
 #: ../../../views/step_2.php:84
-#: ../../../views/step_1.php:37
+#: ../../../views/step_1.php:47
 msgid "Next"
 msgstr "Следующий"
 
@@ -128,14 +128,17 @@ msgstr "Перейти в Панель управления"
 msgid "Main page"
 msgstr "Главная страница"
 
+#: ../../../views/license.php:1
 #: ../../../views/license_shop.php:1
 msgid "License Agreement"
 msgstr "Лицензионное Соглашение"
 
+#: ../../../views/license.php:127
 #: ../../../views/license_shop.php:87
 msgid "Accept license"
 msgstr "Принять лицензию"
 
+#: ../../../views/license.php:129
 #: ../../../views/license_shop.php:89
 msgid "Cancel"
 msgstr "Отмена"
@@ -177,7 +180,15 @@ msgstr "Проверка модулей PHP"
 msgid "For best performance, install the PHP modules"
 msgstr "Для лучшей производительности, установите PHP модули"
 
-#: ../../../views/step_1.php:38
+#: ../../../views/step_1.php:33
+msgid "Verifying locales"
+msgstr "Проверка языковых локалей"
+
+#: ../../../views/step_1.php:35
+msgid "To use these locales, install them on the server"
+msgstr "Для использования этих локалей установите их на сервере"
+
+#: ../../../views/step_1.php:48
 msgid "Update"
 msgstr "Обновить"
 

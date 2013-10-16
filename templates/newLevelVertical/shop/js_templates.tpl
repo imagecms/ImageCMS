@@ -737,10 +737,10 @@
                         <span class="description">
                         <!-- Start. Product price  -->
                             <span class="frame-prices f-s_0">
-                                <span class="current-prices var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
+                                <span class="current-prices">
                                     <span class="price-new">
                                         <span>
-                                            <span class="price"><%- Math.round(item.price) %></span>{/literal}
+                                            <span class="price"><%- parseFloat(item.price).toFixed(pricePrecision) %></span>{/literal}
                                             <span class="curr">{$CS}</span>{literal}
                                         </span>
                                     </span>

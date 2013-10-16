@@ -73,3 +73,4 @@
 .btn-send-wishlist .icon_mail{color: #0c9acb;}
 .btn-send-wishlist .text-el{color: #0c9acb;font-weight: bold;}
 .drop-sendemail{width: 400px;}
+.ui-datepicker-month, .ui-datepicker-year{height: 20px;}

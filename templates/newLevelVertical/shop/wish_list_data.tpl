@@ -1,4 +1,4 @@
-{if ShopCore::$ci->dx_auth->is_logged_in() === true}
+{if $is_logged_in}
     {$wish_list = $CI->load->module('wishlist')}
     {$countWL = $wish_list->getUserWishListItemsCount($CI->dx_auth->get_user_id())}
     <div id="wishListData">
