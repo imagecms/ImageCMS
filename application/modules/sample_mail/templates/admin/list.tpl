@@ -27,13 +27,13 @@
                 <div class="d-i_b">
                     <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('Back')}</span>
+                        <span class="t-d_u">{lang('Back', 'admin')}</span>
                     </a>
                     <button type="button"
                             class="btn btn-small btn-danger disabled action_on"
                             onclick="delete_function.deleteFunction()"
                             id="del_sel_property">
-                        <i class="icon-trash icon-white"></i>{lang('Delete')}
+                        <i class="icon-trash icon-white"></i>{lang('Delete', 'admin')}
                     </button>
                     <a class="btn btn-small btn-success pjax" href="/admin/components/cp/sample_mail/create" >
                         <i class="icon-list-alt icon-white"></i>Создать шаблон
@@ -55,7 +55,7 @@
                                             </span>
                                         </span>
                                     </th>
-                                    <th>{lang("Name")}</th>
+                                    <th>Имя</th>
                                     <th>Описание</th>
                                     <th>Тема</th>
                                     <th>От кого</th>
