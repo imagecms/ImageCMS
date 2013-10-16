@@ -4,7 +4,7 @@
         <h3 id="mvMv">{lang("Diff", 'documentation')}</h3>
     </div>
     <div class="modal-body">
-        1111
+        
     </div>
     <div class="modal-footer">
         <a class="btn" onclick="$('.modal').modal('hide');">{lang("Close", "documentation")}</a>

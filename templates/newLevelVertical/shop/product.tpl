@@ -16,7 +16,7 @@
     {widget('path')}
 </div>
 <div class="frame-inside page-product">
-    <div class="container">
+    <div class="container z-i_2">
         <div class="clearfix item-product {if $model->firstVariant->getStock() == 0}not-avail{/if}">
             <div class="f-s_0 title-product">
                 <div class="frame-title">

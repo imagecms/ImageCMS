@@ -1699,7 +1699,7 @@ function getCookie(c_name)
                     })
                 elSetSource.addClass(place);
                 function _show() {
-                    elSetSource[$thisEOn]($thisD, function(e) {
+                    elSetSource.stop()[$thisEOn]($thisD, function(e) {
                         var $thisD = $(this),
                         dC = elSetSource.find(elSetSource.data('dropContent')).first();
                         $thisD.addClass(activeClass);
@@ -1760,6 +1760,7 @@ function getCookie(c_name)
                     methods.closeDrop(false);
                 }
             });
+            return new Array($this, e, set, isajax, data);
         },
         closeDrop: function(sel) {
             clearTimeout(optionsDrop.closeDropTime);
@@ -1801,7 +1802,7 @@ function getCookie(c_name)
                                 methods.scrollEmulateRemove($thisD);
                                 $this.removeClass(activeClass);
                                 $('.for-center').stop(true, false).fadeOut($thisD);
-                                $this[$thisEOff]($thisD, function() {
+                                $this.stop()[$thisEOff]($thisD, function() {
                                     var $this = $(this);
                                     $this.removeClass(drop.data('place'));
                                     if ($this.data('closed') != undefined)
@@ -1817,6 +1818,7 @@ function getCookie(c_name)
                 })
             }
             wnd.unbind('resize.drop');
+            return sel;
         },
         dropCenter: function(elSetSource) {
             if (elSetSource.data('place') == 'center') {
@@ -1878,6 +1880,7 @@ function getCookie(c_name)
                         'bottom': body.height() - $thisT + dataSourceH + $thisH
                     });
             }
+            return new Array(el, placement, place);
         },
         scrollEmulate: function() {
             try {
@@ -2066,6 +2069,10 @@ function getCookie(c_name)
         return methods[m];
     };
     body.off('keyup.max', '[data-max]').on('keyup.max', '[data-max]', function(e) {
+        $(this).trigger({
+            'type': 'maxminValue', 
+            'event': e
+        });
         $(this).maxminValue(e);
     })
 })($);
@@ -2401,8 +2408,11 @@ var Shop = {
             var length = 0;
             for (var i = 0; i < localStorage.length; i++) {
                 try {
-                    if (localStorage.key(i).match(pattern))
-                        length += parseFloat(JSON.parse(localStorage.getItem(localStorage.key(i))).count);
+                    if (localStorage.key(i).match(pattern)){
+                        var tempC = parseInt(JSON.parse(localStorage.getItem(localStorage.key(i))).count)
+                        tempC = isNaN(tempC) ? 0 : tempC;
+                        length += tempC;
+                    }
                 } catch (err) {
                     length += 0;
                 }
@@ -2416,13 +2426,15 @@ var Shop = {
             this.totalCount = 0;
             this.totalPriceOrigin = 0;
             for (var i = 0; i < items.length; i++) {
-                if (items[i].origprice != '')
-                    this.totalPriceOrigin += items[i].origprice * items[i].count;
+                var item = items[i],
+                itemC = item.count == '' ? 0 : item.count;
+                if (item.origprice != '')
+                    this.totalPriceOrigin += item.origprice * itemC;
                 else
-                    this.totalPriceOrigin += items[i].price * items[i].count;
-                this.totalPrice += items[i].price * items[i].count;
-                this.totalAddPrice += items[i].addprice * items[i].count;
-                this.totalCount += parseInt(items[i].count);
+                    this.totalPriceOrigin += item.price * itemC;
+                this.totalPrice += item.price * itemC;
+                this.totalAddPrice += item.addprice * itemC;
+                this.totalCount += parseInt(itemC);
             }
             return this;
         },
@@ -2445,7 +2457,7 @@ var Shop = {
                 return this.totalPriceOrigin;
         },
         getFinalAmount: function() {
-            if (this.shipFreeFrom > 0)
+            if (this.shipFreeFrom >= 0)
                 if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0;
             return (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) : 0;
