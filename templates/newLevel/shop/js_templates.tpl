@@ -740,7 +740,7 @@
                                 <span class="current-prices var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
                                     <span class="price-new">
                                         <span>
-                                            <span class="price"><%- item.price %><% console.log(item) %></span>{/literal}
+                                            <span class="price"><%- item.price %></span>{/literal}
                                             <span class="curr">{$CS}</span>{literal}
                                         </span>
                                     </span>
