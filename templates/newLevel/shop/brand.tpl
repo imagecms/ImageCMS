@@ -78,7 +78,7 @@
                 <form method="GET" action="" id="catalog_form">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
                     <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
-                    <input type="hidden" name="category" value="{echo $_GET[category]}">
+<!--                    <input type="hidden" name="category" value="{echo $_GET[category]}">-->
                 </form>
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
@@ -99,7 +99,16 @@
                                                 <span>{echo $subItem['name']}</span>
                                             {else:}
                                             <li>
-                                                <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'])}"><span class="text-el">{echo $subItem['name']}</span> <span class="count">({echo $subItem['count']})</span></a>
+                                                <a rel="nofollow" data-id="{echo $subItem['id']}" 
+                                                   {if $_SERVER['QUERY_STRING']}
+                                                        href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
+                                                   {else:}
+                                                        href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'])}"
+                                                   {/if}
+                                                 >
+                                                        <span class="text-el">{echo $subItem['name']}</span> 
+                                                        <span class="count">({echo $subItem['count']})</span>
+                                                </a>
                                             {/if}
                                         </li>
                                     {/foreach}

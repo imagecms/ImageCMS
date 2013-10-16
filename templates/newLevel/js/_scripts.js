@@ -377,7 +377,7 @@ function tovarChangeCount(el) {
             'el': input
         });
     })
-    $('.frame-count-buy ' + genObj.plusMinus).keyup(function(e) {
+    el.find('.frame-count-buy ' + genObj.plusMinus).keyup(function(e) {
         var $this = $(this),
         condTooltip = checkProdStock && $this.val() >= $this.data('max');
 
@@ -675,6 +675,7 @@ function initShopPage(showWindow, item) {
 
         if (condTooltip) {
             pd.closest(genObj.numberC).tooltip();
+            inputVal = input.data('max');
             $(document).trigger('hideActivity');
         }
         cartItem.count = inputVal;
@@ -694,14 +695,17 @@ function initShopPage(showWindow, item) {
             pdTr.find(genObj.countOrCompl).html(word);
         })
     }
-    $(genObj.frameBasks + ' input').unbind('keyup.count').on('keyup.count', function(e) {
-        var $this = $(this);
+    $(genObj.frameBasks + ' input').off('maxminValue').on('maxminValue', function(e){
+        var e = e.event,
+        $this = $(this);
         if (!e)
             var e = window.event;
         var key = e.keyCode;
         if (key == 0 || key == 8 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))
             chCountInCart($this.prev('div'));
-    });
+    })
+    $(genObj.frameBasks + ' input').unbind('keyup.count').on('keyup.count', function(e) {
+        });
     if (showWindow) {
         togglePopupCart();
     }
@@ -816,18 +820,19 @@ function checkSyncs() {
     }
 }
 function countSumBask() {
-    if (!Shop.Cart.length()) {
+    var length = Shop.Cart.length();
+    if (!length) {
         $(genObj.tinyBask + '.' + genObj.isAvail).removeClass(genObj.isAvail);
         $(genObj.tinyBask + ' ' + genObj.blockEmpty).show();
         $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).hide();
     }
-    else if (Shop.Cart.length() && !$(genObj.tinyBask).hasClass(genObj.isAvail)) {
+    else if (length) {
         $(genObj.tinyBask).addClass(genObj.isAvail);
         $(genObj.tinyBask + ' ' + genObj.blockEmpty).hide();
         $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).show();
     }
     $(genObj.countBask).each(function() {
-        $(this).html(Shop.Cart.length());
+        $(this).html(length);
     });
     var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice).toFixed(pricePrecision),
     addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice).toFixed(pricePrecision);
@@ -839,7 +844,7 @@ function countSumBask() {
         $(this).html(addSumBask);
     })
     $(genObj.bask + ' ' + genObj.plurProd).each(function() {
-        $(this).html(pluralStr(Shop.Cart.length(), plurProd));
+        $(this).html(pluralStr(length, plurProd));
     });
 }
 function compareListCount() {
@@ -1287,8 +1292,8 @@ if (productPhotoCZoom) {
             mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
             $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
         })
-        $(genObj.photoProduct).off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
-            var cloudzoomlens = $('.cloud-zoom-lens')
+        $('.left-product').off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
+            var cloudzoomlens = $('.cloud-zoom-lens');
             if (cloudzoomlens.width() > $(genObj.photoProduct).width()) {
                 $(this).remove();
                 cloudzoomlens.remove();

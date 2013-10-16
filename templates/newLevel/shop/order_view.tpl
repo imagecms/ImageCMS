@@ -27,7 +27,7 @@
             </div>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).on('scriptDefer', function() {
-                Shop.Cart.clear();
+                    Shop.Cart.clear();
                 }){/literal}
             </script>
         {else:}
@@ -178,16 +178,16 @@
                                 <tbody>
                                     <!-- for single product -->
                                     {foreach $model->getOrderProducts() as $orderProduct}
-                                            {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
-                                                {if $v->getid() == $orderProduct->variant_id}
-                                                    {$Variant = $v}
-                                                    {break;}
-                                                {/if}
-                                            {/foreach}
-                            
-                                        
-                                        
-                            
+                                        {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
+                                            {if $v->getid() == $orderProduct->variant_id}
+                                                {$Variant = $v}
+                                                {break;}
+                                            {/if}
+                                        {/foreach}
+
+
+
+
                                         <tr class="items items-bask items-order cartProduct">
                                             <td class="frame-items">
                                                 <!-- Start. Render Ordered Products -->            
@@ -420,7 +420,8 @@
                             <span class="current-prices f-s_0">
                                 <span class="price-new">
                                     <span>
-                                        <span class="price">{echo $model->gettotalprice() + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
+                                        {$price = $model->gettotalprice() + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}
+                                        <span class="price">{echo $price}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>

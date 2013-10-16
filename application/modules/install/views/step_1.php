@@ -30,6 +30,16 @@
     </ul>
 </p>
 
+<h2><?php echo lang('Verifying locales', 'install')?></h2>
+<p>
+    <?php echo lang('To use these locales, install them on the server', 'install') ?>:
+    <ul class="list">
+    <?php foreach ($locales as $k => $v) { ?>
+        <li class="<?php echo $v ?>"><?php echo $k?><?php if('ok'==$v) { ?> <i class=" icon-ok-circle"></i> <?php } else { ?> <i class=" icon-minus-sign"></i> <?php } ?></li>
+    <?php } ?>
+    </ul>
+</p>
+
 
 
 <p align="left">
