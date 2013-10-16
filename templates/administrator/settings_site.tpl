@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Site configuration','admin')}</span>
+                <span class="title">{lang('Global settings','admin')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -381,7 +381,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('Settings', 'admin')}
+                                            {lang('Site information','admin')}
                                         </th>
                                     </tr>
                                 </thead>
