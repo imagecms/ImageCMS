@@ -1,8 +1,14 @@
+{var_dump($limit != false && $limit != NULL)}
 {$widget = $widget != false && $widget != NULL}
 {$default = $defaultItem != false && $defaultItem != NULL}
+{$wishlist = $wishlist != false && $wishlist != NULL}
+{$compare = $compare != false && $compare != NULL}
+{$codeArticle = $codeArticle != false && $codeArticle != NULL}
+{$defaultItem = $defaultItem != false && $defaultItem != NULL}
+{$limit = $limit != false && $limit != NULL}
 
 {foreach $products as $key => $p}
-    {if $key >= $limit && isset($limit)}
+    {if $key >= $limit && $limit}
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
@@ -214,7 +220,6 @@
             {if !$widget && !$defaultItem}
                 <div class="p_r frame-without-top">
                     <div class="frame-wish-compare-list no-vis-table">
-                        <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
                         {if $wishlist}
                             <!-- Wish List buttons -->
                             {foreach $variants as $key => $pv}
