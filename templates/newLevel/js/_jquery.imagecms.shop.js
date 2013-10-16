@@ -1699,7 +1699,7 @@ function getCookie(c_name)
                     })
                 elSetSource.addClass(place);
                 function _show() {
-                    elSetSource[$thisEOn]($thisD, function(e) {
+                    elSetSource.stop()[$thisEOn]($thisD, function(e) {
                         var $thisD = $(this),
                         dC = elSetSource.find(elSetSource.data('dropContent')).first();
                         $thisD.addClass(activeClass);
@@ -1760,6 +1760,7 @@ function getCookie(c_name)
                     methods.closeDrop(false);
                 }
             });
+            return new Array($this, e, set, isajax, data);
         },
         closeDrop: function(sel) {
             clearTimeout(optionsDrop.closeDropTime);
@@ -1801,7 +1802,7 @@ function getCookie(c_name)
                                 methods.scrollEmulateRemove($thisD);
                                 $this.removeClass(activeClass);
                                 $('.for-center').stop(true, false).fadeOut($thisD);
-                                $this[$thisEOff]($thisD, function() {
+                                $this.stop()[$thisEOff]($thisD, function() {
                                     var $this = $(this);
                                     $this.removeClass(drop.data('place'));
                                     if ($this.data('closed') != undefined)
@@ -1817,6 +1818,7 @@ function getCookie(c_name)
                 })
             }
             wnd.unbind('resize.drop');
+            return sel;
         },
         dropCenter: function(elSetSource) {
             if (elSetSource.data('place') == 'center') {
@@ -1878,6 +1880,7 @@ function getCookie(c_name)
                         'bottom': body.height() - $thisT + dataSourceH + $thisH
                     });
             }
+            return new Array(el, placement, place);
         },
         scrollEmulate: function() {
             try {
@@ -2066,6 +2069,10 @@ function getCookie(c_name)
         return methods[m];
     };
     body.off('keyup.max', '[data-max]').on('keyup.max', '[data-max]', function(e) {
+        $(this).trigger({
+            'type': 'maxminValue', 
+            'event': e
+        });
         $(this).maxminValue(e);
     })
 })($);
