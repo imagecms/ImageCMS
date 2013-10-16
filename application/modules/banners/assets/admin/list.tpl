@@ -1,11 +1,9 @@
 <div class="container">
-
-
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Banner list', 'banners')}</span>
+                <span class="title">{lang('Banners management', 'banners')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">

@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Sending emails", 'group_mailer')}</span>
+            <span class="title">{lang("Email mailing", 'group_mailer')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">

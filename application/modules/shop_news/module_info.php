@@ -3,8 +3,8 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => lang('Shop News', 'shop_news'), // Menu name
-    'description' => lang('Shop News module', 'shop_news'),            // Module Description
+    'menu_name' => lang('Shop News displaying', 'shop_news'), // Menu name
+    'description' => lang('Allows you to view shop news', 'shop_news'),            // Module Description
     'admin_type' => 'window',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe
     'w' => 600,                     // Window width

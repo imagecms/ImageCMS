@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 17:30+0300\n"
-"PO-Revision-Date: 2013-09-19 17:27+0300\n"
+"POT-Creation-Date: 2013-10-16 16:25+0300\n"
+"PO-Revision-Date: 2013-10-16 16:25+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -16,71 +16,74 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:7
-#: /var/www/image.loc/_temp2.php:9
+#: /var/www/image.loc/_tempLangs.php:7
+#: /var/www/image.loc/_tempLangs.php:9
 msgid "Leav"
 msgstr "Оставить"
 
-#: /var/www/image.loc/_temp2.php:8
-#: /var/www/image.loc/_temp2.php:10
+#: /var/www/image.loc/_tempLangs.php:8
+#: /var/www/image.loc/_tempLangs.php:10
 msgid "people(s)"
 msgstr "человек (ов)"
 
-#: /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_tempLangs.php:11
 msgid "Show on pages"
 msgstr "Показать на страницах"
 
-#: /var/www/image.loc/_temp2.php:12
+#: /var/www/image.loc/_tempLangs.php:12
 msgid "Main"
 msgstr "Главная"
 
-#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_tempLangs.php:13
 msgid "Contains"
 msgstr "Содержимое"
 
-#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_tempLangs.php:14
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_temp2.php:15
+#: /var/www/image.loc/_tempLangs.php:15
 msgid "Product"
 msgstr "Товар"
 
-#: /var/www/image.loc/_temp2.php:16
+#: /var/www/image.loc/_tempLangs.php:16
 msgid "Products category"
 msgstr "Категория товаров"
 
-#: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_tempLangs.php:17
 msgid "Brands"
 msgstr "Бренды"
 
-#: /var/www/image.loc/_temp2.php:18
+#: /var/www/image.loc/_tempLangs.php:18
 msgid "Module settings starRating"
 msgstr "Настройки модуля Рейтинг"
 
-#: /var/www/image.loc/_temp2.php:19
+#: /var/www/image.loc/_tempLangs.php:19
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_tempLangs.php:20
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_tempLangs.php:21
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
-#: ../../../admin.php:39
+#: admin.php:39
 msgid "Settings saved success"
 msgstr "Сохранение настроек прошло успешно"
 
-#: ../../../module_info.php:4
+#: module_info.php:4
 msgid "Rating"
 msgstr "Рейтинг"
 
-#: ../../../module_info.php:5
-msgid "Star Rating "
-msgstr "Рейтинг"
+#: module_info.php:5
+msgid "Allows you to display products, categories and pages rating"
+msgstr "Позволяет отображать рейтинг продуктов, категорий и страниц"
+
+#~ msgid "Star Rating "
+#~ msgstr "Рейтинг"
 
 #~ msgid "STAAAAAr"
 #~ msgstr "Зііііірка"

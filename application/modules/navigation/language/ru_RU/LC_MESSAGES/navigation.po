@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-24 10:29+0300\n"
+"POT-Creation-Date: 2013-10-16 14:49+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -46,9 +46,16 @@ msgstr "Поиск"
 msgid "Cart"
 msgstr "Корзина"
 
+#: module_info.php:4
+msgid "Site Navigation"
+msgstr "Навигация по сайту"
+
 #: module_info.php:5
-msgid "Widget"
-msgstr "Виджети"
+msgid "Displays the current user location on the site."
+msgstr "Отображает текущее местонахождение пользователя на сайте."
+
+#~ msgid "Widget"
+#~ msgstr "Виджети"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-25 13:53+0300\n"
+"POT-Creation-Date: 2013-10-16 16:07+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -97,27 +97,27 @@ msgstr "Розроботка модуля"
 msgid "Author"
 msgstr "Автор"
 
-#: module_info.php:5
+#: module_info.php:4
 msgid "Langauges switch"
 msgstr "Переключение языка"
 
-#: module_info.php:6
-msgid "Adds widget to switch languages"
-msgstr "Виджет для переключения языков"
+#: module_info.php:5
+msgid "Allows you to insert a widget to switch languages on the site"
+msgstr "Позволяет вставить виджет для переключения языков на сайте"
 
-#: language_switch_widgets.php:57
+#: language_switch_widgets.php:59
 msgid "Image"
 msgstr "Изображение"
 
-#: language_switch_widgets.php:58
+#: language_switch_widgets.php:60
 msgid "Description"
 msgstr "Описание"
 
-#: language_switch_widgets.php:59
+#: language_switch_widgets.php:61
 msgid "passage Url"
 msgstr "адрес прохода"
 
-#: language_switch_widgets.php:72
+#: language_switch_widgets.php:74
 msgid "Settings saved"
 msgstr "Настройки сохранены"
 
