@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-23 12:23+0300\n"
+"POT-Creation-Date: 2013-10-16 15:02+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -98,13 +98,17 @@ msgstr "ежегодно"
 msgid "never"
 msgstr "никогда"
 
-#: ../../../admin.php:71
+#: ../../../admin.php:72
 msgid "Changes have been saved"
 msgstr "Изменения сохранены"
 
 #: ../../../module_info.php:4
 msgid "Site map"
 msgstr "Карта сайта"
+
+#: ../../../module_info.php:5
+msgid "Creating a site map for search engines"
+msgstr "Создание карты сайта для поисковых систем"
 
 #: ../../../sitemap.php:349
 msgid "Ping sended"

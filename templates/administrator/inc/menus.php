@@ -289,12 +289,12 @@ $shopMenu = array(
     /** Shop settings **/
     array(
         'link'      => '',
-        'text'      => lang('Shop settings', 'admin'),
+        'text'      => lang('Settings', 'admin'),
         'icon'      => 'icon-cog',
         'subMenu'   => array(
             array(
                 'link'      => $ADMIN_URL.'settings',
-                'text'      => lang('Global settings', 'admin'),
+                'text'      => lang('Shop settings', 'admin'),
             ),
             array(
                 'link'      => $ADMIN_URL.'currencies',

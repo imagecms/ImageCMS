@@ -2,7 +2,7 @@
 
 $com_info = array(
 	'menu_name'   => lang('Gallery', 'gallery'), 
-	'description' => lang('Gallery module', 'gallery') . '.',
+	'description' => lang('Creating and managing photo galleries online.', 'gallery'),
 	'admin_type'  => 'inside',      
 	'window_type' => 'xhr', 
     'w'           => 600,                   

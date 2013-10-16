@@ -3,8 +3,8 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => lang('New Level', 'new_level'), // Menu name
-    'description' => lang('New Level module', 'new_level'),            // Module Description
+    'menu_name' => lang('Online store template settings', 'new_level'), // Menu name
+    'description' => lang('New Level template settings. Managing blocks and columns.', 'new_level'),            // Module Description
     'admin_type' => 'window',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe
     'w' => 600,                     // Window width

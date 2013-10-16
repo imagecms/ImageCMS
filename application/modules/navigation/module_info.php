@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name' => lang('Navigation', 'navigation'),
-	'description' => lang('Widget', 'navigation'),
+	'menu_name' => lang('Site Navigation', 'navigation'),
+	'description' => lang('Displays the current user location on the site.', 'navigation'),
 	'admin_type' => 'window',
 	'window_type' => 'xhr',
 	'w' => 600,

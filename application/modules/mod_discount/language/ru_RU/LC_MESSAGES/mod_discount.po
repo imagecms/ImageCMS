@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 17:15+0300\n"
+"POT-Creation-Date: 2013-10-16 14:27+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -255,8 +255,8 @@ msgid "Constant discount"
 msgstr "Постоянная скидка"
 
 #: /var/www/image.loc/_tempLangs.php:66
-msgid "Discounts"
-msgstr "Скидки"
+msgid "Discounts of online store"
+msgstr "Скидки интернет-магазина"
 
 #: /var/www/image.loc/_tempLangs.php:68
 msgid "Choose discount type"
@@ -391,13 +391,16 @@ msgid "Invalid code try again"
 msgstr "Неверный код, попробуйте еще раз"
 
 #: ../../../module_info.php:5
-msgid "Discounts control module"
-msgstr "Модуля управления скидками"
+msgid "Manage all discounts of online store"
+msgstr "Управление всеми скидками интернет-магазина"
 
 #: ../../../models/discount_model_admin.php:466
 #: ../../../models/discount_model_admin.php:478
 msgid "Value"
 msgstr "Значение"
+
+#~ msgid "Discounts"
+#~ msgstr "Скидки"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"
