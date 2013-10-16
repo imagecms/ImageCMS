@@ -20,7 +20,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Template list view', 'cmsemail')}</span>
+                <span class="title">{lang('Email-notifications managing', 'cmsemail')}</span>
             </div>
             <div class="pull-right">
                 <span class="help-inline"></span>

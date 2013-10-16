@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:39+0300\n"
+"POT-Creation-Date: 2013-10-16 15:58+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,190 +17,190 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:12
+#: /var/www/image.loc/_tempLangs.php:12
 msgid "Banner creating"
 msgstr "Создание баннера"
 
-#: /var/www/image.loc/_temp2.php:13
-#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_tempLangs.php:13
+#: /var/www/image.loc/_tempLangs.php:47
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_temp2.php:14
-#: /var/www/image.loc/_temp2.php:49
+#: /var/www/image.loc/_tempLangs.php:14
+#: /var/www/image.loc/_tempLangs.php:48
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_temp2.php:15
-#: /var/www/image.loc/_temp2.php:50
-msgid "Save and exit"
-msgstr "Сохранить и выйти"
-
-#: /var/www/image.loc/_temp2.php:16
-#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_tempLangs.php:15
+#: /var/www/image.loc/_tempLangs.php:50
 msgid "Options"
 msgstr "Опции"
 
-#: /var/www/image.loc/_temp2.php:17
-#: /var/www/image.loc/_temp2.php:40
-#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_tempLangs.php:16
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:51
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_temp2.php:18
-#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_tempLangs.php:17
+#: /var/www/image.loc/_tempLangs.php:52
 msgid "Active"
 msgstr "Активный"
 
-#: /var/www/image.loc/_temp2.php:19
-#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:53
 msgid "Text banner"
 msgstr "Текст баннера"
 
-#: /var/www/image.loc/_temp2.php:20
-#: /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_tempLangs.php:19
+#: /var/www/image.loc/_tempLangs.php:54
 msgid "URL"
 msgstr "URL"
 
-#: /var/www/image.loc/_temp2.php:21
-#: /var/www/image.loc/_temp2.php:56
+#: /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:55
 msgid "Selected items"
 msgstr "Выбранные элементы"
 
-#: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:56
 msgid "Double click to deleting"
 msgstr "Дважды щелкните для удаления"
 
-#: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:57
 msgid "Show in categories (select items)"
 msgstr "Показать в категориях (выбранные элементы)"
 
-#: /var/www/image.loc/_temp2.php:24
-#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:58
 msgid "select essence"
 msgstr "выберите сущность"
 
-#: /var/www/image.loc/_temp2.php:25
-#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:59
 msgid "Main"
 msgstr "Главная"
 
-#: /var/www/image.loc/_temp2.php:26
-#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:60
 msgid "Product"
 msgstr "Товар"
 
-#: /var/www/image.loc/_temp2.php:27
-#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:61
 msgid "Product category"
 msgstr "Категория товара"
 
-#: /var/www/image.loc/_temp2.php:28
-#: /var/www/image.loc/_temp2.php:63
+#: /var/www/image.loc/_tempLangs.php:27
+#: /var/www/image.loc/_tempLangs.php:62
 msgid "Brand"
 msgstr "Бренд"
 
-#: /var/www/image.loc/_temp2.php:29
-#: /var/www/image.loc/_temp2.php:64
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:63
 msgid "Pages categories"
 msgstr "Категории страниц"
 
-#: /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:65
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:64
 msgid "Pages"
 msgstr "Страницы"
 
-#: /var/www/image.loc/_temp2.php:31
-#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:65
 msgid "Active until"
 msgstr "Активно до"
 
-#: /var/www/image.loc/_temp2.php:32
-#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:66
 msgid "Image"
 msgstr "Изображение"
 
-#: /var/www/image.loc/_temp2.php:33
-#: /var/www/image.loc/_temp2.php:68
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:67
 msgid "Choose an image "
 msgstr "Выберите изображение "
 
-#: /var/www/image.loc/_temp2.php:34
-msgid "Banner list"
-msgstr "Список баннеров"
+#: /var/www/image.loc/_tempLangs.php:33
+msgid "Banners management"
+msgstr "Управление баннерами"
 
-#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_tempLangs.php:34
 msgid "Template settings"
 msgstr "Настройки шаблона"
 
-#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_tempLangs.php:35
 msgid "Use different templates for different pages"
 msgstr "Используйте различные шаблоны для разных страниц"
 
-#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_tempLangs.php:36
 msgid "Create a banner"
 msgstr "Создать баннер"
 
-#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_tempLangs.php:37
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_tempLangs.php:38
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_tempLangs.php:40
 msgid "Active to"
 msgstr "Активно на"
 
-#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_tempLangs.php:41
 msgid "Status"
 msgstr "Статус"
 
-#: /var/www/image.loc/_temp2.php:43
-#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:43
 msgid "Editing"
 msgstr "Редактирование"
 
-#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_tempLangs.php:44
 msgid "show"
 msgstr "показывать"
 
-#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_tempLangs.php:45
 msgid "Empty banner list."
 msgstr "Список баннеров пуст."
 
-#: /var/www/image.loc/_temp2.php:47
+#: /var/www/image.loc/_tempLangs.php:46
 msgid "Editing banner"
 msgstr "Редактирование баннера"
 
-#: /var/www/image.loc/_temp2.php:69
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Save and exit"
+msgstr "Сохранить и выйти"
+
+#: /var/www/image.loc/_tempLangs.php:68
 msgid "don't show"
 msgstr "не показывать"
 
-#: ../../../admin.php:94
-#: ../../../admin.php:153
+#: admin.php:97
+#: admin.php:156
 msgid "Banner name"
 msgstr "Название баннера"
 
-#: ../../../admin.php:95
-#: ../../../admin.php:154
+#: admin.php:157
 msgid "Photo"
 msgstr "Фото"
 
-#: ../../../admin.php:176
+#: admin.php:179
 msgid "Data saved"
 msgstr "Данные сохраненны"
 
-#: ../../../module_info.php:4
-msgid "Banner"
-msgstr "Баннер"
+#: module_info.php:5
+msgid "Allows you to create banners for any page on the site or online store"
+msgstr "Позволяет создавать баннеры для любых страниц на сайте либо интернет-магазине"
 
-#: ../../../module_info.php:5
-msgid "Banner management module"
-msgstr "Модуль управления баннерами"
+#~ msgid "Banner list"
+#~ msgstr "Список баннеров"
+
+#~ msgid "Banner"
+#~ msgstr "Баннер"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

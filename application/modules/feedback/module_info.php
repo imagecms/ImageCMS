@@ -2,7 +2,7 @@
 
 $com_info = array(
 	'menu_name'   => lang('Feedback', 'feedback'),     // Menu name
-	'description' => '',                  // Module Description
+	'description' => lang('Manage and configure the feedback form on the site', 'feedback'),                  // Module Description
 	'admin_type'  => 'inside',            // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
     'w'           => 600,                 // Window width

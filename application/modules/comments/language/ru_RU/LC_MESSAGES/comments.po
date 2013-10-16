@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-14 17:00+0300\n"
-"PO-Revision-Date: 2013-10-14 17:00+0300\n"
+"POT-Creation-Date: 2013-10-16 14:57+0300\n"
+"PO-Revision-Date: 2013-10-16 14:58+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -396,8 +396,8 @@ msgid "Fill text in comment."
 msgstr "Заполните текст комментария."
 
 #: module_info.php:5
-msgid "Comments module"
-msgstr "Модуля коментариив"
+msgid "User comments management module"
+msgstr "Модуль управления комментариями пользователей"
 
 #: comments_widgets.php:82
 msgid "Number of comments"

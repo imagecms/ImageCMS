@@ -2,7 +2,7 @@
 
 $com_info = array(
 	'menu_name'   => lang('Rating', 'star_rating'),              // Menu name
-	'description' => lang('Star Rating ', 'star_rating'),         // Module Description
+	'description' => lang('Allows you to display products, categories and pages rating', 'star_rating'),         // Module Description
 	'admin_type'  => 'window',               // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',                  // Load method. Possible values xhr/iframe
         'w'           => 600,                    // Window width
