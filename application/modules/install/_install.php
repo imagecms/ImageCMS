@@ -70,11 +70,10 @@ class Install extends MY_Controller {
                 $allow_params[$k] = 'ok';
             }
         }
-        
-        if (strnatcmp(phpversion(), '5.3.4') != -1){
+
+        if (strnatcmp(phpversion(), '5.3.4') != -1) {
             $allow_params['PHP version >= 5.3.4'] = 'ok';
-        }
-        else {
+        } else {
             $allow_params['PHP version >= 5.3.4'] = 'err';
             $result = false;
         }
@@ -87,8 +86,8 @@ class Install extends MY_Controller {
             'iconv' => 'ok',
             'gd' => 'ok',
             'zlib' => 'ok',
-            'gettext'=> 'ok',
-            'soap'=> 'ok'
+            'gettext' => 'ok',
+            'soap' => 'ok'
         );
 
         foreach ($exts as $k => $v) {
@@ -104,7 +103,7 @@ class Install extends MY_Controller {
                     $exts[$k] = 'err';
                     $result = FALSE;
                 }
-                
+
                 if ($k == 'gettext') {
                     $exts[$k] = 'err';
                     $result = FALSE;
@@ -117,11 +116,23 @@ class Install extends MY_Controller {
             }
         }
 
+        $locales = array(
+            'en_US' => 'ok',
+            'ru_RU' => 'ok'
+        );
+
+        foreach ($locales as $locale => $v) {
+            if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
+                $locales[$locale] = 'warning';
+            }
+        }
+
         $data = array(
             'dirs' => $dir_array,
             'need_params' => $need_params,
             'allow_params' => $allow_params,
             'exts' => $exts,
+            'locales' => $locales,
             'next_link' => $this->_get_next_link($result, 1),
         );
         $this->_display($this->load->view('step_1', $data, TRUE));
@@ -404,12 +415,12 @@ class Install extends MY_Controller {
 
         return $result;
     }
-    
-    public function change_language(){
+
+    public function change_language() {
         $language = $this->input->post('language');
-        if($language){
+        if ($language) {
             $this->session->set_userdata('language', $language);
-            
+
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
