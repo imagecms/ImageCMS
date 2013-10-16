@@ -2177,6 +2177,25 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 ('10', 'ru','<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `rating`
+--
+
+DROP TABLE IF EXISTS `rating`;
+CREATE TABLE IF NOT EXISTS `rating` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_type` varchar(25) DEFAULT NULL,
+  `type` varchar(25) DEFAULT NULL,
+  `votes` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
