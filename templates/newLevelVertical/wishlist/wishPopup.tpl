@@ -59,9 +59,10 @@
                             data-modal="true"
                             {if $wish_list_id}
                                 data-callback="reload"
+                                data-start="validateWishPopup"
                             {else:}
                                 data-callback="addToWL"
-                                data-before="validateWishPopup"
+                                data-start="validateWishPopup"
                             {/if}
                             >
                             <span class="text-el">{if $wish_list_id}{lang('Переместить в список','newLevel')}{else:}{lang('Добавить в список','newLevel')}{/if}</span> 

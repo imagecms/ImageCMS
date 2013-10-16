@@ -66,9 +66,9 @@
                     </div>
                     <div class="inside-padd">
                         <nav>
-                            <ul class="nav nav-vertical nav-category" data-pid="{echo $key}">
+                            <ul class="nav nav-vertical nav-category">
                                 {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
-                                    <li class="title"><a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
+                                    <li><a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
                                     {/foreach}
                             </ul>
                         </nav>
