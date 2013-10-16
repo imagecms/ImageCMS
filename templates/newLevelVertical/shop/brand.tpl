@@ -23,7 +23,6 @@
 <div class="frame-crumbs">
     {widget('path')}
 </div>
-{$totalProducts = count($products)}
 <div class="frame-inside">
     <div class="container">
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
@@ -88,10 +87,10 @@
                         </div>
                     </div>
                     <div class="inside-padd">
-                        <nav class="nav-category">
+                        <nav>
                             {foreach $categories as $key => $category}
-                                <ul class="nav nav-vertical" data-pid="{echo $key}">
-                                    <li class="title">
+                                <ul class="nav nav-vertical nav-category">
+                                    <li>
                                         <span>{echo trim(key($category))}</span>
                                     </li>
                                     {foreach $category[key($category)] as $subItem}
