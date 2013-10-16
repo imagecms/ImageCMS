@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 15:16+0300\n"
+"POT-Creation-Date: 2013-10-16 16:47+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -144,8 +144,8 @@ msgid "Delete selected pages?"
 msgstr "Удалить выбранные страницы?"
 
 #: /var/www/image.loc/_tempLangs.php:55
-msgid "Content list"
-msgstr "Список содержимого"
+msgid "Articles list"
+msgstr "Список страниц"
 
 #: /var/www/image.loc/_tempLangs.php:56
 msgid "Filter"
@@ -573,7 +573,7 @@ msgstr "Сохранить и выйти"
 #: /var/www/image.loc/_tempLangs.php:143
 #: /var/www/image.loc/_tempLangs.php:147
 msgid "Content"
-msgstr "Содержание"
+msgstr "Страницы"
 
 #: /var/www/image.loc/_tempLangs.php:145
 msgid "Additional fields"
@@ -1571,7 +1571,7 @@ msgstr "Отправить"
 
 #: /var/www/image.loc/_tempLangs.php:219
 msgid "Roles list"
-msgstr "Список ролей"
+msgstr "Управление правами доступа"
 
 #: /var/www/image.loc/_tempLangs.php:221
 msgid "New Role"
@@ -1815,8 +1815,8 @@ msgid "Move products"
 msgstr "Перемещение товаров"
 
 #: /var/www/image.loc/_tempLangs.php:81
-msgid "Items list"
-msgstr "Список элементов"
+msgid "Products list"
+msgstr "Список товаров"
 
 #: /var/www/image.loc/_tempLangs.php:84
 msgid "Reset filter"
@@ -2358,8 +2358,8 @@ msgid "The list of attributes that will be imported"
 msgstr "Список атрибутов, которые будут импортированы"
 
 #: /var/www/image.loc/_tempLangs.php:132
-msgid "Automatization"
-msgstr "Автоматизация"
+msgid "Import-Export CSV/XLS"
+msgstr "Импорт-Експорт CSV/XLS"
 
 #: /var/www/image.loc/_tempLangs.php:134
 #: /var/www/image.loc/_tempLangs.php:163
@@ -2559,6 +2559,10 @@ msgstr "Не показывать короткое название сайта"
 #: /var/www/image.loc/_tempLangs.php:277
 msgid "Meta data"
 msgstr "Ключевые слова"
+
+#: /var/www/image.loc/_tempLangs.php:245
+msgid "Product categories"
+msgstr "Категории товаров"
 
 #: /var/www/image.loc/_tempLangs.php:252
 msgid "There are no categories at the site"
@@ -4887,10 +4891,6 @@ msgstr "Создание нового языка"
 msgid "Module install"
 msgstr "Установка модулей"
 
-#: /var/www/image.loc/_tempLangs.php:23
-msgid "Site configuration"
-msgstr "Конфигурация сайта"
-
 #: /var/www/image.loc/_tempLangs.php:24
 #: /var/www/image.loc/_tempLangs.php:30
 msgid "General Settings"
@@ -4908,11 +4908,12 @@ msgstr "Управление Мета-тегами"
 #: /var/www/image.loc/_tempLangs.php:28
 #: /var/www/image.loc/_tempLangs.php:66
 msgid "Enter Meta Tags"
-msgstr "Ввести мета-теги"
+msgstr "Заполнить Мета-теги"
 
 #: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:73
 msgid "Site information"
-msgstr "Информация системы"
+msgstr "Информация о сайте"
 
 #: /var/www/image.loc/_tempLangs.php:31
 msgid "Site shutdown"
@@ -5630,10 +5631,6 @@ msgstr "Нет профилей"
 msgid "Dashboard"
 msgstr "Главная"
 
-#: ../../../templates/administrator/inc/menus.php:28
-msgid "Articles list"
-msgstr "Список содержимого"
-
 #: ../../../templates/administrator/inc/menus.php:35
 msgid "Custom fields constructor"
 msgstr "Конструктор полей"
@@ -5655,14 +5652,17 @@ msgid "Create widget"
 msgstr "Создать виджет"
 
 #: ../../../templates/administrator/inc/menus.php:115
+#: ../../../templates/administrator/inc/menus.php:336
 msgid "Template editor"
 msgstr "Редактор шаблонов"
 
 #: ../../../templates/administrator/inc/menus.php:130
+#: ../../../templates/administrator/inc/menus.php:351
 msgid "Events journal"
 msgstr "Журнал событий"
 
 #: ../../../templates/administrator/inc/menus.php:134
+#: ../../../templates/administrator/inc/menus.php:355
 msgid "Backup"
 msgstr "Резервное копирование"
 
@@ -5694,14 +5694,6 @@ msgstr "Остальное"
 msgid "Products catalogue"
 msgstr "Каталог товаров"
 
-#: ../../../templates/administrator/inc/menus.php:215
-msgid "Product categories"
-msgstr "Категории товаров"
-
-#: ../../../templates/administrator/inc/menus.php:219
-msgid "Products list"
-msgstr "Список товаров"
-
 #: ../../../templates/administrator/inc/menus.php:231
 msgid "Produkts kits"
 msgstr "Наборы товаров"
@@ -5718,7 +5710,7 @@ msgstr "Список пользователей"
 msgid "RBAC control"
 msgstr "Управление правами доступа"
 
-#: ../../../templates/administrator/inc/menus.php:292
+#: ../../../templates/administrator/inc/menus.php:297
 msgid "Shop settings"
 msgstr "Настройки магазина"
 
@@ -5733,10 +5725,6 @@ msgstr "Способы доставки"
 #: ../../../templates/administrator/inc/menus.php:309
 msgid "Payment methods"
 msgstr "Способы оплаты"
-
-#: ../../../templates/administrator/inc/menus.php:313
-msgid "Import-Export CSV/XLS"
-msgstr "Импорт-Експорт CSV/XLS"
 
 #: ../../../templates/administrator/inc/menus.php:321
 msgid "Custom fields"
@@ -6124,29 +6112,29 @@ msgstr "Способ оплаты не найден."
 msgid "Method of payment is removed"
 msgstr "Способ оплаты удален"
 
-#: ../../modules/shop/admin/settings.php:91
+#: ../../modules/shop/admin/settings.php:88
 msgid "Number of products on site"
 msgstr "Количество товаров на сайте"
 
-#: ../../modules/shop/admin/settings.php:92
+#: ../../modules/shop/admin/settings.php:89
 msgid "Array of values for the number of products on site"
 msgstr "Массив значений для ряда товаров на сайте"
 
-#: ../../modules/shop/admin/settings.php:93
+#: ../../modules/shop/admin/settings.php:90
 msgid "The number of items in the control panel"
 msgstr "Количество элементов в панели управления"
 
-#: ../../modules/shop/admin/settings.php:101
+#: ../../modules/shop/admin/settings.php:98
 msgid "Email, which send messages to the new Callback"
 msgstr "E-mail, который посылает сообщения новому Колбеку"
 
-#: ../../modules/shop/admin/settings.php:102
-#: ../../modules/shop/admin/settings.php:103
+#: ../../modules/shop/admin/settings.php:99
+#: ../../modules/shop/admin/settings.php:100
 msgid "Email address of the sender"
 msgstr "E-mail отправителя"
 
-#: ../../modules/shop/admin/settings.php:430
-#: ../../modules/shop/admin/settings.php:449
+#: ../../modules/shop/admin/settings.php:426
+#: ../../modules/shop/admin/settings.php:445
 msgid "Pictures Updated"
 msgstr "Картинки обновлена"
 
@@ -6409,6 +6397,18 @@ msgstr "Приватное поле"
 #: ../../modules/shop/models/build/classes/Shop/CustomFields.php:32
 msgid "Custom right field"
 msgstr "Правильное поле"
+
+#~ msgid "Content list"
+#~ msgstr "Список содержимого"
+
+#~ msgid "Items list"
+#~ msgstr "Список элементов"
+
+#~ msgid "Automatization"
+#~ msgstr "Автоматизация"
+
+#~ msgid "Site configuration"
+#~ msgstr "Конфигурация сайта"
 
 #~ msgid "Created. ID"
 #~ msgstr "Дата создания. ID"

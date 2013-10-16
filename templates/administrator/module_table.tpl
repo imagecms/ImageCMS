@@ -61,6 +61,9 @@
                                 </thead>
                                 <tbody class="sortable save_positions" data-url="/admin/components/save_components_positions">
                                     {foreach $installed as $module}
+                                        {if $module.name == 'shop'}
+                                            {continue;}
+                                        {/if}
                                         <tr data-id="{$module.id}">
                                             <td class="t-a_c">
                                                 <span class="frame_label">

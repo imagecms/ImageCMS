@@ -321,6 +321,44 @@ $shopMenu = array(
                 'text'      => lang('Custom fields', 'admin'),
             ),
         )
+    ),
+    array(
+        'link'      => '',
+        'text'      => lang('System', 'admin'),
+        'icon'      => 'icon-hdd',
+        'subMenu'   => array(
+            array(
+                'link'      => '/admin/settings',
+                'text'      => lang('Global settings', 'admin'),
+            ),
+            array(
+                'link'      => '/admin/components/cp/template_editor',
+                'text'      => lang('Template editor', 'admin'),
+            ),
+            array(
+                'link'      => '/admin/languages',
+                'text'      => lang('Languages', 'admin'),
+            ),
+            array(
+                'link'      => '/admin/cache_all',
+                'text'      => lang('Cache', 'admin'),
+            ),
+            array(
+                'divider'   => true
+            ),
+            array(
+                'link'      => '/admin/admin_logs',
+                'text'      => lang('Events journal', 'admin'),
+            ),
+            array(
+                'link'      => '/admin/backup',
+                'text'      => lang('Backup', 'admin'),
+            ),
+            array(
+                'link'      => '/admin/rbac/roleList',
+                'text'      => lang('Roles list', 'admin'),
+            ),
+        )
     )
 );
 
