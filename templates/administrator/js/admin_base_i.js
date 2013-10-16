@@ -996,6 +996,7 @@ $(document).ready(function() {
             }
             return true;
         }
+
         // go furter if one image is selected
         var selectedImageUrl = $("span.selected_image img").attr("src");
         $("#" + trId + " input.changeImage").val(selectedImageUrl);
@@ -1005,7 +1006,8 @@ $(document).ready(function() {
         $(img).addClass('img-polaroid').css({
             width: '100px'
         });
-        $("#" + trId).find('.control-group .controls').html(img);
+        $("#" + trId).find('.control-group .controls img').remove().html(img);
+        $("#" + trId).find('.control-group .controls').append(img);
         // hiding and clearing modal
         $('#images_modal').modal("hide");
         $("#url_image").val("");
