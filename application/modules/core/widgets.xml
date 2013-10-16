@@ -3,7 +3,7 @@
 
     <widget>
         <title>Последние новости</title>
-        <description>Выводит список последних новостей.</description>
+        <description>Отображение последних либо популярных страниц из выбранной категории.</description>
         <method>recent_news</method>
     </widget>
 

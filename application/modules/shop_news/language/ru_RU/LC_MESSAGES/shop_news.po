@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 18:17+0300\n"
+"POT-Creation-Date: 2013-10-16 16:34+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -16,25 +16,28 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_temp2.php:6
+#: /var/www/image.loc/_tempLangs.php:6
 msgid "The news for products category"
 msgstr "Новости для категории продуктов"
 
-#: /var/www/image.loc/_temp2.php:7
+#: /var/www/image.loc/_tempLangs.php:7
 msgid "Show in categories"
 msgstr "Показать в категориях"
 
-#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_tempLangs.php:8
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../../../module_info.php:6
-msgid "Shop News"
-msgstr "Новости магазина"
+#: module_info.php:6
+msgid "Shop News displaying"
+msgstr "Отображение новостей магазина"
 
-#: ../../../module_info.php:7
-msgid "Shop News module"
-msgstr "Модуль новостей магазина"
+#: module_info.php:7
+msgid "Allows you to view shop news"
+msgstr "Позволяет просматривать новости магазина"
+
+#~ msgid "Shop News"
+#~ msgstr "Новости магазина"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

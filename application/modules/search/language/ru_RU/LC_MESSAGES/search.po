@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 16:52+0300\n"
+"POT-Creation-Date: 2013-10-16 15:04+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -16,30 +16,34 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: ../../../search.php:101
+#: ../../../search.php:103
 msgid "Forward"
 msgstr "Вперед"
 
-#: ../../../search.php:102
+#: ../../../search.php:104
 msgid "Beginning"
 msgstr "В начало"
 
-#: ../../../search.php:106
+#: ../../../search.php:108
 msgid "Back"
 msgstr "Назад"
 
-#: ../../../search.php:128
+#: ../../../search.php:130
 #: ../../../module_info.php:4
 msgid "Search"
 msgstr "Поиск"
 
-#: ../../../search.php:185
+#: ../../../search.php:188
 msgid "Positions saved"
 msgstr "Позиции сохранены"
 
-#: ../../../search.php:221
+#: ../../../search.php:224
 msgid "Error. Select or specify the table for search"
 msgstr "Ошибка. Выберите или укажите таблицу для поиска"
+
+#: ../../../module_info.php:5
+msgid "Module includes the ability to search the site"
+msgstr "Модуль включает возможность поиска по сайту"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

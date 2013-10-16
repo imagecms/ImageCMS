@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:34+0300\n"
+"POT-Creation-Date: 2013-10-16 15:45+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,34 +17,37 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ../../../module_info.php:4
+#: module_info.php:4
 msgid "Filter"
 msgstr "Фильтр"
 
-#: ../../../module_info.php:5
-msgid "Search pages and categories to add. fields"
-msgstr "Поиск страниц и категорий для доюаления полей"
+#: module_info.php:5
+msgid "Allows you to add filters to search by additional fields in ImageCMS Corporate"
+msgstr "Позволяет добавлять фильтры для поиска по дополнительным полям в ImageCMS Corporate"
 
-#: ../../../filter.php:29
+#: filter.php:29
 msgid "At your request, page not found."
 msgstr "По вашему запросу  ничего не найдено."
 
-#: ../../../filter.php:36
-#: ../../../filter.php:162
+#: filter.php:35
+#: filter.php:152
 msgid "Search"
 msgstr "Поиск"
 
-#: ../../../filter.php:60
+#: filter.php:60
 msgid "The first"
 msgstr "Первый"
 
-#: ../../../filter.php:61
+#: filter.php:61
 msgid "Last"
 msgstr "Последний"
 
-#: ../../../filter.php:142
+#: filter.php:133
 msgid "Group has not fields"
 msgstr "Группа без полей"
+
+#~ msgid "Search pages and categories to add. fields"
+#~ msgstr "Поиск страниц и категорий для доюаления полей"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"
