@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 17:25+0300\n"
+"POT-Creation-Date: 2013-10-16 15:09+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,97 +17,102 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_temp2.php:5
-msgid "Batch"
-msgstr "Пакет"
+#: /var/www/image.loc/_tempLangs.php:5
+msgid "back"
+msgstr "назад"
 
-#: /var/www/image.loc/_temp2.php:6
-msgid "Sending emails"
-msgstr "Отправка электронной почты"
+#: /var/www/image.loc/_tempLangs.php:6
+msgid "Email mailing"
+msgstr "E-mail рассылки"
 
-#: /var/www/image.loc/_temp2.php:7
+#: /var/www/image.loc/_tempLangs.php:7
 msgid "Send a letter"
 msgstr "Отправить письмо"
 
-#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_tempLangs.php:8
 msgid "Properties"
 msgstr "Свойства"
 
-#: /var/www/image.loc/_temp2.php:9
+#: /var/www/image.loc/_tempLangs.php:9
 msgid "Theme"
 msgstr "Тема"
 
-#: /var/www/image.loc/_temp2.php:10
+#: /var/www/image.loc/_tempLangs.php:10
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: /var/www/image.loc/_temp2.php:11
+#: /var/www/image.loc/_tempLangs.php:11
 msgid "Your e-mail"
 msgstr "Ваш e-mail"
 
-#: /var/www/image.loc/_temp2.php:12
+#: /var/www/image.loc/_tempLangs.php:12
 msgid "Message"
 msgstr "Сообщение"
 
-#: /var/www/image.loc/_temp2.php:13
+#: /var/www/image.loc/_tempLangs.php:13
 msgid "Hello"
 msgstr "Привет"
 
-#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_tempLangs.php:14
 msgid "best regards, administration"
 msgstr "с уважением, администрация"
 
-#: /var/www/image.loc/_temp2.php:15
+#: /var/www/image.loc/_tempLangs.php:15
 msgid "Send to groups"
 msgstr "Отправить группам"
 
-#: /var/www/image.loc/_temp2.php:16
+#: /var/www/image.loc/_tempLangs.php:16
 msgid "Formatting"
 msgstr "Форматирование"
 
-#: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_tempLangs.php:17
 msgid "HTML"
 msgstr "HTML"
 
-#: /var/www/image.loc/_temp2.php:18
+#: /var/www/image.loc/_tempLangs.php:18
 msgid "Plain Text"
 msgstr "Обычный текст"
 
-#: ../../../admin.php:101
+#: ../../../admin.php:95
 msgid "Send"
 msgstr "Послать"
 
-#: ../../../admin.php:101
+#: ../../../admin.php:95
 msgid "users e-mail with a subject"
 msgstr "пользовательский e-mail с темой"
 
-#: ../../../admin.php:109
+#: ../../../admin.php:103
 msgid "message has been sent"
 msgstr "сообщение было отправлено"
 
-#: ../../../admin.php:109
+#: ../../../admin.php:103
 msgid "Number of e-mails sent"
 msgstr "Количество отправленных писем"
 
-#: ../../../admin.php:109
+#: ../../../admin.php:103
 msgid "pcs."
 msgstr "шт."
 
-#: ../../../admin.php:113
+#: ../../../admin.php:105
 msgid "none of the messages"
 msgstr "ни одно из сообщений"
 
-#: ../../../admin.php:113
+#: ../../../admin.php:105
 msgid "Number not"
 msgstr "Число не"
 
-#: ../../../module_info.php:4
-msgid "Email sending"
-msgstr "Отправка электронной почты"
-
 #: ../../../module_info.php:5
-msgid "Users group email sending module"
-msgstr "Модуль отправки электронной почты граппам пользователей"
+msgid "Allows e-mail newsletter for registered users."
+msgstr "Позволяет проводить e-mail рассылки зарегистрированными пользователям сайта."
+
+#~ msgid "Batch"
+#~ msgstr "Пакет"
+
+#~ msgid "Sending emails"
+#~ msgstr "Отправка электронной почты"
+
+#~ msgid "Users group email sending module"
+#~ msgstr "Модуль отправки электронной почты граппам пользователей"
 
 #~ msgid "Bach"
 #~ msgstr "Холостяк"

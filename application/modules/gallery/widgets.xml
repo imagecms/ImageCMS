@@ -3,7 +3,7 @@
 
     <widget>
         <title>Последние изображения</title>
-        <description>Выводит список последних изображений.</description>
+        <description>Отображение последних добавленных в галерею изображений.</description>
         <method>latest_fotos</method>
     </widget>
 

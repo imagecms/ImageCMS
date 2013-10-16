@@ -2,7 +2,7 @@
 
 $com_info = array(
 	'menu_name'   => lang('Search', 'search'),
-	'description' => '',                
+	'description' => lang('Module includes the ability to search the site', 'search'),                
 	'admin_type'  => 'inside',            
 	'window_type' => 'xhr',               
         'w'           => 600,                 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-25 15:47+0300\n"
+"POT-Creation-Date: 2013-10-16 14:41+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -74,8 +74,8 @@ msgid "successfully added"
 msgstr "успешно обновлена"
 
 #: /var/www/image.loc/_tempLangs.php:33
-msgid "New Level"
-msgstr "New Level"
+msgid "Online store template settings"
+msgstr "Настройки шаблона интернет-магазина"
 
 #: /var/www/image.loc/_tempLangs.php:34
 #: /var/www/image.loc/_tempLangs.php:52
@@ -157,8 +157,14 @@ msgid "Go back"
 msgstr "Назад"
 
 #: module_info.php:7
-msgid "New Level module"
-msgstr "Модуль New Level"
+msgid "New Level template settings. Managing blocks and columns."
+msgstr "Настройки шаблона New Level. Управление блоками и колонками."
+
+#~ msgid "New Level"
+#~ msgstr "New Level"
+
+#~ msgid "New Level module"
+#~ msgstr "Модуль New Level"
 
 #~ msgid "Data saved"
 #~ msgstr "Данные сохранены"

@@ -3,7 +3,7 @@
 
     <widget>
         <title>Облако Тегов</title>
-        <description> </description>
+        <description>Отображение облака самых популярных тегов к страницам сайта.</description>
         <method>tags_cloud</method>
     </widget>
 
