@@ -79,8 +79,8 @@ class Comments_Widgets extends MY_Controller {
                 break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('comments_count', lang("Number of comments"), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('symbols_count', lang("Number of characters"), 'required|trim|is_natural');
+                $this->form_validation->set_rules('comments_count', lang("Number of comments", 'comments'), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('symbols_count', lang("Number of characters", 'comments'), 'required|trim|is_natural');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors());
