@@ -52,6 +52,7 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 .vertical-layout .right-product-left{width: auto;float: none;margin-bottom: 20px;}
 .vertical-layout .right-product-right{width: 100%;float: none;margin-bottom: 20px;}
 .vertical-layout .left-product{width: 35%;float: left;}
+.vertical-layout .content .container{padding: 0;}
 
 .comment__icsi-css .frame-list-comment__icsi-css{max-width: 650px;}
 .comment__icsi-css .main-form-comments__icsi-css{max-width: 650px;}

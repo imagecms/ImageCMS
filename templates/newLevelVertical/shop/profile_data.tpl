@@ -46,9 +46,10 @@
     {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
     {if ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}
         <div class="layout-highlight info-discount">
-            <div class="title-default">
+            
+            {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}<div class="title-default">
                 <div class="title">{lang('Скидки','newLevel')}</div>
-            </div>
+            </div>{/if}
             <div class="content">
                 <ul class="items items-info-discount">
                     <li class="inside-padd">
