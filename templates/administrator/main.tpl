@@ -107,12 +107,14 @@
             </header>
 
             {if $CI->dx_auth->is_logged_in()}
-                <div class="frame_nav" id="mainAdminMenu">
+                <div class="frame_nav">
+                   {include('templates/administrator/inc/menus.php');}
+                    {if !SHOP_INSTALLED}
                     <div class="container" id="baseAdminMenu">
                         <nav class="navbar navbar-inverse">
 
 
-                            {include('templates/administrator/inc/menus.php');}
+                            
 
                             <ul class="nav">
                                 {foreach $baseMenu as $li}
@@ -155,15 +157,15 @@
                                 {/foreach}
                             </ul>
 
-                            {if SHOP_INSTALLED}
-                                <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>
-                            {/if}
+                            {//if SHOP_INSTALLED}
+                               <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
+                            {///if}
                             {$CI->lang->load($langDomain)}
                         </nav>
                     </div>
-
+                        {/if}
                     {if SHOP_INSTALLED}
-                        <div style="display:none;" class="container" id="shopAdminMenu"  >
+                        <div class="container" >
                             <nav class="navbar navbar-inverse">
                                 <ul class="nav">
                                     {foreach $shopMenu as $li}
@@ -204,7 +206,7 @@
                                         </li>
                                     {/foreach}
                                 </ul>
-                                <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site','admin')} </a>
+                                <!--<a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site','admin')} </a>-->
                             </nav>
                         </div>
                     {/if}
