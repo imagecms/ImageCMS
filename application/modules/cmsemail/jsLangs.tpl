@@ -1,4 +1,4 @@
-<script> langs['4444dd'] = "{lang('4444dd', 'cmsemail')}";
+<script>
 langs['Error'] = "{lang('Error', 'cmsemail')}";
 langs['Variable is not removed'] = "{lang('Variable is not removed', 'cmsemail')}";
 langs['Message'] = "{lang('Message', 'cmsemail')}";
