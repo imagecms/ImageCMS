@@ -59,13 +59,13 @@
                 <ul>
                     <li>
                         <div class="c_9">Главный офис:</div>
-                        <div class="c_w">Улица Шевченка, Буд. 22, офис: 39, Київ</div>
+                        <div class="c_w">{echo siteinfo('siteinfo_address')}</div>
                     </li>
                     <li>
-                        <div class="c_w f-s_0"><span class="f-s_16"><span>(097)</span> <span class="f-w_b">567-43-21</span></span></div>
+                        <div class="c_w f-s_0"><span class="f-s_16"><span class="f-w_b">{echo siteinfo('siteinfo_mainphone')}</span></span></div>
                     </li>
-                    <li><a class="f-s_0" href="skype:icon_skype"> <span class="icon_skype">&nbsp;</span> <span class="text-el">imagecms</span> </a></li>
-                    <li><a class="f-s_0" href="mailto:partner@imagecms.net"> <span class="icon_mail">&nbsp;</span> <span class="text-el">partner@imagecms.net</span> </a></li>
+                    <li><a class="f-s_0" href="skype:icon_skype"> <span class="icon_skype">&nbsp;</span> <span class="text-el">{echo siteinfo('Skype')}</span> </a></li>
+                    <li><a class="f-s_0" href="mailto:{echo siteinfo('Email')}"> <span class="icon_mail">&nbsp;</span> <span class="text-el">{echo siteinfo('Email')}</span> </a></li>
                 </ul>
                 {/*widget('footer_contacts')*/}
             </div>
@@ -76,7 +76,7 @@
 <div class="footer-footer">
     <div class="container">
         <div class="f_l">
-            <div class="c_w">&copy; Интернет-магазин &laquo;Imageshop&raquo;, 2013</div>
+            <div class="c_w">{echo siteinfo('siteinfo_companytype')}</div>
             <div class="c_9">Все права защищены</div>
             {/*widget('copy_right')*/}
         </div>
