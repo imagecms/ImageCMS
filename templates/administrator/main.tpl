@@ -139,7 +139,7 @@
                                                                 {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
                                                             {/if}
                                                             {foreach $components as $component}
-                                                            <li><a href="/admin/components/cp/{$component['name']}" class="pjax">{$component['menu_name']}</a></li>
+                                                            <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
                                                             {/foreach}
                                                         {/if}
                                                     <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)$sli.text ? $sli.text : $sli.text}</a>{else:}{echo (bool)$sli.text ? $sli.text : $sli.text}{/if}</li>
@@ -184,11 +184,11 @@
                                                         </li>
                                                         {if $sli.modulesList}
                                                             {if !$components}
-                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
+                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
                                                             {/if}
                                                             {foreach $components as $component}
                                                                 {if $component['type'] == 'shop'}
-                                                                    <li><a href="/admin/components/cp/{$component['name']}" class="pjax">{$component['menu_name']}</a></li>
+                                                                    <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
                                                                 {/if}
                                                             {/foreach}
                                                             <li class="divider"></li>
