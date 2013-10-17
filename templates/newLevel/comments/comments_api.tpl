@@ -96,7 +96,7 @@
                         </div>
                         {if $comment.rate != 0}
                             <div class="mark-pr">
-                                <span>{lang('Оценка товара:','newLevel')}</span>
+                                <span>{lang('Оценка:','newLevel')}</span>
                                 <div class="star-small d_i-b">
                                     <div class="productRate star-small">
                                         <div style="width: {echo (int)$comment.rate *20}%"></div>
