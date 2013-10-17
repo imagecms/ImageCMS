@@ -60,7 +60,7 @@
                                         </span>
                                     </th>
                                     <th>{lang('Name', 'cmsemail')}</th>
-                                    <th>{lang('Description', 'cmsemail')}</th>
+                                    <th>{lang('Template variable', 'cmsemail')}</th>
                                     <th>{lang('Theme', 'cmsemail')}</th>
                                     <th>{lang("From", 'cmsemail')}</th>
                                 </tr>
@@ -78,10 +78,10 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a class="pjax" href="/admin/components/cp/cmsemail/edit/{echo $model.id}/#settings">{echo $model.name}</a>
+                                            <p>{echo $model.description}</p>
                                         </td>
                                         <td>
-                                            <p>{echo $model.description}</p>
+                                            <a class="pjax" href="/admin/components/cp/cmsemail/edit/{echo $model.id}/#settings">{echo $model.name}</a>
                                         </td>
                                         {$settings = unserialize($model.settings)}
                                         <td>{echo $model.theme}</td>
