@@ -5375,7 +5375,7 @@ msgstr "Страница удалена."
 
 #: pages.php:711
 msgid "Successful delete"
-msgstr "/* Успешное удаление */"
+msgstr "Успешное удаление"
 
 #: pages.php:794
 msgid "Successfull moving"
