@@ -187,9 +187,7 @@
                                                                 {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
                                                             {/if}
                                                             {foreach $components as $component}
-                                                                {if $component['type'] == 'shop'}
                                                                     <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
-                                                                {/if}
                                                             {/foreach}
                                                             <li class="divider"></li>
                                                             <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
