@@ -407,6 +407,17 @@ $shopMenu = array(
                 'link' => '/admin/rbac/roleList',
                 'text' => lang('Roles list', 'admin'),
             ),
+             array(
+                'divider' => true
+            ),
+            array(
+                'link' => '/admin/sys_update',
+                'text' => lang('System update', 'admin'),
+            ),
+            array(
+                'link' => '/admin/sys_info',
+                'text' => lang('System information', 'admin'),
+            ),
         )
     )
 );
