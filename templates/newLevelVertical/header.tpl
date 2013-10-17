@@ -17,11 +17,13 @@
         <!--        Logo-->
         {if  $CI->uri->uri_string() == ''}
             <span class="logo">
-                <img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/>
+                <!--img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/-->
+                <img src="{echo siteinfo('siteinfo_logo')}" alt="logo.png"/>
             </span>
         {else:}
             <a href="{site_url('')}" class="logo">
-                <img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/>
+                <!--img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/-->
+                <img src="{echo siteinfo('siteinfo_logo')}" alt="logo.png"/>
             </a>
         {/if}
         <div class="left-content-header">
@@ -31,8 +33,8 @@
                     <span class="f-s_0">
                         <span class="icon_phone_header"></span>
                         <span class="phone">
-                            <span class="phone-code">(097)</span>
-                            <span class="phone-number">567-43-21</span>
+                            <span class="phone-number">{echo siteinfo('siteinfo_mainphone')}</span>
+
                         </span>
                     </span>
                     <ul class="tabs">
@@ -46,11 +48,11 @@
                 </div>
                 <a href="skype:imagecms" class="f-s_0">
                     <span class="icon_skype"></span>
-                    <span class="text-el">imagecms</span>
+                    <span class="text-el">{echo siteinfo('Skype')}</span>
                 </a>
                 <a href="mailto:partner@imagecms.net" class="f-s_0">
                     <span class="icon_mail"></span>
-                    <span class="text-el">partner@imagecms.net</span>
+                    <span class="text-el">{echo siteinfo('Email')}</span>
                 </a>
                 <!--                End. Contacts block-->
             </div>
@@ -82,9 +84,9 @@
 {if strpos($CI->uri->uri_string, 'search') !== false}
     {literal}
         <script>
-            $(document).on('scriptDefer', function(){
-            var input = $('#inputString');
-            input.setCursorPosition(input.val().length);
+            $(document).on('scriptDefer', function() {
+                var input = $('#inputString');
+                input.setCursorPosition(input.val().length);
             });
         </script>
     {/literal}
