@@ -1258,6 +1258,7 @@ $(document).ready(function() {
     });
 
 
+
     // shop - settings - count of products on site
     $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {
         var currentValue = $(this).val();
@@ -1271,6 +1272,7 @@ $(document).ready(function() {
             caret(this, caretPosition.begin)
         }
     });
+
 
 
 
@@ -1464,11 +1466,7 @@ $(document).ready(function() {
     });
 
 
-    // tooltips
-    $('#site_info_tab .icon-info-sign').tooltip({
-        trigger: 'hover',
-        placement: 'top'
-    });
+   
 
     /* --------------------- end of Siteinfo -------------------------*/
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 14:18+0300\n"
+"POT-Creation-Date: 2013-10-17 13:19+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -100,7 +100,7 @@ msgstr "Ваш API ID"
 
 #: /var/www/image.loc/_tempLangs.php:26
 msgid "Google +"
-msgstr "Google +"
+msgstr "Google+"
 
 #: /var/www/image.loc/_tempLangs.php:28
 msgid "Go back"

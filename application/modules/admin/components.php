@@ -195,7 +195,7 @@ class Components extends BaseAdminController {
                             'com_name' => $file,
                             'admin_file' => $admin_file,
                             'installed' => $ins,
-                            'type' =>$com_info['type'],
+                            'type' => $com_info['type'],
                         );
 
                         array_push($components, $new_com);
@@ -205,6 +205,42 @@ class Components extends BaseAdminController {
             closedir($com_path);
         }
 
+        return $components;
+    }
+
+    /**
+     * Get components which show in menu and have admin.php
+     * @return array|boolean
+     */
+    function find_components_for_menu_list() {
+        /** Get all components which show in menu */
+        $components = $this->db
+                ->where('in_menu', 1)
+                ->order_by('position', 'asc')
+                ->get('components')
+                ->result_array();
+        /*         * If not components for show in menu */
+        if (!$components) {
+            return false;
+        } else {
+            /** Delete components which not have admin.php */
+            foreach ($components as $key => $value) {
+                if (!file_exists(APPPATH . 'modules/' . $value['name'] . '/admin.php')) {
+                    unset($components[$key]);
+                } else {
+                    $info_file = APPPATH . 'modules/' . $value['name'] . '/module_info.php';
+
+                    $lang = new MY_Lang();
+                    $lang->load($file);
+
+                    if (file_exists($info_file)) {
+                        include ($info_file);
+                        $components[$key]['menu_name'] = $com_info['menu_name'];
+                        $components[$key]['type'] = $com_info['type'];
+                    }
+                }
+            }
+        }
         return $components;
     }
 
@@ -442,3 +478,5 @@ class Components extends BaseAdminController {
 }
 
 /* End of components.php */
+
+    

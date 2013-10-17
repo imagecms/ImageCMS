@@ -29,9 +29,9 @@ class Admin_logs extends BaseAdminController {
         } else {
             $messages = FALSE;
         }
-        
+
         $total = $this->db->get('logs')->num_rows();
-        
+
         if ($total > $this->per_page) {
             $this->load->library('Pagination');
 
@@ -56,6 +56,10 @@ class Admin_logs extends BaseAdminController {
             $config['num_tag_close'] = '</li>';
             $config['num_tag_open'] = '<li>';
             $config['num_tag_close'] = '</li>';
+            $config['last_tag_open'] = '<li>';
+            $config['last_tag_close'] = '</li>';
+            $config['first_tag_open'] = '<li>';
+            $config['first_tag_close'] = '</li>';
 
             $this->pagination->num_links = 5;
             $this->pagination->initialize($config);
@@ -64,6 +68,7 @@ class Admin_logs extends BaseAdminController {
 
         $this->template->add_array(array(
             'messages' => $messages,
+//            'languages' => ShopCore::$ci->cms_admin->get_langs(true),
             'paginator' => $this->pagination->create_links_ajax(),
         ));
 

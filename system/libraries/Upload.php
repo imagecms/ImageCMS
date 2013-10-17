@@ -1019,6 +1019,7 @@ class CI_Upload {
 
         foreach ($msg as $val) {
             $msg = ($CI->lang->line($val) === FALSE) ? $val : $CI->lang->line($val);
+            
             $this->error_msg[] = $msg;
             log_message('error', $msg);
         }

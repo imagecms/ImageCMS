@@ -418,14 +418,13 @@ a:focus, a:active {color: #51d2ff;}
 
 .baner .content-carousel{background-color: #fff;}
 .baner li > a:focus{outline: 1px solid #51d2ff;}
-.frame-baner-start_page .content-carousel{border: 5px solid #fff;}
-.frame-baner-start_page .content-carousel{-moz-border-radius: 8px;-webkit-border-radius: 8px;border-radius: 8px;-moz-box-shadow: 0 6px 12px rgba(0,0,0,0.1);-webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.1);box-shadow: 0 6px 12px rgba(0,0,0,0.1);}
+.frame-baner-start_page .content-carousel{border: 5px solid #fff;-moz-border-radius: 8px;-webkit-border-radius: 8px;border-radius: 8px;-moz-box-shadow: 0 6px 12px rgba(0,0,0,0.1);-webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.1);box-shadow: 0 6px 12px rgba(0,0,0,0.1);}
 .frame-baner-catalog .content-carousel{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
 
 .frame-baner-start_page{background: url("images/fon_b.png") repeat;}
 .vertical-layout .frame-baner-start_page{background: none;}
 .frame-baner-start_page:before{content: "";position: absolute;left: -5%;top: -2px;width: 110%;height: 2px;-moz-box-shadow: 0 1px 9px rgba(0,0,0,0.1);-webkit-box-shadow: 0 1px 9px rgba(0,0,0,0.1);box-shadow: 0 1px 9px rgba(0,0,0,0.1);}
-.baner .prev, .baner .next{width: 42px;height: 42px;background-color: #fff;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);-moz-opacity: 0.85;-khtml-opacity: 0.85;opacity: 0.85;}
+.baner .prev, .baner .next{width: 42px;height: 42px;margin-top: -21px;background-color: #fff;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);-moz-opacity: 0.85;-khtml-opacity: 0.85;opacity: 0.85;}
 
 .pager > a{margin: 0 3px;display: inline-block;width: 16px;height: 16px;-moz-border-radius: 8px;-webkit-border-radius: 8px;border-radius: 8px;background-color: #fff;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=40);-moz-opacity: 0.4;-khtml-opacity: 0.4;opacity: 0.4;}
 .pager > a.activeSlide{
@@ -509,9 +508,11 @@ footer{
     background: linear-gradient(to bottom,  #1d1d1d 0%,#252525 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1d1d1d', endColorstr='#252525',GradientType=0 ); /* IE6-9 */
 }
-.footer-footer:before{content: "";position: absolute;left: 0;top: -3px;width: 100%;height: 5px;background-position: 0 -84px;}
+.footer-footer:before{content: "";position: absolute;left: 0;width: 100%;height: 3px;background-position: 0 -84px;}
 
 footer .content-footer{}
+footer li > a, footer li > span, footer li > button{text-decoration: none;text-transform: uppercase;display: inline-block;max-width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+footer [class^="box"] .main-title{text-transform: uppercase;}
 footer a, footer li a:visited, footer li button{color: #fff;}
 footer .active span, footer li.active > a{color: #8e8e8e;}
 footer li a:hover, footer li button:hover{color: #51d2ff;}
@@ -1083,7 +1084,7 @@ input[data-rel="plusminus"]{float:right;width: 44px;height: 34px;display: block;
 .tabs-wishlist > li{margin-bottom: 3px;}
 .tabs-wishlist > li > button{padding: 3px 15px 5px;text-align: left;position: relative;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;}
 .tabs-wishlist > .active > button{background-color: #0c99ca;}
-.tabs-wishlist > .active > button:after{content: "";position: absolute;left: 50%;top: 100%;border-width: 6px 7px;border-style: solid;border-color: transparent;border-top-color: #0c99ca;}
+.tabs-wishlist > .active > button:after{content: "";position: absolute;left: 50%;top: 100%;margin-left: -7px;border-width: 6px 7px;border-style: solid;border-color: transparent;border-top-color: #0c99ca;}
 .tabs-wishlist > .active .text-el{color: #fff;border: 0;}
 .frame-tabs-ref{position: relative;z-index: 2;overflow: hidden;-moz-border-radius: 0 3px 3px 3px;-webkit-border-radius: 0 3px 3px 3px;border-radius: 0 3px 3px 3px;}
 /*/tabs*/
@@ -1287,7 +1288,7 @@ input.input-search{-moz-border-radius: 2px 0 0 2px;-webkit-border-radius: 2px 0 
 .page-404 p{color: #999;}
 .page-404 b{color: #666;}
 
-footer:before{background-position: 0 -78px;}
+footer:before{content: "";height: 5px;width: 100%;top: -3px;left: 0;position: absolute;background-position: 0 -78px;}
 footer [class^="box"] > .inside-padd{border-width: 0 1px;border-style: solid;border-right-color: #0d0d0d;border-left-color: #404040;}
 footer .box-1 > .inside-padd{border-left: 0;}
 footer .box-3 > .inside-padd{border-right: 0;}
