@@ -15,7 +15,7 @@
                                 {if  $wish_list_id!=$wish_list.id}
                                     <div class="frame-label">
                                         <span class="niceRadio b_n">
-                                            <input type="radio" name="wishlist" value="{$wish_list.id}" {if $key==0}checked="checked"{/if}>
+                                            <input type="radio" name="wishlist" value="{$wish_list.id}" {if count($wish_lists) > 1}checked="checked"{/if}>
                                         </span>
                                         <div class="name-count">
                                             <span class="text-el">{$wish_list.title}</span>
@@ -36,7 +36,7 @@
                         {if count($wish_lists) < $max_lists_count}
                             <div class="frame-label">
                                 <span class="niceRadio b_n">
-                                    <input type="radio" name="wishlist" value="" data-link='[name="wishListName"]' {if count($wish_lists) == 0}checked="checked"{/if}>
+                                    <input type="radio" name="wishlist" value="" data-link='[name="wishListName"]' {if count($wish_lists) == 1 && $wish_list_id || count($wish_lists) == 0 && !$wish_list_id}checked="checked"{/if}>
                                 </span>
                                 <div class="name-count">
                                     <span class="text-el">{lang('Создать список','newLevel')}</span>
@@ -57,6 +57,8 @@
                             data-source="{if $wish_list_id}{site_url('/wishlist/wishlistApi/moveItem/'.$varId . '/' . $wish_list_id)}{else:}{site_url('/wishlist/wishlistApi/addItem/'.$varId)}{/if}"
                             data-type="json"
                             data-modal="true"
+                            data-effect-on="fadeIn"
+                            data-effect-off="fadeOut"
                             {if $wish_list_id}
                                 data-callback="reload"
                                 data-start="validateWishPopup"

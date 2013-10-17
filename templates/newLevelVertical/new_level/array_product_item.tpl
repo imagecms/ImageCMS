@@ -132,6 +132,8 @@
                         data-modal="true"
 
                         data-drop="#notification"
+                        data-effect-on="fadeIn"
+                        data-effect-off="fadeOut"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                         data-callback="removeItem"
                         ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
@@ -141,6 +143,7 @@
                         type="button"
                         data-drop="#wishListPopup"
                         data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
+                        data-always="true"
                         ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevel')}</span>
                     </button>
                 </div>

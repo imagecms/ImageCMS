@@ -195,7 +195,7 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.5 Premium');
+define('IMAGECMS_NUMBER', '4.5.1 Premium');
 
 define('IMAGECMS_VERSION', '20130926');
 

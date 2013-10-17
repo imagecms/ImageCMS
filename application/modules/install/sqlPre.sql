@@ -216,7 +216,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (261, 'trash', 'trash', 0, 1, 0, NULL, NULL),
 (204, 'mobile', 'mobile', 1, 1, 1, 'a:5:{s:15:"MobileVersionON";s:1:"1";s:17:"MobileVersionSite";s:21:"demoshop.imagecms.net";s:20:"MobileVersionAddress";s:23:"m.demoshop.imagecms.net";s:18:"mobileTemplatePath";s:37:"./templates/commerce_mobiles_new/shop";s:6:"action";s:0:"";}', 5),
 (264, 'language_switch', 'language_switch', 0, 0, 1, NULL, NULL),
-(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL);
+(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL),
+(266, 'imagebox', 'imagebox', 0, 1, 0, NULL, NULL);
 -- --------------------------------------------------------
 
 --
@@ -10612,13 +10613,14 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
 --
 
 INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
-(1, 'make_order', '', 'ImageCMS Shop', 'no-replay@shop.com', '', 'HTML', 1, 1),
-(2, 'change_order_status', '', 'ImageCMS Shop', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(3, 'notification_email', '', 'ImageCMS Shop', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(4, 'create_user', '', 'Admin', 'no-replay@shop.com', '', 'HTML', 1, 1),
+(1, 'make_order', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 1),
+(2, 'change_order_status', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
+(3, 'notification_email', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
+(4, 'create_user', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 1),
 (5, 'forgot_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
 (6, 'change_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(7, 'price_change', '', 'Admin', 'admin@local.loc', 'admin@local.loc', 'HTML', 1, 0);
+(7, 'price_change', '', 'Администрация сайта', 'admin@local.loc', 'admin@local.loc', 'HTML', 1, 0),
+(8, 'wish_list', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -10651,7 +10653,8 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 (5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
 (6, 'ru', 'Смена пароля', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"Новий пароль";}'),
 (7, 'ru', 'Изменение цены', '<p>Цена на $name$ за которым вы следите на сайте $server$ изменилась.<br /> <a title="Посмотреть список слежения" href="$list_url_look$">Посмотреть список слежения</a><br /> <a title="Отписатся от слежения" href="$delete_list_url_look$">Отписатся от слежения</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Изменение цены</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
-(7, 'ua', 'Ціна змінилася', '<p>Ціна на $name$ за яким Ви слідкуєте на сайті $server$ змінилася.<br /> <a title="Переглянути список слідкувань" href="$list_url_look$">Переглянути список слідкувань</a><br /> <a title="Відписатися від слідкування" href="$delete_list_url_look$">Відписатися від слідкування</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Слідкування за ціною</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', '');
+(7, 'ua', 'Ціна змінилася', '<p>Ціна на $name$ за яким Ви слідкуєте на сайті $server$ змінилася.<br /> <a title="Переглянути список слідкувань" href="$list_url_look$">Переглянути список слідкувань</a><br /> <a title="Відписатися від слідкування" href="$delete_list_url_look$">Відписатися від слідкування</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Слідкування за ціною</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
+(8, 'ru', 'Список Желаний', '<h2>Уважаемый $userName$.</h2>\n<p>Вы создали следующий список желаний $wishName$ null</p>\n<div>Ссылка на просмотр списка желаний -&nbsp;&nbsp; $wishLink$ <br /> Количество просмотров списка - $wishListViews$</div>', '<p>Пользователь&nbsp;<span>$userName$ совершил заказ товара&nbsp;</span></p>\n<p><span><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span></span></p>', '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:10:"$wishName$";s:29:"Название списка";s:10:"$wishLink$";s:30:"Ссилка на список";s:15:"$wishListViews$";s:54:"Количество просмотров списка";}');
 
 
 --
