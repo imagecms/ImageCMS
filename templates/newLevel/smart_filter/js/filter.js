@@ -1,6 +1,7 @@
 (function($){
     var framechecks = ".frame-group-checks",
     frameFilter = '.frame-filter',
+    catalogForm = '#catalog_form',
     apply = '.apply';
     function filtertype(el, totalProducts, otherClass) {
         var $this = el.closest(framechecks),
@@ -211,8 +212,7 @@
         };
     })(jQuery);
     function afterAjaxInitializeFilter() {
-        var $sliders = $('.frame-slider'),
-        catalogForm = $('#catalog_form');
+        var $sliders = $('.frame-slider');
 
         $sliders.sliderInit();
         if ($.exists('#catalog_form .lineForm:visible')) {
@@ -308,26 +308,24 @@
         $('.clear-filter').click(function() {
             var nm = $(this).data('name');
             $('#' + nm + ' input').attr('checked', false);
-            catalogForm.submit();
+            $(catalogForm).submit();
             return false;
         });
         $('.clear-slider').click(function() {
             var obj = eval($(this).data('rel'));
             $(obj.minCost).val(obj.defMin);
             $(obj.maxCost).val(obj.defMax);
-            catalogForm.submit();
+            $(catalogForm).submit();
 
             return false;
         });
     }
     function ajaxRecount(el, slChk) {
         $(frameFilter).children(preloader).show();
-        //    var catalogForm = $('#catalog_form');
-        //    catalogForm.submit();
+        //    $(catalogForm).submit();
 
-        var catalogForm = $('#catalog_form'),
-        $this = el,
-        data = catalogForm.serialize(),
+        var $this = el,
+        data = $(catalogForm).serialize(),
         catUrl = window.location.pathname,
         catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
         $.ajax({
@@ -362,7 +360,7 @@
         $(frameFilter).children(preloader).hide();
         afterAjaxInitializeFilter();
         $(apply).find('a').click(function() {
-            catalogForm.submit();
+            $(catalogForm).submit();
             return false;
         });
     });
