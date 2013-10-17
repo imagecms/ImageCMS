@@ -83,6 +83,8 @@
                                                     data-always="true"
                                                     onclick="serializeForm(this)"
                                                     data-drop="#notification"
+                                                    data-effect-on="fadeIn"
+                                                    data-effect-off="fadeOut"
                                                     data-callback="createWishList"
                                                     >
                                                     <span class="text-el">{lang('Создать новий список','newLevel')}</span>
@@ -149,6 +151,9 @@
                                                         data-drop="#notification"
                                                         data-callback="removeWL"
                                                         data-confirm="true"
+
+                                                        data-effect-on="fadeIn"
+                                                        data-effect-off="fadeOut"
                                                         >
                                                         <span class="icon_remove"></span>
                                                         <span class="text-el d_l_1">{lang('Удалить список','newLevel')}</span>
@@ -253,6 +258,9 @@
                                                     data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
                                                     data-callback="deleteImage"
                                                     data-wishlist="delete_img"
+
+                                                    data-effect-on="fadeIn"
+                                                    data-effect-off="fadeOut"
                                                     >
                                                     <span class="icon_remove"></span>
                                                 </button>
@@ -306,6 +314,9 @@
                                             data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
                                             data-type="json"
                                             data-modal="true"
+
+                                            data-effect-on="fadeIn"
+                                            data-effect-off="fadeOut"
 
                                             data-drop="#notification"
                                             onclick="serializeForm(this)"

@@ -963,10 +963,8 @@ function banerResize(el) {
             $this.css('height', h + $this.children().outerHeight() - $this.children().height())
         }
         else {
-            $this.find('img').each(function() {
-                var $this = $(this);
-                $this.css('margin-left', -$this.css('max-width', 'none').actual('width') / 2);
-            });
+            var img = $this.find('img');
+            img.css('margin-left', -img.filter(':visible').css('max-width', 'none').actual('width') / 2);
         }
     });
 }
@@ -1633,7 +1631,10 @@ function init() {
     tovarChangeCount();
     /*/changecount product in category and product*/
     
-    $('#suggestions').autocomplete();
+    $('#suggestions').autocomplete({
+        minValue: 3,
+        blockEnter: false        
+    });
     drawIcons($(selIcons));
     showHidePart($('.sub-category'));
     showHidePart($('.patch-product-view'));
