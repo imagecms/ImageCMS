@@ -18,7 +18,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Users list', 'wishlist')}</span>
+                <span class="title">{lang('Wish Lists', 'wishlist')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">

@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Site configuration','admin')}</span>
+                <span class="title">{lang('Global settings','admin')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -15,8 +15,8 @@
         <div class="row-fluid">
             <div class="span3 m-t_10">
                 <ul class="nav myTab nav-tabs nav-stacked">
-                    <li class="active"><a href="#setings">{lang('Settings',"admin")}</a></li>
-                    <li><a href="#seo">SEO</a></li>
+                    <li class="active"><a href="#setings">{lang('General Settings',"admin")}</a></li>
+                    <li><a href="#seo">{lang('Analysts settings', 'admin')}</a></li>
                     <li><a href="#homePage">{lang('Main page','admin')}</a></li>
                     <li><a href="#metatag">{lang('Management of Meta Tags','admin')}</a></li>  
                     <li><a href="#metatag_edit">{lang('Enter Meta Tags','admin')}</a></li>
@@ -31,7 +31,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('Settings',"admin")}
+                                            {lang('General Settings',"admin")}
                                         </th>
                                     </tr>
                                 </thead>
@@ -107,7 +107,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('Options', 'admin')}
+                                            {lang('Analysts settings', 'admin')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -381,7 +381,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('Settings', 'admin')}
+                                            {lang('Site information','admin')}
                                         </th>
                                     </tr>
                                 </thead>

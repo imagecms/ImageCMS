@@ -2,8 +2,7 @@
 /*
 /var/www/image.loc/application/modules/cmsemail/assets/js/email.js*/
 
-echo " <script> langs = {}; langs['4444dd'] = ". lang('4444dd', 'cmsemail') .";
-langs['Error'] = ". lang('Error', 'cmsemail') .";
+echo " <script> langs = {}; langs['Error'] = ". lang('Error', 'cmsemail') .";
 langs['Variable is not removed'] = ". lang('Variable is not removed', 'cmsemail') .";
 langs['Message'] = ". lang('Message', 'cmsemail') .";
 langs['Variable successfully removed'] = ". lang('Variable successfully removed', 'cmsemail') .";

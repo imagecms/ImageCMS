@@ -23,7 +23,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("User Manager", 'user_manager')}</span>
+                <span class="title">{lang("Corporate site users", 'user_manager')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">

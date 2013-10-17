@@ -16,17 +16,19 @@ class New_level extends MY_Controller {
     }
 
     public function index() {
-
+        
     }
 
     public function autoload() {
-        
-        $settings = $this->new_level_model->getthema();
+        $colorScheme = $this->getColorScheme();
+        $this->template->assign('colorScheme', $colorScheme);
+    }
 
-        if (!$settings)
-            $settings = 'css/color_scheme_1';
-
-        $this->template->assign('colorScheme', $settings);
+    public function getColorScheme() {
+        $colorScheme = $this->new_level_model->getthema();
+        if (!$colorScheme)
+            $colorScheme = 'css/color_scheme_1';
+        return $colorScheme;
     }
 
     /**

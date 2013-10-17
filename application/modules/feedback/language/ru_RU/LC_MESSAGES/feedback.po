@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27 14:43+0300\n"
-"PO-Revision-Date: 2013-09-27 14:44+0300\n"
+"POT-Creation-Date: 2013-10-16 15:06+0300\n"
+"PO-Revision-Date: 2013-10-16 15:06+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -93,9 +93,13 @@ msgid "Settings have been saved"
 msgstr "Настройки сохранены"
 
 #: module_info.php:4
-#: feedback.php:58
+#: feedback.php:59
 msgid "Feedback"
 msgstr "Обратная связь"
+
+#: module_info.php:5
+msgid "Manage and configure the feedback form on the site"
+msgstr "Управление и настройки формы обратной связи на сайте"
 
 #: feedback.php:26
 msgid "Field is required"
@@ -117,29 +121,29 @@ msgstr "Длина больше максимальной"
 msgid "Improper protection code"
 msgstr "Неправильная защита кода"
 
-#: feedback.php:69
-#: feedback.php:83
-#: feedback.php:100
+#: feedback.php:70
+#: feedback.php:84
+#: feedback.php:101
 msgid "Name"
 msgstr "Название"
 
-#: feedback.php:71
-#: feedback.php:82
-#: feedback.php:99
+#: feedback.php:72
+#: feedback.php:83
+#: feedback.php:100
 msgid "Theme"
 msgstr "Тема"
 
-#: feedback.php:74
-#: feedback.php:76
+#: feedback.php:75
+#: feedback.php:77
 msgid "Code protection"
 msgstr "Защитный код"
 
-#: feedback.php:84
-#: feedback.php:101
+#: feedback.php:85
+#: feedback.php:102
 msgid "E-mail"
 msgstr "Электронная почта"
 
-#: feedback.php:92
+#: feedback.php:93
 msgid "Error"
 msgstr "Ошибка"
 
