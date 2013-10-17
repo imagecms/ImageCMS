@@ -14,9 +14,9 @@
             {$Comments = $CI->load->module('comments')->init($page)}
             <script type="text/javascript">
                 {literal}
-                        $(function() {
-                            renderPosts($('.for_comments'));
-                        });
+                    $(function() {
+                        renderPosts($('.for_comments'));
+                    });
                 {/literal}
             </script>
             <div id="comment">
