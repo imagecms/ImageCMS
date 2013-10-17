@@ -204,6 +204,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 18),
 (121, 'shop', 'shop', 1, 0, 0, NULL, 17),
 (137, 'mailer', 'mailer', 1, 0, 0, NULL, 2),
+(181, 'shop_news', 'shop_news', 1, 1, 0, NULL, NULL),
 (153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', NULL),
 (177, 'banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 55),
 (205, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, NULL),
@@ -9999,6 +10000,17 @@ CREATE TABLE IF NOT EXISTS `trash` (
   `trash_type` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_shop_news`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_shop_news` (
+  `content_id` int(11) NOT NULL,
+  `shop_categories_ids` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 

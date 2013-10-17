@@ -170,7 +170,7 @@ var Comments = {
             afterClick: function(el, value) {
                 if (el.hasClass("clicktemprate")) {
                     $('.productRate > div.for_comment').css("width", value * 20 + '%');
-                    $('#ratec').attr('value', value);
+                    $('.ratec').attr('value', value);
                 }
             }
         });
@@ -281,8 +281,8 @@ var Comments = {
                     $('.comment_text').each(function() {
                         $(this).val('');
                     });
-                    $('#comment_plus').val('');
-                    $('#comment_minus').val('');
+                    $('.comment_plus').val('');
+                    $('.comment_minus').val('');
                     Comments.renderPosts($(el).closest('.for_comments'));
                 }
                 else {
