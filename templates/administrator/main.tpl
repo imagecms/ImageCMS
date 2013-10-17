@@ -40,8 +40,8 @@
 
             <header>
                 <section class="container">
-                    {if $ADMIN_URL}
-                        <a href="{$ADMIN_URL}dashboard" class="logo pull-left pjax">
+                     {if SHOP_INSTALLED}
+                        <a href="{base_url('admin/components/run/shop/dashboard')}" class="logo pull-left pjax">
                         {else:}
                             <a href="/admin/dashboard" class="logo pull-left pjax">
                             {/if}
