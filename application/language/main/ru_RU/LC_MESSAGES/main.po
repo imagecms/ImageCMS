@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 16:05+0300\n"
+"POT-Creation-Date: 2013-10-17 12:15+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -24,6 +24,7 @@ msgstr ""
 "X-Poedit-SearchPath-6: ../../../../../application/modules/shop/helpers\n"
 "X-Poedit-SearchPath-7: ../../../../../system/language/form_validation\n"
 "X-Poedit-SearchPath-8: ../../../../../system/language/email_lang\n"
+"X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
 
 #: ../../../../../application/helpers/category_helper.php:86
 msgid "No category"
@@ -257,9 +258,9 @@ msgstr "Редактирование файлов"
 msgid "Edit Folders"
 msgstr "Редактирование папок"
 
-#: ../../../../../application/libraries/DX_Auth.php:1230
-#: ../../../../../application/libraries/DX_Auth.php:1235
-#: ../../../../../application/libraries/DX_Auth.php:1238
+#: ../../../../../application/libraries/DX_Auth.php:1232
+#: ../../../../../application/libraries/DX_Auth.php:1237
+#: ../../../../../application/libraries/DX_Auth.php:1240
 msgid "Improper protection code"
 msgstr "Неправильная защита кода"
 
@@ -320,79 +321,79 @@ msgstr "Например: руб"
 
 #: ../../../../../application/modules/shop/classes/ShopAdminController.php:58
 #: ../../../../../application/modules/shop/classes/ShopAdminController.php:59
-msgid "Translate"
-msgstr "Перевести"
+msgid "Translated field"
+msgstr "Переводимое поле"
 
-#: ../../../../../application/modules/shop/classes/Search/BaseSearch.php:246
+#: ../../../../../application/modules/shop/classes/Search/BaseSearch.php:242
 msgid "All result"
 msgstr "Все результаты"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:115
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:117
 msgid "Recipient account"
 msgstr "Счет получателя"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:121
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:150
-#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:151
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:123
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:154
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:150
 msgid "Merchant settings"
 msgstr "Настройки мерчанта"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:125
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:154
-#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:156
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:127
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:158
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:155
 msgid "The method of sending data for all requests: GET"
 msgstr "Метод отсылки данных для всех запросов: GET"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:138
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:142
 msgid "E-mail"
 msgstr "Электронная почта"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:144
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:148
 msgid "Information about transaction"
 msgstr "Информация о трансакции"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:129
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:128
 msgid "Login"
 msgstr "Логин"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:136
-#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:143
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:135
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:142
 msgid "Password"
 msgstr "Пароль"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:152
-#: ../../../../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:128
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:156
+#: ../../../../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:133
 msgid "Merchant id"
 msgstr "Мерчант ID"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:155
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:162
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:169
-#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:161
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:166
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:173
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:167
 msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
 msgstr "Кошелек продавца, на который покупатель должен совершить платеж. Формат – буква и 12 цифр."
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:163
 msgid "Merchant password"
 msgstr "Пароль Мерчанта"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:158
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:164
 msgid "Trick seller"
 msgstr "Кошелек продавца Trick seller"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:168
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:174
 msgid "Secret Key:"
 msgstr "Секретний ключ:"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:115
+#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:117
 msgid "Account number"
 msgstr "Номер счета"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:121
+#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:123
 msgid "The lifetime of the account"
 msgstr "Время жизни счета"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:134
+#: ../../../../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:139
 msgid "Signature"
 msgstr "Подпись"
 
@@ -586,6 +587,78 @@ msgstr "Поле %s должно содержать число, большее, 
 #: ../../../../../system/language/email_lang/email_lang.php:22
 msgid "email_sent"
 msgstr "Ваше сообщение успешно отправлено"
+
+#: ../../../../../system/language/upload/upload_validation.php:7
+#: ../../../../../system/language/upload/upload_validation.php:17
+msgid "upload_invalid_filetype"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:9
+msgid "upload_userfile_not_set"
+msgstr "Не удается найти переменную UserFile."
+
+#: ../../../../../system/language/upload/upload_validation.php:10
+msgid "upload_file_exceeds_limit"
+msgstr "Загруженный файл превышает максимально допустимый размер в конфигурационном файле PHP."
+
+#: ../../../../../system/language/upload/upload_validation.php:11
+msgid "upload_file_exceeds_form_limit"
+msgstr "Загруженный файл превышает максимально допустимый размер по представлению формы."
+
+#: ../../../../../system/language/upload/upload_validation.php:12
+msgid "upload_file_partial"
+msgstr "Файл был загружен только частично."
+
+#: ../../../../../system/language/upload/upload_validation.php:13
+msgid "upload_no_temp_directory"
+msgstr ""
+
+#: ../../../../../system/language/upload/upload_validation.php:14
+#, fuzzy
+msgid "upload_unable_to_write_file"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:15
+msgid "upload_stopped_by_extension"
+msgstr ""
+
+#: ../../../../../system/language/upload/upload_validation.php:16
+#, fuzzy
+msgid "upload_no_file_selected"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:18
+#, fuzzy
+msgid "upload_invalid_filesize"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:19
+#, fuzzy
+msgid "upload_invalid_dimensions"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:20
+msgid "upload_destination_error"
+msgstr ""
+
+#: ../../../../../system/language/upload/upload_validation.php:21
+#, fuzzy
+msgid "upload_no_filepath"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:22
+#, fuzzy
+msgid "upload_no_file_types"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:23
+#, fuzzy
+msgid "upload_bad_filename"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:24
+msgid "upload_not_writable"
+msgstr ""
 
 #~ msgid "January"
 #~ msgstr "Января"
