@@ -1681,7 +1681,7 @@ $('.removeGiftCert').live('click', function() {
 });
 
 
-$('table.orderMethodsTable .orderMethodsEdit').on('click', function() {
+$('table.orderMethodsTable .orderMethodsEdit').live('click', function() {
     $(this).next('.orderMethodsRefresh').css('display', 'block');
     $(this).css('display', 'none');
 
@@ -1690,8 +1690,6 @@ $('table.orderMethodsTable .orderMethodsEdit').on('click', function() {
     closestTr.find('[name=name]').css('display', 'block');
     closestTr.find('.name_front').css('display', 'none');
     closestTr.find('[name=name_front]').css('display', 'block');
-    closestTr.find('.get').css('display', 'none');
-    closestTr.find('[name=get]').css('display', 'block');
     closestTr.find('.tooltip_s').css('display', 'none');
     closestTr.find('[name=tooltip]').css('display', 'block');
 });
@@ -1715,8 +1713,6 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
     closestTr.find('[name=name]').css('display', 'none');
     closestTr.find('.name_front').text(name_front).css('display', 'block');
     closestTr.find('[name=name_front]').css('display', 'none');
-    closestTr.find('.get').text(get).css('display', 'block');
-    closestTr.find('[name=get]').css('display', 'none');
     closestTr.find('.tooltip_s').text(tooltip).css('display', 'block');
     closestTr.find('[name=tooltip]').css('display', 'none');
 
@@ -1727,7 +1723,6 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
             locale: locale,
             name: name,
             name_front: name_front,
-            get: get,
             tooltip: tooltip
         },
         url: '/admin/components/run/shop/settings/setSorting',
