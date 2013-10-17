@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 11:28+0300\n"
+"POT-Creation-Date: 2013-10-17 16:05+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -18,276 +18,272 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: /var/www/image.loc/_tempLangs.php:12
-msgid "4444dd"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:29
-#: /var/www/image.loc/_tempLangs.php:33
-#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:16
+#: /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:36
 msgid "Error"
 msgstr "Ошибка"
 
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:13
+#: /var/www/image.loc/_tempLangs.php:29
 msgid "Variable is not removed"
 msgstr "Переменная не удалена"
 
-#: /var/www/image.loc/_tempLangs.php:15
-#: /var/www/image.loc/_tempLangs.php:19
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:27
-#: /var/www/image.loc/_tempLangs.php:31
-#: /var/www/image.loc/_tempLangs.php:35
-#: /var/www/image.loc/_tempLangs.php:39
-#: /var/www/image.loc/_tempLangs.php:41
-#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:14
+#: /var/www/image.loc/_tempLangs.php:18
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:42
 msgid "Message"
 msgstr "Сообщение"
 
-#: /var/www/image.loc/_tempLangs.php:16
-#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:15
+#: /var/www/image.loc/_tempLangs.php:31
 msgid "Variable successfully removed"
 msgstr "Переменная успешно удалена"
 
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:17
+#: /var/www/image.loc/_tempLangs.php:33
 msgid "Variable is not updated"
 msgstr "Переменная не обновлена"
 
-#: /var/www/image.loc/_tempLangs.php:20
-#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:19
+#: /var/www/image.loc/_tempLangs.php:35
 msgid "Variable successfully updated"
 msgstr "Переменная успешно обновлена"
 
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:37
 msgid "Variable is not added"
 msgstr "Переменная не додана"
 
-#: /var/www/image.loc/_tempLangs.php:24
-#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:39
 msgid "Variable successfully added"
 msgstr "Переменная успешно додана"
 
-#: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:41
 msgid "Variable must be surrounded by $"
 msgstr "Переменная должна быть окружена $"
 
-#: /var/www/image.loc/_tempLangs.php:28
-#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:27
+#: /var/www/image.loc/_tempLangs.php:43
 msgid "Variable must have a value"
 msgstr "Переменная должна иметь значение"
 
-#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:44
 msgid "Creating mail template"
 msgstr "Создать шаблон письма"
 
-#: /var/www/image.loc/_tempLangs.php:46
-#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:93
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:47
-#: /var/www/image.loc/_tempLangs.php:80
-#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:94
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:48
-#: /var/www/image.loc/_tempLangs.php:96
+#: /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:95
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
-#: /var/www/image.loc/_tempLangs.php:49
-#: /var/www/image.loc/_tempLangs.php:71
-#: /var/www/image.loc/_tempLangs.php:78
-#: /var/www/image.loc/_tempLangs.php:81
-#: /var/www/image.loc/_tempLangs.php:99
+#: /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:98
 msgid "Settings"
 msgstr "Настройки"
 
-#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:49
 msgid "Template name (only latin)"
 msgstr "Имя шаблона (только латинские)"
+
+#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:100
+#: /var/www/image.loc/_tempLangs.php:119
+msgid "From"
+msgstr "От"
 
 #: /var/www/image.loc/_tempLangs.php:51
 #: /var/www/image.loc/_tempLangs.php:83
 #: /var/www/image.loc/_tempLangs.php:101
-#: /var/www/image.loc/_tempLangs.php:120
-msgid "From"
-msgstr "От"
-
-#: /var/www/image.loc/_tempLangs.php:52
-#: /var/www/image.loc/_tempLangs.php:84
-#: /var/www/image.loc/_tempLangs.php:102
 msgid "From email"
 msgstr "От кого (email)"
 
-#: /var/www/image.loc/_tempLangs.php:53
-#: /var/www/image.loc/_tempLangs.php:76
-#: /var/www/image.loc/_tempLangs.php:86
-#: /var/www/image.loc/_tempLangs.php:103
+#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:85
+#: /var/www/image.loc/_tempLangs.php:102
 msgid "Theme"
 msgstr "Тема"
 
-#: /var/www/image.loc/_tempLangs.php:54
-#: /var/www/image.loc/_tempLangs.php:104
+#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:103
 msgid "Message type"
 msgstr "Тип сообщения"
 
-#: /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:105
+#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:104
 msgid "Template user mail"
 msgstr "Шаблон письма пользователю"
 
-#: /var/www/image.loc/_tempLangs.php:56
-#: /var/www/image.loc/_tempLangs.php:106
+#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:105
 msgid "Send email to user"
 msgstr "Отправить  сообщение пользователю"
+
+#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:106
+#: /var/www/image.loc/_tempLangs.php:110
+msgid "Yes"
+msgstr "Да"
 
 #: /var/www/image.loc/_tempLangs.php:57
 #: /var/www/image.loc/_tempLangs.php:61
 #: /var/www/image.loc/_tempLangs.php:107
 #: /var/www/image.loc/_tempLangs.php:111
-msgid "Yes"
-msgstr "Да"
-
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:62
-#: /var/www/image.loc/_tempLangs.php:108
-#: /var/www/image.loc/_tempLangs.php:112
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:109
+#: /var/www/image.loc/_tempLangs.php:58
+#: /var/www/image.loc/_tempLangs.php:108
 msgid "Admin mail template"
 msgstr "Шаблона письма администратору"
 
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:110
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:109
 msgid "Send email to admin"
 msgstr "Отправлять письмо администратору"
 
-#: /var/www/image.loc/_tempLangs.php:63
-#: /var/www/image.loc/_tempLangs.php:113
+#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:112
 msgid "Admin address"
 msgstr "Адрес администратора"
 
-#: /var/www/image.loc/_tempLangs.php:64
-#: /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:113
 msgid "Template description"
 msgstr "Описание шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:64
 msgid "Template email deleting"
 msgstr "Удаление шаблона письма "
 
-#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:65
 msgid "Delete selected templates"
 msgstr "Удалить выбрание шаблоны"
 
-#: /var/www/image.loc/_tempLangs.php:67
-#: /var/www/image.loc/_tempLangs.php:72
-#: /var/www/image.loc/_tempLangs.php:118
+#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:117
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:67
 msgid "Cancel"
 msgstr "Отменить"
 
-#: /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:68
 msgid "Email-notifications managing"
 msgstr "Управление email-уведомлениями"
 
-#: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:78
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:72
 msgid "Create template"
 msgstr "Создать шаблон"
 
-#: /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:73
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:74
 msgid "Template variable"
 msgstr "Переменная шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:76
 msgid "Templates list empty"
 msgstr "Список шаблонов пуст"
 
-#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:81
 msgid "Install standart templates"
 msgstr "Установите стандартные шаблоны"
 
-#: /var/www/image.loc/_tempLangs.php:85
+#: /var/www/image.loc/_tempLangs.php:84
 msgid "Admin email"
 msgstr "Email администратора"
 
-#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:86
 msgid "Use wraper"
 msgstr "Использовать обгортку"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:87
 msgid "Wraper"
 msgstr "Обгортка"
 
-#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:88
 msgid "Server path to sendmail"
 msgstr "Серверный путь к Sendmail"
 
-#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:89
 msgid "Protocol"
 msgstr "Протокол"
 
-#: /var/www/image.loc/_tempLangs.php:91
+#: /var/www/image.loc/_tempLangs.php:90
 msgid "Port"
 msgstr "Порт"
 
-#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:91
 msgid "Check email sending"
 msgstr "Проверка отправки электронной почты"
 
-#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:92
 msgid "Email template editing"
 msgstr "Редактирование  шаблона письма"
 
-#: /var/www/image.loc/_tempLangs.php:97
+#: /var/www/image.loc/_tempLangs.php:96
 msgid "Template settings"
 msgstr "Настройки шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:97
 msgid "Template variables"
 msgstr "Переменные шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:100
+#: /var/www/image.loc/_tempLangs.php:99
 msgid "Template name(only latin)"
 msgstr "Имя шаблона (только латинские)"
 
-#: /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:114
 msgid "Variables"
 msgstr "Переменные"
 
-#: /var/www/image.loc/_tempLangs.php:116
+#: /var/www/image.loc/_tempLangs.php:115
 msgid "Values"
 msgstr "Величины"
 
-#: /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:116
 msgid "Edit"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:118
 msgid "Add new variable"
 msgstr "Добавить новую переменную"
 

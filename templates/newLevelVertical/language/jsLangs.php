@@ -17,6 +17,6 @@
 /var/www/image.loc/templates/newLevel/js/raphael-min.js
 /var/www/image.loc/templates/newLevel/js/_underscore-min.js*/
 
-echo " <script> langs = {}; langs['tyyyyyyy'] = ". lang('tyyyyyyy', 'newLevel') .";
+echo " <script> langs = {};
  </script>"; 
 ?>

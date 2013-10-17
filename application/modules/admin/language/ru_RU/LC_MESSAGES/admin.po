@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 16:47+0300\n"
+"POT-Creation-Date: 2013-10-17 17:00+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,15 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../modules/shop/models\n"
-"X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/"
-"classes\n"
+"X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
 
 #: /var/www/image.loc/_tempLangs.php:20
 msgid "Edit page"
 msgstr "Редактировать страницу"
 
-#: /var/www/image.loc/_tempLangs.php:21 /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:22
 msgid "Show page"
 msgstr "Показать страницу"
 
@@ -38,7 +38,8 @@ msgstr "Модули дополнений"
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:25 /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:26
 msgid "Autocomplete"
 msgstr "Автозаполнение"
 
@@ -46,15 +47,18 @@ msgstr "Автозаполнение"
 msgid "Autocomplete words"
 msgstr "Автозаполнение слов"
 
-#: /var/www/image.loc/_tempLangs.php:28 /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:29
 msgid "choose date"
 msgstr "выберите дату"
 
-#: /var/www/image.loc/_tempLangs.php:30 /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:50
 msgid "Cancel"
 msgstr "Отменить"
 
-#: /var/www/image.loc/_tempLangs.php:31 /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:49
 msgid "Create"
 msgstr "Создать"
 
@@ -66,7 +70,8 @@ msgstr "Просмотр"
 msgid "site"
 msgstr "сайта"
 
-#: /var/www/image.loc/_tempLangs.php:34 /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:35
 msgid "Orders"
 msgstr "Заказы"
 
@@ -158,11 +163,13 @@ msgstr "Переместить"
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:60 /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:61
 msgid "Create page"
 msgstr "Создать страницу"
 
-#: /var/www/image.loc/_tempLangs.php:62 /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:69
 msgid "All categories"
 msgstr "Все категории"
 
@@ -204,19 +211,24 @@ msgstr ""
 msgid "Update settings"
 msgstr "Настройки обновления"
 
-#: /var/www/image.loc/_tempLangs.php:21 /var/www/image.loc/_tempLangs.php:180
+#: /var/www/image.loc/_tempLangs.php:21
+#: /var/www/image.loc/_tempLangs.php:180
 #: /var/www/image.loc/_tempLangs.php:224
 msgid "Back"
 msgstr "Вернутся"
 
-#: /var/www/image.loc/_tempLangs.php:22 /var/www/image.loc/_tempLangs.php:112
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:112
 #: /var/www/image.loc/_tempLangs.php:225
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:23 /var/www/image.loc/_tempLangs.php:80
-#: /var/www/image.loc/_tempLangs.php:84 /var/www/image.loc/_tempLangs.php:146
-#: /var/www/image.loc/_tempLangs.php:166 /var/www/image.loc/_tempLangs.php:183
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:146
+#: /var/www/image.loc/_tempLangs.php:166
+#: /var/www/image.loc/_tempLangs.php:183
 #: /var/www/image.loc/_tempLangs.php:185
 msgid "Settings"
 msgstr "Настройки"
@@ -241,11 +253,13 @@ msgstr "Удалить выбранные модули?"
 msgid "Delete group"
 msgstr "Удалить группу"
 
-#: /var/www/image.loc/_tempLangs.php:30 /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:31
 msgid "Clean"
 msgstr "Очистить"
 
-#: /var/www/image.loc/_tempLangs.php:33 /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:34
 msgid "Operation panel"
 msgstr "Панель управления"
 
@@ -273,12 +287,14 @@ msgstr "Забыли пароль?"
 msgid "Log in"
 msgstr "Войти"
 
-#: /var/www/image.loc/_tempLangs.php:41 /var/www/image.loc/_tempLangs.php:228
+#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:228
 #: /var/www/image.loc/_tempLangs.php:229
 msgid "Russian"
 msgstr "Русский"
 
-#: /var/www/image.loc/_tempLangs.php:42 /var/www/image.loc/_tempLangs.php:227
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:227
 #: /var/www/image.loc/_tempLangs.php:230
 msgid "English"
 msgstr "English"
@@ -311,7 +327,8 @@ msgstr "Сохранить и создать новую группу"
 msgid "Save and edit"
 msgstr "Сохраненить и измененить"
 
-#: /var/www/image.loc/_tempLangs.php:51 /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:92
 msgid "Group"
 msgstr "Группа"
 
@@ -359,12 +376,15 @@ msgstr "Список виджетов"
 msgid "Create a widget"
 msgstr "Создать виджет"
 
-#: /var/www/image.loc/_tempLangs.php:76 /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:76
+#: /var/www/image.loc/_tempLangs.php:88
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_tempLangs.php:77 /var/www/image.loc/_tempLangs.php:89
-#: /var/www/image.loc/_tempLangs.php:114 /var/www/image.loc/_tempLangs.php:176
+#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:176
 #: /var/www/image.loc/_tempLangs.php:186
 msgid "Name"
 msgstr "Имя"
@@ -373,13 +393,17 @@ msgstr "Имя"
 msgid "Type"
 msgstr "Тип"
 
-#: /var/www/image.loc/_tempLangs.php:79 /var/www/image.loc/_tempLangs.php:90
-#: /var/www/image.loc/_tempLangs.php:115 /var/www/image.loc/_tempLangs.php:127
-#: /var/www/image.loc/_tempLangs.php:201 /var/www/image.loc/_tempLangs.php:232
+#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:127
+#: /var/www/image.loc/_tempLangs.php:201
+#: /var/www/image.loc/_tempLangs.php:232
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_tempLangs.php:81 /var/www/image.loc/_tempLangs.php:222
+#: /var/www/image.loc/_tempLangs.php:81
+#: /var/www/image.loc/_tempLangs.php:222
 msgid "Editing"
 msgstr "Редактирование"
 
@@ -407,7 +431,8 @@ msgstr "Список"
 msgid "Empty."
 msgstr "Пустой."
 
-#: /var/www/image.loc/_tempLangs.php:95 /var/www/image.loc/_tempLangs.php:107
+#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:107
 msgid "Remove roles?"
 msgstr "Удалить  роли?"
 
@@ -455,7 +480,8 @@ msgstr "Удалить файл, чтобы продолжить"
 msgid "E-mail"
 msgstr "E-mail"
 
-#: /var/www/image.loc/_tempLangs.php:110 /var/www/image.loc/_tempLangs.php:137
+#: /var/www/image.loc/_tempLangs.php:110
+#: /var/www/image.loc/_tempLangs.php:137
 msgid "Password"
 msgstr "Пароль"
 
@@ -463,18 +489,24 @@ msgstr "Пароль"
 msgid "Roles group create"
 msgstr "Создать группу роли"
 
-#: /var/www/image.loc/_tempLangs.php:113 /var/www/image.loc/_tempLangs.php:144
-#: /var/www/image.loc/_tempLangs.php:154 /var/www/image.loc/_tempLangs.php:231
+#: /var/www/image.loc/_tempLangs.php:113
+#: /var/www/image.loc/_tempLangs.php:144
+#: /var/www/image.loc/_tempLangs.php:154
+#: /var/www/image.loc/_tempLangs.php:231
 msgid "Properties"
 msgstr "Свойства"
 
-#: /var/www/image.loc/_tempLangs.php:116 /var/www/image.loc/_tempLangs.php:117
-#: /var/www/image.loc/_tempLangs.php:123 /var/www/image.loc/_tempLangs.php:124
+#: /var/www/image.loc/_tempLangs.php:116
+#: /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:123
+#: /var/www/image.loc/_tempLangs.php:124
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
 
-#: /var/www/image.loc/_tempLangs.php:118 /var/www/image.loc/_tempLangs.php:119
-#: /var/www/image.loc/_tempLangs.php:125 /var/www/image.loc/_tempLangs.php:126
+#: /var/www/image.loc/_tempLangs.php:118
+#: /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:125
+#: /var/www/image.loc/_tempLangs.php:126
 msgid "Add an article"
 msgstr "Добавить статью"
 
@@ -482,7 +514,8 @@ msgstr "Добавить статью"
 msgid "Double click to show all categories"
 msgstr "Дважды щелкните, чтобы показать все категории"
 
-#: /var/www/image.loc/_tempLangs.php:121 /var/www/image.loc/_tempLangs.php:122
+#: /var/www/image.loc/_tempLangs.php:121
+#: /var/www/image.loc/_tempLangs.php:122
 msgid "Change category data"
 msgstr "Изменить данные категории"
 
@@ -490,11 +523,13 @@ msgstr "Изменить данные категории"
 msgid "Author"
 msgstr "Автор"
 
-#: /var/www/image.loc/_tempLangs.php:129 /var/www/image.loc/_tempLangs.php:238
+#: /var/www/image.loc/_tempLangs.php:129
+#: /var/www/image.loc/_tempLangs.php:238
 msgid "Version"
 msgstr "Версия"
 
-#: /var/www/image.loc/_tempLangs.php:130 /var/www/image.loc/_tempLangs.php:131
+#: /var/www/image.loc/_tempLangs.php:130
+#: /var/www/image.loc/_tempLangs.php:131
 msgid "Install"
 msgstr "Установка"
 
@@ -530,11 +565,13 @@ msgstr "Например"
 msgid "Next"
 msgstr "Вперед"
 
-#: /var/www/image.loc/_tempLangs.php:142 /var/www/image.loc/_tempLangs.php:226
+#: /var/www/image.loc/_tempLangs.php:142
+#: /var/www/image.loc/_tempLangs.php:226
 msgid "Save and go back"
 msgstr "Сохранить и выйти"
 
-#: /var/www/image.loc/_tempLangs.php:143 /var/www/image.loc/_tempLangs.php:147
+#: /var/www/image.loc/_tempLangs.php:143
+#: /var/www/image.loc/_tempLangs.php:147
 msgid "Content"
 msgstr "Страницы"
 
@@ -546,8 +583,10 @@ msgstr "Дополнительные поля"
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_tempLangs.php:149 /var/www/image.loc/_tempLangs.php:175
-#: /var/www/image.loc/_tempLangs.php:179 /var/www/image.loc/_tempLangs.php:181
+#: /var/www/image.loc/_tempLangs.php:149
+#: /var/www/image.loc/_tempLangs.php:175
+#: /var/www/image.loc/_tempLangs.php:179
+#: /var/www/image.loc/_tempLangs.php:181
 msgid "Create a category"
 msgstr "Создать категорию"
 
@@ -559,7 +598,8 @@ msgstr "Предварительное содержание"
 msgid "Full contents"
 msgstr "Полное содержание"
 
-#: /var/www/image.loc/_tempLangs.php:155 /var/www/image.loc/_tempLangs.php:187
+#: /var/www/image.loc/_tempLangs.php:155
+#: /var/www/image.loc/_tempLangs.php:187
 msgid "URL"
 msgstr "URL"
 
@@ -571,23 +611,28 @@ msgstr "Только латинские буквы"
 msgid "Tags"
 msgstr "Тэги"
 
-#: /var/www/image.loc/_tempLangs.php:158 /var/www/image.loc/_tempLangs.php:219
+#: /var/www/image.loc/_tempLangs.php:158
+#: /var/www/image.loc/_tempLangs.php:219
 msgid "Meta Title"
 msgstr "Meta Title"
 
-#: /var/www/image.loc/_tempLangs.php:159 /var/www/image.loc/_tempLangs.php:220
+#: /var/www/image.loc/_tempLangs.php:159
+#: /var/www/image.loc/_tempLangs.php:220
 msgid "Meta Description"
 msgstr "Meta Description"
 
-#: /var/www/image.loc/_tempLangs.php:160 /var/www/image.loc/_tempLangs.php:221
+#: /var/www/image.loc/_tempLangs.php:160
+#: /var/www/image.loc/_tempLangs.php:221
 msgid "Meta Keywords"
 msgstr "Meta Keywords"
 
-#: /var/www/image.loc/_tempLangs.php:161 /var/www/image.loc/_tempLangs.php:212
+#: /var/www/image.loc/_tempLangs.php:161
+#: /var/www/image.loc/_tempLangs.php:212
 msgid "Main template"
 msgstr "Главный шаблон"
 
-#: /var/www/image.loc/_tempLangs.php:162 /var/www/image.loc/_tempLangs.php:164
+#: /var/www/image.loc/_tempLangs.php:162
+#: /var/www/image.loc/_tempLangs.php:164
 msgid "by default"
 msgstr "по умолчанию"
 
@@ -635,7 +680,8 @@ msgstr "Все"
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
-#: /var/www/image.loc/_tempLangs.php:184 /var/www/image.loc/_tempLangs.php:218
+#: /var/www/image.loc/_tempLangs.php:184
+#: /var/www/image.loc/_tempLangs.php:218
 msgid "Meta tags"
 msgstr "Мета теги"
 
@@ -651,7 +697,8 @@ msgstr "Группа полей"
 msgid "Select  a field group  for a category"
 msgstr "Выберите группу полей для категории"
 
-#: /var/www/image.loc/_tempLangs.php:193 /var/www/image.loc/_tempLangs.php:197
+#: /var/www/image.loc/_tempLangs.php:193
+#: /var/www/image.loc/_tempLangs.php:197
 msgid "Apply for subcategories"
 msgstr "Применить для подкатегории"
 
@@ -660,12 +707,8 @@ msgid "Pages fields group"
 msgstr "Группа полей страницы"
 
 #: /var/www/image.loc/_tempLangs.php:196
-msgid ""
-"Select a field group to be displayed/ viewed  in the created category of the "
-"group or group category"
-msgstr ""
-"Выберите группу полей, которая будет отображаться при создании страниц в "
-"данной категории"
+msgid "Select a field group to be displayed/ viewed  in the created category of the group or group category"
+msgstr "Выберите группу полей, которая будет отображаться при создании страниц в данной категории"
 
 #: /var/www/image.loc/_tempLangs.php:198
 msgid "Image"
@@ -719,7 +762,8 @@ msgstr "Страницы комментариев по умолчанию"
 msgid "Display pages of other categories"
 msgstr "Отображать страницы других категорий"
 
-#: /var/www/image.loc/_tempLangs.php:213 /var/www/image.loc/_tempLangs.php:215
+#: /var/www/image.loc/_tempLangs.php:213
+#: /var/www/image.loc/_tempLangs.php:215
 msgid "Main category template by default"
 msgstr "Главный шаблон категории. По умолчанию "
 
@@ -772,7 +816,8 @@ msgstr "Размер"
 msgid "Write permission"
 msgstr "Права записи"
 
-#: /var/www/image.loc/_tempLangs.php:23 /var/www/image.loc/_tempLangs.php:27
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:27
 msgid "Module deinstalling"
 msgstr "Удаление модуля"
 
@@ -788,7 +833,8 @@ msgstr "Удалить модулей?"
 msgid "Modules"
 msgstr "Модули"
 
-#: /var/www/image.loc/_tempLangs.php:33 /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:34
 msgid "Install modules"
 msgstr "Установить модули"
 
@@ -804,16 +850,19 @@ msgstr "URL доступ"
 msgid "Show in menu"
 msgstr "Показывать в меню"
 
-#: /var/www/image.loc/_tempLangs.php:41 /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:73
 msgid "Users"
 msgstr "Пользователи"
 
-#: /var/www/image.loc/_tempLangs.php:42 /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:44
 #: /var/www/image.loc/_tempLangs.php:46
 msgid "switch on"
 msgstr "показывать"
 
-#: /var/www/image.loc/_tempLangs.php:43 /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:45
 #: /var/www/image.loc/_tempLangs.php:47
 msgid "switch off"
 msgstr "не показывать"
@@ -947,6 +996,10 @@ msgid "Administer site"
 msgstr "Администрировать сайт"
 
 #: /var/www/image.loc/_tempLangs.php:90
+msgid "Category translation"
+msgstr "Перевод категории "
+
+#: /var/www/image.loc/_tempLangs.php:91
 msgid "Search results"
 msgstr "Результаты поиска"
 
@@ -954,7 +1007,8 @@ msgstr "Результаты поиска"
 msgid "Widget editing"
 msgstr "Редактирование виджета"
 
-#: /var/www/image.loc/_tempLangs.php:24 /var/www/image.loc/_tempLangs.php:245
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:245
 #: /var/www/image.loc/_tempLangs.php:283
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
@@ -967,7 +1021,8 @@ msgstr "HTML код"
 msgid "Forward"
 msgstr "Вперед&nbsp;"
 
-#: /var/www/image.loc/_tempLangs.php:28 /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:48
 #: /var/www/image.loc/_tempLangs.php:238
 msgid "Update"
 msgstr "Обновление"
@@ -996,7 +1051,8 @@ msgstr "Магазин"
 msgid "Base"
 msgstr "Базовой"
 
-#: /var/www/image.loc/_tempLangs.php:45 /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:50
 msgid "Updation"
 msgstr "Обновление"
 
@@ -1004,12 +1060,15 @@ msgstr "Обновление"
 msgid "Create Backup"
 msgstr "Создать Бэкап"
 
-#: /var/www/image.loc/_tempLangs.php:49 /var/www/image.loc/_tempLangs.php:71
-#: /var/www/image.loc/_tempLangs.php:73 /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:89
 msgid "Error"
 msgstr "Ошибка"
 
-#: /var/www/image.loc/_tempLangs.php:51 /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:64
 #: /var/www/image.loc/_tempLangs.php:66
 msgid "Restore"
 msgstr "Восстановление"
@@ -1082,7 +1141,8 @@ msgstr "Удалить выбранные языки?"
 msgid "Attention! All pages in this language will be deleted!"
 msgstr "Внимание! Все страницы на этом языке будут удалены!"
 
-#: /var/www/image.loc/_tempLangs.php:84 /var/www/image.loc/_tempLangs.php:200
+#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:200
 msgid "Languages"
 msgstr "Языки"
 
@@ -1122,7 +1182,8 @@ msgstr "Выключить"
 msgid "Have not modules to install"
 msgstr "Нет модулей для установки!              "
 
-#: /var/www/image.loc/_tempLangs.php:95 /var/www/image.loc/_tempLangs.php:299
+#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:299
 msgid "Widget creating"
 msgstr "Создание виджета"
 
@@ -1235,7 +1296,8 @@ msgstr "ввести число больше или равно"
 msgid "Administer shop"
 msgstr "Администрирование магазина"
 
-#: /var/www/image.loc/_tempLangs.php:125 /var/www/image.loc/_tempLangs.php:168
+#: /var/www/image.loc/_tempLangs.php:125
+#: /var/www/image.loc/_tempLangs.php:168
 msgid "Back to the system"
 msgstr "Обратно в систему"
 
@@ -1245,8 +1307,7 @@ msgstr "Ошибка преобразования"
 
 #: /var/www/image.loc/_tempLangs.php:127
 msgid "User already notified via E-mail upon availability! Notify again"
-msgstr ""
-"Пользователь уже уведомлен по электронной почте про наличие! Сообщить снова"
+msgstr "Пользователь уже уведомлен по электронной почте про наличие! Сообщить снова"
 
 #: /var/www/image.loc/_tempLangs.php:128
 msgid "Notify the user via E-mail upon availability"
@@ -1300,7 +1361,8 @@ msgstr "Все найденные продукты"
 msgid "Processed"
 msgstr "Обработано"
 
-#: /var/www/image.loc/_tempLangs.php:141 /var/www/image.loc/_tempLangs.php:147
+#: /var/www/image.loc/_tempLangs.php:141
+#: /var/www/image.loc/_tempLangs.php:147
 msgid "Images updated"
 msgstr "Изображения обновлены"
 
@@ -1329,12 +1391,8 @@ msgid "Access denied"
 msgstr "Ограничение прав"
 
 #: /var/www/image.loc/_tempLangs.php:149
-msgid ""
-"This is a demo version ImageCMS. Part of the actions are limited. For a "
-"complete functional download and install the distribution."
-msgstr ""
-"Это демонстрационная версия ImageCMS. Часть действий ограничена. Что-бы "
-"ознакомиться с полным функционалом скачайте и установите дистрибутив."
+msgid "This is a demo version ImageCMS. Part of the actions are limited. For a complete functional download and install the distribution."
+msgstr "Это демонстрационная версия ImageCMS. Часть действий ограничена. Что-бы ознакомиться с полным функционалом скачайте и установите дистрибутив."
 
 #: /var/www/image.loc/_tempLangs.php:150
 msgid "Message"
@@ -1436,15 +1494,14 @@ msgstr "Файл загружается. Слот"
 msgid "Error in the script. Please notify the administrator"
 msgstr "Ошибка в сценарии. Пожалуйста, сообщите администратору"
 
-#: /var/www/image.loc/_tempLangs.php:180 /var/www/image.loc/_tempLangs.php:306
+#: /var/www/image.loc/_tempLangs.php:180
+#: /var/www/image.loc/_tempLangs.php:306
 msgid "Short widget description"
 msgstr "Краткое описание виджета"
 
 #: /var/www/image.loc/_tempLangs.php:183
 msgid "To use your personal account, activate JavaScript, please."
-msgstr ""
-"Для использования кабинета администрирования, пожалуйста, включите "
-"JavaScript."
+msgstr "Для использования кабинета администрирования, пожалуйста, включите JavaScript."
 
 #: /var/www/image.loc/_tempLangs.php:184
 msgid "Hello"
@@ -1478,7 +1535,8 @@ msgstr "Поиск"
 msgid "Widgets"
 msgstr "Виджеты"
 
-#: /var/www/image.loc/_tempLangs.php:198 /var/www/image.loc/_tempLangs.php:260
+#: /var/www/image.loc/_tempLangs.php:198
+#: /var/www/image.loc/_tempLangs.php:260
 msgid "System"
 msgstr "Система"
 
@@ -1544,7 +1602,8 @@ msgstr "Сделайте резервную копию базы данных п�
 msgid "For example:  /domains/mysite/public_html/"
 msgstr "Например: /domains/mysite/public_html/"
 
-#: /var/www/image.loc/_tempLangs.php:242 /var/www/image.loc/_tempLangs.php:280
+#: /var/www/image.loc/_tempLangs.php:242
+#: /var/www/image.loc/_tempLangs.php:280
 msgid "Role edit"
 msgstr "Редактирование роли"
 
@@ -1661,7 +1720,8 @@ msgstr "Пожалуйста, введите  число меньше или р�
 msgid "Please enter a value greater than or equal to {0}."
 msgstr "Пожалуйста, введите число больше или равно {0}."
 
-#: /var/www/image.loc/_tempLangs.php:39 /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:68
 msgid "User"
 msgstr "Пользователь"
 
@@ -1669,58 +1729,80 @@ msgstr "Пользователь"
 msgid "Reference"
 msgstr "Ссылка"
 
-#: /var/www/image.loc/_tempLangs.php:44 /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:98
 #: /var/www/image.loc/_tempLangs.php:147
 msgid "Active"
 msgstr "Активный"
 
-#: /var/www/image.loc/_tempLangs.php:47 /var/www/image.loc/_tempLangs.php:48
-#: /var/www/image.loc/_tempLangs.php:56 /var/www/image.loc/_tempLangs.php:111
-#: /var/www/image.loc/_tempLangs.php:113 /var/www/image.loc/_tempLangs.php:122
+#: /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:111
+#: /var/www/image.loc/_tempLangs.php:113
+#: /var/www/image.loc/_tempLangs.php:122
 #: /var/www/image.loc/_tempLangs.php:124
 msgid "go to the website"
 msgstr "просмотр сайта"
 
-#: /var/www/image.loc/_tempLangs.php:49 /var/www/image.loc/_tempLangs.php:57
-#: /var/www/image.loc/_tempLangs.php:115 /var/www/image.loc/_tempLangs.php:126
+#: /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:57
+#: /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:126
 msgid "show"
 msgstr "показать"
 
-#: /var/www/image.loc/_tempLangs.php:50 /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:58 /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:116 /var/www/image.loc/_tempLangs.php:117
-#: /var/www/image.loc/_tempLangs.php:127 /var/www/image.loc/_tempLangs.php:128
+#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:58
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:116
+#: /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:127
+#: /var/www/image.loc/_tempLangs.php:128
 msgid "hit"
 msgstr "хит"
 
-#: /var/www/image.loc/_tempLangs.php:52 /var/www/image.loc/_tempLangs.php:53
-#: /var/www/image.loc/_tempLangs.php:60 /var/www/image.loc/_tempLangs.php:61
-#: /var/www/image.loc/_tempLangs.php:118 /var/www/image.loc/_tempLangs.php:119
-#: /var/www/image.loc/_tempLangs.php:129 /var/www/image.loc/_tempLangs.php:130
+#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:53
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:118
+#: /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:129
+#: /var/www/image.loc/_tempLangs.php:130
 msgid "novelty"
 msgstr "новинка"
 
-#: /var/www/image.loc/_tempLangs.php:54 /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:62 /var/www/image.loc/_tempLangs.php:63
-#: /var/www/image.loc/_tempLangs.php:120 /var/www/image.loc/_tempLangs.php:121
+#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:55
+#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:120
+#: /var/www/image.loc/_tempLangs.php:121
 msgid "promotion"
 msgstr "акция"
 
-#: /var/www/image.loc/_tempLangs.php:64 /var/www/image.loc/_tempLangs.php:133
+#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:133
 msgid "Variants"
 msgstr "Варианты"
 
-#: /var/www/image.loc/_tempLangs.php:65 /var/www/image.loc/_tempLangs.php:134
+#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:134
 msgid "Drag product variant"
 msgstr "Перетащите вариант продукта"
 
-#: /var/www/image.loc/_tempLangs.php:66 /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:71
 #: /var/www/image.loc/_tempLangs.php:72
 msgid "No relevant data has been found"
 msgstr "Соответствующих данных не было обнаружено"
 
-#: /var/www/image.loc/_tempLangs.php:70 /var/www/image.loc/_tempLangs.php:179
-#: /var/www/image.loc/_tempLangs.php:194 /var/www/image.loc/_tempLangs.php:263
+#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:179
+#: /var/www/image.loc/_tempLangs.php:194
+#: /var/www/image.loc/_tempLangs.php:263
 msgid "Telephone"
 msgstr "Телефон"
 
@@ -1753,18 +1835,24 @@ msgstr "Отменить фильтрацию"
 msgid "Mark"
 msgstr "Отметить"
 
-#: /var/www/image.loc/_tempLangs.php:87 /var/www/image.loc/_tempLangs.php:106
-#: /var/www/image.loc/_tempLangs.php:149 /var/www/image.loc/_tempLangs.php:151
+#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:106
+#: /var/www/image.loc/_tempLangs.php:149
+#: /var/www/image.loc/_tempLangs.php:151
 msgid "Hit"
 msgstr "Хит"
 
-#: /var/www/image.loc/_tempLangs.php:88 /var/www/image.loc/_tempLangs.php:107
-#: /var/www/image.loc/_tempLangs.php:152 /var/www/image.loc/_tempLangs.php:154
+#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:107
+#: /var/www/image.loc/_tempLangs.php:152
+#: /var/www/image.loc/_tempLangs.php:154
 msgid "New"
 msgstr "Новый"
 
-#: /var/www/image.loc/_tempLangs.php:89 /var/www/image.loc/_tempLangs.php:108
-#: /var/www/image.loc/_tempLangs.php:131 /var/www/image.loc/_tempLangs.php:132
+#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:108
+#: /var/www/image.loc/_tempLangs.php:131
+#: /var/www/image.loc/_tempLangs.php:132
 msgid "Promotion"
 msgstr "Акция"
 
@@ -1824,7 +1912,8 @@ msgstr "Еденыца"
 msgid "inactive"
 msgstr "Неактивный"
 
-#: /var/www/image.loc/_tempLangs.php:155 /var/www/image.loc/_tempLangs.php:157
+#: /var/www/image.loc/_tempLangs.php:155
+#: /var/www/image.loc/_tempLangs.php:157
 msgid "Special offers"
 msgstr "Специальные предложения"
 
@@ -1852,51 +1941,63 @@ msgstr "Просмотр"
 msgid " callbacks"
 msgstr "колбеки"
 
-#: /var/www/image.loc/_tempLangs.php:174 /var/www/image.loc/_tempLangs.php:189
+#: /var/www/image.loc/_tempLangs.php:174
+#: /var/www/image.loc/_tempLangs.php:189
 msgid "Sort by  number"
 msgstr "Сортировать по числу"
 
-#: /var/www/image.loc/_tempLangs.php:176 /var/www/image.loc/_tempLangs.php:191
+#: /var/www/image.loc/_tempLangs.php:176
+#: /var/www/image.loc/_tempLangs.php:191
 msgid "Sort by name ."
 msgstr "Сортировать по имени."
 
-#: /var/www/image.loc/_tempLangs.php:177 /var/www/image.loc/_tempLangs.php:262
+#: /var/www/image.loc/_tempLangs.php:177
+#: /var/www/image.loc/_tempLangs.php:262
 msgid "User name"
 msgstr "Имя пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:178 /var/www/image.loc/_tempLangs.php:193
+#: /var/www/image.loc/_tempLangs.php:178
+#: /var/www/image.loc/_tempLangs.php:193
 msgid "Sort by  phone number"
 msgstr "Сортировать по номеру телефона"
 
-#: /var/www/image.loc/_tempLangs.php:180 /var/www/image.loc/_tempLangs.php:195
+#: /var/www/image.loc/_tempLangs.php:180
+#: /var/www/image.loc/_tempLangs.php:195
 msgid "Sort by theme"
 msgstr "Сортировать по теме"
 
-#: /var/www/image.loc/_tempLangs.php:181 /var/www/image.loc/_tempLangs.php:196
+#: /var/www/image.loc/_tempLangs.php:181
+#: /var/www/image.loc/_tempLangs.php:196
 msgid "Theme"
 msgstr "Тема"
 
-#: /var/www/image.loc/_tempLangs.php:182 /var/www/image.loc/_tempLangs.php:197
+#: /var/www/image.loc/_tempLangs.php:182
+#: /var/www/image.loc/_tempLangs.php:197
 msgid "Sort by status"
 msgstr "Сортировать по статусу"
 
-#: /var/www/image.loc/_tempLangs.php:184 /var/www/image.loc/_tempLangs.php:199
+#: /var/www/image.loc/_tempLangs.php:184
+#: /var/www/image.loc/_tempLangs.php:199
 msgid "Sort by  date"
 msgstr "Сортировать по дате"
 
-#: /var/www/image.loc/_tempLangs.php:185 /var/www/image.loc/_tempLangs.php:200
+#: /var/www/image.loc/_tempLangs.php:185
+#: /var/www/image.loc/_tempLangs.php:200
 msgid "Date"
 msgstr "Дата"
 
-#: /var/www/image.loc/_tempLangs.php:186 /var/www/image.loc/_tempLangs.php:201
+#: /var/www/image.loc/_tempLangs.php:186
+#: /var/www/image.loc/_tempLangs.php:201
 msgid "Last comment left by the manager"
 msgstr "Последний комментарий, оставленный менеджером"
 
-#: /var/www/image.loc/_tempLangs.php:187 /var/www/image.loc/_tempLangs.php:202
+#: /var/www/image.loc/_tempLangs.php:187
+#: /var/www/image.loc/_tempLangs.php:202
 msgid "Manager"
 msgstr "Менеджер"
 
-#: /var/www/image.loc/_tempLangs.php:188 /var/www/image.loc/_tempLangs.php:203
+#: /var/www/image.loc/_tempLangs.php:188
+#: /var/www/image.loc/_tempLangs.php:203
 msgid "Edit callback"
 msgstr "Редактировать колбек"
 
@@ -1936,8 +2037,10 @@ msgstr "Просмотр тем обратного вызова"
 msgid "Create status"
 msgstr "Создать статус"
 
-#: /var/www/image.loc/_tempLangs.php:216 /var/www/image.loc/_tempLangs.php:219
-#: /var/www/image.loc/_tempLangs.php:226 /var/www/image.loc/_tempLangs.php:240
+#: /var/www/image.loc/_tempLangs.php:216
+#: /var/www/image.loc/_tempLangs.php:219
+#: /var/www/image.loc/_tempLangs.php:226
+#: /var/www/image.loc/_tempLangs.php:240
 msgid "By default"
 msgstr "По умолчанию"
 
@@ -1950,7 +2053,8 @@ msgid "Creating a status callback"
 msgstr "Создание статуса колбека"
 
 # англ
-#: /var/www/image.loc/_tempLangs.php:227 /var/www/image.loc/_tempLangs.php:241
+#: /var/www/image.loc/_tempLangs.php:227
+#: /var/www/image.loc/_tempLangs.php:241
 msgid "Status set  for all new  requests. "
 msgstr " Статус будет назначен всем новым запросам."
 
@@ -1964,8 +2068,7 @@ msgstr "Инструменты редактирования колбека"
 
 #: /var/www/image.loc/_tempLangs.php:243
 msgid "This icon denotes a field that can be translate well another language."
-msgstr ""
-"Эта иконка обозначает поле, которое можно перевести также на другом языке."
+msgstr "Эта иконка обозначает поле, которое можно перевести также на другом языке."
 
 #: /var/www/image.loc/_tempLangs.php:244
 msgid "Creation of the request subject"
@@ -2040,11 +2143,13 @@ msgstr "Список свойств пуст"
 msgid "At the properties page"
 msgstr "На странице свойств"
 
-#: /var/www/image.loc/_tempLangs.php:28 /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:73
 msgid "Products import"
 msgstr "Импорт продуктов"
 
-#: /var/www/image.loc/_tempLangs.php:29 /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:74
 #: /var/www/image.loc/_tempLangs.php:88
 msgid "File"
 msgstr "Файл"
@@ -2057,10 +2162,14 @@ msgstr "Тип импорта"
 msgid "Catalog"
 msgstr "Каталог"
 
-#: /var/www/image.loc/_tempLangs.php:34 /var/www/image.loc/_tempLangs.php:48
-#: /var/www/image.loc/_tempLangs.php:75 /var/www/image.loc/_tempLangs.php:89
-#: /var/www/image.loc/_tempLangs.php:102 /var/www/image.loc/_tempLangs.php:151
-#: /var/www/image.loc/_tempLangs.php:164 /var/www/image.loc/_tempLangs.php:191
+#: /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:102
+#: /var/www/image.loc/_tempLangs.php:151
+#: /var/www/image.loc/_tempLangs.php:164
+#: /var/www/image.loc/_tempLangs.php:191
 msgid "Columns"
 msgstr "Колонки"
 
@@ -2068,33 +2177,45 @@ msgstr "Колонки"
 msgid "The field separator"
 msgstr "Разделитель полей"
 
-#: /var/www/image.loc/_tempLangs.php:36 /var/www/image.loc/_tempLangs.php:77
-#: /var/www/image.loc/_tempLangs.php:91 /var/www/image.loc/_tempLangs.php:153
+#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:91
+#: /var/www/image.loc/_tempLangs.php:153
 msgid "Semicolon"
 msgstr "Точка с запятой"
 
-#: /var/www/image.loc/_tempLangs.php:37 /var/www/image.loc/_tempLangs.php:78
-#: /var/www/image.loc/_tempLangs.php:92 /var/www/image.loc/_tempLangs.php:154
+#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:78
+#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:154
 msgid "Colon"
 msgstr "Двоеточие"
 
-#: /var/www/image.loc/_tempLangs.php:38 /var/www/image.loc/_tempLangs.php:79
-#: /var/www/image.loc/_tempLangs.php:93 /var/www/image.loc/_tempLangs.php:155
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:155
 msgid "Comma"
 msgstr "Запятая"
 
-#: /var/www/image.loc/_tempLangs.php:39 /var/www/image.loc/_tempLangs.php:80
-#: /var/www/image.loc/_tempLangs.php:94 /var/www/image.loc/_tempLangs.php:156
+#: /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:156
 msgid "Tab"
 msgstr "Табуляция"
 
-#: /var/www/image.loc/_tempLangs.php:40 /var/www/image.loc/_tempLangs.php:81
-#: /var/www/image.loc/_tempLangs.php:95 /var/www/image.loc/_tempLangs.php:157
+#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:81
+#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:157
 msgid "Sharp"
 msgstr "Решотка"
 
-#: /var/www/image.loc/_tempLangs.php:41 /var/www/image.loc/_tempLangs.php:82
-#: /var/www/image.loc/_tempLangs.php:96 /var/www/image.loc/_tempLangs.php:158
+#: /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:96
+#: /var/www/image.loc/_tempLangs.php:158
 msgid "Text separator"
 msgstr "Разделитель текста"
 
@@ -2102,78 +2223,97 @@ msgstr "Разделитель текста"
 msgid "quotes"
 msgstr "кавычки"
 
-#: /var/www/image.loc/_tempLangs.php:43 /var/www/image.loc/_tempLangs.php:84
-#: /var/www/image.loc/_tempLangs.php:98 /var/www/image.loc/_tempLangs.php:160
+#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:160
 msgid "Single quotes"
 msgstr "Одиночные кавычки"
 
-#: /var/www/image.loc/_tempLangs.php:44 /var/www/image.loc/_tempLangs.php:85
-#: /var/www/image.loc/_tempLangs.php:99 /var/www/image.loc/_tempLangs.php:162
+#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:85
+#: /var/www/image.loc/_tempLangs.php:99
+#: /var/www/image.loc/_tempLangs.php:162
 msgid "Encoding"
 msgstr "Кодирование"
 
-#: /var/www/image.loc/_tempLangs.php:47 /var/www/image.loc/_tempLangs.php:87
-#: /var/www/image.loc/_tempLangs.php:101 /var/www/image.loc/_tempLangs.php:133
+#: /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:101
+#: /var/www/image.loc/_tempLangs.php:133
 #: /var/www/image.loc/_tempLangs.php:135
 msgid "Import"
 msgstr "Импорт"
 
-#: /var/www/image.loc/_tempLangs.php:49 /var/www/image.loc/_tempLangs.php:165
+#: /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:165
 msgid "Products name"
 msgstr "Название продуктов"
 
-#: /var/www/image.loc/_tempLangs.php:51 /var/www/image.loc/_tempLangs.php:105
+#: /var/www/image.loc/_tempLangs.php:51
+#: /var/www/image.loc/_tempLangs.php:105
 #: /var/www/image.loc/_tempLangs.php:167
 msgid "Old price"
 msgstr "Старая цена"
 
-#: /var/www/image.loc/_tempLangs.php:52 /var/www/image.loc/_tempLangs.php:106
+#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:106
 #: /var/www/image.loc/_tempLangs.php:168
 msgid "Quantity"
 msgstr "Количество"
 
-#: /var/www/image.loc/_tempLangs.php:54 /var/www/image.loc/_tempLangs.php:108
+#: /var/www/image.loc/_tempLangs.php:54
+#: /var/www/image.loc/_tempLangs.php:108
 #: /var/www/image.loc/_tempLangs.php:170
 msgid "Variant name"
 msgstr "Название варианта"
 
-#: /var/www/image.loc/_tempLangs.php:59 /var/www/image.loc/_tempLangs.php:113
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:113
 #: /var/www/image.loc/_tempLangs.php:175
 msgid "Related products"
 msgstr "Связанные товары"
 
-#: /var/www/image.loc/_tempLangs.php:60 /var/www/image.loc/_tempLangs.php:176
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:176
 msgid "The main image"
 msgstr "Основное изображение"
 
 # англ
-#: /var/www/image.loc/_tempLangs.php:61 /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:115
 #: /var/www/image.loc/_tempLangs.php:177
 msgid "Main picture an additional"
 msgstr "Основная дополнительная фотография"
 
-#: /var/www/image.loc/_tempLangs.php:62 /var/www/image.loc/_tempLangs.php:178
+#: /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:178
 msgid "Small image"
 msgstr "Маленькая фотография"
 
 # англ
-#: /var/www/image.loc/_tempLangs.php:63 /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:117
 #: /var/www/image.loc/_tempLangs.php:179
 msgid "Small image an additional"
 msgstr "Миниатюра дополнительних"
 
-#: /var/www/image.loc/_tempLangs.php:64 /var/www/image.loc/_tempLangs.php:118
+#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:118
 #: /var/www/image.loc/_tempLangs.php:180
 msgid "Additional images"
 msgstr "Дополнительные изображения"
 
-#: /var/www/image.loc/_tempLangs.php:65 /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:65
+#: /var/www/image.loc/_tempLangs.php:119
 #: /var/www/image.loc/_tempLangs.php:181
 msgid "Short description"
 msgstr "Краткое описание"
 
-#: /var/www/image.loc/_tempLangs.php:70 /var/www/image.loc/_tempLangs.php:124
-#: /var/www/image.loc/_tempLangs.php:130 /var/www/image.loc/_tempLangs.php:131
+#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:124
+#: /var/www/image.loc/_tempLangs.php:130
+#: /var/www/image.loc/_tempLangs.php:131
 #: /var/www/image.loc/_tempLangs.php:186
 msgid "Skip column"
 msgstr "Пропустить колонки"
@@ -2186,12 +2326,14 @@ msgstr "Импорт завершен"
 msgid "Fields separator"
 msgstr "Разделитель полей"
 
-#: /var/www/image.loc/_tempLangs.php:83 /var/www/image.loc/_tempLangs.php:97
+#: /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:97
 #: /var/www/image.loc/_tempLangs.php:159
 msgid "Quotes"
 msgstr "Кавычки"
 
-#: /var/www/image.loc/_tempLangs.php:90 /var/www/image.loc/_tempLangs.php:152
+#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:152
 msgid "Field separator"
 msgstr "Разделитель поля"
 
@@ -2223,7 +2365,8 @@ msgstr "Список атрибутов, которые будут импорт�
 msgid "Import-Export CSV/XLS"
 msgstr "Импорт-Экспорт CSV/XLS"
 
-#: /var/www/image.loc/_tempLangs.php:134 /var/www/image.loc/_tempLangs.php:163
+#: /var/www/image.loc/_tempLangs.php:134
+#: /var/www/image.loc/_tempLangs.php:163
 #: /var/www/image.loc/_tempLangs.php:190
 msgid "Export"
 msgstr "Экспорт"
@@ -2269,10 +2412,8 @@ msgid "Price checking"
 msgstr "Проверка цен"
 
 #: /var/www/image.loc/_tempLangs.php:146
-msgid ""
-"Will be recalculated prices of products in accordance to the default currency"
-msgstr ""
-"Будут пересчитаны цены на продукцию в соответствии с валютой по умолчанию"
+msgid "Will be recalculated prices of products in accordance to the default currency"
+msgstr "Будут пересчитаны цены на продукцию в соответствии с валютой по умолчанию"
 
 #: /var/www/image.loc/_tempLangs.php:147
 msgid "Refresh prices after import"
@@ -2363,15 +2504,18 @@ msgstr "Создание категории"
 msgid "Select image"
 msgstr "Выберите изображение"
 
-#: /var/www/image.loc/_tempLangs.php:233 /var/www/image.loc/_tempLangs.php:266
+#: /var/www/image.loc/_tempLangs.php:233
+#: /var/www/image.loc/_tempLangs.php:266
 msgid "Create a new template"
 msgstr "Создать новый шаблон"
 
-#: /var/www/image.loc/_tempLangs.php:234 /var/www/image.loc/_tempLangs.php:267
+#: /var/www/image.loc/_tempLangs.php:234
+#: /var/www/image.loc/_tempLangs.php:267
 msgid "The basic template category. Default category.tpl"
 msgstr "Основной шаблон категории. По умолчанию category.tpl"
 
-#: /var/www/image.loc/_tempLangs.php:235 /var/www/image.loc/_tempLangs.php:268
+#: /var/www/image.loc/_tempLangs.php:235
+#: /var/www/image.loc/_tempLangs.php:268
 msgid "Autoselection"
 msgstr "Автоподбор"
 
@@ -2380,35 +2524,43 @@ msgid "-Not selected-"
 msgstr "-Не выбрано-"
 
 # англ
-#: /var/www/image.loc/_tempLangs.php:237 /var/www/image.loc/_tempLangs.php:270
+#: /var/www/image.loc/_tempLangs.php:237
+#: /var/www/image.loc/_tempLangs.php:270
 msgid "By raiting"
 msgstr "По рейтингу"
 
-#: /var/www/image.loc/_tempLangs.php:238 /var/www/image.loc/_tempLangs.php:271
+#: /var/www/image.loc/_tempLangs.php:238
+#: /var/www/image.loc/_tempLangs.php:271
 msgid "From cheap to expensive"
 msgstr "От дешевых к дорогим"
 
-#: /var/www/image.loc/_tempLangs.php:239 /var/www/image.loc/_tempLangs.php:272
+#: /var/www/image.loc/_tempLangs.php:239
+#: /var/www/image.loc/_tempLangs.php:272
 msgid "From expensive to cheap"
 msgstr "От дорогих к дешевым"
 
-#: /var/www/image.loc/_tempLangs.php:240 /var/www/image.loc/_tempLangs.php:273
+#: /var/www/image.loc/_tempLangs.php:240
+#: /var/www/image.loc/_tempLangs.php:273
 msgid "Popular"
 msgstr "Популярные"
 
-#: /var/www/image.loc/_tempLangs.php:241 /var/www/image.loc/_tempLangs.php:274
+#: /var/www/image.loc/_tempLangs.php:241
+#: /var/www/image.loc/_tempLangs.php:274
 msgid "Novelty"
 msgstr "Новинка"
 
-#: /var/www/image.loc/_tempLangs.php:242 /var/www/image.loc/_tempLangs.php:275
+#: /var/www/image.loc/_tempLangs.php:242
+#: /var/www/image.loc/_tempLangs.php:275
 msgid "Promotions"
 msgstr "Акции"
 
-#: /var/www/image.loc/_tempLangs.php:243 /var/www/image.loc/_tempLangs.php:276
+#: /var/www/image.loc/_tempLangs.php:243
+#: /var/www/image.loc/_tempLangs.php:276
 msgid "Do not show short name of the site"
 msgstr "Не показывать короткое название сайта"
 
-#: /var/www/image.loc/_tempLangs.php:244 /var/www/image.loc/_tempLangs.php:277
+#: /var/www/image.loc/_tempLangs.php:244
+#: /var/www/image.loc/_tempLangs.php:277
 msgid "Meta data"
 msgstr "Ключевые слова"
 
@@ -2436,7 +2588,8 @@ msgstr "Внимание! Также будут удалены все проду
 msgid "Edit category ID"
 msgstr "Редактирование категории ID"
 
-#: /var/www/image.loc/_tempLangs.php:263 /var/www/image.loc/_tempLangs.php:269
+#: /var/www/image.loc/_tempLangs.php:263
+#: /var/www/image.loc/_tempLangs.php:269
 msgid "Not selected"
 msgstr "Не выбрано"
 
@@ -2444,9 +2597,12 @@ msgstr "Не выбрано"
 msgid "Creating a warehouse"
 msgstr "Создание склада"
 
-#: /var/www/image.loc/_tempLangs.php:26 /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:49 /var/www/image.loc/_tempLangs.php:156
-#: /var/www/image.loc/_tempLangs.php:164 /var/www/image.loc/_tempLangs.php:172
+#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:40
+#: /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:156
+#: /var/www/image.loc/_tempLangs.php:164
+#: /var/www/image.loc/_tempLangs.php:172
 msgid "Address"
 msgstr "Адрес"
 
@@ -2458,7 +2614,8 @@ msgstr "Удалить склад"
 msgid "Really remove selected warehouses?"
 msgstr "Вы действительно хотите удалить выбранные склады?"
 
-#: /var/www/image.loc/_tempLangs.php:33 /var/www/image.loc/_tempLangs.php:34
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:34
 msgid "Delete warehouses"
 msgstr "Удалить склады"
 
@@ -2486,7 +2643,8 @@ msgstr "Создание статуса уведомления о появлен
 msgid "General information"
 msgstr "Общая информация"
 
-#: /var/www/image.loc/_tempLangs.php:57 /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:57
+#: /var/www/image.loc/_tempLangs.php:61
 msgid "Removing status"
 msgstr "Удаление статуса"
 
@@ -2518,7 +2676,8 @@ msgstr "Создать способ доставки"
 msgid "Data"
 msgstr "Данные"
 
-#: /var/www/image.loc/_tempLangs.php:83 /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:114
 msgid "Description delivery price"
 msgstr "Описание цены доставки"
 
@@ -2526,20 +2685,26 @@ msgstr "Описание цены доставки"
 msgid "Delivery price"
 msgstr "Цена доставки"
 
-#: /var/www/image.loc/_tempLangs.php:85 /var/www/image.loc/_tempLangs.php:102
+#: /var/www/image.loc/_tempLangs.php:85
+#: /var/www/image.loc/_tempLangs.php:102
 #: /var/www/image.loc/_tempLangs.php:116
 msgid "Free"
 msgstr "Бесплатен"
 
-#: /var/www/image.loc/_tempLangs.php:86 /var/www/image.loc/_tempLangs.php:103
-#: /var/www/image.loc/_tempLangs.php:117 /var/www/image.loc/_tempLangs.php:209
+#: /var/www/image.loc/_tempLangs.php:86
+#: /var/www/image.loc/_tempLangs.php:103
+#: /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:209
 #: /var/www/image.loc/_tempLangs.php:213
 msgid "from"
 msgstr "от"
 
-#: /var/www/image.loc/_tempLangs.php:88 /var/www/image.loc/_tempLangs.php:119
-#: /var/www/image.loc/_tempLangs.php:178 /var/www/image.loc/_tempLangs.php:265
-#: /var/www/image.loc/_tempLangs.php:281 /var/www/image.loc/_tempLangs.php:299
+#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:119
+#: /var/www/image.loc/_tempLangs.php:178
+#: /var/www/image.loc/_tempLangs.php:265
+#: /var/www/image.loc/_tempLangs.php:281
+#: /var/www/image.loc/_tempLangs.php:299
 msgid "Payment method"
 msgstr "Способ оплаты"
 
@@ -2547,7 +2712,8 @@ msgstr "Способ оплаты"
 msgid "List is empty."
 msgstr "Список пуст"
 
-#: /var/www/image.loc/_tempLangs.php:90 /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:94
 msgid "Removing the shipping methods"
 msgstr "Удаление способов доставки"
 
@@ -2572,7 +2738,8 @@ msgstr "Создать способ доставки"
 msgid "Delivery methods list is empty"
 msgstr "Список способов доставки пустой"
 
-#: /var/www/image.loc/_tempLangs.php:107 /var/www/image.loc/_tempLangs.php:263
+#: /var/www/image.loc/_tempLangs.php:107
+#: /var/www/image.loc/_tempLangs.php:263
 msgid "Delivery and payment"
 msgstr "Доставка и оплата"
 
@@ -2598,8 +2765,10 @@ msgstr "Название продукта"
 msgid "Measurement unit"
 msgstr "Измерительное устройство"
 
-#: /var/www/image.loc/_tempLangs.php:127 /var/www/image.loc/_tempLangs.php:149
-#: /var/www/image.loc/_tempLangs.php:205 /var/www/image.loc/_tempLangs.php:305
+#: /var/www/image.loc/_tempLangs.php:127
+#: /var/www/image.loc/_tempLangs.php:149
+#: /var/www/image.loc/_tempLangs.php:205
+#: /var/www/image.loc/_tempLangs.php:305
 msgid "Total price"
 msgstr "Общая цена"
 
@@ -2607,17 +2776,20 @@ msgstr "Общая цена"
 msgid "Pieces."
 msgstr "Шт."
 
-#: /var/www/image.loc/_tempLangs.php:130 /var/www/image.loc/_tempLangs.php:256
+#: /var/www/image.loc/_tempLangs.php:130
+#: /var/www/image.loc/_tempLangs.php:256
 #: /var/www/image.loc/_tempLangs.php:293
 msgid "Delivery Address"
 msgstr "Адрес доставки"
 
-#: /var/www/image.loc/_tempLangs.php:131 /var/www/image.loc/_tempLangs.php:155
+#: /var/www/image.loc/_tempLangs.php:131
+#: /var/www/image.loc/_tempLangs.php:155
 #: /var/www/image.loc/_tempLangs.php:171
 msgid "Phone"
 msgstr "Телефон"
 
-#: /var/www/image.loc/_tempLangs.php:132 /var/www/image.loc/_tempLangs.php:244
+#: /var/www/image.loc/_tempLangs.php:132
+#: /var/www/image.loc/_tempLangs.php:244
 msgid "Order create"
 msgstr "Создание заказа"
 
@@ -2634,9 +2806,12 @@ msgstr "Найти товар"
 msgid "Article / Name / ID"
 msgstr "Арктикул / Название / ID"
 
-#: /var/www/image.loc/_tempLangs.php:148 /var/www/image.loc/_tempLangs.php:150
-#: /var/www/image.loc/_tempLangs.php:235 /var/www/image.loc/_tempLangs.php:243
-#: /var/www/image.loc/_tempLangs.php:304 /var/www/image.loc/_tempLangs.php:314
+#: /var/www/image.loc/_tempLangs.php:148
+#: /var/www/image.loc/_tempLangs.php:150
+#: /var/www/image.loc/_tempLangs.php:235
+#: /var/www/image.loc/_tempLangs.php:243
+#: /var/www/image.loc/_tempLangs.php:304
+#: /var/www/image.loc/_tempLangs.php:314
 msgid "Total"
 msgstr "Общий"
 
@@ -2648,7 +2823,8 @@ msgstr "Создать"
 msgid "Create new user"
 msgstr "Создать нового пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:154 /var/www/image.loc/_tempLangs.php:169
+#: /var/www/image.loc/_tempLangs.php:154
+#: /var/www/image.loc/_tempLangs.php:169
 msgid "Full Name"
 msgstr "Полное имя"
 
@@ -2660,11 +2836,13 @@ msgstr "Поиск пользователя"
 msgid "ID / Full Name / Email"
 msgstr "ID / Имя / E-mail"
 
-#: /var/www/image.loc/_tempLangs.php:166 /var/www/image.loc/_tempLangs.php:220
+#: /var/www/image.loc/_tempLangs.php:166
+#: /var/www/image.loc/_tempLangs.php:220
 msgid "Editing by"
 msgstr "Редактировать по"
 
-#: /var/www/image.loc/_tempLangs.php:167 /var/www/image.loc/_tempLangs.php:175
+#: /var/www/image.loc/_tempLangs.php:167
+#: /var/www/image.loc/_tempLangs.php:175
 msgid "Order information"
 msgstr "Информация  заказа"
 
@@ -2708,10 +2886,14 @@ msgstr "Изменить статус"
 msgid "Payment status"
 msgstr "Статус оплаты"
 
-#: /var/www/image.loc/_tempLangs.php:196 /var/www/image.loc/_tempLangs.php:207
-#: /var/www/image.loc/_tempLangs.php:251 /var/www/image.loc/_tempLangs.php:278
-#: /var/www/image.loc/_tempLangs.php:288 /var/www/image.loc/_tempLangs.php:318
-#: /var/www/image.loc/_tempLangs.php:325 /var/www/image.loc/_tempLangs.php:337
+#: /var/www/image.loc/_tempLangs.php:196
+#: /var/www/image.loc/_tempLangs.php:207
+#: /var/www/image.loc/_tempLangs.php:251
+#: /var/www/image.loc/_tempLangs.php:278
+#: /var/www/image.loc/_tempLangs.php:288
+#: /var/www/image.loc/_tempLangs.php:318
+#: /var/www/image.loc/_tempLangs.php:325
+#: /var/www/image.loc/_tempLangs.php:337
 msgid "Paid"
 msgstr "Оплачен"
 
@@ -2731,12 +2913,14 @@ msgstr "Заказчик"
 msgid "(no delivery)"
 msgstr "(без доставки)"
 
-#: /var/www/image.loc/_tempLangs.php:208 /var/www/image.loc/_tempLangs.php:214
+#: /var/www/image.loc/_tempLangs.php:208
+#: /var/www/image.loc/_tempLangs.php:214
 #: /var/www/image.loc/_tempLangs.php:216
 msgid "numbers only"
 msgstr "только цифры"
 
-#: /var/www/image.loc/_tempLangs.php:210 /var/www/image.loc/_tempLangs.php:212
+#: /var/www/image.loc/_tempLangs.php:210
+#: /var/www/image.loc/_tempLangs.php:212
 msgid "choose a date"
 msgstr "выберите дату"
 
@@ -2752,17 +2936,14 @@ msgstr "Купленные товары"
 msgid "pcs"
 msgstr "штук"
 
-#: /var/www/image.loc/_tempLangs.php:225 /var/www/image.loc/_tempLangs.php:226
+#: /var/www/image.loc/_tempLangs.php:225
+#: /var/www/image.loc/_tempLangs.php:226
 msgid "Orders on the page"
 msgstr "Заказов на странице"
 
 #: /var/www/image.loc/_tempLangs.php:227
-msgid ""
-" This product has been deleted  from the shop! You can only change the "
-"quantity or replace by another product"
-msgstr ""
-"Данный товар был удален из магазина! Вы можете изменить количество или "
-"заменить другим товаром"
+msgid " This product has been deleted  from the shop! You can only change the quantity or replace by another product"
+msgstr "Данный товар был удален из магазина! Вы можете изменить количество или заменить другим товаром"
 
 #: /var/www/image.loc/_tempLangs.php:231
 msgid "Product price has been changed. Old product price"
@@ -2780,23 +2961,28 @@ msgstr "Уведомить покупателя об изменении стат
 msgid "Complete"
 msgstr "Закончыть"
 
-#: /var/www/image.loc/_tempLangs.php:258 /var/www/image.loc/_tempLangs.php:295
+#: /var/www/image.loc/_tempLangs.php:258
+#: /var/www/image.loc/_tempLangs.php:295
 msgid "on"
 msgstr "на"
 
-#: /var/www/image.loc/_tempLangs.php:259 /var/www/image.loc/_tempLangs.php:296
+#: /var/www/image.loc/_tempLangs.php:259
+#: /var/www/image.loc/_tempLangs.php:296
 msgid "map"
 msgstr "карта"
 
-#: /var/www/image.loc/_tempLangs.php:260 /var/www/image.loc/_tempLangs.php:297
+#: /var/www/image.loc/_tempLangs.php:260
+#: /var/www/image.loc/_tempLangs.php:297
 msgid "Show on map"
 msgstr "Показать на карте"
 
-#: /var/www/image.loc/_tempLangs.php:262 /var/www/image.loc/_tempLangs.php:315
+#: /var/www/image.loc/_tempLangs.php:262
+#: /var/www/image.loc/_tempLangs.php:315
 msgid "Additional data"
 msgstr "Дополнительные данные"
 
-#: /var/www/image.loc/_tempLangs.php:264 /var/www/image.loc/_tempLangs.php:283
+#: /var/www/image.loc/_tempLangs.php:264
+#: /var/www/image.loc/_tempLangs.php:283
 msgid "Delivery Method"
 msgstr "Способ доставки"
 
@@ -2825,7 +3011,8 @@ msgstr "Товары и история заказа"
 msgid "Date of order"
 msgstr "Дата заказа"
 
-#: /var/www/image.loc/_tempLangs.php:282 /var/www/image.loc/_tempLangs.php:284
+#: /var/www/image.loc/_tempLangs.php:282
+#: /var/www/image.loc/_tempLangs.php:284
 msgid "Not specified"
 msgstr "Не указано"
 
@@ -2833,11 +3020,13 @@ msgstr "Не указано"
 msgid "Order amount"
 msgstr "Сумма заказа"
 
-#: /var/www/image.loc/_tempLangs.php:287 /var/www/image.loc/_tempLangs.php:313
+#: /var/www/image.loc/_tempLangs.php:287
+#: /var/www/image.loc/_tempLangs.php:313
 msgid "Delivery"
 msgstr "Доставка"
 
-#: /var/www/image.loc/_tempLangs.php:289 /var/www/image.loc/_tempLangs.php:290
+#: /var/www/image.loc/_tempLangs.php:289
+#: /var/www/image.loc/_tempLangs.php:290
 msgid "Full user name"
 msgstr "Полное имя пользователя"
 
@@ -2865,7 +3054,8 @@ msgstr "Комментарий к изменению статуса"
 msgid "Info buyer about change status"
 msgstr "Уведомлять покупателя о смене статуса"
 
-#: /var/www/image.loc/_tempLangs.php:322 /var/www/image.loc/_tempLangs.php:330
+#: /var/www/image.loc/_tempLangs.php:322
+#: /var/www/image.loc/_tempLangs.php:330
 #: /var/www/image.loc/_tempLangs.php:334
 msgid "Date modified"
 msgstr "Дата изменена"
@@ -2898,7 +3088,8 @@ msgstr "мне"
 msgid "Option"
 msgstr "Вариант"
 
-#: /var/www/image.loc/_tempLangs.php:33 /var/www/image.loc/_tempLangs.php:135
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:135
 msgid "Payments"
 msgstr "Оплата"
 
@@ -2906,7 +3097,8 @@ msgstr "Оплата"
 msgid "Result"
 msgstr "Результат"
 
-#: /var/www/image.loc/_tempLangs.php:35 /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:42
 msgid "Orders status creating"
 msgstr "Создание статуса заказа"
 
@@ -3002,7 +3194,8 @@ msgstr "Читать полнастью"
 msgid "Payment method create"
 msgstr "Создание способа оплаты"
 
-#: /var/www/image.loc/_tempLangs.php:107 /var/www/image.loc/_tempLangs.php:111
+#: /var/www/image.loc/_tempLangs.php:107
+#: /var/www/image.loc/_tempLangs.php:111
 msgid "Removal of payment methods"
 msgstr "Удаление способов оплаты"
 
@@ -3046,31 +3239,41 @@ msgstr "Создание дополнительных полей"
 msgid "Entity"
 msgstr "Тип"
 
-#: /var/www/image.loc/_tempLangs.php:144 /var/www/image.loc/_tempLangs.php:147
+#: /var/www/image.loc/_tempLangs.php:144
+#: /var/www/image.loc/_tempLangs.php:147
 msgid "Orders "
 msgstr "Заказы"
 
-#: /var/www/image.loc/_tempLangs.php:149 /var/www/image.loc/_tempLangs.php:205
+#: /var/www/image.loc/_tempLangs.php:149
+#: /var/www/image.loc/_tempLangs.php:205
 msgid "The field should only contain letters without numbers"
 msgstr "Поле должно содержать только латинские буквы без чисел"
 
-#: /var/www/image.loc/_tempLangs.php:150 /var/www/image.loc/_tempLangs.php:206
+#: /var/www/image.loc/_tempLangs.php:150
+#: /var/www/image.loc/_tempLangs.php:206
 msgid "Label"
 msgstr "Метка"
 
-#: /var/www/image.loc/_tempLangs.php:152 /var/www/image.loc/_tempLangs.php:155
-#: /var/www/image.loc/_tempLangs.php:186 /var/www/image.loc/_tempLangs.php:188
-#: /var/www/image.loc/_tempLangs.php:208 /var/www/image.loc/_tempLangs.php:211
+#: /var/www/image.loc/_tempLangs.php:152
+#: /var/www/image.loc/_tempLangs.php:155
+#: /var/www/image.loc/_tempLangs.php:186
+#: /var/www/image.loc/_tempLangs.php:188
+#: /var/www/image.loc/_tempLangs.php:208
+#: /var/www/image.loc/_tempLangs.php:211
 msgid "Field"
 msgstr "Поле"
 
-#: /var/www/image.loc/_tempLangs.php:153 /var/www/image.loc/_tempLangs.php:187
-#: /var/www/image.loc/_tempLangs.php:192 /var/www/image.loc/_tempLangs.php:209
+#: /var/www/image.loc/_tempLangs.php:153
+#: /var/www/image.loc/_tempLangs.php:187
+#: /var/www/image.loc/_tempLangs.php:192
+#: /var/www/image.loc/_tempLangs.php:209
 msgid "Required"
 msgstr "Необходимое"
 
-#: /var/www/image.loc/_tempLangs.php:156 /var/www/image.loc/_tempLangs.php:189
-#: /var/www/image.loc/_tempLangs.php:193 /var/www/image.loc/_tempLangs.php:212
+#: /var/www/image.loc/_tempLangs.php:156
+#: /var/www/image.loc/_tempLangs.php:189
+#: /var/www/image.loc/_tempLangs.php:193
+#: /var/www/image.loc/_tempLangs.php:212
 msgid "Private"
 msgstr "Приватное"
 
@@ -3082,21 +3285,21 @@ msgstr "Тип поля"
 msgid "Possible values"
 msgstr "Возможные значения"
 
-#: /var/www/image.loc/_tempLangs.php:159 /var/www/image.loc/_tempLangs.php:161
-#: /var/www/image.loc/_tempLangs.php:213 /var/www/image.loc/_tempLangs.php:215
+#: /var/www/image.loc/_tempLangs.php:159
+#: /var/www/image.loc/_tempLangs.php:161
+#: /var/www/image.loc/_tempLangs.php:213
+#: /var/www/image.loc/_tempLangs.php:215
 msgid "Validators"
 msgstr "Валидаторы"
 
 # а
-#: /var/www/image.loc/_tempLangs.php:160 /var/www/image.loc/_tempLangs.php:214
-msgid ""
-"Snippet of a certain format,<br /> verifies syntactic correctness<br /> of "
-"the entered information - that is,<br /> to validate."
-msgstr ""
-"Фрагмента кода определённого формату, <br />  ппроверяет синтаксическую "
-"корректность  введеной информации — то есть, <br /> производит валидацию."
+#: /var/www/image.loc/_tempLangs.php:160
+#: /var/www/image.loc/_tempLangs.php:214
+msgid "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
+msgstr "Фрагмента кода определённого формату, <br />  ппроверяет синтаксическую корректность  введеной информации — то есть, <br /> производит валидацию."
 
-#: /var/www/image.loc/_tempLangs.php:162 /var/www/image.loc/_tempLangs.php:164
+#: /var/www/image.loc/_tempLangs.php:162
+#: /var/www/image.loc/_tempLangs.php:164
 msgid "Classes"
 msgstr "Классы"
 
@@ -3104,25 +3307,21 @@ msgstr "Классы"
 msgid "Custom classes for widget"
 msgstr "Пользовательские классы для виджета"
 
-#: /var/www/image.loc/_tempLangs.php:165 /var/www/image.loc/_tempLangs.php:167
+#: /var/www/image.loc/_tempLangs.php:165
+#: /var/www/image.loc/_tempLangs.php:167
 msgid "Access rights"
 msgstr "Права доступа"
 
 #: /var/www/image.loc/_tempLangs.php:166
-msgid ""
-"Access rights define <br />a set of actions (eg, read,<br /> write, execute) "
-"permissions for<br /> the subjects (for example, users<br /> of the system) "
-"of <br />the data objects."
-msgstr ""
-"Права доступа определяют <br /> набор действий (например, чтение, <br /> "
-"запись, выполнение) разрешенных для <br /> предметов (например, пользователи "
-"<br /> системы) из <br />объектов данных."
+msgid "Access rights define <br />a set of actions (eg, read,<br /> write, execute) permissions for<br /> the subjects (for example, users<br /> of the system) of <br />the data objects."
+msgstr "Права доступа определяют <br /> набор действий (например, чтение, <br /> запись, выполнение) разрешенных для <br /> предметов (например, пользователи <br /> системы) из <br />объектов данных."
 
 #: /var/www/image.loc/_tempLangs.php:168
 msgid "Close"
 msgstr "Закрить"
 
-#: /var/www/image.loc/_tempLangs.php:169 /var/www/image.loc/_tempLangs.php:173
+#: /var/www/image.loc/_tempLangs.php:169
+#: /var/www/image.loc/_tempLangs.php:173
 msgid "Remove fields"
 msgstr "Удалить поля"
 
@@ -3142,11 +3341,13 @@ msgstr "Список дополнительных полей"
 msgid "Create Field"
 msgstr "Создать поле"
 
-#: /var/www/image.loc/_tempLangs.php:178 /var/www/image.loc/_tempLangs.php:195
+#: /var/www/image.loc/_tempLangs.php:178
+#: /var/www/image.loc/_tempLangs.php:195
 msgid "One user"
 msgstr "Один пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:183 /var/www/image.loc/_tempLangs.php:203
+#: /var/www/image.loc/_tempLangs.php:183
+#: /var/www/image.loc/_tempLangs.php:203
 msgid "Related entity"
 msgstr "Связанная сущность"
 
@@ -3170,7 +3371,12 @@ msgstr "Редактирования группы ролей"
 msgid "Role create"
 msgstr "Создание роли"
 
-#: /var/www/image.loc/_tempLangs.php:32 /var/www/image.loc/_tempLangs.php:62
+#: /var/www/image.loc/_tempLangs.php:240
+msgid "No orders"
+msgstr "Нет заказов"
+
+#: /var/www/image.loc/_tempLangs.php:32
+#: /var/www/image.loc/_tempLangs.php:62
 msgid "Remove group"
 msgstr "Удалить группу"
 
@@ -3182,11 +3388,13 @@ msgstr "Создать группу ролей"
 msgid "Products without icons"
 msgstr "Товары без картинок"
 
-#: /var/www/image.loc/_tempLangs.php:70 /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:71
 msgid "Latest/recent  comments"
 msgstr "Последние/Недавние комментарии"
 
-#: /var/www/image.loc/_tempLangs.php:72 /var/www/image.loc/_tempLangs.php:199
+#: /var/www/image.loc/_tempLangs.php:72
+#: /var/www/image.loc/_tempLangs.php:199
 msgid "Delete "
 msgstr "Удалить"
 
@@ -3194,17 +3402,14 @@ msgstr "Удалить"
 msgid "Notification "
 msgstr "Уведомление"
 
-#: /var/www/image.loc/_tempLangs.php:74 /var/www/image.loc/_tempLangs.php:201
+#: /var/www/image.loc/_tempLangs.php:74
+#: /var/www/image.loc/_tempLangs.php:201
 msgid "ID : "
 msgstr "ID:"
 
 #: /var/www/image.loc/_tempLangs.php:75
-msgid ""
-"User has already been notified by e-mail  about  product arrival! Notify "
-"again? "
-msgstr ""
-"Пользователь уже был уведомлен по электронной почте о прибытие товара! "
-"Сообщить снова?"
+msgid "User has already been notified by e-mail  about  product arrival! Notify again? "
+msgstr "Пользователь уже был уведомлен по электронной почте о прибытие товара! Сообщить снова?"
 
 #: /var/www/image.loc/_tempLangs.php:76
 msgid "Notify a user by e-mail about product arrival?"
@@ -3226,36 +3431,44 @@ msgstr "Удалить выбранные запросы?"
 msgid "Delete the query?"
 msgstr "Удалить запрос?"
 
-#: /var/www/image.loc/_tempLangs.php:83 /var/www/image.loc/_tempLangs.php:125
+#: /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:125
 msgid "Arrival notification"
 msgstr "Уведомление о появлении"
 
-#: /var/www/image.loc/_tempLangs.php:91 /var/www/image.loc/_tempLangs.php:104
+#: /var/www/image.loc/_tempLangs.php:91
+#: /var/www/image.loc/_tempLangs.php:104
 msgid "Time of addition"
 msgstr "Время добавления"
 
-#: /var/www/image.loc/_tempLangs.php:92 /var/www/image.loc/_tempLangs.php:105
+#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:105
 msgid "Valid until"
 msgstr "Действительно до"
 
-#: /var/www/image.loc/_tempLangs.php:96 /var/www/image.loc/_tempLangs.php:109
+#: /var/www/image.loc/_tempLangs.php:96
+#: /var/www/image.loc/_tempLangs.php:109
 msgid "Notifications"
 msgstr "Уведомления"
 
-#: /var/www/image.loc/_tempLangs.php:98 /var/www/image.loc/_tempLangs.php:111
+#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:111
 #: /var/www/image.loc/_tempLangs.php:134
 msgid "Notified email"
 msgstr "E-mail уведомления"
 
-#: /var/www/image.loc/_tempLangs.php:99 /var/www/image.loc/_tempLangs.php:112
+#: /var/www/image.loc/_tempLangs.php:99
+#: /var/www/image.loc/_tempLangs.php:112
 msgid "Notified"
 msgstr "Уведомлен"
 
-#: /var/www/image.loc/_tempLangs.php:100 /var/www/image.loc/_tempLangs.php:113
+#: /var/www/image.loc/_tempLangs.php:100
+#: /var/www/image.loc/_tempLangs.php:113
 msgid "Notify"
 msgstr "Уведомлять"
 
-#: /var/www/image.loc/_tempLangs.php:101 /var/www/image.loc/_tempLangs.php:114
+#: /var/www/image.loc/_tempLangs.php:101
+#: /var/www/image.loc/_tempLangs.php:114
 msgid "Empty product arrival notification list."
 msgstr "Список уведомлений о появлении пустой."
 
@@ -3279,64 +3492,85 @@ msgstr "Уведомление по электронной почте"
 msgid "Select"
 msgstr "Выбирать"
 
-#: /var/www/image.loc/_tempLangs.php:145 /var/www/image.loc/_tempLangs.php:387
+#: /var/www/image.loc/_tempLangs.php:145
+#: /var/www/image.loc/_tempLangs.php:387
 msgid "Product creation"
 msgstr "Создание товара"
 
-#: /var/www/image.loc/_tempLangs.php:151 /var/www/image.loc/_tempLangs.php:256
-#: /var/www/image.loc/_tempLangs.php:309 /var/www/image.loc/_tempLangs.php:377
+#: /var/www/image.loc/_tempLangs.php:151
+#: /var/www/image.loc/_tempLangs.php:256
+#: /var/www/image.loc/_tempLangs.php:309
+#: /var/www/image.loc/_tempLangs.php:377
 #: /var/www/image.loc/_tempLangs.php:393
 msgid "Images"
 msgstr "Изображения"
 
-#: /var/www/image.loc/_tempLangs.php:152 /var/www/image.loc/_tempLangs.php:257
-#: /var/www/image.loc/_tempLangs.php:312 /var/www/image.loc/_tempLangs.php:381
+#: /var/www/image.loc/_tempLangs.php:152
+#: /var/www/image.loc/_tempLangs.php:257
+#: /var/www/image.loc/_tempLangs.php:312
+#: /var/www/image.loc/_tempLangs.php:381
 #: /var/www/image.loc/_tempLangs.php:394
 msgid "Kits"
 msgstr "Наборы"
 
-#: /var/www/image.loc/_tempLangs.php:163 /var/www/image.loc/_tempLangs.php:261
-#: /var/www/image.loc/_tempLangs.php:344 /var/www/image.loc/_tempLangs.php:397
+#: /var/www/image.loc/_tempLangs.php:163
+#: /var/www/image.loc/_tempLangs.php:261
+#: /var/www/image.loc/_tempLangs.php:344
+#: /var/www/image.loc/_tempLangs.php:397
 msgid "Product variant name"
 msgstr "Название варианта товара"
 
-#: /var/www/image.loc/_tempLangs.php:165 /var/www/image.loc/_tempLangs.php:346
+#: /var/www/image.loc/_tempLangs.php:165
+#: /var/www/image.loc/_tempLangs.php:346
 msgid "Photo"
 msgstr "Фото"
 
-#: /var/www/image.loc/_tempLangs.php:167 /var/www/image.loc/_tempLangs.php:195
+#: /var/www/image.loc/_tempLangs.php:167
+#: /var/www/image.loc/_tempLangs.php:195
 #: /var/www/image.loc/_tempLangs.php:349
 msgid "Edit"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:168 /var/www/image.loc/_tempLangs.php:196
+#: /var/www/image.loc/_tempLangs.php:168
+#: /var/www/image.loc/_tempLangs.php:196
 #: /var/www/image.loc/_tempLangs.php:350
 msgid "Load from internet"
 msgstr "Загрузите из интернета"
 
-#: /var/www/image.loc/_tempLangs.php:169 /var/www/image.loc/_tempLangs.php:269
-#: /var/www/image.loc/_tempLangs.php:270 /var/www/image.loc/_tempLangs.php:352
-#: /var/www/image.loc/_tempLangs.php:405 /var/www/image.loc/_tempLangs.php:406
+#: /var/www/image.loc/_tempLangs.php:169
+#: /var/www/image.loc/_tempLangs.php:269
+#: /var/www/image.loc/_tempLangs.php:270
+#: /var/www/image.loc/_tempLangs.php:352
+#: /var/www/image.loc/_tempLangs.php:405
+#: /var/www/image.loc/_tempLangs.php:406
 msgid "Add a variant"
 msgstr "Добавить вариант"
 
-#: /var/www/image.loc/_tempLangs.php:171 /var/www/image.loc/_tempLangs.php:275
-#: /var/www/image.loc/_tempLangs.php:354 /var/www/image.loc/_tempLangs.php:411
+#: /var/www/image.loc/_tempLangs.php:171
+#: /var/www/image.loc/_tempLangs.php:275
+#: /var/www/image.loc/_tempLangs.php:354
+#: /var/www/image.loc/_tempLangs.php:411
 msgid "Brand name"
 msgstr "Название бренда"
 
-#: /var/www/image.loc/_tempLangs.php:174 /var/www/image.loc/_tempLangs.php:278
-#: /var/www/image.loc/_tempLangs.php:357 /var/www/image.loc/_tempLangs.php:414
+#: /var/www/image.loc/_tempLangs.php:174
+#: /var/www/image.loc/_tempLangs.php:278
+#: /var/www/image.loc/_tempLangs.php:357
+#: /var/www/image.loc/_tempLangs.php:414
 msgid "Additional categories"
 msgstr "Дополнительные категории"
 
-#: /var/www/image.loc/_tempLangs.php:178 /var/www/image.loc/_tempLangs.php:294
-#: /var/www/image.loc/_tempLangs.php:361 /var/www/image.loc/_tempLangs.php:428
+#: /var/www/image.loc/_tempLangs.php:178
+#: /var/www/image.loc/_tempLangs.php:294
+#: /var/www/image.loc/_tempLangs.php:361
+#: /var/www/image.loc/_tempLangs.php:428
 msgid "Warehouses"
 msgstr "Склады"
 
-#: /var/www/image.loc/_tempLangs.php:187 /var/www/image.loc/_tempLangs.php:303
-#: /var/www/image.loc/_tempLangs.php:370 /var/www/image.loc/_tempLangs.php:437
+#: /var/www/image.loc/_tempLangs.php:187
+#: /var/www/image.loc/_tempLangs.php:303
+#: /var/www/image.loc/_tempLangs.php:370
+#: /var/www/image.loc/_tempLangs.php:437
 msgid "Product main template. By default  product.tpl"
 msgstr "Основной шаблон товара. По-умолчанию product.tpl"
 
@@ -3380,33 +3614,42 @@ msgstr "Копировать"
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: /var/www/image.loc/_tempLangs.php:280 /var/www/image.loc/_tempLangs.php:287
-#: /var/www/image.loc/_tempLangs.php:310 /var/www/image.loc/_tempLangs.php:378
-#: /var/www/image.loc/_tempLangs.php:416 /var/www/image.loc/_tempLangs.php:422
+#: /var/www/image.loc/_tempLangs.php:280
+#: /var/www/image.loc/_tempLangs.php:287
+#: /var/www/image.loc/_tempLangs.php:310
+#: /var/www/image.loc/_tempLangs.php:378
+#: /var/www/image.loc/_tempLangs.php:416
+#: /var/www/image.loc/_tempLangs.php:422
 msgid "Select a file"
 msgstr "Выберите файл"
 
-#: /var/www/image.loc/_tempLangs.php:282 /var/www/image.loc/_tempLangs.php:418
+#: /var/www/image.loc/_tempLangs.php:282
+#: /var/www/image.loc/_tempLangs.php:418
 msgid "Create small image"
 msgstr "Создать миниатюру"
 
-#: /var/www/image.loc/_tempLangs.php:286 /var/www/image.loc/_tempLangs.php:421
+#: /var/www/image.loc/_tempLangs.php:286
+#: /var/www/image.loc/_tempLangs.php:421
 msgid "Another main image variant"
 msgstr "Другой основной вариант изображения"
 
-#: /var/www/image.loc/_tempLangs.php:289 /var/www/image.loc/_tempLangs.php:424
+#: /var/www/image.loc/_tempLangs.php:289
+#: /var/www/image.loc/_tempLangs.php:424
 msgid "Another small image variant"
 msgstr "Еще одно небольшое изображение варианта"
 
-#: /var/www/image.loc/_tempLangs.php:311 /var/www/image.loc/_tempLangs.php:380
+#: /var/www/image.loc/_tempLangs.php:311
+#: /var/www/image.loc/_tempLangs.php:380
 msgid "Create a set"
 msgstr "Создать набор"
 
-#: /var/www/image.loc/_tempLangs.php:315 /var/www/image.loc/_tempLangs.php:384
+#: /var/www/image.loc/_tempLangs.php:315
+#: /var/www/image.loc/_tempLangs.php:384
 msgid "Delete set"
 msgstr "Удалить набор"
 
-#: /var/www/image.loc/_tempLangs.php:317 /var/www/image.loc/_tempLangs.php:386
+#: /var/www/image.loc/_tempLangs.php:317
+#: /var/www/image.loc/_tempLangs.php:386
 msgid "Kit List products are empty"
 msgstr "Список наборов продуктов пустой        "
 
@@ -3456,12 +3699,14 @@ msgstr "Вы действительно хотите удалить выбран
 msgid "Product kits review"
 msgstr "Обзор наборов товара"
 
-#: /var/www/image.loc/_tempLangs.php:56 /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:73
 #: /var/www/image.loc/_tempLangs.php:88
 msgid "main product"
 msgstr "главный товар"
 
-#: /var/www/image.loc/_tempLangs.php:57 /var/www/image.loc/_tempLangs.php:72
+#: /var/www/image.loc/_tempLangs.php:57
+#: /var/www/image.loc/_tempLangs.php:72
 #: /var/www/image.loc/_tempLangs.php:87
 msgid "Main product"
 msgstr "Главный товар"
@@ -3474,7 +3719,8 @@ msgstr "Связанные продукты"
 msgid "Create product kit"
 msgstr "Создать набор товаров"
 
-#: /var/www/image.loc/_tempLangs.php:75 /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:90
 msgid "Added products"
 msgstr "Добавленные продукты"
 
@@ -3502,7 +3748,8 @@ msgstr "Абсолютный путь к странице"
 msgid "Banner creation"
 msgstr "Создание баннера"
 
-#: /var/www/image.loc/_tempLangs.php:115 /var/www/image.loc/_tempLangs.php:154
+#: /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:154
 msgid "Text banner"
 msgstr "Текст баннера"
 
@@ -3514,19 +3761,23 @@ msgstr "Отображать на главной странице:"
 msgid "Display in the categories"
 msgstr "Отображение в категориях:"
 
-#: /var/www/image.loc/_tempLangs.php:123 /var/www/image.loc/_tempLangs.php:162
+#: /var/www/image.loc/_tempLangs.php:123
+#: /var/www/image.loc/_tempLangs.php:162
 msgid "Do not display"
 msgstr "Не отображать"
 
-#: /var/www/image.loc/_tempLangs.php:124 /var/www/image.loc/_tempLangs.php:163
+#: /var/www/image.loc/_tempLangs.php:124
+#: /var/www/image.loc/_tempLangs.php:163
 msgid "Select all"
 msgstr "Выбрать все"
 
-#: /var/www/image.loc/_tempLangs.php:125 /var/www/image.loc/_tempLangs.php:164
+#: /var/www/image.loc/_tempLangs.php:125
+#: /var/www/image.loc/_tempLangs.php:164
 msgid "Active until"
 msgstr "Активно до"
 
-#: /var/www/image.loc/_tempLangs.php:126 /var/www/image.loc/_tempLangs.php:130
+#: /var/www/image.loc/_tempLangs.php:126
+#: /var/www/image.loc/_tempLangs.php:130
 msgid "Removing banner"
 msgstr "Удаление баннера"
 
@@ -3582,7 +3833,8 @@ msgstr "Перевод ID бренда:"
 msgid "Create brand"
 msgstr "Создать бренд"
 
-#: /var/www/image.loc/_tempLangs.php:182 /var/www/image.loc/_tempLangs.php:186
+#: /var/www/image.loc/_tempLangs.php:182
+#: /var/www/image.loc/_tempLangs.php:186
 msgid "Removing brand"
 msgstr "Удаление бренда"
 
@@ -3622,7 +3874,8 @@ msgstr "Статистика заказов"
 msgid "Total orders price"
 msgstr "Общая стоимость заказов"
 
-#: /var/www/image.loc/_tempLangs.php:215 /var/www/image.loc/_tempLangs.php:217
+#: /var/www/image.loc/_tempLangs.php:215
+#: /var/www/image.loc/_tempLangs.php:217
 msgid "Days"
 msgstr "Дни"
 
@@ -3634,494 +3887,518 @@ msgstr "Сумма заказов"
 msgid "Number of Orders"
 msgstr "Количество заказов"
 
-#: /var/www/image.loc/_tempLangs.php:223 /var/www/image.loc/_tempLangs.php:234
+#: /var/www/image.loc/_tempLangs.php:219
+msgid "Shop settings"
+msgstr "Настройки магазина"
+
+#: /var/www/image.loc/_tempLangs.php:223
+#: /var/www/image.loc/_tempLangs.php:229
 msgid "External view"
 msgstr "Внешний вид"
 
-#: /var/www/image.loc/_tempLangs.php:225 /var/www/image.loc/_tempLangs.php:304
-msgid "Wish List"
-msgstr "Список желаний"
-
 #: /var/www/image.loc/_tempLangs.php:226
-msgid "Notice of appearance"
-msgstr "Уведомление о появлении"
-
-#: /var/www/image.loc/_tempLangs.php:228 /var/www/image.loc/_tempLangs.php:412
-msgid "Registration after order"
-msgstr "Регистрация после заказа"
-
-#: /var/www/image.loc/_tempLangs.php:229
-msgid "Top sales block"
-msgstr "Блок Top продаж"
-
-#: /var/www/image.loc/_tempLangs.php:230 /var/www/image.loc/_tempLangs.php:431
-msgid "Password recovery"
-msgstr "Восстановление пароля"
-
-#: /var/www/image.loc/_tempLangs.php:231
 msgid "Integration with social networks"
 msgstr "Интеграция с социальными сетями"
 
-#: /var/www/image.loc/_tempLangs.php:233
-msgid "Yandex.Market"
-msgstr "Yandex.Market"
+#: /var/www/image.loc/_tempLangs.php:227
+#: /var/www/image.loc/_tempLangs.php:445
+msgid "Notifications in pages"
+msgstr "Уведомления на страницах"
 
-#: /var/www/image.loc/_tempLangs.php:235
+#: /var/www/image.loc/_tempLangs.php:228
+msgid "Discharge into Yandex.Market"
+msgstr "Выгрузка в Яндекс.Маркет"
+
+#: /var/www/image.loc/_tempLangs.php:230
 msgid "Products count shown on site"
 msgstr "Количество товаров на сайте"
 
-#: /var/www/image.loc/_tempLangs.php:236
+#: /var/www/image.loc/_tempLangs.php:231
 msgid "The values ​​for the number of products per page (example: 12, 24, 48)"
 msgstr "Значения для количества товаров на сайте (например: 12, 24, 48)"
 
-#: /var/www/image.loc/_tempLangs.php:237
+#: /var/www/image.loc/_tempLangs.php:232
 msgid "Products count in control panel"
 msgstr "Количество продуктов в панели управления"
 
-#: /var/www/image.loc/_tempLangs.php:239
+#: /var/www/image.loc/_tempLangs.php:234
 msgid "fractional digits"
 msgstr "дробовые цифры"
 
-#: /var/www/image.loc/_tempLangs.php:245
+#: /var/www/image.loc/_tempLangs.php:240
 msgid "The name at the website"
 msgstr "Название на сайте"
 
-#: /var/www/image.loc/_tempLangs.php:247
+#: /var/www/image.loc/_tempLangs.php:242
 msgid "Get"
 msgstr "Получить"
 
-#: /var/www/image.loc/_tempLangs.php:254
+#: /var/www/image.loc/_tempLangs.php:249
 msgid "Prefix (folder will be created)"
 msgstr "Префикс (папка будет создана)"
 
-#: /var/www/image.loc/_tempLangs.php:255
+#: /var/www/image.loc/_tempLangs.php:250
 msgid "Height, px"
 msgstr "Высота, px"
 
-#: /var/www/image.loc/_tempLangs.php:256
+#: /var/www/image.loc/_tempLangs.php:251
 msgid "Width, px"
 msgstr "Ширина, px"
 
-#: /var/www/image.loc/_tempLangs.php:259
+#: /var/www/image.loc/_tempLangs.php:254
 msgid "Additional image"
 msgstr "Дополнительное изображение"
 
-#: /var/www/image.loc/_tempLangs.php:262
+#: /var/www/image.loc/_tempLangs.php:257
 msgid "Thumbnail"
 msgstr "Миниатюра"
 
-#: /var/www/image.loc/_tempLangs.php:265
+#: /var/www/image.loc/_tempLangs.php:260
 msgid "Quality"
 msgstr "Количество"
 
-#: /var/www/image.loc/_tempLangs.php:266
+#: /var/www/image.loc/_tempLangs.php:261
 msgid "Main size"
 msgstr "Главный размер"
 
-#: /var/www/image.loc/_tempLangs.php:267
+#: /var/www/image.loc/_tempLangs.php:262
 msgid "Auto"
 msgstr "Авто"
 
-#: /var/www/image.loc/_tempLangs.php:268
+#: /var/www/image.loc/_tempLangs.php:263
 msgid "Height"
 msgstr "Высота"
 
-#: /var/www/image.loc/_tempLangs.php:269
+#: /var/www/image.loc/_tempLangs.php:264
 msgid "Width"
 msgstr "Ширина"
 
-#: /var/www/image.loc/_tempLangs.php:271
+#: /var/www/image.loc/_tempLangs.php:266
 msgid "Watermark"
 msgstr "Водяной знак"
 
-#: /var/www/image.loc/_tempLangs.php:273
+#: /var/www/image.loc/_tempLangs.php:268
 msgid " Horizontal alignment "
 msgstr "Горизонтальное выравнивание"
 
-#: /var/www/image.loc/_tempLangs.php:274
+#: /var/www/image.loc/_tempLangs.php:269
 msgid "Left"
 msgstr "Слева"
 
-#: /var/www/image.loc/_tempLangs.php:275
+#: /var/www/image.loc/_tempLangs.php:270
 msgid "Center"
 msgstr "Центр"
 
-#: /var/www/image.loc/_tempLangs.php:276
+#: /var/www/image.loc/_tempLangs.php:271
 msgid "Right"
 msgstr "Справа"
 
-#: /var/www/image.loc/_tempLangs.php:277
+#: /var/www/image.loc/_tempLangs.php:272
 msgid "Vertical alignment"
 msgstr "Вертикальное выравнивание"
 
-#: /var/www/image.loc/_tempLangs.php:278
+#: /var/www/image.loc/_tempLangs.php:273
 msgid "Up"
 msgstr "Вгору"
 
-#: /var/www/image.loc/_tempLangs.php:279
+#: /var/www/image.loc/_tempLangs.php:274
 msgid "In the middle"
 msgstr "Посредине"
 
-#: /var/www/image.loc/_tempLangs.php:280
+#: /var/www/image.loc/_tempLangs.php:275
 msgid "At the bottom"
 msgstr "Внизу"
 
-#: /var/www/image.loc/_tempLangs.php:281
+#: /var/www/image.loc/_tempLangs.php:276
 msgid "The ratio of the size of the watermark to the size of photos"
 msgstr "Отношение размеров водяного знака с размерами фотографии"
 
-#: /var/www/image.loc/_tempLangs.php:285
+#: /var/www/image.loc/_tempLangs.php:280
 msgid "Path to the image"
 msgstr "Путь к изображению"
 
-#: /var/www/image.loc/_tempLangs.php:287
+#: /var/www/image.loc/_tempLangs.php:282
 msgid "The file must be on the server. For example"
 msgstr "Этот файл должен находиться на сервере. Например"
 
-#: /var/www/image.loc/_tempLangs.php:288
+#: /var/www/image.loc/_tempLangs.php:283
 msgid "Transparency"
 msgstr "Прозрачность"
 
-#: /var/www/image.loc/_tempLangs.php:290
+#: /var/www/image.loc/_tempLangs.php:285
 msgid "Font size"
 msgstr "Размер шрифта"
 
-#: /var/www/image.loc/_tempLangs.php:291
+#: /var/www/image.loc/_tempLangs.php:286
 msgid "Font colour"
 msgstr "Цвет шрифта"
 
-#: /var/www/image.loc/_tempLangs.php:292
+#: /var/www/image.loc/_tempLangs.php:287
 msgid "Displacement"
 msgstr "Смещение"
 
-#: /var/www/image.loc/_tempLangs.php:293
+#: /var/www/image.loc/_tempLangs.php:288
 msgid "Path to font "
 msgstr "Путь к шрифту"
 
-#: /var/www/image.loc/_tempLangs.php:295
+#: /var/www/image.loc/_tempLangs.php:290
 msgid "Font file must be located on the server. For example"
 msgstr "Файл шрифта должен находиться на сервере. Например"
 
-#: /var/www/image.loc/_tempLangs.php:297
+#: /var/www/image.loc/_tempLangs.php:292
 msgid "Perform resize of all the images?"
 msgstr "Выполнить ресайз всех изображений?"
 
-#: /var/www/image.loc/_tempLangs.php:299
+#: /var/www/image.loc/_tempLangs.php:294
 msgid "Including additional images"
 msgstr "В том числе дополнительные изображения"
 
-#: /var/www/image.loc/_tempLangs.php:300
+#: /var/www/image.loc/_tempLangs.php:295
 msgid "Perform resize the selected product"
 msgstr "Выполнить ресайз выбранного товара"
 
-#: /var/www/image.loc/_tempLangs.php:306 /var/www/image.loc/_tempLangs.php:309
-#: /var/www/image.loc/_tempLangs.php:323 /var/www/image.loc/_tempLangs.php:326
-#: /var/www/image.loc/_tempLangs.php:342 /var/www/image.loc/_tempLangs.php:345
-#: /var/www/image.loc/_tempLangs.php:380 /var/www/image.loc/_tempLangs.php:383
-#: /var/www/image.loc/_tempLangs.php:400 /var/www/image.loc/_tempLangs.php:403
-#: /var/www/image.loc/_tempLangs.php:415 /var/www/image.loc/_tempLangs.php:418
+#: /var/www/image.loc/_tempLangs.php:299
+msgid "Wish List"
+msgstr "Список желаний"
+
+#: /var/www/image.loc/_tempLangs.php:301
+#: /var/www/image.loc/_tempLangs.php:304
+#: /var/www/image.loc/_tempLangs.php:318
+#: /var/www/image.loc/_tempLangs.php:321
+#: /var/www/image.loc/_tempLangs.php:337
+#: /var/www/image.loc/_tempLangs.php:340
+#: /var/www/image.loc/_tempLangs.php:376
+#: /var/www/image.loc/_tempLangs.php:379
+#: /var/www/image.loc/_tempLangs.php:396
+#: /var/www/image.loc/_tempLangs.php:399
+#: /var/www/image.loc/_tempLangs.php:411
+#: /var/www/image.loc/_tempLangs.php:414
 msgid "sender"
 msgstr "отправитель"
 
-#: /var/www/image.loc/_tempLangs.php:310 /var/www/image.loc/_tempLangs.php:327
-#: /var/www/image.loc/_tempLangs.php:346 /var/www/image.loc/_tempLangs.php:384
-#: /var/www/image.loc/_tempLangs.php:404 /var/www/image.loc/_tempLangs.php:419
+#: /var/www/image.loc/_tempLangs.php:305
+#: /var/www/image.loc/_tempLangs.php:322
+#: /var/www/image.loc/_tempLangs.php:341
+#: /var/www/image.loc/_tempLangs.php:380
+#: /var/www/image.loc/_tempLangs.php:400
+#: /var/www/image.loc/_tempLangs.php:415
 msgid "Subject"
 msgstr "Тема"
 
-#: /var/www/image.loc/_tempLangs.php:311 /var/www/image.loc/_tempLangs.php:328
-#: /var/www/image.loc/_tempLangs.php:347 /var/www/image.loc/_tempLangs.php:385
-#: /var/www/image.loc/_tempLangs.php:396 /var/www/image.loc/_tempLangs.php:405
-#: /var/www/image.loc/_tempLangs.php:420
+#: /var/www/image.loc/_tempLangs.php:306
+#: /var/www/image.loc/_tempLangs.php:323
+#: /var/www/image.loc/_tempLangs.php:342
+#: /var/www/image.loc/_tempLangs.php:381
+#: /var/www/image.loc/_tempLangs.php:392
+#: /var/www/image.loc/_tempLangs.php:401
+#: /var/www/image.loc/_tempLangs.php:416
 msgid "Message format"
 msgstr "Формат письма"
 
-#: /var/www/image.loc/_tempLangs.php:312 /var/www/image.loc/_tempLangs.php:329
-#: /var/www/image.loc/_tempLangs.php:348 /var/www/image.loc/_tempLangs.php:386
-#: /var/www/image.loc/_tempLangs.php:406 /var/www/image.loc/_tempLangs.php:421
+#: /var/www/image.loc/_tempLangs.php:307
+#: /var/www/image.loc/_tempLangs.php:324
+#: /var/www/image.loc/_tempLangs.php:343
+#: /var/www/image.loc/_tempLangs.php:382
+#: /var/www/image.loc/_tempLangs.php:402
+#: /var/www/image.loc/_tempLangs.php:417
 msgid "Message text"
 msgstr "Текст письма"
 
-#: /var/www/image.loc/_tempLangs.php:313 /var/www/image.loc/_tempLangs.php:330
-#: /var/www/image.loc/_tempLangs.php:349 /var/www/image.loc/_tempLangs.php:387
-#: /var/www/image.loc/_tempLangs.php:407 /var/www/image.loc/_tempLangs.php:422
-#: /var/www/image.loc/_tempLangs.php:434
+#: /var/www/image.loc/_tempLangs.php:308
+#: /var/www/image.loc/_tempLangs.php:325
+#: /var/www/image.loc/_tempLangs.php:344
+#: /var/www/image.loc/_tempLangs.php:383
+#: /var/www/image.loc/_tempLangs.php:403
+#: /var/www/image.loc/_tempLangs.php:418
+#: /var/www/image.loc/_tempLangs.php:430
 msgid "You can use the following variable"
 msgstr "Вы можете использовать следующие переменные"
 
-#: /var/www/image.loc/_tempLangs.php:314
+#: /var/www/image.loc/_tempLangs.php:309
 msgid "Name of the  WishList author"
 msgstr "Название автора Списка желания"
 
-#: /var/www/image.loc/_tempLangs.php:315
+#: /var/www/image.loc/_tempLangs.php:310
 msgid " Telephone number of the wishlist author"
 msgstr "Телефон  автора списка желаний"
 
-#: /var/www/image.loc/_tempLangs.php:316
+#: /var/www/image.loc/_tempLangs.php:311
 msgid "Comments of the wishlist author"
 msgstr "Комментарий автора желаний"
 
-#: /var/www/image.loc/_tempLangs.php:317
+#: /var/www/image.loc/_tempLangs.php:312
 msgid "Key to view the wishlist"
 msgstr "Ключ для просмотра желаний"
 
-#: /var/www/image.loc/_tempLangs.php:318
+#: /var/www/image.loc/_tempLangs.php:313
 msgid "Link to view the  WishList"
 msgstr "Ссылку для просмотра Списка жеданий"
 
-#: /var/www/image.loc/_tempLangs.php:319
+#: /var/www/image.loc/_tempLangs.php:314
 msgid "IP address of the  wishlist author"
 msgstr "IP-адрес автора списка желаний"
 
-#: /var/www/image.loc/_tempLangs.php:320
+#: /var/www/image.loc/_tempLangs.php:315
 msgid "Sending date of the wishlist"
 msgstr "Данные отправки списка желаний"
 
-#: /var/www/image.loc/_tempLangs.php:331
+#: /var/www/image.loc/_tempLangs.php:326
 msgid "Notification status about the arrival"
 msgstr "Статус уведомления о прибытии"
 
-#: /var/www/image.loc/_tempLangs.php:332
+#: /var/www/image.loc/_tempLangs.php:327
 msgid " Name of the user who made a request "
 msgstr "Имя пользователя, который сделал запрос"
 
-#: /var/www/image.loc/_tempLangs.php:333
+#: /var/www/image.loc/_tempLangs.php:328
 msgid "User phone number"
 msgstr "Телефон пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:334
+#: /var/www/image.loc/_tempLangs.php:329
 msgid "Product name "
 msgstr "Название товара"
 
-#: /var/www/image.loc/_tempLangs.php:335
+#: /var/www/image.loc/_tempLangs.php:330
 msgid "Link to view the product"
 msgstr "Ссылку для просмотра продукта"
 
-#: /var/www/image.loc/_tempLangs.php:336
+#: /var/www/image.loc/_tempLangs.php:331
 msgid " User notification request date"
 msgstr "Дата когда пользователь оставил запрос уведомления"
 
-#: /var/www/image.loc/_tempLangs.php:338
+#: /var/www/image.loc/_tempLangs.php:333
 msgid "Send notification about new callback to administrator"
 msgstr "Отправлять администратору оповещение о новом Callback'e"
 
-#: /var/www/image.loc/_tempLangs.php:339
+#: /var/www/image.loc/_tempLangs.php:334
 msgid "Email for sending notifications about new Callbacks"
 msgstr "E-mail для отправки уведомлений о новых колбеках"
 
-#: /var/www/image.loc/_tempLangs.php:354
+#: /var/www/image.loc/_tempLangs.php:349
 msgid "Username requested a  callback"
 msgstr "Имя пользователя запросившего Сallback"
 
-#: /var/www/image.loc/_tempLangs.php:355
+#: /var/www/image.loc/_tempLangs.php:350
 msgid "User telephone number requested a callback"
 msgstr "Номер телефона пользователя запросившего Сallback"
 
-#: /var/www/image.loc/_tempLangs.php:356
+#: /var/www/image.loc/_tempLangs.php:351
 msgid " Callback request date"
 msgstr "Дата колбека"
 
-#: /var/www/image.loc/_tempLangs.php:357
+#: /var/www/image.loc/_tempLangs.php:352
 msgid "Comments by a callback user"
 msgstr "Комментарии пользователя колбека"
 
-#: /var/www/image.loc/_tempLangs.php:358
+#: /var/www/image.loc/_tempLangs.php:353
 msgid "General settings"
 msgstr "Общие настройки"
 
-#: /var/www/image.loc/_tempLangs.php:359
-msgid "Recalculate products after payment of the order?"
-msgstr "Пересчитать товары после оплаты заказа?"
-
-#: /var/www/image.loc/_tempLangs.php:362
-msgid "Consider the amount of products warehouse on adding to basket"
-msgstr "Рассмотреть сумму склада товаров на добавление в корзину"
-
-#: /var/www/image.loc/_tempLangs.php:365
-msgid " Administrator notification about the order placement by e-mail"
-msgstr "Уведомление администратора о размещении заказа по электронной почте"
-
-#: /var/www/image.loc/_tempLangs.php:371
-msgid "Administrator"
-msgstr "Администратор"
-
-#: /var/www/image.loc/_tempLangs.php:373
-msgid "Customer notification about the order placement"
-msgstr "Уведомления покупателя о размещении заказа"
-
-#: /var/www/image.loc/_tempLangs.php:378
-msgid "Order placement e-mail to the user has been sent"
-msgstr "Письмо о размещение заказа  было отправлено пользователю"
-
-#: /var/www/image.loc/_tempLangs.php:388 /var/www/image.loc/_tempLangs.php:408
-msgid "Name of the customer"
-msgstr "Имя заказчика"
-
-#: /var/www/image.loc/_tempLangs.php:389
-msgid "Customer e-mail address"
-msgstr "Email клиента"
-
-#: /var/www/image.loc/_tempLangs.php:390
-msgid "Customer phone number"
-msgstr "Телефон пользователя"
-
-#: /var/www/image.loc/_tempLangs.php:391
-msgid "Delivery address specified by the customer"
-msgstr "Адрес доставкы , указаный клиентом"
-
-#: /var/www/image.loc/_tempLangs.php:392
-msgid "ID order"
-msgstr "ID заказа"
-
-#: /var/www/image.loc/_tempLangs.php:393
-msgid " Key to view the order"
-msgstr "Ключ, чтобы просмотреть заказ"
-
-#: /var/www/image.loc/_tempLangs.php:394 /var/www/image.loc/_tempLangs.php:410
-msgid " Link to the order"
-msgstr "Сссилка на заказ"
-
-#: /var/www/image.loc/_tempLangs.php:395
-msgid " Customer notification about the order status change"
-msgstr "Уведомления клиента об изменении статуса заказа"
-
-#: /var/www/image.loc/_tempLangs.php:409
-msgid "New order status"
-msgstr "Новый статус заказа"
-
-#: /var/www/image.loc/_tempLangs.php:411
-msgid "Time of the order status change"
-msgstr "Время изменения статуса заказа"
-
 # а
-#: /var/www/image.loc/_tempLangs.php:413
+#: /var/www/image.loc/_tempLangs.php:354
+#: /var/www/image.loc/_tempLangs.php:409
 msgid "User registartion after making order"
 msgstr "Регистрация пользователя после создания заказа"
 
+#: /var/www/image.loc/_tempLangs.php:355
+msgid "Recalculate products after payment of the order?"
+msgstr "Пересчитать товары после оплаты заказа?"
+
+#: /var/www/image.loc/_tempLangs.php:358
+msgid "Consider the amount of products warehouse on adding to basket"
+msgstr "Рассмотреть сумму склада товаров на добавление в корзину"
+
+#: /var/www/image.loc/_tempLangs.php:361
+msgid " Administrator notification about the order placement by e-mail"
+msgstr "Уведомление администратора о размещении заказа по электронной почте"
+
+#: /var/www/image.loc/_tempLangs.php:367
+msgid "Administrator"
+msgstr "Администратор"
+
+#: /var/www/image.loc/_tempLangs.php:369
+msgid "Customer notification about the order placement"
+msgstr "Уведомления покупателя о размещении заказа"
+
+#: /var/www/image.loc/_tempLangs.php:374
+msgid "Order placement e-mail to the user has been sent"
+msgstr "Письмо о размещение заказа  было отправлено пользователю"
+
+#: /var/www/image.loc/_tempLangs.php:384
+#: /var/www/image.loc/_tempLangs.php:404
+msgid "Name of the customer"
+msgstr "Имя заказчика"
+
+#: /var/www/image.loc/_tempLangs.php:385
+msgid "Customer e-mail address"
+msgstr "Email клиента"
+
+#: /var/www/image.loc/_tempLangs.php:386
+msgid "Customer phone number"
+msgstr "Телефон пользователя"
+
+#: /var/www/image.loc/_tempLangs.php:387
+msgid "Delivery address specified by the customer"
+msgstr "Адрес доставкы , указаный клиентом"
+
+#: /var/www/image.loc/_tempLangs.php:388
+msgid "ID order"
+msgstr "ID заказа"
+
+#: /var/www/image.loc/_tempLangs.php:389
+msgid " Key to view the order"
+msgstr "Ключ, чтобы просмотреть заказ"
+
+#: /var/www/image.loc/_tempLangs.php:390
+#: /var/www/image.loc/_tempLangs.php:406
+msgid " Link to the order"
+msgstr "Сссилка на заказ"
+
+#: /var/www/image.loc/_tempLangs.php:391
+msgid " Customer notification about the order status change"
+msgstr "Уведомления клиента об изменении статуса заказа"
+
+#: /var/www/image.loc/_tempLangs.php:405
+msgid "New order status"
+msgstr "Новый статус заказа"
+
+#: /var/www/image.loc/_tempLangs.php:407
+msgid "Time of the order status change"
+msgstr "Время изменения статуса заказа"
+
+#: /var/www/image.loc/_tempLangs.php:408
+msgid "Registration after order"
+msgstr "Регистрация после заказа"
+
 # а
-#: /var/www/image.loc/_tempLangs.php:423
+#: /var/www/image.loc/_tempLangs.php:419
 msgid " User login for site enrty"
 msgstr "Вход пользователя после входа на сайт"
 
-#: /var/www/image.loc/_tempLangs.php:424
+#: /var/www/image.loc/_tempLangs.php:420
 msgid "Username of the customer"
 msgstr "Имя пользователя "
 
-#: /var/www/image.loc/_tempLangs.php:425
+#: /var/www/image.loc/_tempLangs.php:421
 msgid "Customer e-mail"
 msgstr "Enail заказчика"
 
-#: /var/www/image.loc/_tempLangs.php:426
+#: /var/www/image.loc/_tempLangs.php:422
 msgid "Customer password"
 msgstr "Пароль заказчика"
 
-#: /var/www/image.loc/_tempLangs.php:427
+#: /var/www/image.loc/_tempLangs.php:423
 msgid "Site address"
 msgstr "Адрес сайта"
 
-#: /var/www/image.loc/_tempLangs.php:428
+#: /var/www/image.loc/_tempLangs.php:424
 msgid "Top sales block "
 msgstr "Блок Top продаж"
 
 # а
-#: /var/www/image.loc/_tempLangs.php:429
+#: /var/www/image.loc/_tempLangs.php:425
 msgid " Popularity formula coefficient "
 msgstr "Коэффициент формулы популярности"
 
 # а
-#: /var/www/image.loc/_tempLangs.php:430
-msgid ""
-" Popularity formula: number of views+ products added to the cart "
-"*coefficient . For example: 1000."
-msgstr ""
-"Формула популярности: количество просмотров + количество добавлений в "
-"корзину * коэффициент. Например: 1000."
+#: /var/www/image.loc/_tempLangs.php:426
+msgid " Popularity formula: number of views+ products added to the cart *coefficient . For example: 1000."
+msgstr "Формула популярности: количество просмотров + количество добавлений в корзину * коэффициент. Например: 1000."
 
-#: /var/www/image.loc/_tempLangs.php:435
+#: /var/www/image.loc/_tempLangs.php:427
+msgid "Password recovery"
+msgstr "Восстановление пароля"
+
+#: /var/www/image.loc/_tempLangs.php:431
 msgid "Site name"
 msgstr "Название сайта"
 
-#: /var/www/image.loc/_tempLangs.php:436
+#: /var/www/image.loc/_tempLangs.php:432
 msgid "Link to confirm password  recovery"
 msgstr "Ссылку для подтверждения восстановления пароля"
 
-#: /var/www/image.loc/_tempLangs.php:439
+#: /var/www/image.loc/_tempLangs.php:435
 msgid "Key"
 msgstr "Ключ"
 
-#: /var/www/image.loc/_tempLangs.php:440
+#: /var/www/image.loc/_tempLangs.php:436
 msgid "Site webmaster email"
 msgstr "E-mail вебмастера сайта"
 
-#: /var/www/image.loc/_tempLangs.php:441
+#: /var/www/image.loc/_tempLangs.php:437
 msgid "Switch on integration with Facebook?"
 msgstr "Включить интеграцию с Facebook?"
 
-#: /var/www/image.loc/_tempLangs.php:442
+#: /var/www/image.loc/_tempLangs.php:438
 msgid "Secret key"
 msgstr "Секретный ключ"
 
-#: /var/www/image.loc/_tempLangs.php:443 /var/www/image.loc/_tempLangs.php:447
+#: /var/www/image.loc/_tempLangs.php:439
+#: /var/www/image.loc/_tempLangs.php:443
 msgid "Application number"
 msgstr "Номер приложения"
 
-#: /var/www/image.loc/_tempLangs.php:444 /var/www/image.loc/_tempLangs.php:448
+#: /var/www/image.loc/_tempLangs.php:440
+#: /var/www/image.loc/_tempLangs.php:444
 msgid "Select template folder"
 msgstr "Выберите папку шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:445
+#: /var/www/image.loc/_tempLangs.php:441
 msgid "Switch on integration with VKontakte?"
 msgstr "Включить интеграцию с вконтакте?"
 
-#: /var/www/image.loc/_tempLangs.php:446
+#: /var/www/image.loc/_tempLangs.php:442
 msgid "Protection key"
 msgstr "Ключ защиты"
 
-#: /var/www/image.loc/_tempLangs.php:450
+#: /var/www/image.loc/_tempLangs.php:446
 msgid "Message  about arrival"
 msgstr "Сообщение о прибытии"
 
-#: /var/www/image.loc/_tempLangs.php:451
+#: /var/www/image.loc/_tempLangs.php:447
 msgid "Message about a callback"
 msgstr "Сообщение колбека"
 
-#: /var/www/image.loc/_tempLangs.php:452
+#: /var/www/image.loc/_tempLangs.php:448
 msgid "Message from the order page"
 msgstr "Сообщение с страницы заказа"
 
-#: /var/www/image.loc/_tempLangs.php:453 /var/www/image.loc/_tempLangs.php:455
+#: /var/www/image.loc/_tempLangs.php:449
+#: /var/www/image.loc/_tempLangs.php:451
 msgid "API Key for Mail Chimp"
 msgstr "API Key для Mail Chimp"
 
-#: /var/www/image.loc/_tempLangs.php:454
+#: /var/www/image.loc/_tempLangs.php:450
 msgid "The key to your account <br />on the mail Mailchimp"
 msgstr "Ключ к вашему счету <br /> на почтовом Mailchimp"
 
-#: /var/www/image.loc/_tempLangs.php:456 /var/www/image.loc/_tempLangs.php:458
+#: /var/www/image.loc/_tempLangs.php:452
+#: /var/www/image.loc/_tempLangs.php:454
 msgid "Key for Mail Chimp list"
 msgstr "Ключ для списка Mail Chimp "
 
-#: /var/www/image.loc/_tempLangs.php:457
+#: /var/www/image.loc/_tempLangs.php:453
 msgid "The key to your list of <br />news for MailChimp"
 msgstr "Ключ к вашему списку новостей <br /> для MailChimp"
 
-#: /var/www/image.loc/_tempLangs.php:459
+#: /var/www/image.loc/_tempLangs.php:455
 msgid "Settings Yandex.Market"
 msgstr "Настройки Яндекс.Маркет"
 
-#: /var/www/image.loc/_tempLangs.php:460
+#: /var/www/image.loc/_tempLangs.php:456
 msgid "Displayed categories selection"
 msgstr "Просмотреть выбранные категории"
 
-#: /var/www/image.loc/_tempLangs.php:461
+#: /var/www/image.loc/_tempLangs.php:457
 msgid "Yandex.Market document"
 msgstr "Яндекс.Маркет  документ"
 
-#: /var/www/image.loc/_tempLangs.php:462
+#: /var/www/image.loc/_tempLangs.php:458
 msgid "XML document"
 msgstr "XML документ"
 
-#: /var/www/image.loc/_tempLangs.php:463 /var/www/image.loc/_tempLangs.php:464
+#: /var/www/image.loc/_tempLangs.php:459
+#: /var/www/image.loc/_tempLangs.php:460
 msgid "don't show"
 msgstr "не показывать"
 
@@ -4129,22 +4406,26 @@ msgstr "не показывать"
 msgid "Currency create"
 msgstr "Создание валюты"
 
-#: /var/www/image.loc/_tempLangs.php:26 /var/www/image.loc/_tempLangs.php:47
+#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:47
 #: /var/www/image.loc/_tempLangs.php:66
 msgid "ISO"
 msgstr "ISO"
 
-#: /var/www/image.loc/_tempLangs.php:27 /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:27
+#: /var/www/image.loc/_tempLangs.php:48
 #: /var/www/image.loc/_tempLangs.php:67
 msgid "Code"
 msgstr "Код"
 
-#: /var/www/image.loc/_tempLangs.php:29 /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:49
 #: /var/www/image.loc/_tempLangs.php:69
 msgid "Character"
 msgstr "Символ"
 
-#: /var/www/image.loc/_tempLangs.php:31 /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:31
+#: /var/www/image.loc/_tempLangs.php:71
 msgid "Currency rate"
 msgstr "Курс валюты"
 
@@ -4229,25 +4510,32 @@ msgstr "Суммы, на которую будет скидка"
 msgid "Not active"
 msgstr "Не активна"
 
-#: /var/www/image.loc/_tempLangs.php:88 /var/www/image.loc/_tempLangs.php:190
+#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:190
 msgid "Editing by discounts"
 msgstr "Редактирование скидки"
 
-#: /var/www/image.loc/_tempLangs.php:93 /var/www/image.loc/_tempLangs.php:120
-#: /var/www/image.loc/_tempLangs.php:143 /var/www/image.loc/_tempLangs.php:195
-#: /var/www/image.loc/_tempLangs.php:217 /var/www/image.loc/_tempLangs.php:223
+#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:120
+#: /var/www/image.loc/_tempLangs.php:143
+#: /var/www/image.loc/_tempLangs.php:195
+#: /var/www/image.loc/_tempLangs.php:217
+#: /var/www/image.loc/_tempLangs.php:223
 msgid "Full name"
 msgstr "Полное имя"
 
-#: /var/www/image.loc/_tempLangs.php:95 /var/www/image.loc/_tempLangs.php:197
+#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:197
 msgid "Purchase price"
 msgstr "Покупная цена"
 
-#: /var/www/image.loc/_tempLangs.php:97 /var/www/image.loc/_tempLangs.php:199
+#: /var/www/image.loc/_tempLangs.php:97
+#: /var/www/image.loc/_tempLangs.php:199
 msgid "Off manually entered"
 msgstr "Off введенные вручную"
 
-#: /var/www/image.loc/_tempLangs.php:98 /var/www/image.loc/_tempLangs.php:102
+#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:102
 msgid "Removing discounts"
 msgstr "Удаление скидки"
 
@@ -4287,29 +4575,36 @@ msgstr "Депозитные ставки"
 msgid "Empty user list."
 msgstr "Список пользователей пуст"
 
-#: /var/www/image.loc/_tempLangs.php:125 /var/www/image.loc/_tempLangs.php:200
+#: /var/www/image.loc/_tempLangs.php:125
+#: /var/www/image.loc/_tempLangs.php:200
 msgid "Editing discounts"
 msgstr "Редактирование скидкок"
 
-#: /var/www/image.loc/_tempLangs.php:129 /var/www/image.loc/_tempLangs.php:204
+#: /var/www/image.loc/_tempLangs.php:129
+#: /var/www/image.loc/_tempLangs.php:204
 msgid "Discount options"
 msgstr "Настройкы скидки"
 
 # а
-#: /var/www/image.loc/_tempLangs.php:130 /var/www/image.loc/_tempLangs.php:205
+#: /var/www/image.loc/_tempLangs.php:130
+#: /var/www/image.loc/_tempLangs.php:205
 msgid "Member Discount"
 msgstr "Скидка пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:132 /var/www/image.loc/_tempLangs.php:207
-#: /var/www/image.loc/_tempLangs.php:230 /var/www/image.loc/_tempLangs.php:242
+#: /var/www/image.loc/_tempLangs.php:132
+#: /var/www/image.loc/_tempLangs.php:207
+#: /var/www/image.loc/_tempLangs.php:230
+#: /var/www/image.loc/_tempLangs.php:242
 msgid "Discounts"
 msgstr "Скидки"
 
-#: /var/www/image.loc/_tempLangs.php:134 /var/www/image.loc/_tempLangs.php:209
+#: /var/www/image.loc/_tempLangs.php:134
+#: /var/www/image.loc/_tempLangs.php:209
 msgid "Just like the number 10"
 msgstr "Так же, как номер 10"
 
-#: /var/www/image.loc/_tempLangs.php:148 /var/www/image.loc/_tempLangs.php:152
+#: /var/www/image.loc/_tempLangs.php:148
+#: /var/www/image.loc/_tempLangs.php:152
 msgid "Removing Gift Certificate"
 msgstr "Удаление подарочново сертификата"
 
@@ -4345,7 +4640,8 @@ msgstr "Список подарочных сертификатов пуст."
 msgid "Gift certificate create"
 msgstr "Создание подарочного сертификата"
 
-#: /var/www/image.loc/_tempLangs.php:172 /var/www/image.loc/_tempLangs.php:187
+#: /var/www/image.loc/_tempLangs.php:172
+#: /var/www/image.loc/_tempLangs.php:187
 msgid "Gift certificate price"
 msgstr "Цена подарочного сертификата"
 
@@ -4417,11 +4713,13 @@ msgstr "Список постоянных скидок"
 msgid "Enter a product for discount"
 msgstr "Введите товар для скидки"
 
-#: /var/www/image.loc/_tempLangs.php:60 /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:82
 msgid "Create user"
 msgstr "Создать пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:72 /var/www/image.loc/_tempLangs.php:76
+#: /var/www/image.loc/_tempLangs.php:72
+#: /var/www/image.loc/_tempLangs.php:76
 #: /var/www/image.loc/_tempLangs.php:77
 msgid "Deleting a user"
 msgstr "Удаление пользователя"
@@ -4430,34 +4728,31 @@ msgstr "Удаление пользователя"
 msgid "Remove selected users?"
 msgstr "Удалить выбранных пользователей?"
 
-#: /var/www/image.loc/_tempLangs.php:90 /var/www/image.loc/_tempLangs.php:127
+#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:127
 msgid "Time of registration"
 msgstr "Время регистрации"
 
-#: /var/www/image.loc/_tempLangs.php:92 /var/www/image.loc/_tempLangs.php:102
+#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:102
 msgid "Simple user"
 msgstr "Простой пользователь"
 
 #: /var/www/image.loc/_tempLangs.php:105
 msgid "Export CSV gives <br />jumps file with <br />a list of all<br /> users."
-msgstr ""
-"Экспорт CSV дает <br /> скачать файл со <br /> списоком всех <br /> "
-"пользователей."
+msgstr "Экспорт CSV дает <br /> скачать файл со <br /> списоком всех <br /> пользователей."
 
 # а
 #: /var/www/image.loc/_tempLangs.php:106
-msgid ""
-"Export Mailchimp sent <br />to all users on their<br /> email "
-"subscription<br /> form on your<br /> news rassilku."
-msgstr ""
-"Экспорт Mailchimp отправляет <br /> всем пользователям на их e-mail <br /> "
-"<br /> форму подписки на Ваш <br /> россилки новостей."
+msgid "Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku."
+msgstr "Экспорт Mailchimp отправляет <br /> всем пользователям на их e-mail <br /> <br /> форму подписки на Ваш <br /> россилки новостей."
 
 #: /var/www/image.loc/_tempLangs.php:107
 msgid "Orders history"
 msgstr "История заказов"
 
-#: /var/www/image.loc/_tempLangs.php:109 /var/www/image.loc/_tempLangs.php:139
+#: /var/www/image.loc/_tempLangs.php:109
+#: /var/www/image.loc/_tempLangs.php:139
 msgid "Time of the order"
 msgstr "Время заказа"
 
@@ -4507,14 +4802,14 @@ msgstr "Выключить"
 
 #: /var/www/image.loc/_tempLangs.php:36
 msgid "Warning! Files will be deleted automaticly on backup creating"
-msgstr ""
-"Внимание! Файлы будут удалены автоматически на создании резервной копии"
+msgstr "Внимание! Файлы будут удалены автоматически на создании резервной копии"
 
 #: /var/www/image.loc/_tempLangs.php:37
 msgid "Delete after date"
 msgstr "Удалить после даты"
 
-#: /var/www/image.loc/_tempLangs.php:38 /var/www/image.loc/_tempLangs.php:39
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:39
 #: /var/www/image.loc/_tempLangs.php:40
 msgid "month"
 msgstr "месяц"
@@ -4559,12 +4854,15 @@ msgstr "Акция"
 msgid "Language edit"
 msgstr "Редактирование языка"
 
-#: /var/www/image.loc/_tempLangs.php:94 /var/www/image.loc/_tempLangs.php:115
+#: /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:115
 msgid "Locale"
 msgstr "Локаль"
 
-#: /var/www/image.loc/_tempLangs.php:95 /var/www/image.loc/_tempLangs.php:96
-#: /var/www/image.loc/_tempLangs.php:116 /var/www/image.loc/_tempLangs.php:117
+#: /var/www/image.loc/_tempLangs.php:95
+#: /var/www/image.loc/_tempLangs.php:96
+#: /var/www/image.loc/_tempLangs.php:116
+#: /var/www/image.loc/_tempLangs.php:117
 msgid "Image URL"
 msgstr "URL изображения"
 
@@ -4600,11 +4898,13 @@ msgstr "Создание нового языка"
 msgid "Module install"
 msgstr "Установка модулей"
 
-#: /var/www/image.loc/_tempLangs.php:24 /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:24
+#: /var/www/image.loc/_tempLangs.php:30
 msgid "General Settings"
 msgstr "Общие настройки"
 
-#: /var/www/image.loc/_tempLangs.php:25 /var/www/image.loc/_tempLangs.php:41
+#: /var/www/image.loc/_tempLangs.php:25
+#: /var/www/image.loc/_tempLangs.php:41
 msgid "Analysts settings"
 msgstr "Настройки аналитики"
 
@@ -4612,11 +4912,13 @@ msgstr "Настройки аналитики"
 msgid "Management of Meta Tags"
 msgstr "Управление Мета-тегами"
 
-#: /var/www/image.loc/_tempLangs.php:28 /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:66
 msgid "Enter Meta Tags"
 msgstr "Заполнить Мета-теги"
 
-#: /var/www/image.loc/_tempLangs.php:29 /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:73
 msgid "Site information"
 msgstr "Информация о сайте"
 
@@ -4676,11 +4978,13 @@ msgstr "Будет ли отображатся название категори
 msgid "Separator"
 msgstr "Разделитель"
 
-#: /var/www/image.loc/_tempLangs.php:59 /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:63
 msgid "Auto formation"
 msgstr "Сформировать автоматически "
 
-#: /var/www/image.loc/_tempLangs.php:60 /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:64
 msgid "Leave empty"
 msgstr "Оставить пустым"
 
@@ -4728,11 +5032,13 @@ msgstr "Контакты"
 msgid "that you entered as a contact type"
 msgstr "которие Вы  ввели как тип контакту"
 
-#: /var/www/image.loc/_tempLangs.php:80 /var/www/image.loc/_tempLangs.php:83
+#: /var/www/image.loc/_tempLangs.php:80
+#: /var/www/image.loc/_tempLangs.php:83
 msgid "Contact type"
 msgstr "Тип контакта"
 
-#: /var/www/image.loc/_tempLangs.php:81 /var/www/image.loc/_tempLangs.php:84
+#: /var/www/image.loc/_tempLangs.php:81
+#: /var/www/image.loc/_tempLangs.php:84
 msgid "Value"
 msgstr "Значение"
 
@@ -4748,8 +5054,10 @@ msgstr "Добавить контакт"
 msgid "Logo"
 msgstr "Лого"
 
-#: /var/www/image.loc/_tempLangs.php:87 /var/www/image.loc/_tempLangs.php:88
-#: /var/www/image.loc/_tempLangs.php:89 /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:87
+#: /var/www/image.loc/_tempLangs.php:88
+#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:90
 msgid "Click to select the image"
 msgstr "Кликните для выбора изображения"
 
@@ -4757,7 +5065,8 @@ msgstr "Кликните для выбора изображения"
 msgid "Basic"
 msgstr "Базовые"
 
-#: /var/www/image.loc/_tempLangs.php:153 /var/www/image.loc/_tempLangs.php:157
+#: /var/www/image.loc/_tempLangs.php:153
+#: /var/www/image.loc/_tempLangs.php:157
 #: /var/www/image.loc/_tempLangs.php:158
 msgid "Delete category"
 msgstr "Удалить категорию"
@@ -4806,12 +5115,14 @@ msgstr " ID страницы"
 msgid "Error: Module information has not been found"
 msgstr "Ошибка: не найдено информации модуля"
 
-#: mod_search.php:123 sys_upgrade.php:32
+#: mod_search.php:123
+#: sys_upgrade.php:32
 msgid "FTP_connect function is not available"
 msgstr "Функция Ftp_connect недоступна"
 
 # а
-#: mod_search.php:140 sys_upgrade.php:62
+#: mod_search.php:140
+#: sys_upgrade.php:62
 msgid "Server connection error:Check username and password"
 msgstr "шибка соединения с сервером: Проверте имя пользователя и пароль "
 
@@ -4823,7 +5134,8 @@ msgstr "Неправильный путь к корневому каталогу
 msgid "File downloading error"
 msgstr "Ошибка скачивания файла"
 
-#: mod_search.php:207 mod_search.php:287
+#: mod_search.php:207
+#: mod_search.php:287
 msgid "Creation of temporary directory has been failed"
 msgstr "Создание временного каталога не удалось"
 
@@ -4835,7 +5147,9 @@ msgstr "Для продолжения удалите каталог"
 msgid "Attention or Caution"
 msgstr "Внимание или Осторожно"
 
-#: mod_search.php:237 mod_search.php:268 sys_upgrade.php:129
+#: mod_search.php:237
+#: mod_search.php:268
+#: sys_upgrade.php:129
 msgid "Exploding error"
 msgstr "Подрывна ошибка"
 
@@ -4844,7 +5158,8 @@ msgstr "Подрывна ошибка"
 msgid "Module installation error"
 msgstr "Ошыбка установки модуля"
 
-#: mod_search.php:258 mod_search.php:306
+#: mod_search.php:258
+#: mod_search.php:306
 msgid "Modul has been installed"
 msgstr "Модуль был установлен"
 
@@ -4853,11 +5168,13 @@ msgstr "Модуль был установлен"
 msgid "Module installation module"
 msgstr "Установка модуля"
 
-#: admin_search.php:87 admin_search.php:208
+#: admin_search.php:87
+#: admin_search.php:208
 msgid "First link"
 msgstr "Первая ссылка"
 
-#: admin_search.php:88 admin_search.php:209
+#: admin_search.php:88
+#: admin_search.php:209
 msgid "Last link"
 msgstr "Последняя ссылка"
 
@@ -4878,31 +5195,33 @@ msgstr "Модуль успешно удален"
 msgid "Module deletion error"
 msgstr "Ошибка удаления модуля"
 
-#: components.php:252
+#: components.php:288
 msgid "Changed the module settings"
 msgstr "Настройки модуля изменены "
 
-#: components.php:345
+#: components.php:381
 msgid "Version "
 msgstr "Версия"
 
-#: components.php:349
+#: components.php:385
 msgid "Can't load module info file"
 msgstr "Не удается загрузить файл информации модуля"
 
-#: components.php:421
+#: components.php:457
 msgid "Positions updated"
 msgstr "Позиции обновлены"
 
-#: components.php:423
+#: components.php:459
 msgid "Fail"
 msgstr "Неудача"
 
-#: components.php:437 sys_update.php:103
+#: components.php:473
+#: sys_update.php:103
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
-#: admin_logs.php:49 pages.php:1009
+#: admin_logs.php:49
+#: pages.php:1009
 msgid "Prev"
 msgstr "Назад"
 
@@ -4914,7 +5233,8 @@ msgstr "Кэш очищен"
 msgid "Files deleted"
 msgstr "Файлы удалены"
 
-#: admin.php:69 admin.php:77
+#: admin.php:69
+#: admin.php:77
 msgid "Cache has been cleared"
 msgstr "Кэш очищен"
 
@@ -4963,20 +5283,27 @@ msgstr "ID удаленой страницы"
 msgid "The %s field can only contain Latin characters"
 msgstr "Поле %s  должно содержать только латинские символы."
 
-#: pages.php:152 pages.php:486 widgets_manager.php:95 widgets_manager.php:168
-#: widgets_manager.php:254 widgets_manager.php:309
+#: pages.php:152
+#: pages.php:486
+#: widgets_manager.php:95
+#: widgets_manager.php:168
+#: widgets_manager.php:254
+#: widgets_manager.php:309
 msgid "Description "
 msgstr "Описание"
 
-#: pages.php:155 pages.php:490
+#: pages.php:155
+#: pages.php:490
 msgid "Creation time"
 msgstr "Время создания"
 
-#: pages.php:156 pages.php:491
+#: pages.php:156
+#: pages.php:491
 msgid "Publication date"
 msgstr "Дата публикации"
 
-#: pages.php:157 pages.php:492
+#: pages.php:157
+#: pages.php:492
 msgid "Publication time"
 msgstr "Время публикации"
 
@@ -4988,19 +5315,19 @@ msgstr "Основной шаблон страницы"
 msgid "From validation error: <br />"
 msgstr "Ошибка проверки формы: <br />"
 
-#: pages.php:188 pages.php:521
+#: pages.php:188
+#: pages.php:521
 msgid "Reserved the same name module"
 msgstr "Reserved одноименным модулем"
 
-#: pages.php:197 pages.php:530
+#: pages.php:197
+#: pages.php:530
 msgid "Reserved of the same name category"
 msgstr "Reserved одного и того же названия категории"
 
 #: pages.php:209
-msgid ""
-"Page with the same URL has been created yet. Specify or select another URL"
-msgstr ""
-"Страницы с таким же URL еще не создано. Укажите или выберите другой URL"
+msgid "Page with the same URL has been created yet. Specify or select another URL"
+msgstr "Страницы с таким же URL еще не создано. Укажите или выберите другой URL"
 
 #: pages.php:275
 msgid "Created a page"
@@ -5046,13 +5373,14 @@ msgstr "Контент страницы был обновлен"
 msgid "Error: Generic page can not be deleted."
 msgstr "Ошибка: Общая страница не может быть удалена."
 
-#: pages.php:649 pages.php:666
+#: pages.php:649
+#: pages.php:666
 msgid "Page has been deleted."
 msgstr "Страница удалена."
 
 #: pages.php:711
 msgid "Successful delete"
-msgstr "/* Успешное удаление */"
+msgstr "Успешное удаление"
 
 #: pages.php:794
 msgid "Successfull moving"
@@ -5083,13 +5411,11 @@ msgid "Username and password have not been found"
 msgstr "Имя пользователя и пароль не были найдены"
 
 #: login.php:100
-msgid ""
-"Please check your email for instructions on how to activate the new password."
-msgstr ""
-"Пожалуйста, проверьте свою электронную почту для получения инструкций о том, "
-"как активировать новый пароль."
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr "Пожалуйста, проверьте свою электронную почту для получения инструкций о том, как активировать новый пароль."
 
-#: login.php:122 login.php:126
+#: login.php:122
+#: login.php:126
 msgid "Wrong protection code"
 msgstr "Неправильный код защиты"
 
@@ -5101,10 +5427,11 @@ msgstr "Расширение PHP SOAP не установлено"
 msgid "Changes not saved"
 msgstr "Изменения не сохранены"
 
-#: widgets_manager.php:30 widgets_manager.php:80 widgets_manager.php:214
+#: widgets_manager.php:30
+#: widgets_manager.php:80
+#: widgets_manager.php:214
 msgid "Set the directory access rights to continue the work with widgets"
-msgstr ""
-"Установите права доступа к каталогу, чтобы продолжить работу с виджетами"
+msgstr "Установите права доступа к каталогу, чтобы продолжить работу с виджетами"
 
 #: widgets_manager.php:90
 msgid "Widget with the same name already exists. Choose or select another name"
@@ -5114,23 +5441,29 @@ msgstr "Виджет с таким именем уже существует. В�
 msgid "Method"
 msgstr "Методы"
 
-#: widgets_manager.php:148 widgets_manager.php:184
+#: widgets_manager.php:148
+#: widgets_manager.php:184
 msgid "Created a widget"
 msgstr "Сиджетов создан"
 
-#: widgets_manager.php:151 widgets_manager.php:199
+#: widgets_manager.php:151
+#: widgets_manager.php:199
 msgid "Widget created"
 msgstr "Виджет создан"
 
-#: widgets_manager.php:243 widgets_manager.php:368
+#: widgets_manager.php:243
+#: widgets_manager.php:368
 msgid "Error: widget not found!"
 msgstr "Ошибка: виджет не найден!"
 
-#: widgets_manager.php:291 widgets_manager.php:325
+#: widgets_manager.php:291
+#: widgets_manager.php:325
 msgid "Changed a widget"
 msgstr "Виджет изменен"
 
-#: widgets_manager.php:294 widgets_manager.php:327 languages.php:210
+#: widgets_manager.php:294
+#: widgets_manager.php:327
+#: languages.php:210
 msgid "Changes has been saved"
 msgstr "Изменения сохранены"
 
@@ -5178,15 +5511,18 @@ msgstr "Язык создан"
 msgid "Changed a language"
 msgstr "Язык изменен"
 
-#: languages.php:233 languages.php:249
+#: languages.php:233
+#: languages.php:249
 msgid "This language has been used by default and can not be deleted"
 msgstr "Этот язык был использован по умолчанию и не может быть удален"
 
-#: languages.php:233 languages.php:249
+#: languages.php:233
+#: languages.php:249
 msgid "Blocking"
 msgstr "Блокировка"
 
-#: languages.php:241 languages.php:261
+#: languages.php:241
+#: languages.php:261
 msgid "Deleted the ID language"
 msgstr "ID удаленого языка"
 
@@ -5230,7 +5566,8 @@ msgstr "Настройки сохранены"
 msgid "Directory ./application/backups has no writing permission"
 msgstr "Каталог ./application/backups  не имеет прав записи"
 
-#: backup.php:142 backup.php:195
+#: backup.php:142
+#: backup.php:195
 msgid "Backup copying has been completed"
 msgstr "Резервное копирование завершено"
 
@@ -5246,7 +5583,8 @@ msgstr "URL категорий"
 msgid "Per page"
 msgstr "На страницу"
 
-#: categories.php:221 categories.php:363
+#: categories.php:221
+#: categories.php:363
 msgid "Category has been created or created a category"
 msgstr "Категория была создана"
 
@@ -5278,7 +5616,8 @@ msgstr "Перевод категории обновлен"
 msgid "Category deletion error"
 msgstr "Ошибки удаления категории"
 
-#: categories.php:552 categories.php:584
+#: categories.php:552
+#: categories.php:584
 msgid "Deleted ID category or ID category has been deleted"
 msgstr "Удалено категорию с ID"
 
@@ -5295,106 +5634,106 @@ msgstr "profiler_"
 msgid "No profiles"
 msgstr "Нет профилей"
 
-#: ../../../templates/administrator/inc/menus.php:13
+#: ../../../templates/administrator/inc/menus.php:14
 msgid "Dashboard"
 msgstr "Главная"
 
-#: ../../../templates/administrator/inc/menus.php:35
+#: ../../../templates/administrator/inc/menus.php:36
+#: ../../../templates/administrator/inc/menus.php:188
 msgid "Custom fields constructor"
 msgstr "Конструктор полей"
 
-#: ../../../templates/administrator/inc/menus.php:39
+#: ../../../templates/administrator/inc/menus.php:40
+#: ../../../templates/administrator/inc/menus.php:192
 msgid "Fields list"
 msgstr "Список полей"
 
-#: ../../../templates/administrator/inc/menus.php:43
+#: ../../../templates/administrator/inc/menus.php:44
+#: ../../../templates/administrator/inc/menus.php:196
 msgid "Group's list "
 msgstr "Список групп"
 
-#: ../../../templates/administrator/inc/menus.php:58
+#: ../../../templates/administrator/inc/menus.php:59
+#: ../../../templates/administrator/inc/menus.php:181
 msgid "Categories list"
 msgstr "Список категорий"
 
-#: ../../../templates/administrator/inc/menus.php:96
+#: ../../../templates/administrator/inc/menus.php:97
 msgid "Create widget"
 msgstr "Создать виджет"
 
-#: ../../../templates/administrator/inc/menus.php:115
-#: ../../../templates/administrator/inc/menus.php:336
+#: ../../../templates/administrator/inc/menus.php:116
+#: ../../../templates/administrator/inc/menus.php:385
 msgid "Template editor"
 msgstr "Редактор шаблонов"
 
-#: ../../../templates/administrator/inc/menus.php:130
-#: ../../../templates/administrator/inc/menus.php:351
+#: ../../../templates/administrator/inc/menus.php:131
+#: ../../../templates/administrator/inc/menus.php:400
 msgid "Events journal"
 msgstr "Журнал событий"
 
-#: ../../../templates/administrator/inc/menus.php:134
-#: ../../../templates/administrator/inc/menus.php:355
+#: ../../../templates/administrator/inc/menus.php:135
+#: ../../../templates/administrator/inc/menus.php:404
 msgid "Backup"
 msgstr "Резервное копирование"
 
-#: ../../../templates/administrator/inc/menus.php:147
+#: ../../../templates/administrator/inc/menus.php:148
 msgid "Shop dashboard"
 msgstr "Главная"
 
-#: ../../../templates/administrator/inc/menus.php:167
+#: ../../../templates/administrator/inc/menus.php:216
 msgid "Order statuses"
 msgstr "Статусы заказов"
 
-#: ../../../templates/administrator/inc/menus.php:175
+#: ../../../templates/administrator/inc/menus.php:224
 msgid "Callbacks list"
 msgstr "Список колбеков"
 
-#: ../../../templates/administrator/inc/menus.php:191
+#: ../../../templates/administrator/inc/menus.php:240
 msgid "Notifications list"
 msgstr "Уведомления о появление"
 
-#: ../../../templates/administrator/inc/menus.php:195
+#: ../../../templates/administrator/inc/menus.php:244
 msgid "Notification statuses"
 msgstr "Статусы уведомлений"
 
-#: ../../../templates/administrator/inc/menus.php:199
+#: ../../../templates/administrator/inc/menus.php:248
 msgid "Other"
 msgstr "Остальное"
 
-#: ../../../templates/administrator/inc/menus.php:210
+#: ../../../templates/administrator/inc/menus.php:259
 msgid "Products catalogue"
 msgstr "Каталог товаров"
 
-#: ../../../templates/administrator/inc/menus.php:231
+#: ../../../templates/administrator/inc/menus.php:280
 msgid "Produkts kits"
 msgstr "Наборы товаров"
 
-#: ../../../templates/administrator/inc/menus.php:242
+#: ../../../templates/administrator/inc/menus.php:291
 msgid "Users management"
 msgstr "Пользователи"
 
-#: ../../../templates/administrator/inc/menus.php:247
+#: ../../../templates/administrator/inc/menus.php:296
 msgid "List of users"
 msgstr "Список пользователей"
 
-#: ../../../templates/administrator/inc/menus.php:251
+#: ../../../templates/administrator/inc/menus.php:300
 msgid "RBAC control"
 msgstr "Управление правами доступа"
 
-#: ../../../templates/administrator/inc/menus.php:297
-msgid "Shop settings"
-msgstr "Настройки магазина"
-
-#: ../../../templates/administrator/inc/menus.php:301
+#: ../../../templates/administrator/inc/menus.php:350
 msgid "Currencies"
 msgstr "Валюты"
 
-#: ../../../templates/administrator/inc/menus.php:305
+#: ../../../templates/administrator/inc/menus.php:354
 msgid "Delivery methods (shipping)"
 msgstr "Способы доставки"
 
-#: ../../../templates/administrator/inc/menus.php:309
+#: ../../../templates/administrator/inc/menus.php:358
 msgid "Payment methods"
 msgstr "Способы оплаты"
 
-#: ../../../templates/administrator/inc/menus.php:321
+#: ../../../templates/administrator/inc/menus.php:370
 msgid "Custom fields"
 msgstr "Дополнительные поля"
 
@@ -5417,7 +5756,7 @@ msgid "Delivery method removed"
 msgstr "Способ доставки удален"
 
 #: ../../modules/shop/admin/deliverymethods.php:216
-#: ../../modules/shop/admin/search.php:209
+#: ../../modules/shop/admin/search.php:211
 #: ../../modules/shop/admin/banners.php:478
 msgid "Positions saved"
 msgstr "Позиции сохранены"
@@ -5572,11 +5911,13 @@ msgid "You did not ask for a set of main commodity"
 msgstr "Вы не спрашивали набор основных товаров"
 
 # а
-#: ../../modules/shop/admin/kits.php:62 ../../modules/shop/admin/kits.php:141
+#: ../../modules/shop/admin/kits.php:62
+#: ../../modules/shop/admin/kits.php:141
 msgid "You must attach the goods to create a set"
 msgstr "Необходимо прикрепить товары для создания набора"
 
-#: ../../modules/shop/admin/kits.php:68 ../../modules/shop/admin/kits.php:147
+#: ../../modules/shop/admin/kits.php:68
+#: ../../modules/shop/admin/kits.php:147
 msgid "Kit with such goods already exists"
 msgstr "Комплект с такими товарами уже существует"
 
@@ -5668,7 +6009,7 @@ msgid "Uninstalling"
 msgstr "Удаление"
 
 #: ../../modules/shop/admin/notifications.php:289
-#: ../../modules/shop/admin/orders.php:318
+#: ../../modules/shop/admin/orders.php:314
 msgid "Order status changed"
 msgstr "Статус заказа изменен"
 
@@ -5719,8 +6060,8 @@ msgid "Warehouse deleted"
 msgstr "Склад удален"
 
 #: ../../modules/shop/admin/warehouses.php:107
-#: ../../modules/shop/admin/orders.php:484
-#: ../../modules/shop/admin/orders.php:523
+#: ../../modules/shop/admin/orders.php:480
+#: ../../modules/shop/admin/orders.php:519
 msgid "The operation was successful"
 msgstr "Операция прошла успешно"
 
@@ -5790,15 +6131,6 @@ msgstr "Массив значений для ряда товаров на сай
 msgid "The number of items in the control panel"
 msgstr "Количество элементов в панели управления"
 
-#: ../../modules/shop/admin/settings.php:98
-msgid "Email, which send messages to the new Callback"
-msgstr "E-mail, который посылает сообщения новому Колбеку"
-
-#: ../../modules/shop/admin/settings.php:99
-#: ../../modules/shop/admin/settings.php:100
-msgid "Email address of the sender"
-msgstr "E-mail отправителя"
-
 #: ../../modules/shop/admin/settings.php:426
 #: ../../modules/shop/admin/settings.php:445
 msgid "Pictures Updated"
@@ -5822,10 +6154,8 @@ msgid "Error. Currency used by other objects. Check the payment methods"
 msgstr "Ошибка. Валюту, используют другие объекты. Проверьте способы оплаты"
 
 #: ../../modules/shop/admin/currencies.php:222
-msgid ""
-"Error. The currency used in the products. Check the currency options products"
-msgstr ""
-"Ошибка. Валюта, используется в товарах. Проверьте настройки  валюты товаров"
+msgid "Error. The currency used in the products. Check the currency options products"
+msgstr "Ошибка. Валюта, используется в товарах. Проверьте настройки  валюты товаров"
 
 #: ../../modules/shop/admin/currencies.php:231
 msgid "Currency successfully removed"
@@ -5851,66 +6181,66 @@ msgstr "Вперед&nbsp;"
 msgid "&nbsp;Back"
 msgstr "&nbsp;Назад"
 
-#: ../../modules/shop/admin/orders.php:209
+#: ../../modules/shop/admin/orders.php:210
 msgid "Order not found"
 msgstr "Заказ не найден"
 
-#: ../../modules/shop/admin/orders.php:419
-#: ../../modules/shop/admin/orders.php:523
+#: ../../modules/shop/admin/orders.php:415
+#: ../../modules/shop/admin/orders.php:519
 msgid "Order Status changed"
 msgstr "Статус заказа изменен"
 
-#: ../../modules/shop/admin/orders.php:484
+#: ../../modules/shop/admin/orders.php:480
 msgid "Orders are removed"
 msgstr "Заказы удалены"
 
-#: ../../modules/shop/admin/orders.php:560
+#: ../../modules/shop/admin/orders.php:556
 msgid "Payment status of orders changed"
 msgstr "Статус оплаты заказов изменен"
 
-#: ../../modules/shop/admin/orders.php:560
+#: ../../modules/shop/admin/orders.php:556
 msgid "Saved"
 msgstr "Сохранено"
 
-#: ../../modules/shop/admin/orders.php:615
+#: ../../modules/shop/admin/orders.php:611
 msgid "You can not delete the last item from the order"
 msgstr "Вы не можете удалить последний элемент из заказа"
 
-#: ../../modules/shop/admin/orders.php:635
-#: ../../modules/shop/admin/orders.php:650
+#: ../../modules/shop/admin/orders.php:631
+#: ../../modules/shop/admin/orders.php:646
 msgid "Product is removed from the Order"
 msgstr "Продукт удален из Заказа"
 
-#: ../../modules/shop/admin/orders.php:720
+#: ../../modules/shop/admin/orders.php:716
 msgid "Very high price, please set smaller"
 msgstr "Очень высокая цена, пожалуйста, установите меньшую"
 
-#: ../../modules/shop/admin/orders.php:799
-#: ../../modules/shop/admin/orders.php:826
+#: ../../modules/shop/admin/orders.php:795
+#: ../../modules/shop/admin/orders.php:822
 msgid "Product updated"
 msgstr "Продукт обновлен"
 
-#: ../../modules/shop/admin/orders.php:872
+#: ../../modules/shop/admin/orders.php:868
 msgid "Item has been added to the order"
 msgstr "Товар добавлен к заказу"
 
-#: ../../modules/shop/admin/orders.php:876
+#: ../../modules/shop/admin/orders.php:872
 msgid "This product does not exist"
 msgstr "Этот товар не существует"
 
-#: ../../modules/shop/admin/orders.php:1089
+#: ../../modules/shop/admin/orders.php:1085
 msgid "Order was successfully created"
 msgstr "Заказ успешно создан"
 
-#: ../../modules/shop/admin/orders.php:1102
+#: ../../modules/shop/admin/orders.php:1098
 msgid "User is not selected"
 msgstr "Пользователь не выбран"
 
-#: ../../modules/shop/admin/orders.php:1104
+#: ../../modules/shop/admin/orders.php:1100
 msgid "Delivery method is not selected"
 msgstr "Способ доставки не выбран"
 
-#: ../../modules/shop/admin/orders.php:1106
+#: ../../modules/shop/admin/orders.php:1102
 msgid "Payment method is not selected"
 msgstr "Способ оплаты не выбран"
 
@@ -6066,6 +6396,21 @@ msgstr "Приватное поле"
 msgid "Custom right field"
 msgstr "Правильное поле"
 
+#~ msgid "Yandex.Market"
+#~ msgstr "Yandex.Market"
+
+#~ msgid "Notice of appearance"
+#~ msgstr "Уведомление о появлении"
+
+#~ msgid "Top sales block"
+#~ msgstr "Блок Top продаж"
+
+#~ msgid "Email, which send messages to the new Callback"
+#~ msgstr "E-mail, который посылает сообщения новому Колбеку"
+
+#~ msgid "Email address of the sender"
+#~ msgstr "E-mail отправителя"
+
 #~ msgid "Content list"
 #~ msgstr "Список содержимого"
 
@@ -6108,58 +6453,44 @@ msgstr "Правильное поле"
 # а
 #~ msgid "a_s"
 #~ msgstr "a_s"
-
 # а
 #~ msgid "a2_acces_right"
 #~ msgstr "a2_acces_right"
-
 # а
 #~ msgid "The URL you busy"
 #~ msgstr "URL занят"
-
 # а
 #~ msgid "Url is buisy!"
 #~ msgstr "Гиперссылка занята!"
-
 # а
 #~ msgid "Privilegy"
 #~ msgstr "Привилегия"
-
 # НЛО
 #~ msgid "a_products_del_body_warning"
 #~ msgstr "a_products_del_body_warning"
-
 # фак
 #~ msgid "a_category_creating"
 #~ msgstr "a_category_creating"
-
 # фак
 #~ msgid "a_return"
 #~ msgstr "a_return"
-
 # фак
 #~ msgid "a_save"
 #~ msgstr "a_save"
-
 # фак
 #~ msgid "a_save_and_exit"
 #~ msgstr "a_save_and_exit"
-
 # фак
 #~ msgid "a_info"
 #~ msgstr "a_info"
-
 # фак
 #~ msgid "a_select_image"
 #~ msgstr "a_select_image"
-
 # фак
 #~ msgid "a_sett"
 #~ msgstr "a_sett"
-
 #~ msgid "a_name"
 #~ msgstr "Название бренда"
-
 #, fuzzy
 #~ msgid "a_s_banner_text_create_b"
 #~ msgstr "Текст баннера создан"
@@ -6283,9 +6614,6 @@ msgstr "Правильное поле"
 
 #~ msgid "Appearance"
 #~ msgstr "Появление"
-
-#~ msgid "Category translation"
-#~ msgstr "Перевод категории "
 
 #~ msgid "Version updates available"
 #~ msgstr "Доступны обновления версии"

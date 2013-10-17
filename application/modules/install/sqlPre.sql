@@ -187,37 +187,38 @@ CREATE TABLE IF NOT EXISTS `components` (
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
-(1, 'user_manager', 'user_manager', 0, 0, 1, NULL, 4),
-(2, 'auth', 'auth', 1, 0, 0, NULL, 5),
-(4, 'comments', 'comments', 0, 1, 0, NULL, NULL),
-(7, 'navigation', 'navigation', 0, 0, 1, NULL, 7),
-(30, 'tags', 'tags', 1, 1, 1, NULL, 8),
-(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 9),
-(55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 10),
-(60, 'menu', 'menu', 0, 1, 1, NULL, 11),
-(58, 'sitemap', 'sitemap', 0, 0, 1, 'a:6:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.8";s:14:"pages_priority";s:3:"0.6";s:20:"main_page_changefreq";s:6:"always";s:21:"categories_changefreq";s:6:"hourly";s:16:"pages_changefreq";s:5:"daily";}', 12),
-(80, 'search', 'search', 1, 0, 0, NULL, 13),
-(84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 14),
-(117, 'template_editor', 'template_editor', 0, 0, 0, NULL, 15),
-(86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL, 16),
-(95, 'filter', 'filter', 1, 0, 0, NULL, 17),
-(96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 18),
+(1, 'user_manager', 'user_manager', 0, 0, 1, NULL, 13),
+(2, 'auth', 'auth', 1, 0, 0, NULL, 23),
+(4, 'comments', 'comments', 1, 1, 1, NULL, 11),
+(7, 'navigation', 'navigation', 0, 0, 1, NULL, 24),
+(30, 'tags', 'tags', 1, 1, 1, NULL, 25),
+(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 12),
+(55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 16),
+(60, 'menu', 'menu', 0, 1, 1, NULL, 4),
+(58, 'sitemap', 'sitemap', 1, 1, 1, 'a:6:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.8";s:14:"pages_priority";s:3:"0.6";s:20:"main_page_changefreq";s:6:"always";s:21:"categories_changefreq";s:6:"hourly";s:16:"pages_changefreq";s:5:"daily";}', 17),
+(80, 'search', 'search', 1, 0, 0, NULL, 27),
+(84, 'feedback', 'feedback', 1, 0, 1, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 14),
+(117, 'template_editor', 'template_editor', 0, 0, 0, NULL, 19),
+(86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL, 15),
+(95, 'filter', 'filter', 1, 0, 0, NULL, 28),
+(96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 20),
 (121, 'shop', 'shop', 1, 0, 0, NULL, 17),
-(137, 'mailer', 'mailer', 1, 0, 0, NULL, 2),
-(153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', NULL),
-(177, 'banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 55),
-(205, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, NULL),
-(181, 'shop_news', 'shop_news', 1, 1, 0, NULL, NULL),
-(253, 'smart_filter', 'smart_filter', 1, 1, 0, NULL, 10),
-(185, 'exchange', 'exchange', 1, 0, 1, 'a:13:{s:3:"zip";s:2:"no";s:8:"filesize";s:7:"2048000";s:7:"validIP";s:9:"127.0.0.1";s:5:"login";s:10:"ad@min.com";s:8:"password";s:5:"admin";s:11:"usepassword";s:2:"on";s:12:"userstatuses";N;s:10:"autoresize";N;s:5:"debug";N;s:5:"email";s:0:"";s:5:"brand";s:0:"";s:18:"userstatuses_after";s:1:"1";s:6:"backup";s:1:"1";}', 3),
-(344, 'wishlist', 'wishlist', 1, 1, 1, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', NULL),
-(188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>$content</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2),
+(137, 'mailer', 'mailer', 1, 0, 1, NULL, 2),
+(181, 'shop_news', 'shop_news', 1, 1, 0, NULL, 21),
+(153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 9),
+(177, 'banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 1),
+(205, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, 0),
+(253, 'smart_filter', 'smart_filter', 1, 1, 0, NULL, 26),
+(185, 'exchange', 'exchange', 1, 0, 1, 'a:13:{s:3:"zip";s:2:"no";s:8:"filesize";s:7:"2048000";s:7:"validIP";s:9:"127.0.0.1";s:5:"login";s:10:"ad@min.com";s:8:"password";s:5:"admin";s:11:"usepassword";s:2:"on";s:12:"userstatuses";N;s:10:"autoresize";N;s:5:"debug";N;s:5:"email";s:0:"";s:5:"brand";s:0:"";s:18:"userstatuses_after";s:1:"1";s:6:"backup";s:1:"1";}', 5),
+(344, 'wishlist', 'wishlist', 1, 1, 1, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', 3),
+(188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>$content</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 7),
 (216, 'new_level', 'new_level', 1, 1, 1, 'a:3:{s:15:"propertiesTypes";a:3:{i:0;s:6:"scroll";i:1;s:4:"full";i:2;s:8:"dropDown";}s:7:"columns";a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}s:5:"thema";s:18:"css/color_scheme_1";}', NULL),
-(261, 'trash', 'trash', 0, 1, 0, NULL, NULL),
-(204, 'mobile', 'mobile', 1, 1, 1, 'a:5:{s:15:"MobileVersionON";s:1:"1";s:17:"MobileVersionSite";s:21:"demoshop.imagecms.net";s:20:"MobileVersionAddress";s:23:"m.demoshop.imagecms.net";s:18:"mobileTemplatePath";s:37:"./templates/commerce_mobiles_new/shop";s:6:"action";s:0:"";}', 5),
-(264, 'language_switch', 'language_switch', 0, 0, 1, NULL, NULL),
-(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL),
-(266, 'imagebox', 'imagebox', 0, 1, 0, NULL, NULL);
+(261, 'trash', 'trash', 0, 1, 0, NULL, 8),
+(204, 'mobile', 'mobile', 1, 1, 1, NULL, 6),
+(264, 'language_switch', 'language_switch', 0, 0, 1, NULL, 22),
+(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 30),
+(266, 'imagebox', 'imagebox', 0, 1, 0, NULL, 31);
+
 -- --------------------------------------------------------
 
 --
@@ -10580,13 +10581,14 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (10, 'popular_products', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:11:"popular,hit";s:5:"title";s:33:"Популярные товары";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'Популярные товары', '', 1363606273),
 (11, 'new_products', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:11:"popular,hot";s:5:"title";s:14:"Новинки";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'Новые товары', '', 1363606324),
 (12, 'action_products', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:14:"popular,action";s:5:"title";s:31:"Акционные товары";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'Акционные товары', '', 1363606361),
-(13, 'brands', 'module', 'shop', 'brands', 'a:3:{s:10:"withImages";b:1;s:11:"brandsCount";s:2:"15";s:7:"subpath";s:7:"widgets";}', 'Бренды', '', 1363606422),
+(13, 'brands', 'module', 'shop', 'brands', 'a:3:{s:10:"withImages";b:1;s:11:"brandsCount";s:2:"15";s:7:"subpath";s:7:"widgets";s:5:"title";s:39:"Лучшие производители";}', 'Бренды', '', 1363606422),
 (14, 'view_product', 'module', 'shop', 'view_product', 'a:4:{s:12:"productsType";b:0;s:5:"title";s:54:"Недавно просмотренные товары";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'Недавно просмотренные товары', '', 1363606497),
 (15, 'similar', 'module', 'shop', 'similar_products', 'a:3:{s:5:"title";s:27:"Похожие товары";s:13:"productsCount";s:1:"5";s:7:"subpath";s:7:"widgets";}', 'Похожие товары', '', 1363606582),
 (28, 'popular_products_category', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:17:"date,hit,category";s:5:"title";s:16:"Popular products";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'Популярная категория товара', '', 1374575193),
 (27, 'ViewedProducts', 'module', 'shop', 'view_product', 'a:4:{s:12:"productsType";b:0;s:5:"title";s:14:"ViewedProducts";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'Просмотренные товары', '', 1374575092),
 (16, 'benefits', 'html', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>', '', '', 'Преимущества', '', 1371214822),
-(17, 'payments_delivery_methods_info', 'html', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>', '', '', 'Информация о способах доставки', '', 1371821417);
+(17, 'payments_delivery_methods_info', 'html', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>', '', '', 'Информация о способах доставки', '', 1371821417),
+(20, 'start_page_seo_text', 'html', '', '', '', '', '', 1378821714);
 
 -- --------------------------------------------------------
 
@@ -10899,7 +10901,8 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 ('16', 'ru', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>'),
-('17', 'ru','<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>');
+('17', 'ru','<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>'),
+('20', 'ru', '<h1>Интернет-магазин</h1>\n<p>Интернет-магазин &ndash; это интерактивный сайт с каталогом, в котором представляются товары и услуги, а также корзиной для формирования заказа. В правильном интернет-магазине обязательно должны присутствовать: рекламируемые товары и услуги, контактная информация, предложения различных вариантов оплаты, предоставление счета.</p>\n<p>Работа интернет-магазина похожа на работу простого магазина. Клиент, просматривая каталог, помещает интересующую его позицию в корзину. Для оплаты заказанных товаров и услуг предлагаются различные варинаты способов оплаты: электронными деньгами, банковская карта, банковский перевод, наличный расчет, терминалы моментальной оплат.</p>\n<p>С помощью логина и пароля клиент имеет возможность зарегистрироваться и в дальнейшем использовать свои данные при входе. Информация о нем хранится в базе данных магазина. Клиенту также обеспечивается конфиденциальность совершаемой сделки.</p>');
 
 -- --------------------------------------------------------
 
@@ -10933,7 +10936,19 @@ CREATE TABLE IF NOT EXISTS `trash` (
   `trash_type` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 -- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_shop_news`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_shop_news` (
+  `content_id` int(11) NOT NULL,
+  `shop_categories_ids` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
 
 --
 -- Структура таблиці `mod_wish_list`

@@ -53,7 +53,7 @@
                                     <div class="star">
                                         <div class="productRate star-big clicktemprate">
                                             <div class="for_comment" style="width: 0%"></div>
-                                            <input id="ratec" name="ratec" type="hidden" value=""/>
+                                            <input class="ratec" name="ratec" type="hidden" value=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                         </div>
                         {if $comment.rate != 0}
                             <div class="mark-pr">
-                                <span>{lang('Оценка товара:','newLevel')}</span>
+                                <span>{lang('Оценка:','newLevel')}</span>
                                 <div class="star-small d_i-b">
                                     <div class="productRate star-small">
                                         <div style="width: {echo (int)$comment.rate *20}%"></div>
@@ -129,7 +129,7 @@
                                 </div>
                             {/if}
 
-                            <div class="f_r__icsi-css" style="margin-right: 10px">
+                            <div class="f_r__icsi-css">
                                 <span>
                                     <span class="s-t">{lang('Отзыв полезен?','newLevel')}</span>
                                     <span class="btn__icsi-css like__icsi-css">

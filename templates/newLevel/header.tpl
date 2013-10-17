@@ -44,7 +44,7 @@
                         </li>
                     </ul>
                 </div>
-                <a href="skype:imagecms" class="f-s_0">
+                <a href="skype:{echo siteinfo('Skype')}" class="f-s_0">
                     <span class="icon_skype"></span>
                     <span class="text-el">{echo siteinfo('Skype')}</span>
                 </a>
