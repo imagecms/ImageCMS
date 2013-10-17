@@ -444,7 +444,7 @@ function getCookie(c_name)
                 duration: 300,
                 searchPath: "/shop/search/ac",
                 inputString: $('#inputString'),
-                minValue: 3
+                minValue: 0
             }, options);
             function postSearch() {
                 $(document).trigger({
@@ -573,6 +573,7 @@ function getCookie(c_name)
             inputString.keyup(function(event) {
                 var $this = $(this);
                 var inputValL = $this.val().length;
+                console.log(minValue)
                 if (inputValL > minValue) {
                     $this.tooltip('remove');
                     if (!event)

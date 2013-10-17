@@ -830,7 +830,7 @@
         </div>
         <div class="drop-footer"></div>
     </div>
-    <button style="display: none;" type="button" data-drop="#notification"  data-modal="true" class="trigger"></button>
+    <button style="display: none;" type="button" data-drop="#notification"  data-modal="true" data-effect-on="fadeIn" data-effect-off="fadeOut" class="trigger"></button>
 
     <div class="drop drop-style" id="confirm">
         <div class="drop-header">
@@ -852,4 +852,4 @@
         </div>
         <div class="drop-footer"></div>
     </div>
-    <button style="display: none;" type="button" data-drop="#confirm"  data-modal="true" data-confirm="true"></button>
+    <button style="display: none;" type="button" data-drop="#confirm"  data-modal="true" data-confirm="true" data-effect-on="fadeIn" data-effect-off="fadeOut"></button>
