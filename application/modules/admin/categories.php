@@ -516,7 +516,7 @@ class Categories extends BaseAdminController {
 
             ($hook = get_hook('admin_show_cat_translate')) ? eval($hook) : NULL;
 
-            $this->template->show('cat_translate', FALSE);
+            $this->template->show('cat_translate_edit', FALSE);
         } else {
             return FALSE;
         }
