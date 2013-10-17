@@ -35,10 +35,10 @@ class CI_Pagination {
 	var $num_links			=  2; // Number of "digit" links to show before/after the currently viewed page
 	var $cur_page			=  0; // The current page being viewed
 	var $use_page_numbers	= FALSE; // Use page number for segment instead of offset
-	var $first_link			= '&lsaquo; First';
+	var $first_link			= '&lsaquo; ';
 	var $next_link			= '&gt;';
 	var $prev_link			= '&lt;';
-	var $last_link			= 'Last &rsaquo;';
+	var $last_link			= ' &rsaquo;';
 	var $uri_segment		= 3;
 	var $full_tag_open		= '';
 	var $full_tag_close		= '';
@@ -71,6 +71,8 @@ class CI_Pagination {
 	 */
 	public function __construct($params = array())
 	{
+            $this->first_link = $this->first_link . lang('First', 'main');
+            $this->last_link = lang('Last', 'main') . $this->last_link ;
 		if (count($params) > 0)
 		{
 			$this->initialize($params);
