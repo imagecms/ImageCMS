@@ -134,13 +134,10 @@
                                                         {/if}
                                                         {if $sli.modulesList}
                                                             {if !$components}
-                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
+                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
                                                             {/if}
-
-                                                        {foreach $components as $component}
-                                                            {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
-                                                                <li><a href="/admin/components/cp/{$component.com_name}" class="pjax">{$component.menu_name}</a></li>
-                                                                {/if}
+                                                            {foreach $components as $component}
+                                                            <li><a href="/admin/components/cp/{$component['name']}" class="pjax">{$component['menu_name']}</a></li>
                                                             {/foreach}
                                                         {/if}
                                                     <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)$sli.text ? $sli.text : $sli.text}</a>{else:}{echo (bool)$sli.text ? $sli.text : $sli.text}{/if}</li>
@@ -181,31 +178,31 @@
                                                             {else:}
                                                                 {echo $sli.text?lang($sli.text):$sli.text}
                                                             {/if}
-                                                            
+
                                                         </li>
                                                         {if $sli.modulesList}
                                                             {if !$components}
                                                                 {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
                                                             {/if}
                                                             {foreach $components as $component}
-                                                                {if $component['installed'] == TRUE AND $component['admin_file'] == 1 AND $component['type'] == 'shop'}
-                                                                <li><a href="/admin/components/cp/{$component.com_name}" class="pjax">{$component.menu_name}</a></li>
+                                                                {if $component['type'] == 'shop'}
+                                                                    <li><a href="/admin/components/cp/{$component['name']}" class="pjax">{$component['menu_name']}</a></li>
                                                                 {/if}
                                                             {/foreach}
                                                             <li class="divider"></li>
                                                             <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
-                                                        {/if}
-                                                
-                                            {/foreach}
-                                        </ul>
-                                    {else:}
-                                        <a href="{$li.link}" class="pjax">
-                                            <i class="{$li.icon}"></i>
-                                            <span>{$li.text}</span>
-                                        </a>
-                                    {/if}
-                                    </li>
-                                {/foreach}
+                                                            {/if}
+
+                                                    {/foreach}
+                                                </ul>
+                                            {else:}
+                                                <a href="{$li.link}" class="pjax">
+                                                    <i class="{$li.icon}"></i>
+                                                    <span>{$li.text}</span>
+                                                </a>
+                                            {/if}
+                                        </li>
+                                    {/foreach}
                                 </ul>
                                 <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site','admin')} </a>
                             </nav>
