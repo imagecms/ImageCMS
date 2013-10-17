@@ -1631,7 +1631,10 @@ function init() {
     tovarChangeCount();
     /*/changecount product in category and product*/
     
-    $('#suggestions').autocomplete();
+    $('#suggestions').autocomplete({
+        minValue: 3,
+        blockEnter: false        
+    });
     drawIcons($(selIcons));
     showHidePart($('.sub-category'));
     showHidePart($('.patch-product-view'));

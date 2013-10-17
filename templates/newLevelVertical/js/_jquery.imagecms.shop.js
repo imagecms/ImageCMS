@@ -444,7 +444,8 @@ function getCookie(c_name)
                 duration: 300,
                 searchPath: "/shop/search/ac",
                 inputString: $('#inputString'),
-                minValue: 3
+                minValue: 3,
+                blockEnter: true
             }, options);
             function postSearch() {
                 $(document).trigger({
@@ -512,7 +513,7 @@ function getCookie(c_name)
                         {
                             selectorPosition += 1;
                         }
-
+                        
                         if (selectorPosition < 0)
                         {
                             selectorPosition = itemserch.length - 1;
@@ -525,7 +526,7 @@ function getCookie(c_name)
                         itemserch.eq(selectorPosition).addClass('selected');
                         return false;
                     }
-
+                    
                     // Enter pressed
                     if (code == 13)
                     {
@@ -542,7 +543,7 @@ function getCookie(c_name)
                     return false;
                 })
             }
-
+            
             function closeFrame() {
                 $(document).trigger({
                     'type': 'autocomplete.close', 
@@ -552,8 +553,9 @@ function getCookie(c_name)
                 $thisS.unbind('click.autocomplete');
                 body.unbind('click.autocomplete').unbind('keydown.autocomplete');
             }
-
+            
             var $thisS = $(this),
+            blockEnter = settings.blockEnter,
             itemA = settings.item,
             durationA = settings.duration,
             searchPath = settings.searchPath,
@@ -561,35 +563,40 @@ function getCookie(c_name)
             inputString = settings.inputString,
             minValue = settings.minValue;
             var submit = inputString.closest('form').find('[type="submit"]');
-            submit.on('click.autocomplete', function(e) {
-                e.preventDefault();
-                inputString.focus();
-                $(document).trigger({
-                    type: 'autocomplete.fewLength', 
-                    el: inputString, 
-                    value: minValue
+            if (blockEnter)
+                submit.on('click.autocomplete', function(e) {
+                    e.preventDefault();
+                    inputString.focus();
+                    $(document).trigger({
+                        type: 'autocomplete.fewLength', 
+                        el: inputString, 
+                        value: minValue
+                    });
                 });
-            })
             inputString.keyup(function(event) {
                 var $this = $(this);
                 var inputValL = $this.val().length;
+                if (!event)
+                    var event = window.event;
+                var code = event.keyCode;
                 if (inputValL > minValue) {
                     $this.tooltip('remove');
-                    if (!event)
-                        var event = window.event;
-                    var code = event.keyCode;
                     if (code != 27 && code != 40 && code != 38 && code != 39 && code != 37 && code != 13 && inputValL != 0 && $.trim($this.val()) != "")
                         postSearch();
                     else if (inputValL == 0)
                         closeFrame();
                 }
-                else
-                    $(document).trigger({
-                        type: 'autocomplete.fewLength', 
-                        el: $this, 
-                        value: minValue
-                    });
-                if (inputString.val().length <= minValue)
+                else{
+                    if (code == 13 && !blockEnter)
+                        submit.closest('form').submit();
+                    else
+                        $(document).trigger({
+                            type: 'autocomplete.fewLength', 
+                            el: $this, 
+                            value: minValue
+                        });
+                }
+                if (inputString.val().length <= minValue && blockEnter)
                     submit.unbind('click.autocomplete').on('click.autocomplete', function(e) {
                         e.preventDefault();
                         inputString.focus();
@@ -680,7 +687,7 @@ function getCookie(c_name)
             $this.filter(':input').unbind('blur.tooltip').on('blur.tooltip', function() {
                 $(this).tooltip('remove');
             })
-
+        
         },
         remove: function() {
             $('.tooltip').stop(true, false).fadeOut(300, function() {
@@ -851,7 +858,7 @@ function getCookie(c_name)
                                     else{
                                         $this.closest('li').addClass('x' + numbColumnL).attr('data-x', numbColumnL);
                                     }
-   
+                                
                                 })
                                 columnsObj.remove();
                             }
@@ -900,7 +907,7 @@ function getCookie(c_name)
                 var k = [];
                 if (!vertical)
                     menuItem.add(menuItem.find('.helper:first')).css('height', '');
-            
+                
                 menuItem.each(function(index) {
                     var $this = $(this),
                     $thisW = $this.width(),
@@ -926,7 +933,7 @@ function getCookie(c_name)
                 
                 if (!vertical)
                     menuItem.find('.helper:first').css('height', sH);
-
+                
                 $('.not-js').removeClass('not-js');
                 var hoverTO = '';
                 function closeMenu() {
@@ -951,7 +958,7 @@ function getCookie(c_name)
                         $thisI = $this.index();
                         $this = $(this).addClass(hM),
                         $thisDrop = $this.find(drop);
-            
+                        
                         if ($thisI == 0)
                             $this.addClass('firstH');
                         if ($thisI == itemMenuL - 1)
@@ -1239,7 +1246,7 @@ function getCookie(c_name)
                                             else {
                                                 tabsDivT()
                                             }
-
+                                            
                                             if (e.scroll)
                                                 wnd.scrollTop($this.offset().top);
                                             $(document).trigger({
@@ -1289,7 +1296,7 @@ function getCookie(c_name)
                                     if ($thisDD && !condStart)
                                         $this.trigger('click.drop')
                                 }
-
+                                
                                 else if (e.button == 0 && $thiss.data('elchange') != undefined) {
                                     refs[index].each(function() {
                                         var $thisDH = $(this).data('href');
@@ -1312,7 +1319,7 @@ function getCookie(c_name)
                             wnd.scrollTop(wST);
                         wST = wnd.scrollTop();
                     }
-
+                    
                     //chrome bug
                     if ($.browser.webkit)
                         scrollTop(wST - 100);
@@ -1525,19 +1532,19 @@ function getCookie(c_name)
                 var $this = $(this),
                 elSet = $this.data(),
                 elSetSource = $(elSet.drop);
-
+                
                 if ($.existsN($this.closest('[data-elrun]')) && elSet.start == undefined)
                     methods.closeDrop($this.closest('[data-elrun]'));
                 if ($.existsN($('[data-elrun].center:visible')) && elSet.start == undefined)
                     methods.closeDrop($('[data-elrun].center:visible'));
-
+                
                 if (!$this.is('[disabled]')) {
                     e.stopPropagation();
                     e.preventDefault();
                     var newModal = elSet.modal || modal,
                     newConfirm = elSet.confirm || confirm,
                     newAlways = elSet.always || always;
-
+                    
                     if (elSet.start != undefined)
                         var res = eval(elSet.start)($this, elSetSource);
                     if (elSet.start != undefined && !res)
@@ -1568,7 +1575,7 @@ function getCookie(c_name)
                                     confirmF();
                                 })
                             }
-
+                        
                         }
                         else {
                             methods.showDrop($this, e, optionsDrop, false);
@@ -1611,7 +1618,7 @@ function getCookie(c_name)
             closed = set.closed,
             $thisSource = elSet.drop,
             elSetSource = $($thisSource);
-
+            
             $this.attr('data-drop', $this.data('drop')).parent().addClass(activeClass);
             elSetSource.data({
                 'effectOn': $thisEOn,
@@ -1667,22 +1674,22 @@ function getCookie(c_name)
                     if ($.existsN(objJ))
                         methods.closeDrop(objJ);
                 }
-
+                
                 if (e.button == undefined && place != "center")
                     wnd.scrollTop($this.offset().top);
                 var wndW = wnd.width();
-
+                
                 if (elSetSource.actual('width') > wndW)
                     elSetSource.css('width', wndW - 40);
                 else
                     elSetSource.removeAttr('style');
-
+                
                 if (place == 'noinherit')
                     methods.positionDrop(elSetSource, placement, place);
                 
                 if (place == 'center')
                     methods.dropCenter(elSetSource);
-
+                
                 var dropTimeout = '';
                 wnd.off('resize.drop').on('resize.drop', function() {
                     clearTimeout(dropTimeout);
@@ -1703,7 +1710,7 @@ function getCookie(c_name)
                         var $thisD = $(this),
                         dC = elSetSource.find(elSetSource.data('dropContent')).first();
                         $thisD.addClass(activeClass);
-
+                        
                         if ((!confirm && modal) || typeof data == 'object')
                             optionsDrop.closeDropTime= setTimeout(function() {
                                 methods.closeDrop($thisD)
@@ -1784,7 +1791,7 @@ function getCookie(c_name)
                                 $thisB.parent().removeClass(activeClass);
                                 var $thisEOff = $this.data('effect-off'),
                                 $thisD = $this.data('duration');
-                            
+                                
                                 if ($this.data('close') != undefined)
                                     $this.data('close')($thisB, $(this));
                                 var $thisHref = $thisB.attr('href');
@@ -1798,7 +1805,7 @@ function getCookie(c_name)
                                     } catch (err) {
                                     }
                                 }
-                            
+                                
                                 methods.scrollEmulateRemove($thisD);
                                 $this.removeClass(activeClass);
                                 $('.for-center').stop(true, false).fadeOut($thisD);
@@ -1982,14 +1989,14 @@ function getCookie(c_name)
                                     $(document).trigger({
                                         'type': 'showActivity'
                                     })
-
+                                
                                 if (ajax && inputVal + 1 <= input.data('max') && checkProdStock)
                                     $(document).trigger({
                                         'type': 'showActivity'
                                     })
                                 if (ajax && inputVal + 1 == input.data('max'))
                                     $thisNext.attr('disabled', 'disabled')
-
+                                
                                 if (checkProdStock)
                                     input.maxminValue(e);
                                 settings.after(e, el, input);
@@ -2018,7 +2025,7 @@ function getCookie(c_name)
                                     if (ajax && inputVal - 1 == input.data('min'))
                                         $thisPrev.attr('disabled', 'disabled')
                                 }
-
+                                
                                 settings.after(e, el, input);
                             }
                         }
@@ -2045,7 +2052,7 @@ function getCookie(c_name)
         init: function(e, f) {
             var $this = $(this), $thisVal = $this.val(),
             $max = parseInt($this.attr('data-max'));
-
+            
             if ($thisVal > $max && checkProdStock) {
                 $this.val($max);
                 if (typeof f == 'function')
@@ -2277,7 +2284,7 @@ var Shop = {
                 };
                 url += '/ShopKit';
             }
-
+            
             $.post(url, data,
                 function() {
                     try {
@@ -2587,7 +2594,7 @@ var Shop = {
         rm: function(key, el) {
             this.items = JSON.parse(localStorage.getItem('compareList')) ? JSON.parse(localStorage.getItem('compareList')) : [];
             if (this.items.indexOf(key) !== -1) {
-
+                
                 this.items = _.without(this.items, key);
                 this.items = this.all();
                 $.get('/shop/compare_api/remove/' + key, function(data) {
