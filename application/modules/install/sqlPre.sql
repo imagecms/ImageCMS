@@ -214,7 +214,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>$content</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2),
 (216, 'new_level', 'new_level', 1, 1, 1, 'a:3:{s:15:"propertiesTypes";a:3:{i:0;s:6:"scroll";i:1;s:4:"full";i:2;s:8:"dropDown";}s:7:"columns";a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}s:5:"thema";s:18:"css/color_scheme_1";}', NULL),
 (261, 'trash', 'trash', 0, 1, 0, NULL, NULL),
-(204, 'mobile', 'mobile', 1, 1, 1, 'a:5:{s:15:"MobileVersionON";s:1:"1";s:17:"MobileVersionSite";s:21:"demoshop.imagecms.net";s:20:"MobileVersionAddress";s:23:"m.demoshop.imagecms.net";s:18:"mobileTemplatePath";s:37:"./templates/commerce_mobiles_new/shop";s:6:"action";s:0:"";}', 5),
+(204, 'mobile', 'mobile', 1, 1, 1, NULL, 5),
 (264, 'language_switch', 'language_switch', 0, 0, 1, NULL, NULL),
 (265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL),
 (266, 'imagebox', 'imagebox', 0, 1, 0, NULL, NULL);
@@ -10933,7 +10933,19 @@ CREATE TABLE IF NOT EXISTS `trash` (
   `trash_type` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 -- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_shop_news`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_shop_news` (
+  `content_id` int(11) NOT NULL,
+  `shop_categories_ids` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
 
 --
 -- Структура таблиці `mod_wish_list`
