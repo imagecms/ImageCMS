@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 14:54+0300\n"
-"PO-Revision-Date: 2013-10-16 14:55+0300\n"
+"POT-Creation-Date: 2013-10-17 12:22+0300\n"
+"PO-Revision-Date: 2013-10-17 12:22+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -425,12 +425,18 @@ msgid "amt_deleted_user"
 msgstr "Пользователь удален"
 
 #: ../../..//module_info.php:4
-msgid "ImageCMS Corporate Users"
-msgstr "Пользователи ImageCMS Corporate"
+msgid "Users manager"
+msgstr "Управление пользователями"
 
 #: ../../..//module_info.php:5
-msgid "User management for the corporate website."
-msgstr "Управление пользователями для корпоративного сайта."
+msgid "User management."
+msgstr "Управление пользователями"
+
+#~ msgid "ImageCMS Corporate Users"
+#~ msgstr "Пользователи ImageCMS Corporate"
+
+#~ msgid "User management for the corporate website."
+#~ msgstr "Управление пользователями для корпоративного сайта."
 
 #~ msgid "User Manager"
 #~ msgstr "Управление пользователями"
@@ -452,9 +458,6 @@ msgstr "Управление пользователями для корпора�
 
 #~ msgid "No data transmitted"
 #~ msgstr "Данные не переданы"
-
-#~ msgid "Users manager"
-#~ msgstr "Управление пользователями"
 
 #, fuzzy
 #~ msgid "Create user"

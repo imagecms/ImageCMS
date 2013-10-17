@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-        'menu_name' => lang('ImageCMS Corporate Users', 'user_manager'),
-	'description' => lang('User management for the corporate website.', 'user_manager'),
+        'menu_name' => lang('Users manager', 'user_manager'),
+	'description' => lang('User management.', 'user_manager'),
 	'admin_type' => 'inside',
 	'window_type' => 'xhr',
 	'w' => 600,
