@@ -202,7 +202,7 @@ class Admin extends BaseAdminController {
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
 
-        showMessage(lang('Success', 'comments'), lang('Change saved', 'comments'));
+        showMessage(lang('Comment successfully updated', 'comments'), lang('Message', 'comments'));
 
         if ($this->input->post('action') == 'exit')
             pjax('/admin/components/run/shop/dashboard#last_comments');
