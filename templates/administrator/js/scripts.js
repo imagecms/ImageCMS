@@ -292,11 +292,6 @@ function init_2() {
     }
     //not_standart_checks----------------------
 
-    // tooltips
-    $('#site_info_tab .icon-info-sign').tooltip({
-        trigger: 'hover',
-        placement: 'top'
-    });
     
     // shop - settings - count of products on site
     $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {

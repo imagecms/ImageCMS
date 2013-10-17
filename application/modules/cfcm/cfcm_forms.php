@@ -26,14 +26,14 @@ class Cfcm_forms extends MY_Controller {
         $fields = array(
             'field_name' => array(
                 'type'       => 'text',
-                'label'      => lang('Name', 'cfcm'),
+                'label'      => lang('Name', 'cfcm') . ':',
                 'validation' => 'alpha_dash|max_length[255]',
-                'help_text'  => lang('To name will be prefixed with', 'cfcm') . 'field_',
+                'help_text'  => lang('To name will be prefixed with', 'cfcm') . ' field_',
                 'class'      => 'required alphanumeric'
             ),
             'label' => array(
                 'type'       => 'text',
-                'label'      => lang('Label', 'cfcm'),
+                'label'      => lang('Label', 'cfcm') . ':',
                 'validation' => 'max_length[255]',
                 'class'      => 'required'
             ),
@@ -44,12 +44,12 @@ class Cfcm_forms extends MY_Controller {
             ),
             'type' => array(
                 'type'       => 'select',
-                'label'      => lang('Type', 'cfcm'),
+                'label'      => lang('Type', 'cfcm') . ':',
                 'initial'    => $this->field_types,
             ),
             'groups' => array(
                 'type'       => 'select',
-                'label'      => lang('Group', 'cfcm'),
+                'label'      => lang('Group', 'cfcm') . ':',
                 'initial'    => self::prepare_groups_select(),
                 'multiple'   => true,
                 'class'      => 'required'
