@@ -2,7 +2,7 @@
     <div class="frame_title clearfix" style="top: 179px; width: 1168px;">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('Discounts', 'mod_discount')} ({echo count($discountsList)})</span>
+            <span class="title">{lang('Discounts of online store', 'mod_discount')} ({echo count($discountsList)})</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">

@@ -1,7 +1,9 @@
+msgid ""
+msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-02 13:39+0300\n"
-"PO-Revision-Date: 2013-10-02 13:41+0300\n"
+"POT-Creation-Date: 2013-10-16 15:55+0300\n"
+"PO-Revision-Date: 2013-10-16 15:56+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -169,15 +171,15 @@ msgstr "ID"
 msgid "Edit"
 msgstr "Редактировать"
 
-# а
+# ���
 #: /var/www/image.loc/_tempLangs.php:59
 msgid "Empty group list or group list is empty"
 msgstr "Пустой список группы или группы список пуст"
 
-# а
+# ���
 #: cfcm_forms.php:31
 msgid "To name will be prefixed with"
-msgstr "К имени будет добавлен префикс "
+msgstr "К имени будет добавлен префикс"
 
 #: cfcm_forms.php:42
 msgid "Participate in search"
@@ -198,7 +200,7 @@ msgstr "Подсказка"
 
 #: cfcm_forms.php:84
 msgid "Field description "
-msgstr "Описание поля "
+msgstr "Описание поля"
 
 #: cfcm_forms.php:88
 msgid "Required field"
@@ -210,7 +212,7 @@ msgstr "Укажите возможные значения в новой стр�
 
 #: cfcm_forms.php:103
 msgid "Multiple"
-msgstr "	Множественный"
+msgstr ""
 
 #: cfcm_forms.php:120
 msgid "Enable images viewing"
@@ -267,7 +269,7 @@ msgstr "Поле успешно удалено"
 
 #: admin.php:227
 msgid "Field editing "
-msgstr "Редактирования поля "
+msgstr "Редактирования поля"
 
 #: admin.php:284
 msgid "Field has not been found"
@@ -314,310 +316,15 @@ msgid "Field group has not been selected"
 msgstr "Группа полей не выбрана"
 
 #: module_info.php:4
-msgid "Fields designer"
-msgstr "Дизайнер полей"
+msgid "Fields constructor"
+msgstr "Конструктор полей"
 
 #: module_info.php:5
-msgid "Additional fields designer for pages and categories"
-msgstr "Дизайнер  дополнительных полей для  страницы и категории"
+msgid "Allows you to create additional fields in ImageCMS Corporate"
+msgstr "Позволяет создавать дополнительные поля в ImageCMS Corporate"
 
-#~ msgid "Without group"
-#~ msgstr "Без группы"
+#~ msgid "Fields designer"
+#~ msgstr "Дизайнер полей"
 
-#~ msgid "Have been saved"
-#~ msgstr "Сохранены"
-
-#, fuzzy
-#~ msgid "a_create_group_"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Created a widget"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Positions updated"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "Title"
-#~ msgstr "Заголовок"
-
-#, fuzzy
-#~ msgid "Created a page"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Changed wesite settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Settings have been saved"
-#~ msgstr "Сохранение настроек прошло успешно"
-
-#, fuzzy
-#~ msgid "Image"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "by default"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Short description"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Main page"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Meta Description"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "New pages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Updated pages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Pages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Cancel"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "goto site"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Create"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "No widgets created"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Change category data"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "Module name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#~ msgid "Hello"
-#~ msgstr "Привет"
-
-#, fuzzy
-#~ msgid "Create and exit"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "by date"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "By position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Create new page"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Download"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "System update"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "Preview"
-#~ msgstr "Смотреть"
-
-#~ msgid "site"
-#~ msgstr "сайт"
-
-#, fuzzy
-#~ msgid "Manage site"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Your remark"
-#~ msgstr "Вааааааааааааше замечание"
-
-#, fuzzy
-#~ msgid "ac_val_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_val_pub_date"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_creat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_page_cont_updated"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "ac_sett_saved"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_val_image"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_by_default"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_val_position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "ac_created"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_save"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_sett"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_yes"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_cat_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_n"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_create_cat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_no_updates"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "a_url"
-#~ msgstr "Посилання"
-
-#, fuzzy
-#~ msgid "a_date_create"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_type"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_footer_cancel"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_image_url"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_save_path"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_sort"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_by_pos"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_comm_by_def"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_turn_off"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_page_tpl"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "a_pub_stat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_enter_sys"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_ftp_sett"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_in_mb"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_left"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_top"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_bottom"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_text"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_no_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_album"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_gallery"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Additional fields designer for pages and categories"
+#~ msgstr "Дизайнер  дополнительных полей для  страницы и категории"

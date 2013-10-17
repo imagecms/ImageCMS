@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 11:25+0300\n"
+"POT-Creation-Date: 2013-10-16 14:34+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -68,7 +68,6 @@ msgid "Birthday"
 msgstr "День рождения"
 
 #: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:112
 msgid "User lists"
 msgstr "Списки пользователя"
 
@@ -311,6 +310,10 @@ msgstr "Количество списков"
 msgid "Lists items count"
 msgstr "Количество товаров в списках"
 
+#: /var/www/image.loc/_tempLangs.php:112
+msgid "Wish Lists"
+msgstr "Списки пожеланий"
+
 #: /var/www/image.loc/_tempLangs.php:116
 msgid "Lists"
 msgstr "Списки"
@@ -352,13 +355,17 @@ msgstr "Выберите Список Желаний"
 msgid "Add to Wish List"
 msgstr "Добавить в Список Желаний"
 
+#: module_info.php:7
+msgid "Managing of online store users Wish Lists"
+msgstr "Управление списками пожеланий пользователей интернет-магазина"
+
 #: classes/ParentWishlist.php:87
 msgid "No users"
 msgstr "Нет пользователей"
 
 #: classes/ParentWishlist.php:136
 #: classes/ParentWishlist.php:209
-#: classes/ParentWishlist.php:597
+#: classes/ParentWishlist.php:602
 msgid "Invalid request"
 msgstr "Неправильный запрос"
 
@@ -367,14 +374,14 @@ msgid "No views"
 msgstr "Нет просмотров"
 
 #: classes/ParentWishlist.php:257
-#: classes/BaseApi.php:166
-#: classes/BaseWishlist.php:168
+#: classes/BaseApi.php:172
+#: classes/BaseWishlist.php:174
 msgid "Updated"
 msgstr "Обновлен"
 
 #: classes/ParentWishlist.php:259
-#: classes/BaseApi.php:168
-#: classes/BaseWishlist.php:170
+#: classes/BaseApi.php:174
+#: classes/BaseWishlist.php:176
 msgid "Not updated"
 msgstr "Не обновлен"
 
@@ -389,14 +396,14 @@ msgid "List maximum"
 msgstr "Максимум спосков"
 
 #: classes/ParentWishlist.php:285
-#: classes/BaseApi.php:229
-#: classes/BaseWishlist.php:184
+#: classes/BaseApi.php:235
+#: classes/BaseWishlist.php:190
 msgid "List description limit exhausted"
 msgstr "Лимит описания сиска исчерпан"
 
 #: classes/ParentWishlist.php:285
-#: classes/BaseApi.php:229
-#: classes/BaseWishlist.php:184
+#: classes/BaseApi.php:235
+#: classes/BaseWishlist.php:190
 msgid "List description max count"
 msgstr "Максимальная длина описания списка"
 
@@ -413,7 +420,7 @@ msgid "Wish List name can not be empty!"
 msgstr "Имя Списка Желаний не может быть пустым!"
 
 #: classes/ParentWishlist.php:301
-#: classes/BaseApi.php:198
+#: classes/BaseApi.php:204
 #: classes/BaseWishlist.php:141
 msgid "Created"
 msgstr "Создано"
@@ -483,9 +490,9 @@ msgstr "Неверный формат файла"
 
 #: classes/BaseApi.php:65
 #: classes/BaseApi.php:95
-#: classes/BaseApi.php:322
+#: classes/BaseApi.php:328
 #: classes/BaseWishlist.php:71
-#: classes/BaseWishlist.php:299
+#: classes/BaseWishlist.php:305
 msgid "Successful operation"
 msgstr "Успешная операция"
 
@@ -496,50 +503,50 @@ msgstr "Успешная операция"
 msgid "Unable to move"
 msgstr "Не удалось переместить"
 
-#: classes/BaseApi.php:266
+#: classes/BaseApi.php:272
 msgid "Successful deleting"
 msgstr "Успешное удаление"
 
-#: classes/BaseApi.php:268
-#: classes/BaseApi.php:324
-#: classes/BaseWishlist.php:301
+#: classes/BaseApi.php:274
+#: classes/BaseApi.php:330
+#: classes/BaseWishlist.php:307
 msgid "Error"
 msgstr "Ошибка"
 
-#: classes/BaseApi.php:282
+#: classes/BaseApi.php:288
 msgid "Loading error"
 msgstr "Ошибка загрузки"
 
-#: classes/BaseApi.php:286
-#: classes/BaseApi.php:288
-#: classes/BaseWishlist.php:281
+#: classes/BaseApi.php:292
+#: classes/BaseApi.php:294
+#: classes/BaseWishlist.php:287
 msgid "Image uploaded"
 msgstr "Изображение загружено"
 
-#: classes/BaseApi.php:290
+#: classes/BaseApi.php:296
 msgid "Can not Upload photo"
 msgstr "Не возможно загрузить фото"
 
-#: classes/BaseApi.php:293
+#: classes/BaseApi.php:299
 msgid "You did not enter user"
 msgstr "Вы не ввели пользователя"
 
-#: classes/BaseApi.php:318
-#: classes/BaseWishlist.php:295
+#: classes/BaseApi.php:324
+#: classes/BaseWishlist.php:301
 msgid "Invalid email"
 msgstr "Неверный email"
 
-#: classes/BaseWishlist.php:229
-#: classes/BaseWishlist.php:249
+#: classes/BaseWishlist.php:235
+#: classes/BaseWishlist.php:255
 msgid "Successful deleted"
 msgstr "Успешное удален"
 
-#: classes/BaseWishlist.php:231
-#: classes/BaseWishlist.php:251
+#: classes/BaseWishlist.php:237
+#: classes/BaseWishlist.php:257
 msgid "Unable to delete"
 msgstr "Не удается удалить"
 
-#: classes/BaseWishlist.php:283
+#: classes/BaseWishlist.php:289
 msgid "Can not upload photo"
 msgstr "Не возможно загрузить фото"
 

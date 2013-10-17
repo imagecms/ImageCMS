@@ -2,7 +2,7 @@
 
 $com_info = array(
 	'menu_name'   => lang('Template editor', 'template_editor'), // Menu name
-	'description' => '',                  // Module Description
+	'description' => lang('Site templates managementing', 'template_editor'),                  // Module Description
 	'admin_type'  => 'inside',            // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
     'w'           => 600,                 // Window width

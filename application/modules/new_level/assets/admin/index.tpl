@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('New Level', 'new_level')}</span>
+                <span class="title">{lang('Online store template settings', 'new_level')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
