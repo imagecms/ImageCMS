@@ -1265,7 +1265,8 @@ $(document).ready(function() {
         if (!currentValue.match(pattern)) { // has banned symbols
             console.log(currentValue);
             var caretPosition = caret($(this)); // get the caret position
-            var newValue = currentValue.replace(/([^0-9\,]{1,}|[\,]{2})/, '');
+            var newValue = currentValue.replace(/[^0-9\,]{1,}/, '');
+            var newValue = newValue.replace(/[\,]{2,}/, '');
             $(this).val(newValue);
             caret(this, caretPosition.begin)
         }
@@ -1415,7 +1416,7 @@ $(document).ready(function() {
     // prewiew local image
     $('#site_info_tab input[type="file"]').die('change').live('change', function(e) {
         // checking if file is image
-        var allowedFileExtentions = ['jpg', 'jpeg', 'png'];
+        var allowedFileExtentions = ['jpg', 'jpeg', 'png', 'ico', 'gif'];
         var ext = $(this).val().split('.').pop();
         var extentionIsAllowed = false;
         for (var i = 0; i < allowedFileExtentions.length; i++) {
