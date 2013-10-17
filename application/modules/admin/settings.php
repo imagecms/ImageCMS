@@ -337,6 +337,32 @@ class Settings extends BaseAdminController {
         return $siteinfo;
     }
 
+    /**
+     * Повертає шлях до місця зберігання зображень (лого і фавікон)
+     * (залежить від активного шаблону та від його структури)
+     */
+    protected function getImagesPath() {
+        $this->CI = & get_instance();
+        $tplName = $this->CI->config->item('template');
+        $tplPath = 'templates/' . $tpl . '/';
+
+        switch ($tplName) {
+            case 'newLevel': {
+                    // в шаблоні newLevel папка із 
+                    // зображеннями залежить від кольорової схеми
+                    $colorScheme = $CI->load->module('new_level')->getColorScheme();
+                    return $tplPath . $colorScheme . '/';
+                }
+                break;
+            case 'commerce4x':
+                // в commerce4x всі зображення зберігаються в одному каталозі
+                return $tplPath . 'images/';
+                break;
+            default:
+                return '';
+        }
+    }
+
     public function switch_admin_lang($lang) {
         $langs = Array(
             'english',
