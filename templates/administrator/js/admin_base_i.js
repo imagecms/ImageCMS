@@ -1258,18 +1258,7 @@ $(document).ready(function() {
     });
 
 
-    // shop - settings - count of products on site
-    $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {
-        var currentValue = $(this).val();
-        var pattern = /^[0-9\,[^\,\,]]+$/;
-        if (!currentValue.match(pattern)) { // has banned symbols
-            console.log(currentValue);
-            var caretPosition = caret($(this)); // get the caret position
-            var newValue = currentValue.replace(/([^0-9\,]{1,}|[\,]{2})/, '');
-            $(this).val(newValue);
-            caret(this, caretPosition.begin)
-        }
-    });
+   
 
 
 
@@ -1463,11 +1452,7 @@ $(document).ready(function() {
     });
 
 
-    // tooltips
-    $('#site_info_tab .icon-info-sign').tooltip({
-        trigger: 'hover',
-        placement: 'top'
-    });
+   
 
     /* --------------------- end of Siteinfo -------------------------*/
 
