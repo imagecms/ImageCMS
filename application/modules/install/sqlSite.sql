@@ -175,7 +175,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (129, 'star_rating', 'star_rating', 1, 0, 0, '{"main":"1","page":"1","category":"1","product":"1","shop_category":"1","brand":"1"}', NULL),
 (188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2),
 (264, 'language_switch', 'language_switch', 0, 0, 1, NULL, NULL),
-(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL);
+(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL),
+(266, 'imagebox', 'imagebox', 0, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2177,6 +2178,25 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 ('10', 'ru','<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `rating`
+--
+
+DROP TABLE IF EXISTS `rating`;
+CREATE TABLE IF NOT EXISTS `rating` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_type` varchar(25) DEFAULT NULL,
+  `type` varchar(25) DEFAULT NULL,
+  `votes` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
