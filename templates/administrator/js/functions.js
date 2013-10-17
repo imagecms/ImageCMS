@@ -1,6 +1,39 @@
 var editorsEnabled = false;
-//temporary
+ /**
+     * Getting/Setting caret position
+     * @param node domObject
+     * @param int begin
+     * @param int end
+     *
+     */
+    function caret(domObject, begin, end) {
+        var range;
 
+        if (typeof begin == 'number') {
+            end = (typeof end === 'number') ? end : begin;
+            return $(domObject).each(function() {
+                if (domObject.setSelectionRange) {
+                    domObject.setSelectionRange(begin, end);
+                } else if (domObject.createTextRange) {
+                    range = domObject.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', end);
+                    range.moveStart('character', begin);
+                    range.select();
+                }
+            });
+        } else {
+            if (domObject[0].setSelectionRange) {
+                begin = domObject[0].selectionStart;
+                end = domObject[0].selectionEnd;
+            } else if (document.selection && document.selection.createRange) {
+                range = document.selection.createRange();
+                begin = 0 - range.duplicate().moveStart('character', -100000);
+                end = begin + range.text.length;
+            }
+            return {begin: begin, end: end};
+        }
+    }
 // read cookie by name
 function readCookie(name) {
     var nameEQ = name + "=";
