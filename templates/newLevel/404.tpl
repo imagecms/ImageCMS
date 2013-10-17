@@ -15,3 +15,10 @@
         </div>
     </div>
 </div>
+{literal}
+    <script>
+        $(document).on('ready', function(){
+            $('footer').css({'z-index': 1, 'position': 'relative'});
+        });
+    </script>
+{/literal}

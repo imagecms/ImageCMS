@@ -27,7 +27,7 @@
             {$lang = ''} 
         {/if}
         <script type="text/javascript">
-            var lang = "{echo $lang}";
+            var locale = "{echo $lang}";
         </script>
 
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -78,7 +78,7 @@
                         scriptsL = scripts.length;
 
                 $.map(scripts, function(i, n) {
-                    $.getScript( theme + 'js/' + i + '.js', function() {
+                    $.getScript(theme + 'js/' + i + '.js', function() {
                         cL++;
                         if (cL == scriptsL) {
                             $(document).trigger({'type': 'scriptDefer'});
