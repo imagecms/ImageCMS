@@ -213,7 +213,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (216, 'new_level', 'new_level', 1, 1, 1, 'a:3:{s:15:"propertiesTypes";a:3:{i:0;s:6:"scroll";i:1;s:4:"full";i:2;s:8:"dropDown";}s:7:"columns";a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}s:5:"thema";s:18:"css/color_scheme_1";}', NULL),
 (261, 'trash', 'trash', 0, 1, 0, NULL, NULL),
 (264, 'language_switch', 'language_switch', 0, 0, 1, NULL, NULL),
-(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL);
+(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL),
+(266, 'imagebox', 'imagebox', 0, 1, 0, NULL, NULL);
 -- --------------------------------------------------------
 
 --

@@ -216,7 +216,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (261, 'trash', 'trash', 0, 1, 0, NULL, NULL),
 (204, 'mobile', 'mobile', 1, 1, 1, 'a:5:{s:15:"MobileVersionON";s:1:"1";s:17:"MobileVersionSite";s:21:"demoshop.imagecms.net";s:20:"MobileVersionAddress";s:23:"m.demoshop.imagecms.net";s:18:"mobileTemplatePath";s:37:"./templates/commerce_mobiles_new/shop";s:6:"action";s:0:"";}', 5),
 (264, 'language_switch', 'language_switch', 0, 0, 1, NULL, NULL),
-(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL);
+(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, NULL),
+(266, 'imagebox', 'imagebox', 0, 1, 0, NULL, NULL);
 -- --------------------------------------------------------
 
 --
