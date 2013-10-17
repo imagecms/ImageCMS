@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 14:57+0300\n"
-"PO-Revision-Date: 2013-10-16 14:58+0300\n"
+"POT-Creation-Date: 2013-10-17 15:46+0300\n"
+"PO-Revision-Date: 2013-10-17 15:47+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -356,13 +356,16 @@ msgid "Prev"
 msgstr "Предыдущий"
 
 #: admin.php:205
+msgid "Comment successfully updated"
+msgstr "Комментарий успешно обновлен"
+
+#: admin.php:205
+msgid "Message"
+msgstr "Сообщение"
+
 #: admin.php:225
 msgid "Success"
 msgstr "Успех"
-
-#: admin.php:205
-msgid "Change saved"
-msgstr "Изменения сохранены"
 
 #: admin.php:225
 msgid "Status updated"
@@ -416,6 +419,9 @@ msgstr "Настройки сохранены"
 #: comments_widgets.php:151
 msgid "Number of responses"
 msgstr "Количество ответов"
+
+#~ msgid "Change saved"
+#~ msgstr "Изменения сохранены"
 
 # а
 #~ msgid "Settings have been saved or settings were saved"
