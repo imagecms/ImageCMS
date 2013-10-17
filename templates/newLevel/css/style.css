@@ -1082,14 +1082,12 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 
 /*footer*/
 .h-footer{height: 346px;}
-footer{min-height:346px; margin: -346px auto 0;}
-footer:before{content: "";height: 5px;width: 100%;top: -3px;left: 0;position: absolute;}
+footer{min-height:346px; margin: -346px auto 0;position: relative;}
 footer .content-footer{min-height: 245px;}
 .footer-footer{position: relative;height: 101px;}
 
 footer li{margin-bottom: 5px;}
 footer ul li{margin-bottom: 10px;position: relative;}
-footer li > a, footer li > span, footer li > button{text-decoration: none;text-transform: uppercase;display: inline-block;max-width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 footer .footer{height: 65px;width: 100%;position: absolute;left: 0;bottom: 0;}
 footer [class^="box"] .main-title{text-transform: uppercase;margin-bottom: 6px;}
 
