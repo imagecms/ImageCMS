@@ -28,15 +28,15 @@
                         <div class="inside_padd span12">
                             <form action="{echo $form->action}" method="post" id="{$f_id}" class="form-horizontal">
                                 {foreach $form->asArray() as $f}
-                                <div class="control-group">
-                                    <label class="control-label">
-                                        {$f.label}
-                                    </label>
-                                    <div class="controls">
-                                        {$f.field}
-                                        {$f.help_text}
+                                    <div class="control-group">
+                                        <label class="control-label">
+                                            {$f.label}
+                                        </label>
+                                        <div class="controls">
+                                            {$f.field}
+                                            {$f.help_text}
+                                        </div>
                                     </div>
-                                </div>
                                 {/foreach}
                             </form>
                         </div>
