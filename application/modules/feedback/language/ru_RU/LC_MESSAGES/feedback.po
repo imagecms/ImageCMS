@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 15:06+0300\n"
-"PO-Revision-Date: 2013-10-16 15:06+0300\n"
+"POT-Creation-Date: 2013-10-18 11:59+0300\n"
+"PO-Revision-Date: 2013-10-18 12:00+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -123,13 +123,13 @@ msgstr "Неправильная защита кода"
 
 #: feedback.php:70
 #: feedback.php:84
-#: feedback.php:101
+#: feedback.php:102
 msgid "Name"
 msgstr "Название"
 
 #: feedback.php:72
 #: feedback.php:83
-#: feedback.php:100
+#: feedback.php:101
 msgid "Theme"
 msgstr "Тема"
 
@@ -139,11 +139,15 @@ msgid "Code protection"
 msgstr "Защитный код"
 
 #: feedback.php:85
-#: feedback.php:102
+#: feedback.php:103
 msgid "E-mail"
 msgstr "Электронная почта"
 
-#: feedback.php:93
+#: feedback.php:87
+msgid "Captcha"
+msgstr "Код защити"
+
+#: feedback.php:94
 msgid "Error"
 msgstr "Ошибка"
 
