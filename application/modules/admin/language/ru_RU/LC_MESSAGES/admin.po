@@ -3091,7 +3091,7 @@ msgstr "Вариант"
 #: /var/www/image.loc/_tempLangs.php:33
 #: /var/www/image.loc/_tempLangs.php:135
 msgid "Payments"
-msgstr "Оплата"
+msgstr "Оплаты"
 
 #: /var/www/image.loc/_tempLangs.php:34
 msgid "Result"
