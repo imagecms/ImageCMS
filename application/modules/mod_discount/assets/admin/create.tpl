@@ -273,7 +273,7 @@ var currencySymbolJS = '{echo $CS}';
                         <div class="noLimitC">
 
                             <label class="d-i_b p_r">
-                                <input class="datepicker discountDate" type="text"  value=""  disabled="disabled" name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                                <input class="discountDate endDateDiscount" type="text"  value=""  disabled="disabled" name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                 <span class="icon-calendar"></span>
                             </label>
                             <div class="d-i_b m-l_10 v-a_m">

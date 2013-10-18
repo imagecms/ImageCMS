@@ -42,8 +42,9 @@
                             <div class="btn__icsi-css f_l__icsi-css">
                                 <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                     <span class="icon-comment__icsi-css">
+                                        {lang('Answer', 'comments')}
                                     </span>
-                                   {lang('Answer', 'comments')}
+                                   
                                 </button>
                             </div>
 
