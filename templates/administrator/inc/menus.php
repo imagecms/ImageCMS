@@ -148,55 +148,6 @@ $shopMenu = array(
         'text' => lang('Shop dashboard', 'admin'),
         'icon' => 'icon-home'
     ),
-    array(
-        'link' => '',
-        'text' => lang('Content', 'admin'),
-        'icon' => 'icon-align-justify',
-        'subMenu' => array(
-            array(
-                'header' => true,
-                'text' => lang('Content', 'admin'),
-            ),
-            array(
-                'link' => '/admin/pages',
-                'text' => lang('Create page', 'admin'),
-            ),
-            array(
-                'link' => '/admin/pages/GetPagesByCategory',
-                'text' => lang('Articles list', 'admin'),
-            ),
-            array(
-                'divider' => true
-            ),
-            array(
-                'header' => true,
-                'text' => lang('Categories', 'admin'),
-            ),
-             array(
-                'link' => '/admin/categories/create_form',
-                'text' => lang('Create new', 'admin'),
-            ),
-            array(
-                'link' => '/admin/categories/cat_list',
-                'text' => lang('Categories list', 'admin'),
-            ),
-            array(
-                'divider' => true
-            ),
-            array(
-                'header' => true,
-                'text' => lang('Custom fields constructor', 'admin'),
-            ),
-            array(
-                'link' => '/admin/components/cp/cfcm/index#additional_fields',
-                'text' => lang('Fields list', 'admin'),
-            ),
-            array(
-                'link' => '/admin/components/cp/cfcm/index#fields_groups',
-                'text' => lang("Group's list ", 'admin'),
-            ),
-        )
-    ),
     /** Orders * */
     array(
         'link' => '',
@@ -298,6 +249,55 @@ $shopMenu = array(
             array(
                 'link' => '/admin/rbac/roleList',
                 'text' => lang('RBAC control', 'admin'),
+            ),
+        )
+    ),
+    array(
+        'link' => '',
+        'text' => lang('Content', 'admin'),
+        'icon' => 'icon-align-justify',
+        'subMenu' => array(
+            array(
+                'header' => true,
+                'text' => lang('Content', 'admin'),
+            ),
+            array(
+                'link' => '/admin/pages',
+                'text' => lang('Create page', 'admin'),
+            ),
+            array(
+                'link' => '/admin/pages/GetPagesByCategory',
+                'text' => lang('Articles list', 'admin'),
+            ),
+            array(
+                'divider' => true
+            ),
+            array(
+                'header' => true,
+                'text' => lang('Categories', 'admin'),
+            ),
+             array(
+                'link' => '/admin/categories/create_form',
+                'text' => lang('Create new', 'admin'),
+            ),
+            array(
+                'link' => '/admin/categories/cat_list',
+                'text' => lang('Categories list', 'admin'),
+            ),
+            array(
+                'divider' => true
+            ),
+            array(
+                'header' => true,
+                'text' => lang('Custom fields constructor', 'admin'),
+            ),
+            array(
+                'link' => '/admin/components/cp/cfcm/index#additional_fields',
+                'text' => lang('Fields list', 'admin'),
+            ),
+            array(
+                'link' => '/admin/components/cp/cfcm/index#fields_groups',
+                'text' => lang("Group's list ", 'admin'),
             ),
         )
     ),
@@ -422,8 +422,7 @@ $shopMenu = array(
     )
 );
 
-
 if (preg_match('/Pro/', IMAGECMS_NUMBER)) {
-    unset($shopMenu[5]);
+    unset($shopMenu[6]);
 }
 

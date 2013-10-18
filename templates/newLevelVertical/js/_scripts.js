@@ -53,7 +53,7 @@ var optionsMenu = {
     parentTl: '.frame-l2', //prev a level 2
     otherPage: hrefCategoryProduct, //for product [undefined or value not other]
     
-    vertical: false
+    vertical: true
 };
 var scrollPane = {
     animateScroll: true,

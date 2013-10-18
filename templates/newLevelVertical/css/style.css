@@ -1082,7 +1082,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 
 /*footer*/
 .h-footer{height: 346px;}
-footer{min-height:346px; margin: -346px auto 0;}
+footer{min-height:346px; margin: -346px auto 0;position: relative;}
 footer:before{content: "";height: 5px;width: 100%;top: -3px;left: 0;position: absolute;}
 footer .content-footer{min-height: 245px;}
 .footer-footer{position: relative;height: 101px;}
