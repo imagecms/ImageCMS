@@ -38,15 +38,15 @@
                     </div>
                     <div class="func-button-comment__icsi-css">
                         {if $can_comment == 0 OR $is_logged_in}
-
                             <div class="btn__icsi-css f_l__icsi-css">
-                                <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
-                                    <span class="icon-comment__icsi-css">
+                                <button type="button"  data-rel="cloneAddPaste" data-parid="{$comment['id']}">
+                                    <span class="icon-comment__icsi-css" style="width: 50px;">
+                                        <div style="margin-left: 20px; margin-top: 5px;">
+                                            {lang('Answer', 'comments')}
+                                        </div>
                                     </span>
-                                   {lang('Answer', 'comments')}
                                 </button>
                             </div>
-
                         {/if}
 
                         <div class="f_r__icsi-css" style="margin-right: 10px">
