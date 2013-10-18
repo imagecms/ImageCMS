@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 17:00+0300\n"
+"POT-Creation-Date: 2013-10-18 13:42+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -1881,7 +1881,7 @@ msgid "Request showed no result"
 msgstr "Запрос не дал результатов"
 
 #: /var/www/image.loc/_tempLangs.php:136
-msgid "There are no results. Modify your search or click the "
+msgid "There are no results. Modify your search or click the Reset Filter"
 msgstr "Нет результатов. Измените критерии поиска или нажмите"
 
 #: /var/www/image.loc/_tempLangs.php:137
@@ -5639,22 +5639,22 @@ msgid "Dashboard"
 msgstr "Главная"
 
 #: ../../../templates/administrator/inc/menus.php:36
-#: ../../../templates/administrator/inc/menus.php:188
+#: ../../../templates/administrator/inc/menus.php:292
 msgid "Custom fields constructor"
 msgstr "Конструктор полей"
 
 #: ../../../templates/administrator/inc/menus.php:40
-#: ../../../templates/administrator/inc/menus.php:192
+#: ../../../templates/administrator/inc/menus.php:296
 msgid "Fields list"
 msgstr "Список полей"
 
 #: ../../../templates/administrator/inc/menus.php:44
-#: ../../../templates/administrator/inc/menus.php:196
+#: ../../../templates/administrator/inc/menus.php:300
 msgid "Group's list "
 msgstr "Список групп"
 
 #: ../../../templates/administrator/inc/menus.php:59
-#: ../../../templates/administrator/inc/menus.php:181
+#: ../../../templates/administrator/inc/menus.php:285
 msgid "Categories list"
 msgstr "Список категорий"
 
@@ -5681,43 +5681,43 @@ msgstr "Резервное копирование"
 msgid "Shop dashboard"
 msgstr "Главная"
 
-#: ../../../templates/administrator/inc/menus.php:216
+#: ../../../templates/administrator/inc/menus.php:167
 msgid "Order statuses"
 msgstr "Статусы заказов"
 
-#: ../../../templates/administrator/inc/menus.php:224
+#: ../../../templates/administrator/inc/menus.php:175
 msgid "Callbacks list"
 msgstr "Список колбеков"
 
-#: ../../../templates/administrator/inc/menus.php:240
+#: ../../../templates/administrator/inc/menus.php:191
 msgid "Notifications list"
 msgstr "Уведомления о появление"
 
-#: ../../../templates/administrator/inc/menus.php:244
+#: ../../../templates/administrator/inc/menus.php:195
 msgid "Notification statuses"
 msgstr "Статусы уведомлений"
 
-#: ../../../templates/administrator/inc/menus.php:248
+#: ../../../templates/administrator/inc/menus.php:199
 msgid "Other"
 msgstr "Остальное"
 
-#: ../../../templates/administrator/inc/menus.php:259
+#: ../../../templates/administrator/inc/menus.php:210
 msgid "Products catalogue"
 msgstr "Каталог товаров"
 
-#: ../../../templates/administrator/inc/menus.php:280
+#: ../../../templates/administrator/inc/menus.php:231
 msgid "Produkts kits"
 msgstr "Наборы товаров"
 
-#: ../../../templates/administrator/inc/menus.php:291
+#: ../../../templates/administrator/inc/menus.php:242
 msgid "Users management"
 msgstr "Пользователи"
 
-#: ../../../templates/administrator/inc/menus.php:296
+#: ../../../templates/administrator/inc/menus.php:247
 msgid "List of users"
 msgstr "Список пользователей"
 
-#: ../../../templates/administrator/inc/menus.php:300
+#: ../../../templates/administrator/inc/menus.php:251
 msgid "RBAC control"
 msgstr "Управление правами доступа"
 
