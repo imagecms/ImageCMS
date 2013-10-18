@@ -2,7 +2,7 @@
 
 $com_info = array(
         'menu_name' => lang('Users manager', 'user_manager'),
-	'description' => lang('User management.', 'user_manager'),
+	'description' => lang('User management in ImageCMS Corporate.', 'user_manager'),
 	'admin_type' => 'inside',
 	'window_type' => 'xhr',
 	'w' => 600,
