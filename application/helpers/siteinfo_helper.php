@@ -63,7 +63,7 @@ if (!function_exists('siteinfo')) {
             switch ($name) {
                 case 'siteinfo_favicon_url':
                     if (key_exists($tplName, $siteinfo['siteinfo_favicon'])) {
-                        return $siteinfo['siteinfo_favicon'][$tplName]['url'];
+                        return site_url() . $siteinfo['siteinfo_favicon'][$tplName]['path'];
                     } else {
                         // trying to return frequently favicon location
                         $fLoc = "templates/{$tplName}/images/favicon.ico";
@@ -73,7 +73,7 @@ if (!function_exists('siteinfo')) {
                     }
                 case 'siteinfo_logo_url':
                     if (key_exists($tplName, $siteinfo['siteinfo_logo'])) {
-                        return $siteinfo['siteinfo_logo'][$tplName]['url'];
+                        return site_url() . $siteinfo['siteinfo_logo'][$tplName]['path'];
                     } else {
                         // trying to return frequently favicon location
                         $fLoc = "templates/{$tplName}/images/logo.png";

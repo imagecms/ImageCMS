@@ -45,7 +45,8 @@ class Discount_product extends classes\BaseDiscount {
     public function get_product_discount_event($product, $price = null) {
 
 
-        $discount_array = $this->get_discount_one_product($product);
+        $discount_array = $this->get_discount_one_product($this->discount_model_front->get_product($product['id']));
+
 
         if (count($discount_array) > 0) {
             if (null === $price)
