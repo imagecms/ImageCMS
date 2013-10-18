@@ -7,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/dashboard" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
+                    <!--<a href="/admin/dashboard" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>-->
                     <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveSettings" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                 </div>
             </div>
@@ -58,8 +58,8 @@
                                                             <label class="control-label" for="lang_sel">{lang('Select admin language', "admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="lang_sel" id="lang_sel">
-                                                                        <option value="english_lang" {if strstr($lang_sel, 'english')}selected="selected"{/if}> {lang('English', 'admin')}</option>
-                                                                        <option value="russian_lang" {if strstr($lang_sel, 'russian')}selected="selected"{/if}> {lang('Russian', 'admin')}</option>
+                                                                    <option value="english_lang" {if strstr($lang_sel, 'english')}selected="selected"{/if}> {lang('English', 'admin')}</option>
+                                                                    <option value="russian_lang" {if strstr($lang_sel, 'russian')}selected="selected"{/if}> {lang('Russian', 'admin')}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -444,7 +444,7 @@
                                                                     {else:}
                                                                         <tr class="siteinfo_contact_row" data-original-title="{$tooltipText} {lang('you entered as a contact type', 'admin')}">
                                                                             <td>
-                                                                                 <input type='text' placeholder="{lang('Contact type', 'admin')}" class="siteinfo_contactkey" name="siteinfo_contactkey[]" value="">
+                                                                                <input type='text' placeholder="{lang('Contact type', 'admin')}" class="siteinfo_contactkey" name="siteinfo_contactkey[]" value="">
                                                                             </td>
                                                                             <td>
                                                                                 <textarea rows="1" placeholder="{lang('Value', 'admin')}" class="siteinfo_contactvalue" value="" name="siteinfo_contactvalue[]"></textarea>
@@ -475,11 +475,12 @@
 
                                                             <div class="controls siteinfo_logoimage">
                                                                 <div class='siteinfo_image_container'>
-                                                                    {if isset($siteinfo_logo) & !empty($siteinfo_logo)}
+                                                                    {$logo = siteinfo('siteinfo_logo_url')}
+                                                                    {if !empty($logo)}
                                                                         <button type="button" class="btn btn-small remove_btn">
                                                                             <i class="icon-trash"></i>
                                                                         </button>
-                                                                        <img class="img-polaroid" src="{$siteinfo_logo}" alt="{lang('Click to select the image', 'admin')}" />
+                                                                        <img class="img-polaroid" src="{$logo}" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {else:}
                                                                         <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {/if}
@@ -493,11 +494,12 @@
 
                                                             <div class="controls siteinfo_faviconimage">
                                                                 <div class='siteinfo_image_container'>
-                                                                    {if isset($siteinfo_favicon) & !empty($siteinfo_favicon)}
+                                                                    {$favicon = siteinfo('siteinfo_favicon_url')}
+                                                                    {if !empty($favicon)}
                                                                         <button type="button" class="btn btn-small remove_btn">
                                                                             <i class="icon-trash"></i>
                                                                         </button>
-                                                                        <img class="img-polaroid" src="{$siteinfo_favicon}" alt="{lang('Click to select the image', 'admin')}" />
+                                                                        <img class="img-polaroid" src="{$favicon}" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {else:}
                                                                         <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {/if}

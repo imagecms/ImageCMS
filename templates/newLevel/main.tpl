@@ -38,8 +38,8 @@
         <![endif]-->
 
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
-        <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
     </head>
     <body class="is{echo $agent[0]} not-js"> 
         {include_tpl('language/jsLangsDefine.tpl')}
