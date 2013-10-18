@@ -294,7 +294,7 @@ class Core extends MY_Controller {
             case 'page':
                 $main_id = $this->settings['main_page_id'];
                 break;
-            case 'category';
+            case 'category':
                 $main_id = $this->settings['main_page_cat'];
                 break;
             case 'module':
@@ -375,7 +375,7 @@ class Core extends MY_Controller {
                 break;
 
             // Category
-            case 'category';
+            case 'category':
                 ($hook = get_hook('core_show_main_cat')) ? eval($hook) : NULL;
 
                 $m_category = $this->lib_category->get_category($this->settings['main_page_cat']);
