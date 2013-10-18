@@ -6,11 +6,11 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin"
+                <!--<a href="{$BASE_URL}admin"
                    class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('Go back','admin')}</span>
-                </a>
+                </a>-->
                 <a href="{$BASE_URL}admin/sys_update/update"
                    class="btn btn-small btn-primary pjax">
                     <span class="icon-play"></span>

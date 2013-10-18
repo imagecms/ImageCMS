@@ -64,10 +64,9 @@
                     <li>
                         <div class="c_w f-s_0"><span class="f-s_16"><span class="f-w_b">{echo siteinfo('siteinfo_mainphone')}</span></span></div>
                     </li>
-                    <li><a class="f-s_0" href="skype:icon_skype"> <span class="icon_skype">&nbsp;</span> <span class="text-el">{echo siteinfo('Skype')}</span> </a></li>
+                    <li><a class="f-s_0" href="skype:{echo siteinfo('Skype')}"> <span class="icon_skype">&nbsp;</span> <span class="text-el">{echo siteinfo('Skype')}</span> </a></li>
                     <li><a class="f-s_0" href="mailto:{echo siteinfo('Email')}"> <span class="icon_mail">&nbsp;</span> <span class="text-el">{echo siteinfo('Email')}</span> </a></li>
                 </ul>
-                {/*widget('footer_contacts')*/}
             </div>
         </div>
         <!--End. Info block-->
@@ -78,7 +77,6 @@
         <div class="f_l">
             <div class="c_w">{echo siteinfo('siteinfo_companytype')}</div>
             <div class="c_9">Все права защищены</div>
-            {/*widget('copy_right')*/}
         </div>
         {if function_exists('mobile_site_address')}
             <div class="f_r">
