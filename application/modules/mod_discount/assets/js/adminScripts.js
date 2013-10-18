@@ -2,7 +2,8 @@ $(document).ready(function() {
     /**
      * set begin discount date to now date
      */
-    $(".beginDateDiscount").datepicker({minDate: new Date(), dateFormat: "yy-mm-dd"  });
+    $(".beginDateDiscount, .endDateDiscount").datepicker({minDate: new Date(), dateFormat: "yy-mm-dd"  });
+    
     /**
      * Change is discount active or not
      */

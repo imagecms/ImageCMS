@@ -40,7 +40,7 @@ if (!function_exists('array_key_exists_recursive')) {
      */
     function array_key_exists_recursive($key, $array, $return = FALSE) {
         foreach ($array as $key_ => $value_) {
-            if (is_array($value_)) {
+            if (is_array($value_) && $key_ !== $key) {
                 if (FALSE !== $value = array_key_exists_recursive($key, $value_, $return)) {
                     return $return === FALSE ? TRUE : $value;
                 }
