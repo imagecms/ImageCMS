@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 12:15+0300\n"
+"POT-Creation-Date: 2013-10-17 18:52+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -25,6 +25,7 @@ msgstr ""
 "X-Poedit-SearchPath-7: ../../../../../system/language/form_validation\n"
 "X-Poedit-SearchPath-8: ../../../../../system/language/email_lang\n"
 "X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
+"X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
 
 #: ../../../../../application/helpers/category_helper.php:86
 msgid "No category"
@@ -658,6 +659,18 @@ msgstr "Не верний тип файла, который вы пытаете�
 
 #: ../../../../../system/language/upload/upload_validation.php:24
 msgid "upload_not_writable"
+msgstr ""
+
+#: ../../../../../system/libraries/Pagination.php:74
+msgid "First"
+msgstr "Начало"
+
+#: ../../../../../system/libraries/Pagination.php:75
+msgid "Last"
+msgstr "Конец"
+
+#: ../../../../../system/libraries/Migration.php:223
+msgid "migration_none_found"
 msgstr ""
 
 #~ msgid "January"

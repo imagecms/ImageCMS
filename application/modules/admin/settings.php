@@ -278,47 +278,55 @@ class Settings extends BaseAdminController {
         unset($siteinfo['siteinfo_contactvalue']);
         $siteinfo['contacts'] = $contacts;
 
-        $config['upload_path'] = $this->uploadPath;
-        $config['allowed_types'] = 'jpg|jpeg|png';
+        $tplName = $this->getImagesPath(TRUE);
+        $tplPath = $this->getImagesPath();
+       
+        $config['upload_path'] = $tplPath;
+        $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
         $this->load->library('upload', $config);
 
         // upload logo if present
+        $logo = siteinfo('siteinfo_logo');
+        $siteinfo['siteinfo_logo'] = is_array($logo) ? $logo : array();
         if (isset($_FILES['siteinfo_logo'])) {
             if (!$this->upload->do_upload('siteinfo_logo')) {
-                $siteinfo['siteinfo_logo'] = $this->upload->display_errors('', '');
+                echo $this->upload->display_errors('', '');
             } else {
                 $uploadData1 = $this->upload->data();
-                $siteinfo['siteinfo_logo'] = site_url() . $this->uploadPath . $uploadData1['file_name'];
-                $siteinfo['siteinfo_logo_path'] = $this->uploadPath . $uploadData1['file_name'];
+                $siteinfo['siteinfo_logo'][$tplName] = array(
+                    'url' => site_url() . $tplPath . $uploadData1['file_name'],
+                    'path' => $tplPath . $uploadData1['file_name']
+                );
             }
         } else {
-            //$imageToRemove1 = siteinfo('siteinfo_logo_path');
-            //unlink($imageToRemove1);
-            // if user want to delete image
+            // if delete image
             if ($_POST['si_delete_logo'] == 1) {
-                $siteinfo['siteinfo_logo'] = "";
-            } else { // in other case assign image
-                $siteinfo['siteinfo_logo'] = siteinfo('siteinfo_logo');
+                if (is_array($siteinfo['siteinfo_logo']))
+                    if (isset($siteinfo['siteinfo_logo'][$tplName]))
+                        unset($siteinfo['siteinfo_logo'][$tplName]);
             }
         }
 
         // upload favicon if present
+        $favicon = siteinfo('siteinfo_favicon');
+        $siteinfo['siteinfo_favicon'] = is_array($favicon) ? $favicon : array();
+
         if (isset($_FILES['siteinfo_favicon'])) {
             if (!$this->upload->do_upload('siteinfo_favicon')) {
-                $siteinfo['siteinfo_favicon'] = $this->upload->display_errors('', '');
+                //$faviconError = $this->upload->display_errors('', '');
             } else {
                 $uploadData2 = $this->upload->data();
-                $siteinfo['siteinfo_favicon'] = site_url() . $this->uploadPath . $uploadData2['file_name'];
-                $siteinfo['siteinfo_favicon_path'] = $this->uploadPath . $uploadData2['file_name'];
+                $siteinfo['siteinfo_favicon'][$tplName] = array(
+                    'url' => site_url() . $tplPath . $uploadData2['file_name'],
+                    'path' => $tplPath . $uploadData2['file_name']
+                );
             }
         } else {
-            //$imageToRemove2 = siteinfo('siteinfo_favicon_path');
-            //unlink($imageToRemove2);
-            // if user want to delete image
+            // if delete image
             if ($_POST['si_delete_favicon'] == 1) {
-                $siteinfo['siteinfo_favicon'] = "";
-            } else { // in other case assign image
-                $siteinfo['siteinfo_favicon'] = siteinfo('siteinfo_favicon');
+                if (is_array($siteinfo['siteinfo_favicon']))
+                    if (isset($siteinfo['siteinfo_favicon'][$tplName]))
+                        unset($siteinfo['siteinfo_favicon'][$tplName]);
             }
         }
 
@@ -332,32 +340,30 @@ class Settings extends BaseAdminController {
             $this->load->helper('file');
             write_file($authFullPath, $newAuthContents);
         }
-
         // returning beautiful array =)
         return $siteinfo;
     }
 
     /**
-     * Повертає шлях до місця зберігання зображень (лого і фавікон)
-     * (залежить від активного шаблону та від його структури)
+     * Returns path for current images path
+     * (depends from acteve template)
+     * @param boolean $returnOnlyName if TRUE then only template name will be returned
      */
-    protected function getImagesPath() {
-        $this->CI = & get_instance();
-        $tplName = $this->CI->config->item('template');
-        $tplPath = 'templates/' . $tpl . '/';
-
-        switch ($tplName) {
-            case 'newLevel': {
-                    // в шаблоні newLevel папка із 
-                    // зображеннями залежить від кольорової схеми
-                    $colorScheme = $CI->load->module('new_level')->getColorScheme();
-                    return $tplPath . $colorScheme . '/';
-                }
-                break;
+    protected function getImagesPath($returnOnlyName = FALSE) {
+        $CI = &get_instance();
+        $settings = $this->cms_base->get_settings();
+        if ($returnOnlyName == TRUE) {
+            return $settings['site_template'];
+        }
+        $tplPath = 'templates/' . $settings['site_template'] . '/';
+        switch ($settings['site_template']) {
+            case 'newLevel':
+                $colorScheme = $CI->load->module('new_level')->getColorScheme();
+                return $tplPath . $colorScheme . '/';
             case 'commerce4x':
-                // в commerce4x всі зображення зберігаються в одному каталозі
                 return $tplPath . 'images/';
-                break;
+            case 'corporate':
+                return $tplPath . 'images/';
             default:
                 return '';
         }
@@ -373,7 +379,6 @@ class Settings extends BaseAdminController {
         if (in_array($lang, $langs) && $this->config->item('language') != $lang) {
             $this->db->set('lang_sel', $lang . '_lang')
                     ->update('settings');
-
             $this->session->set_userdata('language', $lang);
         }
         redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/dashboard');
