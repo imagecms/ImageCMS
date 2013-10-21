@@ -231,10 +231,10 @@ class Components extends BaseAdminController {
                     $info_file = APPPATH . 'modules/' . $value['name'] . '/module_info.php';
 
                     $lang = new MY_Lang();
-                    $lang->load($file);
-
+                    $lang->load($value['name']);
+                    
                     if (file_exists($info_file)) {
-                        include ($info_file);
+                        include($info_file);
                         $components[$key]['menu_name'] = $com_info['menu_name'];
                         $components[$key]['type'] = $com_info['type'];
                     }
