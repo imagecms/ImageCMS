@@ -14,6 +14,7 @@ class Exchangeunfu extends MY_Controller {
     private $import;
     private $export;
     private static $return = 0;
+    public static $hourCount = 0;
 
     /** array which contains 1c settings  */
     private $config = array();
@@ -90,6 +91,53 @@ class Exchangeunfu extends MY_Controller {
         \CMSFactory\Events::create()
                 ->onShopProductUpdate()
                 ->setListener('_addProductPartner');
+    }
+
+    public function autoload() {
+
+        \CMSFactory\Events::create()
+                ->on('MakeOrder')
+                ->setListener('_setHour');
+    }
+
+    public static function _setHour($date) {
+
+        preg_match_all('/\d+/', $_POST['timedilivery'], $hours);
+        $i = $hours[0][0];
+        while ($hours[0][1] > $i) {
+
+            $count = self::getCountHours($i, $_POST['datedilivery']);
+
+            if (count($count)) {
+                if ($count[0]->count != 0) {
+                    self::recountProductivityHour($count[0]->count, $count[0]->id);
+                    self::updateOrderHour($i, $date["order"]->id);
+                    break;
+                }
+            }
+
+            $i++;
+        }
+    }
+
+    private function recountProductivityHour($count, $id) {
+        $ci = & get_instance();
+        $data = array(
+            'count' => $count - 1,
+        );
+
+        $ci->db->where('id', $id);
+        $ci->db->update('mod_exchangeunfu_productivity', $data);
+    }
+
+    private function updateOrderHour($hour, $id) {
+        $ci = & get_instance();
+        $data = array(
+            'delivery_hour' => $hour,
+        );
+
+        $ci->db->where('id', $id);
+        $ci->db->update('shop_orders', $data);
     }
 
     /**
@@ -329,6 +377,17 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    public function getRegionPeriod() {
+
+        $periods = $this->db
+                ->where('partner_id', $this->getDefaultRegionId())
+                ->order_by("hour_from", "asc")
+                ->get('mod_exchangeunfu_partners_periods')
+                ->result_array();
+
+        return $periods;
+    }
+
     /**
      * update price for products region partners
      */
@@ -408,6 +467,7 @@ class Exchangeunfu extends MY_Controller {
         $this->db->query('ALTER TABLE `shop_orders` ADD `code` VARCHAR( 255 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_orders` ADD `invoice_external_id` VARCHAR( 255 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_orders` ADD `invoice_code` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `delivery_hour` VARCHAR( 20 )');
         $this->db->query('ALTER TABLE `shop_orders` ADD `invoice_date` INT( 11 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_category` ADD `code` VARCHAR( 255 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_products` ADD `code` VARCHAR( 255 ) NOT NULL');
@@ -527,6 +587,33 @@ class Exchangeunfu extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu_partners', TRUE);
 
+
+        $fields = array(
+            'hour_from' => array(
+                'type' => 'INT',
+                'constraint' => 4
+            ),
+            'hour_to' => array(
+                'type' => 'INT',
+                'constraint' => 4
+            ),
+            'partner_id' => array(
+                'type' => 'INT',
+                'constraint' => 11
+            ),
+            'type' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 10
+            ),
+        );
+
+
+
+        $this->dbforge->add_key('partner_id', TRUE);
+        $this->dbforge->add_key('type', TRUE);
+        $this->dbforge->add_field($fields);
+        $this->dbforge->create_table('mod_exchangeunfu_partners_periods', TRUE);
+
         $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -582,6 +669,7 @@ class Exchangeunfu extends MY_Controller {
         $this->dbforge->drop_table('mod_exchangeunfu_productivity');
         $this->dbforge->drop_table('mod_exchangeunfu_partners');
         $this->dbforge->drop_table('mod_exchangeunfu_prices');
+        $this->dbforge->drop_table('mod_exchangeunfu_partners_periods');
     }
 
     /**
@@ -590,8 +678,8 @@ class Exchangeunfu extends MY_Controller {
      */
     public function getPriceForRegion($model) {
         // TEST SET COOKIE
-        set_cookie('site_region', 'м. Львів', 10000);
-        $region = get_cookie('site_region');
+        //     set_cookie('site_region', 'Рј. Р›СЊРІС–РІ', 10000);
+        $region = get_cookie('region');
         $external_ids = array();
 
         if (count($model) == 1) {
@@ -676,15 +764,140 @@ class Exchangeunfu extends MY_Controller {
      * @return array
      */
     public function getRegions() {
+
         $regions = $this->db
-                ->select('region')
+                ->select(array('region', 'id'))
                 ->get('mod_exchangeunfu_partners');
 
         if ($regions) {
-            return $regions = array_unique($regions->result_array());
+            return $regions->result_array();
         } else {
             return $regions = array();
         }
+    }
+
+    public function getDefaultRegion() {
+
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
+            $region = $this->db
+                            ->where('id', $_COOKIE['region'])
+                            ->select(array('region'))
+                            ->get('mod_exchangeunfu_partners')->result_array();
+
+            if (count($region))
+                return $region[0]['region'];
+            else {
+                $region = $this->db
+                                ->limit(1)
+                                ->select(array('region'))
+                                ->get('mod_exchangeunfu_partners')->result_array();
+                return $region[0]['region'];
+            }
+        } else {
+            $region = $this->db
+                            ->limit(1)
+                            ->select(array('region'))
+                            ->get('mod_exchangeunfu_partners')->result_array();
+            return $region[0]['region'];
+        }
+    }
+
+    public function getDefaultRegionId() {
+
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
+
+            return $_COOKIE['region'];
+        } else {
+            $region = $this->db
+                    ->limit(1)
+                    ->select(array('id'))
+                    ->get('mod_exchangeunfu_partners')
+                    ->result_array();
+
+            return $region['0']['id'];
+        }
+    }
+
+    public function getDefaultRegionExternalId() {
+
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
+
+            $region = $this->db
+                            ->limit(1)
+                            ->select(array('external_id'))
+                            ->where('id', $_COOKIE['region'])
+                            ->get('mod_exchangeunfu_partners')->result_array();
+            return $region[0]['external_id'];
+        } else {
+            $region = $this->db
+                            ->limit(1)
+                            ->select(array('external_id'))
+                            ->get('mod_exchangeunfu_partners')->result_array();
+            return $region[0]['external_id'];
+        }
+    }
+
+    public function getCountPeriodOrders($hfrom, $hto, $date = null) {
+        if (!$date)
+            $date = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+
+        $regionId = $this->getDefaultRegionId();
+        $count = $this->db
+                ->select_sum('count')
+                ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_partners.external_id = mod_exchangeunfu_productivity.partner_external_id', 'left')
+                ->where('date =', $date)
+                ->where('hour >=', $hfrom)
+                ->where('hour <', $hto)
+                ->where('mod_exchangeunfu_partners.id', $regionId)
+                ->get('mod_exchangeunfu_productivity')
+                ->result();
+
+        return $count;
+    }
+
+    public function getCountHours($hour, $date) {
+        if (!$date)
+            die('date is undefined');
+        $date = strtotime($date);
+        $ci = get_instance();
+
+
+        $defaultRegionId = self::getDefaultRegionId();
+
+        $count = $ci->db
+                ->select(array('mod_exchangeunfu_productivity.id', 'mod_exchangeunfu_productivity.count'))
+                ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_partners.external_id = mod_exchangeunfu_productivity.partner_external_id', 'left')
+                ->where('date =', $date)
+                ->where('hour =', $hour)
+                ->where('mod_exchangeunfu_partners.id', $defaultRegionId)
+                ->get('mod_exchangeunfu_productivity')
+                ->result();
+
+
+        return $count;
+    }
+
+    public function getCountPeriodOrdersApi($date = '2013-10-10') {
+        $date = strtotime($date);
+        $periods = $this->getRegionPeriod();
+
+        foreach ($periods as $key => $period) {
+            $c = $this->db
+                    ->select_sum('count')
+                    ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_partners.external_id = mod_exchangeunfu_productivity.partner_external_id', 'left')
+                    ->where('date =', $date)
+                    ->where('hour >=', $period['hour_from'])
+                    ->where('hour <', $period['hour_to'])
+                    ->where('mod_exchangeunfu_partners.id', $this->getDefaultRegionId())
+                    ->get('mod_exchangeunfu_productivity')
+                    ->result();
+
+            if ($c[0]->count)
+                $count[] = true;
+            else
+                $count[] = false;;
+        }
+        return json_encode($count);
     }
 
     /**
@@ -748,13 +961,13 @@ class Exchangeunfu extends MY_Controller {
         /**
          * @todo доробити. Потрібно щоб тут був гет з вказання партнера
          */
-//        if ($this->check_perm() === true) {
-//            $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
-//            foreach ($model as $order) {
-//                $order->SetStatus($this->config['userstatuses_after']);
-//                $order->save();
-//            }
-//        }
+        //        if ($this->check_perm() === true) {
+        //            $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
+        //            foreach ($model as $order) {
+        //                $order->SetStatus($this->config['userstatuses_after']);
+        //                $order->save();
+        //            }
+        //        }
         exit();
     }
 
