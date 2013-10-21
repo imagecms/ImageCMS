@@ -122,9 +122,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
 (21, 'core', 0, 'Funstarter', 'admin@localhost.loc', 'siteimage.com.ua', 80, 'Многие противоречат этой новинке, говоря, что робот не приготовит, так как человек. Он берет все в точности, не фантазирует и не добавляет ингредиенты по вкусу.  Но мы утверждаем, что такой прогресс необходим.', 1291637744, 0, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12 ( .NET CLR 3.5.30729)', '127.0.0.1', 0, NULL, NULL, 0, 0, NULL),
-(22, 'core', 0, 'Funstarter', 'admin@localhost.loc', 'siteimage.com.ua', 80, 'Первые кухонные роботы обладали возможностью готовить только простые блюда или блюда дополненные покупателем. Но теперь все кухонные роботы имеют в памяти все рецепты, которые были вынесены на публику.', 1291637760, 0, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12 ( .NET CLR 3.5.30729)', '127.0.0.1', 0, NULL, NULL, 0, 0, NULL),
-(67, 'core', 1, 'Administrator', 'ad@min.com', '', 80, 'xfgsdfs', 1382342238, 0, 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:23.0) Gecko/20100101 Firefox/23.0', '127.0.0.1', 2, '', '', 0, 0, 0),
-(68, 'core', 1, 'Administrator', 'ad@min.com', '', 80, 'sdfgsdfg', 1382342243, 0, 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:23.0) Gecko/20100101 Firefox/23.0', '127.0.0.1', 0, '', '', 0, 0, 0);
+(22, 'core', 0, 'Funstarter', 'admin@localhost.loc', 'siteimage.com.ua', 80, 'Первые кухонные роботы обладали возможностью готовить только простые блюда или блюда дополненные покупателем. Но теперь все кухонные роботы имеют в памяти все рецепты, которые были вынесены на публику.', 1291637760, 0, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12 ( .NET CLR 3.5.30729)', '127.0.0.1', 0, NULL, NULL, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
