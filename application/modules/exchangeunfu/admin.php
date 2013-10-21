@@ -12,6 +12,14 @@ class Admin extends BaseAdminController {
 
     public function index() {
         $partners = $this->db->get('mod_exchangeunfu_partners');
+        $periods = $this->db->get('mod_exchangeunfu_partners_periods')->result_array();
+
+
+
+        foreach ($periods as $key => $value) {
+            $period[$value['partner_id']][$value['type']] = $value['hour_from'] . '-' . $value['hour_to'];
+        }
+
         if ($partners) {
             $partners = $partners->result_array();
         } else {
@@ -21,6 +29,7 @@ class Admin extends BaseAdminController {
         \CMSFactory\assetManager::create()
                 ->registerScript('admin')
                 ->setData('partners', $partners)
+                ->setData('periods', $period)
                 ->renderAdmin('partners');
     }
 
@@ -39,6 +48,20 @@ class Admin extends BaseAdminController {
                     'code' => $code,
                     'external_id' => md5($name . $region)
         ));
+    }
+
+    public function updatePeriod() {
+
+        foreach ($_POST['periods'] as $key => $value) {
+            preg_match_all('/\d+/', $value, $hours);
+
+            $this->db->query("INSERT INTO mod_exchangeunfu_partners_periods (`hour_from`, `hour_to`, `partner_id` , `type`) 
+                         VALUES ('" . $hours[0][0] . "','" . $hours[0][1] . "', '" . $_POST['partnerId'] . "' ,'$key')
+                         ON DUPLICATE KEY 
+                         UPDATE `hour_from`= '" . $hours[0][0] . "', `hour_to` = '" . $hours[0][1] . "';");
+        }
+
+        return 1;
     }
 
     public function addPartner() {
