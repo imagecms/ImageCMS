@@ -3,7 +3,7 @@
         {$active = false;}
     {if strpos($categoryData['url'], '/'.$item['url'].'/') !== false}{$active = true}{/if}
     <li {if $active}class="active"{/if}>
-        <a href="{base_url($item['path_url'])}">{$item['name']}  
+        <a href="{base_url($item['path_url'])}">{$item['name']}
             {if $categoryData['id'] == $item['id'] && $admin}
                 <span data-toggle="modal" href="#myModalEdit" class="glyphicon glyphicon-pencil pull-right editCategory">
                 </span>
@@ -11,7 +11,6 @@
         </a>
         <!-- Show category sublevels -->
         {if $item['subtree'] && $item['level']<3}
-            <span class="tree_menu_icon glyphicon {if $active}glyphicon-chevron-down{else:}glyphicon-chevron-right{/if}"></span>
             {$this->view('left_menu.tpl', array('tree' => $item['subtree'],'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData,'admin' => $admin))}
         {else:}
             {$CI = & get_instance()}
@@ -20,7 +19,7 @@
                 {foreach $menuPages as $page}
                     <li {if $CI->core->core_data['data_type'] == 'page' && $CI->core->core_data['id'] == $page['id']}class="active"{/if}>
                         <a href="{base_url($page['cat_url'].$page['url'])}">
-                            {$page['title']}  
+                            {$page['title']}
                         </a>
                     </li>
                 {/foreach}
