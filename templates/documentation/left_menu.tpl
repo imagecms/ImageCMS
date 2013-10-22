@@ -22,19 +22,7 @@
         </ul>
         <!-- Show category sublevels -->
         {if $item['subtree'] && $item['level']<3}
-        {$this->view('left_menu.tpl', array('tree' => $item['subtree'],'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData,'admin' => $admin))}
-        {else:}
-        {$CI = & get_instance()}
-        {$menuPages = $CI->load->module('documentation')->get_pages_in_category($item['id'])}
-        <ul {if !$active}style="display: none;"{/if}>
-            {foreach $menuPages as $page}
-            <li {if $CI->core->core_data['data_type'] == 'page' && $CI->core->core_data['id'] == $page['id']}class="active"{/if}>
-                <a href="{base_url($page['cat_url'].$page['url'])}">
-                    {$page['title']}
-                </a>
-            </li>
-            {/foreach}
-        </ul>
+            {$this->view('left_menu.tpl', array('tree' => $item['subtree'],'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData,'admin' => $admin))}
         {/if}
     </li>
     {/foreach}
