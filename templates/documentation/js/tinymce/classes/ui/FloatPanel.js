@@ -225,7 +225,7 @@ define("tinymce/ui/FloatPanel", [
 
 			if (settings.popover) {
 				self._preBodyHtml = '<div class="' + self.classPrefix + 'arrow"></div>';
-				self.addClass('popover').addClass('bottom').addClass('start');
+				self.addClass('popover').addClass('bottom').addClass(self.isRtl() ? 'end' : 'start');
 			}
 		},
 
@@ -344,6 +344,13 @@ define("tinymce/ui/FloatPanel", [
 		while (i--) {
 			if (visiblePanels[i] === panel) {
 				visiblePanels.splice(i, 1);
+			}
+		}
+
+		i = zOrder.length;
+		while (i--) {
+			if (zOrder[i] === panel) {
+				zOrder.splice(i, 1);
 			}
 		}
 	}
