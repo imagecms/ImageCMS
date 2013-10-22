@@ -1761,7 +1761,7 @@ msgstr "показать"
 #: /var/www/image.loc/_tempLangs.php:127
 #: /var/www/image.loc/_tempLangs.php:128
 msgid "hit"
-msgstr "хит"
+msgstr "Хит"
 
 #: /var/www/image.loc/_tempLangs.php:52
 #: /var/www/image.loc/_tempLangs.php:53
@@ -1772,7 +1772,7 @@ msgstr "хит"
 #: /var/www/image.loc/_tempLangs.php:129
 #: /var/www/image.loc/_tempLangs.php:130
 msgid "novelty"
-msgstr "новинка"
+msgstr "Новинка"
 
 #: /var/www/image.loc/_tempLangs.php:54
 #: /var/www/image.loc/_tempLangs.php:55
@@ -3156,7 +3156,7 @@ msgstr "Сумма"
 
 #: /var/www/image.loc/_tempLangs.php:81
 msgid "Amount of additions to Cart"
-msgstr "Количество доданых в корзину"
+msgstr "Количество добавленных в корзину"
 
 #: /var/www/image.loc/_tempLangs.php:83
 msgid "Date of registration"
@@ -3188,7 +3188,7 @@ msgstr "Новости ImageCMS"
 
 #: /var/www/image.loc/_tempLangs.php:97
 msgid "Read all"
-msgstr "Читать полнастью"
+msgstr "Читать полностью"
 
 #: /var/www/image.loc/_tempLangs.php:98
 msgid "Payment method create"
@@ -4206,7 +4206,7 @@ msgstr "Пересчитать товары после оплаты заказа
 
 #: /var/www/image.loc/_tempLangs.php:358
 msgid "Consider the amount of products warehouse on adding to basket"
-msgstr "Рассмотреть сумму склада товаров на добавление в корзину"
+msgstr "Учитывать количество на складе"
 
 #: /var/www/image.loc/_tempLangs.php:361
 msgid " Administrator notification about the order placement by e-mail"
