@@ -129,7 +129,7 @@ class Search extends MY_Controller {
 
         $this->core->set_meta_tags(array(lang("Search", 'search'), $this->search_title));
         $this->core->core_data['data_type'] = 'search';
-        $this->_display($data);
+        $this->_display($data, $data);
     }
 
     /**
@@ -155,7 +155,7 @@ class Search extends MY_Controller {
 
             $tempText = mb_substr($tempText, $start, $stop, 'UTF-8');
             $tempText = str_replace($text, '<span style="background-color:' . $this->highlightColor . '">' . $text . '</span>', $tempText);
-            $data[$i]['parsedText'] = '...' . mb_substr($tempText, 0, 500,'utf-8') . '...';
+            $data[$i]['parsedText'] = '...' . mb_substr($tempText, 0, 500, 'utf-8') . '...';
         }
 
         return $data;
@@ -176,7 +176,7 @@ class Search extends MY_Controller {
         }
     }
 
-     public function save_positions() {
+    public function save_positions() {
         $positions = $_POST['positions'];
         if (sizeof($positions) == 0)
             return false;
@@ -386,14 +386,56 @@ class Search extends MY_Controller {
     }
 
     // Display search template file
-    public function _display($pages = array()) {
+    public function _display($pages = array(), $foundInCategories = null) {
+        /*         * Prepare categories for search results * */
+        $categoriesInSearchResults = null;
+        $tree = null;
+        if ($foundInCategories != null) {
+            $this->load->library('lib_category');
+            $categoriesInSearchResults = $this->prepareCategoriesForSearchResults($foundInCategories);
+            $tree = $this->lib_category->build();
+        }
+
         if (count($pages) > 0) {
             ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
 
-            $this->template->add_array(array('items' => $pages));
+            $this->template->add_array(array('items' => $pages, 'categoriesInSearchResults' => $categoriesInSearchResults, 'tree' => $tree));
         }
 
         $this->template->show($this->search_tpl);
+    }
+
+    /**
+     * Prepare categories for search results
+     * @param array $foundInCategories
+     * @return boolean|array
+     */
+    private function prepareCategoriesForSearchResults($foundInCategories) {
+        $categoriesArray = array();
+        foreach ($foundInCategories as $page) {
+            /** Count of found pages in category * */
+            if (array_key_exists($page['category'], $categoriesArray)) {
+                $categoriesArray[$page['category']] = $categoriesArray[$page['category']] + 1;
+                /** Get fetch categories ids * */
+            } else {
+                $categoriesArray[$page['category']] = 1;
+            }
+            /** For fetched pages * */
+            $categoriesAll = $this->lib_category->unsorted();
+            $mainCategory = $page['category'];
+            if (($fetchCategories = unserialize($categoriesAll[$mainCategory]['fetch_pages'])) != false) {
+                foreach ($foundInCategories as $page) {
+                        if (in_array($page['category'], $fetchCategories)) {
+                            if (array_key_exists($mainCategory, $categoriesArray)) {
+                            $categoriesArray[$mainCategory] = $categoriesArray[$mainCategory] + 1;
+                        } else {
+                            $categoriesArray[$mainCategory] = 1;
+                        }
+                    }
+                }
+            }
+        }
+        return $categoriesArray;
     }
 
     // Create search table
