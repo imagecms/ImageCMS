@@ -17,8 +17,11 @@
 define("tinymce/pasteplugin/Clipboard", [
 	"tinymce/Env",
 	"tinymce/util/Tools",
-	"tinymce/util/VK"
-], function(Env, Tools, VK) {
+	"tinymce/util/VK",
+	"tinymce/html/DomParser",
+	"tinymce/html/Serializer",
+	"tinymce/html/Schema"
+], function(Env, Tools, VK, DomParser, Serializer, Schema) {
 	function hasClipboardData() {
 		// Gecko is excluded until the fix: https://bugzilla.mozilla.org/show_bug.cgi?id=850663
 		return !Env.gecko && (("ClipboardEvent" in window) || (Env.webkit && "FocusEvent" in window));
@@ -36,8 +39,64 @@ define("tinymce/pasteplugin/Clipboard", [
 			return (VK.metaKeyPressed(e) && e.keyCode == 86) || (e.shiftKey && e.keyCode == 45);
 		}
 
+		/**
+		 * Gets the innerText of the specified element. It will handle edge cases
+		 * and works better than textContent on Gecko.
+		 *
+		 * @param {Element} elm HTML element to get text from.
+		 * @return {String} String of text with line feeds.
+		 */
 		function innerText(elm) {
-			return elm.innerText || elm.textContent;
+			var schema = new Schema(), domParser = new DomParser({}, schema), text = '';
+			var shortEndedElements = schema.getShortEndedElements();
+			var ignoreElements = Tools.makeMap('script noscript style textarea video audio iframe object', ' ');
+			var blockElements = editor.schema.getBlockElements();
+
+			function walk(node) {
+				var name = node.name, currentNode = node;
+
+				if (name === 'br') {
+					text += '\n';
+					return;
+				}
+
+				// img/input/hr
+				if (shortEndedElements[name]) {
+					text += ' ';
+				}
+
+				// Ingore script, video contents
+				if (ignoreElements[name]) {
+					text += ' ';
+					return;
+				}
+
+				if (node.type == 3) {
+					text += node.value;
+				}
+
+				// Walk all children
+				if (!node.shortEnded) {
+					if ((node = node.firstChild)) {
+						do {
+							walk(node);
+						} while ((node = node.next));
+					}
+				}
+
+				// Add \n or \n\n for blocks or P
+				if (blockElements[name] && currentNode.next) {
+					text += '\n';
+
+					if (name == 'p') {
+						text += '\n';
+					}
+				}
+			}
+
+			walk(domParser.parse(elm.innerHTML));
+
+			return text;
 		}
 
 		function shouldPasteAsPlainText() {
@@ -58,7 +117,7 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		function processHtml(html) {
-			var args = editor.fire('PastePreProcess', {content: html});
+			var args = editor.fire('PastePreProcess', {content: html}), dom = editor.dom;
 
 			html = args.content;
 
@@ -72,7 +131,20 @@ define("tinymce/pasteplugin/Clipboard", [
 			}
 
 			if (!args.isDefaultPrevented()) {
-				editor.insertContent(html);
+				// User has bound PastePostProcess events then we need to pass it through a DOM node
+				// This is not ideal but we don't want to let the browser mess up the HTML for example
+				// some browsers add &nbsp; to P tags etc
+				if (editor.hasEventListeners('PastePostProcess') && !args.isDefaultPrevented()) {
+					// We need to attach the element to the DOM so Sizzle selectors work on the contents
+					var tempBody = dom.add(editor.getBody(), 'div', {style: 'display:none'}, html);
+					args = editor.fire('PastePostProcess', {node: tempBody});
+					dom.remove(tempBody);
+					html = args.node.innerHTML;
+				}
+
+				if (!args.isDefaultPrevented()) {
+					editor.insertContent(html);
+				}
 			}
 		}
 
@@ -93,11 +165,7 @@ define("tinymce/pasteplugin/Clipboard", [
 				]);
 			}
 
-			var args = editor.fire('PastePreProcess', {content: text});
-
-			if (!args.isDefaultPrevented()) {
-				editor.insertContent(args.content);
-			}
+			processHtml(text);
 		}
 
 		function createPasteBin() {
@@ -258,8 +326,8 @@ define("tinymce/pasteplugin/Clipboard", [
 						var pastebinElm = createPasteBin();
 						var lastRng = editor.selection.getRng();
 
-						// Hack for #6051
-						if (Env.webkit && editor.inline) {
+						// Hack for #6051 & #6256
+						if (Env.webkit) {
 							pastebinElm.contentEditable = true;
 						}
 
@@ -313,5 +381,6 @@ define("tinymce/pasteplugin/Clipboard", [
 
 		this.paste = processHtml;
 		this.pasteText = processText;
+		this.innerText = innerText;
 	};
 });
