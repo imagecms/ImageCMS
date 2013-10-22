@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 13:35+0300\n"
-"PO-Revision-Date: 2013-09-26 13:37+0300\n"
+"POT-Creation-Date: 2013-10-21 14:45+0300\n"
+"PO-Revision-Date: 2013-10-21 14:46+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -29,7 +29,7 @@ msgstr "Модуль авторизации и регистрации польз
 
 #: authapi.php:38
 #: authapi.php:131
-#: authapi.php:207
+#: authapi.php:214
 #: auth.php:108
 #: auth.php:205
 #: auth.php:304
@@ -38,7 +38,7 @@ msgstr "E-mail"
 
 #: authapi.php:39
 #: authapi.php:133
-#: authapi.php:327
+#: authapi.php:334
 #: auth.php:109
 #: auth.php:207
 #: auth.php:390
@@ -72,8 +72,8 @@ msgstr "Название"
 msgid "Repeat Password"
 msgstr "Повторить пароль"
 
-#: authapi.php:137
-#: authapi.php:139
+#: authapi.php:138
+#: authapi.php:140
 #: auth.php:115
 #: auth.php:117
 #: auth.php:214
@@ -81,89 +81,93 @@ msgstr "Повторить пароль"
 msgid "Code protection"
 msgstr "Защитный код"
 
-#: authapi.php:147
+#: authapi.php:149
 #: auth.php:226
 msgid "You have successfully registered. Please check your email to activate your account."
 msgstr "Вы успешно зарегистрировались. Зайдите в свою почту, чтобы активировать аккаунт."
 
-#: authapi.php:149
+#: authapi.php:151
 #: auth.php:228
 msgid "You have successfully registered. "
 msgstr "Вы успешно зарегистрировались. "
 
-#: authapi.php:149
+#: authapi.php:151
 #: auth.php:228
 #: auth.php:283
 msgid "Login"
 msgstr "Войти"
 
-#: authapi.php:154
+#: authapi.php:156
 msgid "Register success"
 msgstr "Регистрация прошла успешно"
 
-#: authapi.php:244
+#: authapi.php:218
+msgid "Email with new password send to you email"
+msgstr "E-mail с новым паролем отправлено на Ваш e-mail"
+
+#: authapi.php:251
 #: auth.php:337
 msgid "You have successfully zeroed my password. "
 msgstr "Вы успешно обнулили пароль. "
 
-#: authapi.php:244
+#: authapi.php:251
 #: auth.php:337
 msgid "Login Here"
 msgstr "Войти"
 
-#: authapi.php:275
+#: authapi.php:282
 msgid "Old password"
 msgstr "Старый пароль"
 
-#: authapi.php:276
+#: authapi.php:283
 msgid "New password"
 msgstr "Новый пароль"
 
-#: authapi.php:277
+#: authapi.php:284
 #: auth.php:363
 msgid "Repeat new password"
 msgstr "Повторите новый пароль"
 
-#: authapi.php:285
+#: authapi.php:292
 #: auth.php:367
 msgid "Your password was successfully changed."
 msgstr "Ваш пароль был успешно изменен."
 
-#: authapi.php:294
+#: authapi.php:301
 msgid "Field Old password is not correct"
 msgstr "Поле Старый пароль указано неверно"
 
-#: authapi.php:299
+#: authapi.php:306
 msgid "You are not logged in to change password"
 msgstr "Вы не вошли в систему для изменения пароля"
 
-#: authapi.php:313
+#: authapi.php:320
 #: auth.php:61
 msgid "A user with this email is already registered."
 msgstr "Пользователь с таким E-mail уже зарегистрирован."
 
-#: authapi.php:331
+#: authapi.php:338
 msgid "Deleting account completed"
 msgstr "Удаление аккаунта завершено"
 
-#: authapi.php:345
+#: authapi.php:352
 msgid "You are not logged in, you dont have any account to delete"
 msgstr "Вы не вошли в систему, вы не имеете никакого акаунта, чтобы удалить"
 
-#: authapi.php:356
+#: authapi.php:363
 #: auth.php:419
 msgid "Your account has been blocked."
 msgstr "Ваш аккаунт был заблокирован."
 
-#: authapi.php:367
+#: authapi.php:374
 msgid "User is already login in"
 msgstr "Пользователь уже войшол в систему"
 
-#: authapi.php:372
+#: authapi.php:379
 msgid "User not logined"
 msgstr "Пользователь не вошол"
 
-#: authapi.php:387
+#: authapi.php:394
 msgid "A user with such mail is not found in the database"
 msgstr "Пользователь с такой почтой не найден в базе"
 
