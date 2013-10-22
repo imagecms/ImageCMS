@@ -153,9 +153,9 @@ class ImportXML {
                 continue;
             }
 
-            $is_product = is_prod((string) $product->ID, $this->prod);
+//            $is_product = is_prod((string) $product->ID, $this->prod);
 
-            if (!((string) $product->IDWeb) || !$is_product) {
+            if (!(string) $product->IDWeb) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
