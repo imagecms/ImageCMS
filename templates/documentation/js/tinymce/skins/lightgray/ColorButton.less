@@ -4,10 +4,6 @@
 	position: relative;
 }
 
-.mce-colorpicker {
-	background: #FFF;
-}
-
 .mce-colorbutton-grid {
 	margin: 4px;	
 }
@@ -43,6 +39,36 @@
 }
 
 .mce-colorbutton:hover .mce-open {
-	border-left-color: @btn-border-color;
-	border-right-color: @btn-border-color;
+	border-left-color: @btn-split-border;
+	border-right-color: @btn-split-border;
+}
+
+// RTL
+
+.mce-rtl .mce-colorbutton {
+	direction: rtl;
+}
+
+.mce-rtl .mce-colorbutton .mce-preview {
+	margin-left: 0;
+	padding-right: 0;
+	padding-left: 3px;
+	margin-right: -14px;
+}
+
+.mce-rtl .mce-colorbutton.mce-btn-small .mce-preview {
+	margin-left: 0;
+	padding-right: 0;
+	margin-right: -17px;
+	padding-left: 0;
+}
+
+.mce-rtl .mce-colorbutton button {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.mce-rtl .mce-colorbutton .mce-open {
+	padding-left: 4px;
+	padding-right: 4px;
 }
