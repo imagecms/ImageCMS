@@ -763,6 +763,13 @@ span.check_gg {
     margin-left: 10px;
 }
 
+.gimagesProgressBar {
+    width: 100%;
+    margin: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 /* ------ end of GOOGLE API IMAGES SEARCH ------- */
 
 #site_info_tab .siteinfo_del_cont {
