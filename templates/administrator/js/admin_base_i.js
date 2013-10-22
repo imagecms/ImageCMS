@@ -832,7 +832,9 @@ $(document).ready(function() {
             } else { // search with google
                 curPosition = 1;
                 searchImages();
-                modalBodyMsg("Загрузка...");
+                //modalBodyMsg("Загрузка...");
+                var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
+                modalBodyMsg(loadingImg);
             }
         } else {
             clearImageResults();
@@ -844,7 +846,9 @@ $(document).ready(function() {
             $("#image_search_result").empty();
         }
         var value = $("#url_image").val();
-        modalBodyMsg("Загрузка...");
+        //modalBodyMsg("Загрузка...");
+        var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
+        modalBodyMsg(loadingImg);
         $.post("/admin/components/run/shop/products/get_images/search", {
             q: value,
             pos: curPosition
@@ -941,10 +945,15 @@ $(document).ready(function() {
         curPosition = 1;
         trId = $(this).parents("tr").attr("id");
         var productName = $("input#Name").val();
-        $("#url_image").val(productName);
-        //imgMessageBottom('');
-        searchImages();
-        modalBodyMsg('Загрузка...');
+        if (productName.length > 0) {
+            $("#url_image").val(productName);
+            //imgMessageBottom('');
+            searchImages();
+            var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
+            modalBodyMsg(loadingImg);
+        } else {
+            modalBodyMsg('Please specify the product name');
+        }
         $("#as_additional").removeAttr("checked").removeAttr("disabled");
         $('#images_modal').modal();
     });
@@ -1466,7 +1475,7 @@ $(document).ready(function() {
     });
 
 
-   
+
 
     /* --------------------- end of Siteinfo -------------------------*/
 
