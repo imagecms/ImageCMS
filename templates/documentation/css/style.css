@@ -11,12 +11,12 @@
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a{text-shadow: none;}
 .navbar-inverse .navbar-brand{padding: 16px 40px;}
 .sprite, .search-form-user .search-btn{background: url('../images/sprite.png') no-repeat;}
-.search-form-user{margin-right: 18px;position: relative;margin-bottom: 0;}
+.search-form-user{margin-right: 18px;position: relative;margin-bottom: 22px;}
 .search-form-user .search-btn{
    position: absolute;background-position: 0 -160px!important;width: 13px;height: 13px;border: none;top: 9px;right: 10px;
    -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;
 }
 .search-form-user input[type="text"]{border: 1px solid #b7c7cc;-moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;height: 32px;font-style: italic;font-size: 14px;}
-#sidebar{margin-top: 0!important;border-right: 1px solid #d3dfe3;}
+#sidebar{margin-top: 0!important;border-right: 1px solid #d3dfe3;padding-top: 17px;}
 .main-content{border-left: 1px solid #d3dfe3;margin-left: -1px;}
-.tree_menu > .title{}
+.tree_menu > .title{font-size: 16px;font-weight: bold;color: #333;margin-bottom: 10px;}
