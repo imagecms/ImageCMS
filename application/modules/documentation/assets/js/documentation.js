@@ -1,6 +1,7 @@
 tinymce.init({
     selector: "div.descriptionEditTinyMCE",
     inline: true,
+    skin: 'charcoal',
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
@@ -59,6 +60,7 @@ tinymce.init({
     selector: ".titleEditTinyMCE",
     inline: true,
     toolbar_items_size: 'small',
+    skin: 'charcoal',
     toolbar: "undo redo | spellchecker | save_button",
     plugins: ["spellchecker"],
     spellchecker_language: "ru",
@@ -87,6 +89,7 @@ tinymce.init({
 
 tinymce.init({
     selector: ".TinyMCEForm",
+    skin: 'charcoal',
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
