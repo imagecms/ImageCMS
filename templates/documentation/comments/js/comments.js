@@ -155,13 +155,13 @@ function initComments() {
         pasteAfter: 'parent.parent',
         pasteWhat: $('[data-rel="whoCloneAddPaste"]'),
         evPaste: 'click',
-        effectIn: 'slideDown',
-        effectOff: 'slideUp',
+        effectIn: 'show',
+        effectOff: 'hide',
         duration: 300,
         wherePasteAdd: 'form',
         whatPasteAdd: '',
         before: function(el) {
-            el.parent().toggleClass('active');
+            el.parent().parent().toggleClass('active');
         },
         after: function(el, elInserted) {
             $(elInserted).find('input[name=comment_parent]').val(el.data('parid'));
