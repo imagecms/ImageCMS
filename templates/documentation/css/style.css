@@ -86,6 +86,13 @@ footer ul{list-style-type: none;padding-left: 0;}
 .icon-fsoc-tweet{background-position: -250px -200px;}
 .t-a_r{text-align: right;}
 .t-a_l{text-align: left;}
+.items-search{list-style-type: none;padding-left: 0;}
+.items-search li{margin-bottom: 21px;}
+.items-search li a{font-size: 18px;text-decoration: underline;display: inline-block;margin-bottom: 4px;}
+.items-search li .search-cat{font-size: 14px;color: #09a97f;line-height: 1.2;margin-bottom: 2px;}
+.search-res > h2{font-size: 27px;font-weight: bold;color: #000;margin-bottom: 3px;}
+.search-res > .find-in-cat{font-size: 14px;color: #9aacb2;margin-bottom: 28px;}
+.items-search li p{}
 
 #comment-documentation{padding-left: 40px;}
 #comment-documentation .frame-list-comment__icsi-css{margin: 15px 0px 0;}

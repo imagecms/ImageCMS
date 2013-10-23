@@ -110,7 +110,7 @@
                                 {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
                                 {/if}
                                 {if $CI->core->core_data['data_type'] == 'search'}
-                                <div class="title">{lang("Found in categories","documentation")}</div>
+                                <div class="title">{lang("Найдно в категориях","documentation")}</div>
                                 {include_tpl('found_in_categories')}
                                 {/if}
                             </div>
