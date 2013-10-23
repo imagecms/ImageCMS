@@ -580,7 +580,7 @@ class ImportXML {
             $data['external_id'] = $partner->ID . '';
             $partner_exsist = is_partner($data['external_id'], $this->partners);
 
-            if ($partner->IDWeb || $partner_exsist) {
+            if (((string)$partner->IDWeb) || $partner_exsist) {
                 $data['id'] = $partner->IDWeb . '' ? $partner->IDWeb . '' : $partner_exsist['id'];
                 $this->update[] = $data;
             } else {
