@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="generator" content="ImageCMS" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
     <link href="{$THEME}css/bootstrap.min.css" rel="stylesheet" media="screen"/>
     <link href="{$THEME}css/bootstrap-theme.min.css" rel="stylesheet" media="screen"/>
     <link href="{$THEME}css/style.css" rel="stylesheet" media="screen"/>
@@ -132,59 +133,59 @@
     <footer>
 
         <div class="down-info-p">
-           <div class="container">
-              <div class="info-box1 f_l">
-                 <div class="title"><span class="icon-blog"></span><span class="text-el">Записи <a href="#">с блога</a></span></div>
-                 <ul>
-                    <li>
-                       <div class="date">17 Сентября 2013</div>
-                       <div class="short-info">Одностраничный сайт как инструмент продаж</div>
-                   </li>
-                   <li>
-                       <div class="date">17 Сентября 2013</div>
-                       <div class="short-info">Поисковая система Bing сменила логотип</div>
-                   </li>
-                   <li>
-                       <div class="date">17 Сентября 2013</div>
-                       <div class="short-info">Яндекс.Деньги начали работать с США</div>
-                   </li>
-               </ul>
-           </div>
-           <div class="info-box2 f_l">
-             <div class="title"><span class="icon-forum"></span><span class="text-el">Последнее <a href="#">с форума</a></span></div>
-             <ul>
-                <li>
-                   <div class="date">Yana, 17 Сентября 2013</div>
-                   <div class="short-info">Что делать дальше?</div>
-               </li>
-               <li>
-                   <div class="date">newmax, 17 Сентября 2013</div>
-                   <div class="short-info">Ошибка на втором этапе</div>
-               </li>
-               <li>
-                   <div class="date">filtrat, 17 Сентября 2013</div>
-                   <div class="short-info">ImageCMS 4.5 beta</div>
-               </li>
-           </ul>
-       </div>
-       <div class="info-box3 f_r">
-         <div class="title"><span class="icon-linked"></span><span class="text-el">Подписка на новости</span></div>
-         <form>
-            <label class="for-mail">
-               <input type="text" placeholder="E-mail"/>
-               <span class="icon-mail"></span>
+         <div class="container clearfix">
+          <div class="info-box1 col-lg-4">
+           <div class="title"><span class="icon-blog"></span><span class="text-el">Записи <a href="#">с блога</a></span></div>
+           <ul>
+            <li>
+             <div class="date">17 Сентября 2013</div>
+             <div class="short-info">Одностраничный сайт как инструмент продаж</div>
+         </li>
+         <li>
+             <div class="date">17 Сентября 2013</div>
+             <div class="short-info">Поисковая система Bing сменила логотип</div>
+         </li>
+         <li>
+             <div class="date">17 Сентября 2013</div>
+             <div class="short-info">Яндекс.Деньги начали работать с США</div>
+         </li>
+     </ul>
+ </div>
+ <div class="info-box2 col-lg-4">
+   <div class="title"><span class="icon-forum"></span><span class="text-el">Последнее <a href="#">с форума</a></span></div>
+   <ul>
+    <li>
+     <div class="date">Yana, 17 Сентября 2013</div>
+     <div class="short-info">Что делать дальше?</div>
+ </li>
+ <li>
+     <div class="date">newmax, 17 Сентября 2013</div>
+     <div class="short-info">Ошибка на втором этапе</div>
+ </li>
+ <li>
+     <div class="date">filtrat, 17 Сентября 2013</div>
+     <div class="short-info">ImageCMS 4.5 beta</div>
+ </li>
+</ul>
+</div>
+<div class="info-box3 col-lg-4">
+   <div class="title"><span class="icon-linked"></span><span class="text-el">Подписка на новости</span></div>
+   <form>
+    <label class="for-mail">
+     <input type="text" placeholder="E-mail"/>
+     <span class="icon-mail"></span>
 
-           </label>
-           <div class="btn-form-mail">
-               <button><span class="text-el">Подписаться</span><span class="icon-r-arr-b"></span></button>
-           </div>
-       </form>
-   </div>
+ </label>
+ <div class="btn-form-mail">
+     <button class="btn btn-foot"><span class="text-el">Подписаться</span><span class="icon-r-arr-b"></span></button>
+ </div>
+</form>
 </div>
 </div>
+</div>
 
-<div class="content-footer container o_h">
-    <div class="foot-box1">
+<div class="content-footer container clearfix">
+    <div class="foot-box1 col-sm-3">
         <div class="title">Сайт</div>
         <ul>
             <li><a href="#">О Компании</a></li>
@@ -193,7 +194,7 @@
             <li><a href="#">Купить сейчас</a></li>
         </ul>
     </div>
-    <div class="foot-box2">
+    <div class="foot-box2 col-sm-3">
         <div class="title">Связь</div>
         <ul>
             <li><a href="#">Поддержка</a></li>
@@ -201,7 +202,7 @@
             <li><a href="#">Сообщество</a></li>
         </ul>
     </div>
-    <div class="foot-box3">
+    <div class="foot-box3 col-sm-3">
         <div class="title">Уроки ImageCMS</div>
         <ul>
             <li><a href="#">Установка</a></li>
@@ -209,14 +210,14 @@
             <li><a href="#">HTML-CSS</a></li>
         </ul>
     </div>
-    <div class="foot-box4">
+    <div class="foot-box4 col-sm-3">
         <div class="title">Инструкции</div>
         <ul>
             <li><a href="#">Создание корпоративного сайта</a></li>
             <li><a href="#">Создание Интернет-магазина</a></li>
         </ul>
     </div>
-    <div class="foot-box5">
+    <div class="foot-box5 col-sm-3">
         <div class="title">Задавайте вопросы</div>
         <ul>
             <li><span class="text-el f-w_b">+7 (499) 703-37-54</span></li>
@@ -226,11 +227,11 @@
     </div>
 </div>
 <div class="footer-footer container t-a_j o_h">
-    <div class="copy-right t-a_l">
+    <div class="copy-right t-a_l col-sm-4">
         <div class="">2009-2013 © «ImageCMS»</div>
         <div class="all-rights">Все права защищены</div>
     </div>
-    <ul>
+    <ul class="col-sm-4">
         <li><a class="icon-fsoc-vk"></a></li>
         <li><a class="icon-fsoc-fsb"></a></li>
         <li><a class="icon-fsoc-gplus"></a></li>
@@ -238,10 +239,10 @@
         <li><a class="icon-fsoc-in"></a></li>
         <li><a class="icon-fsoc-tweet"></a></li>
     </ul>
-    <div class="t-a_r">
+    <div class="t-a_r col-sm-4">
         <div class="">
             <span class="text-el">Голосуй за ImageCMS:</span>
-            <span class="stars-foot"><img src="images/temp/stars.png"></span>
+            <span class="stars-foot"><img src="{$THEME}images/stars.png"></span>
         </div>
         <div class="cms-foot-vote">Проголосовало 36 человек</div>
     </div>
