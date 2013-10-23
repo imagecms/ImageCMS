@@ -28,17 +28,17 @@ var imageCmsApiDefaults = {
     cMsgPlace: 'after', //place error
     captcha: function(ci) {
         return '<div class="frame-label"><span class="title">' + captchaText + '</span>\n\
-                        <span class="frame-form-field">\n\
-                            <input type="text" name="captcha" value="' + captchaText + '"/> \n\
-                            <span class="help-block" id="for_captcha_image">' + ci + '</span>\n\
-                        </span></div>'
+        <span class="frame-form-field">\n\
+        <input type="text" name="captcha" value="' + captchaText + '"/> \n\
+        <span class="help-block" id="for_captcha_image">' + ci + '</span>\n\
+        </span></div>'
     },
     captchaBlock: '#captcha_block',
     cMsg: function(name, text, classN, form) {
         form.find('[for="' + name + '"]').remove();
         return '<label for="' + name + '" class="for_validations ' + classN + '">' + text + '</label>';
     }
-// callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide 
+// callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide
 // any other
 };
 var genObj = {
@@ -97,7 +97,8 @@ $(document).ready(function() {
         })
     } catch (e) {
     }
-    $('.menu-main').menuCorporate({
+
+      $('.menu-main').menuCorporate({
         item: $('.menu-main').find('td'),
         duration: 300,
         drop: '.frame-item-menu > ul',
@@ -111,10 +112,10 @@ $(document).ready(function() {
         $.fancybox.hideActivity();
     });
 
-    
+
 
 });
 
 
-alert('1234');
+    alert('1234');
 
