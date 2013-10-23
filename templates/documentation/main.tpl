@@ -44,8 +44,6 @@
             });
             {/literal}
             </script>
-
-            <link href="{$THEME}css/left_menu_style.css" rel="stylesheet" media="screen"/>
         </head>
         <body>
             <div class="main-body">
