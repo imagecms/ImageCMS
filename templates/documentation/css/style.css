@@ -127,11 +127,11 @@ footer ul{list-style-type: none;padding-left: 0;}
 
 #comment-documentation{padding-left: 40px;}
 #comment-documentation .frame-list-comment__icsi-css{margin: 10px 0px 0;}
-#comment-documentation .frame-comments__icsi-css{background: #ffffff;border: 2px solid #d3dfe3;-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;}
+#comment-documentation .frame-comments__icsi-css, .ins-dev-comm{background: #ffffff;border: 2px solid #d3dfe3;-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;}
 #comment-documentation .frame-comments__icsi-css .inside-padd{padding: 0;}
 #comment-documentation .frame-comments__icsi-css .title_h2__icsi-css{text-align: center;font-size: 24px;color: #000;height: 58px;line-height: 58px;border-bottom: 1px solid #d3dfe3;position: relative;margin-bottom: 0;}
 #comment-documentation .frame-comments__icsi-css .title_h2__icsi-css:before{content: ""; position: absolute;width:  10px; height: 5px; background-position: -160px -180px; bottom: -5px; left: 50%;margin-left: -5px;}
-#comment-documentation .form-comment__icsi-css.form__icsi-css .inside-padd{padding: 17px 64px 11px 30px;}
+#comment-documentation .form-comment__icsi-css.form__icsi-css .inside-padd, .ins-dev-comm{padding: 17px 64px 11px 30px;}
 .must{color: red;}
 #comment-documentation{}
 #comment-documentation{}
