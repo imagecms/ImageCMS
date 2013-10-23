@@ -38,7 +38,7 @@ tinymce.init({
             text: 'Код',
             icon: 'code',
             onclick: function() {
-                var text = editor.selection.getContent({'format': 'text'});
+                var text = editor.selection.getContent();
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
                 }
@@ -47,7 +47,7 @@ tinymce.init({
         editor.addButton('danger', {
             text: 'Важное',
             onclick: function() {
-                var text = editor.selection.getContent({'format': 'text'});
+                var text = editor.selection.getContent();
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
                 }
@@ -109,7 +109,7 @@ tinymce.init({
             text: 'Код',
             icon: 'code',
             onclick: function() {
-                var text = editor.selection.getContent({'format': 'text'});
+                var text = editor.selection.getContent();
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
                 }
@@ -118,7 +118,7 @@ tinymce.init({
         editor.addButton('danger', {
             text: 'Важное',
             onclick: function() {
-                var text = editor.selection.getContent({'format': 'text'});
+                var text = editor.selection.getContent();
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
                 }
@@ -132,8 +132,8 @@ function translite_title(from, to) {
     var url = '/documentation/ajax_translit';
     $.post(
             url, {
-        'str': $(from).val()
-    }, function(data)
+                'str': $(from).val()
+            }, function(data)
 
     {
         $(to).val(data);
@@ -207,7 +207,7 @@ function editCategory() {
                 $('.modalCategoryCreatedSuccesBlock').show();
                 console.log(responseObj.data.full_url);
                 setTimeout(function() {
-                    window.location = "/"+responseObj.data.full_url;
+                    window.location = "/" + responseObj.data.full_url;
                 }, 1000);
             }
         }
