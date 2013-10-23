@@ -139,3 +139,4 @@ footer ul{list-style-type: none;padding-left: 0;}
 #comment-documentation{}
 .answear-programmer li:before{content: ""; position: absolute;width:  13px; height: 8px; background-position: -160px -190px; top: -8px; left: 44px;}
 #comment{border-top: 1px solid #d3dfe3;padding-top: 43px;margin-top: 40px;}
+.func-button-comment__icsi-css:not(.active) + .frame-drop-comment__icsi-css {display: none!important;}
