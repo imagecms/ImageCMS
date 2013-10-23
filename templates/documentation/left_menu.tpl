@@ -1,5 +1,5 @@
 {$CI = & get_instance()}
-<ul class="" {if !$display} style="display: none;"{/if}>
+<ul class="left-menu-out-sec" {if !$display} style="display: none;"{/if}>
     {foreach $tree as $item}
     {$active = false;}
     {if strpos($categoryData['url'], '/'.$item['url'].'/') !== false}{$active = true}{/if}
