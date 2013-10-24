@@ -172,8 +172,10 @@
                         <ul>
                             {foreach $forumThemes as $forum}
                                 <li>
-                                    <div class="date">{$forum.poster}, {echo ru_date('d F Y', $forum.posted)}</div>
-                                    <div class="short-info">{$forum.subject}</div>
+                                    <div class="date">{$forum.last_poster}, {echo ru_date('d F Y', $forum.last_post)}</div>
+                                    <a target="_blank" href="http://forum.imagecms.net/viewtopic.php?pid={$forum.last_post_id}#{$forum.last_post_id}">
+                                        <div class="short-info">{$forum.subject}</div>
+                                    </a>
                                 </li>
                             {/foreach}
                         </ul>
