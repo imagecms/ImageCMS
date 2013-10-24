@@ -35,6 +35,7 @@ class Documentation extends \MY_Controller {
      */
     public function autoload() {
         $this->recent_news();
+        $this->recent_forum();
         if ($this->hasCRUDAccess()) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
@@ -495,6 +496,15 @@ class Documentation extends \MY_Controller {
         }
     }
 
+    public function recent_forum() {
+        $forum = $this->load->database('forum', true, true);
+
+        $model = $forum
+                ->order_by('last_post', 'desc')
+                ->get('topics', 4);
+        $this->template->assign('forumThemes', $model->result_array());
+    }
+
     public function recent_news() {
         $this->load->helper('../modules/documentation/helpers/documentation');
         $settings = array(
@@ -541,8 +551,7 @@ class Documentation extends \MY_Controller {
                 }
             }
 
-            $this->template->assign('news',$news);
-
+            $this->template->assign('news', $news);
         } else {
             return '';
         }
