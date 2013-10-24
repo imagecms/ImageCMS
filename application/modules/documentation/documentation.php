@@ -42,6 +42,9 @@ class Documentation extends \MY_Controller {
     }
 
     public function preTags($text) {
+        if (strpos("<pre><code class='php'>") !== FALSE) {
+            return $text;
+        }
         return preg_replace_callback("/<pre>(.*?)[^>]<\/pre>/si", function($matches) {
                     return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
                 }, $text);

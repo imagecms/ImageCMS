@@ -37,6 +37,10 @@ class Documentation_model extends CI_Model {
      * @return boolean
      */
     public function createNewPage($data = false) {
+        if (isset($data['full_text']))
+            $data['full_text'] = htmlspecialchars_decode($data['full_text']);
+        if (isset($data['prev_text']))
+            $data['prev_text'] = htmlspecialchars_decode($data['prev_text']);
         if ($data != false) {
             if ($this->db->insert('content', $data)) {
                 return true;
@@ -139,8 +143,9 @@ class Documentation_model extends CI_Model {
                     AND `content`.`lang` = '" . $langId . "'
                 ";
             $res = $this->db->query($query)->row_array();
-            
-            //$data['full_text'] = htmlspecialchars_decode($data['full_text']);
+
+            $data['full_text'] = htmlspecialchars_decode($data['full_text']);
+            $data['prev_text'] = htmlspecialchars_decode($data['prev_text']);
 
             /** Update page * */
             $this->db->where('id', $res['id'])->update('content', $data);
