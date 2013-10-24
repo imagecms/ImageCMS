@@ -32,15 +32,15 @@
         <script type="text/javascript">
             var id = "{echo $CI->core->core_data['id']}";
             {literal}
-                        $(document).ready(function() {
-                            $(".top_menu_documentation li a").on('click', function() {
-                                var categoyMenu = $(this).data('category_menu');
-                                var CookieDate = new Date();
-                                CookieDate.setFullYear(CookieDate.getFullYear() + 1);
-                                document.cookie = "category_menu=" + categoyMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
-                                window.location = '/';
-                            });
-                        });
+                $(document).ready(function() {
+                    $(".top_menu_documentation li a").on('click', function() {
+                        var categoyMenu = $(this).data('category_menu');
+                        var CookieDate = new Date();
+                        CookieDate.setFullYear(CookieDate.getFullYear() + 1);
+                        document.cookie = "category_menu=" + categoyMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+                        window.location = window.location;
+                    });
+                });
             {/literal}
         </script>
 
@@ -68,7 +68,22 @@
                 </div>
 
                 <div class="collapse navbar-collapse">   
-                    {include_tpl('top_menu')}
+                    {$top_menu = array(
+                        'begin-work' => 'Начало работы',
+                        'manage' => 'Администрир.',
+                        'step-by-step' => 'Пошаговые инструкции',
+                        'developers' => 'Разработчикам',
+                        'templates' => 'Работа с шаблонами',
+                    )}
+
+                    <ul class="nav navbar-nav top_menu_documentation">
+                        {foreach $top_menu as $key => $value}
+                            <li {if $_COOKIE['category_menu'] == $key}class="active"{/if}>
+                                <a href="#" data-category_menu="{$key}">{$value}</a>
+                            </li>
+                        {/foreach}
+                    </ul>
+                    
                     {if $CI->dx_auth->is_logged_in()}
                         <div class="pull-right">
                             {$CI->load->module('documentation')}

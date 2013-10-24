@@ -139,6 +139,8 @@ class Documentation_model extends CI_Model {
                     AND `content`.`lang` = '" . $langId . "'
                 ";
             $res = $this->db->query($query)->row_array();
+            
+            //$data['full_text'] = htmlspecialchars_decode($data['full_text']);
 
             /** Update page * */
             $this->db->where('id', $res['id'])->update('content', $data);
@@ -412,25 +414,25 @@ class Documentation_model extends CI_Model {
                 ->get('shop_rbac_roles');
         return $result->result_array();
     }
-    
+
     /**
      * Get pages in category by id
      * @param int $id
      * @return boolean|array
      */
-    public function getPagesInCategory($id = null, $langId){
-        if ($id != null){
+    public function getPagesInCategory($id = null, $langId) {
+        if ($id != null) {
             $res = $this->db
-                    ->where('category',$id)
-                    ->where('post_status','publish')
-                    ->where('lang',$langId)
-                    ->get('content')->result_array();
+                            ->where('category', $id)
+                            ->where('post_status', 'publish')
+                            ->where('lang', $langId)
+                            ->get('content')->result_array();
         }
-        
-        if ($res){
+
+        if ($res) {
             return $res;
         }
-        
+
         return false;
     }
 
@@ -481,8 +483,20 @@ class Documentation_model extends CI_Model {
                 ";
         $this->db->query($query);
 
-        $query = "ALTER TABLE `category` ADD  `menu_cat` VARCHAR( 20 ) NULL ;";
+        $query1 = "
+            CREATE TABLE IF NOT EXISTS `mod_documentation_menu` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `title` varchar(300) NOT NULL,
+                  `desciption` TEXT, 
+                  `menu_category` varchar(300) NOT NULL,
+                  `pages` varchar(400) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+                ";
         $this->db->query($query);
+
+        $query = "ALTER TABLE `category` ADD  `menu_cat` VARCHAR( 20 ) NULL ;";
+        $this->db->query($query1);
 
         /** Update module settings * */
         $this->db->where('name', 'documentation')
@@ -494,6 +508,7 @@ class Documentation_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_documentation_history');
+        $this->dbforge->drop_table('mod_documentation_menu');
 
         $query = "ALTER TABLE `category` DROP `menu_cat`;";
         $this->db->query($query);

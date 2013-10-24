@@ -176,8 +176,8 @@
 
     <!-- Start. Textarea with content-->
     <h4>{lang('Content','documentation')}:</h4>
-    <textarea class="TinyMCEForm" name="NewPage[prev_text]">
-        {echo $page['prev_text']}
+    <textarea class="TinyMCEForm" name="NewPage[full_text]">
+        {echo $page['full_text']}
     </textarea>
     <!-- End. Textarea with content-->
     <!-- Start. Submit button-->
