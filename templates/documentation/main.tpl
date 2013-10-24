@@ -39,13 +39,14 @@
                         var CookieDate = new Date();
                         CookieDate.setFullYear(CookieDate.getFullYear() + 1);
                         document.cookie = "category_menu=" + categoyMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
-                        window.location = window.location;
+                        window.location = window.location; // переадресація на ту саму сторінку
                     });
                 });
             {/literal}
         </script>
     </head>
     <body>
+        {if !isset($_COOKIE['category_menu'])} {$_COOKIE['category_menu'] = 'begin-work'} {/if} 
         <div class="main-body">
             <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
                 <div class="container">
@@ -61,21 +62,19 @@
                             <span class="icon-bar"></span>
                         </button>
 
-
                         <a id="main_logo" href="{site_url()}" class="logo f_l navbar-brand">
                             <img src="{$THEME}images/logo.png"/>
                         </a>
                     </div>
 
                     <div class="collapse navbar-collapse">
-
                         {$top_menu = array(
-                                'begin-work' => 'Начало работы',
-                                'manage' => 'Администрир.',
-                                'step-by-step' => 'Пошаговые инструкции',
-                                'developers' => 'Разработчикам',
-                                'templates' => 'Работа с шаблонами',
-                            )}
+				    'begin-work' => 'Начало работы',
+				    'manage' => 'Администрир.',
+				    'step-by-step' => 'Пошаговые инструкции',
+				    'developers' => 'Разработчикам',
+				    'templates' => 'Работа с шаблонами',
+				)}
 
                         <ul class="nav navbar-nav top_menu_documentation">
                             {foreach $top_menu as $key => $value}
@@ -83,13 +82,12 @@
                                     <a href="#" data-category_menu="{$key}">{$value}</a>
                                 </li>
                             {/foreach}
-                        </ul>
 
+                        </ul>
                         {if $CI->dx_auth->is_logged_in()}
                             <div class="pull-right">
                                 {$CI->load->module('documentation')}
                                 {if $CI->documentation->hasCRUDAccess()}
-
                                     <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
                                         <span class="glyphicon glyphicon-new-window"></span>
                                         {lang('Create page','documentation')}
@@ -122,7 +120,7 @@
                         {/if}
                         <div class="tree_menu">
                             {if $CI->core->core_data['data_type'] != 'search'}
-                                <div class="title">Администрирование</div>
+                                <div class="title">{$top_menu[$_COOKIE['category_menu']]}</div>
                                 {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
                             {/if}
                             {if $CI->core->core_data['data_type'] == 'search'}
@@ -151,20 +149,19 @@
             <div class="down-info-p">
                 <div class="container clearfix">
                     <div class="info-box1 col-lg-4">
-                        <div class="title"><span class="icon-blog"></span><span class="text-el">Записи <a href="#">с блога</a></span></div>
+                        <div class="title">
+                            <span class="icon-blog"></span>
+                            <span class="text-el">Записи <a href="http://imagecms.net/blog">с блога</a></span>
+                        </div>
                         <ul>
-                            <li>
-                                <div class="date">17 Сентября 2013</div>
-                                <div class="short-info">Одностраничный сайт как инструмент продаж</div>
-                            </li>
-                            <li>
-                                <div class="date">17 Сентября 2013</div>
-                                <div class="short-info">Поисковая система Bing сменила логотип</div>
-                            </li>
-                            <li>
-                                <div class="date">17 Сентября 2013</div>
-                                <div class="short-info">Яндекс.Деньги начали работать с США</div>
-                            </li>
+                            {foreach $news as $item}
+                                <li>
+                                    <div class="date">{echo ru_date('d F Y', $item.publish_date)}</div>
+                                    <a href="http://imagecms.net/{echo $item.full_url}">
+                                        <div class="short-info">{echo $item.title}</div>
+                                    </a>
+                                </li>
+                            {/foreach}
                         </ul>
                     </div>
                     <div class="info-box2 col-lg-4">
