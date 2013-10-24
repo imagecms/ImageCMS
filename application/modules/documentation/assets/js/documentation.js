@@ -17,6 +17,53 @@ tinymce.init({
     filemanager_title: "Responsive Filemanager",
     external_plugins: {"filemanager": "/templates/documentation/js/tinymce/plugins/responsivefilemanager/plugin.min.js"},
     setup: function(editor) {
+        editor.addButton('highlightcode', {
+            type: 'listbox',
+            text: 'code',
+            icon: 'code',
+            onselect: function(e) {
+                switch (this.value()) {
+                    case ('php'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
+                        }
+                        break;
+                    case ('css'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="css">' + text + '</code></pre><p> </p>');
+                        }
+                        break;
+                    case ('html'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="xml">' + text + '</code></pre><p> </p>');
+                        }
+                        break;
+                    case ('javascript'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="javascript">' + text + '</code></pre><p> </p>');
+                        }
+                        break;
+                    case ('main'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
+                        }
+                        break;
+                }
+            },
+            values: [
+                {text: 'php', value: 'php'},
+                {text: 'javascript', value: 'javascript'},
+                {text: 'css', value: 'css'},
+                {text: 'html', value: 'html'},
+                {text: 'Важное', value: 'main'}
+            ]
+        });
+
         editor.addButton('save_button', {
             text: 'Сохранить',
             icon: 'save',
@@ -32,25 +79,6 @@ tinymce.init({
                         tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
                     }
                 });
-            }
-        });
-        editor.addButton('highlightcode', {
-            text: 'Код',
-            icon: 'code',
-            onclick: function() {
-                var text = editor.selection.getContent();
-                if (text && text.length > 0) {
-                    editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
-                }
-            }
-        });
-        editor.addButton('danger', {
-            text: 'Важное',
-            onclick: function() {
-                var text = editor.selection.getContent();
-                if (text && text.length > 0) {
-                    editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
-                }
             }
         });
     }
@@ -106,23 +134,50 @@ tinymce.init({
     external_plugins: {"filemanager": "/templates/documentation/js/tinymce/plugins/responsivefilemanager/plugin.min.js"},
     setup: function(editor) {
         editor.addButton('highlightcode', {
-            text: 'Код',
+            type: 'listbox',
+            text: 'code',
             icon: 'code',
-            onclick: function() {
-                var text = editor.selection.getContent();
-                if (text && text.length > 0) {
-                    editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
+            onselect: function(e) {
+                switch (this.value()) {
+                    case ('php'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<pre><code class="php">' + text + '</code></pre><p> </p>');
+                        }
+                        break;
+                    case ('css'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<pre><code class="css">' + text + '</code></pre><p> </p>');
+                        }
+                        break;
+                    case ('html'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<pre><code class="xml">' + text + '</code></pre><p> </p>');
+                        }
+                        break;
+                    case ('javascript'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<pre><code class="javascript">' + text + '</code></pre><p> </p>');
+                        }
+                        break;
+                    case ('main'):
+                        var text = editor.selection.getContent();
+                        if (text && text.length > 0) {
+                            editor.execCommand('mceInsertContent', false, '<p class="bs-callout-danger">' + text + '</p><p></p>');
+                        }
+                        break;
                 }
-            }
-        });
-        editor.addButton('danger', {
-            text: 'Важное',
-            onclick: function() {
-                var text = editor.selection.getContent();
-                if (text && text.length > 0) {
-                    editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
-                }
-            }
+            },
+            values: [
+                {text: 'php', value: 'php'},
+                {text: 'javascript', value: 'javascript'},
+                {text: 'css', value: 'css'},
+                {text: 'html', value: 'html'},
+                {text: 'Важное', value: 'main'}
+            ]
         });
     }
 });
