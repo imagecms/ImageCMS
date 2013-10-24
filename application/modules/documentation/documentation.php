@@ -34,6 +34,7 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
+        $this->recent_news();
         if ($this->hasCRUDAccess()) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
@@ -46,8 +47,8 @@ class Documentation extends \MY_Controller {
             return $text;
         }
         return preg_replace_callback("/<pre>(.*?)[^>]<\/pre>/si", function($matches) {
-                    return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
-                }, $text);
+            return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
+        }, $text);
     }
 
     public function hasCRUDAccess() {
@@ -491,6 +492,59 @@ class Documentation extends \MY_Controller {
             $this->documentation_model->deletePage($id);
             $this->cache->delete_all();
             redirect(base_url($page['cat_url']));
+        }
+    }
+
+    public function recent_news() {
+        $this->load->helper('../modules/documentation/helpers/documentation');
+        $settings = array(
+            'news_count' => 3,
+            'max_symdols' => 150,
+            'display' => 'recent' //possible values: recent/popular
+        );
+
+        $imagecms = $this->load->database('imagecms', true, true);
+
+        $imagecms->select('content.id as id, CONCAT_WS("", cat_url, url) as full_url, title, prev_text, publish_date, author, data', FALSE);
+        $imagecms->where('post_status', 'publish');
+        $imagecms->join('content_fields_data', 'content_fields_data.item_id=content.id');
+        $imagecms->where('prev_text !=', 'null');
+        $imagecms->where('publish_date <=', time());
+        $imagecms->where('lang', $this->config->item('cur_lang'));
+        $imagecms->where('content_fields_data.field_name', 'field_promo_pic');
+
+        /*  Remove records with "ACTION" marker in additional fields */
+        $imagecms->where('(SELECT content_fields_data.id FROM content_fields_data WHERE content_fields_data.item_id = content.id AND field_name = "field_is_promo") IS NULL');
+
+        if (count($settings['categories']) > 0) {
+            $imagecms->where_in('category', $settings['categories']);
+        }
+
+        if ($settings['display'] == 'recent') {
+            $imagecms->order_by('publish_date', 'desc'); // Recent news
+        } elseif ($settings['display'] == 'popular') {
+            $imagecms->order_by('showed', 'desc'); // Pupular news
+        }
+
+        $query = $imagecms->get('content', $settings['news_count']);
+
+        if ($query->num_rows() > 0) {
+            $news = $query->result_array();
+
+            $cnt = count($news);
+            for ($i = 0; $i < $cnt; $i++) {
+                $news[$i]['prev_text'] = htmlspecialchars_decode($news[$i]['prev_text']);
+
+                // Truncate text
+                if ($settings['max_symdols'] > 0 AND mb_strlen($news[$i]['prev_text'], 'utf-8') > $settings['max_symdols']) {
+                    $news[$i]['prev_text'] = strip_tags(mb_substr($news[$i]['prev_text'], 0, $settings['max_symdols'], 'utf-8')) . '...';
+                }
+            }
+
+            $this->template->assign('news',$news);
+
+        } else {
+            return '';
         }
     }
 
