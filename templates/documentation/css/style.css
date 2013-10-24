@@ -112,13 +112,22 @@ footer ul{list-style-type: none;padding-left: 0;}
 .tree_menu .tree_menu_icon{display: none;}
 .left-menu-out-sec{background-color: #f1f4f5;}
 .left-menu-out-sec > li{border-top: 1px solid #d3dfe3;}
-.left-menu-out-sec > li > a{color: #333333;font-size: 14px;color: #333;padding: 7px 15px 6px 30px;display: block;position: relative;}
-/*.left-menu-out-sec > li.active > a{color: #3e92d5;font-weight: bold;background-color: #e5ecef;position: relative;}*/
+.left-menu-out-sec > li > a{font-size: 14px;color: #333;padding: 7px 15px 6px 30px;display: block;position: relative;}
+.left-menu-out-sec > li.active > a{color: #3e92d5;font-weight: bold;background-color: #e5ecef;position: relative;}
 .left-menu-out-sec > li > ul{}
 .left-menu-out-sec > li > ul > li{}
-.left-menu-out-sec > li > ul > li > a, .left-menu-out-sec.page > li > a{font-size: 13px;color: #000;display: block;line-height: 1.2;padding: 5px 15px 5px 50px;}
-.left-menu-out-sec > li > ul > li.active > a, .left-menu-out-sec.page > li.active > a{color: #3e92d5;font-weight: bold;background-color: #e5ecef;position: relative;}
-.left-menu-out-sec > li > ul > li.active > a:before, .left-menu-out-sec.page > li.active > a:before{content: ""; position: absolute;width:  3px; height: 100%; background: #3e92d5; top: 0px; left: 0px;}
+.left-menu-out-sec > li > ul > li > a, .left-menu-out-sec.page > li > a, .left-menu-out-sec.page > li > a.page-a{font-size: 13px;color: #000;display: block;line-height: 1.2;padding: 5px 15px 5px 50px;}
+.left-menu-out-sec > li > ul > li.active > a{color: #000;font-weight: bold;background-color: #e5ecef;position: relative;}
+.left-menu-out-sec.page > li.active > a{color: #3e92d5;font-weight: bold;background-color: #e5ecef;position: relative;}
+.left-menu-out-sec > li > ul > li.active > a:before, .left-menu-out-sec.page > li.active > a:before, .left-menu-out-sec > li.active > a:before{content: ""; position: absolute;width:  3px; height: 100%; background: #3e92d5; top: 0px; left: 0px;}
+
+.tree_menu > ul > li > .left-menu-out-sec.page > li a.page-a{font-size: 14px;
+color: #333;
+padding: 9px 15px 8px 30px;
+display: block;
+position: relative;}
+
+
 .search-lvl-1 > li{}
 .search-lvl-1 > li > a{padding-left: 0!important;}
 .search-lvl-2{margin-left: 20px;padding-bottom: 10px;}
