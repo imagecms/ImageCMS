@@ -1,6 +1,7 @@
 tinymce.init({
     selector: "div.descriptionEditTinyMCE",
     inline: true,
+    cleanup: false,
     skin: 'charcoal',
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
@@ -59,6 +60,7 @@ tinymce.init({
 tinymce.init({
     selector: ".titleEditTinyMCE",
     inline: true,
+    cleanup: false,
     toolbar_items_size: 'small',
     skin: 'charcoal',
     toolbar: "undo redo | spellchecker | save_button",
@@ -88,6 +90,7 @@ tinymce.init({
 });
 
 tinymce.init({
+    cleanup: false,
     selector: ".TinyMCEForm",
     skin: 'charcoal',
     plugins: [
