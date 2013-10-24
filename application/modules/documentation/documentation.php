@@ -34,8 +34,8 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
-        $this->recent_news();
-        $this->recent_forum();
+//        $this->recent_news();
+//        $this->recent_forum();
         if ($this->hasCRUDAccess()) {
             \CMSFactory\assetManager::create()
                     ->registerStyle('documentation', TRUE)
