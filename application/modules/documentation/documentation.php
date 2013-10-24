@@ -41,8 +41,6 @@ class Documentation extends \MY_Controller {
         }
     }
 
-   
-
     public function preTags($text) {
         return preg_replace_callback("/<pre>(.*?)[^>]<\/pre>/si", function($matches) {
                     return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
@@ -472,9 +470,11 @@ class Documentation extends \MY_Controller {
             $categoryData['url'] = $full_path;
         }
 
+        $tree = $this->lib_category->_build();
+
         /** Render category menu * */
         \CMSFactory\assetManager::create()
-                ->setData('tree', $this->lib_category->_build())
+                ->setData('tree', $tree)
                 ->setData('group', $group)
                 ->setData('categoryData', $categoryData)
                 ->render('left_menu', true);
@@ -490,9 +490,8 @@ class Documentation extends \MY_Controller {
             redirect(base_url($page['cat_url']));
         }
     }
-    
-    
-    public function get_pages_in_category($id){
+
+    public function get_pages_in_category($id) {
         return $this->documentation_model->getPagesInCategory($id, $this->defaultLang['id']);
     }
 
