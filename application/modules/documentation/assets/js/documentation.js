@@ -1,6 +1,8 @@
 tinymce.init({
     selector: "div.descriptionEditTinyMCE",
     inline: true,
+    cleanup: false,
+    skin: 'charcoal',
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
@@ -37,7 +39,7 @@ tinymce.init({
             text: 'Код',
             icon: 'code',
             onclick: function() {
-                var text = editor.selection.getContent({'format': 'text'});
+                var text = editor.selection.getContent();
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
                 }
@@ -46,7 +48,7 @@ tinymce.init({
         editor.addButton('danger', {
             text: 'Важное',
             onclick: function() {
-                var text = editor.selection.getContent({'format': 'text'});
+                var text = editor.selection.getContent();
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
                 }
@@ -58,7 +60,9 @@ tinymce.init({
 tinymce.init({
     selector: ".titleEditTinyMCE",
     inline: true,
+    cleanup: false,
     toolbar_items_size: 'small',
+    skin: 'charcoal',
     toolbar: "undo redo | spellchecker | save_button",
     plugins: ["spellchecker"],
     spellchecker_language: "ru",
@@ -86,7 +90,9 @@ tinymce.init({
 });
 
 tinymce.init({
+    cleanup: false,
     selector: ".TinyMCEForm",
+    skin: 'charcoal',
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
@@ -106,7 +112,7 @@ tinymce.init({
             text: 'Код',
             icon: 'code',
             onclick: function() {
-                var text = editor.selection.getContent({'format': 'text'});
+                var text = editor.selection.getContent();
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Код:</p><pre><code class="php">' + text + '</code></pre><p> </p>');
                 }
@@ -115,7 +121,7 @@ tinymce.init({
         editor.addButton('danger', {
             text: 'Важное',
             onclick: function() {
-                var text = editor.selection.getContent({'format': 'text'});
+                var text = editor.selection.getContent();
                 if (text && text.length > 0) {
                     editor.execCommand('mceInsertContent', false, '<p>Важное:</p><p class="bs-callout-danger">' + text + '</p><p></p>');
                 }
@@ -129,8 +135,8 @@ function translite_title(from, to) {
     var url = '/documentation/ajax_translit';
     $.post(
             url, {
-        'str': $(from).val()
-    }, function(data)
+                'str': $(from).val()
+            }, function(data)
 
     {
         $(to).val(data);
@@ -204,7 +210,7 @@ function editCategory() {
                 $('.modalCategoryCreatedSuccesBlock').show();
                 console.log(responseObj.data.full_url);
                 setTimeout(function() {
-                    window.location = "/"+responseObj.data.full_url;
+                    window.location = "/" + responseObj.data.full_url;
                 }, 1000);
             }
         }
