@@ -5,7 +5,7 @@
         </div>
         <div class="text left container search-res">
             <h2>Результаты поиска: <span class="result">"{$search_title}"</span></h2>
-            <div class="find-in-cat">Найдено статей: 32</div>
+            <div class="find-in-cat">Найдено статей: {echo (int)$countAll}</div>
             <div class="text">
                 {if !$items}
                 <p>{lang('Ничего не найдено','corporate')}</p>
@@ -14,7 +14,7 @@
                     {foreach $items as $page}
                     <li>
                         <a href="{site_url($page.full_url)}">{$page.title}</a>
-                        <div class="search-cat">категория: Разработчикам</div>
+                        <div class="search-cat">категория: {echo $categoriesInfo[$page['category']]['name']}</div>
                         <p>
                             {$page.parsedText}
                         </p>
