@@ -165,33 +165,40 @@
                         </ul>
                     </div>
                     <div class="info-box2 col-lg-4">
-                        <div class="title"><span class="icon-forum"></span><span class="text-el">Последнее <a href="#">с форума</a></span></div>
+                        <div class="title">
+                            <span class="icon-forum"></span>
+                            <span class="text-el">Последнее <a href="http://imagecms.net/forum">с форума</a></span>
+                        </div>
                         <ul>
-                            <li>
-                                <div class="date">Yana, 17 Сентября 2013</div>
-                                <div class="short-info">Что делать дальше?</div>
-                            </li>
-                            <li>
-                                <div class="date">newmax, 17 Сентября 2013</div>
-                                <div class="short-info">Ошибка на втором этапе</div>
-                            </li>
-                            <li>
-                                <div class="date">filtrat, 17 Сентября 2013</div>
-                                <div class="short-info">ImageCMS 4.5 beta</div>
-                            </li>
+                            {foreach $forumThemes as $forum}
+                                <li>
+                                    <div class="date">{$forum.poster}, {echo ru_date('d F Y', $forum.posted)}</div>
+                                    <div class="short-info">{$forum.subject}</div>
+                                </li>
+                            {/foreach}
                         </ul>
                     </div>
                     <div class="info-box3 col-lg-4">
-                        <div class="title"><span class="icon-linked"></span><span class="text-el">Подписка на новости</span></div>
-                        <form>
+                        <div class="title">
+                            <span class="icon-linked"></span>
+                            <span class="text-el">Подписка на новости</span>
+                        </div>
+                        <form action="http://imagecms.us4.list-manage1.com/subscribe/post?u=24900771ccefdde57835a37fb&amp;id=4eb9f5232f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                             <label class="for-mail">
-                                <input type="text" placeholder="E-mail"/>
+                                <input type="text" placeholder="E-mail" name="EMAIL" id="mce-EMAIL"/>
                                 <span class="icon-mail"></span>
-
                             </label>
                             <div class="btn-form-mail">
-                                <button class="btn btn-foot"><span class="text-el">Подписаться</span><span class="icon-r-arr-b"></span></button>
+                                <button class="btn btn-foot" type="submit" name="subscribe" >
+                                    <span class="text-el">Подписаться</span>
+                                    <span class="icon-r-arr-b"></span>
+                                </button>
                             </div>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>
+                            {form_csrf()}
                         </form>
                     </div>
                 </div>
@@ -261,35 +268,6 @@
                 </div>
             </div>
         </footer>
-
-
-
-
-
-        {/*}
-        <footer>
-            {if !$CI->dx_auth->is_logged_in()}
-                <div class="pull-right">
-                    <a href="/auth/login" class="navbar-btn">
-                        <span class="glyphicon glyphicon-log-in "></span>
-                        {lang('Log in','documentation')}
-                    </a>&nbsp;
-                    <a href="/auth/register" class="navbar-btn">
-                        <span class="glyphicon glyphicon-log-in "></span>
-                        {lang('Registration','documentation')}
-                    </a>
-                </div>
-            {else:}
-                <div class="pull-right">
-                    <a href="/auth/logout" type="button">
-                        <span class="glyphicon glyphicon-log-out"></span>
-                        {lang('Exit','documentation')}
-                    </a>
-                </div>
-            {/if}
-        </footer>
-        { */}
-
 
         <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
