@@ -84,23 +84,7 @@
                             {/foreach}
 
                         </ul>
-                        {if $CI->dx_auth->is_logged_in()}
-                            <div class="pull-right">
-                                {$CI->load->module('documentation')}
-                                {if $CI->documentation->hasCRUDAccess()}
-                                    <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
-                                        <span class="glyphicon glyphicon-new-window"></span>
-                                        {lang('Create page','documentation')}
-                                    </a>
-                                    {if $CI->core->core_data['data_type'] == 'page'}
-                                        <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                            {lang('Edit','documentation')}
-                                        </a>
-                                    {/if}
-                                {/if}
-                            </div>
-                        {/if}
+                        
                     </div><!-- /.nav-collapse -->
                 </div><!-- /.container -->
             </div>
@@ -138,6 +122,23 @@
                         <div class="row">
                             {$content}
                         </div>
+                        {if $CI->dx_auth->is_logged_in()}
+                            <div class="pull-right">
+                                {$CI->load->module('documentation')}
+                                {if $CI->documentation->hasCRUDAccess()}
+                                    <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
+                                        <span class="glyphicon glyphicon-new-window"></span>
+                                        {lang('Create page','documentation')}
+                                    </a>
+                                    {if $CI->core->core_data['data_type'] == 'page'}
+                                        <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            {lang('Edit','documentation')}
+                                        </a>
+                                    {/if}
+                                {/if}
+                            </div>
+                        {/if}
                     </div>
                 </div>
 
@@ -275,3 +276,4 @@
         <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
     </body>
 </html>
+
