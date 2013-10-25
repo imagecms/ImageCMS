@@ -34,19 +34,19 @@
             var id = "{echo $CI->core->core_data['id']}";
             {literal}
                 $(document).ready(function() {
-                    $(".top_menu_documentation li a, .main_page_block_from_menu a").on('click', function() {
+                    $(".top_menu_documentation li a").on('click', function() {
                         var categoyMenu = $(this).data('category_menu');
                         var CookieDate = new Date();
                         CookieDate.setFullYear(CookieDate.getFullYear() + 1);
                         document.cookie = "category_menu=" + categoyMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
-                        window.location = window.location;
+                        window.location = window.location; // переадресація на ту саму сторінку
                     });
                 });
             {/literal}
         </script>
     </head>
     <body>
-        {if !isset($_COOKIE['category_menu'])} {$_COOKIE['category_menu'] = 'begin-work'} {/if}
+        {if !isset($_COOKIE['category_menu'])} {$_COOKIE['category_menu'] = 'begin-work'} {/if} 
         <div class="main-body">
             <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
                 <div class="container">
@@ -62,21 +62,19 @@
                             <span class="icon-bar"></span>
                         </button>
 
-
                         <a id="main_logo" href="{site_url()}" class="logo f_l navbar-brand">
                             <img src="{$THEME}images/logo.png"/>
                         </a>
                     </div>
 
                     <div class="collapse navbar-collapse">
-
                         {$top_menu = array(
-                                'begin-work' => 'Начало работы',
-                                'manage' => 'Администрир.',
-                                'step-by-step' => 'Пошаговые инструкции',
-                                'developers' => 'Разработчикам',
-                                'templates' => 'Работа с шаблонами',
-                            )}
+				    'begin-work' => 'Начало работы',
+				    'manage' => 'Администрир.',
+				    'step-by-step' => 'Пошаговые инструкции',
+				    'developers' => 'Разработчикам',
+				    'templates' => 'Работа с шаблонами',
+				)}
 
                         <ul class="nav navbar-nav top_menu_documentation">
                             {foreach $top_menu as $key => $value}
@@ -84,8 +82,9 @@
                                     <a href="#" data-category_menu="{$key}">{$value}</a>
                                 </li>
                             {/foreach}
-                        </ul>
 
+                        </ul>
+                        
                     </div><!-- /.nav-collapse -->
                 </div><!-- /.container -->
             </div>
@@ -105,7 +104,7 @@
                         {/if}
                         <div class="tree_menu">
                             {if $CI->core->core_data['data_type'] != 'search'}
-                                <div class="title">Администрирование</div>
+                                <div class="title">{$top_menu[$_COOKIE['category_menu']]}</div>
                                 {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
                             {/if}
                             {if $CI->core->core_data['data_type'] == 'search'}
@@ -123,26 +122,24 @@
                         <div class="row">
                             {$content}
                         </div>
-                           {if $CI->dx_auth->is_logged_in()}
-                                <div class="pull-right">
-                                    {$CI->load->module('documentation')}
-                                    {if $CI->documentation->hasCRUDAccess()}
-
-                                        <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
-                                            <span class="glyphicon glyphicon-new-window"></span>
-                                            {lang('Create page','documentation')}
+                        {if $CI->dx_auth->is_logged_in()}
+                            <div class="pull-right">
+                                {$CI->load->module('documentation')}
+                                {if $CI->documentation->hasCRUDAccess()}
+                                    <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
+                                        <span class="glyphicon glyphicon-new-window"></span>
+                                        {lang('Create page','documentation')}
+                                    </a>
+                                    {if $CI->core->core_data['data_type'] == 'page'}
+                                        <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            {lang('Edit','documentation')}
                                         </a>
-                                        {if $CI->core->core_data['data_type'] == 'page'}
-                                            <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                                {lang('Edit','documentation')}
-                                            </a>
-                                        {/if}
                                     {/if}
-                                </div>
-                            {/if}
+                                {/if}
+                            </div>
+                        {/if}
                     </div>
-                       
                 </div>
 
             </div>
@@ -153,50 +150,58 @@
             <div class="down-info-p">
                 <div class="container clearfix">
                     <div class="info-box1 col-lg-4">
-                        <div class="title"><span class="icon-blog"></span><span class="text-el">Записи <a href="#">с блога</a></span></div>
+                        <div class="title">
+                            <span class="icon-blog"></span>
+                            <span class="text-el">Записи <a href="http://imagecms.net/blog">с блога</a></span>
+                        </div>
                         <ul>
-                            <li>
-                                <div class="date">17 Сентября 2013</div>
-                                <div class="short-info">Одностраничный сайт как инструмент продаж</div>
-                            </li>
-                            <li>
-                                <div class="date">17 Сентября 2013</div>
-                                <div class="short-info">Поисковая система Bing сменила логотип</div>
-                            </li>
-                            <li>
-                                <div class="date">17 Сентября 2013</div>
-                                <div class="short-info">Яндекс.Деньги начали работать с США</div>
-                            </li>
+                            {foreach $news as $item}
+                                <li>
+                                    <div class="date">{echo ru_date('d F Y', $item.publish_date)}</div>
+                                    <a href="http://imagecms.net/{echo $item.full_url}">
+                                        <div class="short-info">{echo $item.title}</div>
+                                    </a>
+                                </li>
+                            {/foreach}
                         </ul>
                     </div>
                     <div class="info-box2 col-lg-4">
-                        <div class="title"><span class="icon-forum"></span><span class="text-el">Последнее <a href="#">с форума</a></span></div>
+                        <div class="title">
+                            <span class="icon-forum"></span>
+                            <span class="text-el">Последнее <a href="http://imagecms.net/forum">с форума</a></span>
+                        </div>
                         <ul>
-                            <li>
-                                <div class="date">Yana, 17 Сентября 2013</div>
-                                <div class="short-info">Что делать дальше?</div>
-                            </li>
-                            <li>
-                                <div class="date">newmax, 17 Сентября 2013</div>
-                                <div class="short-info">Ошибка на втором этапе</div>
-                            </li>
-                            <li>
-                                <div class="date">filtrat, 17 Сентября 2013</div>
-                                <div class="short-info">ImageCMS 4.5 beta</div>
-                            </li>
+                            {foreach $forumThemes as $forum}
+                                <li>
+                                    <div class="date">{$forum.last_poster}, {echo ru_date('d F Y', $forum.last_post)}</div>
+                                    <a target="_blank" href="http://forum.imagecms.net/viewtopic.php?pid={$forum.last_post_id}#{$forum.last_post_id}">
+                                        <div class="short-info">{$forum.subject}</div>
+                                    </a>
+                                </li>
+                            {/foreach}
                         </ul>
                     </div>
                     <div class="info-box3 col-lg-4">
-                        <div class="title"><span class="icon-linked"></span><span class="text-el">Подписка на новости</span></div>
-                        <form>
+                        <div class="title">
+                            <span class="icon-linked"></span>
+                            <span class="text-el">Подписка на новости</span>
+                        </div>
+                        <form action="http://imagecms.us4.list-manage1.com/subscribe/post?u=24900771ccefdde57835a37fb&amp;id=4eb9f5232f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                             <label class="for-mail">
-                                <input type="text" placeholder="E-mail"/>
+                                <input type="text" placeholder="E-mail" name="EMAIL" id="mce-EMAIL"/>
                                 <span class="icon-mail"></span>
-
                             </label>
                             <div class="btn-form-mail">
-                                <button class="btn btn-foot"><span class="text-el">Подписаться</span><span class="icon-r-arr-b"></span></button>
+                                <button class="btn btn-foot" type="submit" name="subscribe" >
+                                    <span class="text-el">Подписаться</span>
+                                    <span class="icon-r-arr-b"></span>
+                                </button>
                             </div>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>
+                            {form_csrf()}
                         </form>
                     </div>
                 </div>
@@ -267,36 +272,8 @@
             </div>
         </footer>
 
-
-
-
-
-        {/*}
-        <footer>
-            {if !$CI->dx_auth->is_logged_in()}
-                <div class="pull-right">
-                    <a href="/auth/login" class="navbar-btn">
-                        <span class="glyphicon glyphicon-log-in "></span>
-                        {lang('Log in','documentation')}
-                    </a>&nbsp;
-                    <a href="/auth/register" class="navbar-btn">
-                        <span class="glyphicon glyphicon-log-in "></span>
-                        {lang('Registration','documentation')}
-                    </a>
-                </div>
-            {else:}
-                <div class="pull-right">
-                    <a href="/auth/logout" type="button">
-                        <span class="glyphicon glyphicon-log-out"></span>
-                        {lang('Exit','documentation')}
-                    </a>
-                </div>
-            {/if}
-        </footer>
-        { */}
-
-
         <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/offcanvas.js"></script>
     </body>
 </html>
+

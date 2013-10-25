@@ -437,10 +437,10 @@ class Search extends MY_Controller {
         /*         * Prepare categories for search results * */
         $categoriesInSearchResults = null;
         $tree = null;
+        $categories = array();
         
         if ($foundInCategories != null) {
             $this->load->library('lib_category');
-            $categories = array();
             foreach ($foundInCategories as $key => $value) {
                 if (array_key_exists($value['category'], $categories)){
                     $categories[$value['category']]['count']++;
@@ -453,6 +453,7 @@ class Search extends MY_Controller {
       
             $categoriesInSearchResults = $this->prepareCategoriesForSearchResults($categories);
             $tree = $this->lib_category->build();
+            $categoriesInfo = $this->lib_category->unsorted();
         }
 
         if (count($pages) > 0) {
@@ -461,7 +462,10 @@ class Search extends MY_Controller {
             $this->template->add_array(array(
                 'items' => $pages,
                 'categoriesInSearchResults' => $categoriesInSearchResults,
-                'tree' => $tree));
+                'tree' => $tree,
+                'countAll' =>  count($foundInCategories),
+                'categoriesInfo' => $categoriesInfo
+                ));
         }
 
         $this->template->show($this->search_tpl);
