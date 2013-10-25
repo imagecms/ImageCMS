@@ -5,7 +5,7 @@
 /**
  * Image CMS 
  * Sample Module Admin
- * @property CI_DB_active_record $db_simpla 
+ * @property CI_DB_active_record $db_opencart 
  */
 class Admin extends BaseAdminController {
 
@@ -33,18 +33,18 @@ class Admin extends BaseAdminController {
         $db['autoinit'] = TRUE;
         $db['stricton'] = FALSE;
 
-        $this->db_simpla = $this->load->database($db, TRUE, TRUE);
+        $this->db_opencart = $this->load->database($db, TRUE, TRUE);
         $this->insert_category();
     }
 
     public function insert_category() {
-        $data = $this->db_simpla
+        $data = $this->db_opencart
                 ->join('category_description', 'category.category_id=category_description.category_id')
                 ->order_by('category.category_id')
                 ->get('category')
                 ->result_array();
 
-        $urls = $this->db_simpla
+        $urls = $this->db_opencart
                 ->like('query', 'category_id')
                 ->get('url_alias')
                 ->result_array();
