@@ -220,7 +220,7 @@
                 <div class="foot-box2 col-sm-3">
                     <div class="title">Связь</div>
                     <ul>
-                        <li><a href="#">Поддержка</a></li>
+                        <li><a href="#">Потддержка</a></li>
                         <li><a href="#">Блог</a></li>
                         <li><a href="#">Сообщество</a></li>
                     </ul>

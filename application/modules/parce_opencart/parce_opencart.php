@@ -6,7 +6,7 @@
  * Image CMS
  * Module Frame
  */
-class Parce_simpla extends MY_Controller {
+class Parce_opencart extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
