@@ -34,7 +34,7 @@
             var id = "{echo $CI->core->core_data['id']}";
             {literal}
                 $(document).ready(function() {
-                    $(".top_menu_documentation li a").on('click', function() {
+                    $(".top_menu_documentation li a, .main_page_block_from_menu a").on('click', function() {
                         var categoyMenu = $(this).data('category_menu');
                         var CookieDate = new Date();
                         CookieDate.setFullYear(CookieDate.getFullYear() + 1);
@@ -46,6 +46,7 @@
         </script>
     </head>
     <body>
+        {if !isset($_COOKIE['category_menu'])} {$_COOKIE['category_menu'] = 'begin-work'} {/if}
         <div class="main-body">
             <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
                 <div class="container">
@@ -85,24 +86,6 @@
                             {/foreach}
                         </ul>
 
-                        {if $CI->dx_auth->is_logged_in()}
-                            <div class="pull-right">
-                                {$CI->load->module('documentation')}
-                                {if $CI->documentation->hasCRUDAccess()}
-
-                                    <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
-                                        <span class="glyphicon glyphicon-new-window"></span>
-                                        {lang('Create page','documentation')}
-                                    </a>
-                                    {if $CI->core->core_data['data_type'] == 'page'}
-                                        <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                            {lang('Edit','documentation')}
-                                        </a>
-                                    {/if}
-                                {/if}
-                            </div>
-                        {/if}
                     </div><!-- /.nav-collapse -->
                 </div><!-- /.container -->
             </div>
@@ -140,7 +123,26 @@
                         <div class="row">
                             {$content}
                         </div>
+                           {if $CI->dx_auth->is_logged_in()}
+                                <div class="pull-right">
+                                    {$CI->load->module('documentation')}
+                                    {if $CI->documentation->hasCRUDAccess()}
+
+                                        <a href="/documentation/create_new_page" type="button" class="btn btn-success navbar-btn ">
+                                            <span class="glyphicon glyphicon-new-window"></span>
+                                            {lang('Create page','documentation')}
+                                        </a>
+                                        {if $CI->core->core_data['data_type'] == 'page'}
+                                            <a href="/documentation/edit_page/{echo $CI->core->core_data['id']}" type="button" class="btn btn-success navbar-btn ">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                {lang('Edit','documentation')}
+                                            </a>
+                                        {/if}
+                                    {/if}
+                                </div>
+                            {/if}
                     </div>
+                       
                 </div>
 
             </div>
