@@ -15,6 +15,7 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('module_frame');
         $this->load->helper('translit');
+        $this->langs = array();
     }
 
     public function index() {
@@ -54,18 +55,104 @@ class Admin extends BaseAdminController {
         $this->db->truncate('shop_product_variants_i18n');
         $this->db->truncate('shop_product_categories');
 
+        $this->db->truncate('shop_product_properties');
+        $this->db->truncate('shop_product_properties_i18n');
+        $this->db->truncate('shop_product_properties_categories');
+        $this->db->truncate('shop_product_properties_data');
+        $this->db->truncate('shop_product_properties_data_i18n');
+
+        $this->db->truncate('shop_orders');
+        $this->db->truncate('shop_orders_products');
+
         $this->db->truncate('trash');
 
+        $this->insert_lang();
         $this->insert_category();
         $this->insert_brands();
         $this->insert_currency();
+        $this->insert_users();
+//        $this->insert_properties();
         $this->insert_products();
+//        $this->insert_orders();
 
         $this->cache->delete_all();
 
         \ShopCore::app()->SCurrencyHelper->checkPrices();
 
         var_dump(memory_get_usage() / 1024 / 1024);
+    }
+
+    public function insert_orders() {
+        $array = $this->db_opencart
+                ->order_by('order_id')
+                ->get('order')
+                ->result_array();
+
+        foreach ($array as $value) {
+            $orders[$value['order_id']] = $value;
+        }
+
+        $array = $this->db_opencart
+                ->get('order_product')
+                ->result_array();
+
+        foreach ($array as $value) {
+            $order_products[$value['order_id']][] = $value;
+        }
+
+        foreach ($orders as $order) {
+            $orders_insert[] = array(
+            );
+
+            foreach ($order_products as $order_product) {
+                
+            }
+        }
+    }
+
+    public function insert_properties() {
+        $array = $this->db_opencart
+                ->join('option_description', 'option_description.option_id=option.option_id')
+                ->get('option')
+                ->result_array();
+
+//        var_dump($array);
+    }
+
+    public function insert_lang() {
+        $array = $this->db_opencart
+                ->get('language')
+                ->result_array();
+
+        foreach ($array as $value) {
+            $langs[$value['language_id']] = $value;
+        }
+
+        $template = $this->db->get('settings')->row()->site_template;
+
+        foreach ($langs as $lang) {
+            $insert[] = array(
+                'id' => $lang['language_id'],
+                'lang_name' => $lang['name'],
+                'identif' => $lang['code'],
+                'image' => $lang['image'],
+                'folder' => $lang['directory'],
+                'template' => $template,
+                'default' => $lang['status'],
+                'locale' => $lang['locale'],
+            );
+        }
+        $this->db->insert_batch('languages', $insert);
+
+        $array = $this->db->get('languages')->result_array();
+
+        foreach ($array as $lang) {
+            $this->langs[$lang['id']] = $lang['identif'];
+        }
+    }
+
+    public function insert_users() {
+        
     }
 
     public function insert_currency() {
@@ -178,7 +265,7 @@ class Admin extends BaseAdminController {
                 $data[$value['product_id']]['categorys'][] = $value['category_id'];
             }
         }
-        
+
         $cur = $this->db->where('main', 1)->get('shop_currencies')->row()->id;
 
         foreach ($data as $product) {
@@ -259,9 +346,7 @@ class Admin extends BaseAdminController {
             );
         }
         $this->db->insert_batch('shop_product_variants_i18n', $insert_variant_i18n);
-
         $this->db->insert_batch('trash', $trash);
-        var_dump($this->db->_error_message());
     }
 
     public function insert_category() {
@@ -317,10 +402,9 @@ class Admin extends BaseAdminController {
                 'tpl' => '',
                 'order_method' => '',
             );
-
             $insert_i18n[] = array(
                 'id' => $d['category_id'],
-                'locale' => 'ru',
+                'locale' => $this->langs[$d['language_id']],
                 'name' => htmlspecialchars_decode($d['name']),
                 'h1' => $d['seo_h1'],
                 'description' => $d['description'],
@@ -336,7 +420,7 @@ class Admin extends BaseAdminController {
                 'trash_type' => 301,
             );
         }
-
+        
         $this->db->insert_batch('shop_category', $insert);
         $this->db->insert_batch('shop_category_i18n', $insert_i18n);
         $this->db->insert_batch('trash', $trash);
