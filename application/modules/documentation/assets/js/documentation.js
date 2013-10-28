@@ -28,36 +28,48 @@ tinymce.init({
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="php">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('css'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="css">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('html'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="xml">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('smarty'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="django php">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('javascript'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="javascript">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('main'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<p class="bs-callout-danger">' + text + '</p><p></p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                 }
@@ -153,36 +165,48 @@ tinymce.init({
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="php">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('css'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="css">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('html'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="xml">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('smarty'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="django php">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('javascript'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<pre><code class="javascript">' + text + '</code></pre><p> </p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                     case ('main'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
                             editor.execCommand('mceInsertContent', false, '<p class="bs-callout-danger">' + text + '</p><p></p>');
+                            hljs.initHighlighting.called = false;
+                            hljs.initHighlighting();
                         }
                         break;
                 }
@@ -204,8 +228,8 @@ function translite_title(from, to) {
     var url = '/documentation/ajax_translit';
     $.post(
             url, {
-        'str': $(from).val()
-    }, function(data)
+                'str': $(from).val()
+            }, function(data)
 
     {
         $(to).val(data);
@@ -297,6 +321,4 @@ $(document).ready(function() {
         var langId = selectElement.find("option:selected").val();
         document.location.href = '/documentation/edit_page/' + pageId + '/' + langId;
     });
-
-
 });
