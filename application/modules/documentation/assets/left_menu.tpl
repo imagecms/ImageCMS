@@ -59,6 +59,7 @@
     </div>
 </div>
 <!-- Modal -->
+{$first = true;}
 <ul class="">
     {foreach $tree as $item}
         <!-- Check show category for group -->
@@ -71,15 +72,26 @@
                 {/if}
             {/if}
             <li {if $active}class="active"{/if}>
-                <a href="{base_url($item['path_url'])}">{$item['name']}  
+                <a href="{base_url($item['path_url'])}" class="category level-1">{$item['name']}  
                     {if $categoryData['id'] == $item['id'] && $admin}
                         <span data-toggle="modal" href="#myModalEdit" class="glyphicon glyphicon-pencil pull-right editCategory"></span>
                     {/if}
                 </a>
+                {$CI = & get_instance()}
+                {$menuPages = $CI->load->module('documentation')->get_pages_in_category($item['id'])}
+                <ul {if !$active}style="display: none;"{/if} class="left-menu-out-sec page">
+                    {foreach $menuPages as $page}
+                        <li {if $CI->core->core_data['data_type'] == 'page' && $CI->core->core_data['id'] == $page['id']}class="active"{/if}>
+                            <a href="{base_url($page['cat_url'].$page['url'])}" class="page level-2">
+                                {$page['title']}  
+                            </a>
+                        </li>
+                    {/foreach}
+                </ul>
                 <!-- Show category sublevels -->
                 {if $item['subtree']}
                     <span class="tree_menu_icon glyphicon {if $active}glyphicon-chevron-down{else:}glyphicon-chevron-right{/if}"></span>
-                    {$this->view('left_menu.tpl', array('tree' => $item['subtree'], 'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData, 'admin' =>$admin))}
+                    {$this->view('left_menu.tpl', array('tree' => $item['subtree'], 'cat_path' => $cat_path, 'display' => $active, 'categoryData' => $categoryData, 'admin' =>$admin, 'level' => 2))}
                 {/if}
             </li>
         {/if}

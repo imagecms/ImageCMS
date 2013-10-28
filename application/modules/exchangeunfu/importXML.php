@@ -153,9 +153,9 @@ class ImportXML {
                 continue;
             }
 
-            $is_product = is_prod((string) $product->ID, $this->prod);
+//            $is_product = is_prod((string) $product->ID, $this->prod);
 
-            if (!((string) $product->IDWeb) || !$is_product) {
+            if (!(string) $product->IDWeb) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
@@ -580,7 +580,7 @@ class ImportXML {
             $data['external_id'] = $partner->ID . '';
             $partner_exsist = is_partner($data['external_id'], $this->partners);
 
-            if ($partner->IDWeb || $partner_exsist) {
+            if (((string)$partner->IDWeb) || $partner_exsist) {
                 $data['id'] = $partner->IDWeb . '' ? $partner->IDWeb . '' : $partner_exsist['id'];
                 $this->update[] = $data;
             } else {

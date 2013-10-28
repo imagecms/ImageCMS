@@ -7,7 +7,6 @@
 .mce-fullscreen {
 	border: 0; padding: 0; margin: 0;
 	overflow: hidden;
-	background: #FFF;
 	height: 100%;
 	z-index: 100;
 }
@@ -21,7 +20,7 @@ div.mce-fullscreen {
 
 .mce-tinymce {
 	display: block;
-	border-radius: 2px;
+	.border-radius(2px);
 }
 
 .mce-wordcount {
@@ -31,7 +30,7 @@ div.mce-fullscreen {
 	padding: 8px;
 }
 
-.mce-edit-area {
+div.mce-edit-area {
 	background: #FFF;
 	filter: none;
 }
@@ -56,7 +55,7 @@ div.mce-fullscreen {
 
 .mce-charmap td {
 	cursor: default;
-	border: 1px solid @btn-border-color;
+	border: 1px solid @panel-border;
 	width: 20px;
 	height: 20px;
 	line-height: 20px;
@@ -70,22 +69,14 @@ div.mce-fullscreen {
 }
 
 .mce-charmap td:hover {
-	background: @btn-background-highlight;
+	background: @btn-bg-hlight;
 }
 
 .mce-grid td div {
-	border: 1px solid #808080;
+	border: 1px solid @grid-border;
 	width: 12px; height: 12px;
 	margin: 2px;
 	cursor: pointer;
-	&:hover {
-		border-color: black;
-	}
-	&:focus {
-		border-color: @focus-border-color-fallback;
-		outline: 1px solid @focus-border-color;
-		border-color: @focus-border-color
-	}
 }
 
 .mce-grid {
@@ -97,7 +88,7 @@ div.mce-fullscreen {
 		border: 1px solid transparent;
 
 		&:hover {
-			border-color: @btn-border-color;
+			border-color: @grid-border-active;
 		}
 	}
 }
@@ -106,13 +97,13 @@ div.mce-fullscreen {
 	margin: 0 4px 0 4px;
 
 	a {
-		border-color: #e8e8e8;
+		border-color: @grid-border;
 		width: 13px; height: 13px;
 	}
 
 	a:hover, a.mce-active {
-		border-color: #c4daff;
-		background: #deeafa;
+		border-color: @grid-border-active;
+		background: @grid-bg-active;
 	}
 }
 
@@ -123,4 +114,11 @@ div.mce-fullscreen {
 div.mce-tinymce-inline {
 	width: 100%;
 	.box-shadow(none);
+}
+
+// RTL
+
+.mce-rtl .mce-wordcount {
+	left: 0;
+	right: auto;
 }
