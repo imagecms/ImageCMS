@@ -6,13 +6,15 @@ tinymce.init({
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu paste spellchecker responsivefilemanager"
+        "insertdatetime media table contextmenu paste spellchecker responsivefilemanager",
+        "nonbreaking"
     ],
+    nonbreaking_force_tab: true,
     language: 'ru',
     toolbar_items_size: 'small',
     spellchecker_language: "ru",
     spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
-    toolbar: "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | highlightcode | danger | spellchecker | save_button",
+    toolbar: "nonbreaking |undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | highlightcode | danger | spellchecker | save_button",
     image_advtab: true,
     external_filemanager_path: "/templates/documentation/js/tinymce/plugins/responsivefilemanager/",
     filemanager_title: "Responsive Filemanager",

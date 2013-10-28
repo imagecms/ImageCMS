@@ -4,6 +4,7 @@ namespace mod_discount;
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
+
 /**
  * Class Discount_product for Mod_Discount module
  * @uses \mod_discount\classes\BaseDiscount
@@ -17,7 +18,7 @@ class Discount_product extends classes\BaseDiscount {
 
     private $discount_for_product;
 
-     /**
+    /**
      * __construct base object loaded
      * @access public
      * @author DevImageCms
@@ -34,7 +35,8 @@ class Discount_product extends classes\BaseDiscount {
         $this->collect_type();
         $this->discount_for_product = array_merge($this->discount_type['product'], $this->discount_type['brand'], $this->discount_type['category']);
     }
-     /**
+
+    /**
      * get product discount for prouct_id and product_vid
      * @access public
      * @author DevImageCms
@@ -45,7 +47,7 @@ class Discount_product extends classes\BaseDiscount {
     public function get_product_discount_event($product, $price = null) {
 
 
-        $discount_array = $this->get_discount_one_product($this->discount_model_front->get_product($product['id']));
+        $discount_array = $this->get_discount_one_product($product);
 
 
         if (count($discount_array) > 0) {
@@ -73,7 +75,7 @@ class Discount_product extends classes\BaseDiscount {
         return true;
     }
 
-     /**
+    /**
      * get product discount for one prouct
      * @access public
      * @author DevImageCms
@@ -87,8 +89,9 @@ class Discount_product extends classes\BaseDiscount {
 
         foreach ($this->discount_for_product as $disc)
             foreach ($product as $key => $value) {
-                if ($disc[$key] == $value)
-                    $arr_discount[] = $disc;
+                if ($disc[$key])
+                    if ($disc[$key] == $value)
+                        $arr_discount[] = $disc;
             }
 
         return $arr_discount;
