@@ -366,7 +366,7 @@ $config['compress_output'] = TRUE;
 |
 */
 $config['time_reference'] = 'local';
-$config['default_time_zone'] = 'Europe/Moscow';
+$config['default_time_zone'] = 'Europe/Kiev';
 
 /*
 |--------------------------------------------------------------------------

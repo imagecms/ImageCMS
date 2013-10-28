@@ -101,8 +101,11 @@
 define("tinymce/pasteplugin/Clipboard", [
 	"tinymce/Env",
 	"tinymce/util/Tools",
-	"tinymce/util/VK"
-], function(Env, Tools, VK) {
+	"tinymce/util/VK",
+	"tinymce/html/DomParser",
+	"tinymce/html/Serializer",
+	"tinymce/html/Schema"
+], function(Env, Tools, VK, DomParser, Serializer, Schema) {
 	function hasClipboardData() {
 		// Gecko is excluded until the fix: https://bugzilla.mozilla.org/show_bug.cgi?id=850663
 		return !Env.gecko && (("ClipboardEvent" in window) || (Env.webkit && "FocusEvent" in window));
@@ -120,8 +123,64 @@ define("tinymce/pasteplugin/Clipboard", [
 			return (VK.metaKeyPressed(e) && e.keyCode == 86) || (e.shiftKey && e.keyCode == 45);
 		}
 
+		/**
+		 * Gets the innerText of the specified element. It will handle edge cases
+		 * and works better than textContent on Gecko.
+		 *
+		 * @param {Element} elm HTML element to get text from.
+		 * @return {String} String of text with line feeds.
+		 */
 		function innerText(elm) {
-			return elm.innerText || elm.textContent;
+			var schema = new Schema(), domParser = new DomParser({}, schema), text = '';
+			var shortEndedElements = schema.getShortEndedElements();
+			var ignoreElements = Tools.makeMap('script noscript style textarea video audio iframe object', ' ');
+			var blockElements = editor.schema.getBlockElements();
+
+			function walk(node) {
+				var name = node.name, currentNode = node;
+
+				if (name === 'br') {
+					text += '\n';
+					return;
+				}
+
+				// img/input/hr
+				if (shortEndedElements[name]) {
+					text += ' ';
+				}
+
+				// Ingore script, video contents
+				if (ignoreElements[name]) {
+					text += ' ';
+					return;
+				}
+
+				if (node.type == 3) {
+					text += node.value;
+				}
+
+				// Walk all children
+				if (!node.shortEnded) {
+					if ((node = node.firstChild)) {
+						do {
+							walk(node);
+						} while ((node = node.next));
+					}
+				}
+
+				// Add \n or \n\n for blocks or P
+				if (blockElements[name] && currentNode.next) {
+					text += '\n';
+
+					if (name == 'p') {
+						text += '\n';
+					}
+				}
+			}
+
+			walk(domParser.parse(elm.innerHTML));
+
+			return text;
 		}
 
 		function shouldPasteAsPlainText() {
@@ -142,7 +201,7 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		function processHtml(html) {
-			var args = editor.fire('PastePreProcess', {content: html});
+			var args = editor.fire('PastePreProcess', {content: html}), dom = editor.dom;
 
 			html = args.content;
 
@@ -156,7 +215,20 @@ define("tinymce/pasteplugin/Clipboard", [
 			}
 
 			if (!args.isDefaultPrevented()) {
-				editor.insertContent(html);
+				// User has bound PastePostProcess events then we need to pass it through a DOM node
+				// This is not ideal but we don't want to let the browser mess up the HTML for example
+				// some browsers add &nbsp; to P tags etc
+				if (editor.hasEventListeners('PastePostProcess') && !args.isDefaultPrevented()) {
+					// We need to attach the element to the DOM so Sizzle selectors work on the contents
+					var tempBody = dom.add(editor.getBody(), 'div', {style: 'display:none'}, html);
+					args = editor.fire('PastePostProcess', {node: tempBody});
+					dom.remove(tempBody);
+					html = args.node.innerHTML;
+				}
+
+				if (!args.isDefaultPrevented()) {
+					editor.insertContent(html);
+				}
 			}
 		}
 
@@ -177,11 +249,7 @@ define("tinymce/pasteplugin/Clipboard", [
 				]);
 			}
 
-			var args = editor.fire('PastePreProcess', {content: text});
-
-			if (!args.isDefaultPrevented()) {
-				editor.insertContent(args.content);
-			}
+			processHtml(text);
 		}
 
 		function createPasteBin() {
@@ -342,8 +410,8 @@ define("tinymce/pasteplugin/Clipboard", [
 						var pastebinElm = createPasteBin();
 						var lastRng = editor.selection.getRng();
 
-						// Hack for #6051
-						if (Env.webkit && editor.inline) {
+						// Hack for #6051 & #6256
+						if (Env.webkit) {
 							pastebinElm.contentEditable = true;
 						}
 
@@ -397,6 +465,7 @@ define("tinymce/pasteplugin/Clipboard", [
 
 		this.paste = processHtml;
 		this.pasteText = processText;
+		this.innerText = innerText;
 	};
 });
 
@@ -425,13 +494,17 @@ define("tinymce/pasteplugin/WordFilter", [
 	"tinymce/html/Serializer",
 	"tinymce/html/Node"
 ], function(Tools, DomParser, Schema, Serializer, Node) {
-	return function(editor) {
-		var each = Tools.each;
+	function isWordContent(content) {
+		return (/class="?Mso|style="[^"]*\bmso-|style='[^'']*\bmso-|w:WordDocument/i).test(content);
+	}
+
+	function WordFilter(editor) {
+		var each = Tools.each, settings = editor.settings;
 
 		editor.on('PastePreProcess', function(e) {
 			var content = e.content, retainStyleProperties, validStyles;
 
-			retainStyleProperties = editor.settings.paste_retain_style_properties;
+			retainStyleProperties = settings.paste_retain_style_properties;
 			if (retainStyleProperties) {
 				validStyles = Tools.makeMap(retainStyleProperties);
 			}
@@ -520,13 +593,13 @@ define("tinymce/pasteplugin/WordFilter", [
 						}
 
 						// Detect unordered lists look for bullets
-						if (/^\s*[\u2022\u00b7\u00a7\u00d8o\u25CF]\s*$/.test(nodeText)) {
+						if (/^\s*[\u2022\u00b7\u00a7\u00d8\u25CF]\s*$/.test(nodeText)) {
 							convertParagraphToLi(node, listStartTextNode, 'ul');
 							continue;
 						}
 
 						// Detect ordered lists 1., a. or ixv.
-						if (/^\s*\w+\./.test(nodeText)) {
+						if (/^\s*\w+\.$/.test(nodeText)) {
 							// Parse OL start number
 							var matches = /([0-9])\./.exec(nodeText);
 							var start = 1;
@@ -592,12 +665,12 @@ define("tinymce/pasteplugin/WordFilter", [
 				return null;
 			}
 
-			if (editor.settings.paste_enable_default_filters === false) {
+			if (settings.paste_enable_default_filters === false) {
 				return;
 			}
 
 			// Detect is the contents is Word junk HTML
-			if (/class="?Mso|style="[^"]*\bmso-|style='[^'']*\bmso-|w:WordDocument/i.test(e.content)) {
+			if (isWordContent(e.content)) {
 				e.wordContent = true; // Mark it for other processors
 
 				// Remove basic Word junk
@@ -625,10 +698,15 @@ define("tinymce/pasteplugin/WordFilter", [
 					]
 				]);
 
+				var validElements = settings.paste_word_valid_elements;
+				if (!validElements) {
+					validElements = '@[style],-strong/b,-em/i,-span,-p,-ol,-ul,-li,-h1,-h2,-h3,-h4,-h5,-h6,' +
+						'-table,-tr,-td[colspan|rowspan],-th,-thead,-tfoot,-tbody,-a[!href],sub,sup,strike,br';
+				}
+
 				// Setup strict schema
 				var schema = new Schema({
-					valid_elements: '@[style],-strong/b,-em/i,-span,-p,-ol,-ul,-li,-h1,-h2,-h3,-h4,-h5,-h6,-table,' +
-								'-tr,-td[colspan|rowspan],-th,-thead,-tfoot,-tbody,-a[!href],sub,sup,strike'
+					valid_elements: validElements
 				});
 
 				// Parse HTML into DOM structure
@@ -659,7 +737,11 @@ define("tinymce/pasteplugin/WordFilter", [
 				e.content = new Serializer({}, schema).serialize(rootNode);
 			}
 		});
-	};
+	}
+
+	WordFilter.isWordContent = isWordContent;
+
+	return WordFilter;
 });
 
 // Included from: js/tinymce/plugins/paste/classes/Quirks.js
@@ -684,8 +766,9 @@ define("tinymce/pasteplugin/WordFilter", [
  */
 define("tinymce/pasteplugin/Quirks", [
 	"tinymce/Env",
-	"tinymce/util/Tools"
-], function(Env, Tools) {
+	"tinymce/util/Tools",
+	"tinymce/pasteplugin/WordFilter"
+], function(Env, Tools, WordFilter) {
 	"use strict";
 
 	return function(editor) {
@@ -739,6 +822,11 @@ define("tinymce/pasteplugin/Quirks", [
 		 *  <p>a</p><p>b</p>
 		 */
 		function removeExplorerBrElementsAfterBlocks(html) {
+			// Only filter word specific content
+			if (!WordFilter.isWordContent(html)) {
+				return html;
+			}
+
 			// Produce block regexp based on the block elements in schema
 			if (!explorerBlocksRegExp) {
 				var blockElements = [];
@@ -806,7 +894,7 @@ define("tinymce/pasteplugin/Plugin", [
 	var userIsInformed;
 
 	PluginManager.add('paste', function(editor) {
-		var self = this, clipboard;
+		var self = this, clipboard, settings = editor.settings;
 
 		function togglePlainTextPaste() {
 			if (clipboard.pasteFormat == "text") {
@@ -830,9 +918,22 @@ define("tinymce/pasteplugin/Plugin", [
 		self.clipboard = clipboard = new Clipboard(editor);
 		self.quirks = new Quirks(editor);
 		self.wordFilter = new WordFilter(editor);
+		self.innerText = clipboard.innerText;
 
 		if (editor.settings.paste_as_text) {
 			self.clipboard.pasteFormat = "text";
+		}
+
+		if (settings.paste_preprocess) {
+			editor.on('PastePreProcess', function(e) {
+				settings.paste_preprocess.call(self, self, e);
+			});
+		}
+
+		if (settings.paste_postprocess) {
+			editor.on('PastePostProcess', function(e) {
+				settings.paste_postprocess.call(self, self, e);
+			});
 		}
 
 		editor.addCommand('mceInsertClipboardContent', function(ui, value) {

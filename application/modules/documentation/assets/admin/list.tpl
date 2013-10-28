@@ -49,6 +49,7 @@
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                 <a href="#content_list" class="btn btn-small active">{lang("Content list", 'documentation')}</a>
                 <a href="#menu_categories" class="btn btn-small ">{lang("Menu categories", 'documentation')}</a>
+                <a href="#menu_manage" class="btn btn-small ">{lang("Menu manage", 'documentation')}</a>
             </div>
         </div>
         <div class="tab-content content_big_td">
@@ -151,70 +152,87 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    {/foreach}
-                                    {else:}
-                                    <tr>
-                                        <td colspan="6">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'documentation')}</div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    {/if}
-                                </tbody>
-                            </table>
-                        </div>
-                        {if $paginator > ''}
-                        <div class="clearfix">
-                            {$paginator}
-                        </div>
-                        {/if}
-                    </div>
-                    <div class="tab-pane" id="menu_categories">
-                        <div class="row-fluid">
-                            <table class="table table-striped table-bordered table-hover table-condensed pages-table">
-                                <thead>
-                                    <tr>
-                                        <th class="span1">ID</th>
-                                        <th class="span8">{lang('Title','documentation')}</th>
-                                        <th class="span8">{lang('Category menu','documentation')}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {foreach $categories as $category}
-                                    <tr data-id="{echo $category['id']}">
-                                        <td class="t-a_c">
-                                            <span>{echo $category['id']}</span>
-                                        </td>
-                                        <td>
-                                            {echo $category['name']}
-                                        </td>
-                                        <td class="share_alt">
-                                            <div class="p_r o_h frame_price categoryMenuBlock">
-                                                <input type="text"
-                                                       maxlength="32"
-                                                       value="{echo $category['menu_cat']}"
-                                                       class="js_price"
-                                                       data-value="{echo $category['menu_cat']}">
-                                                <button class="btn btn-small documentationUpdateMenuCategory"
-                                                        data-id="{echo $category['id']}"
-                                                        type="button">
-                                                    <i class="icon-refresh"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {/foreach}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                {/foreach}
+                            {else:}
+                                <tr>
+                                    <td colspan="6">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'documentation')}</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            {/if}
+                        </tbody>
+                    </table>
                 </div>
-            </section>
-        </form>
+                {if $paginator > ''}
+                    <div class="clearfix">
+                        {$paginator}
+                    </div>
+                {/if}
+            </div>
+            <div class="tab-pane" id="menu_categories">
+                <div class="row-fluid">
+                    <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                        <thead>
+                            <tr>
+                                <th class="span1">ID</th>
+                                <th class="span8">{lang('Title','documentation')}</th>
+                                <th class="span8">{lang('Category menu','documentation')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $categories as $category}
+                                <tr data-id="{echo $category['id']}">
+                                    <td class="t-a_c">
+                                        <span>{echo $category['id']}</span>
+                                    </td>
+                                    <td>
+                                        {echo $category['name']}
+                                    </td>
+                                    <td class="share_alt">
+                                        <div class="p_r o_h frame_price categoryMenuBlock">
+                                            <input type="text"
+                                                   maxlength="32"
+                                                   value="{echo $category['menu_cat']}"
+                                                   class="js_price"
+                                                   data-value="{echo $category['menu_cat']}">
+                                            <button class="btn btn-small documentationUpdateMenuCategory"
+                                                    data-id="{echo $category['id']}"
+                                                    type="button">
+                                                <i class="icon-refresh"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="tab-pane" id="menu_manage">
+                <div class="row-fluid">
+                    <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                        <thead>
+                            
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+</form>

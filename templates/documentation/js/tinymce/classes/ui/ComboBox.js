@@ -55,8 +55,8 @@ define("tinymce/ui/ComboBox", [
 						e.preventDefault();
 						self.fire('change');
 
-						if (ctrl.submit) {
-							ctrl.submit();
+						if (ctrl.hasEventListeners('submit') && ctrl.toJSON) {
+							ctrl.fire('submit', {data: ctrl.toJSON()});
 							return false;
 						}
 					});
@@ -134,11 +134,11 @@ define("tinymce/ui/ComboBox", [
 		disabled: function(state) {
 			var self = this;
 
-			self._super(state);
-
-			if (self._rendered) {
+			if (self._rendered && typeof(state) != 'undefined') {
 				self.getEl('inp').disabled = state;
 			}
+
+			return self._super(state);
 		},
 
 		/**
@@ -160,7 +160,7 @@ define("tinymce/ui/ComboBox", [
 			var width, lineHeight;
 
 			if (openElm) {
-				width = rect.w - openElm.offsetWidth - 10;
+				width = rect.w - DomUtils.getSize(openElm).width - 10;
 			} else {
 				width = rect.w - 10;
 			}
@@ -232,7 +232,7 @@ define("tinymce/ui/ComboBox", [
 			return (
 				'<div id="' + id + '" class="' + self.classes() + '">' +
 					'<input id="' + id + '-inp" class="' + prefix + 'textbox ' + prefix + 'placeholder" value="' +
-					value + '" hidefocus="true">' +
+					value + '" hidefocus="true"' + (self.disabled() ? ' disabled="disabled"' : '') + '>' +
 					openBtnHtml +
 				'</div>'
 			);

@@ -431,6 +431,9 @@ class Core extends MY_Controller {
             'category' => $category
         ));
 
+        if (!empty($_GET))
+            $this->template->registerCanonical(site_url());
+        
         $this->template->assign('content', $this->template->read($page_tpl));
 
         $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);

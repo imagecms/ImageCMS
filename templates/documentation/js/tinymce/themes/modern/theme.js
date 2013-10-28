@@ -253,7 +253,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 			}
 		}
 
-		var enabledMenuNames = settings.menubar ? settings.menubar.split(/[ ,]/) : defaultMenuBar;
+		var enabledMenuNames = typeof(settings.menubar) == "string" ? settings.menubar.split(/[ ,]/) : defaultMenuBar;
 		for (var i = 0; i < enabledMenuNames.length; i++) {
 			var menu = enabledMenuNames[i];
 			menu = createMenu(menu);
@@ -360,7 +360,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 					deltaY = Math.max(0, scrollContainerPos.y - bodyPos.y);
 				}
 
-				panel.fixed(false).moveRel(body, ['tl-bl', 'bl-tl']).moveBy(deltaX, deltaY);
+				panel.fixed(false).moveRel(body, editor.rtl ? ['tr-br', 'br-tr'] : ['tl-bl', 'bl-tl']).moveBy(deltaX, deltaY);
 			}
 		}
 
@@ -394,6 +394,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 				classes: 'tinymce tinymce-inline',
 				layout: 'flex',
 				direction: 'column',
+				align: 'stretch',
 				autohide: false,
 				autofix: true,
 				fixed: !!inlineToolbarContainer,
@@ -490,6 +491,10 @@ tinymce.ThemeManager.add('modern', function(editor) {
 				{type: 'elementpath'},
 				resizeHandleCtrl
 			]});
+		}
+
+		if (settings.readonly) {
+			panel.find('*').disabled(true);
 		}
 
 		// Render before the target textarea/div
