@@ -383,7 +383,7 @@ $config['compress_output'] = FALSE;
   |
  */
 $config['time_reference'] = 'local';
-$config['default_time_zone'] = 'Europe/Kyiv';
+$config['default_time_zone'] = 'Europe/Kiev';
 
 /*
   |--------------------------------------------------------------------------

@@ -215,7 +215,7 @@ class Authapi extends MY_Controller {
         // Validate rules and call forgot password function
         if ($val->run($this) AND $this->dx_auth->forgot_password($val->set_value('email'))) {
             echo json_encode(array(
-                'msg' => 'Email with new password send to you email',
+                'msg' => lang('Email with new password send to you email', 'auth'),
                 'status' => true,
             ));
         } else {

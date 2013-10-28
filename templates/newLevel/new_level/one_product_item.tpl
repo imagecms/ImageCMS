@@ -1,4 +1,3 @@
-{var_dump($limit != false && $limit != NULL)}
 {$widget = $widget != false && $widget != NULL}
 {$default = $defaultItem != false && $defaultItem != NULL}
 {$wishlist = $wishlist != false && $wishlist != NULL}

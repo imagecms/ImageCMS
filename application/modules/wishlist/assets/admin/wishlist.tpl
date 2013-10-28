@@ -64,7 +64,7 @@
                                                            accept="image/gif, image/jpeg, image/png, image/jpg"
                                                            style="position: relative!important; opacity: 2!important;"/>
                                                     <input type="hidden" value="{echo $user[id]}" name="userID"/>
-                                                    <input type="submit" value="{lang('Download', 'wishlist')}" class="btn" />
+                                                    <input type="submit" value="{lang('Upload', 'wishlist')}" class="btn" />
                                                     {form_csrf()}
                                                     </form>
                                                 </div>
@@ -95,7 +95,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">{lang('Last', 'wishlist')}:</label>
+                                                    <label class="control-label" for="banner_type">{lang('Description', 'wishlist')}:</label>
                                                     <div class="controls">
                                                         <textarea name="description">{echo $user[description]}</textarea>
                                                     </div>
