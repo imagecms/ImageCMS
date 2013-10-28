@@ -34,11 +34,15 @@
             var id = "{echo $CI->core->core_data['id']}";
             {literal}
                 $(document).ready(function() {
+                    if($('.tree_menu').find('ul:first .active').length === 0){
+                        $('.tree_menu').find('ul:first>li:first ul:eq(0)').show();
+                        $('.tree_menu').find('ul:first>li:first ul:eq(1)').show();
+                    }
                     $(".top_menu_documentation li a").on('click', function() {
-                        var categoyMenu = $(this).data('category_menu');
+                        var categoryMenu = $(this).data('category_menu');
                         var CookieDate = new Date();
                         CookieDate.setFullYear(CookieDate.getFullYear() + 1);
-                        document.cookie = "category_menu=" + categoyMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+                        document.cookie = "category_menu=" + categoryMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
                         window.location = window.location; // переадресація на ту саму сторінку
                     });
                 });
