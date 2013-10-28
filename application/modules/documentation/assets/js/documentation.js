@@ -65,6 +65,7 @@ tinymce.init({
             values: [
                 {text: 'php', value: 'php'},
                 {text: 'javascript', value: 'javascript'},
+                {text: 'smarty', value: 'smarty'},
                 {text: 'css', value: 'css'},
                 {text: 'html', value: 'html'},
                 {text: 'Важное', value: 'main'}
@@ -189,6 +190,7 @@ tinymce.init({
             values: [
                 {text: 'php', value: 'php'},
                 {text: 'javascript', value: 'javascript'},
+                {text: 'smarty', value: 'smarty'},
                 {text: 'css', value: 'css'},
                 {text: 'html', value: 'html'},
                 {text: 'Важное', value: 'main'}
