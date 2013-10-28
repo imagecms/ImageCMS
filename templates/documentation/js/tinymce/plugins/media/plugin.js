@@ -96,7 +96,6 @@ tinymce.PluginManager.add('media', function(editor, url) {
 							type: 'container',
 							label: 'Dimensions',
 							layout: 'flex',
-							direction: 'row',
 							align: 'center',
 							spacing: 5,
 							items: [
@@ -334,6 +333,7 @@ tinymce.PluginManager.add('media', function(editor, url) {
 				switch (name) {
 					case "video":
 					case "object":
+					case "embed":
 					case "img":
 					case "iframe":
 						setAttributes(attrs, {

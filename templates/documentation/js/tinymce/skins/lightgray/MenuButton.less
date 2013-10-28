@@ -1,10 +1,11 @@
 /* MenuButton */
 
 .mce-menubtn.mce-disabled span {
-	color: @text-color-disabled;
+	color: @text-disabled;
 }
 
 .mce-menubtn span {
+	color: @btn-text;
 	margin-right: 2px;
 	line-height: @line-height;
 	*line-height: @line-height - 4px;
@@ -25,4 +26,11 @@
 
 .mce-menubtn.mce-fixed-width.mce-btn-small span {
 	width: 70px;
+}
+
+// RTL
+
+.mce-rtl .mce-menubtn button {
+	direction: rtl;
+	text-align: right;
 }

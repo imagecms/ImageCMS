@@ -310,40 +310,43 @@ class Cache {
      * @access public
      */
     public function delete_all() {
-        if ($handle = opendir($this->_Config['store'])) {
-            $n = 0;
+        $n = 0;
 
-            while (false !== ($file = readdir($handle))) {
-                if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
+        $cache_store_dir = $this->_Config['store'] . "/";
+        if (is_dir($cache_store_dir) and ($root_dir_handle = opendir($cache_store_dir))) {
+            while (false !== ($file = readdir($root_dir_handle))) {
 
-                    $files_all = opendir("./system/cache/" . $file);
-                    while (false !== ($fileT = readdir($files_all))) {
-                        if ($fileT != "." && $fileT != ".." && $fileT != "/") {
-                            $n++;
-                            @unlink("./system/cache/" . $file . "/" . $fileT);
+                if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/") {
+                    $cache_sub_dir = $cache_store_dir . $file . "/";
+                    if (is_dir($cache_sub_dir) and ($sub_dir_handle = opendir($cache_sub_dir))) {
+                        while (false !== ($fileT = readdir($sub_dir_handle))) {
+
+                            if ($fileT != "." && $fileT != ".." && $fileT != "/") {
+
+                                $n++;
+                                @unlink($cache_sub_dir . $fileT);
+                            }
                         }
                     }
                 }
                 if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php' || strstr($file, '.') === TRUE) {
 
-                    if (substr($file, 0, 6) === 'cache_' || strstr($file, '.') == TRUE) {
-
-                        $n++;
-                    }
-                    @unlink("./system/cache/" . $file);
+                    $n++;
+                    @unlink($cache_store_dir . $file);
                 }
             }
         }
 
-        $files_all = opendir("./system/cache/templates_c/HTML");
-        
-        while (false !== ($fileT = readdir($files_all)))
-            if ($fileT != "." && $fileT != ".." && $fileT != "/"){
-                //echo $files_all . "/" . $fileT . '<br/>';
-                @unlink('./system/cache/templates_c/HTML/' . $fileT);
+        $cache_sub_dir = $cache_store_dir . "templates_c/HTML/";
+        if (is_dir($cache_sub_dir) and ($sub_dir_handle = opendir($cache_sub_dir))) {
+            while (false !== ($fileT = readdir($sub_dir_handle))) {
+
+                if ($fileT != "." && $fileT != ".." && $fileT != "/") {
+
+                    @unlink($cache_sub_dir . $fileT);
+                }
             }
-
-
+        }
 
 
         $this->log_cache_error('All cache files deleted');
@@ -372,16 +375,20 @@ class Cache {
     }
 
     public function cache_file() {
-        if ($handle = opendir($this->_Config['store'])) {
-            $n = 0;
+        $n = 0;
 
-            while (false !== ($file = readdir($handle))) {
-                if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
+        $cache_store_dir = $this->_Config['store'] . "/";
+        if (is_dir($cache_store_dir) and ($root_dir_handle = opendir($cache_store_dir))) {
+            while (false !== ($file = readdir($root_dir_handle))) {
 
-                    $files_all = opendir("./system/cache/" . $file);
-                    while (false !== ($fileT = readdir($files_all))) {
-                        if ($fileT != "." && $fileT != ".." && $fileT != "/" && strstr($fileT, '~') != TRUE) {
-                            $n++;
+                if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/") {
+                    $cache_sub_dir = $cache_store_dir . $file . "/";
+                    if (is_dir($cache_sub_dir) and ($sub_dir_handle = opendir($cache_sub_dir))) {
+                        while (false !== ($fileT = readdir($sub_dir_handle))) {
+
+                            if ($fileT != "." && $fileT != ".." && $fileT != "/" && strstr($fileT, '~') != TRUE) {
+                                $n++;
+                            }
                         }
                     }
                 }

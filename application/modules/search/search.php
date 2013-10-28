@@ -78,11 +78,16 @@ class Search extends MY_Controller {
                 ),
             );
 
+            /** Data for categories in search * */
+            $dataForFoundInCategories = $this->countSearchResults($where);
+            $dataForFoundInCategories = $dataForFoundInCategories->result_array();
+           
             if ($hash == '') {
                 $result = $this->execute($where, $offset);
             } else {
                 $result = $this->query($hash, $offset);
             }
+
 
             if (!$this->search_title) {
                 $this->search_title = $this->input->post('text');
@@ -129,7 +134,7 @@ class Search extends MY_Controller {
 
         $this->core->set_meta_tags(array(lang("Search", 'search'), $this->search_title));
         $this->core->core_data['data_type'] = 'search';
-        $this->_display($data);
+        $this->_display($data, $dataForFoundInCategories);
     }
 
     /**
@@ -155,7 +160,7 @@ class Search extends MY_Controller {
 
             $tempText = mb_substr($tempText, $start, $stop, 'UTF-8');
             $tempText = str_replace($text, '<span style="background-color:' . $this->highlightColor . '">' . $text . '</span>', $tempText);
-            $data[$i]['parsedText'] = '...' . mb_substr($tempText, 0, 500,'utf-8') . '...';
+            $data[$i]['parsedText'] = '...' . mb_substr($tempText, 0, 500, 'utf-8') . '...';
         }
 
         return $data;
@@ -176,7 +181,7 @@ class Search extends MY_Controller {
         }
     }
 
-     public function save_positions() {
+    public function save_positions() {
         $positions = $_POST['positions'];
         if (sizeof($positions) == 0)
             return false;
@@ -358,6 +363,48 @@ class Search extends MY_Controller {
             return $data;
         }
     }
+    
+    private function countSearchResults($where){
+        // begin query
+        if (count($where) > 0) {
+            foreach ($where as $params) {
+                // Set search operator. (where, like, or_where, etc..)
+                if (isset($params['operator'])) {
+                    $operator = strtolower($params['operator']);
+                    unset($params['operator']);
+                } else {
+                    $operator = $this->default_operator;
+                }
+
+                // Protect field names with backticks.
+                if (isset($params['backticks'])) {
+                    $backticks = $params['backticks'];
+                    unset($params['backticks']);
+                } else {
+                    $backticks = TRUE;
+                }
+
+                if (isset($params['group']) AND $params['group'] == TRUE) {
+                    $use_group = TRUE;
+                    unset($params['group']);
+                } else {
+                    $use_group = FALSE;
+                }
+
+
+                foreach ($params as $key => $val) {
+                    if ($use_group == FALSE) {
+                        $res = $this->db->$operator($key, $val, $backticks);
+                    } else {
+                        $res = $this->db->where($val);
+                    }
+                }
+            }
+        }
+        
+        return $res->get($this->table);
+      
+    }
 
     // Generate search hash
     private function generate_hash($where = array()) {
@@ -386,14 +433,72 @@ class Search extends MY_Controller {
     }
 
     // Display search template file
-    public function _display($pages = array()) {
+    public function _display($pages = array(), $foundInCategories = null) {
+        /*         * Prepare categories for search results * */
+        $categoriesInSearchResults = null;
+        $tree = null;
+        $categories = array();
+        
+        if ($foundInCategories != null) {
+            $this->load->library('lib_category');
+            foreach ($foundInCategories as $key => $value) {
+                if (array_key_exists($value['category'], $categories)){
+                    $categories[$value['category']]['count']++;
+                }else{
+                    $value['count'] = 1;
+                    $categories[$value['category']] = $value;
+                }
+                
+            }
+      
+            $categoriesInSearchResults = $this->prepareCategoriesForSearchResults($categories);
+            $tree = $this->lib_category->build();
+            $categoriesInfo = $this->lib_category->unsorted();
+        }
+
         if (count($pages) > 0) {
             ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
 
-            $this->template->add_array(array('items' => $pages));
+            $this->template->add_array(array(
+                'items' => $pages,
+                'categoriesInSearchResults' => $categoriesInSearchResults,
+                'tree' => $tree,
+                'countAll' =>  count($foundInCategories),
+                'categoriesInfo' => $categoriesInfo
+                ));
         }
 
         $this->template->show($this->search_tpl);
+    }
+
+    /**
+     * Prepare categories for search results
+     * @param array $foundInCategories
+     * @return boolean|array
+     */
+    private function prepareCategoriesForSearchResults($foundInCategories) {
+        $categoriesArray = array();
+        $categoriesAll = $this->lib_category->unsorted();
+        foreach ($categoriesAll as $key => $value) {
+            /** Count of found pages in category * */
+            if (array_key_exists($key, $foundInCategories)) {
+                  $categoriesArray[$key] = $foundInCategories[$key]['count'];
+            }
+            /** For fetched pages * */
+            $mainCategory = $key;
+            if (($fetchCategories = unserialize($categoriesAll[$mainCategory]['fetch_pages'])) != false) {
+                foreach ($foundInCategories as $page) {
+                    if (in_array($page['category'], $fetchCategories)) {
+                        if (array_key_exists($mainCategory, $categoriesArray)) {
+                            $categoriesArray[$mainCategory] = $categoriesArray[$mainCategory] + $page['count'];
+                        } else {
+                            $categoriesArray[$mainCategory] = $page['count'];
+                        }
+                    }
+                }
+            }
+        }
+        return $categoriesArray;
     }
 
     // Create search table
