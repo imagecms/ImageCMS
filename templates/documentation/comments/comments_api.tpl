@@ -36,17 +36,6 @@
                             {/if}
                         </div>
                     </div>
-                    <div class="func-button-comment__icsi-css">
-                        <div class="">
-                            <button class="btn"  type="button"  data-rel="cloneAddPaste" data-parid="{$comment['id']}">
-                                <div>
-                                    {lang('Ответ', 'comments')}
-                                </div>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
- 
                     <ul class="answear-programmer">
                         {foreach $comment_ch as $com_ch}
                             {if $com_ch.parent == $comment.id}
