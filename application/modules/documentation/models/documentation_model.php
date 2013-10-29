@@ -431,6 +431,7 @@ class Documentation_model extends CI_Model {
                             ->where('category', $id)
                             ->where('post_status', 'publish')
                             ->where('lang', $langId)
+                            ->order_by('position','asc')
                             ->get('content')->result_array();
         }
 
