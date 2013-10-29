@@ -60,7 +60,12 @@
                         document.cookie = "category_menu=" + categoryMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
                         window.location = window.location; // переадресація на ту саму сторінку
                     });
-                    
+
+                    $('img').each(function() {
+                        if (!$(this).parent('a').hasClass('fancybox'))
+                            $(this).wrap('<a class="fancybox" rel="group" href="' + $(this).attr('src') + '"></a');
+                    });
+
                     $(".fancybox").fancybox();
                 });
             {/literal}
