@@ -23,18 +23,7 @@
         </div>
     </div>
     <div class="row-fluid">
-
-        <div class='history_row collapsed main-article active-article-status'>
-            <div class="smini_left">
-                Создано <br>
-                {date("d.m.Y H:i",$page.created)}
-                {$page.author}-ом
-            </div>
-            <div class='smini_left collapsed_controls showFullText' style="width: 74%;">Отобразить весь текст</div>
-            <div style="clear:both"></div>
-        </div>
-
-        <div class="article-view main-article" style="display:none" data-page-id="{$page.id}">
+        <div class="article-view" data-page-id="{$page.id}">
             <div class="span4 left-info" style="width: 292px;">
                 <table>
                     <tr>
@@ -58,11 +47,6 @@
                         <td>{$page.author}</td>
                     </tr>
                 </table>
-                <div class="history-bottom-link">
-                    <a class="hideFullText">
-                        Скрыть текст
-                    </a>
-                </div>
 
             </div>
             <div class="span9 article-data active-article-status" style="margin: 0px;">
@@ -72,24 +56,10 @@
         </div>
 
 
-
         {if count($history) > 0}
-
+            <hr />
             {foreach $history as $historyRow}
-
-                <div class='history_row collapsed history-article-status' data-id="{$historyRow.id}">
-                    <div class="smini_left">
-                        Редактировано <br>
-                        {date("d.m.Y H:i",$historyRow.updated)} 
-                        {$historyRow.username}-ом
-                    </div>
-                    <div class='smini_left collapsed_controls showFullText'>Отобразить весь текст</div>
-                    <div class='smini_left collapsed_controls compareWithOriginalCollapsed'>Сравнить с оригиналом</div>
-                    <div style="clear:both"></div>
-                </div>
-
-
-                <div class="article-view history" data-id="{$historyRow.id}">
+                <div class="article-view">
                     <div class="span3 left-info"  style="width: 292px;">
                         <table>
                             <tr>
@@ -104,25 +74,22 @@
                                 <td>Пользователь:</td>
                                 <td>{$historyRow.username}</td>
                             </tr>
+                            <div class="history-bottom-link">
+                                <a class="compareWithOriginal">
+                                    Сравнить с оригиналом
+                                </a>
+                                <br />
+                                <a class="articleHistoryControl" data-url='{$BASE_URL}admin/components/cp/documentation/makeRelevant/{$historyRow.page_id}/{$historyRow.id}'>
+                                    Сделать актуальной
+                                </a>
+                                <br />
+                                <a class="articleHistoryControl" data-url='{$BASE_URL}admin/components/cp/documentation/deleteHistoryRow/{$historyRow.id}'>
+                                    Удалить
+                                </a>
+                            </div>
+
                         </table>
-                        <div class="history-bottom-link">
-                            <a class="hideFullText">
-                                Скрыть текст
-                            </a>
-                            <br />
-                            <br />
-                            <a class="compareWithOriginal">
-                                Сравнить с оригиналом
-                            </a>
-                            <br />
-                            <a class="articleHistoryControl" data-url='{$BASE_URL}admin/components/cp/documentation/makeRelevant/{$historyRow.page_id}/{$historyRow.id}'>
-                                Сделать актуальной
-                            </a>
-                            <br />
-                            <a class="articleHistoryControl" data-url='{$BASE_URL}admin/components/cp/documentation/deleteHistoryRow/{$historyRow.id}'>
-                                Удалить
-                            </a>
-                        </div>
+
                     </div>
                     <div class="span9 article-data history-article-status"  style="margin: 0px;">
                         {$historyRow.full_text}
