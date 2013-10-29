@@ -37,7 +37,7 @@ tinymce.init({
                 }
             });
         });
-        
+
         editor.addButton('highlightcode', {
             type: 'listbox',
             text: 'code',
@@ -142,6 +142,20 @@ tinymce.init({
     spellchecker_rpc_url: "http://speller.yandex.net/services/tinyspell",
     menubar: false,
     setup: function(editor) {
+        editor.addShortcut('ctrl+s', 'description', function() {
+            $.ajax({
+                type: 'post',
+                data: {
+                    "h1": tinyMCE.activeEditor.getContent().toString(),
+                    "id": id
+                },
+                url: '/documentation/save_title',
+                complete: function(obj) {
+                    tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                }
+            });
+        });
+
         editor.addButton('save_button', {
             text: 'Сохранить',
             icon: 'save',
