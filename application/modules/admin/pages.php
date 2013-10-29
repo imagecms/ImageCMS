@@ -689,7 +689,7 @@ class Pages extends BaseAdminController {
                 'position' => $k
             );
             $this->db->where('id', $item[0]);
-            $this->db->or_where('lang_alias', $item[1]);
+//            $this->db->or_where('lang_alias', $item[1]);
             $this->db->update('content', $data);
         }
     }
