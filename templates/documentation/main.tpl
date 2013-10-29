@@ -94,9 +94,15 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a href="{site_url('')}" class="logo">
-                            <img src="{$THEME}images/logo.png" alt="logo.png"/>
-                        </a>
+                        {if  $CI->uri->uri_string() == ''}
+                            <span class="logo">
+                                <img src="{$THEME}images/logo.png" alt="logo.png"/>
+                            </span>
+                        {else:}
+                            <a href="{site_url('')}" class="logo">
+                                <img src="{$THEME}images/logo.png" alt="logo.png"/>
+                            </a>
+                        {/if}
                     </div>
 
                     <div class="collapse navbar-collapse">
