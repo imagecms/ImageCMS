@@ -64,6 +64,8 @@ $(document).ready(function() {
     });
 
 
+    /* --- "ACCORDION" FOR HISTORY OF CHANGES --- */
+
     $('.showFullText').click(function() {
         $('.history_row.collapsed').show();
         $(this).parents('.history_row.collapsed').hide();
@@ -88,6 +90,8 @@ $(document).ready(function() {
         $('.history_row.collapsed').show();
         $('.article-view').hide();
     });
+    
+    /* --- End of "ACCORDION" FOR HISTORY OF CHANGES --- */
 
 });
 
