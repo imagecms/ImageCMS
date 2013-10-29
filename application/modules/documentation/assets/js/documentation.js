@@ -24,6 +24,20 @@ tinymce.init({
     filemanager_title: "Responsive Filemanager",
     external_plugins: {"filemanager": "/templates/documentation/js/tinymce/plugins/responsivefilemanager/plugin.min.js"},
     setup: function(editor) {
+        editor.addShortcut('ctrl+s', 'description', function() {
+            $.ajax({
+                type: 'post',
+                data: {
+                    "desc": tinyMCE.activeEditor.getContent().toString(),
+                    "id": id
+                },
+                url: '/documentation/save_desc',
+                complete: function(obj) {
+                    tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                }
+            });
+        });
+        
         editor.addButton('highlightcode', {
             type: 'listbox',
             text: 'code',
