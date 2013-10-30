@@ -6,7 +6,7 @@ tinymce.init({
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu spellchecker responsivefilemanager",
+        "insertdatetime media table contextmenu paste spellchecker responsivefilemanager",
         "nonbreaking"
     ],
     nonbreaking_force_tab: true,
@@ -53,7 +53,7 @@ tinymce.init({
                     case ('smarty'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
-                            editor.execCommand('mceInsertContent', false, '<pre><code class="django php">' + text + '</code></pre><p> </p>');
+                            editor.execCommand('mceInsertContent', false, '<pre><code class="django xml">' + text + '</code></pre><p> </p>');
                             hljs.initHighlighting.called = false;
                             hljs.initHighlighting();
                         }
@@ -190,7 +190,7 @@ tinymce.init({
                     case ('smarty'):
                         var text = editor.selection.getContent();
                         if (text && text.length > 0) {
-                            editor.execCommand('mceInsertContent', false, '<pre><code class="django php">' + text + '</code></pre><p> </p>');
+                            editor.execCommand('mceInsertContent', false, '<pre><code class="django xml">' + text + '</code></pre><p> </p>');
                             hljs.initHighlighting.called = false;
                             hljs.initHighlighting();
                         }
