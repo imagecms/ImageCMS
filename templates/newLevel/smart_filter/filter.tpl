@@ -81,7 +81,7 @@
                             <div class="filters-content">
                                 <ul>
                                     {foreach $prop->possibleValues as $item}
-                                        {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
+                                        {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && (in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) or in_array(htmlspecialchars_decode($item.value), ShopCore::$_GET['p'][$prop->property_id]))}
                                             {$check = 'checked="checked"'}
                                         {else:}
                                             {$check = ''}

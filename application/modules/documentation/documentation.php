@@ -36,10 +36,15 @@ class Documentation extends \MY_Controller {
     public function autoload() {
 //        $this->recent_news();
 //        $this->recent_forum();
-        if ($this->hasCRUDAccess()) {
+        if (!$this->input->is_ajax_request()) {
             \CMSFactory\assetManager::create()
-                    ->registerStyle('documentation', TRUE)
-                    ->registerScript('documentation', FALSE, 'before');
+                    ->setData('hasCRUDAccess', $this->hasCRUDAccess());
+
+            if ($this->hasCRUDAccess()) {
+                \CMSFactory\assetManager::create()
+                        ->registerStyle('documentation', TRUE)
+                        ->registerScript('documentation', FALSE, 'before');
+            }
         }
     }
 
