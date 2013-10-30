@@ -22,6 +22,13 @@ $(document).ready(function() {
     });
 
     if (!hasCRUDAccess)
-        $(".fancybox").fancybox();
+        $(".fancybox").fancybox({
+            padding: 0,
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
 });
 
