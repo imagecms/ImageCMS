@@ -3954,7 +3954,7 @@ msgstr "Миниатюра"
 
 #: /var/www/image.loc/_tempLangs.php:260
 msgid "Quality"
-msgstr "Количество"
+msgstr "Качество"
 
 #: /var/www/image.loc/_tempLangs.php:261
 msgid "Main size"
@@ -5909,7 +5909,6 @@ msgstr "Не удалось удалить основной статус"
 msgid "You did not ask for a set of main commodity"
 msgstr "Вы не спрашивали набор основных товаров"
 
-# а
 #: ../../modules/shop/admin/kits.php:62
 #: ../../modules/shop/admin/kits.php:142
 msgid "You must attach the goods to create a set"
