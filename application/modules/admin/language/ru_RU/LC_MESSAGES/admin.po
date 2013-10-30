@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-30 18:42+0300\n"
+"POT-Creation-Date: 2013-10-30 19:09+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -4469,8 +4469,8 @@ msgid "Create currency"
 msgstr "Создать валюту"
 
 #: /var/www/image.loc/_tempLangs.php:51
-msgid "Use the currency as default at the site"
-msgstr "Использовать  по умолчанию на сайте"
+msgid "Additional currency"
+msgstr "Дополнительная валюта"
 
 #: /var/www/image.loc/_tempLangs.php:54
 msgid "Make main"
@@ -6007,7 +6007,7 @@ msgid "Uninstalling"
 msgstr "Удаление"
 
 #: ../../modules/shop/admin/notifications.php:289
-#: ../../modules/shop/admin/orders.php:314
+#: ../../modules/shop/admin/orders.php:318
 msgid "Order status changed"
 msgstr "Статус заказа изменен"
 
@@ -6058,8 +6058,8 @@ msgid "Warehouse deleted"
 msgstr "Склад удален"
 
 #: ../../modules/shop/admin/warehouses.php:107
-#: ../../modules/shop/admin/orders.php:480
-#: ../../modules/shop/admin/orders.php:519
+#: ../../modules/shop/admin/orders.php:484
+#: ../../modules/shop/admin/orders.php:523
 msgid "The operation was successful"
 msgstr "Операция прошла успешно"
 
@@ -6080,28 +6080,28 @@ msgstr "Поле URL пустое!"
 msgid "The product was successfully created"
 msgstr "Продукт был успешно создан"
 
-#: ../../modules/shop/admin/products.php:327
-#: ../../modules/shop/admin/products.php:1102
+#: ../../modules/shop/admin/products.php:332
+#: ../../modules/shop/admin/products.php:1107
 msgid "Product not found"
 msgstr "Товар не найден"
 
-#: ../../modules/shop/admin/products.php:366
+#: ../../modules/shop/admin/products.php:371
 msgid "The specified URL is busy"
 msgstr "Указанный URL занят"
 
-#: ../../modules/shop/admin/products.php:528
+#: ../../modules/shop/admin/products.php:533
 msgid "The product was successfully edited"
 msgstr "Продукт успешно отредактирован"
 
-#: ../../modules/shop/admin/products.php:857
+#: ../../modules/shop/admin/products.php:862
 msgid "Price updated"
 msgstr "Цена обновлена"
 
-#: ../../modules/shop/admin/products.php:868
+#: ../../modules/shop/admin/products.php:873
 msgid "(copy)"
 msgstr "(копия) "
 
-#: ../../modules/shop/admin/products.php:985
+#: ../../modules/shop/admin/products.php:990
 msgid "A copy was successfully created"
 msgstr "Копия была успешно создана"
 
@@ -6179,66 +6179,66 @@ msgstr "Вперед&nbsp;"
 msgid "&nbsp;Back"
 msgstr "&nbsp;Назад"
 
-#: ../../modules/shop/admin/orders.php:210
+#: ../../modules/shop/admin/orders.php:214
 msgid "Order not found"
 msgstr "Заказ не найден"
 
-#: ../../modules/shop/admin/orders.php:415
-#: ../../modules/shop/admin/orders.php:519
+#: ../../modules/shop/admin/orders.php:419
+#: ../../modules/shop/admin/orders.php:523
 msgid "Order Status changed"
 msgstr "Статус заказа изменен"
 
-#: ../../modules/shop/admin/orders.php:480
+#: ../../modules/shop/admin/orders.php:484
 msgid "Orders are removed"
 msgstr "Заказы удалены"
 
-#: ../../modules/shop/admin/orders.php:556
+#: ../../modules/shop/admin/orders.php:560
 msgid "Payment status of orders changed"
 msgstr "Статус оплаты заказов изменен"
 
-#: ../../modules/shop/admin/orders.php:556
+#: ../../modules/shop/admin/orders.php:560
 msgid "Saved"
 msgstr "Сохранено"
 
-#: ../../modules/shop/admin/orders.php:611
+#: ../../modules/shop/admin/orders.php:615
 msgid "You can not delete the last item from the order"
 msgstr "Вы не можете удалить последний элемент из заказа"
 
-#: ../../modules/shop/admin/orders.php:631
-#: ../../modules/shop/admin/orders.php:646
+#: ../../modules/shop/admin/orders.php:635
+#: ../../modules/shop/admin/orders.php:650
 msgid "Product is removed from the Order"
 msgstr "Продукт удален из Заказа"
 
-#: ../../modules/shop/admin/orders.php:716
+#: ../../modules/shop/admin/orders.php:720
 msgid "Very high price, please set smaller"
 msgstr "Очень высокая цена, пожалуйста, установите меньшую"
 
-#: ../../modules/shop/admin/orders.php:795
-#: ../../modules/shop/admin/orders.php:822
+#: ../../modules/shop/admin/orders.php:799
+#: ../../modules/shop/admin/orders.php:826
 msgid "Product updated"
 msgstr "Продукт обновлен"
 
-#: ../../modules/shop/admin/orders.php:868
+#: ../../modules/shop/admin/orders.php:872
 msgid "Item has been added to the order"
 msgstr "Товар добавлен к заказу"
 
-#: ../../modules/shop/admin/orders.php:872
+#: ../../modules/shop/admin/orders.php:876
 msgid "This product does not exist"
 msgstr "Этот товар не существует"
 
-#: ../../modules/shop/admin/orders.php:1085
+#: ../../modules/shop/admin/orders.php:1089
 msgid "Order was successfully created"
 msgstr "Заказ успешно создан"
 
-#: ../../modules/shop/admin/orders.php:1098
+#: ../../modules/shop/admin/orders.php:1102
 msgid "User is not selected"
 msgstr "Пользователь не выбран"
 
-#: ../../modules/shop/admin/orders.php:1100
+#: ../../modules/shop/admin/orders.php:1104
 msgid "Delivery method is not selected"
 msgstr "Способ доставки не выбран"
 
-#: ../../modules/shop/admin/orders.php:1102
+#: ../../modules/shop/admin/orders.php:1106
 msgid "Payment method is not selected"
 msgstr "Способ оплаты не выбран"
 
@@ -6393,6 +6393,9 @@ msgstr "Приватное поле"
 #: ../../modules/shop/models/build/classes/Shop/CustomFields.php:32
 msgid "Custom right field"
 msgstr "Правильное поле"
+
+#~ msgid "Use the currency as default at the site"
+#~ msgstr "Использовать  по умолчанию на сайте"
 
 # а
 #, fuzzy
