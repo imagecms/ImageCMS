@@ -13,7 +13,13 @@ $(document).ready(function() {
         var CookieDate = new Date();
         CookieDate.setFullYear(CookieDate.getFullYear() + 1);
         document.cookie = "category_menu=" + categoryMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
-        window.location = window.location; // переадресація на ту саму сторінку
+
+        var url = window.location.origin;
+        var len = url.length;
+        var lastChar = url.substr(len - 1, len);
+        var newLocation = lastChar != '#' ? url : url.substr(0, len - 1);
+        window.location = newLocation; // власне переадресація
+
     });
 
     $('div.main_content img').each(function() {
