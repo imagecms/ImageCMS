@@ -67,11 +67,11 @@
                         </button>
 
                         {if  $CI->uri->uri_string() == ''}
-                            <span class="logo">
+                            <span class="logo f_l navbar-brand">
                                 <img src="{$THEME}images/logo.png" alt="logo.png"/>
                             </span>
                         {else:}
-                            <a href="{site_url('')}" class="logo">
+                            <a href="{site_url('')}" class="logo f_l navbar-brand">
                                 <img src="{$THEME}images/logo.png" alt="logo.png"/>
                             </a>
                         {/if}
