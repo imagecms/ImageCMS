@@ -36,7 +36,23 @@ class Documentation extends \MY_Controller {
     public function autoload() {
 //        $this->recent_news();
 //        $this->recent_forum();
+
+        $top_menu = array(
+            'begin-work' => 'Начало работы',
+            'manage' => 'Администрирование',
+            'step-by-step' => 'Пошаговые инструкции',
+            'developers' => 'Разработчикам',
+            'templates' => 'Работа с шаблонами',
+        );
+        
+        \CMSFactory\assetManager::create()
+                ->setData('hasCRUDAccess', $this->hasCRUDAccess())
+                ->setData('top_menu', $top_menu);
+
+
+
         if (!$this->input->is_ajax_request()) {
+
             \CMSFactory\assetManager::create()
                     ->setData('hasCRUDAccess', $this->hasCRUDAccess());
 
@@ -53,8 +69,8 @@ class Documentation extends \MY_Controller {
             return $text;
         }
         return preg_replace_callback("/<pre>(.*?)[^>]<\/pre>/si", function($matches) {
-            return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
-        }, $text);
+                    return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
+                }, $text);
     }
 
     public function hasCRUDAccess() {
