@@ -152,11 +152,15 @@ class Settings extends BaseAdminController {
      * @return array
      */
     function _get_templates() {
-        $new_arr = array();
+        $new_arr_shop = array();
         if ($handle = opendir(TEMPLATES_PATH)) {
             while (false !== ($file = readdir($handle))) {
                 if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
                     if (!is_file(TEMPLATES_PATH . $file)) {
+                        if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH.$file.'/shop/')){
+                            $new_arr_shop[$file] = $file;
+                        }
+                        
                         $new_arr[$file] = $file;
                     }
                 }
@@ -165,7 +169,12 @@ class Settings extends BaseAdminController {
         } else {
             return FALSE;
         }
-        return $new_arr;
+ 
+        if (SHOP_INSTALLED){
+            return $new_arr_shop;
+        }else{
+            return $new_arr;
+        }
     }
 
     /**
