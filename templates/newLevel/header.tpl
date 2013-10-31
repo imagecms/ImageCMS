@@ -48,7 +48,7 @@
                     <span class="icon_skype"></span>
                     <span class="text-el">{echo siteinfo('Skype')}</span>
                 </a>
-                <a href="mailto:partner@imagecms.net" class="f-s_0">
+                <a href="mailto:{echo siteinfo('Email')}" class="f-s_0">
                     <span class="icon_mail"></span>
                     <span class="text-el">{echo siteinfo('Email')}</span>
                 </a>
