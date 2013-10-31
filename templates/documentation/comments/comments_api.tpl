@@ -36,17 +36,6 @@
                             {/if}
                         </div>
                     </div>
-                    <div class="func-button-comment__icsi-css">
-                        <div class="">
-                            <button class="btn"  type="button"  data-rel="cloneAddPaste" data-parid="{$comment['id']}">
-                                <div>
-                                    {lang('Ответ', 'comments')}
-                                </div>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-
                     <ul class="answear-programmer">
                         {foreach $comment_ch as $com_ch}
                             {if $com_ch.parent == $comment.id}
@@ -65,16 +54,17 @@
         </ul>
     {/if}
 
-    
-    <p style="text-align: center; font-size: 12pt; color: #CF6A4C;">Часто задаваемые вопросы</p>
-    
-    
+    <p style='font-size:12pt; text-align:center; padding: 10px;'>{lang('Часто задаваемые вопросы', 'comments')}</p>
+
     {if $can_comment == 0 OR $is_logged_in}
 
         <div class="main-form-comments__icsi-css">
             <div class="frame-comments__icsi-css">
                 <div class="inside-padd">
-                    <div class="title_h2__icsi-css">{lang('У вас возник вопрос? Пишите!', 'comments')} <p style="font-size: 12pt;"> {lang('Мы предоставим ответ на Ваш вопрос по этой странице документации в течении 24 часов', 'comments')}</p></div>
+                    <div class="title_h2__icsi-css">
+                        {lang('У вас возник вопрос? Пишите', 'comments')}
+                        <p style='font-size:11pt;'>{lang('Мы предоставим ответ на Ваш вопрос по этой странице документации в течении 24 часов', 'comments')}</p>
+                    </div>
                     <!-- Start of new comment fild -->
                     <div class="form-comment__icsi-css form__icsi-css horizontal-form">
                         <div class="inside-padd">
@@ -113,7 +103,7 @@
                                 {/if}
 
                                 <label>
-                                    <span class="title__icsi-css">{lang('Вопрос', 'comments')} <span class="must">*</span></span>
+                                    <span class="title__icsi-css">{lang('Вопрос', 'comments')}<span class="must">*</span></span>
                                     <span class="frame_form_field__icsi-css">
                                         <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                     </span>
@@ -206,5 +196,4 @@
             </form>
         </div>
     </div>
-
 </div>
