@@ -230,7 +230,14 @@ class Settings extends BaseAdminController {
             'text_editor' => $this->input->post('text_editor'),
             'siteinfo' => serialize($siteinfo)
         );
-
+        
+        /** Save template path for shop **/
+        if ($this->db->table_exists('shop_settings')){
+            $shopTemplatePath = './templates/'.$this->input->post('template').'/shop/';
+            $this->db->where('name','systemTemplatePath')->update('shop_settings', array('value' => $shopTemplatePath));
+        }
+        
+        
         $this->translate_meta();
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
