@@ -24,46 +24,29 @@
         <script type="text/javascript" src="{$THEME}js/highlight/highlight.pack.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.min.js"></script>
 
-        <!-- Add mousewheel plugin (this is optional) -->
-        <script type="text/javascript" src="{$THEME}js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+        {if !$hasCRUDAccess}
+            <!-- Add mousewheel plugin (this is optional) -->
+            <script type="text/javascript" src="{$THEME}js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
 
-        <!-- Add fancyBox -->
-        <link rel="stylesheet" href="{$THEME}js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-        <script type="text/javascript" src="{$THEME}js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <!-- Add fancyBox -->
+            <link rel="stylesheet" href="{$THEME}js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+            <script type="text/javascript" src="{$THEME}js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
-        <!-- Optionally add helpers - button, thumbnail and/or media -->
-        <link rel="stylesheet" href="{$THEME}js/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
-        <script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-        <script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+            <!-- Optionally add helpers - button, thumbnail and/or media -->
+            <link rel="stylesheet" href="{$THEME}js/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+            <script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+            <script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 
-        <link rel="stylesheet" href="{$THEME}js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
-        <script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+            <link rel="stylesheet" href="{$THEME}js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+            <script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+        {/if}
 
-        {literal}
-            <script>hljs.initHighlightingOnLoad();</script>
-        {/literal}
-
-        <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.js"></script>
+        <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
 
         <script type="text/javascript">
+            var hasCRUDAccess = "{echo $hasCRUDAccess}";
             var id = "{echo $CI->core->core_data['id']}";
-            {literal}
-                $(document).ready(function() {
-                    if($('.tree_menu').find('ul:first .active').length === 0){
-                        $('.tree_menu').find('ul:first>li:first ul:eq(0)').show();
-                        $('.tree_menu').find('ul:first>li:first ul:eq(1)').show();
-                    }
-                    $(".top_menu_documentation li a").on('click', function() {
-                        var categoryMenu = $(this).data('category_menu');
-                        var CookieDate = new Date();
-                        CookieDate.setFullYear(CookieDate.getFullYear() + 1);
-                        document.cookie = "category_menu=" + categoryMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
-                        window.location = window.location; // переадресація на ту саму сторінку
-                    });
-                    
-                    $(".fancybox").fancybox();
-                });
-            {/literal}
+            hljs.initHighlightingOnLoad();
         </script>
     </head>
     <body>
@@ -83,27 +66,25 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a id="main_logo" href="{site_url()}" class="logo f_l navbar-brand">
-                            <img src="{$THEME}images/logo.png"/>
-                        </a>
+                        {if  $CI->uri->uri_string() == ''}
+                            <span class="logo f_l navbar-brand">
+                                <img src="{$THEME}images/logo.png" alt="logo.png"/>
+                            </span>
+                        {else:}
+                            <a href="{site_url('')}" class="logo f_l navbar-brand">
+                                <img src="{$THEME}images/logo.png" alt="logo.png"/>
+                            </a>
+                        {/if}
                     </div>
 
-                    <div class="collapse navbar-collapse">
-                        {$top_menu = array(
-				    'begin-work' => 'Начало работы',
-				    'manage' => 'Администрир.',
-				    'step-by-step' => 'Пошаговые инструкции',
-				    'developers' => 'Разработчикам',
-				    'templates' => 'Работа с шаблонами',
-				)}
 
+                    <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav top_menu_documentation">
                             {foreach $top_menu as $key => $value}
                                 <li {if $_COOKIE['category_menu'] == $key}class="active"{/if}>
                                     <a href="#" data-category_menu="{$key}">{$value}</a>
                                 </li>
                             {/foreach}
-
                         </ul>
 
                     </div><!-- /.nav-collapse -->
@@ -140,7 +121,7 @@
                             <h1>Hello, world!</h1>
                             <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
                         </div-->
-                        <div class="row">
+                        <div class="row main_content">
                             {$content}
                         </div>
                         {if $CI->dx_auth->is_logged_in()}
