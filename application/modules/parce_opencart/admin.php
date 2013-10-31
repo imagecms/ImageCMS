@@ -202,9 +202,11 @@ class Admin extends BaseAdminController {
             $insert[] = array(
                 'id' => $brand['manufacturer_id'],
                 'url' => $brand['url'],
-                'image' => $brand['image'],
+                'image' => pathinfo($brand['image'], PATHINFO_BASENAME),
                 'position' => $brand['manufacturer_id'],
             );
+
+            copy('uploads/' . $brand['image'], 'uploads/shop/brands/' . pathinfo($brand['image'], PATHINFO_BASENAME));
 
             $insert_i18n[] = array(
                 'id' => $brand['manufacturer_id'],
@@ -305,13 +307,15 @@ class Admin extends BaseAdminController {
                 'meta_keywords' => $product['meta_keyword'],
             );
 
+            copy('uploads/' . $product['image'], 'uploads/shop/products/origin/' . pathinfo($product['image'], PATHINFO_BASENAME));
+
             $insert_variant[] = array(
                 'product_id' => $product['product_id'],
                 'price' => NULL,
                 'number' => $product['sku'],
                 'stock' => $product['quantity'],
                 'position' => 0,
-                'mainImage' => $product['image'],
+                'mainImage' => pathinfo($product['image'], PATHINFO_BASENAME),
                 'smallImage' => NULL,
                 'external_id' => NULL,
                 'currency' => $cur,
@@ -420,7 +424,7 @@ class Admin extends BaseAdminController {
                 'trash_type' => 301,
             );
         }
-        
+
         $this->db->insert_batch('shop_category', $insert);
         $this->db->insert_batch('shop_category_i18n', $insert_i18n);
         $this->db->insert_batch('trash', $trash);
