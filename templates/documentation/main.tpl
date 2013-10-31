@@ -51,6 +51,7 @@
             var hasCRUDAccess = "{echo $hasCRUDAccess}";
             var id = "{echo $CI->core->core_data['id']}";
 
+
             {literal}
                 $(document).ready(function() {
                     if ($('.tree_menu').find('ul:first .active').length === 0) {
@@ -82,6 +83,7 @@
                         $(".fancybox").fancybox();
                 });
             {/literal}
+
         </script>
     </head>
     <body>
@@ -101,10 +103,17 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a href="{site_url('')}" class="logo">
-                        <img src="{$THEME}images/logo.png" alt="logo.png"/>
-                    </a>
-                </div>
+                        {if  $CI->uri->uri_string() == ''}
+                            <span class="logo">
+                                <img src="{$THEME}images/logo.png" alt="logo.png"/>
+                            </span>
+                        {else:}
+                            <a href="{site_url('')}" class="logo">
+                                <img src="{$THEME}images/logo.png" alt="logo.png"/>
+                            </a>
+                        {/if}
+                    </div>
+
 
                 <div class="collapse navbar-collapse">
                     {$top_menu = array(

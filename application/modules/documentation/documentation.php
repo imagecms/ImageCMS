@@ -36,8 +36,7 @@ class Documentation extends \MY_Controller {
     public function autoload() {
 //        $this->recent_news();
 //        $this->recent_forum();
-        
-       
+
         $top_menu = array(
             'begin-work' => 'Начало работы',
             'manage' => 'Администрирование',
@@ -45,14 +44,23 @@ class Documentation extends \MY_Controller {
             'developers' => 'Разработчикам',
             'templates' => 'Работа с шаблонами',
         );
+        
         \CMSFactory\assetManager::create()
                 ->setData('hasCRUDAccess', $this->hasCRUDAccess())
                 ->setData('top_menu', $top_menu);
 
-        if ($this->hasCRUDAccess()) {
+
+
+        if (!$this->input->is_ajax_request()) {
+
             \CMSFactory\assetManager::create()
-                    ->registerStyle('documentation', TRUE)
-                    ->registerScript('documentation', FALSE, 'before');
+                    ->setData('hasCRUDAccess', $this->hasCRUDAccess());
+
+            if ($this->hasCRUDAccess()) {
+                \CMSFactory\assetManager::create()
+                        ->registerStyle('documentation', TRUE)
+                        ->registerScript('documentation', FALSE, 'before');
+            }
         }
     }
 
@@ -213,7 +221,7 @@ class Documentation extends \MY_Controller {
             /** Set form validation rules * */
             $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'xss_clean|trim|required|min_length[1]|max_length[254]');
             $this->form_validation->set_rules('NewPage[url]', lang("URL", "documentation"), 'xss_clean|max_length[254]');
-            $this->form_validation->set_rules('NewPage[prev_text]', lang("Content", "documentation"), 'xss_clean|trim|required');
+            $this->form_validation->set_rules('NewPage[full_text]', lang("Content", "documentation"), 'xss_clean|trim|required');
             $this->form_validation->set_rules('NewPage[keywords]', lang("Keywords", "documentation"), 'xss_clean|trim');
             $this->form_validation->set_rules('NewPage[description]', lang("Description", "documentation"), 'xss_clean|trim');
 
@@ -246,8 +254,8 @@ class Documentation extends \MY_Controller {
                     'cat_url' => $fullUrl,
                     'keywords' => ($dataPost['keywords'] != null ? trim($dataPost['keywords']) : trim($this->lib_seo->get_keywords($dataPost['prev_text']))),
                     'description' => ($dataPost['description'] != null ? trim($dataPost['description']) : trim($this->lib_seo->get_description($dataPost['prev_text']))),
-                    'full_text' => trim($dataPost['prev_text']),
-                    'prev_text' => trim($dataPost['prev_text']),
+                    'full_text' => trim($dataPost['full_text']),
+                    'prev_text' => trim($dataPost['full_text']),
                     'category' => $dataPost['category'],
                     'updated' => time(),
                     'lang' => $langId
