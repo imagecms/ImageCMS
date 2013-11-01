@@ -4,7 +4,7 @@
 
 $com_info = array(
     'menu_name' => lang('parce_opencart', 'parce_opencart'), // Menu name
-    'description' => '',            // Module Description
+    'description' => lang('description', 'parce_opencart'),            // Module Description
     'admin_type' => 'window',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe
     'w' => 600,                     // Window width

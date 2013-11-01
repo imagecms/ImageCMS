@@ -13,7 +13,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('module_frame');
+        $lang->load('parce_opencart');
         $this->load->helper('translit');
         $this->langs = array();
     }
@@ -38,7 +38,7 @@ class Admin extends BaseAdminController {
         $db['swap_pre'] = '';
         $db['autoinit'] = TRUE;
         $db['stricton'] = FALSE;
-
+        
         $this->db_opencart = $this->load->database($db, TRUE, TRUE);
 
         $this->db->truncate('shop_category');
