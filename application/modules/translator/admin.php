@@ -139,63 +139,7 @@ class Admin extends BaseAdminController {
                     break;
             }
         } else {
-            $files = scandir($this->modules_path);
-            foreach ($files as $module) {
-                if ($module && $module != '.' && $module != '..' && $module[0] != '.') {
-                    if (is_dir($this->modules_path . $module . '/language')) {
-                        $langs = scandir($this->modules_path . $module . '/language');
-                        foreach ($langs as $lang) {
-                            if ($lang && $lang != '.' && $lang != '..' && $lang[0] != '.' && is_dir($this->modules_path . $module . '/language/' . $lang) && $this->isLocale($lang)
-                            ) {
-                                $this->langs[$lang][] = array('module' => $module);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (is_dir($this->templates_path)) {
-                $templates = scandir($this->templates_path);
-                foreach ($templates as $template) {
-                    if (is_dir($this->templates_path . $template) && $template != "." && $template != '..' && $template[0] != '.') {
-                        if (is_dir($this->templates_path . $template . '/language/' . $template)) {
-                            $langs = scandir($this->templates_path . $template . '/language/' . $template);
-                            foreach ($langs as $lang) {
-                                if ($lang && $lang != '.' && $lang != '..' && $lang[0] != '.' && is_dir($this->templates_path . $template . '/language/' . $template . '/' . $lang) && $this->isLocale($lang)
-                                ) {
-                                    $this->langs_templates[$lang][] = array('template' => $template);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (is_dir($this->main_path)) {
-                $langs = scandir($this->main_path);
-                foreach ($langs as $lang) {
-                    if ($lang && $lang != '.' && $lang != '..' && $lang[0] != '.' && is_dir($this->main_path . $lang) && $this->isLocale($lang)
-                    ) {
-                        $this->langs_main[$lang][] = array('main' => 'main');
-                    }
-                }
-            }
-
-            foreach ($this->langs_templates as $key => $data) {
-                if (!$this->langs[$key]) {
-                    $this->langs[$key] = array();
-                }
-            }
-
-            foreach ($this->langs_main as $key => $data) {
-                if (!$this->langs[$key]) {
-                    $this->langs[$key] = array();
-                }
-            }
-
-            $this->session->set_userdata('langs', $this->langs);
-            $this->session->set_userdata('langs_templates', $this->langs_templates);
-            $this->session->set_userdata('langs_main', $this->langs_main);
+            $this->scanLangFiles();
         }
         $locales_unique = array();
         $locales = $this->config->item('locales');
@@ -241,6 +185,216 @@ class Admin extends BaseAdminController {
         }
     }
 
+    public function createFile($module_template = 'translator', $type = "modules", $lang = 'ru_RU') {
+//        switch ($type) {
+//            case 'modules':
+//                $po = file_put_contents($this->modules_path . $module_template . '/language/' . $lang . '/LC_MESSAGES/' . $module_template . '.po', 'ddd');
+//                break;
+//            case 'templates':
+//                $po = file_put_contents($this->templates_path . $module_template . '/language/' . $module_template . '/' . $lang . '/LC_MESSAGES/' . $module_template . '.po', 'gggg');
+//                break;
+//            case 'main':
+//                $po = file_put_contents($this->main_path . $lang . '/LC_MESSAGES/' . $module_template . '.po', 'fff');
+//                break;
+//        }
+
+        if ($_POST) {
+            $lang = $this->input->post('locale');
+            $type = $this->input->post('type');
+            $module_template = $this->input->post('module_template');
+            $projectName = $this->input->post('projectName');
+            $translatorEmail = $this->input->post('translatorEmail');
+            $translatorName = $this->input->post('translatorName');
+            $langaugeTeamName = $this->input->post('langaugeTeamName');
+            $langaugeTeamEmail = $this->input->post('langaugeTeamEmail');
+            $basepath = $this->input->post('basepath');
+            $paths = $this->input->post('paths');
+            $language = $this->input->post('language');
+            $country = $this->input->post('country');
+
+            if ($module_template && $type && $lang) {
+
+                switch ($type) {
+                    case 'modules':
+                        $url = $this->modules_path . $module_template . '/language/' . $lang . '/LC_MESSAGES/' . $module_template . '.po';
+                        break;
+                    case 'templates':
+                        $url = $this->templates_path . $module_template . '/language/' . $module_template . '/' . $lang . '/LC_MESSAGES/' . $module_template . '.po';
+                        break;
+                    case 'main':
+                        $url = $this->main_path . $lang . '/LC_MESSAGES/' . $type . '.po';
+                        break;
+                }
+
+//                $handle = @fopen($url, "wb");
+//                fwrite($handle, b"\xEF\xBB\xBF");
+//                if ($handle !== false) {
+//                    
+//                }
+                
+//                "Project-Id-Version: ImageCms\n"
+//                "Report-Msgid-Bugs-To: \n"
+//                "POT-Creation-Date: 2013-10-16 15:55+0300\n"
+//                "PO-Revision-Date: 2013-11-01 10:37+0300\n"
+//                "Last-Translator: Marko <sheme4ko@mail.ru>\n"
+//                "Language-Team: Imagecms Team <Imagecms@mail.ru>\n"
+//                "Language: ru_UA\n"
+//                "MIME-Version: 1.0\n"
+//                "Content-Type: text/plain; charset=UTF-8\n"
+//                "Content-Transfer-Encoding: 8bit\n"
+//                "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+//                "X-Poedit-Basepath: ../../..\n"
+//                "X-Poedit-SourceCharset: utf-8\n"
+//                "X-Generator: Poedit 1.5.7\n"
+//                "X-Poedit-Language: Russian\n"
+//                "X-Poedit-Country: UKRAINE\n"
+//                "X-Poedit-SearchPath-0: .\n"
+
+                $content = b"\xEF\xBB\xBF";
+                $content .='"Project-Id-Version: ' . $projectName . '\n"' . "\r\n";
+                $content .='"Report-Msgid-Bugs-To: \n"' . "\r\n";
+                $content .='"POT-Creation-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . "\r\n";
+                $content .='"PO-Revision-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . "\r\n";
+                $content .='"Last-Translator: ' . $translatorName. ' <' . $translatorEmail . '>\n"' . "\r\n";
+                $content .='"Language-Team: ' . $langaugeTeamName. ' <' . $langaugeTeamEmail . '>\n"' . "\r\n";
+                $content .='"Language: ' . $lang . '\n"' . "\r\n";
+                $content .='"MIME-Version: 1.0\n"' . "\r\n";
+                $content .='"Content-Type: text/plain; charset=UTF-8\n"' . "\r\n";
+                $content .='"Content-Transfer-Encoding: 8bit\n"' . "\r\n";
+                $content .='"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"' . "\r\n";
+                $content .='"X-Poedit-Basepath: ' . $basepath . '\n"' . "\r\n";
+                $content .='"X-Poedit-SourceCharset: utf-8\n"' . "\r\n";
+                $content .='"X-Generator: Poedit 1.5.7\n"' . "\r\n";
+                $content .='"X-Poedit-Language: ' . $language . '\n"' . "\r\n";
+                $content .='"X-Poedit-Country: ' . $country . '\n"' . "\r\n";
+                var_dumps($paths);
+//                foreach ($paths as $number => $path){
+//                    $content .='"X-Poedit-SearchPath-' . $number . ': ' . $path . '\n"' . "\r\n";
+//                }
+//                
+//                return file_put_contents($url, $content);
+                
+                
+                
+                
+                
+            }
+        } else {
+            $url = '';
+            $file_name = '';
+
+            if ($module_template && $type && $lang) {
+                switch ($type) {
+                    case 'modules':
+                        $url = $this->modules_path . $module_template . '/language/' . $lang . '/LC_MESSAGES/';
+                        $file_name = $module_template;
+                        break;
+                    case 'templates':
+                        $url = $this->templates_path . $module_template . '/language/' . $module_template . '/' . $lang . '/LC_MESSAGES/';
+                        $file_name = $module_template;
+                        break;
+                    case 'main':
+                        $url = $this->main_path . $lang . '/LC_MESSAGES/';
+                        $file_name = $type;
+                        break;
+                }
+            }
+
+            $this->scanLangFiles();
+
+            \CMSFactory\assetManager::create()
+                    ->registerScript('admin')
+                    ->registerStyle('admin')
+                    ->setData('url', $url)
+                    ->setData('langs', $this->langs)
+                    ->setData('file_name', $file_name)
+                    ->renderAdmin('create');
+
+            if ($module_template && $type && $lang) {
+                switch ($type) {
+                    case 'modules':
+                        $names = $this->renderModulesNames($lang);
+                        break;
+                    case 'templates':
+                        $names = $this->renderTemplatesNames($lang);
+                        break;
+                }
+                jsCode(
+                        "
+                document.getElementsByClassName('" . $lang . "')[0].selected = true;
+                document.getElementById('types').style.display = 'inline-block';
+                document.getElementsByClassName('" . $type . "')[0].selected = true;
+                if('" . $type . "'!='main'){
+                    document.getElementById('modules_templates').style.display = 'inline-block';
+                    document.getElementById('modules_templates').innerHTML = '" . trim(preg_replace('/\s\s+/', ' ', $names)) . "';
+                }
+                document.getElementsByClassName('" . $file_name . "')[0].selected = true;
+            "
+                );
+            }
+        }
+    }
+
+    public function scanLangFiles() {
+        $files = scandir($this->modules_path);
+        foreach ($files as $module) {
+            if ($module && $module != '.' && $module != '..' && $module[0] != '.') {
+                if (is_dir($this->modules_path . $module . '/language')) {
+                    $langs = scandir($this->modules_path . $module . '/language');
+                    foreach ($langs as $lang) {
+                        if ($lang && $lang != '.' && $lang != '..' && $lang[0] != '.' && is_dir($this->modules_path . $module . '/language/' . $lang) && $this->isLocale($lang)
+                        ) {
+                            $this->langs[$lang][] = array('module' => $module);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (is_dir($this->templates_path)) {
+            $templates = scandir($this->templates_path);
+            foreach ($templates as $template) {
+                if (is_dir($this->templates_path . $template) && $template != "." && $template != '..' && $template[0] != '.') {
+                    if (is_dir($this->templates_path . $template . '/language/' . $template)) {
+                        $langs = scandir($this->templates_path . $template . '/language/' . $template);
+                        foreach ($langs as $lang) {
+                            if ($lang && $lang != '.' && $lang != '..' && $lang[0] != '.' && is_dir($this->templates_path . $template . '/language/' . $template . '/' . $lang) && $this->isLocale($lang)
+                            ) {
+                                $this->langs_templates[$lang][] = array('template' => $template);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (is_dir($this->main_path)) {
+            $langs = scandir($this->main_path);
+            foreach ($langs as $lang) {
+                if ($lang && $lang != '.' && $lang != '..' && $lang[0] != '.' && is_dir($this->main_path . $lang) && $this->isLocale($lang)
+                ) {
+                    $this->langs_main[$lang][] = array('main' => 'main');
+                }
+            }
+        }
+
+        foreach ($this->langs_templates as $key => $data) {
+            if (!$this->langs[$key]) {
+                $this->langs[$key] = array();
+            }
+        }
+
+        foreach ($this->langs_main as $key => $data) {
+            if (!$this->langs[$key]) {
+                $this->langs[$key] = array();
+            }
+        }
+
+        $this->session->set_userdata('langs', $this->langs);
+        $this->session->set_userdata('langs_templates', $this->langs_templates);
+        $this->session->set_userdata('langs_main', $this->langs_main);
+    }
+
     public function renderModulesNames($lang) {
         $langs = $this->session->userdata('langs');
         $langs = $langs[$lang];
@@ -279,7 +433,7 @@ class Admin extends BaseAdminController {
                             ->setData('page', $page)
                             ->setData('rows_count', ceil(count($translations) / ($limit + 1)))
                             ->fetchAdminTemplate('po_table');
-        }else{
+        } else {
             return 'no file';
         }
     }
