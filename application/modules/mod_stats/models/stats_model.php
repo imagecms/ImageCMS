@@ -28,7 +28,6 @@ class Stats_model extends CI_Model {
                 ->get()
                 ->row_array();
 
-
         if ($query != null) {
             return $query['value'];
         } else {
@@ -142,27 +141,27 @@ class Stats_model extends CI_Model {
         $this->dbforge->create_table('mod_stats_settings');
 
         // збереження URL сторінок
-        /*$fields3 = array(
-            'id' => array(
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ),
-            'uder_id' => array(
-                'type' => 'int',
-                'constraint' => '5',
-                'null' => TRUE,
-            ),
-            'url' => array(
-                'type' => 'varchar',
-                'constraint' => '300',
-                'null' => TRUE,
-            ),
-            'time_add TIMESTAMP default CURRENT_TIMESTAMP'
-        );
+        /* $fields3 = array(
+          'id' => array(
+          'type' => 'INT',
+          'auto_increment' => TRUE
+          ),
+          'uder_id' => array(
+          'type' => 'int',
+          'constraint' => '5',
+          'null' => TRUE,
+          ),
+          'url' => array(
+          'type' => 'varchar',
+          'constraint' => '300',
+          'null' => TRUE,
+          ),
+          'time_add TIMESTAMP default CURRENT_TIMESTAMP'
+          );
 
-        $this->dbforge->add_field($fields3);
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_stats_urls');*/
+          $this->dbforge->add_field($fields3);
+          $this->dbforge->add_key('id', TRUE);
+          $this->dbforge->create_table('mod_stats_urls'); */
 
         $this->db->where('name', 'mod_stats');
         $this->db->update('components', array(
