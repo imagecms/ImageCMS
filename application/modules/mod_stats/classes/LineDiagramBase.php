@@ -8,7 +8,7 @@ namespace mod_stats\classes;
  * @author kolia
  */
 class LineDiagramBase {
-    
+
     protected static $_instance;
     protected $params;
 
@@ -17,8 +17,7 @@ class LineDiagramBase {
         $lang = new \MY_Lang();
         $lang->load('mod_stats');
     }
-    
-    
+
     /**
      *
      * @return LineDiagramBase
@@ -27,7 +26,7 @@ class LineDiagramBase {
         (null !== self::$_instance) OR self::$_instance = new self();
         return self::$_instance;
     }
-    
+
     /**
      * For query (select)
      * @return string date pattern for mysql
@@ -48,7 +47,6 @@ class LineDiagramBase {
      * For query (where)
      * @return string condition of date range
      */
-
     public function prepareDateBetweenCondition($field, $table = NULL) {
         $table = is_null($table) ? "" : "`{$table}`.";
         // start date
