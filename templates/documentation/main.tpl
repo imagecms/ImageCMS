@@ -41,49 +41,12 @@
             <script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
         {/if}
 
-        {literal}
-            <script>hljs.initHighlightingOnLoad();</script>
-        {/literal}
-
         <script type="text/javascript" src="{$THEME}js/tinymce/tinymce.min.js"></script>
 
         <script type="text/javascript">
             var hasCRUDAccess = "{echo $hasCRUDAccess}";
             var id = "{echo $CI->core->core_data['id']}";
-
-
-            {literal}
-                $(document).ready(function() {
-                    if ($('.tree_menu').find('ul:first .active').length === 0) {
-                        $('.tree_menu').find('ul:first>li:first ul:eq(0)').show();
-                        $('.tree_menu').find('ul:first>li:first ul:eq(1)').show();
-                    }
-
-                    $(".top_menu_documentation li a, .main_page_block_from_menu a").on('click', function() {
-                        var categoryMenu = $(this).data('category_menu');
-                        var CookieDate = new Date();
-                        CookieDate.setFullYear(CookieDate.getFullYear() + 1);
-                        document.cookie = "category_menu=" + categoryMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
-
-                        // ПЕРЕАДРЕСАЦІЯ НА ТУ САМУ СТОРІНКУ
-                        //  визначення останнього символу - не може бути #
-                        var url = window.location.origin;
-                        var len = url.length;
-                        var lastChar = url.substr(len - 1, len);
-                        var newLocation = lastChar != '#' ? url : url.substr(0, len - 1);
-                        window.location = newLocation; // власне переадресація
-                    });
-
-                    $('div.main_content img').each(function() {
-                        if (!$(this).parent('a').hasClass('fancybox'))
-                            $(this).wrap('<a class="fancybox" rel="group" href="' + $(this).attr('src') + '"></a');
-                    });
-
-                    if (!hasCRUDAccess)
-                        $(".fancybox").fancybox();
-                });
-            {/literal}
-
+            hljs.initHighlightingOnLoad();
         </script>
     </head>
     <body>
@@ -103,34 +66,27 @@
                         <span class="icon-bar"></span>
                     </button>
 
+
                     {if  $CI->uri->uri_string() == ''}
-                        <span class="logo">
+                        <span class="logo f_l navbar-brand">
                             <img src="{$THEME}images/logo.png" alt="logo.png"/>
                         </span>
                     {else:}
-                        <a href="{site_url('')}" class="logo">
+                        <a href="{site_url('')}" class="logo f_l navbar-brand">
                             <img src="{$THEME}images/logo.png" alt="logo.png"/>
                         </a>
                     {/if}
                 </div>
 
 
-                <div class="collapse navbar-collapse">
-                    {$top_menu = array(
-				    'begin-work' => 'Начало работы',
-				    'manage' => 'Администрир.',
-				    'step-by-step' => 'Пошаговые инструкции',
-				    'developers' => 'Разработчикам',
-				    'templates' => 'Работа с шаблонами',
-				)}
 
+                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav top_menu_documentation">
                         {foreach $top_menu as $key => $value}
                             <li {if $_COOKIE['category_menu'] == $key}class="active"{/if}>
                                 <a href="#" data-category_menu="{$key}">{$value}</a>
                             </li>
                         {/foreach}
-
                     </ul>
 
                 </div><!-- /.nav-collapse -->

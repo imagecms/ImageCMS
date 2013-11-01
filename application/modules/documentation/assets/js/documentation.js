@@ -34,7 +34,7 @@ tinymce.init({
                 url: '/documentation/save_desc',
                 complete: function(obj) {
                     tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
-                    wasChanges = true;
+                    wasChanges = false;
                 }
             });
         });
@@ -160,6 +160,7 @@ tinymce.init({
                 url: '/documentation/save_title',
                 complete: function(obj) {
                     tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                    wasChanges = false;
                 }
             });
         });
@@ -177,9 +178,14 @@ tinymce.init({
                     url: '/documentation/save_title',
                     complete: function(obj) {
                         tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                        wasChanges = false;
                     }
                 });
             }
+        });
+
+        editor.on('change', function() {
+            wasChanges = true;
         });
     }
 });
