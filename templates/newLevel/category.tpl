@@ -15,7 +15,7 @@
                                     <span class="helper"></span>
                                     <img src="{$p.field_field_img}" alt="" />
                                 </span>
-                            {/if}
+                            {/if}   
                             <span class="d_b">
                                 <span class="date f-s_0 d_b">
                                     <span class="icon_time"></span><span class="text-el"></span>
