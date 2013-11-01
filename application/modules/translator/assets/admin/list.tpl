@@ -68,6 +68,10 @@
                         <i class="icon-refresh"></i>
                         {lang('Update')}
                     </button>
+                    <a href="/admin/components/init_window/translator/createFile" type="button" class="btn btn-small btn-success">
+                        <i class="icon-refresh"></i>
+                        {lang('Create')}
+                    </a>
                 </div>
             </div>
         </div>
@@ -171,6 +175,12 @@
                         <div class="alert alert-info" style="display: none">
                             {lang('There is no Po-file in such locale')}                        
                         </div>
+                        <div class="alert alert-info fileNotExist" style="display: none; margin-top: 70px">
+                            <span style="font-size:15px">{lang('File not exist')}...</span> 
+                            <a style="color: #5bb75b; font-size: 15px" onclick="Translator.createFile($(this))"><i><b>{lang('Create file')}</b></i></a> 
+                        </div>
+
+
                         <div class="clearfix">
                             <div class="pagination pull-left" style="display: none">
                                 <ul>
@@ -212,7 +222,7 @@
                                 {/foreach}
                             </select>
                         </div>
-                            <div class="pathParseHolder" style="display: none">
+                        <div class="pathParseHolder" style="display: none">
                             <label>
                                 <h5>
                                     <b>
