@@ -330,22 +330,26 @@ class Auth extends MY_Controller {
         $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);
 
+        $objTemplate = \CMSFactory\assetManager::create();
         // Reset password
         if ($this->dx_auth->reset_password($email, $key)) {
 //             ($hook = get_hook('auth_reset_pass_restored')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('You have successfully zeroed my password. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login Here', 'auth'));
-
-            $this->template->assign('content', $data['auth_message']);
-            $this->template->show();
+                    $objTemplate->setData('content', $data['auth_message']);
+                    
+                    
+//            $this->template->assign('content', $data['auth_message']);
+//            $this->template->show();
         } else {
 //             ($hook = get_hook('auth_reset_pass_failed')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('Reset failed. Not a valid user name and / or password. Check your email and follow the instructions.', 'auth');
-
-            $this->template->assign('content', $data['auth_message']);
-            $this->template->show();
+            $objTemplate->setData('content', $data['auth_message']);
+//            $this->template->assign('content', $data['auth_message']);
+//            $this->template->show();
         }
+        $objTemplate->render('reset_password');
     }
 
     function change_password() {
