@@ -36,6 +36,18 @@
                             {/if}
                         </div>
                     </div>
+                    {if $hasCRUDAccess}
+                        <div class="func-button-comment__icsi-css">
+                            <div class="">
+                                <button class="btn"  type="button"  data-rel="cloneAddPaste" data-parid="{$comment['id']}">
+                                    <div>
+                                        {lang('Ответ', 'comments')}
+                                    </div>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    {/if}
                     <ul class="answear-programmer">
                         {foreach $comment_ch as $com_ch}
                             {if $com_ch.parent == $comment.id}

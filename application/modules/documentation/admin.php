@@ -22,7 +22,7 @@ class Admin extends BaseAdminController {
     }
 
     public function history($pageId) {
-        $per_page = 6;
+        $per_page = 12;
 
         $pageNum = $this->uri->segment(7) == FALSE ? 0 : $this->uri->segment(7);
 
