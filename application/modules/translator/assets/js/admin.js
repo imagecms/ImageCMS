@@ -151,7 +151,7 @@ var Sort = {
         var leftContent = '';
         var condition = false;
         var fuzzy = $(curElement);
-        
+
         $('#po_table tbody tr.originTR').each(function(iteration) {
             if (fuzzy.hasClass('asc')) {
                 condition = $(this).find('.btn-danger').length;
@@ -483,13 +483,40 @@ var Selectors = {
 };
 
 var Translator = {
+    createFile: function(curElement) {
+        var lang = $('#langs').val();
+        var type = $('#types').val();
+        var module_template = $('#modules_templates').val();
+
+        if (lang && type) {
+            switch (type) {
+                case  'modules':
+                    url = '/admin/components/init_window/translator/createFile/' + module_template + '/' + type + '/' + lang;
+                    window.location.href= url;
+                    break;
+                case 'templates':
+                    url = '/admin/components/init_window/translator/createFile/' + module_template + '/' + type + '/' + lang;
+                    window.location.href= url;
+                    break;
+                case 'main':
+                    url = '/admin/components/init_window/translator/createFile/' + type + '/' + type + '/' + lang;
+                    window.location.href= url;
+                    break;
+            }
+//            $.ajax({url: url,
+//                success: function(Answer) {
+//                    
+//                }
+//            });
+        }
+        
+    },
     render: function(data) {
         if (data == 'no file') {
             $('#po_table tbody').html('');
             $('#po_table').css('display', 'none');
             $('.pagination ul').html('');
-            $('.alert-info').css({display: 'block', marginTop: '70px'});
-            $('.alert-info').html('File not exist.');
+            $('.fileNotExist').show();
             $('.pathHolder').html('');
             $('.pathParseHolder').hide();
             return false;
@@ -860,3 +887,12 @@ var Pagination = {
     }
 
 }
+
+var CreatePoFile = {
+  addPath: function (curElement){
+      var path = $.trim($(curElement).next().val());
+      var pathSelector = $(curElement).next().next();
+      $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
+      $(curElement).next().val('');
+  }  
+};
