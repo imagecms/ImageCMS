@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿"Project-Id-Version: mark\n"
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-16 18:27+0300\n"
 "PO-Revision-Date: \n"
@@ -14,6 +14,58 @@
 "X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/parce_opencart/admin.php:131
+msgid "Import languages error"
+msgstr "Импорт языков ошибка"
+
+#: ./application/modules/parce_opencart/admin.php:177
+msgid "Import currencys error"
+msgstr "Импорт валют ошибка"
+
+#: ./application/modules/parce_opencart/admin.php:274
+msgid "Import products error"
+msgstr "Импорт продуктов ошибка"
+
+#: ./application/modules/parce_opencart/admin.php:405
+msgid "Import categorys error"
+msgstr "Импорт категории ошибка"
+
+#: ./application/modules/parce_opencart/admin.php:83
+msgid "Process completed"
+msgstr "Процесс завершен"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:37
+msgid "DB username"
+msgstr "Пользователь"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:44
+msgid "DB password"
+msgstr "Пароль"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:51
+msgid "DB name"
+msgstr "Название БД"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:17
+msgid "Run process"
+msgstr "Запуск процесса"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:27
+msgid "DB connections settings"
+msgstr "Параметры соединения с БД"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:4
+msgid "OpenCart DB parser"
+msgstr "OpenCart DB parser"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:11
+msgid "Back"
+msgstr "Вернутся"
+
+#: ./application/modules/parce_opencart/admin.php:187
+msgid "Import brands error"
+msgstr "Ошибка при импортировании производителей"
 
 #: ./application/modules/parce_opencart/module_info.php:6
 msgid "description"
