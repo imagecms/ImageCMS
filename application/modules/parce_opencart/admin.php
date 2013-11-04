@@ -4,7 +4,7 @@
 
 /**
  * Image CMS 
- * Sample Module Admin
+ * parce_opencart Admin
  * @property CI_DB_active_record $db_opencart 
  * @link http://opencartforum.ru/topic/5852-opisaniia-failov-shablona-15kh-diagramma-mysql/ опис бази
  */
@@ -19,14 +19,16 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        var_dump(memory_get_usage() / 1024 / 1024);
+        \CMSFactory\assetManager::create()
+                ->renderAdmin('main');
+    }
 
-//        \libraries\Backup::create()->createBackup("zip", "parcer");
-
+    public function run_process() {
+//        \libraries\Backup::create()->createBackup("zip", "parce_opencart");
         $db['hostname'] = 'localhost';
-        $db['username'] = 'root';
-        $db['password'] = '';
-        $db['database'] = 'opencart';
+        $db['username'] = $this->input->post('username');
+        $db['password'] = $this->input->post('password');
+        $db['database'] = $this->input->post('database');
         $db['dbdriver'] = 'mysql';
         $db['dbprefix'] = '';
         $db['pconnect'] = FALSE;
@@ -38,7 +40,7 @@ class Admin extends BaseAdminController {
         $db['swap_pre'] = '';
         $db['autoinit'] = TRUE;
         $db['stricton'] = FALSE;
-        
+
         $this->db_opencart = $this->load->database($db, TRUE, TRUE);
 
         $this->db->truncate('shop_category');
@@ -79,7 +81,7 @@ class Admin extends BaseAdminController {
 
         \ShopCore::app()->SCurrencyHelper->checkPrices();
 
-        var_dump(memory_get_usage() / 1024 / 1024);
+        showMessage(lang('Process completed', 'parce_opencart'));
     }
 
     public function insert_orders() {
@@ -121,8 +123,18 @@ class Admin extends BaseAdminController {
 
     public function insert_lang() {
         $array = $this->db_opencart
-                ->get('language')
-                ->result_array();
+                ->get('language');
+
+        try {
+            if ($array) {
+                $array = $array->result_array();
+            } else {
+                throw new Exception(lang('Import languages error', 'parce_opencart'));
+            }
+        } catch (Exception $exc) {
+            showMessage($exc->getMessage(), '', 'r');
+            return FALSE;
+        }
 
         foreach ($array as $value) {
             $langs[$value['language_id']] = $value;
@@ -157,8 +169,18 @@ class Admin extends BaseAdminController {
 
     public function insert_currency() {
         $data = $this->db_opencart
-                ->get('currency')
-                ->result_array();
+                ->get('currency');
+
+        try {
+            if ($data) {
+                $data = $data->result_array();
+            } else {
+                throw new Exception(lang('Import currencys error', 'parce_opencart'));
+            }
+        } catch (Exception $exc) {
+            showMessage($exc->getMessage(), '', 'r');
+            return FALSE;
+        }
 
         foreach ($data as $cur) {
             $insert[] = array(
@@ -180,8 +202,17 @@ class Admin extends BaseAdminController {
         $data = $this->db_opencart
                 ->join('manufacturer_description', 'manufacturer.manufacturer_id=manufacturer_description.manufacturer_id')
                 ->order_by('manufacturer.manufacturer_id')
-                ->get('manufacturer')
-                ->result_array();
+                ->get('manufacturer');
+        try {
+            if ($data) {
+                $data = $data->result_array();
+            } else {
+                throw new Exception(lang('Import brands error', 'parce_opencart'));
+            }
+        } catch (Exception $exc) {
+            showMessage($exc->getMessage(), '', 'r');
+            return FALSE;
+        }
 
         foreach ($data as $dd) {
             $manufacturer[$dd['manufacturer_id']] = $dd;
@@ -235,8 +266,18 @@ class Admin extends BaseAdminController {
         $data = $this->db_opencart
                 ->join('product_description', 'product.product_id=product_description.product_id')
                 ->order_by('product.product_id')
-                ->get('product')
-                ->result_array();
+                ->get('product');
+
+        try {
+            if ($data) {
+                $data = $data->result_array();
+            } else {
+                throw new Exception(lang('Import products error', 'parce_opencart'));
+            }
+        } catch (Exception $exc) {
+            showMessage($exc->getMessage(), '', 'r');
+            return FALSE;
+        }
 
         foreach ($data as $d) {
             $array[$d['product_id']] = $d;
@@ -357,8 +398,17 @@ class Admin extends BaseAdminController {
         $data = $this->db_opencart
                 ->join('category_description', 'category.category_id=category_description.category_id')
                 ->order_by('category.category_id')
-                ->get('category')
-                ->result_array();
+                ->get('category');
+        try {
+            if ($data) {
+                $data = $data->result_array();
+            } else {
+                throw new Exception(lang('Import categorys error', 'parce_opencart'));
+            }
+        } catch (Exception $exc) {
+            showMessage($exc->getMessage(), '', 'r');
+            return FALSE;
+        }
 
         $u = $this->db_opencart
                 ->like('query', 'category_id')

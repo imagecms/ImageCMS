@@ -31,5 +31,9 @@ $(document).ready(function() {
                 }
             }
         });
+        
 });
 
+$('.left-menu-out-sec > li').has('ul').addClass('has-sub');
+$('.left-menu-out-sec > li').has('ul > .active').addClass('has-sub-not-active');
+$('.tree_menu > ul > .active').has('ul > .active').addClass('has-sub-not-active');
