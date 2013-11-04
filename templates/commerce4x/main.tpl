@@ -20,7 +20,7 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/>
+        <link rel="icon" type="image/x-icon" href="{echo siteinfo('siteinfo_favicon_url')}"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
@@ -31,7 +31,7 @@
         <script type="text/javascript">
             var locale = "{echo $lang}";
             var langs = "{echo $lang}";
-            
+
         </script>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <!--[if lte IE 8]>
@@ -174,11 +174,11 @@
                         <div class="span3">
                             {if  $CI->uri->uri_string() == ''}
                                 <span class="logo">
-                                    <img src="{$THEME}images/logo.png" alt="logo"/>
+                                    <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
                                 </span>
                             {else:}
                                 <a href="{site_url()}" class="logo">
-                                    <img src="{$THEME}images/logo.png" alt="logo"/>
+                                    <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
                                 </a>
                             {/if}
                         </div>
@@ -216,7 +216,7 @@
                                 <!-- Start. Block order call -->
                                 <div class="span3">
                                     <div class="headerPhone">
-                                        +8 (090)<span class="d_n">&minus;</span> 500-50-50
+                                        {echo siteinfo('siteinfo_mainphone')}
                                     </div>
                                     <div style="margin-top: 7px;">
                                         <ul>
@@ -276,16 +276,15 @@
                                 <li>
                                     <span class="icon-foot-phone"></span>
                                     <span class="f-w_b">{lang('Phone')}:</span>
-                                    +8 (090) <span class="d_n">&minus;</span> 500-50-50,
-                                    +8 (100)<span class="d_n">&minus;</span> 500-50-50
+                                    {echo siteinfo('siteinfo_mainphone')}
                                 </li>
                                 <li>
                                     <span class="icon-foot-email"></span>
-                                    <span class="f-w_b">{lang('Email')}:</span> Info@imagecms.net
+                                    <span class="f-w_b">{lang('Email')}:</span> {echo siteinfo('Email')}
                                 </li>
                                 <li>
                                     <span class="icon-foot-skype"></span>
-                                    <span class="f-w_b">{lang('Skype')}:</span> ImageCMS
+                                    <span class="f-w_b">{lang('Skype')}:</span> {echo siteinfo('Skype')}
                                 </li>
                                 <!--Load star rating-->
                                 {$CI->load->module('star_rating')->show_star_rating()}

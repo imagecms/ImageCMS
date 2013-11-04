@@ -50,14 +50,43 @@ if (!function_exists('siteinfo')) {
 
         // if key exists value will be returned
         if (FALSE !== $val = array_key_exists_recursive($name, $siteinfo, TRUE)) {
-            return $val;
-        }
 
+            return $val;
+        } else {
+
+            // logo and favicon depends from template...
+            $CI = &get_instance();
+
+            $settings = $CI->cms_base->get_settings();
+            $tplName = $settings['site_template'];
+
+            switch ($name) {
+                case 'siteinfo_favicon_url':
+                    if (key_exists($tplName, $siteinfo['siteinfo_favicon'])) {
+                        return site_url() . $siteinfo['siteinfo_favicon'][$tplName]['path'];
+                    } else {
+                        // trying to return frequently favicon location
+                        $fLoc = "templates/{$tplName}/images/favicon.ico";
+                        if (file_exists($fLoc)) {
+                            return site_url() . $fLoc;
+                        }
+                    }
+                case 'siteinfo_logo_url':
+                    if (key_exists($tplName, $siteinfo['siteinfo_logo'])) {
+                        return site_url() . $siteinfo['siteinfo_logo'][$tplName]['path'];
+                    } else {
+                        // trying to return frequently favicon location
+                        $fLoc = "templates/{$tplName}/images/logo.png";
+                        if (file_exists($fLoc)) {
+                            return site_url() . $fLoc;
+                        }
+                    }
+            }
+        }
         return '';
     }
 
 }
-
 
 /* End of siteinfo.php */
 ?>

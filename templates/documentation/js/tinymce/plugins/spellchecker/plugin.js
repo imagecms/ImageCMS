@@ -129,7 +129,7 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 				return node.data;
 			}
 
-			if (hiddenTextElementsMap[node.nodeName]) {
+			if (hiddenTextElementsMap[node.nodeName] && !blockElementsMap[node.nodeName]) {
 				return '';
 			}
 
@@ -201,7 +201,7 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 					if (!matchLocation) {
 						break; // no more matches
 					}
-				} else if (!hiddenTextElementsMap[curNode.nodeName] && curNode.firstChild) {
+				} else if ((!hiddenTextElementsMap[curNode.nodeName] || blockElementsMap[curNode.nodeName]) && curNode.firstChild) {
 					// Move down
 					curNode = curNode.firstChild;
 					continue;

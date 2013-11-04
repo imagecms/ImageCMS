@@ -46,7 +46,7 @@
                             <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="{lang('Список сравнений','newLevel')}">{lang('Список сравнений','newLevel')}</button></li>
                             {/if}
                         {/if}
-                    <li><button type="button" data-trigger="[data-drop='.drop-order-call']" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
+                    <li><button type="button" data-trigger="[data-drop='#ordercall']" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
                 </ul>
             </div>
         </div>

@@ -67,7 +67,7 @@
                                         <tr data-id="{$module.id}">
                                             <td class="t-a_c">
                                                 <span class="frame_label">
-                                                    {if $module.name != 'shop' && $module.name != 'email'}
+                                                    {if $module.name != 'shop' && $module.name != 'cmsemail'}
                                                         <span class="niceCheck b_n">
                                                             <input type="checkbox" name="ids" value="{$module.name}"/>
                                                         </span>

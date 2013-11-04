@@ -206,9 +206,9 @@ define("tinymce/dom/EventUtils", [], function() {
 		 * @param {String} id Expando id value to look for.
 		 */
 		function executeHandlers(evt, id) {
-			var callbackList, i, l, callback;
+			var callbackList, i, l, callback, container = events[id];
 
-			callbackList = events[id][evt.type];
+			callbackList = container && container[evt.type];
 			if (callbackList) {
 				for (i = 0, l = callbackList.length; i < l; i++) {
 					callback = callbackList[i];
@@ -400,7 +400,6 @@ define("tinymce/dom/EventUtils", [], function() {
 										callbackList.nativeHandler = nativeHandler;
 
 										eventMap[name] = callbackList;
-										callbackList.splice(ci, 1);
 									}
 								}
 							}

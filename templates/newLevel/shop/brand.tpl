@@ -100,9 +100,9 @@
                                             <li>
                                                 <a rel="nofollow" data-id="{echo $subItem['id']}" 
                                                    {if $_SERVER['QUERY_STRING']}
-                                                        href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
+                                                        href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
                                                    {else:}
-                                                        href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'])}"
+                                                        href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'])}"
                                                    {/if}
                                                  >
                                                         <span class="text-el">{echo $subItem['name']}</span> 

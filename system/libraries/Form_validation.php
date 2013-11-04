@@ -511,7 +511,7 @@ class CI_Form_validation {
 
 				if ( ! isset($this->_error_messages[$type]))
 				{
-					if (FALSE === ($line = $this->CI->lang->line($type)))
+					if (FALSE === ($line = lang($type)))
 					{
 						$line = 'The field was not set';
 					}
@@ -652,7 +652,7 @@ class CI_Form_validation {
 			{
 				if ( ! isset($this->_error_messages[$rule]))
 				{
-					if (FALSE === ($line = $this->CI->lang->line($rule)))
+					if (FALSE === ($line = lang($rule)))
 					{
 						$line = 'Unable to access an error message corresponding to your field name.';
 					}
@@ -703,8 +703,8 @@ class CI_Form_validation {
 			// Grab the variable
 			$line = substr($fieldname, 5);
 
-			// Were we able to translate the field name?  If not we use $line
-			if (FALSE === ($fieldname = $this->CI->lang->line($line)))
+//			 Were we able to translate the field name?  If not we use $line
+			if (FALSE === ($fieldname = lang($line)))
 			{
 				return $line;
 			}
