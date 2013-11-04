@@ -2,7 +2,8 @@
     {foreach $tree as $item}
     {if array_key_exists($item['id'], $categoriesInSearchResults)}
     <li>
-        <a class="" href="{base_url($item['path_url'])}">{$item['name']}<span class="listing-num">({$categoriesInSearchResults[$item['id']]})</span></a>
+        <a class="" href="{base_url($item['path_url'])}">{$item['name']}<span class="listing-num">({$categoriesInSearchResults[$item['id']]})</span>
+        </a>
         <!--Start. Second level -->
         {if $item['subtree'] && $item['level']<3}
         <ul class="search-lvl-2">

@@ -1,0 +1,77 @@
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-16 18:27+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/parce_opencart/admin.php:83
+msgid "Process completed"
+msgstr "Процес завершено"
+
+#: ./application/modules/parce_opencart/admin.php:131
+msgid "Import languages error"
+msgstr "Імпорт мов помилка"
+
+#: ./application/modules/parce_opencart/admin.php:177
+msgid "Import currencys error"
+msgstr "Імпорт валют помилка"
+
+#: ./application/modules/parce_opencart/admin.php:209
+msgid "Import brands error"
+msgstr "Імпортні брендів помилка"
+
+#: ./application/modules/parce_opencart/admin.php:274
+msgid "Import products error"
+msgstr "Імпорт продуктів помилка"
+
+#: ./application/modules/parce_opencart/admin.php:405
+msgid "Import categorys error"
+msgstr "Імпорт категорії помилка"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:4
+msgid "OpenCart DB parser"
+msgstr "OpenCart DB parser"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:11
+msgid "Back"
+msgstr "Повернутися"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:17
+msgid "Run process"
+msgstr "Запуск процесу"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:27
+msgid "DB connections settings"
+msgstr "Параметри з'єднання з БД"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:37
+msgid "DB username"
+msgstr "Ім'я користувача БД"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:44
+msgid "DB password"
+msgstr "Пароль до БД"
+
+#: ./application/modules/parce_opencart/assets/admin/main.tpl:51
+msgid "DB name"
+msgstr "Назва БД"
+
+#: ./application/modules/parce_opencart/module_info.php:5
+msgid "parce_opencart"
+msgstr "Парсер для переносу БД з ОpenСart"
+
+#: ./application/modules/parce_opencart/module_info.php:6
+msgid "description"
+msgstr "Дозволяє легко перенести ваш сайт на ImageCMS"
+
