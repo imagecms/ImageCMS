@@ -434,18 +434,20 @@ class ImportXML {
         if (isset($category->IDРодитель)) {
             $data['parent_id'] = $category->IDРодитель . '';
             $data['full_path'] = $this->categories_full_puth[$category->IDРодитель . ''];
-            $data['full_path_ids'] = $this->categories_full_puth_ids[$category->IDРодитель . ''];
+            $data['full_path_ids'] = array($category->IDРодитель . '');
+
+            $cat_by_ext = array();
+            foreach ($this->cat as $cat) {
+                $cat_by_ext[$cat[external_id]] = $cat;
+            }
+            $parent_ext = unserialize($cat_by_ext[$category->IDРодитель . '']['full_path_ids']);
 
             if (!$this->categories_full_puth_ids[$data['external_id']]) {
                 $this->categories_full_puth_ids[$data['external_id']] = array();
             }
 
-            if (in_array($this->categories_full_puth_ids[$data['external_id']], $data['external_id'])) {
-                array_push($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
-            } else {
-                $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
-                $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], array($data['external_id']));
-            }
+            $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], $parent_ext);
+            $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
 
             if (strstr($this->categories_full_puth[$data['external_id']], $data['url'])) {
                 $this->categories_full_puth[$data['external_id']] .= $data['full_path'];
@@ -500,18 +502,20 @@ class ImportXML {
         if (isset($category->IDРодитель)) {
             $data['parent_id'] = $category->IDРодитель . '';
             $data['full_path'] = $this->categories_full_puth[$category->IDРодитель . ''];
-            $data['full_path_ids'] = $this->categories_full_puth_ids[$category->IDРодитель . ''];
+            $data['full_path_ids'] = array($category->IDРодитель . '');
+
+            $cat_by_ext = array();
+            foreach ($this->cat as $cat) {
+                $cat_by_ext[$cat[external_id]] = $cat;
+            }
+            $parent_ext = unserialize($cat_by_ext[$category->IDРодитель . '']['full_path_ids']);
 
             if (!$this->categories_full_puth_ids[$data['external_id']]) {
                 $this->categories_full_puth_ids[$data['external_id']] = array();
             }
 
-            if (in_array($this->categories_full_puth_ids[$data['external_id']], $data['external_id'])) {
-                array_push($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
-            } else {
-                $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
-                $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], array($data['external_id']));
-            }
+            $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], $parent_ext);
+            $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
 
             if (strstr($this->categories_full_puth[$data['external_id']], $data['url'])) {
                 $this->categories_full_puth[$data['external_id']] .= $data['full_path'];
@@ -523,7 +527,7 @@ class ImportXML {
             $this->categories_full_puth[$data['external_id']] = $data['url'];
             $this->categories_full_puth_ids[$data['external_id']] = array(0);
         }
-
+//$this->categories_full_puth_ids[$data['external_id']] = array(0);
         $data['full_path'] = $this->categories_full_puth[$data['external_id']];
         unset($data['full_path_ids']);
 
@@ -580,7 +584,7 @@ class ImportXML {
             $data['external_id'] = $partner->ID . '';
             $partner_exsist = is_partner($data['external_id'], $this->partners);
 
-            if (((string)$partner->IDWeb) || $partner_exsist) {
+            if (((string) $partner->IDWeb) || $partner_exsist) {
                 $data['id'] = $partner->IDWeb . '' ? $partner->IDWeb . '' : $partner_exsist['id'];
                 $this->update[] = $data;
             } else {
