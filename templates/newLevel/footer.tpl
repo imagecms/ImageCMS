@@ -58,7 +58,7 @@
                 <div class="main-title">{lang('Контакты','newLevel')}</div>
                 <ul>
                     <li>
-                        <div class="c_9">Главный офис:</div>
+                        <div class="c_9">{lang('Главный офис', 'newLevel')}:</div>
                         <div class="c_w">{echo siteinfo('siteinfo_address')}</div>
                     </li>
                     <li>
@@ -76,7 +76,7 @@
     <div class="container">
         <div class="f_l">
             <div class="c_w">{echo siteinfo('siteinfo_companytype')}</div>
-            <div class="c_9">Все права защищены</div>
+            <div class="c_9">{lang('Все права защищены','newLevel')}, {echo date('Y')}</div>
         </div>
         {if function_exists('mobile_site_address')}
             <div class="f_r">
