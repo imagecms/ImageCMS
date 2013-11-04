@@ -8,17 +8,12 @@ $(document).ready(function() {
         $('.tree_menu').find('ul:first>li:first ul:eq(1)').show();
     }
 
-    $(".top_menu_documentation li a").on('click', function() {
+    $(".top_menu_documentation li .top-menu-item, .main_page_block_from_menu .top-menu-item").on('click', function() {
         var categoryMenu = $(this).data('category_menu');
         var CookieDate = new Date();
         CookieDate.setFullYear(CookieDate.getFullYear() + 1);
         document.cookie = "category_menu=" + categoryMenu + " ;expires=" + CookieDate.toGMTString() + ";path=/";
-
-        var url = window.location.origin;
-        var len = url.length;
-        var lastChar = url.substr(len - 1, len);
-        var newLocation = lastChar != '#' ? url : url.substr(0, len - 1);
-        window.location = newLocation; // власне переадресація
+        window.location = window.location; // власне переадресація
 
     });
 

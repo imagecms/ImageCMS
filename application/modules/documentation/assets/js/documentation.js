@@ -1,3 +1,16 @@
+
+/**
+ * If there are unsaved changes, then dialog box will be shown
+ * @type 
+ */
+window.onbeforeunload = onUnload;
+function onUnload() {
+    if (wasChanges == true) {
+        return 'Есть несохраненные изменения. Действительно выйти?';
+    }
+}
+var wasChanges = false;
+
 tinymce.init({
     selector: "div.descriptionEditTinyMCE",
     inline: true,
@@ -453,14 +466,6 @@ function strip_tags(str, allowed_tags)
 
 
 
-/**
- * If there are unsaved changes, then dialog box will be shown
- * @type 
- */
-window.onbeforeunload = onUnload;
-function onUnload() {
-    if (wasChanges == true) {
-        return 'Есть несохраненные изменения. Действительно выйти?';
-    }
-}
-var wasChanges = false;
+
+
+;
