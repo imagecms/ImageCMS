@@ -32,31 +32,34 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
         {literal}
-        <script type="text/javascript">
-            function initDownloadScripts(scripts, callback, customEvent){
-                function downloadJSAtOnload(scripts, callback, customEvent) {
-                    var cL = 0,
-                    scriptsL = scripts.length;
+            <script type="text/javascript">
+                $.ajaxSetup({
+                    cache: true
+                });
+                function initDownloadScripts(scripts, callback, customEvent){
+                    function downloadJSAtOnload(scripts, callback, customEvent) {
+                        var cL = 0,
+                        scriptsL = scripts.length;
 
-                    $.map(scripts, function(i, n) {
-                        $.getScript(theme + 'js/' + i + '.js', function() {
-                            cL++;
-                            if (cL == scriptsL) {
-                                eval(callback)();
-                                $(document).trigger({'type': customEvent});
-                            }
-                        });
-                    })
+                        $.map(scripts, function(i, n) {
+                            $.getScript(theme + 'js/' + i + '.js', function() {
+                                cL++;
+                                if (cL == scriptsL) {
+                                    eval(callback)();
+                                    $(document).trigger({'type': customEvent});
+                                }
+                            });
+                        })
+                    }
+                    // Check for browser support of event handling capability
+                    if (window.addEventListener)
+                    window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
+                    else if (window.attachEvent)
+                    window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
+                    else
+                    window.onload = downloadJSAtOnload(scripts, callback, customEvent);
                 }
-                // Check for browser support of event handling capability
-                if (window.addEventListener)
-                window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
-                else if (window.attachEvent)
-                window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
-                else
-                window.onload = downloadJSAtOnload(scripts, callback, customEvent);
-            }
-        </script>
+            </script>
         {/literal}
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
