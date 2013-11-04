@@ -1,0 +1,6 @@
+-- update for siteinfo 17.10.2013
+UPDATE 
+    `settings` 
+SET  
+    `siteinfo` = 'a:7:{s:20:"siteinfo_companytype";s:54:"© Интернет-магазин «Imageshop», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:13:"siteinfo_logo";a:3:{s:8:"newLevel";a:2:{s:3:"url";s:63:"/templates/newLevel/css/color_scheme_1/logo.png";s:4:"path";s:46:"templates/newLevel/css/color_scheme_1/logo.png";}s:9:"corporate";a:2:{s:3:"url";s:52:"/templates/corporate/images/logo.png";s:4:"path";s:35:"templates/corporate/images/logo.png";}s:10:"commerce4x";a:2:{s:3:"url";s:53:"/templates/commerce4x/images/logo.png";s:4:"path";s:36:"templates/commerce4x/images/logo.png";}}s:8:"contacts";a:2:{s:5:"Email";s:20:"partner@imagecms.net";s:5:"Skype";s:8:"imagecms";}s:16:"siteinfo_favicon";a:3:{s:8:"newLevel";a:2:{s:3:"url";s:66:"/templates/newLevel/css/color_scheme_1/favicon.ico";s:4:"path";s:49:"templates/newLevel/css/color_scheme_1/favicon.ico";}s:9:"corporate";a:2:{s:3:"url";s:55:"/templates/corporate/images/favicon.png";s:4:"path";s:38:"templates/corporate/images/favicon.png";}s:10:"commerce4x";a:2:{s:3:"url";s:56:"/templates/commerce4x/images/favicon.png";s:4:"path";s:39:"templates/commerce4x/images/favicon.png";}}}'
+WHERE  `settings`.`id` = 2;

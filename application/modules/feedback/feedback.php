@@ -84,6 +84,7 @@ class Feedback extends MY_Controller {
                     'name' => lang('Name', 'feedback'),
                     'email' => lang('E-mail', 'feedback'),
                     'message' => lang('Message', 'feedback'),
+                    'captcha' => lang('Captcha', 'feedback')
                 );
                 $errors = "";
                 $this->form_validation->set_error_delimiters("", "");

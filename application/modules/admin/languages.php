@@ -29,14 +29,14 @@ class Languages extends BaseAdminController {
     function getLocales() {
         $langs_config = $this->config->item('locales');
         $langs = $langs_config;
-        
+
         foreach ($langs as $key => $lang) {
             $locale = setlocale(LC_ALL, $lang . '.utf8', $lang . '.utf-8', $lang . '.UTF8', $lang . '.UTF-8', $lang . '.utf-8', $lang . '.UTF-8', $lang);
             if (!$locale) {
                 unset($langs[$key]);
             }
         }
-        if(!$langs){
+        if (!$langs) {
             return $langs_config;
         }
 
@@ -210,9 +210,7 @@ class Languages extends BaseAdminController {
             showMessage(lang("Changes has been saved", "admin"));
 
             $action = $_POST['action'];
-            if ($action == 'edit') {
-                pjax('/admin/languages/edit/' . $lang_id);
-            } else {
+            if ($action == 'close') {
                 pjax('/admin/languages');
             }
         }

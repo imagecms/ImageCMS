@@ -34,16 +34,40 @@ class Documentation extends \MY_Controller {
      * Autoload function
      */
     public function autoload() {
-        if ($this->hasCRUDAccess()) {
+//        $this->recent_news();
+//        $this->recent_forum();
+
+        $top_menu = array(
+            'begin-work' => 'Начало работы',
+            'manage' => 'Администрирование',
+            'step-by-step' => 'Пошаговые инструкции',
+            'developers' => 'Разработчикам',
+            'templates' => 'Работа с шаблонами',
+        );
+        
+        \CMSFactory\assetManager::create()
+                ->setData('hasCRUDAccess', $this->hasCRUDAccess())
+                ->setData('top_menu', $top_menu);
+
+
+
+        if (!$this->input->is_ajax_request()) {
+
             \CMSFactory\assetManager::create()
-                    ->registerStyle('documentation', TRUE)
-                    ->registerScript('documentation', FALSE, 'before');
+                    ->setData('hasCRUDAccess', $this->hasCRUDAccess());
+
+            if ($this->hasCRUDAccess()) {
+                \CMSFactory\assetManager::create()
+                        ->registerStyle('documentation', TRUE)
+                        ->registerScript('documentation', FALSE, 'before');
+            }
         }
     }
 
-   
-
     public function preTags($text) {
+        if (strpos("<pre><code class='php'>") !== FALSE) {
+            return $text;
+        }
         return preg_replace_callback("/<pre>(.*?)[^>]<\/pre>/si", function($matches) {
                     return "<pre><code class='php'>" . htmlspecialchars($matches[1]) . "</code></pre>";
                 }, $text);
@@ -197,7 +221,7 @@ class Documentation extends \MY_Controller {
             /** Set form validation rules * */
             $this->form_validation->set_rules('NewPage[title]', lang("Name", "documentation"), 'xss_clean|trim|required|min_length[1]|max_length[254]');
             $this->form_validation->set_rules('NewPage[url]', lang("URL", "documentation"), 'xss_clean|max_length[254]');
-            $this->form_validation->set_rules('NewPage[prev_text]', lang("Content", "documentation"), 'xss_clean|trim|required');
+            $this->form_validation->set_rules('NewPage[full_text]', lang("Content", "documentation"), 'xss_clean|trim|required');
             $this->form_validation->set_rules('NewPage[keywords]', lang("Keywords", "documentation"), 'xss_clean|trim');
             $this->form_validation->set_rules('NewPage[description]', lang("Description", "documentation"), 'xss_clean|trim');
 
@@ -230,8 +254,8 @@ class Documentation extends \MY_Controller {
                     'cat_url' => $fullUrl,
                     'keywords' => ($dataPost['keywords'] != null ? trim($dataPost['keywords']) : trim($this->lib_seo->get_keywords($dataPost['prev_text']))),
                     'description' => ($dataPost['description'] != null ? trim($dataPost['description']) : trim($this->lib_seo->get_description($dataPost['prev_text']))),
-                    'full_text' => trim($dataPost['prev_text']),
-                    'prev_text' => trim($dataPost['prev_text']),
+                    'full_text' => trim($dataPost['full_text']),
+                    'prev_text' => trim($dataPost['full_text']),
                     'category' => $dataPost['category'],
                     'updated' => time(),
                     'lang' => $langId
@@ -472,9 +496,11 @@ class Documentation extends \MY_Controller {
             $categoryData['url'] = $full_path;
         }
 
+        $tree = $this->lib_category->_build();
+
         /** Render category menu * */
         \CMSFactory\assetManager::create()
-                ->setData('tree', $this->lib_category->_build())
+                ->setData('tree', $tree)
                 ->setData('group', $group)
                 ->setData('categoryData', $categoryData)
                 ->render('left_menu', true);
@@ -490,9 +516,69 @@ class Documentation extends \MY_Controller {
             redirect(base_url($page['cat_url']));
         }
     }
-    
-    
-    public function get_pages_in_category($id){
+
+    public function recent_forum() {
+        $forum = $this->load->database('forum', true, true);
+
+        $model = $forum
+                ->order_by('last_post', 'desc')
+                ->get('topics', 4);
+        $this->template->assign('forumThemes', $model->result_array());
+    }
+
+    public function recent_news() {
+        $this->load->helper('../modules/documentation/helpers/documentation');
+        $settings = array(
+            'news_count' => 3,
+            'max_symdols' => 150,
+            'display' => 'recent' //possible values: recent/popular
+        );
+
+        $imagecms = $this->load->database('imagecms', true, true);
+
+        $imagecms->select('content.id as id, CONCAT_WS("", cat_url, url) as full_url, title, prev_text, publish_date, author, data', FALSE);
+        $imagecms->where('post_status', 'publish');
+        $imagecms->join('content_fields_data', 'content_fields_data.item_id=content.id');
+        $imagecms->where('prev_text !=', 'null');
+        $imagecms->where('publish_date <=', time());
+        $imagecms->where('lang', $this->config->item('cur_lang'));
+        $imagecms->where('content_fields_data.field_name', 'field_promo_pic');
+
+        /*  Remove records with "ACTION" marker in additional fields */
+        $imagecms->where('(SELECT content_fields_data.id FROM content_fields_data WHERE content_fields_data.item_id = content.id AND field_name = "field_is_promo") IS NULL');
+
+        if (count($settings['categories']) > 0) {
+            $imagecms->where_in('category', $settings['categories']);
+        }
+
+        if ($settings['display'] == 'recent') {
+            $imagecms->order_by('publish_date', 'desc'); // Recent news
+        } elseif ($settings['display'] == 'popular') {
+            $imagecms->order_by('showed', 'desc'); // Pupular news
+        }
+
+        $query = $imagecms->get('content', $settings['news_count']);
+
+        if ($query->num_rows() > 0) {
+            $news = $query->result_array();
+
+            $cnt = count($news);
+            for ($i = 0; $i < $cnt; $i++) {
+                $news[$i]['prev_text'] = htmlspecialchars_decode($news[$i]['prev_text']);
+
+                // Truncate text
+                if ($settings['max_symdols'] > 0 AND mb_strlen($news[$i]['prev_text'], 'utf-8') > $settings['max_symdols']) {
+                    $news[$i]['prev_text'] = strip_tags(mb_substr($news[$i]['prev_text'], 0, $settings['max_symdols'], 'utf-8')) . '...';
+                }
+            }
+
+            $this->template->assign('news', $news);
+        } else {
+            return '';
+        }
+    }
+
+    public function get_pages_in_category($id) {
         return $this->documentation_model->getPagesInCategory($id, $this->defaultLang['id']);
     }
 

@@ -1,4 +1,4 @@
-<div class="container">
+    <div class="container">
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
@@ -50,8 +50,8 @@
                                                 <div class="controls">
                                                     <select name="access">
                                                         <option {if $wishlist[0][access] == 'shared'}selected="selected"{/if} value="shared">{lang('shared', 'wishlist')}</option>
-                                                        <option {if $wishlist[0][access] == 'private'}selected="selected"{/if} value="private">{lang('private', 'wishlist')}private</option>
-                                                        <option {if $wishlist[0][access] == 'public'}selected="selected"{/if} value="public">{lang('public', 'wishlist')}public</option>
+                                                        <option {if $wishlist[0][access] == 'private'}selected="selected"{/if} value="private">{lang('private', 'wishlist')}</option>
+                                                        <option {if $wishlist[0][access] == 'public'}selected="selected"{/if} value="public">{lang('public', 'wishlist')}</option>
                                                     </select>
                                                 </div>
                                             </div>

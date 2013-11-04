@@ -123,8 +123,10 @@ class Install extends MY_Controller {
 
         foreach ($locales as $locale => $v) {
             if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
-                $locales[$locale] = 'warning';
-            }
+                if (!setlocale(LC_ALL, '')) {
+                    $locales[$locale] = 'warning';
+                }
+            } 
         }
 
         $data = array(

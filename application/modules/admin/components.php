@@ -231,10 +231,10 @@ class Components extends BaseAdminController {
                     $info_file = APPPATH . 'modules/' . $value['name'] . '/module_info.php';
 
                     $lang = new MY_Lang();
-                    $lang->load($file);
+                    $lang->load($value['name']);
 
                     if (file_exists($info_file)) {
-                        include ($info_file);
+                        include($info_file);
                         $components[$key]['menu_name'] = $com_info['menu_name'];
                         $components[$key]['type'] = $com_info['type'];
                     }
@@ -387,15 +387,10 @@ class Components extends BaseAdminController {
     }
 
     function get_module_info($mod_name) {
-        ($hook = get_hook('admin_get_module_info')) ? eval($hook) : NULL;
-
-        $lang = new MY_Lang();
-        $lang->load($mod_name);
-
         $info_file = realpath(APPPATH . 'modules/' . $mod_name) . '/module_info.php';
         if (file_exists($info_file)) {
             $lang = new MY_Lang();
-            $lang->load($module);
+            $lang->load($mod_name);
             include($info_file);
             return $com_info;
         } else {
