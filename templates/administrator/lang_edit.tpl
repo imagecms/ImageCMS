@@ -7,9 +7,20 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">                        
-                    <a href="/admin/languages" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
-                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang("Save","admin")}</button>
-                    <button type="submit"   class="btn btn-small formSubmit" data-form="#editLang" data-action="close"><i class="icon-ok"></i>{lang("Save and go back","admin")}</button>
+                    <a href="/admin/languages" class="t-d_n m-r_15 pjax">
+                        <span class="f-s_14">←</span> 
+                        <span class="t-d_u">
+                            {lang("Go back","admin")}
+                        </span>
+                    </a>
+                    <button type="submit" class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit">
+                        <i class="icon-list-alt icon-white"></i>
+                        {lang("Save","admin")}
+                    </button>
+                    <button type="submit" class="btn btn-small formSubmit" data-form="#editLang" data-action="close">
+                        <i class="icon-ok"></i>
+                        {lang("Save and go back","admin")}
+                    </button>
                 </div>
             </div>                            
         </div>
@@ -43,7 +54,7 @@
                                                             <input type="text" name="identif" id="" value="{$identif}"  />
                                                         </div>
                                                     </div> 
-                                                      <div class="control-group">
+                                                    <div class="control-group">
                                                         <label class="control-label" for="locale">{lang("Locale","admin")}:</label>
                                                         <div class="controls">
                                                             <select id="locale" name="locale">
@@ -53,7 +64,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="row-fluid">
                                                         <!--<div class="control-group">
                                                             <label class="control-label" for="inputName">{lang("Image URL","admin")}:</label>
@@ -75,18 +86,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        { /* } 
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="inputParent">{lang("Folder","admin")}:</label>
-                                                            <div class="controls">
-                                                                <select name="folder">
-                                                                    {foreach $lang_folders as $folder}
-                                                                        <option {if $folder == $folder_selected} selected="selected" {/if} >{$folder}</option>
-                                                                    {/foreach}
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        { */ }
                                                         <div class="control-group">
                                                             <label class="control-label" for="inputParent">{lang("Template","admin")}:</label>
                                                             <div class="controls">
@@ -94,11 +93,14 @@
                                                                     {foreach $templates as $template}
                                                                         <option {if $template == $template_selected} selected="selected" {/if} >{$template}</option>
                                                                     {/foreach}
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </form>
                                         </div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
