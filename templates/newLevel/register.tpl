@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="frame-register">
-            <form method="post" id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', '#register-form');
+            <form method="post" id="register-form" onsubmit="ImageCMSApi.formAction('{site_url("/auth/authapi/register")}', '#register-form');
                     return false;">
                 <div class="horizontal-form">
                     <div class="frame-label">
