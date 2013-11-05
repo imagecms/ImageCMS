@@ -11,6 +11,8 @@
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
 {$NextCSIdCond = $NextCS != null}
+{$variants = $model->getProductVariants()}
+{$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -65,13 +67,12 @@
                 <div class="right-product-left">
                     <div class="f-s_0 buy-block">
                         <!-- Start. Check variant-->
-                        {$variants = $model->getProductVariants()}
                         {if count($variants) > 1}
                             <div class="check-variant-product">
                                 <div class="title">{lang('Выберите вариант','newLevel')}:</div>
                                 <div class="lineForm">
                                     <select name="variant" id="variantSwitcher">
-                                        {foreach $model->getProductVariants() as $key => $productVariant}
+                                        {foreach $variants as $key => $productVariant}
                                             <option value="{echo $productVariant->getId()}">
                                                 {if $productVariant->getName()}
                                                     {echo ShopCore::encode($productVariant->getName())}
@@ -279,7 +280,6 @@
             </div>
             <div class="left-product">
                 <!-- Start. Photo block-->
-                {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
                 <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     <span class="photo-block">
                         <span class="helper"></span>
