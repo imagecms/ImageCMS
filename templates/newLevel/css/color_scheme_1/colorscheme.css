@@ -251,9 +251,9 @@ a:focus, a:active {color: #51d2ff;}
 .vertical-menu .frame-item-menu > .frame-title:before{filter:none;background: none;border-top: 1px solid #14a1de;top: 0;}
 .vertical-menu .frame-item-menu > .frame-title.is-sub:after{filter:none;background: none;width: 9px;height: 13px;top: 50%;margin-top: -7px;left: auto;right: 11px;background-image: url("images/arrow_menu.png");}
 
-.frame-drop-menu > ul{background-color: #fff;border: 2px solid #0c9acb;-moz-box-shadow: 5px 5px 4px rgba(0,0,0,0.2);-webkit-box-shadow: 5px 5px 4px rgba(0,0,0,0.2);box-shadow: 5px 5px 4px rgba(0,0,0,0.2);}
+.frame-drop-menu{-moz-box-shadow: 5px 5px 4px rgba(0,0,0,0.2);-webkit-box-shadow: 5px 5px 4px rgba(0,0,0,0.2);box-shadow: 5px 5px 4px rgba(0,0,0,0.2);-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;}
 
-.frame-drop-menu > ul{-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;}
+.frame-drop-menu > ul{background-color: #fff;border: 2px solid #0c9acb;-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;}
 .vertical-menu .frame-drop-menu > ul{-moz-border-radius: 0 5px 5px 0;-webkit-border-radius: 0 5px 5px 0;border-radius: 0 5px 5px 0;}
 
 .frame-drop-menu .frame-l2 > ul > li > a, .frame-drop-menu .frame-l2 > ul > li > ul > li > a{color: #0885bd;}

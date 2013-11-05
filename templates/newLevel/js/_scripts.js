@@ -1,4 +1,8 @@
 function init() {
+    if (isTouch)
+        body.addClass('isTouch');
+    else
+        body.addClass('noTouch');
     /*call general functions and plugins*/
     cuselInit(body, '#sort, #sort2, #compare, [id ^= сVariantSwitcher_]');
     /*call general functions and plugins*/
