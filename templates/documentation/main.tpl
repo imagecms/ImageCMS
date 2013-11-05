@@ -108,7 +108,6 @@
                     {/if}
                     <div class="tree_menu">
                         {if $CI->core->core_data['data_type'] != 'search'}
-                            <div class="title">{$top_menu[$_COOKIE['category_menu']]}</div>
                             {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
                         {/if}
                         {if $CI->core->core_data['data_type'] == 'search'}
