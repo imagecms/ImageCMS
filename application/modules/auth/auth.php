@@ -330,26 +330,30 @@ class Auth extends MY_Controller {
         $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);
 
-        $objTemplate = \CMSFactory\assetManager::create();
         // Reset password
         if ($this->dx_auth->reset_password($email, $key)) {
 //             ($hook = get_hook('auth_reset_pass_restored')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('You have successfully zeroed my password. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login Here', 'auth'));
-                    $objTemplate->setData('content', $data['auth_message']);
-                    
-                    
-//            $this->template->assign('content', $data['auth_message']);
-//            $this->template->show();
+
+            $this->template->assign('auth_message', $data['auth_message']);
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                $this->template->show('reset_password');
+            } else {
+                $this->template->display('reset_password');
+            }
         } else {
 //             ($hook = get_hook('auth_reset_pass_failed')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('Reset failed. Not a valid user name and / or password. Check your email and follow the instructions.', 'auth');
-            $objTemplate->setData('content', $data['auth_message']);
-//            $this->template->assign('content', $data['auth_message']);
-//            $this->template->show();
+
+            $this->template->assign('auth_message', $data['auth_message']);
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                $this->template->show('reset_password');
+            } else {
+                $this->template->display('reset_password');
+            }
         }
-        $objTemplate->render('reset_password');
     }
 
     function change_password() {

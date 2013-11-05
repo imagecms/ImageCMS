@@ -322,8 +322,12 @@
     }
     function ajaxRecount(el, slChk) {
         $(frameFilter).children(preloader).show();
+        
+        /*not hyper clever filter*/
         //    $(catalogForm).submit();
+        /*/not hyper clever filter*/
 
+        /*hyper clever filter*/
         var $this = el,
         data = $(catalogForm).serialize(),
         catUrl = window.location.pathname,
@@ -354,6 +358,7 @@
             }
         });
         return false;
+        /*/hyper clever filter*/
     }
 
     $(document).on('scriptDefer', function() {
