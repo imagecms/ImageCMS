@@ -72,10 +72,33 @@
                         <i class="icon-refresh"></i>
                         {lang('Create')}
                     </a>
+                    <button id="update" onclick="Translator.correctPaths($(this))" type="button" class="btn btn-small btn-success">
+                        <i class="icon-edit"></i>
+                        {lang('Correct paths')}
+                    </button>
                 </div>
             </div>
         </div>
         <div class="content_big_td row-fluid">
+            <div class="statistic" style="display: none; width: 302px; height: 50px; float: right; margin-top: 2px; margin-bottom: 2px;">
+                <div class="pull-left">
+                    <table class=" table-hover table-bordered" style="width: 140px; height: 50px; padding-left: 10px; border-left: 1px solid #ddd ">
+                        <tr>
+                            <td style="width: 90px; border: none!important"><b>{lang('All strings')}:</b></td>
+                            <td style="width: 50px; border: none!important; color: grey"><b><i class="allStringsCount">300</i></b></td>
+                            <td style="width: 100px; border: none!important"><b>{lang('Not translated')}:</b></td>
+                            <td style="width: 50px; border: none!important; color: grey"><b><i class="notTranslatedStringsCount">300</i></b></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 90px; border: none!important"><b>{lang('Translated')}:</b></td>
+                            <td style="width: 50px; border: none!important; color: grey"><b><i class="translatedStringsCount">400</i></b></td>
+                             <td style="width: 100px; border: none!important"><b>{lang('Fuzzy strings')}:</b></td>
+                            <td style="width: 50px; border: none!important; color: grey"><b><i class="fuzzyStringsCount">400</i></b></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
             <div class="tabbable"> <!-- Only required for left/right tabs -->
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#poTab" data-toggle="tab">{lang('Po file')}</a></li>
@@ -120,27 +143,30 @@
                                 </a>
                                 <ul class="dropdown-menu searchTranslatorOptions" style="width: 430px; padding-left: 20px" >
                                     <label>
-                                        <input id="sensitiveSearch" type="checkbox">
+                                        <input id="sensitiveSearch" type="checkbox" class="searchConditions" disabled="">
                                         {lang('Sensitive search')}
                                     </label><br>
                                     <label>
-                                        <input id="fullStringSearch" type="checkbox">
+                                        <input id="fullStringSearch" type="checkbox" class="searchConditions" disabled="">
                                         {lang('Whole word search')}
                                     </label><br>
                                     <label>
-                                        <input id="regularSearch" type="checkbox">
+                                        <input id="regularSearch" type="checkbox" class="searchConditions" disabled="">
                                         {lang('Use regular expration search')}
-                                    </label><br>
+                                    </label>
+
+                                    <hr><br>
+
                                     <label>
-                                        <input id="originSearch" type="checkbox">
+                                        <input id="originSearch" type="checkbox" class="searchObjects">
                                         {lang('Search in origin strings')}
                                     </label><br>
                                     <label>
-                                        <input id="translationSearch" type="checkbox">
+                                        <input id="translationSearch" type="checkbox" class="searchObjects">
                                         {lang('Search in translation strings')}
                                     </label><br>
                                     <label>
-                                        <input id="commentSearch" type="checkbox">
+                                        <input id="commentSearch" type="checkbox" class="searchObjects">
                                         {lang('Search in comments strings')}
                                     </label>
                                 </ul>
@@ -222,35 +248,58 @@
                                 {/foreach}
                             </select>
                         </div>
-                        <div class="pathParseHolder" style="display: none">
-                            <label>
-                                <h5>
-                                    <b>
-                                        {lang('Parser paths')}:
-                                    </b>
-                                </h5>
-                            </label>
-                            <div class="pathHolder span5" style="margin: 0px">
 
-                            </div>
+                        <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">
+                                            {lang('Po file settings')}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="inside_padd">
+                                                <div class="po_settings">
 
-                            <div class="span13" style="margin-left: 22px;">
-                                <div class="addPathClone" style="display: none">
-                                    <div class="path">
-                                        <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px; ">
+                                                </div>
 
-                                        </b>
-                                        <input type="text" name="path[]" style="width: 390px; margin-bottom: -10px;" value="">
-                                        <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-remove-sign"></i></div>
-                                        <br>
-                                    </div>
-                                </div>
-                                <button id="add" type="button" class="btn btn-small btn-success" onclick="Translator.addNewPath($(this))">
-                                    <i class="icon-plus"></i>
-                                    {lang('Add')}
-                                </button>
-                            </div>
-                        </div>
+                                                <div class="control-group pathParseHolder"  style="display: none">
+                                                    <label class="control-label" for="file">{lang('Paths')}:</label>
+                                                    <div class="controls" >
+                                                        <div class="pathHolder span5" style="margin: 0px">
+                                                        </div>
+
+                                                        <div class="span13" style="margin-left: 22px; float: left">
+                                                            <div class="addPathClone" style="display: none">
+                                                                <div class="path">
+                                                                    <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px; ">
+
+                                                                    </b>
+                                                                    <input type="text" name="path[]" style="width: 390px; margin-bottom: -10px;" value="">
+                                                                    <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-remove-sign"></i></div>
+                                                                    <br>
+                                                                </div>
+                                                            </div>
+                                                            <button id="add" type="button" class="btn btn-small btn-success" onclick="Translator.addNewPath($(this))">
+                                                                <i class="icon-plus"></i>
+                                                                {lang('Add')}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {form_csrf()}
+                        </form>
+
+
                     </div>
                 </div>
             </div>
