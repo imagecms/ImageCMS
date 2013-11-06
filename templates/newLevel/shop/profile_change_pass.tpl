@@ -1,7 +1,7 @@
 <div class="inside-padd">
     <div class="frame-change-password">
         <div class="horizontal-form big-title">
-            <form method="post" id="form_change_pass" onsubmit="ImageCMSApi.formAction('/auth/authapi/change_password', '#form_change_pass', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
+            <form method="post" id="form_change_pass" onsubmit="ImageCMSApi.formAction('{site_url("/auth/authapi/change_password")}', '#form_change_pass', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
                                     return false;">
                 <label>
                     <span class="title">{lang('Старый пароль','newLevel')}:</span>

@@ -1,7 +1,7 @@
 <div class="inside-padd clearfix">
     <div class="frame-change-profile">
         <div class="horizontal-form">
-            <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('/shop/profileapi/changeInfo', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
+            <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
                     return false;">
                 <label>
                     <span class="title">{lang('Ваше имя','newLevel')}:</span>

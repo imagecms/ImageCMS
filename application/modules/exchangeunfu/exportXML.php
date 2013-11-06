@@ -358,12 +358,13 @@ class ExportXML {
                         "\t\t\t\t<Сумма>" . $order_product['quantity'] * $order_product['price'] . "</Сумма>\r\n" .
                         "\t\t\t</Строки>\r\n";
 
-                $this->order_export .= $products;
-
                 if ($order['status'] == 2) {
                     $this->invoice_export .= $products;
                 }
             }
+            
+            $this->order_export .= $products;
+            
             if ($order['status'] == 2) {
                 $this->invoice_export .= "\t\t</СписокРасходныеНакладные>\r\n";
             }

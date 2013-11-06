@@ -47,7 +47,6 @@
                                             </span>
                                         </th>
                                         <th class="span4">{lang("Name","admin")}</th>
-                                        <th class="span4">{lang("Folder","admin")}</th>
                                         <th class="span4">{lang("Identifier","admin")}</th>
                                         <th class="span4">{lang("Template","admin")}</th>
                                         <th class="span2">{lang("Image","admin")}</th>
@@ -64,8 +63,17 @@
                                                 </span>
                                             </span>
                                         </td>
-                                        <td><p><a href="{$BASE_URL}admin/languages/edit/{$lang.id}" data-rel="tooltip" data-title="{lang("Editing","admin")}">{$lang.lang_name}</a></p></td>
-                                        <td><p>{$lang.folder}</p></td>
+                                        <td>
+                                            <p>
+                                                <a href="{$BASE_URL}admin/languages/edit/{$lang.id}" 
+                                                   data-rel="tooltip" 
+                                                   data-title="{lang("Editing","admin")}"
+                                                   class="pjax"
+                                                   >
+                                                    {$lang.lang_name}
+                                                </a>
+                                            </p>
+                                        </td>
                                         <td><p>{$lang.identif}</p></td>
                                         <td><p>{$lang.template}</p></td>
                                         <td><p><img src="{$lang.image}" width="16" height="16" /></p></td>

@@ -84,7 +84,7 @@
                     <ul class="nav navbar-nav top_menu_documentation">
                         {foreach $top_menu as $key => $value}
                             <li {if $_COOKIE['category_menu'] == $key}class="active"{/if}>
-                                <a href="#" data-category_menu="{$key}">{$value}</a>
+                                <button class='top-menu-item' data-category_menu="{$key}">{$value}</button>
                             </li>
                         {/foreach}
                     </ul>
@@ -108,7 +108,6 @@
                     {/if}
                     <div class="tree_menu">
                         {if $CI->core->core_data['data_type'] != 'search'}
-                            <div class="title">{$top_menu[$_COOKIE['category_menu']]}</div>
                             {$CI->load->module('documentation')->load_category_menu($_COOKIE['category_menu'])}
                         {/if}
                         {if $CI->core->core_data['data_type'] == 'search'}
