@@ -68,12 +68,12 @@ class ExportXML {
 
         /** export productivity */
         if ($this->productivity) {
-            $this->exportProductivity();
+//            $this->exportProductivity();
         }
 
         /** export prices */
         if ($this->prices) {
-            $this->exportPrices();
+//            $this->exportPrices();
         }
 
         /** export orders */
@@ -83,13 +83,13 @@ class ExportXML {
 
         /** export products */
         if ($this->products) {
-            $this->exportProducts();
+//            $this->exportProducts();
         }
 //        } else {
         /** all export */
         /** export users */
         if ($this->users) {
-            $this->exportUsers();
+//            $this->exportUsers();
         }
 
         /** export partners */
@@ -114,7 +114,7 @@ class ExportXML {
 
         /** export categories */
         if ($this->categories) {
-            $this->exportCategories();
+//            $this->exportCategories();
         }
 
         /** export products */
@@ -358,12 +358,13 @@ class ExportXML {
                         "\t\t\t\t<Сумма>" . $order_product['quantity'] * $order_product['price'] . "</Сумма>\r\n" .
                         "\t\t\t</Строки>\r\n";
 
-                $this->order_export .= $products;
-
                 if ($order['status'] == 2) {
                     $this->invoice_export .= $products;
                 }
             }
+            
+            $this->order_export .= $products;
+            
             if ($order['status'] == 2) {
                 $this->invoice_export .= "\t\t</СписокРасходныеНакладные>\r\n";
             }
