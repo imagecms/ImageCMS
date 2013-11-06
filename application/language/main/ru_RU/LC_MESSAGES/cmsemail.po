@@ -1,0 +1,759 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-06 06:51+0200\n"
+"PO-Revision-Date: 2013-11-06 06:51+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: ../../../../../application/core\n"
+"X-Poedit-SearchPath-1: ../../../../../application/errors\n"
+"X-Poedit-SearchPath-2: ../../../../../application/helpers\n"
+"X-Poedit-SearchPath-3: ../../../../../application/libraries\n"
+"X-Poedit-SearchPath-4: ../../../../../application/modules/shop/classes\n"
+"X-Poedit-SearchPath-5: ../../../../../application/modules/shop/helpers\n"
+"X-Poedit-SearchPath-6: ../../../../../system/language/form_validation\n"
+"X-Poedit-SearchPath-7: ../../../../../system/language/email_lang\n"
+"X-Poedit-SearchPath-8: ../../../../../system/language/upload\n"
+"X-Poedit-SearchPath-9: ../../../../../system/libraries\n"
+
+#: ./application/core/MY_Lang.php:48
+#: ./application/core/MY_Lang.php:53
+#: Array
+msgid "Advice"
+msgstr ""
+
+#: ./application/core/MY_Lang.php:49
+#: ./application/core/MY_Lang.php:54
+#: Array
+msgid "To improve performance set php_gettext.dll extension"
+msgstr ""
+
+#: ./application/helpers/page_helper.php:9
+msgid "id"
+msgstr ""
+
+#: ./application/helpers/page_helper.php:10
+msgid "identif"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:813
+msgid "auth login incorrect password"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:820
+msgid "auth not activated"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:825
+msgid "auth login username not exist"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:875
+#: ./application/libraries/DX_Auth.php:906
+msgid "auth activate subject"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:921
+msgid "auth account subject"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:990
+msgid "auth forgot password subject"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1012
+msgid "auth request sent"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1015
+msgid "auth username or email not exist"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1121
+msgid "auth incorrect old password"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1153
+msgid "auth incorrect password"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php~:71
+#: ./application/modules/shop/helpers/shop_helper.php~:112
+#: ./application/modules/shop/helpers/shop_helper.php~:125
+msgid "s_home"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php~:336
+#: ./application/modules/shop/helpers/shop_helper.php~:355
+msgid "s_buy"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php~:337
+msgid "s_MO"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php~:356
+msgid "s_c_of_z_"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php~:357
+msgid "s_message_not_found"
+msgstr ""
+
+#: ../../../../../application/helpers/category_helper.php:86
+msgid "No category"
+msgstr "Нет категории"
+
+#: ../../../../../application/helpers/javascript_helper.php:20
+msgid "Message"
+msgstr "Сообщение"
+
+#: ../../../../../application/helpers/javascript_helper.php:22
+msgid "Error"
+msgstr "Ошибка"
+
+#: ../../../../../application/helpers/javascript_helper.php:25
+msgid "Success"
+msgstr "Успех"
+
+#: ../../../../../application/helpers/javascript_helper.php:29
+msgid "Requests to the database"
+msgstr "Запросов к базе"
+
+#: ../../../../../application/helpers/javascript_helper.php:47
+msgid "Redirecting"
+msgstr "Перенаправление"
+
+#: ../../../../../application/helpers/rules_helper.php:45
+msgid "No rights for"
+msgstr "Нет прав для"
+
+#: ../../../../../application/helpers/rules_helper.php:57
+msgid "Error checking permissions"
+msgstr "Ошибка проверки прав"
+
+#: ../../../../../application/helpers/rules_helper.php:87
+msgid "Operation panel"
+msgstr "Панель управления"
+
+#: ../../../../../application/helpers/rules_helper.php:88
+msgid "Languages"
+msgstr "Языки"
+
+#: ../../../../../application/helpers/rules_helper.php:89
+msgid "Cache"
+msgstr "Кэш"
+
+#: ../../../../../application/helpers/rules_helper.php:90
+msgid "Pages"
+msgstr "Страницы"
+
+#: ../../../../../application/helpers/rules_helper.php:91
+msgid "Categories"
+msgstr "Категории"
+
+#: ../../../../../application/helpers/rules_helper.php:92
+msgid "Modules"
+msgstr "Модулі"
+
+#: ../../../../../application/helpers/rules_helper.php:93
+msgid "Widgets"
+msgstr "Виджеты"
+
+#: ../../../../../application/helpers/rules_helper.php:94
+msgid "Menu"
+msgstr "Меню"
+
+#: ../../../../../application/helpers/rules_helper.php:95
+msgid "Members"
+msgstr "Пользователи"
+
+#: ../../../../../application/helpers/rules_helper.php:96
+msgid "Group"
+msgstr "Группа"
+
+#: ../../../../../application/helpers/rules_helper.php:97
+msgid "Logs"
+msgstr "Журналы"
+
+#: ../../../../../application/helpers/rules_helper.php:98
+msgid "Backup copying"
+msgstr "Резервное копирование"
+
+#: ../../../../../application/helpers/rules_helper.php:99
+msgid "File Editor"
+msgstr "Редактор файлов"
+
+#: ../../../../../application/helpers/rules_helper.php:113
+msgid "Access Control Panel"
+msgstr "Доступ к панели управления"
+
+#: ../../../../../application/helpers/rules_helper.php:114
+msgid "System update"
+msgstr "Обновление системы"
+
+#: ../../../../../application/helpers/rules_helper.php:115
+msgid "Find pages in the control panel"
+msgstr "Найти страницы на панели управления"
+
+#: ../../../../../application/helpers/rules_helper.php:116
+msgid "Creating a language"
+msgstr "Создание языка"
+
+#: ../../../../../application/helpers/rules_helper.php:117
+msgid "Changing the language"
+msgstr "Изменение языка"
+
+#: ../../../../../application/helpers/rules_helper.php:118
+msgid "Remove languages"
+msgstr "Удалить языках"
+
+#: ../../../../../application/helpers/rules_helper.php:119
+msgid "Changing site settings"
+msgstr "Изменение настроек сайта"
+
+#: ../../../../../application/helpers/rules_helper.php:120
+msgid "Clearing the cache"
+msgstr "Очистка кэша"
+
+#: ../../../../../application/helpers/rules_helper.php:121
+msgid "Creating pages"
+msgstr "Создание страниц"
+
+#: ../../../../../application/helpers/rules_helper.php:122
+msgid "Editing pages"
+msgstr "Редактирование страниц"
+
+#: ../../../../../application/helpers/rules_helper.php:123
+msgid "Delete pages"
+msgstr "Удаление страниц"
+
+#: ../../../../../application/helpers/rules_helper.php:124
+msgid "Creating categories"
+msgstr "Создание категорий"
+
+#: ../../../../../application/helpers/rules_helper.php:125
+msgid "Edit Categories"
+msgstr "Редактирование категорий"
+
+#: ../../../../../application/helpers/rules_helper.php:126
+msgid "Category delete"
+msgstr "Удалить категорию"
+
+#: ../../../../../application/helpers/rules_helper.php:127
+msgid "Install Modules"
+msgstr "Установка модулей"
+
+#: ../../../../../application/helpers/rules_helper.php:128
+msgid "Removing Modules"
+msgstr "Удаление модулей"
+
+#: ../../../../../application/helpers/rules_helper.php:129
+msgid "Administration module"
+msgstr "Модуль администрирования"
+
+#: ../../../../../application/helpers/rules_helper.php:130
+msgid "Creating widgets"
+msgstr "Создание виджетов"
+
+#: ../../../../../application/helpers/rules_helper.php:131
+msgid "Removing widgets"
+msgstr "Удаление виджетов"
+
+#: ../../../../../application/helpers/rules_helper.php:132
+msgid "Access to the widget settings"
+msgstr "Доступ к настройкам виджета"
+
+#: ../../../../../application/helpers/rules_helper.php:133
+msgid "Create a menu"
+msgstr "Создать меню"
+
+#: ../../../../../application/helpers/rules_helper.php:134
+msgid "Edit menu"
+msgstr "Редактирование меню"
+
+#: ../../../../../application/helpers/rules_helper.php:135
+msgid "Menu deleting"
+msgstr "Удаление меню"
+
+#: ../../../../../application/helpers/rules_helper.php:136
+msgid "Create users of their group"
+msgstr "Создать пользователей их группы"
+
+#: ../../../../../application/helpers/rules_helper.php:137
+msgid "Create users of all groups"
+msgstr "Создать пользователей всех групп"
+
+#: ../../../../../application/helpers/rules_helper.php:138
+msgid "Edit Users"
+msgstr "Редактирование пользователей"
+
+#: ../../../../../application/helpers/rules_helper.php:139
+msgid "Remove Users"
+msgstr "Удаление пользователей"
+
+#: ../../../../../application/helpers/rules_helper.php:140
+msgid "Viewing member"
+msgstr "Просмотр пользователя"
+
+#: ../../../../../application/helpers/rules_helper.php:141
+msgid "Creating Groups"
+msgstr "Создание групп"
+
+#: ../../../../../application/helpers/rules_helper.php:142
+msgid "Editing Groups"
+msgstr "Редактирование групп"
+
+#: ../../../../../application/helpers/rules_helper.php:143
+msgid "Deleting Groups"
+msgstr "Удаление групп"
+
+#: ../../../../../application/helpers/rules_helper.php:144
+msgid "View Log"
+msgstr "Просмотр журнала"
+
+#: ../../../../../application/helpers/rules_helper.php:145
+msgid "Backing up"
+msgstr "Резервное копирование"
+
+#: ../../../../../application/helpers/rules_helper.php:146
+msgid "Access to the file editor"
+msgstr "Доступ к файлу редактору"
+
+#: ../../../../../application/helpers/rules_helper.php:147
+msgid "Download files"
+msgstr "Скачать файлы"
+
+#: ../../../../../application/helpers/rules_helper.php:148
+msgid "Editing Files"
+msgstr "Редактирование файлов"
+
+#: ../../../../../application/helpers/rules_helper.php:149
+msgid "Edit Folders"
+msgstr "Редактирование папок"
+
+#: ../../../../../application/libraries/DX_Auth.php:1232
+#: ../../../../../application/libraries/DX_Auth.php:1237
+#: ../../../../../application/libraries/DX_Auth.php:1240
+msgid "Improper protection code"
+msgstr "Неправильная защита кода"
+
+#: ../../../../../application/libraries/Permitions.php:481
+#: ../../../../../application/libraries/Permitions.php:552
+#: ../../../../../application/libraries/Permitions.php:615
+#: ../../../../../application/libraries/Permitions.php:798
+msgid "Changes have been saved"
+msgstr "Изменения сохранены"
+
+#: ../../../../../application/libraries/Permitions.php:585
+msgid "Role not found"
+msgstr "Роль не найдена"
+
+#: ../../../../../application/libraries/Permitions.php:749
+msgid "Privilege created"
+msgstr "Привилегия создана"
+
+#: ../../../../../application/libraries/Permitions.php:787
+msgid "The privilege is not found"
+msgstr "Привилегия не найдена"
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:274
+msgid "Recipient"
+msgstr "Получатель"
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:281
+msgid "Identifier code"
+msgstr "Идентификационный код"
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:284
+msgid "Integer. The maximum length of 10 characters."
+msgstr "Целое число. Максимальная длина 10 символов"
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:289
+msgid "Current account"
+msgstr "Текущий акаунт"
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:292
+msgid "Integer. The maximum length of 14 characters."
+msgstr "Целое число. Максимальная длина 14 символов"
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:297
+msgid "Bank MFI"
+msgstr "МФО банку"
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:300
+msgid "Integer. The maximum length of 6 characters."
+msgstr "Целое число. Максимальная длина 6 символов."
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:306
+msgid "Money sign"
+msgstr "Денежный знак"
+
+#: ../../../../../application/modules/shop/classes/OschadBankInvoiceSystem.php:309
+msgid "For example: rub"
+msgstr "Например: руб"
+
+#: ../../../../../application/modules/shop/classes/ShopAdminController.php:58
+#: ../../../../../application/modules/shop/classes/ShopAdminController.php:59
+msgid "Translated field"
+msgstr "Переводимое поле"
+
+#: ../../../../../application/modules/shop/classes/Search/BaseSearch.php:242
+msgid "All result"
+msgstr "Все результаты"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:117
+msgid "Recipient account"
+msgstr "Счет получателя"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:123
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:154
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:150
+msgid "Merchant settings"
+msgstr "Настройки мерчанта"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:127
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:158
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:155
+msgid "The method of sending data for all requests: GET"
+msgstr "Метод отсылки данных для всех запросов: GET"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:142
+msgid "E-mail"
+msgstr "Электронная почта"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:148
+msgid "Information about transaction"
+msgstr "Информация о трансакции"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:128
+msgid "Login"
+msgstr "Логин"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:135
+#: ../../../../../application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:142
+msgid "Password"
+msgstr "Пароль"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:156
+#: ../../../../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:133
+msgid "Merchant id"
+msgstr "Мерчант ID"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:166
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:173
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:167
+msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
+msgstr "Кошелек продавца, на который покупатель должен совершить платеж. Формат – буква и 12 цифр."
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:163
+msgid "Merchant password"
+msgstr "Пароль Мерчанта"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:164
+msgid "Trick seller"
+msgstr "Кошелек продавца Trick seller"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:174
+msgid "Secret Key:"
+msgstr "Секретний ключ:"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:117
+msgid "Account number"
+msgstr "Номер счета"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:123
+msgid "The lifetime of the account"
+msgstr "Время жизни счета"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:139
+msgid "Signature"
+msgstr "Подпись"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:195
+msgid "Name of recipient"
+msgstr "Имя получателя"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:202
+msgid "Recipient bank"
+msgstr "Банк получателя"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:209
+msgid "TIN address"
+msgstr "ИНН Получателя"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:224
+msgid "BIC"
+msgstr "БИК"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:232
+msgid "Correspondent account"
+msgstr "Корреспондентский Счет"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:239
+msgid "Bank notes"
+msgstr "Денежный знак"
+
+#: ../../../../../application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:246
+msgid "Kopeck"
+msgstr "Копейка"
+
+#: ../../../../../application/modules/shop/classes/Compare/BaseCompare.php:35
+msgid "Compare list"
+msgstr "Список сравнения"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:43
+msgid "Profile"
+msgstr "Профиль"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:81
+msgid "Name"
+msgstr "Название"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:82
+msgid "Email"
+msgstr "E-mail"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:83
+msgid "Address"
+msgstr "Адрес"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:84
+msgid "Phone number"
+msgstr "Номер телефона"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:99
+msgid "Data is saved"
+msgstr "Данные сохраняются"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:105
+msgid "Old password"
+msgstr "Старый пароль"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:107
+msgid "Confirm password"
+msgstr "Подтвердите пароль"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:113
+msgid "wrong"
+msgstr "неправильный"
+
+#: ../../../../../application/modules/shop/classes/Profile/BaseProfile.php:115
+msgid "successfully saved."
+msgstr "успешно сохранены."
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:107
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:148
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:161
+msgid "Home"
+msgstr "Главная"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:311
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:330
+msgid "Buy"
+msgstr "Купить"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:312
+msgid "Formulation <br/> order"
+msgstr "Порядок <br/> формулирования"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:331
+msgid "Formulation order"
+msgstr "Порядок формулирования"
+
+#: ../../../../../application/modules/shop/helpers/shop_helper.php:332
+msgid "Announce a"
+msgstr "Объявить"
+
+#: ../../../../../system/language/form_validation/form_validation.php:9
+msgid "required"
+msgstr "Поле %s является обязательным."
+
+#: ../../../../../system/language/form_validation/form_validation.php:10
+msgid "isset"
+msgstr "Поле %s должно иметь значение."
+
+#: ../../../../../system/language/form_validation/form_validation.php:11
+msgid "valid_email"
+msgstr "Поле %s должно содержать корректный адрес электронной почты."
+
+#: ../../../../../system/language/form_validation/form_validation.php:12
+msgid "valid_emails"
+msgstr "Поле %s должнj содержать все действительные адреса электронной почты."
+
+#: ../../../../../system/language/form_validation/form_validation.php:13
+msgid "valid_url"
+msgstr "Поле %s должно содержать корректный URL."
+
+#: ../../../../../system/language/form_validation/form_validation.php:14
+msgid "valid_ip"
+msgstr "Поле %s должно содержать корректный IP."
+
+#: ../../../../../system/language/form_validation/form_validation.php:15
+msgid "min_length"
+msgstr "Поле %s должно быть не менее %s символов  в длину."
+
+#: ../../../../../system/language/form_validation/form_validation.php:16
+msgid "max_length"
+msgstr "Поле %s не может превышать %s символов в длину."
+
+#: ../../../../../system/language/form_validation/form_validation.php:17
+msgid "exact_length"
+msgstr "Поле %s должно быть %s символов в длину."
+
+#: ../../../../../system/language/form_validation/form_validation.php:18
+msgid "alpha"
+msgstr "Поле %s может содержать только буквы алфавита."
+
+#: ../../../../../system/language/form_validation/form_validation.php:19
+msgid "alpha_numeric"
+msgstr "Поле %s может содержать только алфавитно-цифровые символы."
+
+#: ../../../../../system/language/form_validation/form_validation.php:20
+msgid "alpha_dash"
+msgstr "Поле %s может содержать только символы латиницы, цифры, подчеркивания и тире."
+
+#: ../../../../../system/language/form_validation/form_validation.php:21
+msgid "numeric"
+msgstr "Поле %s должно содержать только цифры."
+
+#: ../../../../../system/language/form_validation/form_validation.php:22
+msgid "is_numeric"
+msgstr "Поле %s должно содержать только цифры."
+
+#: ../../../../../system/language/form_validation/form_validation.php:23
+msgid "integer"
+msgstr "Поле %s должно содержать целое число."
+
+#: ../../../../../system/language/form_validation/form_validation.php:24
+msgid "regex_match"
+msgstr "Поле %s не в правильном формате."
+
+#: ../../../../../system/language/form_validation/form_validation.php:25
+msgid "matches"
+msgstr "Поле %s не совпадает с полем %s."
+
+#: ../../../../../system/language/form_validation/form_validation.php:26
+msgid "is_unique"
+msgstr "Поле %s должно содержать уникальное значение."
+
+#: ../../../../../system/language/form_validation/form_validation.php:27
+msgid "is_natural"
+msgstr "Поле %s должно содержать только положительные числа."
+
+#: ../../../../../system/language/form_validation/form_validation.php:28
+msgid "is_natural_no_zero"
+msgstr "Поле %s должно содержать число больше нуля."
+
+#: ../../../../../system/language/form_validation/form_validation.php:29
+msgid "decimal"
+msgstr "Поле %s должно содержать десятичное число."
+
+#: ../../../../../system/language/form_validation/form_validation.php:30
+msgid "less_than"
+msgstr "Поле %s должно содержать число менее %s."
+
+#: ../../../../../system/language/form_validation/form_validation.php:31
+msgid "greater_than"
+msgstr "Поле %s должно содержать число, большее, чем %s."
+
+#: ../../../../../system/language/email_lang/email_lang.php:22
+msgid "email_sent"
+msgstr "Ваше сообщение успешно отправлено"
+
+#: ../../../../../system/language/upload/upload_validation.php:7
+#: ../../../../../system/language/upload/upload_validation.php:17
+msgid "upload_invalid_filetype"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:9
+msgid "upload_userfile_not_set"
+msgstr "Не удается найти переменную UserFile."
+
+#: ../../../../../system/language/upload/upload_validation.php:10
+msgid "upload_file_exceeds_limit"
+msgstr "Загруженный файл превышает максимально допустимый размер в конфигурационном файле PHP."
+
+#: ../../../../../system/language/upload/upload_validation.php:11
+msgid "upload_file_exceeds_form_limit"
+msgstr "Загруженный файл превышает максимально допустимый размер по представлению формы."
+
+#: ../../../../../system/language/upload/upload_validation.php:12
+msgid "upload_file_partial"
+msgstr "Файл был загружен только частично."
+
+#: ../../../../../system/language/upload/upload_validation.php:13
+msgid "upload_no_temp_directory"
+msgstr ""
+
+#: ../../../../../system/language/upload/upload_validation.php:14
+#, fuzzy
+msgid "upload_unable_to_write_file"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:15
+msgid "upload_stopped_by_extension"
+msgstr ""
+
+#: ../../../../../system/language/upload/upload_validation.php:16
+#, fuzzy
+msgid "upload_no_file_selected"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:18
+#, fuzzy
+msgid "upload_invalid_filesize"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:19
+#, fuzzy
+msgid "upload_invalid_dimensions"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:20
+msgid "upload_destination_error"
+msgstr ""
+
+#: ../../../../../system/language/upload/upload_validation.php:21
+#, fuzzy
+msgid "upload_no_filepath"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:22
+#, fuzzy
+msgid "upload_no_file_types"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:23
+#, fuzzy
+msgid "upload_bad_filename"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ../../../../../system/language/upload/upload_validation.php:24
+msgid "upload_not_writable"
+msgstr ""
+
+#: ../../../../../system/libraries/Pagination.php:74
+msgid "First"
+msgstr "Начало"
+
+#: ../../../../../system/libraries/Pagination.php:75
+msgid "Last"
+msgstr "Конец"
+
+#: ../../../../../system/libraries/Migration.php:223
+msgid "migration_none_found"
+msgstr ""
+

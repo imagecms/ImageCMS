@@ -90,7 +90,7 @@ function init() {
             })
         if ($('#fancybox-wrap').is(':visible'))
             $.drop('scrollEmulate')();
-   }
+    }
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $('[data-drop]').drop($.extend({}, optionsDrop));
@@ -421,17 +421,12 @@ function init() {
             if (orderDetails) {
                 renderOrderDetails();
             }
+            $.ajax({
+                'url': siteUrl+locale+'auth/login', 
+                'complete': function(o){
+                    if (o.status == 200 && isLogin)
+                        location.reload();
+                }
+            });
         });
 }
-var genTimeout = "";
-wnd.resize(function() {
-    clearTimeout(genTimeout);
-    genTimeout = setTimeout(function() {
-        var userTool = new itemUserToolbar();
-        userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
-        $('.menu-main').menuImageCms('refresh');
-        if ($.exists(optionCompare.frameCompare))
-            $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
-        banerResize('.baner:has(.cycle)');
-    }, 300)
-});
