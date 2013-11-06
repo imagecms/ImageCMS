@@ -29,7 +29,38 @@
         <script type="text/javascript">
             var locale = "{echo $lang}";
         </script>
+        <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
+        {include_tpl('config.js')}
+        {literal}
+            <script type="text/javascript">
+                $.ajaxSetup({
+                    cache: true
+                });
+                function initDownloadScripts(scripts, callback, customEvent){
+                    function downloadJSAtOnload(scripts, callback, customEvent) {
+                        var cL = 0,
+                        scriptsL = scripts.length;
 
+                        $.map(scripts, function(i, n) {
+                            $.getScript(theme + 'js/' + i + '.js', function() {
+                                cL++;
+                                if (cL == scriptsL) {
+                                    eval(callback)();
+                                    $(document).trigger({'type': customEvent});
+                                }
+                            });
+                        })
+                    }
+                    // Check for browser support of event handling capability
+                    if (window.addEventListener)
+                    window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
+                    else if (window.attachEvent)
+                    window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
+                    else
+                    window.onload = downloadJSAtOnload(scripts, callback, customEvent);
+                }
+            </script>
+        {/literal}
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]>
@@ -37,9 +68,8 @@
             <script src="{$THEME}js/localStorageJSON.js"></script>
         <![endif]-->
 
-        <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
-        <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
-        <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
+        <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
     </head>
     <body class="is{echo $agent[0]} not-js"> 
         {include_tpl('language/jsLangsDefine.tpl')}
@@ -64,34 +94,9 @@
         {include_tpl('user_toolbar')}
 
         <!-- scripts -->
-        {include_tpl('config.js')}
-        {literal}
-            <script>
-                function downloadJSAtOnload() {
-                    var cL = 0,
-                            scripts = ['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'],
-                            scriptsL = scripts.length;
-
-                    $.map(scripts, function(i, n) {
-                        $.getScript(theme + 'js/' + i + '.js', function() {
-                            cL++;
-                            if (cL == scriptsL) {
-                                $(document).trigger({'type': 'scriptDefer'});
-                                init();
-                            }
-                        });
-                    })
-                }
-
-                // Check for browser support of event handling capability
-                if (window.addEventListener)
-                    window.addEventListener("load", downloadJSAtOnload, false);
-                else if (window.attachEvent)
-                    window.attachEvent("onload", downloadJSAtOnload);
-                else
-                    window.onload = downloadJSAtOnload;
-            </script>
-        {/literal}
+        <script type="text/javascript">
+            initDownloadScripts(['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'], 'init', 'scriptDefer');
+        </script>
         {include_shop_tpl('js_templates')}
         <!-- scripts end -->
     </body>

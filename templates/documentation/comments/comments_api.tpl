@@ -36,6 +36,18 @@
                             {/if}
                         </div>
                     </div>
+                    {if $hasCRUDAccess}
+                        <div class="func-button-comment__icsi-css">
+                            <div class="">
+                                <button class="btn"  type="button"  data-rel="cloneAddPaste" data-parid="{$comment['id']}">
+                                    <div>
+                                        {lang('Ответ', 'comments')}
+                                    </div>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    {/if}
                     <ul class="answear-programmer">
                         {foreach $comment_ch as $com_ch}
                             {if $com_ch.parent == $comment.id}
@@ -62,8 +74,8 @@
             <div class="frame-comments__icsi-css">
                 <div class="inside-padd">
                     <div class="title_h2__icsi-css">
-                        {lang('У вас возник вопрос? Пишите', 'comments')}
-                        <p style='font-size:11pt;'>{lang('Мы предоставим ответ на Ваш вопрос по этой странице документации в течении 24 часов', 'comments')}</p>
+                        {lang('У вас возникли вопросы? Напишите нам', 'comments')}
+                        <p style='font-size:11pt;'>{lang('Мы предоставим ответ в течении 24 часов', 'comments')}</p>
                     </div>
                     <!-- Start of new comment fild -->
                     <div class="form-comment__icsi-css form__icsi-css horizontal-form">
@@ -89,7 +101,7 @@
                                         </label>
                                     {/if}
                                     <label>
-                                        <span class="title__icsi-css">{lang('Ваше имя', 'comments')}<span class="must">*</span></span>
+                                        <span class="title__icsi-css">{lang('Ваше имя:', 'comments')}<span class="must">*</span></span>
                                         <span class="frame_form_field__icsi-css">
                                             <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
                                         </span>
@@ -103,7 +115,7 @@
                                 {/if}
 
                                 <label>
-                                    <span class="title__icsi-css">{lang('Вопрос', 'comments')}<span class="must">*</span></span>
+                                    <span class="title__icsi-css">{lang('Вопрос:', 'comments')}<span class="must">*</span></span>
                                     <span class="frame_form_field__icsi-css">
                                         <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                     </span>

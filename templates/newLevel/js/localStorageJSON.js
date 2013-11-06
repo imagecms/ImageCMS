@@ -30,16 +30,16 @@ if (typeof JSON !== "object") {
             value = rep.call(holder, key, value)
         }
         switch (typeof value) {
-            case"string":
+            case "string":
                 return quote(value);
-            case"number":
+            case "number":
                 return isFinite(value) ? String(value) : "null";
-            case"boolean":
-            case"null":
+            case "boolean":
+            case "null":
                 return String(value);
-            case"object":
+            case "object":
                 if (!value) {
-                    return"null"
+                    return "null"
                 }
                 gap += indent;
                 partial = [];
@@ -183,6 +183,7 @@ if (typeof JSON !== "object") {
                 }}, a = function(e) {
                 return e.replace(/[^-._0-9A-Za-z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u37f-\u1fff\u200c-\u200d\u203f\u2040\u2070-\u218f]/g, "-")};
             g.load(d);
+            //document.getElementsByTagName("body").innerHTML = g.XMLDocument.documentElement.attributes.length;
             b.length = g.XMLDocument.documentElement.attributes.length
         }
     }

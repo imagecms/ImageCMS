@@ -1,202 +1,205 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 10:56+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-11-04 11:22+0200\n"
+"PO-Revision-Date: 2013-11-04 11:22+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../..\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:11
+#: ./application/modules/mailer/templates/public/error.tpl:2
 msgid "Invalid e-mail"
 msgstr "Неверный e-mail"
 
-#: /var/www/image.loc/_tempLangs.php:12
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:16
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:20
+#: ./application/modules/mailer/templates/public/error.tpl:3
+#: ./application/modules/mailer/templates/public/no.tpl:3
+#: ./application/modules/mailer/templates/public/success.tpl:3
+#: ./application/modules/mailer/templates/public/already.tpl:3
+#: ./application/modules/mailer/templates/public/cancel.tpl:3
 msgid "Home"
 msgstr "Главная"
 
-#: /var/www/image.loc/_tempLangs.php:13
+#: ./application/modules/mailer/templates/public/no.tpl:2
 msgid "The subscriber is not found"
 msgstr "Подписчик не найден"
 
-#: /var/www/image.loc/_tempLangs.php:15
+#: ./application/modules/mailer/templates/public/success.tpl:2
 msgid "You have successfully subscribed"
 msgstr "Вы успешно подписались"
 
-#: /var/www/image.loc/_tempLangs.php:17
+#: ./application/modules/mailer/templates/public/already.tpl:2
 msgid "You are already subscribed"
 msgstr "Вы уже подписаны"
 
-#: /var/www/image.loc/_tempLangs.php:19
+#: ./application/modules/mailer/templates/public/cancel.tpl:2
 msgid "Unsubscribed"
 msgstr "Отписан"
 
-#: /var/www/image.loc/_tempLangs.php:21
+#: ./application/modules/mailer/templates/public/form.tpl:7
 msgid "Subscribe"
 msgstr "Подписаться"
 
-#: /var/www/image.loc/_tempLangs.php:22
+#: ./application/modules/mailer/templates/public/form.tpl:8
 msgid "Unsubscribe"
 msgstr "Отписаться"
 
-#: /var/www/image.loc/_tempLangs.php:23
+#: ./application/modules/mailer/templates/admin/form.tpl:6
 msgid "Removing subscribers"
 msgstr "Удаление подписчиков"
 
-#: /var/www/image.loc/_tempLangs.php:24
+#: ./application/modules/mailer/templates/admin/form.tpl:9
 msgid "Delete all checked?"
 msgstr "Удалить всех выбранных?"
 
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:32
+#: ./application/modules/mailer/templates/admin/form.tpl:12
+#: ./application/modules/mailer/templates/admin/form.tpl:34
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:26
+#: ./application/modules/mailer/templates/admin/form.tpl:13
 msgid "Cancel"
 msgstr "Отмена"
 
-#: /var/www/image.loc/_tempLangs.php:27
+#: ./application/modules/mailer/templates/admin/form.tpl:18
 msgid "Removing brand"
 msgstr "Удаление бренда"
 
-#: /var/www/image.loc/_tempLangs.php:28
+#: ./application/modules/mailer/templates/admin/form.tpl:19
 msgid "Remove brands?"
 msgstr "Удалить бренды?"
 
-#: /var/www/image.loc/_tempLangs.php:29
+#: ./application/modules/mailer/templates/admin/form.tpl:27
 msgid "Subscription and Notification letters"
 msgstr "Подписка и рассылка писем"
 
-#: /var/www/image.loc/_tempLangs.php:30
+#: ./application/modules/mailer/templates/admin/form.tpl:32
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:31
+#: ./application/modules/mailer/templates/admin/form.tpl:33
 msgid "Send a letter"
 msgstr "Отправить письмо"
 
-#: /var/www/image.loc/_tempLangs.php:33
+#: ./application/modules/mailer/templates/admin/form.tpl:39
 msgid "Message parameters"
 msgstr "Параметри сообщения"
 
-#: /var/www/image.loc/_tempLangs.php:34
+#: ./application/modules/mailer/templates/admin/form.tpl:40
 msgid "Subscribers"
 msgstr "Подписчики"
 
-#: /var/www/image.loc/_tempLangs.php:35
+#: ./application/modules/mailer/templates/admin/form.tpl:49
 msgid "Properties"
 msgstr "Свойства"
 
-#: /var/www/image.loc/_tempLangs.php:36
+#: ./application/modules/mailer/templates/admin/form.tpl:63
+#: ./application/modules/mailer/admin.php:51
 msgid "Theme"
 msgstr "Тема"
 
-#: /var/www/image.loc/_tempLangs.php:37
+#: ./application/modules/mailer/templates/admin/form.tpl:69
+#: ./application/modules/mailer/admin.php:52
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: /var/www/image.loc/_tempLangs.php:38
+#: ./application/modules/mailer/templates/admin/form.tpl:75
+#: ./application/modules/mailer/admin.php:53
+#: ./application/modules/mailer/mailer.php:30
 msgid "Your e-mail"
 msgstr "Ваш  e-mail"
 
-#: /var/www/image.loc/_tempLangs.php:39
+#: ./application/modules/mailer/templates/admin/form.tpl:81
+#: ./application/modules/mailer/admin.php:54
 msgid "Message"
 msgstr "Сообщение"
 
-#: /var/www/image.loc/_tempLangs.php:40
+#: ./application/modules/mailer/templates/admin/form.tpl:84
 msgid "Hello"
 msgstr "Привет"
 
-#: /var/www/image.loc/_tempLangs.php:41
+#: ./application/modules/mailer/templates/admin/form.tpl:92
 msgid "best regards, administration"
 msgstr "с уважением, администрация"
 
-#: /var/www/image.loc/_tempLangs.php:42
+#: ./application/modules/mailer/templates/admin/form.tpl:100
 msgid "Formatting"
 msgstr "Форматирование"
 
-#: /var/www/image.loc/_tempLangs.php:43
+#: ./application/modules/mailer/templates/admin/form.tpl:103
 msgid "HTML"
 msgstr "HTML"
 
-#: /var/www/image.loc/_tempLangs.php:44
+#: ./application/modules/mailer/templates/admin/form.tpl:104
 msgid "Plain Text"
 msgstr "Обычный текст"
 
-#: /var/www/image.loc/_tempLangs.php:45
+#: ./application/modules/mailer/templates/admin/form.tpl:131
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_tempLangs.php:46
+#: ./application/modules/mailer/templates/admin/form.tpl:132
 msgid "E-mail"
 msgstr "E-mail"
 
-#: /var/www/image.loc/_tempLangs.php:47
+#: ./application/modules/mailer/templates/admin/form.tpl:133
 msgid "Date"
 msgstr "Дата"
 
-#: /var/www/image.loc/_tempLangs.php:48
+#: ./application/modules/mailer/templates/admin/form.tpl:157
 msgid "Subscribers list is empty"
 msgstr "Список подписчиков пуст"
 
-#: admin.php:94
+#: ./application/modules/mailer/admin.php:94
 msgid "Send"
 msgstr "Послать"
 
-#: admin.php:94
+#: ./application/modules/mailer/admin.php:95
 msgid "users e-mail with a subject"
 msgstr "email пользователей с темой"
 
-#: admin.php:102
+#: ./application/modules/mailer/admin.php:102
 msgid "message has been sent"
 msgstr "Сообщение отправлено"
 
-#: admin.php:102
+#: ./application/modules/mailer/admin.php:103
 msgid "Number of e-mails sent"
 msgstr "Количество писем, отправленных"
 
-#: admin.php:102
+#: ./application/modules/mailer/admin.php:104
 msgid "pcs."
 msgstr "шт."
 
-#: admin.php:104
+#: ./application/modules/mailer/admin.php:104
 msgid "none of the messages"
 msgstr "ни одно из сообщений"
 
-#: admin.php:104
+#: ./application/modules/mailer/admin.php:105
 msgid "Number not"
 msgstr "Число не"
 
-#: admin.php:119
+#: ./application/modules/mailer/admin.php:119
 msgid "Subscribers removal"
 msgstr "Подписчики"
 
-#: admin.php:121
+#: ./application/modules/mailer/admin.php:121
 msgid "There is not ID"
 msgstr "Подписчик не найден"
 
-#: module_info.php:4
+#: ./application/modules/mailer/module_info.php:4
 msgid "Subscription and mailing"
 msgstr "Подписка и рассылка писем"
 
-#: module_info.php:5
+#: ./application/modules/mailer/module_info.php:5
 msgid "Subscription and mailing module for news, promotions, discounts"
 msgstr "Mодуль подписки и рассылки для новостей, акций, скидок"
 
-#~ msgid "Site configuration"
-#~ msgstr "Настр1"

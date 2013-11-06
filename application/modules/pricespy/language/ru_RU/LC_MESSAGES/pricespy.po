@@ -1,302 +1,105 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-19 16:47+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-11-04 11:23+0200\n"
+"PO-Revision-Date: 2013-11-04 11:23+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../..\n"
-"X-Poedit-Language: Tagalog\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:8
+#: ./application/modules/pricespy/templates/admin/list.tpl:5
 msgid "List of users subscribed to the products"
 msgstr "Список пользователей подписаных на товары"
 
-#: /var/www/image.loc/_tempLangs.php:9
+#: ./application/modules/pricespy/templates/admin/list.tpl:9
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:10
+#: ./application/modules/pricespy/templates/admin/list.tpl:17
 msgid "User"
 msgstr "Пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:11
-#: /var/www/image.loc/_tempLangs.php:16
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:22
+#: ./application/modules/pricespy/templates/admin/list.tpl:18
+#: ./application/modules/pricespy/templates/admin/list.tpl:33
+#: ./application/modules/pricespy/assets/spys.tpl:7
+#: ./application/modules/pricespy/assets/spys.tpl:22
 msgid "Unsubscribe"
 msgstr "Отписаться"
 
-#: /var/www/image.loc/_tempLangs.php:12
-#: /var/www/image.loc/_tempLangs.php:18
+#: ./application/modules/pricespy/templates/admin/list.tpl:19
+#: ./application/modules/pricespy/assets/spys.tpl:8
 msgid "Product"
 msgstr "Товар"
 
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:19
+#: ./application/modules/pricespy/templates/admin/list.tpl:20
+#: ./application/modules/pricespy/assets/spys.tpl:9
 msgid "New price"
 msgstr "Новая цена"
 
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:20
+#: ./application/modules/pricespy/templates/admin/list.tpl:21
+#: ./application/modules/pricespy/assets/spys.tpl:10
 msgid "Old price"
 msgstr "Старая цена"
 
-#: /var/www/image.loc/_tempLangs.php:15
-#: /var/www/image.loc/_tempLangs.php:21
+#: ./application/modules/pricespy/templates/admin/list.tpl:22
+#: ./application/modules/pricespy/assets/spys.tpl:11
 msgid "Percentage of price reduction"
 msgstr "Процент снижения цен"
 
-#: /var/www/image.loc/_tempLangs.php:23
+#: ./application/modules/pricespy/assets/spys.tpl:39
 msgid "Watch list is empty"
 msgstr "Список пуст"
 
-#: /var/www/image.loc/_tempLangs.php:24
+#: ./application/modules/pricespy/pricespy.php:213
+#: ./application/modules/pricespy/assets/js/spy.js:9
 msgid "Already in tracking"
 msgstr "Уже в отслеживании"
 
-#: pricespy.php:55
+#: ./application/modules/pricespy/pricespy.php:55
 msgid "Price changing"
 msgstr "Изменения цены"
 
-#: pricespy.php:56
+#: ./application/modules/pricespy/pricespy.php:56
 msgid "Price on"
 msgstr "Цены на"
 
-#: pricespy.php:56
+#: ./application/modules/pricespy/pricespy.php:57
 msgid "for which you watch on site"
 msgstr "для которых вы смотрели на сайте"
 
-#: pricespy.php:56
+#: ./application/modules/pricespy/pricespy.php:58
 msgid "changed"
 msgstr "изменены"
 
-#: pricespy.php:57
+#: ./application/modules/pricespy/pricespy.php:57
+#: ./application/modules/pricespy/pricespy.php:58
 msgid "View watch list"
 msgstr "Просмотреть список просмотров"
 
-#: pricespy.php:58
+#: ./application/modules/pricespy/pricespy.php:58
+#: ./application/modules/pricespy/pricespy.php:59
 msgid "Unsubscribe tracking"
 msgstr "Отказаться отслеживания"
 
-#: pricespy.php:207
+#: ./application/modules/pricespy/pricespy.php:207
 msgid "Notify about price cut"
 msgstr "Оповещать о снижении цены"
 
-#: module_info.php:7
+#: ./application/modules/pricespy/module_info.php:7
 msgid "Tracking for price"
 msgstr "Отслеживание цен"
 
-#: module_info.php:8
+#: ./application/modules/pricespy/module_info.php:8
 msgid "Tracking for price module"
 msgstr "Модуль слежения за ценами"
 
-#~ msgid "Create a category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "System information"
-#~ msgstr "Настр"
-
-#~ msgid "Modules"
-#~ msgstr "Модулі"
-
-#~ msgid "Management of Meta Tags"
-#~ msgstr "Управление мета тегами"
-
-#~ msgid "Widgets"
-#~ msgstr "Виджети"
-
-#, fuzzy
-#~ msgid "Date of creation"
-#~ msgstr "Настр"
-
-#~ msgid "Site configuration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Widget settings"
-#~ msgstr "Виджети"
-
-#, fuzzy
-#~ msgid "Сonsider the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Widget title"
-#~ msgstr "Виджети"
-
-#~ msgid "Buy"
-#~ msgstr "Купить"
-
-#, fuzzy
-#~ msgid "Move to category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create status"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create property"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Catagory"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "turn category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Drug category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Edit the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Basic information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a warehouse"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "General information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a way to deliver"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Orders list"
-#~ msgstr "Список замовлень"
-
-#~ msgid "Create order"
-#~ msgstr "Создатьзаказ"
-
-#~ msgid "Customer"
-#~ msgstr "Замовник"
-
-#, fuzzy
-#~ msgid "Date of order"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Ordering information"
-#~ msgstr "Настр"
-
-#~ msgid "New orders"
-#~ msgstr "Новие закази"
-
-#, fuzzy
-#~ msgid "Created Date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a payment method"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Pages and categories"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Picture for category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of addition"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Product creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid " Create a product copy?"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create small image"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a set"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create currency"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Banner creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a banner"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a brand"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Regular or usual pages"
-#~ msgstr "Звичайні сторінки"
-
-#, fuzzy
-#~ msgid "Create a discount"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create gift certificate"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create user"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of registration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Additional information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Created date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Category created"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create catagory"
-#~ msgstr "Создать категорию"
