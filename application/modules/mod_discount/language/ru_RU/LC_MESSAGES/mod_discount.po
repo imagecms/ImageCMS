@@ -1,588 +1,402 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 14:27+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-11-04 11:23+0200\n"
+"PO-Revision-Date: 2013-11-04 11:23+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Tagalog\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:26
+#: ./application/modules/mod_discount/assets/gift_succes.tpl:3
+#: ./application/modules/mod_discount/assets/gift.tpl:3
 msgid "Certificate code"
 msgstr "Код сертификата"
 
-#: /var/www/image.loc/_tempLangs.php:15
+#: ./application/modules/mod_discount/assets/gift_succes.tpl:6
 msgid "on amount"
 msgstr "на сумму"
 
-#: /var/www/image.loc/_tempLangs.php:16
+#: ./application/modules/mod_discount/assets/discount_order.tpl:4
 msgid "Maximum possible discount is using"
 msgstr "Используется максимально возможная скидка"
 
-#: /var/www/image.loc/_tempLangs.php:17
+#: ./application/modules/mod_discount/assets/discount_order.tpl:6
 msgid "discount type: product"
 msgstr "тип скидки: наименования"
 
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:25
+#: ./application/modules/mod_discount/assets/discount_order.tpl:7
+#: ./application/modules/mod_discount/assets/discount_order.tpl:17
 msgid "discount amount"
 msgstr "размер скидки"
 
-#: /var/www/image.loc/_tempLangs.php:19
+#: ./application/modules/mod_discount/assets/discount_order.tpl:10
 msgid "number"
 msgstr "число"
 
-#: /var/www/image.loc/_tempLangs.php:20
+#: ./application/modules/mod_discount/assets/discount_order.tpl:12
 msgid "discount name"
 msgstr "название скидки"
 
-#: /var/www/image.loc/_tempLangs.php:21
+#: ./application/modules/mod_discount/assets/discount_order.tpl:13
 msgid "discount key"
 msgstr "ключ скидки"
 
-#: /var/www/image.loc/_tempLangs.php:22
+#: ./application/modules/mod_discount/assets/discount_order.tpl:14
 msgid "discount type"
 msgstr "тип скидки"
 
-#: /var/www/image.loc/_tempLangs.php:23
+#: ./application/modules/mod_discount/assets/discount_order.tpl:15
 msgid "discount charge type"
 msgstr "тип  скидки"
 
-#: /var/www/image.loc/_tempLangs.php:24
+#: ./application/modules/mod_discount/assets/discount_order.tpl:16
 msgid "discount size"
 msgstr "размер скидки"
 
-#: /var/www/image.loc/_tempLangs.php:27
+#: ./application/modules/mod_discount/assets/gift.tpl:5
 msgid "Apply sertificate"
 msgstr "Применить сертификат"
 
-#: /var/www/image.loc/_tempLangs.php:28
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:18
 msgid "Status changed"
 msgstr "Статус изменен"
 
-#: /var/www/image.loc/_tempLangs.php:29
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:156
 msgid "Discount deleted"
 msgstr "Скидка удалена"
 
-#: /var/www/image.loc/_tempLangs.php:30
+#: ./application/modules/mod_discount/assets/admin/create.tpl:10
 msgid "Discount creating"
 msgstr "Создание скидки"
 
-#: /var/www/image.loc/_tempLangs.php:31
-#: /var/www/image.loc/_tempLangs.php:89
+#: ./application/modules/mod_discount/assets/admin/create.tpl:14
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:14
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:32
-#: /var/www/image.loc/_tempLangs.php:90
+#: ./application/modules/mod_discount/assets/admin/create.tpl:16
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:16
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:33
-#: /var/www/image.loc/_tempLangs.php:67
+#: ./application/modules/mod_discount/assets/admin/create.tpl:26
+#: ./application/modules/mod_discount/assets/admin/list.tpl:11
 msgid "Create"
 msgstr "Создать"
 
-#: /var/www/image.loc/_tempLangs.php:34
-#: /var/www/image.loc/_tempLangs.php:93
+#: ./application/modules/mod_discount/assets/admin/create.tpl:37
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:41
 msgid "Discount details"
 msgstr "Детали скидки"
 
-#: /var/www/image.loc/_tempLangs.php:35
-#: /var/www/image.loc/_tempLangs.php:94
+#: ./application/modules/mod_discount/assets/admin/create.tpl:40
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:44
 msgid "Discount name"
 msgstr "Название скидки"
 
-#: /var/www/image.loc/_tempLangs.php:36
-#: /var/www/image.loc/_tempLangs.php:95
+#: ./application/modules/mod_discount/assets/admin/create.tpl:44
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:48
 msgid "Discount code"
 msgstr "Код скидки"
 
-#: /var/www/image.loc/_tempLangs.php:37
+#: ./application/modules/mod_discount/assets/admin/create.tpl:53
 msgid "Users count"
 msgstr "Количество пользователей"
 
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:97
+#: ./application/modules/mod_discount/assets/admin/create.tpl:63
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:70
 msgid "Unlimit"
 msgstr "Неограничено"
 
-#: /var/www/image.loc/_tempLangs.php:39
-#: /var/www/image.loc/_tempLangs.php:98
+#: ./application/modules/mod_discount/assets/admin/create.tpl:78
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:85
 msgid "Method of calculation"
 msgstr "Метод подсчета"
 
-#: /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:99
+#: ./application/modules/mod_discount/assets/admin/create.tpl:81
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:88
 msgid "Choose method"
 msgstr "Выберите метод"
 
-#: /var/www/image.loc/_tempLangs.php:41
-#: /var/www/image.loc/_tempLangs.php:100
+#: ./application/modules/mod_discount/assets/admin/create.tpl:85
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:92
 msgid "Percents"
 msgstr "Проценты"
 
-#: /var/www/image.loc/_tempLangs.php:42
-#: /var/www/image.loc/_tempLangs.php:101
+#: ./application/modules/mod_discount/assets/admin/create.tpl:86
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:93
 msgid "Fixed"
 msgstr "Фиксированный"
 
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:102
+#: ./application/modules/mod_discount/assets/admin/create.tpl:107
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:115
 msgid "Discount type"
 msgstr "Тип скидки"
 
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:103
+#: ./application/modules/mod_discount/assets/admin/create.tpl:111
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:119
 msgid "Choose type"
 msgstr "Выберите тип"
 
-#: /var/www/image.loc/_tempLangs.php:45
+#: ./application/modules/mod_discount/assets/admin/create.tpl:115
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:46
-#: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:104
+#: ./application/modules/mod_discount/assets/admin/create.tpl:116
+#: ./application/modules/mod_discount/assets/admin/list.tpl:19
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:122
 msgid "Order amount of more than"
 msgstr "Сумма заказа на больше чем"
 
-#: /var/www/image.loc/_tempLangs.php:47
-#: /var/www/image.loc/_tempLangs.php:71
-#: /var/www/image.loc/_tempLangs.php:105
+#: ./application/modules/mod_discount/assets/admin/create.tpl:117
+#: ./application/modules/mod_discount/assets/admin/list.tpl:20
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:123
 msgid "Cumulative discount"
 msgstr "Накопительная скидка"
 
-#: /var/www/image.loc/_tempLangs.php:48
-#: /var/www/image.loc/_tempLangs.php:72
-#: /var/www/image.loc/_tempLangs.php:106
+#: ./application/modules/mod_discount/assets/admin/create.tpl:118
+#: ./application/modules/mod_discount/assets/admin/list.tpl:21
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:124
 msgid "User"
 msgstr "Пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:49
+#: ./application/modules/mod_discount/assets/admin/create.tpl:119
 msgid "Users group"
 msgstr "Группа пользователей"
 
-#: /var/www/image.loc/_tempLangs.php:50
-#: /var/www/image.loc/_tempLangs.php:74
-#: /var/www/image.loc/_tempLangs.php:108
+#: ./application/modules/mod_discount/assets/admin/create.tpl:120
+#: ./application/modules/mod_discount/assets/admin/list.tpl:23
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:126
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:75
-#: /var/www/image.loc/_tempLangs.php:109
+#: ./application/modules/mod_discount/assets/admin/create.tpl:121
+#: ./application/modules/mod_discount/assets/admin/list.tpl:24
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:127
 msgid "Product"
 msgstr "Товар"
 
-#: /var/www/image.loc/_tempLangs.php:52
-#: /var/www/image.loc/_tempLangs.php:76
-#: /var/www/image.loc/_tempLangs.php:110
+#: ./application/modules/mod_discount/assets/admin/create.tpl:122
+#: ./application/modules/mod_discount/assets/admin/list.tpl:25
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:128
 msgid "Brand"
 msgstr "Бренд"
 
-#: /var/www/image.loc/_tempLangs.php:53
-#: /var/www/image.loc/_tempLangs.php:111
+#: ./application/modules/mod_discount/assets/admin/create.tpl:143
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:149
 msgid "Only for registered"
 msgstr "Только для зарегистрированных"
 
-#: /var/www/image.loc/_tempLangs.php:54
-#: /var/www/image.loc/_tempLangs.php:112
+#: ./application/modules/mod_discount/assets/admin/create.tpl:151
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:157
 msgid "Gift Certificate"
 msgstr "Подарочный сертификат"
 
-#: /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:113
+#: ./application/modules/mod_discount/assets/admin/create.tpl:160
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:166
 msgid "from"
 msgstr "от"
 
-#: /var/www/image.loc/_tempLangs.php:56
-#: /var/www/image.loc/_tempLangs.php:64
-#: /var/www/image.loc/_tempLangs.php:114
-#: /var/www/image.loc/_tempLangs.php:122
+#: ./application/modules/mod_discount/assets/admin/create.tpl:165
+#: ./application/modules/mod_discount/assets/admin/create.tpl:271
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:174
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:280
 msgid "to"
 msgstr "до"
 
-#: /var/www/image.loc/_tempLangs.php:57
-#: /var/www/image.loc/_tempLangs.php:115
+#: ./application/modules/mod_discount/assets/admin/create.tpl:175
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:184
 msgid "Maximum"
 msgstr "Максимальный"
 
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:116
+#: ./application/modules/mod_discount/assets/admin/create.tpl:187
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:196
 msgid "Current user"
 msgstr "Текущий пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:117
+#: ./application/modules/mod_discount/assets/admin/create.tpl:190
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:199
 msgid "ID / Name / E-mail"
 msgstr "ID / Имя / Электронная почта"
 
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:118
+#: ./application/modules/mod_discount/assets/admin/create.tpl:226
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:235
 msgid "Current product"
 msgstr "Текущий товар"
 
-#: /var/www/image.loc/_tempLangs.php:61
-#: /var/www/image.loc/_tempLangs.php:119
+#: ./application/modules/mod_discount/assets/admin/create.tpl:229
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:238
 msgid "Name / ID"
 msgstr "Имя / ID"
 
-#: /var/www/image.loc/_tempLangs.php:62
-#: /var/www/image.loc/_tempLangs.php:120
+#: ./application/modules/mod_discount/assets/admin/create.tpl:259
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:268
 msgid "Allowed time for discounts"
 msgstr "Допустимое время для скидок"
 
-#: /var/www/image.loc/_tempLangs.php:63
-#: /var/www/image.loc/_tempLangs.php:121
+#: ./application/modules/mod_discount/assets/admin/create.tpl:262
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:271
 msgid "Period of the discount from"
 msgstr "Период действия скидки от"
 
-#: /var/www/image.loc/_tempLangs.php:65
-#: /var/www/image.loc/_tempLangs.php:123
+#: ./application/modules/mod_discount/assets/admin/create.tpl:284
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:295
 msgid "Constant discount"
 msgstr "Постоянная скидка"
 
-#: /var/www/image.loc/_tempLangs.php:66
+#: ./application/modules/mod_discount/assets/admin/list.tpl:5
+#: ./application/modules/mod_discount/module_info.php:4
 msgid "Discounts of online store"
 msgstr "Скидки интернет-магазина"
 
-#: /var/www/image.loc/_tempLangs.php:68
+#: ./application/modules/mod_discount/assets/admin/list.tpl:15
 msgid "Choose discount type"
 msgstr "Выберите тип скидки"
 
-#: /var/www/image.loc/_tempLangs.php:69
+#: ./application/modules/mod_discount/assets/admin/list.tpl:18
 msgid "All"
 msgstr "Все"
 
-#: /var/www/image.loc/_tempLangs.php:73
-#: /var/www/image.loc/_tempLangs.php:107
+#: ./application/modules/mod_discount/assets/admin/list.tpl:22
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:125
 msgid "User group"
 msgstr "Группа пользователей"
 
-#: /var/www/image.loc/_tempLangs.php:77
+#: ./application/modules/mod_discount/assets/admin/list.tpl:34
 msgid "Key"
 msgstr "Ключ"
 
-#: /var/www/image.loc/_tempLangs.php:78
+#: ./application/modules/mod_discount/assets/admin/list.tpl:35
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_tempLangs.php:79
+#: ./application/modules/mod_discount/assets/admin/list.tpl:36
 msgid "Limit"
 msgstr "Лимит"
 
-#: /var/www/image.loc/_tempLangs.php:80
+#: ./application/modules/mod_discount/assets/admin/list.tpl:37
 msgid "Used"
 msgstr "Используемый"
 
-#: /var/www/image.loc/_tempLangs.php:81
+#: ./application/modules/mod_discount/assets/admin/list.tpl:38
 msgid "Beggining time"
 msgstr "Время начала"
 
-#: /var/www/image.loc/_tempLangs.php:82
+#: ./application/modules/mod_discount/assets/admin/list.tpl:39
 msgid "End time"
 msgstr "Время окончания"
 
-#: /var/www/image.loc/_tempLangs.php:83
+#: ./application/modules/mod_discount/assets/admin/list.tpl:40
 msgid "Active"
 msgstr "Активен"
 
-#: /var/www/image.loc/_tempLangs.php:84
-#: /var/www/image.loc/_tempLangs.php:87
+#: ./application/modules/mod_discount/assets/admin/list.tpl:41
+#: ./application/modules/mod_discount/assets/admin/list.tpl:80
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:85
+#: ./application/modules/mod_discount/assets/admin/list.tpl:67
 msgid "Unlimited"
 msgstr "Неограничено"
 
-#: /var/www/image.loc/_tempLangs.php:86
+#: ./application/modules/mod_discount/assets/admin/list.tpl:72
 msgid "show"
 msgstr "показать"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:10
 msgid "Discount editing"
 msgstr "Редактирование скидки"
 
-#: /var/www/image.loc/_tempLangs.php:91
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:19
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: /var/www/image.loc/_tempLangs.php:92
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:30
 msgid "Edit"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:96
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:57
 msgid "Count of usage"
 msgstr "Количество использования"
 
-#: ../../../admin.php:53
-#: ../../../admin.php:57
-#: ../../../admin.php:174
-#: ../../../admin.php:178
+#: ./application/modules/mod_discount/admin.php:53
+#: ./application/modules/mod_discount/admin.php:57
+#: ./application/modules/mod_discount/admin.php:174
+#: ./application/modules/mod_discount/admin.php:178
 msgid "Value from"
 msgstr "Значение от"
 
-#: ../../../admin.php:54
-#: ../../../admin.php:175
+#: ./application/modules/mod_discount/admin.php:54
+#: ./application/modules/mod_discount/admin.php:175
 msgid "Value to"
 msgstr "Значение до"
 
-#: ../../../admin.php:61
-#: ../../../admin.php:182
+#: ./application/modules/mod_discount/admin.php:61
+#: ./application/modules/mod_discount/admin.php:182
 msgid "Amount <<from>> can not be greater than the sum <<to>>"
 msgstr "Количество << от >> не может быть больше, чем << до >>"
 
-#: ../../../admin.php:66
-#: ../../../admin.php:187
+#: ./application/modules/mod_discount/admin.php:66
+#: ./application/modules/mod_discount/admin.php:187
 msgid "Enter a product that is in the database"
 msgstr "Введите  продукт, который находится в базе"
 
-#: ../../../admin.php:71
-#: ../../../admin.php:191
+#: ./application/modules/mod_discount/admin.php:71
+#: ./application/modules/mod_discount/admin.php:191
 msgid "Enter the user who is in the database"
 msgstr "Введите пользователя, который находится в базе данных"
 
-#: ../../../admin.php:77
-#: ../../../admin.php:197
+#: ./application/modules/mod_discount/admin.php:77
+#: ./application/modules/mod_discount/admin.php:197
 msgid "There can be more than one discount with said upper threshold as a <<maximum>>!"
 msgstr "Может быть более одной скидки с указанным верхним порогом в качестве <<максимального>> !"
 
-#: ../../../admin.php:82
-#: ../../../admin.php:203
+#: ./application/modules/mod_discount/admin.php:82
+#: ./application/modules/mod_discount/admin.php:203
 msgid "Invalid date range!"
 msgstr "Неверный диапазон дат!"
 
-#: ../../../admin.php:87
+#: ./application/modules/mod_discount/admin.php:87
 msgid "Discounts percents may not be more than 99!"
 msgstr "Проценты скидки не могут быть более 99!"
 
-#: ../../../admin.php:131
+#: ./application/modules/mod_discount/admin.php:131
 msgid "Failed to create a discount"
 msgstr "Не удалось создать скидку"
 
-#: ../../../admin.php:137
-#: ../../../admin.php:210
+#: ./application/modules/mod_discount/admin.php:137
+#: ./application/modules/mod_discount/admin.php:210
 msgid "Discount successfully created!"
 msgstr "Скидка успешно создана!"
 
-#: ../../../admin.php:240
+#: ./application/modules/mod_discount/admin.php:240
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
-#: ../../../admin.php:258
+#: ./application/modules/mod_discount/admin.php:258
 msgid "Discount not found"
 msgstr "Скидка не найден"
 
-#: ../../../gift.php:70
+#: ./application/modules/mod_discount/gift.php:70
 msgid "Invalid code try again"
 msgstr "Неверный код, попробуйте еще раз"
 
-#: ../../../module_info.php:5
+#: ./application/modules/mod_discount/module_info.php:5
 msgid "Manage all discounts of online store"
 msgstr "Управление всеми скидками интернет-магазина"
 
-#: ../../../models/discount_model_admin.php:466
-#: ../../../models/discount_model_admin.php:478
+#: ./application/modules/mod_discount/models/discount_model_admin.php:466
+#: ./application/modules/mod_discount/models/discount_model_admin.php:478
 msgid "Value"
 msgstr "Значение"
 
-#~ msgid "Discounts"
-#~ msgstr "Скидки"
-
-#~ msgid "Create a category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "System information"
-#~ msgstr "Настр"
-
-#~ msgid "Modules"
-#~ msgstr "Модулі"
-
-#~ msgid "Management of Meta Tags"
-#~ msgstr "Управление мета тегами"
-
-#~ msgid "Widgets"
-#~ msgstr "Виджети"
-
-#, fuzzy
-#~ msgid "Date of creation"
-#~ msgstr "Настр"
-
-#~ msgid "Site configuration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Widget settings"
-#~ msgstr "Виджети"
-
-#, fuzzy
-#~ msgid "Сonsider the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Widget title"
-#~ msgstr "Виджети"
-
-#~ msgid "New pages"
-#~ msgstr "Нові сторінки"
-
-#~ msgid "Buy"
-#~ msgstr "Купить"
-
-#, fuzzy
-#~ msgid "Move to category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create status"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create property"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Catagory"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "turn category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Drug category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Edit the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Basic information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a warehouse"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "General information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a way to deliver"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Orders list"
-#~ msgstr "Список замовлень"
-
-#~ msgid "Customer"
-#~ msgstr "Замовник"
-
-#, fuzzy
-#~ msgid "Date of order"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Ordering information"
-#~ msgstr "Настр"
-
-#~ msgid "New orders"
-#~ msgstr "Новие закази"
-
-#, fuzzy
-#~ msgid "Created Date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a payment method"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Pages and categories"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Picture for category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of addition"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create small image"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a set"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create currency"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Banner creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a banner"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a brand"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Regular or usual pages"
-#~ msgstr "Звичайні сторінки"
-
-#, fuzzy
-#~ msgid "Create gift certificate"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of registration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Additional information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Created date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Category created"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create catagory"
-#~ msgstr "Создать категорию"

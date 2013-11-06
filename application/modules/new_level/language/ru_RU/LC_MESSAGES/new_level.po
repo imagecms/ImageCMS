@@ -1,370 +1,163 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 14:41+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-11-04 11:23+0200\n"
+"PO-Revision-Date: 2013-11-04 11:23+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../..\n"
-"X-Poedit-Language: Tagalog\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:12
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:19
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:28
-#: /var/www/image.loc/_tempLangs.php:30
+#: ./application/modules/new_level/assets/js/script.js:26
+#: ./application/modules/new_level/assets/js/script.js:55
+#: ./application/modules/new_level/assets/js/script.js:95
+#: ./application/modules/new_level/assets/js/script.js:112
+#: ./application/modules/new_level/assets/js/script.js:127
+#: ./application/modules/new_level/assets/js/script.js:143
+#: ./application/modules/new_level/assets/js/script.js:160
+#: ./application/modules/new_level/assets/js/script.js:175
+#: ./application/modules/new_level/assets/js/script.js:191
 msgid "Message"
 msgstr "Сообщение"
 
-#: /var/www/image.loc/_tempLangs.php:13
+#: ./application/modules/new_level/assets/js/script.js:27
 msgid "Property type updated"
 msgstr "Типы свойства обновлен"
 
-#: /var/www/image.loc/_tempLangs.php:15
-#: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:31
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:49
+#: ./application/modules/new_level/assets/js/script.js:56
+#: ./application/modules/new_level/assets/js/script.js:161
+#: ./application/modules/new_level/assets/js/script.js:192
+#: ./application/modules/new_level/assets/admin/index.tpl:95
+#: ./application/modules/new_level/assets/admin/_columns.tpl:20
 msgid "Column"
 msgstr "Колонка"
 
-#: /var/www/image.loc/_tempLangs.php:16
+#: ./application/modules/new_level/assets/js/script.js:57
 msgid "updated"
 msgstr "обновлена"
 
-#: /var/www/image.loc/_tempLangs.php:18
+#: ./application/modules/new_level/assets/js/script.js:96
 msgid "Data successfully saved"
 msgstr "Успешно сохранено"
 
-#: /var/www/image.loc/_tempLangs.php:20
+#: ./application/modules/new_level/assets/js/script.js:113
 msgid "Type of property successfully removed"
 msgstr "Тип свойства успешно удален"
 
-#: /var/www/image.loc/_tempLangs.php:22
+#: ./application/modules/new_level/assets/js/script.js:128
 msgid "Type of property successfully updated"
 msgstr "Тип свойства успешно обновлен"
 
-#: /var/www/image.loc/_tempLangs.php:24
+#: ./application/modules/new_level/assets/js/script.js:144
 msgid "Type of property successfully added"
 msgstr "Тип свойства успешно додан"
 
-#: /var/www/image.loc/_tempLangs.php:27
+#: ./application/modules/new_level/assets/js/script.js:162
 msgid "removed"
 msgstr "удалена"
 
-#: /var/www/image.loc/_tempLangs.php:29
+#: ./application/modules/new_level/assets/js/script.js:176
 msgid "Column successfully removed"
 msgstr "Колонка успешно удалена"
 
-#: /var/www/image.loc/_tempLangs.php:32
+#: ./application/modules/new_level/assets/js/script.js:193
 msgid "successfully added"
 msgstr "успешно обновлена"
 
-#: /var/www/image.loc/_tempLangs.php:33
+#: ./application/modules/new_level/assets/admin/index.tpl:6
+#: ./application/modules/new_level/module_info.php:6
 msgid "Online store template settings"
 msgstr "Настройки шаблона интернет-магазина"
 
-#: /var/www/image.loc/_tempLangs.php:34
-#: /var/www/image.loc/_tempLangs.php:52
+#: ./application/modules/new_level/assets/admin/index.tpl:13
+#: ./application/modules/new_level/assets/admin/settings.tpl:12
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:35
-#: /var/www/image.loc/_tempLangs.php:45
-#: /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:62
+#: ./application/modules/new_level/assets/admin/index.tpl:19
+#: ./application/modules/new_level/assets/admin/index.tpl:126
+#: ./application/modules/new_level/assets/admin/settings.tpl:5
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:17
 msgid "Settings"
 msgstr "Настройки"
 
-#: /var/www/image.loc/_tempLangs.php:36
+#: ./application/modules/new_level/assets/admin/index.tpl:27
 msgid "Properties"
 msgstr "Свойства"
 
-#: /var/www/image.loc/_tempLangs.php:37
-#: /var/www/image.loc/_tempLangs.php:57
+#: ./application/modules/new_level/assets/admin/index.tpl:28
+#: ./application/modules/new_level/assets/admin/settings.tpl:96
 msgid "Columns"
 msgstr "Колонки"
 
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:46
-#: /var/www/image.loc/_tempLangs.php:63
+#: ./application/modules/new_level/assets/admin/index.tpl:29
+#: ./application/modules/new_level/assets/admin/index.tpl:136
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:27
 msgid "Colour scheme"
 msgstr "Цветовая схема"
 
-#: /var/www/image.loc/_tempLangs.php:39
+#: ./application/modules/new_level/assets/admin/index.tpl:39
 msgid "Id"
 msgstr "Id"
 
-#: /var/www/image.loc/_tempLangs.php:40
+#: ./application/modules/new_level/assets/admin/index.tpl:42
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:41
+#: ./application/modules/new_level/assets/admin/index.tpl:45
 msgid "Type"
 msgstr "Тип"
 
-#: /var/www/image.loc/_tempLangs.php:42
-#: /var/www/image.loc/_tempLangs.php:48
+#: ./application/modules/new_level/assets/admin/index.tpl:80
+#: ./application/modules/new_level/assets/admin/_columns.tpl:5
 msgid "Categories columns"
 msgstr "Столбци категорий"
 
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:47
-#: /var/www/image.loc/_tempLangs.php:50
-#: /var/www/image.loc/_tempLangs.php:61
+#: ./application/modules/new_level/assets/admin/index.tpl:106
+#: ./application/modules/new_level/assets/admin/index.tpl:159
+#: ./application/modules/new_level/assets/admin/_columns.tpl:31
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:11
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:53
+#: ./application/modules/new_level/assets/admin/settings.tpl:20
 msgid "Properties settings"
 msgstr "Настройки свойств"
 
-#: /var/www/image.loc/_tempLangs.php:54
+#: ./application/modules/new_level/assets/admin/settings.tpl:21
 msgid "Columns settings"
 msgstr "Настройки колонок"
 
-#: /var/www/image.loc/_tempLangs.php:55
+#: ./application/modules/new_level/assets/admin/settings.tpl:31
 msgid "Properties types"
 msgstr "Типы свойства"
 
-#: /var/www/image.loc/_tempLangs.php:56
+#: ./application/modules/new_level/assets/admin/settings.tpl:78
 msgid "Add new properties type"
 msgstr "Добавить новый тип свойства"
 
-#: /var/www/image.loc/_tempLangs.php:58
+#: ./application/modules/new_level/assets/admin/settings.tpl:143
 msgid "Add new column"
 msgstr "Добавить новый столбец"
 
-#: /var/www/image.loc/_tempLangs.php:59
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:6
 msgid "Additional settings of NewLevel module"
 msgstr "Дополнительная настройка модуля NewLevel"
 
-#: /var/www/image.loc/_tempLangs.php:60
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:10
 msgid "Go back"
 msgstr "Назад"
 
-#: module_info.php:7
+#: ./application/modules/new_level/module_info.php:7
 msgid "New Level template settings. Managing blocks and columns."
 msgstr "Настройки шаблона New Level. Управление блоками и колонками."
 
-#~ msgid "New Level"
-#~ msgstr "New Level"
-
-#~ msgid "New Level module"
-#~ msgstr "Модуль New Level"
-
-#~ msgid "Data saved"
-#~ msgstr "Данные сохранены"
-
-#~ msgid "Create a category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "System information"
-#~ msgstr "Настр"
-
-#~ msgid "Modules"
-#~ msgstr "Модулі"
-
-#~ msgid "Management of Meta Tags"
-#~ msgstr "Управление мета тегами"
-
-#~ msgid "Widgets"
-#~ msgstr "Виджети"
-
-#, fuzzy
-#~ msgid "Date of creation"
-#~ msgstr "Настр"
-
-#~ msgid "Site configuration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Сonsider the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Widget title"
-#~ msgstr "Виджети"
-
-#~ msgid "New pages"
-#~ msgstr "Нові сторінки"
-
-#~ msgid "Buy"
-#~ msgstr "Купить"
-
-#, fuzzy
-#~ msgid "Move to category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create status"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create property"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Catagory"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "turn category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Drug category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Edit the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Basic information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a warehouse"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "General information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a way to deliver"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Orders list"
-#~ msgstr "Список замовлень"
-
-#~ msgid "Create order"
-#~ msgstr "Создатьзаказ"
-
-#~ msgid "Customer"
-#~ msgstr "Замовник"
-
-#, fuzzy
-#~ msgid "Date of order"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Ordering information"
-#~ msgstr "Настр"
-
-#~ msgid "New orders"
-#~ msgstr "Новие закази"
-
-#, fuzzy
-#~ msgid "Created Date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a payment method"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Pages and categories"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Picture for category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of addition"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Product creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid " Create a product copy?"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create small image"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a set"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create currency"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Banner creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a banner"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a brand"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Regular or usual pages"
-#~ msgstr "Звичайні сторінки"
-
-#, fuzzy
-#~ msgid "Create a discount"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create gift certificate"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create user"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of registration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Additional information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Created date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Category created"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create catagory"
-#~ msgstr "Создать категорию"
