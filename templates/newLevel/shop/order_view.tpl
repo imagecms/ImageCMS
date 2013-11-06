@@ -22,7 +22,7 @@
         {if $CI->session->flashdata('makeOrder') === true}
             <div class="f-s_0 title-order-view without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i c_9">{lang('Спасибо, Ваш заказ принят.','newLevel')}</h1>
+                    <h1 class="d_i c_9">{lang('Ваш заказ принят.','newLevel')}</h1>
                 </div>
             </div>
             <!-- Clear Cart locale Storage -->
@@ -127,7 +127,7 @@
                 <!-- End. Delivery Method name -->
 
             </table>
-            <div class="title-h3">{lang('Данные клиентов','newLevel')}</div>
+            <div class="title-h3">{lang('Ваши данные','newLevel')}</div>
             <!--                Start. User info block-->
             <table class="table-info-order">
                 <tr>
