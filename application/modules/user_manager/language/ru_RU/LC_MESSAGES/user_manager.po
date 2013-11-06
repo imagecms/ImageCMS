@@ -1,712 +1,438 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: ImageCms\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 12:02+0300\n"
-"PO-Revision-Date: 2013-10-18 12:03+0300\n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: ru_UA\n"
+"POT-Creation-Date: 2013-11-04 11:25+0200\n"
+"PO-Revision-Date: 2013-11-04 11:25+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: \n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SearchPath-0: ../../../\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:21
+#: ./application/modules/user_manager//templates/main.tpl:12
+#: ./application/modules/user_manager//templates/main.tpl:47
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:14
+#: ./application/modules/user_manager//templates/main.tpl:13
 msgid "Cancel"
 msgstr "Отмена"
 
-#: /var/www/image.loc/_tempLangs.php:15
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:65
+#: ./application/modules/user_manager//templates/main.tpl:30
+#: ./application/modules/user_manager//templates/edit_user.tpl:10
+#: ./application/modules/user_manager//templates/groups_edit.tpl:10
 msgid "Return"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:16
+#: ./application/modules/user_manager//templates/main.tpl:31
 msgid "User create"
 msgstr "Создать пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:17
+#: ./application/modules/user_manager//templates/main.tpl:32
 msgid "Create a Group"
 msgstr "Создать Группу"
 
-#: /var/www/image.loc/_tempLangs.php:18
+#: ./application/modules/user_manager//templates/main.tpl:38
 msgid "Users"
 msgstr "Пользователи"
 
-#: /var/www/image.loc/_tempLangs.php:19
+#: ./application/modules/user_manager//templates/main.tpl:39
 msgid "Groups"
 msgstr "Группы"
 
-# хз
-#: /var/www/image.loc/_tempLangs.php:20
+# х�
+#: ./application/modules/user_manager//templates/main.tpl:40
 msgid "Access rights differentiation system"
 msgstr "Права доступа разных систем"
 
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:23
+#: ./application/modules/user_manager//templates/main.tpl:48
+#: ./application/modules/user_manager//templates/main.tpl:49
 msgid "Cancel filter"
 msgstr "Отменить фильтр"
 
-# а
-#: /var/www/image.loc/_tempLangs.php:24
+# �
+#: ./application/modules/user_manager//templates/main.tpl:49
 msgid "Filter admin"
 msgstr "Фильтр"
 
-#: /var/www/image.loc/_tempLangs.php:25
+#: ./application/modules/user_manager//templates/main.tpl:77
 msgid "All groups"
 msgstr "Все группы"
 
-#: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:66
+#: ./application/modules/user_manager//templates/genreroletable.tpl:2
+#: ./application/modules/user_manager//templates/edit_perms.tpl:63
+#: ./application/modules/user_manager//templates/edit_user.tpl:11
+#: ./application/modules/user_manager//templates/groups_edit.tpl:11
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:27
+#: ./application/modules/user_manager//templates/genreroletable.tpl:8
 msgid "Properties"
 msgstr "Свойства"
 
-#: /var/www/image.loc/_tempLangs.php:28
-#: /var/www/image.loc/_tempLangs.php:29
-#: /var/www/image.loc/_tempLangs.php:36
-#: /var/www/image.loc/_tempLangs.php:50
-#: /var/www/image.loc/_tempLangs.php:82
-#: /var/www/image.loc/_tempLangs.php:101
+#: ./application/modules/user_manager//templates/main.tpl:65
+#: ./application/modules/user_manager//templates/genreroletable.tpl:20
+#: ./application/modules/user_manager//templates/edit_perms.tpl:35
+#: ./application/modules/user_manager//templates/users_table_search.tpl:7
+#: ./application/modules/user_manager//templates/edit_user.tpl:54
+#: ./application/modules/user_manager//templates/create_user.tpl:77
 msgid "Group"
 msgstr "Группа"
 
-#: /var/www/image.loc/_tempLangs.php:31
+#: ./application/modules/user_manager//templates/edit_perms.tpl:64
 msgid "Cancel all"
 msgstr "Отменить все"
 
-#: /var/www/image.loc/_tempLangs.php:32
+#: ./application/modules/user_manager//templates/edit_perms.tpl:65
 msgid "Cancel selection"
 msgstr "Отменить выбранное"
 
-#: /var/www/image.loc/_tempLangs.php:33
-#: /var/www/image.loc/_tempLangs.php:98
-#: /var/www/image.loc/_tempLangs.php:106
+#: ./application/modules/user_manager//templates/main.tpl:62
+#: ./application/modules/user_manager//templates/users_table_search.tpl:4
+#: ./application/modules/user_manager//templates/groups.tpl:6
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_tempLangs.php:34
+#: ./application/modules/user_manager//templates/users_table_search.tpl:5
+#: ./application/modules/user_manager//admin.php:171
 msgid "Login"
 msgstr "Войти"
 
-#: /var/www/image.loc/_tempLangs.php:35
-#: /var/www/image.loc/_tempLangs.php:47
+#: ./application/modules/user_manager//templates/users_table_search.tpl:6
+#: ./application/modules/user_manager//templates/edit_user.tpl:34
+#: ./application/modules/user_manager//admin.php:174
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: /var/www/image.loc/_tempLangs.php:37
-#: /var/www/image.loc/_tempLangs.php:54
+#: ./application/modules/user_manager//templates/users_table_search.tpl:8
+#: ./application/modules/user_manager//templates/edit_user.tpl:78
 msgid "Ban"
 msgstr "Бан"
 
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:103
+#: ./application/modules/user_manager//templates/main.tpl:67
+#: ./application/modules/user_manager//templates/users_table_search.tpl:9
 msgid "Last IP"
 msgstr "Последний IP"
 
-# неее
-#: /var/www/image.loc/_tempLangs.php:39
+# нее�
+#: ./application/modules/user_manager//templates/users_table_search.tpl:10
 msgid "Latest Entry or Last Entry"
 msgstr "Последний Вход"
 
-#: /var/www/image.loc/_tempLangs.php:40
+#: ./application/modules/user_manager//templates/users_table_search.tpl:11
 msgid "Created"
 msgstr "Создано"
 
-#: /var/www/image.loc/_tempLangs.php:41
+#: ./application/modules/user_manager//templates/users_table_search.tpl:28
 msgid "Edit"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:42
+#: ./application/modules/user_manager//templates/edit_user.tpl:6
 msgid "Editing by"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:45
-#: /var/www/image.loc/_tempLangs.php:67
+#: ./application/modules/user_manager//templates/edit_user.tpl:12
+#: ./application/modules/user_manager//templates/groups_edit.tpl:12
 msgid "Save and exit"
 msgstr "Создать и вийти"
 
-#: /var/www/image.loc/_tempLangs.php:46
+#: ./application/modules/user_manager//templates/edit_user.tpl:21
 msgid "User data"
 msgstr "Данные пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:48
-#: /var/www/image.loc/_tempLangs.php:78
+#: ./application/modules/user_manager//templates/edit_user.tpl:41
+#: ./application/modules/user_manager//templates/create_user.tpl:46
 msgid "Full name"
 msgstr "Полное имя"
 
-#: /var/www/image.loc/_tempLangs.php:49
+#: ./application/modules/user_manager//templates/edit_user.tpl:48
 msgid "Phone"
 msgstr "Телефон"
 
-#: /var/www/image.loc/_tempLangs.php:51
+#: ./application/modules/user_manager//templates/edit_user.tpl:57
 msgid "Without group"
 msgstr "Без группы"
 
-#: /var/www/image.loc/_tempLangs.php:52
-#: /var/www/image.loc/_tempLangs.php:80
+#: ./application/modules/user_manager//templates/edit_user.tpl:65
+#: ./application/modules/user_manager//templates/create_user.tpl:60
 msgid "New password"
 msgstr "Новый пароль"
 
-#: /var/www/image.loc/_tempLangs.php:53
+#: ./application/modules/user_manager//templates/edit_user.tpl:71
 msgid "Password confirm"
 msgstr "Подтвердить пароль"
 
-#: /var/www/image.loc/_tempLangs.php:55
+#: ./application/modules/user_manager//templates/edit_user.tpl:81
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:56
+#: ./application/modules/user_manager//templates/edit_user.tpl:82
 msgid "Yes"
 msgstr "Да"
 
-#: /var/www/image.loc/_tempLangs.php:57
+#: ./application/modules/user_manager//templates/edit_user.tpl:87
 msgid "Ban Reason"
 msgstr "Причина Бана"
 
-#: /var/www/image.loc/_tempLangs.php:58
+#: ./application/modules/user_manager//templates/groups.tpl:30
 msgid "Options"
 msgstr "Опции"
 
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:64
-#: /var/www/image.loc/_tempLangs.php:86
+#: ./application/modules/user_manager//templates/groups.tpl:31
+#: ./application/modules/user_manager//templates/groups.tpl:49
+#: ./application/modules/user_manager//templates/create_group.tpl:11
 msgid "Create"
 msgstr "Создать"
 
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:68
-#: /var/www/image.loc/_tempLangs.php:89
-#: /var/www/image.loc/_tempLangs.php:107
+#: ./application/modules/user_manager//templates/groups.tpl:7
+#: ./application/modules/user_manager//templates/groups.tpl:33
+#: ./application/modules/user_manager//templates/groups_edit.tpl:32
+#: ./application/modules/user_manager//templates/create_group.tpl:35
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:61
-#: /var/www/image.loc/_tempLangs.php:69
-#: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:90
-#: /var/www/image.loc/_tempLangs.php:108
+#: ./application/modules/user_manager//templates/groups.tpl:8
+#: ./application/modules/user_manager//templates/groups.tpl:37
+#: ./application/modules/user_manager//templates/groups_edit.tpl:38
+#: ./application/modules/user_manager//templates/groups_edit.tpl:41
+#: ./application/modules/user_manager//templates/create_group.tpl:41
 msgid "Identifier"
 msgstr "Идентификатор"
 
-#: /var/www/image.loc/_tempLangs.php:62
+#: ./application/modules/user_manager//templates/groups.tpl:38
 msgid "Just latin characters"
 msgstr "Только латинские буквы"
 
-#: /var/www/image.loc/_tempLangs.php:63
-#: /var/www/image.loc/_tempLangs.php:71
-#: /var/www/image.loc/_tempLangs.php:92
-#: /var/www/image.loc/_tempLangs.php:109
+#: ./application/modules/user_manager//templates/groups.tpl:9
+#: ./application/modules/user_manager//templates/groups.tpl:41
+#: ./application/modules/user_manager//templates/groups_edit.tpl:45
+#: ./application/modules/user_manager//templates/create_group.tpl:48
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_tempLangs.php:72
+#: ./application/modules/user_manager//templates/create_user.tpl:6
 msgid "Create a new user"
 msgstr "Создать новго пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:73
-#: /var/www/image.loc/_tempLangs.php:85
+#: ./application/modules/user_manager//templates/create_user.tpl:11
+#: ./application/modules/user_manager//templates/create_group.tpl:10
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:74
+#: ./application/modules/user_manager//templates/create_user.tpl:12
 msgid "Сreate"
 msgstr "Создать"
 
-#: /var/www/image.loc/_tempLangs.php:75
-#: /var/www/image.loc/_tempLangs.php:87
+#: ./application/modules/user_manager//templates/create_user.tpl:13
+#: ./application/modules/user_manager//templates/create_group.tpl:12
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
-#: /var/www/image.loc/_tempLangs.php:76
+#: ./application/modules/user_manager//templates/create_user.tpl:26
 msgid "New user"
 msgstr "Новый пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:77
+#: ./application/modules/user_manager//templates/create_user.tpl:39
 msgid "Email"
 msgstr "E-mail"
 
-#: /var/www/image.loc/_tempLangs.php:79
+#: ./application/modules/user_manager//templates/create_user.tpl:53
 msgid "Phone number"
 msgstr "Номер телефона"
 
-#: /var/www/image.loc/_tempLangs.php:81
+#: ./application/modules/user_manager//templates/create_user.tpl:69
+#: ./application/modules/user_manager//admin.php:173
 msgid "Confirm the password"
 msgstr "Подтвердите пароль"
 
-#: /var/www/image.loc/_tempLangs.php:83
+#: ./application/modules/user_manager//templates/create_user.tpl:80
 msgid "No group"
 msgstr "Нет групп"
 
-#: /var/www/image.loc/_tempLangs.php:84
+#: ./application/modules/user_manager//templates/create_group.tpl:6
 msgid "Creating a group"
 msgstr "Создать группу"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: ./application/modules/user_manager//templates/create_group.tpl:24
 msgid "Group details"
 msgstr "Детали группы"
 
-#: /var/www/image.loc/_tempLangs.php:91
+#: ./application/modules/user_manager//templates/create_group.tpl:44
 msgid "Only Latin characters"
 msgstr "Только латинские буквы"
 
-#: /var/www/image.loc/_tempLangs.php:93
-#: /var/www/image.loc/_tempLangs.php:95
+#: ./application/modules/user_manager//templates/main.tpl:6
+#: ./application/modules/user_manager//templates/main.tpl:18
 msgid "Deleting a user"
 msgstr "Удаление пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:94
+#: ./application/modules/user_manager//templates/main.tpl:9
 msgid "Remove selected users?"
 msgstr "Удалить выбранных пользователей?"
 
-#: /var/www/image.loc/_tempLangs.php:96
+#: ./application/modules/user_manager//templates/main.tpl:19
 msgid "Delete a user?"
 msgstr "Удалить пользователя?"
 
-#: /var/www/image.loc/_tempLangs.php:97
+#: ./application/modules/user_manager//templates/main.tpl:26
 msgid "Corporate site users"
 msgstr "Пользователи корпоративного сайта"
 
-#: /var/www/image.loc/_tempLangs.php:99
+#: ./application/modules/user_manager//templates/main.tpl:63
 msgid "User"
 msgstr "Пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:100
+#: ./application/modules/user_manager//templates/main.tpl:64
 msgid "E-mail"
 msgstr "E-mail"
 
-#: /var/www/image.loc/_tempLangs.php:102
+#: ./application/modules/user_manager//templates/main.tpl:66
 msgid "Banned"
 msgstr "Бан"
 
-#: /var/www/image.loc/_tempLangs.php:104
+#: ./application/modules/user_manager//templates/groups.tpl:2
 msgid "Preliminary contents"
 msgstr "Предварительное содержание"
 
-#: /var/www/image.loc/_tempLangs.php:105
+#: ./application/modules/user_manager//templates/groups.tpl:3
 msgid "Group list"
 msgstr "Список групп"
 
-#: /var/www/image.loc/_tempLangs.php:110
+#: ./application/modules/user_manager//templates/groups_edit.tpl:6
 msgid "Editing Groups"
 msgstr "Редактирование групп"
 
-#: /var/www/image.loc/_tempLangs.php:111
+#: ./application/modules/user_manager//templates/groups_edit.tpl:21
 msgid "Group data"
 msgstr "Данные группы"
 
-#: ../../..//admin.php:93
+#: ./application/modules/user_manager//admin.php:93
 msgid "Next"
 msgstr "Слядующая"
 
-#: ../../..//admin.php:94
+#: ./application/modules/user_manager//admin.php:94
 #, fuzzy
 msgid "Prev"
 msgstr "Смотреть"
 
-#: ../../..//admin.php:172
+#: ./application/modules/user_manager//admin.php:172
 msgid "Password"
 msgstr "Пароль"
 
-#: ../../..//admin.php:184
+#: ./application/modules/user_manager//admin.php:184
 msgid "User with the same e-mail has been registered"
 msgstr "Пользователь с таким e-mail был зарегистрирован"
 
-# неее
-#: ../../..//admin.php:204
+# нее�
+#: ./application/modules/user_manager//admin.php:204
 msgid "Create a user or the username has been created"
 msgstr "Создать пользователя"
 
-# неее
-#: ../../..//admin.php:208
+# нее�
+#: ./application/modules/user_manager//admin.php:208
 msgid "Username has been created or user has been created"
 msgstr "Пользователь был создан"
 
-#: ../../..//admin.php:247
+#: ./application/modules/user_manager//admin.php:247
 msgid "Ban the user  or the user has been banned"
 msgstr "Пользователь забанен"
 
-#: ../../..//admin.php:256
+#: ./application/modules/user_manager//admin.php:256
 msgid "The user has been unbanned "
 msgstr "Пользователь был удален с бана"
 
-#: ../../..//admin.php:293
-#: ../../..//admin.php:310
-#: ../../..//admin.php:340
+#: ./application/modules/user_manager//admin.php:293
+#: ./application/modules/user_manager//admin.php:310
+#: ./application/modules/user_manager//admin.php:340
 msgid "amt_users_not_found"
 msgstr ""
 
-#: ../../..//admin.php:322
+#: ./application/modules/user_manager//admin.php:322
 msgid "a_bas_filt_pass_not_post"
 msgstr ""
 
-#: ../../..//admin.php:363
+#: ./application/modules/user_manager//admin.php:363
 msgid "amt_user_login"
 msgstr ""
 
-#: ../../..//admin.php:364
-#: ../../..//admin.php:372
+#: ./application/modules/user_manager//admin.php:364
+#: ./application/modules/user_manager//admin.php:372
 #, fuzzy
 msgid "amt_password"
 msgstr "Пароль"
 
-#: ../../..//admin.php:365
-#: ../../..//admin.php:373
+#: ./application/modules/user_manager//admin.php:365
+#: ./application/modules/user_manager//admin.php:373
 msgid "amt_new_pass_confirm"
 msgstr ""
 
-#: ../../..//admin.php:367
+#: ./application/modules/user_manager//admin.php:367
 #, fuzzy
 msgid "amt_email"
 msgstr "Нааааааааамеееееееееее"
 
-#: ../../..//admin.php:378
+#: ./application/modules/user_manager//admin.php:378
 msgid "amt_email_exists"
 msgstr ""
 
-#: ../../..//admin.php:406
+#: ./application/modules/user_manager//admin.php:406
 #, fuzzy
 msgid "amt_updated_user"
 msgstr "Пользователь обновлен"
 
-#: ../../..//admin.php:411
-#: ../../..//admin.php:516
+#: ./application/modules/user_manager//admin.php:411
+#: ./application/modules/user_manager//admin.php:516
 #, fuzzy
 msgid "amt_changes_saved"
 msgstr "Нааааааааамеееееееееее"
 
-#: ../../..//admin.php:444
+#: ./application/modules/user_manager//admin.php:444
 #, fuzzy
 msgid "amt_identif"
 msgstr "Нааааааааамеееееееееее"
 
-#: ../../..//admin.php:445
+#: ./application/modules/user_manager//admin.php:445
 #, fuzzy
 msgid "amt_tname"
 msgstr "Нааааааааамеееееееееее"
 
-#: ../../..//admin.php:446
+#: ./application/modules/user_manager//admin.php:446
 #, fuzzy
 msgid "amt_description"
 msgstr "Описание"
 
-#: ../../..//admin.php:461
+#: ./application/modules/user_manager//admin.php:461
 #, fuzzy
 msgid "amt_created_group"
 msgstr "Нааааааааамеееееееееее"
 
-#: ../../..//admin.php:462
+#: ./application/modules/user_manager//admin.php:462
 #, fuzzy
 msgid "amt_group_created"
 msgstr "Нааааааааамеееееееееее"
 
-#: ../../..//admin.php:480
+#: ./application/modules/user_manager//admin.php:480
 msgid "a_del_user_notif"
 msgstr ""
 
-#: ../../..//admin.php:490
+#: ./application/modules/user_manager//admin.php:490
 #, fuzzy
 msgid "amt_deleted_user"
 msgstr "Пользователь удален"
 
-#: ../../..//module_info.php:4
+#: ./application/modules/user_manager//module_info.php:4
 msgid "Users manager"
 msgstr "Управление пользователями"
 
-#: ../../..//module_info.php:5
+#: ./application/modules/user_manager//module_info.php:5
 msgid "User management in ImageCMS Corporate."
 msgstr "Управление пользователями для корпоративного сайта."
 
-#~ msgid "User management."
-#~ msgstr "Управление пользователями"
-
-#~ msgid "ImageCMS Corporate Users"
-#~ msgstr "Пользователи ImageCMS Corporate"
-
-#~ msgid "User Manager"
-#~ msgstr "Управление пользователями"
-
-#~ msgid "User has not been found "
-#~ msgstr "Пользователь не найден "
-
-#~ msgid "You do not pass search"
-#~ msgstr "Вы не прошли поиска"
-
-#~ msgid "Changes have been saved"
-#~ msgstr "Изменения сохранены"
-
-#~ msgid "Created a group"
-#~ msgstr "Группу создано"
-
-#~ msgid "Group has been created"
-#~ msgstr "Группа была создана"
-
-#~ msgid "No data transmitted"
-#~ msgstr "Данные не переданы"
-
-#, fuzzy
-#~ msgid "Create user"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Description "
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Created a widget"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Positions updated"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "Title"
-#~ msgstr "Заголовок"
-
-#, fuzzy
-#~ msgid "Changed wesite settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Image"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "by default"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Short description"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Main page"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Meta Description"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Pages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "goto site"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Create a widget"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "No widgets created"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Change category data"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "Site settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#~ msgid "Hello"
-#~ msgstr "Привет"
-
-#, fuzzy
-#~ msgid "by date"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "By position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Download"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Create category"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "System update"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "site"
-#~ msgstr "сайт"
-
-#, fuzzy
-#~ msgid "Manage site"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Your remark"
-#~ msgstr "Вааааааааааааше замечание"
-
-#, fuzzy
-#~ msgid "ac_val_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_val_pub_date"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_creat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_page_cont_updated"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "ac_val_image"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_by_default"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_val_position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_save"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_sett"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_yes"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_cat_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_create_cat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_no_updates"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "a_url"
-#~ msgstr "Посилання"
-
-#, fuzzy
-#~ msgid "a_date_create"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_select_image"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_type"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_footer_cancel"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_image_url"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_save_path"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_sort"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_by_pos"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_comm_by_def"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_turn_off"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_page_tpl"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "a_pub_stat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_enter_sys"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_ftp_sett"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_in_mb"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_top"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_bottom"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_text"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_no_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_gallery"
-#~ msgstr "Нааааааааамеееееееееее"

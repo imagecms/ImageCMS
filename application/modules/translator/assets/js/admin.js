@@ -15,6 +15,15 @@ $(document).ready(function() {
         Search.go();
     });
 
+    $('.searchObjects').die().live('change', function() {
+        if ($('.searchObjects:checked').length) {
+            $('.searchConditions').removeAttr('disabled');
+        } else {
+            $('.searchConditions').attr('disabled', '');
+            $('.searchConditions').removeAttr('checked');
+        }
+    });
+
     $('.links option').live('click', function() {
         var file_path = $(this).val();
         var url = '/admin/components/init_window/translator/renderFile/' + file_path;
@@ -30,12 +39,15 @@ $(document).ready(function() {
     });
 
     $('.translationCancel').live('click', function() {
-        $(this).next().val($(this).next().next().val())
+        $(this).next().val($(this).next().next().val());
+        Translator.statisticRecount();
     });
 
     $('.translation').live('blur', function() {
-        $(this).next().val($(this).val())
+        $(this).next().val($(this).val());
+        Translator.statisticRecount();
     });
+
 });
 
 var Sort = {
@@ -400,6 +412,7 @@ var Selectors = {
         $('#per_page').hide();
         $('.pathHolder').html('');
         $('.pathParseHolder').hide();
+        $('.statistic').hide();
     },
     langs: function(curElement) {
         this.init();
@@ -483,6 +496,27 @@ var Selectors = {
 };
 
 var Translator = {
+    statisticRecount: function() {
+        var totalStrings = $('textarea.origin').length;
+        var fuzzyCount = $('.fuzzyTD .btn-danger').length;
+        var translated = 0;
+        var notTranslated = 0;
+
+        $('textarea.translation').each(function() {
+            if ($(this).val()) {
+                translated++;
+            } else {
+                notTranslated++;
+            }
+        });
+
+        $('.statistic').show();
+        $('.allStringsCount').html(totalStrings);
+        $('.notTranslatedStringsCount').html(notTranslated);
+        $('.translatedStringsCount').html(translated);
+        $('.fuzzyStringsCount').html(fuzzyCount);
+
+    },
     createFile: function(curElement) {
         var lang = $('#langs').val();
         var type = $('#types').val();
@@ -492,24 +526,19 @@ var Translator = {
             switch (type) {
                 case  'modules':
                     url = '/admin/components/init_window/translator/createFile/' + module_template + '/' + type + '/' + lang;
-                    window.location.href= url;
+                    window.location.href = url;
                     break;
                 case 'templates':
                     url = '/admin/components/init_window/translator/createFile/' + module_template + '/' + type + '/' + lang;
-                    window.location.href= url;
+                    window.location.href = url;
                     break;
                 case 'main':
                     url = '/admin/components/init_window/translator/createFile/' + type + '/' + type + '/' + lang;
-                    window.location.href= url;
+                    window.location.href = url;
                     break;
             }
-//            $.ajax({url: url,
-//                success: function(Answer) {
-//                    
-//                }
-//            });
         }
-        
+
     },
     render: function(data) {
         if (data == 'no file') {
@@ -518,6 +547,7 @@ var Translator = {
             $('.pagination ul').html('');
             $('.fileNotExist').show();
             $('.pathHolder').html('');
+            $('.po_settings').html('');
             $('.pathParseHolder').hide();
             return false;
         }
@@ -537,9 +567,16 @@ var Translator = {
 
         $('#po_table tbody').html(data);
         $('#po_table').css('display', 'table');
+
+        this.statisticRecount();
+
         var paths = $('.pathHolderClone').html();
         $('.pathHolder').html(paths);
         $('.pathParseHolder').show();
+
+        var po_settings = $('.po_settingsClone').html();
+        $('.po_settingsClone').html('');
+        $('.po_settings').html(po_settings);
 
         Pagination.generate();
     },
@@ -561,7 +598,8 @@ var Translator = {
             success: function(Answer) {
                 Answer = JSON.parse(Answer);
                 if (Answer.code == '200') {
-                    translationTR.find('.translation').val(Answer.text[0])
+                    translationTR.find('.translation').val(Answer.text[0]);
+                    Translator.statisticRecount();
                 }
             }
         });
@@ -586,10 +624,14 @@ var Translator = {
         } else {
             $(curElement).addClass('btn-danger');
         }
+        this.statisticRecount();
     },
     addNewPath: function(curElement) {
         var newPath = $(curElement).prev().html();
         var pathNumber = (parseInt($.trim($($('.pathHolder div b')[$('.pathHolder div b').length - 1]).html())) + 1) + '.';
+        if (pathNumber == 'NaN.') {
+            pathNumber = 2 + '.';
+        }
         $('.pathHolder').append(newPath);
         $($('.pathHolder div b')[$('.pathHolder div b').length - 1]).html(pathNumber);
     },
@@ -644,12 +686,12 @@ var Translator = {
                                 paths.push(results['new'][newString][path]);
                             }
 
-                            $('.newStrings').append('<span data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
+                            $('.newStrings').append('<span data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
                         }
                     }
                     for (var obsoleteString in results['old']) {
                         if (obsoleteString && obsoleteString != '0') {
-                            $('.obsoleteStrings').append('<span>' + obsoleteString + '</span><br>');
+                            $('.obsoleteStrings').append('<span>' + escapeHtml(obsoleteString) + '</span><br>');
                         }
                     }
                 }
@@ -704,6 +746,7 @@ var Translator = {
                 $($('.pagination ul li')[1]).addClass('active');
                 $('.per_page10').attr('selected', 'selected')
                 Pagination.generate();
+                Translator.statisticRecount();
             }
         });
     },
@@ -743,6 +786,16 @@ var Translator = {
         }
 
         po_array['paths'] = paths;
+
+        po_array['po_settings'] = {};
+        po_array['po_settings']['projectName'] = $('input[name=projectName]').val();
+        po_array['po_settings']['translatorEmail'] = $('input[name=translatorEmail]').val();
+        po_array['po_settings']['translatorName'] = $('input[name=translatorName]').val();
+        po_array['po_settings']['langaugeTeamName'] = $('input[name=langaugeTeamName]').val();
+        po_array['po_settings']['langaugeTeamEmail'] = $('input[name=langaugeTeamEmail]').val();
+        po_array['po_settings']['language'] = $('input[name=language]').val();
+        po_array['po_settings']['country'] = $('input[name=country]').val();
+
         var url = '/admin/components/init_window/translator/savePoArray/' + moule_templaet + '/' + type + '/' + lang;
         $.ajax({
             type: 'POST',
@@ -770,6 +823,74 @@ var Translator = {
                 }
             });
         }
+    },
+    start: function(data, names, type, lang, name, limit) {
+        $('#po_table').show();
+        $($('tbody')[1]).html(data);
+        Translator.statisticRecount();
+        $($('.' + lang)[0]).attr('selected', '');
+        $('#types').css('display', 'inline-block');
+        $($('.' + type)[0]).attr('selected', '');
+
+        if (type != 'main')
+            $('#modules_templates').css('display', 'inline-block');
+        if (type != 'main')
+            $('#modules_templates').html(names);
+
+        $($('.' + name)[0]).attr('selected', '');
+        $($('.per_page' + limit)[0]).attr('selected', '');
+        $('#per_page').css('display', 'inline-block');
+
+        var paths = $('.pathHolderClone').html();
+        $('.pathHolder').html(paths);
+        $('.pathParseHolder').show();
+        var po_settings = $('.po_settingsClone').html();
+        $('.po_settingsClone').html('');
+        $('.po_settings').html(po_settings);
+    },
+    correctPaths: function(curElement) {
+
+        var pathHorders = $('.pathHolder .path input[name^="path"]');
+        var paths = [];
+
+        $(pathHorders).each(function() {
+            paths.push($(this).val());
+        });
+
+        var lang = $('#langs').val();
+        var type = $('#types').val();
+        var module_template = $('#modules_templates').val();
+        var url = '';
+        switch (type) {
+            case  'modules':
+                url = '/admin/components/init_window/translator/makeCorrectPoPaths/' + module_template + '/' + type + '/' + lang;
+                break;
+            case 'templates':
+                url = '/admin/components/init_window/translator/makeCorrectPoPaths/' + module_template + '/' + type + '/' + lang;
+                break;
+            case 'main':
+                url = '/admin/components/init_window/translator/makeCorrectPoPaths/' + type + '/' + type + '/' + lang;
+                break;
+        }
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                paths: paths
+            },
+            success: function(data) {
+                if (data) {
+                    Translator.render(data);
+                }
+            }
+        });
+    },
+    scrollPath: function (curElement){
+        var pathsWidth = $(curElement).parent().width();
+        
+//        $(curElement).css('left');
+        console.log($(curElement).text().length)
     }
 };
 
@@ -889,10 +1010,19 @@ var Pagination = {
 }
 
 var CreatePoFile = {
-  addPath: function (curElement){
-      var path = $.trim($(curElement).next().val());
-      var pathSelector = $(curElement).next().next();
-      $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
-      $(curElement).next().val('');
-  }  
+    addPath: function(curElement) {
+        var path = $.trim($(curElement).next().val());
+        var pathSelector = $(curElement).next().next();
+        $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
+        $(curElement).next().val('');
+    }
 };
+
+function escapeHtml(text) {
+    return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+}

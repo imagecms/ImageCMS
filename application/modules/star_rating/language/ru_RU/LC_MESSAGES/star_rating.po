@@ -1,215 +1,85 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: ImageCms\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 16:25+0300\n"
-"PO-Revision-Date: 2013-10-16 16:25+0300\n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: ru_UA\n"
+"POT-Creation-Date: 2013-11-04 11:24+0200\n"
+"PO-Revision-Date: 2013-11-04 11:24+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
-"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Basepath: \n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:7
-#: /var/www/image.loc/_tempLangs.php:9
+#: ./application/modules/star_rating/assets/star_rating.tpl:9
+#: ./application/modules/star_rating/assets/star_rating.tpl:18
 msgid "Leav"
 msgstr "Оставить"
 
-#: /var/www/image.loc/_tempLangs.php:8
-#: /var/www/image.loc/_tempLangs.php:10
+#: ./application/modules/star_rating/assets/star_rating.tpl:10
+#: ./application/modules/star_rating/assets/star_rating.tpl:19
 msgid "people(s)"
 msgstr "человек (ов)"
 
-#: /var/www/image.loc/_tempLangs.php:11
+#: ./application/modules/star_rating/assets/admin/settings.tpl:21
 msgid "Show on pages"
 msgstr "Показать на страницах"
 
-#: /var/www/image.loc/_tempLangs.php:12
+#: ./application/modules/star_rating/assets/admin/settings.tpl:32
 msgid "Main"
 msgstr "Главная"
 
-#: /var/www/image.loc/_tempLangs.php:13
+#: ./application/modules/star_rating/assets/admin/settings.tpl:40
 msgid "Contains"
 msgstr "Содержимое"
 
-#: /var/www/image.loc/_tempLangs.php:14
+#: ./application/modules/star_rating/assets/admin/settings.tpl:48
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_tempLangs.php:15
+#: ./application/modules/star_rating/assets/admin/settings.tpl:57
 msgid "Product"
 msgstr "Товар"
 
-#: /var/www/image.loc/_tempLangs.php:16
+#: ./application/modules/star_rating/assets/admin/settings.tpl:64
 msgid "Products category"
 msgstr "Категория товаров"
 
-#: /var/www/image.loc/_tempLangs.php:17
+#: ./application/modules/star_rating/assets/admin/settings.tpl:71
 msgid "Brands"
 msgstr "Бренды"
 
-#: /var/www/image.loc/_tempLangs.php:18
+#: ./application/modules/star_rating/assets/admin/settings.tpl:5
 msgid "Module settings starRating"
 msgstr "Настройки модуля Рейтинг"
 
-#: /var/www/image.loc/_tempLangs.php:19
+#: ./application/modules/star_rating/assets/admin/settings.tpl:9
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:20
+#: ./application/modules/star_rating/assets/admin/settings.tpl:10
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:21
+#: ./application/modules/star_rating/assets/admin/settings.tpl:11
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
-#: admin.php:39
+#: ./application/modules/star_rating/admin.php:39
 msgid "Settings saved success"
 msgstr "Сохранение настроек прошло успешно"
 
-#: module_info.php:4
+#: ./application/modules/star_rating/module_info.php:4
 msgid "Rating"
 msgstr "Рейтинг"
 
-#: module_info.php:5
+#: ./application/modules/star_rating/module_info.php:5
 msgid "Allows you to display products, categories and pages rating"
 msgstr "Позволяет отображать рейтинг продуктов, категорий и страниц"
 
-#~ msgid "Star Rating "
-#~ msgstr "Рейтинг"
-
-#~ msgid "STAAAAAr"
-#~ msgstr "Зііііірка"
-
-#~ msgid "e5555eeeeee"
-#~ msgstr "пяяяять"
-
-#, fuzzy
-#~ msgid "STAAAAArкк22222"
-#~ msgstr "Зііііірка"
-
-#~ msgid "eee777"
-#~ msgstr "сііііім"
-
-#~ msgid "fghgh"
-#~ msgstr "АААААААААААААААААААААААААААА"
-
-#, fuzzy
-#~ msgid "amt_settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_save"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_to_sort"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_by_date"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_by_position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_images"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_in_mb"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_save_ratio"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_yes"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_no"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_left"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_center"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_top"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_bottom"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_type"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_text"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_image"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_offset"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#~ msgid "amt_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_no_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_album"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#~ msgid "amt_position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_crea"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_gallery"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_downloaded"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_cancel"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_new_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#~ msgid "a_positions_updated"
-#~ msgstr "Позиція змінена"

@@ -1,508 +1,364 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-14 18:57+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-11-04 11:18+0200\n"
+"PO-Revision-Date: 2013-11-04 11:18+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Tagalog\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:33
+#: ./application/modules/documentation/assets/edit_page.tpl:27
+#: ./application/modules/documentation/assets/create_new_page.tpl:7
 msgid "Create category"
 msgstr "Создать категорию"
 
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:34
-#: /var/www/image.loc/_tempLangs.php:48
+#: ./application/modules/documentation/assets/edit_page.tpl:87
+#: ./application/modules/documentation/assets/create_new_page.tpl:66
+#: ./application/modules/documentation/assets/left_menu.tpl:45
 msgid "Parent category"
 msgstr "Родительская категория"
 
-#: /var/www/image.loc/_tempLangs.php:15
+#: ./application/modules/documentation/assets/edit_page.tpl:107
 msgid "Edit page"
 msgstr "Редактировать страницу"
 
-#: /var/www/image.loc/_tempLangs.php:16
+#: ./application/modules/documentation/assets/edit_page.tpl:109
 msgid "Language"
 msgstr "Язык"
 
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:36
-#: /var/www/image.loc/_tempLangs.php:52
+#: ./application/modules/documentation/assets/edit_page.tpl:131
+#: ./application/modules/documentation/assets/admin/create.tpl:9
+#: ./application/modules/documentation/assets/create_new_page.tpl:95
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:37
+#: ./application/modules/documentation/assets/edit_page.tpl:140
+#: ./application/modules/documentation/assets/create_new_page.tpl:106
 msgid "Create category "
 msgstr "Создать категорию"
 
-#: /var/www/image.loc/_tempLangs.php:19
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:53
-#: /var/www/image.loc/_tempLangs.php:82
-#: /var/www/image.loc/_tempLangs.php:83
-#: /var/www/image.loc/_tempLangs.php:97
-#: /var/www/image.loc/_tempLangs.php:98
-#: /var/www/image.loc/_tempLangs.php:112
-#: /var/www/image.loc/_tempLangs.php:113
+#: ./application/modules/documentation/assets/edit_page.tpl:43
+#: ./application/modules/documentation/assets/edit_page.tpl:44
+#: ./application/modules/documentation/assets/edit_page.tpl:145
+#: ./application/modules/documentation/assets/admin/create.tpl:17
+#: ./application/modules/documentation/assets/create_new_page.tpl:23
+#: ./application/modules/documentation/assets/create_new_page.tpl:24
+#: ./application/modules/documentation/assets/create_new_page.tpl:111
+#: ./application/modules/documentation/assets/left_menu.tpl:22
+#: ./application/modules/documentation/assets/left_menu.tpl:23
+#: ./application/modules/documentation/documentation.php:105
+#: ./application/modules/documentation/documentation.php:222
+#: ./application/modules/documentation/documentation.php:332
+#: ./application/modules/documentation/documentation.php:399
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:20
-#: /var/www/image.loc/_tempLangs.php:39
-#: /var/www/image.loc/_tempLangs.php:54
-#: /var/www/image.loc/_tempLangs.php:66
-#: /var/www/image.loc/_tempLangs.php:72
+#: ./application/modules/documentation/assets/edit_page.tpl:147
+#: ./application/modules/documentation/assets/admin/create.tpl:19
+#: ./application/modules/documentation/assets/admin/list.tpl:121
+#: ./application/modules/documentation/assets/admin/list.tpl:186
+#: ./application/modules/documentation/assets/create_new_page.tpl:113
 msgid "Title"
 msgstr "Заглавие"
 
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:41
-#: /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:56
+#: ./application/modules/documentation/assets/edit_page.tpl:151
+#: ./application/modules/documentation/assets/edit_page.tpl:159
+#: ./application/modules/documentation/assets/admin/create.tpl:23
+#: ./application/modules/documentation/assets/admin/create.tpl:25
+#: ./application/modules/documentation/assets/create_new_page.tpl:117
+#: ./application/modules/documentation/assets/create_new_page.tpl:125
 msgid "Url"
 msgstr "Url"
 
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:42
-#: /var/www/image.loc/_tempLangs.php:87
-#: /var/www/image.loc/_tempLangs.php:88
-#: /var/www/image.loc/_tempLangs.php:102
-#: /var/www/image.loc/_tempLangs.php:103
+#: ./application/modules/documentation/assets/edit_page.tpl:58
+#: ./application/modules/documentation/assets/edit_page.tpl:64
+#: ./application/modules/documentation/assets/edit_page.tpl:168
+#: ./application/modules/documentation/assets/create_new_page.tpl:36
+#: ./application/modules/documentation/assets/create_new_page.tpl:42
+#: ./application/modules/documentation/assets/create_new_page.tpl:134
 msgid "Meta Title"
 msgstr "Meta Title"
 
-#: /var/www/image.loc/_tempLangs.php:24
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:89
-#: /var/www/image.loc/_tempLangs.php:104
-#: /var/www/image.loc/_tempLangs.php:117
+#: ./application/modules/documentation/assets/edit_page.tpl:67
+#: ./application/modules/documentation/assets/edit_page.tpl:170
+#: ./application/modules/documentation/assets/create_new_page.tpl:45
+#: ./application/modules/documentation/assets/create_new_page.tpl:136
+#: ./application/modules/documentation/assets/left_menu.tpl:36
+#: ./application/modules/documentation/documentation.php:108
+#: ./application/modules/documentation/documentation.php:225
 msgid "Keywords"
 msgstr "Ключевые слова"
 
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:91
-#: /var/www/image.loc/_tempLangs.php:106
-#: /var/www/image.loc/_tempLangs.php:119
+#: ./application/modules/documentation/assets/edit_page.tpl:76
+#: ./application/modules/documentation/assets/edit_page.tpl:172
+#: ./application/modules/documentation/assets/create_new_page.tpl:54
+#: ./application/modules/documentation/assets/create_new_page.tpl:138
+#: ./application/modules/documentation/assets/left_menu.tpl:40
+#: ./application/modules/documentation/documentation.php:109
+#: ./application/modules/documentation/documentation.php:226
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:45
-#: /var/www/image.loc/_tempLangs.php:57
+#: ./application/modules/documentation/assets/edit_page.tpl:178
+#: ./application/modules/documentation/assets/admin/create.tpl:29
+#: ./application/modules/documentation/assets/create_new_page.tpl:144
+#: ./application/modules/documentation/documentation.php:107
+#: ./application/modules/documentation/documentation.php:224
 msgid "Content"
 msgstr "Содержымое"
 
-#: /var/www/image.loc/_tempLangs.php:27
-#: /var/www/image.loc/_tempLangs.php:80
-#: /var/www/image.loc/_tempLangs.php:130
+#: ./application/modules/documentation/assets/edit_page.tpl:14
+#: ./application/modules/documentation/assets/edit_page.tpl:187
+#: ./application/modules/documentation/assets/admin/list.tpl:29
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:28
-#: /var/www/image.loc/_tempLangs.php:46
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:76
+#: ./application/modules/documentation/assets/edit_page.tpl:190
+#: ./application/modules/documentation/assets/admin/create.tpl:37
+#: ./application/modules/documentation/assets/admin/settings.tpl:15
+#: ./application/modules/documentation/assets/create_new_page.tpl:152
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:29
-#: /var/www/image.loc/_tempLangs.php:31
+#: ./application/modules/documentation/assets/js/admin.js:58
+#: ./application/modules/documentation/assets/js/admin.js:60
 msgid "Message"
 msgstr "Сообщение"
 
-#: /var/www/image.loc/_tempLangs.php:30
+#: ./application/modules/documentation/assets/js/admin.js:59
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
-#: /var/www/image.loc/_tempLangs.php:32
+#: ./application/modules/documentation/assets/js/admin.js:61
 msgid "Changes not saved"
 msgstr "Изменения не сохранены"
 
-#: /var/www/image.loc/_tempLangs.php:35
+#: ./application/modules/documentation/assets/create_new_page.tpl:86
 msgid "Create new page"
 msgstr "Создать страницу"
 
-#: /var/www/image.loc/_tempLangs.php:47
+#: ./application/modules/documentation/assets/left_menu.tpl:7
 msgid "Edit category"
 msgstr "Редактировать категорию"
 
-#: /var/www/image.loc/_tempLangs.php:49
-#: /var/www/image.loc/_tempLangs.php:62
+#: ./application/modules/documentation/assets/admin/main.tpl:5
+#: ./application/modules/documentation/assets/admin/list.tpl:38
+#: ./application/modules/documentation/module_info.php:6
 msgid "Documentation"
 msgstr "Документация"
 
-#: /var/www/image.loc/_tempLangs.php:50
-#: /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:63
-#: /var/www/image.loc/_tempLangs.php:75
+#: ./application/modules/documentation/assets/admin/main.tpl:9
+#: ./application/modules/documentation/assets/admin/history.tpl:21
+#: ./application/modules/documentation/assets/admin/history_1.tpl:21
+#: ./application/modules/documentation/assets/admin/list.tpl:43
+#: ./application/modules/documentation/assets/admin/settings.tpl:10
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:59
+#: ./application/modules/documentation/assets/admin/list.tpl:15
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: /var/www/image.loc/_tempLangs.php:60
+#: ./application/modules/documentation/assets/admin/list.tpl:22
 msgid "Delete pages"
 msgstr "Удалить страницы"
 
-#: /var/www/image.loc/_tempLangs.php:61
+#: ./application/modules/documentation/assets/admin/list.tpl:25
 msgid "Delete selected pages?"
 msgstr "Удалить выбранные страницы?"
 
-#: /var/www/image.loc/_tempLangs.php:64
+#: ./application/modules/documentation/assets/admin/list.tpl:44
 msgid "Settings"
 msgstr "Настройки"
 
-#: /var/www/image.loc/_tempLangs.php:65
+#: ./application/modules/documentation/assets/admin/list.tpl:62
 msgid "All categories"
 msgstr "Все категории"
 
-#: /var/www/image.loc/_tempLangs.php:67
+#: ./application/modules/documentation/assets/admin/list.tpl:122
 msgid "Created"
 msgstr "Создано"
 
-#: /var/www/image.loc/_tempLangs.php:68
+#: ./application/modules/documentation/assets/admin/list.tpl:123
 msgid "Last update"
 msgstr "Последнее обновление"
 
-#: /var/www/image.loc/_tempLangs.php:69
+#: ./application/modules/documentation/assets/admin/list.tpl:124
 msgid "Status"
 msgstr "Статус"
 
-#: /var/www/image.loc/_tempLangs.php:70
+#: ./application/modules/documentation/assets/admin/list.tpl:151
 msgid "dont show"
 msgstr "не показывать"
 
-#: /var/www/image.loc/_tempLangs.php:71
+#: ./application/modules/documentation/assets/admin/list.tpl:163
 msgid "Your search did not found"
 msgstr "По Вашему запросу ничего не найдено"
 
-#: /var/www/image.loc/_tempLangs.php:73
+#: ./application/modules/documentation/assets/admin/list.tpl:187
 msgid "Category menu"
 msgstr "Категория меню"
 
-#: /var/www/image.loc/_tempLangs.php:74
+#: ./application/modules/documentation/assets/admin/settings.tpl:5
 msgid "Permission to edit"
 msgstr "Разрешение на изменение"
 
-#: /var/www/image.loc/_tempLangs.php:77
+#: ./application/modules/documentation/assets/edit_page.tpl:7
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: /var/www/image.loc/_tempLangs.php:78
+#: ./application/modules/documentation/assets/edit_page.tpl:10
 msgid "Are you really want delete this page?"
 msgstr "Вы действительно хотите удалить эту страницу?"
 
-#: /var/www/image.loc/_tempLangs.php:79
-#: /var/www/image.loc/_tempLangs.php:124
+#: ./application/modules/documentation/assets/edit_page.tpl:13
+#: ./application/modules/documentation/assets/admin/history.tpl:9
+#: ./application/modules/documentation/assets/admin/history_1.tpl:9
 msgid "Close"
 msgstr "Близко"
 
-#: /var/www/image.loc/_tempLangs.php:81
-#: /var/www/image.loc/_tempLangs.php:96
+#: ./application/modules/documentation/assets/edit_page.tpl:36
+#: ./application/modules/documentation/assets/create_new_page.tpl:16
 msgid "Category created success"
 msgstr "Категория создан успешно"
 
-#: /var/www/image.loc/_tempLangs.php:84
-#: /var/www/image.loc/_tempLangs.php:85
-#: /var/www/image.loc/_tempLangs.php:99
-#: /var/www/image.loc/_tempLangs.php:100
-#: /var/www/image.loc/_tempLangs.php:114
-#: /var/www/image.loc/_tempLangs.php:115
+#: ./application/modules/documentation/assets/edit_page.tpl:48
+#: ./application/modules/documentation/assets/edit_page.tpl:50
+#: ./application/modules/documentation/assets/create_new_page.tpl:27
+#: ./application/modules/documentation/assets/create_new_page.tpl:28
+#: ./application/modules/documentation/assets/left_menu.tpl:27
+#: ./application/modules/documentation/assets/left_menu.tpl:29
+#: ./application/modules/documentation/documentation.php:106
+#: ./application/modules/documentation/documentation.php:223
+#: ./application/modules/documentation/documentation.php:333
+#: ./application/modules/documentation/documentation.php:400
 msgid "URL"
 msgstr "URL"
 
-#: /var/www/image.loc/_tempLangs.php:86
-#: /var/www/image.loc/_tempLangs.php:95
-#: /var/www/image.loc/_tempLangs.php:101
-#: /var/www/image.loc/_tempLangs.php:110
+#: ./application/modules/documentation/assets/edit_page.tpl:54
+#: ./application/modules/documentation/assets/edit_page.tpl:166
+#: ./application/modules/documentation/assets/create_new_page.tpl:32
+#: ./application/modules/documentation/assets/create_new_page.tpl:132
 msgid "META"
 msgstr "META"
 
-#: /var/www/image.loc/_tempLangs.php:90
-#: /var/www/image.loc/_tempLangs.php:105
-#: /var/www/image.loc/_tempLangs.php:118
+#: ./application/modules/documentation/assets/edit_page.tpl:73
+#: ./application/modules/documentation/assets/create_new_page.tpl:51
+#: ./application/modules/documentation/assets/left_menu.tpl:37
 msgid "keywords"
 msgstr "ключевые слова"
 
-#: /var/www/image.loc/_tempLangs.php:92
-#: /var/www/image.loc/_tempLangs.php:107
-#: /var/www/image.loc/_tempLangs.php:120
+#: ./application/modules/documentation/assets/edit_page.tpl:82
+#: ./application/modules/documentation/assets/create_new_page.tpl:60
+#: ./application/modules/documentation/assets/left_menu.tpl:41
 msgid "description"
 msgstr "описание"
 
-#: /var/www/image.loc/_tempLangs.php:93
-#: /var/www/image.loc/_tempLangs.php:108
-#: /var/www/image.loc/_tempLangs.php:121
+#: ./application/modules/documentation/assets/edit_page.tpl:89
+#: ./application/modules/documentation/assets/create_new_page.tpl:68
+#: ./application/modules/documentation/assets/left_menu.tpl:47
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:94
-#: /var/www/image.loc/_tempLangs.php:109
-#: /var/www/image.loc/_tempLangs.php:122
+#: ./application/modules/documentation/assets/edit_page.tpl:97
+#: ./application/modules/documentation/assets/create_new_page.tpl:77
+#: ./application/modules/documentation/assets/left_menu.tpl:55
 msgid "Save changes"
 msgstr "Сохранить изменены"
 
-#: /var/www/image.loc/_tempLangs.php:111
+#: ./application/modules/documentation/assets/left_menu.tpl:16
 msgid "Changes have been saved"
 msgstr "Изменения не сохранены"
 
-#: /var/www/image.loc/_tempLangs.php:116
+#: ./application/modules/documentation/assets/left_menu.tpl:31
 msgid "AutoFit"
 msgstr "Автоподбор"
 
-#: /var/www/image.loc/_tempLangs.php:123
+#: ./application/modules/documentation/assets/admin/history.tpl:4
+#: ./application/modules/documentation/assets/admin/history_1.tpl:4
 msgid "Diff"
 msgstr "Разность"
 
-#: /var/www/image.loc/_tempLangs.php:125
+#: ./application/modules/documentation/assets/admin/list.tpl:4
 msgid "Copy/Move pages"
 msgstr "Копировать/Переместить страницы"
 
-#: /var/www/image.loc/_tempLangs.php:126
+#: ./application/modules/documentation/assets/admin/list.tpl:7
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_tempLangs.php:127
-#: /var/www/image.loc/_tempLangs.php:133
+#: ./application/modules/documentation/assets/admin/list.tpl:9
+#: ./application/modules/documentation/assets/admin/list.tpl:61
 msgid "Without a category"
 msgstr "Без категории"
 
-#: /var/www/image.loc/_tempLangs.php:128
-#: /var/www/image.loc/_tempLangs.php:129
+#: ./application/modules/documentation/assets/admin/list.tpl:14
+#: ./application/modules/documentation/assets/admin/list.tpl:28
 msgid "Cancel"
 msgstr "Отменить"
 
-#: /var/www/image.loc/_tempLangs.php:131
+#: ./application/modules/documentation/assets/admin/list.tpl:50
 msgid "Content list"
 msgstr "Список содержымого"
 
-#: /var/www/image.loc/_tempLangs.php:132
+#: ./application/modules/documentation/assets/admin/list.tpl:51
 msgid "Menu categories"
 msgstr "Категории меню"
 
-#: /var/www/image.loc/_tempLangs.php:134
+#: ./application/modules/documentation/assets/admin/list.tpl:140
 msgid "go to site"
 msgstr "перейти на сайт"
 
-#: /var/www/image.loc/_tempLangs.php:135
+#: ./application/modules/documentation/assets/admin/list.tpl:141
 msgid "Editing"
 msgstr "Редактирование"
 
-#: /var/www/image.loc/_tempLangs.php:136
+#: ./application/modules/documentation/assets/admin/list.tpl:150
 msgid "show"
 msgstr "показать"
 
-#: /var/www/image.loc/_tempLangs.php:137
+#: ./application/modules/documentation/assets/admin/settings.tpl:60
 msgid "No roles"
 msgstr "Нет ролей"
 
-#: ../../../admin.php:45
-#: ../../../admin.php:156
+#: ./application/modules/documentation/admin.php:45
+#: ./application/modules/documentation/admin.php:201
 msgid "Next"
 msgstr "Следующая"
 
-#: ../../../admin.php:46
-#: ../../../admin.php:157
+#: ./application/modules/documentation/admin.php:46
+#: ./application/modules/documentation/admin.php:202
 msgid "Prev"
 msgstr "Предыдущая"
 
-#: ../../../admin.php:100
+#: ./application/modules/documentation/admin.php:145
 msgid "Saved"
 msgstr "Сохранено"
 
-#: ../../../documentation.php:70
+#: ./application/modules/documentation/documentation.php:102
 msgid "Page Create"
 msgstr "Создание страницы"
 
-#: ../../../documentation.php:84
-#: ../../../documentation.php:200
+#: ./application/modules/documentation/documentation.php:116
+#: ./application/modules/documentation/documentation.php:233
 msgid "URL can not be repeated"
 msgstr "URL не может быть повторен"
 
-#: ../../../documentation.php:169
+#: ./application/modules/documentation/documentation.php:202
 msgid "Page edit"
 msgstr "Страница редактирования"
 
-#: ../../../documentation.php:345
+#: ./application/modules/documentation/documentation.php:378
 msgid "Ошибка при создании категории"
 msgstr "Ошибка при создании категории"
 
-#~ msgid ""
-#~ "don\");\n"
-#~ "_("
-#~ msgstr "фывфыв"
-
-#~ msgid "Module frame"
-#~ msgstr "Каркас модуля"
-
-#, fuzzy
-#~ msgid "System information"
-#~ msgstr "Настр"
-
-#~ msgid "Management of Meta Tags"
-#~ msgstr "Управление мета тегами"
-
-#~ msgid "Widgets"
-#~ msgstr "Виджети"
-
-#~ msgid "Site configuration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Сonsider the category"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Buy"
-#~ msgstr "Купить"
-
-#, fuzzy
-#~ msgid "Move to category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create status"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create property"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Drug category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Basic information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a warehouse"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "General information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a way to deliver"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Orders list"
-#~ msgstr "Список замовлень"
-
-#~ msgid "Create order"
-#~ msgstr "Создатьзаказ"
-
-#~ msgid "Customer"
-#~ msgstr "Замовник"
-
-#, fuzzy
-#~ msgid "Date of order"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Ordering information"
-#~ msgstr "Настр"
-
-#~ msgid "New orders"
-#~ msgstr "Новие закази"
-
-#, fuzzy
-#~ msgid "Created Date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a payment method"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Picture for category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of addition"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Product creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid " Create a product copy?"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create small image"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a set"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create currency"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Banner creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a banner"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a brand"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Regular or usual pages"
-#~ msgstr "Звичайні сторінки"
-
-#, fuzzy
-#~ msgid "Create a discount"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create gift certificate"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create user"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of registration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Additional information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Created date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create catagory"
-#~ msgstr "Создать категорию"
