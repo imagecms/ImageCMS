@@ -1,3 +1,16 @@
+
+/**
+ * If there are unsaved changes, then dialog box will be shown
+ * @type 
+ */
+window.onbeforeunload = onUnload;
+function onUnload() {
+    if (wasChanges == true) {
+        return 'Есть несохраненные изменения. Действительно выйти?';
+    }
+}
+var wasChanges = false;
+
 tinymce.init({
     selector: "div.descriptionEditTinyMCE",
     inline: true,
@@ -34,6 +47,7 @@ tinymce.init({
                 url: '/documentation/save_desc',
                 complete: function(obj) {
                     tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                    wasChanges = false;
                 }
             });
         });
@@ -123,11 +137,18 @@ tinymce.init({
                     url: '/documentation/save_desc',
                     complete: function(obj) {
                         tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                        wasChanges = false;
                     }
                 });
             }
         });
+        editor.on('change', function() {
+            wasChanges = true;
+        });
+
     }
+
+
 });
 
 tinymce.init({
@@ -152,6 +173,7 @@ tinymce.init({
                 url: '/documentation/save_title',
                 complete: function(obj) {
                     tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                    wasChanges = false;
                 }
             });
         });
@@ -169,9 +191,14 @@ tinymce.init({
                     url: '/documentation/save_title',
                     complete: function(obj) {
                         tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                        wasChanges = false;
                     }
                 });
             }
+        });
+
+        editor.on('change', function() {
+            wasChanges = true;
         });
     }
 });
@@ -278,8 +305,8 @@ function translite_title(from, to) {
     var url = '/documentation/ajax_translit';
     $.post(
             url, {
-                'str': $(from).val()
-            }, function(data)
+        'str': $(from).val()
+    }, function(data)
 
     {
         $(to).val(data);
@@ -433,3 +460,12 @@ function strip_tags(str, allowed_tags)
     }
     return str;
 }
+
+
+
+
+
+
+
+
+;

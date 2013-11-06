@@ -30,7 +30,7 @@
                 {date("d.m.Y H:i",$page.created)}
                 {$page.author}-ом
             </div>
-            <div class='smini_left collapsed_controls showFullText' style="width: 74%;">Отобразить весь текст</div>
+            <div class='smini_left collapsed_controls showFullText' style="width: 74%;">Отобразить текст</div>
             <div style="clear:both"></div>
         </div>
 
@@ -79,11 +79,11 @@
 
                 <div class='history_row collapsed history-article-status' data-id="{$historyRow.id}">
                     <div class="smini_left">
-                        Редактировано <br>
+                        <span class="historyId">{$historyRow.id}</span> Редактировано <br>
                         {date("d.m.Y H:i",$historyRow.updated)} 
                         {$historyRow.username}-ом
                     </div>
-                    <div class='smini_left collapsed_controls showFullText'>Отобразить весь текст</div>
+                    <div class='smini_left collapsed_controls showFullText'>Отобразить текст</div>
                     <div class='smini_left collapsed_controls compareWithOriginalCollapsed'>Сравнить с оригиналом</div>
                     <div style="clear:both"></div>
                 </div>

@@ -336,15 +336,23 @@ class Auth extends MY_Controller {
 
             $data['auth_message'] = lang('You have successfully zeroed my password. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login Here', 'auth'));
 
-            $this->template->assign('content', $data['auth_message']);
-            $this->template->show();
+            $this->template->assign('auth_message', $data['auth_message']);
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                $this->template->show('reset_password');
+            } else {
+                $this->template->display('reset_password');
+            }
         } else {
 //             ($hook = get_hook('auth_reset_pass_failed')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('Reset failed. Not a valid user name and / or password. Check your email and follow the instructions.', 'auth');
 
-            $this->template->assign('content', $data['auth_message']);
-            $this->template->show();
+            $this->template->assign('auth_message', $data['auth_message']);
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                $this->template->show('reset_password');
+            } else {
+                $this->template->display('reset_password');
+            }
         }
     }
 

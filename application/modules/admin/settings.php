@@ -152,11 +152,15 @@ class Settings extends BaseAdminController {
      * @return array
      */
     function _get_templates() {
-        $new_arr = array();
+        $new_arr_shop = array();
         if ($handle = opendir(TEMPLATES_PATH)) {
             while (false !== ($file = readdir($handle))) {
                 if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
                     if (!is_file(TEMPLATES_PATH . $file)) {
+                        if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
+                            $new_arr_shop[$file] = $file;
+                        }
+
                         $new_arr[$file] = $file;
                     }
                 }
@@ -165,7 +169,12 @@ class Settings extends BaseAdminController {
         } else {
             return FALSE;
         }
-        return $new_arr;
+
+        if (SHOP_INSTALLED) {
+            return $new_arr_shop;
+        } else {
+            return $new_arr;
+        }
     }
 
     /**
@@ -231,6 +240,13 @@ class Settings extends BaseAdminController {
             'siteinfo' => serialize($siteinfo)
         );
 
+        /** Save template path for shop * */
+        if ($this->db->table_exists('shop_settings')) {
+            $shopTemplatePath = './templates/' . $this->input->post('template') . '/shop/';
+            $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => $shopTemplatePath));
+        }
+
+
         $this->translate_meta();
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
@@ -280,7 +296,7 @@ class Settings extends BaseAdminController {
 
         $tplName = $this->getImagesPath(TRUE);
         $tplPath = $this->getImagesPath();
-       
+
         $config['upload_path'] = $tplPath;
         $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
         $this->load->library('upload', $config);
@@ -373,7 +389,8 @@ class Settings extends BaseAdminController {
         $langs = Array(
             'english',
             'russian',
-            'german'
+            'german',
+            'ukrain'
         );
 
         if (in_array($lang, $langs) && $this->config->item('language') != $lang) {

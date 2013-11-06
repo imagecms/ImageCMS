@@ -1,727 +1,556 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-21 14:18+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-11-04 11:25+0200\n"
+"PO-Revision-Date: 2013-11-04 11:25+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../../\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:20
-#: /var/www/image.loc/_tempLangs.php:24
-#: /var/www/image.loc/_tempLangs.php:37
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:96
-#: /var/www/image.loc/_tempLangs.php:131
+#: ./application/modules/wishlist//assets/other_wishlist.tpl:25
+#: ./application/modules/wishlist//assets/other_list.tpl:15
+#: ./application/modules/wishlist//assets/list.tpl:16
+#: ./application/modules/wishlist//assets/wishlistEdit.tpl:28
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:80
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:152
+#: ./application/modules/wishlist//assets/wishlist.tpl:81
 msgid "Product"
 msgstr "Товар"
 
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:97
-#: /var/www/image.loc/_tempLangs.php:132
+#: ./application/modules/wishlist//assets/other_wishlist.tpl:26
+#: ./application/modules/wishlist//assets/other_list.tpl:16
+#: ./application/modules/wishlist//assets/list.tpl:17
+#: ./application/modules/wishlist//assets/wishlistEdit.tpl:29
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:81
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:153
+#: ./application/modules/wishlist//assets/wishlist.tpl:82
 msgid "Comment"
 msgstr "Комментарий"
 
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:63
+#: ./application/modules/wishlist//assets/other_wishlist.tpl:48
+#: ./application/modules/wishlist//assets/list.tpl:41
+#: ./application/modules/wishlist//assets/wishlist.tpl:114
 msgid "Emty list"
 msgstr "Пустой список"
 
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:65
+#: ./application/modules/wishlist//assets/other_wishlist.tpl:57
+#: ./application/modules/wishlist//assets/wishlist.tpl:127
 msgid "Wish list is empty"
 msgstr "Список Желаний пуст"
 
-#: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:117
-#: /var/www/image.loc/_tempLangs.php:137
-#: /var/www/image.loc/_tempLangs.php:144
+#: ./application/modules/wishlist//assets/js/wishlist.js:17
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:28
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:199
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:233
+#: ./application/modules/wishlist//assets/admin/wishPopup.tpl:49
 msgid "Create list"
 msgstr "Создать список"
 
-#: /var/www/image.loc/_tempLangs.php:27
+#: ./application/modules/wishlist//assets/js/wishlist.js:20
 msgid "Wrong list name"
 msgstr "Неверное имя списка"
 
-#: /var/www/image.loc/_tempLangs.php:28
+#: ./application/modules/wishlist//wishlist.php:220
+#: ./application/modules/wishlist//assets/js/wishlist.js:56
+#: ./application/modules/wishlist//wishlistApi.php:197
 msgid "Already in Wish List"
 msgstr "Уже в Списке Желаний"
 
-#: /var/www/image.loc/_tempLangs.php:29
+#: ./application/modules/wishlist//assets/js/wishlist.js:69
 msgid "List does not chosen"
 msgstr "Список не обран"
 
-#: /var/www/image.loc/_tempLangs.php:30
+#: ./application/modules/wishlist//assets/js/wishlist.js:174
 msgid "Limit of Wish List finished "
 msgstr "Лимит списков исчерпан"
 
-#: /var/www/image.loc/_tempLangs.php:31
+#: ./application/modules/wishlist//assets/all.tpl:9
 msgid "User Information"
 msgstr "Информация пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:32
-#: /var/www/image.loc/_tempLangs.php:89
-#: /var/www/image.loc/_tempLangs.php:122
+#: ./application/modules/wishlist//assets/all.tpl:11
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:43
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:86
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:33
-#: /var/www/image.loc/_tempLangs.php:119
+#: ./application/modules/wishlist//assets/all.tpl:15
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:53
 msgid "Ava"
 msgstr "Ава"
 
-#: /var/www/image.loc/_tempLangs.php:34
-#: /var/www/image.loc/_tempLangs.php:123
+#: ./application/modules/wishlist//assets/all.tpl:18
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:92
 msgid "Birthday"
 msgstr "День рождения"
 
-#: /var/www/image.loc/_tempLangs.php:35
-#: /var/www/image.loc/_tempLangs.php:112
+#: ./application/modules/wishlist//assets/all.tpl:23
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:6
 msgid "User lists"
 msgstr "Списки пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:36
-#: /var/www/image.loc/_tempLangs.php:42
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:95
-#: /var/www/image.loc/_tempLangs.php:130
+#: ./application/modules/wishlist//assets/list.tpl:15
+#: ./application/modules/wishlist//assets/wishlistEdit.tpl:27
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:79
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:151
+#: ./application/modules/wishlist//assets/wishlist.tpl:80
 msgid "Unsubscribe"
 msgstr "Отписаться"
 
-#: /var/www/image.loc/_tempLangs.php:39
-#: /var/www/image.loc/_tempLangs.php:41
-#: /var/www/image.loc/_tempLangs.php:45
-#: /var/www/image.loc/_tempLangs.php:56
+#: ./application/modules/wishlist//assets/list.tpl:25
+#: ./application/modules/wishlist//assets/wishlistEdit.tpl:21
+#: ./application/modules/wishlist//assets/wishlistEdit.tpl:39
+#: ./application/modules/wishlist//assets/wishlist.tpl:72
 msgid "delete"
 msgstr "удалить"
 
-#: /var/www/image.loc/_tempLangs.php:46
+#: ./application/modules/wishlist//assets/button.tpl:11
 msgid "Already in WishList"
 msgstr "Уже в Списке Желаний"
 
-#: /var/www/image.loc/_tempLangs.php:47
-#: /var/www/image.loc/_tempLangs.php:121
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:75
+#: ./application/modules/wishlist//assets/wishlist.tpl:28
 msgid "Delete image"
 msgstr "Удалить картинку"
 
-#: /var/www/image.loc/_tempLangs.php:48
+#: ./application/modules/wishlist//assets/wishlist.tpl:44
 msgid "Lists types"
 msgstr "Типы списков"
 
-#: /var/www/image.loc/_tempLangs.php:49
-#: /var/www/image.loc/_tempLangs.php:91
-#: /var/www/image.loc/_tempLangs.php:139
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:52
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:213
+#: ./application/modules/wishlist//assets/wishlist.tpl:47
 msgid "shared"
 msgstr "поделенный"
 
-#: /var/www/image.loc/_tempLangs.php:50
-#: /var/www/image.loc/_tempLangs.php:93
-#: /var/www/image.loc/_tempLangs.php:140
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:54
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:214
+#: ./application/modules/wishlist//assets/wishlist.tpl:48
 msgid "public"
 msgstr "публичный"
 
-#: /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:92
-#: /var/www/image.loc/_tempLangs.php:141
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:53
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:215
+#: ./application/modules/wishlist//assets/wishlist.tpl:49
 msgid "private"
 msgstr "частный"
 
-#: /var/www/image.loc/_tempLangs.php:52
-#: /var/www/image.loc/_tempLangs.php:142
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:220
+#: ./application/modules/wishlist//assets/wishlist.tpl:52
 msgid "List name"
 msgstr "Имя списка"
 
-#: /var/www/image.loc/_tempLangs.php:53
+#: ./application/modules/wishlist//assets/wishlist.tpl:54
 msgid "List description"
 msgstr "Описание списка"
 
-#: /var/www/image.loc/_tempLangs.php:54
+#: ./application/modules/wishlist//assets/wishlist.tpl:56
 msgid "Create new list"
 msgstr "Создать новый список"
 
-#: /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:90
-#: /var/www/image.loc/_tempLangs.php:126
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:49
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:125
+#: ./application/modules/wishlist//assets/wishlist.tpl:70
 msgid "List type"
 msgstr "Тип списка"
 
-#: /var/www/image.loc/_tempLangs.php:57
+#: ./application/modules/wishlist//assets/wishlist.tpl:73
 msgid "edit"
 msgstr "редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:61
-#: /var/www/image.loc/_tempLangs.php:64
-#: /var/www/image.loc/_tempLangs.php:98
-#: /var/www/image.loc/_tempLangs.php:102
-#: /var/www/image.loc/_tempLangs.php:107
-#: /var/www/image.loc/_tempLangs.php:128
-#: /var/www/image.loc/_tempLangs.php:133
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:89
+#: ./application/modules/wishlist//assets/admin/users.tpl:12
+#: ./application/modules/wishlist//assets/admin/users.tpl:38
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:136
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:162
+#: ./application/modules/wishlist//assets/wishlist.tpl:93
+#: ./application/modules/wishlist//assets/wishlist.tpl:121
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:62
-#: /var/www/image.loc/_tempLangs.php:134
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:163
+#: ./application/modules/wishlist//assets/wishlist.tpl:94
 msgid "Move"
 msgstr "Переместить"
 
-#: /var/www/image.loc/_tempLangs.php:66
+#: ./application/modules/wishlist//assets/wishPopup.tpl:5
 msgid "Select Wishlist"
 msgstr "Выберите Список Желаний"
 
-#: /var/www/image.loc/_tempLangs.php:67
+#: ./application/modules/wishlist//assets/wishPopup.tpl:18
 msgid "Create WishList"
 msgstr "Создать Список Желаний"
 
-#: /var/www/image.loc/_tempLangs.php:68
+#: ./application/modules/wishlist//assets/admin/wishPopup.tpl:52
+#: ./application/modules/wishlist//assets/wishPopup.tpl:21
 msgid "Move in list"
 msgstr "Переместить в список"
 
-#: /var/www/image.loc/_tempLangs.php:69
+#: ./application/modules/wishlist//assets/wishPopup.tpl:22
 msgid "Add to list"
 msgstr "Добавить в список"
 
-#: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:74
+#: ./application/modules/wishlist//assets/admin/main.tpl:5
+#: ./application/modules/wishlist//assets/admin/main.tpl:31
 msgid "Wish List settings"
 msgstr "Настройки Списка Желаний"
 
-#: /var/www/image.loc/_tempLangs.php:71
-#: /var/www/image.loc/_tempLangs.php:86
-#: /var/www/image.loc/_tempLangs.php:105
-#: /var/www/image.loc/_tempLangs.php:113
+#: ./application/modules/wishlist//assets/admin/main.tpl:12
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:13
+#: ./application/modules/wishlist//assets/admin/users.tpl:28
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:13
+#: ./application/modules/wishlist//assets/admin/wishPopup.tpl:13
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:72
+#: ./application/modules/wishlist//assets/admin/main.tpl:15
 msgid "Users"
 msgstr "Пользователи"
 
-#: /var/www/image.loc/_tempLangs.php:73
-#: /var/www/image.loc/_tempLangs.php:99
-#: /var/www/image.loc/_tempLangs.php:125
+#: ./application/modules/wishlist//assets/admin/main.tpl:21
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:106
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:105
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:75
+#: ./application/modules/wishlist//assets/admin/main.tpl:41
 msgid "Maximum user name length"
 msgstr "Максимальная длина имени пользователя"
 
-#: /var/www/image.loc/_tempLangs.php:76
+#: ./application/modules/wishlist//assets/admin/main.tpl:48
 msgid "Maximum list name length"
 msgstr "Максимальная длина имени списка"
 
-#: /var/www/image.loc/_tempLangs.php:77
+#: ./application/modules/wishlist//assets/admin/main.tpl:55
 msgid "Maximum lists counts"
 msgstr "Максимальное количество списков"
 
-#: /var/www/image.loc/_tempLangs.php:78
+#: ./application/modules/wishlist//assets/admin/main.tpl:62
 msgid "Maximum items counts"
 msgstr "Максимальное количество элементов"
 
-#: /var/www/image.loc/_tempLangs.php:79
+#: ./application/modules/wishlist//assets/admin/main.tpl:69
 msgid "Maximum comment length"
 msgstr "Максимальная длина комментария"
 
-#: /var/www/image.loc/_tempLangs.php:80
+#: ./application/modules/wishlist//assets/admin/main.tpl:76
 msgid "Maximum description length"
 msgstr "Максимальная длина описания"
 
-#: /var/www/image.loc/_tempLangs.php:81
+#: ./application/modules/wishlist//assets/admin/main.tpl:83
 msgid "Maximum Wish List description length"
 msgstr "Максимальная длина описания Списка Желания"
 
-#: /var/www/image.loc/_tempLangs.php:82
+#: ./application/modules/wishlist//assets/admin/main.tpl:90
 msgid "Maximum image width"
 msgstr "Максимальная ширина изображения"
 
-#: /var/www/image.loc/_tempLangs.php:83
+#: ./application/modules/wishlist//assets/admin/main.tpl:97
 msgid "Maximum image height"
 msgstr "Максимальная высота изображения"
 
-#: /var/www/image.loc/_tempLangs.php:84
+#: ./application/modules/wishlist//assets/admin/main.tpl:104
 msgid "Maximum image size"
 msgstr "Максимальный размер изображения"
 
-#: /var/www/image.loc/_tempLangs.php:85
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:6
 msgid "Edit list"
 msgstr "Редактировать список"
 
-#: /var/www/image.loc/_tempLangs.php:87
-#: /var/www/image.loc/_tempLangs.php:106
-#: /var/www/image.loc/_tempLangs.php:114
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:17
+#: ./application/modules/wishlist//assets/admin/users.tpl:32
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:17
+#: ./application/modules/wishlist//assets/admin/wishPopup.tpl:17
 msgid "Settings"
 msgstr "Настройки"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:34
 msgid "List"
 msgstr "Список"
 
-#: /var/www/image.loc/_tempLangs.php:94
-#: /var/www/image.loc/_tempLangs.php:124
-#: /var/www/image.loc/_tempLangs.php:127
-#: /var/www/image.loc/_tempLangs.php:143
+#: ./application/modules/wishlist//assets/admin/wishlistEdit.tpl:59
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:98
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:128
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:226
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_tempLangs.php:100
+#: ./application/modules/wishlist//assets/admin/users.tpl:6
 msgid "Users removing"
 msgstr "Удаление пользователей"
 
-#: /var/www/image.loc/_tempLangs.php:101
+#: ./application/modules/wishlist//assets/admin/users.tpl:9
 msgid "Remove users?"
 msgstr "Удалить пользователей?"
 
-#: /var/www/image.loc/_tempLangs.php:103
+#: ./application/modules/wishlist//assets/admin/users.tpl:13
 msgid "Cancel"
 msgstr "Отменить"
 
-#: /var/www/image.loc/_tempLangs.php:104
+#: ./application/modules/wishlist//assets/admin/users.tpl:21
+#: ./application/modules/wishlist//module_info.php:6
 msgid "Wish Lists"
 msgstr "Списки пожеланий"
 
-#: /var/www/image.loc/_tempLangs.php:108
+#: ./application/modules/wishlist//assets/admin/users.tpl:57
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_tempLangs.php:109
-#: /var/www/image.loc/_tempLangs.php:115
-#: /var/www/image.loc/_tempLangs.php:118
+#: ./application/modules/wishlist//assets/admin/users.tpl:58
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:26
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:36
 msgid "User"
 msgstr "Пользователь"
 
-#: /var/www/image.loc/_tempLangs.php:110
+#: ./application/modules/wishlist//assets/admin/users.tpl:59
 msgid "Lists count"
 msgstr "Количество списков"
 
-#: /var/www/image.loc/_tempLangs.php:111
+#: ./application/modules/wishlist//assets/admin/users.tpl:60
 msgid "Lists items count"
 msgstr "Количество товаров в списках"
 
-#: /var/www/image.loc/_tempLangs.php:116
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:27
+#: ./application/modules/wishlist//assets/admin/wishPopup.tpl:26
 msgid "Lists"
 msgstr "Списки"
 
-#: /var/www/image.loc/_tempLangs.php:120
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:67
 msgid "Upload"
 msgstr "Загрузить"
 
-#: /var/www/image.loc/_tempLangs.php:129
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:140
 msgid "Edit"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:135
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:183
 msgid "Empty list"
 msgstr "Список пуст"
 
-#: /var/www/image.loc/_tempLangs.php:136
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:190
+#: ./application/modules/wishlist//classes/ParentWishlist.php:102
 msgid "No lists"
 msgstr "Нет списков"
 
-#: /var/www/image.loc/_tempLangs.php:138
+#: ./application/modules/wishlist//assets/admin/wishlist.tpl:210
 msgid "Type"
 msgstr "Тип"
 
-#: /var/www/image.loc/_tempLangs.php:5
+#: ./application/modules/wishlist//assets/admin/wishPopup.tpl:6
 msgid "Move item"
 msgstr "Переместить наименование"
 
-#: /var/www/image.loc/_tempLangs.php:9
+#: ./application/modules/wishlist//assets/admin/wishPopup.tpl:36
 msgid "Choose Wish List"
 msgstr "Выберите Список Желаний"
 
-#: wishlist.php:208
-#: wishlistApi.php:192
+#: ./application/modules/wishlist//wishlist.php:208
+#: ./application/modules/wishlist//wishlistApi.php:192
 msgid "Add to Wish List"
 msgstr "Добавить в Список Желаний"
 
-#: module_info.php:7
+#: ./application/modules/wishlist//module_info.php:7
 msgid "Managing of online store users Wish Lists"
 msgstr "Управление списками пожеланий пользователей интернет-магазина"
 
-#: classes/ParentWishlist.php:87
+#: ./application/modules/wishlist//classes/ParentWishlist.php:87
 msgid "No users"
 msgstr "Нет пользователей"
 
-#: classes/ParentWishlist.php:136
-#: classes/ParentWishlist.php:209
-#: classes/ParentWishlist.php:602
+#: ./application/modules/wishlist//classes/ParentWishlist.php:136
+#: ./application/modules/wishlist//classes/ParentWishlist.php:209
+#: ./application/modules/wishlist//classes/ParentWishlist.php:602
 msgid "Invalid request"
 msgstr "Неправильный запрос"
 
-#: classes/ParentWishlist.php:189
+#: ./application/modules/wishlist//classes/ParentWishlist.php:189
 msgid "No views"
 msgstr "Нет просмотров"
 
-#: classes/ParentWishlist.php:257
-#: classes/BaseApi.php:172
-#: classes/BaseWishlist.php:174
+#: ./application/modules/wishlist//classes/ParentWishlist.php:257
+#: ./application/modules/wishlist//classes/BaseApi.php:172
+#: ./application/modules/wishlist//classes/BaseWishlist.php:174
 msgid "Updated"
 msgstr "Обновлен"
 
-#: classes/ParentWishlist.php:259
-#: classes/BaseApi.php:174
-#: classes/BaseWishlist.php:176
+#: ./application/modules/wishlist//classes/ParentWishlist.php:259
+#: ./application/modules/wishlist//classes/BaseApi.php:174
+#: ./application/modules/wishlist//classes/BaseWishlist.php:176
 msgid "Not updated"
 msgstr "Не обновлен"
 
-#: classes/ParentWishlist.php:279
-#: classes/ParentWishlist.php:406
+#: ./application/modules/wishlist//classes/ParentWishlist.php:279
+#: ./application/modules/wishlist//classes/ParentWishlist.php:406
 msgid "Wish Lists limit exhausted"
 msgstr "Лимит Списков Желаний исчерпан"
 
-#: classes/ParentWishlist.php:279
-#: classes/ParentWishlist.php:406
+#: ./application/modules/wishlist//classes/ParentWishlist.php:280
+#: ./application/modules/wishlist//classes/ParentWishlist.php:407
 msgid "List maximum"
 msgstr "Максимум спосков"
 
-#: classes/ParentWishlist.php:285
-#: classes/BaseApi.php:235
-#: classes/BaseWishlist.php:190
+#: ./application/modules/wishlist//classes/ParentWishlist.php:285
+#: ./application/modules/wishlist//classes/BaseApi.php:235
+#: ./application/modules/wishlist//classes/BaseWishlist.php:190
 msgid "List description limit exhausted"
 msgstr "Лимит описания сиска исчерпан"
 
-#: classes/ParentWishlist.php:285
-#: classes/BaseApi.php:235
-#: classes/BaseWishlist.php:190
+#: ./application/modules/wishlist//classes/ParentWishlist.php:286
+#: ./application/modules/wishlist//classes/BaseApi.php:236
+#: ./application/modules/wishlist//classes/BaseWishlist.php:191
 msgid "List description max count"
 msgstr "Максимальная длина описания списка"
 
-#: classes/ParentWishlist.php:291
+#: ./application/modules/wishlist//classes/ParentWishlist.php:291
 msgid "Wish list name will be changed"
 msgstr "Имя Списка Желания будет изменено"
 
-#: classes/ParentWishlist.php:291
+#: ./application/modules/wishlist//classes/ParentWishlist.php:292
 msgid "List name length maximum"
 msgstr "Максимальная длина названия списка"
 
-#: classes/ParentWishlist.php:295
+#: ./application/modules/wishlist//classes/ParentWishlist.php:295
 msgid "Wish List name can not be empty!"
 msgstr "Имя Списка Желаний не может быть пустым!"
 
-#: classes/ParentWishlist.php:301
-#: classes/BaseApi.php:204
-#: classes/BaseWishlist.php:141
+#: ./application/modules/wishlist//classes/ParentWishlist.php:301
+#: ./application/modules/wishlist//classes/BaseApi.php:204
+#: ./application/modules/wishlist//classes/BaseWishlist.php:141
 msgid "Created"
 msgstr "Создано"
 
-#: classes/ParentWishlist.php:324
-#: classes/ParentWishlist.php:353
+#: ./application/modules/wishlist//classes/ParentWishlist.php:324
+#: ./application/modules/wishlist//classes/ParentWishlist.php:353
 msgid "You can not delete Wish List"
 msgstr "Вы не можете удалить Список Желаний"
 
-#: classes/ParentWishlist.php:329
-#: classes/ParentWishlist.php:358
+#: ./application/modules/wishlist//classes/ParentWishlist.php:329
+#: ./application/modules/wishlist//classes/ParentWishlist.php:358
 msgid "Successfully deleted"
 msgstr "Успешно удалено"
 
-#: classes/ParentWishlist.php:349
-#: classes/ParentWishlist.php:459
+#: ./application/modules/wishlist//classes/ParentWishlist.php:349
+#: ./application/modules/wishlist//classes/ParentWishlist.php:459
 msgid "Can not remove items from wishlist"
 msgstr "Невозможно удалить товары из желаний"
 
-#: classes/ParentWishlist.php:386
+#: ./application/modules/wishlist//classes/ParentWishlist.php:386
 msgid "Limit of list items exhausted"
 msgstr "Лимит товаров списка исчерпан"
 
-#: classes/ParentWishlist.php:391
+#: ./application/modules/wishlist//classes/ParentWishlist.php:391
 msgid "User is not logged in"
 msgstr "Пользователь не вошли в систему"
 
-#: classes/ParentWishlist.php:397
+#: ./application/modules/wishlist//classes/ParentWishlist.php:397
 msgid "Wishlist name will be changed"
 msgstr "Имя Списка Желаний будет изменено"
 
-#: classes/ParentWishlist.php:397
+#: ./application/modules/wishlist//classes/ParentWishlist.php:398
 msgid "Maximum length of wishlist name"
 msgstr "Максимальная длина названия Списка Желаний"
 
-#: classes/ParentWishlist.php:411
+#: ./application/modules/wishlist//classes/ParentWishlist.php:411
 msgid "You can not add"
 msgstr "Вы не можете добавить"
 
-#: classes/ParentWishlist.php:416
+#: ./application/modules/wishlist//classes/ParentWishlist.php:416
 msgid "Added to wishlist"
 msgstr "Добавлено в Список Желаний"
 
-#: classes/ParentWishlist.php:461
+#: ./application/modules/wishlist//classes/ParentWishlist.php:461
 msgid "Item deleted"
 msgstr "Товар удален"
 
-#: classes/ParentWishlist.php:501
+#: ./application/modules/wishlist//classes/ParentWishlist.php:501
 msgid "User data is not found"
 msgstr "Данные пользователя не найдены"
 
-#: classes/ParentWishlist.php:561
+#: ./application/modules/wishlist//classes/ParentWishlist.php:561
 msgid "Maximum image size is exceeded"
 msgstr "Превышен максимальный размер изображения"
 
-#: classes/ParentWishlist.php:563
+#: ./application/modules/wishlist//classes/ParentWishlist.php:563
 msgid "Maximum width of the image is exceeded"
 msgstr "Превышена максимальная ширина изображения"
 
-#: classes/ParentWishlist.php:565
+#: ./application/modules/wishlist//classes/ParentWishlist.php:565
 msgid "Max image height exceeded"
 msgstr "Превышена максимальная высота изображения"
 
-#: classes/ParentWishlist.php:567
+#: ./application/modules/wishlist//classes/ParentWishlist.php:567
 msgid "Invalid file format"
 msgstr "Неверный формат файла"
 
-#: classes/BaseApi.php:65
-#: classes/BaseApi.php:95
-#: classes/BaseApi.php:328
-#: classes/BaseWishlist.php:71
-#: classes/BaseWishlist.php:305
+#: ./application/modules/wishlist//classes/BaseApi.php:65
+#: ./application/modules/wishlist//classes/BaseApi.php:95
+#: ./application/modules/wishlist//classes/BaseApi.php:328
+#: ./application/modules/wishlist//classes/BaseWishlist.php:71
+#: ./application/modules/wishlist//classes/BaseWishlist.php:305
 msgid "Successful operation"
 msgstr "Успешная операция"
 
-#: classes/BaseApi.php:67
-#: classes/BaseApi.php:97
-#: classes/BaseWishlist.php:67
-#: classes/BaseWishlist.php:73
+#: ./application/modules/wishlist//classes/BaseApi.php:67
+#: ./application/modules/wishlist//classes/BaseApi.php:97
+#: ./application/modules/wishlist//classes/BaseWishlist.php:67
+#: ./application/modules/wishlist//classes/BaseWishlist.php:73
 msgid "Unable to move"
 msgstr "Не удалось переместить"
 
-#: classes/BaseApi.php:272
+#: ./application/modules/wishlist//classes/BaseApi.php:272
 msgid "Successful deleting"
 msgstr "Успешное удаление"
 
-#: classes/BaseApi.php:274
-#: classes/BaseApi.php:330
-#: classes/BaseWishlist.php:307
+#: ./application/modules/wishlist//classes/BaseApi.php:274
+#: ./application/modules/wishlist//classes/BaseApi.php:330
+#: ./application/modules/wishlist//classes/BaseWishlist.php:307
 msgid "Error"
 msgstr "Ошибка"
 
-#: classes/BaseApi.php:288
+#: ./application/modules/wishlist//classes/BaseApi.php:288
 msgid "Loading error"
 msgstr "Ошибка загрузки"
 
-#: classes/BaseApi.php:292
-#: classes/BaseApi.php:294
-#: classes/BaseWishlist.php:287
+#: ./application/modules/wishlist//classes/BaseApi.php:292
+#: ./application/modules/wishlist//classes/BaseApi.php:294
+#: ./application/modules/wishlist//classes/BaseWishlist.php:287
 msgid "Image uploaded"
 msgstr "Изображение загружено"
 
-#: classes/BaseApi.php:296
+#: ./application/modules/wishlist//classes/BaseApi.php:296
 msgid "Can not Upload photo"
 msgstr "Не возможно загрузить фото"
 
-#: classes/BaseApi.php:299
+#: ./application/modules/wishlist//classes/BaseApi.php:299
 msgid "You did not enter user"
 msgstr "Вы не ввели пользователя"
 
-#: classes/BaseApi.php:324
-#: classes/BaseWishlist.php:301
+#: ./application/modules/wishlist//classes/BaseApi.php:324
+#: ./application/modules/wishlist//classes/BaseWishlist.php:301
 msgid "Invalid email"
 msgstr "Неверный email"
 
-#: classes/BaseWishlist.php:235
-#: classes/BaseWishlist.php:255
+#: ./application/modules/wishlist//classes/BaseWishlist.php:235
+#: ./application/modules/wishlist//classes/BaseWishlist.php:255
 msgid "Successful deleted"
 msgstr "Успешное удален"
 
-#: classes/BaseWishlist.php:237
-#: classes/BaseWishlist.php:257
+#: ./application/modules/wishlist//classes/BaseWishlist.php:237
+#: ./application/modules/wishlist//classes/BaseWishlist.php:257
 msgid "Unable to delete"
 msgstr "Не удается удалить"
 
-#: classes/BaseWishlist.php:289
+#: ./application/modules/wishlist//classes/BaseWishlist.php:289
 msgid "Can not upload photo"
 msgstr "Не возможно загрузить фото"
 
-#~ msgid "Users list"
-#~ msgstr "Список пользователей"
-
-#~ msgid "Download"
-#~ msgstr "Скачать"
-
-#~ msgid "Last"
-#~ msgstr "Последний"
-
-#~ msgid "Create a category"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Modules"
-#~ msgstr "Модулі"
-
-#~ msgid "Management of Meta Tags"
-#~ msgstr "Управление мета тегами"
-
-#~ msgid "Widgets"
-#~ msgstr "Виджети"
-
-#, fuzzy
-#~ msgid "Date of creation"
-#~ msgstr "Настр"
-
-#~ msgid "Site configuration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Сonsider the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Widget title"
-#~ msgstr "Виджети"
-
-#~ msgid "New pages"
-#~ msgstr "Нові сторінки"
-
-#~ msgid "Buy"
-#~ msgstr "Купить Віш ліст"
-
-#, fuzzy
-#~ msgid "Move to category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create status"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create property"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Catagory"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "turn category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Drug category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Edit the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Basic information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a warehouse"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "General information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a way to deliver"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Create order"
-#~ msgstr "Создатьзаказ"
-
-#~ msgid "Customer"
-#~ msgstr "Замовник"
-
-#, fuzzy
-#~ msgid "Date of order"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Ordering information"
-#~ msgstr "Настр"
-
-#~ msgid "New orders"
-#~ msgstr "Новие закази"
-
-#, fuzzy
-#~ msgid "Created Date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a payment method"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Pages and categories"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Picture for category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of addition"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid " Create a product copy?"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create currency"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Banner creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a banner"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a brand"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Regular or usual pages"
-#~ msgstr "Звичайні сторінки"
-
-#, fuzzy
-#~ msgid "Create a discount"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create gift certificate"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create user"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of registration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Additional information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Created date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Category created"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create catagory"
-#~ msgstr "Создать категорию"

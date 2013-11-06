@@ -20,13 +20,13 @@
                     <div class="frame-title">
                         <h1 class="d_i title">{lang('Сравнение товаров','newLevel')}</h1>
                     </div>
-                    <ul class="tabs groups-buttons tabs-compare-diferent" data-type="radio">
-                        <li class="btn-def active">
+                    <ul class="tabs groups-buttons tabs-compare-diferent" data-type="radio" data-cookie="compare">
+                        <li class="btn-def {if $_COOKIE['compare'] == "#all-params"}active{/if}">
                             <button type="button" data-href="#all-params">
                                 <span class="text-el">{lang('Все параметры','newLevel')}</span>
                             </button>
                         </li>
-                        <li class="btn-def">
+                        <li class="btn-def {if $_COOKIE['compare'] == "#only-dif"}active{/if}">
                             <button type="button" data-href="#only-dif">
                                 <span class="text-el">{lang('Только Различия','newLevel')}</span>
                             </button>
