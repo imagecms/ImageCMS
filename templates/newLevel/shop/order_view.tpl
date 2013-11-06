@@ -84,8 +84,8 @@
                     <th>{lang('Способ оплаты','newLevel')}:</th>
                     <td>
                         {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
-                            {if $paymentMethod->getDescription()}
-                                {echo ShopCore::t($paymentMethod->getDescription())}
+                            {if $paymentMethod->getName()}
+                                {echo ShopCore::t($paymentMethod->getName())}
                             {/if}
                         {/if}
                     </td>

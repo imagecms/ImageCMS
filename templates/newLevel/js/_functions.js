@@ -202,17 +202,17 @@ function displayDiscount(obj) {
     var kitDiscount = parseFloat(getKitDiscount());
     kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
     Shop.Cart.kitDiscount = kitDiscount;
+    Shop.Cart.discountProduct = 0;
     var tempdisc = false;
     if (obj != null)
         tempdisc =  parseFloat(obj.sum_discount_product) != 0 && obj.sum_discount_product != null;
     var discC = tempdisc || parseFloat(Shop.Cart.kitDiscount) != 0;
     if (discC) {
-        var gend = 0;
         if (obj != null)
-            gend += parseFloat(obj.sum_discount_product == null ? 0 : obj.sum_discount_product);
-        gend += kitDiscount;
+            Shop.Cart.discountProduct += parseFloat(obj.sum_discount_product == null ? 0 : obj.sum_discount_product);
+        Shop.Cart.discountProduct += kitDiscount;
         $(genObj.genDiscount).each(function() {
-            $(this).html(gend.toFixed(pricePrecision));
+            $(this).html(Shop.Cart.discountProduct.toFixed(pricePrecision));
         });
         $(genObj.genSumDiscount).each(function() {
             $(this).html(Shop.Cart.totalPriceOrigin.toFixed(pricePrecision));
@@ -230,6 +230,7 @@ function displayDiscount(obj) {
     }
     else
         $(genObj.frameGenDiscount).hide();
+    countSumBask();
 };
 function btnbuyInitialize(el) {
     el.find(genObj.btnBuy).unbind('click.buy').bind('click.buy', function(e) {
@@ -387,14 +388,17 @@ function countSumBask() {
     $(genObj.countBask).each(function() {
         $(this).html(length);
     });
-    var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice).toFixed(pricePrecision),
-    addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice).toFixed(pricePrecision);
+    var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice),
+    addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice);
     Shop.Cart.koefCurr = addSumBask / sumBask;
     $(genObj.sumBask).each(function() {
-        $(this).html(sumBask);
+        var temp = 0;
+        if (Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) == Shop.Cart.totalPrice.toFixed(pricePrecision))
+            temp = Shop.Cart.discountProduct;
+        $(this).html((sumBask - temp).toFixed(pricePrecision));
     });
     $(genObj.addSumBask).each(function() {
-        $(this).html(addSumBask);
+        $(this).html(addSumBask.toFixed(pricePrecision));
     })
     $(genObj.bask + ' ' + genObj.plurProd).each(function() {
         $(this).html(pluralStr(length, plurProd));
