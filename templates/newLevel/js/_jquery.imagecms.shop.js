@@ -175,7 +175,7 @@ function getCookie(c_name)
                         var thisFrameChecks = $(this);
                         thisFrameChecks.find(elCheckWrap).each(function() {
                             var $this = $(this).removeClass(classRemove),
-                            $thisInput = $this.children();
+                            $thisInput = $this.find('input');
                             if (!$thisInput.is('[disabled="disabled"]')) {
                                 methods.changeCheckStart($this, $thisInput);
                             }
@@ -1012,25 +1012,24 @@ function getCookie(c_name)
                                                     listDrop.animate({
                                                         'height': subHL2
                                                     }, {
-                                                        queue: false
-                                                    }, durationOnS);
-                                                
-                                                    $thisDrop.animate({
-                                                        'width': sumW
-                                                    }, {
-                                                        queue: false
-                                                    }, durationOnS);
-                                                    $thisDrop.animate({
-                                                        'height': subHL2 + addH
-                                                    }, {
-                                                        queue: false
-                                                    }, durationOnS)
+                                                        queue: false,
+                                                        duration: durationOnS,
+                                                        complete: function(){
+                                                            $thisDrop.animate({
+                                                                'width': sumW,
+                                                                'height': subHL2 + addH
+                                                            }, {
+                                                                queue: false,
+                                                                duration:durationOnS
+                                                            });
+                                                        }
+                                                    });
                                                 }
                                                 else{
                                                     listDrop.css('height', subHL2);
-                                                    $thisDrop.css('width', sumW);
                                                     $thisDrop.css({
-                                                        'height': subHL2 + addH
+                                                        'height': subHL2 + addH,
+                                                        'width': sumW
                                                     });
                                                 }   
                                                 subFrame[effOnS](durationOnS, function(){
@@ -2361,8 +2360,8 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
     };
 })(jQuery);
 /*
- *imagecms shop plugins
- **/
+     *imagecms shop plugins
+     **/
 if (!Array.indexOf) {
     Array.prototype.indexOf = function(obj, start) {
         for (var i = (start || 0); i < this.length; i++) {
@@ -2383,6 +2382,7 @@ var Shop = {
         totalPriceOrigin: 0,
         discount: 0,
         kitDiscount: 0,
+        discountProduct: 0,
         popupCartSelector: 'script#cartPopupTemplate',
         shipping: 0,
         shipFreeFrom: 0,
@@ -2587,7 +2587,7 @@ var Shop = {
                 return this.totalPriceOrigin;
         },
         getFinalAmount: function() {
-            if (this.shipFreeFrom >= 0)
+            if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0;
             return (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) : 0;
@@ -2626,8 +2626,6 @@ var Shop = {
                 if (data == false)
                     Shop.Cart.clear();
             });
-        },
-        updatePage: function() {
         }
     },
     cartItem: function(obj) {
@@ -2779,32 +2777,32 @@ if (typeof(wishList) != 'object')
         }
     }
 /**
- * AuthApi ajax client
- * Makes simple request to api controllers and get return data in json
- * 
- * @author Avgustus
- * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
- * 
- * Get JSON object with fields list:
- *      'status'    -   true/false - if the operation was successful,
- *      'msg'       -   info message about result,
- *      'refresh'   -   true/false - if true refreshes the page,
- *      'redirect'  -   url - redirects to needed url
- *    
- * List of api methods:
- *      Auth.php:
- *          '/auth/authapi/login',
- *          '/auth/authapi/logout',
- *          '/auth/authapi/register',
- *          '/auth/authapi/forgot_password',
- *          '/auth/authapi/reset_password',
- *          '/auth/authapi/change_password',
- *          '/auth/authapi/cancel_account',
- *          '/auth/authapi/banned',
- *          '/shop/ajax/getApiNotifyingRequest',
- *          '/shop/callbackApi'
- * 
- **/
+     * AuthApi ajax client
+     * Makes simple request to api controllers and get return data in json
+     * 
+     * @author Avgustus
+     * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
+     * 
+     * Get JSON object with fields list:
+     *      'status'    -   true/false - if the operation was successful,
+     *      'msg'       -   info message about result,
+     *      'refresh'   -   true/false - if true refreshes the page,
+     *      'redirect'  -   url - redirects to needed url
+     *    
+     * List of api methods:
+     *      Auth.php:
+     *          '/auth/authapi/login',
+     *          '/auth/authapi/logout',
+     *          '/auth/authapi/register',
+     *          '/auth/authapi/forgot_password',
+     *          '/auth/authapi/reset_password',
+     *          '/auth/authapi/change_password',
+     *          '/auth/authapi/cancel_account',
+     *          '/auth/authapi/banned',
+     *          '/shop/ajax/getApiNotifyingRequest',
+     *          '/shop/callbackApi'
+     * 
+     **/
 
 var ImageCMSApi = {
     defSet: function() {
@@ -2903,10 +2901,10 @@ var ImageCMSApi = {
         return queryString;
     },
     /**
-     * for displaying validation messages 
-     * in the form, which needs validation, for each validate input
-     * 
-     * */
+         * for displaying validation messages 
+         * in the form, which needs validation, for each validate input
+         * 
+         * */
     sendValidations: function(validations, selector, DS) {
         var thisSelector = $(selector);
         if (typeof validations === 'object') {
@@ -2931,9 +2929,9 @@ var ImageCMSApi = {
         }
     },
     /**
-     * add captcha block if needed
-     * @param {type} captcha_image
-     */
+         * add captcha block if needed
+         * @param {type} captcha_image
+         */
     addCaptcha: function(cI, DS) {
         DS.captchaBlock.html(DS.captcha(cI));
         return false;
