@@ -59,10 +59,10 @@ function expandCategories(button) {
             $('.cat' + fullPathIds[cat]).prev().css('display', 'inline-block')
         }
         if ($(button).hasClass('.cat' + fullPathIds[cat]) && !$(button).hasClass('clicked')) {
-            $(button).trigger('click')
-            $(button).addClass('clicked')
-            $(button).css('display', 'none')
-            $(button).prev().css('display', 'inline-block')
+            $(button).trigger('click');
+            $(button).addClass('clicked');
+            $(button).css('display', 'none');
+            $(button).prev().css('display', 'inline-block');
         }
     }
 }
@@ -81,7 +81,7 @@ function ajaxLoadChildCategory(el, id) {
     if (container.next().attr('class') != 'frame_level sortable ui-sortable')
         $.post('/admin/components/run/shop/categories/ajax_load_parent', {id: id}, function(data) {
             $(data).insertAfter(container);
-            expandCategories($(data).find('.expandButton'))
+//            expandCategories($(data).find('.expandButton'))
             initNiceCheck();
             share_alt_init();
             sortInit();

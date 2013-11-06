@@ -31,8 +31,15 @@
     {if count($brands) > 0}
         <div class="frame-group-checks">
             <div class="inside-padd">
-                <div class="title">Производитель</div>
-                <ul class="list-filters">
+                <div class="title">
+                    <span class="f-s_0">
+                        <span class="icon-arrow"></span>
+                        <span class="d_b">
+                            <span class="text-el">{lang('Производитель', 'newLevel')}</span>
+                        </span>
+                    </span>
+                </div>
+                <ul class="filters-content">
                     {foreach $brands as $brand}
                         {if is_array(ShopCore::$_GET['brand']) && in_array($brand->id, ShopCore::$_GET['brand'])}
                             {$check = 'checked="checked"'}

@@ -12,6 +12,7 @@
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
     <li {if $p->firstVariant->getStock() == 0}class="not-avail"{/if} data-pos="top">
+        <!-- Start. Photo & Name product -->
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title" title="{echo ShopCore::encode($p->getName())}">
             <span class="photo-block">
                 <span class="helper"></span>
@@ -28,7 +29,9 @@
             </span>
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
+        <!-- End. Photo & Name product -->
         <div class="description">
+            <!-- Start. article & variant name & brand name -->
             {if $codeArticle}
                 <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
@@ -62,6 +65,7 @@
                     {/if}
                 </div>
             {/if}
+            <!-- End. article & variant name & brand name -->
             {if !$vertical}
                 {if $p->enable_comments && intval($Comments[$p->getId()]) !== 0}
                     <div class="frame-star f-s_0">
@@ -73,8 +77,9 @@
                     </div>
                 {/if}
             {/if}
+            <!-- Start. Prices-->
             <div class="frame-prices f-s_0">
-                <!-- Check for discount-->
+                <!-- Start. Check for discount-->
                 {$oldoprice = $p->getOldPrice() && $p->getOldPrice() != 0 && $p->getOldPrice() > $p->firstVariant->toCurrency()}
                 {$hasDiscounts = $p->hasDiscounts()}
                 {if $hasDiscounts}
@@ -85,6 +90,8 @@
                         </span>
                     </span>
                 {/if}
+                <!-- End. Check for discount-->
+                <!-- Start. Check old price-->
                 {if $oldoprice && !$hasDiscounts}
                     <span class="price-discount">
                         <span>
@@ -93,6 +100,8 @@
                         </span>
                     </span>
                 {/if}
+                <!-- End. Check old price-->
+                <!-- Start. Product price-->
                 {if $p->firstVariant->toCurrency() > 0}
                     <span class="current-prices f-s_0">
                         <span class="price-new">
@@ -111,8 +120,11 @@
                         {/if}
                     </span>
                 {/if}
+                <!-- End. Product price-->
             </div>
+            <!-- End. Prices-->
             {$variants = $p->getProductVariants()}
+            <!-- Start. Check variant-->
             {if !$widget && !$defaultItem && !$compare}
                 {if count($variants) > 1}
                     <div class="check-variant-catalog">
@@ -133,8 +145,7 @@
                     </div>
                 {/if}
             {/if}
-
-            <!--            End. Price-->
+            <!-- End. Check variant-->
             <div class="funcs-buttons">
                 <!-- Start. Collect information about Variants, for future processing -->
                 {foreach $variants as $key => $pv}
@@ -216,21 +227,23 @@
                     {/if}
                 {/foreach}
             </div>
+            <!-- End. Collect information about Variants, for future processing -->
             {if !$widget && !$defaultItem}
                 <div class="p_r frame-without-top">
+                    <!-- Wish List & Compare List buttons -->
                     <div class="frame-wish-compare-list no-vis-table">
                         {if $wishlist}
-                            <!-- Wish List buttons -->
+                            <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
                                 <div class="frame-btn-wish variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                             {/foreach}
-                            <!-- end of Wish List buttons -->
+                            <!-- End. wish list buttons -->
                         {/if}
                         {if !$compare}
                             <div class="frame-btn-comp">
-                                <!-- compare buttons -->
+                                <!-- Start. Compare List button -->
                                 <div class="btn-compare">
                                     <button class="toCompare"
                                             data-prodid="{echo $p->getId()}"
@@ -243,10 +256,11 @@
                                         <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
                                     </button>
                                 </div>
-                                <!-- end of compare buttons -->
+                                <!-- End. Compare List button -->
                             </div>
                         {/if}
                     </div>
+                    <!-- End. Wish List & Compare List buttons -->
                 </div>
             {/if}
             <!-- End. Collect information about Variants, for future processing -->
@@ -268,11 +282,11 @@
                 </div>
             {/if}
         </div>
-        <!--        Start. Remove buttons if compare or wishlist-->
+        <!-- Start. Remove buttons if compare-->
         {if $compare && !$widget}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
-        <!--        End. Remove buttons if compare or wishlist-->
+        <!-- End. Remove buttons if compare-->
 
         <div class="decor-element"></div>
     </li>
