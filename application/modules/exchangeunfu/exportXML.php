@@ -67,14 +67,14 @@ class ExportXML {
         }
 
         /** export productivity */
-        if ($this->productivity) {
-            $this->exportProductivity();
-        }
+//        if ($this->productivity) {
+//            $this->exportProductivity();
+//        }
 
         /** export prices */
-        if ($this->prices) {
-            $this->exportPrices();
-        }
+//        if ($this->prices) {
+//            $this->exportPrices();
+//        }
 
         /** export orders */
         if ($this->orders) {
