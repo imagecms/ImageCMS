@@ -123,7 +123,7 @@ a{cursor: pointer;}
 
 /*base icons*/
 a.f-s_0{display: inline-block;text-decoration: none;}
-[class*="frame-icon"]{text-align: center;float: left;}
+[class*="frame-icon"]{text-align: center;float: left;font-size: 0;}
 [class*="icon_"], [class*="icon-"]{display: inline-block;font-size: 0;line-height: 0;position: relative;width: 0;height: 0;}
 [class*="icon_"]{position: absolute;}
 /*/base icons*/
@@ -214,7 +214,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}
 .helper + *{vertical-align: middle;display: inline-block;word-break: break-word;word-wrap: break-word;}
 .t-a_j{text-align: justify !important;font-size: 1px;}
-.t-a_j > *{display: inline-block;vertical-align: middle;float: none !important;}
+.t-a_j > *{display: inline-block;vertical-align: middle;float: none !important;text-align: left;}
 .t-a_j:after, .t-a_j .ie{content: "1";margin-left: 100%;height: 1px;visibility: hidden;display: inline-block;width: 100%;}
 /*/methods*/
 
@@ -244,6 +244,8 @@ nav a{text-decoration: none;}
 p {margin-bottom: 10px;line-height: 18px;}
 .text p {margin-bottom: 8px;}
 .text p + h2{padding-top: 9px;}
+.text ul.unstyled, .text ol.unstyled{margin: 0;}
+.text ul.unstyled li:before{content: none;}
 .text ul {list-style-type: none;margin: 0 15px 10px 23px;}
 .text ul li{position: relative;}
 .text ul li:before{content: "—";position: absolute;left: -15px;;top: 0px;}
@@ -1172,7 +1174,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 #photo{overflow: hidden;max-height: 95%;background-color: #fff;-webkit-transition: background-color 0.3s ease-in-out;-moz-transition: background-color 0.3s ease-in-out;-o-transition: background-color 0.3s ease-in-out;transition: background-color 0.3s ease-in-out;}
 #photo.active{background-color: transparent;}
 #photo .drop-header{padding: 13px 50px;}
-.drop-content-photo {background-color: #fff;text-align: center;position: relative;padding: 10px 60px;}
+.drop-content-photo {background-color: #fff;text-align: center;position: relative;padding: 10px 70px;}
 .drop-content-photo .inside-padd{height: 100%;}
 .drop-content-photo img{max-height: 100%;visibility: hidden;}
 .drop-content-photo .horizontal-carousel{position: absolute;left: 0;top: 0;width: 100%;height: 100%;}

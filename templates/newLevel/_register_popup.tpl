@@ -8,7 +8,7 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form big-title">
-                <form method="post" id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', '#register-form');
+                <form method="post" id="register-form-popup" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', '#register-form-popup');
                     return false;">
                     <div class="horizontal-form">
                         <div class="frame-label">

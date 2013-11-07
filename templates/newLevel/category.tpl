@@ -35,6 +35,7 @@
                         </li>
                     {/foreach}
                 </ul>
+                {$pagination}
             {/if}
         </div>
     </div>

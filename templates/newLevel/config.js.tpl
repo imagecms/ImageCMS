@@ -103,6 +103,7 @@
         inServerWishList = parseInt("{$countWL}"),
         countViewProd = parseInt("{$countSh}"),
         theme = "{$THEME}",
+        siteUrl = "{echo site_url()}"
         inCart = '{lang('В корзине','newLevel')}',
         toCart = '{lang('Купить','newLevel')}',
         pcs = '{lang('Количество:')}',

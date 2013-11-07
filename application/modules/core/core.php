@@ -537,9 +537,6 @@ class Core extends MY_Controller {
             $config['first_link'] = lang("The first", "core");
             $config['last_link'] = lang("Last", "core");
 
-            $config['cur_tag_open'] = '<span class="active">';
-            $config['cur_tag_close'] = '</span>';
-
             $this->pagination->num_links = 5;
 
             ($hook = get_hook('core_dispcat_set_pagination')) ? eval($hook) : NULL;
