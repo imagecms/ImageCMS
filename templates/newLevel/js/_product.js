@@ -221,6 +221,8 @@ function afterClosedPhoto(el, drop){
     drop.find('.addingphoto').remove();
 }
 function onComplete(el, drop, isajax, data, elSet) {
+    drop.find('[data-drop]').drop(optionsDrop);
+    
     var carGal = drop.find('.content-carousel');
     drop.find('.drop-content-photo img').css('visibility', 'visible').hide().fadeIn();
     

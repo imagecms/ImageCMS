@@ -169,10 +169,12 @@ function processBtnBuyCount(el) {
     });
 }
 function getDiscount(k) {
-    //    if (!$.exists('#countDisc'))
-    //        body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
-    //    $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
+//        if (!$.exists('#countDisc'))
+//            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+//        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
     $(document).trigger('showActivity');
+    if (!$.isFunction(window.getDiscountBack))
+        displayDiscount(null);
     if (k && !$.isFunction(window.getDiscountBack)){
         displayInfoDiscount('');
         renderGiftInput('');
@@ -246,26 +248,7 @@ function btnbuyInitialize(el) {
 function initShopPage(showWindow, item) {
     Shop.Cart.totalRecount();
     $(genObj.popupCart).html(Shop.Cart.renderPopupCart());
-    $(genObj.tinyBask).each(function() {
-        if (item) {
-            var $this = $(this),
-            cartLeft = $this.offset().left,
-            cartTop = $this.offset().top;
-            var img = $('[data-prodid="' + item.id + '"][data-varid="' + item.vId + '"]' + genObj.infoBut).closest(genObj.parentBtnBuy).find(genObj.imgVC + ',' + genObj.imgVP),
-            imgL = img.offset().left,
-            imgT = img.offset().top,
-            len = Math.sqrt(Math.pow((cartLeft - imgL), 2) + Math.pow((cartTop - imgT), 2));
-            fImg = $('<div style="width: 70px;height: 70px;display:none;position:absolute;left:' + imgL + 'px;top:' + imgT + 'px;z-index:10000;"></div>');
-            fImg.append(img.clone()).appendTo(body).css('opacity', 0.5).show().animate({
-                'left': cartLeft + 50, 
-                top: cartTop + 150
-            }, len * 1.5, function() {
-                $(this).fadeOut(300, function() {
-                    $(this).remove();
-                });
-            });
-        }
-    })
+    
     if ($(genObj.popupCart).is(':visible'))
         dropBaskResize();
     if (showWindow || $(genObj.popupCart).is(':visible'))
@@ -374,6 +357,9 @@ function checkSyncs() {
     }
 }
 function countSumBask() {
+//    if (!$.exists('#countDisc'))
+//            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+//        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
     var length = Shop.Cart.length();
     if (!length) {
         $(genObj.tinyBask + '.' + genObj.isAvail).removeClass(genObj.isAvail);
