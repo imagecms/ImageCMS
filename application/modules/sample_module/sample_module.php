@@ -18,7 +18,6 @@ class Sample_Module extends MY_Controller {
         $lang = new MY_Lang();
         $lang->load('sample_module');
         $this->load->module('core');
-        //\CMSFactory\Events::create()->registerEvent(array('commentId' => 144));
 
         /** Запускаем инициализацию переменых. Значения будут взяты з
          *  Базы Данных, и присвоены соответствующим переменным */
