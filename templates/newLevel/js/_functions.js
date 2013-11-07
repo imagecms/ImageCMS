@@ -118,7 +118,6 @@ function processBtnBuyCount(el) {
     //update page content
     //update products count
     el = el == undefined ? body : el;
-    Shop.Cart.totalRecount();
     var keys = [];
     _.each(Shop.Cart.getAllItems(), function(item) {
         keys.push(item.id + '_' + item.vId);
@@ -169,40 +168,32 @@ function processBtnBuyCount(el) {
     });
 }
 function getDiscount(k) {
-    //        if (!$.exists('#countDisc'))
-    //            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
-    //        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
-    $(document).trigger('showActivity');
-    if (!$.isFunction(window.getDiscountBack))
-        displayDiscount(null);
-    if (k && !$.isFunction(window.getDiscountBack)){
-        displayInfoDiscount('');
-        renderGiftInput('');
-    }
-    if (!discountInPopup && !k)
-        return false;
-    else if ($.isFunction(window.getDiscountBack)) {
-        getDiscountBack(k);
-    }
-    var kitDiscount = parseFloat(getKitDiscount());
-    Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
-}
-function getKitDiscount() {
-    var _kit_disc = 0;
-    
+//    if (!$.exists('#countDisc'))
+//        body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+//    $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
     $(document).trigger('showActivity');
     $.ajax({
         async: false,
-        type: 'post',
+        type: 'GET',
         url: '/shop/cart_api/get_kit_discount',
-        success: function(data) {
-            _kit_disc = data;
-            $(document).trigger('hideActivity');
+        complete: function(data) {
+            var kitDiscount = parseFloat(data);
+            Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
+            
+            if (k && !$.isFunction(window.getDiscountBack)){
+                displayInfoDiscount('');
+                renderGiftInput('');
+            }
+            if (!discountInPopup && !k)
+                return false;
+            else if ($.isFunction(window.getDiscountBack)) {
+                getDiscountBack(k);
+            }
         }
-    })
-    return _kit_disc;
+    });
 }
 function displayDiscount(obj) {
+    Shop.Cart.totalRecount();
     Shop.Cart.discountProduct = 0;
     var tempdisc = false;
     if (obj != null)
@@ -245,7 +236,6 @@ function btnbuyInitialize(el) {
 }
 
 function initShopPage(showWindow, item) {
-    Shop.Cart.totalRecount();
     $(genObj.popupCart).html(Shop.Cart.renderPopupCart());
     
     if ($(genObj.popupCart).is(':visible'))
@@ -356,6 +346,7 @@ function checkSyncs() {
     }
 }
 function countSumBask() {
+    Shop.Cart.totalRecount();
     //    if (!$.exists('#countDisc'))
     //            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
     //        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
@@ -373,8 +364,8 @@ function countSumBask() {
     $(genObj.countBask).each(function() {
         $(this).html(length);
     });
-    var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice),
-    addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice);
+    var sumBask = parseFloat(Shop.Cart.totalPrice),
+    addSumBask = parseFloat(Shop.Cart.totalAddPrice);
     Shop.Cart.koefCurr = addSumBask / sumBask;
     $(genObj.sumBask).each(function() {
         var temp = 0;

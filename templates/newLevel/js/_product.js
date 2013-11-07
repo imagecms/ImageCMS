@@ -34,7 +34,6 @@ function tovarChangeVariant(el) {
         liBlock.find(genObj.prefV + vId).show();
         
         if (productPhotoDrop) {
-            console.log(1)
             var photo = $(genObj.photoProduct);
             photo.data($.extend({
                 'frame': photo.closest(genObj.parentBtnBuy), 

@@ -290,5 +290,5 @@
 </div>
 {/* <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}
 <script type="text/javascript">
-    initDownloadScripts(['_order'], 'initOrderTrEv', 'initOrder');
+    initDownloadScripts(['order'], 'initOrderTrEv', 'initOrder');
 </script>

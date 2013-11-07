@@ -34,7 +34,7 @@
         {literal}
             <script type="text/javascript">
                 $.ajaxSetup({
-                    cache: true
+                    cache: false
                 });
                 function initDownloadScripts(scripts, callback, customEvent){
                     function downloadJSAtOnload(scripts, callback, customEvent) {
@@ -94,10 +94,6 @@
         {include_tpl('user_toolbar')}
 
         <!-- scripts -->
-        <script type="text/javascript" src="{$THEME}js/_jquery.imagecms.shop.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'], 'init', 'scriptDefer');
         </script>

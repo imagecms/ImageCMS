@@ -59,7 +59,7 @@ class Gift extends \mod_discount\classes\BaseDiscount {
         if ($totalPrice === null)
             $totalPrice = $this->get_total_price();
         if (null === $key)
-            $key = strip_tags(trim($_POST['key']));
+            $key = strip_tags(trim($_GET['key']));
         foreach ($this->discount_type['all_order'] as $disc) 
             if ($disc['key'] == $key and $disc['is_gift']) {
                 $value = $this->get_discount_value($disc,$totalPrice);
