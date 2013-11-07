@@ -13,7 +13,6 @@ function renderOrderDetails() {
     })
     initShopPage(false);
     recountCartPage();
-    $(document).trigger('hideActivity');
 }
 
 function changeDeliveryMethod(id, selectDeliv) {
@@ -44,6 +43,7 @@ function changeDeliveryMethod(id, selectDeliv) {
 }
 
 function recountCartPage() {
+    Shop.Cart.totalRecount();
     var ca = "";
     if (selectDeliv)
         ca = $('span.cuselActive');
@@ -62,8 +62,8 @@ function recountCartPage() {
     finalAmount = Shop.Cart.getFinalAmount();
 
     if (Shop.Cart.koefCurr == undefined){
-        var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice).toFixed(pricePrecision),
-        addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice).toFixed(pricePrecision);
+        var sumBask = parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision),
+        addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
         Shop.Cart.koefCurr = addSumBask / sumBask;
     }
     
@@ -71,7 +71,6 @@ function recountCartPage() {
         finalAmount = finalAmount - discount['result_sum_discount_convert'];
     if (kitDiscount != 0)
         finalAmount = finalAmount - kitDiscount;
-    console.log(kitDiscount)
     if (Shop.Cart.gift != undefined && Shop.Cart.gift != 0 && !Shop.Cart.gift.error)
         finalAmount = finalAmount - Shop.Cart.gift.value;
     if (finalAmount - Shop.Cart.shipping < 0)
@@ -98,7 +97,7 @@ function applyGift(el) {
     $.ajax({
         url: '/mod_discount/gift/get_gift_certificate',
         data: 'key=' + $('[name=giftcert]').val(),
-        type: "POST",
+        type: "GET",
         success: function(data) {
             if (data != '')
                 gift = JSON.parse(data);

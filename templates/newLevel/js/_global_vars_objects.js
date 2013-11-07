@@ -100,8 +100,8 @@ var optionsDrop = {
     overlayColor: '#000',
     overlayOpacity: '0.6',
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
-    effon: 'show',
-    effoff: 'hide',
+    effon: 'fadeIn',
+    effoff: 'fadeOut',
     durationOn: 500,
     durationOff: 200,
     modalPlace: '.notification',

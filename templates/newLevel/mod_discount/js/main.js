@@ -2,14 +2,14 @@ function getDiscountBack(discTpl) {
     var _discount = 0;
     $.ajax({
         url: '/mod_discount/discount_api/get_discount_api',
-        type: "POST",
+        type: "GET",
         async: false,
         success: function(data) {
             _discount = data != '' ? JSON.parse(data) : null;
             Shop.Cart.discount = _discount;
             if (data != '') {
                 if (discTpl) {
-                    $.post('/mod_discount/discount_api/get_discount_tpl_from_json_api', {
+                    $.get('/mod_discount/discount_api/get_discount_tpl_from_json_api', {
                         json: data
                     }, function(tpl) {
                         $(document).trigger({
