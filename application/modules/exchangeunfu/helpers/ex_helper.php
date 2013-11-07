@@ -264,8 +264,9 @@ if (!function_exists('is_orders_product')) {
 
     function is_orders_product($product_id, $products) {
         foreach ($products as $val) {
-            if ($val['id'] == $product_id)
+            if ($val['id'] == $product_id) {
                 return $val;
+            }
         }
         return false;
     }
@@ -278,8 +279,9 @@ if (!function_exists('is_order')) {
     function is_order($order_ex_id, $orders) {
 
         foreach ($orders as $val) {
-            if ($val['external_id'] == $order_ex_id)
+            if ($val['external_id'] == $order_ex_id) {
                 return $val;
+            }
         }
 
         return false;
