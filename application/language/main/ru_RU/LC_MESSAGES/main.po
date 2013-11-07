@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 18:52+0300\n"
+"POT-Creation-Date: 2013-11-06 18:54+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: Marko <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -258,6 +258,48 @@ msgstr "Редактирование файлов"
 #: ../../../../../application/helpers/rules_helper.php:149
 msgid "Edit Folders"
 msgstr "Редактирование папок"
+
+#: ../../../../../application/libraries/DX_Auth.php:813
+msgid "auth login incorrect password"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:820
+msgid "auth not activated"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:825
+msgid "auth login username not exist"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:875
+#: ../../../../../application/libraries/DX_Auth.php:906
+msgid "auth activate subject"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:921
+msgid "auth account subject"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:990
+msgid "auth forgot password subject"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:1012
+msgid "auth request sent"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:1015
+msgid "auth username or email not exist"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:1121
+msgid "auth incorrect old password"
+msgstr ""
+
+#: ../../../../../application/libraries/DX_Auth.php:1153
+#, fuzzy
+msgid "auth incorrect password"
+msgstr "Пароль Мерчанта"
 
 #: ../../../../../application/libraries/DX_Auth.php:1232
 #: ../../../../../application/libraries/DX_Auth.php:1237

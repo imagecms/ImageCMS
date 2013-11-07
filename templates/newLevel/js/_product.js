@@ -46,8 +46,10 @@ function tovarChangeVariant(el) {
 /*/Variants in Product*/
 }
 function resizePhoto(drop, s, c) {
-    var fancyFrame = $(hrefOptions.placeHref).parent();
+    var fancyFrame = $(hrefOptions.placeHref).parent(),
+    img = fancyFrame.find('img');
     fancyFrame.css('height', '');
+    img.css({'width': img.actual('width'), 'height': img.actual('height')});
     var dropV = drop.is(':visible') ? true : false;
     hD = dropV ? drop.height() : drop.actual('height');
     var dropH = hD > wnd.height() ? wnd.height() : hD,
@@ -62,6 +64,7 @@ function resizePhoto(drop, s, c) {
     fancyFrame.css({
         'height': mayHC - (fancyFrame.outerHeight() - fancyFrame.height())
     })
+    img.css({'width': '', 'height': ''});
     if (c != undefined)
         c();
     $.drop('dropCenter')(drop);
