@@ -693,6 +693,7 @@ function dropBaskResize() {
         el: popupCart, 
         dropC: popupCart.find(popupCart.data('dropContent')).first()
     });
+    wnd.trigger('resize.drop');
 }
 function decorElemntItemProduct(el) {
     if (!el)
