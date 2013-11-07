@@ -200,7 +200,7 @@ function init() {
             $('[data-id="popupKit_' + data.cartItem.kitId + '"]').remove();
         processCarts();
         dropBaskResize();
-        if (Shop.Cart.length() > 0 && !orderdetails)
+        if (Shop.Cart.length() > 0 && !orderDetails)
             getDiscount(false);
     });
     $(genObj.parentBtnBuy).on('click.toCompare', '.' + genObj.toCompare,  function() {

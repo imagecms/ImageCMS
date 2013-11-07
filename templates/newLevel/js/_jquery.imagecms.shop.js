@@ -1926,11 +1926,12 @@ function getCookie(c_name)
                             }
                             else
                                 _hide()
+                            
+                            wnd.off('resize.drop');
                         }
                     }
                 })
             }
-            wnd.unbind('resize.drop');
         },
         dropCenter: function(drop) {
             if (drop == undefined)
