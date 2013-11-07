@@ -13,12 +13,13 @@ function init() {
     btnbuyInitialize(body);//where find
     processBtnBuyCount();
     initShopPage(false);
-    countSumBask();
     tovarCategoryChangeVariant();
     //if !selectDeliv
     $(document).on('discount.display', function(e) {
         displayDiscount(e.discount);
     });
+    if (!$.isFunction(window.getDiscountBack))
+        displayDiscount(null);
 
     processWish();
     processComp();
@@ -184,13 +185,11 @@ function init() {
     $(document).on('count_changed', function() {
         if (!orderDetails)
             getDiscount(false);
-        countSumBask();
     });
     $(document).on('after_add_to_cart', function(e) {
         initShopPage(e.show);
         //initShopPage(false, e.cartItem); //for animate img to tinybask
         getDiscount(false);
-        countSumBask();
         if ($.exists(optionCompare.frameCompare))
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
@@ -200,9 +199,8 @@ function init() {
         else
             $('[data-id="popupKit_' + data.cartItem.kitId + '"]').remove();
         processCarts();
-        countSumBask();
         dropBaskResize();
-        if (Shop.Cart.length() > 0)
+        if (Shop.Cart.length() > 0 && !orderdetails)
             getDiscount(false);
     });
     $(genObj.parentBtnBuy).on('click.toCompare', '.' + genObj.toCompare,  function() {
@@ -423,16 +421,15 @@ function init() {
                 $.drop('closeDrop')($(genObj.popupCart))
         
             processCarts();
-            countSumBask();
             if (orderDetails) {
                 renderOrderDetails();
             }
-            $.ajax({
-                'url': siteUrl+locale+'auth/login', 
-                'complete': function(o){
-                    if (o.status == 200 && isLogin)
-                        location.reload();
-                }
-            });
+        //            $.ajax({
+        //                'url': siteUrl+locale+'auth/login', 
+        //                'complete': function(o){
+        //                    if (o.status == 200 && isLogin)
+        //                        location.reload();
+        //                }
+        //            });
         });
 }

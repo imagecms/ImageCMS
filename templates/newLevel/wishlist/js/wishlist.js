@@ -28,6 +28,7 @@ var wishList = {
     countProdsWL: '.countProdsWL',
     genPriceProdsWL: '.genPriceProdsWL',
     frameWL: '[data-rel="list-item"]',
+    frameBuy: '.frame-buy-all-products',
     curCount: 0,
     cAddPrWL: 0,
     items: [],
@@ -203,11 +204,17 @@ function processWishPage() {
         $this.find(wishList.countProdsWL).text(btnBuyLC);
         $this.find(genObj.plurProd).text(pluralStr(btnBuyLC, plurProd));
         genPrice.text(genSum);
-        if (btnBuyL == btnCartL) {
-            changeBtnBuyWL(btnBuy, true);
+        if (btnBuyLC == 0){
+            $(wishList.frameBuy).hide();
         }
-        else {
-            changeBtnBuyWL(btnBuy, false);
+        else{
+            $(wishList.frameBuy).show();
+            if (btnBuyL == btnCartL) {
+                changeBtnBuyWL(btnBuy, true);
+            }
+            else {
+                changeBtnBuyWL(btnBuy, false);
+            }
         }
     });
 }
