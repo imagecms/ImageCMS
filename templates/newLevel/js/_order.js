@@ -60,6 +60,7 @@ function recountCartPage() {
     var discount = Shop.Cart.discount,
     kitDiscount = parseFloat(Shop.Cart.kitDiscount),
     finalAmount = Shop.Cart.getFinalAmount();
+
     if (Shop.Cart.koefCurr == undefined){
         var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice).toFixed(pricePrecision),
         addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice).toFixed(pricePrecision);
@@ -70,6 +71,7 @@ function recountCartPage() {
         finalAmount = finalAmount - discount['result_sum_discount_convert'];
     if (kitDiscount != 0)
         finalAmount = finalAmount - kitDiscount;
+    console.log(kitDiscount)
     if (Shop.Cart.gift != undefined && Shop.Cart.gift != 0 && !Shop.Cart.gift.error)
         finalAmount = finalAmount - Shop.Cart.gift.value;
     if (finalAmount - Shop.Cart.shipping < 0)
