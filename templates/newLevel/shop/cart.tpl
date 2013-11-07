@@ -241,7 +241,7 @@
                             <span class="frame-prices f-s_0">
                                 <span class="price-discount">
                                     <span>
-                                        <span class="price frame-gen-discount" id="totalPrice"></span>
+                                        <span class="price frame-gen-discount" id="totalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
                                         <span class="curr frame-gen-discount">{$CS}</span>
                                     </span>
                                 </span>
@@ -290,5 +290,5 @@
 </div>
 {/* <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}
 <script type="text/javascript">
-    initDownloadScripts(['order'], 'initOrderTrEv', 'initOrder');
+    initDownloadScripts(['_order'], 'initOrderTrEv', 'initOrder');
 </script>

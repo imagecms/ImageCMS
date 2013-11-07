@@ -169,9 +169,9 @@ function processBtnBuyCount(el) {
     });
 }
 function getDiscount(k) {
-//        if (!$.exists('#countDisc'))
-//            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
-//        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
+    //        if (!$.exists('#countDisc'))
+    //            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+    //        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
     $(document).trigger('showActivity');
     if (!$.isFunction(window.getDiscountBack))
         displayDiscount(null);
@@ -184,6 +184,8 @@ function getDiscount(k) {
     else if ($.isFunction(window.getDiscountBack)) {
         getDiscountBack(k);
     }
+    var kitDiscount = parseFloat(getKitDiscount());
+    Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
 }
 function getKitDiscount() {
     var _kit_disc = 0;
@@ -201,9 +203,6 @@ function getKitDiscount() {
     return _kit_disc;
 }
 function displayDiscount(obj) {
-    var kitDiscount = parseFloat(getKitDiscount());
-    kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
-    Shop.Cart.kitDiscount = kitDiscount;
     Shop.Cart.discountProduct = 0;
     var tempdisc = false;
     if (obj != null)
@@ -212,7 +211,7 @@ function displayDiscount(obj) {
     if (discC) {
         if (obj != null)
             Shop.Cart.discountProduct += parseFloat(obj.sum_discount_product == null ? 0 : obj.sum_discount_product);
-        Shop.Cart.discountProduct += kitDiscount;
+        Shop.Cart.discountProduct += Shop.Cart.kitDiscount;
         $(genObj.genDiscount).each(function() {
             $(this).html(Shop.Cart.discountProduct.toFixed(pricePrecision));
         });
@@ -357,9 +356,9 @@ function checkSyncs() {
     }
 }
 function countSumBask() {
-//    if (!$.exists('#countDisc'))
-//            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
-//        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
+    //    if (!$.exists('#countDisc'))
+    //            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+    //        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
     var length = Shop.Cart.length();
     if (!length) {
         $(genObj.tinyBask + '.' + genObj.isAvail).removeClass(genObj.isAvail);
