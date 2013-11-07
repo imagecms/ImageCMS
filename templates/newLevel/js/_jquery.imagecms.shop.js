@@ -2838,6 +2838,14 @@ var ImageCMSApi = {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
+                    
+                    if (((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != '')))
+                        $(document).trigger({
+                            'type': 'imageapi.before_refresh_reload',
+                            'el': form,
+                            'obj': DS
+                        });
+                                        
                     if (typeof DS.callback == 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
                     else
@@ -2848,10 +2856,14 @@ var ImageCMSApi = {
                             if (DS.hideForm)
                                 form.show();
                         }), DS.durationHideForm);
-                    if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
-                        location.reload();
-                    if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
-                        location.href = obj.redirect;
+                        
+                    setTimeout(function(){
+                        if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
+                            location.reload();
+                        if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
+                            location.href = obj.redirect;
+                    }, DS.durationHideForm);
+                    
                     if (obj.status == true) {
                         if (DS.hideForm)
                             form.hide();
