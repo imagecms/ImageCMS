@@ -16,7 +16,8 @@ function init() {
     tovarCategoryChangeVariant();
     //if !selectDeliv
     $(document).on('discount.display', function(e) {
-        displayDiscount(e.discount);
+        Shop.Cart.discount = e.discount;
+        displayDiscount(Shop.Cart.discount);
     });
     getDiscount();
 

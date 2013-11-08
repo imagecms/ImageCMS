@@ -5,7 +5,6 @@ function getDiscountBack(discTpl) {
         type: "GET",
         success: function(data) {
             _discount = data != '' ? JSON.parse(data) : null;
-            Shop.Cart.discount = _discount;
             if (data != '') {
                 if (discTpl) {
                     $.get('/mod_discount/discount_api/get_discount_tpl_from_json_api', {
@@ -43,24 +42,15 @@ function getDiscountBack(discTpl) {
     })
 }
 
-function loadCertificat() {
-    var gift = 0;
+function loadCertificat(gift) {
     $(document).trigger({
         'type': 'discount.load_certificate'
     });
-    if (Shop.Cart.gift == undefined)
-        $.get('/mod_discount/gift/render_gift_input', function(tpl) {
-            $(document).trigger({
-                'type': 'discount.renderGiftInput', 
-                'tpl': tpl
-            });
-        });
-    else {
-        gift = Shop.Cart.gift;
+    if (gift != undefined) {
         if (gift.error) {
             $(document).trigger({
                 'type': 'discount.giftError', 
-                'datas': gift.mes.toString()
+                'datas': gift.mes
             });
         } else {
             $.get('/mod_discount/gift/render_gift_succes', {
@@ -73,5 +63,13 @@ function loadCertificat() {
                 });
             })
         }
+    }
+    else {
+        $.get('/mod_discount/gift/render_gift_input', function(tpl) {
+            $(document).trigger({
+                'type': 'discount.renderGiftInput', 
+                'tpl': tpl
+            });
+        });
     }
 }

@@ -2388,6 +2388,7 @@ var Shop = {
         shipping: 0,
         shipFreeFrom: 0,
         giftCertPrice: 0,
+        gift: undefined,
         add: function(cartItem, show) {
             //trigger before_add_to_cart
             $(document).trigger({
