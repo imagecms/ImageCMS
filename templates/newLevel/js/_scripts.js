@@ -20,7 +20,8 @@ function init() {
     });
     if (!$.isFunction(window.getDiscountBack))
         displayDiscount(null);
-    countSumBask();
+    if (!orderDetails)
+        countSumBask();
 
     processWish();
     processComp();
@@ -176,6 +177,7 @@ function init() {
     $(document).on('cart_clear', function() {
         initShopPage(false);
         countSumBask();
+        processCarts();
     });
     $(document).on('count_changed', function() {
         if (!orderDetails)
@@ -186,6 +188,7 @@ function init() {
         initShopPage(e.show);
         //initShopPage(false, e.cartItem); //for animate img to tinybask
         getDiscount(false);
+        processBtnBuyCount();
         if ($.exists(optionCompare.frameCompare))
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
         countSumBask();
@@ -196,6 +199,7 @@ function init() {
         else
             $('[data-id="popupKit_' + data.cartItem.kitId + '"]').remove();
         processCarts();
+        processBtnBuyCount();
         dropBaskResize();
         if (Shop.Cart.length() > 0 && !orderDetails)
             getDiscount(false);
@@ -357,10 +361,11 @@ function init() {
                     $.drop('closeDrop')(drop);
             }, e.obj.durationHideForm - drop.data('durationOff') > 0 ? e.obj.durationHideForm - drop.data('durationOff') : e.obj.durationHideForm)
     });
-    $(document).on('autocomplete.before showActivity before_sync_cart before_add_to_compare', function(e) {
+    $(document).on('autocomplete.before showActivity before_sync_cart before_add_to_compare discount.load_certificate', function(e) {
         $.fancybox.showActivity();
     })
-    $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart end_sync_cart compare_list_add compare_list_rm compare_list_sync count_changed cart_clear cart_rm', function(e) {
+    $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart end_sync_cart compare_list_add compare_list_rm compare_list_sync count_changed cart_clear cart_rm discount.renderGiftInput discount.giftError discount.renderGiftSucces imageapi.success', function(e) {
+        console.log(e.type)
         $.fancybox.hideActivity();
     })
 

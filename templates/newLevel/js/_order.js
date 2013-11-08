@@ -89,7 +89,6 @@ function displayInfoDiscount(tpl) {
     var frameDiscountO = $(genObj.frameDiscount);
     frameDiscountO.html(tpl);
     frameDiscountO.next(preloader).hide(); //preloader
-    $(document).trigger('hideActivity');
 }
 function applyGift(el) {
     $(genObj.gift).find(preloader).show();

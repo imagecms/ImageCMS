@@ -2820,7 +2820,8 @@ var ImageCMSApi = {
             },
             success: function(obj) {
                 $(document).trigger({
-                    'type': 'hideActivity'
+                    'type': 'imageapi.success',
+                    'object': obj
                 });
                 if (obj !== null) {
                     var form = $(selector);
