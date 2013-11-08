@@ -167,23 +167,29 @@ function processBtnBuyCount(el) {
         'type': 'processPageEnd'
     });
 }
-function getDiscount(k) {
-//    if (!$.exists('#countDisc'))
-//        body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
-//    $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
+function getDiscount() {
+    //        if (!$.exists('#countDisc'))
+    //            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+    //        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
+    var k = true;
+    if (!orderDetails)
+        k = false;
     $(document).trigger('showActivity');
     $.ajax({
-        async: false,
         type: 'GET',
         url: '/shop/cart_api/get_kit_discount',
-        complete: function(data) {
+        success: function(data) {
             var kitDiscount = parseFloat(data);
             Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
+            
+            if (!$.isFunction(window.getDiscountBack))
+                displayDiscount(null);
             
             if (k && !$.isFunction(window.getDiscountBack)){
                 displayInfoDiscount('');
                 renderGiftInput('');
             }
+            
             if (!discountInPopup && !k)
                 return false;
             else if ($.isFunction(window.getDiscountBack)) {
@@ -223,6 +229,7 @@ function displayDiscount(obj) {
     else
         $(genObj.frameGenDiscount).hide();
     countSumBask();
+    $(document).trigger('hideActivity');
 };
 function btnbuyInitialize(el) {
     el.find(genObj.btnBuy).unbind('click.buy').bind('click.buy', function(e) {
@@ -541,38 +548,25 @@ function initCarouselJscrollPaneCycle(el) {
             })
         })
     }
-
-    var cycle = el.find('.cycle'),
-    next = '.baner .next',
-    prev = '.baner .prev';
-    if (cycle.find('li').length > 1) {
-        cycle.cycle({
-            speed: 600,
-            timeout: 5000, 
-            fx: 'fade',
-            pauseOnPagerHover: true,
-            next: next,
-            prev: prev,
-            pager: '.pager',
-            pagerAnchorBuilder: function(idx, slide) {
-                return '<a href="#"></a>';
-            }
-        }).hover(function() {
-            cycle.cycle('pause');
-        }, function() {
-            cycle.cycle('resume');
-        });
-        $(next + ',' + prev).show();
-    }
-    removePreloaderBaner(cycle); //cycle - parent for images
-    $('.baner').each(function() {
-        var $this = $(this);
-        if (!$this.hasClass('resize'))
-            $(this).find('img').each(function() {
-                var $this = $(this);
-                $this.css('margin-left', -$this.css('max-width', 'none').actual('width') / 2);
+    el.find('.baner').each(function(){
+        var $this = $(this),
+        cycle = $this.find('.cycle'),
+        next = $this.find('.next'),
+        prev = $this.find('.prev');
+        
+        if (cycle.find('li').length > 1) {
+            cycle.cycle($.extend({}, optionsCycle, {
+                'next': next, 
+                'prev': prev
+            })).hover(function() {
+                cycle.cycle('pause');
+            }, function() {
+                cycle.cycle('resume');
             });
-    });
+            $(next).add(prev).show();
+        }
+        removePreloaderBaner(cycle); //cycle - parent for images
+    })
 }
 function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop);

@@ -3,7 +3,6 @@ function getDiscountBack(discTpl) {
     $.ajax({
         url: '/mod_discount/discount_api/get_discount_api',
         type: "GET",
-        async: false,
         success: function(data) {
             _discount = data != '' ? JSON.parse(data) : null;
             Shop.Cart.discount = _discount;
@@ -21,7 +20,7 @@ function getDiscountBack(discTpl) {
                 }
                 else {
                     $(document).trigger({
-                        'type': 'discount.display', 
+                        'type': 'discount.display',
                         'discount': _discount, 
                         'tpl': ''
                     });
