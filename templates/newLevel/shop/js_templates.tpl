@@ -1,5 +1,5 @@
 <div id="popupCart" style="display: none;" class="drop drop-bask drop-style"></div>
-<button data-drop="#popupCart" id="showCart" style="display: none;"></button>
+<button type="button" data-drop="#popupCart" id="showCart" style="display: none;"></button>
 
 <script type="text/template" id="cartPopupTemplate">
     {literal}
@@ -26,7 +26,7 @@
         <!-- for single product -->
                                     <% if (!item.kit) { %>
                                     <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
-                                        <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
+                                        <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
                                         <td class="frame-items">
                                             <a href="<%-item.url%>" class="frame-photo-title">
                                                 <span class="photo-block">
@@ -133,7 +133,7 @@
                                             <table>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
+                                                        <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
                                                         <td class="frame-items frame-items-kit">
                                                             <ul class="items items-bask">
                                                                 <% _.each(prices, function(id){  %>
@@ -381,7 +381,7 @@
         <!-- for single product -->
                                 <% if (!item.kit) { %>
                                 <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
-                                    <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
+                                    <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
                                     <td class="frame-items">
                                         <a href="<%-item.url%>" class="frame-photo-title">
                                             <span class="photo-block">
@@ -484,7 +484,7 @@
                                 <% var prodstatus = typeof item.prodstatus == "string" ? JSON.parse(item.prodstatus) : item.prodstatus %>
 
                                 <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-kitId="<%- item.kitId %>" data-id="popupKit_<%- item.kitId %>">
-                                    <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
+                                    <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
                                     <td class="frame-items frame-items-kit">
                                         <ul class="items items-bask">
                                             <% _.each(prices, function(id){  %>
@@ -674,7 +674,6 @@
                             <div class="clearfix inside-padd">
                                 <div class="btn-form f_l">
                                     <button type="button" data-closed="closed-js">
-
                                         <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevel')}{literal}</span>
                                     </button>
                                 </div>
