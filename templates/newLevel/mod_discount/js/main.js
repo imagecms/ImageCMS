@@ -46,6 +46,9 @@ function getDiscountBack(discTpl) {
 
 function loadCertificat() {
     var gift = 0;
+    $(document).trigger({
+        'type': 'discount.load_certificate'
+    });
     if (Shop.Cart.gift == undefined)
         $.get('/mod_discount/gift/render_gift_input', function(tpl) {
             $(document).trigger({
