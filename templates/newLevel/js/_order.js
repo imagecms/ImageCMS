@@ -55,7 +55,7 @@ function recountCartPage() {
         loadCertificat();
     }
     hideInfoDiscount();
-    getDiscount(true);
+    getDiscount();
 
     var discount = Shop.Cart.discount,
     kitDiscount = parseFloat(Shop.Cart.kitDiscount),
