@@ -34,7 +34,6 @@ function tovarChangeVariant(el) {
         liBlock.find(genObj.prefV + vId).show();
         
         if (productPhotoDrop) {
-            console.log(1)
             var photo = $(genObj.photoProduct);
             photo.data($.extend({
                 'frame': photo.closest(genObj.parentBtnBuy), 
@@ -221,6 +220,8 @@ function afterClosedPhoto(el, drop){
     drop.find('.addingphoto').remove();
 }
 function onComplete(el, drop, isajax, data, elSet) {
+    drop.find('[data-drop]').drop(optionsDrop);
+    
     var carGal = drop.find('.content-carousel');
     drop.find('.drop-content-photo img').css('visibility', 'visible').hide().fadeIn();
     

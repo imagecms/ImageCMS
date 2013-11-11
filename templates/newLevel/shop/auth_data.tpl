@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="btn-exit-shop">
-                <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('{site_url("/auth/authapi/logout")}', '', {literal}{callback: function(msg, status, form, DS) {
+                <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('{site_url("/auth/authapi/logout")}', '', {literal}{durationHideForm: 0, callback: function(msg, status, form, DS) {
                                 if (status) {
                                     var items = Shop.Cart.getAllItems();
                                     for (var i = 0; i < items.length; i++)

@@ -326,7 +326,6 @@ class ImportXML {
             }
         }
         //insert products_i18n
-//        var_dumps($insert_products_i18n);
         $this->insert = $insert_products_i18n;
         $this->insertData($this->products_table . '_i18n');
 //
@@ -641,7 +640,6 @@ class ImportXML {
                 $this->insert[] = $data;
             }
         }
-//        var_dump($this->insert,$this->update);
         $this->insertData($this->prices_table);
         $this->updateData($this->prices_table, 'external_id');
     }
@@ -712,15 +710,22 @@ class ImportXML {
 
             $data['status'] = 1;
             if ($statuses[$data['external_id']]) {
-                $data['status'] = 1;
+                $data['status'] = 2;
                 $data['invoice_external_id'] = $statuses[$data['external_id']]['id'];
                 $data['invoice_code'] = $statuses[$data['external_id']]['code'];
                 $data['invoice_date'] = $statuses[$data['external_id']]['date'];
             }
 
             $user = is_user($order->IDКонтрагент, $this->users);
+
             if ($user) {
+                $userInfo = $this->ci->db
+                        ->where('id', $user['id'])
+                        ->get('users')
+                        ->row_array();
                 $data['user_id'] = $user['id'];
+                $data['user_full_name'] = $userInfo['username'];
+                $data['user_email'] = $userInfo['email'];
             } else {
                 return;
             }
@@ -904,12 +909,6 @@ class ImportXML {
      */
     private function updateData($table, $where = '') {
         if (!empty($this->update)) {
-            if ($table == 'shop_orders') {
-
-//                var_dumps($where);
-//                var_dumps($table);
-//                var_dumps($this->update);
-            }
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
 

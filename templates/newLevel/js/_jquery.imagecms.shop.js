@@ -442,7 +442,7 @@ function getCookie(c_name)
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
-                searchPath: "/shop/search/ac",
+                searchPath: siteUrl+locale+"shop/search/ac",
                 inputString: $('#inputString'),
                 minValue: 3,
                 blockEnter: true
@@ -1926,11 +1926,12 @@ function getCookie(c_name)
                             }
                             else
                                 _hide()
+                            
+                            wnd.off('resize.drop');
                         }
                     }
                 })
             }
-            wnd.unbind('resize.drop');
         },
         dropCenter: function(drop) {
             if (drop == undefined)
@@ -2387,6 +2388,7 @@ var Shop = {
         shipping: 0,
         shipFreeFrom: 0,
         giftCertPrice: 0,
+        gift: undefined,
         add: function(cartItem, show) {
             //trigger before_add_to_cart
             $(document).trigger({
@@ -2399,7 +2401,7 @@ var Shop = {
                 'productId': cartItem.id,
                 'variantId': cartItem.vId
             };
-            var url = '/shop/cart_api/add';
+            var url = siteUrl+locale+'shop/cart_api/add';
             if (cartItem.kit) {
                 data = {
                     'quantity': cartItem.count,
@@ -2408,7 +2410,7 @@ var Shop = {
                 url += '/ShopKit';
             }
             
-            $.post(url, data,
+            $.get(url, data,
                 function() {
                     try {
                         Shop.Cart._add(cartItem, show);
@@ -2432,10 +2434,6 @@ var Shop = {
                 cartItem: _.clone(cartItem),
                 show: show
             });
-            $(document).trigger({
-                type: 'cart_changed'
-            });
-            //
             return this;
         },
         rm: function(cartItem) {
@@ -2443,15 +2441,11 @@ var Shop = {
                 var key = 'ShopKit_' + cartItem.kitId;
             else
                 var key = 'SProducts_' + cartItem.id + '_' + cartItem.vId;
-            $.getJSON('/shop/cart_api/delete/' + key, function() {
+            $.getJSON(siteUrl+locale+'shop/cart_api/delete/' + key, function() {
                 localStorage.removeItem('cartItem_' + cartItem.id + '_' + cartItem.vId);
-                Shop.Cart.totalRecount();
                 $(document).trigger({
                     type: 'cart_rm',
                     cartItem: cartItem
-                });
-                $(document).trigger({
-                    type: 'cart_changed'
                 });
             });
             return this;
@@ -2470,7 +2464,7 @@ var Shop = {
                         recount: 1
                     };
                     postData[postName] = cartItem.count;
-                    $.post('/shop/cart_api/recount', postData, function(data) {
+                    $.post(siteUrl+locale+'shop/cart_api/recount', postData, function(data) {
                         var dataObj = JSON.parse(data);
                         if (dataObj.hasOwnProperty('count'))
                             Shop.Cart.currentItem.count = dataObj.count;
@@ -2480,30 +2474,22 @@ var Shop = {
                             type: 'count_changed',
                             cartItem: _.clone(cartItem)
                         });
-                        $(document).trigger({
-                            type: 'cart_changed'
-                        });
                     });
                     return this.totalRecount();
                 }
             }
         },
         clear: function() {
-            $.getJSON('/shop/cart_api/clear',
+            $.getJSON(siteUrl+locale+'shop/cart_api/clear',
                 function() {
                     var items = Shop.Cart.getAllItems();
                     for (var i = 0; i < items.length; i++)
                         localStorage.removeItem(items[i].storageId());
                     delete items;
                     $(document).trigger({
-                        type: 'cart_changed'
-                    });
-                    $(document).trigger({
                         type: 'cart_clear'
                     });
-                    Shop.Cart.totalRecount();
-                }
-                );
+                });
         },
         //work with storage
         load: function(key) {
@@ -2601,7 +2587,7 @@ var Shop = {
             $(document).trigger({
                 type: 'before_sync_cart'
             });
-            $.getJSON('/shop/cart_api/sync', function(data) {
+            $.getJSON(siteUrl+locale+'shop/cart_api/sync', function(data) {
                 if (typeof(data) == 'object') {
                     var pattern = /cartItem_*/;
                     var items = Shop.Cart.getAllItems();
@@ -2694,8 +2680,11 @@ var Shop = {
         },
         add: function(key) {
             this.items = this.all();
+            $(document).trigger({
+                type: 'before_add_to_compare'
+            });
             if (this.items.indexOf(key) === -1) {
-                $.get('/shop/compare_api/add/' + key, function(data) {
+                $.get(siteUrl+locale+'shop/compare_api/add/' + key, function(data) {
                     try {
                         dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -2718,7 +2707,7 @@ var Shop = {
                 
                 this.items = _.without(this.items, key);
                 this.items = this.all();
-                $.get('/shop/compare_api/remove/' + key, function(data) {
+                $.get(siteUrl+locale+'shop/compare_api/remove/' + key, function(data) {
                     try {
                         dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -2740,7 +2729,7 @@ var Shop = {
             });
         },
         sync: function() {
-            $.getJSON('/shop/compare_api/sync', function(data) {
+            $.getJSON(siteUrl+locale+'shop/compare_api/sync', function(data) {
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
                     localStorage.setItem('compareList', JSON.parse(data));
                     $(document).trigger({
@@ -2768,7 +2757,7 @@ if (typeof(wishList) != 'object')
             }
         },
         sync: function() {
-            $.post('/wishlist/wishlistApi/sync', function(data) {
+            $.get('/wishlist/wishlistApi/sync', function(data) {
                 localStorage.setItem('wishList', data);
                 $(document).trigger({
                     'type': 'wish_list_sync'
@@ -2823,7 +2812,7 @@ var ImageCMSApi = {
             'type': 'showActivity'
         });
         $.ajax({
-            type: "post",
+            type: "POST",
             data: dataSend,
             url: url,
             dataType: "json",
@@ -2832,12 +2821,21 @@ var ImageCMSApi = {
             },
             success: function(obj) {
                 $(document).trigger({
-                    'type': 'hideActivity'
+                    'type': 'imageapi.success',
+                    'object': obj
                 });
                 if (obj !== null) {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
+                    
+                    if (((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != '')))
+                        $(document).trigger({
+                            'type': 'imageapi.before_refresh_reload',
+                            'el': form,
+                            'obj': DS
+                        });
+                                        
                     if (typeof DS.callback == 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
                     else
@@ -2848,10 +2846,14 @@ var ImageCMSApi = {
                             if (DS.hideForm)
                                 form.show();
                         }), DS.durationHideForm);
-                    if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
-                        location.reload();
-                    if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
-                        location.href = obj.redirect;
+                        
+                    setTimeout(function(){
+                        if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
+                            location.reload();
+                        if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
+                            location.href = obj.redirect;
+                    }, DS.durationHideForm);
+                    
                     if (obj.status == true) {
                         if (DS.hideForm)
                             form.hide();

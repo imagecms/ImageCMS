@@ -34,7 +34,7 @@
         {literal}
             <script type="text/javascript">
                 $.ajaxSetup({
-                    cache: true
+                    cache: false
                 });
                 function initDownloadScripts(scripts, callback, customEvent){
                     function downloadJSAtOnload(scripts, callback, customEvent) {
