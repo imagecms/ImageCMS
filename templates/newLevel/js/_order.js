@@ -13,7 +13,6 @@ function renderOrderDetails() {
     })
     initShopPage(false);
     recountCartPage();
-    $(document).trigger('hideActivity');
 }
 
 function changeDeliveryMethod(id, selectDeliv) {
@@ -44,6 +43,7 @@ function changeDeliveryMethod(id, selectDeliv) {
 }
 
 function recountCartPage() {
+    Shop.Cart.totalRecount();
     var ca = "";
     if (selectDeliv)
         ca = $('span.cuselActive');
@@ -52,17 +52,18 @@ function recountCartPage() {
     Shop.Cart.shipping = parseFloat(ca.data('price'));
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     if ($.isFunction(window.loadCertificat)) {
-        loadCertificat();
+        loadCertificat(Shop.Cart.gift);
     }
     hideInfoDiscount();
-    getDiscount(true);
+    getDiscount();
 
     var discount = Shop.Cart.discount,
     kitDiscount = parseFloat(Shop.Cart.kitDiscount),
     finalAmount = Shop.Cart.getFinalAmount();
+
     if (Shop.Cart.koefCurr == undefined){
-        var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice).toFixed(pricePrecision),
-        addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice).toFixed(pricePrecision);
+        var sumBask = parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision),
+        addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
         Shop.Cart.koefCurr = addSumBask / sumBask;
     }
     
@@ -70,7 +71,7 @@ function recountCartPage() {
         finalAmount = finalAmount - discount['result_sum_discount_convert'];
     if (kitDiscount != 0)
         finalAmount = finalAmount - kitDiscount;
-    if (Shop.Cart.gift != undefined && Shop.Cart.gift != 0 && !Shop.Cart.gift.error)
+    if (Shop.Cart.gift != undefined && !Shop.Cart.gift.error)
         finalAmount = finalAmount - Shop.Cart.gift.value;
     if (finalAmount - Shop.Cart.shipping < 0)
         finalAmount = Shop.Cart.shipping;
@@ -88,15 +89,14 @@ function displayInfoDiscount(tpl) {
     var frameDiscountO = $(genObj.frameDiscount);
     frameDiscountO.html(tpl);
     frameDiscountO.next(preloader).hide(); //preloader
-    $(document).trigger('hideActivity');
 }
-function applyGift(el) {
+function applyGift() {
     $(genObj.gift).find(preloader).show();
     var gift = 0;
     $.ajax({
         url: '/mod_discount/gift/get_gift_certificate',
         data: 'key=' + $('[name=giftcert]').val(),
-        type: "POST",
+        type: "GET",
         success: function(data) {
             if (data != '')
                 gift = JSON.parse(data);

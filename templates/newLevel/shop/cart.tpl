@@ -241,7 +241,7 @@
                             <span class="frame-prices f-s_0">
                                 <span class="price-discount">
                                     <span>
-                                        <span class="price frame-gen-discount" id="totalPrice"></span>
+                                        <span class="price frame-gen-discount" id="totalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
                                         <span class="curr frame-gen-discount">{$CS}</span>
                                     </span>
                                 </span>
