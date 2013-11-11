@@ -262,9 +262,9 @@ if (!function_exists('is_user')) {
 
 if (!function_exists('is_orders_product')) {
 
-    function is_orders_product($product_id, $products) {
+    function is_orders_product($order_id, $products, $product_id) {
         foreach ($products as $val) {
-            if ($val['id'] == $product_id)
+            if ($val['product_id'] == $product_id && $val['order_id'] == $order_id)
                 return $val;
         }
         return false;
