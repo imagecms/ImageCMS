@@ -1,13 +1,15 @@
 var 
-orderDetails = $.exists('#orderDetails'),
-hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined,
 isTouch = 'ontouchstart' in document.documentElement,
 wnd = $(window),
 body = $('body'),
 ie = $.browser.msie,
 ieV = $.browser.version,
 ltie7 = ie && (ieV <= 7),
-ltie8 = ie && (ieV <= 8);
+ltie8 = ie && (ieV <= 8),
+
+orderDetails = $.exists('#orderDetails'),
+checkProdStock = checkProdStock == "" ? false : true,
+hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 
 var optionsMenu = {
     item: $('.menu-main').find('td'),
@@ -70,7 +72,7 @@ var optionsCycle = {
     pagerAnchorBuilder: function(idx, slide) {
         return '<a href="#"></a>';
     }
-}
+};
 var optionCompare = {
     frameCompare: '.frame-tabs-compare > div',
     left: '.left-compare li',
@@ -121,7 +123,9 @@ var optionsDrop = {
     placeBeforeShow: 'center center',
     placeAfterClose: 'center center',
     timeclosemodal: 2000,
+    delayAfter: -200,
     confirmSel: '#confirm',
+    moreOne: false,
     size: true
 };
 var productStatus = {
@@ -131,7 +135,7 @@ var productStatus = {
     disc: function(disc) {
         return '<span class="product-status discount"><span class="text-el">' + disc.toFixed(0) + '%</span></span>';
     }
-}
+};
 var imageCmsApiDefaults = {
     msgF: '.msg',
     err: 'error', //клас
@@ -223,3 +227,11 @@ var message = {
 var lazyload = {
     effect: "fadeIn"
 };
+var optionsPlusminus = {
+    prev: 'prev.children(:eq(1)).children',
+    next: 'prev.children(:eq(0)).children',
+    checkProdStock: checkProdStock
+}
+$.maxminValue.settings = {
+    addCond: checkProdStock   
+}
