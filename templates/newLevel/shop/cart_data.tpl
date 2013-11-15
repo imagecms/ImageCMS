@@ -1,5 +1,5 @@
 {$topCartCount = ShopCore::app()->SCart->totalItems()}
-<div class="btn-bask tiny-bask">
+<div class="btn-bask tiny-bask{if $topCartCount != 0} pointer{/if}">
     <button>
         <span class="frame-icon">
             <span class="icon_cleaner"></span>
