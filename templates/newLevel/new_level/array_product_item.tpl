@@ -135,7 +135,7 @@
                         data-effect-on="fadeIn"
                         data-effect-off="fadeOut"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
-                        data-callback="removeItem"
+                        data-after="removeItem"
                         ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
                 </div>
                 <div class="btn-move-item-wl">
