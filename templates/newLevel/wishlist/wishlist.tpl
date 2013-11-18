@@ -85,7 +85,7 @@
                                                     data-drop="#notification"
                                                     data-effect-on="fadeIn"
                                                     data-effect-off="fadeOut"
-                                                    data-callback="createWishList"
+                                                    data-after="createWishList"
                                                     >
                                                     <span class="text-el">{lang('Создать новий список','newLevel')}</span>
                                                 </button>
@@ -149,7 +149,7 @@
                                                         data-modal="true"
 
                                                         data-drop="#notification"
-                                                        data-callback="removeWL"
+                                                        data-after="removeWL"
                                                         data-confirm="true"
 
                                                         data-effect-on="fadeIn"
@@ -262,7 +262,7 @@
 
                                                     data-drop="#notification"
                                                     data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
-                                                    data-callback="deleteImage"
+                                                    data-after="deleteImage"
                                                     data-wishlist="delete_img"
 
                                                     data-effect-on="fadeIn"
@@ -326,7 +326,7 @@
 
                                             data-drop="#notification"
                                             onclick="serializeForm(this)"
-                                            data-callback="changeDataWishlist"
+                                            data-after="changeDataWishlist"
                                             >
                                             <span class="text-el">{lang('Сохранить','newLevel')}</span>
                                         </button>

@@ -3,7 +3,7 @@
         <span class="title">{lang('Промо код:','newLevel')}</span>
         <span class="frame-form-field p_r">
             <div class="btn-def f_r">
-                <button type="button" id="applyGiftCert" onclick="applyGift(this);
+                <button type="button" id="applyGiftCert" onclick="applyGift();
                     return false"><span class="text-el">{lang('Применить','newLevel')}</span></button>
             </div>
             <div class="o_h">
