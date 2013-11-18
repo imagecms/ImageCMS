@@ -574,8 +574,7 @@ function hideDrop(drop, form, durationHideForm) {
         form.show();
         $(document).trigger({
             type: 'drop.after', 
-            el: drop, 
-            dropC: drop.find(drop.data('dropContent')).first()
+            drop: drop
         });
     }, durationHideForm)
 
@@ -670,8 +669,7 @@ function dropBaskResize() {
     var popupCart = $(genObj.popupCart);
     $(document).trigger({
         type: 'drop.after', 
-        el: popupCart, 
-        dropC: popupCart.find(popupCart.data('dropContent')).first()
+        drop: popupCart
     });
     wnd.trigger('resize.drop');
 }

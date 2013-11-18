@@ -67,7 +67,7 @@ function init() {
             dropEl.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-                //,classRemove: 'b_n'//if not standart
+            //,classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]'))) {
@@ -239,8 +239,7 @@ function init() {
     $(document).on('drop.after', function(e) {
         var wndH = wnd.height(),
         elDrop = e.drop,
-        el = elDrop.find(elDrop.data('dropContent'));
-        console.log(el)
+        el = elDrop.find(elDrop.data().dropContent).filter(':first');
         
         if ($.existsN(el)) {
             el.jScrollPane(scrollPane);
