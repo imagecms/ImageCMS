@@ -332,7 +332,7 @@
                                             {/foreach}
                                         </ul>
                                         <div class="gen-sum-row">
-                                            <img src="{$THEME}images/kits_sum.png"/>
+                                            <img src="{$THEME}{$colorScheme}/images/kits_sum.png"/>
                                             <span class="s-t">{lang('Наборы','newLevel')}:</span>
                                             <span class="count">{echo $orderProduct->getQuantity()}</span>
                                             <span class="s-t">{lang('Сумма','newLevel')}:</span>

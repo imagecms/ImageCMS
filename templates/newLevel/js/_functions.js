@@ -45,9 +45,7 @@ function tovarChangeCount(el) {
             'el': $this
         });
     });
-    el.find(genObj.plusMinus).plusminus({
-        prev: 'prev.children(:eq(1)).children',
-        next: 'prev.children(:eq(0)).children',
+    el.find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
         after: function(e, el, input) {
             if (checkProdStock && input.val() == input.data('max'))
                 el.closest(genObj.numberC).tooltip();
@@ -59,7 +57,7 @@ function tovarChangeCount(el) {
                 'el': input
             });
         }
-    });
+    }));
 }
 function pasteItemsTovars(el) {
     el.find("img.lazy").lazyload(lazyload);
@@ -67,7 +65,7 @@ function pasteItemsTovars(el) {
     drawIcons(el.find(selIcons));
     btnbuyInitialize(el);
     processBtnBuyCount(el);
-    el.find('[data-drop]').drop($.extend({}, optionsDrop));
+    el.find('[data-drop]').drop(optionsDrop);
 }
 function processComp() {
     //comparelist checking
@@ -167,23 +165,29 @@ function processBtnBuyCount(el) {
         'type': 'processPageEnd'
     });
 }
-function getDiscount(k) {
-//    if (!$.exists('#countDisc'))
-//        body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
-//    $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
+function getDiscount() {
+    //        if (!$.exists('#countDisc'))
+    //            body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+    //        $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
+    var k = true;
+    if (!orderDetails)
+        k = false;
     $(document).trigger('showActivity');
     $.ajax({
-        async: false,
         type: 'GET',
         url: '/shop/cart_api/get_kit_discount',
-        complete: function(data) {
+        success: function(data) {
             var kitDiscount = parseFloat(data);
             Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
+            
+            if (!$.isFunction(window.getDiscountBack))
+                displayDiscount(null);
             
             if (k && !$.isFunction(window.getDiscountBack)){
                 displayInfoDiscount('');
                 renderGiftInput('');
             }
+            
             if (!discountInPopup && !k)
                 return false;
             else if ($.isFunction(window.getDiscountBack)) {
@@ -223,6 +227,7 @@ function displayDiscount(obj) {
     else
         $(genObj.frameGenDiscount).hide();
     countSumBask();
+    $(document).trigger('hideActivity');
 };
 function btnbuyInitialize(el) {
     el.find(genObj.btnBuy).unbind('click.buy').bind('click.buy', function(e) {
@@ -245,14 +250,12 @@ function initShopPage(showWindow, item) {
             type: 'render_popup_cart',
             el: $(genObj.popupCart)
         });
-    $(genObj.frameBasks + ' ' + genObj.plusMinus).plusminus({
-        prev: 'prev.children(:eq(1)).children',
-        next: 'prev.children(:eq(0)).children',
+    $(genObj.frameBasks + ' ' + genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
         ajax: true,
         after: function(e, el, input) {
             chCountInCart(el.closest(genObj.frameChangeCount), true, input);
         }
-    });
+    }));
     function chCountInCart($this, btn, input) {
         var pd = $this,
         cartItem = new Shop.cartItem({
@@ -520,7 +523,7 @@ function removePreloaderBaner(el) {
 }
 function initCarouselJscrollPaneCycle(el) {
     el.find('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
-    el.find('.vertical-carousel .carousel_js:visible').myCarousel($.extend({}, carousel));
+    el.find('.vertical-carousel .carousel_js:visible').myCarousel(carousel);
     if ($.exists(selScrollPane)) {
         el.find(selScrollPane).each(function() {
             var $this = $(this),
@@ -541,38 +544,25 @@ function initCarouselJscrollPaneCycle(el) {
             })
         })
     }
-
-    var cycle = el.find('.cycle'),
-    next = '.baner .next',
-    prev = '.baner .prev';
-    if (cycle.find('li').length > 1) {
-        cycle.cycle({
-            speed: 600,
-            timeout: 5000, 
-            fx: 'fade',
-            pauseOnPagerHover: true,
-            next: next,
-            prev: prev,
-            pager: '.pager',
-            pagerAnchorBuilder: function(idx, slide) {
-                return '<a href="#"></a>';
-            }
-        }).hover(function() {
-            cycle.cycle('pause');
-        }, function() {
-            cycle.cycle('resume');
-        });
-        $(next + ',' + prev).show();
-    }
-    removePreloaderBaner(cycle); //cycle - parent for images
-    $('.baner').each(function() {
-        var $this = $(this);
-        if (!$this.hasClass('resize'))
-            $(this).find('img').each(function() {
-                var $this = $(this);
-                $this.css('margin-left', -$this.css('max-width', 'none').actual('width') / 2);
+    el.find('.baner').each(function(){
+        var $this = $(this),
+        cycle = $this.find('.cycle'),
+        next = $this.find('.next'),
+        prev = $this.find('.prev');
+        
+        if (cycle.find('li').length > 1) {
+            cycle.cycle($.extend({}, optionsCycle, {
+                'next': next, 
+                'prev': prev
+            })).hover(function() {
+                cycle.cycle('pause');
+            }, function() {
+                cycle.cycle('resume');
             });
-    });
+            $(next).add(prev).show();
+        }
+        removePreloaderBaner(cycle); //cycle - parent for images
+    })
 }
 function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop);
@@ -583,14 +573,13 @@ function hideDrop(drop, form, durationHideForm) {
         drop.find(genObj.msgF).hide().remove();
         form.show();
         $(document).trigger({
-            type: 'drop.show', 
-            el: drop, 
-            dropC: drop.find(drop.data('dropContent')).first()
+            type: 'drop.after', 
+            drop: drop
         });
     }, durationHideForm)
 
     //    if close "esc" or click on body
-    $(document).off('drop.beforeClose').on('drop.beforeClose', function(e) {
+    $(document).off('drop.close').on('drop.close', function(e) {
         clearTimeout(closedrop);
         if (e.el.is(drop)) {
             e.el.find(genObj.msgF).hide().remove();
@@ -679,9 +668,8 @@ function showHidePart(el, absolute, time) {
 function dropBaskResize() {
     var popupCart = $(genObj.popupCart);
     $(document).trigger({
-        type: 'drop.show', 
-        el: popupCart, 
-        dropC: popupCart.find(popupCart.data('dropContent')).first()
+        type: 'drop.after', 
+        drop: popupCart
     });
     wnd.trigger('resize.drop');
 }

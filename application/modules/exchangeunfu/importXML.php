@@ -742,15 +742,16 @@ class ImportXML {
         $this->insertData($this->orders_table);
 
         $inserted_orders = load_orders();
+//        var_dumps($this->insert_order_products);
         foreach ($inserted_orders as $value) {
             foreach ($this->insert_order_products as $key => $order_product) {
-                if ($order_product['external_order_id'] == $value['external_id']) {
+                if ($order_product['external_order_id'] == $value['external_id'] && $order_product['external_order_id'] != NULL) {
                     $this->insert_order_products[$key]['order_id'] = $value['id'];
                     unset($this->insert_order_products[$key]['external_order_id']);
+                    
                 }
             }
         }
-
         $this->insert = $this->insert_order_products;
         $this->insertData($this->orders_products_table);
 
@@ -791,6 +792,7 @@ class ImportXML {
 
                 $total_price += (int) $product->Сумма;
             }
+           
             //update order total price
             $data = array();
             $data['total_price'] = $total_price;
@@ -827,14 +829,19 @@ class ImportXML {
                     return false;
                 }
 
-                $this->ci->db->where('order_id', (string) $product->IDWebДокумента)->delete('shop_orders_products');
-
-                $data['order_id'] = $order_id['id'];
-                $data['external_id'] = $product->IDДокумента . '';
-                $this->insert_order_products[] = $data;
+                if (is_orders_product($product->IDWebДокумента . '', $this->orders_products, $product_i18n['id'])) {
+                    $data['id'] = $product->IDWebДокумента . '';
+                    $this->update_order_products[] = $data;
+                } else {
+                    $data['order_id'] = $order_id['id'];
+                    $data['external_order_id'] = $order_id['external_id'];
+                    $data['external_id'] = $product->IDДокумента . '';
+                    $this->insert_order_products[] = $data;
+                }
 
                 $total_price += (int) $product->Сумма;
             }
+//             var_dumps($this->insert_order_products);
 
             //update order total price
             $data = array();

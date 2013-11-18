@@ -4,10 +4,10 @@
 {$compare = $compare != false && $compare != NULL}
 {$codeArticle = $codeArticle != false && $codeArticle != NULL}
 {$defaultItem = $defaultItem != false && $defaultItem != NULL}
-{$limit = $limit != false && $limit != NULL}
+{$condlimit = $limit != false && $limit != NULL}
 
 {foreach $products as $key => $p}
-    {if $key >= $limit && $limit}
+    {if $key >= $limit && $condlimit}
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}

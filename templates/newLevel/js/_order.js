@@ -52,10 +52,10 @@ function recountCartPage() {
     Shop.Cart.shipping = parseFloat(ca.data('price'));
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     if ($.isFunction(window.loadCertificat)) {
-        loadCertificat();
+        loadCertificat(Shop.Cart.gift);
     }
     hideInfoDiscount();
-    getDiscount(true);
+    getDiscount();
 
     var discount = Shop.Cart.discount,
     kitDiscount = parseFloat(Shop.Cart.kitDiscount),
@@ -71,7 +71,7 @@ function recountCartPage() {
         finalAmount = finalAmount - discount['result_sum_discount_convert'];
     if (kitDiscount != 0)
         finalAmount = finalAmount - kitDiscount;
-    if (Shop.Cart.gift != undefined && Shop.Cart.gift != 0 && !Shop.Cart.gift.error)
+    if (Shop.Cart.gift != undefined && !Shop.Cart.gift.error)
         finalAmount = finalAmount - Shop.Cart.gift.value;
     if (finalAmount - Shop.Cart.shipping < 0)
         finalAmount = Shop.Cart.shipping;
@@ -90,7 +90,7 @@ function displayInfoDiscount(tpl) {
     frameDiscountO.html(tpl);
     frameDiscountO.next(preloader).hide(); //preloader
 }
-function applyGift(el) {
+function applyGift() {
     $(genObj.gift).find(preloader).show();
     var gift = 0;
     $.ajax({
