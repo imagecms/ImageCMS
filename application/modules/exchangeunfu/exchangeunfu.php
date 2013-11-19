@@ -52,14 +52,14 @@ class Exchangeunfu extends MY_Controller {
         $this->login = trim($this->input->server('PHP_AUTH_USER'));
         $this->password = trim($this->input->server('PHP_AUTH_PW'));
         //saving get requests to log file
-      /* 
-       if ($_GET) {
-            foreach ($_GET as $key => $value) {
-                $string .= date('c') . " GET - " . $key . ": " . $value . "\n";
-            }
-            write_file($this->tempDir . "log.txt", $string, FOPEN_WRITE_CREATE);
-        }
-       */
+        /*
+          if ($_GET) {
+          foreach ($_GET as $key => $value) {
+          $string .= date('c') . " GET - " . $key . ": " . $value . "\n";
+          }
+          write_file($this->tempDir . "log.txt", $string, FOPEN_WRITE_CREATE);
+          }
+         */
 
         //define first get command parameter
         $method = 'command_';
@@ -101,7 +101,7 @@ class Exchangeunfu extends MY_Controller {
                 ->on('MakeOrder')
                 ->setListener('_setHour');
 
-         \CMSFactory\Events::create()
+        \CMSFactory\Events::create()
                 ->on('MakeOrder')
                 ->setListener('_setPartnerId');
     }
@@ -126,13 +126,14 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
-    public static function _setPartnerId($date){
-      $ci = & get_instance();
-      $orderId = $date['order']->id;
-       
-      $region = self::getDefaultRegionIds();
-     
-  if(!is_array($region)) return false;
+    public static function _setPartnerId($date) {
+        $ci = & get_instance();
+        $orderId = $date['order']->id;
+
+        $region = self::getDefaultRegionIds();
+
+        if (!is_array($region))
+            return false;
 
         $data = array(
             'partner_external_id' => $region['external_id'],
@@ -141,10 +142,7 @@ class Exchangeunfu extends MY_Controller {
 
         $ci->db->where('id', $orderId);
         $ci->db->update('shop_orders', $data);
-
     }
-
-
 
     private function recountProductivityHour($count, $id) {
         $ci = & get_instance();
@@ -803,7 +801,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function getDefaultRegion() {
-         $ci = & get_instance();
+        $ci = & get_instance();
 
         if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
             $region = $ci->db
@@ -864,7 +862,7 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
-     public function getDefaultRegionIds() {
+    public function getDefaultRegionIds() {
 
         $ci = & get_instance();
         if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
@@ -873,7 +871,7 @@ class Exchangeunfu extends MY_Controller {
         } else {
             $region = $ci->db
                     ->limit(1)
-                    ->select(array('id','external_id'))
+                    ->select(array('id', 'external_id'))
                     ->get('mod_exchangeunfu_partners')
                     ->result_array();
 
@@ -923,7 +921,7 @@ class Exchangeunfu extends MY_Controller {
 
     public function getCountPeriodOrdersApi($date = '2013-10-10') {
         $date = strtotime($date . ' 00:00:00');
-        
+
         $periods = $this->getRegionPeriod();
         $regionId = $this->getDefaultRegionId();
 
@@ -940,7 +938,7 @@ class Exchangeunfu extends MY_Controller {
                     ->get('mod_exchangeunfu_productivity')
                     ->result();
 
-               
+
 
             if ($c[0]->count)
                 $count[] = true;
@@ -1000,8 +998,8 @@ class Exchangeunfu extends MY_Controller {
                 $this->export->export();
             }
         }
-        
-        
+
+
         exit();
     }
 
@@ -1010,7 +1008,14 @@ class Exchangeunfu extends MY_Controller {
      * and sets some status for imported orders "waiting" for example
      */
     private function command_sale_success() {
-
+        if ($this->check_perm() === true) {
+            $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
+            foreach ($model as $order) {
+                $order->SetStatus($this->config['userstatuses_after']);
+                $order->save();
+            }
+            echo "success";
+        }
         exit();
     }
 

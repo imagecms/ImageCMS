@@ -137,6 +137,7 @@ class Admin extends BaseAdminController {
             $config['login'] = $for_update['login'];
             $config['password'] = $for_update['password'];
             $config['usepassword'] = $for_update['usepassword'];
+            $config['userstatuses_after'] = $for_update['userstatuses_after'];
             $config['userstatuses'] = $for_update['statuses'];
             $config['debug'] = $for_update['debug'];
             $config['email'] = $for_update['email'];
