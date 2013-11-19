@@ -404,9 +404,9 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function getRegionPeriod() {
-
+        $regionId = $this->getDefaultRegionId();
         $periods = $this->db
-                ->where('partner_id', $this->getDefaultRegionId())
+                ->where('partner_id', $regionId)
                 ->order_by("hour_from", "asc")
                 ->get('mod_exchangeunfu_partners_periods')
                 ->result_array();
@@ -830,12 +830,12 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function getDefaultRegionId() {
-
+        $ci = & get_instance();
         if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
 
             return $_COOKIE['region'];
         } else {
-            $region = $this->db
+            $region = $ci->db
                     ->limit(1)
                     ->select(array('id'))
                     ->get('mod_exchangeunfu_partners')
@@ -922,8 +922,12 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function getCountPeriodOrdersApi($date = '2013-10-10') {
-        $date = strtotime($date);
+        $date = strtotime($date . ' 00:00:00');
+        
         $periods = $this->getRegionPeriod();
+        $regionId = $this->getDefaultRegionId();
+
+
 
         foreach ($periods as $key => $period) {
             $c = $this->db
@@ -932,9 +936,11 @@ class Exchangeunfu extends MY_Controller {
                     ->where('date =', $date)
                     ->where('hour >=', $period['hour_from'])
                     ->where('hour <', $period['hour_to'])
-                    ->where('mod_exchangeunfu_partners.id', $this->getDefaultRegionId())
+                    ->where('mod_exchangeunfu_partners.id', $regionId)
                     ->get('mod_exchangeunfu_productivity')
                     ->result();
+
+               
 
             if ($c[0]->count)
                 $count[] = true;
