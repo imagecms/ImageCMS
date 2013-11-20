@@ -13,6 +13,7 @@
 {$NextCSIdCond = $NextCS != null}
 {$variants = $model->getProductVariants()}
 {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
+{$hasDiscounts = $model->hasDiscounts()}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -92,7 +93,6 @@
                                 <div class="frame-prices f-s_0">
                                     <!-- Start. Check for discount-->
                                     {$oldoprice = $model->getOldPrice() && $model->getOldPrice() != 0 && $model->getOldPrice() > $model->firstVariant->toCurrency()}
-                                    {$hasDiscounts = $model->hasDiscounts()}
                                     {if $hasDiscounts}
                                         <span class="price-discount">
                                             <span>
@@ -138,7 +138,6 @@
                                     <!-- Start. Collect information about Variants, for future processing -->
                                     {foreach $variants as $key => $productVariant}
                                         {$discount = 0}
-                                        {$hasDiscounts = $model->hasDiscounts()}
                                         {if $hasDiscounts}
                                             {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                         {/if}
@@ -178,7 +177,7 @@
                                                             data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
-                                                            data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
                                                             data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
                                                             >
@@ -202,7 +201,7 @@
                                                             data-varid="{echo $productVariant->getId()}"
                                                             data-url="{echo shop_url('product/'.$model->getUrl())}"
                                                             data-price="{echo $productVariant->toCurrency()}"
-                                                            data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
                                                             data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
@@ -280,10 +279,10 @@
             </div>
             <div class="left-product">
                 <!-- Start. Photo block-->
-                <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
+                <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}">
                     <span class="photo-block">
                         <span class="helper"></span>
-                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" id="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
+                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimgPr"/>
                         {$discount = 0}
                         {if $hasDiscounts}
                             {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency('origprice')*100}
@@ -318,17 +317,19 @@
                             {/*carousel_js*/}
                             <div class="content-carousel">
                                 <ul class="items-thumbs items">
+                                    <!-- Start. main image-->
                                     <li class="active">
-                                        <a rel="useZoom: 'photoGroup', smallImage: '{echo $model->firstVariant->getMainPhoto()}'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
+                                        <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
                                             <span class="photo-block">
                                                 <span class="helper"></span>
-                                                <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}"/>
+                                                <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vimgPr"/>
                                             </span>
                                         </a>
                                     </li>
+                                    <!-- End. main image-->
                                     {foreach $productImages as $key => $image}
                                         <li>
-                                            <a {/*rel="group"*/} rel="useZoom: 'photoGroup', smallImage: '{productImageUrl('products/additional/'.$image->getImageName())}'" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
+                                            <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
                                                 <span class="photo-block">
                                                     <span class="helper"></span>
                                                     <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
@@ -692,7 +693,7 @@
 
 <!-- Start. Photo Popup Frame-->
 <div class="drop drop-style" id="photo"></div>
-<script type="text/template" id="photoProduct">
+<script type="text/template" id="framePhotoProduct">
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">

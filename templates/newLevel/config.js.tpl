@@ -13,6 +13,7 @@
     var genObj = {
     popupCart: '#popupCart',
     pageCart: '.page-cart',
+    frameDelivery: '#frameDelivery',
     pM: '.paymentMethod',
     trCartKit: 'tr.row-kits',
     frameCount: '.frame-count', //селектор
@@ -57,11 +58,12 @@
     prefV: ".variant_",
     selVariant: '.variant',
     imgVC: '.vimg',
-    imgVP: '#vimg',
+    imgVP: '.vimgPr',
     priceVariant: '.priceVariant',
     priceOrigVariant: '.priceOrigVariant',
     priceAddPrice: '.addCurrPrice',
-    photoProduct: '.photoProduct',
+    photoProduct: '#photoProduct',
+    mainThumb: '#mainThumb',
     plusMinus: '[data-rel="plusminus"]',
     frameBasks: '.frame-bask', //order and popup
     frameChangeCount: '.frame-change-count',
@@ -103,7 +105,8 @@
         inServerWishList = parseInt("{$countWL}"),
         countViewProd = parseInt("{$countSh}"),
         theme = "{$THEME}",
-        siteUrl = "{echo site_url()}"
+        siteUrl = "{echo site_url()}",
+        colorScheme = "{$colorScheme}",
         inCart = '{lang('В корзине','newLevel')}',
         toCart = '{lang('Купить','newLevel')}',
         pcs = '{lang('Количество:')}',
@@ -115,6 +118,8 @@
         plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'],
         
         selectDeliv = false,
+        selectPayment = false,
+        
         selIcons = '[class*=icon_]',
         preloader = '.preloader',
         selScrollPane = '.frame-scroll-pane .content-carousel';

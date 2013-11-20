@@ -68,8 +68,8 @@
             <script src="{$THEME}js/localStorageJSON.js"></script>
         <![endif]-->
 
-        <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
     </head>
     <body class="is{echo $agent[0]} not-js"> 
         {include_tpl('language/jsLangsDefine.tpl')}
@@ -94,12 +94,14 @@
         {include_tpl('user_toolbar')}
 
         <!-- scripts -->
-        <script type="text/javascript" src="{$THEME}js/_jquery.imagecms.shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
+        <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
+        <script type="text/javascript" src="{$THEME}js/_shop.js"></script>
         <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <script type="text/javascript">
-            initDownloadScripts(['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'], 'init', 'scriptDefer');
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
         {include_shop_tpl('js_templates')}
         <!-- scripts end -->
