@@ -80,9 +80,9 @@
         </div>
         {if function_exists('mobile_site_address')}
             <div class="f_r">
-                <a class="f-s_0 c_w">
+                <a href="{mobile_site_address()}" class="f-s_0 c_w">
                     <span class="icon_phone_footer"></span>
-                    <span class="text-el"><a href="{mobile_site_address()}">{lang('Мобильная версия','newLevel')}</a></span>
+                    <span class="text-el">{lang('Мобильная версия','newLevel')}</span>
                 </a>
             </div>
         {/if}

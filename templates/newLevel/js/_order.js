@@ -1,8 +1,7 @@
-var 
-////if select
-//methodDeliv = $('#method_deliv'),
-//if radio
-methodDeliv = $('[name = "deliveryMethodId"]');
+if (selectDeliv)
+    var methodDeliv = '#method_deliv';
+else
+    var methodDeliv = '[name = "deliveryMethodId"]';
 function renderOrderDetails() {
     $(genObj.orderDetails).html(_.template($(genObj.orderDetailsTemplate).html(), {
         cart: Shop.Cart
@@ -15,12 +14,12 @@ function renderOrderDetails() {
     recountCartPage();
 }
 
-function changeDeliveryMethod(id, selectDeliv) {
+function changeDeliveryMethod(id) {
     $(genObj.pM).next().show();
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
         data = JSON.parse(dataStr);
         var replaceStr = '';
-        if (selectDeliv)
+        if (selectPayment)
             replaceStr = _.template('<div class="lineForm"><select id="paymentMethod" name="paymentMethodId"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select></div>', {
                 data: data
             });
@@ -31,7 +30,7 @@ function changeDeliveryMethod(id, selectDeliv) {
         }
         $(genObj.pM).html(replaceStr);
         $(genObj.pM).next().hide();
-        if (selectDeliv)
+        if (selectPayment)
             cuselInit($(genObj.pM), '#paymentMethod');
         else
             $(genObj.pM).nStRadio({
@@ -46,9 +45,9 @@ function recountCartPage() {
     Shop.Cart.totalRecount();
     var ca = "";
     if (selectDeliv)
-        ca = $('span.cuselActive');
+        ca = $(genObj.frameDelivery).find('span.cuselActive');
     else
-        ca = methodDeliv.filter(':checked');
+        ca = $(methodDeliv).filter(':checked');
     Shop.Cart.shipping = parseFloat(ca.data('price'));
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     if ($.isFunction(window.loadCertificat)) {
@@ -129,34 +128,44 @@ function renderGiftSucces(tpl, gift) {
 }
 
 function initOrder(){
-    if ($.existsN(methodDeliv) && selectDeliv)
-        methodDeliv.on('change.methoddeliv', function() {
-            var activeVal = $('span.cuselActive').attr('val');
-            changeDeliveryMethod(activeVal, selectDeliv);
+    if (selectDeliv){
+        cuselInit($(genObj.frameDelivery), methodDeliv);
+        $(methodDeliv).on('change.methoddeliv', function() {
+            var activeVal = $(genObj.frameDelivery).find('span.cuselActive').attr('val');
+            changeDeliveryMethod(activeVal);
             recountCartPage();
         });
-    $(".check-variant-delivery").nStRadio({
-        wrapper: $(".frame-radio > .frame-label"),
-        elCheckWrap: '.niceRadio',
-        //classRemove: 'b_n', //if not standart
-        before: function(el) {
-            $(document).trigger('showActivity');
-            $('[name="' + $(el).find('input').attr('name') + '"]').attr('disabled', 'disabled');
-        },
-        after: function(el, start) {
-            if (!start) {
-                var activeVal = el.find('input').val();
-                changeDeliveryMethod(activeVal, selectDeliv);
-                recountCartPage();
-                $('[name="' + $(el).find('input').attr('name') + '"]').removeAttr('disabled')
+    }
+    else{
+        $(".check-variant-delivery").nStRadio({
+            wrapper: $(".frame-radio > .frame-label"),
+            elCheckWrap: '.niceRadio',
+            //classRemove: 'b_n', //if not standart
+            before: function(el) {
+                $(document).trigger('showActivity');
+                $('[name="' + $(el).find('input').attr('name') + '"]').attr('disabled', 'disabled');
+            },
+            after: function(el, start) {
+                if (!start) {
+                    var activeVal = el.find('input').val();
+                    changeDeliveryMethod(activeVal);
+                    recountCartPage();
+                    $('[name="' + $(el).find('input').attr('name') + '"]').removeAttr('disabled')
+                }
             }
-        }
-    });
-    $(genObj.pM).nStRadio({
-        wrapper: $(".frame-radio > .frame-label"),
-        elCheckWrap: '.niceRadio'
-    //,classRemove: 'b_n'//if not standart
-    });
+        });
+    }
+        
+    if (selectPayment)
+        cuselInit($(genObj.pM), '#paymentMethod');
+    
+    else
+        $(genObj.pM).nStRadio({
+            wrapper: $(".frame-radio > .frame-label"),
+            elCheckWrap: '.niceRadio'
+        //,classRemove: 'b_n'//if not standart
+        });
+        
     
     $(document).on('render_popup_cart', function() {
         recountCartPage();

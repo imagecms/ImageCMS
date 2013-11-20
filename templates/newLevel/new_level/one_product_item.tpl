@@ -4,10 +4,13 @@
 {$compare = $compare != false && $compare != NULL}
 {$codeArticle = $codeArticle != false && $codeArticle != NULL}
 {$defaultItem = $defaultItem != false && $defaultItem != NULL}
-{$limit = $limit != false && $limit != NULL}
+{$condlimit = $limit != false && $limit != NULL}
+
+{$variants = $p->getProductVariants()}
+{$hasDiscounts = $p->hasDiscounts()}
 
 {foreach $products as $key => $p}
-    {if $key >= $limit && $limit}
+    {if $key >= $limit && $condlimit}
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
@@ -22,7 +25,7 @@
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
                      class="vimg lazy"/>
                 {$discount = 0}
-                {if $p->hasDiscounts()}
+                {if $hasDiscounts}
                     {$discount = $p->firstVariant->getvirtual('numDiscount') / $p->firstVariant->toCurrency('origprice') * 100}
                 {/if}
                 {promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}
@@ -81,7 +84,6 @@
             <div class="frame-prices f-s_0">
                 <!-- Start. Check for discount-->
                 {$oldoprice = $p->getOldPrice() && $p->getOldPrice() != 0 && $p->getOldPrice() > $p->firstVariant->toCurrency()}
-                {$hasDiscounts = $p->hasDiscounts()}
                 {if $hasDiscounts}
                     <span class="price-discount">
                         <span>
@@ -123,7 +125,6 @@
                 <!-- End. Product price-->
             </div>
             <!-- End. Prices-->
-            {$variants = $p->getProductVariants()}
             <!-- Start. Check variant-->
             {if !$widget && !$defaultItem && !$compare}
                 {if count($variants) > 1}
@@ -191,9 +192,10 @@
                                     data-img="{echo $pv->getSmallPhoto()}"
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
-                                    data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                    data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                     data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                    data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
+                                    data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
+                                    >
                                     <span class="icon_cleaner icon_cleaner_buy"></span>
                                     <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                 </button>
@@ -212,7 +214,7 @@
                                 data-varid="{echo $pv->getId()}"
                                 data-url="{echo shop_url('product/'.$p->getUrl())}"
                                 data-price="{echo $pv->toCurrency()}"
-                                data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                 data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                 data-name="{echo ShopCore::encode($p->getName())}"
                                 data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
@@ -220,6 +222,7 @@
                                 data-number="{echo trim($pv->getNumber())}"
                                 data-img="{echo $pv->getSmallPhoto()}"
                                 data-mediumImage="{echo $pv->getMediumPhoto()}"
+                                >
                                 <span class="icon-but"></span>
                                 <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                             </button>
