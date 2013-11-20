@@ -17,11 +17,12 @@ class Admin extends BaseAdminController {
     public $parsed_langs = array();
     public $paths = array();
     public $po_settings = array();
+    public $exchangePoArray;
+    public $js_langs;
+    public $domain;
 
     public function __construct() {
         parent::__construct();
-        require 'lib/poparser.php';
-//        var_dumps(extension_loaded('curl'));
     }
 
     /**
@@ -43,9 +44,15 @@ class Admin extends BaseAdminController {
      * @return boolean
      */
     public function setSettings($settings) {
+        $settings = $this->getSettings();
         if ($this->input->post('originsLang')) {
-            $settings = array('originsLang' => $this->input->post('originsLang'));
+            $settings['originsLang'] =  $this->input->post('originsLang');
         }
+        
+        if ($this->input->post('YandexApiKey')) {
+            $settings['YandexApiKey'] =  $this->input->post('YandexApiKey');
+        }
+        
         return $this->db->where('identif', 'translator')
                         ->update('components', array('settings' => serialize($settings)
         ));
@@ -118,30 +125,23 @@ class Admin extends BaseAdminController {
         return in_array($lang, $langs);
     }
 
-    public function index() {
-        $offset = $this->session->userdata('offset');
-        $limit = $this->session->userdata('limit');
+    public function index($isExchange = FALSE) {
         $translation = $this->session->userdata('translation');
         $po_table = '';
-        if ($translation && $translation['name'] && $translation['type'] && $translation['lang']) {
-            $name = $translation['name'];
-            $type = $translation['type'];
-            $lang = $translation['lang'];
-            $po_table = $this->renderModulePoFile($name, $type, $lang, $offset, $limit);
-            switch ($type) {
-                case 'modules':
-                    $this->langs = $this->session->userdata('langs');
-                    break;
-                case 'templates':
-                    $this->langs = $this->session->userdata('langs_templates');
-                    break;
-                case 'main':
-                    $this->langs = $this->session->userdata('langs_main');
-                    break;
+        $name = $translation['name'];
+        $type = $translation['type'];
+        $lang = $translation['lang'];
+        if ($translation && $name && $type && $lang) {
+
+            if (!$isExchange) {
+                $po_table = $this->renderModulePoFile($name, $type, $lang);
+            } else {
+                $po_table = $this->exchangePoArray;
             }
-        } else {
-            $this->scanLangFiles();
         }
+
+        $this->scanLangFiles();
+
         $locales_unique = array();
         $locales = $this->config->item('locales');
         foreach ($locales as $locale) {
@@ -155,6 +155,7 @@ class Admin extends BaseAdminController {
                 ->setData('settings', $this->getSettings())
                 ->setData('locales', $locales_unique)
                 ->renderAdmin('list');
+
         if ($translation) {
             $names = '';
             switch ($type) {
@@ -169,12 +170,55 @@ class Admin extends BaseAdminController {
             $names = trim(preg_replace('/\s\s+/', ' ', $names));
             $names = preg_replace('/<link[\W\w]+\/>/', '', $names);
             $names = preg_replace('/<script[\W\w]+<\/script>/', '', $names);
-//htm
             $data = trim(preg_replace('/\s\s+/', ' ', $po_table));
-//        
-//            var_dumps($data);
-//            htmlspecialchars(,ENT_QUOTES|ENT_SUBSTITUTE)
-            jsCode("Translator.start('" . $data . "','" . $names . "', '" . $type . "', '" . $lang . "', '" . $name . "', '" . $limit . "');");
+            jsCode("Translator.start('" . $data . "','" . $names . "', '" . $type . "', '" . $lang . "', '" . $name . "');");
+        }
+    }
+
+    public function exchangeTranslation() {
+        if ($_POST) {
+            $langExchanger = $this->input->post('langExchanger');
+            $langReceiver = $this->input->post('langReceiver');
+
+            $typeExchanger = $this->input->post('typeExchanger');
+            $typeReceiver = $this->input->post('typeReceiver');
+
+            $modules_templatesExchanger = $this->input->post('modules_templatesExchanger');
+            $modules_templatesReceiver = $this->input->post('modules_templatesReceiver');
+
+            if ($langExchanger && $langReceiver && $typeExchanger && $typeReceiver) {
+                $exchangerPoArray = $this->poFileToArray($modules_templatesExchanger, $typeExchanger, $langExchanger);
+                $receiverPoArray = $this->poFileToArray($modules_templatesReceiver, $typeReceiver, $langReceiver);
+
+                foreach ($exchangerPoArray as $origin => $value) {
+                    if ($receiverPoArray[$origin]) {
+                        $receiverPoArray[$origin]['text'] = $value['text'];
+                    }
+                }
+
+                $this->poFileToArray($modules_templatesReceiver, $typeReceiver, $langReceiver);
+
+                $this->session->set_userdata('translation', array(
+                    'name' => $modules_templatesReceiver,
+                    'type' => $typeReceiver,
+                    'lang' => $langReceiver
+                ));
+
+                $this->exchangePoArray = \CMSFactory\assetManager::create()
+                        ->setData('po_settings', $this->po_settings)
+                        ->setData('po_array', $receiverPoArray)
+                        ->setData('paths', $this->paths)
+                        ->setData('page', 1)
+                        ->fetchAdminTemplate('po_table');
+                return $this->index(TRUE);
+            }
+        } else {
+            $this->scanLangFiles();
+            \CMSFactory\assetManager::create()
+                    ->registerScript('admin')
+                    ->registerStyle('admin')
+                    ->setData('langs', $this->langs)
+                    ->renderAdmin('exchange');
         }
     }
 
@@ -183,6 +227,7 @@ class Admin extends BaseAdminController {
             $lang = $this->input->post('locale');
             $type = $this->input->post('type');
             $module_template = $this->input->post('module_template');
+
             $projectName = $this->input->post('projectName');
             $translatorEmail = $this->input->post('translatorEmail');
             $translatorName = $this->input->post('translatorName');
@@ -256,57 +301,31 @@ class Admin extends BaseAdminController {
                 fclose($handle);
             }
         } else {
-            $url = '';
-            $file_name = '';
-
-            if ($module_template && $type && $lang) {
-                switch ($type) {
-                    case 'modules':
-                        $url = $this->modules_path . $module_template . '/language/' . $lang . '/LC_MESSAGES/';
-                        $file_name = $module_template;
-                        break;
-                    case 'templates':
-                        $url = $this->templates_path . $module_template . '/language/' . $module_template . '/' . $lang . '/LC_MESSAGES/';
-                        $file_name = $module_template;
-                        break;
-                    case 'main':
-                        $url = $this->main_path . $lang . '/LC_MESSAGES/';
-                        $file_name = $type;
-                        break;
-                }
-            }
-
             $this->scanLangFiles();
 
             \CMSFactory\assetManager::create()
                     ->registerScript('admin')
                     ->registerStyle('admin')
-                    ->setData('url', $url)
                     ->setData('langs', $this->langs)
-                    ->setData('file_name', $file_name)
                     ->renderAdmin('create');
 
             if ($module_template && $type && $lang) {
                 switch ($type) {
                     case 'modules':
                         $names = $this->renderModulesNames($lang);
+                        $file_name = $module_template;
                         break;
                     case 'templates':
                         $names = $this->renderTemplatesNames($lang);
+                        $file_name = $module_template;
+                        break;
+                    case 'main':
+                        $file_name = $type;
                         break;
                 }
-                jsCode(
-                        "
-                document.getElementsByClassName('" . $lang . "')[0].selected = true;
-                document.getElementById('types').style.display = 'inline-block';
-                document.getElementsByClassName('" . $type . "')[0].selected = true;
-                if('" . $type . "'!='main'){
-                    document.getElementById('modules_templates').style.display = 'inline-block';
-                    document.getElementById('modules_templates').innerHTML = '" . trim(preg_replace('/\s\s+/', ' ', $names)) . "';
-                }
-                document.getElementsByClassName('" . $file_name . "')[0].selected = true;
-            "
-                );
+
+                $names = trim(preg_replace('/\s\s+/', ' ', $names));
+                jsCode("Translator.start('','" . $names . "', '" . $type . "', '" . $lang . "', '" . $file_name . "');");
             }
         }
     }
@@ -388,9 +407,6 @@ class Admin extends BaseAdminController {
     }
 
     public function renderModulePoFile($module_template, $type, $lang, $offset = 0, $limit = 10) {
-        $this->session->set_userdata('offset', $offset);
-        $this->session->set_userdata('limit', $limit);
-
         $this->session->unset_userdata('translation');
         $translations = $this->poFileToArray($module_template, $type, $lang);
 
@@ -399,9 +415,8 @@ class Admin extends BaseAdminController {
                 'name' => $module_template,
                 'type' => $type,
                 'lang' => $lang,
-                'po_array' => $translations
-                    )
-            );
+            ));
+
             $page = floor($offset / $limit + 1);
             return \CMSFactory\assetManager::create()
                             ->setData('po_settings', $this->po_settings)
@@ -542,28 +557,21 @@ class Admin extends BaseAdminController {
                 unset($links);
             }
         }
-//        var_dumps($this->po_settings);
-//        exit;
         return $translations;
     }
 
     public function savePoArray($module_template, $type, $lang) {
-        $po_recieved = '';
         $url = '';
         $po_array = (array) json_decode($this->input->post('po_array'));
-//        var_dumps($po_array);exit;
         switch ($type) {
             case 'modules':
                 $url = $this->modules_path . $module_template . '/language/' . $lang . '/LC_MESSAGES/' . $module_template . '.po';
-                $po_recieved = file($this->modules_path . $module_template . '/language/' . $lang . '/LC_MESSAGES/' . $module_template . '.po');
                 break;
             case 'templates':
                 $url = $this->templates_path . $module_template . '/language/' . $module_template . '/' . $lang . '/LC_MESSAGES/' . $module_template . '.po';
-                $po_recieved = file($this->templates_path . $module_template . '/language/' . $module_template . '/' . $lang . '/LC_MESSAGES/' . $module_template . '.po');
                 break;
             case 'main':
-                $url = $this->main_path . $lang . '/LC_MESSAGES/' . $module_template . '.po';
-                $po_recieved = file($this->main_path . $lang . '/LC_MESSAGES/' . $module_template . '.po');
+                $url = $this->main_path . $lang . '/LC_MESSAGES/' . $type . '.po';
                 break;
         }
 
@@ -576,30 +584,6 @@ class Admin extends BaseAdminController {
 
         if ($handle !== false) {
             if (count($po_array) > 0) {
-//                foreach ($po_recieved as $po_r) {
-//                    if (strstr($po_r, 'msgid') || strstr($po_r, 'msgstr')) {
-//                        continue;
-//                    }
-//
-//                    if (preg_match('/Basepath/', $po_r)) {
-//                        fwrite($handle, '"X-Poedit-Basepath: ' . $po_array['paths'][0] . '\n"');
-//                        fwrite($handle, "\r\n");
-//                        array_shift($po_array['paths']);
-//                        continue;
-//                    }
-//
-//                    if (preg_match('/SearchPath/', $po_r)) {
-//                        foreach ($po_array['paths'] as $number => $path) {
-//                            fwrite($handle, '"X-Poedit-SearchPath-' . $number . ': ' . $path . '\n"');
-//                            fwrite($handle, "\r\n");
-//                        }
-//                        break;
-//                    }
-//                    fwrite($handle, $po_r);
-//                }
-//                $po_array['po_settings'] = (array)$po_array['po_settings'];
-//                var_dumps($po_array['po_settings']);
-//                var_dumps($po_array['po_settings']->language);exit;
                 fwrite($handle, '"Project-Id-Version: ' . $po_array['po_settings']->projectName . '\n"');
                 fwrite($handle, "\n");
                 fwrite($handle, '"Report-Msgid-Bugs-To: \n"');
@@ -633,7 +617,6 @@ class Admin extends BaseAdminController {
                 fwrite($handle, "\n");
                 fwrite($handle, '"X-Poedit-Country: ' . $po_array['po_settings']->country . '\n"');
                 fwrite($handle, "\n");
-
 
                 foreach ($po_array['paths'] as $number => $path) {
                     fwrite($handle, '"X-Poedit-SearchPath-' . $number . ': ' . $path . '\n"');
@@ -686,7 +669,7 @@ class Admin extends BaseAdminController {
         return $this->session->unset_userdata('translation');
     }
 
-    function open_https_url($url, $refer = "", $usecookie = false) {
+    function open_https_url($url, $refer = "") {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -702,11 +685,72 @@ class Admin extends BaseAdminController {
         return $result;
     }
 
-    public function translateWord($to) {
-        $from = 'en';
-        $text = str_replace(' ', '%20', $this->input->post('word'));
-        $apiKey = 'trnsl.1.1.20131007T222753Z.ce6162bf76f36118.5e8c33d185b2e48c6504492cdf203081c5085384';
-        echo $this->open_https_url('https://translate.yandex.net/api/v1.5/tr.json/translate?key=' . $apiKey . '&text=' . $text . '&lang=' . $from . '-' . $to . '&format=plain');
+    //TODO COMPLETE
+    public function translateWord($to, $text = "", $return = FALSE) {
+        $settings = $this->getSettings();
+        $from = $settings['originsLang'] ? $settings['originsLang'] : 'en';
+        $apiKey = $settings['YandexApiKey'] ? $settings['YandexApiKey'] : '';
+        if ($text) {
+            $text = '&text=' . str_replace(' ', '%20', $text);
+        } else {
+            $text = '&text=' . str_replace(' ', '%20', $this->input->post('word'));
+        }
+//        var_dumps($to);exit;
+//        $apiKey = 'trnsl.1.1.20131007T222753Z.ce6162bf76f36118.5e8c33d185b2e48c6504492cdf203081c5085384';
+        if ($return) {
+            return $this->open_https_url('https://translate.yandex.net/api/v1.5/tr.json/translate?key=' . $apiKey . $text . '&lang=' . $from . '-' . $to . '&format=plain');
+        } else {
+            echo $this->open_https_url('https://translate.yandex.net/api/v1.5/tr.json/translate?key=' . $apiKey . $text . '&lang=' . $from . '-' . $to . '&format=plain');
+        }
+    }
+
+    //TODO COMPLETE
+    public function translate() {
+        $po_array = (array) json_decode($this->input->post('po_array'));
+        $lang = $this->input->post('lang');
+        if ($po_array) {
+            $values = array();
+            $counter = 0;
+            foreach ($po_array as $origin => $value) {
+                if ($origin) {
+                    if (strlen($values[$counter] . '&text=' . str_replace(' ', '%20', $origin)) < 9999) {
+                        $values[$counter] .= '&text=' . str_replace(' ', '%20', $origin);
+                    } else {
+                        $counter += 1;
+                        $values[$counter] .= '&text=' . str_replace(' ', '%20', $origin);
+                    }
+                }
+            }
+            $translations = array();
+            foreach ($values as $to_translate) {
+                $translations[] = json_decode($this->translateWord($lang[0], $to_translate, TRUE));
+            }
+
+
+            $result = array();
+            foreach ($translations as $trans) {
+                foreach ($trans->text as $respons) {
+                    if ($respons) {
+                        $result[] = $respons;
+                    }
+                }
+            }
+
+            $counter = 0;
+            foreach ($po_array as $origin => $value) {
+                if ($origin) {
+                    $po_array[$origin] = (array) $po_array[$origin];
+                    $po_array[$origin]['text'] = $result[$counter];
+                    $counter+=1;
+                }
+            }
+
+            return \CMSFactory\assetManager::create()
+                            ->setData('po_array', $po_array)
+                            ->setData('page', 1)
+                            ->setData('rows_count', ceil(count($po_array) / 11))
+                            ->fetchAdminTemplate('po_table');
+        }
     }
 
     function recurseDirs($main, $count = 0) {
@@ -718,7 +762,6 @@ class Admin extends BaseAdminController {
                 if (!strstr($main . $file, 'jsLangs')) {
                     $count++;
                     $content = @file($main . $file);
-
                     foreach ($content as $line_number => $line) {
                         $lang = array();
                         if (preg_match_all("/lang\(['\"]{1}(.*?)['\"]{1}/", $line, $lang)) {
@@ -727,6 +770,9 @@ class Admin extends BaseAdminController {
                                     $this->parsed_langs[$origin] = array();
                                 }
 
+                                if (strstr($main . $file, '.js')) {
+                                    $this->js_langs[$origin] = $origin;
+                                }
                                 array_push($this->parsed_langs[$origin], $main . $file . ':' . ++$line_number);
                             }
                         }
@@ -755,12 +801,15 @@ class Admin extends BaseAdminController {
         switch ($type) {
             case 'modules':
                 $url = $this->modules_path . $module_template . '/language/' . $lang . '/LC_MESSAGES';
+                $this->domain = $module_template;
                 break;
             case 'templates':
                 $url = $this->templates_path . $module_template . '/language/' . $module_template . '/' . $lang . '/LC_MESSAGES';
+                $this->domain = $module_template;
                 break;
             case 'main':
                 $url = $this->main_path . $lang . '/LC_MESSAGES';
+                $this->domain = 'main';
                 break;
         }
 
@@ -772,6 +821,23 @@ class Admin extends BaseAdminController {
                 if ($key == 0) {
                     $url = $this->makeCorrectUrl($url, $path);
                     $url = substr_replace($url, '', strlen($url) - 1);
+                }
+            }
+
+            if ($this->js_langs) {
+                $js_content = '<script>' . PHP_EOL;
+                foreach ($this->js_langs as $origin) {
+                    $js_content .='lang["' . $origin . '"] = lang("' . $origin . '", "' . $this->domain . '");' . PHP_EOL;
+                }
+                $js_content .='</script>';
+
+                $cut_pos = strpos(__DIR__, "/application/") ? strpos(__DIR__, "/application/") : strpos(__DIR__, "\\application\\");
+                $base_dir = substr_replace(__DIR__, '', $cut_pos, strlen(__DIR__));
+
+                if ($this->domain == "admin") {
+                    file_put_contents($base_dir . '/templates/administrator/inc/jsLangs.tpl', $js_content);
+                } else {
+                    file_put_contents($base_dir . '/application/modules/' . $this->domain . '/assets/jsLangs.tpl', $js_content);
                 }
             }
         }
@@ -836,54 +902,31 @@ class Admin extends BaseAdminController {
                 }
             }
         }
-        $results = array();
         $currentLangs = $this->poFileToArray($module_template, $type, $lang);
 
-//        var_dumps($all_langs);
-//        var_dumps($currentLangs);
-//        
         foreach ($all_langs as $origin => $paths) {
             if ($currentLangs[$origin]) {
                 $needed_paths = array();
                 foreach ($paths as $path) {
                     if (!is_array($path)) {
-//                        if (!strstr($path, 'jsLangs')) {
                         $needed_paths[] = $path;
-//                        }
                     }
                 }
 
                 $currentLangs[$origin]['links'] = $needed_paths;
             }
         }
-//        var_dumps($currentLangs);
-//        $this->renderModulePoFile($module_template, $type, $lang);
 
         $this->session->set_userdata('translation', array(
             'name' => $module_template,
             'type' => $type,
-            'lang' => $lang,
-            'po_array' => $currentLangs
-                )
-        );
-        $offset = 0;
-        $limit = 10;
-        $page = floor($offset / $limit + 1);
+            'lang' => $lang
+        ));
         return \CMSFactory\assetManager::create()
                         ->setData('po_array', $currentLangs)
-                        ->setData('page', $page)
-                        ->setData('rows_count', ceil(count($result_array) / ($limit + 1)))
+                        ->setData('page', 1)
+                        ->setData('rows_count', ceil(count($currentLangs) / 11))
                         ->fetchAdminTemplate('po_table');
-
-//        foreach ($all_langs as $key => $newLang) {
-//            if (!isset($currentLangs[$key])) {
-//                $results['new'][$key] = $newLang;
-//            } else {
-//                unset($currentLangs[$key]);
-//            }
-//        }
-//        $results['old'] = $currentLangs;
-//        return json_encode($results);
     }
 
     public function makeCorrectUrl($from = '', $to = "") {
@@ -942,17 +985,31 @@ class Admin extends BaseAdminController {
             'name' => $module_template,
             'type' => $type,
             'lang' => $lang,
-            'po_array' => $translations
-                )
-        );
-        $offset = 0;
-        $limit = 10;
-        $page = floor($offset / $limit + 1);
+        ));
+
         return \CMSFactory\assetManager::create()
                         ->setData('po_array', $result_array)
-                        ->setData('page', $page)
-                        ->setData('rows_count', ceil(count($result_array) / ($limit + 1)))
+                        ->setData('page', 1)
+                        ->setData('rows_count', ceil(count($result_array) / 11))
                         ->fetchAdminTemplate('po_table');
+    }
+
+    public function renderFile() {
+        $filePath = $this->input->post('filePath');
+
+        $filePath = str_replace('/', '\\', $filePath);
+        $filePath = preg_replace('/application[\W\w]+/', '', __DIR__) . $filePath;
+        $file = file($filePath);
+        return json_encode($file);
+    }
+
+    public function saveEditingFile() {
+        $filePath = $this->input->post('filePath');
+        $content = $this->input->post('content');
+
+        $filePath = str_replace('/', '\\', $filePath);
+        $filePath = preg_replace('/application[\W\w]+/', '', __DIR__) . $filePath;
+        return file_put_contents($filePath, $content);
     }
 
 }
