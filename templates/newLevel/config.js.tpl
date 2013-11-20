@@ -13,6 +13,7 @@
     var genObj = {
     popupCart: '#popupCart',
     pageCart: '.page-cart',
+    frameDelivery: '#frameDelivery',
     pM: '.paymentMethod',
     trCartKit: 'tr.row-kits',
     frameCount: '.frame-count', //селектор
@@ -62,7 +63,7 @@
     priceOrigVariant: '.priceOrigVariant',
     priceAddPrice: '.addCurrPrice',
     photoProduct: '#photoProduct',
-        mainThumb: '#mainThumb',
+    mainThumb: '#mainThumb',
     plusMinus: '[data-rel="plusminus"]',
     frameBasks: '.frame-bask', //order and popup
     frameChangeCount: '.frame-change-count',
@@ -117,6 +118,8 @@
         plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'],
         
         selectDeliv = false,
+        selectPayment = false,
+        
         selIcons = '[class*=icon_]',
         preloader = '.preloader',
         selScrollPane = '.frame-scroll-pane .content-carousel';

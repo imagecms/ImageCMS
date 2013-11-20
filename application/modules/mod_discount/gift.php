@@ -93,7 +93,6 @@ class Gift extends \mod_discount\classes\BaseDiscount {
      */      
     public function render_gift_succes(){
         $json = json_decode($_GET['json']);
-
         \CMSFactory\assetManager::create()->setData(array('gift' => $json))->render('gift_succes', true);
     }
 

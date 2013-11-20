@@ -38,12 +38,13 @@ function tovarChangeCount(el) {
         condTooltip = checkProdStock && $this.val() > $this.data('max');
         if (condTooltip)
             $this.closest(genObj.numberC).tooltip();
-        
-        $this.closest(genObj.frameCount).next().children().attr('data-count', $this.val())
-        $(document).trigger({ //for wishlist
-            'type': 'change_count_product', 
-            'el': $this
-        });
+        else{
+            $this.closest(genObj.frameCount).next().children().attr('data-count', $this.val())
+            $(document).trigger({ //for wishlist
+                'type': 'change_count_product', 
+                'el': $this
+            });
+        }
     });
     el.find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
         after: function(e, el, input) {
