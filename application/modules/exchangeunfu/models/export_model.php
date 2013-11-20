@@ -45,11 +45,20 @@ class Export_model extends CI_Model {
     }
 
     public function getOrders($partner_id = null) {
+        $config = $this->db
+                ->where('identif', 'exchangeunfu')
+                ->get('components')
+                ->row_array();
+        $config = unserialize($config['settings']);
+
         if ($partner_id) {
-            $query = $this->db->where('partner_external_id', $partner_id)
+            $query = $this->db
+                    ->where_in('status', $config['userstatuses'])
+                    ->where('partner_external_id', $partner_id)
                     ->get('shop_orders');
         } else {
             $query = $this->db
+                    ->where_in('status', $config['userstatuses'])
                     ->get('shop_orders');
         }
 
