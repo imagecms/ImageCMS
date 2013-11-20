@@ -66,7 +66,7 @@ $.fn.pricetext = function(e, rank) {
     rank != undefined ? rank = rank : rank = true;
     $(document).trigger({
         type: 'textanimatechange', 
-        el: $this, 
+        el: $this,
         ovalue: parseFloat($this.text().replace(/\s+/g, '')), 
         nvalue: e, 
         rank: rank
@@ -451,6 +451,7 @@ function getCookie(c_name)
                 searchPath: siteUrl+locale+"shop/search/ac",
                 inputString: $('#inputString'),
                 minValue: 3,
+                underscoreLayout: '#searchResultsTemplate',
                 blockEnter: true
             }, options);
             function postSearch() {
@@ -463,7 +464,7 @@ function getCookie(c_name)
                 }, function(data) {
                     try {
                         var dataObj = JSON.parse(data),
-                        html = _.template($('#searchResultsTemplate').html(), {
+                        html = _.template($(underscoreLayout).html(), {
                             'items': dataObj
                         });
                     } catch (e) {
@@ -567,6 +568,7 @@ function getCookie(c_name)
             searchPath = settings.searchPath,
             selectorPosition = -1,
             inputString = settings.inputString,
+            underscoreLayout = settings.underscoreLayout,
             minValue = settings.minValue;
             var submit = inputString.closest('form').find('[type="submit"]');
             if (blockEnter)
@@ -1188,11 +1190,13 @@ function getCookie(c_name)
                     refs[index].off('click.tabs').on('click.tabs', function(e) {
                         wST = wnd.scrollTop();
                         var $this = $(this);
+                                
                         var resB = settings.before($this);
                         if (resB == undefined || resB == true) {
                             if ($this.is('a'))
                                 e.preventDefault();
                             var condRadio = $thiss.data('type') == 'radio',
+                            toggle = $thiss.data('type') == 'toggle',
                             condStart = e.start;
                             if (!$this.parent().hasClass('disabled')) {
                                 var $thisA = $this[attrOrdata[index]]('href'),
@@ -1203,15 +1207,27 @@ function getCookie(c_name)
                                 $thisSel = $this.data('selector'),
                                 $thisDD = $this.data('drop') != undefined;
                                 function tabsDivT() {
-                                    tabsDiv[index].add(tabsId[index])[effectOff](durationOff).removeClass(activeClass);
-                                    $thisAO.add('[data-id=' + $thisA + ']')[effectOn](durationOn, function() {
-                                        settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
-                                    }).addClass(activeClass);
+                                    var showBlock = $thisAO.add($('[data-id=' + $thisA + ']')),
+                                    addDiv = toggle ? $([]) : showBlock;
+                                    
+                                    tabsDiv[index].add(tabsId[index]).not(addDiv)[effectOff](durationOff).removeClass(activeClass);
+                                    if (!($thisAO.is(':visible') && toggle))
+                                        if (!$thisAO.is(':visible'))
+                                            showBlock[effectOn](durationOn, function() {
+                                                settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
+                                            }).addClass(activeClass);
                                 }
                                 if (!$thisDD) {
                                     if (!condRadio || e.button == 0) {
-                                        navTabsLi[index].removeClass(activeClass);
-                                        $this.parent().addClass(activeClass);
+                                        
+                                        var activeP = $this.parent();
+                                        
+                                        navTabsLi[index].not(activeP).removeClass(activeClass);
+                                        if (activeP.hasClass(activeClass) && toggle)
+                                            activeP.removeClass(activeClass);
+                                        else
+                                            activeP.addClass(activeClass);
+                                        
                                         if (!condRadio) {
                                             if (!condStart && $thisS != undefined)
                                                 tabsDivT()
@@ -1273,19 +1289,18 @@ function getCookie(c_name)
                                 }
                                 if ((!condRadio && attrOrdata[index] != 'data') || (($.inArray($thisA, regRefs[index]) > -1 && reg != null))) {
                                     if (!condStart) {
-                                        var reg = null,
+                                        var reg = $thisAOld != undefined,
                                         temp = wLH;
-                                        try {
-                                            reg = wLH.match(new RegExp(_.without(regRefs[index], undefined).join('|').toString()));
-                                        } catch (err) {
-                                            reg = null;
-                                        }
-                                        if (reg != null) {
+                                        
+                                        if (reg) {
                                             if (wLH.indexOf($thisA) == -1) {
-                                                temp = temp.replace(reg, $thisA)
+                                                temp = temp.replace($thisAOld, $thisA)
                                             }
-                                            else if ($thisA != reg) {
+                                            else if ($thisA != $thisAOld) {
                                                 temp += $thisA;
+                                            }
+                                            if (!(activeP.hasClass(activeClass) && toggle)){
+                                                temp = temp.replace($thisA, '');
                                             }
                                         }
                                         else {
@@ -1300,7 +1315,6 @@ function getCookie(c_name)
                                     if ($thisDD && condStart)
                                         $this.trigger('click.drop')
                                 }
-                                
                                 else if (e.button == 0 && $thiss.data('elchange') != undefined) {
                                     refs[index].each(function() {
                                         var $thisDH = $(this).data('href');
@@ -1323,11 +1337,24 @@ function getCookie(c_name)
                             wnd.scrollTop(wST);
                         wST = wnd.scrollTop();
                     }
-                    
                     //chrome bug
                     if ($.browser.webkit)
                         scrollTop(wST - 100);
                     scrollTop(wST);
+                    _.map(location.hash.split('#'), function(i, n){
+                        if (i != ''){
+                            var parent = $('[data-href="#'+i+'"], [href="#'+i+'"]').parent().addClass(activeClass),
+                            siblings = parent.siblings().removeClass(activeClass);
+                            
+                            siblings.children('[data-href], [href]').each(function(){
+                                var href = ($(this).data('href') != undefined ? $(this).data('href') : $(this).attr('href')).replace('#', '');
+                                $('[id="'+href+'"]').hide();
+                                $('[data-id="'+href+'"]').hide();
+                            })
+                            $('[id="'+i+'"]').show();
+                            $('[data-id="'+i+'"]').show();
+                        }
+                    })
                     return false;
                 })
             }
@@ -1600,14 +1627,16 @@ function getCookie(c_name)
                         body.append(drop);
                 }
                 else{
-                    if (elSet.place == 'center'){
-                        body.append('<div class="for-center" rel="'+elSet.drop+'" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
+                    if (elSet.place == 'noinherit')
+                        body.append(drop);
+                    else{
+                        if (!$.exists('[rel="'+elSet.drop+'"].for-center')){
+                            body.append('<div class="for-center" rel="'+elSet.drop+'" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
+                        }
                         var forCenter = $('[rel="'+elSet.drop+'"].for-center');
                         forCenter.append(drop);
                         $(elSet.drop).data().forCenter = forCenter;
                     }
-                    else
-                        body.append(drop);
                 }
             }
         },
@@ -2115,7 +2144,7 @@ function getCookie(c_name)
                             regM = v;
                         $thisNext = $thisNext[regM](regS);
                     })
-                    $thisNext.unbind('click.pM').on('click.pM', function(e) {
+                    $thisNext.off('click.pM').on('click.pM', function(e) {
                         var el = $(this);
                         $thisPrev.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
@@ -2147,7 +2176,7 @@ function getCookie(c_name)
                             }
                         }
                     })
-                    $thisPrev.unbind('click.pM').on('click.pM', function(e) {
+                    $thisPrev.off('click.pM').on('click.pM', function(e) {
                         var el = $(this);
                         $thisNext.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
