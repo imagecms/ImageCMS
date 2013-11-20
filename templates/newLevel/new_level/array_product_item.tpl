@@ -111,6 +111,7 @@
                             data-mediumImage="{echo $photo}"
                             data-img="{echo $photo}"
                             data-url="{echo shop_url('product/'.$p.url)}"
+                            >
                             <span class="icon-but"></span>
                             <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                         </button>

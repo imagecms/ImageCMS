@@ -190,11 +190,11 @@ function processWishPage() {
         genSum = 0,
         btnBuyI = $this.find(genObj.btnBuy);
         btnBuyI.each(function() {
-            tempC = parseInt($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
+            tempC = parseFloat($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
             if (isNaN(tempC))
                 return false;
             btnBuyLC += tempC;
-            tempP = parseInt($(this).data('price'));
+            tempP = parseFloat($(this).data('price'));
             genSum += tempP * tempC;
         });
         var btnBuyL = btnBuyI.length,
@@ -203,7 +203,7 @@ function processWishPage() {
         genPrice = $this.find(wishList.genPriceProdsWL);
         $this.find(wishList.countProdsWL).text(btnBuyLC);
         $this.find(genObj.plurProd).text(pluralStr(btnBuyLC, plurProd));
-        genPrice.text(genSum);
+        genPrice.text(genSum.toFixed(pricePrecision));
         if (btnBuyLC == 0){
             $(wishList.frameBuy).hide();
         }

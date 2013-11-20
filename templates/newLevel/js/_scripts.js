@@ -14,7 +14,7 @@ function init() {
     processBtnBuyCount();
     initShopPage(false);
     tovarCategoryChangeVariant();
-    //if !selectDeliv
+    
     $(document).on('discount.display', function(e) {
         Shop.Cart.discount = e.discount;
         displayDiscount(Shop.Cart.discount);
@@ -287,12 +287,13 @@ function init() {
         pasteItemsTovars(e.el);
         e.els.find(preloader).remove();
     });
-    //    if carousel in compare
-    //    $('#compare').change(function() {
-    //        var $this = $(this);
-    //        $($this.val()).siblings().hide().end().show();
-    //        optionCompare.compareChangeCategory();
-    //    }).change();
+    
+    //if carousel in compare
+    $('#compare').change(function() {
+        var $this = $(this);
+        $($this.val()).siblings().hide().end().show();
+        optionCompare.compareChangeCategory();
+    }).change();
 
     $(document).on('autocomplete.fewLength', function(e) {
         e.el.tooltip({

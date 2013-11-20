@@ -21,11 +21,11 @@ var Shop = {
         totalPriceOrigin: 0,
         discount: 0,
         kitDiscount: 0,
-        discountProduct: 0,
         popupCartSelector: 'script#cartPopupTemplate',
         shipping: 0,
         shipFreeFrom: 0,
         giftCertPrice: 0,
+        discountProduct: 0,
         gift: undefined,
         add: function(cartItem, show) {
             //trigger before_add_to_cart

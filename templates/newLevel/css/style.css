@@ -1035,6 +1035,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .right-compare .group-button-carousel > .arrow{top: 200px;}
 .right-compare .group-button-carousel > .prev{left: -33px;}
 .right-compare .group-button-carousel > .next{right: -50px;}
+.right-compare .content-carousel{overflow: hidden;}
 .tabs-compare-diferent{margin-left: 250px;display: block;}
 .tabs-compare-category{display: block;height: 80%;overflow: auto;}
 .frame-tabs-compare{overflow: visible;}
