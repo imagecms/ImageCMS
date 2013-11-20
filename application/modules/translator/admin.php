@@ -46,13 +46,13 @@ class Admin extends BaseAdminController {
     public function setSettings($settings) {
         $settings = $this->getSettings();
         if ($this->input->post('originsLang')) {
-            $settings['originsLang'] =  $this->input->post('originsLang');
+            $settings['originsLang'] = $this->input->post('originsLang');
         }
-        
+
         if ($this->input->post('YandexApiKey')) {
-            $settings['YandexApiKey'] =  $this->input->post('YandexApiKey');
+            $settings['YandexApiKey'] = $this->input->post('YandexApiKey');
         }
-        
+
         return $this->db->where('identif', 'translator')
                         ->update('components', array('settings' => serialize($settings)
         ));
@@ -996,10 +996,13 @@ class Admin extends BaseAdminController {
 
     public function renderFile() {
         $filePath = $this->input->post('filePath');
-
         $filePath = str_replace('/', '\\', $filePath);
         $filePath = preg_replace('/application[\W\w]+/', '', __DIR__) . $filePath;
         $file = file($filePath);
+        if (!$file) {
+            $filePath = str_replace('\\', '/', $filePath);
+            $file = file($filePath);
+        }
         return json_encode($file);
     }
 
@@ -1009,7 +1012,11 @@ class Admin extends BaseAdminController {
 
         $filePath = str_replace('/', '\\', $filePath);
         $filePath = preg_replace('/application[\W\w]+/', '', __DIR__) . $filePath;
-        return file_put_contents($filePath, $content);
+        if (!file_put_contents($filePath, $content)) {
+            $filePath = str_replace('\\', '/', $filePath);
+                file_put_contents($filePath, $content);
+        }
+//        return file_put_contents($filePath, $content);
     }
 
 }
