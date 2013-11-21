@@ -1,4 +1,5 @@
 function init() {
+    body.removeClass('not-js');
     if (isTouch)
         body.addClass('isTouch');
     else
@@ -58,11 +59,6 @@ function init() {
         dropEl.find("img.lazy:not(.load)").lazyload(lazyload);
         wnd.scroll(); //for lazyload
 
-        var carouselInDrop = dropEl.find('.carousel_js');
-        if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !dropEl.is('#photo')) {
-            carouselInDrop.addClass('visited')
-            carouselInDrop.myCarousel(carousel);
-        }
         if (dropEl.hasClass('drop-wishlist')) {
             dropEl.nStRadio({
                 wrapper: $(".frame-label"),
