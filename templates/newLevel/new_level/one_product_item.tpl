@@ -6,10 +6,10 @@
 {$defaultItem = $defaultItem != false && $defaultItem != NULL}
 {$condlimit = $limit != false && $limit != NULL}
 
-{$variants = $p->getProductVariants()}
-{$hasDiscounts = $p->hasDiscounts()}
-
 {foreach $products as $key => $p}
+    {$variants = $p->getProductVariants()}
+    {$hasDiscounts = $p->hasDiscounts()}
+
     {if $key >= $limit && $condlimit}
         {break}
     {/if}
