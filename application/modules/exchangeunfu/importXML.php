@@ -826,7 +826,7 @@ class ImportXML {
         }
 
         if (isset($order->Строки)) {
-            $this->ci->db->where('order_id', $order->IDWeb . '')->delete('shop_orders_products');
+            $this->ci->db->where('order_id', $order_id['id'])->delete('shop_orders_products');
             foreach ($order->Строки as $key => $product) {
                 $data = array();
                 $data['quantity'] = (int) $product->Количество;

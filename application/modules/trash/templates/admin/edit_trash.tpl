@@ -38,7 +38,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="old_url">{lang('Old URL', 'trash')}</label>
                                         <div class="controls">
-                                            <label name="old_url" id="old_url">{echo $trash->trash_url}</label>
+                                            <label name="old_url" id="old_url">{echo site_url().$trash->trash_url}</label>
                                             <input type="hidden" name="old_url" id="old_url" value="{echo $trash->trash_url}" required/>
                                         </div>
                                     </div>
@@ -46,33 +46,33 @@
                                     <div class="control-group">
                                         <label class="control-label" for="type">{lang('Type', 'trash')}</label>
                                         <div class="controls">
-                                            <span class="frame_label no_connection  m-r_15">
+                                            <span class="frame_label no_connection m-r_15" id="url">
                                                 <span class="niceRadio b_n">
                                                     <input type="radio" name="redirect_type" value="url" {if $trash->trash_redirect_type == 'url'}checked="checked"{/if}/>
                                                 </span>
                                                 Url 
                                             </span>
                                             {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
-                                                <span class="frame_label no_connection m-r_15">
+                                                <span class="frame_label no_connection m-r_15" id="prod">
                                                     <span class="niceRadio b_n">
                                                         <input type="radio" name="redirect_type" value="product" {if $trash->trash_redirect_type == 'product'}checked="checked"{/if}/>
                                                     </span>
                                                     {lang('Product', 'trash')}
                                                 </span>
-                                                <span class="frame_label no_connection m-r_15">
+                                                <span class="frame_label no_connection m-r_15" id="cat">
                                                     <span class="niceRadio b_n">
                                                         <input type="radio" name="redirect_type" value="category" {if $trash->trash_redirect_type == 'category'}checked="checked"{/if}/>
                                                     </span>
                                                     {lang('Category', 'trash')}
                                                 </span>
                                             {/if}
-                                            <span class="frame_label no_connection m-r_15">
+                                            <span class="frame_label no_connection m-r_15" id="base">
                                                 <span class="niceRadio b_n">
                                                     <input type="radio" name="redirect_type" value="basecategory" {if $trash->trash_redirect_type == 'basecategory'}checked="checked"{/if}/>
                                                 </span>
                                                 {lang('Category of Base', 'trash')}
                                             </span>
-                                            <span class="frame_label no_connection m-r_15">
+                                            <span class="frame_label no_connection m-r_15" id="404">
                                                 <span class="niceRadio b_n">
                                                     <input type="radio" name="redirect_type" value="404" {if $trash->trash_redirect_type == '404'}checked="checked"{/if}/>
                                                 </span>
@@ -99,14 +99,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="control-group">
+                                    <div class="control-group" id="forUrl" {if $trash->trash_redirect_type != 'url'}style="display: none"{/if}>
                                         <label class="control-label" for="redirect_url">{lang('Redirect Url', 'trash')} </label>
                                         <div class="controls">
                                             <input type="text" name="redirect_url" id="redirect_url" value="{echo $trash->trash_redirect}"s/>
                                         </div>
                                     </div>
                                     {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
-                                        <div class="control-group">
+                                        <div class="control-group" id="forProd" {if $trash->trash_redirect_type != 'product'}style="display: none"{/if}>
                                             <label class="control-label" for="products">{lang('Product', 'trash')}</label>
                                             <div class="controls">
                                                 <select id="inputMainC" value="" name="products">
@@ -117,7 +117,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="control-group">
+                                        <div class="control-group" id="forCat" {if $trash->trash_redirect_type != 'category'}style="display: none"{/if}>
                                             <label class="control-label" for="products">{lang('Categories', 'trash')}</label>
                                             <div class="controls">
                                                 <select id="inputMainC" value="" name="category">
@@ -128,7 +128,7 @@
                                             </div>
                                         </div>
                                     {/if}
-                                    <div class="control-group">
+                                    <div class="control-group" id="forBase" {if $trash->trash_redirect_type != 'basecategory'}style="display: none"{/if}>
                                         <label class="control-label" for="products">{lang('Categories of Base', 'trash')}</label>
                                         <div class="controls">
                                             <select id="inputMainC" value="" name="category_base">
@@ -147,18 +147,3 @@
         </tbody>
     </table>                               
 </section>
-{literal}
-    <script type="text/javascript">
-        window.onload = function() {
-            if ($.exists('.datepicker')) {
-                $(".datepicker").datepicker({
-                    showOtherMonths: true,
-                    selectOtherMonths: true,
-                    prevText: '',
-                    nextText: ''
-                });
-            }
-            $('.ui-datepicker').addClass('dropdown-menu');
-        }
-    </script>
-{/literal}
