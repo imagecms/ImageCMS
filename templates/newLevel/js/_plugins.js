@@ -61,6 +61,7 @@ $.onlyNumber = function(el) {
         }
     });
 }
+
 $.fn.pricetext = function(e, rank) {
     var $this = $(this);
     rank != undefined ? rank = rank : rank = true;
@@ -146,7 +147,7 @@ function getCookie(c_name)
     }
     return c_value;
 }
-
+/*plugin nstCehck*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -316,6 +317,8 @@ function getCookie(c_name)
         return methods[m];
     };
 })(jQuery);
+/*plugin nstCehck end*/
+/*plugin nstRadio*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -442,6 +445,8 @@ function getCookie(c_name)
         return methods[m];
     };
 })(jQuery);
+/*plugin nstRadio end*/
+/*plugin autocomplete*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -642,53 +647,72 @@ function getCookie(c_name)
         return methods[m];
     };
 })(jQuery);
+/*plugin autocomplete end*/
+/*plugin tooltip*/
 (function($) {
     var methods = {
-        init: function(options) {
+        init: function(options, e) {
+            console.log(1)
             var tooltip = $('.tooltip').not('.' + clonedC),
             settings = $.extend({
                 title: this.attr('data-title'),
                 otherClass: false,
                 effect: 'notalways',
-                textEl: '.text-el'
+                textEl: '.text-el',
+                placement: 'top',
+                offsetX: 10,
+                offsetY: 10
             }, options);
-            var $this = $(this), textEl = $this.find(settings.textEl);
+            var $this = $(this),
+            elSet = $this.data(),
+            title = elSet.title || settings.title,
+            otherClass = elSet.otherClass || settings.otherClass,
+            effect = elSet.effect || settings.effect,
+            textEl = elSet.textEl || settings.textEl,
+            placement = elSet.placement || settings.placement,
+            offsetX = elSet.offsetX || settings.offsetX,
+            offsetY = elSet.offsetY || settings.offsetY;
+            
+            textEl = $this.find(textEl);
+            
             if (textEl.is(':visible') && $.existsN(textEl))
                 return false;
-            tooltip.html(settings.title);
-            if (settings.otherClass !== false)
-                tooltip.addClass(settings.otherClass);
-            if (settings.effect == 'always' && !$.exists('.' + settings.otherClass + 'tooltip')) {
+            tooltip.html(title);
+            if (otherClass !== false)
+                tooltip.addClass(otherClass);
+            if (effect == 'always' && !$.exists('.' + otherClass + 'tooltip')) {
                 tooltip = tooltip.clone();
-                tooltip.addClass(settings.otherClass + 'tooltip').appendTo(body);
+                tooltip.addClass(otherClass + 'tooltip').appendTo(body);
             }
-            var tempeff = false;
-            if (settings.effect == 'notalways') {
-                tooltip.hide();
-                tempeff = 'stop';
+            
+            switch (effect){
+                case "notalways":
+                    tooltip.hide();
+                    var tempeff = 'stop',
+                    tempparam = 'true, false';
+                    break;
+                default:
+                    var tempeff = 'add',//anybody method which return this object
+                    tempparam = '';
             }
-            if (tempeff) {
-                tooltip.css({
-                    'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
-                    'top': this.offset().top - tooltip.actual('outerHeight')
-                }).stop(true, false).fadeIn(300, function() {
-                    $(document).trigger({
-                        'type': 'tooltip.show', 
-                        'el': $(this)
-                    });
+            if (effect == 'mouse')
+                this.off('mousemove.tooltip').on('mousemove.tooltip', function(e){
+                    tooltip.css({
+                        'left': methods.left($(this), tooltip, placement, e.pageX, effect, offsetX),
+                        'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY) 
+                    })
+                })
+            tooltip.removeClass('top bottom right left').addClass(placement);
+            tooltip.css({
+                'left': methods.left(this, tooltip, placement, this.offset().left, effect, offsetX),
+                'top': methods.top(this, tooltip, placement, this.offset().top, effect, offsetY) 
+            })[tempeff](tempparam).fadeIn(300, function() {
+                $(document).trigger({
+                    'type': 'tooltip.show', 
+                    'el': $(this)
                 });
-            }
-            else {
-                tooltip.css({
-                    'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
-                    'top': this.offset().top - tooltip.actual('outerHeight')
-                }).fadeIn(300, function() {
-                    $(document).trigger({
-                        'type': 'tooltip.show', 
-                        'el': $(this)
-                    });
-                });
-            }
+            });
+
             $this.off('mouseout.tooltip').on('mouseout.tooltip', function() {
                 $(this).tooltip('remove');
             })
@@ -696,6 +720,23 @@ function getCookie(c_name)
                 $(this).tooltip('remove');
             })
         
+        },
+        left: function(el, tooltip, placement, left, eff, offset) {
+            if (placement == 'left')
+                return Math.ceil(left - (eff == 'mouse' ? offset : tooltip.actual('outerWidth')))
+            if (placement == 'right')
+                return Math.ceil(left + (eff == 'mouse' ? offset : el.outerWidth()))
+            else
+                return Math.ceil(left - (eff == 'mouse' ? offset : (tooltip.actual('outerWidth') - el.outerWidth()) / 2))
+        },
+        top: function(el, tooltip, placement, top, eff, offset) {
+            if (placement == 'top')
+                return Math.ceil(top - (eff == 'mouse' ? offset : tooltip.actual('outerHeight')));
+            if (placement == 'bottom')
+                return Math.ceil(top + (eff == 'mouse' ? offset : tooltip.actual('outerHeight')));
+            else{
+                return Math.ceil(top - (eff == 'mouse' ? offset : (tooltip.actual('outerHeight') - el.outerHeight()) / 2))
+            }
         },
         remove: function() {
             $('.tooltip').stop(true, false).fadeOut(300, function() {
@@ -718,16 +759,17 @@ function getCookie(c_name)
     $.tooltip = function(m) {
         return methods[m];
     };
-    body.on('mouseover', '[data-rel="tooltip"]', function() {
-        $(this).tooltip();
-    }).on('mouseout', '[data-rel="tooltip"]', function() {
+    body.on('mouseenter.tooltip', '[data-rel="tooltip"]', function(e) {
+        $(this).tooltip({}, e);
+    }).on('mouseout.tooltip', '[data-rel="tooltip"]', function() {
         $(this).tooltip('remove');
-    }).on('click', function(){
+    }).on('click.tooltip', function(){
         $.tooltip('remove');
     })
     if (!$.exists('.tooltip'))
         body.append('<span class="tooltip"></span>');
 })(jQuery);
+/*plugin tooltip end*/
 /*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
@@ -901,7 +943,7 @@ function getCookie(c_name)
                                             var datax = $(this).attr('data-x');
                                             sumx = parseInt(datax == 0 || datax == undefined ? 1 : datax) > sumx ? parseInt(datax == 0 || datax == undefined ? 1 : datax) : sumx;
                                         })
-                                        $this.children().append('<li class="x' + sumx + '" data-column="' + n + '"><ul></ul></li>');
+                                        $this.children().append('<li class="x' + sumx + '" data-column="' + n + '" data-x="'+sumx+'"><ul></ul></li>');
                                         $this.find('[data-column="' + n + '"]').children().append($thisLi.clone());
                                     })
                                     columnsObj.remove();
@@ -1464,6 +1506,7 @@ function getCookie(c_name)
     };
 })(jQuery);
 /*/plugin tabs end*/
+/*plugin actual*/
 (function($) {
     $.fn.actual = function() {
         if (arguments.length && typeof arguments[0] == 'string') {
@@ -1481,6 +1524,8 @@ function getCookie(c_name)
         return undefined;
     };
 })(jQuery);
+/*/plugin actual end*/
+/*plugin drop*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -2107,6 +2152,8 @@ function getCookie(c_name)
         return methods[m];
     };
 })(jQuery);
+/*/plugin drop end*/
+/*plugin plusminus*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -2226,6 +2273,8 @@ function getCookie(c_name)
         return methods[m];
     };
 })($);
+/*/plugin plusminus end*/
+/*plugin maxminValue*/
 (function($) {
     var methods = {
         init: function(e, f) {
@@ -2287,7 +2336,7 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
         return false;
     }
 });
-
+/*/plugin maxminValue end*/
 /*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/
 (function($) {
     var methods = {
@@ -2295,6 +2344,7 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
             if ($.existsN($(this))) {
                 var $jsCarousel = $(this);
                 var settings = $.extend({
+                    item: 'li',
                     prev: '.prev',
                     next: '.next',
                     content: '.c-carousel',
@@ -2307,7 +2357,9 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
                     after: function() {
                     }
                 }, options);
-                var prev = settings.prev,
+                var 
+                item = settings.item,
+                prev = settings.prev,
                 next = settings.next,
                 content = settings.content,
                 groupButtons = settings.groupButtons,
@@ -2322,14 +2374,14 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
                     if (addO.refresh && $this.hasClass('iscarousel'))
                         m = 'children';
                     var $content = $this.find(content),
-                    $item = $content.children()[m]().children(),
-                    $itemL = $item.filter(':visible').length,
-                    $itemW = $item.outerWidth(true),
-                    $itemH = $item.outerHeight(true),
+                    $items = $content.children()[m]().children(item),
+                    $itemL = $items.length,
+                    $itemW = $items.outerWidth(true),
+                    $itemH = $items.outerHeight(true),
                     $thisPrev = $this.find(prev),
                     $thisNext = $this.find(next),
-                    $marginR = $itemW - $item.outerWidth(),
-                    $marginB = $itemH - $item.outerHeight(),
+                    $marginR = $itemW - $items.outerWidth(),
+                    $marginB = $itemH - $items.outerHeight(),
                     contW = $content.width(),
                     contH = $content.height(),
                     groupButton = $this.find(groupButtons);
@@ -2403,10 +2455,10 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
                     }
                     else {
                         if (isHorz){
-                            $item.parent().css('width', $itemW * $itemL);
+                            $items.parent().css('width', $itemW * $itemL);
                         }
                         if (isVert) {
-                            $item.parent().css('height', $itemH * $itemL);
+                            $items.parent().css('height', $itemH * $itemL);
                             $content.css('height', 'auto');
                         }
                         $thisNext.add($thisPrev).hide();
@@ -2430,3 +2482,4 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
         return methods[m];
     };
 })(jQuery);
+/*/plugin myCarousel use jQarousel with correction behavior prev and next buttons end*/
