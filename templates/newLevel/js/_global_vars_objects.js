@@ -12,7 +12,7 @@ checkProdStock = checkProdStock == "" ? false : true,
 hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 
 var optionsMenu = {
-    item: $('.menu-main').find('td'),
+    item: 'td',
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
     
