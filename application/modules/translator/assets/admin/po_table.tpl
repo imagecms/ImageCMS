@@ -15,11 +15,11 @@
                 <td  rowspan="2">
                     <textarea class="comment" style="margin-bottom: 0px" rows="5" >{echo $translation['comment']}</textarea>                
                 </td>
-                <td class="t-a_c" rowspan="2">
-                    <select class="links"  style="width: 100%;" size="5">
+                <td class="t-a_c pathsTd" rowspan="2">
+                    <select class="links" size="5">
                         {foreach $translation['links'] as $link}
                             {if $link}
-                                <option value="{echo $link}" onmouseover="Translator.scrollPath($(this))">{echo $link}</option>
+                                <option value="{echo $link}" onclick="Translator.openFileToEdit($(this))" title="{echo $link}">{echo $link}</option>
                             {/if}
                         {/foreach}
                     </select>

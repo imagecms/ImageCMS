@@ -1,14 +1,15 @@
-<div class="modal hide fade modal_file_edit">
+<div class="modal hide fade modal_file_edit" style="width: 1000px;left: 33%;">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('Delete products','admin')}</h3>
+        <h3>{lang('File editing')}</h3>
     </div>
     <div class="modal-body">
-        <textarea class=""></textarea>
+        <div class="fileLines" style="float: left; height: 380px;overflow: hidden; min-width: 20px; padding-top: 4px;padding-bottom: 4px; padding-left: 5px; background-color: whitesmoke;border: 1px solid #ccc; -webkit-border-top-left-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-bottom-left-radius: 3px; -moz-border-radius-left: 3px; border-bottom-left-radius: 3px; border-top-left-radius: 3px;"></div>
+        <textarea id="fileEdit" wrap="off" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 925px; overflow: scroll;"></textarea>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}products/ajaxDeleteProducts')" >{lang('Delete','admin')}</a>
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
+        <a class="btn btn-primary" onclick="Translator.saveEditingsFile($())" >{lang('Save')}</a>
+        <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
     </div>
 </div>
 <div class="modal hide fade modal_update_results">
@@ -19,8 +20,12 @@
     <div class="modal-body">
         <div class="tabbable"> <!-- Only required for left/right tabs -->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#newStringsTab" data-toggle="tab">{lang('New strings')}</a></li>
-                <li><a href="#obsoleteStringsTab" data-toggle="tab">{lang('Obsolete strings')}</a></li>
+                <li class="active"><a href="#newStringsTab" data-toggle="tab">
+                        <span class="parsedNewStringsCount" style="font-weight: bold"></span> {lang('strings wil be added')}</a>
+                </li>
+                <li><a href="#obsoleteStringsTab" data-toggle="tab">
+                        <span class="parsedRemoveStringsCount" style="font-weight: bold"></span> {lang('strings will be removed')}</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="newStringsTab">
@@ -72,9 +77,17 @@
                         <i class="icon-refresh"></i>
                         {lang('Create')}
                     </a>
+                    <a href="/admin/components/init_window/translator/exchangeTranslation" type="button" class="btn btn-small btn-success">
+                        <i class="icon-refresh"></i>
+                        {lang('Exchange')}
+                    </a>
                     <button id="update" onclick="Translator.correctPaths($(this))" type="button" class="btn btn-small btn-success">
                         <i class="icon-edit"></i>
                         {lang('Correct paths')}
+                    </button>
+                    <button id="update" onclick="Translator.translate($(this))" type="button" class="btn btn-small btn-success">
+                        <i class="icon-edit"></i>
+                        {lang('Translate')}
                     </button>
                 </div>
             </div>
@@ -92,7 +105,7 @@
                         <tr>
                             <td style="width: 90px; border: none!important"><b>{lang('Translated')}:</b></td>
                             <td style="width: 50px; border: none!important; color: grey"><b><i class="translatedStringsCount">400</i></b></td>
-                             <td style="width: 100px; border: none!important"><b>{lang('Fuzzy strings')}:</b></td>
+                            <td style="width: 100px; border: none!important"><b>{lang('Fuzzy strings')}:</b></td>
                             <td style="width: 50px; border: none!important; color: grey"><b><i class="fuzzyStringsCount">400</i></b></td>
                         </tr>
                     </table>
@@ -104,9 +117,10 @@
                     <li class="active"><a href="#poTab" data-toggle="tab">{lang('Po file')}</a></li>
                     <li><a href="#poSettingsTab" id="settings" data-toggle="tab">{lang('Settings')}</a></li>
                 </ul>
+
                 <div class="tab-content">
                     <div class="tab-pane active" id="poTab">
-                        <div class="pull-left">
+                        <div class="pull-left poSelectorsHolder">
                             <div class="d-i_b">
                                 <select id="langs" class="" onchange="Selectors.langs($(this))">
                                     {if $langs}
@@ -179,17 +193,17 @@
                                     <th class="t-a_c" style='width: 20px;'>
                                         <a class="fuzzy asc" onclick="Sort.sortFuzzy($(this))">{lang('Fuzzy')}</a>
                                     </th>
-                                    <th class="span4">
+                                    <th class="span4 t-a_c">
                                         <a class="originHead sortTable asc" onclick="Sort.go($(this))">{lang('Origin', 'wishlist')}</a>
                                         /
                                         <a class="translation sortTable asc" onclick="Sort.go($(this))">{lang('Translation', 'wishlist')}</a>
                                         /
                                         <a class="defaultSort sortTable" onclick="Sort.default()">{lang('Default sort', 'wishlist')}</a>
                                     </th>
-                                    <th style="width: 75px">
+                                    <th style="width: 75px" class="commentTH t-a_c">
                                         <a class="comment sortTable asc" onclick="Sort.go($(this))">{lang('Comment', 'wishlist')}</a>
                                     </th>
-                                    <th class="span2">
+                                    <th class="span2 t-a_c" class="linksTH">
                                         {lang('Links', 'wishlist')}
                                     </th>
                                 </tr>
@@ -239,7 +253,7 @@
                                     </b>
                                 </h5>
                             </label>
-                            <select id="originLang" style="width: 60px" name="originLang" onchange="Translator.setOriginsLang($(this))">
+                            <select id="originLang" style="width: 80px" name="originLang" onchange="Translator.setOriginsLang($(this))">
                                 <option value="0">- {lang('No')} -</option>
                                 {foreach $locales as $lang}
                                     <option {if $settings['originsLang'] == $lang}selected{/if} value="{$lang}">
@@ -247,6 +261,21 @@
                                     </option>
                                 {/foreach}
                             </select>
+                        </div>
+
+                        <div class="YandexApiKeyHolder" style="float: right; margin-top: -35px;"> 
+                            <label for="originLang" style="float: left; margin-top: -7px; margin-right: 10px">
+                                <h5>
+                                    <b>
+                                        {lang('Yandex Api Key')}:
+                                    </b>
+                                </h5>
+                            </label>
+                            <textarea class="YandexApiKey"  style="width: 500px">{echo $settings['YandexApiKey']}</textarea>
+                            <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-success">
+                                <i class="icon-ok"></i>
+                                {lang('Save')}
+                            </button>
                         </div>
 
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
@@ -298,12 +327,9 @@
                             </table>
                             {form_csrf()}
                         </form>
-
-
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 </div>
