@@ -20,12 +20,16 @@ class Export_model extends CI_Model {
       $this->prices = $this->ci->db->get('mod_exchangeunfu_prices')->result_array();
      */
     public function getProducts($products_ids = array()) {
+
         if (!empty($products_ids)) {
             $query = $this->db->where_in('external_id', $products_ids)
                     ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
+                    ->join('shop_product_variants', 'shop_products.id=shop_product_variants.product_id')
                     ->get('shop_products');
         } else {
-            $query = $this->db->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
+            $query = $this->db
+                    ->join('shop_product_variants', 'shop_products.id=shop_product_variants.product_id')
+                    ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                     ->get('shop_products');
         }
 
