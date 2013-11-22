@@ -24,7 +24,7 @@ hr{border:0;width: 100%;display: block;}
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section{display: block;}
 .main-body{min-height: 100%;margin: 0 auto;overflow: hidden;}
 
-article, .container, .horizontal-carousel .special-proposition > .frame-title{margin: 0 auto;clear: both;}
+article, .container, .special-proposition > .frame-title{margin: 0 auto;clear: both;}
 .big-container{margin: 0 auto;}
 .main-body > .content{position: relative;z-index: 1;}
 .main-body > .vertical-layout .content{position: relative;z-index: 1;}
@@ -33,7 +33,7 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 /*/base scaffolding*/
 
 body, .overlayDrop{min-width: 960px;}
-article, .container, .horizontal-carousel .special-proposition > .frame-title{max-width: 980px;}
+article, .container, .special-proposition > .frame-title{max-width: 980px;}
 .container{padding: 0 10px;}
 .big-container{max-width: 1125px;}
 
@@ -507,9 +507,9 @@ input.input-search{height: 33px;}
 .vertical-layout .products-carousel .items-h-carousel > li{width: 209px !important;}
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin-left: 44px;margin-right: 0;margin-bottom: 0;}
 
-.horizontal-carousel .special-proposition{margin-bottom: 40px;}
-.horizontal-carousel .special-proposition > .frame-title{margin-bottom: 24px;overflow: hidden;}
-.vertical-layout .horizontal-carousel .special-proposition > .frame-title{padding-top: 13px;}
+.special-proposition{margin-bottom: 40px;}
+.special-proposition > .frame-title{margin-bottom: 24px;overflow: hidden;}
+.vertical-layout .special-proposition > .frame-title{padding-top: 13px;}
 .frame-view-products{padding: 35px 0 43px;}
 
 .items-v-carousel{margin-left: 0;}

@@ -8,18 +8,16 @@
             {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('start_page_category_menu')}
         </div>
     </div>{ */}
-    <div class="horizontal-carousel">
-        <div id="popular_products">
-            {widget('popular_products', TRUE)}
-        </div>
-        <div id="action_products">
-            <div class="preloader"></div>
-            {widget_ajax('action_products', '#action_products')}
-        </div>
-        <div id="new_products">
-            <div class="preloader"></div>
-            {widget_ajax('new_products', '#new_products')}
-        </div>
+    <div id="popular_products">
+        {widget('popular_products', TRUE)}
+    </div>
+    <div id="action_products">
+        <div class="preloader"></div>
+        {widget_ajax('action_products', '#action_products')}
+    </div>
+    <div id="new_products">
+        <div class="preloader"></div>
+        {widget_ajax('new_products', '#new_products')}
     </div>
     {widget('brands')}
     <div class="frame-seotext-news">
