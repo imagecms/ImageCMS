@@ -36,26 +36,11 @@ function changeDeliveryMethod(id) {
             $(genObj.pM).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                //,classRemove: 'b_n'//if not standart
             });
     });
 }
-
-function recountCartPage() {
-    Shop.Cart.totalRecount();
-    var ca = "";
-    if (selectDeliv)
-        ca = $(genObj.frameDelivery).find('span.cuselActive');
-    else
-        ca = $(methodDeliv).filter(':checked');
-    Shop.Cart.shipping = parseFloat(ca.data('price'));
-    Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
-    if ($.isFunction(window.loadCertificat)) {
-        loadCertificat(Shop.Cart.gift);
-    }
-    hideInfoDiscount();
-    getDiscount();
-
+function displayOrderSum(){
     var discount = Shop.Cart.discount,
     kitDiscount = parseFloat(Shop.Cart.kitDiscount),
     finalAmount = Shop.Cart.getFinalAmount();
@@ -74,10 +59,26 @@ function recountCartPage() {
         finalAmount = finalAmount - Shop.Cart.gift.value;
     if (finalAmount - Shop.Cart.shipping < 0)
         finalAmount = Shop.Cart.shipping;
+
     $(genObj.totalPrice).html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
     $(genObj.finalAmount).html(parseFloat(finalAmount).toFixed(pricePrecision));
     $(genObj.finalAmountAdd).html((Shop.Cart.koefCurr * finalAmount).toFixed(pricePrecision));
     $(genObj.shipping).html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+}
+function recountCartPage() {
+    Shop.Cart.totalRecount();
+    var ca = "";
+    if (selectDeliv)
+        ca = $(genObj.frameDelivery).find('span.cuselActive');
+    else
+        ca = $(methodDeliv).filter(':checked');
+    Shop.Cart.shipping = parseFloat(ca.data('price'));
+    Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
+    if ($.isFunction(window.loadCertificat)) {
+        loadCertificat(Shop.Cart.gift);
+    }
+    hideInfoDiscount();
+    getDiscount();
 }
 function hideInfoDiscount() {
     var frameDiscountO = $(genObj.frameDiscount);
@@ -163,7 +164,7 @@ function initOrder(){
         $(genObj.pM).nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
             elCheckWrap: '.niceRadio'
-        //,classRemove: 'b_n'//if not standart
+            //,classRemove: 'b_n'//if not standart
         });
         
     
@@ -195,6 +196,9 @@ function initOrderTrEv(){
     });
     $(document).on('discount.renderGiftSucces', function(e){
         renderGiftSucces(e.tpl, e.datas);
+    });
+    $(document).on('displayDiscount', function(e){
+        displayOrderSum();
     });
 }
 $(document).on('scriptDefer', function(){

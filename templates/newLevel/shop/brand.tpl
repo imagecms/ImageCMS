@@ -68,14 +68,14 @@
 
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
-                    {$CI->load->module('new_level')->OPI($products, array('wishlist'=>true))}
+                    {$CI->load->module('new_level')->OPI($products, array('opi_wishlist'=>true))}
                 </ul>
             {/if}
             {$pagination}
         </div>
         {if $totalProducts > 0}
             <div class="left-catalog">
-                <form method="GET" action="" id="catalog_form">
+                <form method="GET" action="" id="catalogForm">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
                     <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
                 </form>

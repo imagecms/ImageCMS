@@ -73,9 +73,6 @@ article, .container, .special-proposition > .frame-title{max-width: 980px;}
 .text-left{float: left;width: 227px;}
 .text-right{margin-left: 252px;}
 
-.frame-complect .content-carousel{width: 750px;margin: 0 auto;}
-.items-complect > li{width: 750px!important;}
-.items-complect [class*="items"]{max-width: 515px;}
 .vertical-layout .frame-complect .content-carousel{width: 600px;}
 .vertical-layout .items-complect > li{width: 600px!important;}
 .vertical-layout .items-complect  [class*="items"]{max-width: 350px;}
@@ -129,6 +126,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 /*/base icons*/
 
 /*adding selectors*/
+.b-s_b-b{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 .d_b{display: block!important;}
 .d_i{display: inline!important;}
 .d_n{display: none!important;}
@@ -389,7 +387,6 @@ input.input-search{height: 33px;}
 .row-kits li .photo-block{float: none;display: block;margin-bottom: 8px;}
 .frame-kit, .next-kit{display: inline-block;vertical-align: top;}
 .frame-kit{width: 150px;}
-.frame-kit.main-product{width: 100%;}
 .next-kit, .gen-sum-kit{width: 35px;position: relative;top: 63px;line-height: 0.8;text-align: center;}
 .gen-sum-kit{display: inline-block;vertical-align: middle;top: 0;}
 .complect-gen-sum .price-discount{display: block;}
@@ -441,6 +438,7 @@ input.input-search{height: 33px;}
 .items-complect > li{float: left;margin-right: 20px;text-align: center;}
 .items-complect .row-kits li{width: 171px;padding-bottom: 20px;}
 .items-complect .frame-kit{width: 140px;}
+.frame-kit.main-product{width: 100%;}
 .items-complect .next-kit{width: 31px;}
 .items-complect [class*="items"]{display: inline-block;vertical-align: middle;text-align: left;}
 .items-complect .complect-gen-sum{width: 235px;display: inline-block;vertical-align: middle;text-align: left;}
@@ -910,7 +908,10 @@ li.clear-pag-item{margin: 0 14px 4px;}
 
 /*product*/
 .frame-complect{margin-bottom: 40px;}
-.complects-carousel{padding: 40px 0 35px;}
+.frame-complect .content-carousel{margin: 0 auto;}
+.items-complect > li{width: 750px!important;}
+.items-complect [class*="items"]{max-width: 515px;}
+.complects-carousel{padding: 40px 113px 35px;}
 .complects-carousel .prev{left: 15px;}
 .complects-carousel .next{right: 15px;}
 .vertical-layout .complects-carousel .prev{left: 5px;}
@@ -1155,7 +1156,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 /*/cleaver filter*/
 
 /*tooltip*/
-.tooltip{position:absolute;z-index:1104;display:block;visibility:visible;padding:3px 8px;display: none;margin-top: -5px;padding:5px;}
+.tooltip{position:absolute;z-index:2104;display:block;visibility:visible;padding:3px 8px;display: none;margin-top: -5px;padding:5px;}
 .tooltip:after{content: "";position:absolute;width:0;height:0;bottom:-5px;left:50%;margin-left:-5px;}
 /*/tooltip*/
 

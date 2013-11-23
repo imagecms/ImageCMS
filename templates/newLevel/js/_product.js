@@ -105,7 +105,6 @@ function beforeShowHref(el, drop, isajax, data, elSet) {
     frame.html(_.template($('#framePhotoProduct').html(), obj));
     
     tovarChangeCount(frame);
-    btnbuyInitialize(frame);
     processBtnBuyCount(frame);
     
     var next = $(hrefOptions.next),
