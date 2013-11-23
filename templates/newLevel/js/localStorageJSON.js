@@ -134,6 +134,7 @@ if (typeof JSON !== "object") {
     }
 }());
 (function() {
+    "use strict";
     var c = this;
     if (!c.localStorage) {
         if (c.globalStorage) {
@@ -149,8 +150,10 @@ if (typeof JSON !== "object") {
         if (g.addBehavior) {
             g.addBehavior("#default#userdata");
             var b = c.localStorage = {length: 0, setItem: function(e, h) {
+                    
                     g.load(d);
                     e = a(e);
+                    
                     if (!g.getAttribute(e)) {
                         this.length++
                     }
@@ -183,7 +186,6 @@ if (typeof JSON !== "object") {
                 }}, a = function(e) {
                 return e.replace(/[^-._0-9A-Za-z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u37f-\u1fff\u200c-\u200d\u203f\u2040\u2070-\u218f]/g, "-")};
             g.load(d);
-            //document.getElementsByTagName("body").innerHTML = g.XMLDocument.documentElement.attributes.length;
             b.length = g.XMLDocument.documentElement.attributes.length
         }
     }

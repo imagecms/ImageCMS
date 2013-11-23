@@ -123,7 +123,7 @@ var optionsDrop = {
     placeBeforeShow: 'center center',
     placeAfterClose: 'center center',
     timeclosemodal: 2000,
-    delayAfter: -200,
+    delayAfter: -500,
     confirmSel: '#confirm',
     moreOne: false,
     size: true

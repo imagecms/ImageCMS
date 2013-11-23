@@ -1,16 +1,17 @@
-{$widget = $widget != false && $widget != NULL}
-{$default = $defaultItem != false && $defaultItem != NULL}
-{$wishlist = $wishlist != false && $wishlist != NULL}
-{$compare = $compare != false && $compare != NULL}
-{$codeArticle = $codeArticle != false && $codeArticle != NULL}
-{$defaultItem = $defaultItem != false && $defaultItem != NULL}
-{$condlimit = $limit != false && $limit != NULL}
+{$opi_widget = $opi_widget != false && $opi_widget != NULL}
+{$opi_wishlist = $opi_wishlist != false && $opi_wishlist != NULL}
+{$opi_compare = $opi_compare != false && $opi_compare != NULL}
+{$opi_codeArticle = $opi_codeArticle != false && $opi_codeArticle != NULL}
+{$opi_defaultItem = $opi_defaultItem != false && $opi_defaultItem != NULL}
+{$opi_vertical = $opi_vertical != false && $opi_vertical != NULL}
+
+{$condlimit = $opi_limit != false && $opi_limit != NULL}
 
 {foreach $products as $key => $p}
     {$variants = $p->getProductVariants()}
     {$hasDiscounts = $p->hasDiscounts()}
 
-    {if $key >= $limit && $condlimit}
+    {if $key >= $opi_limit && $condlimit}
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
@@ -69,7 +70,7 @@
                 </div>
             {/if}
             <!-- End. article & variant name & brand name -->
-            {if !$vertical}
+            {if !$opi_vertical}
                 {if $p->enable_comments && intval($Comments[$p->getId()]) !== 0}
                     <div class="frame-star f-s_0">
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
@@ -126,7 +127,7 @@
             </div>
             <!-- End. Prices-->
             <!-- Start. Check variant-->
-            {if !$widget && !$defaultItem && !$compare}
+            {if !$opi_widget && !$opi_defaultItem && !$opi_compare}
                 {if count($variants) > 1}
                     <div class="check-variant-catalog">
                         <div class="lineForm">
@@ -152,7 +153,7 @@
                 {foreach $variants as $key => $pv}
                     {if $pv->getStock() > 0}
                         <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
-                            {if !$widget && !$default}
+                            {if !$opi_widget && !$opi_defaultItem}
                                 <div class="frame-count">
                                     <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
                                         <div class="frame-change-count">
@@ -231,11 +232,11 @@
                 {/foreach}
             </div>
             <!-- End. Collect information about Variants, for future processing -->
-            {if !$widget && !$defaultItem}
-                <div class="p_r frame-without-top">
+            {if !$opi_widget && !$opi_defaultItem}
+                <div class="frame-without-top">
                     <!-- Wish List & Compare List buttons -->
                     <div class="frame-wish-compare-list no-vis-table">
-                        {if $wishlist}
+                        {if $opi_wishlist}
                             <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
                                 <div class="frame-btn-wish variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
@@ -244,7 +245,7 @@
                             {/foreach}
                             <!-- End. wish list buttons -->
                         {/if}
-                        {if !$compare}
+                        {if !$opi_compare}
                             <div class="frame-btn-comp">
                                 <!-- Start. Compare List button -->
                                 <div class="btn-compare">
@@ -267,8 +268,8 @@
                 </div>
             {/if}
             <!-- End. Collect information about Variants, for future processing -->
-            {if !$widget && !$compare && !$defaultItem}
-                <div class="p_r frame-without-top">
+            {if !$opi_widget && !$opi_compare && !$opi_defaultItem}
+                <div class="frame-without-top">
                     <div class="no-vis-table">
                         <!--Start. Description-->
                         {if trim($p->getShortDescription()) != ''}
@@ -286,7 +287,7 @@
             {/if}
         </div>
         <!-- Start. Remove buttons if compare-->
-        {if $compare && !$widget}
+        {if $opi_compare && !$opi_widget}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
         <!-- End. Remove buttons if compare-->
