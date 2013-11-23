@@ -430,6 +430,7 @@ class ExportXML {
                     "\t\t<ID>" . $product['external_id'] . "</ID>\r\n" .
                     "\t\t<Наименование>" . htmlspecialchars($product['name']) . "</Наименование>\r\n" .
                     "\t\t<Код>" . $product['code'] . "</Код>\r\n" .
+                    "\t\t<Артикул>" . $product['number'] . "</Артикул>\r\n" .
                     "\t\t<IDРодитель>" . $product['category_external_id'] . "</IDРодитель>\r\n" .
                     "\t\t<IDWebРодитель>" . $product['category_id'] . "</IDWebРодитель>\r\n" .
                     "\t\t<ЕдиницаИзмерения>" . $product['measure'] . "</ЕдиницаИзмерения>\r\n" .
