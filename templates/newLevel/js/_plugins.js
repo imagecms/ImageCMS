@@ -701,15 +701,12 @@ function getCookie(c_name)
                         'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY) 
                     })
                 })
-            var eff = 'stop';
-            if (effect == 'always')
-                eff = 'add';
             
             tooltip.removeClass('top bottom right left').addClass(placement);
             tooltip.css({
                 'left': methods.left(this, tooltip, placement, this.offset().left, effect, offsetX),
                 'top': methods.top(this, tooltip, placement, this.offset().top, effect, offsetY) 
-            })[eff]().fadeIn(300, function() {
+            }).fadeIn(300, function() {
                 $(document).trigger({
                     'type': 'tooltip.show', 
                     'el': $(this)

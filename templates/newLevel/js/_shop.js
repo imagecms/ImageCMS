@@ -498,7 +498,7 @@ var ImageCMSApi = {
                             $(message.success(obj.msg)).appendTo(form.parent());
                         $(document).trigger({
                             'type': 'imageapi.pastemsg', 
-                            'el': form
+                            'el': form.parent()
                         })
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
@@ -543,21 +543,21 @@ var ImageCMSApi = {
      * 
      * */
     sendValidations: function(validations, selector, DS) {
-        var thisSelector = $(selector);
+        var sel = $(selector);
         if (typeof validations === 'object') {
             var i = 1;
             for (var key in validations) {
                 if (validations[key] != "") {
-                    var input = thisSelector.find('[name=' + key + ']');
+                    var input = sel.find('[name=' + key + ']');
                     input.addClass(DS.err);
-                    input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, thisSelector));
-                    var finput = thisSelector.find(':input.' + DS.err + ':first');
+                    input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, sel));
+                    var finput = sel.find(':input.' + DS.err + ':first');
                     finput.setCursorPosition(finput.val().length);
                 }
                 if (i == Object.keys(validations).length)
                     $(document).trigger({
                         'type': 'imageapi.pastemsg', 
-                        'el': thisSelector
+                        'el': sel.parent()
                     })
                 i++;
             }
