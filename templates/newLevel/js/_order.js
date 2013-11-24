@@ -166,7 +166,6 @@ function initOrder(){
             elCheckWrap: '.niceRadio'
             //,classRemove: 'b_n'//if not standart
         });
-        
     
     $(document).on('render_popup_cart', function() {
         recountCartPage();
@@ -185,7 +184,6 @@ function initOrder(){
     });
     
     renderOrderDetails();
-    
 }
 function initOrderTrEv(){
     $(document).on('discount.renderGiftInput', function(e){
