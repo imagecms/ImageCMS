@@ -175,7 +175,7 @@ function getDiscount() {
         url: '/shop/cart_api/get_kit_discount',
         success: function(data) {
             var kitDiscount = parseFloat(data);
-            Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
+            Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : parseFloat(kitDiscount);
             
             if (!$.isFunction(window.getDiscountBack))
                 displayDiscount(null);
@@ -198,12 +198,13 @@ function displayDiscount(obj) {
     Shop.Cart.discountProduct = 0;
     var tempdisc = false;
     if (obj != null)
-        tempdisc =  parseFloat(obj.sum_discount_product) != 0 && obj.sum_discount_product != null;
-    var discC = tempdisc || parseFloat(Shop.Cart.kitDiscount) != 0;
+        tempdisc =  (parseFloat(obj.sum_discount_product) != 0 && obj.sum_discount_product != null) ? parseFloat(obj.sum_discount_product) : false;
+    var discC = tempdisc || Shop.Cart.kitDiscount != 0;
     if (discC) {
-        if (obj != null)
-            Shop.Cart.discountProduct += parseFloat(obj.sum_discount_product == null ? 0 : obj.sum_discount_product);
+        if (tempdisc)
+            Shop.Cart.discountProduct += tempdisc;
         Shop.Cart.discountProduct += Shop.Cart.kitDiscount;
+        
         $(genObj.genDiscount).each(function() {
             $(this).html(Shop.Cart.discountProduct.toFixed(pricePrecision));
         });

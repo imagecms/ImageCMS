@@ -1646,10 +1646,10 @@ function getCookie(c_name)
                         drop = $(elSet.drop),
                         start = elSet.start != undefined ? elSet.start : settings.start;
 
-                if (!(elSet.moreOne || moreOne)) {
-                    if ($.existsN($this.closest('[data-elrun]')) && start == undefined && !elSet.modal && !($.existsN($('[data-elrun].center:visible')) && start == undefined))
+                if (!(elSet.moreOne || moreOne) && start == undefined) {
+                    if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
                         methods.closeDrop($this.closest('[data-elrun]'));
-                    if ($.existsN($('[data-elrun].center:visible, [data-elrun].noinherit:visible')) && start == undefined)
+                    if ($.existsN($('[data-elrun].center:visible, [data-elrun].noinherit:visible')))
                         methods.closeDrop($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
                 }
 
@@ -1930,7 +1930,7 @@ function getCookie(c_name)
                 }
                 else {
                     if (drop.data('dropOver'))
-                        drop.css('z-index', drop.data('dropOver').css('z-index') + 1)
+                        drop.css('z-index', parseFloat(drop.data('dropOver').css('z-index')) + 1)
                 }
 
                 _forCenterTop();
@@ -1944,7 +1944,7 @@ function getCookie(c_name)
                 _show();
             }
             body.off('click.drop').off('keydown.drop').on('click.drop', function(e) {
-                if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]')) && $(e.target).data('drop') == undefined) {
+                if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]')) && $(e.target).data('drop') == undefined && !($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center'))) {
                     methods.closeDrop(false);
                 }
                 else

@@ -97,6 +97,7 @@
     {/if}
         var curr = '{$CS}',
         nextCs = '{echo $NextCS}',
+        nextCsCond = nextCs == '' ? false : true;
         discountInPopup = true,
         pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
         checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
