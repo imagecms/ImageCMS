@@ -12,15 +12,15 @@ checkProdStock = checkProdStock == "" ? false : true,
 hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 
 var optionsMenu = {
-    item: $('.menu-main').find('td'),
+    item: 'td',
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
     
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
-    //countColumn: 5, //if not drop-side
+    countColumn: 5, //if not drop-side
     
-    sub2Frame: '.frame-l2', //if drop-side
-    dropWidth: 475, //if not define than will be actual width needs when drop-side
+    //sub2Frame: '.frame-l2', //if drop-side
+    //dropWidth: 475, //if not define than will be actual width needs when drop-side
 
     //if need column partition level 2
     columnPart: true,
@@ -68,7 +68,6 @@ var optionsCycle = {
     timeout: 5000, 
     fx: 'fade',
     pauseOnPagerHover: true,
-    pager: '.pager',
     pagerAnchorBuilder: function(idx, slide) {
         return '<a href="#"></a>';
     }
@@ -123,9 +122,9 @@ var optionsDrop = {
     placeBeforeShow: 'center center',
     placeAfterClose: 'center center',
     timeclosemodal: 2000,
-    delayAfter: -200,
+    delayAfter: -500,
     confirmSel: '#confirm',
-    moreOne: false,
+    moreOne: true,
     size: true
 };
 var productStatus = {

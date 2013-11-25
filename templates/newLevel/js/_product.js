@@ -1,33 +1,33 @@
 var productPhotoCZoom = window.productPhotoCZoom != undefined,
-productPhotoDrop = window.productPhotoDrop != undefined;
+        productPhotoDrop = window.productPhotoDrop != undefined;
 
 function tovarChangeVariant(el) {
     el = el == undefined ? body : el;
     /*Variants in Product*/
     el.find('#variantSwitcher').on('change', function() {
         var productId = parseInt($(this).attr('value')),
-        liBlock = $(this).closest(genObj.parentBtnBuy),
-        btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut),
-        vId = btnInfo.attr('data-id'),
-        vName = btnInfo.attr('data-vname'),
-        vNumber = btnInfo.attr('data-number'),
-        vPrice = btnInfo.attr('data-price'),
-        vAddPrice = btnInfo.attr('data-addPrice'),
-        vOrigPrice = btnInfo.attr('data-origPrice'),
-        vLargeImage = btnInfo.attr('data-largeImage'),
-        vMainImage = btnInfo.attr('data-mainImage'),
-        vStock = btnInfo.attr('data-maxcount');
-        
-        if (vMainImage.search(/nophoto/) == -1){
+                liBlock = $(this).closest(genObj.parentBtnBuy),
+                btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut),
+                vId = btnInfo.attr('data-id'),
+                vName = btnInfo.attr('data-vname'),
+                vNumber = btnInfo.attr('data-number'),
+                vPrice = btnInfo.attr('data-price'),
+                vAddPrice = btnInfo.attr('data-addPrice'),
+                vOrigPrice = btnInfo.attr('data-origPrice'),
+                vLargeImage = btnInfo.attr('data-largeImage'),
+                vMainImage = btnInfo.attr('data-mainImage'),
+                vStock = btnInfo.attr('data-maxcount');
+
+        if (vMainImage.search(/nophoto/) == -1) {
             $(genObj.photoProduct).add($(genObj.mainThumb)).attr('href', vLargeImage);
-           
+
             $(genObj.imgVP).attr({
                 'src': vMainImage,
                 'alt': vName
             });
             $('.left-product .items-thumbs > li').removeClass('active').filter(':eq(0)').addClass('active');
         }
-       
+
         if (vOrigPrice != '')
             liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
         liBlock.find(genObj.priceVariant).html(vPrice);
@@ -37,27 +37,37 @@ function tovarChangeVariant(el) {
         condProduct(vStock, liBlock, btnInfo);
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
-        
+
         $('.mousetrap').remove();
         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
     });
-/*/Variants in Product*/
+    /*/Variants in Product*/
 }
+function initDrop(el) {//when click on <a>
+    $this = el;
+    $this.data($.extend({
+        'frame': $this.closest(genObj.parentBtnBuy),
+        'mainPhoto': $this.attr('href'),
+        'title': $this.attr('title')
+    }, optionsPhoto));
+    return true;
+}
+
 function resizePhoto(drop, s, c) {
     var fancyFrame = $(hrefOptions.placeHref).parent(),
-    img = fancyFrame.find('img');
+            img = fancyFrame.find('img');
     fancyFrame.css('height', '');
     img.css({
-        'width': img.actual('width'), 
+        'width': img.actual('width'),
         'height': img.actual('height')
     });
     var dropV = drop.is(':visible') ? true : false;
     hD = dropV ? drop.height() : drop.actual('height');
     var dropH = hD > wnd.height() ? wnd.height() : hD,
-    hNotC = 0;
+            hNotC = 0;
     if (s != undefined)
         s();
-    $(hrefOptions.header).add($(hrefOptions.footer)).add($(hrefOptions.gallery)).each(function(){
+    $(hrefOptions.header).add($(hrefOptions.footer)).add($(hrefOptions.gallery)).each(function() {
         hNotC += dropV ? $(this).outerHeight() : $(this).actual('outerHeight');
     });
     $(hrefOptions.header).add($(hrefOptions.footer)).add($(hrefOptions.gallery))
@@ -66,7 +76,7 @@ function resizePhoto(drop, s, c) {
         'height': mayHC - (fancyFrame.outerHeight() - fancyFrame.height())
     })
     img.css({
-        'width': '', 
+        'width': '',
         'height': ''
     });
     if (c != undefined)
@@ -79,17 +89,17 @@ function changePhoto(arg, fancyFrameInPH, href) {
     var drop = arg[1];
     fancyFrameInPH.parent().addClass('p_r');
     fancyFrameInPH.after('<div class="preloader"></div>');
-    $('<img src="' + href + '">').load(function(){
+    $('<img src="' + href + '">').load(function() {
         $(hrefOptions.placeHref).find('img').remove();
         fancyFrameInPH.nextAll('.preloader').remove();
         fancyFrameInPH.after($(this).css('visibility', 'visible').hide().fadeIn());
-        
+
         var carGal = drop.find('.content-carousel');
-        
+
         $.drop('limitSize')(drop);
-        resizePhoto(drop, function(){
+        resizePhoto(drop, function() {
             carGal.parent().myCarousel($.extend({}, carousel, {
-                'adding':{
+                'adding': {
                     start: $.inArray(hrefOptions.curHref, hrefOptions.thumbs)
                 }
             }));
@@ -99,22 +109,21 @@ function changePhoto(arg, fancyFrameInPH, href) {
 }
 function beforeShowHref(el, drop, isajax, data, elSet) {
     var arg = arguments,
-    cycle = hrefOptions.cycle;
+            cycle = hrefOptions.cycle;
     var obj = $.extend({}, elSet, hrefOptions, el.closest(genObj.parentBtnBuy).find(genObj.infoBut).data());
     frame = $('#photo');
     frame.html(_.template($('#framePhotoProduct').html(), obj));
-    
+
     tovarChangeCount(frame);
-    btnbuyInitialize(frame);
     processBtnBuyCount(frame);
-    
+
     var next = $(hrefOptions.next),
-    prev = $(hrefOptions.prev),
-    img = $(hrefOptions.placeHref).find('img');
+            prev = $(hrefOptions.prev),
+            img = $(hrefOptions.placeHref).find('img');
     hrefOptions.curHref = img.attr('src');
-    
+
     var fancyFrameInPH = $(hrefOptions.placeHref).find('.helper');
-    
+
     function condBtn(acA) {
         if (!cycle) {
             if (acA == 0)
@@ -161,34 +170,34 @@ function beforeShowHref(el, drop, isajax, data, elSet) {
         thumbsA.eq(acA).parent().addClass('active');
         changePhoto(arg, fancyFrameInPH, hrefOptions.thumbs[acA]);
     }
-    
+
     var carGal = drop.find('.content-carousel');
-    
-    if ($.existsN(carGal.find('.items-thumbs').children())){
+
+    if ($.existsN(carGal.find('.items-thumbs').children())) {
         carGal.closest('.horizontal-carousel').show();
         var itemGal = carGal.find('.items-thumbs > li').removeClass('active'),
-        itemGalL = itemGal.length,
-        thumbsA = itemGal.find('a');
+                itemGalL = itemGal.length,
+                thumbsA = itemGal.find('a');
         hrefOptions.thumbs = new Array();
-        
+
         thumbsA.each(function() {
             hrefOptions.thumbs.push($(this).attr('href'))
         });
-        
+
         var btns = prev.add(next).removeAttr('disabled').fadeIn(),
-        acA = ($.inArray(img.attr('src'), hrefOptions.thumbs));
+                acA = ($.inArray(img.attr('src'), hrefOptions.thumbs));
         itemGal.eq(acA).addClass('active');
 
         var itemGalUl = itemGal.parent();
         if ($.existsN(itemGalUl.parent('.jcarousel-clip')))
             itemGalUl.unwrap();
-        
+
         thumbsA.off('click').on('click', function(e) {
             btns.removeAttr('disabled');
             itemGal.removeClass('active');
             $(this).parent().addClass('active')
             var href = $(this).attr('href'),
-            acA = ($.inArray(href, hrefOptions.thumbs));
+                    acA = ($.inArray(href, hrefOptions.thumbs));
             e.preventDefault();
             changePhoto(arg, fancyFrameInPH, href);
             condBtn(acA);
@@ -200,27 +209,27 @@ function beforeShowHref(el, drop, isajax, data, elSet) {
     }
     else
         carGal.closest('.horizontal-carousel').hide();
- 
+
     wnd.unbind('resize.photo').bind('resize.photo', function() {
         resizePhoto(drop);
     });
 }
-function afterClosedPhoto(el, drop){
+function afterClosedPhoto(el, drop) {
     drop.find('.addingphoto').remove();
 }
 function onComplete(el, drop, isajax, data, elSet) {
     drop.find('[data-drop]').drop(optionsDrop);
-    
+
     var carGal = drop.find('.content-carousel');
     drop.find('.drop-content-photo img').css('visibility', 'visible');
-    
+
     $.drop('limitSize')(drop);
-    resizePhoto(drop, function(){
+    resizePhoto(drop, function() {
         carGal.parent().myCarousel($.extend({}, carousel, {
-            'adding':{
+            'adding': {
                 'start': $.inArray(hrefOptions.curHref, hrefOptions.thumbs)
             },
-            after: function(el){
+            after: function(el) {
                 el.find('ul').css('visibility', 'visible');
             }
         }));
@@ -233,7 +242,7 @@ var hrefOptions = {
     placeHref: '#photo .drop-content-photo .inside-padd',
     header: '#photo .drop-header',
     footer: '#photo .drop-footer',
-    gallery:  '#photo .frame-fancy-gallery',
+    gallery: '#photo .frame-fancy-gallery',
     cycle: false,
     //    'frame' and other in extend optionsPhoto and this object
     footerContent: '.frame-prices-buy',
@@ -247,13 +256,13 @@ var optionsPhoto = {
     before: 'beforeShowHref',
     closed: 'afterClosedPhoto'
 };
-function initPhoto(){
+function initPhoto() {
     if (productPhotoCZoom) {
         function margZoomLens() {
             $(genObj.photoProduct).find('img').each(function() {
                 var $this = $(this),
-                mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
-                mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
+                        mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
+                        mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
                 $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
             })
             $('.left-product').off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
@@ -278,36 +287,25 @@ function initPhoto(){
     $('.item-product .items-thumbs > li > a').on('click.thumb', function(e) {
         e.preventDefault();
         var $this = $(this),
-        href = $this.attr('href');
-        
+                href = $this.attr('href');
+
         $this.parent().siblings().removeClass('active').end().addClass('active');
         $(genObj.photoProduct).attr('href', href).find('img').attr('src', href);
     });
-    if (productPhotoDrop) {
-        $(genObj.photoProduct).on('click', function(){
-            photo = $(this);
-            photo.data($.extend({
-                'frame': photo.closest(genObj.parentBtnBuy),
-                'mainPhoto': photo.attr('href'), 
-                'title': photo.attr('title')
-            }, optionsPhoto)).drop(optionsDrop).trigger('click.drop').off('click.drop');
-        })
-    }
     if (productPhotoDrop && productPhotoCZoom) {
         $('.left-product').on('click.mousetrap', '.mousetrap', function() {
-            var $this = $(this),
-            photo = $this.prev();
-            $this.data($.extend({
-                'frame': photo.closest(genObj.parentBtnBuy), 
-                'mainPhoto': photo.attr('href'), 
-                'title': photo.attr('title')
+            var $this = $(this).prev();
+            $(this).data($.extend({
+                'frame': $this.closest(genObj.parentBtnBuy),
+                'mainPhoto': $this.attr('href'),
+                'title': $this.attr('title')
             }, optionsPhoto)).drop(optionsDrop).trigger('click.drop');
         });
     }
 }
-function initPhotoTrEv(){
+function initPhotoTrEv() {
 }
-$(document).on('scriptDefer', function(){
+$(document).on('scriptDefer', function() {
     initPhoto();
     cuselInit(body, '#variantSwitcher');
     tovarChangeVariant();

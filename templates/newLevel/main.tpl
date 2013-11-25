@@ -44,10 +44,11 @@
                         $.map(scripts, function(i, n) {
                             $.getScript(theme + 'js/' + i + '.js', function() {
                                 cL++;
-                                if (cL == scriptsL) {
-                                    eval(callback)();
-                                    $(document).trigger({'type': customEvent});
-                                }
+                                if (cL == scriptsL)
+                                    if (callback){
+                                        eval(callback)();
+                                        $(document).trigger({'type': customEvent});
+                                    }
                             });
                         })
                     }

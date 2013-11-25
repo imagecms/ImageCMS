@@ -1,6 +1,6 @@
 /*
-     *imagecms shop plugins
-     **/
+ *imagecms shop plugins
+ **/
 if (!Array.indexOf) {
     Array.prototype.indexOf = function(obj, start) {
         for (var i = (start || 0); i < this.length; i++) {
@@ -24,22 +24,20 @@ var Shop = {
         popupCartSelector: 'script#cartPopupTemplate',
         shipping: 0,
         shipFreeFrom: 0,
-        giftCertPrice: 0,
         discountProduct: 0,
         gift: undefined,
+        giftValue: 0,
         add: function(cartItem, show) {
-            //trigger before_add_to_cart
             $(document).trigger({
                 type: 'before_add_to_cart',
                 cartItem: _.clone(cartItem)
             });
-            //
             var data = {
                 'quantity': cartItem.count,
                 'productId': cartItem.id,
                 'variantId': cartItem.vId
             };
-            var url = siteUrl+'shop/cart_api/add';
+            var url = siteUrl + 'shop/cart_api/add';
             if (cartItem.kit) {
                 data = {
                     'quantity': cartItem.count,
@@ -47,16 +45,15 @@ var Shop = {
                 };
                 url += '/ShopKit';
             }
-            
+
             $.get(url, data,
-                function() {
-                    try {
-                        Shop.Cart._add(cartItem, show);
-                    //save item to storage
-                    } catch (e) {
-                        return;
-                    }
-                });
+                    function() {
+                        try {
+                            Shop.Cart._add(cartItem, show);
+                        } catch (e) {
+                            return;
+                        }
+                    });
             return;
         },
         _add: function(cartItem, show) {
@@ -66,7 +63,6 @@ var Shop = {
             else
                 currentItem = cartItem;
             this.save(currentItem);
-            ////trigger after_add_to_cart
             $(document).trigger({
                 type: 'after_add_to_cart',
                 cartItem: _.clone(cartItem),
@@ -74,24 +70,10 @@ var Shop = {
             });
             return this;
         },
-        rm: function(cartItem) {
-            if (cartItem.kitId)
-                var key = 'ShopKit_' + cartItem.kitId;
-            else
-                var key = 'SProducts_' + cartItem.id + '_' + cartItem.vId;
-            $.getJSON(siteUrl+'shop/cart_api/delete/' + key, function() {
-                localStorage.removeItem('cartItem_' + cartItem.id + '_' + cartItem.vId);
-                $(document).trigger({
-                    type: 'cart_rm',
-                    cartItem: cartItem
-                });
-            });
-            return this;
-        },
         chCount: function(cartItem, f) {
             Shop.Cart.currentItem = this.load(cartItem.storageId());
             if (Shop.Cart.currentItem) {
-                if (Shop.Cart.currentItem.count != cartItem.count){
+                if (Shop.Cart.currentItem.count != cartItem.count) {
                     Shop.Cart.currentItem.count = cartItem.count;
                     Shop.currentCallbackFn = f;
                     if (cartItem.kit)
@@ -102,7 +84,7 @@ var Shop = {
                         recount: 1
                     };
                     postData[postName] = cartItem.count;
-                    $.post(siteUrl+'shop/cart_api/recount', postData, function(data) {
+                    $.post(siteUrl + 'shop/cart_api/recount', postData, function(data) {
                         var dataObj = JSON.parse(data);
                         if (dataObj.hasOwnProperty('count'))
                             Shop.Cart.currentItem.count = dataObj.count;
@@ -117,62 +99,6 @@ var Shop = {
                 }
             }
         },
-        clear: function() {
-            $.getJSON(siteUrl+'shop/cart_api/clear',
-                function() {
-                    var items = Shop.Cart.getAllItems();
-                    for (var i = 0; i < items.length; i++)
-                        localStorage.removeItem(items[i].storageId());
-                    delete items;
-                    $(document).trigger({
-                        type: 'cart_clear'
-                    });
-                });
-        },
-        //work with storage
-        load: function(key) {
-            try {
-                return new Shop.cartItem(JSON.parse(localStorage.getItem(key)));
-            } catch (e) {
-                return false;
-            }
-        },
-        save: function(cartItem) {
-            if (!cartItem.storageId().match(/undefined/)) {
-                localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
-                this.totalRecount();
-            }
-            return this;
-        },
-        getAllItems: function() {
-            var pattern = /cartItem_*/;
-            var items = [];
-            for (var i = 0; i < localStorage.length; i++) {
-                var key = localStorage.key(i);
-                try {
-                    if (key.match(pattern))
-                        items.push(this.load(key));
-                } catch (err) {
-                }
-            }
-            return items;
-        },
-        length: function() {
-            var pattern = /cartItem_*/;
-            var length = 0;
-            for (var i = 0; i < localStorage.length; i++) {
-                try {
-                    if (localStorage.key(i).match(pattern)){
-                        var tempC = parseInt(JSON.parse(localStorage.getItem(localStorage.key(i))).count)
-                        tempC = isNaN(tempC) ? 0 : tempC;
-                        length += tempC;
-                    }
-                } catch (err) {
-                    length += 0;
-                }
-            }
-            return length;
-        },
         totalRecount: function() {
             var items = this.getAllItems();
             this.totalPrice = 0;
@@ -181,7 +107,7 @@ var Shop = {
             this.totalPriceOrigin = 0;
             for (var i = 0; i < items.length; i++) {
                 var item = items[i],
-                itemC = item.count == '' ? 0 : item.count;
+                        itemC = item.count == '' ? 0 : item.count;
                 if (item.origprice != '')
                     this.totalPriceOrigin += item.origprice * itemC;
                 else
@@ -214,27 +140,102 @@ var Shop = {
             if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0;
-            return (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) : 0;
+
+            if (this.gift != undefined && !this.gift.error)
+                this.giftValue = this.gift.value
+            
+            return this.totalRecount().totalPriceOrigin + this.shipping - this.giftValue;
         },
         renderPopupCart: function(selector) {
             if (typeof selector == 'undefined' || selector == '')
                 selector = this.popupCartSelector;
             return _.template($(selector).html(), Shop.Cart);
         },
+        /*work with storage*/
+        rm: function(cartItem) {
+            if (cartItem.kitId)
+                var key = 'ShopKit_' + cartItem.kitId;
+            else
+                var key = 'SProducts_' + cartItem.id + '_' + cartItem.vId;
+            $.getJSON(siteUrl + 'shop/cart_api/delete/' + key, function() {
+                localStorage.removeItem('cartItem_' + cartItem.id + '_' + cartItem.vId);
+                $(document).trigger({
+                    type: 'cart_rm',
+                    cartItem: cartItem
+                });
+            });
+            return this;
+        },
+        clear: function() {
+            $.getJSON(siteUrl + 'shop/cart_api/clear',
+                    function() {
+                        var items = Shop.Cart.getAllItems();
+                        for (var i = 0; i < items.length; i++)
+                            localStorage.removeItem(items[i].storageId());
+                        delete items;
+                        $(document).trigger({
+                            type: 'cart_clear'
+                        });
+                    });
+        },
+        load: function(key) {
+            try {
+                return new Shop.Cart.cartItem(JSON.parse(localStorage.getItem(key)));
+            } catch (e) {
+                return false;
+            }
+        },
+        save: function(cartItem) {
+            if (!cartItem.storageId().match(/undefined/)) {
+                localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
+                this.totalRecount();
+            }
+            return this;
+        },
+        getAllItems: function() {
+            var pattern = /cartItem_*/;
+            var items = [];
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                try {
+                    if (key.match(pattern))
+                        items.push(this.load(key));
+                } catch (err) {
+                }
+            }
+            return items;
+        },
+        length: function() {
+            var pattern = /cartItem_*/;
+            var length = 0;
+            for (var i = 0; i < localStorage.length; i++) {
+                try {
+                    if (localStorage.key(i).match(pattern)) {
+                        var tempC = parseInt(JSON.parse(localStorage.getItem(localStorage.key(i))).count)
+                        tempC = isNaN(tempC) ? 0 : tempC;
+                        length += tempC;
+                    }
+                } catch (err) {
+                    length += 0;
+                }
+            }
+            return length;
+        },
         sync: function() {
             $(document).trigger({
                 type: 'before_sync_cart'
             });
-            $.getJSON(siteUrl+'shop/cart_api/sync', function(data) {
-                if (typeof(data) == 'object') {
+            $.getJSON(siteUrl + 'shop/cart_api/sync', function(data) {
+                if (typeof (data) == 'object') {
                     var pattern = /cartItem_*/;
                     var items = Shop.Cart.getAllItems();
-                    
+
                     for (var i = 0; i < items.length; i++) {
                         try {
                             if (localStorage.key(i).match(pattern))
                                 localStorage.removeItem('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
-                        }catch(err){}
+                        } catch (err) {
+                        }
                     }
                     delete items;
                     _.each(_.keys(data.data.items), function(key) {
@@ -250,66 +251,67 @@ var Shop = {
                 if (data == false)
                     Shop.Cart.clear();
             });
-        }
-    },
-    cartItem: function(obj) {
-        if (typeof obj == 'undefined' || obj == false)
-            obj = {
-                id: false,
-                vId: false,
-                name: false,
-                count: false,
-                kit: false,
-                maxcount: 0,
-                number: '',
-                vname: false,
-                url: false
+        },
+        /*/work with storage*/
+        cartItem: function(obj) {
+            if (typeof obj == 'undefined' || obj == false)
+                obj = {
+                    id: false,
+                    vId: false,
+                    name: false,
+                    count: false,
+                    kit: false,
+                    maxcount: 0,
+                    number: '',
+                    vname: false,
+                    url: false
+                };
+            return {
+                id: obj.id ? obj.id : 0,
+                vId: obj.vId ? obj.vId : 0,
+                price: obj.price ? obj.price : 0,
+                prices: obj.prices ? obj.prices : 0,
+                addprice: obj.addprice ? obj.addprice : 0,
+                addprices: obj.addprices ? obj.addprices : 0,
+                origprice: obj.origprice ? obj.origprice : 0,
+                origprices: obj.origprices ? obj.origprices : 0,
+                name: obj.name ? obj.name : '',
+                count: obj.count ? obj.count : 1,
+                kit: obj.kit ? obj.kit : false,
+                kitId: obj.kitId ? obj.kitId : 0,
+                maxcount: obj.maxcount ? obj.maxcount : 0,
+                number: obj.number ? obj.number : 0,
+                vname: obj.vname ? obj.vname : '',
+                url: obj.url ? obj.url : '',
+                img: obj.img ? obj.img : '',
+                prodstatus: obj.prodstatus ? obj.prodstatus : '',
+                storageId: function() {
+                    return 'cartItem_' + this.id + '_' + this.vId;
+                }
             };
-        return prototype = {
-            id: obj.id ? obj.id : 0,
-            vId: obj.vId ? obj.vId : 0,
-            price: obj.price ? obj.price : 0,
-            prices: obj.prices ? obj.prices : 0,
-            addprice: obj.addprice ? obj.addprice : 0,
-            addprices: obj.addprices ? obj.addprices : 0,
-            origprice: obj.origprice ? obj.origprice : 0,
-            origprices: obj.origprices ? obj.origprices : 0,
-            name: obj.name ? obj.name : '',
-            count: obj.count ? obj.count : 1,
-            kit: obj.kit ? obj.kit : false,
-            kitId: obj.kitId ? obj.kitId : 0,
-            maxcount: obj.maxcount ? obj.maxcount : 0,
-            number: obj.number ? obj.number : 0,
-            vname: obj.vname ? obj.vname : '',
-            url: obj.url ? obj.url : '',
-            img: obj.img ? obj.img : '',
-            prodstatus: obj.prodstatus ? obj.prodstatus : '',
-            storageId: function() {
-                return 'cartItem_' + this.id + '_' + this.vId;
-            }
-        };
-    },
-    composeCartItem: function($context) {
-        var cartItem = new Shop.cartItem();
-        cartItem.id = $context.data('prodid');
-        cartItem.vId = $context.data('varid');
-        cartItem.count = $context.attr('data-count');
-        cartItem.price = $context.data('price');
-        cartItem.prices = $context.data('prices');
-        cartItem.addprice = $context.data('addprice');
-        cartItem.addprices = $context.data('addprices');
-        cartItem.origprice = $context.data('origprice')
-        cartItem.origprices = $context.data('origprices')
-        cartItem.name = $context.data('name');
-        cartItem.kit = $context.data('kit');
-        cartItem.kitId = $context.data('kitid');
-        cartItem.maxcount = $context.data('maxcount');
-        cartItem.number = $context.data('number');
-        cartItem.vname = $context.data('vname');
-        cartItem.url = $context.data('url');
-        cartItem.img = $context.data('img');
-        cartItem.prodstatus = $context.data('prodstatus');
-        return cartItem;
+        },
+        composeCartItem: function($context) {
+            var cartItem = new Shop.Cart.cartItem();
+            cartItem.id = $context.data('prodid');
+            cartItem.vId = $context.data('varid');
+            cartItem.count = $context.attr('data-count');
+            cartItem.price = $context.data('price');
+            cartItem.prices = $context.data('prices');
+            cartItem.addprice = $context.data('addprice');
+            cartItem.addprices = $context.data('addprices');
+            cartItem.origprice = $context.data('origprice')
+            cartItem.origprices = $context.data('origprices')
+            cartItem.name = $context.data('name');
+            cartItem.kit = $context.data('kit');
+            cartItem.kitId = $context.data('kitid');
+            cartItem.maxcount = $context.data('maxcount');
+            cartItem.number = $context.data('number');
+            cartItem.vname = $context.data('vname');
+            cartItem.url = $context.data('url');
+            cartItem.img = $context.data('img');
+            cartItem.prodstatus = $context.data('prodstatus');
+            return cartItem;
+        }
     },
     CompareList: {
         items: [],
@@ -322,7 +324,7 @@ var Shop = {
                 type: 'before_add_to_compare'
             });
             if (this.items.indexOf(key) === -1) {
-                $.get(siteUrl+'shop/compare_api/add/' + key, function(data) {
+                $.get(siteUrl + 'shop/compare_api/add/' + key, function(data) {
                     try {
                         dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -342,10 +344,10 @@ var Shop = {
         rm: function(key, el) {
             this.items = JSON.parse(localStorage.getItem('compareList')) ? JSON.parse(localStorage.getItem('compareList')) : [];
             if (this.items.indexOf(key) !== -1) {
-                
+
                 this.items = _.without(this.items, key);
                 this.items = this.all();
-                $.get(siteUrl+'shop/compare_api/remove/' + key, function(data) {
+                $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
                     try {
                         dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -367,8 +369,8 @@ var Shop = {
             });
         },
         sync: function() {
-            $.getJSON(siteUrl+'shop/compare_api/sync', function(data) {
-                if (typeof(data) == 'object' || typeof(data) == 'Array') {
+            $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
+                if (typeof (data) == 'object' || typeof (data) == 'Array') {
                     localStorage.setItem('compareList', JSON.parse(data));
                     $(document).trigger({
                         type: 'compare_list_sync'
@@ -385,7 +387,7 @@ var Shop = {
         }
     }
 };
-if (typeof(wishList) != 'object')
+if (typeof (wishList) != 'object')
     var wishList = {
         all: function() {
             try {
@@ -404,32 +406,32 @@ if (typeof(wishList) != 'object')
         }
     }
 /**
-     * AuthApi ajax client
-     * Makes simple request to api controllers and get return data in json
-     * 
-     * @author Avgustus
-     * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
-     * 
-     * Get JSON object with fields list:
-     *      'status'    -   true/false - if the operation was successful,
-     *      'msg'       -   info message about result,
-     *      'refresh'   -   true/false - if true refreshes the page,
-     *      'redirect'  -   url - redirects to needed url
-     *    
-     * List of api methods:
-     *      Auth.php:
-     *          '/auth/authapi/login',
-     *          '/auth/authapi/logout',
-     *          '/auth/authapi/register',
-     *          '/auth/authapi/forgot_password',
-     *          '/auth/authapi/reset_password',
-     *          '/auth/authapi/change_password',
-     *          '/auth/authapi/cancel_account',
-     *          '/auth/authapi/banned',
-     *          '/shop/ajax/getApiNotifyingRequest',
-     *          '/shop/callbackApi'
-     * 
-     **/
+ * AuthApi ajax client
+ * Makes simple request to api controllers and get return data in json
+ * 
+ * @author Avgustus
+ * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
+ * 
+ * Get JSON object with fields list:
+ *      'status'    -   true/false - if the operation was successful,
+ *      'msg'       -   info message about result,
+ *      'refresh'   -   true/false - if true refreshes the page,
+ *      'redirect'  -   url - redirects to needed url
+ *    
+ * List of api methods:
+ *      Auth.php:
+ *          '/auth/authapi/login',
+ *          '/auth/authapi/logout',
+ *          '/auth/authapi/register',
+ *          '/auth/authapi/forgot_password',
+ *          '/auth/authapi/reset_password',
+ *          '/auth/authapi/change_password',
+ *          '/auth/authapi/cancel_account',
+ *          '/auth/authapi/banned',
+ *          '/shop/ajax/getApiNotifyingRequest',
+ *          '/shop/callbackApi'
+ * 
+ **/
 
 var ImageCMSApi = {
     defSet: function() {
@@ -466,14 +468,14 @@ var ImageCMSApi = {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
-                    
+
                     if (((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != '')))
                         $(document).trigger({
                             'type': 'imageapi.before_refresh_reload',
                             'el': form,
                             'obj': DS
                         });
-                                        
+
                     if (typeof DS.callback == 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
                     else
@@ -484,14 +486,14 @@ var ImageCMSApi = {
                             if (DS.hideForm)
                                 form.show();
                         }), DS.durationHideForm);
-                        
-                    setTimeout(function(){
+
+                    setTimeout(function() {
                         if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
                             location.reload();
                         if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
                             location.href = obj.redirect;
                     }, DS.durationHideForm);
-                    
+
                     if (obj.status == true) {
                         if (DS.hideForm)
                             form.hide();
@@ -500,7 +502,7 @@ var ImageCMSApi = {
                         if (DS.messagePlace == 'behind')
                             $(message.success(obj.msg)).appendTo(form.parent());
                         $(document).trigger({
-                            'type': 'imageapi.pastemsg', 
+                            'type': 'imageapi.pastemsg',
                             'el': form.parent()
                         })
                     }
@@ -508,18 +510,18 @@ var ImageCMSApi = {
                         ImageCMSApi.addCaptcha(obj.cap_image, DS);
                     }
                     if (obj.validations != 'undefined' && obj.validations != null) {
-                        ImageCMSApi.sendValidations(obj.validations, selector, DS);
+                        ImageCMSApi.sendValidations(obj.validations, form, DS);
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                        form = $this.closest('form'),
-                        $thisТ = $this.attr('name'),
-                        elMsg = form.find('[for=' + $thisТ + ']');
+                                form = $this.closest('form'),
+                                $thisТ = $this.attr('name'),
+                                elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.hide();
                             $(document).trigger({
-                                'type': 'imageapi.hidemsg', 
+                                'type': 'imageapi.hidemsg',
                                 'el': form
                             })
                         }
@@ -541,26 +543,26 @@ var ImageCMSApi = {
         return queryString;
     },
     /**
-         * for displaying validation messages 
-         * in the form, which needs validation, for each validate input
-         * 
-         * */
+     * for displaying validation messages 
+     * in the form, which needs validation, for each validate input
+     * 
+     * */
     sendValidations: function(validations, selector, DS) {
-        var thisSelector = $(selector);
+        var sel = $(selector);
         if (typeof validations === 'object') {
             var i = 1;
             for (var key in validations) {
                 if (validations[key] != "") {
-                    var input = thisSelector.find('[name=' + key + ']');
+                    var input = sel.find('[name=' + key + ']');
                     input.addClass(DS.err);
-                    input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, thisSelector));
-                    var finput = thisSelector.find(':input.' + DS.err + ':first');
+                    input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, sel));
+                    var finput = sel.find(':input.' + DS.err + ':first');
                     finput.setCursorPosition(finput.val().length);
                 }
                 if (i == Object.keys(validations).length)
                     $(document).trigger({
-                        'type': 'imageapi.pastemsg', 
-                        'el': thisSelector
+                        'type': 'imageapi.pastemsg',
+                        'el': sel.parent()
                     })
                 i++;
             }
@@ -569,9 +571,9 @@ var ImageCMSApi = {
         }
     },
     /**
-         * add captcha block if needed
-         * @param {type} captcha_image
-         */
+     * add captcha block if needed
+     * @param {type} captcha_image
+     */
     addCaptcha: function(cI, DS) {
         DS.captchaBlock.html(DS.captcha(cI));
         return false;

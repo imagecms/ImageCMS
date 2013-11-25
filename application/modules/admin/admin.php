@@ -9,7 +9,28 @@ if (!defined('BASEPATH'))
  *
  * TODO:
  * check local ip;
- *
+ * 
+ * @property Lib_admin $lib_admin
+ * @property Lib_category $lib_category
+ * 
+ * @property Admin_logs $admin_logs
+ * @property Admin_search $admin_search
+ * @property Backup $backup
+ * @property Cache_all $cache_all
+ * @property Categories $categories
+ * @property Components $components
+ * @property Dashboard $dashboard
+ * @property Languages $languages
+ * @property Login $login
+ * @property Mod_search $mod_search
+ * @property Mod_search $mod_search
+ * @property Pages $pages
+ * @property Rbac $rbac
+ * @property Settings $settings
+ * @property Sys_info $sys_info
+ * @property Sys_update $sys_update
+ * @property Sys_upgrade $sys_upgrade
+ * @property Widgets_manager $widgets_manager
  */
 class Admin extends MY_Controller {
 
@@ -23,7 +44,6 @@ class Admin extends MY_Controller {
 
         $this->load->library('DX_Auth');
         admin_or_redirect();
-
 
         $this->load->library('lib_admin');
         $this->load->library('lib_category');
@@ -187,8 +207,7 @@ class Admin extends MY_Controller {
                 exit;
             }
             echo '<div class="alert alert-success">' . lang('Your message has been sent', 'admin') . '</div>';
-        }
-        else
+        } else
             echo '<div class="alert alert-error">' . lang('Comment is a required field', 'admin') . '</div>';
     }
 

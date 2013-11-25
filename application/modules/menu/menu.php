@@ -215,8 +215,7 @@ class Menu extends MY_Controller {
                 //echo $item['item_type'];
                 if ($item['item_type'] == 'url' && strstr($item['link'], 'http://') or $item['item_type'] == 'url' && strstr($item['link'], 'www')) {
                     $href = $item['link'];
-                }
-                else
+                } else
                     $href = rtrim(site_url($item['link']), '/');
 
 

@@ -35,40 +35,43 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="url">Url</label>
                                                 <div class="controls">
-                                                    <input type="text" name="url" id="Url" value="" autocomplete="off"/>
+                                                    <div class="input-prepend">
+                                                        <span class="add-on">{site_url()}</span>
+                                                        <input name="url" id="Url" class="span2" id="prependedInput" type="text" >
+                                                    </div>
                                                 </div> 
                                             </div>
 
                                             <div class="control-group">
                                                 <label class="control-label" for="redirect_type">{lang('Type', 'trash')}</label>
                                                 <div class="controls">
-                                                    <span class="frame_label no_connection m-r_15">
+                                                    <span class="frame_label no_connection m-r_15" id="url">
                                                         <span class="niceRadio b_n">
                                                             <input type="radio" name="redirect_type" value="url" checked="checked"/>
                                                         </span>
                                                         Url 
                                                     </span>
                                                     {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
-                                                        <span class="frame_label no_connection m-r_15">
+                                                        <span class="frame_label no_connection m-r_15" id="prod">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="redirect_type" value="product" />
                                                             </span>
                                                             {lang('Product', 'trash')}
                                                         </span>
-                                                        <span class="frame_label no_connection m-r_15">
+                                                        <span class="frame_label no_connection m-r_15" id="cat">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="redirect_type" value="category" />
                                                             </span>
                                                             {lang('Category', 'trash')}
                                                         </span>
                                                     {/if}
-                                                    <span class="frame_label no_connection m-r_15">
+                                                    <span class="frame_label no_connection m-r_15" id="base">
                                                         <span class="niceRadio b_n">
                                                             <input type="radio" name="redirect_type" value="basecategory" />
                                                         </span>
                                                         {lang('Category of Base', 'trash')}
                                                     </span>
-                                                    <span class="frame_label no_connection m-r_15">
+                                                    <span class="frame_label no_connection m-r_15" id="404">
                                                         <span class="niceRadio b_n">
                                                             <input type="radio" name="redirect_type" value="404" />
                                                         </span>
@@ -95,15 +98,15 @@
                                                 </div>
                                             </div>
 
-                                            <div class="control-group">
+                                            <div class="control-group" id="forUrl">
                                                 <label class="control-label" for="redirect_url">{lang('Redirect Url', 'trash')}</label>
                                                 <div class="controls">
                                                     <input type="text" name="redirect_url" id="RedirectUrl" value="" autocomplete="off"/>
                                                 </div>
                                             </div>
-                                                    
+
                                             {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
-                                                <div class="control-group">
+                                                <div class="control-group" style="display: none" id="forProd">
                                                     <label class="control-label" for="products">{lang('Product', 'trash')}</label>
                                                     <div class="controls">
                                                         <select id="inputMainC" value="" name="products">
@@ -114,7 +117,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="control-group">
+                                                <div class="control-group" style="display: none" id="forCat">
                                                     <label class="control-label" for="products">{lang('Categories', 'trash')}</label>
                                                     <div class="controls">
                                                         <select id="inputMainC" value="" name="category">
@@ -125,8 +128,8 @@
                                                     </div>
                                                 </div>
                                             {/if}
-                                            
-                                            <div class="control-group">
+
+                                            <div class="control-group" style="display: none" id="forBase">
                                                 <label class="control-label" for="products">{lang('Category of Base', 'trash')}</label>
                                                 <div class="controls">
                                                     <select id="inputMainC" value="" name="category_base">
