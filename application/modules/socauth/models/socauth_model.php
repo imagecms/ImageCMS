@@ -75,7 +75,7 @@ class Socauth_model extends CI_Model {
         return $this->db
                         ->where('email', $email)
                         ->get('users', 1)
-                        ->row();
+                        ->result_array();
     }
 
 }

@@ -10,6 +10,8 @@ class Admin extends BaseAdminController {
         $lang->load('trash');
 
         $this->load->library('DX_Auth');
+        
+        \CMSFactory\assetManager::create()->registerScript('script');
         //cp_check_perm('module_admin');
     }
 

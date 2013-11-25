@@ -29,15 +29,11 @@
     <span class="price-item">{echo $discount->max_discount->type_discount}</span>
 </li>
 <li>
-    <span class="s-t">{lang('Тип расчета скидки: ','newLevel')}</span>
-    <span class="price-item">{echo $type_value}</span>
-</li>
-<li>
     <span class="s-t">{lang('Размер скидки: ','newLevel')}</span>
-    <span class="price-item">{echo $discount->max_discount->value}</span>
+    <span class="price-item">{echo $discount->max_discount->value} {echo $type_value}</span>
 </li>
 <li>
     <span class="s-t">{lang('Общая скидка: ','newLevel')}</span>
-    <span class="price-item">{echo $discount->result_sum_discount_convert + $kitDisc}</span>
+    <span class="price-item text-discount"><span>-{echo $discount->result_sum_discount_convert + $kitDisc} <span class="curr">{$CS}</span></span></span>
 </li>
 {/if}

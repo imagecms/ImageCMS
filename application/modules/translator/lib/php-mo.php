@@ -181,6 +181,12 @@ function phpmo_write_mo_file($hash, $out) {
 		if (array_key_exists('msgctxt', $entry))
 			$id = $entry['msgctxt'] . "\x04" . $id;
 		// plural msgstrs are NUL-separated
+                foreach ($entry['msgstr'] as $key => $msgstr){
+                    if(!$msgstr){
+                        unset($entry['msgstr'][$key]);
+                    }
+                }
+                
 		$str = implode("\x00", $entry['msgstr']);
 		// keep track of offsets
 		$offsets[] = array (

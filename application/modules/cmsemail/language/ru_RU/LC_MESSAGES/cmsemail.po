@@ -1,338 +1,339 @@
-﻿"Project-Id-Version: mark\n"
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 16:05+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-11-04 11:18+0200\n"
+"PO-Revision-Date: 2013-11-04 11:18+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../..\n"
-"X-Poedit-Language: Tagalog\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:68
+#: ./application/modules/cmsemail/assets/admin/list.tpl:23
+#: ./application/modules/cmsemail/module_info.php:6
 msgid "Email-notifications managing"
-msgstr "Управление email-уведомлениями4"
+msgstr "Управление email-уведомлениями"
 
-#: /var/www/image.loc/_tempLangs.php:12
-#: /var/www/image.loc/_tempLangs.php:16
-#: /var/www/image.loc/_tempLangs.php:20
-#: /var/www/image.loc/_tempLangs.php:28
-#: /var/www/image.loc/_tempLangs.php:32
-#: /var/www/image.loc/_tempLangs.php:36
+#: ./application/modules/cmsemail/assets/js/email.js:101
+#: ./application/modules/cmsemail/assets/js/email.js:127
+#: ./application/modules/cmsemail/assets/js/email.js:156
 msgid "Error"
 msgstr "Ошибка"
 
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:29
+#: ./application/modules/cmsemail/assets/js/email.js:102
 msgid "Variable is not removed"
 msgstr "Переменная не удалена"
 
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:24
-#: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:34
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:42
+#: ./application/modules/cmsemail/admin.php:119
+#: ./application/modules/cmsemail/admin.php:123
+#: ./application/modules/cmsemail/assets/js/email.js:105
+#: ./application/modules/cmsemail/assets/js/email.js:136
+#: ./application/modules/cmsemail/assets/js/email.js:162
+#: ./application/modules/cmsemail/assets/js/email.js:183
+#: ./application/modules/cmsemail/assets/js/email.js:187
 msgid "Message"
 msgstr "Сообщение"
 
-#: /var/www/image.loc/_tempLangs.php:15
-#: /var/www/image.loc/_tempLangs.php:31
+#: ./application/modules/cmsemail/assets/js/email.js:106
 msgid "Variable successfully removed"
 msgstr "Переменная успешно удалена"
 
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:33
+#: ./application/modules/cmsemail/assets/js/email.js:128
 msgid "Variable is not updated"
 msgstr "Переменная не обновлена"
 
-#: /var/www/image.loc/_tempLangs.php:19
-#: /var/www/image.loc/_tempLangs.php:35
+#: ./application/modules/cmsemail/assets/js/email.js:137
 msgid "Variable successfully updated"
 msgstr "Переменная успешно обновлена"
 
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:37
+#: ./application/modules/cmsemail/assets/js/email.js:157
 msgid "Variable is not added"
 msgstr "Переменная не додана"
 
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:39
+#: ./application/modules/cmsemail/assets/js/email.js:163
 msgid "Variable successfully added"
 msgstr "Переменная успешно додана"
 
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:41
+#: ./application/modules/cmsemail/assets/js/email.js:184
 msgid "Variable must be surrounded by $"
 msgstr "Переменная должна быть окружена $"
 
-#: /var/www/image.loc/_tempLangs.php:27
-#: /var/www/image.loc/_tempLangs.php:43
+#: ./application/modules/cmsemail/assets/js/email.js:188
 msgid "Variable must have a value"
 msgstr "Переменная должна иметь значение"
 
-#: /var/www/image.loc/_tempLangs.php:44
+#: ./application/modules/cmsemail/assets/admin/create.tpl:5
 msgid "Creating mail template"
 msgstr "Создать шаблон письма"
 
-#: /var/www/image.loc/_tempLangs.php:45
-#: /var/www/image.loc/_tempLangs.php:93
+#: ./application/modules/cmsemail/assets/admin/create.tpl:11
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:11
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:46
-#: /var/www/image.loc/_tempLangs.php:79
-#: /var/www/image.loc/_tempLangs.php:94
+#: ./application/modules/cmsemail/assets/admin/create.tpl:14
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:19
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:14
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:47
-#: /var/www/image.loc/_tempLangs.php:95
+#: ./application/modules/cmsemail/assets/admin/create.tpl:17
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:17
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
-#: /var/www/image.loc/_tempLangs.php:48
-#: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:77
-#: /var/www/image.loc/_tempLangs.php:80
-#: /var/www/image.loc/_tempLangs.php:98
+#: ./application/modules/cmsemail/assets/admin/create.tpl:27
+#: ./application/modules/cmsemail/assets/admin/list.tpl:34
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:6
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:29
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:36
 msgid "Settings"
 msgstr "Настройки"
 
-#: /var/www/image.loc/_tempLangs.php:49
+#: ./application/modules/cmsemail/assets/admin/create.tpl:35
 msgid "Template name (only latin)"
 msgstr "Имя шаблона (только латинские)"
 
-#: /var/www/image.loc/_tempLangs.php:50
-#: /var/www/image.loc/_tempLangs.php:82
-#: /var/www/image.loc/_tempLangs.php:100
-#: /var/www/image.loc/_tempLangs.php:119
+#: ./application/modules/cmsemail/admin.php:110
+#: ./application/modules/cmsemail/assets/admin/create.tpl:42
+#: ./application/modules/cmsemail/assets/admin/list.tpl:65
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:45
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:51
 msgid "From"
 msgstr "От"
 
-#: /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:83
-#: /var/www/image.loc/_tempLangs.php:101
+#: ./application/modules/cmsemail/admin.php:111
+#: ./application/modules/cmsemail/assets/admin/create.tpl:49
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:52
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:58
+#: ./application/modules/cmsemail/classes/ParentEmail.php:235
+#: ./application/modules/cmsemail/classes/ParentEmail.php:289
 msgid "From email"
 msgstr "От кого (email)"
 
-#: /var/www/image.loc/_tempLangs.php:52
-#: /var/www/image.loc/_tempLangs.php:75
-#: /var/www/image.loc/_tempLangs.php:85
-#: /var/www/image.loc/_tempLangs.php:102
+#: ./application/modules/cmsemail/assets/admin/create.tpl:56
+#: ./application/modules/cmsemail/assets/admin/list.tpl:64
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:66
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:65
 msgid "Theme"
 msgstr "Тема"
 
-#: /var/www/image.loc/_tempLangs.php:53
-#: /var/www/image.loc/_tempLangs.php:103
+#: ./application/modules/cmsemail/assets/admin/create.tpl:63
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:72
 msgid "Message type"
 msgstr "Тип сообщения"
 
-#: /var/www/image.loc/_tempLangs.php:54
-#: /var/www/image.loc/_tempLangs.php:104
+#: ./application/modules/cmsemail/assets/admin/create.tpl:81
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:90
+#: ./application/modules/cmsemail/classes/ParentEmail.php:239
+#: ./application/modules/cmsemail/classes/ParentEmail.php:293
 msgid "Template user mail"
 msgstr "Шаблон письма пользователю"
 
-#: /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:105
+#: ./application/modules/cmsemail/assets/admin/create.tpl:88
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:104
 msgid "Send email to user"
-msgstr "Отправить  сообщение пользователю"
+msgstr "Отправить сообщение пользователю"
 
-#: /var/www/image.loc/_tempLangs.php:56
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:106
-#: /var/www/image.loc/_tempLangs.php:110
+#: ./application/modules/cmsemail/assets/admin/create.tpl:90
+#: ./application/modules/cmsemail/assets/admin/create.tpl:115
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:106
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:138
 msgid "Yes"
 msgstr "Да"
 
-#: /var/www/image.loc/_tempLangs.php:57
-#: /var/www/image.loc/_tempLangs.php:61
-#: /var/www/image.loc/_tempLangs.php:107
-#: /var/www/image.loc/_tempLangs.php:111
+#: ./application/modules/cmsemail/assets/admin/create.tpl:96
+#: ./application/modules/cmsemail/assets/admin/create.tpl:121
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:112
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:144
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:108
+#: ./application/modules/cmsemail/assets/admin/create.tpl:106
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:122
 msgid "Admin mail template"
 msgstr "Шаблона письма администратору"
 
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:109
+#: ./application/modules/cmsemail/assets/admin/create.tpl:113
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:136
 msgid "Send email to admin"
 msgstr "Отправлять письмо администратору"
 
-#: /var/www/image.loc/_tempLangs.php:62
-#: /var/www/image.loc/_tempLangs.php:112
+#: ./application/modules/cmsemail/assets/admin/create.tpl:131
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:154
+#: ./application/modules/cmsemail/classes/ParentEmail.php:246
+#: ./application/modules/cmsemail/classes/ParentEmail.php:300
 msgid "Admin address"
 msgstr "Адрес администратора"
 
-#: /var/www/image.loc/_tempLangs.php:63
-#: /var/www/image.loc/_tempLangs.php:113
+#: ./application/modules/cmsemail/assets/admin/create.tpl:138
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:161
 msgid "Template description"
 msgstr "Описание шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:64
+#: ./application/modules/cmsemail/assets/admin/list.tpl:6
 msgid "Template email deleting"
 msgstr "Удаление шаблона письма"
 
-#: /var/www/image.loc/_tempLangs.php:65
+#: ./application/modules/cmsemail/assets/admin/list.tpl:9
 msgid "Delete selected templates"
 msgstr "Удалить выбрание шаблоны"
 
-#: /var/www/image.loc/_tempLangs.php:66
-#: /var/www/image.loc/_tempLangs.php:71
-#: /var/www/image.loc/_tempLangs.php:117
+#: ./application/modules/cmsemail/assets/admin/list.tpl:12
+#: ./application/modules/cmsemail/assets/admin/list.tpl:40
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:185
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:67
+#: ./application/modules/cmsemail/assets/admin/list.tpl:13
 msgid "Cancel"
 msgstr "Отменить"
 
-#: /var/www/image.loc/_tempLangs.php:69
-#: /var/www/image.loc/_tempLangs.php:78
+#: ./application/modules/cmsemail/assets/admin/list.tpl:30
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:13
 msgid "Back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:72
+#: ./application/modules/cmsemail/assets/admin/list.tpl:43
 msgid "Create template"
 msgstr "Создать шаблон"
 
-#: /var/www/image.loc/_tempLangs.php:73
+#: ./application/modules/cmsemail/assets/admin/list.tpl:62
 msgid "Name"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:74
+#: ./application/modules/cmsemail/assets/admin/list.tpl:63
 msgid "Template variable"
 msgstr "Переменная шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:76
+#: ./application/modules/cmsemail/assets/admin/list.tpl:98
 msgid "Templates list empty"
 msgstr "Список шаблонов пуст"
 
-#: /var/www/image.loc/_tempLangs.php:81
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:40
 msgid "Install standart templates"
 msgstr "Установите стандартные шаблоны"
 
-#: /var/www/image.loc/_tempLangs.php:84
+#: ./application/modules/cmsemail/admin.php:108
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:59
 msgid "Admin email"
 msgstr "Email администратора"
 
-#: /var/www/image.loc/_tempLangs.php:86
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:73
 msgid "Use wraper"
 msgstr "Использовать обгортку"
 
-#: /var/www/image.loc/_tempLangs.php:87
+#: ./application/modules/cmsemail/admin.php:114
+#: ./application/modules/cmsemail/admin.php:116
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:84
 msgid "Wraper"
 msgstr "Обгортка"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:91
 msgid "Server path to sendmail"
 msgstr "Серверный путь к Sendmail"
 
-#: /var/www/image.loc/_tempLangs.php:89
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:98
 msgid "Protocol"
 msgstr "Протокол"
 
-#: /var/www/image.loc/_tempLangs.php:90
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:109
 msgid "Port"
 msgstr "Порт"
 
-#: /var/www/image.loc/_tempLangs.php:91
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:121
+#: ./application/modules/cmsemail/classes/ParentEmail.php:379
 msgid "Check email sending"
 msgstr "Проверка отправки электронной почты"
 
-#: /var/www/image.loc/_tempLangs.php:92
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:5
 msgid "Email template editing"
-msgstr "Редактирование  шаблона письма"
+msgstr "Редактирование шаблона письма"
 
-#: /var/www/image.loc/_tempLangs.php:96
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:26
 msgid "Template settings"
 msgstr "Настройки шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:97
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:27
 msgid "Template variables"
 msgstr "Переменные шаблона"
 
-#: /var/www/image.loc/_tempLangs.php:99
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:44
 msgid "Template name(only latin)"
 msgstr "Имя шаблона (только латинские)"
 
-#: /var/www/image.loc/_tempLangs.php:114
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:182
 msgid "Variables"
 msgstr "Переменные"
 
-#: /var/www/image.loc/_tempLangs.php:115
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:183
 msgid "Values"
 msgstr "Величины"
 
-#: /var/www/image.loc/_tempLangs.php:116
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:184
 msgid "Edit"
 msgstr "Редактировать"
 
-#: /var/www/image.loc/_tempLangs.php:118
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:231
 msgid "Add new variable"
 msgstr "Добавить новую переменную"
 
-#: admin.php:44
+#: ./application/modules/cmsemail/admin.php:44
 msgid "Template created"
 msgstr "Шаблон создан"
 
-#: admin.php:61
+#: ./application/modules/cmsemail/admin.php:61
 msgid "email_sent"
 msgstr "Ваше сообщение успешно отправлено"
 
-#: admin.php:84
+#: ./application/modules/cmsemail/admin.php:84
 msgid "Template edited"
 msgstr "Шаблон отредактирован"
 
-#: admin.php:109
+#: ./application/modules/cmsemail/admin.php:109
 msgid "Email sender"
 msgstr "От кого"
 
-#: admin.php:122
+#: ./application/modules/cmsemail/admin.php:122
 msgid "Settings saved"
 msgstr "Настройки сохранены"
 
-#: admin.php:133
+#: ./application/modules/cmsemail/admin.php:133
 msgid "Field"
 msgstr "Поле"
 
-#: admin.php:133
+#: ./application/modules/cmsemail/admin.php:134
 msgid "Must contain variable"
 msgstr "Должен содержать переменную"
 
-#: module_info.php:7
+#: ./application/modules/cmsemail/module_info.php:7
 msgid "Allows you to customize letters templates to be sent to users when certain actions"
 msgstr "Позволяет настроить шаблоны писем для отправки пользователям при совершении определенных действий"
 
-#: classes/ParentEmail.php:165
-#: classes/ParentEmail.php:194
+#: ./application/modules/cmsemail/classes/ParentEmail.php:165
+#: ./application/modules/cmsemail/classes/ParentEmail.php:194
 msgid "User message doesnt send"
 msgstr "Письмо пользователю не отослано"
 
-#: classes/ParentEmail.php:234
+#: ./application/modules/cmsemail/classes/ParentEmail.php:234
 msgid "Template name"
 msgstr "Название шаблона"
 
-#: classes/ParentEmail.php:236
-#: classes/ParentEmail.php:290
+#: ./application/modules/cmsemail/classes/ParentEmail.php:236
+#: ./application/modules/cmsemail/classes/ParentEmail.php:290
 msgid "Template theme"
 msgstr "Тема шаблона"
 
-#: classes/ParentEmail.php:243
-#: classes/ParentEmail.php:297
+#: ./application/modules/cmsemail/classes/ParentEmail.php:243
+#: ./application/modules/cmsemail/classes/ParentEmail.php:297
 msgid "Template admin mail"
 msgstr "Шаблон письма админу"
 

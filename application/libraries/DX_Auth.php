@@ -810,19 +810,19 @@ class DX_Auth {
                         // Increase login attempts
                         $this->_increase_login_attempt();
                         // Set error message
-                        $this->_auth_error = $this->ci->lang->line('auth_login_incorrect_password');
+                        $this->_auth_error = lang('auth login incorrect password');
                     }
                 }
             }
             // Check if login is still not activated
             elseif ($query = $this->ci->user_temp->$get_user_function($login) AND $query->num_rows() == 1) {
                 // Set error message
-                $this->_auth_error = $this->ci->lang->line('auth_not_activated');
+                $this->_auth_error = lang('auth not activated');
             } else {
                 // Increase login attempts
                 $this->_increase_login_attempt();
                 // Set error message
-                $this->_auth_error = $this->ci->lang->line('auth_login_username_not_exist');
+                $this->_auth_error = lang('auth login username not exist');
             }
         }
 
@@ -872,7 +872,7 @@ class DX_Auth {
             $insert = $this->ci->user_temp->create_temp($new_user);
 
             $from = $this->ci->config->item('DX_webmaster_email');
-            $subject = sprintf($this->ci->lang->line('auth_activate_subject'), $this->ci->config->item('DX_website_name'));
+            $subject = sprintf(lang('auth activate subject'), $this->ci->config->item('DX_website_name'));
 
             // Activation Link
             $new_user['activate_url'] = site_url($this->ci->config->item('DX_activate_uri') . "{$new_user['email']}/{$new_user['activation_key']}");
@@ -903,7 +903,7 @@ class DX_Auth {
             if ($this->ci->config->item('DX_email_activation')) {
                 // Create email
                 $from = $this->ci->config->item('DX_webmaster_email');
-                $subject = sprintf($this->ci->lang->line('auth_activate_subject'), $this->ci->config->item('DX_website_name'));
+                $subject = sprintf(lang('auth activate subject'), $this->ci->config->item('DX_website_name'));
 
                 // Activation Link
                 $new_user['activate_url'] = site_url();
@@ -918,7 +918,7 @@ class DX_Auth {
                 if ($this->ci->config->item('DX_email_account_details')) {
                     // Create email
                     $from = $this->ci->config->item('DX_webmaster_email');
-                    $subject = sprintf($this->ci->lang->line('auth_account_subject'), $this->ci->config->item('DX_website_name'));
+                    $subject = sprintf(lang('auth account subject'), $this->ci->config->item('DX_website_name'));
 
                     // Trigger event and get email content
                     $this->ci->dx_auth_event->sending_account_email($new_user, $message);
@@ -987,7 +987,7 @@ class DX_Auth {
 
                     // Create email
                     $from = ShopCore::app()->SSettings->userInfoSenderEmail;
-                    $subject = $this->ci->lang->line('auth_forgot_password_subject');
+                    $subject = lang('auth forgot password subject');
 
                     // Trigger event and get email content
                     // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
@@ -1009,10 +1009,10 @@ class DX_Auth {
                     $result = TRUE;
                 } else {
                     // There is already new password waiting to be activated
-                    $this->_auth_error = $this->ci->lang->line('auth_request_sent');
+                    $this->_auth_error = lang('auth request sent');
                 }
             } else {
-                $this->_auth_error = $this->ci->lang->line('auth_username_or_email_not_exist');
+                $this->_auth_error = lang('auth username or email not exist');
             }
         }
 
@@ -1118,7 +1118,7 @@ class DX_Auth {
 
                 $result = TRUE;
             } else {
-                $this->_auth_error = $this->ci->lang->line('auth_incorrect_old_password');
+                $this->_auth_error = lang('auth incorrect old password');
             }
         }
 
@@ -1150,7 +1150,7 @@ class DX_Auth {
                 // Force logout
                 $this->logout();
             } else {
-                $this->_auth_error = $this->ci->lang->line('auth_incorrect_password');
+                $this->_auth_error = lang('auth incorrect password');
             }
         }
 

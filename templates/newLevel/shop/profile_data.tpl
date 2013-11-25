@@ -1,7 +1,7 @@
 <div class="inside-padd clearfix">
     <div class="frame-change-profile">
         <div class="horizontal-form">
-            <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('/shop/profileapi/changeInfo', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
+            <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
                     return false;">
                 <label>
                     <span class="title">{lang('Ваше имя','newLevel')}:</span>
@@ -72,9 +72,7 @@
                         {/if}
                         {if $discount['group_user']}
                             <div>
-
                                 {lang('Ваша текущая скидка группы пользователей','newLevel')}:
-
                                 <span class="price-item">
                                     <span class="text-discount">{echo $discount['group_user'][0]['value']}{if  $discount['group_user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
                                 </span>

@@ -60,7 +60,12 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a class="pjax" href="/admin/components/init_window/trash/edit_trash/{echo $item->id}" data-rel="tooltip" data-title="{lang("Editing", 'trash')}">{echo $item->trash_url}</a>
+                                    <a class="pjax" 
+                                       href="/admin/components/init_window/trash/edit_trash/{echo $item->id}" 
+                                       data-rel="tooltip" 
+                                       data-title="{lang("Editing", 'trash')}">
+                                        {echo site_url().$item->trash_url}
+                                    </a>
                                 </td>
                                 <td>
                                     <label>{echo $item->trash_redirect_type}</label>
