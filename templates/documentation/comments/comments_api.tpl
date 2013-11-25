@@ -89,17 +89,7 @@
                                 <!-- Start star reiting -->
                                 <!-- End star reiting -->
                                 {if !$is_logged_in}
-                                    {if $use_moderation}
-                                        <label>
-                                            <span class="frame_form_field__icsi-css">
-                                                <div class="msg">
-                                                    <div class="success">
-                                                        {lang('The comment will be sent for moderation', 'comments')}
-                                                    </div>
-                                                </div>
-                                            </span>
-                                        </label>
-                                    {/if}
+                                    
                                     <label>
                                         <span class="title__icsi-css">{lang('Ваше имя:', 'comments')}<span class="must">*</span></span>
                                         <span class="frame_form_field__icsi-css">
