@@ -19,6 +19,10 @@
                         <i class="icon-ok"></i>
                         {lang('Save')}
                     </button>
+                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-action="showEdit" data-form="#create_file_form">
+                        <i class="icon-ok"></i>
+                        {lang('Save and Go to Edit')}
+                    </button>
                 </div>
             </div>
         </div>
@@ -38,7 +42,7 @@
                                 <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="file">{lang('Choose file location')}:</label>
-                                        <div class="controls">
+                                        <div class="controls poSelectorsHolder">
                                             <div class="d-i_b">
                                                 <select id="langs" name="locale" onchange="Selectors.langs($(this))">
                                                     {if $langs}

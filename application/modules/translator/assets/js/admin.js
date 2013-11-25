@@ -722,6 +722,9 @@ var Translator = {
                 $('.per_page10').attr('selected', 'selected');
                 Pagination.generate();
                 Translator.statisticRecount();
+                if (data) {
+                    showMessage(lang('File was successfuly updated.'), lang('Message'));
+                }
             }
         });
     },
@@ -746,6 +749,7 @@ var Translator = {
             },
             url: this.getUrl('savePoArray'),
             success: function(data) {
+                $('body').append(data);
             }
         });
     },
@@ -755,6 +759,7 @@ var Translator = {
             $.ajax({
                 url: this.getUrl('canselTranslation'),
                 success: function(data) {
+                    $('body').append(data);
                 }
             });
         }
@@ -1114,4 +1119,8 @@ function escapeHtml(text) {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+}
+
+function lang(str) {
+    console.log(str)
 }
