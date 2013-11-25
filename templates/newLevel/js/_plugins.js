@@ -652,17 +652,20 @@ function getCookie(c_name)
             sel = '.tooltip',
             methods = {
                 init: function(options, e) {
-                    var settings = $.extend({
-                        title: this.attr('data-title'),
-                        otherClass: false,
-                        effect: '',
-                        textEl: '.text-el',
-                        placement: 'top',
-                        offsetX: 10,
-                        offsetY: 10,
-                        tooltip: false
-                    }, options);
-                    var $this = this,
+                    var sel = '.tooltip',
+                            settings = $.extend({
+                                title: this.attr('data-title'),
+                                otherClass: false,
+                                effect: '',
+                                textEl: '.text-el',
+                                placement: 'top',
+                                offsetX: 10,
+                                offsetY: 10,
+                                tooltip: false,
+                                sel: '.tooltip'
+                            }, options),
+                            
+                            $this = this,
                             elSet = $this.data(),
                             title = elSet.title || settings.title,
                             otherClass = elSet.otherClass || settings.otherClass,
@@ -671,9 +674,8 @@ function getCookie(c_name)
                             placement = elSet.placement || settings.placement,
                             offsetX = elSet.offsetX || settings.offsetX,
                             offsetY = elSet.offsetY || settings.offsetY,
-                            sel = elSet.tooltip || settings.tooltip || sel,
+                            sel = elSet.tooltip || sel,
                             tooltip = $(sel).not('.' + clonedC);
-
                     tooltip.data({
                         'title': title,
                         'otherClass': otherClass,
@@ -684,7 +686,6 @@ function getCookie(c_name)
                         'offsetY': offsetY,
                         'tooltip': sel
                     });
-
                     textEl = $this.find(textEl);
 
                     if (textEl.is(':visible') && $.existsN(textEl))
@@ -706,7 +707,6 @@ function getCookie(c_name)
                                 'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY)
                             });
                         });
-
                     tooltip.removeClass('top bottom right left').addClass(placement);
                     tooltip.css({
                         'left': methods.left(this, tooltip, placement, this.offset().left, effect, offsetX),
@@ -2394,20 +2394,20 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
         init: function(options) {
             if ($.existsN(this)) {
                 var $jsCarousel = this,
-                settings = $.extend({
-                    item: 'li',
-                    prev: '.prev',
-                    next: '.next',
-                    content: '.c-carousel',
-                    groupButtons: '.b-carousel',
-                    vCarousel: '.v-carousel',
-                    hCarousel: '.h-carousel',
-                    adding: {},
-                    before: function() {
-                    },
-                    after: function() {
-                    }
-                }, options);
+                        settings = $.extend({
+                            item: 'li',
+                            prev: '.prev',
+                            next: '.next',
+                            content: '.c-carousel',
+                            groupButtons: '.b-carousel',
+                            vCarousel: '.v-carousel',
+                            hCarousel: '.h-carousel',
+                            adding: {},
+                            before: function() {
+                            },
+                            after: function() {
+                            }
+                        }, options);
                 var
                         item = settings.item,
                         prev = settings.prev,
