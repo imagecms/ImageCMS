@@ -530,7 +530,7 @@ function initCarouselJscrollPaneCycle(el) {
             })
         })
     }
-    el.find('.baner').each(function() {
+    el.find('.cycleFrame').each(function() {
         var $this = $(this),
                 cycle = $this.find('.cycle'),
                 next = $this.find('.next'),
@@ -539,7 +539,8 @@ function initCarouselJscrollPaneCycle(el) {
         if (cycle.find('li').length > 1) {
             cycle.cycle($.extend({}, optionsCycle, {
                 'next': next,
-                'prev': prev
+                'prev': prev,
+                'pager': $this.find('.pager')
             })).hover(function() {
                 cycle.cycle('pause');
             }, function() {
