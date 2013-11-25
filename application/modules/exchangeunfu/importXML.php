@@ -216,7 +216,7 @@ class ImportXML {
                 $data = array();
                 $data['price'] = '0.00000';
                 $data['external_id'] = $product->ID . "";
-                $data['number'] = $product->Код . "";
+                $data['number'] = $product->Артикул . "";
                 $data['stock'] = 0;
                 $data['position'] = 0;
                 $mainCurrencyId = $this->ci->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
@@ -242,12 +242,12 @@ class ImportXML {
                 $data['measure'] = $product->ЕдиницаИзмерения . '';
                 $data['barcode'] = $product->ШтрихКод . '';
 
-                if (in_array(translit_url((string) $product->Наименование), $this->urls)) {
-                    $data['url'] = translit_url((string) $product->Наименование) . '-' . $product->Ид;
-                } else {
-                    $data['url'] = translit_url((string) $product->Наименование);
-//                    $this->urls[] .= $data['url'];
-                }
+//                if (in_array(translit_url((string) $product->Наименование), $this->urls)) {
+//                    $data['url'] = translit_url((string) $product->Наименование) . '-' . $product->Ид;
+//                } else {
+//                    $data['url'] = translit_url((string) $product->Наименование);
+////                    $this->urls[] .= $data['url'];
+//                }
 
                 if (isset($product->IDРодитель)) {
                     $categ = is_cat($product->IDРодитель, $this->cat);
@@ -283,7 +283,7 @@ class ImportXML {
 
                 //preparing update data for shop_product_variants
                 $data = array();
-                $data['number'] = $product->Код . "";
+                $data['number'] = $product->Артикул . "";
                 $data['external_id'] = $product->ID . "";
                 $data['product_id'] = $product->IDWeb . '';
                 $update_product_variants[] = $data;
@@ -826,7 +826,7 @@ class ImportXML {
         }
 
         if (isset($order->Строки)) {
-            $this->ci->db->where('order_id', $order->IDWeb . '')->delete('shop_orders_products');
+            $this->ci->db->where('order_id', $order_id['id'])->delete('shop_orders_products');
             foreach ($order->Строки as $key => $product) {
                 $data = array();
                 $data['quantity'] = (int) $product->Количество;

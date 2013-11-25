@@ -259,7 +259,7 @@ $(document).on('scriptDefer', function() {
             wishList.curCount = btns.length;
             wishList.curElBuy = $this;
             btns.each(function() {
-                Shop.Cart.add(Shop.composeCartItem($(this)), true);
+                Shop.Cart.add(Shop.Cart.composeCartItem($(this)), true);
             });
         }
         else {

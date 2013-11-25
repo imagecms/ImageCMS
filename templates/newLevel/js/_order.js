@@ -7,7 +7,7 @@ function renderOrderDetails() {
         cart: Shop.Cart
     }));
     $(document).trigger({
-        'type': 'renderorder.after', 
+        'type': 'renderorder.after',
         'el': $(genObj.orderDetails)
     })
     initShopPage(false);
@@ -17,8 +17,8 @@ function renderOrderDetails() {
 function changeDeliveryMethod(id) {
     $(genObj.pM).next().show();
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
-        data = JSON.parse(dataStr);
-        var replaceStr = '';
+        var data = JSON.parse(dataStr),
+                replaceStr = '';
         if (selectPayment)
             replaceStr = _.template('<div class="lineForm"><select id="paymentMethod" name="paymentMethodId"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select></div>', {
                 data: data
@@ -36,11 +36,41 @@ function changeDeliveryMethod(id) {
             $(genObj.pM).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                        //,classRemove: 'b_n'//if not standart
             });
     });
 }
+function displayOrderSum(obj) {
+    var discount = Shop.Cart.discount,
+            kitDiscount = parseFloat(Shop.Cart.kitDiscount),
+            finalAmount = Shop.Cart.getFinalAmount();
 
+    if (Shop.Cart.koefCurr == undefined) {
+        var sumBask = parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision),
+                addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
+        Shop.Cart.koefCurr = addSumBask / sumBask;
+    }
+    
+    if (discount != null && discount != 0)
+        finalAmount = finalAmount - discount['result_sum_discount_convert'];
+    if (kitDiscount != 0)
+        finalAmount = finalAmount - kitDiscount;
+    finalAmount = finalAmount > Shop.Cart.shipping ? finalAmount : Shop.Cart.shipping;
+
+    $(genObj.totalPrice).html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
+    $(genObj.finalAmount).html(parseFloat(finalAmount).toFixed(pricePrecision));
+    $(genObj.finalAmountAdd).html((Shop.Cart.koefCurr * finalAmount).toFixed(pricePrecision));
+    $(genObj.shipping).html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+
+    if (obj != null) {
+        if (parseFloat(obj.result_sum_discount_convert) > 0)
+            $(genObj.frameGenDiscount).show();
+        else
+            $(genObj.frameGenDiscount).hide();
+    }
+    else
+        $(genObj.frameGenDiscount).hide();
+}
 function recountCartPage() {
     Shop.Cart.totalRecount();
     var ca = "";
@@ -55,29 +85,6 @@ function recountCartPage() {
     }
     hideInfoDiscount();
     getDiscount();
-
-    var discount = Shop.Cart.discount,
-    kitDiscount = parseFloat(Shop.Cart.kitDiscount),
-    finalAmount = Shop.Cart.getFinalAmount();
-
-    if (Shop.Cart.koefCurr == undefined){
-        var sumBask = parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision),
-        addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
-        Shop.Cart.koefCurr = addSumBask / sumBask;
-    }
-    
-    if (discount != null && discount != 0)
-        finalAmount = finalAmount - discount['result_sum_discount_convert'];
-    if (kitDiscount != 0)
-        finalAmount = finalAmount - kitDiscount;
-    if (Shop.Cart.gift != undefined && !Shop.Cart.gift.error)
-        finalAmount = finalAmount - Shop.Cart.gift.value;
-    if (finalAmount - Shop.Cart.shipping < 0)
-        finalAmount = Shop.Cart.shipping;
-    $(genObj.totalPrice).html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
-    $(genObj.finalAmount).html(parseFloat(finalAmount).toFixed(pricePrecision));
-    $(genObj.finalAmountAdd).html((Shop.Cart.koefCurr * finalAmount).toFixed(pricePrecision));
-    $(genObj.shipping).html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
 }
 function hideInfoDiscount() {
     var frameDiscountO = $(genObj.frameDiscount);
@@ -127,8 +134,8 @@ function renderGiftSucces(tpl, gift) {
     $(genObj.gift).html(tpl);
 }
 
-function initOrder(){
-    if (selectDeliv){
+function initOrder() {
+    if (selectDeliv) {
         cuselInit($(genObj.frameDelivery), methodDeliv);
         $(methodDeliv).on('change.methoddeliv', function() {
             var activeVal = $(genObj.frameDelivery).find('span.cuselActive').attr('val');
@@ -136,7 +143,7 @@ function initOrder(){
             recountCartPage();
         });
     }
-    else{
+    else {
         $(".check-variant-delivery").nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
             elCheckWrap: '.niceRadio',
@@ -155,18 +162,17 @@ function initOrder(){
             }
         });
     }
-        
+
     if (selectPayment)
         cuselInit($(genObj.pM), '#paymentMethod');
-    
+
     else
         $(genObj.pM).nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
             elCheckWrap: '.niceRadio'
-        //,classRemove: 'b_n'//if not standart
+                    //,classRemove: 'b_n'//if not standart
         });
-        
-    
+
     $(document).on('render_popup_cart', function() {
         recountCartPage();
     });
@@ -182,21 +188,23 @@ function initOrder(){
     $(document).on('discount.display', function(e) {
         displayInfoDiscount(e.tpl);
     });
-    
+
     renderOrderDetails();
-    
 }
-function initOrderTrEv(){
-    $(document).on('discount.renderGiftInput', function(e){
+function initOrderTrEv() {
+    $(document).on('discount.renderGiftInput', function(e) {
         renderGiftInput(e.tpl);
     });
-    $(document).on('discount.giftError', function(e){
+    $(document).on('discount.giftError', function(e) {
         giftError(e.datas)
     });
-    $(document).on('discount.renderGiftSucces', function(e){
+    $(document).on('discount.renderGiftSucces', function(e) {
         renderGiftSucces(e.tpl, e.datas);
     });
+    $(document).on('displayDiscount', function(e) {
+        displayOrderSum(e.obj);
+    });
 }
-$(document).on('scriptDefer', function(){
+$(document).on('scriptDefer', function() {
     initOrder();
 })
