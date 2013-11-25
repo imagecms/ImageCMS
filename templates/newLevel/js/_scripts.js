@@ -48,15 +48,15 @@ function init() {
             dropElRep.find('input[name="ProductId"]').val(el.data('prodid'));
             return el;
         }
-        
+
         if (dropEl.hasClass('frame-already-show')) {
             var zInd = parseFloat(dropEl.data('dropOver').css('z-index')) + 1;
             dropEl.parent().css('z-index', zInd);
             dropEl.prev().css('z-index', zInd + 1);
         }
         if ($('.frame-already-show').is(':visible') && dropEl.data('dropOver'))
-            $('.frame-user-toolbar').css('z-index', dropEl.data('dropOver').css('z-index')-1)
-        
+            $('.frame-user-toolbar').css('z-index', dropEl.data('dropOver').css('z-index') - 1)
+
         dropEl.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
         dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
     };
@@ -85,7 +85,7 @@ function init() {
         var dC = $(dropEl.find(dropEl.data('dropContent'))).data('jsp');
         if (dC != undefined)
             dC.destroy();
-        
+
         if ($(dropEl).hasClass('frame-already-show')) {
             $('.frame-user-toolbar').css({
                 'width': body.width(),
@@ -425,4 +425,16 @@ function init() {
             if (orderDetails)
                 renderOrderDetails();
         });
+    var genTimeout = "";
+    wnd.resize(function() {
+        clearTimeout(genTimeout);
+        genTimeout = setTimeout(function() {
+            var userTool = new itemUserToolbar();
+            userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
+            $('.menu-main').menuImageCms('refresh');
+            if ($.exists(optionCompare.frameCompare))
+                $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+            banerResize('.baner:has(.cycle)');
+        }, 300)
+    });
 }

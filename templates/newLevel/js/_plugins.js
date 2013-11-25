@@ -20,36 +20,36 @@ $.expr[':'].regex = function(elem, index, match) {
     regexFlags = 'ig',
             regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
     return regex.test($(elem)[attr.method](attr.property));
-}
+};
 
 String.prototype.trimMiddle = function()
 {
     var r = /\s\s+/g;
     return $.trim(this).replace(r, ' ');
-}
+};
 String.prototype.pasteSAcomm = function() {
     var r = /\s,/g;
     return this.replace(r, ',');
-}
+};
 
 $.exists = function(selector) {
     return ($(selector).length > 0);
-}
+};
 $.existsN = function(nabir) {
     return (nabir.length > 0);
-}
+};
 $.testNumber = function(e) {
     if (!e)
         var e = window.event;
     var key = e.keyCode;
-    if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
+    if (key === null || key === 0 || key === 8 || key === 13 || key === 9 || key === 46 || key === 37 || key === 39)
         return true;
     if ((key >= 48 && key <= 57) || (key >= 96 && key <= 105)) {
         return true;
     }
     else
         return false;
-}
+};
 $.onlyNumber = function(el) {
     body.on('keydown', el, function(e) {
         if (!$.testNumber(e)) {
@@ -60,20 +60,20 @@ $.onlyNumber = function(el) {
             $(this).tooltip('remove');
         }
     });
-}
+};
 
 $.fn.pricetext = function(e, rank) {
-    var $this = $(this);
-    rank != undefined ? rank = rank : rank = true;
+    var $this = $(this),
+            rank = rank !== undefined ? rank : true;
     $(document).trigger({
         type: 'textanimatechange',
         el: $this,
         ovalue: parseFloat($this.text().replace(/\s+/g, '')),
         nvalue: e,
         rank: rank
-    })
+    });
     return $this;
-}
+};
 $.fn.setCursorPosition = function(pos) {
     this.each(function() {
         try {
@@ -106,16 +106,16 @@ $(document).on('textanimatechange', function(e) {
                 cond = temp < nv;
                 if (dif < 0)
                     cond = temp > nv;
-                if (cond && step != 0)
-                    $this.text(rank ? temp.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : temp)
+                if (cond && step !== 0)
+                    $this.text(rank ? temp.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : temp);
                 else {
-                    $this.text(rank ? nv.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : nv)
-                    clearInterval(numb)
+                    $this.text(rank ? nv.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : nv);
+                    clearInterval(numb);
                     temp = nv;
                 }
-            }, 1)
+            }, 1);
 
-})
+});
 function setcookie(name, value, expires, path, domain, secure)
 {
     var today = new Date();
@@ -134,15 +134,15 @@ function getCookie(c_name)
 {
     var c_value = document.cookie,
             c_start = c_value.indexOf(" " + c_name + "=");
-    if (c_start == -1)
+    if (c_start === -1)
         c_start = c_value.indexOf(c_name + "=");
-    if (c_start == -1)
+    if (c_start === -1)
         c_value = null;
     else
     {
         c_start = c_value.indexOf("=", c_start) + 1;
         var c_end = c_value.indexOf(";", c_start);
-        if (c_end == -1)
+        if (c_end === -1)
             c_end = c_value.length;
         c_value = unescape(c_value.substring(c_start, c_end));
     }
@@ -152,7 +152,7 @@ function getCookie(c_name)
 (function($) {
     var methods = {
         init: function(options) {
-            if ($.existsN($(this))) {
+            if ($.existsN(this)) {
                 var settings = $.extend({
                     wrapper: $(".frame-label:has(.niceCheck)"),
                     elCheckWrap: '.niceCheck',
@@ -183,8 +183,8 @@ function getCookie(c_name)
                     var $this = $(this),
                             $thisD = $this.is('.disabled'),
                             nstcheck = $this.find(elCheckWrap);
-                    if (nstcheck.length == 0)
-                        nstcheck = $this
+                    if (nstcheck.length === 0)
+                        nstcheck = $this;
                     if (!$thisD) {
                         if (!evCond) {
                             methods.changeCheck(nstcheck);
@@ -204,16 +204,16 @@ function getCookie(c_name)
                     $(this).closest(wrapper).trigger('click.nstcheck');
                     return false;
                 }).on('keyup.nstCheck', function(e) {
-                    if (e.keyCode == 32)
+                    if (e.keyCode === 32)
                         $(this).closest(wrapper).trigger('click.nstcheck');
-                })
+                });
             }
         },
         changeCheckStart: function(el) {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
-            if (input.attr("checked") != undefined) {
+            if (input.attr("checked") !== undefined) {
                 methods.checkChecked(el);
             }
             else {
@@ -221,10 +221,10 @@ function getCookie(c_name)
             }
         },
         checkChecked: function(el) {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
-            if (input == undefined)
+            if (input === undefined)
                 input = $(this).find("input");
             el.addClass(activeClass).parent().addClass(activeClass);
             input.attr("checked", 'checked');
@@ -235,10 +235,10 @@ function getCookie(c_name)
             });
         },
         checkUnChecked: function(el) {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
-            if (input == undefined)
+            if (input === undefined)
                 input = $(this).find("input");
             el.removeClass(activeClass).parent().removeClass(activeClass);
             input.removeAttr("checked");
@@ -250,10 +250,10 @@ function getCookie(c_name)
         },
         changeCheck: function(el)
         {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
-            if (input.attr("checked") == undefined) {
+            if (input.attr("checked") === undefined) {
                 methods.checkChecked(el);
             }
             else {
@@ -262,17 +262,17 @@ function getCookie(c_name)
         },
         changeCheckallchecks: function(el)
         {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             el.each(function() {
                 var input = el.find("input");
                 el.addClass(activeClass).parent().addClass(activeClass);
                 input.attr("checked", "checked");
-            })
+            });
         },
         changeCheckallreset: function(el)
         {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             el.each(function() {
                 var input = el.find("input");
@@ -283,7 +283,7 @@ function getCookie(c_name)
         CheckallDisabled: function(el)
         {
             var el = el;
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             el.each(function() {
                 var input = el.find("input");
@@ -293,7 +293,7 @@ function getCookie(c_name)
         },
         CheckallEnabled: function(el)
         {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             el.each(function() {
                 var input = el.find("input");
@@ -330,7 +330,7 @@ function getCookie(c_name)
                 }
             }, options),
                     settings = optionsRadio;
-            var $this = $(this);
+            var $this = this;
             if ($.existsN($this)) {
                 $this.each(function() {
                     var $this = $(this),
@@ -346,10 +346,10 @@ function getCookie(c_name)
                     input.each(function() {
                         var input = $(this);
                         $(input.data('link')).focus(function(e) {
-                            if (e.which == 0)
+                            if (e.which === 0)
                                 methods.radioCheck(input.parent(), after, false);
-                        })
-                    })
+                        });
+                    });
                     $this.find(wrapper).off('click.radio').on('click.radio', function(e) {
                         if (!$(this).find('input').is(':disabled')) {
                             before($(this));
@@ -358,13 +358,13 @@ function getCookie(c_name)
                     });
                     input.on('mousedown change', function(e) {
                         return false;
-                    })
-                })
+                    });
+                });
             }
         },
         changeRadioStart: function(el, classRemove, after, start)
         {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
             if (input.is(":checked")) {
@@ -378,12 +378,12 @@ function getCookie(c_name)
         },
         changeRadio: function(el, after, start)
         {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             methods.radioCheck(el, after, start);
         },
         radioCheck: function(el, after, start) {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
             el.addClass(activeClass).removeClass(disabledClass);
@@ -391,7 +391,7 @@ function getCookie(c_name)
             input.attr("checked", true);
             $(input.data('link')).focus();
             input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
-                methods.radioUnCheck($(this).parent())
+                methods.radioUnCheck($(this).parent());
             });
             after(el, start);
             $(document).trigger({
@@ -401,7 +401,7 @@ function getCookie(c_name)
             });
         },
         radioUnCheck: function(el) {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
             el.removeClass(activeClass);
@@ -414,7 +414,7 @@ function getCookie(c_name)
             });
         },
         radioDisabled: function(el) {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
             input.attr('disabled', 'disabled');
@@ -422,7 +422,7 @@ function getCookie(c_name)
             el.parent().removeClass(activeClass).addClass(disabledClass);
         },
         radioUnDisabled: function(el) {
-            if (el == undefined)
+            if (el === undefined)
                 el = this;
             var input = el.find("input");
             input.removeAttr('disabled');
@@ -482,18 +482,18 @@ function getCookie(c_name)
                         });
                         $thisS.off('click.autocomplete').on('click.autocomplete', function(e) {
                             e.stopImmediatePropagation();
-                        })
+                        });
                         body.off('click.autocomplete').on('click.autocomplete', function(event) {
                             closeFrame();
                         }).off('keydown.autocomplete').on('keydown.autocomplete', function(e) {
                             if (!e)
                                 var e = window.event;
-                            if (e.keyCode == 27) {
+                            if (e.keyCode === 27) {
                                 closeFrame();
                             }
                         });
                     });
-                    if (inputString.val().length == 0)
+                    if (inputString.val().length === 0)
                         closeFrame();
                     selectorPosition = -1;
                     var itemserch = $thisS.find(itemA);
@@ -513,13 +513,13 @@ function getCookie(c_name)
                     if (!event)
                         var event = window.event;
                     var code = event.keyCode;
-                    if (code == 38 || code == 40)
+                    if (code === 38 || code === 40)
                     {
-                        if (code == 38)
+                        if (code === 38)
                         {
                             selectorPosition -= 1;
                         }
-                        if (code == 40)
+                        if (code === 40)
                         {
                             selectorPosition += 1;
                         }
@@ -538,7 +538,7 @@ function getCookie(c_name)
                     }
 
                     // Enter pressed
-                    if (code == 13)
+                    if (code === 13)
                     {
                         var itemserchS = itemserch.filter('.selected');
                         if ($.existsN(itemserchS))
@@ -551,7 +551,7 @@ function getCookie(c_name)
                         }
                     }
                     return false;
-                })
+                });
             }
 
             function closeFrame() {
@@ -564,7 +564,7 @@ function getCookie(c_name)
                 body.off('click.autocomplete').off('keydown.autocomplete');
             }
 
-            var $thisS = $(this),
+            var $thisS = this,
                     blockEnter = settings.blockEnter,
                     itemA = settings.item,
                     durationA = settings.duration,
@@ -592,13 +592,13 @@ function getCookie(c_name)
                 var code = event.keyCode;
                 if (inputValL > minValue) {
                     $this.tooltip('remove');
-                    if (code != 27 && code != 40 && code != 38 && code != 39 && code != 37 && code != 13 && inputValL != 0 && $.trim($this.val()) != "")
+                    if (code !== 27 && code !== 40 && code !== 38 && code !== 39 && code !== 37 && code !== 13 && inputValL !== 0 && $.trim($this.val()) !== "")
                         postSearch();
-                    else if (inputValL == 0)
+                    else if (inputValL === 0)
                         closeFrame();
                 }
                 else {
-                    if (code == 13 && !blockEnter)
+                    if (code === 13 && !blockEnter)
                         submit.closest('form').submit();
                     else
                         $(document).trigger({
@@ -616,7 +616,7 @@ function getCookie(c_name)
                             el: inputString,
                             value: minValue
                         });
-                    })
+                    });
                 else {
                     submit.off('click.autocomplete');
                 }
@@ -627,11 +627,11 @@ function getCookie(c_name)
                 if (!event)
                     var event = window.event;
                 var code = event.keyCode;
-                if (code == 13 && $(this).val().length <= minValue)
+                if (code === 13 && $(this).val().length <= minValue)
                     return false;
-            })
+            });
         }
-    }
+    };
     $.fn.autocomplete = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -662,7 +662,7 @@ function getCookie(c_name)
                         offsetY: 10,
                         tooltip: false
                     }, options);
-                    var $this = $(this),
+                    var $this = this,
                             elSet = $this.data(),
                             title = elSet.title || settings.title,
                             otherClass = elSet.otherClass || settings.otherClass,
@@ -683,7 +683,7 @@ function getCookie(c_name)
                         'offsetX': offsetX,
                         'offsetY': offsetY,
                         'tooltip': sel
-                    })
+                    });
 
                     textEl = $this.find(textEl);
 
@@ -699,13 +699,13 @@ function getCookie(c_name)
                             tooltip = $('.' + otherClass);
                     }
 
-                    if (effect == 'mouse')
+                    if (effect === 'mouse')
                         this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
                             tooltip.css({
                                 'left': methods.left($(this), tooltip, placement, e.pageX, effect, offsetX),
                                 'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY)
-                            })
-                        })
+                            });
+                        });
 
                     tooltip.removeClass('top bottom right left').addClass(placement);
                     tooltip.css({
@@ -720,29 +720,29 @@ function getCookie(c_name)
 
                     $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
                         var el = $(this);
-                        if (el.data('effect') != 'always')
+                        if (el.data('effect') !== 'always')
                             el.tooltip('remove', e);
-                    })
+                    });
                     $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
                         $(this).tooltip('remove', e);
-                    })
+                    });
 
                 },
                 left: function(el, tooltip, placement, left, eff, offset) {
-                    if (placement == 'left')
-                        return Math.ceil(left - (eff == 'mouse' ? offset : tooltip.actual('outerWidth')))
-                    if (placement == 'right')
-                        return Math.ceil(left + (eff == 'mouse' ? offset : el.outerWidth()))
+                    if (placement === 'left')
+                        return Math.ceil(left - (eff === 'mouse' ? offset : tooltip.actual('outerWidth')));
+                    if (placement === 'right')
+                        return Math.ceil(left + (eff === 'mouse' ? offset : el.outerWidth()));
                     else
-                        return Math.ceil(left - (eff == 'mouse' ? offset : (tooltip.actual('outerWidth') - el.outerWidth()) / 2))
+                        return Math.ceil(left - (eff === 'mouse' ? offset : (tooltip.actual('outerWidth') - el.outerWidth()) / 2));
                 },
                 top: function(el, tooltip, placement, top, eff, offset) {
-                    if (placement == 'top')
-                        return Math.ceil(top - (eff == 'mouse' ? offset : tooltip.actual('outerHeight')));
-                    if (placement == 'bottom')
-                        return Math.ceil(top + (eff == 'mouse' ? offset : tooltip.actual('outerHeight')));
+                    if (placement === 'top')
+                        return Math.ceil(top - (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
+                    if (placement === 'bottom')
+                        return Math.ceil(top + (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
                     else {
-                        return Math.ceil(top - (eff == 'mouse' ? offset : (tooltip.actual('outerHeight') - el.outerHeight()) / 2))
+                        return Math.ceil(top - (eff === 'mouse' ? offset : (tooltip.actual('outerHeight') - el.outerHeight()) / 2));
                     }
                 },
                 remove: function(e) {
@@ -772,7 +772,7 @@ function getCookie(c_name)
         $(this).tooltip({}, e);
     }).on('click.' + nS, function(e) {
         $.tooltip('remove', e);
-    })
+    });
     if (!$.exists(sel))
         body.append('<span class="tooltip"></span>');
 })(jQuery);
@@ -781,8 +781,8 @@ function getCookie(c_name)
 (function($) {
     var methods = {
         _position: function(menuW, $thisL, dropW, drop, $thisW, countColumn, sub2, direction) {
-            if ((menuW - $thisL < dropW && dropW < menuW && direction != 'left') || direction == 'right') {
-                drop.removeClass('left-drop')
+            if ((menuW - $thisL < dropW && dropW < menuW && direction !== 'left') || direction === 'right') {
+                drop.removeClass('left-drop');
                 if (drop.children().children().length >= countColumn && !sub2)
                     drop.css('right', 0).addClass('right-drop');
                 else {
@@ -792,8 +792,8 @@ function getCookie(c_name)
                     }
                     drop.css('right', right).addClass('right-drop');
                 }
-            } else if (direction != 'right' || direction == 'left') {
-                drop.removeClass('right-drop')
+            } else if (direction !== 'right' || direction === 'left') {
+                drop.removeClass('right-drop');
                 if (sub2 && dropW > menuW)
                     drop.css('left', $thisL).addClass('left-drop');
                 else if (drop.children().children().length >= countColumn || dropW >= menuW)
@@ -803,7 +803,7 @@ function getCookie(c_name)
             }
         },
         init: function(options) {
-            $(this).each(function() {
+            this.each(function() {
                 var menu = $(this);
                 if ($.existsN(menu)) {
                     var sH = 0,
@@ -882,14 +882,14 @@ function getCookie(c_name)
                             $this.closest(activeFl.split(' ')[0]).removeClass(activeClass);
                             $this.removeClass(activeClass);
                         });
-                        var locHref = location.href;
-                        var locationHref = otherPage != undefined ? otherPage : locHref
+                        var locHref = location.href,
+                                locationHref = otherPage !== undefined ? otherPage : locHref;
                         menu.find('a[href="' + locationHref + '"]').each(function() {
                             var $this = $(this);
                             $this.closest(activeFl.split(' ')[0]).addClass(activeClass);
                             $this.closest(parentTl.split(' ')[0]).addClass(activeClass).prev().addClass(activeClass);
                             $this.addClass(activeClass);
-                        })
+                        });
                     }
                     if (isTouch) {
                         evLF = 'toggle';
@@ -903,11 +903,11 @@ function getCookie(c_name)
                                         numbColumn = [];
                                 columnsObj.each(function(i) {
                                     numbColumn[i] = $(this).attr('class').match(new RegExp(columnClassPref2 + '([0-9]+)'))[0];
-                                })
+                                });
                                 numbColumn = _.uniq(numbColumn).sort();
                                 var numbColumnL = numbColumn.length;
                                 if (numbColumnL > 1) {
-                                    if ($.inArray('0', numbColumn) == 0) {
+                                    if ($.inArray('0', numbColumn) === 0) {
                                         numbColumn.shift();
                                         numbColumn.push('0');
                                     }
@@ -922,11 +922,10 @@ function getCookie(c_name)
                                         else {
                                             $this.closest('li').addClass('x' + numbColumnL).attr('data-x', numbColumnL);
                                         }
-
-                                    })
+                                    });
                                     columnsObj.remove();
                                 }
-                            })
+                            });
                         }
                         if (columnPart && !sub2Frame)
                             dropOJ.each(function() {
@@ -935,11 +934,11 @@ function getCookie(c_name)
                                         numbColumn = [];
                                 columnsObj.each(function(i) {
                                     numbColumn[i] = $(this).attr('class').match(/([0-9]+)/)[0];
-                                })
+                                });
                                 numbColumn = _.uniq(numbColumn).sort();
                                 var numbColumnL = numbColumn.length;
-                                if (numbColumnL == 1 && $.inArray('0', numbColumn) == -1 || numbColumnL > 1) {
-                                    if ($.inArray('0', numbColumn) == 0) {
+                                if (numbColumnL === 1 && $.inArray('0', numbColumn) === -1 || numbColumnL > 1) {
+                                    if ($.inArray('0', numbColumn) === 0) {
                                         numbColumn.shift();
                                         numbColumn.push('0');
                                     }
@@ -948,25 +947,25 @@ function getCookie(c_name)
                                                 sumx = 0;
                                         $thisLi.each(function() {
                                             var datax = $(this).attr('data-x');
-                                            sumx = parseInt(datax == 0 || datax == undefined ? 1 : datax) > sumx ? parseInt(datax == 0 || datax == undefined ? 1 : datax) : sumx;
-                                        })
+                                            sumx = parseInt(datax === 0 || datax === undefined ? 1 : datax) > sumx ? parseInt(datax === 0 || datax === undefined ? 1 : datax) : sumx;
+                                        });
                                         $this.children().append('<li class="x' + sumx + '" data-column="' + n + '" data-x="' + sumx + '"><ul></ul></li>');
                                         $this.find('[data-column="' + n + '"]').children().append($thisLi.clone());
-                                    })
+                                    });
                                     columnsObj.remove();
                                 }
                                 var sumx = 0;
                                 $this.children().children().each(function() {
                                     var datax = $(this).attr('data-x');
-                                    sumx = sumx + parseInt(datax == 0 || datax == undefined ? 1 : datax);
+                                    sumx = sumx + parseInt(datax === 0 || datax === undefined ? 1 : datax);
                                 });
                                 sumx = sumx > maxC ? maxC : sumx;
                                 $this.addClass('x' + sumx);
-                            })
+                            });
                         $(document).trigger({
                             type: 'columnRenderComplete',
                             el: dropOJ
-                        })
+                        });
                     }
                     var k = [];
                     if (!vertical)
@@ -1002,11 +1001,11 @@ function getCookie(c_name)
                     var hoverTO = '';
                     function closeMenu() {
                         var $thisDrop = menu.find(drop);
-                        if ($thisDrop.length != 0)
+                        if ($thisDrop.length !== 0)
                             menu.removeClass(hM);
 
-                        if (evLS == 'toggle' || evLF == 'toggle') {
-                            menu.find('.' + hM).click()
+                        if (evLS === 'toggle' || evLF === 'toggle') {
+                            menu.find('.' + hM).click();
                             dropOJ.hide();
                         }
 
@@ -1014,15 +1013,15 @@ function getCookie(c_name)
 
                         clearTimeout(hoverTO);
                     }
-                    if (evLF == 'toggle')
+                    if (evLF === 'toggle')
                         evLF = 'click';
-                    if (evLS == 'toggle')
+                    if (evLS === 'toggle')
                         evLS = 'click';
                     menuItem.off(evLF)[evLF](
                             function(e) {
                                 var $this = $(this);
 
-                                if ($this.data("show") == "no" || $this.data("show") == undefined) {
+                                if ($this.data("show") === "no" || $this.data("show") === undefined) {
 
                                     $this.data("show", "yes");
 
@@ -1034,11 +1033,11 @@ function getCookie(c_name)
 
                                     $this.addClass(hM);
 
-                                    if ($thisI == 0)
+                                    if ($thisI === 0)
                                         $this.addClass('firstH');
-                                    if ($thisI == itemMenuL - 1)
+                                    if ($thisI === itemMenuL - 1)
                                         $this.addClass('lastH');
-                                    if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') == 0)
+                                    if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
                                         hoverTO = setTimeout(function() {
@@ -1047,8 +1046,8 @@ function getCookie(c_name)
                                                 $(document).trigger({
                                                     type: 'menu.showDrop',
                                                     el: $thisDrop
-                                                })
-                                                if ($thisDrop.length != 0)
+                                                });
+                                                if ($thisDrop.length !== 0)
                                                     menu.addClass(hM);
                                                 if (sub2Frame) {
                                                     var listDrop = $thisDrop.children();
@@ -1057,15 +1056,15 @@ function getCookie(c_name)
                                                     listDrop.children().off(evLS)[evLS](function(e) {
                                                         var $this = $(this);
 
-                                                        if ($this.data("show") == "no" || $this.data("show") == undefined) {
+                                                        if ($this.data("show") === "no" || $this.data("show") === undefined) {
                                                             $this.data("show", "yes");
 
                                                             subFrame = $this.find(sub2Frame);
-                                                            if (e.type != 'click' && evLS != 'toggle') {
+                                                            if (e.type !== 'click' && evLS !== 'toggle') {
                                                                 $this.siblings().removeClass(hM);
                                                             }
                                                             if ($.existsN(subFrame)) {
-                                                                if (e.type == 'click' && evLS == 'toggle') {
+                                                                if (e.type === 'click' && evLS === 'toggle') {
                                                                     e.stopPropagation();
                                                                     $this.siblings().filter('.' + hM).click();
                                                                     $this.addClass(hM);
@@ -1118,7 +1117,7 @@ function getCookie(c_name)
                                                         }
                                                         else {
                                                             $this.data("show", "no");
-                                                            if (e.type == 'click' && evLS == 'toggle') {
+                                                            if (e.type === 'click' && evLS === 'toggle') {
                                                                 e.stopPropagation();
                                                             }
                                                             var subFrame = $this.find(sub2Frame);
@@ -1127,9 +1126,9 @@ function getCookie(c_name)
                                                                 $thisDrop.stop().css({
                                                                     'width': '',
                                                                     'height': ''
-                                                                })
-                                                                listDrop.add(subFrame).stop().css('height', '')
-                                                                $this.removeClass(hM)
+                                                                });
+                                                                listDrop.add(subFrame).stop().css('height', '');
+                                                                $this.removeClass(hM);
                                                             }
                                                         }
                                                     });
@@ -1143,9 +1142,9 @@ function getCookie(c_name)
 
                                     var $thisI = $this.index();
                                     k[$thisI] = true;
-                                    if ($this.index() == 0)
+                                    if ($this.index() === 0)
                                         $this.removeClass('firstH');
-                                    if ($this.index() == itemMenuL - 1)
+                                    if ($this.index() === itemMenuL - 1)
                                         $this.removeClass('lastH');
                                     var $thisDrop = $this.find(drop);
                                     if ($.existsN($thisDrop)) {
@@ -1158,14 +1157,14 @@ function getCookie(c_name)
                             function(e) {
                                 menuItem.each(function() {
                                     $(this).data('kk', 0);
-                                })
+                                });
                                 timeDurM = 0;
                             },
                             function(e) {
                                 closeMenu();
                                 menuItem.each(function() {
                                     $(this).data('kk', -1);
-                                })
+                                });
                                 timeDurM = duration;
                             });
                     body.off('click.menu').on('click.menu', function(e) {
@@ -1173,12 +1172,12 @@ function getCookie(c_name)
                     }).off('keydown.menu').on('keydown.menu', function(e) {
                         if (!e)
                             var e = window.event;
-                        if (e.keyCode == 27) {
+                        if (e.keyCode === 27) {
                             closeMenu();
                         }
                     });
                     dropOJ.find('a').off('click.menuref').on('click.menuref', function(e) {
-                        if (evLS == 'toggle') {
+                        if (evLS === 'toggle') {
                             if ($.existsN($(this).next()) && sub2Frame) {
                                 e.preventDefault();
                                 return true;
@@ -1195,13 +1194,13 @@ function getCookie(c_name)
                     });
                 }
             });
-            return $(this);
+            return this;
         },
         refresh: function() {
-            methods.init.call($(this), $.extend({}, $(this).data('options'), {
+            methods.init.call(this, $.extend({}, this.data('options'), {
                 refresh: true
             }));
-            return $(this);
+            return this;
         }
     };
     $.fn.menuImageCms = function(method) {
@@ -1222,7 +1221,7 @@ function getCookie(c_name)
 (function($) {
     var methods = {
         init: function(options) {
-            var $this = $(this);
+            var $this = this;
             if ($.existsN($this)) {
                 var settings = $.extend({
                     effectOn: 'show',
@@ -1250,7 +1249,7 @@ function getCookie(c_name)
                             durationOff = settings.durationOff;
                     navTabsLi[index] = $thiss.children();
                     refs[index] = navTabsLi[index].children();
-                    attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';
+                    attrOrdata[index] = refs[index].attr('href') !== undefined ? 'attr' : 'data';
                     var tempO = $([]),
                             tempO2 = $([]),
                             tempRefs = [];
@@ -1259,7 +1258,7 @@ function getCookie(c_name)
                         tempO = tempO.add($(tHref));
                         tempO2 = tempO2.add('[data-id=' + tHref + ']');
                         tempRefs.push(tHref);
-                    })
+                    });
                     tabsDiv[index] = tempO;
                     tabsId[index] = tempO2;
                     regRefs[index] = tempRefs;
@@ -1268,11 +1267,11 @@ function getCookie(c_name)
                         var $this = $(this);
 
                         var resB = settings.before($this);
-                        if (resB == undefined || resB == true) {
+                        if (resB === undefined || resB === true) {
                             if ($this.is('a'))
                                 e.preventDefault();
-                            var condRadio = $thiss.data('type') == 'radio',
-                                    toggle = $thiss.data('type') == 'toggle',
+                            var condRadio = $thiss.data('type') === 'radio',
+                                    toggle = $thiss.data('type') === 'toggle',
                                     condStart = e.start;
                             if (!$this.parent().hasClass('disabled')) {
                                 var $thisA = $this[attrOrdata[index]]('href'),
@@ -1281,7 +1280,7 @@ function getCookie(c_name)
                                         $thisS = $this.data('source'),
                                         $thisData = $this.data('data'),
                                         $thisSel = $this.data('selector'),
-                                        $thisDD = $this.data('drop') != undefined;
+                                        $thisDD = $this.data('drop') !== undefined;
                                 function tabsDivT() {
                                     var showBlock = $thisAO.add($('[data-id=' + $thisA + ']')),
                                             addDiv = toggle ? $([]) : showBlock;
@@ -1294,7 +1293,7 @@ function getCookie(c_name)
                                             }).addClass(activeClass);
                                 }
                                 if (!$thisDD) {
-                                    if (!condRadio || e.button == 0) {
+                                    if (!condRadio || e.button === 0) {
 
                                         var activeP = $this.parent();
 
@@ -1305,42 +1304,42 @@ function getCookie(c_name)
                                             activeP.addClass(activeClass);
 
                                         if (!condRadio) {
-                                            if (!condStart && $thisS != undefined)
-                                                tabsDivT()
-                                            if ($thisS != undefined && !$thisAO.hasClass('visited')) {
+                                            if (!condStart && $thisS !== undefined)
+                                                tabsDivT();
+                                            if ($thisS !== undefined && !$thisAO.hasClass('visited')) {
                                                 $thisAO.addClass('visited');
                                                 $(document).trigger({
                                                     'type': 'tabs.beforeload',
                                                     "els": tabsDiv[index],
                                                     "el": $thisAO
                                                 });
-                                                if ($thisData != undefined)
+                                                if ($thisData !== undefined)
                                                     $.ajax({
                                                         type: 'post',
                                                         url: $thisS,
                                                         data: $thisData,
                                                         success: function(data) {
                                                             tabsDivT();
-                                                            $thisAO.find($thisSel).html(data)
+                                                            $thisAO.find($thisSel).html(data);
                                                             $(document).trigger({
                                                                 'type': 'tabs.afterload',
                                                                 "els": tabsDiv[index],
                                                                 "el": $thisAO
-                                                            })
+                                                            });
                                                         }
-                                                    })
+                                                    });
                                                 else
                                                     $thisAO.load($thisS, function() {
                                                         $(document).trigger({
                                                             'type': 'tabs.afterload',
                                                             "els": tabsDiv[index],
                                                             "el": $thisAO
-                                                        })
-                                                        tabsDivT()
-                                                    })
+                                                        });
+                                                        tabsDivT();
+                                                    });
                                             }
                                             else {
-                                                tabsDivT()
+                                                tabsDivT();
                                             }
 
                                             if (e.scroll)
@@ -1348,10 +1347,10 @@ function getCookie(c_name)
                                             $(document).trigger({
                                                 'type': 'tabs.showtabs',
                                                 'el': $thisAO
-                                            })
+                                            });
                                         }
                                         else {
-                                            setcookie($thiss.data('cookie') == undefined ? 'cookie' + index : $thiss.data('cookie'), $this[attrOrdata[index]]('href'), 0, '/');
+                                            setcookie($thiss.data('cookie') === undefined ? 'cookie' + index : $thiss.data('cookie'), $this[attrOrdata[index]]('href'), 0, '/');
                                             settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
                                         }
                                     }
@@ -1363,16 +1362,16 @@ function getCookie(c_name)
                                 } catch (err) {
                                     reg = null;
                                 }
-                                if ((!condRadio && attrOrdata[index] != 'data') || (($.inArray($thisA, regRefs[index]) > -1 && reg != null))) {
+                                if ((!condRadio && attrOrdata[index] !== 'data') || (($.inArray($thisA, regRefs[index]) > -1 && reg !== null))) {
                                     if (!condStart) {
-                                        var reg = $thisAOld != undefined,
+                                        var reg = $thisAOld !== undefined,
                                                 temp = wLH;
 
                                         if (reg) {
-                                            if (wLH.indexOf($thisA) == -1) {
-                                                temp = temp.replace($thisAOld, $thisA)
+                                            if (wLH.indexOf($thisA) === -1) {
+                                                temp = temp.replace($thisAOld, $thisA);
                                             }
-                                            else if ($thisA != $thisAOld) {
+                                            else if ($thisA !== $thisAOld) {
                                                 temp += $thisA;
                                             }
                                             if (!(activeP.hasClass(activeClass) && toggle)) {
@@ -1389,27 +1388,27 @@ function getCookie(c_name)
                                         k = false;
                                     }
                                     if ($thisDD && condStart)
-                                        $this.trigger('click.drop')
+                                        $this.trigger('click.drop');
                                 }
-                                else if (e.button == 0 && $thiss.data('elchange') != undefined) {
+                                else if (e.button === 0 && $thiss.data('elchange') !== undefined) {
                                     refs[index].each(function() {
                                         var $thisDH = $(this).data('href');
-                                        if ($thisDH == $thisA)
-                                            $($thiss.data('elchange')).addClass($thisA)
+                                        if ($thisDH === $thisA)
+                                            $($thiss.data('elchange')).addClass($thisA);
                                         else
-                                            $($thiss.data('elchange')).removeClass($thisDH)
-                                    })
+                                            $($thiss.data('elchange')).removeClass($thisDH);
+                                    });
                                 }
                             }
                             return false;
                         }
-                    })
-                    if (thisL - 1 == index)
+                    });
+                    if (thisL - 1 === index)
                         methods.location(regRefs, refs);
                 });
                 wnd.on('hashchange', function(e) {
                     function scrollTop(wST) {
-                        if (e.scroll || e.scroll == undefined)
+                        if (e.scroll || e.scroll === undefined)
                             wnd.scrollTop(wST);
                         wST = wnd.scrollTop();
                     }
@@ -1418,51 +1417,51 @@ function getCookie(c_name)
                         scrollTop(wST - 100);
                     scrollTop(wST);
                     _.map(location.hash.split('#'), function(i, n) {
-                        if (i != '') {
+                        if (i !== '') {
                             var parent = $('[data-href="#' + i + '"], [href="#' + i + '"]').parent().addClass(activeClass),
                                     siblings = parent.siblings().removeClass(activeClass);
 
                             siblings.children('[data-href], [href]').each(function() {
-                                var href = ($(this).data('href') != undefined ? $(this).data('href') : $(this).attr('href')).replace('#', '');
+                                var href = ($(this).data('href') !== undefined ? $(this).data('href') : $(this).attr('href')).replace('#', '');
                                 $('[id="' + href + '"]').hide();
                                 $('[data-id="' + href + '"]').hide();
-                            })
+                            });
                             $('[id="' + i + '"]').show();
                             $('[data-id="' + i + '"]').show();
                         }
-                    })
+                    });
                     return false;
-                })
+                });
             }
             return $this;
         },
         location: function(regrefs, refs) {
             var hashs1 = [],
                     hashs2 = [];
-            if (location.hash == '')
+            if (location.hash === '')
             {
                 var i = 0,
                         j = 0;
                 _.map(refs, function(n, i) {
                     var $this = n.first(),
-                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
-                    if ($this.data('drop') == undefined && attrOrdataL != 'data') {
+                            attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
+                    if ($this.data('drop') === undefined && attrOrdataL !== 'data') {
                         hashs1[i] = $this[attrOrdataL]('href');
                         i++;
                     }
-                    else if (attrOrdataL == 'data') {
+                    else if (attrOrdataL === 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
                         j++;
                     }
-                })
+                });
                 var hashs = [hashs1, hashs2];
             }
             else {
                 _.map(refs, function(n, i) {
                     var j = 0,
                             $this = n.first(),
-                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
-                    if (attrOrdataL == 'data') {
+                            attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
+                    if (attrOrdataL === 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
                         j++;
                     }
@@ -1473,13 +1472,13 @@ function getCookie(c_name)
                         i = 0, pos = [];
                 while (i < t.length - 1)
                 {
-                    var ch = t.substr(i, m)
-                    if (ch == s) {
+                    var ch = t.substr(i, m);
+                    if (ch === s) {
                         res += 1;
-                        i = i + m
-                        pos[res - 1] = t.indexOf(s, i - m)
+                        i = i + m;
+                        pos[res - 1] = t.indexOf(s, i - m);
                     } else
-                        i++
+                        i++;
                 }
                 var i = 0;
                 while (i < pos.length) {
@@ -1503,15 +1502,15 @@ function getCookie(c_name)
                     if ($.inArray(n, regrefs[k]) >= 0)
                         i++;
                     if ($.inArray(n, regrefs[k]) >= 0 && i > 1) {
-                        hashs2.splice(hashs2.indexOf(n), 1)
+                        hashs2.splice(hashs2.indexOf(n), 1);
                     }
-                })
-                if (hashs2.join() == hashs.join())
+                });
+                if (hashs2.join() === hashs.join())
                     sim++;
-                if (hashs2.join() != hashs.join() || sim == regrefsL)
+                if (hashs2.join() !== hashs.join() || sim === regrefsL)
                     $.map(hashs2, function(n, i) {
                         var attrOrdataNew = "";
-                        $('[href=' + n + ']').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
+                        $('[href=' + n + ']').length === 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                         $('[' + attrOrdataNew + '=' + n + ']').trigger({
                             'type': 'click.tabs',
                             'start': true
@@ -1519,7 +1518,7 @@ function getCookie(c_name)
                     });
             });
         }
-    }
+    };
     $.fn.tabs = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -1528,7 +1527,7 @@ function getCookie(c_name)
         } else {
             $.error('Method ' + method + ' does not exist on $.tabs');
         }
-    }
+    };
     $.tabs = function(m) {
         return methods[m];
     };
@@ -1537,10 +1536,10 @@ function getCookie(c_name)
 /*plugin actual*/
 (function($) {
     $.fn.actual = function() {
-        if (arguments.length && typeof arguments[0] == 'string') {
-            var dim = arguments[0];
-            clone = $(this).clone().addClass(clonedC);
-            if (arguments[1] == undefined)
+        if (arguments.length && typeof arguments[0] === 'string') {
+            var dim = arguments[0],
+                    clone = this.clone().addClass(clonedC);
+            if (arguments[1] === undefined)
                 clone.css({
                     position: 'absolute',
                     top: '-9999px'
@@ -1596,14 +1595,14 @@ function getCookie(c_name)
                     confirmSel = settings.confirmSel,
                     always = settings.always,
                     arrDrop = [];
-            $(this).add($('[data-drop]')).off('click.drop').on('click.drop', function(e) {
+            this.add($('[data-drop]')).off('click.drop').on('click.drop', function(e) {
                 $(document).trigger({
                     'type': 'drop.click',
                     'el': $this
-                })
+                });
                 methods.closeModal();
                 function confirmF() {
-                    if ($.inArray(elSet.source, arrDrop) != 0 || newModal || newAlways) {
+                    if ($.inArray(elSet.source, arrDrop) !== 0 || newModal || newAlways) {
                         arrDrop.push(elSet.source);
                         if (!newModal)
                             drop.remove();
@@ -1614,17 +1613,17 @@ function getCookie(c_name)
                             beforeSend: function() {
                                 $(document).trigger({
                                     'type': 'showActivity'
-                                })
+                                });
                             },
                             dataType: elSet.type ? elSet.type : 'html',
                             success: function(data) {
                                 var drop = $(elSet.drop);
-                                if (elSet.type != 'html' && elSet.type != undefined && newModal) {
+                                if (elSet.type !== 'html' && elSet.type !== undefined && newModal) {
                                     $(document).trigger({
                                         type: 'drop.successJson',
                                         el: drop,
                                         datas: data
-                                    })
+                                    });
                                     methods._pasteDrop($.extend({}, settings, elSet), drop);
                                 }
                                 else {
@@ -1632,21 +1631,21 @@ function getCookie(c_name)
                                         type: 'drop.successHtml',
                                         el: drop,
                                         datas: data
-                                    })
+                                    });
                                     methods._pasteDrop($.extend({}, settings, elSet), data);
                                 }
                                 methods.init.call(drop.find('[data-drop]'), $.extend({}, optionsDrop));
                                 methods.showDrop($this, e, optionsDrop, true, data);
                             }
-                        })
+                        });
                     }
                 }
                 var $this = $(this),
                         elSet = $this.data(),
                         drop = $(elSet.drop),
-                        start = elSet.start != undefined ? elSet.start : settings.start;
+                        start = elSet.start !== undefined ? elSet.start : settings.start;
 
-                if (!(elSet.moreOne || moreOne) && start == undefined) {
+                if (!(elSet.moreOne || moreOne) && start === undefined) {
                     if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
                         methods.closeDrop($this.closest('[data-elrun]'));
                     if ($.existsN($('[data-elrun].center:visible, [data-elrun].noinherit:visible')))
@@ -1661,11 +1660,11 @@ function getCookie(c_name)
                             newAlways = elSet.always || always;
 
 
-                    if (start != undefined)
+                    if (start !== undefined)
                         var res = eval(start)($this, drop);
-                    if (start != undefined && !res)
+                    if (start !== undefined && !res)
                         return false;
-                    if (start == undefined || (start != undefined && res)) {
+                    if (start === undefined || (start !== undefined && res)) {
                         if ($.existsN(drop) && !newModal && !newAlways) {
                             methods._pasteDrop($.extend({}, settings, elSet), drop);
                             methods.showDrop($this, e, optionsDrop, false);
@@ -1682,9 +1681,8 @@ function getCookie(c_name)
                                     methods.closeDrop($(confirmSel));
                                     $this.data('confirm', false);
                                     confirmF();
-                                })
+                                });
                             }
-
                         }
                         else {
                             methods._pasteDrop($.extend({}, settings, elSet), drop);
@@ -1693,24 +1691,24 @@ function getCookie(c_name)
                     }
                     return false;
                 }
-            })
+            });
             return $(this);
         },
         _pasteDrop: function(elSet, drop) {
-            if (elSet.place != 'inherit') {
-                if (typeof drop != 'string') {
-                    if (!$.existsN(drop.parent('.for-center')) && elSet.place != 'noinherit') {
-                        if (drop.data('forCenter') == undefined) {
+            if (elSet.place !== 'inherit') {
+                if (typeof drop !== 'string') {
+                    if (!$.existsN(drop.parent('.for-center')) && elSet.place !== 'noinherit') {
+                        if (drop.data('forCenter') === undefined) {
                             body.append('<div class="for-center" rel="' + elSet.drop + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
                             drop.data().forCenter = $('[rel="' + elSet.drop + '"].for-center');
                         }
-                        drop.data().forCenter.append(drop)
+                        drop.data().forCenter.append(drop);
                     }
-                    else if (elSet.place == 'noinherit')
+                    else if (elSet.place === 'noinherit')
                         body.append(drop);
                 }
                 else {
-                    if (elSet.place == 'noinherit')
+                    if (elSet.place === 'noinherit')
                         body.append(drop);
                     else {
                         if (!$.exists('[rel="' + elSet.drop + '"].for-center')) {
@@ -1726,11 +1724,11 @@ function getCookie(c_name)
         closeModal: function() {
             $('[data-elrun]:visible').each(function() {
                 if ($(this).data('modal'))
-                    methods.closeDrop($(this))
-            })
+                    methods.closeDrop($(this));
+            });
         },
         showDrop: function($this, e, set, isajax, data) {
-            if ($this == undefined)
+            if ($this === undefined)
                 $this = $(this);
             if (!e)
                 var e = window.event;
@@ -1740,17 +1738,17 @@ function getCookie(c_name)
                     place = elSet.place || set.place,
                     placement = elSet.placement || set.placement,
                     $thisEOff = elSet.effectOff || set.effoff,
-                    $thisD = elSet.durationOn != undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
-                    $thisDOff = elSet.durationOff != undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
-                    $thisA = elSet.animate != undefined ? elSet.animate : set.animate,
+                    $thisD = elSet.durationOn !== undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
+                    $thisDOff = elSet.durationOff !== undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
+                    $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
                     $thisEOn = elSet.effectOn || set.effon,
                     overlayColor = elSet.overlaycolor || set.overlayColor,
-                    overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || set.overlayOpacity,
+                    overlayOpacity = elSet.overlayopacity !== undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || set.overlayOpacity,
                     modal = elSet.modal || set.modal,
                     timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
                     confirm = elSet.confirm || set.confirm,
                     dropContent = elSet.dropContent || set.dropContent,
-                    size = elSet.size != undefined ? elSet.size : set.size,
+                    size = elSet.size !== undefined ? elSet.size : set.size,
                     placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
                     placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
                     moreOne = elSet.moreOne || set.moreOne,
@@ -1801,12 +1799,12 @@ function getCookie(c_name)
             }).attr('data-elrun', $thisSource);
             drop.off('click.drop', set.exit).on('click.drop', set.exit, function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
-            })
+            });
 
-            var condOverlay = (overlayOpacity != undefined ? overlayOpacity.toString() : overlayOpacity) != '0';
+            var condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
             if (condOverlay) {
                 if (!$.exists('[rel="' + $thisSource + '"].overlayDrop')) {
-                    body.append('<div class="overlayDrop" rel="' + $thisSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>')
+                    body.append('<div class="overlayDrop" rel="' + $thisSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
                 }
                 var overlays = $('.overlayDrop');
                 overlays.css('z-index', 1103);
@@ -1820,13 +1818,13 @@ function getCookie(c_name)
                     drop.data('forCenter').css('z-index', overlays.length + 1104);
                 }
             }
-            if (drop.hasClass(activeClass) && e.button != undefined) {
+            if (drop.hasClass(activeClass) && e.button !== undefined) {
                 methods.closeDrop(drop);
             }
             else {
                 before($this, drop, isajax, data, elSet);
                 var bS = elBefore;
-                if (bS != undefined)
+                if (bS !== undefined)
                     eval(bS)($this, drop, isajax, data, elSet);
                 $(document).trigger({
                     'type': 'drop.before',
@@ -1835,20 +1833,19 @@ function getCookie(c_name)
                     'isajax': isajax,
                     'datas': data,
                     'elSet': elSet
-                })
-
+                });
 
                 if (drop.data('modal')) {
                     var objJ = $([]);
                     $('[data-elrun]:visible').each(function() {
-                        if (($(this).data('overlayOpacity') != '0'))
+                        if (($(this).data('overlayOpacity') !== '0'))
                             objJ = objJ.add($(this));
-                    })
+                    });
                     if ($.existsN(objJ))
                         methods.closeDrop(objJ);
                 }
 
-                if (e.button == undefined && place != "center")
+                if (e.button === undefined && place !== "center")
                     wnd.scrollTop($this.offset().top);
 
                 var dropTimeout = '';
@@ -1857,14 +1854,14 @@ function getCookie(c_name)
                     dropTimeout = setTimeout(function() {
                         methods.positionDrop(drop);
                         methods.dropCenter(drop);
-                    }, 300)
+                    }, 300);
                 });
                 if (condOverlay) {
                     drop.data('dropOver').fadeIn($thisEOn / 2).add(drop.data('forCenter')).off('click.drop').on('click.drop', function(e) {
                         if ($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center')) {
                             methods.closeDrop($($(e.target).attr('rel')));
                         }
-                    })
+                    });
                     if (isTouch)
                         drop.data('dropOver').on('touchmove.drop', function(e) {
                             return false;
@@ -1879,25 +1876,25 @@ function getCookie(c_name)
                     }
                 }
                 function _show() {
-                    if (place != 'inherit') {
+                    if (place !== 'inherit') {
                         var $thisPMT = placeBeforeShow.toLowerCase().split(' ');
                         drop.css({
                             'top': -drop.actual('outerHeight'),
                             'left': -drop.actual('outerWidth')
                         });
-                        if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
+                        if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
                             drop.css('top', wnd.height());
-                        if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
+                        if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
                             drop.css('left', wnd.width());
-                        if ($thisPMT[0] == 'center' && $thisPMT[1] == 'center')
+                        if ($thisPMT[0] === 'center' && $thisPMT[1] === 'center')
                             methods.dropCenter(drop, true);
-                        if ($thisPMT[0] == 'inherit')
+                        if ($thisPMT[0] === 'inherit')
                             drop.css({
                                 'left': $this.offset().left + wnd.scrollLeft(),
                                 'top': $this.offset().top + wnd.scrollTop()
                             });
                     }
-                    if (place == 'center')
+                    if (place === 'center')
                         methods.dropCenter(drop);
 
                     drop[$thisEOn]($thisD, function(e) {
@@ -1905,12 +1902,12 @@ function getCookie(c_name)
                         drop.addClass(activeClass);
                         if (!confirm && modal)
                             optionsDrop.closeDropTime = setTimeout(function() {
-                                methods.closeDrop(drop)
-                            }, timeclosemodal)
+                                methods.closeDrop(drop);
+                            }, timeclosemodal);
                         methods.positionDrop(drop);
                         methods.limitSize(drop);
                         var cB = elAfter;
-                        if (cB != undefined) {
+                        if (cB !== undefined) {
                             eval(cB)($this, drop, isajax, data, elSet);
                         }
                         after($this, drop, isajax, data, elSet);
@@ -1930,7 +1927,7 @@ function getCookie(c_name)
                 }
                 else {
                     if (drop.data('dropOver'))
-                        drop.css('z-index', parseFloat(drop.data('dropOver').css('z-index')) + 1)
+                        drop.css('z-index', parseFloat(drop.data('dropOver').css('z-index')) + 1);
                 }
 
                 _forCenterTop();
@@ -1944,7 +1941,7 @@ function getCookie(c_name)
                 _show();
             }
             body.off('click.drop').off('keydown.drop').on('click.drop', function(e) {
-                if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]')) && $(e.target).data('drop') == undefined && !($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center'))) {
+                if (((e.which || e.button === 0) && e.relatedTarget === null) && !$.existsN($(e.target).closest('[data-elrun]')) && $(e.target).data('drop') === undefined && !($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center'))) {
                     methods.closeDrop(false);
                 }
                 else
@@ -1953,19 +1950,19 @@ function getCookie(c_name)
                 if (!e)
                     var e = window.event;
                 key = e.keyCode;
-                if (key == 27) {
+                if (key === 27) {
                     methods.closeDrop(false);
                 }
             });
         },
         limitSize: function(drop) {
-            if (drop == undefined)
+            if (drop === undefined)
                 drop = $(this);
             drop.css({
                 'width': '',
                 'height': ''
             });
-            if (drop.data('place') == 'center') {
+            if (drop.data('place') === 'center') {
                 var wndW = wnd.width(),
                         wndH = wnd.height();
 
@@ -1981,8 +1978,8 @@ function getCookie(c_name)
         },
         positionType: function(size, drop) {
             var data = drop.data();
-            if (data.place != 'inherit') {
-                if (!size || data.modal || data.place == 'noinherit')
+            if (data.place !== 'inherit') {
+                if (!size || data.modal || data.place === 'noinherit')
                     drop.css({
                         'position': 'absolute'
                     });
@@ -1993,19 +1990,19 @@ function getCookie(c_name)
             }
         },
         closeDrop: function(sel) {
-            if (sel == undefined)
+            if (sel === undefined)
                 sel = $(this);
             clearTimeout(optionsDrop.closeDropTime);
             $('[data-button-confirm]').off('click.drop');
-            var drop = sel == undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
+            var drop = sel === undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this),
                             data = drop.data(),
-                            condOverlay = (data.overlayOpacity != undefined ? data.overlayOpacity.toString() : data.overlayOpacity) != '0';
-                    if (data.modal || sel || condOverlay || data.place == 'noinherit') {
+                            condOverlay = (data.overlayOpacity !== undefined ? data.overlayOpacity.toString() : data.overlayOpacity) !== '0';
+                    if (data.modal || sel || condOverlay || data.place === 'noinherit') {
                         $thisB = drop.data('elrun');
-                        if ($thisB != undefined) {
+                        if ($thisB !== undefined) {
                             var $thisEOff = data.effectOff,
                                     durOff = data.durationOff;
                             methods.scrollEmulateRemove();
@@ -2013,13 +2010,13 @@ function getCookie(c_name)
                             function _hide() {
                                 $thisB.parent().removeClass(activeClass);
                                 var $thisHref = $thisB.attr('href');
-                                if ($thisHref != undefined) {
+                                if ($thisHref !== undefined) {
                                     var $thisHrefL = $thisHref.length,
                                             wLH = location.hash,
                                             wLHL = wLH.length;
                                     try {
                                         var indH = wLH.match($thisHref + '(?![a-z])').index;
-                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL);
                                     } catch (err) {
                                     }
                                 }
@@ -2029,18 +2026,18 @@ function getCookie(c_name)
                                 var $thisPMT = data.placeAfterClose.toLowerCase().split(' ');
 
                                 var l = 0, t = 0;
-                                if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
+                                if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
                                     t = wnd.height();
-                                if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
+                                if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
                                     l = wnd.width();
-                                if ($thisPMT[0] != 'center' && $thisPMT[1] != 'center')
+                                if ($thisPMT[0] !== 'center' && $thisPMT[1] !== 'center')
                                     drop.stop()[method]({
                                         'top': t,
                                         'left': l
                                     }, {
                                         queue: false
-                                    })
-                                if ($thisPMT[0] == 'inherit')
+                                    });
+                                if ($thisPMT[0] === 'inherit')
                                     drop.stop()[method]({
                                         'left': $thisB.offset().left + wnd.scrollLeft(),
                                         'top': $thisB.offset().top + wnd.scrollTop()
@@ -2063,19 +2060,19 @@ function getCookie(c_name)
                                         'position': ''
                                     });
                                     $this.removeClass(data.place);
-                                    if (data.closed != undefined)
+                                    if (data.closed !== undefined)
                                         data.closed($thisB, $this);
-                                    if (data.elClosed != undefined)
+                                    if (data.elClosed !== undefined)
                                         eval(data.elClosed)($thisB, $this);
 
                                     if (isTouch)
                                         drop.data('dropOver').off('touchmove.drop');
 
                                     $(document).trigger({
-                                        'type': 'drop.closed',
+                                        type: 'drop.closed',
                                         el: $thisB,
                                         drop: $this
-                                    })
+                                    });
                                 });
                             }
                             $(document).trigger({
@@ -2083,30 +2080,30 @@ function getCookie(c_name)
                                 el: $thisB,
                                 drop: drop
                             });
-                            var close = data.elClose != undefined ? data.elClose : data.close;
-                            if (close != undefined) {
+                            var close = data.elClose !== undefined ? data.elClose : data.close;
+                            if (close !== undefined) {
                                 var res = close($thisB, $(this));
-                                if (res == false) {
+                                if (res === false) {
                                     if (window.console)
                                         console.log(res);
                                 }
                                 else
-                                    _hide()
+                                    _hide();
                             }
                             else
-                                _hide()
+                                _hide();
 
                             wnd.off('resize.drop');
                         }
                     }
-                })
+                });
             }
         },
         dropCenter: function(drop, start) {
-            if (drop == undefined)
+            if (drop === undefined)
                 drop = $(this);
-            start = start == undefined ? true : false;
-            if (drop.data('place') == 'center') {
+            start = start === undefined ? true : false;
+            if (drop.data('place') === 'center') {
                 var method = drop.data('animate') && start ? 'animate' : 'css',
                         dropV = drop.is(':visible'),
                         w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
@@ -2122,12 +2119,12 @@ function getCookie(c_name)
             return drop;
         },
         positionDrop: function(drop) {
-            if (drop == undefined)
+            if (drop === undefined)
                 drop = $(this);
 
             var place = drop.data('place'),
                     method = drop.data('animate') ? 'animate' : 'css';
-            if (place == 'noinherit') {
+            if (place === 'noinherit') {
                 var placement = drop.data('placement');
                 $this = drop.data().elrun,
                         dataSourceH = 0,
@@ -2135,13 +2132,13 @@ function getCookie(c_name)
                         $thisW = $this.width(),
                         $thisH = $this.height();
                 var $thisPMT = placement.toLowerCase().split(' ');
-                if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
+                if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
                     dataSourceH = drop.actual('height');
-                if ($thisPMT[0] == 'top' || $thisPMT[1] == 'top')
+                if ($thisPMT[0] === 'top' || $thisPMT[1] === 'top')
                     dataSourceH = $thisH;
-                if ($thisPMT[0] == 'left' || $thisPMT[1] == 'left')
+                if ($thisPMT[0] === 'left' || $thisPMT[1] === 'left')
                     dataSourceW = 0;
-                if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
+                if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
                     dataSourceW = -drop.actual('width') + $thisW;
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
@@ -2154,7 +2151,7 @@ function getCookie(c_name)
                 }, {
                     queue: false
                 });
-                if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
+                if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
                     drop[method]({
                         'top': 'auto',
                         'bottom': body.height() - $thisT + dataSourceH + $thisH
@@ -2178,7 +2175,7 @@ function getCookie(c_name)
                     $('.for-center').on('touchmove.drop', function(e) {
                         return false;
                     });
-            }, dur)
+            }, dur);
         },
         scrollEmulateRemove: function() {
             var dur = optionsDrop.durationOff;
@@ -2189,7 +2186,7 @@ function getCookie(c_name)
                 $('.scrollEmulation').remove();
                 if (isTouch)
                     $('.for-center').off('touchmove.drop');
-            }, dur)
+            }, dur);
         }
     };
     $.fn.drop = function(method) {
@@ -2231,28 +2228,28 @@ function getCookie(c_name)
                             $thisNext = $this,
                             regS = '', regM = '';
                     $.each(prev, function(i, v) {
-                        regS = v.match(/\(.*\)/);
-                        if (regS != null) {
+                        var regS = v.match(/\(.*\)/);
+                        if (regS !== null) {
                             regM = regS['input'].replace(regS[0], '');
-                            regS = regS[0].substring(1, regS[0].length - 1)
+                            regS = regS[0].substring(1, regS[0].length - 1);
                         }
-                        if (regS == null)
+                        if (regS === null)
                             regM = v;
                         $thisPrev = $thisPrev[regM](regS);
-                    })
+                    });
                     $.each(next, function(i, v) {
                         regS = v.match(/\(.*\)/);
-                        if (regS != null) {
+                        if (regS !== null) {
                             regM = regS['input'].replace(regS[0], '');
-                            regS = regS[0].substring(1, regS[0].length - 1)
+                            regS = regS[0].substring(1, regS[0].length - 1);
                         }
-                        if (regS == null)
+                        if (regS === null)
                             regM = v;
                         $thisNext = $thisNext[regM](regS);
-                    })
+                    });
                     $thisNext.off('click.pM').on('click.pM', function(e) {
                         var el = $(this);
-                        $thisPrev.removeAttr('disabled', 'disabled')
+                        $thisPrev.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
                             var input = $this,
                                     inputVal = parseInt(input.val());
@@ -2267,24 +2264,24 @@ function getCookie(c_name)
                                 if (ajax && !checkProdStock)
                                     $(document).trigger({
                                         'type': 'showActivity'
-                                    })
+                                    });
 
                                 if (ajax && inputVal + 1 <= input.data('max') && checkProdStock)
                                     $(document).trigger({
                                         'type': 'showActivity'
-                                    })
-                                if (ajax && inputVal + 1 == input.data('max'))
-                                    $thisNext.attr('disabled', 'disabled')
+                                    });
+                                if (ajax && inputVal + 1 === input.data('max'))
+                                    $thisNext.attr('disabled', 'disabled');
 
                                 if (checkProdStock)
                                     input.maxminValue(e);
                                 settings.after(e, el, input);
                             }
                         }
-                    })
+                    });
                     $thisPrev.off('click.pM').on('click.pM', function(e) {
                         var el = $(this);
-                        $thisNext.removeAttr('disabled', 'disabled')
+                        $thisNext.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
                             var input = $this,
                                     inputVal = parseInt(input.val());
@@ -2293,23 +2290,23 @@ function getCookie(c_name)
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input);
                                 if (isNaN(inputVal))
-                                    input.val(1)
+                                    input.val(1);
                                 else if (inputVal > 1) {
                                     if (ajax) {
                                         $(document).trigger({
                                             'type': 'showActivity'
-                                        })
+                                        });
                                     }
-                                    input.val(inputVal - 1)
-                                    if (ajax && inputVal - 1 == input.data('min'))
-                                        $thisPrev.attr('disabled', 'disabled')
+                                    input.val(inputVal - 1);
+                                    if (ajax && inputVal - 1 === input.data('min'))
+                                        $thisPrev.attr('disabled', 'disabled');
                                 }
 
                                 settings.after(e, el, input);
                             }
                         }
-                    })
-                })
+                    });
+                });
             }
         }
     };
@@ -2331,12 +2328,13 @@ function getCookie(c_name)
 (function($) {
     var methods = {
         init: function(e, f) {
-            var $this = $(this), $thisVal = $this.val(),
-                    set = $.maxminValue.settings;
-            $max = parseInt($this.attr('data-max'));
+            var $this = this,
+                    $thisVal = $this.val(),
+                    set = $.maxminValue.settings,
+                    $max = parseInt($this.attr('data-max'));
             if ($thisVal > $max && set.addCond) {
                 $this.val($max);
-                if (typeof f == 'function')
+                if (typeof f === 'function')
                     f();
                 return $max;
             }
@@ -2367,10 +2365,10 @@ function getCookie(c_name)
             'event': e
         });
         $(this).maxminValue(e);
-    })
+    });
     body.off('blur.max', '[data-max]').on('blur.max', '[data-max]', function(e) {
         var $this = $(this);
-        if ($this.val() == '')
+        if ($this.val() === '')
             $this.val($this.data('min'));
         $this.trigger({
             'type': 'maxminValue',
@@ -2384,7 +2382,7 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
             keyChar = parseInt(String.fromCharCode(key));
     var $this = $(this),
             $min = $this.attr('data-min');
-    if ($this.val() == "" && keyChar == 0) {
+    if ($this.val() === "" && keyChar === 0) {
         $this.val($min);
         return false;
     }
@@ -2394,9 +2392,9 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
 (function($) {
     var methods = {
         init: function(options) {
-            if ($.existsN($(this))) {
-                var $jsCarousel = $(this);
-                var settings = $.extend({
+            if ($.existsN(this)) {
+                var $jsCarousel = this,
+                settings = $.extend({
                     item: 'li',
                     prev: '.prev',
                     next: '.next',
@@ -2456,7 +2454,7 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
                             itemVisibleInCallback: function() {
                                 wnd.scroll();
                             }
-                        }
+                        };
                         $this.jcarousel($.extend(
                                 mainO
                                 , addO)).addClass('iscarousel');
@@ -2530,7 +2528,7 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
         } else {
             $.error('Method ' + method + ' does not exist on $.myCarousel');
         }
-    }
+    };
     $.myCarousel = function(m) {
         return methods[m];
     };
