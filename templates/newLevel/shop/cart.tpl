@@ -289,11 +289,6 @@
 </div>
 <script type="text/template" id="orderDetailsTemplate">
     {literal}   
-        <% var tempDiscount = Shop.Cart.discount %>
-        <% var discTemp = false; if (tempDiscount != null) discTemp = tempDiscount.sum_discount_product !=0 && tempDiscount.sum_discount_product != undefined; %>
-        <% if (!discTemp) {tempDiscount = new Object();tempDiscount.sum_discount_product = 0;}%>
-        <% var discC = discTemp || Shop.Cart.kitDiscount!=0 %>
-        <% var nextCsCond = nextCs == '' ? false : true %>
         <div class="frame-bask frame-bask-order">
             <div class="no-empty">
                 <div class="frame-bask-main">
@@ -561,7 +556,7 @@
                             <span class="frame-discount">
 
                                 <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevel')}{literal}:</span>
-                                <span class="text-discount current-discount"><span class="genDiscount"><%if(discC) parseFloat(tempDiscount.sum_discount_product).toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
+                                <span class="text-discount current-discount"><span class="genDiscount"></span> <span class="curr"><%-curr%></span></span>
 
                             </span>
 
@@ -570,7 +565,7 @@
                                 <span class="frame-prices f-s_0">
                                     <span class="price-discount">
                                         <span class="frame-discount">
-                                            <span class="price genSumDiscount"><%if(discC) parseFloat(Shop.Cart.totalPriceOrigin + Shop.Cart.kitDiscount).toFixed(pricePrecision) %></span>
+                                            <span class="price genSumDiscount"></span>
                                             <span class="curr"><%-curr%></span>
                                         </span>
                                     </span>
@@ -630,5 +625,5 @@
 </script>
 {/* <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}
 <script type="text/javascript">
-    initDownloadScripts(['_order'], 'initOrderTrEv', 'initOrder');
+    initDownloadScripts(['order'], 'initOrderTrEv', 'initOrder');
 </script>
