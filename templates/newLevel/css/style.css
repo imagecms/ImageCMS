@@ -1170,8 +1170,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .isSafari .no-empty > *, .isSafari [class*="btn"] > button > *, .isSafari [class*="btn"] > a > *, .isSafari .buti > button > *, .isSafari .buti > a > *, .isSafari .items > *, .photo-block > *, .isSafari .frame-item-menu > .frame-title > .title > *, .isSafari .row-kits li > *, .isSafari .items-complect > li > *, .isSafari .pager > *, .isSafari .title-category-l1 > *, .isSafari .menu-row-category .frame-drop-menu > ul > li > *, .isSafari .lineForm > *, .isSafari .compare-characteristic > li > *, .isSafari .nav > *, .isSafari .funcs-buttons > *, .isSafari .frame-count-buy > *{letter-spacing: normal;}
 /*/safari inline-block fix*/
 
-#photo{overflow: hidden;max-height: 95%;background-color: #fff;-webkit-transition: background-color 0.3s ease-in-out;-moz-transition: background-color 0.3s ease-in-out;-o-transition: background-color 0.3s ease-in-out;transition: background-color 0.3s ease-in-out;}
-#photo.active{background-color: transparent;}
+#photo{overflow: hidden;max-height: 95%;-webkit-transition: background-color 0.3s ease-in-out;-moz-transition: background-color 0.3s ease-in-out;-o-transition: background-color 0.3s ease-in-out;transition: background-color 0.3s ease-in-out;}
 #photo .drop-header{padding: 13px 50px;}
 .drop-content-photo {background-color: #fff;text-align: center;position: relative;padding: 10px 70px;}
 .drop-content-photo .inside-padd{height: 100%;}

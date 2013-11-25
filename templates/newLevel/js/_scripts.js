@@ -1,22 +1,22 @@
 function init() {
     var doc = $(document);
-    
+
     body.removeClass('not-js');
     if (isTouch)
         body.addClass('isTouch');
     else
         body.addClass('notTouch');
-    
+
     /*call general functions and plugins*/
     cuselInit(body, '#sort, #sort2, #compare, [id ^= сVariantSwitcher_]');
     /*call general functions and plugins*/
-    
+
     /*call functions for shop objects*/
     checkSyncs();
     processBtnBuyCount();
     initShopPage(false);
     tovarCategoryChangeVariant();
-    
+
     doc.on('discount.display', function(e) {
         Shop.Cart.discount = e.discount;
         displayDiscount(Shop.Cart.discount);
@@ -28,7 +28,7 @@ function init() {
     compareListCount();
     wishListCount();
     /*/ call functions for shop objects*/
-    
+
     /*call front plugins and functions*/
     $.onlyNumber('.number input');
     if (ltie7) {
@@ -48,9 +48,15 @@ function init() {
             dropElRep.find('input[name="ProductId"]').val(el.data('prodid'));
             return el;
         }
+
         if (dropEl.hasClass('frame-already-show')) {
-            dropEl.parent().css('z-index', 10000);
+            var zInd = parseFloat(dropEl.data('dropOver').css('z-index')) + 1;
+            dropEl.parent().css('z-index', zInd);
+            dropEl.prev().css('z-index', zInd + 1);
         }
+        if ($('.frame-already-show').is(':visible') && dropEl.data('dropOver'))
+            $('.frame-user-toolbar').css('z-index', dropEl.data('dropOver').css('z-index') - 1)
+
         dropEl.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
         dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
     };
@@ -64,7 +70,7 @@ function init() {
             dropEl.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                        //,classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]'))) {
@@ -73,16 +79,20 @@ function init() {
         }
         cuselInit(dropEl, '.drop:visible .lineForm select');
     };
-    optionsDrop.close = function(el, dropEl) {};
+    optionsDrop.close = function(el, dropEl) {
+    };
     optionsDrop.closed = function(el, dropEl) {
         var dC = $(dropEl.find(dropEl.data('dropContent'))).data('jsp');
         if (dC != undefined)
             dC.destroy();
-        if ($(dropEl).hasClass('frame-already-show'))
+
+        if ($(dropEl).hasClass('frame-already-show')) {
             $('.frame-user-toolbar').css({
-                'width': body.width(), 
+                'width': body.width(),
                 'z-index': ''
-            })
+            });
+            dropEl.prev().css('z-index', '');
+        }
         if ($('#fancybox-wrap').is(':visible'))
             $.drop('scrollEmulate')();
     }
@@ -103,21 +113,21 @@ function init() {
             }
         }
     });
-    
+
     /*changecount product in category and product*/
     tovarChangeCount($('.items-catalog, .item-product'));
     /*/changecount product in category and product*/
-    
+
     $('#suggestions').autocomplete({
         minValue: 3,
-        blockEnter: false        
+        blockEnter: false
     });
     drawIcons($(selIcons));
     showHidePart($('.sub-category'));
     showHidePart($('.patch-product-view'));
     showHidePart($('.frame-list-comment__icsi-css.sub-2'));
     var userTool = new itemUserToolbar(),
-    btnToUp = $('.btn-to-up');
+            btnToUp = $('.btn-to-up');
     btnToUp.click(function() {
         $("html, body").animate({
             scrollTop: "0"
@@ -141,7 +151,7 @@ function init() {
     $("img.lazy").lazyload(lazyload);
     wnd.scroll(); //for lazy load start initialize
     /*/call front plugins and functions*/
-    
+
     /*sample of events shop*/
     var catalogForm = $('#catalogForm')
     $('#sort').on('change.orderproducts', function() {
@@ -195,7 +205,7 @@ function init() {
         if (Shop.Cart.length() > 0 && !orderDetails)
             getDiscount();
     });
-    $(genObj.parentBtnBuy).on('click.toCompare', '.' + genObj.toCompare,  function() {
+    $(genObj.parentBtnBuy).on('click.toCompare', '.' + genObj.toCompare, function() {
         var id = $(this).data('prodid');
         Shop.CompareList.add(id);
     });
@@ -226,23 +236,23 @@ function init() {
         else
             $('.content-user-toolbar').fadeOut()
     });
-    
+
     /*/sample of events shop/*/
-    
+
     /*sample of events front*/
     doc.on('lazy.after', function(e) {
         e.el.addClass('load');
     });
     doc.on('drop.after', function(e) {
         var wndH = wnd.height(),
-        elDrop = e.drop.css('height', ''),
-        el = elDrop.find(elDrop.data('dropContent')).filter(':first');
-        
+                elDrop = e.drop.css('height', ''),
+                el = elDrop.find(elDrop.data('dropContent')).filter(':first');
+
         if ($.existsN(el)) {
             el.jScrollPane(scrollPane);
             var elC = el.find('.jspPane'),
-            elCH = elC.outerHeight(),
-            api = el.data('jsp');
+                    elCH = elC.outerHeight(),
+                    api = el.data('jsp');
             var footerHeader = elDrop.find('.drop-header').outerHeight(true) + elDrop.find('.drop-footer').outerHeight(true);
             if (elDrop.data('place') != 'center' && elDrop.data('place') != 'inherit') {
                 if (elDrop.data('placement').search(/top/) == 0) {
@@ -257,8 +267,8 @@ function init() {
                 if (elDrop.data('placement').search(/bottom/) == 0) {
                     el.css('height', '');
                     var refer = $('[data-drop="' + elDrop.data('elrun') + '"]'),
-                    mayHeight = refer.offset().top - wnd.scrollTop() - footerHeader - 40,
-                    minh = parseInt(el.css('height'));
+                            mayHeight = refer.offset().top - wnd.scrollTop() - footerHeader - 40,
+                            minh = parseInt(el.css('height'));
                     if (mayHeight > elCH)
                         el.css('height', elCH)
                     else
@@ -286,7 +296,7 @@ function init() {
         pasteItemsTovars(e.el);
         e.els.find(preloader).remove();
     });
-    
+
     //if select in compare
     $('#compare').change(function() {
         var $this = $(this);
@@ -299,13 +309,13 @@ function init() {
             'title': text.search(e.value)
         });
     });
-   
+
     var dropContentTimeout = "";
     wnd.on('resize.dropContent', function() {
         clearTimeout(dropContentTimeout);
         setTimeout(function() {
             $('[data-elrun]:visible').each(function() {
-                var $this = $(this);                
+                var $this = $(this);
                 doc.trigger({
                     type: 'drop.after',
                     drop: $this
@@ -337,15 +347,15 @@ function init() {
     doc.on('imageapi.pastemsg imageapi.hidemsg', function(e) {
         var $this = e.el.closest('[data-elrun]');
         doc.trigger({
-            type: 'drop.after', 
+            type: 'drop.after',
             drop: $this
         });
     });
-    doc.on('imageapi.before_refresh_reload', function(e){
+    doc.on('imageapi.before_refresh_reload', function(e) {
         var drop = e.el.closest('[data-elrun]');
-        
+
         if (drop.data('durationOff') != undefined)
-            setTimeout(function(){
+            setTimeout(function() {
                 if ($.existsN(drop))
                     $.drop('closeDrop')(drop);
             }, e.obj.durationHideForm - drop.data('durationOff') > 0 ? e.obj.durationHideForm - drop.data('durationOff') : e.obj.durationHideForm)
@@ -366,11 +376,11 @@ function init() {
         patchCom.css({
             'height': 'auto'
         });
-       
+
         var sumH = (patchCom.outerHeight() < patchCom.data('maxHeight') ? patchCom.data('maxHeight') : patchCom.outerHeight()) + e.el.outerHeight();
 
         patchCom.css({
-            'height': sumH, 
+            'height': sumH,
             'max-height': sumH
         })
     })
@@ -402,17 +412,29 @@ function init() {
             processBtnBuyCount();
             checkSyncs();
             processCarts();
-                
+
             processComp();
             processWish();
             compareListCount();
             wishListCount();
-        
+
             //initShopPage(false);
             if ($(genObj.popupCart).is(':visible'))
                 $.drop('closeDrop')($(genObj.popupCart))
-        
+
             if (orderDetails)
                 renderOrderDetails();
         });
+    var genTimeout = "";
+    wnd.resize(function() {
+        clearTimeout(genTimeout);
+        genTimeout = setTimeout(function() {
+            var userTool = new itemUserToolbar();
+            userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
+            $('.menu-main').menuImageCms('refresh');
+            if ($.exists(optionCompare.frameCompare))
+                $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+            banerResize('.baner:has(.cycle)');
+        }, 300)
+    });
 }

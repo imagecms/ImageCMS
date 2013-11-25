@@ -3,11 +3,6 @@
 
 <script type="text/template" id="cartPopupTemplate">
     {literal}
-        <% var tempDiscount = Shop.Cart.discount %>
-        <% var discTemp = false; if (tempDiscount != null) discTemp = tempDiscount.sum_discount_product !=0 && tempDiscount.sum_discount_product != undefined; %>
-        <% if (!discTemp) {tempDiscount = new Object();tempDiscount.sum_discount_product = 0;}%>
-        <% var discC = discTemp || Shop.Cart.kitDiscount!=0 %>
-        <% var nextCsCond = nextCs == '' ? false : true %>
         <div class="frame-bask">
             <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
             <div class="no-empty">
@@ -281,7 +276,7 @@
                             <div class="clearfix">
                                 <span class="frame-discount">
                                     <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevel')}{literal}:</span>
-                                    <span class="text-discount current-discount"><span class="genDiscount"><% if (discC) parseFloat(tempDiscount.sum_discount_product + Shop.Cart.kitDiscount).toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
+                                    <span class="text-discount current-discount"><span class="genDiscount"></span> <span class="curr"><%-curr%></span></span>
                                 </span>
                                 <% if (orderDetails) { %>
                                 <div class="btn-form f_l">
@@ -295,7 +290,7 @@
                                     <span class="frame-prices f-s_0">
                                         <span class="price-discount">
                                             <span class="frame-discount">
-                                                <span class="price genSumDiscount"><% if (discC) parseFloat(Shop.Cart.totalPriceOrigin).toFixed(pricePrecision)%></span>
+                                                <span class="price genSumDiscount"></span>
                                                 <span class="curr"><%-curr%></span>
                                             </span>
                                         </span>
