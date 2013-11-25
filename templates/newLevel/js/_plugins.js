@@ -765,7 +765,7 @@ function getCookie(c_name)
                 remove: function(e) {
                     var $this = this;
 
-                    if ($this.length != 0) {
+                    if ($this.length != 0 && $this['data'] != undefined) {
                         var data = $this.data(),
                                 selA = $([]);
                         if (data.otherClass)
@@ -779,7 +779,7 @@ function getCookie(c_name)
                     }
                     else
                         durOff = methods.setDefault().durationOff;
-                    
+
                     $(sel).stop().fadeOut(durOff, function() {
                         $(document).trigger({
                             'type': 'tooltip.hide',
@@ -1591,6 +1591,7 @@ function getCookie(c_name)
     var methods = {
         init: function(options) {
             var optionsDrop = $.extend({
+                ev: 'click',
                 exit: '[data-closed = "closed-js"]',
                 effon: 'show',
                 effoff: 'hide',
@@ -1612,6 +1613,8 @@ function getCookie(c_name)
                 placeAfterClose: 'center center',
                 moreOne: false,
                 delayAfter: 0,
+                closeClick: false,
+                closeEsc: false,
                 before: function() {
                 },
                 after: function() {
@@ -1623,108 +1626,108 @@ function getCookie(c_name)
                 start: undefined
             }, options);
             var settings = optionsDrop,
-                    modal = settings.modal,
                     moreOne = settings.moreOne,
-                    confirm = settings.confirm,
                     confirmSel = settings.confirmSel,
-                    always = settings.always,
+                    ev = settings.ev,
                     arrDrop = [];
-            this.add($('[data-drop]')).off('click.drop').on('click.drop', function(e) {
-                $(document).trigger({
-                    'type': 'drop.click',
-                    'el': $this
-                });
-                methods.closeModal();
-                function confirmF() {
-                    if ($.inArray(elSet.source, arrDrop) !== 0 || newModal || newAlways) {
-                        arrDrop.push(elSet.source);
-                        if (!newModal)
-                            drop.remove();
-                        $.ajax({
-                            type: "post",
-                            data: elSet.data,
-                            url: elSet.source,
-                            beforeSend: function() {
-                                $(document).trigger({
-                                    'type': 'showActivity'
-                                });
-                            },
-                            dataType: elSet.type ? elSet.type : 'html',
-                            success: function(data) {
-                                var drop = $(elSet.drop);
-                                if (elSet.type !== 'html' && elSet.type !== undefined && newModal) {
+            this.add($('[data-drop]')).each(function() {
+                var el = $(this);
+                el.off(ev || el.data('ev') + '.drop').on(ev || el.data('ev') + '.drop', function(e) {
+                    methods.closeModal();
+                    function confirmF() {
+                        if ($.inArray(elSet.source, arrDrop) !== 0 || modal || always) {
+                            arrDrop.push(elSet.source);
+                            if (!modal)
+                                drop.remove();
+                            $.ajax({
+                                type: "post",
+                                data: elSet.data,
+                                url: elSet.source,
+                                beforeSend: function() {
                                     $(document).trigger({
-                                        type: 'drop.successJson',
-                                        el: drop,
-                                        datas: data
+                                        'type': 'showActivity'
                                     });
+                                },
+                                dataType: elSet.type ? elSet.type : 'html',
+                                success: function(data) {
+                                    var drop = $(elSet.drop);
+                                    if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
+                                        $(document).trigger({
+                                            type: 'drop.successJson',
+                                            el: drop,
+                                            datas: data
+                                        });
+                                        methods._pasteDrop($.extend({}, settings, elSet), drop);
+                                    }
+                                    else {
+                                        $(document).trigger({
+                                            type: 'drop.successHtml',
+                                            el: drop,
+                                            datas: data
+                                        });
+                                        methods._pasteDrop($.extend({}, settings, elSet), data);
+                                    }
+                                    methods.init.call(drop.find('[data-drop]'), $.extend({}, optionsDrop));
+                                    methods.showDrop($this, e, optionsDrop, true, data);
+                                }
+                            });
+                        }
+                    }
+                    var $this = $(this),
+                            elSet = $this.data(),
+                            drop = $(elSet.drop),
+                            start = elSet.start !== undefined ? elSet.start : settings.start;
+
+                    if (!$this.parent().hasClass(activeClass)) {
+                        if (!(elSet.moreOne || moreOne) && start === undefined) {
+                            if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
+                                methods.closeDrop($this.closest('[data-elrun]'));
+                            if ($.existsN($('[data-elrun].center:visible, [data-elrun].noinherit:visible')))
+                                methods.closeDrop($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
+                        }
+
+                        if (!$this.is('[disabled]')) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            var modal = elSet.modal || settings.modal,
+                                    confirm = elSet.confirm || settings.confirm,
+                                    always = elSet.always || settings.always;
+
+                            if (start !== undefined)
+                                var res = eval(start)($this, drop);
+                            if (start !== undefined && !res)
+                                return false;
+                            if (start === undefined || (start !== undefined && res)) {
+                                if ($.existsN(drop) && !modal && !always) {
                                     methods._pasteDrop($.extend({}, settings, elSet), drop);
+                                    methods.showDrop($this, e, optionsDrop, false);
+                                }
+                                else if ((elSet.source || always)) {
+                                    if (!confirm)
+                                        confirmF();
+                                    else {
+                                        methods._pasteDrop($.extend({}, settings, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
+                                        methods.showDrop($('[data-drop="' + confirmSel + '"]').data({
+                                            'callback': elSet.after
+                                        }), e, optionsDrop, false);
+                                        $('[data-button-confirm]').focus().on('click.drop', function() {
+                                            methods.closeDrop($(confirmSel));
+                                            $this.data('confirm', false);
+                                            confirmF();
+                                        });
+                                    }
                                 }
                                 else {
-                                    $(document).trigger({
-                                        type: 'drop.successHtml',
-                                        el: drop,
-                                        datas: data
-                                    });
-                                    methods._pasteDrop($.extend({}, settings, elSet), data);
+                                    methods._pasteDrop($.extend({}, settings, elSet), drop);
+                                    methods.showDrop($this, e, optionsDrop, false);
                                 }
-                                methods.init.call(drop.find('[data-drop]'), $.extend({}, optionsDrop));
-                                methods.showDrop($this, e, optionsDrop, true, data);
-                            }
-                        });
-                    }
-                }
-                var $this = $(this),
-                        elSet = $this.data(),
-                        drop = $(elSet.drop),
-                        start = elSet.start !== undefined ? elSet.start : settings.start;
-
-                if (!(elSet.moreOne || moreOne) && start === undefined) {
-                    if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
-                        methods.closeDrop($this.closest('[data-elrun]'));
-                    if ($.existsN($('[data-elrun].center:visible, [data-elrun].noinherit:visible')))
-                        methods.closeDrop($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
-                }
-
-                if (!$this.is('[disabled]')) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    newModal = elSet.modal || modal,
-                            newConfirm = elSet.confirm || confirm,
-                            newAlways = elSet.always || always;
-
-
-                    if (start !== undefined)
-                        var res = eval(start)($this, drop);
-                    if (start !== undefined && !res)
-                        return false;
-                    if (start === undefined || (start !== undefined && res)) {
-                        if ($.existsN(drop) && !newModal && !newAlways) {
-                            methods._pasteDrop($.extend({}, settings, elSet), drop);
-                            methods.showDrop($this, e, optionsDrop, false);
-                        }
-                        else if ((elSet.source || newAlways)) {
-                            if (!newConfirm)
-                                confirmF();
-                            else {
-                                methods._pasteDrop($.extend({}, settings, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
-                                methods.showDrop($('[data-drop="' + confirmSel + '"]').data({
-                                    'callback': elSet.after
-                                }), e, optionsDrop, false);
-                                $('[data-button-confirm]').focus().on('click.drop', function() {
-                                    methods.closeDrop($(confirmSel));
-                                    $this.data('confirm', false);
-                                    confirmF();
-                                });
                             }
                         }
-                        else {
-                            methods._pasteDrop($.extend({}, settings, elSet), drop);
-                            methods.showDrop($this, e, optionsDrop, false);
-                        }
                     }
+                    else
+                        methods.closeDrop($($this.data('drop')));
                     return false;
-                }
+                });
             });
             return $(this);
         },
@@ -1787,6 +1790,8 @@ function getCookie(c_name)
                     placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
                     moreOne = elSet.moreOne || set.moreOne,
                     delayAfter = elSet.delayAfter || set.delayAfter,
+                    closeClick = elSet.closeClick || set.closeClick,
+                    closeEsc = elSet.closeEsc || set.closeEsc,
                     start = elSet.start,
                     elBefore = elSet.before,
                     elAfter = elSet.after,
@@ -1829,7 +1834,9 @@ function getCookie(c_name)
                 'confirm': confirm,
                 'timeclosemodal': timeclosemodal,
                 'moreOne': moreOne,
-                'delayAfter': delayAfter
+                'delayAfter': delayAfter,
+                'closeClick': closeClick,
+                'closeEsc': closeEsc
             }).attr('data-elrun', $thisSource);
             drop.off('click.drop', set.exit).on('click.drop', set.exit, function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
@@ -1891,11 +1898,13 @@ function getCookie(c_name)
                     }, 300);
                 });
                 if (condOverlay) {
-                    drop.data('dropOver').fadeIn($thisEOn / 2).add(drop.data('forCenter')).off('click.drop').on('click.drop', function(e) {
-                        if ($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center')) {
-                            methods.closeDrop($($(e.target).attr('rel')));
-                        }
-                    });
+                    drop.data('dropOver').fadeIn($thisEOn / 2);
+                    if (closeClick)
+                        drop.data('dropOver').add(drop.data('forCenter')).off('click.drop').on('click.drop', function(e) {
+                            if ($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center')) {
+                                methods.closeDrop($($(e.target).attr('rel')));
+                            }
+                        });
                     if (isTouch)
                         drop.data('dropOver').on('touchmove.drop', function(e) {
                             return false;
@@ -1975,19 +1984,22 @@ function getCookie(c_name)
                 _show();
             }
             body.off('click.drop').off('keydown.drop').on('click.drop', function(e) {
-                if (((e.which || e.button === 0) && e.relatedTarget === null) && !$.existsN($(e.target).closest('[data-elrun]')) && $(e.target).data('drop') === undefined && !($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center'))) {
-                    methods.closeDrop(false);
-                }
-                else
-                    return true;
-            }).on('keydown.drop', function(e) {
-                if (!e)
-                    var e = window.event;
-                key = e.keyCode;
-                if (key === 27) {
-                    methods.closeDrop(false);
-                }
+                if (closeClick)
+                    if (!$.existsN($(e.target).closest('[data-elrun]')) && !($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center'))) {
+                        methods.closeDrop(false);
+                    }
+                    else
+                        return true;
             });
+            if (closeEsc)
+                body.off('keydown.drop').on('keydown.drop', function(e) {
+                    if (!e)
+                        var e = window.event;
+                    key = e.keyCode;
+                    if (key === 27) {
+                        methods.closeDrop(false);
+                    }
+                });
         },
         limitSize: function(drop) {
             if (drop === undefined)
@@ -2028,7 +2040,10 @@ function getCookie(c_name)
                 sel = $(this);
             clearTimeout(optionsDrop.closeDropTime);
             $('[data-button-confirm]').off('click.drop');
-            var drop = sel === undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
+            var cond = sel === undefined || !sel;
+            var drop = cond ? $('[data-elrun].' + activeClass) : sel;
+            if (!cond)
+                body.off('click.drop').off('keydown.drop keydown.drop')
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this),
@@ -2110,7 +2125,7 @@ function getCookie(c_name)
                                 });
                             }
                             $(document).trigger({
-                                'type': 'drop.close',
+                                type: 'drop.close',
                                 el: $thisB,
                                 drop: drop
                             });
