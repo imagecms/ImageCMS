@@ -491,24 +491,23 @@ function banerResize(el) {
     });
 }
 function removePreloaderBaner(el) {
-    var el = el.find('img[data-original]'),
-            elL = el.length,
+   var img = el.find('img[data-original]'),
+            imgL = img.length,
             i = 0;
-    el.each(function() {
+    img.each(function() {
         var $this = $(this);
         $this.attr('src', $this.attr('data-original')).load(function() {
             $(this).fadeIn();
-            $('.baner').find(preloader).remove();
+            el.find(preloader).remove();
             i++;
-            if (i == elL) {
-                banerResize('.baner:has(.cycle)');
-                $('.baner').find(preloader).remove();
+            if (i == imgL) {
+                banerResize(el);
             }
         })
     })
 }
 function initCarouselJscrollPaneCycle(el) {
-    el.find('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
+    el.find('.horizontal-carousel .carousel_js:not(.cycleFrame):not(.frame-scroll-pane):visible').myCarousel(carousel);
     el.find('.vertical-carousel .carousel_js:visible').myCarousel(carousel);
     if ($.exists(selScrollPane)) {
         el.find(selScrollPane).each(function() {
@@ -530,7 +529,7 @@ function initCarouselJscrollPaneCycle(el) {
             })
         })
     }
-    el.find('.baner').each(function() {
+    el.find('.cycleFrame').each(function() {
         var $this = $(this),
                 cycle = $this.find('.cycle'),
                 next = $this.find('.next'),
@@ -539,7 +538,8 @@ function initCarouselJscrollPaneCycle(el) {
         if (cycle.find('li').length > 1) {
             cycle.cycle($.extend({}, optionsCycle, {
                 'next': next,
-                'prev': prev
+                'prev': prev,
+                'pager': $this.find('.pager')
             })).hover(function() {
                 cycle.cycle('pause');
             }, function() {
@@ -547,7 +547,7 @@ function initCarouselJscrollPaneCycle(el) {
             });
             $(next).add(prev).show();
         }
-        removePreloaderBaner(cycle); //cycle - parent for images
+        removePreloaderBaner($('.baner:has(.cycle)')); //cycle - parent for images
     })
 }
 function hideDrop(drop, form, durationHideForm) {

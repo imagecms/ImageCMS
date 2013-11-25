@@ -68,7 +68,6 @@ var optionsCycle = {
     timeout: 5000, 
     fx: 'fade',
     pauseOnPagerHover: true,
-    pager: '.pager',
     pagerAnchorBuilder: function(idx, slide) {
         return '<a href="#"></a>';
     }

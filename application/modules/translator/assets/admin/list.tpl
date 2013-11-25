@@ -63,7 +63,7 @@
                 <div class="d-i_b">
                     <button id="cancel" disabled="" onclick="Translator.cancel()" type="button" class="btn btn-small action_on btn-primary">
                         <i class="icon-share-alt"></i>
-                        {lang('Cancel')}
+                        {lang('Reset')}
                     </button>
                     <button id="save" type="button" onclick="Translator.save()" class="btn btn-small btn-success">
                         <i class="icon-ok"></i>
