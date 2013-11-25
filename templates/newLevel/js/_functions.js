@@ -5,20 +5,20 @@ function tovarCategoryChangeVariant(el) {
     /*Variants in Category*/
     el.find('[id ^= сVariantSwitcher_]').on('change', function() {
         var productId = parseInt($(this).attr('value')),
-        liBlock = $(this).closest(genObj.parentBtnBuy),
-        btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut),
-        vMediumImage = btnInfo.attr('data-mediumImage'),
-        vId = btnInfo.attr('data-id'),
-        vName = btnInfo.attr('data-vname'),
-        vPrice = btnInfo.attr('data-price'),
-        vOrigPrice = btnInfo.attr('data-origPrice'),
-        vAddPrice = btnInfo.attr('data-addPrice'),
-        vNumber = btnInfo.attr('data-number'),
-        vStock = btnInfo.attr('data-maxcount');
-        
+                liBlock = $(this).closest(genObj.parentBtnBuy),
+                btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut),
+                vMediumImage = btnInfo.attr('data-mediumImage'),
+                vId = btnInfo.attr('data-id'),
+                vName = btnInfo.attr('data-vname'),
+                vPrice = btnInfo.attr('data-price'),
+                vOrigPrice = btnInfo.attr('data-origPrice'),
+                vAddPrice = btnInfo.attr('data-addPrice'),
+                vNumber = btnInfo.attr('data-number'),
+                vStock = btnInfo.attr('data-maxcount');
+
         if (vMediumImage.search(/nophoto/) == -1)
             liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
-        
+
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
         if (vOrigPrice != '')
@@ -29,19 +29,19 @@ function tovarCategoryChangeVariant(el) {
         existsVnames(vName, liBlock);
         condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + ' ' + genObj.infoBut));
     });
-/*/Variants in Category*/
+    /*/Variants in Category*/
 }
 function tovarChangeCount(el) {
     el = el == undefined ? body : el;
     el.find('.frame-count-buy ' + genObj.plusMinus).keyup(function(e) {
-        var $this = $(this);
-        condTooltip = checkProdStock && $this.val() > $this.data('max');
+        var $this = $(this),
+                condTooltip = checkProdStock && $this.val() > $this.data('max');
         if (condTooltip)
             $this.closest(genObj.numberC).tooltip();
-        else{
+        else {
             $this.closest(genObj.frameCount).next().children().attr('data-count', $this.val())
-            $(document).trigger({ //for wishlist
-                'type': 'change_count_product', 
+            $(document).trigger({//for wishlist
+                'type': 'change_count_product',
                 'el': $this
             });
         }
@@ -50,10 +50,10 @@ function tovarChangeCount(el) {
         after: function(e, el, input) {
             if (checkProdStock && input.val() == input.data('max'))
                 el.closest(genObj.numberC).tooltip();
-            
+
             input.closest(genObj.frameCount).next().children().attr('data-count', input.val())
-        
-            $(document).trigger({ //for wishlist
+
+            $(document).trigger({//for wishlist
                 'type': 'change_count_product',
                 'el': input
             });
@@ -87,7 +87,7 @@ function processWish() {
     var wishlist = wishList.all();
     $(genObj.btnWish).each(function() {
         var $this = $(this),
-        $thisP = $this.parent();
+                $thisP = $this.parent();
         if (wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')) !== -1) {
             $this.addClass(genObj.wishIn);
             $this.find('.' + genObj.toWishlist).hide();
@@ -121,10 +121,10 @@ function processBtnBuyCount(el) {
         keys.push(item.id + '_' + item.vId);
     });
     //update all product buttons
-    
+
     el.find(genObj.btnBuy).each(function() {
         var $this = $(this),
-        key = $this.data('prodid') + '_' + $this.data('varid');
+                key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) == -1) {
             $this.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).children().removeAttr('disabled').find(genObj.textEl).html(toCart)
             decorElemntItemProduct($this.closest(genObj.parentBtnBuy));
@@ -145,7 +145,7 @@ function processBtnBuyCount(el) {
     }).removeAttr('disabled');
     el.find('[data-rel="frameplusminus"]').each(function() {
         var $this = $(this),
-        key = $this.data('prodid') + '_' + $this.data('varid');
+                key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {
             var input = $this.find('input');
             $this.find('button').attr('disabled', 'disabled');
@@ -176,15 +176,15 @@ function getDiscount() {
         success: function(data) {
             var kitDiscount = parseFloat(data);
             Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : parseFloat(kitDiscount);
-            
+
             if (!$.isFunction(window.getDiscountBack))
                 displayDiscount(null);
-            
-            if (k && !$.isFunction(window.getDiscountBack)){
+
+            if (k && !$.isFunction(window.getDiscountBack)) {
                 displayInfoDiscount('');
                 renderGiftInput('');
             }
-            
+
             if (!discountInPopup && !k)
                 return false;
             else if ($.isFunction(window.getDiscountBack)) {
@@ -198,13 +198,13 @@ function displayDiscount(obj) {
     Shop.Cart.discountProduct = 0;
     var tempdisc = false;
     if (obj != null)
-        tempdisc =  (parseFloat(obj.sum_discount_product) != 0 && obj.sum_discount_product != null) ? parseFloat(obj.sum_discount_product) : false;
+        tempdisc = (parseFloat(obj.sum_discount_product) != 0 && obj.sum_discount_product != null) ? parseFloat(obj.sum_discount_product) : false;
     var discC = tempdisc || Shop.Cart.kitDiscount != 0;
     if (discC) {
         if (tempdisc)
             Shop.Cart.discountProduct += tempdisc;
         Shop.Cart.discountProduct += Shop.Cart.kitDiscount;
-        
+
         $(genObj.genDiscount).each(function() {
             $(this).html(Shop.Cart.discountProduct.toFixed(pricePrecision));
         });
@@ -216,24 +216,19 @@ function displayDiscount(obj) {
     else {
         $(genObj.frameCurDiscount).hide();
     }
-    if (obj != null){
-        if (parseFloat(obj.result_sum_discount_convert) > 0)
-            $(genObj.frameGenDiscount).show();
-        else 
-            $(genObj.frameGenDiscount).hide();
-    }
-    else
-        $(genObj.frameGenDiscount).hide();
+
     countSumBask();
     $(document).trigger('hideActivity');
     $(document).trigger({
-        'type':'displayDiscount'
+        'type': 'displayDiscount',
+        'obj': obj
     });
-};
+}
+;
 
 function initShopPage(showWindow, item) {
     $(genObj.popupCart).html(Shop.Cart.renderPopupCart());
-    
+
     if ($(genObj.popupCart).is(':visible'))
         dropBaskResize();
     if (showWindow || $(genObj.popupCart).is(':visible'))
@@ -249,18 +244,18 @@ function initShopPage(showWindow, item) {
     }));
     function chCountInCart($this, btn, input) {
         var pd = $this,
-        cartItem = new Shop.Cart.cartItem({
-            id: pd.data('prodid'),
-            vId: pd.data('varid'),
-            price: pd.data('price'),
-            addprice: pd.data('addprice'),
-            origprice: pd.data('origprice'),
-            kit: pd.data('kit')
-        });
+                cartItem = new Shop.Cart.cartItem({
+                    id: pd.data('prodid'),
+                    vId: pd.data('varid'),
+                    price: pd.data('price'),
+                    addprice: pd.data('addprice'),
+                    origprice: pd.data('origprice'),
+                    kit: pd.data('kit')
+                });
         if (input == undefined)
             var input = pd.closest(genObj.frameCount).find('input');
         var inputVal = input.val(),
-        condTooltip = '';
+                condTooltip = '';
         if (!btn)
             condTooltip = checkProdStock && inputVal > input.data('max');
         else
@@ -289,9 +284,9 @@ function initShopPage(showWindow, item) {
             pdTr.find(genObj.countOrCompl).html(word);
         })
     }
-    $(genObj.frameBasks + ' input').off('maxminValue').on('maxminValue', function(e){
+    $(genObj.frameBasks + ' input').off('maxminValue').on('maxminValue', function(e) {
         var e = e.event,
-        $this = $(this);
+                $this = $(this);
         if (!e)
             var e = window.event;
         var key = e.keyCode;
@@ -359,7 +354,7 @@ function countSumBask() {
         $(this).html(length);
     });
     var sumBask = parseFloat(Shop.Cart.totalPrice),
-    addSumBask = parseFloat(Shop.Cart.totalAddPrice);
+            addSumBask = parseFloat(Shop.Cart.totalAddPrice);
     Shop.Cart.koefCurr = addSumBask / sumBask;
     $(genObj.sumBask).each(function() {
         var temp = 0;
@@ -468,7 +463,7 @@ if (!$.isFunction($.fancybox)) {
         loadingFrame = (loadingFrame + 1) % 12;
     };
     $.fancybox = function() {
-        };
+    };
     $.fancybox.showActivity = function() {
         clearInterval(loadingTimer);
         loading.show();
@@ -497,8 +492,8 @@ function banerResize(el) {
 }
 function removePreloaderBaner(el) {
     var el = el.find('img[data-original]'),
-    elL = el.length,
-    i = 0;
+            elL = el.length,
+            i = 0;
     el.each(function() {
         var $this = $(this);
         $this.attr('src', $this.attr('data-original')).load(function() {
@@ -518,8 +513,8 @@ function initCarouselJscrollPaneCycle(el) {
     if ($.exists(selScrollPane)) {
         el.find(selScrollPane).each(function() {
             var $this = $(this),
-            api = $this.jScrollPane(scrollPane),
-            api = api.data('jsp');
+                    api = $this.jScrollPane(scrollPane),
+                    api = api.data('jsp');
             $this.on('mousewheel', function(e, b, c, delta) {
                 if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
                 {
@@ -535,15 +530,15 @@ function initCarouselJscrollPaneCycle(el) {
             })
         })
     }
-    el.find('.baner').each(function(){
+    el.find('.baner').each(function() {
         var $this = $(this),
-        cycle = $this.find('.cycle'),
-        next = $this.find('.next'),
-        prev = $this.find('.prev');
-        
+                cycle = $this.find('.cycle'),
+                next = $this.find('.next'),
+                prev = $this.find('.prev');
+
         if (cycle.find('li').length > 1) {
             cycle.cycle($.extend({}, optionsCycle, {
-                'next': next, 
+                'next': next,
                 'prev': prev
             })).hover(function() {
                 cycle.cycle('pause');
@@ -564,7 +559,7 @@ function hideDrop(drop, form, durationHideForm) {
         drop.find(genObj.msgF).hide().remove();
         form.show();
         $(document).trigger({
-            type: 'drop.after', 
+            type: 'drop.after',
             drop: drop
         });
     }, durationHideForm)
@@ -585,23 +580,22 @@ function showHidePart(el, absolute, time, btnPlace) {
         btnPlace = 'next';
     el.each(function() {
         var $this = $(this),
-        $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
-        $item = $this.children(),
-        sumHeight = 0;
+                $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
+                $item = $this.children(),
+                sumHeight = 0;
         $this.addClass('showHidePart').data('maxHeight', $thisH);
         $this.find('*').css('max-height', 'none');
         $item.each(function() {
-            tempH = $(this).outerHeight();
-            sumHeight += tempH;
+            sumHeight += $(this).outerHeight();
         })
         $this.find('*').css('max-height', '');
         if (sumHeight > $thisH) {
             $this.css({
-                'max-height': 'none', 
+                'max-height': 'none',
                 'height': $thisH
             });
             var btn = $this[btnPlace](),
-            textEl = btn.find(genObj.textEl);
+                    textEl = btn.find(genObj.textEl);
             btn.addClass('d_i-b hidePart');
             if (!btn.is('[data-trigger]')) {
                 textEl.html(textEl.data('show'))
@@ -609,36 +603,36 @@ function showHidePart(el, absolute, time, btnPlace) {
                     var $thisB = $(this);
                     if ($thisB.data("show") == "no" || $thisB.data("show") == undefined) {
                         $thisB.addClass('showPart').removeClass('hidePart');
-                        textEl = $thisB.find(genObj.textEl);
-                        sHH = 0;
-                        $this.parents('li').children(':not(.wrapper-h)').each(function(){
+                        var textEl = $thisB.find(genObj.textEl),
+                                sHH = 0;
+                        $this.parents('li').children(':not(.wrapper-h)').each(function() {
                             sHH += $(this).height();
                         });
-                    
+
                         $thisB.prev().stop().animate({
                             'height': sumHeight
                         }, time, function() {
                             var sH = 0;
                             $this.css('max-height', 'none');
-                            $this.parents('li').children(':not(.wrapper-h)').each(function(){
+                            $this.parents('li').children(':not(.wrapper-h)').each(function() {
                                 sH += $(this).height();
                             });
                             $this.data('heightDecor', sHH);
                             var wrapperH = $this.parent().nextAll('.wrapper-h');
                             wrapperH.css({
-                                'width': '100%', 
+                                'width': '100%',
                                 'height': sH
                             }).fadeIn();
                             wrapperH.addClass('active')
                             $(this).removeClass('cut-height').addClass('full-height');
                             textEl.hide().html(textEl.data('hide')).fadeIn(time)
-                            $(this).parents('.showHidePart').each(function(){
+                            $(this).parents('.showHidePart').each(function() {
                                 var sH = 0;
-                                $(this).children().each(function(){
+                                $(this).children().each(function() {
                                     sH += $(this).outerHeight(true);
                                 })
                                 $(this).css({
-                                    'max-height': 'none', 
+                                    'max-height': 'none',
                                     'height': sH
                                 });
                             })
@@ -647,10 +641,10 @@ function showHidePart(el, absolute, time, btnPlace) {
                     }
                     else {
                         var $thisB = $(this).removeClass('showPart').addClass('hidePart'),
-                        textEl = $thisB.find(genObj.textEl);
+                                textEl = $thisB.find(genObj.textEl);
                         $thisB.parent().nextAll('.wrapper-h').animate({
                             'height': $this.data('heightDecor')
-                        }, time, function(){
+                        }, time, function() {
                             $(this).removeClass('active').fadeOut()
                         });
                         $thisB.prev().stop().animate({
@@ -659,13 +653,13 @@ function showHidePart(el, absolute, time, btnPlace) {
                             $(this).css('max-height', 'none')
                             $(this).removeClass('full-height').addClass('cut-height');
                             textEl.hide().html(textEl.data('show')).fadeIn(time)
-                            $(this).parents('.showHidePart').each(function(){
+                            $(this).parents('.showHidePart').each(function() {
                                 var sH = 0;
-                                $(this).children().each(function(){
+                                $(this).children().each(function() {
                                     sH += $(this).outerHeight(true);
                                 })
                                 $(this).css({
-                                    'max-height': 'none', 
+                                    'max-height': 'none',
                                     'height': sH
                                 });
                             })
@@ -675,63 +669,65 @@ function showHidePart(el, absolute, time, btnPlace) {
                 });
             }
         }
-        $this.parents('.showHidePart').each(function(){
+        $this.parents('.showHidePart').each(function() {
             var sH = 0;
-            $(this).children().each(function(){
+            $(this).children().each(function() {
                 sH += $(this).outerHeight(true);
             })
             $(this).css({
-                'max-height': $(this).data('maxHeight'), 
+                'max-height': $(this).data('maxHeight'),
                 'height': sH
             });
         });
     });
-    if (absolute){
+    if (absolute) {
         var sH = 0;
         var li = el.parents('ul').children();
-        li.each(function(){
+        li.each(function() {
             var $this = $(this);
             tempH = $this.outerHeight();
             sH = tempH > sH ? tempH : sH;
             $this.append('<div class="wrapper-h"></div>')
         }).css('height', sH)
-        
+
     }
 }
 function dropBaskResize() {
     var popupCart = $(genObj.popupCart);
     $(document).trigger({
-        type: 'drop.after', 
+        type: 'drop.after',
         drop: popupCart
     });
     wnd.trigger('resize.drop');
 }
 function decorElemntItemProduct(el) {
-    try{
+    try {
         clearTimeout(curFuncTime);
-    }catch(err){}
+    } catch (err) {
+    }
     if (!el)
         el = $('.animateListItems > li');
     if ($.existsN(el.closest('.animateListItems'))) {
         function curFunc() {
+            clearTimeout(varcurFuncTime);
             el.each(function() {
                 var $thisLi = $(this),
-                sumH = 0,
-                sumW = 0,
-                decEl = $thisLi.find('.decor-element').css({
-                    'height': '100%', 
+                        sumH = 0,
+                        sumW = 0,
+                        decEl = $thisLi.find('.decor-element').css({
+                    'height': '100%',
                     'width': '100%',
                     'position': 'absolute',
-                    'right':'auto',
+                    'right': 'auto',
                     'left': 0,
-                    'bottom':'auto',
+                    'bottom': 'auto',
                     'top': 0
                 }),
                 decElH = decEl.height(),
-                decElW = decEl.width(),
-                noVisT = $thisLi.find('.no-vis-table'),
-                noVisTL = noVisT.length,
-                $thisS = $thisLi.data('pos').match(/top|bottom|left|right/)[0];
+                        decElW = decEl.width(),
+                        noVisT = $thisLi.find('.no-vis-table'),
+                        noVisTL = noVisT.length,
+                        $thisS = $thisLi.data('pos').match(/top|bottom|left|right/)[0];
                 $thisLi.css('overflow', 'hidden');
                 noVisT.each(function() {
                     var $this = $(this);
@@ -739,12 +735,12 @@ function decorElemntItemProduct(el) {
                         var descW = $thisLi.find('.description').width()
                         if ($thisS == 'top')
                             $this.parent().css({
-                                'position': 'relative', 
+                                'position': 'relative',
                                 'width': ''
                             });
                         else
                             $this.parent().css({
-                                'position': 'absolute', 
+                                'position': 'absolute',
                                 'width': '100%'
                             });
                         switch ($thisS) {
@@ -756,13 +752,13 @@ function decorElemntItemProduct(el) {
                                 $this.parent().css('top', -(sumH + $this.outerHeight(true)))
                                 sumH = sumH + $this.outerHeight(true);
                                 decEl.css({
-                                    'bottom':0, 
+                                    'bottom': 0,
                                     'top': 'auto'
                                 })
                                 break;
                             case 'left':
                                 $this.parent().css({
-                                    'left': descW, 
+                                    'left': descW,
                                     'top': sumH
                                 })
                                 sumH = sumH + $this.outerHeight(true);
@@ -770,13 +766,13 @@ function decorElemntItemProduct(el) {
                                 break;
                             case 'right':
                                 $this.parent().css({
-                                    'left': -descW, 
+                                    'left': -descW,
                                     'top': sumH
                                 })
                                 sumH = sumH + $this.outerHeight(true);
                                 sumW = sumW + $this.outerWidth(true);
                                 decEl.css({
-                                    'right':0, 
+                                    'right': 0,
                                     'left': 'auto'
                                 })
                                 break;
@@ -784,7 +780,7 @@ function decorElemntItemProduct(el) {
                     }
                 })
                 $thisLi.css({
-                    'width': '', 
+                    'width': '',
                     'height': '',
                     'overflow': ''
                 });
@@ -801,13 +797,13 @@ function decorElemntItemProduct(el) {
                         break;
                     case 'left':
                         decEl.css({
-                            'width': sumW / noVisTL + decElW, 
+                            'width': sumW / noVisTL + decElW,
                             'height': sumH > decElH ? sumH : decElH
                         })
                         break;
                     case 'right':
                         decEl.css({
-                            'width': sumW / noVisTL + decElW, 
+                            'width': sumW / noVisTL + decElW,
                             'height': sumH > decElH ? sumH : decElH
                         })
                         break;
@@ -815,22 +811,22 @@ function decorElemntItemProduct(el) {
             });
             wnd.scroll(); //if lazyload
         }
-        varcurFuncTime = setTimeout(curFunc, 400)
+        var varcurFuncTime = setTimeout(curFunc, 400)
     }
 }
 
 function drawIcons(selIcons) {
     selIcons.each(function() {
         var $this = $(this),
-        $thisW = $this.width(),
-        $thisH = $this.height(),
-        $thisT = parseInt($this.css('margin-top')),
-        $thisL = parseInt($this.css('margin-left')),
-        className = $this.attr('class').match(/(icon_)/).input.split(' ')[0];
+                $thisW = $this.width(),
+                $thisH = $this.height(),
+                $thisT = parseInt($this.css('margin-top')),
+                $thisL = parseInt($this.css('margin-left')),
+                className = $this.attr('class').match(/(icon_)/).input.split(' ')[0];
         if (!$.existsN($this.children('svg'))) {
             if (icons[className] != undefined) {
-                var paper = Raphael($this[0], $thisW, $thisH);
-                s = paper.path(icons[className]).attr({
+                var paper = Raphael($this[0], $thisW, $thisH),
+                        s = paper.path(icons[className]).attr({
                     fill: $this.css('color'),
                     stroke: "none"
                 });
@@ -851,7 +847,7 @@ function itemUserToolbar() {
     this.show = function(itemsUT, btn, hideSet, btnUp) {
         btn.on('click.UT', function() {
             var $this = $(this),
-            dataRel = $this.data('rel');
+                    dataRel = $this.data('rel');
             setcookie('condUserToolbar', dataRel, 0, '/')
             if (dataRel == 0) {
                 $this.hide().next().show();
@@ -878,18 +874,18 @@ function itemUserToolbar() {
         itemsUT.fadeIn();
         return itemsUT;
     },
-    this.resize = function(itemsUT, btnUp) {
-        var btnW = btnUp.outerWidth(true),
-        bodyW = body.width(),
-        itemsUT = $(itemsUT),
-        itemsUTCW = itemsUT.children().width();
-        if ((bodyW - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
-            btnUp.fadeIn();
-        else
-            btnUp.fadeOut();
-        itemsUT.css('width', bodyW)
-        return itemsUT;
-    }
+            this.resize = function(itemsUT, btnUp) {
+                var btnW = btnUp.outerWidth(true),
+                        bodyW = body.width(),
+                        itemsUT = $(itemsUT),
+                        itemsUTCW = itemsUT.children().width();
+                if ((bodyW - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
+                    btnUp.fadeIn();
+                else
+                    btnUp.fadeOut();
+                itemsUT.css('width', bodyW)
+                return itemsUT;
+            }
 }
 function reinitializeScrollPane(el) {
     if ($.exists(selScrollPane)) {
@@ -928,9 +924,9 @@ function ieInput(els) {
         }).addClass('visited');
     });
 }
-function cuselInit(el, sel){
+function cuselInit(el, sel) {
     var el = el == undefined ? body : el,
-    sel = sel == undefined ? cuselOptions.changedEl : sel;
+            sel = sel == undefined ? cuselOptions.changedEl : sel;
     if ($.existsN(el.find(cuselOptions.changedEl)) && $.isFunction(window.cuSel)) {
         cuSel($.extend({}, cuselOptions, {
             changedEl: sel
