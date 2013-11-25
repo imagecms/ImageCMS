@@ -76,6 +76,7 @@ $.fn.pricetext = function(e, rank) {
 };
 $.fn.setCursorPosition = function(pos) {
     this.each(function() {
+        this.select();
         try {
             this.setSelectionRange(pos, pos);
         } catch (err) {
