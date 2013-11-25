@@ -4,7 +4,7 @@
 
 $com_info = array(
     'menu_name' => lang('Translator'), // Menu name
-    'description' => '',            // Module Description
+    'description' => lang('Translator'),            // Module Description
     'admin_type' => 'inside',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe
     'w' => 800,                     // Window width

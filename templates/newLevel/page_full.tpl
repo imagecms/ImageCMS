@@ -24,7 +24,9 @@
                     {/literal}
                 </script>
                 <div id="comment">
-                    <div class="for_comments"></div>
+                    <div class="for_comments p_r">
+                        <div class="preloader"></div>
+                    </div>
                 </div>
 
             </div>

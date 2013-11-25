@@ -52,12 +52,14 @@ class Exchangeunfu extends MY_Controller {
         $this->login = trim($this->input->server('PHP_AUTH_USER'));
         $this->password = trim($this->input->server('PHP_AUTH_PW'));
         //saving get requests to log file
-        if ($_GET) {
-            foreach ($_GET as $key => $value) {
-                $string .= date('c') . " GET - " . $key . ": " . $value . "\n";
-            }
-            write_file($this->tempDir . "log.txt", $string, FOPEN_WRITE_CREATE);
-        }
+        /*
+          if ($_GET) {
+          foreach ($_GET as $key => $value) {
+          $string .= date('c') . " GET - " . $key . ": " . $value . "\n";
+          }
+          write_file($this->tempDir . "log.txt", $string, FOPEN_WRITE_CREATE);
+          }
+         */
 
         //define first get command parameter
         $method = 'command_';
@@ -98,6 +100,10 @@ class Exchangeunfu extends MY_Controller {
         \CMSFactory\Events::create()
                 ->on('MakeOrder')
                 ->setListener('_setHour');
+
+        \CMSFactory\Events::create()
+                ->on('MakeOrder')
+                ->setListener('_setPartnerId');
     }
 
     public static function _setHour($date) {
@@ -118,6 +124,24 @@ class Exchangeunfu extends MY_Controller {
 
             $i++;
         }
+    }
+
+    public static function _setPartnerId($date) {
+        $ci = & get_instance();
+        $orderId = $date['order']->id;
+
+        $region = self::getDefaultRegionIds();
+
+        if (!is_array($region))
+            return false;
+
+        $data = array(
+            'partner_external_id' => $region['external_id'],
+            'partner_internal_id' => $region['id'],
+        );
+
+        $ci->db->where('id', $orderId);
+        $ci->db->update('shop_orders', $data);
     }
 
     private function recountProductivityHour($count, $id) {
@@ -378,9 +402,9 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function getRegionPeriod() {
-
+        $regionId = $this->getDefaultRegionId();
         $periods = $this->db
-                ->where('partner_id', $this->getDefaultRegionId())
+                ->where('partner_id', $regionId)
                 ->order_by("hour_from", "asc")
                 ->get('mod_exchangeunfu_partners_periods')
                 ->result_array();
@@ -469,6 +493,7 @@ class Exchangeunfu extends MY_Controller {
         $this->db->query('ALTER TABLE `shop_orders` ADD `invoice_code` VARCHAR( 255 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_orders` ADD `delivery_hour` VARCHAR( 20 )');
         $this->db->query('ALTER TABLE `shop_orders` ADD `invoice_date` INT( 11 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `partner_internal_id` INT( 11 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_category` ADD `code` VARCHAR( 255 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_products` ADD `code` VARCHAR( 255 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_products` ADD `measure` VARCHAR( 255 ) NOT NULL');
@@ -659,6 +684,7 @@ class Exchangeunfu extends MY_Controller {
         $this->db->query('ALTER TABLE `shop_orders` DROP `invoice_external_id`');
         $this->db->query('ALTER TABLE `shop_orders` DROP `invoice_code`');
         $this->db->query('ALTER TABLE `shop_orders` DROP `invoice_date`');
+        $this->db->query('ALTER TABLE `shop_orders` DROP `partner_internal_id`');
         $this->db->query('ALTER TABLE `shop_category` DROP `code`');
         $this->db->query('ALTER TABLE `shop_products` DROP `code`');
         $this->db->query('ALTER TABLE `shop_products` DROP `measure`');
@@ -677,8 +703,6 @@ class Exchangeunfu extends MY_Controller {
      * @param SProducts $model
      */
     public function getPriceForRegion($model) {
-        // TEST SET COOKIE
-        //     set_cookie('site_region', 'Рј. Р›СЊРІС–РІ', 10000);
         $region = get_cookie('region');
         $external_ids = array();
 
@@ -777,9 +801,10 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function getDefaultRegion() {
+        $ci = & get_instance();
 
         if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
-            $region = $this->db
+            $region = $ci->db
                             ->where('id', $_COOKIE['region'])
                             ->select(array('region'))
                             ->get('mod_exchangeunfu_partners')->result_array();
@@ -787,14 +812,14 @@ class Exchangeunfu extends MY_Controller {
             if (count($region))
                 return $region[0]['region'];
             else {
-                $region = $this->db
+                $region = $ci->db
                                 ->limit(1)
                                 ->select(array('region'))
                                 ->get('mod_exchangeunfu_partners')->result_array();
                 return $region[0]['region'];
             }
         } else {
-            $region = $this->db
+            $region = $ci->db
                             ->limit(1)
                             ->select(array('region'))
                             ->get('mod_exchangeunfu_partners')->result_array();
@@ -803,12 +828,12 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function getDefaultRegionId() {
-
+        $ci = & get_instance();
         if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
 
             return $_COOKIE['region'];
         } else {
-            $region = $this->db
+            $region = $ci->db
                     ->limit(1)
                     ->select(array('id'))
                     ->get('mod_exchangeunfu_partners')
@@ -834,6 +859,23 @@ class Exchangeunfu extends MY_Controller {
                             ->select(array('external_id'))
                             ->get('mod_exchangeunfu_partners')->result_array();
             return $region[0]['external_id'];
+        }
+    }
+
+    public function getDefaultRegionIds() {
+
+        $ci = & get_instance();
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
+
+            return $_COOKIE['region'];
+        } else {
+            $region = $ci->db
+                    ->limit(1)
+                    ->select(array('id', 'external_id'))
+                    ->get('mod_exchangeunfu_partners')
+                    ->result_array();
+
+            return $region['0'];
         }
     }
 
@@ -878,8 +920,12 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function getCountPeriodOrdersApi($date = '2013-10-10') {
-        $date = strtotime($date);
+        $date = strtotime($date . ' 00:00:00');
+
         $periods = $this->getRegionPeriod();
+        $regionId = $this->getDefaultRegionId();
+
+
 
         foreach ($periods as $key => $period) {
             $c = $this->db
@@ -888,9 +934,11 @@ class Exchangeunfu extends MY_Controller {
                     ->where('date =', $date)
                     ->where('hour >=', $period['hour_from'])
                     ->where('hour <', $period['hour_to'])
-                    ->where('mod_exchangeunfu_partners.id', $this->getDefaultRegionId())
+                    ->where('mod_exchangeunfu_partners.id', $regionId)
                     ->get('mod_exchangeunfu_productivity')
                     ->result();
+
+
 
             if ($c[0]->count)
                 $count[] = true;
@@ -950,6 +998,8 @@ class Exchangeunfu extends MY_Controller {
                 $this->export->export();
             }
         }
+
+
         exit();
     }
 
@@ -958,16 +1008,14 @@ class Exchangeunfu extends MY_Controller {
      * and sets some status for imported orders "waiting" for example
      */
     private function command_sale_success() {
-        /**
-         * @todo доробити. Потрібно щоб тут був гет з вказання партнера
-         */
-        //        if ($this->check_perm() === true) {
-        //            $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
-        //            foreach ($model as $order) {
-        //                $order->SetStatus($this->config['userstatuses_after']);
-        //                $order->save();
-        //            }
-        //        }
+        if ($this->check_perm() === true) {
+            $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
+            foreach ($model as $order) {
+                $order->SetStatus($this->config['userstatuses_after']);
+                $order->save();
+            }
+            echo "success";
+        }
         exit();
     }
 

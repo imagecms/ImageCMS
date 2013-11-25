@@ -8,7 +8,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/modules_table"
+                    <a href="{$BASE_URL}admin/components/init_window/translator"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('Back')}</span>
@@ -18,6 +18,10 @@
                     <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create_file_form">
                         <i class="icon-ok"></i>
                         {lang('Save')}
+                    </button>
+                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-action="showEdit" data-form="#create_file_form">
+                        <i class="icon-ok"></i>
+                        {lang('Save and Go to Edit')}
                     </button>
                 </div>
             </div>
@@ -37,8 +41,8 @@
                             <td colspan="6">
                                 <div class="inside_padd">
                                     <div class="control-group">
-                                        <label class="control-label" for="file">{lang('Path')}:</label>
-                                        <div class="controls">
+                                        <label class="control-label" for="file">{lang('Choose file location')}:</label>
+                                        <div class="controls poSelectorsHolder">
                                             <div class="d-i_b">
                                                 <select id="langs" name="locale" onchange="Selectors.langs($(this))">
                                                     {if $langs}
@@ -104,7 +108,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="file">{lang('Basepath')}:</label>
                                         <div class="controls">
-                                            <input type="text" name="basepath">
+                                            <input type="text" name="basepath" required="">
                                         </div>
                                     </div>
 
@@ -116,7 +120,7 @@
                                                 {lang('Add path')}
                                             </button>
                                             <input type="text" onkeypress="if (event.keyCode == 13) $(this).prev().click()" style="width: 422px; margin-left: 10px; margin-bottom: 10px">
-                                            <select name="paths[]" multiple="true" class="span7" >
+                                            <select name="paths[]" multiple="true" class="span7" required="">
                                             </select>
                                         </div>
                                     </div>

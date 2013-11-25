@@ -1,1064 +1,791 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: ImageCms\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-15 16:49+0300\n"
-"PO-Revision-Date: 2013-10-15 16:49+0300\n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: ru_UA\n"
+"POT-Creation-Date: 2013-11-04 11:22+0200\n"
+"PO-Revision-Date: 2013-11-04 11:22+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:20
-#: /var/www/image.loc/_tempLangs.php:82
-#: /var/www/image.loc/_tempLangs.php:84
-#: /var/www/image.loc/_tempLangs.php:210
-#: /var/www/image.loc/_tempLangs.php:253
+#: ./application/modules/menu/templates/module_selector.tpl:9
+#: ./application/modules/menu/templates/url_selector.tpl:9
+#: ./application/modules/menu/templates/category_selector.tpl:9
+#: ./application/modules/menu/templates/create_item.tpl:92
+#: ./application/modules/menu/templates/create_item.tpl:247
 msgid "Options"
 msgstr "Опции"
 
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:48
-#: /var/www/image.loc/_tempLangs.php:109
-#: /var/www/image.loc/_tempLangs.php:130
-#: /var/www/image.loc/_tempLangs.php:150
-#: /var/www/image.loc/_tempLangs.php:234
-#: /var/www/image.loc/_tempLangs.php:254
-#: /var/www/image.loc/_tempLangs.php:287
-#: /var/www/image.loc/_tempLangs.php:308
-#: /var/www/image.loc/_tempLangs.php:328
-#: /var/www/image.loc/_tempLangs.php:400
-#: /var/www/image.loc/_tempLangs.php:420
-#: /var/www/image.loc/_tempLangs.php:439
+#: ./application/modules/menu/templates/module_selector.tpl:27
+#: ./application/modules/menu/templates/edit_item.tpl:103
+#: ./application/modules/menu/templates/edit_item.tpl:257
+#: ./application/modules/menu/templates/edit_item.tpl:395
+#: ./application/modules/menu/templates/main.tpl:49
+#: ./application/modules/menu/templates/pages_selector.tpl:95
+#: ./application/modules/menu/templates/category_selector.tpl:23
+#: ./application/modules/menu/templates/edit_item_origin.tpl:101
+#: ./application/modules/menu/templates/edit_item_origin.tpl:243
+#: ./application/modules/menu/templates/edit_item_origin.tpl:381
+#: ./application/modules/menu/templates/create_item.tpl:102
+#: ./application/modules/menu/templates/create_item.tpl:257
+#: ./application/modules/menu/templates/create_item.tpl:395
 msgid "Type"
 msgstr "Тип"
 
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:54
-#: /var/www/image.loc/_tempLangs.php:104
-#: /var/www/image.loc/_tempLangs.php:151
-#: /var/www/image.loc/_tempLangs.php:282
-#: /var/www/image.loc/_tempLangs.php:329
-#: /var/www/image.loc/_tempLangs.php:395
-#: /var/www/image.loc/_tempLangs.php:440
+#: ./application/modules/menu/templates/module_selector.tpl:29
+#: ./application/modules/menu/templates/edit_item.tpl:20
+#: ./application/modules/menu/templates/edit_item.tpl:398
+#: ./application/modules/menu/templates/pages_selector.tpl:19
+#: ./application/modules/menu/templates/edit_item_origin.tpl:20
+#: ./application/modules/menu/templates/edit_item_origin.tpl:384
+#: ./application/modules/menu/templates/create_item.tpl:21
+#: ./application/modules/menu/templates/create_item.tpl:398
 msgid "Module"
 msgstr "Модуль"
 
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:152
-#: /var/www/image.loc/_tempLangs.php:197
-#: /var/www/image.loc/_tempLangs.php:204
-#: /var/www/image.loc/_tempLangs.php:330
-#: /var/www/image.loc/_tempLangs.php:370
-#: /var/www/image.loc/_tempLangs.php:384
-#: /var/www/image.loc/_tempLangs.php:441
+#: ./application/modules/menu/templates/module_selector.tpl:33
+#: ./application/modules/menu/templates/edit_item.tpl:403
+#: ./application/modules/menu/templates/main.tpl:47
+#: ./application/modules/menu/templates/create_menu.tpl:32
+#: ./application/modules/menu/templates/edit_item_origin.tpl:389
+#: ./application/modules/menu/templates/edit_menu.tpl:36
+#: ./application/modules/menu/templates/menu_list.tpl:48
+#: ./application/modules/menu/templates/create_item.tpl:403
+#: ./application/modules/menu/admin.php:819
+#: ./application/modules/menu/admin.php:820
+#: ./application/modules/menu/admin.php:869
+#: ./application/modules/menu/admin.php:870
 msgid "Name"
 msgstr "Имя"
 
-#: /var/www/image.loc/_tempLangs.php:24
-#: /var/www/image.loc/_tempLangs.php:112
-#: /var/www/image.loc/_tempLangs.php:133
-#: /var/www/image.loc/_tempLangs.php:153
-#: /var/www/image.loc/_tempLangs.php:172
-#: /var/www/image.loc/_tempLangs.php:205
-#: /var/www/image.loc/_tempLangs.php:212
-#: /var/www/image.loc/_tempLangs.php:237
-#: /var/www/image.loc/_tempLangs.php:257
-#: /var/www/image.loc/_tempLangs.php:290
-#: /var/www/image.loc/_tempLangs.php:311
-#: /var/www/image.loc/_tempLangs.php:331
-#: /var/www/image.loc/_tempLangs.php:350
-#: /var/www/image.loc/_tempLangs.php:371
-#: /var/www/image.loc/_tempLangs.php:403
-#: /var/www/image.loc/_tempLangs.php:423
-#: /var/www/image.loc/_tempLangs.php:442
-#: /var/www/image.loc/_tempLangs.php:460
+#: ./application/modules/menu/templates/module_selector.tpl:38
+#: ./application/modules/menu/templates/edit_item.tpl:115
+#: ./application/modules/menu/templates/edit_item.tpl:269
+#: ./application/modules/menu/templates/edit_item.tpl:409
+#: ./application/modules/menu/templates/edit_item.tpl:561
+#: ./application/modules/menu/templates/create_menu.tpl:38
+#: ./application/modules/menu/templates/url_selector.tpl:24
+#: ./application/modules/menu/templates/pages_selector.tpl:107
+#: ./application/modules/menu/templates/category_selector.tpl:36
+#: ./application/modules/menu/templates/edit_item_origin.tpl:113
+#: ./application/modules/menu/templates/edit_item_origin.tpl:255
+#: ./application/modules/menu/templates/edit_item_origin.tpl:395
+#: ./application/modules/menu/templates/edit_item_origin.tpl:547
+#: ./application/modules/menu/templates/edit_menu.tpl:42
+#: ./application/modules/menu/templates/create_item.tpl:115
+#: ./application/modules/menu/templates/create_item.tpl:269
+#: ./application/modules/menu/templates/create_item.tpl:409
+#: ./application/modules/menu/templates/create_item.tpl:561
+#: ./application/modules/menu/admin.php:106
+#: ./application/modules/menu/admin.php:442
+#: ./application/modules/menu/admin.php:445
 msgid "Title"
 msgstr "Заголовок"
 
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:87
+#: ./application/modules/menu/templates/module_selector.tpl:44
+#: ./application/modules/menu/templates/create_item.tpl:415
 msgid "Function"
 msgstr "Функция"
 
-#: /var/www/image.loc/_tempLangs.php:26
-#: /var/www/image.loc/_tempLangs.php:113
-#: /var/www/image.loc/_tempLangs.php:134
-#: /var/www/image.loc/_tempLangs.php:154
-#: /var/www/image.loc/_tempLangs.php:173
-#: /var/www/image.loc/_tempLangs.php:213
-#: /var/www/image.loc/_tempLangs.php:238
-#: /var/www/image.loc/_tempLangs.php:258
-#: /var/www/image.loc/_tempLangs.php:291
-#: /var/www/image.loc/_tempLangs.php:312
-#: /var/www/image.loc/_tempLangs.php:332
-#: /var/www/image.loc/_tempLangs.php:351
-#: /var/www/image.loc/_tempLangs.php:404
-#: /var/www/image.loc/_tempLangs.php:424
-#: /var/www/image.loc/_tempLangs.php:443
-#: /var/www/image.loc/_tempLangs.php:461
+#: ./application/modules/menu/templates/module_selector.tpl:52
+#: ./application/modules/menu/templates/edit_item.tpl:121
+#: ./application/modules/menu/templates/edit_item.tpl:275
+#: ./application/modules/menu/templates/edit_item.tpl:422
+#: ./application/modules/menu/templates/edit_item.tpl:567
+#: ./application/modules/menu/templates/url_selector.tpl:31
+#: ./application/modules/menu/templates/pages_selector.tpl:113
+#: ./application/modules/menu/templates/category_selector.tpl:43
+#: ./application/modules/menu/templates/edit_item_origin.tpl:119
+#: ./application/modules/menu/templates/edit_item_origin.tpl:261
+#: ./application/modules/menu/templates/edit_item_origin.tpl:408
+#: ./application/modules/menu/templates/edit_item_origin.tpl:553
+#: ./application/modules/menu/templates/create_item.tpl:121
+#: ./application/modules/menu/templates/create_item.tpl:275
+#: ./application/modules/menu/templates/create_item.tpl:422
+#: ./application/modules/menu/templates/create_item.tpl:567
 msgid "Parent"
 msgstr "Родитель"
 
-#: /var/www/image.loc/_tempLangs.php:27
-#: /var/www/image.loc/_tempLangs.php:28
-#: /var/www/image.loc/_tempLangs.php:36
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:114
-#: /var/www/image.loc/_tempLangs.php:116
-#: /var/www/image.loc/_tempLangs.php:124
-#: /var/www/image.loc/_tempLangs.php:127
-#: /var/www/image.loc/_tempLangs.php:135
-#: /var/www/image.loc/_tempLangs.php:137
-#: /var/www/image.loc/_tempLangs.php:145
-#: /var/www/image.loc/_tempLangs.php:148
-#: /var/www/image.loc/_tempLangs.php:155
-#: /var/www/image.loc/_tempLangs.php:157
-#: /var/www/image.loc/_tempLangs.php:165
-#: /var/www/image.loc/_tempLangs.php:168
-#: /var/www/image.loc/_tempLangs.php:174
-#: /var/www/image.loc/_tempLangs.php:176
-#: /var/www/image.loc/_tempLangs.php:184
-#: /var/www/image.loc/_tempLangs.php:187
-#: /var/www/image.loc/_tempLangs.php:214
-#: /var/www/image.loc/_tempLangs.php:216
-#: /var/www/image.loc/_tempLangs.php:224
-#: /var/www/image.loc/_tempLangs.php:227
-#: /var/www/image.loc/_tempLangs.php:239
-#: /var/www/image.loc/_tempLangs.php:241
-#: /var/www/image.loc/_tempLangs.php:248
-#: /var/www/image.loc/_tempLangs.php:251
-#: /var/www/image.loc/_tempLangs.php:259
-#: /var/www/image.loc/_tempLangs.php:261
-#: /var/www/image.loc/_tempLangs.php:268
-#: /var/www/image.loc/_tempLangs.php:271
-#: /var/www/image.loc/_tempLangs.php:292
-#: /var/www/image.loc/_tempLangs.php:294
-#: /var/www/image.loc/_tempLangs.php:302
-#: /var/www/image.loc/_tempLangs.php:305
-#: /var/www/image.loc/_tempLangs.php:313
-#: /var/www/image.loc/_tempLangs.php:315
-#: /var/www/image.loc/_tempLangs.php:323
-#: /var/www/image.loc/_tempLangs.php:326
-#: /var/www/image.loc/_tempLangs.php:333
-#: /var/www/image.loc/_tempLangs.php:335
-#: /var/www/image.loc/_tempLangs.php:343
-#: /var/www/image.loc/_tempLangs.php:346
-#: /var/www/image.loc/_tempLangs.php:352
-#: /var/www/image.loc/_tempLangs.php:354
-#: /var/www/image.loc/_tempLangs.php:362
-#: /var/www/image.loc/_tempLangs.php:365
-#: /var/www/image.loc/_tempLangs.php:405
-#: /var/www/image.loc/_tempLangs.php:407
-#: /var/www/image.loc/_tempLangs.php:414
-#: /var/www/image.loc/_tempLangs.php:417
-#: /var/www/image.loc/_tempLangs.php:425
-#: /var/www/image.loc/_tempLangs.php:427
-#: /var/www/image.loc/_tempLangs.php:434
-#: /var/www/image.loc/_tempLangs.php:437
-#: /var/www/image.loc/_tempLangs.php:444
-#: /var/www/image.loc/_tempLangs.php:446
-#: /var/www/image.loc/_tempLangs.php:453
-#: /var/www/image.loc/_tempLangs.php:456
-#: /var/www/image.loc/_tempLangs.php:462
-#: /var/www/image.loc/_tempLangs.php:464
-#: /var/www/image.loc/_tempLangs.php:471
-#: /var/www/image.loc/_tempLangs.php:474
+#: ./application/modules/menu/templates/module_selector.tpl:55
+#: ./application/modules/menu/templates/module_selector.tpl:68
+#: ./application/modules/menu/templates/module_selector.tpl:102
+#: ./application/modules/menu/templates/module_selector.tpl:112
+#: ./application/modules/menu/templates/edit_item.tpl:124
+#: ./application/modules/menu/templates/edit_item.tpl:135
+#: ./application/modules/menu/templates/edit_item.tpl:183
+#: ./application/modules/menu/templates/edit_item.tpl:198
+#: ./application/modules/menu/templates/edit_item.tpl:278
+#: ./application/modules/menu/templates/edit_item.tpl:289
+#: ./application/modules/menu/templates/edit_item.tpl:334
+#: ./application/modules/menu/templates/edit_item.tpl:353
+#: ./application/modules/menu/templates/edit_item.tpl:425
+#: ./application/modules/menu/templates/edit_item.tpl:436
+#: ./application/modules/menu/templates/edit_item.tpl:483
+#: ./application/modules/menu/templates/edit_item.tpl:502
+#: ./application/modules/menu/templates/edit_item.tpl:570
+#: ./application/modules/menu/templates/edit_item.tpl:581
+#: ./application/modules/menu/templates/edit_item.tpl:628
+#: ./application/modules/menu/templates/edit_item.tpl:647
+#: ./application/modules/menu/templates/url_selector.tpl:34
+#: ./application/modules/menu/templates/url_selector.tpl:47
+#: ./application/modules/menu/templates/url_selector.tpl:81
+#: ./application/modules/menu/templates/url_selector.tpl:91
+#: ./application/modules/menu/templates/pages_selector.tpl:116
+#: ./application/modules/menu/templates/pages_selector.tpl:127
+#: ./application/modules/menu/templates/pages_selector.tpl:156
+#: ./application/modules/menu/templates/pages_selector.tpl:163
+#: ./application/modules/menu/templates/category_selector.tpl:46
+#: ./application/modules/menu/templates/category_selector.tpl:59
+#: ./application/modules/menu/templates/category_selector.tpl:91
+#: ./application/modules/menu/templates/category_selector.tpl:101
+#: ./application/modules/menu/templates/edit_item_origin.tpl:122
+#: ./application/modules/menu/templates/edit_item_origin.tpl:133
+#: ./application/modules/menu/templates/edit_item_origin.tpl:177
+#: ./application/modules/menu/templates/edit_item_origin.tpl:185
+#: ./application/modules/menu/templates/edit_item_origin.tpl:264
+#: ./application/modules/menu/templates/edit_item_origin.tpl:275
+#: ./application/modules/menu/templates/edit_item_origin.tpl:320
+#: ./application/modules/menu/templates/edit_item_origin.tpl:339
+#: ./application/modules/menu/templates/edit_item_origin.tpl:411
+#: ./application/modules/menu/templates/edit_item_origin.tpl:422
+#: ./application/modules/menu/templates/edit_item_origin.tpl:469
+#: ./application/modules/menu/templates/edit_item_origin.tpl:488
+#: ./application/modules/menu/templates/edit_item_origin.tpl:556
+#: ./application/modules/menu/templates/edit_item_origin.tpl:567
+#: ./application/modules/menu/templates/edit_item_origin.tpl:614
+#: ./application/modules/menu/templates/edit_item_origin.tpl:633
+#: ./application/modules/menu/templates/create_item.tpl:124
+#: ./application/modules/menu/templates/create_item.tpl:135
+#: ./application/modules/menu/templates/create_item.tpl:183
+#: ./application/modules/menu/templates/create_item.tpl:198
+#: ./application/modules/menu/templates/create_item.tpl:278
+#: ./application/modules/menu/templates/create_item.tpl:289
+#: ./application/modules/menu/templates/create_item.tpl:334
+#: ./application/modules/menu/templates/create_item.tpl:353
+#: ./application/modules/menu/templates/create_item.tpl:425
+#: ./application/modules/menu/templates/create_item.tpl:436
+#: ./application/modules/menu/templates/create_item.tpl:483
+#: ./application/modules/menu/templates/create_item.tpl:502
+#: ./application/modules/menu/templates/create_item.tpl:570
+#: ./application/modules/menu/templates/create_item.tpl:581
+#: ./application/modules/menu/templates/create_item.tpl:628
+#: ./application/modules/menu/templates/create_item.tpl:647
+#: ./application/modules/menu/admin.php:1203
 msgid "No"
 msgstr "Нет"
 
-#: /var/www/image.loc/_tempLangs.php:29
-#: /var/www/image.loc/_tempLangs.php:117
-#: /var/www/image.loc/_tempLangs.php:138
-#: /var/www/image.loc/_tempLangs.php:158
-#: /var/www/image.loc/_tempLangs.php:177
-#: /var/www/image.loc/_tempLangs.php:217
-#: /var/www/image.loc/_tempLangs.php:242
-#: /var/www/image.loc/_tempLangs.php:262
-#: /var/www/image.loc/_tempLangs.php:295
-#: /var/www/image.loc/_tempLangs.php:316
-#: /var/www/image.loc/_tempLangs.php:336
-#: /var/www/image.loc/_tempLangs.php:355
-#: /var/www/image.loc/_tempLangs.php:408
-#: /var/www/image.loc/_tempLangs.php:428
-#: /var/www/image.loc/_tempLangs.php:447
-#: /var/www/image.loc/_tempLangs.php:465
+#: ./application/modules/menu/templates/module_selector.tpl:69
+#: ./application/modules/menu/templates/edit_item.tpl:136
+#: ./application/modules/menu/templates/edit_item.tpl:290
+#: ./application/modules/menu/templates/edit_item.tpl:437
+#: ./application/modules/menu/templates/edit_item.tpl:582
+#: ./application/modules/menu/templates/url_selector.tpl:48
+#: ./application/modules/menu/templates/pages_selector.tpl:128
+#: ./application/modules/menu/templates/category_selector.tpl:60
+#: ./application/modules/menu/templates/edit_item_origin.tpl:134
+#: ./application/modules/menu/templates/edit_item_origin.tpl:276
+#: ./application/modules/menu/templates/edit_item_origin.tpl:423
+#: ./application/modules/menu/templates/edit_item_origin.tpl:568
+#: ./application/modules/menu/templates/create_item.tpl:136
+#: ./application/modules/menu/templates/create_item.tpl:290
+#: ./application/modules/menu/templates/create_item.tpl:437
+#: ./application/modules/menu/templates/create_item.tpl:582
+#: ./application/modules/menu/admin.php:1204
 msgid "First"
 msgstr "Первый"
 
-#: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:118
-#: /var/www/image.loc/_tempLangs.php:139
-#: /var/www/image.loc/_tempLangs.php:159
-#: /var/www/image.loc/_tempLangs.php:178
-#: /var/www/image.loc/_tempLangs.php:218
-#: /var/www/image.loc/_tempLangs.php:243
-#: /var/www/image.loc/_tempLangs.php:263
-#: /var/www/image.loc/_tempLangs.php:296
-#: /var/www/image.loc/_tempLangs.php:317
-#: /var/www/image.loc/_tempLangs.php:337
-#: /var/www/image.loc/_tempLangs.php:356
-#: /var/www/image.loc/_tempLangs.php:409
-#: /var/www/image.loc/_tempLangs.php:429
-#: /var/www/image.loc/_tempLangs.php:448
-#: /var/www/image.loc/_tempLangs.php:466
+#: ./application/modules/menu/templates/module_selector.tpl:78
+#: ./application/modules/menu/templates/edit_item.tpl:145
+#: ./application/modules/menu/templates/edit_item.tpl:299
+#: ./application/modules/menu/templates/edit_item.tpl:446
+#: ./application/modules/menu/templates/edit_item.tpl:591
+#: ./application/modules/menu/templates/url_selector.tpl:57
+#: ./application/modules/menu/templates/pages_selector.tpl:136
+#: ./application/modules/menu/templates/category_selector.tpl:67
+#: ./application/modules/menu/templates/edit_item_origin.tpl:143
+#: ./application/modules/menu/templates/edit_item_origin.tpl:285
+#: ./application/modules/menu/templates/edit_item_origin.tpl:432
+#: ./application/modules/menu/templates/edit_item_origin.tpl:577
+#: ./application/modules/menu/templates/create_item.tpl:145
+#: ./application/modules/menu/templates/create_item.tpl:299
+#: ./application/modules/menu/templates/create_item.tpl:446
+#: ./application/modules/menu/templates/create_item.tpl:591
 msgid "Image"
 msgstr "Изображение"
 
-#: /var/www/image.loc/_tempLangs.php:31
+#: ./application/modules/menu/templates/module_selector.tpl:81
 msgid "Select Image"
 msgstr "Выбрать изображение"
 
-#: /var/www/image.loc/_tempLangs.php:32
-#: /var/www/image.loc/_tempLangs.php:120
-#: /var/www/image.loc/_tempLangs.php:141
-#: /var/www/image.loc/_tempLangs.php:161
-#: /var/www/image.loc/_tempLangs.php:180
-#: /var/www/image.loc/_tempLangs.php:220
-#: /var/www/image.loc/_tempLangs.php:244
-#: /var/www/image.loc/_tempLangs.php:265
-#: /var/www/image.loc/_tempLangs.php:298
-#: /var/www/image.loc/_tempLangs.php:319
-#: /var/www/image.loc/_tempLangs.php:339
-#: /var/www/image.loc/_tempLangs.php:358
-#: /var/www/image.loc/_tempLangs.php:410
-#: /var/www/image.loc/_tempLangs.php:430
-#: /var/www/image.loc/_tempLangs.php:449
-#: /var/www/image.loc/_tempLangs.php:467
+#: ./application/modules/menu/templates/module_selector.tpl:85
+#: ./application/modules/menu/templates/edit_item.tpl:157
+#: ./application/modules/menu/templates/edit_item.tpl:311
+#: ./application/modules/menu/templates/edit_item.tpl:458
+#: ./application/modules/menu/templates/edit_item.tpl:603
+#: ./application/modules/menu/templates/url_selector.tpl:64
+#: ./application/modules/menu/templates/pages_selector.tpl:142
+#: ./application/modules/menu/templates/category_selector.tpl:74
+#: ./application/modules/menu/templates/edit_item_origin.tpl:155
+#: ./application/modules/menu/templates/edit_item_origin.tpl:297
+#: ./application/modules/menu/templates/edit_item_origin.tpl:444
+#: ./application/modules/menu/templates/edit_item_origin.tpl:589
+#: ./application/modules/menu/templates/create_item.tpl:157
+#: ./application/modules/menu/templates/create_item.tpl:311
+#: ./application/modules/menu/templates/create_item.tpl:458
+#: ./application/modules/menu/templates/create_item.tpl:603
 msgid "Access level"
 msgstr "Уровень доступа"
 
-#: /var/www/image.loc/_tempLangs.php:33
-#: /var/www/image.loc/_tempLangs.php:121
-#: /var/www/image.loc/_tempLangs.php:142
-#: /var/www/image.loc/_tempLangs.php:162
-#: /var/www/image.loc/_tempLangs.php:181
-#: /var/www/image.loc/_tempLangs.php:221
-#: /var/www/image.loc/_tempLangs.php:245
-#: /var/www/image.loc/_tempLangs.php:266
-#: /var/www/image.loc/_tempLangs.php:299
-#: /var/www/image.loc/_tempLangs.php:320
-#: /var/www/image.loc/_tempLangs.php:340
-#: /var/www/image.loc/_tempLangs.php:359
-#: /var/www/image.loc/_tempLangs.php:411
-#: /var/www/image.loc/_tempLangs.php:431
-#: /var/www/image.loc/_tempLangs.php:450
-#: /var/www/image.loc/_tempLangs.php:468
+#: ./application/modules/menu/templates/module_selector.tpl:88
+#: ./application/modules/menu/templates/edit_item.tpl:164
+#: ./application/modules/menu/templates/edit_item.tpl:314
+#: ./application/modules/menu/templates/edit_item.tpl:461
+#: ./application/modules/menu/templates/edit_item.tpl:606
+#: ./application/modules/menu/templates/url_selector.tpl:67
+#: ./application/modules/menu/templates/pages_selector.tpl:145
+#: ./application/modules/menu/templates/category_selector.tpl:77
+#: ./application/modules/menu/templates/edit_item_origin.tpl:162
+#: ./application/modules/menu/templates/edit_item_origin.tpl:300
+#: ./application/modules/menu/templates/edit_item_origin.tpl:447
+#: ./application/modules/menu/templates/edit_item_origin.tpl:592
+#: ./application/modules/menu/templates/create_item.tpl:164
+#: ./application/modules/menu/templates/create_item.tpl:314
+#: ./application/modules/menu/templates/create_item.tpl:461
+#: ./application/modules/menu/templates/create_item.tpl:606
 msgid "All"
 msgstr "Все"
 
-#: /var/www/image.loc/_tempLangs.php:34
-#: /var/www/image.loc/_tempLangs.php:59
-#: /var/www/image.loc/_tempLangs.php:122
-#: /var/www/image.loc/_tempLangs.php:143
-#: /var/www/image.loc/_tempLangs.php:163
-#: /var/www/image.loc/_tempLangs.php:182
-#: /var/www/image.loc/_tempLangs.php:222
-#: /var/www/image.loc/_tempLangs.php:246
-#: /var/www/image.loc/_tempLangs.php:300
-#: /var/www/image.loc/_tempLangs.php:321
-#: /var/www/image.loc/_tempLangs.php:341
-#: /var/www/image.loc/_tempLangs.php:360
-#: /var/www/image.loc/_tempLangs.php:412
-#: /var/www/image.loc/_tempLangs.php:432
-#: /var/www/image.loc/_tempLangs.php:451
-#: /var/www/image.loc/_tempLangs.php:469
+#: ./application/modules/menu/templates/module_selector.tpl:98
+#: ./application/modules/menu/templates/edit_item.tpl:172
+#: ./application/modules/menu/templates/edit_item.tpl:322
+#: ./application/modules/menu/templates/edit_item.tpl:469
+#: ./application/modules/menu/templates/edit_item.tpl:614
+#: ./application/modules/menu/templates/url_selector.tpl:77
+#: ./application/modules/menu/templates/pages_selector.tpl:153
+#: ./application/modules/menu/templates/category_selector.tpl:87
+#: ./application/modules/menu/templates/edit_item_origin.tpl:170
+#: ./application/modules/menu/templates/edit_item_origin.tpl:308
+#: ./application/modules/menu/templates/edit_item_origin.tpl:455
+#: ./application/modules/menu/templates/edit_item_origin.tpl:600
+#: ./application/modules/menu/templates/create_item.tpl:172
+#: ./application/modules/menu/templates/create_item.tpl:322
+#: ./application/modules/menu/templates/create_item.tpl:469
+#: ./application/modules/menu/templates/create_item.tpl:614
 msgid "Hide"
 msgstr "Скрывать"
 
-#: /var/www/image.loc/_tempLangs.php:35
-#: /var/www/image.loc/_tempLangs.php:37
-#: /var/www/image.loc/_tempLangs.php:123
-#: /var/www/image.loc/_tempLangs.php:126
-#: /var/www/image.loc/_tempLangs.php:144
-#: /var/www/image.loc/_tempLangs.php:147
-#: /var/www/image.loc/_tempLangs.php:164
-#: /var/www/image.loc/_tempLangs.php:167
-#: /var/www/image.loc/_tempLangs.php:183
-#: /var/www/image.loc/_tempLangs.php:186
-#: /var/www/image.loc/_tempLangs.php:223
-#: /var/www/image.loc/_tempLangs.php:226
-#: /var/www/image.loc/_tempLangs.php:247
-#: /var/www/image.loc/_tempLangs.php:250
-#: /var/www/image.loc/_tempLangs.php:267
-#: /var/www/image.loc/_tempLangs.php:270
-#: /var/www/image.loc/_tempLangs.php:301
-#: /var/www/image.loc/_tempLangs.php:304
-#: /var/www/image.loc/_tempLangs.php:322
-#: /var/www/image.loc/_tempLangs.php:325
-#: /var/www/image.loc/_tempLangs.php:342
-#: /var/www/image.loc/_tempLangs.php:345
-#: /var/www/image.loc/_tempLangs.php:361
-#: /var/www/image.loc/_tempLangs.php:364
-#: /var/www/image.loc/_tempLangs.php:413
-#: /var/www/image.loc/_tempLangs.php:416
-#: /var/www/image.loc/_tempLangs.php:433
-#: /var/www/image.loc/_tempLangs.php:436
-#: /var/www/image.loc/_tempLangs.php:452
-#: /var/www/image.loc/_tempLangs.php:455
-#: /var/www/image.loc/_tempLangs.php:470
-#: /var/www/image.loc/_tempLangs.php:473
+#: ./application/modules/menu/templates/module_selector.tpl:101
+#: ./application/modules/menu/templates/module_selector.tpl:111
+#: ./application/modules/menu/templates/edit_item.tpl:177
+#: ./application/modules/menu/templates/edit_item.tpl:193
+#: ./application/modules/menu/templates/edit_item.tpl:328
+#: ./application/modules/menu/templates/edit_item.tpl:346
+#: ./application/modules/menu/templates/edit_item.tpl:477
+#: ./application/modules/menu/templates/edit_item.tpl:495
+#: ./application/modules/menu/templates/edit_item.tpl:621
+#: ./application/modules/menu/templates/edit_item.tpl:640
+#: ./application/modules/menu/templates/url_selector.tpl:80
+#: ./application/modules/menu/templates/url_selector.tpl:90
+#: ./application/modules/menu/templates/pages_selector.tpl:155
+#: ./application/modules/menu/templates/pages_selector.tpl:162
+#: ./application/modules/menu/templates/category_selector.tpl:90
+#: ./application/modules/menu/templates/category_selector.tpl:100
+#: ./application/modules/menu/templates/edit_item_origin.tpl:173
+#: ./application/modules/menu/templates/edit_item_origin.tpl:184
+#: ./application/modules/menu/templates/edit_item_origin.tpl:314
+#: ./application/modules/menu/templates/edit_item_origin.tpl:332
+#: ./application/modules/menu/templates/edit_item_origin.tpl:463
+#: ./application/modules/menu/templates/edit_item_origin.tpl:481
+#: ./application/modules/menu/templates/edit_item_origin.tpl:607
+#: ./application/modules/menu/templates/edit_item_origin.tpl:626
+#: ./application/modules/menu/templates/create_item.tpl:177
+#: ./application/modules/menu/templates/create_item.tpl:193
+#: ./application/modules/menu/templates/create_item.tpl:328
+#: ./application/modules/menu/templates/create_item.tpl:346
+#: ./application/modules/menu/templates/create_item.tpl:477
+#: ./application/modules/menu/templates/create_item.tpl:495
+#: ./application/modules/menu/templates/create_item.tpl:621
+#: ./application/modules/menu/templates/create_item.tpl:640
 msgid "Yes"
 msgstr "Да"
 
-#: /var/www/image.loc/_tempLangs.php:39
-#: /var/www/image.loc/_tempLangs.php:60
-#: /var/www/image.loc/_tempLangs.php:201
-#: /var/www/image.loc/_tempLangs.php:228
+#: ./application/modules/menu/templates/module_selector.tpl:119
+#: ./application/modules/menu/templates/create_menu.tpl:11
+#: ./application/modules/menu/templates/url_selector.tpl:98
+#: ./application/modules/menu/templates/category_selector.tpl:108
 msgid "Create"
 msgstr "Создать"
 
-#: /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:61
-#: /var/www/image.loc/_tempLangs.php:191
-#: /var/www/image.loc/_tempLangs.php:229
-#: /var/www/image.loc/_tempLangs.php:378
+#: ./application/modules/menu/templates/module_selector.tpl:121
+#: ./application/modules/menu/templates/main.tpl:14
+#: ./application/modules/menu/templates/url_selector.tpl:99
+#: ./application/modules/menu/templates/category_selector.tpl:109
+#: ./application/modules/menu/templates/menu_list.tpl:14
 msgid "Cancel"
 msgstr "Отмена"
 
-#: /var/www/image.loc/_tempLangs.php:41
-#: /var/www/image.loc/_tempLangs.php:56
-#: /var/www/image.loc/_tempLangs.php:66
-#: /var/www/image.loc/_tempLangs.php:80
+#: ./application/modules/menu/templates/edit_item.tpl:56
+#: ./application/modules/menu/templates/pages_selector.tpl:48
+#: ./application/modules/menu/templates/edit_item_origin.tpl:56
+#: ./application/modules/menu/templates/create_item.tpl:57
 msgid "On page"
 msgstr "На странице"
 
-#: /var/www/image.loc/_tempLangs.php:42
-#: /var/www/image.loc/_tempLangs.php:57
-#: /var/www/image.loc/_tempLangs.php:67
-#: /var/www/image.loc/_tempLangs.php:81
+#: ./application/modules/menu/templates/edit_item.tpl:69
+#: ./application/modules/menu/templates/pages_selector.tpl:61
+#: ./application/modules/menu/templates/edit_item_origin.tpl:69
+#: ./application/modules/menu/templates/create_item.tpl:70
 msgid "Pages list"
 msgstr "Список страниц"
 
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:45
-#: /var/www/image.loc/_tempLangs.php:58
-#: /var/www/image.loc/_tempLangs.php:68
-#: /var/www/image.loc/_tempLangs.php:69
-#: /var/www/image.loc/_tempLangs.php:70
-#: /var/www/image.loc/_tempLangs.php:86
+#: ./application/modules/menu/templates/edit_item.tpl:93
+#: ./application/modules/menu/templates/edit_item.tpl:247
+#: ./application/modules/menu/templates/edit_item.tpl:385
+#: ./application/modules/menu/templates/pages_selector.tpl:85
+#: ./application/modules/menu/templates/edit_item_origin.tpl:91
+#: ./application/modules/menu/templates/edit_item_origin.tpl:233
+#: ./application/modules/menu/templates/edit_item_origin.tpl:371
+#: ./application/modules/menu/templates/create_item.tpl:385
 msgid "Parameters"
 msgstr "Параметры"
 
-#: /var/www/image.loc/_tempLangs.php:46
-#: /var/www/image.loc/_tempLangs.php:71
+#: ./application/modules/menu/templates/edit_item.tpl:415
+#: ./application/modules/menu/templates/edit_item_origin.tpl:401
 msgid "Method"
 msgstr "Метод"
 
-#: /var/www/image.loc/_tempLangs.php:47
-#: /var/www/image.loc/_tempLangs.php:72
+#: ./application/modules/menu/templates/edit_item.tpl:418
+#: ./application/modules/menu/templates/edit_item_origin.tpl:404
 msgid "Example"
 msgstr "Например"
 
-#: /var/www/image.loc/_tempLangs.php:49
+#: ./application/modules/menu/templates/main.tpl:50
 msgid "Show"
 msgstr "Показать"
 
-#: /var/www/image.loc/_tempLangs.php:50
+#: ./application/modules/menu/templates/pages_selector.tpl:5
 msgid "Edit link"
 msgstr "Редактировать ссылку"
 
-#: /var/www/image.loc/_tempLangs.php:51
-#: /var/www/image.loc/_tempLangs.php:99
-#: /var/www/image.loc/_tempLangs.php:193
-#: /var/www/image.loc/_tempLangs.php:200
-#: /var/www/image.loc/_tempLangs.php:273
-#: /var/www/image.loc/_tempLangs.php:277
-#: /var/www/image.loc/_tempLangs.php:367
-#: /var/www/image.loc/_tempLangs.php:390
+#: ./application/modules/menu/templates/edit_item.tpl:9
+#: ./application/modules/menu/templates/main.tpl:29
+#: ./application/modules/menu/templates/create_menu.tpl:10
+#: ./application/modules/menu/templates/pages_selector.tpl:9
+#: ./application/modules/menu/templates/translate_item.tpl:9
+#: ./application/modules/menu/templates/edit_item_origin.tpl:9
+#: ./application/modules/menu/templates/edit_menu.tpl:11
+#: ./application/modules/menu/templates/create_item.tpl:9
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:52
-#: /var/www/image.loc/_tempLangs.php:102
-#: /var/www/image.loc/_tempLangs.php:110
-#: /var/www/image.loc/_tempLangs.php:235
-#: /var/www/image.loc/_tempLangs.php:280
-#: /var/www/image.loc/_tempLangs.php:288
-#: /var/www/image.loc/_tempLangs.php:393
-#: /var/www/image.loc/_tempLangs.php:401
+#: ./application/modules/menu/templates/edit_item.tpl:18
+#: ./application/modules/menu/templates/edit_item.tpl:105
+#: ./application/modules/menu/templates/pages_selector.tpl:17
+#: ./application/modules/menu/templates/pages_selector.tpl:97
+#: ./application/modules/menu/templates/edit_item_origin.tpl:18
+#: ./application/modules/menu/templates/edit_item_origin.tpl:103
+#: ./application/modules/menu/templates/create_item.tpl:19
+#: ./application/modules/menu/templates/create_item.tpl:104
 msgid "Page"
 msgstr "Страница"
 
-#: /var/www/image.loc/_tempLangs.php:53
+#: ./application/modules/menu/templates/pages_selector.tpl:18
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_tempLangs.php:55
-#: /var/www/image.loc/_tempLangs.php:105
-#: /var/www/image.loc/_tempLangs.php:198
-#: /var/www/image.loc/_tempLangs.php:283
-#: /var/www/image.loc/_tempLangs.php:396
+#: ./application/modules/menu/templates/edit_item.tpl:21
+#: ./application/modules/menu/templates/main.tpl:48
+#: ./application/modules/menu/templates/pages_selector.tpl:20
+#: ./application/modules/menu/templates/edit_item_origin.tpl:21
+#: ./application/modules/menu/templates/create_item.tpl:22
 msgid "Link"
 msgstr "Ссылка"
 
-#: /var/www/image.loc/_tempLangs.php:62
-#: /var/www/image.loc/_tempLangs.php:64
+#: ./application/modules/menu/templates/category_selector.tpl:148
+#: ./application/modules/menu/templates/category_selector.tpl:157
+#: ./application/modules/menu/admin.php:218
 msgid "Error"
 msgstr "Ошибка"
 
-#: /var/www/image.loc/_tempLangs.php:63
+#: ./application/modules/menu/templates/category_selector.tpl:149
 msgid "Choose category."
 msgstr "Выберите категорию."
 
-#: /var/www/image.loc/_tempLangs.php:65
+#: ./application/modules/menu/templates/category_selector.tpl:158
 msgid "Enter title."
 msgstr "Введите название."
 
-#: /var/www/image.loc/_tempLangs.php:73
+#: ./application/modules/menu/templates/_menulistitem.tpl:18
 msgid "hide menu"
 msgstr "скрыть меню"
 
-#: /var/www/image.loc/_tempLangs.php:74
+#: ./application/modules/menu/templates/_menulistitem.tpl:23
 msgid "expand menu"
 msgstr "развернуть меню"
 
-#: /var/www/image.loc/_tempLangs.php:75
-#: /var/www/image.loc/_tempLangs.php:78
-#: /var/www/image.loc/_tempLangs.php:98
-#: /var/www/image.loc/_tempLangs.php:276
-#: /var/www/image.loc/_tempLangs.php:389
+#: ./application/modules/menu/templates/edit_item.tpl:5
+#: ./application/modules/menu/templates/edit_item_origin.tpl:5
+#: ./application/modules/menu/templates/_menulistitem.tpl:29
+#: ./application/modules/menu/templates/edit_menu.tpl:7
+#: ./application/modules/menu/templates/create_item.tpl:5
 msgid "Edit menu item"
 msgstr "Редактировать пункт меню"
 
-#: /var/www/image.loc/_tempLangs.php:76
+#: ./application/modules/menu/templates/_menulistitem.tpl:30
 msgid "Translate menu item"
 msgstr "Перевести пункт меню"
 
-#: /var/www/image.loc/_tempLangs.php:77
+#: ./application/modules/menu/templates/_menulistitem.tpl:42
 msgid "show"
 msgstr "показать"
 
-#: /var/www/image.loc/_tempLangs.php:79
+#: ./application/modules/menu/templates/edit_menu.tpl:14
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: /var/www/image.loc/_tempLangs.php:83
-#: /var/www/image.loc/_tempLangs.php:85
-#: /var/www/image.loc/_tempLangs.php:89
-#: /var/www/image.loc/_tempLangs.php:90
-#: /var/www/image.loc/_tempLangs.php:140
-#: /var/www/image.loc/_tempLangs.php:160
-#: /var/www/image.loc/_tempLangs.php:179
-#: /var/www/image.loc/_tempLangs.php:297
-#: /var/www/image.loc/_tempLangs.php:318
-#: /var/www/image.loc/_tempLangs.php:338
-#: /var/www/image.loc/_tempLangs.php:357
+#: ./application/modules/menu/templates/edit_item.tpl:303
+#: ./application/modules/menu/templates/edit_item.tpl:450
+#: ./application/modules/menu/templates/edit_item.tpl:595
+#: ./application/modules/menu/templates/edit_item_origin.tpl:147
+#: ./application/modules/menu/templates/edit_item_origin.tpl:289
+#: ./application/modules/menu/templates/edit_item_origin.tpl:436
+#: ./application/modules/menu/templates/edit_item_origin.tpl:581
+#: ./application/modules/menu/templates/create_item.tpl:149
+#: ./application/modules/menu/templates/create_item.tpl:303
+#: ./application/modules/menu/templates/create_item.tpl:450
+#: ./application/modules/menu/templates/create_item.tpl:595
 msgid "Choose an image "
-msgstr "Выберите изображение "
+msgstr "Выберите изображение"
 
-#: /var/www/image.loc/_tempLangs.php:88
+#: ./application/modules/menu/templates/create_item.tpl:418
 msgid "For example"
 msgstr "Например"
 
-#: /var/www/image.loc/_tempLangs.php:91
+#: ./application/modules/menu/templates/public/error.tpl:12
 msgid "Attention"
 msgstr "Внимание"
 
-#: /var/www/image.loc/_tempLangs.php:92
+#: ./application/modules/menu/templates/public/error.tpl:13
 msgid "Not found the required template file for menu"
 msgstr "Не нашли нужного файла шаблона для меню"
 
-#: /var/www/image.loc/_tempLangs.php:93
+#: ./application/modules/menu/templates/public/error.tpl:21
 msgid "Check file or change the settings menu"
 msgstr "Проверьте файл или изменить настройки меню"
 
-#: /var/www/image.loc/_tempLangs.php:94
+#: ./application/modules/menu/templates/public/error.tpl:23
 msgid "Reinstall the module menu"
 msgstr "Установите модуль меню"
 
-#: /var/www/image.loc/_tempLangs.php:95
-#: /var/www/image.loc/_tempLangs.php:149
-#: /var/www/image.loc/_tempLangs.php:327
-#: /var/www/image.loc/_tempLangs.php:438
+#: ./application/modules/menu/templates/module_selector.tpl:5
+#: ./application/modules/menu/templates/edit_item.tpl:367
+#: ./application/modules/menu/templates/edit_item_origin.tpl:353
+#: ./application/modules/menu/templates/create_item.tpl:367
 msgid "Select module"
 msgstr "Выберите модуль"
 
-#: /var/www/image.loc/_tempLangs.php:96
-#: /var/www/image.loc/_tempLangs.php:115
-#: /var/www/image.loc/_tempLangs.php:136
-#: /var/www/image.loc/_tempLangs.php:156
-#: /var/www/image.loc/_tempLangs.php:175
-#: /var/www/image.loc/_tempLangs.php:215
-#: /var/www/image.loc/_tempLangs.php:240
-#: /var/www/image.loc/_tempLangs.php:260
-#: /var/www/image.loc/_tempLangs.php:293
-#: /var/www/image.loc/_tempLangs.php:314
-#: /var/www/image.loc/_tempLangs.php:334
-#: /var/www/image.loc/_tempLangs.php:353
-#: /var/www/image.loc/_tempLangs.php:406
-#: /var/www/image.loc/_tempLangs.php:426
-#: /var/www/image.loc/_tempLangs.php:445
-#: /var/www/image.loc/_tempLangs.php:463
+#: ./application/modules/menu/templates/module_selector.tpl:65
+#: ./application/modules/menu/templates/edit_item.tpl:132
+#: ./application/modules/menu/templates/edit_item.tpl:286
+#: ./application/modules/menu/templates/edit_item.tpl:433
+#: ./application/modules/menu/templates/edit_item.tpl:578
+#: ./application/modules/menu/templates/url_selector.tpl:44
+#: ./application/modules/menu/templates/pages_selector.tpl:124
+#: ./application/modules/menu/templates/category_selector.tpl:56
+#: ./application/modules/menu/templates/edit_item_origin.tpl:130
+#: ./application/modules/menu/templates/edit_item_origin.tpl:272
+#: ./application/modules/menu/templates/edit_item_origin.tpl:419
+#: ./application/modules/menu/templates/edit_item_origin.tpl:564
+#: ./application/modules/menu/templates/create_item.tpl:132
+#: ./application/modules/menu/templates/create_item.tpl:286
+#: ./application/modules/menu/templates/create_item.tpl:433
+#: ./application/modules/menu/templates/create_item.tpl:578
 msgid "Position after"
 msgstr "Положение после"
 
-#: /var/www/image.loc/_tempLangs.php:97
-#: /var/www/image.loc/_tempLangs.php:125
-#: /var/www/image.loc/_tempLangs.php:146
-#: /var/www/image.loc/_tempLangs.php:166
-#: /var/www/image.loc/_tempLangs.php:185
-#: /var/www/image.loc/_tempLangs.php:225
-#: /var/www/image.loc/_tempLangs.php:249
-#: /var/www/image.loc/_tempLangs.php:269
-#: /var/www/image.loc/_tempLangs.php:303
-#: /var/www/image.loc/_tempLangs.php:324
-#: /var/www/image.loc/_tempLangs.php:344
-#: /var/www/image.loc/_tempLangs.php:363
-#: /var/www/image.loc/_tempLangs.php:415
-#: /var/www/image.loc/_tempLangs.php:435
-#: /var/www/image.loc/_tempLangs.php:454
-#: /var/www/image.loc/_tempLangs.php:472
+#: ./application/modules/menu/templates/module_selector.tpl:108
+#: ./application/modules/menu/templates/edit_item.tpl:188
+#: ./application/modules/menu/templates/edit_item.tpl:339
+#: ./application/modules/menu/templates/edit_item.tpl:488
+#: ./application/modules/menu/templates/edit_item.tpl:633
+#: ./application/modules/menu/templates/url_selector.tpl:87
+#: ./application/modules/menu/templates/pages_selector.tpl:160
+#: ./application/modules/menu/templates/category_selector.tpl:97
+#: ./application/modules/menu/templates/edit_item_origin.tpl:182
+#: ./application/modules/menu/templates/edit_item_origin.tpl:325
+#: ./application/modules/menu/templates/edit_item_origin.tpl:474
+#: ./application/modules/menu/templates/edit_item_origin.tpl:619
+#: ./application/modules/menu/templates/create_item.tpl:188
+#: ./application/modules/menu/templates/create_item.tpl:339
+#: ./application/modules/menu/templates/create_item.tpl:488
+#: ./application/modules/menu/templates/create_item.tpl:633
 msgid "Open in the new window"
 msgstr "Открыть в новом окне"
 
-#: /var/www/image.loc/_tempLangs.php:100
-#: /var/www/image.loc/_tempLangs.php:230
-#: /var/www/image.loc/_tempLangs.php:274
-#: /var/www/image.loc/_tempLangs.php:278
-#: /var/www/image.loc/_tempLangs.php:368
-#: /var/www/image.loc/_tempLangs.php:391
+#: ./application/modules/menu/templates/edit_item.tpl:10
+#: ./application/modules/menu/templates/pages_selector.tpl:10
+#: ./application/modules/menu/templates/translate_item.tpl:10
+#: ./application/modules/menu/templates/edit_item_origin.tpl:10
+#: ./application/modules/menu/templates/edit_menu.tpl:13
+#: ./application/modules/menu/templates/create_item.tpl:10
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:101
-#: /var/www/image.loc/_tempLangs.php:202
-#: /var/www/image.loc/_tempLangs.php:279
-#: /var/www/image.loc/_tempLangs.php:392
+#: ./application/modules/menu/templates/edit_item.tpl:11
+#: ./application/modules/menu/templates/create_menu.tpl:12
+#: ./application/modules/menu/templates/edit_item_origin.tpl:11
+#: ./application/modules/menu/templates/create_item.tpl:11
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
-#: /var/www/image.loc/_tempLangs.php:103
-#: /var/www/image.loc/_tempLangs.php:107
-#: /var/www/image.loc/_tempLangs.php:131
-#: /var/www/image.loc/_tempLangs.php:232
-#: /var/www/image.loc/_tempLangs.php:255
-#: /var/www/image.loc/_tempLangs.php:281
-#: /var/www/image.loc/_tempLangs.php:285
-#: /var/www/image.loc/_tempLangs.php:309
-#: /var/www/image.loc/_tempLangs.php:394
-#: /var/www/image.loc/_tempLangs.php:398
-#: /var/www/image.loc/_tempLangs.php:421
+#: ./application/modules/menu/templates/edit_item.tpl:19
+#: ./application/modules/menu/templates/edit_item.tpl:46
+#: ./application/modules/menu/templates/edit_item.tpl:259
+#: ./application/modules/menu/templates/pages_selector.tpl:39
+#: ./application/modules/menu/templates/category_selector.tpl:25
+#: ./application/modules/menu/templates/edit_item_origin.tpl:19
+#: ./application/modules/menu/templates/edit_item_origin.tpl:46
+#: ./application/modules/menu/templates/edit_item_origin.tpl:245
+#: ./application/modules/menu/templates/create_item.tpl:20
+#: ./application/modules/menu/templates/create_item.tpl:47
+#: ./application/modules/menu/templates/create_item.tpl:259
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_tempLangs.php:106
-#: /var/www/image.loc/_tempLangs.php:128
-#: /var/www/image.loc/_tempLangs.php:231
-#: /var/www/image.loc/_tempLangs.php:284
-#: /var/www/image.loc/_tempLangs.php:306
-#: /var/www/image.loc/_tempLangs.php:397
-#: /var/www/image.loc/_tempLangs.php:418
+#: ./application/modules/menu/templates/edit_item.tpl:36
+#: ./application/modules/menu/templates/edit_item.tpl:220
+#: ./application/modules/menu/templates/pages_selector.tpl:29
+#: ./application/modules/menu/templates/edit_item_origin.tpl:36
+#: ./application/modules/menu/templates/edit_item_origin.tpl:206
+#: ./application/modules/menu/templates/create_item.tpl:37
+#: ./application/modules/menu/templates/create_item.tpl:220
 msgid "Pages"
 msgstr "Страницы"
 
-#: /var/www/image.loc/_tempLangs.php:108
-#: /var/www/image.loc/_tempLangs.php:233
-#: /var/www/image.loc/_tempLangs.php:286
-#: /var/www/image.loc/_tempLangs.php:399
+#: ./application/modules/menu/templates/edit_item.tpl:49
+#: ./application/modules/menu/templates/pages_selector.tpl:42
+#: ./application/modules/menu/templates/edit_item_origin.tpl:49
+#: ./application/modules/menu/templates/create_item.tpl:50
 msgid "Root"
 msgstr "Корень"
 
-#: /var/www/image.loc/_tempLangs.php:111
-#: /var/www/image.loc/_tempLangs.php:132
-#: /var/www/image.loc/_tempLangs.php:196
-#: /var/www/image.loc/_tempLangs.php:236
-#: /var/www/image.loc/_tempLangs.php:256
-#: /var/www/image.loc/_tempLangs.php:289
-#: /var/www/image.loc/_tempLangs.php:310
-#: /var/www/image.loc/_tempLangs.php:382
-#: /var/www/image.loc/_tempLangs.php:402
-#: /var/www/image.loc/_tempLangs.php:422
+#: ./application/modules/menu/templates/edit_item.tpl:109
+#: ./application/modules/menu/templates/edit_item.tpl:263
+#: ./application/modules/menu/templates/main.tpl:46
+#: ./application/modules/menu/templates/pages_selector.tpl:101
+#: ./application/modules/menu/templates/category_selector.tpl:29
+#: ./application/modules/menu/templates/edit_item_origin.tpl:107
+#: ./application/modules/menu/templates/edit_item_origin.tpl:249
+#: ./application/modules/menu/templates/menu_list.tpl:46
+#: ./application/modules/menu/templates/create_item.tpl:109
+#: ./application/modules/menu/templates/create_item.tpl:263
 msgid "ID"
 msgstr "ID"
 
-#: /var/www/image.loc/_tempLangs.php:119
+#: ./application/modules/menu/templates/edit_item.tpl:149
 msgid "Choose image "
-msgstr "Выберите изображение "
+msgstr "Выберите изображение"
 
-#: /var/www/image.loc/_tempLangs.php:129
-#: /var/www/image.loc/_tempLangs.php:252
-#: /var/www/image.loc/_tempLangs.php:307
-#: /var/www/image.loc/_tempLangs.php:419
+#: ./application/modules/menu/templates/edit_item.tpl:230
+#: ./application/modules/menu/templates/category_selector.tpl:5
+#: ./application/modules/menu/templates/edit_item_origin.tpl:216
+#: ./application/modules/menu/templates/create_item.tpl:230
 msgid "Choose a category"
 msgstr "Выберите категорию"
 
-#: /var/www/image.loc/_tempLangs.php:169
-#: /var/www/image.loc/_tempLangs.php:211
-#: /var/www/image.loc/_tempLangs.php:347
-#: /var/www/image.loc/_tempLangs.php:457
+#: ./application/modules/menu/templates/edit_item.tpl:525
+#: ./application/modules/menu/templates/url_selector.tpl:16
+#: ./application/modules/menu/templates/edit_item_origin.tpl:511
+#: ./application/modules/menu/templates/create_item.tpl:525
 msgid "URL"
 msgstr "URL"
 
-#: /var/www/image.loc/_tempLangs.php:170
-#: /var/www/image.loc/_tempLangs.php:209
-#: /var/www/image.loc/_tempLangs.php:348
-#: /var/www/image.loc/_tempLangs.php:458
+#: ./application/modules/menu/templates/edit_item.tpl:535
+#: ./application/modules/menu/templates/url_selector.tpl:5
+#: ./application/modules/menu/templates/edit_item_origin.tpl:521
+#: ./application/modules/menu/templates/create_item.tpl:535
 msgid "Specify or select a link to the page"
 msgstr "Указать или выбрать ссылку на страницу"
 
-#: /var/www/image.loc/_tempLangs.php:171
-#: /var/www/image.loc/_tempLangs.php:203
-#: /var/www/image.loc/_tempLangs.php:275
-#: /var/www/image.loc/_tempLangs.php:349
-#: /var/www/image.loc/_tempLangs.php:459
+#: ./application/modules/menu/templates/edit_item.tpl:550
+#: ./application/modules/menu/templates/create_menu.tpl:22
+#: ./application/modules/menu/templates/translate_item.tpl:19
+#: ./application/modules/menu/templates/edit_item_origin.tpl:536
+#: ./application/modules/menu/templates/create_item.tpl:550
 msgid "Settings"
 msgstr "Настройки"
 
-#: /var/www/image.loc/_tempLangs.php:188
-#: /var/www/image.loc/_tempLangs.php:375
+#: ./application/modules/menu/templates/main.tpl:7
+#: ./application/modules/menu/templates/menu_list.tpl:7
 msgid "Menu deleting"
 msgstr "Удаления меню"
 
-#: /var/www/image.loc/_tempLangs.php:189
-#: /var/www/image.loc/_tempLangs.php:376
+#: ./application/modules/menu/templates/main.tpl:10
+#: ./application/modules/menu/templates/menu_list.tpl:10
 msgid "Delete selected menu?"
 msgstr "Удалить выбранное меню?"
 
-#: /var/www/image.loc/_tempLangs.php:190
-#: /var/www/image.loc/_tempLangs.php:195
-#: /var/www/image.loc/_tempLangs.php:377
-#: /var/www/image.loc/_tempLangs.php:381
+#: ./application/modules/menu/templates/main.tpl:13
+#: ./application/modules/menu/templates/main.tpl:31
+#: ./application/modules/menu/templates/menu_list.tpl:13
+#: ./application/modules/menu/templates/menu_list.tpl:30
 msgid "Delete"
 msgstr "Удалять"
 
-#: /var/www/image.loc/_tempLangs.php:192
+#: ./application/modules/menu/templates/main.tpl:25
+#: ./application/modules/menu/module_info.php:4
 msgid "Menu"
 msgstr "Меню"
 
-#: /var/www/image.loc/_tempLangs.php:194
+#: ./application/modules/menu/templates/main.tpl:30
 msgid "Create link"
 msgstr "Создать ссылку"
 
-#: /var/www/image.loc/_tempLangs.php:199
-#: /var/www/image.loc/_tempLangs.php:380
+#: ./application/modules/menu/templates/create_menu.tpl:6
+#: ./application/modules/menu/templates/menu_list.tpl:29
 msgid "Create a menu"
 msgstr "Создать меню"
 
-#: /var/www/image.loc/_tempLangs.php:206
-#: /var/www/image.loc/_tempLangs.php:372
-#: /var/www/image.loc/_tempLangs.php:385
+#: ./application/modules/menu/templates/create_menu.tpl:44
+#: ./application/modules/menu/templates/edit_menu.tpl:48
+#: ./application/modules/menu/templates/menu_list.tpl:49
+#: ./application/modules/menu/admin.php:821
+#: ./application/modules/menu/admin.php:871
 msgid "Description"
 msgstr "Описание"
 
-#: /var/www/image.loc/_tempLangs.php:207
-#: /var/www/image.loc/_tempLangs.php:373
+#: ./application/modules/menu/templates/create_menu.tpl:50
+#: ./application/modules/menu/templates/edit_menu.tpl:54
 msgid "Template folder"
 msgstr "Папка шаблона"
 
-# а
-#: /var/www/image.loc/_tempLangs.php:208
-#: /var/www/image.loc/_tempLangs.php:374
+# �
+#: ./application/modules/menu/templates/create_menu.tpl:56
+#: ./application/modules/menu/templates/edit_menu.tpl:60
 msgid "Open a menu, level"
 msgstr "Раскрывать меню, уровень"
 
-#: /var/www/image.loc/_tempLangs.php:219
-#: /var/www/image.loc/_tempLangs.php:264
+#: ./application/modules/menu/templates/url_selector.tpl:60
+#: ./application/modules/menu/templates/category_selector.tpl:70
 msgid "Select an image"
 msgstr "Выберите изображение"
 
-#: /var/www/image.loc/_tempLangs.php:272
+#: ./application/modules/menu/templates/translate_item.tpl:5
 msgid "Menu item translate"
-msgstr "Перевод пункта меню "
+msgstr "Перевод пункта меню"
 
 #: /var/www/image.loc/_tempLangs.php:366
 msgid "don't show"
 msgstr "не показывать"
 
-#: /var/www/image.loc/_tempLangs.php:369
+#: ./application/modules/menu/templates/edit_menu.tpl:26
 msgid "Edit a menu"
 msgstr "Редактировать меню"
 
-#: /var/www/image.loc/_tempLangs.php:379
+#: ./application/modules/menu/templates/menu_list.tpl:25
 msgid "Menu list"
 msgstr "Список меню"
 
-#: /var/www/image.loc/_tempLangs.php:383
+#: ./application/modules/menu/templates/menu_list.tpl:47
 msgid "Denotation"
 msgstr "Название"
 
-#: /var/www/image.loc/_tempLangs.php:386
+#: ./application/modules/menu/templates/menu_list.tpl:50
 msgid "Created"
 msgstr "Создано"
 
-#: /var/www/image.loc/_tempLangs.php:387
-#: /var/www/image.loc/_tempLangs.php:388
+#: ./application/modules/menu/templates/menu_list.tpl:51
+#: ./application/modules/menu/templates/menu_list.tpl:73
 msgid "Editing"
 msgstr "Редактировать"
 
-#: admin.php:109
-#: admin.php:446
-#: admin.php:456
+#: ./application/modules/menu/admin.php:109
+#: ./application/modules/menu/admin.php:446
+#: ./application/modules/menu/admin.php:456
 msgid "Page ID"
 msgstr "ID страницы"
 
-#: admin.php:112
+#: ./application/modules/menu/admin.php:112
 msgid "category ID"
 msgstr "ID категории"
 
-#: admin.php:115
-#: admin.php:454
+#: ./application/modules/menu/admin.php:115
+#: ./application/modules/menu/admin.php:454
 msgid "Module name"
 msgstr "Имя модуля"
 
-#: admin.php:117
+#: ./application/modules/menu/admin.php:117
 msgid "Module ID"
 msgstr "ID модуля"
 
-#: admin.php:223
+#: ./application/modules/menu/admin.php:223
 msgid "The menu item was successfully created"
 msgstr "Пункт меню был успешно создан"
 
-#: admin.php:450
+#: ./application/modules/menu/admin.php:450
 msgid "Category ID"
-msgstr "ID категории "
+msgstr "ID категории"
 
-#: admin.php:607
+#: ./application/modules/menu/admin.php:607
 msgid "Invalid parent identifier"
 msgstr "Неверный идентификатор родителя"
 
-#: admin.php:609
+#: ./application/modules/menu/admin.php:609
 msgid "Can not be root menu in subparagraph"
 msgstr "Не может быть корневого меню в подпункте"
 
-#: admin.php:615
+#: ./application/modules/menu/admin.php:615
 msgid "Changes successfully saved"
 msgstr "Изменения успешно сохранены"
 
-#: admin.php:801
+#: ./application/modules/menu/admin.php:801
 msgid "Positions updated"
 msgstr "Позиции обновлены"
 
-# а
-#: admin.php:812
+# �
+#: ./application/modules/menu/admin.php:812
+#: ./application/modules/menu/admin.php:858
 msgid "Name field sieve"
 msgstr "Имя поля сито"
 
-#: admin.php:822
-#: admin.php:872
+#: ./application/modules/menu/admin.php:822
+#: ./application/modules/menu/admin.php:872
 msgid "Template"
 msgstr "Шаблон"
 
-#: admin.php:823
-#: admin.php:873
+#: ./application/modules/menu/admin.php:823
+#: ./application/modules/menu/admin.php:873
 msgid "Nesting level"
 msgstr "Уровень вложенности"
 
-#: admin.php:839
+#: ./application/modules/menu/admin.php:839
 msgid "Menu created"
 msgstr "Меню создано"
 
-#: admin.php:899
-#: admin.php:1160
+#: ./application/modules/menu/admin.php:899
+#: ./application/modules/menu/admin.php:1160
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
-#: admin.php:944
-#: admin.php:961
+#: ./application/modules/menu/admin.php:944
+#: ./application/modules/menu/admin.php:961
 msgid "Menu removed"
 msgstr "Меню удалено"
 
-#: admin.php:1054
+#: ./application/modules/menu/admin.php:1054
 msgid "Without category"
 msgstr "Без категории"
 
-#: module_info.php:5
+#: ./application/modules/menu/module_info.php:5
 msgid "Site Menu Editor"
 msgstr "Редактор Меню Сайта"
 
-#~ msgid "Create menu"
-#~ msgstr "Создать меню"
-
-# а
-#~ msgid "Created or Has been created"
-#~ msgstr "Дата создания или были созданы"
-#~ msgid "Have been saved"
-#~ msgstr "Сохранены"
-# а
-#, fuzzy
-#~ msgid "Select or choose a module"
-#~ msgstr "Выберите или выбрать модуль"
-
-#, fuzzy
-#~ msgid "Description "
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Created a widget"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Created a page"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Changed wesite settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Settings have been saved"
-#~ msgstr "Сохранение настроек прошло успешно"
-
-#, fuzzy
-#~ msgid "by default"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Short description"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Meta Description"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Role create"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "New pages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Updated pages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "goto site"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Create a widget"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "No widgets created"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Change category data"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "Site settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#~ msgid "Hello"
-#~ msgstr "Привет"
-
-#, fuzzy
-#~ msgid "Create and exit"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "by date"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "By position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Create new page"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Download"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "System update"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "Preview"
-#~ msgstr "Смотреть"
-
-#~ msgid "site"
-#~ msgstr "сайт"
-
-#, fuzzy
-#~ msgid "Manage site"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Your remark"
-#~ msgstr "Вааааааааааааше замечание"
-
-#, fuzzy
-#~ msgid "ac_val_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_val_pub_date"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_creat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_page_cont_updated"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "ac_sett_saved"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_val_image"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_by_default"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "ac_val_position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "ac_created"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_save"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_sett"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_yes"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_cat_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_name"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_n"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_create_cat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_no_updates"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "a_url"
-#~ msgstr "Посилання"
-
-#, fuzzy
-#~ msgid "a_date_create"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_type"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_footer_cancel"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_image_url"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_save_path"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_sort"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_by_pos"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_comm_by_def"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_turn_off"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_page_tpl"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "a_pub_stat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_enter_sys"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_create_group"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_ftp_sett"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_in_mb"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_left"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_top"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_bottom"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_text"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_no_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_album"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_gallery"
-#~ msgstr "Нааааааааамеееееееееее"

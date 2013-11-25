@@ -30,16 +30,16 @@ if (typeof JSON !== "object") {
             value = rep.call(holder, key, value)
         }
         switch (typeof value) {
-            case"string":
+            case "string":
                 return quote(value);
-            case"number":
+            case "number":
                 return isFinite(value) ? String(value) : "null";
-            case"boolean":
-            case"null":
+            case "boolean":
+            case "null":
                 return String(value);
-            case"object":
+            case "object":
                 if (!value) {
-                    return"null"
+                    return "null"
                 }
                 gap += indent;
                 partial = [];
@@ -134,6 +134,7 @@ if (typeof JSON !== "object") {
     }
 }());
 (function() {
+    "use strict";
     var c = this;
     if (!c.localStorage) {
         if (c.globalStorage) {
@@ -149,8 +150,10 @@ if (typeof JSON !== "object") {
         if (g.addBehavior) {
             g.addBehavior("#default#userdata");
             var b = c.localStorage = {length: 0, setItem: function(e, h) {
+                    
                     g.load(d);
                     e = a(e);
+                    
                     if (!g.getAttribute(e)) {
                         this.length++
                     }

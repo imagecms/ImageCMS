@@ -45,7 +45,7 @@
         <div class="btn-to-up">
             <button type="button">
                 <span class="icon_arrow_p"></span>
-                <span class="text-el">{lang('Наверх','newLevel')}</span>
+                <span class="text-el ref t-d_n">{lang('Наверх','newLevel')}</span>
             </button>
         </div>
     </div>

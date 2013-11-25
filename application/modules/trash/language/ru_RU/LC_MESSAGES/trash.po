@@ -1,344 +1,141 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 13:20+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-11-04 11:25+0200\n"
+"PO-Revision-Date: 2013-11-04 11:25+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-KeywordsList: lang\n"
-"X-Poedit-SearchPath-0: ../../..\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 
-#: /var/www/image.loc/_tempLangs.php:7
+#: ./application/modules/trash/templates/admin/main.tpl:6
 msgid "Redirect links removing"
 msgstr "Удаление ссылки редиректа"
 
-#: /var/www/image.loc/_tempLangs.php:8
+#: ./application/modules/trash/templates/admin/main.tpl:9
 msgid "Remove links?"
 msgstr "Удалить ссылки?"
 
-#: /var/www/image.loc/_tempLangs.php:9
-#: /var/www/image.loc/_tempLangs.php:14
+#: ./application/modules/trash/templates/admin/main.tpl:21
+#: ./application/modules/trash/templates/admin/main.tpl:49
 msgid "Redirect"
 msgstr "Редирект"
 
-#: /var/www/image.loc/_tempLangs.php:10
+#: ./application/modules/trash/templates/admin/main.tpl:28
 msgid "Create redirect"
 msgstr "Создать редирект"
 
-#: /var/www/image.loc/_tempLangs.php:11
-#: /var/www/image.loc/_tempLangs.php:28
+#: ./application/modules/trash/templates/admin/main.tpl:46
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:39
 msgid "Old URL"
 msgstr "Старый URL"
 
-#: /var/www/image.loc/_tempLangs.php:12
+#: ./application/modules/trash/templates/admin/main.tpl:47
 msgid "Redirect type"
 msgstr "Тип редиректа"
 
-#: /var/www/image.loc/_tempLangs.php:13
+#: ./application/modules/trash/templates/admin/main.tpl:48
 msgid "Redirect kind"
 msgstr "Вид редиректа"
 
-#: /var/www/image.loc/_tempLangs.php:15
+#: ./application/modules/trash/templates/admin/create_trash.tpl:6
 msgid "New redirect creation"
 msgstr "Создание нового редиректа"
 
-#: /var/www/image.loc/_tempLangs.php:16
+#: ./application/modules/trash/templates/admin/create_trash.tpl:23
 msgid "New trash data"
 msgstr "Новые данные"
 
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:29
-#: /var/www/image.loc/_tempLangs.php:33
+#: ./application/modules/trash/templates/admin/create_trash.tpl:43
+#: ./application/modules/trash/templates/admin/create_trash.tpl:81
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:47
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:85
 msgid "Type"
 msgstr "Тип"
 
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:30
-#: /var/www/image.loc/_tempLangs.php:35
+#: ./application/modules/trash/templates/admin/create_trash.tpl:56
+#: ./application/modules/trash/templates/admin/create_trash.tpl:107
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:60
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:110
 msgid "Product"
 msgstr "Продукт"
 
-#: /var/www/image.loc/_tempLangs.php:19
-#: /var/www/image.loc/_tempLangs.php:31
+#: ./application/modules/trash/templates/admin/create_trash.tpl:62
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:66
 msgid "Category"
 msgstr "Категория"
 
-#: /var/www/image.loc/_tempLangs.php:20
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:32
+#: ./application/modules/trash/templates/admin/create_trash.tpl:69
+#: ./application/modules/trash/templates/admin/create_trash.tpl:130
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:73
 msgid "Category of Base"
 msgstr "Категория Базы"
 
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:34
+#: ./application/modules/trash/templates/admin/create_trash.tpl:99
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:103
 msgid "Redirect Url"
 msgstr "URL редиректа"
 
-#: /var/www/image.loc/_tempLangs.php:24
-#: /var/www/image.loc/_tempLangs.php:36
+#: ./application/modules/trash/templates/admin/create_trash.tpl:118
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:121
 msgid "Categories"
 msgstr "Категории"
 
-#: /var/www/image.loc/_tempLangs.php:26
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:5
 msgid "Link editing"
 msgstr "Редактирования ссылки"
 
-#: /var/www/image.loc/_tempLangs.php:27
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:19
 msgid "Link edit"
 msgstr "Редактирования ссылки"
 
-#: /var/www/image.loc/_tempLangs.php:37
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:132
 msgid "Categories of Base"
 msgstr "Категории базы"
 
-#: /var/www/image.loc/_tempLangs.php:38
-#: /var/www/image.loc/_tempLangs.php:41
+#: ./application/modules/trash/templates/admin/main.tpl:12
+#: ./application/modules/trash/templates/admin/main.tpl:29
 msgid "Delete"
 msgstr "Удалить"
 
-#: /var/www/image.loc/_tempLangs.php:39
+#: ./application/modules/trash/templates/admin/main.tpl:13
 msgid "Cancel"
 msgstr "Отменить"
 
-#: /var/www/image.loc/_tempLangs.php:40
-#: /var/www/image.loc/_tempLangs.php:43
-#: /var/www/image.loc/_tempLangs.php:46
+#: ./application/modules/trash/templates/admin/main.tpl:25
+#: ./application/modules/trash/templates/admin/create_trash.tpl:10
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:9
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_tempLangs.php:42
+#: ./application/modules/trash/templates/admin/main.tpl:63
 msgid "Editing"
 msgstr "Редактирование"
 
-#: /var/www/image.loc/_tempLangs.php:44
-#: /var/www/image.loc/_tempLangs.php:47
+#: ./application/modules/trash/templates/admin/create_trash.tpl:11
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:10
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/www/image.loc/_tempLangs.php:45
-#: /var/www/image.loc/_tempLangs.php:48
+#: ./application/modules/trash/templates/admin/create_trash.tpl:12
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:11
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: ../../../module_info.php:7
+#: ./application/modules/trash/module_info.php:7
 msgid "Module of redirects"
-msgstr "Модуль редиректов "
+msgstr "Модуль редиректов"
 
-#: ../../../module_info.php:8
+#: ./application/modules/trash/module_info.php:8
 msgid "Module for creating redirects 301, 302"
 msgstr "Модуль для создания редиректов 301, 302"
 
-#~ msgid "Create"
-#~ msgstr "Создать"
-
-#~ msgid "Create and exit"
-#~ msgstr "Создать и выйти"
-
-# хз
-#~ msgid ""
-#~ "Module for creating a link from remote product to category, product, "
-#~ "article, 404, or another site"
-#~ msgstr ""
-#~ "Модуль для создания связи с удаленного товара к категорие, товару, "
-#~ "странице, 404 или другому сайту"
-#~ msgid "Create a category"
-#~ msgstr "Создать категорию"
-#, fuzzy
-#~ msgid "System information"
-#~ msgstr "Настр"
-
-#~ msgid "Modules"
-#~ msgstr "Модулі"
-
-#~ msgid "Management of Meta Tags"
-#~ msgstr "Управление мета тегами"
-
-#~ msgid "Widgets"
-#~ msgstr "Виджети"
-
-#, fuzzy
-#~ msgid "Date of creation"
-#~ msgstr "Настр"
-
-#~ msgid "Site configuration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Widget settings"
-#~ msgstr "Виджети"
-
-#, fuzzy
-#~ msgid "Сonsider the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Widget title"
-#~ msgstr "Виджети"
-
-#~ msgid "New pages"
-#~ msgstr "Нові сторінки"
-
-#~ msgid "Buy"
-#~ msgstr "Купить"
-
-#, fuzzy
-#~ msgid "Move to category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create status"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create property"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Catagory"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "turn category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create new template"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Drug category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Edit the category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Basic information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a warehouse"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "General information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a way to deliver"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Orders list"
-#~ msgstr "Список замовлень"
-
-#~ msgid "Customer"
-#~ msgstr "Замовник"
-
-#, fuzzy
-#~ msgid "Date of order"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Ordering information"
-#~ msgstr "Настр"
-
-#~ msgid "New orders"
-#~ msgstr "Новие закази"
-
-#, fuzzy
-#~ msgid "Created Date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a payment method"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Pages and categories"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Picture for category"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of addition"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid " Create a product copy?"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create small image"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a set"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create currency"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Banner creation"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create a banner"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create a brand"
-#~ msgstr "Создать категорию"
-
-#~ msgid "Regular or usual pages"
-#~ msgstr "Звичайні сторінки"
-
-#, fuzzy
-#~ msgid "Create a discount"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create gift certificate"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create user"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Time of registration"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Additional information"
-#~ msgstr "Настр"
-
-#, fuzzy
-#~ msgid "Create date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Created date"
-#~ msgstr "Создать категорию"
-
-#, fuzzy
-#~ msgid "Create catagory"
-#~ msgstr "Создать категорию"
