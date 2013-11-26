@@ -29,9 +29,9 @@ class Star_rating extends MY_Controller {
         $this->load->helper('path');
         $this->load->model('rating_model');
         $obj = new MY_Lang();
-        $obj->load('star_rating'); 
+        $obj->load('star_rating');
     }
-    
+
     public static function adminAutoload() {
         parent::adminAutoload();
     }
@@ -44,8 +44,6 @@ class Star_rating extends MY_Controller {
      * Show star_rating
      * @param SProducts $item
      */
-
-    
     public function show_star_rating($item = null, $registerScript = true) {
         $get_settings = $this->rating_model->get_settings();
         //prepare array with pages which can display "Star rating"
@@ -79,12 +77,12 @@ class Star_rating extends MY_Controller {
                 } else {
                     $rating_s = 0;
                 }
-                $data = (array(
+                $data = array(
                     'id' => $rating->id,
                     'type' => $rating->type,
                     'votes' => $rating->votes,
                     'rating' => $rating_s
-                ));
+                );
 
                 $template = 'star_rating';
             } else {
@@ -92,17 +90,17 @@ class Star_rating extends MY_Controller {
                 return false;
             }
         }
-  
+
         //Show template with prepared parametrs
         if ($template !== null)
-            $renderTemplate= CMSFactory\assetManager::create();
-                    $renderTemplate->setData($data)
-                    ->registerStyle('style');
+            $renderTemplate = CMSFactory\assetManager::create();
+        $renderTemplate->setData($data)
+                ->registerStyle('style');
 //                    if ($template != 'product_star_rating')$registerScript
-                      if ($registerScript){
-                          $renderTemplate->registerScript('scripts');
-                      }
-                    $renderTemplate->render($template, true);
+        if ($registerScript) {
+            $renderTemplate->registerScript('scripts');
+        }
+        $renderTemplate->render($template, true);
         return $this;
     }
 
@@ -114,7 +112,6 @@ class Star_rating extends MY_Controller {
         $id = $_POST['cid'];
         $type = $_POST['type'];
         $rating = (int) $_POST['val'];
-
 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
             //Check if rating exists
