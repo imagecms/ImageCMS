@@ -30,7 +30,9 @@ class Cms_base extends CI_Model {
                     ->where('lang_ident', $lang_arr['id'])
                     ->limit(1)
                     ->get('settings_i18n')
+                    //echo $this->db->_error_message();
                     ->result_array();
+
             $arr['site_short_title'] = $meta[0]['short_name'];
             $arr['site_title'] = $meta[0]['name'];
             $arr['site_description'] = $meta[0]['description'];
