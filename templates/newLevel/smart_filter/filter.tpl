@@ -54,7 +54,7 @@
                         <li>
                             <div class="frame-label" id="brand_{echo $brand->id}">
                                 <span class="niceCheck b_n">
-                                    <input {$dis} class="brand{echo $brand->id}" name="brand[]" value="{echo $brand->id}" type="checkbox" {$check} checked="checked"/>
+                                    <input {$dis} class="brand{echo $brand->id}" name="brand[]" value="{echo $brand->id}" type="checkbox" {$check}/>
                                 </span>
                                 <div class="name-count">
                                     <span class="text-el">{echo $brand->name}</span>
