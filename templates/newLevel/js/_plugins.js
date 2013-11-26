@@ -1990,7 +1990,7 @@ function getCookie(c_name)
                     });
             }
         },
-        closeDrop: function(sel) {
+        closeDrop: function(sel, datas) {
             if (sel === undefined)
                 sel = $(this);
             clearTimeout(optionsDrop.closeDropTime);
@@ -2062,9 +2062,9 @@ function getCookie(c_name)
                                     });
                                     $this.removeClass(data.place);
                                     if (data.closed !== undefined)
-                                        data.closed($thisB, $this);
+                                        data.closed($thisB, $this, datas);
                                     if (data.elClosed !== undefined)
-                                        eval(data.elClosed)($thisB, $this);
+                                        eval(data.elClosed)($thisB, $this, datas);
 
                                     if (isTouch)
                                         drop.data('dropOver').off('touchmove.drop');
@@ -2072,19 +2072,24 @@ function getCookie(c_name)
                                     $(document).trigger({
                                         type: 'drop.closed',
                                         el: $thisB,
-                                        drop: $this
+                                        drop: $this,
+                                        datas: datas
                                     });
                                 });
                             }
                             $(document).trigger({
                                 'type': 'drop.close',
                                 el: $thisB,
-                                drop: drop
+                                drop: drop,
+                                datas: datas
                             });
                             var close = data.elClose !== undefined ? data.elClose : data.close;
                             if (close !== undefined) {
-                                var res = close($thisB, $(this));
-                                if (res === false) {
+                                if (typeof close == 'string')
+                                    var res = eval(close)($thisB, $(this), datas);
+                                else
+                                    var res = close($thisB, $(this), datas);
+                                if (res === false && res !== true) {
                                     if (window.console)
                                         console.log(res);
                                 }

@@ -18,7 +18,7 @@ function changeDeliveryMethod(id) {
     $(genObj.pM).next().show();
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
         var data = JSON.parse(dataStr),
-                replaceStr = '';
+        replaceStr = '';
         if (selectPayment)
             replaceStr = _.template('<div class="lineForm"><select id="paymentMethod" name="paymentMethodId"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select></div>', {
                 data: data
@@ -36,18 +36,18 @@ function changeDeliveryMethod(id) {
             $(genObj.pM).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-                        //,classRemove: 'b_n'//if not standart
+            //,classRemove: 'b_n'//if not standart
             });
     });
 }
 function displayOrderSum(obj) {
     var discount = Shop.Cart.discount,
-            kitDiscount = parseFloat(Shop.Cart.kitDiscount),
-            finalAmount = Shop.Cart.getFinalAmount();
+    kitDiscount = parseFloat(Shop.Cart.kitDiscount),
+    finalAmount = Shop.Cart.getFinalAmount();
 
     if (Shop.Cart.koefCurr == undefined) {
         var sumBask = parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision),
-                addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
+        addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
         Shop.Cart.koefCurr = addSumBask / sumBask;
     }
     
@@ -170,7 +170,7 @@ function initOrder() {
         $(genObj.pM).nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
             elCheckWrap: '.niceRadio'
-                    //,classRemove: 'b_n'//if not standart
+        //,classRemove: 'b_n'//if not standart
         });
 
     $(document).on('render_popup_cart', function() {
