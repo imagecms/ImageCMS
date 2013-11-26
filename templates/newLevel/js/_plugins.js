@@ -190,6 +190,7 @@ function getCookie(c_name)
                                     settings.before(frameChecks, $this, nstcheck, e);
                                 }
                             }
+                            return false;
                         });
                         var form = frameChecks.closest('form');
                         form.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function() {
@@ -264,7 +265,7 @@ function getCookie(c_name)
                         methods.checkUnChecked(el);
                     }
                 },
-                changeCheckAllChecks: function(el)
+                checkAllChecks: function(el)
                 {
                     if (el === undefined)
                         el = this;
