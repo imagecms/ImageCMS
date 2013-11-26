@@ -246,9 +246,19 @@
                 <div class="foot-box5 col-sm-3">
                     <div class="title">Задавайте вопросы</div>
                     <ul>
-                        <li><span class="text-el f-w_b">+7 (499) 703-37-54</span></li>
-                        <li><span class="icon-skype-foot"></span><span class="text-el">imagecms</span></li>
-                        <li><span class="icon-icq-foot"></span><span class="text-el">627-509-412</span></li>
+                        <li>
+                            <span class="text-el f-w_b">+7 (499) 703-37-54</span>
+                        </li>
+                        <li>
+                            <span class="icon-skype-foot"></span>
+                            <span class="text-el">
+                                <a href="skype:imagecms">imagecms</a>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="icon-icq-foot"></span>
+                            <span class="text-el">627-509-412</span>
+                        </li>
                     </ul>
                 </div>
             </div>
