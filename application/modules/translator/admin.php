@@ -252,14 +252,14 @@ class Admin extends BaseAdminController {
                         $url = $this->main_path . $lang . '/LC_MESSAGES/' . $type . '.po';
                         break;
                 }
-                
-                if(file_exists($url)){
-                    return showMessage(lang('File is already exists.') , lang('Error'), 'r');
+
+                if (file_exists($url)) {
+                    return showMessage(lang('File is already exists.'), lang('Error'), 'r');
                 }
 
                 $handle = @fopen($url, "wb");
-                if(!$handle){
-                   return showMessage(lang('Can not create file. Check if path to the file is correct - ') . $url , lang('Error'), 'r');
+                if (!$handle) {
+                    return showMessage(lang('Can not create file. Check if path to the file is correct - ') . $url, lang('Error'), 'r');
                 }
                 fwrite($handle, b"\xEF\xBB\xBF");
                 if ($handle !== false) {
@@ -1045,10 +1045,13 @@ class Admin extends BaseAdminController {
 
     public function renderFile() {
         $filePath = $this->input->post('filePath');
-
         $filePath = str_replace('/', '\\', $filePath);
         $filePath = preg_replace('/application[\W\w]+/', '', __DIR__) . $filePath;
         $file = file($filePath);
+        if (!$file) {
+            $filePath = str_replace('\\', '/', $filePath);
+            $file = file($filePath);
+        }
         return json_encode($file);
     }
 
@@ -1058,7 +1061,11 @@ class Admin extends BaseAdminController {
 
         $filePath = str_replace('/', '\\', $filePath);
         $filePath = preg_replace('/application[\W\w]+/', '', __DIR__) . $filePath;
-        return file_put_contents($filePath, $content);
+        if (!file_put_contents($filePath, $content)) {
+            $filePath = str_replace('\\', '/', $filePath);
+            file_put_contents($filePath, $content);
+        }
+//        return file_put_contents($filePath, $content);
     }
 
 }
