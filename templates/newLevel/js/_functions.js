@@ -539,7 +539,10 @@ function initCarouselJscrollPaneCycle(el) {
             cycle.cycle($.extend({}, optionsCycle, {
                 'next': next,
                 'prev': prev,
-                'pager': $this.find('.pager')
+                'pager': $this.find('.pager'),
+                'after': function(){
+                    wnd.scroll();
+                }
             })).hover(function() {
                 cycle.cycle('pause');
             }, function() {

@@ -124,7 +124,9 @@ var optionsDrop = {
     timeclosemodal: 2000,
     delayAfter: -500,
     confirmSel: '#confirm',
-    moreOne: true,
+    moreOne: false,
+    closeClick: true,
+    closeEsc: true,
     size: true
 };
 var productStatus = {
