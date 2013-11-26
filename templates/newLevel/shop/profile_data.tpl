@@ -44,7 +44,7 @@
         </div>
     </div>
     {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
-    {if ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}
+    {if true}
         <div class="layout-highlight info-discount">
             
             {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}<div class="title-default">

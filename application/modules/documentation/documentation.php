@@ -41,8 +41,8 @@ class Documentation extends \MY_Controller {
             'begin-work' => 'Начало работы',
             'manage' => 'Администрирование',
             'step-by-step' => 'Пошаговые инструкции',
-            'developers' => 'Разработчикам',
             'templates' => 'Работа с шаблонами',
+            'developers' => 'Разработчикам',            
         );
         
         \CMSFactory\assetManager::create()
