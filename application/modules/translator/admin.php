@@ -20,6 +20,7 @@ class Admin extends BaseAdminController {
     public $exchangePoArray;
     public $js_langs;
     public $domain;
+    public $fileError = '';
 
     public function __construct() {
         parent::__construct();
@@ -252,8 +253,14 @@ class Admin extends BaseAdminController {
                         break;
                 }
 
+                if (file_exists($url)) {
+                    return showMessage(lang('File is already exists.'), lang('Error'), 'r');
+                }
 
                 $handle = @fopen($url, "wb");
+                if (!$handle) {
+                    return showMessage(lang('Can not create file. Check if path to the file is correct - ') . $url, lang('Error'), 'r');
+                }
                 fwrite($handle, b"\xEF\xBB\xBF");
                 if ($handle !== false) {
                     fwrite($handle, 'msgid ""');
@@ -299,6 +306,16 @@ class Admin extends BaseAdminController {
                 }
                 chmod($url, 0777);
                 fclose($handle);
+                showMessage(lang('File was succcessfuly created.'), lang('Message'));
+
+                if ($this->input->post('action') == 'showEdit') {
+                    $this->session->set_userdata('translation', array(
+                        'name' => $module_template,
+                        'type' => $type,
+                        'lang' => $lang
+                    ));
+                    pjax('/admin/components/init_window/translator');
+                }
             }
         } else {
             $this->scanLangFiles();
@@ -560,6 +577,24 @@ class Admin extends BaseAdminController {
         return $translations;
     }
 
+    public function checkFile($file_path) {
+        if (file_exists($file_path)) {
+            if (!is_readable($file_path)) {
+                $this->fileError = lang('File cant be read. Please, set read file permissions.');
+                return FALSE;
+            }
+
+            if (!is_writable($file_path)) {
+                $this->fileError = lang('File cant be written. Please, set write file permissions.');
+                return FALSE;
+            }
+            return TRUE;
+        } else {
+            $this->fileError = lang('File does not exist.');
+            return FALSE;
+        }
+    }
+
     public function savePoArray($module_template, $type, $lang) {
         $url = '';
         $po_array = (array) json_decode($this->input->post('po_array'));
@@ -573,6 +608,10 @@ class Admin extends BaseAdminController {
             case 'main':
                 $url = $this->main_path . $lang . '/LC_MESSAGES/' . $type . '.po';
                 break;
+        }
+
+        if (!$this->checkFile($url)) {
+            return showMessage($this->fileError, lang('Error'), 'r');
         }
 
         $handle = @fopen($url, "wb");
@@ -661,12 +700,22 @@ class Admin extends BaseAdminController {
                 fclose($handle);
             }
 
-            $this->convertToMO($url);
+            if ($this->convertToMO($url)) {
+                showMessage(lang('Translation file was successfuly saved.'), lang('Message'));
+            } else {
+                showMessage(lang('Operation failed. Can not convert to mo-file.'), lang('Error'), 'r');
+            }
         }
     }
 
     public function canselTranslation() {
-        return $this->session->unset_userdata('translation');
+        $this->session->unset_userdata('translation');
+        if (!$this->session->userdata('translation')) {
+            showMessage(lang('Selection path memory was successfuly cleared.'), lang('Message'));
+            jsCode('window.location.reload();');
+        } else {
+            showMessage(lang('Operation failed!'), lang('Error'), 'r');
+        }
     }
 
     function open_https_url($url, $refer = "") {
@@ -1014,7 +1063,7 @@ class Admin extends BaseAdminController {
         $filePath = preg_replace('/application[\W\w]+/', '', __DIR__) . $filePath;
         if (!file_put_contents($filePath, $content)) {
             $filePath = str_replace('\\', '/', $filePath);
-                file_put_contents($filePath, $content);
+            file_put_contents($filePath, $content);
         }
 //        return file_put_contents($filePath, $content);
     }
