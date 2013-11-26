@@ -184,6 +184,7 @@
                         {/foreach}
                     </ul>
                 </div>
+
                 <div class="info-box3 col-lg-4">
                     <div class="title">
                         <span class="icon-linked"></span>
@@ -206,6 +207,7 @@
                         </div>
                         {form_csrf()}
                     </form>
+
                 </div>
             </div>
         </div>
