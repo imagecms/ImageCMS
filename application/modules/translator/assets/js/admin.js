@@ -859,26 +859,26 @@ var Translator = {
 
     },
     selectTextLine: function(element, selectionLine, selectionText) {
-        var posi = element.val().indexOf(selectionLine); // take the position of the word in the text
-        if (posi != -1) {
-            var target = element[0];
-            // select the textarea and the word
-            target.focus();
-            if (target.setSelectionRange)
-                target.setSelectionRange(posi, posi + selectionText.length - 1);
-            else {
-                var r = target.createTextRange();
-                r.collapse(true);
-                r.moveEnd('character', posi + selectionLine);
-                r.moveStart('character', posi);
-                r.select();
-            }
-            var line_ht = element.css('line-height').replace('px', ''); //height in pixel of each row
-            var n_lines = target.scrollHeight / line_ht; // the total amount of lines
-            var char_in_line = element.val().length / n_lines; // amount of chars for each line
-            var height = Math.floor(posi / char_in_line) - 10; // amount of lines in the textarea
-            element.scrollTop(height * line_ht); // scroll to the selected line
-        }
+//        var posi = element.val().indexOf(selectionLine); // take the position of the word in the text
+//        if (posi != -1) {
+//            var target = element[0];
+//            // select the textarea and the word
+//            target.focus();
+//            if (target.setSelectionRange)
+//                target.setSelectionRange(posi, posi + selectionText.length - 1);
+//            else {
+//                var r = target.createTextRange();
+//                r.collapse(true);
+//                r.moveEnd('character', posi + selectionLine);
+//                r.moveStart('character', posi);
+//                r.select();
+//            }
+//            var line_ht = element.css('line-height').replace('px', ''); //height in pixel of each row
+//            var n_lines = target.scrollHeight / line_ht; // the total amount of lines
+//            var char_in_line = element.val().length / n_lines; // amount of chars for each line
+//            var height = Math.floor(posi / char_in_line) - 10; // amount of lines in the textarea
+//            element.scrollTop(height * line_ht); // scroll to the selected line
+//        }
     },
     translate: function(curElement) {
         var YandexApiKey = $.trim($('.YandexApiKey').val());
