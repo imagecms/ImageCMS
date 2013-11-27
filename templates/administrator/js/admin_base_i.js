@@ -1181,6 +1181,7 @@ $(document).ready(function() {
                                     $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
                                     $('#progressLabel').html('<b>' + langs.additionalImagesResize + '</b><br/>' + langs.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + langs.processed + ': ' + doneAdditional + ' )');
                                     //                                    console.log((doneAdditional / countAllAdditional) * 100);
+                                    $('.bar').text(parseInt((doneAdditional / countAllAdditional) * 100) + '%');
                                     if (doneAdditional == countAllAdditional) {
                                         $('#fixPage').fadeOut(100);
                                         $('#progressBlock').fadeOut(1000);
