@@ -1,17 +1,21 @@
+<script src="/application/modules/translator/assets/js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
 <div class="modal hide fade modal_file_edit" style="width: 1000px;left: 33%;">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>{lang('File editing')}</h3>
     </div>
     <div class="modal-body">
-        <div class="fileLines" style="float: left; height: 380px;overflow: hidden; min-width: 20px; padding-top: 4px;padding-bottom: 4px; padding-left: 5px; background-color: whitesmoke;border: 1px solid #ccc; -webkit-border-top-left-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-bottom-left-radius: 3px; -moz-border-radius-left: 3px; border-bottom-left-radius: 3px; border-top-left-radius: 3px;"></div>
-        <textarea id="fileEdit" wrap="off" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 925px; overflow: scroll;"></textarea>
+        <!--div class="fileLines" style="float: left; height: 380px;overflow: hidden; min-width: 20px; padding-top: 4px;padding-bottom: 4px; padding-left: 5px; background-color: whitesmoke;border: 1px solid #ccc; -webkit-border-top-left-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-bottom-left-radius: 3px; -moz-border-radius-left: 3px; border-bottom-left-radius: 3px; border-top-left-radius: 3px;"></div-->
+        <!--textarea id="fileEdit" wrap="off" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 925px; overflow: scroll;"></textarea-->
+        <div id="fileEdit" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 925px;">
+        </div>
     </div>
     <div class="modal-footer">
-        <a class="btn btn-primary" onclick="Translator.saveEditingsFile($())" >{lang('Save')}</a>
+        <a class="btn btn-primary" onclick="Translator.saveEditingFile($(this))" >{lang('Save')}</a>
         <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
     </div>
 </div>
+
 <div class="modal hide fade modal_update_results">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

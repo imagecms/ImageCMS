@@ -156,6 +156,8 @@ class Admin extends BaseAdminController {
                 ->setData('settings', $this->getSettings())
                 ->setData('locales', $locales_unique)
                 ->renderAdmin('list');
+        
+        
 
         if ($translation) {
             $names = '';
