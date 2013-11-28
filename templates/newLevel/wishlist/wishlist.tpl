@@ -114,7 +114,9 @@
                                     {/if}
                                     {if $wishlist[0][variant_id]}
                                         <ul class="items items-catalog items-wish-list">
-                                            {$CI->load->module('new_level')->OPI($wishlist, array('opi_wishlist'=>true), 'array_product_item')}
+
+                                            {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>false))}
+
                                         </ul>
                                     {else:}
                                         <div class="msg layout-highlight layout-highlight-msg">
