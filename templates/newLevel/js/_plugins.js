@@ -173,10 +173,10 @@ function getCookie(c_name)
                 after = settings.after;
 
                 //init event click on wrapper change state
-                frameChecks.find(wrapper).removeClass(dc+' '+aC+' '+fC).off('click.' + nS).on('click.' + nS, function(e) {
+                frameChecks.find(wrapper).removeClass(dC+' '+aC+' '+fC).off('click.' + nS).on('click.' + nS, function(e) {
                     var $this = $(this),
                     $thisD = $this.hasClass(dC),
-                    nstcheck = $this.find(elCheckWrap).removeClass(dc+' '+aC+' '+fC);
+                    nstcheck = $this.find(elCheckWrap).removeClass(dC+' '+aC+' '+fC);
                     if (nstcheck.length === 0)
                         nstcheck = $this;
                     if (!$thisD) {
