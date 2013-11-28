@@ -8,10 +8,17 @@
 {$condlimit = $opi_limit != false && $opi_limit != NULL}
 
 {foreach $products as $key => $p}
+
+    {if is_array($p) && $p.id}
+        {$p = getProduct($p.id)}
+    {/if}
+    
+
     {$variants = $p->getProductVariants()}
     {$hasDiscounts = $p->hasDiscounts()}
 
     {if $key >= $opi_limit && $condlimit}
+
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
