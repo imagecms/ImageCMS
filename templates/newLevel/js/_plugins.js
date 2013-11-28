@@ -150,199 +150,192 @@ function getCookie(c_name)
     $.existsN = function(nabir) {
         return (nabir.length > 0);
     };
-    var
-            aC = 'active',
-            dC = 'disabled',
-            nS = "nstcheck",
-            methods = {
-                init: function(options) {
-                    if ($.existsN(this)) {
-                        var settings = $.extend({
-                            wrapper: $("label:has(.niceCheck)"),
-                            elCheckWrap: '.niceCheck',
-                            evCond: false,
-                            classRemove: '',
-                            trigger: function() {
-                            },
-                            after: function() {
-                            }
-                        }, options);
-                        var frameChecks = $(this),
-                                wrapper = settings.wrapper,
-                                elCheckWrap = settings.elCheckWrap,
-                                evCond = settings.evCond,
-                                classRemove = settings.classRemove,
-                                after = settings.after;
-
-                        //init event click on wrapper change state
-                        frameChecks.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
-                            var $this = $(this),
-                                    $thisD = $this.is('.'+dC),
-                                    nstcheck = $this.find(elCheckWrap);
-                            if (nstcheck.length === 0)
-                                nstcheck = $this;
-                            if (!$thisD) {
-                                if (!evCond) {
-                                    methods.changeCheck(nstcheck);
-                                    after(frameChecks, $this, nstcheck, e);
-                                }
-                                else {
-                                    settings.trigger(frameChecks, $this, nstcheck, e);
-                                }
-                            }
-                            return false;
-                        });
-
-                        //init event reset
-                        var form = frameChecks.closest('form');
-                        form.each(function() {
-                            var $this = $(this),
-                                    checked = $([]);
-                            $this.find('input:checked').each(function() {
-                                checked = checked.add($(this).parent());
-                            });
-                            $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function() {
-                                methods.checkAllReset($this.find(elCheckWrap).not(checked));
-                                return false;
-                            });
-                        });
-
-                        //init events input
-                        wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
-                            e.stopPropagation();
-                            if (e.button == 0)
-                                $(this).closest(wrapper).trigger('click.' + nS);
-                            return false;
-                        }).off('click.' + nS).on('click.' + nS, function(e) {
-                            e.stopPropagation();
-                            return false;
-                        }).off('keyup.' + nS).on('keyup.' + nS, function(e) {
-                            if (e.keyCode === 32)
-                                $(this).closest(wrapper).trigger('click.' + nS);
-                        }).off('focus.' + nS).on('focus.' + nS, function(e) {
-                            var $this = $(this);
-                            $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass('focus');
-                        }).off('blur.' + nS).on('blur.' + nS, function(e) {
-                            var $this = $(this);
-                            $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass('focus');
-                        }).off('change.' + nS).on('change.' + nS, function() {
-                            return false;
-                        });
-
-                        //init states of checkboxes
-                        frameChecks.find(elCheckWrap).each(function() {
-                            var $this = $(this).removeClass(classRemove).addClass(nS),
-                                    input = $this.find('input');
-
-                            methods._changeCheckStart($this);
-                            if (input.is(':focus'))
-                                input.trigger('focus.' + nS);
-                            if (input.is(':disabled'))
-                                methods.checkAllDisabled($this);
-                            else
-                                methods.checkAllEnabled($this);
-                        });
+    var nS = "nstcheck",
+    methods = {
+        init: function(options) {
+            if ($.existsN(this)) {
+                var settings = $.extend({
+                    wrapper: $("label:has(.niceCheck)"),
+                    elCheckWrap: '.niceCheck',
+                    evCond: false,
+                    classRemove: '',
+                    trigger: function() {
+                    },
+                    after: function() {
                     }
-                },
-                _changeCheckStart: function(el) {
-                    if (el === undefined)
-                        el = this;
-                    var input = el.find("input");
-                    if (input.attr("checked") !== undefined) {
-                        methods.checkChecked(el);
+                }, options);
+                var frameChecks = $(this),
+                wrapper = settings.wrapper,
+                elCheckWrap = settings.elCheckWrap,
+                evCond = settings.evCond,
+                classRemove = settings.classRemove,
+                after = settings.after;
+
+                //init event click on wrapper change state
+                frameChecks.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
+                    var $this = $(this),
+                    $thisD = $this.is('.'+dC),
+                    nstcheck = $this.find(elCheckWrap);
+                    if (nstcheck.length === 0)
+                        nstcheck = $this;
+                    if (!$thisD) {
+                        if (!evCond) {
+                            methods.changeCheck(nstcheck);
+                            after(frameChecks, $this, nstcheck, e);
+                        }
+                        else {
+                            settings.trigger(frameChecks, $this, nstcheck, e);
+                        }
                     }
-                    else {
-                        methods.checkUnChecked(el);
-                    }
-                },
-                checkChecked: function(el) {
-                    if (el === undefined)
-                        el = this;
-                    var input = el.find("input");
-                    if (input === undefined)
-                        input = $(this).find("input");
-                    el.addClass(aC).parent().addClass(aC);
-                    input.attr("checked", 'checked');
-                    $(document).trigger({
-                        'type': nS + '.cc',
-                        'el': el,
-                        'input': input
+                    return false;
+                });
+
+                //init event reset
+                var form = frameChecks.closest('form');
+                form.each(function() {
+                    var $this = $(this),
+                    checked = $([]);
+                    $this.find('input:checked').each(function() {
+                        checked = checked.add($(this).parent());
                     });
-                },
-                checkUnChecked: function(el) {
-                    if (el === undefined)
-                        el = this;
-                    var input = el.find("input");
-                    if (input === undefined)
-                        input = $(this).find("input");
-                    el.removeClass(aC).parent().removeClass(aC);
-                    input.removeAttr("checked");
-                    $(document).trigger({
-                        'type': nS + '.cuc',
-                        'el': el,
-                        'input': input
+                    $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function() {
+                        methods.checkAllReset($this.find(elCheckWrap).not(checked));
+                        return false;
                     });
-                },
-                changeCheck: function(el)
-                {
-                    if (el === undefined)
-                        el = this;
-                    var input = el.find("input");
-                    if (input.attr("checked") === undefined) {
-                        methods.checkChecked(el);
-                    }
-                    else {
-                        methods.checkUnChecked(el);
-                    }
-                },
-                checkAllChecks: function(el)
-                {
-                    if (el === undefined)
-                        el = this;
-                    el.each(function() {
-                        methods.checkChecked($(this));
-                    });
-                },
-                checkAllReset: function(el)
-                {
-                    if (el === undefined)
-                        el = this;
-                    el.each(function() {
-                        methods.checkUnChecked($(this));
-                    });
-                },
-                checkAllDisabled: function(el)
-                {
-                    var el = el;
-                    if (el === undefined)
-                        el = this;
-                    el.each(function() {
-                        var input = el.find("input");
-                        el.addClass(dC).parent().addClass(dC);
-                        input.attr('disabled', 'disabled');
-                        $(document).trigger({
-                            'type': nS + '.ad',
-                            'el': el,
-                            'input': input
-                        });
-                    });
-                },
-                checkAllEnabled: function(el)
-                {
-                    if (el === undefined)
-                        el = this;
-                    el.each(function() {
-                        var input = el.find("input");
-                        el.removeClass(dC).parent().removeClass(dC);
-                        input.removeAttr('disabled');
-                        $(document).trigger({
-                            'type': nS + '.ae',
-                            'el': el,
-                            'input': input
-                        });
-                    });
-                }
-            };
+                });
+
+                //init events input
+                wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
+                    e.stopPropagation();
+                    if (e.button == 0)
+                        $(this).closest(wrapper).trigger('click.' + nS);
+                    return false;
+                }).off('click.' + nS).on('click.' + nS, function(e) {
+                    e.stopPropagation();
+                    return false;
+                }).off('keyup.' + nS).on('keyup.' + nS, function(e) {
+                    if (e.keyCode === 32)
+                        $(this).closest(wrapper).trigger('click.' + nS);
+                }).off('focus.' + nS).on('focus.' + nS, function(e) {
+                    var $this = $(this);
+                    $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass('focus');
+                }).off('blur.' + nS).on('blur.' + nS, function(e) {
+                    var $this = $(this);
+                    $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass('focus');
+                }).off('change.' + nS).on('change.' + nS, function() {
+                    return false;
+                });
+
+                //init states of checkboxes
+                frameChecks.find(elCheckWrap).each(function() {
+                    var $this = $(this).removeClass(classRemove).addClass(nS),
+                    input = $this.find('input');
+
+                    methods._changeCheckStart($this);
+                    if (input.is(':focus'))
+                        input.trigger('focus.' + nS);
+                    if (input.is(':disabled'))
+                        methods.checkAllDisabled($this);
+                    else
+                        methods.checkAllEnabled($this);
+                });
+            }
+        },
+        _changeCheckStart: function(el) {
+            if (el === undefined)
+                el = this;
+            var input = el.find("input");
+            if (input.attr("checked") !== undefined) {
+                methods.checkChecked(el);
+            }
+            else {
+                methods.checkUnChecked(el);
+            }
+        },
+        checkChecked: function(el) {
+            if (el === undefined)
+                el = this;
+            var input = el.find("input");
+            if (input === undefined)
+                input = $(this).find("input");
+            el.addClass(aC).parent().addClass(aC);
+            input.attr("checked", 'checked');
+            input.trigger({
+                'type': nS + '.cc',
+                'el': el
+            });
+        },
+        checkUnChecked: function(el) {
+            if (el === undefined)
+                el = this;
+            var input = el.find("input");
+            if (input === undefined)
+                input = $(this).find("input");
+            el.removeClass(aC).parent().removeClass(aC);
+            input.removeAttr("checked");
+            input.trigger({
+                'type': nS + '.cuc',
+                'el': el
+            });
+        },
+        changeCheck: function(el)
+        {
+            if (el === undefined)
+                el = this;
+            var input = el.find("input");
+            if (input.attr("checked") === undefined) {
+                methods.checkChecked(el);
+            }
+            else {
+                methods.checkUnChecked(el);
+            }
+        },
+        checkAllChecks: function(el)
+        {
+            if (el === undefined)
+                el = this;
+            el.each(function() {
+                methods.checkChecked($(this));
+            });
+        },
+        checkAllReset: function(el)
+        {
+            if (el === undefined)
+                el = this;
+            el.each(function() {
+                methods.checkUnChecked($(this));
+            });
+        },
+        checkAllDisabled: function(el)
+        {
+            var el = el;
+            if (el === undefined)
+                el = this;
+            el.each(function() {
+                var input = el.find("input");
+                el.addClass(dC).parent().addClass(dC);
+                input.attr('disabled', 'disabled');
+                input.trigger({
+                    'type': nS + '.ad',
+                    'el': el
+                });
+            });
+        },
+        checkAllEnabled: function(el)
+        {
+            if (el === undefined)
+                el = this;
+            el.each(function() {
+                var input = el.find("input");
+                el.removeClass(dC).parent().removeClass(dC);
+                input.removeAttr('disabled');
+                input.trigger({
+                    'type': nS + '.ae',
+                    'el': el
+                });
+            });
+        }
+    };
     $.fn.nStCheck = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
