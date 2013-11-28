@@ -210,11 +210,11 @@
                     {/if}
                 </tbody>
             </table>
+            {if $paginator > ''}
+                <div class="span9">
+                    {$paginator}
+                </div>
+            {/if}
         </div>
-        {if $paginator > ''}
-            <div class="clearfix">
-                {$paginator}
-            </div>
-        {/if}
     </section>
 </form>
