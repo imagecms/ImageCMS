@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-28 01:23+0200\n"
-"PO-Revision-Date: 2013-11-28 01:23+0200\n"
+"POT-Creation-Date: 2013-11-28 02:26+0200\n"
+"PO-Revision-Date: 2013-11-28 02:26+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -22,6 +22,164 @@ msgstr ""
 "X-Poedit-SearchPath-3: ../../modules/shop/models\n"
 "X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
+msgid "Sort by name."
+msgstr "Сортировать по имени."
+
+#: ./application/modules/shop/admin/templates/discounts/create.tpl:77
+#: ./application/modules/shop/admin/templates/discounts/edit.tpl:80
+msgid "Number greater than zero. To use a percent discount apply: SUM format."
+msgstr "Число больше нуля. Для использования процентной скидки примените: SUM формат."
+
+#: ./templates/administrator/sys_upgrade.tpl:40
+#: Array
+msgid "For example:"
+msgstr "Например:"
+
+#: ./application/modules/shop/admin/callbacks.php:249
+msgid "Callback's status was changed"
+msgstr "Cтатус колбека изменен"
+
+#: ./application/modules/admin/components.php:290
+#: Array
+msgid "Settings are saved"
+msgstr ""
+
+#: ./application/modules/admin/pages.php:902
+#: Array
+msgid "Pending approval"
+msgstr ""
+
+#: ./application/modules/admin/pages.php:914
+#: Array
+msgid "Has not been published"
+msgstr ""
+
+#: ./application/modules/admin/pages.php:924
+#: ./application/modules/admin/pages.php:935
+#: Array
+msgid "Has been published"
+msgstr ""
+
+#: ./application/modules/admin/login.php:84
+#: ./application/modules/admin/login.php:101
+#: Array
+msgid "Not enough access rights"
+msgstr "Не хватает прав доступа"
+
+#: ./application/modules/admin/sys_upgrade.php:180
+#: Array
+msgid "Error loading file versions"
+msgstr ""
+
+#: ./application/modules/admin/settings.php:47
+#: Array
+msgid "Simple"
+msgstr ""
+
+#: ./application/modules/admin/settings.php:48
+#: Array
+msgid "Extended"
+msgstr ""
+
+#: ./application/modules/admin/settings.php:49
+#: Array
+msgid "Full"
+msgstr ""
+
+#: ./templates/administrator/main.tpl:68
+#: Array
+msgid "Guest"
+msgstr ""
+
+#: ./templates/administrator/pages_list.tpl:5
+#: Array
+msgid "Copy/Move pages"
+msgstr ""
+
+#: ./templates/administrator/component_settings.tpl:3
+#: Array
+msgid "URL access on"
+msgstr ""
+
+#: ./templates/administrator/component_settings.tpl:11
+#: Array
+msgid "Add to menu"
+msgstr ""
+
+#: ./templates/administrator/shop_menu.tpl:49
+#: Array
+msgid "Regular discounts"
+msgstr ""
+
+#: ./templates/administrator/groups.tpl:3
+#: Array
+msgid "Group list"
+msgstr ""
+
+#: ./templates/administrator/search.tpl:41
+#: Array
+msgid "goto site"
+msgstr ""
+
+#: ./templates/administrator/search.tpl:72
+#: Array
+msgid "Banned"
+msgstr ""
+
+#: ./templates/administrator/search.tpl:73
+#: Array
+msgid "Last IP"
+msgstr ""
+
+#: ./templates/administrator/move_pages.tpl:1
+#: Array
+msgid "Select a category"
+msgstr ""
+
+#: ./templates/administrator/new_desktop.tpl:66
+#: Array
+msgid "All content by categories"
+msgstr ""
+
+#: ./templates/administrator/new_desktop.tpl:131
+#: Array
+msgid "Administrate site"
+msgstr ""
+
+#: ./application/modules/shop/admin/settings.php:93
+msgid "Email address of the sender in the Notice for the buyer of making an order"
+msgstr ""
+
+#: ./application/modules/shop/admin/settings.php:94
+msgid "Email address of the administrator in the Notice for the buyer of making an order"
+msgstr ""
+
+#: ./application/modules/shop/admin/settings.php:95
+msgid "Email address of the sender in the Notice of change of status of the customer order"
+msgstr ""
+
+#: ./application/modules/shop/admin/settings.php:96
+msgid "Email address of the WishList sender"
+msgstr ""
+
+#: ./application/modules/shop/admin/settings.php:97
+msgid "Email address of the sender requested notify"
+msgstr ""
+
+#: ./application/modules/shop/admin/settings.php:98
+msgid "Email, which send messages to the new Callback"
+msgstr ""
+
+#: ./application/modules/shop/admin/settings.php:99
+#: ./application/modules/shop/admin/settings.php:100
+msgid "Email address of the sender"
+msgstr ""
+
+#: ./application/modules/shop/admin/system.php:261
+msgid "The file {$filename} is not writable"
+msgstr ""
 
 #: ./templates/administrator/module_table.tpl:9
 msgid "Delete selected module(s)?"
@@ -426,10 +584,6 @@ msgstr "Очистить"
 #: ./templates/administrator/desktop.tpl:7
 msgid "Operation panel"
 msgstr "Панель управления"
-
-#: ./templates/administrator/login_page.tpl:54
-msgid "Users with such Email not found"
-msgstr "Пользователь с таким Email не найден"
 
 #: ./templates/administrator/login_page.tpl:69
 msgid "Security code"
@@ -2000,10 +2154,6 @@ msgstr "Внимание"
 #: ./templates/administrator/sys_upgrade.tpl:11
 msgid "Make a database backup copy before updating "
 msgstr "Сделайте резервную копию базы данных перед обновлением"
-
-#: /var/www/image.loc/_tempLangs.php:237
-msgid "For example: /domains/mysite/public_html/"
-msgstr "Например: /domains/mysite/public_html/"
 
 #: ./templates/administrator/translateRole.tpl:5
 #: ./templates/administrator/roleEdit.tpl:5
@@ -5370,10 +5520,6 @@ msgstr "Дата начала"
 msgid "Finishing date "
 msgstr "Дата окончания"
 
-#: /var/www/image.loc/_tempLangs.php:243
-msgid " Number greater than zero. To use a percent discount apply : "
-msgstr "Число больше нуля. Чтобы использовать процентную скидку примените:"
-
 #: ./application/modules/shop/admin/templates/discounts/create.tpl:92
 msgid "Enter a product for promotion"
 msgstr "Ввести код продукта для продвижения"
@@ -5977,7 +6123,6 @@ msgstr "ID удаленой страницы"
 
 #: ./application/modules/admin/pages.php:137
 #: ./application/modules/admin/categories.php:129
-#, fuzzy
 msgid "The %s field can only contain Latin characters"
 msgstr "Поле %s должно содержать только латинские символы."
 
@@ -6399,10 +6544,6 @@ msgstr "Список уведомлений"
 msgid "Notification statuses"
 msgstr "Статусы уведомлений"
 
-#: ../../../templates/administrator/inc/menus.php:199
-msgid "Other"
-msgstr "Остальное"
-
 #: ./templates/administrator/inc/menus.php:202
 msgid "Products catalogue"
 msgstr "Каталог товаров"
@@ -6564,10 +6705,6 @@ msgstr "Такой статус не существует"
 #: ./application/modules/shop/admin/callbacks.php:230
 msgid "Default status was changed"
 msgstr "Статус по умолчанию изменен"
-
-#: ../../modules/shop/admin/callbacks.php:249
-msgid "Callback's status was changed"
-msgstr "Статус колбека изменен"
 
 #: ./application/modules/shop/admin/callbacks.php:263
 #: ./application/modules/shop/admin/orderstatuses.php:226
