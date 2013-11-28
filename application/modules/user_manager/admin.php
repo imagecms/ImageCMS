@@ -364,7 +364,7 @@ class Admin extends BaseAdminController {
         $val->set_rules('new_pass', lang('amt_password'), 'trim|max_length[' . $this->config->item('DX_login_max_length') . ']|xss_clean');
         $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]');
 
-        $val->set_rules('email', lang('amt_email'), 'trim|required|xss_clean|valid_email');
+        $val->set_rules('email', lang('amt_email'), 'trim|xss_clean|valid_email');
 
         $user_data = $this->user2->get_user_field($user_id, array('username', 'email'))->row_array();
 

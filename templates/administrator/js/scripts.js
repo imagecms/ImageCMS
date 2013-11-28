@@ -292,7 +292,7 @@ function init_2() {
     }
     //not_standart_checks----------------------
 
-    
+
     // shop - settings - count of products on site
     $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {
         var currentValue = $(this).val();
@@ -624,7 +624,15 @@ function autocomplete() {
     if ($.exists('#RelatedProducts')) {
         $('#RelatedProducts').autocomplete({
             minChars: 0,
-            source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
+            source: function(request, response) {
+                $.post('/admin/components/run/shop/kits/get_products_list', {
+                    limit: 20,
+                    q: request.term,
+                    noids: getAddedRelatedProductsIds()
+                }, function(data) {
+                    response(data);
+                }, 'json')
+            },
             select: function(event, ui) {
                 $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
                         '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
@@ -678,6 +686,16 @@ function autocomplete() {
             source: tpls
         });
 }
+function getAddedRelatedProductsIds() {
+    var inputs = $("#relatedProductsNames input[name='RelatedProducts[]']");
+    var idsString = "";
+    $(inputs).each(function() {
+        idsString += this.value + ",";
+    });
+    idsString = idsString.substring(0, (idsString.length - 1));
+    return idsString;
+}
+
 function textcomment_s_h(status, el) {
     var status = status;
     var el = el;
