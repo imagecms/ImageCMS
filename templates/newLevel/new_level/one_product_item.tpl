@@ -7,6 +7,9 @@
 {$limit = $limit != false && $limit != NULL}
 
 {foreach $products as $key => $p}
+    {if is_array($p) && $p.id}
+        {$p = getProduct($p.id)}
+    {/if}
     {if $key >= $limit && $limit}
         {break}
     {/if}
