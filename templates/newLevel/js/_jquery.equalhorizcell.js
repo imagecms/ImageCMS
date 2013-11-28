@@ -168,8 +168,8 @@
                     allParams.unbind('click' + nS).on('click' + nS, function() {
                         methods.allParamsM(left, right, elEven);
                     });
-                    onlyDif.parent('.' + activeClass).children().trigger('click' + nS);
-                    allParams.parent('.' + activeClass).children().trigger('click' + nS);
+                    onlyDif.parent('.' + aC).children().trigger('click' + nS);
+                    allParams.parent('.' + aC).children().trigger('click' + nS);
                     after($this);
                 }
             })
