@@ -26,6 +26,9 @@
         {else:}
             {$lang = ''} 
         {/if}
+        {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
+            <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+        {/if}
         <script type="text/javascript">
             var locale = "{echo $lang}";
         </script>
@@ -36,16 +39,16 @@
                 $.ajaxSetup({
                     cache: false
                 });
-                function initDownloadScripts(scripts, callback, customEvent){
+                function initDownloadScripts(scripts, callback, customEvent) {
                     function downloadJSAtOnload(scripts, callback, customEvent) {
                         var cL = 0,
-                        scriptsL = scripts.length;
+                                scriptsL = scripts.length;
 
                         $.map(scripts, function(i, n) {
                             $.getScript(theme + 'js/' + i + '.js', function() {
                                 cL++;
                                 if (cL == scriptsL)
-                                    if (callback){
+                                    if (callback) {
                                         eval(callback)();
                                         $(document).trigger({'type': customEvent});
                                     }
@@ -54,11 +57,11 @@
                     }
                     // Check for browser support of event handling capability
                     if (window.addEventListener)
-                    window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
+                        window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
                     else if (window.attachEvent)
-                    window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
+                        window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
                     else
-                    window.onload = downloadJSAtOnload(scripts, callback, customEvent);
+                        window.onload = downloadJSAtOnload(scripts, callback, customEvent);
                 }
             </script>
         {/literal}

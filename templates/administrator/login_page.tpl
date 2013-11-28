@@ -51,7 +51,7 @@
                 <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
                     {if $login_failed}
                         <label>
-                            {lang('Users with such Email not found','admin')}
+                            {echo $login_failed}
                         </label>
                         {$login_failed}
                     {/if}
