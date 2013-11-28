@@ -156,8 +156,8 @@ class Admin extends BaseAdminController {
                 ->setData('settings', $this->getSettings())
                 ->setData('locales', $locales_unique)
                 ->renderAdmin('list');
-        
-        
+
+
 
         if ($translation) {
             $names = '';
@@ -815,8 +815,22 @@ class Admin extends BaseAdminController {
                     $content = @file($main . $file);
                     foreach ($content as $line_number => $line) {
                         $lang = array();
-                        if (preg_match_all("/lang\(['\"]{1}(.*?)['\"]{1}/", $line, $lang)) {
+                        if (preg_match_all("/lang\([\"]{1}(.*?)[\"]{1}/", $line, $lang)) {
                             foreach ($lang[1] as $origin) {
+                                $origin = preg_replace('!\s+!', ' ', $origin);
+                                if (!$this->parsed_langs[$origin]) {
+                                    $this->parsed_langs[$origin] = array();
+                                }
+
+                                if (strstr($main . $file, '.js')) {
+                                    $this->js_langs[$origin] = $origin;
+                                }
+                                array_push($this->parsed_langs[$origin], $main . $file . ':' . ++$line_number);
+                            }
+                        }
+                        if (preg_match_all("/lang\([']{1}(.*?)[']{1}/", $line, $lang)) {
+                            foreach ($lang[1] as $origin) {
+                                $origin = preg_replace('!\s+!', ' ', $origin);
                                 if (!$this->parsed_langs[$origin]) {
                                     $this->parsed_langs[$origin] = array();
                                 }
