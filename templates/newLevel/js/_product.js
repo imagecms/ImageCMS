@@ -98,13 +98,9 @@ function changePhoto(arg, fancyFrameInPH, href) {
 
         $.drop('limitSize')(drop);
         resizePhoto(drop, function() {
-            carGal.parent().myCarousel($.extend({}, carousel, {
-                'adding': {
-                    start: $.inArray(hrefOptions.curHref, hrefOptions.thumbs)
-                }
-            }));
             $.drop('dropCenter')(drop);
         });
+        carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).find('a').focus();
     })
 }
 function beforeShowHref(el, drop, isajax, data, elSet) {
