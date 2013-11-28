@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27 06:04+0200\n"
-"PO-Revision-Date: 2013-11-27 06:04+0200\n"
+"POT-Creation-Date: 2013-11-28 11:01+0200\n"
+"PO-Revision-Date: 2013-11-28 11:01+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -23,6 +23,21 @@ msgstr ""
 "X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
 
+#: ./templates/administrator/module_table.tpl:9
+msgid "Delete selected module(s)?"
+msgstr "Удалить выбранный модуль(и)?"
+
+#: ./templates/administrator/widgets_list.tpl:9
+msgid "Delete selected widget(s)?"
+msgstr "Удалить выбранный модуль(ы)?"
+
+#: ./templates/administrator/add_page.tpl:23
+#: ./templates/administrator/edit_page.tpl:51
+#: ./templates/administrator/category_edit.tpl:46
+#: ./templates/administrator/create_cat.tpl:23
+msgid "Modules additions"
+msgstr "Дополнения модулей"
+
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1229
 msgid "The key to your account <br />on the mail Mailchimp"
 msgstr "Ключ к вашему счету <br /> на почтовом Mailchimp"
@@ -31,7 +46,6 @@ msgstr "Ключ к вашему счету <br /> на почтовом Mailchi
 msgid "The key to your list of <br />news for MailChimp"
 msgstr "Ключ к вашему списку новостей <br /> для MailChimp"
 
-# ��
 #: ./application/modules/shop/admin/templates/users/list.tpl:190
 msgid "Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku."
 msgstr "Экспорт Mailchimp отправляет <br /> всем пользователям на их e-mail <br /> форму подписки на Ваши новостные рассылки."
@@ -48,13 +62,6 @@ msgstr "Редактировать страницу"
 #: ./templates/administrator/edit_page.tpl:42
 msgid "Show page"
 msgstr "Показать страницу"
-
-#: ./templates/administrator/add_page.tpl:23
-#: ./templates/administrator/edit_page.tpl:51
-#: ./templates/administrator/category_edit.tpl:46
-#: ./templates/administrator/create_cat.tpl:23
-msgid "Modules additions"
-msgstr "Модули дополнений"
 
 #: ./application/modules/admin/settings.php:57
 #: ./application/modules/admin/categories.php:383
@@ -560,10 +567,6 @@ msgstr "Не хватает прав доступа"
 #: ./templates/administrator/widgets_list.tpl:6
 msgid "Widget delete"
 msgstr "Удалить виджет"
-
-#: ./templates/administrator/widgets_list.tpl:9
-msgid "Delete selected widget(s)?"
-msgstr "Удалить выбранный виджет(ы)?"
 
 #: ./templates/administrator/widgets_list.tpl:22
 #: ./templates/administrator/inc/menus.php:101
@@ -1116,7 +1119,7 @@ msgstr "Шаблон категории"
 msgid "Page template"
 msgstr "Шаблон страницы"
 
-# ан��
+# ан�������
 #: ./templates/administrator/category_edit.tpl:259
 #: ./templates/administrator/create_cat.tpl:237
 msgid "Page view template by default"
@@ -1170,10 +1173,6 @@ msgstr "Права записи"
 #: ./templates/administrator/module_table.tpl:18
 msgid "Module deinstalling"
 msgstr "Удаление модуля"
-
-#: ./templates/administrator/module_table.tpl:9
-msgid "Delete selected module(s)?"
-msgstr "Удалить выбранный виджет(ы)?"
 
 #: ./templates/administrator/module_table.tpl:19
 msgid "Delete modules?"
@@ -1653,7 +1652,7 @@ msgstr "Введите по крайней мере"
 msgid "enter value from"
 msgstr "введите значение от"
 
-# НЛ��
+# НЛ�������
 #: ./templates/administrator/inc/javascriptVars.tpl:38
 msgid "to"
 msgstr "до"
@@ -1944,7 +1943,7 @@ msgstr "Система"
 msgid "Site settings"
 msgstr "Настройки сайта"
 
-# НЛ��
+# НЛ�������
 #: ./templates/administrator/new_desktop.tpl:122
 #: ./templates/administrator/desktop.tpl:157
 msgid "Clear old or Delete outdated posts or information"
@@ -2005,7 +2004,7 @@ msgstr "Внимание"
 msgid "Make a database backup copy before updating "
 msgstr "Сделайте резервную копию базы данных перед обновлением"
 
-# вот а фа��
+# вот а фа�������
 #: /var/www/image.loc/_tempLangs.php:237
 msgid "For example: /domains/mysite/public_html/"
 msgstr "Например: /domains/mysite/public_html/"
@@ -2015,7 +2014,7 @@ msgstr "Например: /domains/mysite/public_html/"
 msgid "Role edit"
 msgstr "Редактирование роли"
 
-# анг��
+# анг�������
 #: ./templates/administrator/dashboard.tpl:10
 msgid "Create a page"
 msgstr "Создать страницу"
@@ -2320,7 +2319,6 @@ msgstr "Сбросить фильтр"
 msgid "Cancel filter"
 msgstr "Отменить фильтрацию"
 
-# I
 #: ./application/modules/shop/admin/templates/search/list.tpl:53
 #: ./application/modules/shop/admin/templates/system/export_.tpl:76
 #: ./application/modules/shop/admin/templates/system/importcsv.tpl:102
@@ -2598,7 +2596,7 @@ msgstr "Изменить тему колбека"
 msgid "Creating a status callback"
 msgstr "Создание статуса колбека"
 
-# анг��
+# анг�������
 #: /var/www/image.loc/_tempLangs.php:227
 #: /var/www/image.loc/_tempLangs.php:241
 msgid "Status set for all new requests. "
@@ -2670,7 +2668,7 @@ msgstr "Комментарий"
 msgid "Date of creation"
 msgstr "Дата создания"
 
-# анг��
+# анг�������
 #: ./application/modules/shop/admin/templates/properties/create.tpl:5
 msgid "Product property creating"
 msgstr "Создание свойства продукта"
@@ -2856,7 +2854,7 @@ msgstr "Связанные товары"
 msgid "The main image"
 msgstr "Основное изображение"
 
-# анг��
+# анг�������
 #: ./application/modules/shop/admin/templates/system/export_.tpl:84
 #: ./application/modules/shop/admin/templates/system/importcsv.tpl:110
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:181
@@ -2870,7 +2868,7 @@ msgstr "Основная дополнительная фотография"
 msgid "Small image"
 msgstr "Маленькая фотография"
 
-# анг��
+# анг�������
 #: ./application/modules/shop/admin/templates/system/export_.tpl:86
 #: ./application/modules/shop/admin/templates/system/importcsv.tpl:112
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:183
@@ -3082,7 +3080,7 @@ msgstr "Список категорий пуст"
 msgid "Translation"
 msgstr "Перевод"
 
-# ан��
+# ан�������
 #: ./application/modules/shop/admin/templates/categories/_listItem.tpl:1
 msgid "Drug category"
 msgstr "Переместить категорию"
@@ -3128,7 +3126,7 @@ msgstr "Автоподбор"
 msgid "-Not selected-"
 msgstr "-Не выбрано-"
 
-# анг��
+# анг�������
 #: ./application/modules/shop/admin/templates/categories/edit.tpl:137
 #: ./application/modules/shop/admin/templates/categories/create.tpl:120
 msgid "By raiting"
@@ -3343,7 +3341,7 @@ msgstr "Список пуст"
 msgid "Removing the shipping methods"
 msgstr "Удаление способов доставки"
 
-# анг��
+# анг�������
 #: ./application/modules/shop/admin/templates/deliverymethods/list.tpl:10
 msgid "Delete Selected methods of delivery?"
 msgstr "Удалить выбранные способы доставки?"
@@ -3390,7 +3388,7 @@ msgstr "Заказ товара"
 msgid "Product name"
 msgstr "Название продукта"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/orders/check.tpl:11
 msgid "Measurement unit"
 msgstr "Размерность"
@@ -3433,7 +3431,7 @@ msgstr "Создать заказ"
 msgid "Find a product"
 msgstr "Найти товар"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/orders/create.tpl:44
 msgid "Article / Name / ID"
 msgstr "Арктикул / Название / ID"
@@ -3657,7 +3655,7 @@ msgstr "Заказ"
 msgid "Has been created"
 msgstr "Был создан"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:20
 msgid "Print receipt"
 msgstr "Распечатать чек"
@@ -3969,7 +3967,7 @@ msgstr "Возможные значения"
 msgid "Validators"
 msgstr "Валидаторы"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/customfields/edit.tpl:109
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:119
 msgid "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
@@ -4343,7 +4341,7 @@ msgstr "Список наборов продуктов пустой"
 msgid "Kit removal"
 msgstr "Удаление набора"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/products/edit.tpl:88
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:683
 msgid "Kits del body"
@@ -4373,7 +4371,7 @@ msgstr "Введите адрес изображения или критери �
 msgid "Hold down Shift to select multiple images"
 msgstr "Удерживайте Shift, чтобы выбрать несколько изображений"
 
-# анг��
+# анг�������
 #: ./application/modules/shop/admin/templates/products/images.tpl:18
 msgid "Save as additional"
 msgstr "Сохранить как дополнительные"
@@ -4902,7 +4900,7 @@ msgstr "Комментарии пользователя колбека"
 msgid "General settings"
 msgstr "Общие настройки"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:737
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:969
 msgid "User registartion after making order"
@@ -4978,7 +4976,7 @@ msgstr "Время изменения статуса заказа"
 msgid "Registration after order"
 msgstr "Регистрация после заказа"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1007
 msgid " User login for site enrty"
 msgstr "Вход пользователя после входа на сайт"
@@ -5003,12 +5001,12 @@ msgstr "Адрес сайта"
 msgid "Top sales block "
 msgstr "Блок Top продаж"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1035
 msgid " Popularity formula coefficient "
 msgstr "Коэффициент формулы популярности"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1041
 msgid " Popularity formula: number of views+ products added to the cart *coefficient . For example: 1000."
 msgstr "Формула популярности: количество просмотров + количество добавлений в корзину * коэффициент. Например: 1000."
@@ -5201,7 +5199,7 @@ msgstr "Создание накопительной скидки"
 msgid "These discounts"
 msgstr "Эти скидки"
 
-# фафа��
+# фафа�������
 #: ./application/modules/shop/admin/templates/comulativ/create.tpl:40
 msgid "Amount of which will be a discount."
 msgstr "Размер которой будет скидка."
@@ -5302,7 +5300,7 @@ msgstr "Редактирование скидкок"
 msgid "Discount options"
 msgstr "Настройкы скидки"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/templates/commulative/edit.tpl:20
 #: ./application/modules/shop/admin/templates/comulativ/edit.tpl:20
 msgid "Member Discount"
@@ -5847,7 +5845,7 @@ msgstr "Ошибка: не найдено информации модуля"
 msgid "FTP_connect function is not available"
 msgstr "Функция Ftp_connect недоступна"
 
-# ��
+# �������
 #: ./application/modules/admin/sys_upgrade.php:62
 #: ./application/modules/admin/mod_search.php:140
 msgid "Server connection error:Check username and password"
@@ -5880,7 +5878,7 @@ msgstr "Внимание или Осторожно"
 msgid "Exploding error"
 msgstr "Подрывна ошибка"
 
-# ��
+# �������
 #: ./application/modules/admin/mod_search.php:248
 msgid "Module installation error"
 msgstr "Ошыбка установки модуля"
@@ -5890,7 +5888,7 @@ msgstr "Ошыбка установки модуля"
 msgid "Modul has been installed"
 msgstr "Модуль был установлен"
 
-# ��
+# �������
 #: ./application/modules/admin/mod_search.php:296
 msgid "Module installation module"
 msgstr "Установка модуля"
@@ -5905,7 +5903,7 @@ msgstr "Первая ссылка"
 msgid "Last link"
 msgstr "Последняя ссылка"
 
-# ��
+# �������
 #: ./application/modules/admin/components.php:103
 msgid "Installed a module"
 msgstr "Модуль установлен"
@@ -6358,7 +6356,7 @@ msgstr "Удалено категорию с ID"
 msgid "Category deleted"
 msgstr "Категория удалена"
 
-# ��
+# �������
 #: ./templates/administrator/profiler_template.php:356
 msgid "profiler_"
 msgstr "profiler_"
@@ -6677,7 +6675,7 @@ msgstr "Комплект создан"
 msgid "The kit was not found"
 msgstr "Комплект не найден"
 
-# ��
+# �������
 #: ./application/modules/shop/admin/kits.php:137
 msgid "You did not ask for a set of main commodity "
 msgstr "Вы не спрашивали набор основных товаров"

@@ -942,7 +942,7 @@ class Core extends MY_Controller {
                 $description = '';
             if ($this->settings['create_keywords'] == 'empty')
                 $keywords = '';
-
+            
             $this->template->add_array(array(
                 'site_title' => $title,
                 'site_description' => strip_tags($description),
