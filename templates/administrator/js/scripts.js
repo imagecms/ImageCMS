@@ -292,7 +292,7 @@ function init_2() {
     }
     //not_standart_checks----------------------
 
-    
+
     // shop - settings - count of products on site
     $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {
         var currentValue = $(this).val();
@@ -1861,3 +1861,37 @@ var Update = {
         });
     }
 };
+
+/** Users mail chimp settings**/
+$(document).ready(function() {
+    if ($.exists('.mailChimpSettings')) {
+        $('.mailChimpSettings button').on('click', function() {
+            var mailChimpKey = $('input[name="messages[monkey]"]').val();
+            var mailChimpKeyList = $('input[name="messages[monkeylist]"]').val();
+
+            $.ajax({
+                type: "POST",
+                data: {
+                    mailChimpKey: mailChimpKey,
+                    mailChimpKeyList: mailChimpKeyList
+                },
+                url: '/admin/components/run/shop/settings/setMailChimpKeys',
+                success: function(res) {
+                    $('body').append(res);
+                }
+            });
+        });
+        
+        $('input#monkey').on('change', function() {
+            if ($(this).attr('checked')) {
+                $('.mailChimpSettings').show();
+            } 
+        });
+        
+        $('input#csv').on('change', function() {
+            if ($(this).attr('checked')) {
+                $('.mailChimpSettings').hide();
+            }
+        });
+    }
+});
