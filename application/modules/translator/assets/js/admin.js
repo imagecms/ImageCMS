@@ -485,6 +485,7 @@ var Selectors = {
 
 var Translator = {
     filePath: '',
+    editor: {},
     init: function() {
         this.lang = $('#langs').val();
         this.type = $('#types').val();
@@ -805,12 +806,18 @@ var Translator = {
             }
         });
     },
+    aceInit: function() {
+        this.editor = ace.edit("fileEdit");
+        this.editor.setTheme("ace/theme/chrome");
+        this.editor.getSession().setMode("ace/mode/xml");
+    },
     openFileToEdit: function(curElement) {
         var filePath = $(curElement).val();
         var line = filePath.slice(filePath.indexOf(':') + 1, filePath.length);
         filePath = filePath.slice(2, filePath.indexOf(':'));
         this.filePath = filePath;
-
+        this.aceInit();
+        var editorObj = this.editor;
         var url = '/admin/components/init_window/translator/renderFile';
         $.ajax({
             type: 'POST',
@@ -820,30 +827,17 @@ var Translator = {
             url: url,
             success: function(data) {
                 var fileContent = JSON.parse(data);
-                var selectionText = '';
-                $('.fileEdit').val('');
-                $('.fileLines').html('');
+                editorObj.setValue('');
                 for (var fileLine in fileContent) {
-                    var newLine = (parseInt(fileLine) + 1) + ': <br>';
-                    var lines = $('.fileLines').html();
-                    var editVal = $('.fileEdit').val();
-
-                    if ((parseInt(fileLine) + 1) == line) {
-                        selectionText = fileContent[fileLine];
-                        $('.fileLines').html(lines + '<span style="background-color: cornflowerblue; margin-left: -5px; padding-left: 5px;width: 100%;display: block;">' + newLine + '</span>');
-                        $('.fileEdit').val(editVal + fileContent[fileLine]);
-                    } else {
-                        $('.fileLines').html(lines + newLine);
-                        $('.fileEdit').val(editVal + fileContent[fileLine]);
-                    }
-                    Translator.selectTextLine($('#fileEdit'), $.trim(selectionText), $.trim(selectionText));
+                    editorObj.setValue(editorObj.getValue() + fileContent[fileLine]);
                 }
+                editorObj.gotoLine(line, 1, false)
             }
         });
         $('.modal_file_edit').modal();
     },
     saveEditingFile: function(curElement) {
-        var fileText = $('.fileEdit').val();
+        var fileText = this.editor.getValue();
         var url = '/admin/components/init_window/translator/saveEditingFile';
         $.ajax({
             type: 'POST',
@@ -857,28 +851,6 @@ var Translator = {
             }
         });
 
-    },
-    selectTextLine: function(element, selectionLine, selectionText) {
-        var posi = element.val().indexOf(selectionLine); // take the position of the word in the text
-        if (posi != -1) {
-            var target = element[0];
-            // select the textarea and the word
-            target.focus();
-            if (target.setSelectionRange)
-                target.setSelectionRange(posi, posi + selectionText.length - 1);
-            else {
-                var r = target.createTextRange();
-                r.collapse(true);
-                r.moveEnd('character', posi + selectionLine);
-                r.moveStart('character', posi);
-                r.select();
-            }
-            var line_ht = element.css('line-height').replace('px', ''); //height in pixel of each row
-            var n_lines = target.scrollHeight / line_ht; // the total amount of lines
-            var char_in_line = element.val().length / n_lines; // amount of chars for each line
-            var height = Math.floor(posi / char_in_line) - 10; // amount of lines in the textarea
-            element.scrollTop(height * line_ht); // scroll to the selected line
-        }
     },
     translate: function(curElement) {
         var YandexApiKey = $.trim($('.YandexApiKey').val());

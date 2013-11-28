@@ -2001,7 +2001,7 @@ function getCookie(c_name)
         positionType: function(size, drop) {
             var data = drop.data();
             if (data.place !== 'inherit') {
-                if (!size || data.modal || data.place === 'noinherit')
+                if (size.toString() == 'false' || data.modal || data.place === 'noinherit')
                     drop.css({
                         'position': 'absolute'
                     });
@@ -2132,7 +2132,7 @@ function getCookie(c_name)
                 dropV = drop.is(':visible'),
                 w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
                 h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
-                drop.stop()[method]({
+                drop[method]({
                     'top': (body.height() - h) / 2,
                     'left': (body.width() - w) / 2
                 }, {
@@ -2197,6 +2197,9 @@ function getCookie(c_name)
                     $('.for-center').on('touchmove.drop', function(e) {
                         return false;
                     });
+                $(document).trigger({
+                    'type': 'drop.scrollEmulate'
+                });
             }, dur);
         },
         scrollEmulateRemove: function() {
@@ -2207,6 +2210,9 @@ function getCookie(c_name)
                 $('.scrollEmulation').remove();
                 if (isTouch)
                     $('.for-center').off('touchmove.drop');
+                $(document).trigger({
+                    'type': 'drop.scrollEmulateRemove'
+                });
             }, dur);
         }
     };

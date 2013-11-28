@@ -336,6 +336,7 @@
             type: 'get',
             url: catUrl,
             data: data,
+            cache: true,
             beforeSend: function() {
                 $.fancybox.showActivity();
             },
