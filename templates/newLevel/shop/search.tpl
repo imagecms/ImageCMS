@@ -37,7 +37,7 @@
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
-                    {$CI->load->module('new_level')->OPI($model, array('wishlist'=>true))}
+                    {$CI->load->module('new_level')->OPI($model, array('opi_wishlist'=>true))}
                 </ul>
             {/if}            <!--Start. Pagination -->
             {if $pagination}
@@ -48,7 +48,7 @@
 
         {if $totalProducts > 0}
             <div class="left-catalog">
-                <form method="GET" action="" id="catalog_form">
+                <form method="GET" action="" id="catalogForm">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
                     <input type="hidden" name="text" value="{echo $_GET[text]}">
                     <input type="hidden" name="category" value="{echo $_GET[category]}">

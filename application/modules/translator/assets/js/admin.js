@@ -1,5 +1,7 @@
 $(document).ready(function() {
-    Pagination.generate();
+    $('#fileEdit').scroll(function() {
+        $('.fileLines').scrollTop($(this).scrollTop());
+    });
 
     $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
         e.stopPropagation();
@@ -15,6 +17,7 @@ $(document).ready(function() {
         Search.go();
     });
 
+
     $('.searchObjects').die().live('change', function() {
         if ($('.searchObjects:checked').length) {
             $('.searchConditions').removeAttr('disabled');
@@ -22,20 +25,6 @@ $(document).ready(function() {
             $('.searchConditions').attr('disabled', '');
             $('.searchConditions').removeAttr('checked');
         }
-    });
-
-    $('.links option').live('click', function() {
-        var file_path = $(this).val();
-        var url = '/admin/components/init_window/translator/renderFile/' + file_path;
-        $.ajax({
-            type: 'POST',
-            data: {
-            },
-            url: url,
-            success: function(data) {
-            }
-        });
-        $('.modal_file_edit').modal();
     });
 
     $('.translationCancel').live('click', function() {
@@ -47,7 +36,6 @@ $(document).ready(function() {
         $(this).next().val($(this).val());
         Translator.statisticRecount();
     });
-
 });
 
 var Sort = {
@@ -399,10 +387,10 @@ var Search = {
 };
 
 var Selectors = {
-    init: function() {
-        this.lang = $('#langs').val();
-        this.type = $('#types').val();
-        this.module_tempate = $('#modules_templates').val();
+    init: function(curElement) {
+        this.lang = $(curElement).closest('.poSelectorsHolder').find('#langs').val();
+        this.type = $(curElement).closest('.poSelectorsHolder').find('#types').val();
+        this.module_tempate = $(curElement).closest('.poSelectorsHolder').find('#modules_templates').val();
         this.per_page = parseInt($('#per_page').val());
     },
     clearContent: function() {
@@ -415,15 +403,15 @@ var Selectors = {
         $('.statistic').hide();
     },
     langs: function(curElement) {
-        this.init();
+        this.init(curElement);
 
         if (this.lang) {
-            $('#types').css('display', 'inline-block');
+            $(curElement).closest('.poSelectorsHolder').find('#types').css('display', 'inline-block');
         } else {
             this.clearContent();
-            $('#types').hide().val('');
-            $('#modules_templates').val('');
-            $('#modules_templates').hide().html('');
+            $(curElement).closest('.poSelectorsHolder').find('#types').hide().val('');
+            $(curElement).closest('.poSelectorsHolder').find('#modules_templates').val('');
+            $(curElement).closest('.poSelectorsHolder').find('#modules_templates').hide().html('');
 
             return false;
         }
@@ -441,33 +429,33 @@ var Selectors = {
         }
     },
     types: function(curElement) {
-        this.init();
+        this.init(curElement);
         this.clearContent();
 
         if (this.type) {
-            $('#modules_templates').css('display', 'inline-block');
+            $(curElement).closest('.poSelectorsHolder').find('#modules_templates').css('display', 'inline-block');
         } else {
-            $('#modules_templates').hide().html('');
+            $(curElement).closest('.poSelectorsHolder').find('#modules_templates').hide().html('');
         }
 
         switch (this.type) {
             case 'modules':
                 var url = '/admin/components/init_window/translator/renderModulesNames/' + this.lang;
-                this.renderNames(url);
+                this.renderNames(url, curElement);
                 break;
             case 'templates':
                 var url = '/admin/components/init_window/translator/renderTemplatesNames/' + this.lang;
-                this.renderNames(url);
+                this.renderNames(url, curElement);
                 break;
             case 'main':
-                $('#modules_templates').css('display', 'none');
+                $(curElement).closest('.poSelectorsHolder').find('#modules_templates').css('display', 'none');
                 var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.type + '/' + this.type + '/' + this.lang + '/0/' + this.per_page;
                 this.renderTable(url);
                 break;
         }
     },
     names: function(curElement) {
-        this.init();
+        this.init(curElement);
 
         if (!this.module_tempate) {
             this.clearContent();
@@ -486,16 +474,37 @@ var Selectors = {
             }
         });
     },
-    renderNames: function(url) {
+    renderNames: function(url, curElement) {
         $.ajax({url: url,
             success: function(data) {
-                $('#modules_templates').html(data);
+                $(curElement).closest('.poSelectorsHolder').find('#modules_templates').html(data);
             }
         });
     }
 };
 
 var Translator = {
+    filePath: '',
+    editor: {},
+    init: function() {
+        this.lang = $('#langs').val();
+        this.type = $('#types').val();
+        this.module_template = $('#modules_templates').val();
+        this.per_page = parseInt($('#per_page').val());
+    },
+    getUrl: function(methodName) {
+        switch (this.type) {
+            case  'modules':
+                return '/admin/components/init_window/translator/' + methodName + '/' + this.module_template + '/' + this.type + '/' + this.lang;
+                break;
+            case 'templates':
+                return '/admin/components/init_window/translator/' + methodName + '/' + this.module_template + '/' + this.type + '/' + this.lang;
+                break;
+            case 'main':
+                return '/admin/components/init_window/translator/' + methodName + '/' + this.type + '/' + this.type + '/' + this.lang;
+                break;
+        }
+    },
     statisticRecount: function() {
         var totalStrings = $('textarea.origin').length;
         var fuzzyCount = $('.fuzzyTD .btn-danger').length;
@@ -518,30 +527,13 @@ var Translator = {
 
     },
     createFile: function(curElement) {
-        var lang = $('#langs').val();
-        var type = $('#types').val();
-        var module_template = $('#modules_templates').val();
-
-        if (lang && type) {
-            switch (type) {
-                case  'modules':
-                    url = '/admin/components/init_window/translator/createFile/' + module_template + '/' + type + '/' + lang;
-                    window.location.href = url;
-                    break;
-                case 'templates':
-                    url = '/admin/components/init_window/translator/createFile/' + module_template + '/' + type + '/' + lang;
-                    window.location.href = url;
-                    break;
-                case 'main':
-                    url = '/admin/components/init_window/translator/createFile/' + type + '/' + type + '/' + lang;
-                    window.location.href = url;
-                    break;
-            }
+        this.init();
+        if (this.lang && this.type) {
+            window.location.href = this.getUrl('createFile');
         }
-
     },
     render: function(data) {
-        if (data == 'no file') {
+        if (data === 'no file') {
             $('#po_table tbody').html('');
             $('#po_table').css('display', 'none');
             $('.pagination ul').html('');
@@ -563,30 +555,49 @@ var Translator = {
         } else {
             $('.alert-info').css('display', 'none');
             $('#per_page').css('display', 'block');
+
+            $('#po_table tbody').html(data);
+            $('#po_table').css('display', 'table');
+
+            this.statisticRecount();
+
+            var paths = $('.pathHolderClone').html();
+            $('.pathHolder').html(paths);
+            $('.pathParseHolder').show();
+
+            var po_settings = $('.po_settingsClone').html();
+            $('.po_settingsClone').html('');
+            $('.po_settings').html(po_settings);
+
+            $('#per_page option:selected').removeAttr('selected');
+            $($('#per_page option')[0]).attr('selected', 'selected');
+
+            Pagination.generate();
         }
 
-        $('#po_table tbody').html(data);
-        $('#po_table').css('display', 'table');
 
-        this.statisticRecount();
-
-        var paths = $('.pathHolderClone').html();
-        $('.pathHolder').html(paths);
-        $('.pathParseHolder').show();
-
-        var po_settings = $('.po_settingsClone').html();
-        $('.po_settingsClone').html('');
-        $('.po_settings').html(po_settings);
-
-        Pagination.generate();
     },
     translateString: function(curElement) {
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
+        var originLang = $('#originLang').val();
+
+        if (!YandexApiKey) {
+            showMessage('Error', 'You have not specified Yandex Api Key.', 'r');
+            return false;
+        }
+
+        if (!originLang) {
+            showMessage('Error', 'You have not specified origins strings language.', 'r');
+            return false;
+        }
+
         var word = $.trim($(curElement).next('.origin').val());
         var originTR = $(curElement).closest('tr');
         var translationTR = originTR.next();
         var translation = translationTR.find('.translation').val();
         var lang = $('#langs').val();
         lang = lang.split("_", 1);
+
         translationTR.find('.translationTEMP').val(translation);
         translationTR.find('.translationCancel').show();
         $.ajax({
@@ -613,10 +624,8 @@ var Translator = {
             },
             url: '/admin/components/init_window/translator/setSettings',
             success: function(data) {
-
             }
         });
-
     },
     markFuzzy: function(curElement) {
         if ($(curElement).hasClass('btn-danger')) {
@@ -639,35 +648,13 @@ var Translator = {
         $(curElement).parent().remove();
     },
     parse: function(curElement) {
-
-        var pathHorders = $('.pathHolder .path input[name^="path"]');
-        var paths = [];
-
-        $(pathHorders).each(function() {
-            paths.push($(this).val());
-        });
-
-        var lang = $('#langs').val();
-        var type = $('#types').val();
-        var module_template = $('#modules_templates').val();
-        var url = '';
-        switch (type) {
-            case  'modules':
-                url = '/admin/components/init_window/translator/updatePoFile/' + module_template + '/' + type + '/' + lang;
-                break;
-            case 'templates':
-                url = '/admin/components/init_window/translator/updatePoFile/' + module_template + '/' + type + '/' + lang;
-                break;
-            case 'main':
-                url = '/admin/components/init_window/translator/updatePoFile/' + type + '/' + type + '/' + lang;
-                break;
-        }
+        this.init();
 
         $.ajax({
-            url: url,
+            url: this.getUrl('updatePoFile'),
             type: 'POST',
             data: {
-                paths: paths
+                paths: this.getPaths()
             },
             success: function(data) {
                 if (data) {
@@ -689,16 +676,22 @@ var Translator = {
                             $('.newStrings').append('<span data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
                         }
                     }
+
                     for (var obsoleteString in results['old']) {
                         if (obsoleteString && obsoleteString != '0') {
                             $('.obsoleteStrings').append('<span>' + escapeHtml(obsoleteString) + '</span><br>');
                         }
                     }
+//                    console.log(results['new'])
+//                    $('.parsedNewStringsCount').html(results['new']);
+//                    $('.parsedRemoveStringsCount').html(results['old']);
+
                 }
             }
         });
     },
     update: function(curElement) {
+        this.init();
         var newStrings = {};
         var obsoleteStrings = {};
         var results = {};
@@ -714,25 +707,8 @@ var Translator = {
         results['new'] = newStrings;
         results['old'] = obsoleteStrings;
 
-        var lang = $('#langs').val();
-        var type = $('#types').val();
-        var module_template = $('#modules_templates').val();
-        var url = '';
-        switch (type) {
-            case  'modules':
-                url = '/admin/components/init_window/translator/update/' + module_template + '/' + type + '/' + lang;
-                break;
-            case 'templates':
-                url = '/admin/components/init_window/translator/update/' + module_template + '/' + type + '/' + lang;
-                break;
-            case 'main':
-                url = '/admin/components/init_window/translator/update/' + type + '/' + type + '/' + lang;
-                break;
-        }
-
-
         $.ajax({
-            url: url,
+            url: this.getUrl('update'),
             type: 'POST',
             data: {
                 results: JSON.stringify(results)
@@ -740,33 +716,182 @@ var Translator = {
             success: function(data) {
                 $('.modal_update_results').addClass('hide').addClass('fade');
                 $('.modal_update_results').modal('hide');
-                $('.modal-backdrop').hide()
+                $('.modal-backdrop').hide();
                 $('#po_table tbody').html(data);
                 $('.pagination ul li.active').removeClass('active');
                 $($('.pagination ul li')[1]).addClass('active');
-                $('.per_page10').attr('selected', 'selected')
+                $('.per_page10').attr('selected', 'selected');
                 Pagination.generate();
                 Translator.statisticRecount();
+                if (data) {
+                    showMessage(lang('File was successfuly updated.'), lang('Message'));
+                }
             }
         });
     },
     save: function() {
-        var origins = $('#po_table .originTR');
-        var translations = $('#po_table .translationTR');
-        var type = $('#types').val();
-        var moule_templaet = $('#modules_templates').val();
-        var lang = $('#langs').val();
+        this.init();
+
+        var po_array = this.getPoArray();
+        po_array['paths'] = this.getPaths();
+        po_array['po_settings'] = {};
+        po_array['po_settings']['projectName'] = $('input[name=projectName]').val();
+        po_array['po_settings']['translatorEmail'] = $('input[name=translatorEmail]').val();
+        po_array['po_settings']['translatorName'] = $('input[name=translatorName]').val();
+        po_array['po_settings']['langaugeTeamName'] = $('input[name=langaugeTeamName]').val();
+        po_array['po_settings']['langaugeTeamEmail'] = $('input[name=langaugeTeamEmail]').val();
+        po_array['po_settings']['language'] = $('input[name=language]').val();
+        po_array['po_settings']['country'] = $('input[name=country]').val();
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                po_array: JSON.stringify(po_array)
+            },
+            url: this.getUrl('savePoArray'),
+            success: function(data) {
+                $('body').append(data);
+            }
+        });
+    },
+    cancel: function() {
+        this.init();
+        if (this.lang && this.type && this.module_template) {
+            $.ajax({
+                url: this.getUrl('canselTranslation'),
+                success: function(data) {
+                    $('body').append(data);
+                }
+            });
+        }
+    },
+    start: function(data, names, type, lang, name) {
+        $($('.' + lang)[0]).attr('selected', '');
+        $('#types').css('display', 'inline-block');
+        $($('.' + type)[0]).attr('selected', '');
+
+        if (type !== 'main') {
+            $('#modules_templates').css('display', 'inline-block');
+            $('#modules_templates').html(names);
+        }
+
+        $($('.' + name)[0]).attr('selected', '');
+        $('#per_page').css('display', 'inline-block');
+
+        if (data) {
+            this.render(data);
+        }
+    },
+    getPaths: function() {
         var pathHorders = $('.pathHolder .path input[name^="path"]');
         var paths = [];
 
         $(pathHorders).each(function() {
             paths.push($(this).val());
         });
+        return paths;
+    },
+    correctPaths: function(curElement) {
+        this.init();
+        $.ajax({
+            url: this.getUrl('makeCorrectPoPaths'),
+            type: 'POST',
+            data: {
+                paths: this.getPaths()
+            },
+            success: function(data) {
+                if (data) {
+                    $('#po_table tbody').html(data);
+                }
+            }
+        });
+    },
+    aceInit: function() {
+        this.editor = ace.edit("fileEdit");
+        this.editor.setTheme("ace/theme/chrome");
+        this.editor.getSession().setMode("ace/mode/xml");
+    },
+    openFileToEdit: function(curElement) {
+        var filePath = $(curElement).val();
+        var line = filePath.slice(filePath.indexOf(':') + 1, filePath.length);
+        filePath = filePath.slice(2, filePath.indexOf(':'));
+        this.filePath = filePath;
+        this.aceInit();
+        var editorObj = this.editor;
+        var url = '/admin/components/init_window/translator/renderFile';
+        $.ajax({
+            type: 'POST',
+            data: {
+                filePath: filePath
+            },
+            url: url,
+            success: function(data) {
+                var fileContent = JSON.parse(data);
+                editorObj.setValue('');
+                for (var fileLine in fileContent) {
+                    editorObj.setValue(editorObj.getValue() + fileContent[fileLine]);
+                }
+                editorObj.gotoLine(line, 1, false)
+            }
+        });
+        $('.modal_file_edit').modal();
+    },
+    saveEditingFile: function(curElement) {
+        var fileText = this.editor.getValue();
+        var url = '/admin/components/init_window/translator/saveEditingFile';
+        $.ajax({
+            type: 'POST',
+            data: {
+                filePath: Translator.filePath,
+                content: fileText
+            },
+            url: url,
+            success: function(data) {
+
+            }
+        });
+
+    },
+    translate: function(curElement) {
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
+        var originLang = $('#originLang').val();
+
+        if (!YandexApiKey) {
+            showMessage('Error', 'You have not specified Yandex Api Key.', 'r');
+            return false;
+        }
+
+        if (!originLang) {
+            showMessage('Error', 'You have not specified origins strings language.', 'r');
+            return false;
+        }
+
+        var lang = $('#langs').val();
+        lang = lang.split("_", 1);
+
+        this.init();
+        $.ajax({
+            type: 'POST',
+            data: {
+                po_array: JSON.stringify(this.getPoArray()),
+                lang: lang
+            },
+            url: this.getUrl('translate'),
+            success: function(data) {
+                if (data) {
+                    $('#po_table tbody').html(data);
+                    Translator.statisticRecount();
+                }
+            }
+        });
+    },
+    getPoArray: function() {
+        var origins = $('#po_table .originTR');
+        var translations = $('#po_table .translationTR');
 
         var po_array = {};
         for (var i = 0; i < origins.length; i++) {
             var links = [];
-
             origin = $(origins[i]).find('.origin').text();
             comment = $(origins[i]).find('.comment').val();
             links_select = $(origins[i]).find('select.links option');
@@ -784,115 +909,24 @@ var Translator = {
                 'links': links
             };
         }
+        return po_array;
 
-        po_array['paths'] = paths;
-
-        po_array['po_settings'] = {};
-        po_array['po_settings']['projectName'] = $('input[name=projectName]').val();
-        po_array['po_settings']['translatorEmail'] = $('input[name=translatorEmail]').val();
-        po_array['po_settings']['translatorName'] = $('input[name=translatorName]').val();
-        po_array['po_settings']['langaugeTeamName'] = $('input[name=langaugeTeamName]').val();
-        po_array['po_settings']['langaugeTeamEmail'] = $('input[name=langaugeTeamEmail]').val();
-        po_array['po_settings']['language'] = $('input[name=language]').val();
-        po_array['po_settings']['country'] = $('input[name=country]').val();
-
-        var url = '/admin/components/init_window/translator/savePoArray/' + moule_templaet + '/' + type + '/' + lang;
+    },
+    addYandexApiKey: function(curElement) {
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
         $.ajax({
-            type: 'POST',
+            type: "POST",
             data: {
-                po_array: JSON.stringify(po_array)
+                YandexApiKey: YandexApiKey
             },
-            url: url,
+            url: '/admin/components/init_window/translator/setSettings',
             success: function(data) {
             }
         });
-    },
-    cancel: function() {
-        var lang = $('#langs').val();
-        var type = $('#types').val();
-        var module_template = $('#modules_templates').val();
-
-        if (lang && type && module_template) {
-            var url = '/admin/components/init_window/translator/canselTranslation/' + module_template + '/' + type + '/' + lang;
-            $.ajax({
-                type: 'POST',
-                data: {
-                },
-                url: url,
-                success: function(data) {
-                }
-            });
-        }
-    },
-    start: function(data, names, type, lang, name, limit) {
-        $('#po_table').show();
-        $($('tbody')[1]).html(data);
-        Translator.statisticRecount();
-        $($('.' + lang)[0]).attr('selected', '');
-        $('#types').css('display', 'inline-block');
-        $($('.' + type)[0]).attr('selected', '');
-
-        if (type != 'main')
-            $('#modules_templates').css('display', 'inline-block');
-        if (type != 'main')
-            $('#modules_templates').html(names);
-
-        $($('.' + name)[0]).attr('selected', '');
-        $($('.per_page' + limit)[0]).attr('selected', '');
-        $('#per_page').css('display', 'inline-block');
-
-        var paths = $('.pathHolderClone').html();
-        $('.pathHolder').html(paths);
-        $('.pathParseHolder').show();
-        var po_settings = $('.po_settingsClone').html();
-        $('.po_settingsClone').html('');
-        $('.po_settings').html(po_settings);
-    },
-    correctPaths: function(curElement) {
-
-        var pathHorders = $('.pathHolder .path input[name^="path"]');
-        var paths = [];
-
-        $(pathHorders).each(function() {
-            paths.push($(this).val());
-        });
-
-        var lang = $('#langs').val();
-        var type = $('#types').val();
-        var module_template = $('#modules_templates').val();
-        var url = '';
-        switch (type) {
-            case  'modules':
-                url = '/admin/components/init_window/translator/makeCorrectPoPaths/' + module_template + '/' + type + '/' + lang;
-                break;
-            case 'templates':
-                url = '/admin/components/init_window/translator/makeCorrectPoPaths/' + module_template + '/' + type + '/' + lang;
-                break;
-            case 'main':
-                url = '/admin/components/init_window/translator/makeCorrectPoPaths/' + type + '/' + type + '/' + lang;
-                break;
-        }
-
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: {
-                paths: paths
-            },
-            success: function(data) {
-                if (data) {
-                    Translator.render(data);
-                }
-            }
-        });
-    },
-    scrollPath: function (curElement){
-        var pathsWidth = $(curElement).parent().width();
-        
-//        $(curElement).css('left');
-        console.log($(curElement).text().length)
     }
 };
+
+
 
 var Pagination = {
     generate: function() {
@@ -1018,6 +1052,38 @@ var CreatePoFile = {
     }
 };
 
+var Exchange = {
+    go: function(curElement) {
+        var langExchanger = $('.exchanger #langs').val();
+        var langReceiver = $('.receiver #langs').val();
+
+        var typeExchanger = $('.exchanger #types').val();
+        var typeReceiver = $('.receiver #types').val();
+
+        var modules_templatesExchanger = $('.exchanger #modules_templates').val();
+        var modules_templatesReceiver = $('.receiver #modules_templates').val();
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                langExchanger: langExchanger,
+                langReceiver: langReceiver,
+                typeExchanger: typeExchanger,
+                typeReceiver: typeReceiver,
+                modules_templatesExchanger: modules_templatesExchanger,
+                modules_templatesReceiver: modules_templatesReceiver
+            },
+            url: '/admin/components/init_window/translator/exchangeTranslation',
+            success: function(data) {
+                if (data) {
+                    $('#mainContent').html(data);
+                    window.history.pushState({}, "", "/admin/components/init_window/translator");
+                }
+            }
+        });
+    }
+};
+
 function escapeHtml(text) {
     return text
             .replace(/&/g, "&amp;")
@@ -1025,4 +1091,8 @@ function escapeHtml(text) {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+}
+
+function lang(str) {
+    console.log(str)
 }

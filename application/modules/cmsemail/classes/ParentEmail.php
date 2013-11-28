@@ -136,11 +136,14 @@ class ParentEmail extends \MY_Controller {
      * @return bool
      */
     public function sendEmail($send_to, $patern_name, $variables) {
+        //loading CodeIgniter Email library 
         $this->load->library('email');
 
+        //Getting settings 
         $patern_settings = $this->cmsemail_model->getPaternSettings($patern_name);
         $default_settings = $this->cmsemail_model->getSettings();
 
+        //Prepare settings into correct array for initialize library
         if ($patern_settings) {
             foreach ($patern_settings as $key => $value) {
                 if (!$value) {
@@ -150,12 +153,13 @@ class ParentEmail extends \MY_Controller {
                 }
             }
         }
-
         $default_settings['type'] = strtolower($patern_settings['type']);
+
+        //Initializing library settings
         $this->_set_config($patern_settings);
 
+        //Sending user email if active in options
         if ($patern_settings['user_message_active']) {
-
             $this->from_email = $patern_settings['from_email'];
             $this->from = $patern_settings['from'];
             $this->send_to = $send_to;
@@ -164,6 +168,7 @@ class ParentEmail extends \MY_Controller {
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('User message doesnt send', 'cmsemail');
             } else {
+                //Registering event is success
                 \CMSFactory\Events::create()->registerEvent(
                         array(
                     'from' => $this->from,
@@ -176,8 +181,8 @@ class ParentEmail extends \MY_Controller {
             }
         }
 
+        //Sending administrator email if active in options
         if ($patern_settings['admin_message_active']) {
-
             $this->from_email = $patern_settings['from_email'];
             $this->from = $patern_settings['from'];
 
@@ -193,6 +198,7 @@ class ParentEmail extends \MY_Controller {
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('User message doesnt send', 'cmsemail');
             } else {
+                //Registering event is success
                 \CMSFactory\Events::create()->registerEvent(
                         array(
                     'from' => $this->from,
@@ -205,7 +211,7 @@ class ParentEmail extends \MY_Controller {
             }
         }
 
-
+        //Returning status 
         if ($this->errors) {
             return FALSE;
         } else {

@@ -1,7 +1,7 @@
 (function($){
     var framechecks = ".frame-group-checks",
     frameFilter = '.frame-filter',
-    catalogForm = '#catalog_form',
+    catalogForm = '#catalogForm',
     apply = '.apply';
     function filtertype(el, totalProducts, otherClass) {
         var $this = el.closest(framechecks),
@@ -215,12 +215,12 @@
         var $sliders = $('.frame-slider');
 
         $sliders.sliderInit();
-        if ($.exists('#catalog_form .lineForm:visible')) {
+        if ($.exists('#catalogForm .lineForm:visible')) {
             cuSel($.extend({}, cuselOptions, {
-                changedEl: '#catalog_form .lineForm select'
+                changedEl: '#catalogForm .lineForm select'
             }));
             if (ltie7)
-                ieInput($('#catalog_form .cuselText'));
+                ieInput($('#catalogForm .cuselText'));
         }
         $(framechecks).nStCheck({
             wrapper: $(".frame-label:has(.niceCheck)"),
@@ -228,7 +228,7 @@
             evCond: true,
             //classRemove: 'b_n',//if not standart
             //if evCond: true
-            before: function(a, b, c, e) {
+            trigger: function(a, b, c, e) {
                 c.nStCheck('changeCheck');
                 ajaxRecount('#' + b.attr('id'), false);
                 var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
@@ -336,6 +336,7 @@
             type: 'get',
             url: catUrl,
             data: data,
+            cache: true,
             beforeSend: function() {
                 $.fancybox.showActivity();
             },

@@ -194,14 +194,6 @@ $shopMenu = array(
                 'link' => $ADMIN_URL . 'notificationstatuses/index',
                 'text' => lang('Notification statuses', 'admin'),
             ),
-            array(
-                'header' => true,
-                'text' => lang('Other', 'admin'),
-            ),
-            array(
-                'link' => '/admin/components/cp/comments',
-                'text' => lang('Comments', 'admin'),
-            ),
         )
     ),
     /** Products * */

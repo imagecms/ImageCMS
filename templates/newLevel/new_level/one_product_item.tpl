@@ -1,16 +1,19 @@
-{$widget = $widget != false && $widget != NULL}
-{$default = $defaultItem != false && $defaultItem != NULL}
-{$wishlist = $wishlist != false && $wishlist != NULL}
-{$compare = $compare != false && $compare != NULL}
-{$codeArticle = $codeArticle != false && $codeArticle != NULL}
-{$defaultItem = $defaultItem != false && $defaultItem != NULL}
-{$limit = $limit != false && $limit != NULL}
+{$opi_widget = $opi_widget != false && $opi_widget != NULL}
+{$opi_wishlist = $opi_wishlist != false && $opi_wishlist != NULL}
+{$opi_compare = $opi_compare != false && $opi_compare != NULL}
+{$opi_codeArticle = $opi_codeArticle != false && $opi_codeArticle != NULL}
+{$opi_defaultItem = $opi_defaultItem != false && $opi_defaultItem != NULL}
+{$opi_vertical = $opi_vertical != false && $opi_vertical != NULL}
+
+{$condlimit = $opi_limit != false && $opi_limit != NULL}
 
 {foreach $products as $key => $p}
+
     {if is_array($p) && $p.id}
         {$p = getProduct($p.id)}
     {/if}
     {if $key >= $limit && $limit}
+
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
@@ -25,7 +28,7 @@
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
                      class="vimg lazy"/>
                 {$discount = 0}
-                {if $p->hasDiscounts()}
+                {if $hasDiscounts}
                     {$discount = $p->firstVariant->getvirtual('numDiscount') / $p->firstVariant->toCurrency('origprice') * 100}
                 {/if}
                 {promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}
@@ -69,7 +72,7 @@
                 </div>
             {/if}
             <!-- End. article & variant name & brand name -->
-            {if !$vertical}
+            {if !$opi_vertical}
                 {if $p->enable_comments && intval($Comments[$p->getId()]) !== 0}
                     <div class="frame-star f-s_0">
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
@@ -84,7 +87,6 @@
             <div class="frame-prices f-s_0">
                 <!-- Start. Check for discount-->
                 {$oldoprice = $p->getOldPrice() && $p->getOldPrice() != 0 && $p->getOldPrice() > $p->firstVariant->toCurrency()}
-                {$hasDiscounts = $p->hasDiscounts()}
                 {if $hasDiscounts}
                     <span class="price-discount">
                         <span>
@@ -126,9 +128,8 @@
                 <!-- End. Product price-->
             </div>
             <!-- End. Prices-->
-            {$variants = $p->getProductVariants()}
             <!-- Start. Check variant-->
-            {if !$widget && !$defaultItem && !$compare}
+            {if !$opi_widget && !$opi_defaultItem && !$opi_compare}
                 {if count($variants) > 1}
                     <div class="check-variant-catalog">
                         <div class="lineForm">
@@ -154,7 +155,7 @@
                 {foreach $variants as $key => $pv}
                     {if $pv->getStock() > 0}
                         <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
-                            {if !$widget && !$default}
+                            {if !$opi_widget && !$opi_defaultItem}
                                 <div class="frame-count">
                                     <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
                                         <div class="frame-change-count">
@@ -194,9 +195,10 @@
                                     data-img="{echo $pv->getSmallPhoto()}"
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
-                                    data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                    data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                     data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                    data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
+                                    data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
+                                    >
                                     <span class="icon_cleaner icon_cleaner_buy"></span>
                                     <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                 </button>
@@ -215,7 +217,7 @@
                                 data-varid="{echo $pv->getId()}"
                                 data-url="{echo shop_url('product/'.$p->getUrl())}"
                                 data-price="{echo $pv->toCurrency()}"
-                                data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                 data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                 data-name="{echo ShopCore::encode($p->getName())}"
                                 data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
@@ -223,6 +225,7 @@
                                 data-number="{echo trim($pv->getNumber())}"
                                 data-img="{echo $pv->getSmallPhoto()}"
                                 data-mediumImage="{echo $pv->getMediumPhoto()}"
+                                >
                                 <span class="icon-but"></span>
                                 <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                             </button>
@@ -231,11 +234,11 @@
                 {/foreach}
             </div>
             <!-- End. Collect information about Variants, for future processing -->
-            {if !$widget && !$defaultItem}
-                <div class="p_r frame-without-top">
+            {if !$opi_widget && !$opi_defaultItem}
+                <div class="frame-without-top">
                     <!-- Wish List & Compare List buttons -->
                     <div class="frame-wish-compare-list no-vis-table">
-                        {if $wishlist}
+                        {if $opi_wishlist}
                             <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
                                 <div class="frame-btn-wish variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
@@ -244,7 +247,7 @@
                             {/foreach}
                             <!-- End. wish list buttons -->
                         {/if}
-                        {if !$compare}
+                        {if !$opi_compare}
                             <div class="frame-btn-comp">
                                 <!-- Start. Compare List button -->
                                 <div class="btn-compare">
@@ -267,8 +270,8 @@
                 </div>
             {/if}
             <!-- End. Collect information about Variants, for future processing -->
-            {if !$widget && !$compare && !$defaultItem}
-                <div class="p_r frame-without-top">
+            {if !$opi_widget && !$opi_compare && !$opi_defaultItem}
+                <div class="frame-without-top">
                     <div class="no-vis-table">
                         <!--Start. Description-->
                         {if trim($p->getShortDescription()) != ''}
@@ -286,7 +289,7 @@
             {/if}
         </div>
         <!-- Start. Remove buttons if compare-->
-        {if $compare && !$widget}
+        {if $opi_compare && !$opi_widget}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
         <!-- End. Remove buttons if compare-->

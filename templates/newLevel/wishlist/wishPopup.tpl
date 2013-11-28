@@ -60,10 +60,10 @@
                             data-effect-on="fadeIn"
                             data-effect-off="fadeOut"
                             {if $wish_list_id}
-                                data-callback="reload"
+                                data-after="reload"
                                 data-start="validateWishPopup"
                             {else:}
-                                data-callback="addToWL"
+                                data-after="addToWL"
                                 data-start="validateWishPopup"
                             {/if}
                             >

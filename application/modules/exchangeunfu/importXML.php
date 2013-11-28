@@ -216,7 +216,7 @@ class ImportXML {
                 $data = array();
                 $data['price'] = '0.00000';
                 $data['external_id'] = $product->ID . "";
-                $data['number'] = $product->Код . "";
+                $data['number'] = $product->Артикул . "";
                 $data['stock'] = 0;
                 $data['position'] = 0;
                 $mainCurrencyId = $this->ci->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
@@ -242,12 +242,12 @@ class ImportXML {
                 $data['measure'] = $product->ЕдиницаИзмерения . '';
                 $data['barcode'] = $product->ШтрихКод . '';
 
-                if (in_array(translit_url((string) $product->Наименование), $this->urls)) {
-                    $data['url'] = translit_url((string) $product->Наименование) . '-' . $product->Ид;
-                } else {
-                    $data['url'] = translit_url((string) $product->Наименование);
-//                    $this->urls[] .= $data['url'];
-                }
+//                if (in_array(translit_url((string) $product->Наименование), $this->urls)) {
+//                    $data['url'] = translit_url((string) $product->Наименование) . '-' . $product->Ид;
+//                } else {
+//                    $data['url'] = translit_url((string) $product->Наименование);
+////                    $this->urls[] .= $data['url'];
+//                }
 
                 if (isset($product->IDРодитель)) {
                     $categ = is_cat($product->IDРодитель, $this->cat);
@@ -283,7 +283,7 @@ class ImportXML {
 
                 //preparing update data for shop_product_variants
                 $data = array();
-                $data['number'] = $product->Код . "";
+                $data['number'] = $product->Артикул . "";
                 $data['external_id'] = $product->ID . "";
                 $data['product_id'] = $product->IDWeb . '';
                 $update_product_variants[] = $data;
@@ -326,7 +326,6 @@ class ImportXML {
             }
         }
         //insert products_i18n
-//        var_dumps($insert_products_i18n);
         $this->insert = $insert_products_i18n;
         $this->insertData($this->products_table . '_i18n');
 //
@@ -641,7 +640,6 @@ class ImportXML {
                 $this->insert[] = $data;
             }
         }
-//        var_dump($this->insert,$this->update);
         $this->insertData($this->prices_table);
         $this->updateData($this->prices_table, 'external_id');
     }
@@ -712,15 +710,22 @@ class ImportXML {
 
             $data['status'] = 1;
             if ($statuses[$data['external_id']]) {
-                $data['status'] = 1;
+                $data['status'] = 2;
                 $data['invoice_external_id'] = $statuses[$data['external_id']]['id'];
                 $data['invoice_code'] = $statuses[$data['external_id']]['code'];
                 $data['invoice_date'] = $statuses[$data['external_id']]['date'];
             }
 
             $user = is_user($order->IDКонтрагент, $this->users);
+
             if ($user) {
+                $userInfo = $this->ci->db
+                        ->where('id', $user['id'])
+                        ->get('users')
+                        ->row_array();
                 $data['user_id'] = $user['id'];
+                $data['user_full_name'] = $userInfo['username'];
+                $data['user_email'] = $userInfo['email'];
             } else {
                 return;
             }
@@ -728,7 +733,16 @@ class ImportXML {
 
             if ((string) $order->IDWeb) {
                 $data['id'] = (string) $order->IDWeb . '' ? (string) $order->IDWeb . '' : $order_exist['id'];
-                $this->updateOrder($order, $data);
+
+                foreach ($this->xml->СписокРасходныеНакладные as $status) {
+                    if ((string) $status->IDЗаказПокупателя == $order->ID) {
+                        $this->updateOrder($status, $data);
+//                        var_dumps($status);
+                        break;
+                    }
+                }
+
+//                $this->updateOrder($order, $data);
             } else {
                 $this->insertOrder($order, $data);
             }
@@ -737,15 +751,15 @@ class ImportXML {
         $this->insertData($this->orders_table);
 
         $inserted_orders = load_orders();
+
         foreach ($inserted_orders as $value) {
             foreach ($this->insert_order_products as $key => $order_product) {
-                if ($order_product['external_order_id'] == $value['external_id']) {
+                if ($order_product['external_order_id'] == $value['external_id'] && $order_product['external_order_id'] != NULL) {
                     $this->insert_order_products[$key]['order_id'] = $value['id'];
                     unset($this->insert_order_products[$key]['external_order_id']);
                 }
             }
         }
-
         $this->insert = $this->insert_order_products;
         $this->insertData($this->orders_products_table);
 
@@ -786,6 +800,7 @@ class ImportXML {
 
                 $total_price += (int) $product->Сумма;
             }
+
             //update order total price
             $data = array();
             $data['total_price'] = $total_price;
@@ -804,10 +819,15 @@ class ImportXML {
         $total_price = 0;
         $this->update[] = $data;
 
-        $order_id = is_order($order->ID . '', $this->orders);
-        if (isset($order->Строки)) {
-            foreach ($order->Строки as $product) {
+        if (isset($order->IDЗаказПокупателя)) {
+            $order_id = is_order($order->IDЗаказПокупателя . '', $this->orders);
+        } else {
+            $order_id = is_order($order->ID . '', $this->orders);
+        }
 
+        if (isset($order->Строки)) {
+            $this->ci->db->where('order_id', $order_id['id'])->delete('shop_orders_products');
+            foreach ($order->Строки as $key => $product) {
                 $data = array();
                 $data['quantity'] = (int) $product->Количество;
                 $data['price'] = (float) $product->Цена;
@@ -822,18 +842,18 @@ class ImportXML {
                     return false;
                 }
 
-                if (is_orders_product($product->IDWebДокумента . '', $this->orders_products)) {
-                    $data['id'] = $product->IDWebДокумента . '';
-                    $this->update_order_products[] = $data;
-                } else {
+//                if (is_orders_product($product->IDWebДокумента . '', $this->orders_products, $product_i18n['id'])) {
+//                    $data['id'] = $product->IDWebДокумента . '';
+//                    $this->update_order_products[] = $data;
+//                } else {
                     $data['order_id'] = $order_id['id'];
+                    $data['external_order_id'] = $order_id['external_id'];
                     $data['external_id'] = $product->IDДокумента . '';
                     $this->insert_order_products[] = $data;
-                }
+//                }
 
                 $total_price += (int) $product->Сумма;
             }
-
             //update order total price
             $data = array();
             $data['total_price'] = $total_price;
@@ -900,12 +920,6 @@ class ImportXML {
      */
     private function updateData($table, $where = '') {
         if (!empty($this->update)) {
-            if ($table == 'shop_orders') {
-
-                var_dumps($where);
-                var_dumps($table);
-                var_dumps($this->update);
-            }
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
 

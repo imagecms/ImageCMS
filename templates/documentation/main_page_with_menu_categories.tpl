@@ -1,8 +1,10 @@
 <div class="frame-inside">
     <div class="">
-        <div class="crumbs-custome">
-            {widget('path')}
-        </div>
+        {if $page.id != 172}
+            <div class="crumbs-custome">
+                {widget('path')}
+            </div>
+        {/if}
         <div class="clearfix">
             <div class="text left container">
                 <h1 class="">{$page.title}</h1>
@@ -14,7 +16,7 @@
             <script type="text/javascript">
                 {literal}
                     $(function() {
-                        renderPosts($('.for_comments'));
+                    renderPosts($('.for_comments'));
                     });
                 {/literal}
             </script>

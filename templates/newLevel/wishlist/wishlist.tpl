@@ -85,7 +85,7 @@
                                                     data-drop="#notification"
                                                     data-effect-on="fadeIn"
                                                     data-effect-off="fadeOut"
-                                                    data-callback="createWishList"
+                                                    data-after="createWishList"
                                                     >
                                                     <span class="text-el">{lang('Создать новий список','newLevel')}</span>
                                                 </button>
@@ -114,7 +114,9 @@
                                     {/if}
                                     {if $wishlist[0][variant_id]}
                                         <ul class="items items-catalog items-wish-list">
+
                                             {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>false))}
+
                                         </ul>
                                     {else:}
                                         <div class="msg layout-highlight layout-highlight-msg">
@@ -149,7 +151,7 @@
                                                         data-modal="true"
 
                                                         data-drop="#notification"
-                                                        data-callback="removeWL"
+                                                        data-after="removeWL"
                                                         data-confirm="true"
 
                                                         data-effect-on="fadeIn"
@@ -184,30 +186,36 @@
                                             {$price = 0}
                                             {$i = 0}
                                             {foreach $wishlist as $key => $p}
-                                                {$price += $p.price;}
-                                                {$i++}
+                                                {if $p.stock > 0}
+                                                    {$price += $p.price;}
+                                                    {$i++}
+                                                {/if}
                                             {/foreach}
-                                            <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')}
-                                                <span class="frame-prices f-s_0">
-                                                    <span class="current-prices">
-                                                        <span class="price-new">
-                                                            <span>
-                                                                <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
-                                                                <span class="curr">{$CS}</span>
+                                            {if $i > 0}
+                                                <div class="frame-buy-all-products">
+                                                    <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')}
+                                                        <span class="frame-prices f-s_0">
+                                                            <span class="current-prices">
+                                                                <span class="price-new">
+                                                                    <span>
+                                                                        <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
+                                                                        <span class="curr">{$CS}</span>
+                                                                    </span>
+                                                                </span>
                                                             </span>
                                                         </span>
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="btn-buy">
-                                                <button
-                                                    type="button"
-                                                    class="btnBuyWishList"
-                                                    >
-                                                    <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                    <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
-                                                </button>
-                                            </div>
+                                                    </div>
+                                                    <div class="btn-buy">
+                                                        <button
+                                                            type="button"
+                                                            class="btnBuyWishList"
+                                                            >
+                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                            <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            {/if}
                                         </div>
                                     {/if}
                                 </div>
@@ -256,7 +264,7 @@
 
                                                     data-drop="#notification"
                                                     data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
-                                                    data-callback="deleteImage"
+                                                    data-after="deleteImage"
                                                     data-wishlist="delete_img"
 
                                                     data-effect-on="fadeIn"
@@ -320,7 +328,7 @@
 
                                             data-drop="#notification"
                                             onclick="serializeForm(this)"
-                                            data-callback="changeDataWishlist"
+                                            data-after="changeDataWishlist"
                                             >
                                             <span class="text-el">{lang('Сохранить','newLevel')}</span>
                                         </button>

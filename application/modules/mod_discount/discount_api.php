@@ -58,7 +58,7 @@ class discount_api extends \mod_discount\discount {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_tpl_from_json_api() {
-        $json = json_decode($_POST['json']);
+        $json = json_decode($_GET['json']);
 
         \CMSFactory\assetManager::create()->setData(array('discount' => $json))->render('discount_order', true);
     }
