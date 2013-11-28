@@ -68,8 +68,10 @@
                         <nav>
                             <ul class="nav nav-vertical nav-category">
                                 {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
-                                    <li><a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
-                                    {/foreach}
+                                    <li>
+                                        <a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a>
+                                    </li>
+                                {/foreach}
                             </ul>
                         </nav>
                     </div>
