@@ -4,8 +4,7 @@ namespace cmsemail\classes;
 
 /**
  * Image CMS
- * Module Wishlist
- * @property \Wishlist_model $wishlist_model
+ * Module cmsemail
  * @property \DX_Auth $dx_auth
  * @property \CI_URI $uri
  * @property \CI_DB_active_record $db

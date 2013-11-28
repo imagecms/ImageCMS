@@ -1,9 +1,34 @@
+jQuery(function($){
+    try{
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: '&#x3c;Пред',
+            nextText: 'След&#x3e;',
+            currentText: 'Сегодня',
+            monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+            'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+            monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+            'Июл','Авг','Сен','Окт','Ноя','Дек'],
+            dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+            dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+            dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+    }catch(err){}
+});
 var wishList = {
     itemWL: '.item-WL',
     btnBuy: '.btnBuyWishList',
     countProdsWL: '.countProdsWL',
     genPriceProdsWL: '.genPriceProdsWL',
     frameWL: '[data-rel="list-item"]',
+    frameBuy: '.frame-buy-all-products',
     curCount: 0,
     cAddPrWL: 0,
     items: [],
@@ -68,7 +93,7 @@ function validateWishPopup($this, elSetSource) {
     }
     ;
     var name = $('[name="wishListName"]:last'),
-            drop = name.closest('[data-elrun]');
+    drop = name.closest('[data-elrun]');
 
     if (name.val() == "" && drop.find('[data-link]').is(':checked')) {
         removeErr();
@@ -104,8 +129,8 @@ function addToWL(el, elS, isajax, data, elSet) {
     if (data) {
         if (data.answer == 'success') {
             var btnWish = wishList.curEl.closest(genObj.btnWish),
-                    id = btnWish.parent().data('id'),
-                    varid = btnWish.parent().data('varid');
+            id = btnWish.parent().data('id'),
+            varid = btnWish.parent().data('varid');
             wishList.add(id, varid);
             wishList.curEl = '';
             processWish();
@@ -117,9 +142,9 @@ function removeItem(el, elS, isajax, data, elSet) {
     if (data) {
         if (data.answer == 'success') {
             var li = el.closest(genObj.parentBtnBuy),
-                    infoBut = li.find(genObj.infoBut),
-                    id = infoBut.data('id'),
-                    varid = infoBut.data('varid');
+            infoBut = li.find(genObj.infoBut),
+            id = infoBut.data('id'),
+            varid = infoBut.data('varid');
             li.remove();
             processWishPage();
             wishList.rm(id, varid);
@@ -132,11 +157,11 @@ function removeWL(el, elS, isajax, data, elSet) {
     if (data) {
         if (data.answer == 'success') {
             var frame = el.closest(wishList.frameWL),
-                    li = frame.find(genObj.parentBtnBuy);
+            li = frame.find(genObj.parentBtnBuy);
             li.each(function() {
                 var infoBut = $(this).find(genObj.infoBut),
-                        id = infoBut.data('id'),
-                        varid = infoBut.data('varid');
+                id = infoBut.data('id'),
+                varid = infoBut.data('varid');
                 wishList.rm(id, varid);
             });
             frame.remove();
@@ -159,31 +184,37 @@ function changeBtnBuyWL(btnBuy, cond) {
 function processWishPage() {
     $(wishList.frameWL).each(function() {
         var $this = $(this),
-                btnBuyLC = 0,
-                tempC = 0,
-                tempP = 0,
-                genSum = 0,
-                btnBuyI = $this.find(genObj.btnBuy);
+        btnBuyLC = 0,
+        tempC = 0,
+        tempP = 0,
+        genSum = 0,
+        btnBuyI = $this.find(genObj.btnBuy);
         btnBuyI.each(function() {
-            tempC = parseInt($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
+            tempC = parseFloat($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
             if (isNaN(tempC))
                 return false;
             btnBuyLC += tempC;
-            tempP = parseInt($(this).data('price'));
+            tempP = parseFloat($(this).data('price'));
             genSum += tempP * tempC;
         });
         var btnBuyL = btnBuyI.length,
-                btnCartL = $this.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).length,
-                btnBuy = $this.find(wishList.btnBuy),
-                genPrice = $this.find(wishList.genPriceProdsWL);
+        btnCartL = $this.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).length,
+        btnBuy = $this.find(wishList.btnBuy),
+        genPrice = $this.find(wishList.genPriceProdsWL);
         $this.find(wishList.countProdsWL).text(btnBuyLC);
         $this.find(genObj.plurProd).text(pluralStr(btnBuyLC, plurProd));
-        genPrice.text(genSum);
-        if (btnBuyL == btnCartL) {
-            changeBtnBuyWL(btnBuy, true);
+        genPrice.text(genSum.toFixed(pricePrecision));
+        if (btnBuyLC == 0){
+            $(wishList.frameBuy).hide();
         }
-        else {
-            changeBtnBuyWL(btnBuy, false);
+        else{
+            $(wishList.frameBuy).show();
+            if (btnBuyL == btnCartL) {
+                changeBtnBuyWL(btnBuy, true);
+            }
+            else {
+                changeBtnBuyWL(btnBuy, false);
+            }
         }
     });
 }
@@ -191,8 +222,8 @@ $(document).on('scriptDefer', function() {
     var wishPhoto = $('#wishlistphoto');
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var file = this.files[0],
-                img = document.createElement("img"),
-                reader = new FileReader();
+        img = document.createElement("img"),
+        reader = new FileReader();
         reader.onloadend = function() {
             img.src = reader.result;
         };
@@ -222,13 +253,13 @@ $(document).on('scriptDefer', function() {
     processWishPage();
     $(wishList.btnBuy).click(function() {
         var $this = $(this),
-                btns = $this.closest(wishList.frameWL).find('.' + genObj.btnBuyCss + ' ' + genObj.btnBuy);
+        btns = $this.closest(wishList.frameWL).find('.' + genObj.btnBuyCss + ' ' + genObj.btnBuy);
         if ($.existsN(btns)) {
             $.fancybox.showActivity();
             wishList.curCount = btns.length;
             wishList.curElBuy = $this;
             btns.each(function() {
-                Shop.Cart.add(Shop.composeCartItem($(this)), true);
+                Shop.Cart.add(Shop.Cart.composeCartItem($(this)), true);
             });
         }
         else {

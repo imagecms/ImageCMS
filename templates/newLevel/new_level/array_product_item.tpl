@@ -111,6 +111,7 @@
                             data-mediumImage="{echo $photo}"
                             data-img="{echo $photo}"
                             data-url="{echo shop_url('product/'.$p.url)}"
+                            >
                             <span class="icon-but"></span>
                             <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                         </button>
@@ -135,7 +136,7 @@
                         data-effect-on="fadeIn"
                         data-effect-off="fadeOut"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
-                        data-callback="removeItem"
+                        data-after="removeItem"
                         ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
                 </div>
                 <div class="btn-move-item-wl">

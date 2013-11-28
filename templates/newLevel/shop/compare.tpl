@@ -56,67 +56,68 @@
                                     </ul>
                                     <!--End. Product properties names -->
                                 </div>
-                                <div class="right-compare">
-                                    {/*if carousel_js*/}
-                                    <div class="content-carousel">
-                                        <ul class="items items-compare" id="items-catalog-main">
-                                            <!--                                    Start. Show product block with characteristic by category-->
-                                            {foreach $products as $p}
-                                                {if $p->category_id == $category['Id']}
-                                                    <li class="compare_product_{echo $p->getId()}">
-                                                        <!--                                                Start. Include product template-->
-                                                        <ul class="items items-catalog">
-                                                            {$CI->load->module('new_level')->OPI(array($p), array('compare'=>true, 'wishlist'=>true))}
-                                                        </ul>
-                                                        <!--                                                End. Include product template-->
-                                                        <!--Start. Product characteristics -->
-                                                        <ul class="compare-characteristic">
-                                                            {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($p)}
-                                                            {foreach $data as $d}
-                                                                {$cval = ShopCore::encode($d)}
-                                                                {if is_array($pdata[$cval])}
-                                                                    <li>
-                                                                        <span class="helper"></span>
-                                                                        <span>
-                                                                            {$i = 0}
-                                                                            {foreach $pdata[$cval] as $ms}
-                                                                                {echo $ms}
-                                                                                {if $i<(count($pdata[$cval])-1)}
-                                                                                    ,
-                                                                                {/if}
-                                                                                {$i++}
-                                                                            {/foreach}
-                                                                        </span>
-                                                                    </li>
-                                                                {else:}
-                                                                    {if $pdata[$cval]}
+                                <div class="right-compare horizontal-carousel">
+                                    <div class="{/*carousel_js*/}">
+                                        <div class="content-carousel">
+                                            <ul class="items items-compare" id="items-catalog-main">
+                                                <!--                                    Start. Show product block with characteristic by category-->
+                                                {foreach $products as $p}
+                                                    {if $p->category_id == $category['Id']}
+                                                        <li class="compare_product_{echo $p->getId()}">
+                                                            <!--                                                Start. Include product template-->
+                                                            <ul class="items items-catalog">
+                                                                {$CI->load->module('new_level')->OPI(array($p), array('opi_compare'=>true, 'opi_wishlist'=>true))}
+                                                            </ul>
+                                                            <!--                                                End. Include product template-->
+                                                            <!--Start. Product characteristics -->
+                                                            <ul class="compare-characteristic">
+                                                                {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($p)}
+                                                                {foreach $data as $d}
+                                                                    {$cval = ShopCore::encode($d)}
+                                                                    {if is_array($pdata[$cval])}
                                                                         <li>
                                                                             <span class="helper"></span>
-                                                                            <span>{echo $pdata[$cval]}</span>
+                                                                            <span>
+                                                                                {$i = 0}
+                                                                                {foreach $pdata[$cval] as $ms}
+                                                                                    {echo $ms}
+                                                                                    {if $i<(count($pdata[$cval])-1)}
+                                                                                        ,
+                                                                                    {/if}
+                                                                                    {$i++}
+                                                                                {/foreach}
+                                                                            </span>
                                                                         </li>
                                                                     {else:}
-                                                                        <li>
-                                                                            <span class="helper"></span>
-                                                                            <span>-</span>
-                                                                        </li>
+                                                                        {if $pdata[$cval]}
+                                                                            <li>
+                                                                                <span class="helper"></span>
+                                                                                <span>{echo $pdata[$cval]}</span>
+                                                                            </li>
+                                                                        {else:}
+                                                                            <li>
+                                                                                <span class="helper"></span>
+                                                                                <span>-</span>
+                                                                            </li>
+                                                                        {/if}
                                                                     {/if}
-                                                                {/if}
-                                                            {/foreach}
-                                                        </ul>
-                                                        <!--End. Product characteristics -->
-                                                    </li>
-                                                {/if}
-                                            {/foreach}
-                                            <!--                      End. Show product block with characteristic by category-->
-                                        </ul>
-                                    </div>
-                                    <div class="group-button-carousel">
-                                        <button type="button" class="prev arrow">
-                                            <span class="icon_arrow_p"></span>
-                                        </button>
-                                        <button type="button" class="next arrow">
-                                            <span class="icon_arrow_n"></span>
-                                        </button>
+                                                                {/foreach}
+                                                            </ul>
+                                                            <!--End. Product characteristics -->
+                                                        </li>
+                                                    {/if}
+                                                {/foreach}
+                                                <!--                      End. Show product block with characteristic by category-->
+                                            </ul>
+                                        </div>
+                                        <div class="group-button-carousel">
+                                            <button type="button" class="prev arrow">
+                                                <span class="icon_arrow_p"></span>
+                                            </button>
+                                            <button type="button" class="next arrow">
+                                                <span class="icon_arrow_n"></span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -133,13 +134,15 @@
                                 </li>
                             {/foreach}
                         </ul>
-                        {/*<div class="lineForm">
-                        <select name="compare" id="compare">
-                        {foreach $categories as $category}
-                                <option value="#tab_{$category[Url]}">{$category[Name]}</option>
-                        {/foreach}
-                        </select>
-                    </div>*/}
+                        {/*}
+                        <div class="lineForm">
+                            <select name="compare" id="compare">
+                                {foreach $categories as $category}
+                                    <option value="#tab_{$category[Url]}">{$category[Name]}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        { */}
                     </div>
                 </div>
             </div>
@@ -173,4 +176,4 @@
     </div>
 </div>
 <script type="text/javascript" src="{$THEME}js/jquery.equalhorizcell.min.js"></script>
-{/*<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

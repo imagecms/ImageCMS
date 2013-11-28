@@ -67,14 +67,14 @@ class ExportXML {
         }
 
         /** export productivity */
-        if ($this->productivity) {
-            $this->exportProductivity();
-        }
+//        if ($this->productivity) {
+//            $this->exportProductivity();
+//        }
 
         /** export prices */
-        if ($this->prices) {
-            $this->exportPrices();
-        }
+//        if ($this->prices) {
+//            $this->exportPrices();
+//        }
 
         /** export orders */
         if ($this->orders) {
@@ -294,13 +294,7 @@ class ExportXML {
 
         /** get user external id */
         foreach ($this->orders as $order) {
-            foreach ($this->users as $user) {
-                if ($user['id'] == $order['user_id']) {
-                    $order['user_id'] = $user['external_id'];
-                    break;
-                }
-            }
-
+            
             if ($order['status'] == 2) {
                 $this->invoice_export .=
                         "\t<СписокРасходныеНакладные>\r\n" .
@@ -312,8 +306,8 @@ class ExportXML {
                         "\t\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n" .
                         "\t\t<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\r\n" .
                         "\t\t<IDWebЗаказПокупателя>" . $order['id'] . "</IDWebЗаказПокупателя>\r\n" .
-                        "\t\t<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\r\n" .
-                        "\t\t<IDWebКонтрагент>" . $users[$order['user_id']] . "</IDWebКонтрагент>\r\n";
+                        "\t\t<IDКонтрагент>" . $order['external_id'] . "</IDКонтрагент>\r\n" .
+                        "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n";
             }
 
             /** convert paid value */
@@ -331,8 +325,8 @@ class ExportXML {
                     "\t\t<Дата>" . date('Y-m-d\Th:m:s', $order['date_created']) . "</Дата>\r\n" .
                     "\t\t<Номер>" . $order['code'] . "</Номер>\r\n" .
                     "\t\t<СрокДоставки>" . date('Y-m-d\Th:m:s', $order['delivery_date']) . "</СрокДоставки>\r\n" .
-                    "\t\t<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\r\n" .
-                    "\t\t<IDWebКонтрагент>" . $users[$order['user_id']] . "</IDWebКонтрагент>\r\n" .
+                    "\t\t<IDКонтрагент>" . $order['external_id'] . "</IDКонтрагент>\r\n" .
+                    "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n" .
                     "\t\t<Адрес>" . $order['user_deliver_to'] . "</Адрес>\r\n" .
                     "\t\t<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\r\n" .
                     "\t\t<ПризнакПередоплаты>" . $order['paid'] . "</ПризнакПередоплаты>\r\n" .
@@ -364,12 +358,12 @@ class ExportXML {
             }
             
             $this->order_export .= $products;
-            
             if ($order['status'] == 2) {
                 $this->invoice_export .= "\t\t</СписокРасходныеНакладные>\r\n";
             }
 
             $this->order_export .= "\t\t</СписокЗаказыПокупателя>\r\n";
+            unset($products);
         }
     }
 
@@ -436,6 +430,7 @@ class ExportXML {
                     "\t\t<ID>" . $product['external_id'] . "</ID>\r\n" .
                     "\t\t<Наименование>" . htmlspecialchars($product['name']) . "</Наименование>\r\n" .
                     "\t\t<Код>" . $product['code'] . "</Код>\r\n" .
+                    "\t\t<Артикул>" . $product['number'] . "</Артикул>\r\n" .
                     "\t\t<IDРодитель>" . $product['category_external_id'] . "</IDРодитель>\r\n" .
                     "\t\t<IDWebРодитель>" . $product['category_id'] . "</IDWebРодитель>\r\n" .
                     "\t\t<ЕдиницаИзмерения>" . $product['measure'] . "</ЕдиницаИзмерения>\r\n" .

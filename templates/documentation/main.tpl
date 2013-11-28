@@ -184,6 +184,7 @@
                         {/foreach}
                     </ul>
                 </div>
+
                 <div class="info-box3 col-lg-4">
                     <div class="title">
                         <span class="icon-linked"></span>
@@ -206,6 +207,7 @@
                         </div>
                         {form_csrf()}
                     </form>
+
                 </div>
             </div>
         </div>
@@ -214,33 +216,33 @@
             <div class="foot-box1 col-sm-3">
                 <div class="title">Сайт</div>
                 <ul>
-                    <li><a href="#">О Компании</a></li>
-                    <li><a href="#">Заказать сайт</a></li>
-                    <li><a href="#">Стать партнером</a></li>
-                    <li><a href="#">Купить сейчас</a></li>
+                    <li><a href="http://imagecms.net/about">О Компании</a></li>
+                    <li><a href="http://imagecms.net/partners/siteOrder">Заказать сайт</a></li>
+                    <li><a href="http://imagecms.net/partners/become">Стать партнером</a></li>
+                    <li><a href="http://imagecms.net/buy">Купить сейчас</a></li>
                 </ul>
             </div>
             <div class="foot-box2 col-sm-3">
                 <div class="title">Связь</div>
                 <ul>
-                    <li><a href="#">Потддержка</a></li>
-                    <li><a href="#">Блог</a></li>
-                    <li><a href="#">Сообщество</a></li>
+                    <li><a href="http://imagecms.net/support/technical-support">Потддержка</a></li>
+                    <li><a href="http://imagecms.net/blog">Блог</a></li>
+                    <li><a href="http://forum.imagecms.net">Сообщество</a></li>
                 </ul>
             </div>
             <div class="foot-box3 col-sm-3">
                 <div class="title">Уроки ImageCMS</div>
                 <ul>
-                    <li><a href="#">Установка</a></li>
-                    <li><a href="#">DenwerPHP</a></li>
-                    <li><a href="#">HTML-CSS</a></li>
+                    <li><a href="http://imagecms.net/blog/imagecms-lessons/ustanovka-denwer-pervyi-shag-na-puti-sozdaniia-web-prekta">Установка</a></li>
+                    <li><a href="http://imagecms.net/blog/imagecms-lessons/php-mysql">DenwerPHP</a></li>
+                    <li><a href="http://imagecms.net/blog/imagecms-lessons/html-css-javascript">HTML-CSS</a></li>
                 </ul>
             </div>
             <div class="foot-box4 col-sm-3">
                 <div class="title">Инструкции</div>
                 <ul>
-                    <li><a href="#">Создание корпоративного сайта</a></li>
-                    <li><a href="#">Создание Интернет-магазина</a></li>
+                    <li><a href="/poshagovye-instruktsii/sozdanie_korporativnogo_saita_na_baze_imagecms_corporate">Создание корпоративного сайта</a></li>
+                    <li><a href="/poshagovye-instruktsii/sozdanie_internet-magazina_na_baze_imagecms_shop">Создание Интернет-магазина</a></li>
                 </ul>
             </div>
             <div class="foot-box5 col-sm-3">
@@ -257,20 +259,32 @@
                 <div class="">2009-2013 © «ImageCMS»</div>
                 <div class="all-rights">Все права защищены</div>
             </div>
+
             <ul class="col-sm-4">
-                <li><a class="icon-fsoc-vk"></a></li>
-                <li><a class="icon-fsoc-fsb"></a></li>
-                <li><a class="icon-fsoc-gplus"></a></li>
-                <li><a class="icon-fsoc-youtube"></a></li>
-                <li><a class="icon-fsoc-in"></a></li>
-                <li><a class="icon-fsoc-tweet"></a></li>
+                <li>
+                    <a href="http://vk.com/imagecms" class="icon-fsoc-vk" onclick="_gaq.push(['_trackPageview', '/socialpage_vk'])" target="blank"></a>
+                </li>
+                <li>
+                    <a href="http://www.facebook.com/pages/Image-CMS/231137056897516" class="icon-fsoc-fsb" onclick="_gaq.push(['_trackPageview', '/socialpage_facebook'])" target="blank"></a>
+                </li>
+                <li>
+                    <a href="https://plus.google.com/u/0/b/107219447061140923464/107219447061140923464/posts" class="icon-fsoc-gplus" onclick="_gaq.push(['_trackPageview', '/socialpage_plus'])" target="blank"></a>
+                </li>
+                <li>
+                    <a href="http://www.youtube.com/user/imagecms" rel="nofollow" target="_blank" class="icon-fsoc-youtube"></a>
+                </li>
+                <li>
+                    <a href="http://www.linkedin.com/company/imagecms" rel="nofollow" target="_blank" class="icon-fsoc-in"></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/#!/imagecms" class="icon-fsoc-tweet" onclick="_gaq.push(['_trackPageview', '/socialpage_twitter'])" target="blank"></a>
+                </li>
             </ul>
             <div class="t-a_r col-sm-4">
-                <div class="">
-                    <span class="text-el">Голосуй за ImageCMS:</span>
-                    <span class="stars-foot"><img src="{$THEME}images/stars.png"></span>
-                </div>
-                <div class="cms-foot-vote">Проголосовало 36 человек</div>
+
+                <span class="stars-foot">
+                    {$CI->load->module('star_rating')->show_star_rating()}
+                </span>
             </div>
         </div>
     </footer>

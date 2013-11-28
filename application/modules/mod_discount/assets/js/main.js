@@ -30,7 +30,7 @@ function load_certificat() {
             $('#gift p.error').remove();
             $('<p class="error">' + gift.mes + '</p>').insertAfter('#gift [name=giftcert]')
         } else {
-            $.post(lang+'/mod_discount/gift/render_gift_succes', {json: JSON.stringify(gift)}, function(tpl) {
+            $.get(lang+'/mod_discount/gift/render_gift_succes', {json: JSON.stringify(gift)}, function(tpl) {
                 $('#gift').html(tpl)
             });
             $('#giftCertPrice').html(gift.value);
