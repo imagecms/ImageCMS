@@ -77,6 +77,11 @@ function init() {
             var input = dropEl.find('form input[type="text"]:first');
             input.setCursorPosition(input.val().length);
         }
+        var carouselInDrop = dropEl.find('.carousel_js');
+        if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !dropEl.is('#photo')) {
+            carouselInDrop.addClass('visited')
+            carouselInDrop.myCarousel(carousel);
+        }
         cuselInit(dropEl, '.drop:visible .lineForm select');
     };
     optionsDrop.close = function(el, dropEl) {
