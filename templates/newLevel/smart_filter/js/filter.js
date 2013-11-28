@@ -228,7 +228,7 @@
             evCond: true,
             //classRemove: 'b_n',//if not standart
             //if evCond: true
-            before: function(a, b, c, e) {
+            trigger: function(a, b, c, e) {
                 c.nStCheck('changeCheck');
                 ajaxRecount('#' + b.attr('id'), false);
                 var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
