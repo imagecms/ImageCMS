@@ -50,7 +50,7 @@
             <div class="funcs-buttons">
                 <!-- Start. Collect information about Variants, for future processing -->
                 {if $p.stock > 0}
-                    <div class="frame-count-buy js-variant_{echo $p.variant_id} js-variant">
+                    <div class="frame-count-buy js-variant-{echo $p.variant_id} js-variant">
                         <div class="frame-count frameCount">
                             <div class="number js-number" data-title="{lang('количество на складе', 'newLevel')} {echo $p.stock}" data-prodid="{echo $p.id}" data-varid="{echo $p.variant_id}">
                                 <div class="frame-change-count frameChangeCount">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 {else:}
-                    <div class="btn-not-avail js-variant_{echo $p.variant_id} js-variant" >
+                    <div class="btn-not-avail js-variant-{echo $p.variant_id} js-variant" >
                         <button
                             class="infoBut"
                             type="button"

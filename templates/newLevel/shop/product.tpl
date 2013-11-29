@@ -142,7 +142,7 @@
                                             {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                         {/if}
                                         {if $productVariant->getStock() > 0}
-                                            <div class="frame-count-buy js-variant_{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                                            <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                 <div class="frame-count frameCount">
                                                     <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}">
                                                         <div class="frame-change-count frameChangeCount">
@@ -188,7 +188,7 @@
                                             </div>
                                         {else:}
                                             <div class="d_i-b v-a_m">
-                                                <div class="js-variant_{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                                                <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                     <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
                                                     <div class="btn-not-avail">
                                                         <button
@@ -225,7 +225,7 @@
                             <!-- Start. Wish List & Compare List buttons -->
                             <div class="frame-wish-compare-list f-s_0">
                                 {foreach $variants as $key => $pv}
-                                    <div class="frame-btn-wish js-variant_{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $model->getId()}" data-varid="{echo $pv->getId()}">
+                                    <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $model->getId()}" data-varid="{echo $pv->getId()}">
                                         {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                     </div>
                                 {/foreach}
