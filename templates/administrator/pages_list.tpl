@@ -187,7 +187,7 @@
                                     {date('d-m-Y, H:i', $page.publish_date)}
                                 </td>
                                 <td>
-                                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show","admin")}{else:}{lang('don\'t show')}{/if}" onclick="change_page_status('{$page.id}');">
+                                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show","admin")}{else:}{lang("don't show", 'admin')}{/if}" onclick="change_page_status('{$page.id}');">
                                         <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
                                     </div>
                                 </td>

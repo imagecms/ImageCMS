@@ -37,7 +37,7 @@
 		<div class="form_input">
             <input type="text" name="root_folder" value=""  class="textbox_long" />
             <br />
-            <span class="help-block">{lang("For example:  /domains/mysite/public_html/")}</span>
+            <span class="help-block">{lang("For example:", 'admin')} /domains/mysite/public_html/</span>
         </div>
 		<div class="form_overflow"></div>
 

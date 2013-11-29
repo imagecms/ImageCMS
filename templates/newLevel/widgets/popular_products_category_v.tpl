@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="big-container">
-                <div class="carousel_js products-carousel">
+                <div class="carousel-js-css products-carousel">
                     <div class="content-carousel container">
                         <ul class="items items-default items-v-carousel">
                             {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true, 'opi_vertical'=>true, 'opi_defaultItem'=>true))}
