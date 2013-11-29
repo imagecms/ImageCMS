@@ -170,53 +170,52 @@ function getCookie(c_name)
                                 elCheckWrap = settings.elCheckWrap,
                                 evCond = settings.evCond,
                                 classRemove = settings.classRemove,
-                                after = settings.after;
+                                after = settings.after,
+                                trigger = settings.trigger
 
                         frameChecks.find(elCheckWrap).removeClass(dC + ' ' + aC + ' ' + fC);
                         //init event click on wrapper change state
                         frameChecks.find(wrapper).removeClass(dC + ' ' + aC + ' ' + fC).off('click.' + nS).on('click.' + nS, function(e) {
                             var $this = $(this),
-                                    $thisD = $this.hasClass(dC),
                                     nstcheck = $this.find(elCheckWrap);
-                            if (nstcheck.length === 0)
+                            if (!$.existsN(nstcheck))
                                 nstcheck = $this;
-                            if (!$thisD) {
+                            if (!$this.hasClass(dC)) {
                                 if (!evCond) {
                                     methods.changeCheck(nstcheck);
                                     after(frameChecks, $this, nstcheck, e);
                                 }
                                 else {
-                                    settings.trigger(frameChecks, $this, nstcheck, e);
+                                    trigger(frameChecks, $this, nstcheck, e);
                                 }
                             }
-                            return false;
+                            e.preventDefault();
                         });
 
                         //init event reset
-                        var form = frameChecks.closest('form');
-                        form.each(function() {
+                        frameChecks.closest('form').each(function() {
                             var $this = $(this),
                                     checked = $([]);
                             $this.find('input:checked').each(function() {
-                                checked = checked.add($(this).parent());
+                                checked = checked.add($(this).closest(elCheckWrap));
                             });
-                            $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function() {
+                            $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function(e) {
                                 var wrap = $this.find(elCheckWrap);
                                 methods.checkAllReset(wrap.not(checked));
                                 methods.checkAllChecks(wrap.not('.' + aC).filter(checked));
-                                return false;
+                                e.preventDefault();
                             });
                         });
 
                         //init events input
                         wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
                             e.stopPropagation();
+                            e.preventDefault()
                             if (e.button == 0)
                                 $(this).closest(wrapper).trigger('click.' + nS);
-                            return false;
                         }).off('click.' + nS).on('click.' + nS, function(e) {
                             e.stopPropagation();
-                            return false;
+                            e.preventDefault()
                         }).off('keyup.' + nS).on('keyup.' + nS, function(e) {
                             if (e.keyCode === 32)
                                 $(this).closest(wrapper).trigger('click.' + nS);
@@ -226,8 +225,8 @@ function getCookie(c_name)
                         }).off('blur.' + nS).on('blur.' + nS, function(e) {
                             var $this = $(this);
                             $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass(fC);
-                        }).off('change.' + nS).on('change.' + nS, function() {
-                            return false;
+                        }).off('change.' + nS).on('change.' + nS, function(e) {
+                            e.preventDefault()
                         });
 
                         //init states of checkboxes
@@ -248,21 +247,13 @@ function getCookie(c_name)
                 _changeCheckStart: function(el) {
                     if (el === undefined)
                         el = this;
-                    var input = el.find("input");
-                    if (input.attr("checked") !== undefined) {
-                        methods.checkChecked(el);
-                    }
-                    else {
-                        methods.checkUnChecked(el);
-                    }
+                    el.find("input").is(":checked") ? methods.checkChecked(el) : methods.checkUnChecked(el);
                 },
                 checkChecked: function(el) {
                     if (el === undefined)
                         el = this;
-                    var input = el.find("input");
-                    el.addClass(aC).parent().addClass(aC);
-                    input.attr("checked", 'checked');
-                    input.trigger({
+                    el.addClass(aC).parent().addClass(aC).end().find("input").prop("checked", true);
+                    el.find('input').trigger({
                         'type': nS + '.cc',
                         'el': el
                     });
@@ -270,10 +261,8 @@ function getCookie(c_name)
                 checkUnChecked: function(el) {
                     if (el === undefined)
                         el = this;
-                    var input = el.find("input");
-                    el.removeClass(aC).parent().removeClass(aC);
-                    input.removeAttr("checked");
-                    input.trigger({
+                    el.removeClass(aC).parent().removeClass(aC).end().find("input").removeProp("checked");
+                    el.find('input').trigger({
                         'type': nS + '.cuc',
                         'el': el
                     });
@@ -282,40 +271,31 @@ function getCookie(c_name)
                 {
                     if (el === undefined)
                         el = this;
-                    var input = el.find("input");
-                    if (input.attr("checked") === undefined) {
-                        methods.checkChecked(el);
+                    if (el.find("input").is(":checked")) {
+                        methods.checkUnChecked(el);
                     }
                     else {
-                        methods.checkUnChecked(el);
+                        methods.checkChecked(el);
                     }
                 },
                 checkAllChecks: function(el)
                 {
-                    if (el === undefined)
-                        el = this;
-                    el.each(function() {
+                    (el === undefined ? this : el).each(function() {
                         methods.checkChecked($(this));
                     });
                 },
                 checkAllReset: function(el)
                 {
-                    if (el === undefined)
-                        el = this;
-                    el.each(function() {
+                    (el === undefined ? this : el).each(function() {
                         methods.checkUnChecked($(this));
                     });
                 },
                 checkAllDisabled: function(el)
                 {
-                    if (el === undefined)
-                        el = this;
-                    el.each(function() {
-                        var $this = $(this),
-                                input = $this.find("input");
-                        $this.addClass(dC).parent().addClass(dC);
-                        input.attr('disabled', 'disabled');
-                        input.trigger({
+                    (el === undefined ? this : el).each(function() {
+                        var $this = $(this);
+                        $this.addClass(dC).parent().addClass(dC).end().find("input").prop('disabled', true);
+                        $this.find('input').trigger({
                             'type': nS + '.ad',
                             'el': $this
                         });
@@ -323,14 +303,10 @@ function getCookie(c_name)
                 },
                 checkAllEnabled: function(el)
                 {
-                    if (el === undefined)
-                        el = this;
-                    el.each(function() {
-                        var $this = $(this),
-                                input = $this.find("input");
-                        $this.removeClass(dC).parent().removeClass(dC);
-                        input.removeAttr('disabled');
-                        input.trigger({
+                    (el === undefined ? this : el).each(function() {
+                        var $this = $(this);
+                        $this.removeClass(dC).parent().removeClass(dC).end().find("input").removeProp('disabled');
+                        $this.find('input').trigger({
                             'type': nS + '.ae',
                             'el': $this
                         });
