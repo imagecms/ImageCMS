@@ -14,7 +14,7 @@
     <div class="container">
         <!--Start. Show compare list if count products >0 -->
         {if count($products) > 0}
-            <div class="no-empty">
+            <div class="no-empty js-no-empty">
                 <!-- Start. Buttons for change to show different or all properties -->
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
@@ -57,7 +57,7 @@
                                     <!--End. Product properties names -->
                                 </div>
                                 <div class="right-compare horizontal-carousel">
-                                    <div class="{/*carousel_js*/}">
+                                    <div class="{/*carousel-js-css*/}">
                                         <div class="content-carousel">
                                             <ul class="items items-compare" id="items-catalog-main">
                                                 <!--                                    Start. Show product block with characteristic by category-->
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-            <div class="empty">
+            <div class="js-empty">
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
                         <h1 class="d_i title">{lang('Сравнение товаров','newLevel')}</h1>

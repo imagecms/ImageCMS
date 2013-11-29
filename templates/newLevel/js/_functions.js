@@ -143,7 +143,7 @@ function processBtnBuyCount(el) {
             }).closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart);
         }
     }).removeAttr('disabled');
-    el.find('[data-rel="frameplusminus"]').each(function() {
+    el.find(genObj.numberC).each(function() {
         var $this = $(this),
                 key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {
@@ -365,7 +365,7 @@ function countSumBask() {
     $(genObj.addSumBask).each(function() {
         $(this).html(addSumBask.toFixed(pricePrecision));
     })
-    $(genObj.bask + ' ' + genObj.plurProd).each(function() {
+    $(genObj.tinyBask + ' ' + genObj.plurProd).each(function() {
         $(this).html(pluralStr(length, plurProd));
     });
 }
@@ -507,8 +507,8 @@ function removePreloaderBaner(el) {
     })
 }
 function initCarouselJscrollPaneCycle(el) {
-    el.find('.horizontal-carousel .carousel_js:not(.cycleFrame):not(.frame-scroll-pane):visible').myCarousel(carousel);
-    el.find('.vertical-carousel .carousel_js:visible').myCarousel(carousel);
+    el.find('.horizontal-carousel .carousel-js-css:not(.cycleFrame):not(.frame-scroll-pane):visible').myCarousel(carousel);
+    el.find('.vertical-carousel .carousel-js-css:visible').myCarousel(carousel);
     if ($.exists(selScrollPane)) {
         el.find(selScrollPane).each(function() {
             var $this = $(this),
@@ -551,7 +551,7 @@ function initCarouselJscrollPaneCycle(el) {
             $(next).add(prev).show();
         }
         removePreloaderBaner($('.baner:has(.cycle)')); //cycle - parent for images
-    })
+    });
 }
 function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop);
