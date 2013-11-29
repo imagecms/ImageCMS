@@ -69,7 +69,7 @@
             err: 'mError',
             scs: 'mSuccess',
             info: 'mInfo',
-            prefV: ".js-variant_",
+            prefV: ".js-variant-",
             selVariant: '.js-variant',
             blockEmpty: '.js-empty',
             blockNoEmpty: '.js-no-empty',

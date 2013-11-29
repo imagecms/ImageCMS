@@ -159,7 +159,7 @@
                 <!-- Start. Collect information about Variants, for future processing -->
                 {foreach $variants as $key => $pv}
                     {if $pv->getStock() > 0}
-                        <div class="frame-count-buy js-variant_{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                        <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                             {if !$opi_widget && !$opi_defaultItem}
                                 <div class="frame-count frameCount">
                                     <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
@@ -210,7 +210,7 @@
                             </div>
                         </div>
                     {else:}
-                        <div class="btn-not-avail js-variant_{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                        <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                             <button
                                 class="infoBut"
                                 type="button"
@@ -246,7 +246,7 @@
                         {if $opi_wishlist}
                             <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
-                                <div class="frame-btn-wish js-variant_{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                             {/foreach}
