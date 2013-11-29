@@ -49,7 +49,7 @@
                                         {foreach $variants as $key => $pv}
                                             {if $pv->getStock() > 0}
                                                 <button {if $key != 0}style="display:none"{/if}
-                                                                      class="button small buy btnBuy variant_{echo $pv->getId()}"
+                                                                      class="button small buy btnBuy variant-{echo $pv->getId()}"
                                                                       type="button"
 
                                                                       data-id="{echo $pv->getId()}"
