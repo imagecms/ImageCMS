@@ -1663,7 +1663,7 @@ function getCookie(c_name)
                                 methods.closeDrop($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
                         }
 
-                        if (!$this.is('[disabled]')) {
+                        if (!$this.is(':disabled')) {
                             e.stopPropagation();
                             e.preventDefault();
                             var modal = elSet.modal || settings.modal,
@@ -1696,7 +1696,7 @@ function getCookie(c_name)
                                         });
                                     }
                                 }
-                                else {
+                                else {//for front validations
                                     methods._pasteDrop($.extend({}, settings, elSet), drop);
                                     methods.showDrop($this, e, optionsDrop, false);
                                 }
@@ -1727,10 +1727,11 @@ function getCookie(c_name)
                     if (elSet.place === 'noinherit')
                         body.append(drop);
                     else {
-                        if (!$.exists('[rel="' + elSet.drop + '"].for-center')) {
+                        var sel = '[rel="' + elSet.drop + '"].for-center'; 
+                        if (!$.exists(sel)) {
                             body.append('<div class="for-center" rel="' + elSet.drop + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
                         }
-                        var forCenter = $('[rel="' + elSet.drop + '"].for-center');
+                        var forCenter = $(sel);
                         forCenter.append(drop);
                         $(elSet.drop).data('forCenter', forCenter);
                     }
@@ -1916,6 +1917,7 @@ function getCookie(c_name)
                     }
                     if (place === 'center')
                         methods.dropCenter(drop);
+                    
                     drop[$thisEOn]($thisD, function(e) {
                         var drop = $(this);
                         drop.addClass(aC);
@@ -2013,8 +2015,8 @@ function getCookie(c_name)
                 sel = $(this);
             clearTimeout(optionsDrop.closeDropTime);
             $('[data-button-confirm]').off('click.drop');
-            var cond = sel === undefined || !sel;
-            var drop = cond ? $('[data-elrun].' + aC) : sel;
+            var cond = sel === undefined || !sel,
+            drop = cond ? $('[data-elrun].' + aC) : sel;
             if (!cond)
                 body.off('click.drop').off('keydown.drop keydown.drop')
             if ($.existsN(drop)) {

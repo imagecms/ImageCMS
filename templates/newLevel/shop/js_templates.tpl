@@ -276,7 +276,7 @@
                             <div class="clearfix">
                                 <span class="frame-discount frameDiscount">
                                     <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevel')}{literal}:</span>
-                                    <span class="text-discount current-discount"><span class="genDiscount"></span> <span class="curr"><%-curr%></span></span>
+                                    <span class="text-discount current-discount"><span class="curDiscount"></span> <span class="curr"><%-curr%></span></span>
                                 </span>
                                 <% if (orderDetails) { %>
                                 <div class="btn-form f_l">

@@ -205,7 +205,7 @@ function displayDiscount(obj) {
             Shop.Cart.discountProduct += tempdisc;
         Shop.Cart.discountProduct += Shop.Cart.kitDiscount;
 
-        $(genObj.genDiscount).each(function() {
+        $(genObj.curDiscount).each(function() {
             $(this).html(Shop.Cart.discountProduct.toFixed(pricePrecision));
         });
         $(genObj.genSumDiscount).each(function() {

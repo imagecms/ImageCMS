@@ -116,7 +116,6 @@ var optionsDrop = {
     durationOn: 500,
     durationOff: 200,
     modalPlace: '.notification',
-    modalDelay: 500,
     dropContent: '.drop-content',
     animate: true,
     placeBeforeShow: 'center center',

@@ -38,7 +38,7 @@
             addSumBask: '.topCartTotalAddPrice',
             frameDiscount: '#discount',
             gift: '#gift',
-            genDiscount: '.genDiscount',
+            curDiscount: '.curDiscount',
             genSumDiscount: '.genSumDiscount',
             shipping: '#shipping',
             finalAmountAdd: '#finalAmountAdd',

@@ -161,7 +161,6 @@ function removeWL(el, elS, isajax, data, elSet) {
                 var infoBut = $(this).find(genObj.infoBut),
                 id = infoBut.data('id'),
                 varid = infoBut.data('varid');
-                console.log(varid)
                 wishList.rm(id, varid);
             });
             frame.remove();
