@@ -237,11 +237,11 @@
                                 </ul>
                                 <div class="gen-sum-order">
                                     <span class="title">{lang('Всего к оплате:','newLevel')}</span>
-                                    <span class="frame-prices f-s_0">
+                                    <span class="frame-prices">
                                         <span class="price-discount">
-                                            <span>
+                                            <span class="f-s_0">
                                                 <span class="price frame-gen-discount genDiscount" id="totalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
-                                                <span class="curr frame-gen-discount genDiscount">{$CS}</span>
+                                                <span class="curr frame-gen-discount genDiscount"> {$CS}</span>
                                             </span>
                                         </span>
                                         <span class="current-prices f-s_0">
@@ -371,7 +371,7 @@
                                                     <span class="current-prices f-s_0">
                                                         <span class="price-new">
                                                             <span>
-                                                                <span class="price priceOrder><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span>
+                                                                <span class="price priceOrder"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span>
                                                                 <span class="curr"><%-curr%></span>
                                                             </span>
                                                         </span>
@@ -556,7 +556,7 @@
                             <span class="frame-discount frameDiscount">
 
                                 <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevel')}{literal}:</span>
-                                <span class="text-discount current-discount"><span class="genDiscount"></span> <span class="curr"><%-curr%></span></span>
+                                <span class="text-discount current-discount"><span class="curDiscount"></span> <span class="curr"><%-curr%></span></span>
 
                             </span>
 

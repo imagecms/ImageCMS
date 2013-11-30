@@ -143,7 +143,7 @@ var Shop = {
 
             if (this.gift != undefined && !this.gift.error)
                 this.giftValue = this.gift.value
-            
+            console.log(this.giftValue)
             return this.totalRecount().totalPriceOrigin + this.shipping - this.giftValue;
         },
         renderPopupCart: function(selector) {
