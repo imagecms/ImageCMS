@@ -1727,7 +1727,7 @@ function getCookie(c_name)
                     if (elSet.place === 'noinherit')
                         body.append(drop);
                     else {
-                        var sel = '[rel="' + elSet.drop + '"].for-center'; 
+                        var sel = '[rel="' + elSet.drop + '"].for-center';
                         if (!$.exists(sel)) {
                             body.append('<div class="for-center" rel="' + elSet.drop + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
                         }
@@ -1917,7 +1917,7 @@ function getCookie(c_name)
                     }
                     if (place === 'center')
                         methods.dropCenter(drop);
-                    
+
                     drop[$thisEOn]($thisD, function(e) {
                         var drop = $(this);
                         drop.addClass(aC);
@@ -2016,7 +2016,7 @@ function getCookie(c_name)
             clearTimeout(optionsDrop.closeDropTime);
             $('[data-button-confirm]').off('click.drop');
             var cond = sel === undefined || !sel,
-            drop = cond ? $('[data-elrun].' + aC) : sel;
+                    drop = cond ? $('[data-elrun].' + aC) : sel;
             if (!cond)
                 body.off('click.drop').off('keydown.drop keydown.drop')
             if ($.existsN(drop)) {
