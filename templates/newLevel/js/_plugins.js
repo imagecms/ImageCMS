@@ -171,7 +171,7 @@ function getCookie(c_name)
                                 evCond = settings.evCond,
                                 classRemove = settings.classRemove,
                                 after = settings.after,
-                                trigger = settings.trigger
+                                trigger = settings.trigger;
 
                         frameChecks.find(elCheckWrap).removeClass(dC + ' ' + aC + ' ' + fC);
                         //init event click on wrapper change state
