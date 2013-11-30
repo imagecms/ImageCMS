@@ -159,7 +159,7 @@ function getCookie(c_name)
                     wrapper: $("label:has(.niceCheck)"),
                     elCheckWrap: '.niceCheck',
                     evCond: false,
-                    classRemove: 'b_n',
+                    classRemove: '',
                     trigger: function() {
                     },
                     after: function() {
