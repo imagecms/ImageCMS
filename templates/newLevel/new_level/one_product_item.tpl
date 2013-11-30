@@ -22,7 +22,7 @@
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
-    <li {if $p->firstVariant->getStock() == 0}class="not-avail"{/if} data-pos="top">
+    <li class="globalFrameProduct{if $p->firstVariant->getStock() == 0} not-avail{/if}" data-pos="top">
         <!-- Start. Photo & Name product -->
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title" title="{echo ShopCore::encode($p->getName())}">
             <span class="photo-block">
@@ -31,7 +31,7 @@
                 <img data-original="{echo $photo}"
                      src="{$THEME}images/blank.gif"
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
-                     class="vimg lazy"/>
+                     class="vImg lazy"/>
                 {$discount = 0}
                 {if $hasDiscounts}
                     {$discount = $p->firstVariant->getvirtual('numDiscount') / $p->firstVariant->toCurrency('origprice') * 100}
@@ -46,16 +46,16 @@
             {if $codeArticle}
                 <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevel')}:
-                        <span class="code">
+                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevel')}:
+                        <span class="code js-code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
                             {/if}
                         </span>
                     </span>
                     {$hasVariant = $p->firstVariant->getName() == ''}
-                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}:
-                        <span class="code">
+                    <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}:
+                        <span class="code js-code">
                             {if !$hasVariant}
                                 {trim($p->firstVariant->getName())}
                             {/if}
@@ -65,7 +65,7 @@
                         {$brand = $brand->getName()}
                         {$hasBrand = trim($brand) != ''}
                         <span class="frame-item-brand">{lang('Бренд','newLevel')}:
-                            <span class="code">
+                            <span class="code js-code">
                                 {if $hasBrand}
                                     <a href="{shop_url('brand/'.$p->getBrand()->getUrl())}">
                                         {echo trim($brand)}
@@ -159,11 +159,11 @@
                 <!-- Start. Collect information about Variants, for future processing -->
                 {foreach $variants as $key => $pv}
                     {if $pv->getStock() > 0}
-                        <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                        <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                             {if !$opi_widget && !$opi_defaultItem}
-                                <div class="frame-count">
-                                    <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
-                                        <div class="frame-change-count">
+                                <div class="frame-count frameCount">
+                                    <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                        <div class="frame-change-count frameChangeCount">
                                             <div class="btn-plus">
                                                 <button type="button">
                                                     <span class="icon-plus"></span>
@@ -175,7 +175,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <input type="text" value="1" data-rel="plusminus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
+                                        <input type="text" value="1" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
                                     </div>
                                 </div>
                             {/if}
@@ -210,7 +210,7 @@
                             </div>
                         </div>
                     {else:}
-                        <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                        <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                             <button
                                 class="infoBut"
                                 type="button"
@@ -246,7 +246,7 @@
                         {if $opi_wishlist}
                             <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
-                                <div class="frame-btn-wish variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                             {/foreach}

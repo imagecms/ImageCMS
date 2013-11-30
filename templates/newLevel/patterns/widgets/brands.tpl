@@ -1,7 +1,7 @@
 {if count($brands) > 0}
     <div class="big-container frame-brands">
         <div class="products-carousel">
-            {/*carousel_js*/}
+            {/*carousel-js-css*/}
             <div class="frame-title container">
                 <div class="title">
                     <span class="text-el">{$title}</span>
