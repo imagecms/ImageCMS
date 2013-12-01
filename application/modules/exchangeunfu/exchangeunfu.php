@@ -131,7 +131,6 @@ class Exchangeunfu extends MY_Controller {
         $orderId = $date['order']->id;
 
         $region = self::getDefaultRegionIds();
-
         if (!is_array($region))
             return false;
 
@@ -829,7 +828,7 @@ class Exchangeunfu extends MY_Controller {
 
     public function getDefaultRegionId() {
         $ci = & get_instance();
-        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
 
             return $_COOKIE['region'];
         } else {
@@ -845,7 +844,7 @@ class Exchangeunfu extends MY_Controller {
 
     public function getDefaultRegionExternalId() {
 
-        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
 
             $region = $this->db
                             ->limit(1)
@@ -865,18 +864,23 @@ class Exchangeunfu extends MY_Controller {
     public function getDefaultRegionIds() {
 
         $ci = & get_instance();
-        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND is_int($_COOKIE['region'])) {
-
-            return $_COOKIE['region'];
-        } else {
+        $defID = self::getDefaultRegionId();
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
             $region = $ci->db
                     ->limit(1)
+                    ->where('id = ', $_COOKIE['region'])
                     ->select(array('id', 'external_id'))
                     ->get('mod_exchangeunfu_partners')
                     ->result_array();
-
-            return $region['0'];
+        } else {
+            $region = $ci->db
+                    ->limit(1)
+                    ->where('id = ', $defID)
+                    ->select(array('id', 'external_id'))
+                    ->get('mod_exchangeunfu_partners')
+                    ->result_array();
         }
+        return $region['0'];
     }
 
     public function getCountPeriodOrders($hfrom, $hto, $date = null) {
@@ -921,7 +925,6 @@ class Exchangeunfu extends MY_Controller {
 
     public function getCountPeriodOrdersApi($date = '2013-10-10') {
         $date = strtotime($date . ' 00:00:00');
-
         $periods = $this->getRegionPeriod();
         $regionId = $this->getDefaultRegionId();
 
