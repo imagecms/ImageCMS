@@ -20,7 +20,7 @@
 
         <!-- for single product -->
                                     <% if (!item.kit) { %>
-                                    <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
+                                    <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cart-product">
                                         <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
                                         <td class="frame-items">
                                             <a href="<%-item.url%>" class="frame-photo-title">
@@ -123,7 +123,7 @@
                                     <% var origprices = typeof item.origprices == "string" ? JSON.parse(item.origprices) : item.origprices %>
                                     <% var prodstatus = typeof item.prodstatus == "string" ? JSON.parse(item.prodstatus) : item.prodstatus %>
 
-                                    <tr class="rowKits" data-prodid="<%- item.id %>" data-kitId="<%- item.kitId %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
+                                    <tr class="rowKits row-kits" data-prodid="<%- item.id %>" data-kitId="<%- item.kitId %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
                                         <td colspan="4">
                                             <table>
                                                 <tbody>

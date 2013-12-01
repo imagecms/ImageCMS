@@ -1,4 +1,5 @@
 {$pricePrecision = ShopCore::app()->SSettings->pricePrecision}
+{$opi_otherlist = $opi_otherlist != false && $opi_otherlist != NULL}
 {foreach $products as $key => $p}
     {if $key >= $limit && isset($limit)}
         {break}
@@ -124,7 +125,7 @@
                 {$p[comment]}
             </p>
         {/if}
-        {if $p.access == 'private' || !$otherlist}
+        {if $p.access == 'private' || !$opi_otherlist}
             <div class="funcs-buttons-WL-item">
                 <div class="btn-remove-item-wl">
                     <button
