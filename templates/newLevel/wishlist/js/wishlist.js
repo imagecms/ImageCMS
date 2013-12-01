@@ -128,11 +128,10 @@ function reload(el, elS, isajax, data, elSet) {
 function addToWL(el, elS, isajax, data, elSet) {
     if (data) {
         if (data.answer == 'success') {
-            var btnWish = wishList.curEl.closest(genObj.btnWish),
+            var btnWish = $('[data-varid="'+el.data('vid')+'"]').find(genObj.btnWish),
             id = btnWish.parent().data('id'),
             varid = btnWish.parent().data('varid');
             wishList.add(id, varid);
-            wishList.curEl = '';
             processWish();
             wishListCount();
         }
@@ -298,8 +297,6 @@ $(document).on('scriptDefer', function() {
             'data': {
                 "ignoreWrap": true
             }
-        }).on('click.toWish', function(e) {
-            wishList.curEl = $(this);
         });
     }
     if ($.exists("#datepicker"))

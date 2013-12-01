@@ -88,8 +88,8 @@ var optionCompare = {
     after: function(el) {
         $('.comprasion-head').css('height', el.find(optionCompare.scrollNSPT).height())
         //        if carousel in compare
-        if ($.existsN(el.find('.carousel_js:not(.iscarousel)')))
-            el.find('.carousel_js:not(.iscarousel)').myCarousel(carousel);
+        if ($.existsN(el.find('.carousel-js-css:not(.iscarousel)')))
+            el.find('.carousel-js-css:not(.iscarousel)').myCarousel(carousel);
         wnd.scroll(); //for lazy
     },
     compareChangeCategory: function() {
@@ -116,7 +116,6 @@ var optionsDrop = {
     durationOn: 500,
     durationOff: 200,
     modalPlace: '.notification',
-    modalDelay: 500,
     dropContent: '.drop-content',
     animate: true,
     placeBeforeShow: 'center center',
@@ -216,13 +215,13 @@ var cuselOptions = {
 };
 var message = {
     success: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+        return '<div class = "msg js-msg"><div class = "success ' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     },
     error: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+        return '<div class = "msg js-msg"><div class = "error ' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     },
     info: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+        return '<div class = "msg js-msg"><div class = "info ' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     }
 };
 var lazyload = {

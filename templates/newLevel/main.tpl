@@ -36,22 +36,24 @@
         {include_tpl('config.js')}
         {literal}
             <script type="text/javascript">
-                $.ajaxSetup({
-                    cache: false
-                });
                 function initDownloadScripts(scripts, callback, customEvent) {
                     function downloadJSAtOnload(scripts, callback, customEvent) {
                         var cL = 0,
                                 scriptsL = scripts.length;
 
                         $.map(scripts, function(i, n) {
-                            $.getScript(theme + 'js/' + i + '.js', function() {
+                            $.ajax({
+                                url: theme + 'js/' + i + '.js',
+                                dataType: "script",
+                                cache: false,
+                                success: function() {
                                 cL++;
                                 if (cL == scriptsL)
                                     if (callback) {
                                         eval(callback)();
                                         $(document).trigger({'type': customEvent});
                                     }
+                                }
                             });
                         })
                     }
