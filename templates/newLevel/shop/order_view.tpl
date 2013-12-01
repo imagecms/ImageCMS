@@ -200,8 +200,8 @@
                                                 </a>
                                                 <div class="description">
                                                     <span class="frame-variant-name-code">
-                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name">{lang("Вариант",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
-                                                {if trim(ShopCore::encode($orderProduct->variant_id) != '')}<span class="frame-variant-code">{lang("Артикул",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_id)}</span></span>{/if}
+                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name frameVariantName">{lang("Вариант",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
+                                                {if trim(ShopCore::encode($orderProduct->variant_id) != '')}<span class="frame-variant-code frameVariantCode">{lang("Артикул",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_id)}</span></span>{/if}
                                             </span>
                                             <span class="frame-prices">
                                                 <span class="current-prices f-s_0">
@@ -251,7 +251,7 @@
                             <!-- end for single product -->
                             <!-- Start. Render Ordered kit products  -->
                             {foreach $model->getOrderKits() as $orderProduct}
-                                <tr class="row-kits items-order">
+                                <tr class="row-kits rowKits items-order">
                                     <td class="frame-items frame-items-kit">
                                         <ul class="items items-bask">
                                             <li>

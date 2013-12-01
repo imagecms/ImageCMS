@@ -30,7 +30,7 @@ function init() {
     /*/ call functions for shop objects*/
 
     /*call front plugins and functions*/
-    $.onlyNumber('.number input');
+    $.onlyNumber(genObj.numberC + ' input');
     if (ltie7) {
         ieInput();
         ieInput($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
@@ -76,6 +76,11 @@ function init() {
         if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]'))) {
             var input = dropEl.find('form input[type="text"]:first');
             input.setCursorPosition(input.val().length);
+        }
+        var carouselInDrop = dropEl.find('.carousel-js-css');
+        if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !dropEl.is('#photo')) {
+            carouselInDrop.addClass('visited')
+            carouselInDrop.myCarousel(carousel);
         }
         cuselInit(dropEl, '.drop:visible .lineForm select');
     };

@@ -1,7 +1,7 @@
 {if count($products) > 0}
     <section class="special-proposition frame-view-products">
         <div class="big-container">
-            <div class="carousel_js products-carousel">
+            <div class="carousel-js-css products-carousel">
                 <div class="content-carousel container">
                     <ul class="items items-catalog items-h-carousel">
                         {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true))}
