@@ -97,7 +97,7 @@
                 <div class="col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     {if $CI->core->core_data['data_type'] != '404'}
                         <div class="row">
-                            <form class="form-group form-inline search-form-user" action="{site_url('search')}" method="POST">
+                            <form class="form-group form-inline search-form-user" action="{site_url('search')}" method="GET">
                                 <div class="">
                                     <input type="text" class="form-control" name="text" placeholder="{lang("Поиск по документации","documentation")}" />
                                     <button class="search-btn" type="submit"></button>
@@ -241,8 +241,8 @@
             <div class="foot-box4 col-sm-3">
                 <div class="title">Инструкции</div>
                 <ul>
-                    <li><a href="/poshagovye-instruktsii/sozdanie_korporativnogo_saita_na_baze_imagecms_corporate">Создание корпоративного сайта</a></li>
-                    <li><a href="/poshagovye-instruktsii/sozdanie_internet-magazina_na_baze_imagecms_shop">Создание Интернет-магазина</a></li>
+                    <li><a href="/poshagovye-instruktsii/sozdanie-korporativnogo-saita-na-baze-imagecms-corporate">Создание корпоративного сайта</a></li>
+                    <li><a href="/poshagovye-instruktsii/sozdanie-internet-magazina-na-baze-imagecms-shop">Создание Интернет-магазина</a></li>
                 </ul>
             </div>
             <div class="foot-box5 col-sm-3">
