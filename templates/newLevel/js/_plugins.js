@@ -171,7 +171,7 @@ function getCookie(c_name)
                                 evCond = settings.evCond,
                                 classRemove = settings.classRemove,
                                 after = settings.after,
-                                trigger = settings.trigger;
+                                trigger = settings.trigger
 
                         frameChecks.find(elCheckWrap).removeClass(dC + ' ' + aC + ' ' + fC);
                         //init event click on wrapper change state
@@ -252,7 +252,7 @@ function getCookie(c_name)
                 checkChecked: function(el) {
                     if (el === undefined)
                         el = this;
-                    el.addClass(aC).parent().addClass(aC).end().find("input").prop("checked", true);
+                    el.addClass(aC).parent().addClass(aC).end().find("input").attr("checked", "checked");
                     el.find('input').trigger({
                         'type': nS + '.cc',
                         'el': el
@@ -261,7 +261,7 @@ function getCookie(c_name)
                 checkUnChecked: function(el) {
                     if (el === undefined)
                         el = this;
-                    el.removeClass(aC).parent().removeClass(aC).end().find("input").removeProp("checked");
+                    el.removeClass(aC).parent().removeClass(aC).end().find("input").removeAttr("checked");
                     el.find('input').trigger({
                         'type': nS + '.cuc',
                         'el': el
@@ -271,7 +271,7 @@ function getCookie(c_name)
                 {
                     if (el === undefined)
                         el = this;
-                    if (el.find("input").is(":checked")) {
+                    if (el.find("input").attr("checked") != undefined) {
                         methods.checkUnChecked(el);
                     }
                     else {
@@ -294,7 +294,7 @@ function getCookie(c_name)
                 {
                     (el === undefined ? this : el).each(function() {
                         var $this = $(this);
-                        $this.addClass(dC).parent().addClass(dC).end().find("input").prop('disabled', true);
+                        $this.addClass(dC).parent().addClass(dC).end().find("input").attr('disabled', 'disabled');
                         $this.find('input').trigger({
                             'type': nS + '.ad',
                             'el': $this
@@ -305,7 +305,7 @@ function getCookie(c_name)
                 {
                     (el === undefined ? this : el).each(function() {
                         var $this = $(this);
-                        $this.removeClass(dC).parent().removeClass(dC).end().find("input").removeProp('disabled');
+                        $this.removeClass(dC).parent().removeClass(dC).end().find("input").removeAttr('disabled');
                         $this.find('input').trigger({
                             'type': nS + '.ae',
                             'el': $this
@@ -674,7 +674,7 @@ function getCookie(c_name)
                         sel: '.tooltip',
                         durationOn: 300,
                         durationOff: 200
-                    }
+                    };
                 },
                 init: function(options, e) {
                     var sel = '.tooltip',
@@ -694,7 +694,7 @@ function getCookie(c_name)
                             durationOff = elSet.durationOff || settings.durationOff,
                             sel = elSet.tooltip || sel,
                             tooltip = $(sel).not('.' + сC);
-                    if (effect != 'always')
+                    if (effect !== 'always')
                         $this.data({
                             'title': title,
                             'otherClass': otherClass,
@@ -767,12 +767,12 @@ function getCookie(c_name)
                 },
                 remove: function(e) {
                     var $this = this;
-                    if ($this.length != 0 && $this['data'] != undefined) {
+                    if ($this.length !== 0 && $this['data'] !== undefined) {
                         var data = $this.data(),
                                 selA = $([]);
                         if (data.otherClass)
                             selA = $(data.otherClass);
-                        if (data.tooltip != '.tooltip')
+                        if (data.tooltip !== '.tooltip')
                             selA = selA.add($(data.tooltip));
                         var durOff = $this.data('durationOff');
                         if ($.existsN(selA))
@@ -805,7 +805,8 @@ function getCookie(c_name)
             $(sel).hide();
         $(this).tooltip({}, e);
     }).on('click.' + nS + ' mouseup.' + nS, function(e) {
-        $.tooltip('remove')(e);
+        if ($(this).data('effect') == 'always')
+            $.tooltip('remove')(e);
     });
     if (!$.exists(sel))
         body.append('<span class="tooltip"></span>');
@@ -1273,9 +1274,11 @@ function getCookie(c_name)
                             tempRefs = [];
                     refs[index].each(function(ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
-                        tempO = tempO.add($(tHref));
-                        tempO2 = tempO2.add('[data-id=' + tHref + ']');
-                        tempRefs.push(tHref);
+                        if (tHref.indexOf('#') !== -1) {
+                            tempO = tempO.add($(tHref));
+                            tempO2 = tempO2.add('[data-id=' + tHref + ']');
+                            tempRefs.push(tHref);
+                        }
                     });
                     tabsDiv[index] = tempO;
                     tabsId[index] = tempO2;
@@ -1287,7 +1290,7 @@ function getCookie(c_name)
                         if (resB === undefined || resB === true) {
                             if ($this.is('a'))
                                 e.preventDefault();
-                            var condRadio = $thiss.data('type') === 'radio',
+                            var cookie = $thiss.data('cookie') !== undefined,
                                     toggle = $thiss.data('type') === 'toggle',
                                     condStart = e.start;
                             if (!$this.parent().hasClass('disabled')) {
@@ -1309,74 +1312,67 @@ function getCookie(c_name)
                                             }).addClass(aC);
                                 }
                                 if (!$thisDD) {
-                                    if (!condRadio || e.button === 0) {
-
-                                        var activeP = $this.parent();
-                                        navTabsLi[index].not(activeP).removeClass(aC);
-                                        if (activeP.hasClass(aC) && toggle)
-                                            activeP.removeClass(aC);
+                                    var activeP = $this.parent();
+                                    navTabsLi[index].not(activeP).removeClass(aC);
+                                    if (activeP.hasClass(aC) && toggle)
+                                        activeP.removeClass(aC);
+                                    else
+                                        activeP.addClass(aC);
+                                    if (!condStart && $thisS !== undefined)
+                                        tabsDivT();
+                                    if ($thisS !== undefined && !$thisAO.hasClass('visited')) {
+                                        $thisAO.addClass('visited');
+                                        $(document).trigger({
+                                            'type': 'tabs.beforeload',
+                                            "els": tabsDiv[index],
+                                            "el": $thisAO
+                                        });
+                                        if ($thisData !== undefined)
+                                            $.ajax({
+                                                type: 'post',
+                                                url: $thisS,
+                                                data: $thisData,
+                                                success: function(data) {
+                                                    tabsDivT();
+                                                    $thisAO.find($thisSel).html(data);
+                                                    $(document).trigger({
+                                                        'type': 'tabs.afterload',
+                                                        "els": tabsDiv[index],
+                                                        "el": $thisAO
+                                                    });
+                                                }
+                                            });
                                         else
-                                            activeP.addClass(aC);
-                                        if (!condRadio) {
-                                            if (!condStart && $thisS !== undefined)
-                                                tabsDivT();
-                                            if ($thisS !== undefined && !$thisAO.hasClass('visited')) {
-                                                $thisAO.addClass('visited');
+                                            $thisAO.load($thisS, function() {
                                                 $(document).trigger({
-                                                    'type': 'tabs.beforeload',
+                                                    'type': 'tabs.afterload',
                                                     "els": tabsDiv[index],
                                                     "el": $thisAO
                                                 });
-                                                if ($thisData !== undefined)
-                                                    $.ajax({
-                                                        type: 'post',
-                                                        url: $thisS,
-                                                        data: $thisData,
-                                                        success: function(data) {
-                                                            tabsDivT();
-                                                            $thisAO.find($thisSel).html(data);
-                                                            $(document).trigger({
-                                                                'type': 'tabs.afterload',
-                                                                "els": tabsDiv[index],
-                                                                "el": $thisAO
-                                                            });
-                                                        }
-                                                    });
-                                                else
-                                                    $thisAO.load($thisS, function() {
-                                                        $(document).trigger({
-                                                            'type': 'tabs.afterload',
-                                                            "els": tabsDiv[index],
-                                                            "el": $thisAO
-                                                        });
-                                                        tabsDivT();
-                                                    });
-                                            }
-                                            else {
                                                 tabsDivT();
-                                            }
-
-                                            if (e.scroll)
-                                                wnd.scrollTop($this.offset().top);
-                                            $(document).trigger({
-                                                'type': 'tabs.showtabs',
-                                                'el': $thisAO
                                             });
-                                        }
-                                        else {
-                                            setcookie($thiss.data('cookie') === undefined ? 'cookie' + index : $thiss.data('cookie'), $this[attrOrdata[index]]('href'), 0, '/');
-                                            settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
-                                        }
+                                    }
+                                    else {
+                                        tabsDivT();
+                                    }
+
+                                    if (e.scroll)
+                                        wnd.scrollTop($this.offset().top);
+                                    $(document).trigger({
+                                        'type': 'tabs.showtabs',
+                                        'el': $thisAO
+                                    });
+                                    if (cookie) {
+                                        setcookie($thiss.data('cookie') === undefined ? 'cookie' + index : $thiss.data('cookie'), $this.data('href'), 0, '/');
                                     }
                                 }
                                 var wLH = window.location.hash;
-                                var reg = null;
                                 try {
-                                    reg = wLH.match($thisAOld)[0];
+                                    var reg = wLH.match($thisAOld)[0];
                                 } catch (err) {
-                                    reg = null;
+                                    var reg = null;
                                 }
-                                if ((!condRadio && attrOrdata[index] !== 'data') || (($.inArray($thisA, regRefs[index]) > -1 && reg !== null))) {
+                                if ((!cookie && attrOrdata[index] !== 'data') || (($.inArray($thisA, regRefs[index]) > -1 && reg !== null))) {
                                     if (!condStart) {
                                         var reg = $thisAOld !== undefined,
                                                 temp = wLH;
@@ -1397,13 +1393,13 @@ function getCookie(c_name)
                                         window.location.hash = temp;
                                     }
                                     else if (!$thisDD && k) {
-                                        window.location.hash = _.uniq(tabs.hashs[0]).join('');
+                                        window.location.hash = _.uniq(methods.hashs[0]).join('');
                                         k = false;
                                     }
                                     if ($thisDD && condStart)
                                         $this.trigger('click.drop');
                                 }
-                                else if (e.button === 0 && $thiss.data('elchange') !== undefined) {
+                                else if ($thiss.data('elchange') !== undefined) {
                                     refs[index].each(function() {
                                         var $thisDH = $(this).data('href');
                                         if ($thisDH === $thisA)
@@ -1430,17 +1426,11 @@ function getCookie(c_name)
                         scrollTop(wST - 100);
                     scrollTop(wST);
                     _.map(location.hash.split('#'), function(i, n) {
-                        if (i !== '') {
-                            var parent = $('[data-href="#' + i + '"], [href="#' + i + '"]').parent().addClass(aC),
-                                    siblings = parent.siblings().removeClass(aC);
-                            siblings.children('[data-href], [href]').each(function() {
-                                var href = ($(this).data('href') !== undefined ? $(this).data('href') : $(this).attr('href')).replace('#', '');
-                                $('[id="' + href + '"]').hide();
-                                $('[data-id="' + href + '"]').hide();
-                            });
-                            $('[id="' + i + '"]').show();
-                            $('[data-id="' + i + '"]').show();
-                        }
+//                        if (i !== '') {
+//                            var el = $('[data-href="#' + i + '"], [href="#' + i + '"]');
+//                            if (el.data('drop') === undefined)
+//                                el.trigger('click.tabs');
+//                        }
                     });
                     return false;
                 });
@@ -1492,41 +1482,49 @@ function getCookie(c_name)
                     } else
                         i++;
                 }
-                var i = 0;
+                i = 0;
                 while (i < pos.length) {
                     hashs1[i] = t.substring(pos[i], pos[i + 1]);
                     i++;
                 }
                 var hashs = [hashs1, hashs2];
             }
-            tabs = new Object();
-            tabs.hashs = hashs;
-            methods.startCheck(regrefs, tabs.hashs);
+            methods.hashs = hashs;
+            methods.startCheck(regrefs, methods.hashs);
         },
         startCheck: function(regrefs, hashs) {
-            var hashs = hashs[0].concat(hashs[1]),
+            var hash = hashs[0].concat(hashs[1]),
                     regrefsL = regrefs.length,
                     sim = 0;
             $.map(regrefs, function(n, k) {
                 var i = 0,
-                        hashs2 = [].concat(hashs);
-                $.map(hashs, function(n, j) {
+                        hashs2 = [].concat(hash);
+                $.map(hash, function(n, j) {
                     if ($.inArray(n, regrefs[k]) >= 0)
                         i++;
                     if ($.inArray(n, regrefs[k]) >= 0 && i > 1) {
                         hashs2.splice(hashs2.indexOf(n), 1);
                     }
                 });
-                if (hashs2.join() === hashs.join())
+                if (hashs2.join() === hash.join())
                     sim++;
-                if (hashs2.join() !== hashs.join() || sim === regrefsL)
+                if (hashs2.join() !== hash.join() || sim === regrefsL)
                     $.map(hashs2, function(n, i) {
                         var attrOrdataNew = "";
                         $('[href=' + n + ']').length === 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
-                        $('[' + attrOrdataNew + '=' + n + ']').trigger({
-                            'type': 'click.tabs',
-                            'start': true
-                        });
+
+                        if ($.inArray(n, hashs[0]) == -1 && $.existsN($('[' + attrOrdataNew + '=' + n + ']').parent().siblings('.' + aC))) {
+                            $('[' + attrOrdataNew + '=' + n + ']').parent().siblings('.' + aC).children().trigger({
+                                'type': 'click.tabs',
+                                'start': true
+                            });
+                        }
+                        else {
+                            $('[' + attrOrdataNew + '=' + n + ']').trigger({
+                                'type': 'click.tabs',
+                                'start': true
+                            });
+                        }
                     });
             });
         }
@@ -1567,155 +1565,170 @@ function getCookie(c_name)
 /*plugin drop*/
 (function($) {
     var methods = {
+        default: {
+            trigger: 'click',
+            exit: '[data-closed = "closed-js"]',
+            effon: 'show',
+            effoff: 'hide',
+            durationOn: 200,
+            durationOff: 100,
+            place: 'center',
+            dropContent: null,
+            dropHeader: null,
+            dropFooter: null,
+            placement: 'noinherit',
+            modal: false,
+            confirm: false,
+            confirmSel: '#confirm',
+            overlayOpacity: '0',
+            overlayColor: '#fff',
+            always: false,
+            animate: false,
+            timeclosemodal: 2000,
+            position: true,
+            placeBeforeShow: 'center center',
+            placeAfterClose: 'center center',
+            moreOne: false,
+            delayAfter: 0,
+            closeClick: false,
+            closeEsc: false,
+            before: function() {
+            },
+            after: function() {
+            },
+            close: function() {
+            },
+            closed: function() {
+            },
+            start: undefined
+        },
         init: function(options) {
-            var optionsDrop = $.extend({
-                ev: 'click',
-                exit: '[data-closed = "closed-js"]',
-                effon: 'show',
-                effoff: 'hide',
-                durationOn: 200,
-                durationOff: 100,
-                place: 'center',
-                dropContent: null,
-                placement: 'noinherit',
-                modal: false,
-                confirm: false,
-                confirmSel: '#confirm',
-                overlayOpacity: '0',
-                overlayColor: '#fff',
-                always: false,
-                animate: false,
-                timeclosemodal: 2000,
-                size: true,
-                placeBeforeShow: 'center center',
-                placeAfterClose: 'center center',
-                moreOne: false,
-                delayAfter: 0,
-                closeClick: false,
-                closeEsc: false,
-                before: function() {
-                },
-                after: function() {
-                },
-                close: function() {
-                },
-                closed: function() {
-                },
-                start: undefined
-            }, options);
-            var settings = optionsDrop,
-                    moreOne = settings.moreOne,
-                    confirmSel = settings.confirmSel,
-                    ev = settings.ev,
-                    arrDrop = [];
+            var settings = $.extend(methods.default, options);
             this.add($('[data-drop]')).each(function() {
-                var el = $(this);
-                el.off(ev || el.data('ev') + '.drop').on(ev || el.data('ev') + '.drop', function(e) {
-                    methods.closeModal();
-                    function confirmF() {
-                        if ($.inArray(elSet.source, arrDrop) !== 0 || modal || always) {
-                            arrDrop.push(elSet.source);
-                            if (!modal)
-                                drop.remove();
-                            $.ajax({
-                                type: "post",
-                                data: elSet.data,
-                                url: elSet.source,
-                                beforeSend: function() {
-                                    $(document).trigger({
-                                        'type': 'showActivity'
-                                    });
-                                },
-                                dataType: elSet.type ? elSet.type : 'html',
-                                success: function(data) {
-                                    var drop = $(elSet.drop);
-                                    if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
-                                        $(document).trigger({
-                                            type: 'drop.successJson',
-                                            el: drop,
-                                            datas: data
-                                        });
-                                        methods._pasteDrop($.extend({}, settings, elSet), drop);
-                                    }
-                                    else {
-                                        $(document).trigger({
-                                            type: 'drop.successHtml',
-                                            el: drop,
-                                            datas: data
-                                        });
-                                        methods._pasteDrop($.extend({}, settings, elSet), data);
-                                    }
-                                    methods.init.call(drop.find('[data-drop]'), $.extend({}, optionsDrop));
-                                    methods.showDrop($this, e, optionsDrop, true, data);
-                                }
-                            });
-                        }
-                    }
-                    var $this = $(this),
-                            elSet = $this.data(),
-                            drop = $(elSet.drop),
-                            start = elSet.start !== undefined ? elSet.start : settings.start;
-                    if (!$this.parent().hasClass(aC)) {
-                        if (!(elSet.moreOne || moreOne) && start === undefined) {
-                            if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
-                                methods.closeDrop($this.closest('[data-elrun]'));
-                            if ($.existsN($('[data-elrun].center:visible, [data-elrun].noinherit:visible')))
-                                methods.closeDrop($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
-                        }
+                var el = $(this),
+                        trigger = (settings.trigger || el.data('trigger')).toString();
 
-                        if (!$this.is(':disabled')) {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            var modal = elSet.modal || settings.modal,
-                                    confirm = elSet.confirm || settings.confirm,
-                                    always = elSet.always || settings.always;
-                            if (start !== undefined)
-                                var res = eval(start)($this, drop);
-                            if (start !== undefined && !res)
-                                return false;
-                            if (start === undefined || (start !== undefined && res)) {
-                                if ($.existsN(drop) && !modal && !always && !confirm) {
-                                    methods._pasteDrop($.extend({}, settings, elSet), drop);
-                                    methods.showDrop($this, e, optionsDrop, false);
-                                }
-                                else if (elSet.source || always || confirm) {
-                                    if (!confirm)
-                                        confirmF();
-                                    else {
-                                        methods._pasteDrop($.extend({}, settings, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
-                                        methods.showDrop($('[data-drop="' + confirmSel + '"]').data({
-                                            'elrun': $this
-                                        }), e, optionsDrop, false);
-                                        $('[data-button-confirm]').focus().on('click.drop', function() {
-                                            if (elSet.after)
-                                                $(confirmSel).data('elClosed', elSet.after)
-                                            methods.closeDrop($(confirmSel));
-                                            $this.data('confirm', false);
-                                            if (elSet.source)
-                                                confirmF();
-                                        });
-                                    }
-                                }
-                                else {//for front validations
-                                    methods._pasteDrop($.extend({}, settings, elSet), drop);
-                                    methods.showDrop($this, e, optionsDrop, false);
-                                }
-                            }
-                        }
-                    }
-                    else
-                        methods.closeDrop($($this.data('drop')));
-                    return false;
+                el.off(trigger + '.drop').on(trigger + '.drop', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    methods.open($(this), e, settings)
                 });
             });
             return $(this);
         },
+        open: function($this, e, settings) {
+            if (e == undefined)
+                e = window.event;
+            if (settings == undefined)
+                settings = methods.default;
+            if ($this == undefined)
+                $this = this;
+
+            var moreOne = settings.moreOne,
+                    confirmSel = settings.confirmSel;
+            methods.closeModal();
+            function _confirmF() {
+                if (!$.existsN(drop) || modal || always) {
+                    if (!modal)
+                        drop.remove();
+                    $.ajax({
+                        type: "post",
+                        data: elSet.data,
+                        url: elSet.source,
+                        beforeSend: function() {
+                            $(document).trigger({
+                                'type': 'showActivity'
+                            });
+                        },
+                        dataType: elSet.type ? elSet.type : 'html',
+                        success: function(data) {
+                            var drop = $(elSet.drop);
+                            if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
+                                $(document).trigger({
+                                    type: 'drop.successJson',
+                                    el: drop,
+                                    datas: data
+                                });
+                                methods._pasteDrop($.extend({}, settings, elSet), drop);
+                            }
+                            else {
+                                $(document).trigger({
+                                    type: 'drop.successHtml',
+                                    el: drop,
+                                    datas: data
+                                });
+                                methods._pasteDrop($.extend({}, settings, elSet), data);
+                            }
+                            methods.init.call(drop.find('[data-drop]'), $.extend({}, methods.default));
+                            methods._show($this, e, methods.default, true, data);
+                        }
+                    });
+                }
+            }
+            var elSet = $this.data(),
+                    drop = $(elSet.drop),
+                    start = elSet.start !== undefined ? elSet.start : settings.start;
+            if (!$this.parent().hasClass(aC)) {
+                if (!(elSet.moreOne || moreOne) && start === undefined) {
+                    if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
+                        methods.close($this.closest('[data-elrun]'));
+                    if ($.existsN($('[data-elrun].center:visible, [data-elrun].noinherit:visible')))
+                        methods.close($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
+                }
+
+                if (!$this.is(':disabled')) {
+                    var modal = elSet.modal || settings.modal,
+                            confirm = elSet.confirm || settings.confirm,
+                            always = elSet.always || settings.always;
+                    if (start !== undefined) {
+                        var res = eval(start)($this, drop);
+                        if (!res)
+                            return false;
+                    }
+                    if (start === undefined || (start !== undefined && res)) {
+                        if ($.existsN(drop) && !modal && !always && !confirm) {
+                            methods._pasteDrop($.extend({}, settings, elSet), drop);
+                            methods._show($this, e, methods.default, false);
+                        }
+                        else if (elSet.source || always || confirm) {
+                            if (!confirm)
+                                _confirmF();
+                            else {
+                                methods._pasteDrop($.extend({}, settings, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
+                                methods._show($('[data-drop="' + confirmSel + '"]').data({
+                                    'elrun': $this
+                                }), e, methods.default, false);
+                                $('[data-button-confirm]').focus().on('click.drop', function() {
+                                    if (elSet.after)
+                                        $(confirmSel).data('elClosed', elSet.after)
+                                    methods.close($(confirmSel));
+                                    $this.data('confirm', false);
+                                    if (elSet.source)
+                                        _confirmF();
+                                });
+                            }
+                        }
+                        else {//for front validations
+                            methods._pasteDrop($.extend({}, settings, elSet), drop);
+                            methods._show($this, e, methods.default, false);
+                        }
+                    }
+                }
+            }
+            else
+                methods.close($($this.data('drop')));
+
+            return $this;
+        },
         _pasteDrop: function(elSet, drop) {
             if (elSet.place !== 'inherit') {
+                function _for_center(rel) {
+                    body.append('<div class="for-center" rel="' + elSet.drop + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
+                }
                 if (typeof drop !== 'string') {
                     if (!$.existsN(drop.parent('.for-center')) && elSet.place !== 'noinherit') {
                         if (drop.data('forCenter') === undefined) {
-                            body.append('<div class="for-center" rel="' + elSet.drop + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
+                            _for_center(elSet.drop);
                             drop.data('forCenter', $('[rel="' + elSet.drop + '"].for-center'));
                         }
                         drop.data('forCenter').append(drop);
@@ -1729,7 +1742,7 @@ function getCookie(c_name)
                     else {
                         var sel = '[rel="' + elSet.drop + '"].for-center';
                         if (!$.exists(sel)) {
-                            body.append('<div class="for-center" rel="' + elSet.drop + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
+                            _for_center(elSet.drop);
                         }
                         var forCenter = $(sel);
                         forCenter.append(drop);
@@ -1741,18 +1754,85 @@ function getCookie(c_name)
         closeModal: function() {
             $('[data-elrun]:visible').each(function() {
                 if ($(this).data('modal'))
-                    methods.closeDrop($(this));
+                    methods.close($(this));
             });
         },
-        showDrop: function($this, e, set, isajax, data) {
+        heightContent: function(drop) {
+            if (drop === undefined)
+                drop = this;
+
+            var dropV = drop.is(':visible'),
+                    wndH = wnd.height(),
+                    el = drop.find(drop.data('dropContent')).filter(':first');
+
+
+            if ($.existsN(el)) {
+                var docH = $(document).height(),
+                        refer = drop.data('elrun');
+                if (!dropV) {
+                    drop.show();
+                    if (drop.data('forCenter'))
+                        drop.data('forCenter').show();
+                }
+
+                var api = false,
+                        elC = el.css('overflow', '');
+                try {
+                    el.jScrollPane(scrollPane);
+                    elC = el.find('.jspPane');
+                    api = el.data('jsp');
+                } catch (err) {
+                    elC.css('overflow', 'auto');
+                }
+                var elCH = elC.outerHeight(),
+                        footerHeader = drop.find('.drop-header').outerHeight(true) + drop.find('.drop-footer').outerHeight(true);
+
+                if (drop.data('place') == 'noinherit') {
+                    if (drop.data('placement').search(/top/) >= 0) {
+                        var mayHeight = docH - refer.offset().top - footerHeader - refer.outerHeight() - (drop.outerHeight() - drop.height());
+                        if (mayHeight > elCH)
+                            el.css('height', elCH);
+                        else
+                            el.css('height', mayHeight);
+                        if (el.outerHeight() === elCH && api)
+                            api.destroy();
+                    }
+                    if (drop.data('placement').search(/bottom/) >= 0) {
+                        var mayHeight = refer.offset().top - footerHeader - refer.outerHeight();
+                        if (mayHeight > elCH)
+                            el.css('height', elCH);
+                        else
+                            el.css('height', mayHeight);
+                        if (el.outerHeight() === elCH && api)
+                            api.destroy();
+                    }
+                }
+                else {
+                    if (elCH + footerHeader > wndH)
+                        el.css('height', wndH - footerHeader - 40);
+                    else
+                        el.css('height', elCH);
+                }
+                if (api)
+                    api.reinitialise();
+                if (drop.data('place') === 'center')
+                    drop.drop('center');
+                if (!dropV) {
+                    drop.hide();
+                    if (drop.data('forCenter'))
+                        drop.data('forCenter').hide();
+                }
+            }
+        },
+        _show: function($this, e, set, isajax, data) {
             if ($this === undefined)
-                $this = $(this);
-            if (!e)
-                var e = window.event;
-            var set = !set ? optionsDrop : set,
+                $this = this;
+            if (e === undefined)
+                e = window.event;
+            var set = !set ? methods.default : set,
                     isajax = !isajax ? false : true,
                     elSet = $this.data(),
-                    ev = elSet.ev || set.ev,
+                    trigger = elSet.trigger || set.trigger,
                     place = elSet.place || set.place,
                     placement = elSet.placement || set.placement,
                     $thisEOff = elSet.effectOff || set.effoff,
@@ -1760,13 +1840,15 @@ function getCookie(c_name)
                     $thisDOff = elSet.durationOff !== undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
                     $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
                     $thisEOn = elSet.effectOn || set.effon,
-                    overlayColor = elSet.overlaycolor || set.overlayColor,
-                    overlayOpacity = elSet.overlayopacity !== undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || set.overlayOpacity,
+                    overlayColor = elSet.overlayColor || set.overlayColor,
+                    overlayOpacity = elSet.overlayOpacity !== undefined ? elSet.overlayOpacity.toString() : elSet.overlayOpacity || set.overlayOpacity,
                     modal = elSet.modal || set.modal,
                     timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
                     confirm = elSet.confirm || set.confirm,
                     dropContent = elSet.dropContent || set.dropContent,
-                    size = elSet.size !== undefined ? elSet.size : set.size,
+                    dropHeader = elSet.dropHeader || set.dropHeader,
+                    dropFooter = elSet.dropFooter || set.dropFooter,
+                    position = elSet.position !== undefined ? elSet.position : set.position,
                     placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
                     placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
                     moreOne = elSet.moreOne || set.moreOne,
@@ -1782,14 +1864,14 @@ function getCookie(c_name)
                     elClose = elSet.close,
                     closed = set.closed,
                     elClosed = elSet.closed,
-                    $thisSource = elSet.drop,
-                    drop = $($thisSource);
+                    selSource = elSet.drop,
+                    drop = $(selSource);
             $this.attr('data-drop', $this.data('drop')).parent().addClass(aC);
-            optionsDrop.durationOff = $thisDOff;
+            methods.default.durationOff = $thisDOff;
             drop.data({
-                'ev': ev,
+                'trigger': trigger,
                 'effectOn': $thisEOn,
-                'size': size,
+                'position': position,
                 'placeBeforeShow': placeBeforeShow,
                 'placeAfterClose': placeAfterClose,
                 'effectOff': $thisEOff,
@@ -1799,6 +1881,8 @@ function getCookie(c_name)
                 'durationOn': $thisD,
                 'durationOff': $thisDOff,
                 'dropContent': dropContent,
+                'dropHeader': dropHeader,
+                'dropFooter': dropFooter,
                 'animate': $thisA,
                 'start': start,
                 'before': before,
@@ -1818,18 +1902,18 @@ function getCookie(c_name)
                 'delayAfter': delayAfter,
                 'closeClick': closeClick,
                 'closeEsc': closeEsc
-            }).attr('data-elrun', $thisSource);
+            }).attr('data-elrun', selSource);
             drop.off('click.drop', set.exit).on('click.drop', set.exit, function() {
-                methods.closeDrop($(this).closest('[data-elrun]'));
+                methods.close($(this).closest('[data-elrun]'));
             });
             var condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
             if (condOverlay) {
-                if (!$.exists('[rel="' + $thisSource + '"].overlayDrop')) {
-                    body.append('<div class="overlayDrop" rel="' + $thisSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
+                if (!$.exists('[rel="' + selSource + '"].overlayDrop')) {
+                    body.append('<div class="overlayDrop" rel="' + selSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
                 }
                 var overlays = $('.overlayDrop');
                 overlays.css('z-index', 1103);
-                drop.data('dropOver', $('[rel="' + $thisSource + '"].overlayDrop'));
+                drop.data('dropOver', $('[rel="' + selSource + '"].overlayDrop'));
                 drop.data('dropOver').css({
                     'background-color': overlayColor,
                     'opacity': overlayOpacity,
@@ -1840,14 +1924,15 @@ function getCookie(c_name)
                     drop.data('forCenter').css('z-index', overlays.length + 1104);
                 }
             }
-            if (drop.hasClass(aC) && e.button !== undefined) {
-                methods.closeDrop(drop);
+            if (drop.hasClass(aC)) {
+                methods.close(drop);
             }
             else {
+                methods.heightContent(drop);
+
                 before($this, drop, isajax, data, elSet);
-                var bS = elBefore;
-                if (bS !== undefined)
-                    eval(bS)($this, drop, isajax, data, elSet);
+                if (elBefore !== undefined)
+                    eval(elBefore)($this, drop, isajax, data, elSet);
                 $(document).trigger({
                     'type': 'drop.before',
                     'el': $this,
@@ -1856,32 +1941,32 @@ function getCookie(c_name)
                     'datas': data,
                     'elSet': elSet
                 });
-                if (drop.data('modal')) {
+                if (modal) {
                     var objJ = $([]);
                     $('[data-elrun]:visible').each(function() {
                         if (($(this).data('overlayOpacity') !== '0'))
                             objJ = objJ.add($(this));
                     });
                     if ($.existsN(objJ))
-                        methods.closeDrop(objJ);
+                        methods.close(objJ);
                 }
 
-                if (e.button === undefined && place !== "center")
-                    wnd.scrollTop($this.offset().top);
                 var dropTimeout = '';
                 wnd.off('resize.drop').on('resize.drop', function() {
                     clearTimeout(dropTimeout);
                     dropTimeout = setTimeout(function() {
-                        methods.positionDrop(drop);
-                        methods.dropCenter(drop);
+                        if (place === 'noinherit')
+                            methods.noinherit(drop);
+                        if (place === 'center')
+                            methods.center(drop);
                     }, 300);
                 });
                 if (condOverlay) {
-                    drop.data('dropOver').fadeIn($thisEOn / 2);
+                    drop.data('dropOver').fadeIn($thisD / 2);
                     if (closeClick)
                         drop.data('dropOver').add(drop.data('forCenter')).off('click.drop').on('click.drop', function(e) {
                             if ($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center')) {
-                                methods.closeDrop($($(e.target).attr('rel')));
+                                methods.close($($(e.target).attr('rel')));
                             }
                         });
                     if (isTouch)
@@ -1893,7 +1978,7 @@ function getCookie(c_name)
                 drop.addClass(place);
                 function _forCenterTop() {
                     if (drop.data('forCenter')) {
-                        drop.data('forCenter').css('top', optionsDrop.wST);
+                        drop.data('forCenter').css('top', methods.default.wST);
                     }
                 }
                 function _show() {
@@ -1907,8 +1992,12 @@ function getCookie(c_name)
                             drop.css('top', wnd.height());
                         if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
                             drop.css('left', wnd.width());
-                        if ($thisPMT[0] === 'center' && $thisPMT[1] === 'center')
-                            methods.dropCenter(drop, true);
+                        if ($thisPMT[0] === 'center' && $thisPMT[1] === 'center') {
+                            if (place === 'center')
+                                methods.center(drop, true);
+                            if (place === 'noinherit')
+                                methods.noinherit(drop, true);
+                        }
                         if ($thisPMT[0] === 'inherit')
                             drop.css({
                                 'left': $this.offset().left + wnd.scrollLeft(),
@@ -1916,16 +2005,17 @@ function getCookie(c_name)
                             });
                     }
                     if (place === 'center')
-                        methods.dropCenter(drop);
+                        methods.center(drop);
+                    if (place === 'noinherit')
+                        methods.noinherit(drop);
 
                     drop[$thisEOn]($thisD, function(e) {
                         var drop = $(this);
                         drop.addClass(aC);
                         if (!confirm && modal)
-                            optionsDrop.closeDropTime = setTimeout(function() {
-                                methods.closeDrop(drop);
+                            methods.default.closeDropTime = setTimeout(function() {
+                                methods.close(drop);
                             }, timeclosemodal);
-                        methods.positionDrop(drop);
                         methods.limitSize(drop);
                         var cB = elAfter;
                         if (cB !== undefined) {
@@ -1942,9 +2032,9 @@ function getCookie(c_name)
                         });
                     });
                 }
-                optionsDrop.wST = wnd.scrollTop();
+                methods.default.wST = wnd.scrollTop();
                 if (drop.data('forCenter')) {
-                    drop.data('forCenter').fadeIn();
+                    drop.data('forCenter').fadeIn($thisD);
                 }
                 else {
                     if (drop.data('dropOver'))
@@ -1957,13 +2047,13 @@ function getCookie(c_name)
                         methods.scrollEmulate();
                     }
                 }
-                methods.positionType(size, drop);
+                methods.positionType(drop);
                 _show();
             }
             body.off('click.drop').off('keydown.drop').on('click.drop', function(e) {
                 if (closeClick)
                     if (!$.existsN($(e.target).closest('[data-elrun]')) && !($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center'))) {
-                        methods.closeDrop(false);
+                        methods.close(false);
                     }
                     else
                         return true;
@@ -1974,13 +2064,13 @@ function getCookie(c_name)
                         var e = window.event;
                     key = e.keyCode;
                     if (key === 27) {
-                        methods.closeDrop(false);
+                        methods.close(false);
                     }
                 });
         },
         limitSize: function(drop) {
             if (drop === undefined)
-                drop = $(this);
+                drop = this;
             drop.css({
                 'width': '',
                 'height': ''
@@ -1997,28 +2087,23 @@ function getCookie(c_name)
                     drop.css('height', wndH - 40);
             }
         },
-        positionType: function(size, drop) {
+        positionType: function(drop) {
             var data = drop.data();
             if (data.place !== 'inherit') {
-                if (size.toString() == 'false' || data.modal || data.place === 'noinherit')
-                    drop.css({
-                        'position': 'absolute'
-                    });
-                else
-                    drop.css({
-                        'position': 'relative'
-                    });
+                drop.css({
+                    'position': data.place == 'noinherit' ? 'absolute' : data.position
+                });
             }
         },
-        closeDrop: function(sel, datas) {
+        close: function(sel, datas) {
             if (sel === undefined)
-                sel = $(this);
-            clearTimeout(optionsDrop.closeDropTime);
+                sel = this;
+            clearTimeout(methods.default.closeDropTime);
             $('[data-button-confirm]').off('click.drop');
             var cond = sel === undefined || !sel,
                     drop = cond ? $('[data-elrun].' + aC) : sel;
             if (!cond)
-                body.off('click.drop').off('keydown.drop keydown.drop')
+                body.off('click.drop keydown.drop keydown.drop')
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this),
@@ -2068,9 +2153,9 @@ function getCookie(c_name)
                                     });
                                 if (data.forCenter)
                                     data.forCenter.stop(true, false).fadeOut(durOff);
-                                if (data.dropOver)
-                                    data.dropOver.fadeOut(durOff / 2);
                                 drop[$thisEOff](durOff, function() {
+                                    if (data.dropOver)
+                                        data.dropOver.fadeOut(durOff);
                                     var $this = $(this).css({
                                         'width': '',
                                         'height': '',
@@ -2093,6 +2178,10 @@ function getCookie(c_name)
                                         drop: $this,
                                         datas: datas
                                     });
+                                    var dC = $this.find($this.data('dropContent')).data('jsp');
+                                    if (dC !== undefined) {
+                                        dC.destroy();
+                                    }
                                 });
                             }
                             $(document).trigger({
@@ -2122,74 +2211,71 @@ function getCookie(c_name)
                 });
             }
         },
-        dropCenter: function(drop, start) {
+        center: function(drop, start) {
             if (drop === undefined)
-                drop = $(this);
+                drop = this;
+
             start = start === undefined ? true : false;
-            if (drop.data('place') === 'center') {
-                var method = drop.data('animate') && start ? 'animate' : 'css',
-                        dropV = drop.is(':visible'),
-                        w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
-                        h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
-                drop[method]({
-                    'top': (body.height() - h) / 2,
-                    'left': (body.width() - w) / 2
-                }, {
-                    queue: false
-                });
-            }
+            var method = drop.data('animate') && start ? 'animate' : 'css',
+                    dropV = drop.is(':visible'),
+                    w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
+                    h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
+            drop[method]({
+                'top': (body.height() - h) / 2,
+                'left': (body.width() - w) / 2
+            }, {
+                duration: drop.data('durationOn'),
+                queue: false
+            });
+
             return drop;
         },
-        positionDrop: function(drop) {
+        noinherit: function(drop, start) {
             if (drop === undefined)
-                drop = $(this);
-            var place = drop.data('place'),
-                    method = drop.data('animate') ? 'animate' : 'css';
-            if (place === 'noinherit') {
-                var placement = drop.data('placement');
-                $this = drop.data().elrun,
-                        dataSourceH = 0,
-                        dataSourceW = 0,
-                        $thisW = $this.width(),
-                        $thisH = $this.height();
-                var $thisPMT = placement.toLowerCase().split(' ');
-                if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
-                    dataSourceH = drop.actual('height');
-                if ($thisPMT[0] === 'top' || $thisPMT[1] === 'top')
-                    dataSourceH = $thisH;
-                if ($thisPMT[0] === 'left' || $thisPMT[1] === 'left')
-                    dataSourceW = 0;
-                if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
-                    dataSourceW = -drop.actual('width') + $thisW;
-                $thisT = $this.offset().top + dataSourceH;
-                $thisL = $this.offset().left + dataSourceW;
-                if ($thisL < 0)
-                    $thisL = 0;
-                drop[method]({
-                    'bottom': 'auto',
-                    'top': $thisT,
-                    'left': $thisL
-                }, {
-                    queue: false
-                });
-                if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
-                    drop[method]({
-                        'top': 'auto',
-                        'bottom': body.height() - $thisT + dataSourceH + $thisH
-                    }, {
-                        queue: false
-                    });
-            }
+                drop = this;
+            start = start === undefined ? true : false;
+            var method = drop.data('animate') && start ? 'animate' : 'css',
+                    placement = drop.data('placement'),
+                    $this = drop.data('elrun'),
+                    dataSourceH = 0,
+                    dataSourceW = 0,
+                    $thisW = $this.width(),
+                    $thisH = $this.height();
+
+            var $thisPMT = placement.toLowerCase().split(' ');
+            if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
+                dataSourceH = -drop.actual('height') - $thisH;
+            if ($thisPMT[0] === 'top' || $thisPMT[1] === 'top')
+                dataSourceH = $thisH;
+            if ($thisPMT[0] === 'left' || $thisPMT[1] === 'left')
+                dataSourceW = 0;
+            if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
+                dataSourceW = -drop.actual('width') + $thisW;
+            $thisT = $this.offset().top + dataSourceH;
+            $thisL = $this.offset().left + dataSourceW;
+            if ($thisL < 0)
+                $thisL = 0;
+
+            drop[method]({
+                'bottom': 'auto',
+                'top': $thisT,
+                'left': $thisL
+            }, {
+                duration: drop.data('durationOn'),
+                queue: false
+            });
+
+            return drop;
         },
         scrollEmulate: function() {
-            var dur = optionsDrop.durationOn;
+            var dur = methods.default.durationOn;
             try {
-                clearInterval(optionsDrop.scrollemulatetimeout);
+                clearInterval(methods.default.scrollemulatetimeout);
             } catch (err) {
             }
             setTimeout(function() {
                 if (!isTouch) {
-                    body.addClass('isScroll');
+                    body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': 17});
                     body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
                 }
                 if (isTouch)
@@ -2202,10 +2288,11 @@ function getCookie(c_name)
             }, dur);
         },
         scrollEmulateRemove: function() {
-            var dur = optionsDrop.durationOff;
-            optionsDrop.scrollemulatetimeout = setTimeout(function() {
-                body.removeClass('isScroll');
-                wnd.scrollTop(optionsDrop.wST);
+            var dur = methods.default.durationOff;
+            methods.default.scrollemulatetimeout = setTimeout(function() {
+                body.removeClass('isScroll').css({'overflow': '', 'margin-right': ''});
+                ;
+                wnd.scrollTop(methods.default.wST);
                 $('.scrollEmulation').remove();
                 if (isTouch)
                     $('.for-center').off('touchmove.drop');
@@ -2445,7 +2532,7 @@ body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
                 $jsCarousel.each(function() {
                     var $this = $(this);
                     settings.before($this);
-                    m = 'show';
+                    var m = 'show';
                     if (addO.refresh && $this.hasClass('iscarousel'))
                         m = 'children';
                     var $content = $this.find(content),

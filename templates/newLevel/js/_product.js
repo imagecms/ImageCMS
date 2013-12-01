@@ -4,7 +4,7 @@ var productPhotoCZoom = window.productPhotoCZoom != undefined,
 function tovarChangeVariant(el) {
     el = el == undefined ? body : el;
     /*Variants in Product*/
-    el.find('#variantSwitcher').on('change', function() {
+    el.find(genObj.parentBtnBuy).find(genObj.changeVariantProduct).on('change', function() {
         var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy),
                 btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut),
@@ -81,7 +81,7 @@ function resizePhoto(drop, s, c) {
     });
     if (c != undefined)
         c();
-    $.drop('dropCenter')(drop);
+    $.drop('center')(drop);
 }
 
 function changePhoto(arg, fancyFrameInPH, href) {
@@ -98,7 +98,7 @@ function changePhoto(arg, fancyFrameInPH, href) {
 
         $.drop('limitSize')(drop);
         resizePhoto(drop, function() {
-            $.drop('dropCenter')(drop);
+            $.drop('center')(drop);
         });
         carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).find('a').focus();
     })
@@ -247,7 +247,7 @@ var hrefOptions = {
 var optionsPhoto = {
     effectOn: 'fadeIn',
     drop: '#photo',
-    size: false,
+    position: 'absolute',
     after: 'onComplete',
     before: 'beforeShowHref',
     closed: 'afterClosedPhoto'

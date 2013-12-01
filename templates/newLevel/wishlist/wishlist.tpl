@@ -114,9 +114,7 @@
                                     {/if}
                                     {if $wishlist[0][variant_id]}
                                         <ul class="items items-catalog items-wish-list">
-
-                                            {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>false))}
-
+                                            {$CI->load->module('new_level')->OPI($wishlist, array(), 'array_product_item')}
                                         </ul>
                                     {else:}
                                         <div class="msg layout-highlight layout-highlight-msg">
@@ -211,7 +209,7 @@
                                                             class="btnBuyWishList"
                                                             >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                            <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
+                                                            <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}" data-buy-other="{lang('Докупить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
                                                         </button>
                                                     </div>
                                                 </div>
