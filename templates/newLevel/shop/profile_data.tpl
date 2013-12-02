@@ -1,8 +1,8 @@
 <div class="inside-padd clearfix">
     <div class="frame-change-profile">
         <div class="horizontal-form">
-            <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
-                    return false;">
+              <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
+                return false;">
                 <label>
                     <span class="title">{lang('Ваше имя','newLevel')}:</span>
                     <span class="frame-form-field">
@@ -136,36 +136,6 @@
                                 <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}{lang('Бесконечно','newLevel')}{/if}</td>
                             </tr>
                         {/foreach}
-                        asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
-                    asdf<br/>
                     </tbody>
                 </table>
 
