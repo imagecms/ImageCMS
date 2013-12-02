@@ -132,9 +132,11 @@ function renderGiftInput(tpl) {
         });
         e.preventDefault();
     })
-    $('#giftInput').keyup(function(e) {
-        if (e.keyCode == 13)
+    $('#giftInput').keydown(function(e) {
+        if (e.keyCode == 13) {
+            $('#giftButton').trigger('click')
             e.preventDefault();
+        }
     })
 }
 function giftError(msg) {
