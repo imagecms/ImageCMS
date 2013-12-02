@@ -44,12 +44,11 @@
         </div>
     </div>
     {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
-    {if true}
+    {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}
         <div class="layout-highlight info-discount">
-            
-            {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}<div class="title-default">
+            <div class="title-default">
                 <div class="title">{lang('Скидки','newLevel')}</div>
-            </div>{/if}
+            </div>
             <div class="content">
                 <ul class="items items-info-discount">
                     <li class="inside-padd">
@@ -105,7 +104,7 @@
                     {/if}
                     {if  $discount['comulativ']}
                         <li class="inside-padd">
-                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlayopacity= "0">{lang('Посмотреть таблицу скидок','newLevel')}</button>
+                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="bottom left" data-overlay-opacity= "0">{lang('Посмотреть таблицу скидок','newLevel')}</button>
                         </li>
                     {/if}
                 </ul>
@@ -137,6 +136,36 @@
                                 <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}{lang('Бесконечно','newLevel')}{/if}</td>
                             </tr>
                         {/foreach}
+                        asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
+                    asdf<br/>
                     </tbody>
                 </table>
 

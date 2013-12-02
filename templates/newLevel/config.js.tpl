@@ -85,7 +85,10 @@
             notAvail: 'not-avail',
             btnBuyCss: 'btn-buy',
             btnCartCss: 'btn-cart',
-            textEl: '.text-el'
+            textEl: '.text-el',
+            
+            changeVariantCategory: '[id ^= сVariantSwitcher_]',
+            changeVariantProduct: '#variantSwitcher'
         };
     {/literal}
     {if $comp = $CI->session->userdata('shopForCompare')}

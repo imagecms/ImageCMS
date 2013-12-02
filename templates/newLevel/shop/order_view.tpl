@@ -188,7 +188,7 @@
 
 
 
-                                        <tr class="items items-bask items-order cartProduct">
+                                        <tr class="items items-bask items-order cart-product">
                                             <td class="frame-items">
                                                 <!-- Start. Render Ordered Products -->            
                                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="frame-photo-title">

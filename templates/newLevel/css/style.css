@@ -341,6 +341,7 @@ input.input-search{height: 33px;}
 .items-catalog .frame-star{margin-bottom: 8px;}
 .items-catalog .price-discount{margin-bottom: 10px;display: block;}
 .items-catalog .price-discount + .current-prices{margin-bottom: 10px;}
+.items-catalog .funcs-buttons{margin-bottom: 10px;}
 .items-catalog .funcs-buttons > .variant{margin-bottom: 12px;}
 .items-catalog .frame-count-buy > .frame-count{display: inline-block;vertical-align: top;margin-right: 10px;margin-bottom: 5px;}
 .short-desc{padding-bottom: 20px;word-break: break-word;word-wrap: break-word;}
@@ -380,6 +381,7 @@ input.input-search{height: 33px;}
 .items-bask .photo-block, .item-report.items-bask .photo-block{width: 62px;height: 62px;float: left;margin-right: 18px;}
 .items-bask .description{margin-left: 80px;}
 .items-bask .description .frame-prices:first-child{margin-top: 8px;}
+.cart-product .frame-items{width: 500px;}
 .row-kits .description{margin-left: 0;}
 .row-kits td{padding-bottom: 10px !important;}
 .row-kits li{width: 185px;margin-bottom: 10px;}
@@ -561,7 +563,8 @@ input.input-search{height: 33px;}
 .jspDrag{position: relative;top: 0;left: 0;cursor: pointer;}
 .jspHorizontalBar .jspDrag{height: 14px;top: 1px;}
 .jspVerticalBar .jspDrag{width: 14px;left: 1px;}
-.scrollNSP{right: 0;position: absolute;z-index: 2;}
+.scrollNSP{right: 0;position: absolute;z-index: 2;margin-top: -20px;}
+.scrollNSP.jScrollPane{margin-top: 0;}
 .scrollNSP > div{height: 1px;}
 .jspArrow{text-indent: -20000px;display: block;cursor: pointer;}
 .jspArrow.jspDisabled{cursor: default;}
@@ -970,7 +973,6 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .row-kits .frame-count, .row-kits .frame-cur-sum-price{vertical-align: top;}
 .row-kits .frame-items{width: 555px;}
 .drop-bask .row-kits .countOrCompl{display: block;}
-.cartProduct .frame-items{width: 500px;}
 .drop-bask .countOrCompl{display: block;margin-bottom: 3px;}
 .frame-cur-sum-price .title{display: block;margin-bottom: 5px;}
 /*.table-order .frame-variant-name{display: none;}
@@ -1040,7 +1042,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .tabs-compare-category{display: block;height: 80%;overflow: auto;}
 .frame-tabs-compare{overflow: visible;}
 .frame-tabs-compare > div{padding-bottom: 20px;}
-.frame-tabs-compare > div:first-child{display: block;}
+.frame-tabs-compare > div:first-child{display: none;}
 .left-compare, .right-compare{position: relative;z-index: 1;}
 .comprasion-head{position: absolute;left: 0;top: 0;z-index: 3;display: block !important;/*if carousel*/width: 197px;/*else*//*width: 100%;*/}
 .compare-characteristic{margin-top: 45px;}
