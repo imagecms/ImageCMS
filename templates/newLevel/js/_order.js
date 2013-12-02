@@ -2,7 +2,7 @@ if (selectDeliv)
     var methodDeliv = '#method_deliv';
 else
     var methodDeliv = '[name = "deliveryMethodId"]';
-function renderOrderDetails() {
+function renderOrderDetails(a) {
     $(genObj.orderDetails).html(_.template($(genObj.orderDetailsTemplate).html(), {
         cart: Shop.Cart
     }));
@@ -12,7 +12,11 @@ function renderOrderDetails() {
     })
     initShopPage(false);
     recountCartPage('renderOrderDetails');
-    renderGift(Shop.Cart.gift);
+
+    if (a === 'start' && $.isFunction(window.renderGift))
+        renderGift(Shop.Cart.gift);
+    if (a !== 'start')
+        getDiscount('renderOrderDetails');
 }
 
 function changeDeliveryMethod(id) {
@@ -83,7 +87,7 @@ function recountCartPage(a) {
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
 
     hideInfoDiscount();
-    if (a != 'renderOrderDetails')
+    if (a !== 'renderOrderDetails')
         getDiscount('recountCartPage');
 }
 function hideInfoDiscount() {
@@ -96,37 +100,42 @@ function displayInfoDiscount(tpl) {
     frameDiscountO.html(tpl);
     frameDiscountO.next(preloader).hide(); //preloader
 }
-function applyGift() {
-    $(genObj.gift).find(preloader).show();
-    var gift = 0;
-    $.ajax({
-        url: '/mod_discount/gift/get_gift_certificate',
-        data: 'key=' + $('[name=giftcert]').val(),
-        type: "GET",
-        success: function(data) {
-            if (data != '')
-                gift = JSON.parse(data);
-            $(genObj.gift).find(preloader).hide();
-            Shop.Cart.gift = gift;
-
-            if (gift.error) {
-                $(document).trigger({
-                    'type': 'discount.giftError',
-                    'datas': gift.mes
-                });
-            }
-            if (!gift.error)
-                loadCertificat(Shop.Cart.gift);
-        }
-    });
-    return false;
-}
 
 function renderGiftInput(tpl) {
     if (tpl == '')
         $(genObj.gift).empty();
     else
         $(genObj.gift).html(tpl);
+
+    $('#giftButton').click(function(e) {
+        $(genObj.gift).find(preloader).show();
+        var gift = 0;
+        $.ajax({
+            url: '/mod_discount/gift/get_gift_certificate',
+            data: 'key=' + $('[name=giftcert]').val(),
+            type: "GET",
+            success: function(data) {
+                if (data != '')
+                    gift = JSON.parse(data);
+                $(genObj.gift).find(preloader).hide();
+                Shop.Cart.gift = gift;
+
+                if (gift.error) {
+                    $(document).trigger({
+                        'type': 'discount.giftError',
+                        'datas': gift.mes
+                    });
+                }
+                if (!gift.error && $.isFunction(window.loadCertificat))
+                    loadCertificat(Shop.Cart.gift);
+            }
+        });
+        e.preventDefault();
+    })
+    $('#giftInput').keyup(function(e) {
+        if (e.keyCode == 13)
+            e.preventDefault();
+    })
 }
 function giftError(msg) {
     $(genObj.gift).children(genObj.msgF).remove()
@@ -182,7 +191,7 @@ $(document).on('scriptDefer', function() {
         });
 
     $(document).on('render_popup_cart', function() {
-        recountCartPage('render_popup_cart');
+        //recountCartPage('render_popup_cart');
     });
     $(document).on('sync_cart', function() {
         renderOrderDetails();
@@ -197,7 +206,7 @@ $(document).on('scriptDefer', function() {
         displayInfoDiscount(e.tpl);
     });
 
-    renderOrderDetails();
+    renderOrderDetails('start');
 });
 function initOrderTrEv() {
     $(document).on('discount.renderGiftInput', function(e) {

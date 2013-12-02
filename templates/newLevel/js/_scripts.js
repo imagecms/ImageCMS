@@ -359,19 +359,17 @@ function init() {
         wnd.focus(function() {
             processBtnBuyCount();
             checkSyncs();
-            processCarts();
 
             processComp();
             processWish();
             compareListCount();
             wishListCount();
 
-            //initShopPage(false);
-            if ($(genObj.popupCart).is(':visible'))
-                $.drop('close')($(genObj.popupCart));
-
             if (orderDetails)
                 renderOrderDetails();
+            
+            countSumBask();
+            processCarts();
         });
     var genTimeout = "";
     wnd.resize(function() {
