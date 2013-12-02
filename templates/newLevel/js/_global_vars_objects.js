@@ -117,6 +117,8 @@ var optionsDrop = {
     durationOff: 200,
     modalPlace: '.notification',
     dropContent: '.drop-content',
+    dropFooter: '.drop-footer',
+    dropHeader: '.drop-header',
     animate: true,
     placeBeforeShow: 'center center',
     placeAfterClose: 'center center',
@@ -126,7 +128,7 @@ var optionsDrop = {
     moreOne: false,
     closeClick: true,
     closeEsc: true,
-    size: true
+    position: 'relative'
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
