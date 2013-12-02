@@ -111,5 +111,5 @@
         </script>
         {include_shop_tpl('js_templates')}
         <!-- scripts end -->
-    </body>
+   </body>
 </html>
