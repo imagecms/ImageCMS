@@ -11,7 +11,7 @@ class Trash extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-         $lang = new MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('trash');
         $this->load->module('core');
     }
@@ -23,6 +23,8 @@ class Trash extends MY_Controller {
     public static function adminAutoload() {
         parent::adminAutoload();
         \CMSFactory\Events::create()->onShopProductDelete()->setListener('addProductWhenDelete');
+        \CMSFactory\Events::create()->onShopProductCreate()->setListener('delProductWhenCreate');
+        \CMSFactory\Events::create()->onShopCategoryDelete()->setListener('addProductsWhenCatDelete');
     }
 
     public function autoload() {
@@ -33,9 +35,19 @@ class Trash extends MY_Controller {
         }
     }
 
-    public function addProductWhenDelete($arg) {
+    public static function addProductsWhenCatDelete($arg) {
+        
+    }
+
+    public static function delProductWhenCreate($arg) {
+        $model = $arg['model'];
+        $ci = &get_instance();
+        $ci->db->where('trash_url', 'shop/product/' . $model->url)->delete('trash');
+    }
+
+    public static function addProductWhenDelete($arg) {
         $models = $arg['model'];
-        $CI = &get_instance();
+        $ci = &get_instance();
         foreach ($models as $model) {
             $array = array(
                 'trash_id' => $model->category_id,
@@ -44,7 +56,7 @@ class Trash extends MY_Controller {
                 'trash_type' => '301',
                 'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
             );
-            $CI->db->insert('trash', $array);
+            $ci->db->insert('trash', $array);
         }
     }
 

@@ -9,35 +9,35 @@
         <div class="inside-padd">
             <div class="horizontal-form big-title">
                 <form method="post" id="register-form-popup" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', '#register-form-popup');
-                    return false;">
+                        return false;">
                     <div class="horizontal-form">
-                        <div class="frame-label">
-                            <label class="title" for="reg_name">{lang('Ваше имя:','newLevel')}</label>
+                        <label>
+                            <span class="title">{lang('Ваше имя:','newLevel')}</span>
                             <div class="frame-form-field">
                                 <input type="text" class="required" maxlength="30" name="username" value="{set_value('username')}" />
                             </div>
-                        </div>
-                        <div class="frame-label">
-                            <label class="title" for="reg_email">E-mail:</label>
+                        </label>
+                        <label>
+                            <span class="title">E-mail:</span>
                             <div class="frame-form-field">
-                                <input id="reg_email" type="text" class="required email" maxlength="30" name="email" value="{set_value('email')}" />
+                                <input type="text" class="required email" maxlength="30" name="email" value="{set_value('email')}" />
                                 <span class="must">*</span>
                             </div>
-                        </div>
-                        <div class="frame-label">
-                            <label class="title" for="reg_pswd">{lang('Пароль:','newLevel')}</label>
+                        </label>
+                        <label>
+                            <span class="title">{lang('Пароль:','newLevel')}</span>
                             <div class="frame-form-field">
-                                <input type="password" name="password" id="password" value="{set_value('password')}" />
+                                <input type="password" name="password" value="{set_value('password')}" />
                                 <span class="must">*</span>
                             </div>
-                        </div>
-                        <div class="frame-label">
-                            <label class="title" for="reg_rptpswd">{lang('Повторите:','newLevel')}</label>
+                        </label>
+                        <label>
+                            <span class="title">{lang('Повторите:','newLevel')}</span>
                             <div class="frame-form-field">
-                                <input type="password" class="required" name="confirm_password" id="confirm_password" />
+                                <input type="password" class="required" name="confirm_password"/>
                                 <span class="must">*</span>
                             </div>
-                        </div>
+                        </label>
                         {if $cap_image}
                             <label>
                                 <span class="title">{$cap_image}</span>

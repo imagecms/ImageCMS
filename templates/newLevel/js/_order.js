@@ -2,7 +2,7 @@ if (selectDeliv)
     var methodDeliv = '#method_deliv';
 else
     var methodDeliv = '[name = "deliveryMethodId"]';
-function renderOrderDetails() {
+function renderOrderDetails(a) {
     $(genObj.orderDetails).html(_.template($(genObj.orderDetailsTemplate).html(), {
         cart: Shop.Cart
     }));
@@ -11,20 +11,25 @@ function renderOrderDetails() {
         'el': $(genObj.orderDetails)
     })
     initShopPage(false);
-    recountCartPage();
+    recountCartPage('renderOrderDetails');
+
+    if (a === 'start' && $.isFunction(window.renderGift))
+        renderGift(Shop.Cart.gift);
+    if (a !== 'start')
+        getDiscount('renderOrderDetails');
 }
 
 function changeDeliveryMethod(id) {
     $(genObj.pM).next().show();
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
         var data = JSON.parse(dataStr),
-        replaceStr = '';
+                replaceStr = '';
         if (selectPayment)
-            replaceStr = _.template('<div class="lineForm"><select id="paymentMethod" name="paymentMethodId"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select></div>', {
+            replaceStr = _.template($('#orderPaymentSelect').html(), {
                 data: data
             });
         else {
-            replaceStr = _.template('<div class="frame-radio"><% var i=0 %><% _.each(data, function(item) { %> <div class="frame-label"><span class = "niceRadio b_n"><input type = "radio" name = "paymentMethodId" value = "<%-item.id%>" <% if (i == 0){ %>checked = "checked"<% i++} %> /></span><div class = "name-count"><span class = "text-el"><%-item.name%></span></div><div class="help-block"><%=item.description%></div></div> <% }) %></div>', {
+            replaceStr = _.template($('#orderPaymentRadio').html(), {
                 data: data
             });
         }
@@ -36,21 +41,21 @@ function changeDeliveryMethod(id) {
             $(genObj.pM).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                        //,classRemove: 'b_n'//if not standart
             });
     });
 }
 function displayOrderSum(obj) {
     var discount = Shop.Cart.discount,
-    kitDiscount = parseFloat(Shop.Cart.kitDiscount),
-    finalAmount = Shop.Cart.getFinalAmount();
+            kitDiscount = parseFloat(Shop.Cart.kitDiscount),
+            finalAmount = Shop.Cart.getFinalAmount();
 
     if (Shop.Cart.koefCurr == undefined) {
         var sumBask = parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision),
-        addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
+                addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
         Shop.Cart.koefCurr = addSumBask / sumBask;
     }
-    
+
     if (discount != null && discount != 0)
         finalAmount = finalAmount - discount['result_sum_discount_convert'];
     if (kitDiscount != 0)
@@ -71,7 +76,7 @@ function displayOrderSum(obj) {
     else
         $(genObj.frameGenDiscount).hide();
 }
-function recountCartPage() {
+function recountCartPage(a) {
     Shop.Cart.totalRecount();
     var ca = "";
     if (selectDeliv)
@@ -80,11 +85,10 @@ function recountCartPage() {
         ca = $(methodDeliv).filter(':checked');
     Shop.Cart.shipping = parseFloat(ca.data('price'));
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
-    if ($.isFunction(window.loadCertificat)) {
-        loadCertificat(Shop.Cart.gift);
-    }
+
     hideInfoDiscount();
-    getDiscount();
+    if (a !== 'renderOrderDetails')
+        getDiscount('recountCartPage');
 }
 function hideInfoDiscount() {
     var frameDiscountO = $(genObj.frameDiscount);
@@ -96,29 +100,44 @@ function displayInfoDiscount(tpl) {
     frameDiscountO.html(tpl);
     frameDiscountO.next(preloader).hide(); //preloader
 }
-function applyGift() {
-    $(genObj.gift).find(preloader).show();
-    var gift = 0;
-    $.ajax({
-        url: '/mod_discount/gift/get_gift_certificate',
-        data: 'key=' + $('[name=giftcert]').val(),
-        type: "GET",
-        success: function(data) {
-            if (data != '')
-                gift = JSON.parse(data);
-            $(genObj.gift).find(preloader).hide();
-            Shop.Cart.gift = gift;
-            recountCartPage();
-        }
-    });
-    return false;
-}
 
 function renderGiftInput(tpl) {
     if (tpl == '')
         $(genObj.gift).empty();
     else
         $(genObj.gift).html(tpl);
+
+    $('#giftButton').click(function(e) {
+        $(genObj.gift).find(preloader).show();
+        var gift = 0;
+        $.ajax({
+            url: '/mod_discount/gift/get_gift_certificate',
+            data: 'key=' + $('[name=giftcert]').val(),
+            type: "GET",
+            success: function(data) {
+                if (data != '')
+                    gift = JSON.parse(data);
+                $(genObj.gift).find(preloader).hide();
+                Shop.Cart.gift = gift;
+
+                if (gift.error) {
+                    $(document).trigger({
+                        'type': 'discount.giftError',
+                        'datas': gift.mes
+                    });
+                }
+                if (!gift.error && $.isFunction(window.loadCertificat))
+                    loadCertificat(Shop.Cart.gift);
+            }
+        });
+        e.preventDefault();
+    })
+    $('#giftInput').keydown(function(e) {
+        if (e.keyCode == 13) {
+            $('#giftButton').trigger('click')
+            e.preventDefault();
+        }
+    })
 }
 function giftError(msg) {
     $(genObj.gift).children(genObj.msgF).remove()
@@ -132,15 +151,15 @@ function renderGiftSucces(tpl, gift) {
     $(genObj.certFrame).show()
     $(genObj.gift).children(genObj.msgF).remove();
     $(genObj.gift).html(tpl);
+    recountCartPage('renderGiftSucces');
 }
-
-function initOrder() {
+$(document).on('scriptDefer', function() {
     if (selectDeliv) {
         cuselInit($(genObj.frameDelivery), methodDeliv);
         $(methodDeliv).on('change.methoddeliv', function() {
             var activeVal = $(genObj.frameDelivery).find('span.cuselActive').attr('val');
             changeDeliveryMethod(activeVal);
-            recountCartPage();
+            recountCartPage('change.methoddeliv');
         });
     }
     else {
@@ -156,7 +175,7 @@ function initOrder() {
                 if (!start) {
                     var activeVal = el.find('input').val();
                     changeDeliveryMethod(activeVal);
-                    recountCartPage();
+                    recountCartPage('change_delivery');
                     $('[name="' + $(el).find('input').attr('name') + '"]').removeAttr('disabled')
                 }
             }
@@ -170,27 +189,27 @@ function initOrder() {
         $(genObj.pM).nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
             elCheckWrap: '.niceRadio'
-        //,classRemove: 'b_n'//if not standart
+                    //,classRemove: 'b_n'//if not standart
         });
 
     $(document).on('render_popup_cart', function() {
-        recountCartPage();
+        //recountCartPage('render_popup_cart');
     });
     $(document).on('sync_cart', function() {
         renderOrderDetails();
     });
     $(document).on('count_changed', function() {
-        recountCartPage();
+        recountCartPage('count_changed');
     });
     $(document).on('cart_rm', function(data) {
-        recountCartPage()
+        recountCartPage('cart_rm')
     });
     $(document).on('discount.display', function(e) {
         displayInfoDiscount(e.tpl);
     });
 
-    renderOrderDetails();
-}
+    renderOrderDetails('start');
+});
 function initOrderTrEv() {
     $(document).on('discount.renderGiftInput', function(e) {
         renderGiftInput(e.tpl);
@@ -205,6 +224,3 @@ function initOrderTrEv() {
         displayOrderSum(e.obj);
     });
 }
-$(document).on('scriptDefer', function() {
-    initOrder();
-})

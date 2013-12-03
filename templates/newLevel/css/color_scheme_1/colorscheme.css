@@ -49,7 +49,7 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .date{color: #a0a0a0;}
 
 /*active*/
-button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #999 !important;}
+button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #999;}
 .active > span, .active > a{cursor: default;color: #999;}
 .active > button{color: #fff;}
 input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, button:focus, .frame-item-menu > .frame-title > .title:focus{outline: 1px solid #75d9ff;}
@@ -1143,7 +1143,7 @@ input.plus-minus{float:right;width: 44px;height: 34px;display: block;border-colo
     background: linear-gradient(to bottom,  #0d0d0d 0%,#060606 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d0d0d', endColorstr='#060606',GradientType=0 ); /* IE6-9 */
 }
-.nav-enter-reg .or{color: #5d5d5d;padding: 0 18px;}
+.nav-enter-reg .divider{color: #5d5d5d;padding: 0 18px;}
 .phones-header .phone-code{color: #999;}
 .phones-header .phone-number{color: #333;}
 .header-left-content-header [href*="mailto"]{margin-left: 20px;}
