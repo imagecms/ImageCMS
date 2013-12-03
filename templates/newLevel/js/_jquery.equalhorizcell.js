@@ -3,10 +3,10 @@
         init: function(options) {
             var $this = $(this),
                     settings = $.extend({
-                refresh: false,
-                after: function() {
-                }
-            }, options),
+                        refresh: false,
+                        after: function() {
+                        }
+                    }, options),
                     mouseWhell = settings.mouseWhell,
                     elEven = settings.elEven,
                     onlyDif = settings.onlyDif,
@@ -32,7 +32,7 @@
                                 scrollNSP = settings.scrollNSP && $.exists(frameScroll),
                                 scrollNSPT = settings.scrollNSPT;
                         for (var j = 0; j < liLength; j++) {
-                            nab = $([]);
+                            var nab = $([]);
                             right.each(function() {
                                 nab = nab.add($(this).find(elEven).eq(j))
                             })
@@ -56,7 +56,7 @@
                                 scrollW = w - frameScrollPW;
                         if (scrollNSP && frameScrollCL != 0) {
                             scrollNSPT = $this.find(scrollNSPT);
-                            topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
+                            var topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
                             $this.children('.scrollNSP').remove();
                             $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
                         }
@@ -80,10 +80,9 @@
                         if (jScrollPane)
                             api = initNSS();
                         function scrollNst(deltaY) {
+                            var $thisSL = $(this).scrollLeft();
                             if (jScrollPane)
                                 $thisSL = api.getContentPositionX();
-                            else
-                                $thisSL = $(this).scrollLeft();
                             if ($thisSL != scrollW && deltaY < 0) {
                                 if (jScrollPane)
                                     api.scrollToX($thisSL + w / frameScrollCL)
@@ -134,10 +133,9 @@
                             firstScrl.add(secScrl).scrollLeft('0');
                         if (scrollW > 0)
                             secScrl.unbind('scroll' + nS).on('scroll' + nS, function() {
+                                var $thisSL = $(this).scrollLeft();
                                 if (jScrollPane)
                                     $thisSL = api.getContentPositionX();
-                                else
-                                    $thisSL = $(this).scrollLeft();
                                 firstScrl.add(secScrl).scrollLeft($thisSL);
                             });
                         $this.attr('data-equalHorizCell', '');
@@ -275,7 +273,7 @@
 $(document).on('scriptDefer', function() {
     $(document).on('delete_compare', function(e) {
         var $this = e.el,
-                $thisI = $this.parents(genObj.parentBtnBuy),
+                $thisI = $this.parents('li'),
                 $thisP = $this.parents('[data-equalhorizcell]').last(),
                 productsC = $thisP.find(optionCompare.right),
                 productsCGen = productsC.add($thisP.siblings().find(optionCompare.right)).length,
@@ -291,8 +289,7 @@ $(document).on('scriptDefer', function() {
             btn.remove();
         }
         if (productsCGen == 1) {
-            $('.page-compare').find(genObj.blockEmpty).show()
-            $('.page-compare').find(genObj.blockNoEmpty).hide()
+            $('.page-compare').find(genObj.blockEmpty).show().end().find(genObj.blockNoEmpty).hide()
         }
 //    if carousel
         if ($.existsN($thisP.find('.jcarousel-list')))
@@ -306,5 +303,6 @@ $(document).on('scriptDefer', function() {
             optionCompare.onlyDif.click();
         else
             optionCompare.allParams.click();
-    })
-})
+    });
+    $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
+});

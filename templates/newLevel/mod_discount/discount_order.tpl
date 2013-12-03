@@ -8,7 +8,7 @@
     <li>
         <span class="s-t">{lang('Размер скидки:','newLevel')}</span>
         <span class="price-item">
-            <span>
+            <span class="text-discount">
                 <span class="price">{echo $discount->result_sum_discount_convert+$kitDisc}</span>
                 <span class="curr">{$CS}</span>
             </span>

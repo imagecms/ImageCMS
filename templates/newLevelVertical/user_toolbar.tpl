@@ -45,13 +45,13 @@
         <div class="btn-to-up">
             <button type="button">
                 <span class="icon_arrow_p"></span>
-                <span class="text-el">{lang('Наверх','newLevel')}</span>
+                <span class="text-el ref t-d_n">{lang('Наверх','newLevel')}</span>
             </button>
         </div>
     </div>
     <div class="drop frame-already-show">
         <div class="content-already-show">
-            <div class="horizontal-carousel p_r" id="ViewedProducts">
+            <div id="ViewedProducts">
                 {/*{widget_ajax('ViewedProducts', '#ViewedProducts')}*/}
                 {widget('ViewedProducts')}
             </div>

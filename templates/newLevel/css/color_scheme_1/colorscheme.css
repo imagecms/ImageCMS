@@ -403,7 +403,7 @@ a:focus, a:active {color: #51d2ff;}
 .vertical-carousel .group-button-carousel .next{bottom: 9px;top: auto;}
 .fancy-gallery .group-button-carousel .arrow{width: 30px;height: 30px;margin-top: -15px;}
 .horizontal-carousel .frame-thumbs .group-button-carousel .arrow{background: none;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;border: 0;width: 20px;}
-.vertical-layout .products-carousel .group-button-carousel{position: absolute;right: 0;top: -49px;}
+.vertical-layout .items-carousel .group-button-carousel{position: absolute;right: 0;top: -49px;}
 .vertical-layout .group-button-carousel{background-color: #faf8f6;}
 
 .text-proposition-h.text-el{background-color: #faf8f6;position: relative;padding-right: 14px;font-size: 24px;}
