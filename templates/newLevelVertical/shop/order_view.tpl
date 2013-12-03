@@ -22,7 +22,7 @@
         {if $CI->session->flashdata('makeOrder') === true}
             <div class="f-s_0 title-order-view without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i c_9">{lang('Спасибо, Ваш заказ принят.','newLevel')}</h1>
+                    <h1 class="d_i c_9">{lang('Ваш заказ принят.','newLevel')}</h1>
                 </div>
             </div>
             <!-- Clear Cart locale Storage -->
@@ -84,8 +84,8 @@
                     <th>{lang('Способ оплаты','newLevel')}:</th>
                     <td>
                         {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
-                            {if $paymentMethod->getDescription()}
-                                {echo ShopCore::t($paymentMethod->getDescription())}
+                            {if $paymentMethod->getName()}
+                                {echo ShopCore::t($paymentMethod->getName())}
                             {/if}
                         {/if}
                     </td>
@@ -127,7 +127,7 @@
                 <!-- End. Delivery Method name -->
 
             </table>
-            <div class="title-h3">{lang('Данные клиентов','newLevel')}</div>
+            <div class="title-h3">{lang('Ваши данные','newLevel')}</div>
             <!--                Start. User info block-->
             <table class="table-info-order">
                 <tr>
@@ -188,7 +188,7 @@
 
 
 
-                                        <tr class="items items-bask items-order cartProduct">
+                                        <tr class="items items-bask items-order cart-product">
                                             <td class="frame-items">
                                                 <!-- Start. Render Ordered Products -->            
                                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="frame-photo-title">
@@ -200,8 +200,8 @@
                                                 </a>
                                                 <div class="description">
                                                     <span class="frame-variant-name-code">
-                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name">{lang("Вариант",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
-                                                {if trim(ShopCore::encode($orderProduct->variant_id) != '')}<span class="frame-variant-code">{lang("Артикул",'newLevel')}: <span class="code">{echo ShopCore::encode($orderProduct->variant_id)}</span></span>{/if}
+                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name frameVariantName">{lang("Вариант",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
+                                                {if trim(ShopCore::encode($orderProduct->variant_id) != '')}<span class="frame-variant-code frameVariantCode">{lang("Артикул",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_id)}</span></span>{/if}
                                             </span>
                                             <span class="frame-prices">
                                                 <span class="current-prices f-s_0">
@@ -251,7 +251,7 @@
                             <!-- end for single product -->
                             <!-- Start. Render Ordered kit products  -->
                             {foreach $model->getOrderKits() as $orderProduct}
-                                <tr class="row-kits items-order">
+                                <tr class="row-kits rowKits items-order">
                                     <td class="frame-items frame-items-kit">
                                         <ul class="items items-bask">
                                             <li>
@@ -332,7 +332,7 @@
                                             {/foreach}
                                         </ul>
                                         <div class="gen-sum-row">
-                                            <img src="{$THEME}images/kits_sum.png"/>
+                                            <img src="{$THEME}{$colorScheme}/images/kits_sum.png"/>
                                             <span class="s-t">{lang('Наборы','newLevel')}:</span>
                                             <span class="count">{echo $orderProduct->getQuantity()}</span>
                                             <span class="s-t">{lang('Сумма','newLevel')}:</span>

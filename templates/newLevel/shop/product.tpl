@@ -368,11 +368,11 @@
                 <div class="title-complect">
                     <div class="title">{lang('Специальное предложение! Купить, установить и получить скидку на аксессуары!','newLevel')}</div>
                 </div>
-                <div class="carousel-js-css products-carousel complects-carousel">
+                <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">
                         <ul class="items-complect items">
                             {foreach $model->getShopKits() as $key => $kitProducts}
-                                <li>
+                                <li class="globalFrameProduct">
                                     <ul class="items items-bask row-kits rowKits">
                                         <!-- main product -->
 
