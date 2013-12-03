@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-28 03:04+0200\n"
-"PO-Revision-Date: 2013-11-28 03:04+0200\n"
+"POT-Creation-Date: 2013-11-29 12:28+0200\n"
+"PO-Revision-Date: 2013-11-29 12:28+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -22,6 +22,10 @@ msgstr ""
 "X-Poedit-SearchPath-3: ../../modules/shop/models\n"
 "X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
+
+#: ./application/modules/admin/mod_search.php:248
+msgid "Module installation error"
+msgstr "Ошибка установки модуля"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
 msgid "Sort by name."
@@ -5998,10 +6002,6 @@ msgstr "Внимание или Осторожно"
 #: ./application/modules/admin/mod_search.php:268
 msgid "Exploding error"
 msgstr "Подрывна ошибка"
-
-#: ./application/modules/admin/mod_search.php:248
-msgid "Module installation error"
-msgstr "Ошыбка установки модуля"
 
 #: ./application/modules/admin/mod_search.php:258
 #: ./application/modules/admin/mod_search.php:306

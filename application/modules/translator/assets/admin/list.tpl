@@ -65,31 +65,31 @@
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <button id="cancel" disabled="" onclick="Translator.cancel()" type="button" class="btn btn-small action_on btn-primary">
+                    <button id="cancel" disabled="" onclick="Translator.cancel()" type="button" class="btn btn-small action_on btn-primary pjax">
                         <i class="icon-share-alt"></i>
                         {lang('Reset')}
                     </button>
-                    <button id="save" type="button" onclick="Translator.save()" class="btn btn-small btn-success">
+                    <button id="save" type="button" onclick="Translator.save()" class="btn btn-small btn-success pjax">
                         <i class="icon-ok"></i>
                         {lang('Save')}
                     </button>
-                    <button id="update" onclick="Translator.parse($(this))" type="button" class="btn btn-small btn-success">
+                    <button id="update" onclick="Translator.parse($(this))" type="button" class="btn btn-small btn-success pjax">
                         <i class="icon-refresh"></i>
                         {lang('Update')}
                     </button>
-                    <a href="/admin/components/init_window/translator/createFile" type="button" class="btn btn-small btn-success">
+                    <a href="/admin/components/init_window/translator/createFile" type="button" class="btn btn-small btn-success pjax">
                         <i class="icon-refresh"></i>
                         {lang('Create')}
                     </a>
-                    <a href="/admin/components/init_window/translator/exchangeTranslation" type="button" class="btn btn-small btn-success">
+                    <a href="/admin/components/init_window/translator/exchangeTranslation" type="button" class="btn btn-small btn-success pjax">
                         <i class="icon-refresh"></i>
                         {lang('Exchange')}
                     </a>
-                    <button id="update" onclick="Translator.correctPaths($(this))" type="button" class="btn btn-small btn-success">
+                    <button id="update" onclick="Translator.correctPaths($(this))" type="button" class="btn btn-small btn-success pjax">
                         <i class="icon-edit"></i>
                         {lang('Correct paths')}
                     </button>
-                    <button id="update" onclick="Translator.translate($(this))" type="button" class="btn btn-small btn-success">
+                    <button id="update" onclick="Translator.translate($(this))" type="button" class="btn btn-small btn-success pjax">
                         <i class="icon-edit"></i>
                         {lang('Translate')}
                     </button>

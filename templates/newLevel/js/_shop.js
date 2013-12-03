@@ -27,7 +27,8 @@ var Shop = {
         discountProduct: 0,
         gift: undefined,
         giftValue: 0,
-        add: function(cartItem, show) {
+        add: function(cartItem, show, addEvent) {
+            var obj = this;
             $(document).trigger({
                 type: 'before_add_to_cart',
                 cartItem: _.clone(cartItem)
@@ -45,29 +46,29 @@ var Shop = {
                 };
                 url += '/ShopKit';
             }
-
             $.get(url, data,
                     function() {
-                        try {
-                            Shop.Cart._add(cartItem, show);
-                        } catch (e) {
-                            return;
+                        var currentItem = obj.load(cartItem.storageId());
+                        if (currentItem)
+                            currentItem.count += cartItem.count;
+                        else
+                            currentItem = cartItem;
+                        obj.save(currentItem);
+
+                        $(document).trigger({
+                            type: 'after_add_to_cart',
+                            cartItem: _.clone(cartItem),
+                            show: show
+                        });
+
+                        if (addEvent != undefined) {
+                            $(document).trigger({
+                                type: addEvent,
+                                cartItem: _.clone(cartItem),
+                                show: show
+                            });
                         }
                     });
-            return;
-        },
-        _add: function(cartItem, show) {
-            var currentItem = this.load(cartItem.storageId());
-            if (currentItem)
-                currentItem.count += cartItem.count;
-            else
-                currentItem = cartItem;
-            this.save(currentItem);
-            $(document).trigger({
-                type: 'after_add_to_cart',
-                cartItem: _.clone(cartItem),
-                show: show
-            });
             return this;
         },
         chCount: function(cartItem, f) {
@@ -95,9 +96,9 @@ var Shop = {
                             cartItem: _.clone(cartItem)
                         });
                     });
-                    return this.totalRecount();
                 }
             }
+            return this;
         },
         totalRecount: function() {
             var items = this.getAllItems();
@@ -143,7 +144,6 @@ var Shop = {
 
             if (this.gift != undefined && !this.gift.error)
                 this.giftValue = this.gift.value
-            
             return this.totalRecount().totalPriceOrigin + this.shipping - this.giftValue;
         },
         renderPopupCart: function(selector) {
@@ -177,6 +177,7 @@ var Shop = {
                             type: 'cart_clear'
                         });
                     });
+            return this;
         },
         load: function(key) {
             try {
@@ -251,6 +252,7 @@ var Shop = {
                 if (data == false)
                     Shop.Cart.clear();
             });
+            return this;
         },
         /*/work with storage*/
         cartItem: function(obj) {
@@ -344,7 +346,6 @@ var Shop = {
         rm: function(key, el) {
             this.items = JSON.parse(localStorage.getItem('compareList')) ? JSON.parse(localStorage.getItem('compareList')) : [];
             if (this.items.indexOf(key) !== -1) {
-
                 this.items = _.without(this.items, key);
                 this.items = this.all();
                 $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
