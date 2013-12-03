@@ -298,7 +298,7 @@ p {margin-bottom: 10px;line-height: 18px;}
 .frame-cleaner{width: 245px;float: right;text-align: center;}
 .frame-search-input{margin-right: 54px;display: block;}
 input.input-search{height: 33px;}
-.drop-search{width: 100%;margin-top: 6px;padding: 0 5px;margin-left: -5px;}
+.drop-search{width: 100%;margin-top: 6px;padding: 0 5px;margin-left: -5px;top: 100%;}
 .drop-search > .inside-padd{margin: 0 -5px;}
 .drop-search .btn-autocomplete{text-align: center;width: 100%;padding: 8px 0;}
 .drop-search .msg{padding: 10px 25px 15px;margin-bottom: 0;}
@@ -1111,7 +1111,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 /*/footer*/
 
 /*drop*/
-.drop{display: none;position: absolute;top: 100%;left: 0;z-index: 1103;}
+.drop{display: none;position: absolute;}
 .drop.inherit{position: relative;}
 .drop.form-data{width: 100%;margin-top: 20px;margin-bottom: 30px;}
 .drop-header{padding: 13px 35px;text-align: center;position: relative;}
