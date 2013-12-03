@@ -67,18 +67,17 @@
             <!--End. Show brand description-->
 
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} table{else:} list{/if}" id="items-catalog-main">
-                    {$CI->load->module('new_level')->OPI($products, array('wishlist'=>true))}
+                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
+                    {$CI->load->module('new_level')->OPI($products, array('opi_wishlist'=>true))}
                 </ul>
             {/if}
             {$pagination}
         </div>
         {if $totalProducts > 0}
             <div class="left-catalog">
-                <form method="GET" action="" id="catalog_form">
+                <form method="GET" action="" id="catalogForm">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
                     <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
-<!--                    <input type="hidden" name="category" value="{echo $_GET[category]}">-->
                 </form>
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
@@ -101,9 +100,9 @@
                                             <li>
                                                 <a rel="nofollow" data-id="{echo $subItem['id']}" 
                                                    {if $_SERVER['QUERY_STRING']}
-                                                        href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
+                                                        href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
                                                    {else:}
-                                                        href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'])}"
+                                                        href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'])}"
                                                    {/if}
                                                  >
                                                         <span class="text-el">{echo $subItem['name']}</span> 
