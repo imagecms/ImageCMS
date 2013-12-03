@@ -843,7 +843,7 @@ function itemUserToolbar() {
         btn.on('click.UT', function() {
             var $this = $(this),
                     dataRel = $this.data('rel');
-            setcookie('condUserToolbar', dataRel, 0, '/')
+            setCookie('condUserToolbar', dataRel, 0, '/')
             if (dataRel == 0) {
                 $this.hide().next().show();
                 itemsUT.children(hideSet).hide();
