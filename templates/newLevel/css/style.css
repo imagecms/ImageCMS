@@ -333,7 +333,6 @@ input.input-search{height: 33px;}
 .items-catalog{margin-left: -42px;}
 .items-catalog > li .icon_times_order{position: absolute; left:10px; top:10px;}
 .items-catalog .frame-photo-title{display: block;}
-.items-catalog > li{position:relative;width: 215px !important;margin: 0 0 54px 42px;}
 .items-catalog .photo-block{margin-bottom: 10px;width: 200px;height: 180px;}
 .items-catalog.list .photo-block{float: left;margin-right: 10px;}
 .items-catalog.list .description{margin-left: 210px;}
@@ -502,9 +501,12 @@ input.input-search{height: 33px;}
 .vertical-carousel .carousel-js-css ul{width: auto;}
 .frame-scroll-pane .items-h-carousel{white-space: nowrap;width: auto;}
 .frame-scroll-pane .items-h-carousel{margin-left: -44px;padding-bottom: 46px;}/*height scroll + padding*/
+
+.items-catalog > li{position:relative;width: 215px !important;margin: 0 0 54px 42px;}
 .carousel-js-css .items-h-carousel > li{margin: 0 44px 0 0;}
-.carousel-js-css .items-h-carousel > li{width: 212px !important;}
+.items-h-carousel > li{width: 212px !important;}
 .vertical-layout .items-h-carousel > li{width: 210px !important;}
+
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin-left: 44px;margin-right: 0;margin-bottom: 0;}
 
 .special-proposition{margin-bottom: 40px;}
