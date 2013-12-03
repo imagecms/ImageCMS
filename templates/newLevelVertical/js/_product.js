@@ -110,9 +110,6 @@ function beforeShowHref(el, drop, isajax, data, elSet) {
     frame = $('#photo');
     frame.html(_.template($('#framePhotoProduct').html(), obj));
 
-    tovarChangeCount(frame);
-    processBtnBuyCount(frame);
-
     var next = $(hrefOptions.next),
     prev = $(hrefOptions.prev),
     content = drop.find('.drop-content-photo'),
