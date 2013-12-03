@@ -70,7 +70,6 @@ $(document).on('scriptDefer', function() {
     $(".star-big").starRating({
         width:26,
         afterClick: function(el, value){
-            //console.log(el)
             $.ajax({
                 type: "POST",
                 data: "cid=" + el.data('id') + "&type=" + el.data('type') + "&val=" + value,

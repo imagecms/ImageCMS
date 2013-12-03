@@ -7,18 +7,18 @@
                 </div>
             </div>
             <div class="big-container">
-                <div class="carousel_js products-carousel">
+                <div class="carousel-js-css items-carousel">
                     <div class="content-carousel container">
                         <ul class="items items-default items-v-carousel">
-                            {$CI->load->module('new_level')->OPI($products, array('widget'=>true, 'vertical' => true, 'defaultItem'=>true))}
+                            {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true))}
                         </ul>
                     </div>
                     <div class="group-button-carousel">
                         <button type="button" class="prev arrow">
-                            <span class="icon_arrow_p icon_arrow_p_t"></span>
+                            <span class="icon_arrow_p"></span>
                         </button>
                         <button type="button" class="next arrow">
-                            <span class="icon_arrow_n icon_arrow_n_b"></span>
+                            <span class="icon_arrow_n"></span>
                         </button>
                     </div>
                 </div>
