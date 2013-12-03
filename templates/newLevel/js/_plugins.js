@@ -1267,7 +1267,7 @@ function getCookie(c_name)
                     durationOn = settings.durationOn,
                     durationOff = settings.durationOff;
                     navTabsLi[index] = $thiss.children();
-                    refs[index] = navTabsLi[index].children();
+                    refs[index] = navTabsLi[index].children(':first-child');
                     attrOrdata[index] = refs[index].attr('href') !== undefined ? 'attr' : 'data';
                     var tempO = $([]),
                     tempO2 = $([]),
