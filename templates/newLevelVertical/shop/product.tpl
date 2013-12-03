@@ -157,7 +157,7 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <input type="text" value="1" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
+                                                        <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
                                                     </div>
                                                 </div>
                                                 <div class="btn-buy btn-buy-p">
@@ -694,22 +694,22 @@
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
             <div class="title"><%- obj.title %></div>
-        </div>
-        <div class="horizontal-carousel">
-            <div class="frame-fancy-gallery frame-thumbs">
-                <div class="fancy-gallery carousel-js-css">
-                    <div class="content-carousel">
-                        <ul class="items-thumbs items">
-                            <%= obj.frame.find(obj.galleryContent).html() %>
-                        </ul>
-                    </div>
-                    <div class="group-button-carousel">
-                        <button type="button" class="prev arrow">
-                            <span class="icon_arrow_p"></span>
-                        </button>
-                        <button type="button" class="next arrow">
-                            <span class="icon_arrow_n"></span>
-                        </button>
+            <div class="horizontal-carousel">
+                <div class="frame-fancy-gallery frame-thumbs">
+                    <div class="fancy-gallery carousel-js-css">
+                        <div class="content-carousel">
+                            <ul class="items-thumbs items">
+                                <%= obj.frame.find(obj.galleryContent).html() %>
+                            </ul>
+                        </div>
+                        <div class="group-button-carousel">
+                            <button type="button" class="prev arrow">
+                                <span class="icon_arrow_p"></span>
+                            </button>
+                            <button type="button" class="next arrow">
+                                <span class="icon_arrow_n"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

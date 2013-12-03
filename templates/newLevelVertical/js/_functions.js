@@ -33,7 +33,7 @@ function tovarCategoryChangeVariant(el) {
 }
 function tovarChangeCount(el) {
     el = el == undefined ? body : el;
-    el.find(genObj.parentBtnBuy).find(genObj.plusMinus).keyup(function(e) {
+    el.find(genObj.plusMinus).filter(genObj.iPr).keyup(function(e) {
         var $this = $(this),
                 condTooltip = checkProdStock && $this.val() > $this.data('max');
         if (condTooltip)
@@ -46,7 +46,7 @@ function tovarChangeCount(el) {
             });
         }
     });
-    el.find(genObj.parentBtnBuy).find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
+    el.find(genObj.plusMinus).filter(genObj.iPr).plusminus($.extend({}, optionsPlusminus, {
         after: function(e, el, input) {
             if (checkProdStock && input.val() == input.data('max'))
                 el.closest(genObj.numberC).tooltip();
@@ -122,7 +122,7 @@ function processBtnBuyCount(el) {
     });
     //update all product buttons
 
-    el.find(genObj.parentBtnBuy).find(genObj.btnBuy).each(function() {
+    el.find(genObj.btnBuy).each(function() {
         var $this = $(this),
                 key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) == -1) {
@@ -143,7 +143,7 @@ function processBtnBuyCount(el) {
             }).closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart);
         }
     }).removeAttr('disabled');
-    el.find(genObj.parentBtnBuy).find(genObj.numberC).each(function() {
+    el.find(genObj.numberC).has(genObj.iPr).each(function() {
         var $this = $(this),
                 key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {

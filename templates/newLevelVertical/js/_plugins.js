@@ -197,10 +197,9 @@ function getCookie(c_name)
                 //init event reset
                 frameChecks.closest('form').each(function() {
                     var $this = $(this);
-                    
                     if (resetChecked)
                         $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function(e) {
-                            methods.checkAllReset($this.find(elCheckWrap).filter(aC));
+                            methods.checkAllReset($this.find(elCheckWrap).filter('.'+aC));
                         });
                     else{
                         checked = $([]);
@@ -974,34 +973,38 @@ function getCookie(c_name)
                         if (columnPart && !sub2Frame)
                             dropOJ.each(function() {
                                 var $this = $(this),
-                                columnsObj = $this.find(':regex(class,' + columnClassPref + '([0-9]+))'),
+                                columnsObj = $this.find(':regex(class,' + columnClassPref + '([-1-9]+))'),
                                 numbColumn = [];
                                 columnsObj.each(function(i) {
-                                    numbColumn[i] = $(this).attr('class').match(/([0-9]+)/)[0];
-                                });
+                                    numbColumn[i] = $(this).attr('class').match(/([-1-9]+)/)[0];
+                                })
                                 numbColumn = _.uniq(numbColumn).sort();
                                 var numbColumnL = numbColumn.length;
-                                if (numbColumnL === 1 && $.inArray('0', numbColumn) === -1 || numbColumnL > 1) {
-                                    if ($.inArray('0', numbColumn) === 0) {
+                                if (numbColumnL == 1 && $.inArray('0', numbColumn) == -1 || numbColumnL > 1) {
+                                    if ($.inArray('0', numbColumn) >= 0){
                                         numbColumn.shift();
                                         numbColumn.push('0');
+                                    }
+                                    if ($.inArray('-1', numbColumn) == 0){
+                                        numbColumn.shift();
+                                        numbColumn.push('-1');
                                     }
                                     $.map(numbColumn, function(n, i) {
                                         var $thisLi = columnsObj.filter('.' + columnClassPref + n),
                                         sumx = 0;
                                         $thisLi.each(function() {
                                             var datax = $(this).attr('data-x');
-                                            sumx = parseInt(datax === 0 || datax === undefined ? 1 : datax) > sumx ? parseInt(datax === 0 || datax === undefined ? 1 : datax) : sumx;
-                                        });
-                                        $this.children().append('<li class="x' + sumx + '" data-column="' + n + '" data-x="' + sumx + '"><ul></ul></li>');
+                                            sumx = parseInt(datax == 0 || datax == undefined ? 1 : datax) > sumx ? parseInt(datax == 0 || datax == undefined ? 1 : datax) : sumx;
+                                        })
+                                        $this.children().append('<li class="x' + sumx + '" data-column="' + n + '"><ul></ul></li>');
                                         $this.find('[data-column="' + n + '"]').children().append($thisLi.clone());
-                                    });
+                                    })
                                     columnsObj.remove();
                                 }
                                 var sumx = 0;
                                 $this.children().children().each(function() {
                                     var datax = $(this).attr('data-x');
-                                    sumx = sumx + parseInt(datax === 0 || datax === undefined ? 1 : datax);
+                                    sumx = sumx + parseInt(datax == 0 || datax == undefined ? 1 : datax);
                                 });
                                 sumx = sumx > maxC ? maxC : sumx;
                                 $this.addClass('x' + sumx);
@@ -1625,7 +1628,7 @@ function getCookie(c_name)
             });
             return $(this);
         },
-        get: function(el, e) {
+        get: function(el, modal, e) {
             if (el == undefined)
                 el = this;
             var elSet = el.data(),
@@ -1677,7 +1680,7 @@ function getCookie(c_name)
                 if (!$.existsN(drop) || modal || always) {
                     if (!modal)
                         drop.remove();
-                    methods.get($this, e);
+                    methods.get($this, modal, e);
                 }
             }
             var elSet = $this.data(),
@@ -2015,7 +2018,8 @@ function getCookie(c_name)
                             if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
                                 drop.css('left', wnd.width());
                             if ($thisPMT[0] === 'center' && $thisPMT[1] === 'center') {
-                                methods[place](drop, true);
+                                if (place != 'inherit')
+                                    methods[place](drop, true);
                             }
                             if ($thisPMT[0] === 'inherit')
                                 drop.css({
@@ -2033,7 +2037,8 @@ function getCookie(c_name)
                             _pos();
                     }
 
-                    methods[place](drop);
+                    if (place != 'inherit')
+                        methods[place](drop);
 
                     drop[$thisEOn]($thisD, function(e) {
                         var drop = $(this);
@@ -2449,7 +2454,7 @@ function getCookie(c_name)
                                 settings.before(e, el, input);
                                 if (isNaN(inputVal))
                                     input.val(input.data('min') || 1);
-                                else if (inputVal > parseFloat(input.data('min')) || 1) {
+                                else if (inputVal > parseFloat(input.data('min') || 1)) {
                                     if (ajax) {
                                         $(document).trigger({
                                             'type': 'showActivity'
