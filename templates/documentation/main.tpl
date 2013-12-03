@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{$site_title}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+         <title>{$site_title}</title>
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="generator" content="ImageCMS" />
         <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
@@ -97,7 +97,7 @@
                 <div class="col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     {if $CI->core->core_data['data_type'] != '404'}
                         <div class="row">
-                            <form class="form-group form-inline search-form-user" action="{site_url('search')}" method="POST">
+                            <form class="form-group form-inline search-form-user" action="{site_url('search')}" method="GET">
                                 <div class="">
                                     <input type="text" class="form-control" name="text" placeholder="{lang("Поиск по документации","documentation")}" />
                                     <button class="search-btn" type="submit"></button>
@@ -178,7 +178,7 @@
                             <li>
                                 <div class="date">{$forum.last_poster}, {echo ru_date('d F Y', $forum.last_post)}</div>
                                 <a target="_blank" href="http://forum.imagecms.net/viewtopic.php?pid={$forum.last_post_id}#{$forum.last_post_id}">
-                                    <div class="short-info">{$forum.subject}</div>
+                                    <div class="short-info">{htmlspecialchars($forum.subject)}</div>
                                 </a>
                             </li>
                         {/foreach}
@@ -241,8 +241,8 @@
             <div class="foot-box4 col-sm-3">
                 <div class="title">Инструкции</div>
                 <ul>
-                    <li><a href="/poshagovye-instruktsii/sozdanie_korporativnogo_saita_na_baze_imagecms_corporate">Создание корпоративного сайта</a></li>
-                    <li><a href="/poshagovye-instruktsii/sozdanie_internet-magazina_na_baze_imagecms_shop">Создание Интернет-магазина</a></li>
+                    <li><a href="/poshagovye-instruktsii/sozdanie-korporativnogo-saita-na-baze-imagecms-corporate">Создание корпоративного сайта</a></li>
+                    <li><a href="/poshagovye-instruktsii/sozdanie-internet-magazina-na-baze-imagecms-shop">Создание Интернет-магазина</a></li>
                 </ul>
             </div>
             <div class="foot-box5 col-sm-3">
