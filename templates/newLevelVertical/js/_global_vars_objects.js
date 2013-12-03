@@ -126,7 +126,7 @@ var optionsDrop = {
     moreOne: false,
     closeClick: true,
     closeEsc: true,
-    position: 'relative'
+    position: 'absolute'
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -165,8 +165,8 @@ var cleaverFilterObj = {
     effectIn: 'fadeIn',
     effectOff: 'fadeOut',
     duration: '300',
-    location: 'right', //if vertical has be left
-    //addingClass: 'left',//if vertical has be left
+    location: 'left', //if vertical has be left
+    addingClass: 'left',//if vertical has be left
     elPos: '.frame-group-checks .frame-label',
     dropDownEff: 'slideToggle',
     dropDownEffDur: '400',

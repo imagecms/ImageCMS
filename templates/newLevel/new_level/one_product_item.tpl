@@ -175,7 +175,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <input type="text" value="1" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
+                                        <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
                                     </div>
                                 </div>
                             {/if}

@@ -126,7 +126,7 @@ var optionsDrop = {
     moreOne: false,
     closeClick: true,
     closeEsc: true,
-    position: 'relative'
+    position: 'absolute'
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
