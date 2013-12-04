@@ -1588,7 +1588,7 @@ function getCookie(c_name)
             dropContent: null,
             dropHeader: null,
             dropFooter: null,
-            placement: undefined,
+            placement: 'top, left',
             modal: false,
             confirm: false,
             confirmSel: '#confirm',
@@ -1810,9 +1810,9 @@ function getCookie(c_name)
 
                     if (drop.data('place') == 'noinherit') {
                         var mayHeight = 0,
-                        placement = eval(drop.data('placement'));
+                        placement = drop.data('placement');
 
-                        if (typeof eval(placement) == 'object') {
+                        if (typeof placement == 'object') {
                             if (placement.top != undefined)
                                 mayHeight = docH - placement.top - footerHeader - (drop.outerHeight() - drop.height());
                             if (placement.bottom != undefined)
@@ -2271,7 +2271,7 @@ function getCookie(c_name)
                 drop = this;
             start = start === undefined ? true : false;
             var method = drop.data('animate') && start ? 'animate' : 'css',
-            placement = eval(drop.data('placement')),
+            placement = drop.data('placement'),
             $this = drop.data('elrun'),
             dataSourceH = 0,
             dataSourceW = 0,
