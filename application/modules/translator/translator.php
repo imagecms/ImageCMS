@@ -40,7 +40,7 @@ class Translator extends MY_Controller {
           ->update('components', array(
               'autoload' => '1', 
               'enabled' => '1',
-              'settings' => serialize(array('originsLang' => 'en'))
+              'settings' => serialize(array('originsLang' => 'en', 'editorTheme' => 'chrome'))
               
               ));
         
