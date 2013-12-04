@@ -581,8 +581,7 @@ class ImportXML {
             $data['code'] = $partner->Код . '';
             $data['region'] = $partner->Регион . '';
             $data['external_id'] = $partner->ID . '';
-            $partner_exsist = is_partner($data['external_id'], $this->partners);
-
+            $partner_exsist = is_partner_code($data['code'], $this->partners);
             if (((string) $partner->IDWeb) || $partner_exsist) {
                 $data['id'] = $partner->IDWeb . '' ? $partner->IDWeb . '' : $partner_exsist['id'];
                 $this->update[] = $data;
@@ -632,7 +631,6 @@ class ImportXML {
             $data['partner_code'] = $partners_external[$data['partner_external_id']];
 
             $price_exist = is_price($data['external_id'], $this->prices);
-
             if ($offer->IDWeb || $price_exist) {
                 $data['id'] = $offer->IDWeb . '' ? $offer->IDWeb . '' : $price_exist['id'];
                 $this->update[] = $data;

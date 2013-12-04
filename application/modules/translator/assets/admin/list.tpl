@@ -19,9 +19,12 @@
 margin-bottom: -15px;"></div>
     </div>
     <div class="modal-footer">
-        <div class="pull-left">
+        <div class="pull-left" style="text-align: left">
             <span><b>{lang('Origin string')}:</b></span>
-            <span class="originStringInFileEdit"></span>
+            <a onclick="AceEditor.goToLang($(this))"><span class="originStringInFileEdit"></span></a>
+            <br>
+            <span><b>{lang('Line number')}:</b></span>
+            <a onclick="AceEditor.goToLang($(this))"><span class="originStringLineInFileEdit"></span></a>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" onclick="Translator.saveEditingFile($(this))" >{lang('Save')}</a>
