@@ -1739,19 +1739,19 @@ function getCookie(c_name)
 
             return $this;
         },
-        _pasteDrop: function(elSet, drop) {
-            if (elSet.place !== 'inherit') {
+        _pasteDrop: function(set, drop) {
+            if (set.place !== 'inherit') {
                 function _for_center(rel) {
-                    body.append('<div class="for-center" rel="' + elSet.drop + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
+                    body.append('<div class="for-center" rel="' + rel + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
                 }
-                if (elSet.place === 'noinherit')
+                if (set.place === 'noinherit')
                     body.append(drop);
                 else {
-                    var sel = '[rel="' + elSet.drop + '"].for-center';
+                    var sel = '[rel="' + set.drop + '"].for-center';
                     if (typeof drop !== 'string') {
                         if (!$.existsN(drop.parent('.for-center'))) {
                             if (drop.data('forCenter') === undefined) {
-                                _for_center(elSet.drop);
+                                _for_center(set.drop);
                                 drop.data('forCenter', $(sel));
                             }
                             drop.data('forCenter').append(drop);
@@ -1759,9 +1759,10 @@ function getCookie(c_name)
                     }
                     else {
                         if (!$.exists(sel)) {
-                            _for_center(elSet.drop);
+                            _for_center(set.drop);
                         }
-                        $(elSet.drop).data('forCenter', $(sel).append(drop));
+                        var forCenter = $(sel).append(drop);
+                        $(set.drop).data('forCenter', forCenter);
                     }
                 }
             }
@@ -1785,11 +1786,12 @@ function getCookie(c_name)
 
                 if ($.existsN(el)) {
                     var docH = $(document).height(),
+                            forCenter = drop.data('forCenter'),
                             refer = drop.data('elrun');
                     if (!dropV) {
                         drop.show();
-                        if (drop.data('forCenter'))
-                            drop.data('forCenter').show();
+                        if (forCenter)
+                            forCenter.show();
                     }
 
                     var api = false,
@@ -1841,8 +1843,8 @@ function getCookie(c_name)
                         drop.drop('center');
                     if (!dropV) {
                         drop.hide();
-                        if (drop.data('forCenter'))
-                            drop.data('forCenter').hide();
+                        if (forCenter)
+                            forCenter.hide();
                     }
                 }
             }
@@ -1933,7 +1935,7 @@ function getCookie(c_name)
                 methods.close($(this).closest('[data-elrun]'));
             });
 
-            var overlays = $('.overlayDrop'),
+            var overlays = $('.overlayDrop').css('z-index', 1103),
                     condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
 
             if (condOverlay) {
@@ -1942,16 +1944,16 @@ function getCookie(c_name)
                 }
                 drop.data('dropOver', $('[rel="' + selSource + '"].overlayDrop'));
 
-                overlays.css('z-index', 1103);
                 drop.data('dropOver').css({
                     'background-color': overlayColor,
                     'opacity': overlayOpacity,
                     'z-index': overlays.length + 1103
                 });
             }
-            if (drop.data('forCenter')) {
-                $('.for-center').css('z-index', 1104);
-                drop.data('forCenter').css('z-index', overlays.length + 1104);
+            $('.for-center').css('z-index', 1104);
+            var forCenter = drop.data('forCenter');
+            if (forCenter) {
+                forCenter.css('z-index', overlays.length + 1104);
             }
             else
                 drop.css('z-index', 1105);
@@ -1993,7 +1995,7 @@ function getCookie(c_name)
                 if (condOverlay) {
                     drop.data('dropOver').fadeIn($thisD / 2);
                     if (closeClick)
-                        drop.data('dropOver').add(drop.data('forCenter')).off('click.drop').on('click.drop', function(e) {
+                        drop.data('dropOver').add(forCenter).off('click.drop').on('click.drop', function(e) {
                             if ($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center')) {
                                 methods.close($($(e.target).attr('rel')));
                             }
@@ -2006,8 +2008,8 @@ function getCookie(c_name)
 
                 drop.addClass(place);
                 function _forCenterTop() {
-                    if (drop.data('forCenter')) {
-                        drop.data('forCenter').css('top', methods.defaultParams.wST);
+                    if (forCenter) {
+                        forCenter.css('top', methods.defaultParams.wST);
                     }
                 }
                 function _show() {
@@ -2070,8 +2072,8 @@ function getCookie(c_name)
                     });
                 }
                 methods.defaultParams.wST = wnd.scrollTop();
-                if (drop.data('forCenter')) {
-                    drop.data('forCenter').fadeIn($thisD);
+                if (forCenter) {
+                    forCenter.fadeIn($thisD);
                 }
 
                 _forCenterTop();
