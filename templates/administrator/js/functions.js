@@ -17,7 +17,7 @@ var editorsEnabled = false;
                 } else if (domObject.createTextRange) {
                     range = domObject.createTextRange();
                     range.collapse(true);
-                    range.moveEnd('character', end);
+              http://test21.siteimage.com.ua/corporate/main      range.moveEnd('character', end);
                     range.moveStart('character', begin);
                     range.select();
                 }
@@ -613,11 +613,13 @@ function initTextEditor(name)
 }
 
 var dlg = false;
-function elFinderPopup(type, id, path)
+function elFinderPopup(type, id, path, onlyMimes)
 {
     fId = id;
     if (typeof path == 'undefined')
         path = '';
+    if (typeof onlyMimes == 'undefined')
+        onlyMimes = [];
     //todo: create diferent browsers (check 'type' variable)
     if (!dlg)
     {
@@ -699,7 +701,7 @@ function elFinderPopup(type, id, path)
                 cms_token: elfToken,
                 path: path
             },
-            onlyMimes: [type]
+            onlyMimes: [onlyMimes]
         });
     }
     else
