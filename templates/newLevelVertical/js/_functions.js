@@ -903,7 +903,7 @@ function reinitializeScrollPane(el) {
         })
     }
 }
-function ieInput(els) {
+function ieBoxSize(els) {
     if (els == undefined || els == null)
         els = $(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])');
     els.not(':hidden').not('.visited').each(function() {
@@ -926,7 +926,7 @@ function cuselInit(el, sel) {
             changedEl: sel
         }));
         if (ltie7)
-            ieInput(el.find('.cuselText'));
+            ieBoxSize(el.find('.cuselText'));
     }
 }
 /*/declaration front functions*/
