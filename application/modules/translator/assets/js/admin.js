@@ -353,6 +353,7 @@ var Search = {
         this.init();
         if (this.canSearch()) {
             if (this.searchString && this.searchString.length > this.minSearchStringLength) {
+
                 if ($('#originSearch').attr('checked')) {
                     this.origin();
                     this.displayResults();
@@ -367,6 +368,7 @@ var Search = {
                     this.comment();
                     this.displayResults();
                 }
+
                 $('.pagination ul li.active').removeClass('active');
                 $($('.pagination ul li')[1]).addClass('active');
 
@@ -381,6 +383,14 @@ var Search = {
             }
         } else {
             showMessage('Error', 'You did not select search criteria', 'r')
+        }
+    },
+    goOnEnterPress: function() {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            this.go();
+        } else {
+            return false;
         }
     }
 
@@ -485,7 +495,6 @@ var Selectors = {
 
 var Translator = {
     filePath: '',
-    editor: {},
     init: function() {
         this.lang = $('#langs').val();
         this.type = $('#types').val();
@@ -659,6 +668,8 @@ var Translator = {
             success: function(data) {
                 if (data) {
                     var results = JSON.parse(data);
+                    var newCount = 0;
+                    var oldCount = 0;
                     $('.modal_update_results').removeClass('hide').removeClass('fade');
                     $('.modal_update_results').modal('show');
                     $('.modal-backdrop').show();
@@ -668,23 +679,45 @@ var Translator = {
                     for (var newString in results['new']) {
                         if (newString) {
                             var paths = [];
+                            var tooltipMsg = '';
 
+                            newCount++;
                             for (var path in results['new'][newString]) {
                                 paths.push(results['new'][newString][path]);
                             }
-
-                            $('.newStrings').append('<span data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
+                            for (var path in paths) {
+                                tooltipMsg += paths[path] + '<br>';
+                            }
+                            $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
                         }
                     }
 
                     for (var obsoleteString in results['old']) {
                         if (obsoleteString && obsoleteString != '0') {
-                            $('.obsoleteStrings').append('<span>' + escapeHtml(obsoleteString) + '</span><br>');
+                            var paths = [];
+                            var tooltipMsg = '';
+
+                            oldCount++;
+                            for (var path in results['old'][obsoleteString]['links']) {
+                                paths.push(results['old'][obsoleteString]['links'][path]);
+                            }
+                            for (var path in paths) {
+                                tooltipMsg += paths[path] + '<br>';
+                            }
+
+                            $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(obsoleteString) + '</span><br>');
                         }
                     }
-//                    console.log(results['new'])
-//                    $('.parsedNewStringsCount').html(results['new']);
-//                    $('.parsedRemoveStringsCount').html(results['old']);
+
+
+                    $('.parsedNewStringsCount').html(newCount);
+                    $('.parsedRemoveStringsCount').html(oldCount);
+                    $('.updateResults span').tooltip({
+                        'delay': {
+                            show: 300,
+                            hide: 100
+                        }
+                    });
 
                 }
             }
@@ -806,18 +839,12 @@ var Translator = {
             }
         });
     },
-    aceInit: function() {
-        this.editor = ace.edit("fileEdit");
-        this.editor.setTheme("ace/theme/chrome");
-        this.editor.getSession().setMode("ace/mode/xml");
-    },
     openFileToEdit: function(curElement) {
         var filePath = $(curElement).val();
         var line = filePath.slice(filePath.indexOf(':') + 1, filePath.length);
         filePath = filePath.slice(2, filePath.indexOf(':'));
+        var originString = $(curElement).closest('tr').find('.origin').val();
         this.filePath = filePath;
-        this.aceInit();
-        var editorObj = this.editor;
         var url = '/admin/components/init_window/translator/renderFile';
         $.ajax({
             type: 'POST',
@@ -827,11 +854,12 @@ var Translator = {
             url: url,
             success: function(data) {
                 var fileContent = JSON.parse(data);
-                editorObj.setValue('');
-                for (var fileLine in fileContent) {
-                    editorObj.setValue(editorObj.getValue() + fileContent[fileLine]);
+                var fileExtention = filePath.match(/\.([a-z]{2,4})/);
+                if (fileExtention) {
+                    fileExtention = fileExtention[1];
                 }
-                editorObj.gotoLine(line, 1, false)
+                AceEditor.render(fileContent, line, fileExtention);
+                $('.originStringInFileEdit').html(originString);
             }
         });
         $('.modal_file_edit').modal();
@@ -1081,6 +1109,54 @@ var Exchange = {
                 }
             }
         });
+    }
+};
+
+var AceEditor = {
+    editor: {},
+    highlightModes: {js: 'javascript', php: 'php', tpl: 'html'},
+    changeTheme: function(curElement) {
+        var theme = $(curElement).val();
+        if (theme) {
+            this.editor.setTheme("ace/theme/" + theme);
+            $.ajax({
+                type: "POST",
+                data: {
+                    theme: theme
+                },
+                url: '/admin/components/init_window/translator/setSettings',
+                success: function(data) {
+                }
+            });
+        }
+
+    },
+    setTheme: function(theme) {
+        var curTheme = theme ? theme : $('.editorTheme').val();
+        if (curTheme) {
+            this.editor.setTheme("ace/theme/" + curTheme);
+        }
+    },
+    init: function() {
+        this.editor = ace.edit("fileEdit");
+        this.editor.setTheme("ace/theme/chrome");
+        this.editor.getSession().setMode("ace/mode/xml");
+    },
+    render: function(fileContent, selectedLine, fileExtention) {
+        this.init();
+        this.editor.setValue('');
+        for (var fileLine in fileContent) {
+            this.editor.setValue(this.editor.getValue() + fileContent[fileLine]);
+        }
+        this.editor.gotoLine(selectedLine, 0, false);
+        this.setTheme();
+        if (fileExtention) {
+            this.setHighlight(fileExtention);
+        }
+    },
+    setHighlight: function(extention) {
+        var mode = this.highlightModes[extention] ? this.highlightModes[extention] : 'html';
+        this.editor.getSession().setMode("ace/mode/" + mode);
     }
 };
 
