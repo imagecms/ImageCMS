@@ -68,32 +68,30 @@ class Navigation_Widgets extends MY_Controller {
                                     ->join('shop_brands_i18n', 'shop_brands_i18n.id=shop_brands.id')
                                     ->limit(1)
                                     ->get('shop_brands')->row_array();
-                    $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
+                    $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands'));
                     $navi_cats[] = array('path_url' => $brand['url'], 'name' => $brand['name']);
                     $tpl_data = array('navi_cats' => $navi_cats);
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 } else {
                     if ($data_type == 'brand') {
-                        $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
+                        $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands'));
                         $tpl_data = array('navi_cats' => $navi_cats);
                         return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                     }
                 }
-
-
                 break;
             case 'compare';
-                $navi_cats[] = array('path_url' => 'shop/compare/', 'name' => lang('Compare', 'navigation'));
+                $navi_cats[] = array('path_url' => 'shop/compare/', 'name' => lang('Compare'));
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
             case 'wish_list':
-                $navi_cats[] = array('path_url' => 'shop/wish_list/', 'name' => lang('Wish List', 'navigation'));
+                $navi_cats[] = array('path_url' => 'shop/wish_list/', 'name' => lang('Wish_list'));
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
             case 'profile':
-                $navi_cats[] = array('path_url' => 'shop/profile/', 'name' => lang('Profile', 'navigation'));
+                $navi_cats[] = array('path_url' => 'shop/profile/', 'name' => lang('Profile'));
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
@@ -103,7 +101,7 @@ class Navigation_Widgets extends MY_Controller {
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
             case 'cart':
-                $navi_cats[] = array('path_url' => 'shop/cart/', 'name' => lang('Cart', 'navigation'));
+                $navi_cats[] = array('path_url' => 'shop/cart/', 'name' => lang('Cart'));
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
@@ -161,45 +159,49 @@ class Navigation_Widgets extends MY_Controller {
                     if ($product) {
                         $product = $product->result_array();
                         $product = $product[0];
-                        //get category path
-                        if ($product['category_id'] != null && $product['category_id'] > 0) {
-                            $shop_category = $ci->db->select(array('full_path_ids', 'full_path', 'name'))
-                                    ->where(array('shop_category.id' => $product['category_id'],
-                                        'shop_category_i18n.locale' => MY_Controller::getCurrentLocale()))
-                                    ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
-                                    ->limit(1)
-                                    ->get('shop_category');
-                            if ($shop_category) {
-                                $shop_category = $shop_category->result_array();
-                                $shop_category = $shop_category[0];
-                                $full_path_ids = $shop_category['full_path_ids'];
-                                $full_path_ids = unserialize($full_path_ids);
-                                if (is_array($full_path_ids) && !empty($full_path_ids)) {
-                                    $result = $ci->db->select(array('full_path', 'name'))
-                                            ->where('locale', MY_Controller::getCurrentLocale())
-                                            ->where_in('shop_category.id', $full_path_ids)
-                                            ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
-                                            ->get('shop_category');
-                                    if ($result) {
-                                        $result = $result->result_array();
-                                        foreach ($result as $key => $value) {
-                                            $result[$key]['path_url'] = 'shop/category/' . $result[$key]['full_path'];
-                                            unset($result[$key]['url']);
-                                        }
-                                        $result[] = array('path_url' => 'shop/category/' . $shop_category['full_path'],
-                                            'name' => $shop_category['name']);
-                                    }
-                                } else {
-                                    //current category is first level category
-                                    $result[] = array('path_url' => 'shop/category/' . $shop_category['full_path'], 'name' => $shop_category['name']);
-                                }
-                                $result[] = array('path_url' => '', 'name' => $product['name']);
-                                $tpl_data = array('navi_cats' => $result);
-                                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                            } else {
-                                throw new Exception("Category not found");
-                            }
+
+                        if ($product['category_id'] == null && $product['category_id'] == 0)
+                            throw new Exception("Category not found");
+
+                        // getting categories
+                        $result = $ci->db
+                                ->select(array('shop_category.id', 'parent_id', 'full_path', 'name'))
+                                ->where(array('shop_category_i18n.locale' => MY_Controller::getCurrentLocale()))
+                                ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
+                                ->get('shop_category');
+
+                        if (!$result)
+                            return;
+
+                        $categories = array();
+                        foreach ($result->result_array() as $row) {
+                            $categories[$row['id']] = $row;
                         }
+
+                        // building path 
+                        $neededCid = $product['category_id'];
+                        $path = array(
+                            array('path_url' => '', 'name' => $product['name'])
+                        );
+
+                        while ($neededCid != 0) {
+                            $path[] = array(
+                                'path_url' => 'shop/category/' . $categories[$neededCid]['full_path'],
+                                'name' => $categories[$neededCid]['name'],
+                            );
+                            $neededCid = $categories[$neededCid]['parent_id'];
+                        }
+
+                        // десь там відлік йде з кінця, тому з питань сумісності...
+                        $fromBack = array();
+                        $j = 0;
+                        $to = count($path) - 1;
+                        for ($i = $to; $i >= 0; $i--) {
+                            $fromBack[$j++] = $path[$i];
+                        }
+
+                        $tpl_data = array('navi_cats' => $fromBack);
+                        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                     } else {
                         throw new Exception("Product not found");
                     }
