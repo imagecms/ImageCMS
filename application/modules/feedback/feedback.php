@@ -28,7 +28,6 @@ class Feedback extends MY_Controller {
             'valid_email' => lang('Email is not valid'),
             'max_length' => lang('Length greater than the maximum')
         );
-
         $lang = new MY_Lang();
         $lang->load('feedback');
     }
@@ -55,7 +54,7 @@ class Feedback extends MY_Controller {
 
     // Index function
     public function index() {
-        
+
         $this->core->set_meta_tags(lang('Feedback', 'feedback'));
 
         $this->load->library('form_validation');

@@ -1,24 +1,22 @@
-var 
-isTouch = 'ontouchstart' in document.documentElement,
-wnd = $(window),
-body = $('body'),
-ie = $.browser.msie,
-ieV = $.browser.version,
-ltie7 = ie && (ieV <= 7),
-ltie8 = ie && (ieV <= 8),
-
-orderDetails = $.exists('#orderDetails'),
-checkProdStock = checkProdStock == "" ? false : true,
-hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
+var
+        isTouch = 'ontouchstart' in document.documentElement,
+        wnd = $(window),
+        body = $('body'),
+        ie = $.browser.msie,
+        ieV = $.browser.version,
+        ltie7 = ie && (ieV <= 7),
+        ltie8 = ie && (ieV <= 8),
+        orderDetails = $.exists('#orderDetails'),
+        checkProdStock = checkProdStock == "" ? false : true,
+        hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 
 var optionsMenu = {
     item: 'td',
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
-    
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
     countColumn: 5, //if not drop-side
-    
+
     //sub2Frame: '.frame-l2', //if drop-side
     //dropWidth: 475, //if not define than will be actual width needs when drop-side
 
@@ -28,7 +26,7 @@ var optionsMenu = {
     //if need column partition level 3
     columnPart2: true,
     columnClassPref2: 'column2_',
-    maxC: 9,
+    maxC: 5,
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     effectOnS: 'fadeIn',
@@ -47,7 +45,7 @@ var optionsMenu = {
     activeFl: '.frame-item-menu > .frame-title > a', //
     parentTl: '.frame-l2', //prev a level 2
     otherPage: hrefCategoryProduct, //for product [undefined or value not other]
-    
+
     vertical: false
 };
 var scrollPane = {
@@ -65,7 +63,7 @@ var carousel = {
 };
 var optionsCycle = {
     speed: 600,
-    timeout: 5000, 
+    timeout: 5000,
     fx: 'fade',
     pauseOnPagerHover: true,
     pagerAnchorBuilder: function(idx, slide) {
@@ -128,7 +126,7 @@ var optionsDrop = {
     moreOne: false,
     closeClick: true,
     closeEsc: true,
-    position: 'relative'
+    position: 'absolute'
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -235,5 +233,5 @@ var optionsPlusminus = {
     checkProdStock: checkProdStock
 }
 $.maxminValue.settings = {
-    addCond: checkProdStock   
+    addCond: checkProdStock
 }
