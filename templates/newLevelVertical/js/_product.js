@@ -115,6 +115,9 @@ function beforeShowHref(el, drop, isajax, data, elSet) {
     content = drop.find('.drop-content-photo'),
     img = content.find('img');
     hrefOptions.curHref = img.attr('src');
+    
+    processBtnBuyCount(frame);
+    tovarChangeCount(frame);
 
     var fancyFrameInPH = content.find('.helper');
 
