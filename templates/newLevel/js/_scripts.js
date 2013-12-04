@@ -51,7 +51,7 @@ function init() {
 
         if (dropEl.hasClass('frame-already-show')) {
             var zInd = parseFloat(dropEl.css('z-index')) + 1;
-            dropEl.parent().css('z-index', zInd).end().prev().css('z-index', zInd + 1).closest('.frame-user-toolbar').css('z-index', zInd - 1);
+            dropEl.parent().css('z-index', zInd).end().prev().css('z-index', zInd + 1).closest('.frame-user-toolbar').css('z-index', zInd+1);
         }
 
         dropEl.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
@@ -89,7 +89,7 @@ function init() {
                 'width': body.width(),
                 'z-index': ''
             });
-            dropEl.prev().css('z-index', '');
+            dropEl.parent().css('z-index', '').end().prev().css('z-index', '');
         }
         if ($('#fancybox-wrap').is(':visible'))
             $.drop('scrollEmulate')();
