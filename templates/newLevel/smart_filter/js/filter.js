@@ -226,6 +226,7 @@
             wrapper: $(".frame-label:has(.niceCheck)"),
             elCheckWrap: '.niceCheck',
             evCond: true,
+            resetChecked: true,
             //classRemove: 'b_n',//if not standart
             //if evCond: true
             trigger: function(a, b, c, e) {

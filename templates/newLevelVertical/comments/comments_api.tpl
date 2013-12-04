@@ -92,11 +92,15 @@
                         <input type="hidden" name="comment_item_id" value="{$comment['id']}"/>
                         <div class="author-data-comment__icsi-css">
                             <span class="f-s_0"><span class="icon_comment"></span><span class="author-comment__icsi-css">{$comment.user_name}, </span></span>
-                            <span class="date-comment__icsi-css"> {date('d-m-Y H:i', $comment.date)}</span>
+                            <span class="date-comment__icsi-css">
+                                <span class="day">{echo date("d", $comment.date)} </span>
+                                <span class="month">{echo month(date("n", $comment.date))} </span>
+                                <span class="year">{echo date("Y ", $comment.date)}</span>
+                            </span>
                         </div>
                         {if $comment.rate != 0}
                             <div class="mark-pr">
-                                <span>{lang('Оценка товара:','newLevel')}</span>
+                                <span>{lang('Оценка:','newLevel')}</span>
                                 <div class="star-small d_i-b">
                                     <div class="productRate star-small">
                                         <div style="width: {echo (int)$comment.rate *20}%"></div>
@@ -154,7 +158,11 @@
                                             <div class="author-data-comment__icsi-css">
                                                 <span class="s-t">{lang('Комментарий от','newLevel')}</span>
                                                 <span class="author-comment__icsi-css">{$com_ch.user_name}</span>
-                                                <span class="date-comment__icsi-css">{date('d-m-Y H:i', $com_ch.date)}</span>
+                                                <span class="date-comment__icsi-css">
+                                                    <span class="day">{echo date("d", $comment.date)} </span>
+                                                    <span class="month">{echo month(date("n", $comment.date))} </span>
+                                                    <span class="year">{echo date("Y ", $comment.date)}</span>
+                                                </span>
                                             </div>
                                             <div class="frame-comment__icsi-css">
                                                 <p>
@@ -230,7 +238,7 @@
                         </span>
                     </div>
                 </form>
-            </div>  
+            </div>
         </div>
     </div>
 </div>

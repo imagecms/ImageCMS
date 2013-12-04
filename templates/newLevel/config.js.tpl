@@ -11,6 +11,7 @@
 <script type="text/javascript">
     {literal}
         var genObj = {
+            iPr: '.iPr',
             popupCart: '#popupCart',
             pageCart: '.pageCart',
             frameDelivery: '#frameDelivery',
