@@ -53,6 +53,10 @@ class Admin extends BaseAdminController {
         if ($this->input->post('YandexApiKey')) {
             $settings['YandexApiKey'] = $this->input->post('YandexApiKey');
         }
+        
+        if ($this->input->post('theme')) {
+            $settings['editorTheme'] = $this->input->post('theme');
+        }
 
         return $this->db->where('identif', 'translator')
                         ->update('components', array('settings' => serialize($settings)
@@ -149,12 +153,14 @@ class Admin extends BaseAdminController {
             $locales_unique[preg_replace("/_[A-Z]+/", '', $locale)] = preg_replace("/_[A-Z]+/", '', $locale);
         }
 
+        $settings = $this->getSettings();
         \CMSFactory\assetManager::create()
                 ->registerScript('admin')
                 ->registerStyle('admin')
                 ->setData('langs', $this->langs)
-                ->setData('settings', $this->getSettings())
+                ->setData('settings', $settings)
                 ->setData('locales', $locales_unique)
+                ->setData('editorStyles', $this->getEditorStyles())
                 ->renderAdmin('list');
 
 
@@ -176,6 +182,21 @@ class Admin extends BaseAdminController {
             $data = trim(preg_replace('/\s\s+/', ' ', $po_table));
             jsCode("Translator.start('" . $data . "','" . $names . "', '" . $type . "', '" . $lang . "', '" . $name . "');");
         }
+    }
+
+    public function getEditorStyles() {
+        $files = scandir('./application/modules/translator/assets/js/src-min');
+        $styles = array();
+        foreach ($files as $file) {
+            if (strstr($file, 'theme-')) {
+                $matches = array();
+                preg_match('/theme-([a-zA-Z_]+)/', $file, $matches);
+                if ($matches) {
+                    $styles[] = $matches[1];
+                }
+            }
+        }
+        return $styles;
     }
 
     public function exchangeTranslation() {
@@ -911,7 +932,7 @@ class Admin extends BaseAdminController {
         foreach ($parsedLangs as $key => $langsOne) {
             foreach ($langsOne as $origin => $paths) {
                 if ($all_langs[$origin]) {
-                    array_push($all_langs[$origin], $paths);
+                    $all_langs[$origin] = $paths;
                 } else {
                     $all_langs[$origin] = $paths;
                 }

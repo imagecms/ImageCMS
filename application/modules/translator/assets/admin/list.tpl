@@ -3,16 +3,30 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>{lang('File editing')}</h3>
+        {if $editorStyles}
+            <div style=" float: right; margin-top: -30px; width: 225px; margin-right: 42px;">
+                <h5 style="float: left; margin-top: 4px; font-weight: bold">{lang('Editor theme')}:</h5>
+                <select class="editorTheme" onchange="AceEditor.changeTheme($(this))" style="float: right; width: 120px">
+                    {foreach $editorStyles as $style}
+                        <option {if $settings['editorTheme'] == $style}selected="selected"{/if} value="{echo $style}">{echo $style}</option>
+                    {/foreach}
+                </select>
+            </div>
+        {/if}
     </div>
     <div class="modal-body">
-        <!--div class="fileLines" style="float: left; height: 380px;overflow: hidden; min-width: 20px; padding-top: 4px;padding-bottom: 4px; padding-left: 5px; background-color: whitesmoke;border: 1px solid #ccc; -webkit-border-top-left-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-bottom-left-radius: 3px; -moz-border-radius-left: 3px; border-bottom-left-radius: 3px; border-top-left-radius: 3px;"></div-->
-        <!--textarea id="fileEdit" wrap="off" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 925px; overflow: scroll;"></textarea-->
-        <div id="fileEdit" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 925px;">
-        </div>
+        <div id="fileEdit" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 925px; margin-top: -15px;
+margin-bottom: -15px;"></div>
     </div>
     <div class="modal-footer">
-        <a class="btn btn-primary" onclick="Translator.saveEditingFile($(this))" >{lang('Save')}</a>
-        <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
+        <div class="pull-left">
+            <span><b>{lang('Origin string')}:</b></span>
+            <span class="originStringInFileEdit"></span>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary" onclick="Translator.saveEditingFile($(this))" >{lang('Save')}</a>
+            <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
+        </div>
     </div>
 </div>
 
@@ -24,11 +38,15 @@
     <div class="modal-body">
         <div class="tabbable"> <!-- Only required for left/right tabs -->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#newStringsTab" data-toggle="tab">
-                        <span class="parsedNewStringsCount" style="font-weight: bold"></span> {lang('strings wil be added')}</a>
+                <li class="active">
+                    <a href="#newStringsTab" data-toggle="tab">
+                        <span class="parsedNewStringsCount" style="font-weight: bold"></span> {lang('string(s) wil be added')}
+                    </a>
                 </li>
-                <li><a href="#obsoleteStringsTab" data-toggle="tab">
-                        <span class="parsedRemoveStringsCount" style="font-weight: bold"></span> {lang('strings will be removed')}</a>
+                <li>
+                    <a href="#obsoleteStringsTab" data-toggle="tab">
+                        <span class="parsedRemoveStringsCount" style="font-weight: bold"></span> {lang('string(s) will be removed')}
+                    </a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -153,7 +171,7 @@
                         </div>
                         <div class="pull-right" style="position: relative; right: 150px">
                             <div class="input-append">
-                                <input class="span2 searchString" id="appendedInputButtons" type="text">
+                                <input class="span2 searchString" onkeypress="Search.goOnEnterPress()" id="appendedInputButtons" type="text">
                                 <button id="searchTranslator" class="btn" type="button">Search</button>
                                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                     {lang('Options')}
@@ -161,30 +179,30 @@
                                 </a>
                                 <ul class="dropdown-menu searchTranslatorOptions" style="width: 430px; padding-left: 20px" >
                                     <label>
-                                        <input id="sensitiveSearch" type="checkbox" class="searchConditions" disabled="">
+                                        <input id="sensitiveSearch" type="checkbox" class="searchConditions">
                                         {lang('Sensitive search')}
                                     </label><br>
                                     <label>
-                                        <input id="fullStringSearch" type="checkbox" class="searchConditions" disabled="">
+                                        <input id="fullStringSearch" type="checkbox" class="searchConditions">
                                         {lang('Whole word search')}
                                     </label><br>
                                     <label>
-                                        <input id="regularSearch" type="checkbox" class="searchConditions" disabled="">
+                                        <input id="regularSearch" type="checkbox" class="searchConditions">
                                         {lang('Use regular expration search')}
                                     </label>
 
                                     <hr><br>
 
                                     <label>
-                                        <input id="originSearch" type="checkbox" class="searchObjects">
+                                        <input id="originSearch" type="checkbox" checked="ckecked" class="searchObjects">
                                         {lang('Search in origin strings')}
                                     </label><br>
                                     <label>
-                                        <input id="translationSearch" type="checkbox" class="searchObjects">
+                                        <input id="translationSearch" type="checkbox" checked="ckecked" class="searchObjects">
                                         {lang('Search in translation strings')}
                                     </label><br>
                                     <label>
-                                        <input id="commentSearch" type="checkbox" class="searchObjects">
+                                        <input id="commentSearch" type="checkbox" checked="ckecked" class="searchObjects">
                                         {lang('Search in comments strings')}
                                     </label>
                                 </ul>
@@ -274,6 +292,7 @@
                                         {lang('Yandex Api Key')}:
                                     </b>
                                 </h5>
+                                <a href="http://api.yandex.ru/translate/" target="blanck">{lang('Get Yandex Api key')}</a>
                             </label>
                             <textarea class="YandexApiKey"  style="width: 500px">{echo $settings['YandexApiKey']}</textarea>
                             <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-success">
