@@ -502,10 +502,10 @@ input.input-search{height: 33px;}
 .frame-scroll-pane .items-h-carousel{white-space: nowrap;width: auto;}
 .frame-scroll-pane .items-h-carousel{margin-left: -44px;padding-bottom: 46px;}/*height scroll + padding*/
 
-.items-catalog > li{position:relative;width: 215px !important;margin: 0 0 54px 42px;}
+.items-catalog > li{position:relative;width: 215px;margin: 0 0 54px 42px;}
 .carousel-js-css .items-h-carousel > li{margin: 0 44px 0 0;}
 .items-h-carousel > li{width: 212px !important;}
-.vertical-layout .items-h-carousel > li{width: 210px !important;}
+.vertical-layout .items-h-carousel > li{width: 210px;}
 
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin-left: 44px;margin-right: 0;margin-bottom: 0;}
 
