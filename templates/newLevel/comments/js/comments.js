@@ -161,7 +161,7 @@
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.starRating');
         }
-    }
+    };
 })(jQuery);
 var Comments = {
     initComments: function () {

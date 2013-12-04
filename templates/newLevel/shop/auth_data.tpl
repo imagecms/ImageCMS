@@ -11,7 +11,7 @@
                     <span class="text-el">{lang('Вход','newLevel')}</span>
                 </button>
             </li>
-            <li class="or f-s_0">
+            <li class="f-s_0 divider">
                 <span class="text-el">{lang('или','newLevel')}</span>
             </li>
             <li class="btn-register">

@@ -379,6 +379,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onSearchPageLoad() {
+        $this->key = 'search:load';
+        return $this;
+    }
+
 }
 
 /* End of file /application/modules/CMSFactory/BaseEvents.php */
