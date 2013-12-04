@@ -860,6 +860,7 @@ var Translator = {
                 }
                 AceEditor.render(fileContent, line, fileExtention);
                 $('.originStringInFileEdit').html(originString);
+                $('.originStringLineInFileEdit').html(line);
             }
         });
         $('.modal_file_edit').modal();
@@ -1157,6 +1158,13 @@ var AceEditor = {
     setHighlight: function(extention) {
         var mode = this.highlightModes[extention] ? this.highlightModes[extention] : 'html';
         this.editor.getSession().setMode("ace/mode/" + mode);
+    },
+    goToLang: function(curElement) {
+        var line = $.trim($('.originStringLineInFileEdit').html());
+        if(line){
+            this.editor.gotoLine(line, 0, false);
+        }
+
     }
 };
 
