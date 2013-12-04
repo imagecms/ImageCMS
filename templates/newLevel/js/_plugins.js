@@ -1939,7 +1939,6 @@ function getCookie(c_name)
                 methods.close(drop);
             }
             else {
-                methods.heightContent(drop);
                 before($this, drop, isajax, data, elSet);
                 if (elBefore !== undefined)
                     eval(elBefore)($this, drop, isajax, data, elSet);
@@ -1951,6 +1950,7 @@ function getCookie(c_name)
                     'datas': data,
                     'elSet': elSet
                 });
+                methods.heightContent(drop);
                 if (modal) {
                     var objJ = $([]);
                     $('[data-elrun]:visible').each(function() {
@@ -2003,7 +2003,8 @@ function getCookie(c_name)
                             if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
                                 drop.css('left', wnd.width());
                             if ($thisPMT[0] === 'center' && $thisPMT[1] === 'center') {
-                                methods[place](drop, true);
+                                if (place != 'inherit')
+                                    methods[place](drop, true);
                             }
                             if ($thisPMT[0] === 'inherit')
                                 drop.css({
@@ -2021,7 +2022,8 @@ function getCookie(c_name)
                             _pos();
                     }
 
-                    methods[place](drop);
+                    if (place != 'inherit')
+                        methods[place](drop);
 
                     drop[$thisEOn]($thisD, function(e) {
                         var drop = $(this);
