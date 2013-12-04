@@ -92,6 +92,18 @@ if (!function_exists('is_partner')) {
 
 }
 
+if (!function_exists('is_partner_code')) {
+
+    function is_partner_code($partner_code, $partners) {
+        foreach ($partners as $val) {
+            if ($val['code'] == $partner_code)
+                return $val;
+        }
+        return false;
+    }
+
+}
+
 if (!function_exists('is_price')) {
 
     function is_price($price_ext_id, $prices) {
