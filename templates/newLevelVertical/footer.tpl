@@ -46,7 +46,7 @@
                             <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="{lang('Список сравнений','newLevel')}">{lang('Список сравнений','newLevel')}</button></li>
                             {/if}
                         {/if}
-                    <li><button type="button" data-trigger="[data-drop='.drop-order-call']" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
+                    <li><button type="button" data-trigger="[data-drop='#ordercall']" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
                 </ul>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 <div class="main-title">{lang('Контакты','newLevel')}</div>
                 <ul>
                     <li>
-                        <div class="c_9">Главный офис:</div>
+                        <div class="c_9">{lang('Главный офис', 'newLevel')}:</div>
                         <div class="c_w">{echo siteinfo('siteinfo_address')}</div>
                     </li>
                     <li>
@@ -76,13 +76,13 @@
     <div class="container">
         <div class="f_l">
             <div class="c_w">{echo siteinfo('siteinfo_companytype')}</div>
-            <div class="c_9">Все права защищены</div>
+            <div class="c_9">{lang('Все права защищены','newLevel')}, {echo date('Y')}</div>
         </div>
         {if function_exists('mobile_site_address')}
             <div class="f_r">
-                <a class="f-s_0 c_w">
+                <a href="{mobile_site_address()}" class="f-s_0 c_w">
                     <span class="icon_phone_footer"></span>
-                    <span class="text-el"><a href="{mobile_site_address()}">{lang('Мобильная версия','newLevel')}</a></span>
+                    <span class="text-el">{lang('Мобильная версия','newLevel')}</span>
                 </a>
             </div>
         {/if}

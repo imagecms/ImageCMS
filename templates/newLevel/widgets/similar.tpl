@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="big-container">
-            <div class="products-carousel frame-scroll-pane">
+            <div class="items-carousel frame-scroll-pane">
                 {/*frame-scroll-pane || carousel-js-css || ''*/}
                 <div class="content-carousel container">
                     <ul class="items items-catalog items-h-carousel">

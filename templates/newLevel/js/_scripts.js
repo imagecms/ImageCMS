@@ -175,7 +175,7 @@ function init() {
     });
 
     $('#bask_block').on('click.toTiny', genObj.tinyBask + '.' + genObj.isAvail, function() {
-        initShopPage(true);
+        togglePopupCart();
     });
     doc.on('cart_clear', function() {
         initShopPage(false);

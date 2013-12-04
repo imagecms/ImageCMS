@@ -17,13 +17,11 @@
         <!--        Logo-->
         {if  $CI->uri->uri_string() == ''}
             <span class="logo">
-                <!--img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/-->
-                <img src="{echo siteinfo('siteinfo_logo')}" alt="logo.png"/>
+                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
             </span>
         {else:}
             <a href="{site_url('')}" class="logo">
-                <!--img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/-->
-                <img src="{echo siteinfo('siteinfo_logo')}" alt="logo.png"/>
+                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
             </a>
         {/if}
         <div class="left-content-header">
@@ -50,7 +48,7 @@
                     <span class="icon_skype"></span>
                     <span class="text-el">{echo siteinfo('Skype')}</span>
                 </a>
-                <a href="mailto:partner@imagecms.net" class="f-s_0">
+                <a href="mailto:{echo siteinfo('Email')}" class="f-s_0">
                     <span class="icon_mail"></span>
                     <span class="text-el">{echo siteinfo('Email')}</span>
                 </a>

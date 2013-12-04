@@ -29,7 +29,7 @@
             <div id="list-products">
                 <div class="frame-button-add-wish-list">
                     <div class="btn-cart">
-                        <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlayopacity="0">
+                        <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0">
                             <span class="icon_add_wish"></span>
                             <span class="text-el">{lang('Создать новый список','newLevel')}</span>
                         </button>
