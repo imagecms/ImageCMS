@@ -11,8 +11,8 @@ function getDiscountBack(discTpl) {
                         json: data
                     }, function(tpl) {
                         $(document).trigger({
-                            'type': 'discount.display', 
-                            'discount': _discount, 
+                            'type': 'discount.display',
+                            'discount': _discount,
                             'tpl': tpl
                         });
                     })
@@ -20,54 +20,49 @@ function getDiscountBack(discTpl) {
                 else {
                     $(document).trigger({
                         'type': 'discount.display',
-                        'discount': _discount, 
+                        'discount': _discount,
                         'tpl': ''
                     });
                 }
             }
             else {
                 $(document).trigger({
-                    'type': 'discount.display', 
-                    'discount': _discount, 
+                    'type': 'discount.display',
+                    'discount': _discount,
                     'tpl': ''
                 });
             }
         }
-    }).fail(function(){
+    }).fail(function() {
         $(document).trigger({
-            'type': 'discount.display', 
-            'discount': null, 
+            'type': 'discount.display',
+            'discount': null,
             'tpl': ''
         });
     })
 }
-
 function loadCertificat(gift) {
     $(document).trigger({
         'type': 'discount.load_certificate'
     });
-    if (gift != undefined) {
-        if (gift.error) {
-            $(document).trigger({
-                'type': 'discount.giftError', 
-                'datas': gift.mes
-            });
-        } else {
-            $.get('/mod_discount/gift/render_gift_succes', {
-                json: JSON.stringify(gift)
-            }, function(tpl) {
-                $(document).trigger({
-                    'type': 'discount.renderGiftSucces', 
-                    'datas': gift, 
-                    'tpl': tpl
-                });
-            })
-        }
-    }
-    else {
+    $.get('/mod_discount/gift/render_gift_succes', {
+        json: JSON.stringify(gift)
+    }, function(tpl) {
+        $(document).trigger({
+            'type': 'discount.renderGiftSucces',
+            'datas': gift,
+            'tpl': tpl
+        });
+    });
+}
+function renderGift(gift) {
+    if (gift === undefined) {
+        $(document).trigger({
+            'type': 'discount.rendergift'
+        });
         $.get('/mod_discount/gift/render_gift_input', function(tpl) {
             $(document).trigger({
-                'type': 'discount.renderGiftInput', 
+                'type': 'discount.renderGiftInput',
                 'tpl': tpl
             });
         });

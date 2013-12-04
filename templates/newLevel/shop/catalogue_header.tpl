@@ -37,8 +37,8 @@
                 <!--        Start. Show products as list or table-->
                 <nav class="frame-catalog-view f-s_0 d_i-b">
                     <span class="title">{lang('Смотреть','newLevel')}:</span>
-                    <ul class="tabs groups-buttons tabs-list-table" data-type="radio" data-elchange="#items-catalog-main" data-cookie="listtable">
-                                                <li class="btn-def {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULl}active{/if}">
+                    <ul class="tabs groups-buttons tabs-list-table" data-elchange="#items-catalog-main" data-cookie="listtable">
+                        <li class="btn-def {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULl}active{/if}">
                             <button type="button" data-href="table" data-title="{lang('Таблица','newLevel')}" data-rel="tooltip">
                                 <span class="icon_table_cat"></span><span class="text-el">{lang('Таблица','newLevel')}</span>
                             </button>

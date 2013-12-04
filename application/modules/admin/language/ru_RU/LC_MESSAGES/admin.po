@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-28 05:13+0200\n"
-"PO-Revision-Date: 2013-11-28 05:13+0200\n"
+"POT-Creation-Date: 2013-11-29 12:28+0200\n"
+"PO-Revision-Date: 2013-11-29 12:28+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -23,9 +23,32 @@ msgstr ""
 "X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
 
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:777
-msgid " Administrator notification about the order placement by e-mail"
-msgstr "Уведомление администратора о размещении заказа по электронной почте"
+#: ./application/modules/admin/mod_search.php:248
+msgid "Module installation error"
+msgstr "Ошибка установки модуля"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
+msgid "Sort by name."
+msgstr "Сортировать по имени."
+
+#: ./application/modules/shop/admin/templates/discounts/create.tpl:77
+#: ./application/modules/shop/admin/templates/discounts/edit.tpl:80
+msgid "Number greater than zero. To use a percent discount apply: SUM format."
+msgstr "Число больше нуля. Для использования процентной скидки примените: SUM формат."
+
+#: ./templates/administrator/sys_upgrade.tpl:40
+#: Array
+msgid "For example:"
+msgstr "Например:"
+
+#: ./application/modules/shop/admin/callbacks.php:249
+msgid "Callback's status was changed"
+msgstr "Cтатус колбека изменен"
+
+#: ./application/modules/admin/components.php:290
+#: Array
+msgid "Settings are saved"
+msgstr ""
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:706
 msgid " Callback request date"
@@ -5811,13 +5834,10 @@ msgstr "Статус и связанных с ним заказы удалены
 msgid "Status change success"
 msgstr "Статус был изменен"
 
-#: ./application/modules/shop/admin/templates/notifications/edit.tpl:50
-msgid "Status has been set"
-msgstr "Статус был установлен"
-
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:424
-msgid "Status history"
-msgstr "История статусов"
+#: ./application/modules/admin/mod_search.php:258
+#: ./application/modules/admin/mod_search.php:306
+msgid "Modul has been installed"
+msgstr "Модуль был установлен"
 
 #: ./application/modules/shop/admin/notificationstatuses.php:71
 msgid "Status pending created"

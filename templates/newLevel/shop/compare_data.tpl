@@ -3,7 +3,7 @@
 {else:}
     {$count = 0;}
 {/if}
-<div class="compare-list-btn tiny-compare-list" {if $count == 0}style="display:none;"{/if}>
+<div class="compare-list-btn tinyCompareList" {if $count == 0}style="display:none;"{/if}>
     <button onclick="location = '{shop_url('compare')}'">
         <span class="icon_compare_list"></span>
         <span class="text-compare-list f-s_0">

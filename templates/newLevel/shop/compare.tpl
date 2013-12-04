@@ -14,13 +14,13 @@
     <div class="container">
         <!--Start. Show compare list if count products >0 -->
         {if count($products) > 0}
-            <div class="no-empty">
+            <div class="no-empty js-no-empty">
                 <!-- Start. Buttons for change to show different or all properties -->
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
                         <h1 class="d_i title">{lang('Сравнение товаров','newLevel')}</h1>
                     </div>
-                    <ul class="tabs groups-buttons tabs-compare-diferent" data-type="radio" data-cookie="compare">
+                    <ul class="tabs groups-buttons tabs-compare-diferent" data-cookie="compare">
                         <li class="btn-def {if $_COOKIE['compare'] == "#all-params"}active{/if}">
                             <button type="button" data-href="#all-params">
                                 <span class="text-el">{lang('Все параметры','newLevel')}</span>
@@ -39,7 +39,7 @@
                     <!--End. Show categories of products which are in list -->
                     <div class="frame-tabs-ref frame-tabs-compare horizontal-carousel">
                         {foreach $categories as $category}
-                            <div id="tab_{$category[Url]}" class="products-carousel" data-refresh>
+                            <div id="tab_{$category[Url]}" class="items-carousel" data-refresh {if $_COOKIE['category'] == '#tab_'.$category[Url]}style="display: block;"{/if}>
                                 <div class="left-compare">
                                     <ul>
                                         <li></li>
@@ -57,7 +57,7 @@
                                     <!--End. Product properties names -->
                                 </div>
                                 <div class="right-compare horizontal-carousel">
-                                    <div class="{/*carousel_js*/}">
+                                    <div class="{/*carousel-js-css*/}">
                                         <div class="content-carousel">
                                             <ul class="items items-compare" id="items-catalog-main">
                                                 <!--                                    Start. Show product block with characteristic by category-->
@@ -125,9 +125,9 @@
                     </div>
                     <div class="comprasion-head">
                         <div class="title-h3">{lang('Категория','newLevel')}:</div>
-                        <ul class="tabs tabs-compare-category">
+                        <ul class="tabs tabs-compare-category" data-cookie="category">
                             {foreach $categories as $category}
-                                <li>
+                                <li {if $_COOKIE['category'] == '#tab_'.$category[Url]}class="active"{/if}>
                                     <button data-href="#tab_{$category[Url]}">
                                         <span class="text-el">{$category[Name]}</span>
                                     </button>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-            <div class="empty">
+            <div class="js-empty empty">
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
                         <h1 class="d_i title">{lang('Сравнение товаров','newLevel')}</h1>
@@ -175,5 +175,6 @@
         {/if}
     </div>
 </div>
-<script type="text/javascript" src="{$THEME}js/jquery.equalhorizcell.min.js"></script>
-<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+<script type="text/javascript">
+    initDownloadScripts(['jquery.equalhorizcell', 'cusel-min-2.5'], '', '');
+</script>

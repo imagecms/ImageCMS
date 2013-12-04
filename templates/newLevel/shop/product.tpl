@@ -20,7 +20,7 @@
 </div>
 <div class="frame-inside page-product">
     <div class="container">
-        <div class="clearfix item-product {if $model->firstVariant->getStock() == 0}not-avail{/if}">
+        <div class="clearfix item-product globalFrameProduct {if $model->firstVariant->getStock() == 0}not-avail{/if}">
             <div class="f-s_0 title-product">
                 <!-- Start. Name product -->
                 <div class="frame-title">
@@ -29,17 +29,17 @@
                 <!-- End. Name product -->
                 <!-- Start. article & variant name & brand name -->
                 <span class="frame-variant-name-code">
-                    <span class="frame-variant-code" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
+                    <span class="frame-variant-code frameVariantCode" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
                         {lang('Артикул','newLevel')}:
-                        <span class="code">
+                        <span class="code js-code">
                             {if $model->firstVariant->getNumber()}
                                 {trim($model->firstVariant->getNumber())}
                             {/if}
                         </span>
                     </span>
-                    <span class="frame-variant-name" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
+                    <span class="frame-variant-name frameVariantName" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
                         {lang('Вариант','newLevel')}:
-                        <span class="code">
+                        <span class="code js-code">
                             {if $model->firstVariant->getName()}
                                 {trim($model->firstVariant->getName())}
                             {/if}
@@ -49,7 +49,7 @@
                         {$brand = $model->getBrand()->getName()}
                         {$hasBrand = trim($brand) != ''}
                         <span class="frame-item-brand">{lang('Бренд','newLevel')}:
-                            <span class="code">
+                            <span class="code js-code">
                                 {if $hasBrand}
                                     <a href="{shop_url('brand/'.$model->getBrand()->getUrl())}">
                                         {echo trim($brand)}
@@ -142,10 +142,10 @@
                                             {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                         {/if}
                                         {if $productVariant->getStock() > 0}
-                                            <div class="frame-count-buy variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
-                                                <div class="frame-count">
-                                                    <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}" data-rel="frameplusminus">
-                                                        <div class="frame-change-count">
+                                            <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                                                <div class="frame-count frameCount">
+                                                    <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}">
+                                                        <div class="frame-change-count frameChangeCount">
                                                             <div class="btn-plus">
                                                                 <button type="button">
                                                                     <span class="icon-plus"></span>
@@ -157,7 +157,7 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <input type="text" value="1" data-rel="plusminus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
+                                                        <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
                                                     </div>
                                                 </div>
                                                 <div class="btn-buy btn-buy-p">
@@ -188,7 +188,7 @@
                                             </div>
                                         {else:}
                                             <div class="d_i-b v-a_m">
-                                                <div class="variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                                                <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                     <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
                                                     <div class="btn-not-avail">
                                                         <button
@@ -225,7 +225,7 @@
                             <!-- Start. Wish List & Compare List buttons -->
                             <div class="frame-wish-compare-list f-s_0">
                                 {foreach $variants as $key => $pv}
-                                    <div class="frame-btn-wish variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if} data-id="{echo $model->getId()}" data-varid="{echo $pv->getId()}">
+                                    <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $model->getId()}" data-varid="{echo $pv->getId()}">
                                         {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                     </div>
                                 {/foreach}
@@ -282,7 +282,7 @@
                 <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="initDrop">
                     <span class="photo-block">
                         <span class="helper"></span>
-                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimgPr"/>
+                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vImgPr"/>
                         {$discount = 0}
                         {if $hasDiscounts}
                             {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency('origprice')*100}
@@ -313,8 +313,8 @@
                 {if $sizeAddImg > 0}
                     <!-- Start. additional images-->
                     <div class="horizontal-carousel">
-                        <div class="frame-thumbs carousel_js">
-                            {/*carousel_js*/}
+                        <div class="frame-thumbs carousel-js-css">
+                            {/*carousel-js-css*/}
                             <div class="content-carousel">
                                 <ul class="items-thumbs items">
                                     <!-- Start. main image-->
@@ -322,7 +322,7 @@
                                         <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
                                             <span class="photo-block">
                                                 <span class="helper"></span>
-                                                <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vimgPr"/>
+                                                <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
                                             </span>
                                         </a>
                                     </li>
@@ -368,12 +368,12 @@
                 <div class="title-complect">
                     <div class="title">{lang('Специальное предложение! Купить, установить и получить скидку на аксессуары!','newLevel')}</div>
                 </div>
-                <div class="carousel_js products-carousel complects-carousel">
+                <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">
                         <ul class="items-complect items">
                             {foreach $model->getShopKits() as $key => $kitProducts}
-                                <li>
-                                    <ul class="items items-bask row-kits">
+                                <li class="globalFrameProduct">
+                                    <ul class="items items-bask row-kits rowKits">
                                         <!-- main product -->
 
                                         <li>
@@ -698,22 +698,22 @@
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
             <div class="title"><%- obj.title %></div>
-        </div>
-        <div class="horizontal-carousel">
-            <div class="frame-fancy-gallery frame-thumbs">
-                <div class="fancy-gallery carousel_js">
-                    <div class="content-carousel">
-                        <ul class="items-thumbs items">
-                            <%= obj.frame.find(obj.galleryContent).html() %>
-                        </ul>
-                    </div>
-                    <div class="group-button-carousel">
-                        <button type="button" class="prev arrow">
-                            <span class="icon_arrow_p"></span>
-                        </button>
-                        <button type="button" class="next arrow">
-                            <span class="icon_arrow_n"></span>
-                        </button>
+            <div class="horizontal-carousel">
+                <div class="frame-fancy-gallery frame-thumbs">
+                    <div class="fancy-gallery carousel-js-css">
+                        <div class="content-carousel">
+                            <ul class="items-thumbs items">
+                                <%= obj.frame.find(obj.galleryContent).html() %>
+                            </ul>
+                        </div>
+                        <div class="group-button-carousel">
+                            <button type="button" class="prev arrow">
+                                <span class="icon_arrow_p"></span>
+                            </button>
+                            <button type="button" class="next arrow">
+                                <span class="icon_arrow_n"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
