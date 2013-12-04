@@ -6,10 +6,10 @@
 .comment__icsi-css .main-form-comments .frame_form_field__icsi-css{margin-left: 0;}
 .comment__icsi-css .author-comment__icsi-css{color: #000;font-size:12px;}
 .comment__icsi-css .date-comment__icsi-css{color: #999;font-weight: bold;}
-.frame-list-comment__icsi-css > .sub-1{margin-bottom: 30px;margin: 0;}
+.frame-list-comment__icsi-css > .sub-1{margin-bottom: 10px;margin: 0;padding-bottom: 32px;}
 .frame-list-comment__icsi-css > .sub-1 > li > .frame-comment__icsi-css{padding: 10px 15px 1px;background-color: #f4eee9;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;}
 .frame-comment__icsi-css p{margin-bottom: 9px;}
-.comment__icsi-css .frame-list-comment__icsi-css.sub-2{float: none;width: auto;padding-left: 33px;max-height: 98px;overflow: hidden;}
+.comment__icsi-css .frame-list-comment__icsi-css.sub-2{float: none;width: auto;padding-left: 33px;max-height: 100px;overflow: hidden;}
 
 .comment__icsi-css .btn__icsi-css > *, .comment__icsi-css input.btn__icsi-css{padding: 0 !important;}
 .comment__icsi-css .frame-list-comment__icsi-css .btn__icsi-css{background-image: none !important;border: none !important;}

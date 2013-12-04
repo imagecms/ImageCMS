@@ -66,7 +66,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <input type="text" value="1" class="plusMinus plus-minus" data-title="{lang('только цифры', 'newLevel')}" data-min="1" data-max="{echo $p.stock}">
+                                <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('только цифры', 'newLevel')}" data-min="1" data-max="{echo $p.stock}">
                             </div>
                         </div>
                         <div class="btn-buy">
