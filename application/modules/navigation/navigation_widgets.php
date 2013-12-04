@@ -164,11 +164,13 @@ class Navigation_Widgets extends MY_Controller {
                             throw new Exception("Category not found");
 
                         // getting categories
+                        $ci->db->cache_on();
                         $result = $ci->db
                                 ->select(array('shop_category.id', 'parent_id', 'full_path', 'name'))
                                 ->where(array('shop_category_i18n.locale' => MY_Controller::getCurrentLocale()))
                                 ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
                                 ->get('shop_category');
+                        $ci->db->cache_off();
 
                         if (!$result)
                             return;
@@ -192,13 +194,8 @@ class Navigation_Widgets extends MY_Controller {
                             $neededCid = $categories[$neededCid]['parent_id'];
                         }
 
-                        // десь там відлік йде з кінця, тому з питань сумісності...
-                        $fromBack = array();
-                        $j = 0;
-                        $to = count($path) - 1;
-                        for ($i = $to; $i >= 0; $i--) {
-                            $fromBack[$j++] = $path[$i];
-                        }
+                        // path is using from back, so...
+                        $fromBack = array_reverse($path);
 
                         $tpl_data = array('navi_cats' => $fromBack);
                         return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
