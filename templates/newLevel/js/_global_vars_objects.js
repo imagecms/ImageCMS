@@ -126,7 +126,8 @@ var optionsDrop = {
     moreOne: false,
     closeClick: true,
     closeEsc: true,
-    position: 'absolute'
+    position: 'absolute',
+    droppable: false
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
