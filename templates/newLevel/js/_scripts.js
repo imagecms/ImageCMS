@@ -32,8 +32,8 @@ function init() {
     /*call front plugins and functions*/
     $.onlyNumber(genObj.numberC + ' input');
     if (ltie7) {
-        ieInput();
-        ieInput($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
+        ieBoxSize();
+        ieBoxSize($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
     }
 
     optionsDrop.before = function(el, dropEl, isajax) {
@@ -50,12 +50,9 @@ function init() {
         }
 
         if (dropEl.hasClass('frame-already-show')) {
-            var zInd = parseFloat(dropEl.data('dropOver').css('z-index')) + 1;
-            dropEl.parent().css('z-index', zInd);
-            dropEl.prev().css('z-index', zInd + 1);
+            var zInd = parseFloat(dropEl.css('z-index')) + 1;
+            dropEl.parent().css('z-index', zInd).end().prev().css('z-index', zInd + 1).closest('.frame-user-toolbar').css('z-index', zInd+1);
         }
-        if ($('.frame-already-show').is(':visible') && dropEl.data('dropOver'))
-            $('.frame-user-toolbar').css('z-index', dropEl.data('dropOver').css('z-index') - 1);
 
         dropEl.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
         dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
@@ -70,7 +67,7 @@ function init() {
             dropEl.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-                        //,classRemove: 'b_n'//if not standart
+            //,classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]'))) {
@@ -92,7 +89,7 @@ function init() {
                 'width': body.width(),
                 'z-index': ''
             });
-            dropEl.prev().css('z-index', '');
+            dropEl.parent().css('z-index', '').end().prev().css('z-index', '');
         }
         if ($('#fancybox-wrap').is(':visible'))
             $.drop('scrollEmulate')();
@@ -128,7 +125,7 @@ function init() {
     showHidePart($('.patch-product-view'));
     showHidePart($('.frame-list-comment__icsi-css.sub-2'));
     var userTool = new itemUserToolbar(),
-            btnToUp = $('.btn-to-up');
+    btnToUp = $('.btn-to-up');
     btnToUp.click(function() {
         $("html, body").animate({
             scrollTop: "0"
@@ -188,6 +185,11 @@ function init() {
             getDiscount('count_changed');
         processBtnBuyCount(body);
     });
+    doc.on('displayDiscount', function(e) {
+        countSumBask();
+        processCarts();
+    });
+    
     doc.on('after_add_to_cart', function(e) {
         initShopPage(e.show);
         //initShopPage(false, e.cartItem); //for animate img to tinybask
@@ -201,11 +203,12 @@ function init() {
             $('[data-id="popupProduct_' + data.cartItem.id + '_' + data.cartItem.vId + '"]').remove();
         else
             $('[data-id="popupKit_' + data.cartItem.kitId + '"]').remove();
-        processCarts();
         processBtnBuyCount();
         dropBaskResize();
         if (Shop.Cart.length() > 0 && !orderDetails)
             getDiscount('cart_rm');
+        else
+            processCarts();
     });
     $(genObj.parentBtnBuy).on('click.toCompare', '.' + genObj.toCompare, function() {
         var id = $(this).data('prodid');
@@ -317,7 +320,7 @@ function init() {
 
     doc.on('comments.showformreply tabs.showtabs drop.after', function(e) {
         if (ltie7)
-            ieInput(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
+            ieBoxSize(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
     });
     doc.on('comments.beforeshowformreply', function(e) {
         var patchCom = e.el.closest('.patch-product-view');
@@ -334,11 +337,14 @@ function init() {
     });
     doc.on('comments.beforehideformreply', function(e) {
         var patchCom = e.el.closest('.patch-product-view');
-        patchCom.css({'max-height': 'none', 'height': patchCom.height() - e.el.outerHeight()});
+        patchCom.css({
+            'max-height': 'none', 
+            'height': patchCom.height() - e.el.outerHeight()
+        });
     });
     doc.on('menu.showDrop', function(e) {
         if (ltie7)
-            ieInput($('.frame-drop-menu .frame-l2 > ul > li'));
+            ieBoxSize($('.frame-drop-menu .frame-l2 > ul > li'));
     });
     body.on('click.trigger', '[data-trigger]', function(e) {
         var $thisT = $(this);

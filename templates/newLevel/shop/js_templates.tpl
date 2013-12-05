@@ -20,7 +20,7 @@
 
         <!-- for single product -->
                                     <% if (!item.kit) { %>
-                                    <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cart-product">
+                                    <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cart-product <%if(Shop.Cart.lastAdd.id == item.id && Shop.Cart.lastAdd.vId == item.vId){%>cart-last-add<%}%>">
                                         <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
                                         <td class="frame-items">
                                             <a href="<%-item.url%>" class="frame-photo-title">

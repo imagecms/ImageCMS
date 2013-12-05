@@ -220,7 +220,7 @@
                 changedEl: '#catalogForm .lineForm select'
             }));
             if (ltie7)
-                ieInput($('#catalogForm .cuselText'));
+                ieBoxSize($('#catalogForm .cuselText'));
         }
         $(framechecks).nStCheck({
             wrapper: $(".frame-label:has(.niceCheck)"),
