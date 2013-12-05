@@ -100,7 +100,7 @@
         {include_tpl('user_toolbar')}
 
         <!-- scripts -->
-<!--        <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
+        <!--<script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_shop.js"></script>
         <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
