@@ -62,7 +62,7 @@ class Export_model extends CI_Model {
                     ->get('shop_orders');
         } else {
             $query = $this->db
-                    ->where_in('status', $config['userstatuses'])
+//                    ->where_in('status', $config['userstatuses'])
                     ->get('shop_orders');
         }
 
