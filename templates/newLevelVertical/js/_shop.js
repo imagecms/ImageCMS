@@ -27,6 +27,10 @@ var Shop = {
         discountProduct: 0,
         gift: undefined,
         giftValue: 0,
+        lastAdd: {
+            id: null,
+            vId: null
+        },
         add: function(cartItem, show, addEvent) {
             var obj = this;
             $(document).trigger({
@@ -54,17 +58,20 @@ var Shop = {
                         else
                             currentItem = cartItem;
                         obj.save(currentItem);
-
+                        
+                        Shop.Cart.lastAdd.id = currentItem.id;
+                        Shop.Cart.lastAdd.vId = currentItem.vId;
+                        
                         $(document).trigger({
                             type: 'after_add_to_cart',
-                            cartItem: _.clone(cartItem),
+                            cartItem: _.clone(currentItem),
                             show: show
                         });
 
                         if (addEvent != undefined) {
                             $(document).trigger({
                                 type: addEvent,
-                                cartItem: _.clone(cartItem),
+                                cartItem: _.clone(currentItem),
                                 show: show
                             });
                         }

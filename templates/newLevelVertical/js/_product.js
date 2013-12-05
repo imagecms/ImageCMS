@@ -57,8 +57,7 @@ function resizePhoto(drop, s, c) {
     var fancyFrame = drop.find('.drop-content-photo'),
     img = fancyFrame.find('img'),
     dropV = drop.is(':visible') ? true : false,
-    hD = dropV ? drop.height() : drop.actual('height'),
-    dropH = hD > wnd.height() ? wnd.height() : hD,
+    dropH = dropV ? drop.height() : drop.actual('height'),
     hNotC = 0;
     
     fancyFrame.css('height', '');
@@ -73,7 +72,7 @@ function resizePhoto(drop, s, c) {
         hNotC += dropV ? $(this).outerHeight() : $(this).actual('outerHeight');
     });
     fancyFrame.css({
-        'height': dropH - hNotC - (fancyFrame.outerHeight() - fancyFrame.height())
+        'height': dropH - hNotC - 20
     })
     img.css({
         'width': '',
@@ -100,7 +99,7 @@ function changePhoto(arg, fancyFrameInPH, href) {
         resizePhoto(drop, function() {
             $.drop('center')(drop);
         });
-        carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).find('a').focus();
+        carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
     })
 }
 function beforeShowHref(el, drop, isajax, data, elSet) {
