@@ -117,7 +117,7 @@ class Exchangeunfu extends MY_Controller {
             if (count($count)) {
                 if ($count[0]->count != 0) {
                     self::recountProductivityHour($count[0]->count, $count[0]->id);
-                    self::updateOrderHour($i, $date["order"]->id);
+                    self::updateOrderHour($_POST['datedilivery'], $i, $date["order"]->id);
                     break;
                 }
             }
@@ -153,10 +153,12 @@ class Exchangeunfu extends MY_Controller {
         $ci->db->update('mod_exchangeunfu_productivity', $data);
     }
 
-    private function updateOrderHour($hour, $id) {
+    private function updateOrderHour($date, $hour, $id) {
+
         $ci = & get_instance();
         $data = array(
             'delivery_hour' => $hour,
+            'delivery_date' => strtotime($date),
         );
 
         $ci->db->where('id', $id);
