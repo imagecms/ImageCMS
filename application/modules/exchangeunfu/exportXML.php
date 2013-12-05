@@ -288,13 +288,13 @@ class ExportXML {
         }
         $users = array();
         foreach ($this->users as $user) {
-            $users[$user['external_id']] = $user['id'];
+            $users[$user['id']] = $user['external_id'];
         }
 
 
         /** get user external id */
         foreach ($this->orders as $order) {
-            
+
             if ($order['status'] == 2) {
                 $this->invoice_export .=
                         "\t<СписокРасходныеНакладные>\r\n" .
@@ -306,7 +306,7 @@ class ExportXML {
                         "\t\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n" .
                         "\t\t<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\r\n" .
                         "\t\t<IDWebЗаказПокупателя>" . $order['id'] . "</IDWebЗаказПокупателя>\r\n" .
-                        "\t\t<IDКонтрагент>" . $order['external_id'] . "</IDКонтрагент>\r\n" .
+                        "\t\t<IDКонтрагент>" . $users[$order['user_id']] . "</IDКонтрагент>\r\n" .
                         "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n";
             }
 
@@ -316,7 +316,7 @@ class ExportXML {
             } else {
                 $order['paid'] = 'false';
             }
-
+            
             /** order export data */
             $this->order_export .=
                     "\t<СписокЗаказыПокупателя>\r\n" .
@@ -325,7 +325,7 @@ class ExportXML {
                     "\t\t<Дата>" . date('Y-m-d\Th:m:s', $order['date_created']) . "</Дата>\r\n" .
                     "\t\t<Номер>" . $order['code'] . "</Номер>\r\n" .
                     "\t\t<СрокДоставки>" . date('Y-m-d\Th:m:s', $order['delivery_date']) . "</СрокДоставки>\r\n" .
-                    "\t\t<IDКонтрагент>" . $order['external_id'] . "</IDКонтрагент>\r\n" .
+                    "\t\t<IDКонтрагент>" . $users[$order['user_id']] . "</IDКонтрагент>\r\n" .
                     "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n" .
                     "\t\t<Адрес>" . $order['user_deliver_to'] . "</Адрес>\r\n" .
                     "\t\t<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\r\n" .

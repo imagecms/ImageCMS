@@ -370,7 +370,3 @@ if (!function_exists('is_prop_data')) {
     }
 
 }
-
-
-
-
