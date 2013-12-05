@@ -39,11 +39,14 @@ $(document).ready(function() {
 });
 
 var Sort = {
-    init: function() {
+    init: function(curElement) {
         this.per_page = $('#per_page').val();
-        this.originsArray = $('#po_table tbody tr');
+        this.originsArray = $('#po_table tbody tr.originTR');
+        this.translationsArray = $('#po_table tbody tr.translationTR');
         this.lengthTr = this.originsArray.length;
         this.condition = false;
+        this.isAsc = $(curElement).hasClass('asc');
+        this.sortType = '';
     },
     default: function() {
         var lang = $('#langs').val();
@@ -64,86 +67,24 @@ var Sort = {
         }
         $.ajax({url: url,
             success: function(data) {
-                $('#po_table tbody').html(data);
+                var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');
                 $($('.pagination ul li')[1]).addClass('active');
             }
         });
     },
     sortOrigins: function(curElement) {
-        for (var i = 0; i < this.lengthTr; ) {
-            var m_min = this.originsArray[i];
-            var m_min2 = this.originsArray[i + 1];
-            for (var j = i + 2; j < this.lengthTr; ) {
-                if ($(curElement).hasClass('asc')) {
-                    this.condition = $(this.originsArray[j]).find('.origin').text() < $(m_min).find('.origin').text();
-                } else {
-                    this.condition = $(this.originsArray[j]).find('.origin').text() > $(m_min).find('.origin').text();
-                }
-                if (this.condition) {
-                    var mm = this.originsArray[i];
-                    var mm2 = this.originsArray[i + 1];
-                    m_min = this.originsArray[j];
-                    m_min2 = this.originsArray[j + 1];
-                    this.originsArray[i] = m_min;
-                    this.originsArray[i + 1] = m_min2;
-                    this.originsArray[j] = mm;
-                    this.originsArray[j + 1] = mm2;
-                }
-                j += 2;
-            }
-            i += 2;
-        }
+        this.sortType = 'origin';
+        this.sort(this.originsArray, this.translationsArray)
     },
     sortTranslations: function(curElement) {
-        for (var i = 0; i < this.lengthTr; ) {
-            var m_min = this.originsArray[i + 1];
-            var m_min2 = this.originsArray[i];
-            for (var j = i + 2; j < this.lengthTr; ) {
-                if ($(curElement).hasClass('asc')) {
-                    this.condition = $(this.originsArray[j + 1]).find('.translation').text() < $(m_min).find('.translation').text();
-                } else {
-                    this.condition = $(this.originsArray[j + 1]).find('.translation').text() > $(m_min).find('.translation').text();
-                }
-                if (this.condition) {
-                    var mm = this.originsArray[i + 1];
-                    var mm2 = this.originsArray[i];
-                    m_min = this.originsArray[j + 1];
-                    m_min2 = this.originsArray[j];
-                    this.originsArray[i + 1] = m_min;
-                    this.originsArray[i] = m_min2;
-                    this.originsArray[j + 1] = mm;
-                    this.originsArray[j] = mm2;
-                }
-                j += 2;
-            }
-            i += 2;
-        }
+        this.sortType = 'translation';
+        this.sort(this.translationsArray, this.originsArray)
     },
     sortComments: function(curElement) {
-        for (var i = 0; i < this.lengthTr; ) {
-            var m_min = this.originsArray[i];
-            var m_min2 = this.originsArray[i + 1];
-            for (var j = i + 2; j < this.lengthTr; ) {
-                if ($(curElement).hasClass('asc')) {
-                    this.condition = $(this.originsArray[j]).find('.comment').text() < $(m_min).find('.comment').text();
-                } else {
-                    this.condition = $(this.originsArray[j]).find('.comment').text() > $(m_min).find('.comment').text();
-                }
-                if (this.condition) {
-                    var mm = this.originsArray[i];
-                    var mm2 = this.originsArray[i + 1];
-                    m_min = this.originsArray[j];
-                    m_min2 = this.originsArray[j + 1];
-                    this.originsArray[i] = m_min;
-                    this.originsArray[i + 1] = m_min2;
-                    this.originsArray[j] = mm;
-                    this.originsArray[j + 1] = mm2;
-                }
-                j += 2;
-            }
-            i += 2;
-        }
+        this.sortType = 'comment';
+        this.sort(this.originsArray, this.translationsArray)
     },
     sortFuzzy: function(curElement) {
         this.init();
@@ -191,7 +132,7 @@ var Sort = {
         }
     },
     go: function(curElement) {
-        this.init();
+        this.init(curElement);
 
         if ($(curElement).hasClass('originHead')) {
             this.sortOrigins(curElement);
@@ -206,11 +147,68 @@ var Sort = {
         }
 
         var results = '';
-        $(this.originsArray).each(function() {
-            results += $(this)[0].outerHTML;
+        var trnaslationArray = this.translationsArray;
+        $(this.originsArray).each(function(i) {
+            results += $(this)[0].outerHTML + trnaslationArray[i].outerHTML;
         });
 
         this.showResults(curElement, results);
+    },
+    swap: function(array, array2, indexA, indexB) {
+        var temp = array[indexA];
+        array[indexA] = array[indexB];
+        array[indexB] = temp;
+
+        var temp2 = array2[indexA];
+        array2[indexA] = array2[indexB];
+        array2[indexB] = temp2;
+    },
+    partition: function(array, array2, pivot, left, right) {
+
+        var storeIndex = left,
+                pivotValue = array[pivot];
+
+        // put the pivot on the right
+        this.swap(array, array2, pivot, right);
+
+        // go through the rest
+        for (var v = left; v < right; v++) {
+            if (this.isAsc) {
+                this.condition = $.trim($(array[v]).find('.' + this.sortType).text()).toLowerCase() < $.trim($(pivotValue).find('.' + this.sortType).text()).toLowerCase();
+            } else {
+                this.condition = $.trim($(array[v]).find('.' + this.sortType).text()).toLowerCase() > $.trim($(pivotValue).find('.' + this.sortType).text()).toLowerCase();
+            }
+            if (this.condition) {
+                this.swap(array, array2, v, storeIndex);
+                storeIndex++;
+            }
+        }
+
+        // finally put the pivot in the correct place
+        this.swap(array, array2, right, storeIndex);
+
+        return storeIndex;
+    },
+    sort: function(array, array2, left, right) {
+        var pivot = null;
+
+        if (typeof left !== 'number') {
+            left = 0;
+        }
+
+        if (typeof right !== 'number') {
+            right = array.length - 1;
+        }
+
+        if (left < right) {
+
+            pivot = left + Math.ceil((right - left) * 0.5);
+            newPivot = this.partition(array, array2, pivot, left, right);
+
+            // recursively sort to the left and right
+            this.sort(array, array2, left, newPivot - 1);
+            this.sort(array, array2, newPivot + 1, right);
+        }
 
     }
 };
@@ -386,13 +384,18 @@ var Search = {
         }
     },
     goOnEnterPress: function() {
+//        var start = new Date().getTime();
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
             this.go();
         } else {
             return false;
         }
+//        var end = new Date().getTime();
+//        var time = end - start;
+//        console.log('Execution time: ' + time);
     }
+
 
 };
 
@@ -565,7 +568,8 @@ var Translator = {
             $('.alert-info').css('display', 'none');
             $('#per_page').css('display', 'block');
 
-            $('#po_table tbody').html(data);
+            var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+            $('#po_table tbody').html(tableData);
             $('#po_table').css('display', 'table');
 
             this.statisticRecount();
@@ -750,7 +754,8 @@ var Translator = {
                 $('.modal_update_results').addClass('hide').addClass('fade');
                 $('.modal_update_results').modal('hide');
                 $('.modal-backdrop').hide();
-                $('#po_table tbody').html(data);
+                var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');
                 $($('.pagination ul li')[1]).addClass('active');
                 $('.per_page10').attr('selected', 'selected');
@@ -826,6 +831,7 @@ var Translator = {
     },
     correctPaths: function(curElement) {
         this.init();
+        $('#loading').fadeIn(100);
         $.ajax({
             url: this.getUrl('makeCorrectPoPaths'),
             type: 'POST',
@@ -834,7 +840,8 @@ var Translator = {
             },
             success: function(data) {
                 if (data) {
-                    $('#po_table tbody').html(data);
+                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                    $('#po_table tbody').html(tableData);
                 }
             }
         });
@@ -899,6 +906,7 @@ var Translator = {
         lang = lang.split("_", 1);
 
         this.init();
+        $('#loading').fadeIn(100);
         $.ajax({
             type: 'POST',
             data: {
@@ -908,7 +916,8 @@ var Translator = {
             url: this.getUrl('translate'),
             success: function(data) {
                 if (data) {
-                    $('#po_table tbody').html(data);
+                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                    $('#po_table tbody').html(tableData);
                     Translator.statisticRecount();
                 }
             }
@@ -1105,7 +1114,8 @@ var Exchange = {
             url: '/admin/components/init_window/translator/exchangeTranslation',
             success: function(data) {
                 if (data) {
-                    $('#mainContent').html(data);
+                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                    $('#mainContent').html(tableData);
                     window.history.pushState({}, "", "/admin/components/init_window/translator");
                 }
             }
@@ -1161,7 +1171,7 @@ var AceEditor = {
     },
     goToLang: function(curElement) {
         var line = $.trim($('.originStringLineInFileEdit').html());
-        if(line){
+        if (line) {
             this.editor.gotoLine(line, 0, false);
         }
 
