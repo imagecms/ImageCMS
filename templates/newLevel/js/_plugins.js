@@ -146,7 +146,7 @@ function getCookie(c_name)
     }
     return c_value;
 }
-/*plugin nstCehck*/
+/*plugin nstCheck*/
 (function($) {
     $.existsN = function(nabir) {
         return (nabir.length > 0);
@@ -334,7 +334,7 @@ function getCookie(c_name)
         return methods[m];
     };
 })(jQuery);
-/*plugin nstCehck end*/
+/*plugin nstCheck end*/
 /*plugin nstRadio*/
 (function($) {
     var methods = {
