@@ -458,6 +458,7 @@ input.input-search{height: 33px;}
 
 .items-info-discount > li:first-child{border-top: 0;}
 
+.items-compare{width: 20000px;}
 .items-compare > li{width: 250px;}
 .items-compare .items-catalog {margin-left: -22px;}
 .items-compare > li .icon_times{position: absolute !important;left: 207px;top: 3px;}
