@@ -220,12 +220,13 @@
                 changedEl: '#catalogForm .lineForm select'
             }));
             if (ltie7)
-                ieInput($('#catalogForm .cuselText'));
+                ieBoxSize($('#catalogForm .cuselText'));
         }
         $(framechecks).nStCheck({
             wrapper: $(".frame-label:has(.niceCheck)"),
             elCheckWrap: '.niceCheck',
             evCond: true,
+            resetChecked: true,
             //classRemove: 'b_n',//if not standart
             //if evCond: true
             trigger: function(a, b, c, e) {

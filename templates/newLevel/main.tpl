@@ -26,6 +26,9 @@
         {else:}
             {$lang = ''} 
         {/if}
+        {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
+            <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+        {/if}
         <script type="text/javascript">
             var locale = "{echo $lang}";
         </script>
@@ -33,32 +36,34 @@
         {include_tpl('config.js')}
         {literal}
             <script type="text/javascript">
-                $.ajaxSetup({
-                    cache: false
-                });
-                function initDownloadScripts(scripts, callback, customEvent){
+                function initDownloadScripts(scripts, callback, customEvent) {
                     function downloadJSAtOnload(scripts, callback, customEvent) {
                         var cL = 0,
-                        scriptsL = scripts.length;
+                                scriptsL = scripts.length;
 
                         $.map(scripts, function(i, n) {
-                            $.getScript(theme + 'js/' + i + '.js', function() {
+                            $.ajax({
+                                url: theme + 'js/' + i + '.js',
+                                dataType: "script",
+                                cache: false,
+                                success: function() {
                                 cL++;
                                 if (cL == scriptsL)
-                                    if (callback){
+                                    if (callback) {
                                         eval(callback)();
                                         $(document).trigger({'type': customEvent});
                                     }
+                                }
                             });
                         })
                     }
                     // Check for browser support of event handling capability
                     if (window.addEventListener)
-                    window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
+                        window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
                     else if (window.attachEvent)
-                    window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
+                        window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
                     else
-                    window.onload = downloadJSAtOnload(scripts, callback, customEvent);
+                        window.onload = downloadJSAtOnload(scripts, callback, customEvent);
                 }
             </script>
         {/literal}
@@ -95,16 +100,17 @@
         {include_tpl('user_toolbar')}
 
         <!-- scripts -->
-        <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
+        <!--<script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_shop.js"></script>
         <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>-->
+        
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
         {include_shop_tpl('js_templates')}
         <!-- scripts end -->
-    </body>
+   </body>
 </html>

@@ -1,11 +1,35 @@
+jQuery(function($) {
+    try {
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: '&#x3c;Пред',
+            nextText: 'След&#x3e;',
+            currentText: 'Сегодня',
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
+                'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+            dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+    } catch (err) {
+    }
+});
 var wishList = {
     itemWL: '.item-WL',
     btnBuy: '.btnBuyWishList',
     countProdsWL: '.countProdsWL',
     genPriceProdsWL: '.genPriceProdsWL',
     frameWL: '[data-rel="list-item"]',
-    curCount: 0,
-    cAddPrWL: 0,
+    frameBuy: '.frame-buy-all-products',
     items: [],
     add: function(id, varid) {
         wishList.items = wishList.all();
@@ -34,7 +58,8 @@ var wishList = {
         $.post('/wishlist/wishlistApi/sync', function(data) {
             localStorage.setItem('wishList', data);
             $(document).trigger({
-                'type': 'wish_list_sync'
+                'type': 'wish_list_sync',
+                dataObj: data
             });
         })
     }
@@ -103,11 +128,10 @@ function reload(el, elS, isajax, data, elSet) {
 function addToWL(el, elS, isajax, data, elSet) {
     if (data) {
         if (data.answer == 'success') {
-            var btnWish = wishList.curEl.closest(genObj.btnWish),
+            var btnWish = $('[data-varid="' + el.data('vid') + '"]').find(genObj.btnWish),
                     id = btnWish.parent().data('id'),
                     varid = btnWish.parent().data('varid');
             wishList.add(id, varid);
-            wishList.curEl = '';
             processWish();
             wishListCount();
         }
@@ -147,13 +171,18 @@ function removeWL(el, elS, isajax, data, elSet) {
 }
 function changeBtnBuyWL(btnBuy, cond) {
     var textEL = btnBuy.find(genObj.textEl);
-    if (cond) {
+    if (cond == 'show') {
         btnBuy.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss);
         textEL.text(textEL.data('cart'));
     }
     else {
         btnBuy.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss);
-        textEL.text(textEL.data('buy'));
+        if (cond == 'notall') {
+            textEL.text(textEL.data('buyOther'));
+        }
+        else {
+            textEL.text(textEL.data('buy'));
+        }
     }
 }
 function processWishPage() {
@@ -165,11 +194,11 @@ function processWishPage() {
                 genSum = 0,
                 btnBuyI = $this.find(genObj.btnBuy);
         btnBuyI.each(function() {
-            tempC = parseInt($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
+            tempC = parseFloat($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
             if (isNaN(tempC))
                 return false;
             btnBuyLC += tempC;
-            tempP = parseInt($(this).data('price'));
+            tempP = parseFloat($(this).data('price'));
             genSum += tempP * tempC;
         });
         var btnBuyL = btnBuyI.length,
@@ -178,12 +207,21 @@ function processWishPage() {
                 genPrice = $this.find(wishList.genPriceProdsWL);
         $this.find(wishList.countProdsWL).text(btnBuyLC);
         $this.find(genObj.plurProd).text(pluralStr(btnBuyLC, plurProd));
-        genPrice.text(genSum);
-        if (btnBuyL == btnCartL) {
-            changeBtnBuyWL(btnBuy, true);
+        genPrice.text(genSum.toFixed(pricePrecision));
+        if (btnBuyLC == 0) {
+            $this.find(wishList.frameBuy).hide();
         }
         else {
-            changeBtnBuyWL(btnBuy, false);
+            $this.find(wishList.frameBuy).show();
+            if (btnBuyL == btnCartL) {
+                changeBtnBuyWL(btnBuy, 'show');
+            }
+            else if (btnCartL > 0) {
+                changeBtnBuyWL(btnBuy, 'notall');
+            }
+            else {
+                changeBtnBuyWL(btnBuy, 'all');
+            }
         }
     });
 }
@@ -225,23 +263,24 @@ $(document).on('scriptDefer', function() {
                 btns = $this.closest(wishList.frameWL).find('.' + genObj.btnBuyCss + ' ' + genObj.btnBuy);
         if ($.existsN(btns)) {
             $.fancybox.showActivity();
-            wishList.curCount = btns.length;
-            wishList.curElBuy = $this;
             btns.each(function() {
-                Shop.Cart.add(Shop.composeCartItem($(this)), true);
+                Shop.Cart.add(Shop.Cart.composeCartItem($(this)), false, 'after_add_to_cart_WL');
+            });
+            var i = 0;
+            $(document).on('after_add_to_cart_WL', function(e) {
+                i++;
+                if (i == btns.length) {
+                    togglePopupCart();
+                    $(this).off('after_add_to_cart_WL')
+                }
             });
         }
         else {
-            togglePopupCart($this);
+            togglePopupCart();
         }
     });
     $(document).on('after_add_to_cart', function(e) {
-        wishList.cAddPrWL++;
-        if (wishList.cAddPrWL == wishList.curCount) {
-            wishList.cAddPrWL = 0;
-            wishList.curCount = 0;
-            changeBtnBuyWL(wishList.curElBuy, true);
-        }
+        processWishPage();
     });
     $(document).on('processPageEnd change_count_product', function(e) {
         processWishPage();
@@ -267,8 +306,6 @@ $(document).on('scriptDefer', function() {
             'data': {
                 "ignoreWrap": true
             }
-        }).on('click.toWish', function(e) {
-            wishList.curEl = $(this);
         });
     }
     if ($.exists("#datepicker"))

@@ -11,11 +11,11 @@
                     <span class="text-el">{lang('Вход','newLevel')}</span>
                 </button>
             </li>
-            <li class="or f-s_0">
+            <li class="f-s_0 divider">
                 <span class="text-el">{lang('или','newLevel')}</span>
             </li>
             <li class="btn-register">
-                <a href="/auth/register" rel=”nofollow”>
+                <a href="{site_url('/auth/register')}" rel=”nofollow”>
                     <span class="icon_reg"></span>
                     <span class="text-el">{lang('Регистрация','newLevel')}</span>
                 </a>
@@ -23,13 +23,13 @@
             <!--Else show link for personal cabinet -->
         {else:}
             <li class="btn-personal-area">
-                <a href="/shop/profile">
+                <a href="{site_url('/shop/profile')}">
                     <span class="icon_enter"></span>
                     <span class="text-el">{lang('Личный кабинет','newLevel')}</span>
                 </a>
             </li>
             <li class="btn-exit-shop">
-                <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', {literal}{callback: function(msg, status, form, DS) {
+                <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('{site_url("/auth/authapi/logout")}', '', {literal}{durationHideForm: 0, callback: function(msg, status, form, DS) {
                                 if (status) {
                                     var items = Shop.Cart.getAllItems();
                                     for (var i = 0; i < items.length; i++)
