@@ -39,7 +39,7 @@
     <tr>
         <td colspan="4">
             <div class="alert alert-info" style="margin: 0px; text-align: center">
-                {lang('The file is empty.')}                        
+                {lang('The file is empty.', 'translator')}                        
             </div>
         </td>
     </tr>
@@ -47,49 +47,49 @@
 
 <div class="po_settingsClone" style="margin: 0px; display:none">
     <div class="control-group">
-        <label class="control-label" for="file">{lang('Project Name')}:</label>
+        <label class="control-label" for="file">{lang('Project Name', 'translator')}:</label>
         <div class="controls">
             <input type="text" name="projectName" value="{echo $po_settings['Project-Id-Version']}">
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="file">{lang('Translator email')}:</label>
+        <label class="control-label" for="file">{lang('Translator email', 'translator')}:</label>
         <div class="controls">
             <input type="text" name="translatorEmail" value="{echo $po_settings['Last-Translator-Email']}">
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="file">{lang('Translator name')}:</label>
+        <label class="control-label" for="file">{lang('Translator name', 'translator')}:</label>
         <div class="controls">
             <input type="text" name="translatorName" value="{echo $po_settings['Last-Translator-Name']}">
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="file">{lang('Language-Team name')}:</label>
+        <label class="control-label" for="file">{lang('Language-Team name', 'translator')}:</label>
         <div class="controls">
             <input type="text" name="langaugeTeamName" value="{echo $po_settings['Language-Team-Name']}">
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="file">{lang('Language-Team email')}:</label>
+        <label class="control-label" for="file">{lang('Language-Team email', 'translator')}:</label>
         <div class="controls">
             <input type="text" name="langaugeTeamEmail" value="{echo $po_settings['Language-Team-Email']}">
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="file">{lang('Language')}:</label>
+        <label class="control-label" for="file">{lang('Language', 'translator')}:</label>
         <div class="controls">
             <input type="text" name="language" value="{echo $po_settings['X-Poedit-Language']}">
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="file">{lang('Country')}:</label>
+        <label class="control-label" for="file">{lang('Country', 'translator')}:</label>
         <div class="controls">
             <input type="text" name="country" value="{echo $po_settings['X-Poedit-Country']}">
         </div>
@@ -99,12 +99,12 @@
 <div class="pathHolderClone span7" style="margin: 0px; display:none">
     {foreach $paths as $key => $path}
         {if isset($path['base'])}
-            <div class="path" style="width: 460px">
+            <div class="path" style="width: 515px">
                 <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px;">
                     {echo $key+1}.
                 </b>
                 <input type="text" name="path[]" style="width: 390px; margin-bottom: 25px;" value="{echo $path['base']}">
-                <b style="font-size: 15px; margin-right: -10px; float: right;">(Main)</b>
+                <b style="font-size: 15px; margin-right: -10px; float: right;">({lang('Basic path', 'translator')})</b>
                 <br>
             </div>
         {else:}

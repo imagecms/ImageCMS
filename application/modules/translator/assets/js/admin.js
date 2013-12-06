@@ -39,11 +39,14 @@ $(document).ready(function() {
 });
 
 var Sort = {
-    init: function() {
+    init: function(curElement) {
         this.per_page = $('#per_page').val();
-        this.originsArray = $('#po_table tbody tr');
+        this.originsArray = $('#po_table tbody tr.originTR');
+        this.translationsArray = $('#po_table tbody tr.translationTR');
         this.lengthTr = this.originsArray.length;
         this.condition = false;
+        this.isAsc = $(curElement).hasClass('asc');
+        this.sortType = '';
     },
     default: function() {
         var lang = $('#langs').val();
@@ -64,86 +67,24 @@ var Sort = {
         }
         $.ajax({url: url,
             success: function(data) {
-                $('#po_table tbody').html(data);
+                var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');
                 $($('.pagination ul li')[1]).addClass('active');
             }
         });
     },
     sortOrigins: function(curElement) {
-        for (var i = 0; i < this.lengthTr; ) {
-            var m_min = this.originsArray[i];
-            var m_min2 = this.originsArray[i + 1];
-            for (var j = i + 2; j < this.lengthTr; ) {
-                if ($(curElement).hasClass('asc')) {
-                    this.condition = $(this.originsArray[j]).find('.origin').text() < $(m_min).find('.origin').text();
-                } else {
-                    this.condition = $(this.originsArray[j]).find('.origin').text() > $(m_min).find('.origin').text();
-                }
-                if (this.condition) {
-                    var mm = this.originsArray[i];
-                    var mm2 = this.originsArray[i + 1];
-                    m_min = this.originsArray[j];
-                    m_min2 = this.originsArray[j + 1];
-                    this.originsArray[i] = m_min;
-                    this.originsArray[i + 1] = m_min2;
-                    this.originsArray[j] = mm;
-                    this.originsArray[j + 1] = mm2;
-                }
-                j += 2;
-            }
-            i += 2;
-        }
+        this.sortType = 'origin';
+        this.sort(this.originsArray, this.translationsArray)
     },
     sortTranslations: function(curElement) {
-        for (var i = 0; i < this.lengthTr; ) {
-            var m_min = this.originsArray[i + 1];
-            var m_min2 = this.originsArray[i];
-            for (var j = i + 2; j < this.lengthTr; ) {
-                if ($(curElement).hasClass('asc')) {
-                    this.condition = $(this.originsArray[j + 1]).find('.translation').text() < $(m_min).find('.translation').text();
-                } else {
-                    this.condition = $(this.originsArray[j + 1]).find('.translation').text() > $(m_min).find('.translation').text();
-                }
-                if (this.condition) {
-                    var mm = this.originsArray[i + 1];
-                    var mm2 = this.originsArray[i];
-                    m_min = this.originsArray[j + 1];
-                    m_min2 = this.originsArray[j];
-                    this.originsArray[i + 1] = m_min;
-                    this.originsArray[i] = m_min2;
-                    this.originsArray[j + 1] = mm;
-                    this.originsArray[j] = mm2;
-                }
-                j += 2;
-            }
-            i += 2;
-        }
+        this.sortType = 'translation';
+        this.sort(this.translationsArray, this.originsArray)
     },
     sortComments: function(curElement) {
-        for (var i = 0; i < this.lengthTr; ) {
-            var m_min = this.originsArray[i];
-            var m_min2 = this.originsArray[i + 1];
-            for (var j = i + 2; j < this.lengthTr; ) {
-                if ($(curElement).hasClass('asc')) {
-                    this.condition = $(this.originsArray[j]).find('.comment').text() < $(m_min).find('.comment').text();
-                } else {
-                    this.condition = $(this.originsArray[j]).find('.comment').text() > $(m_min).find('.comment').text();
-                }
-                if (this.condition) {
-                    var mm = this.originsArray[i];
-                    var mm2 = this.originsArray[i + 1];
-                    m_min = this.originsArray[j];
-                    m_min2 = this.originsArray[j + 1];
-                    this.originsArray[i] = m_min;
-                    this.originsArray[i + 1] = m_min2;
-                    this.originsArray[j] = mm;
-                    this.originsArray[j + 1] = mm2;
-                }
-                j += 2;
-            }
-            i += 2;
-        }
+        this.sortType = 'comment';
+        this.sort(this.originsArray, this.translationsArray)
     },
     sortFuzzy: function(curElement) {
         this.init();
@@ -171,27 +112,32 @@ var Sort = {
         }
     },
     showResults: function(curElement, results) {
-        $('#po_table tbody').html(results);
+        if (results) {
+            $('#po_table tbody').html(results);
 
-        var per_page = this.per_page;
-        $('#po_table tbody tr').each(function(iteration) {
-            iteration = iteration / 2;
-            if (iteration < per_page) {
-                $(this).show();
+            var per_page = this.per_page;
+            $('#po_table tbody tr').each(function(iteration) {
+                iteration = iteration / 2;
+                if (iteration < per_page) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+            $(curElement).addClass('active');
+            if ($(curElement).hasClass('asc')) {
+                $(curElement).removeClass('asc').addClass('desc');
             } else {
-                $(this).hide();
+                $(curElement).removeClass('desc').addClass('asc');
             }
-        });
-
-        $(curElement).addClass('active');
-        if ($(curElement).hasClass('asc')) {
-            $(curElement).removeClass('asc').addClass('desc');
+            showMessage(lang('Message'), lang('Successfully sorted.'));
         } else {
-            $(curElement).removeClass('desc').addClass('asc');
+            showMessage(lang('Error'), lang('Can not sort.'), 'r');
         }
     },
     go: function(curElement) {
-        this.init();
+        this.init(curElement);
 
         if ($(curElement).hasClass('originHead')) {
             this.sortOrigins(curElement);
@@ -206,11 +152,68 @@ var Sort = {
         }
 
         var results = '';
-        $(this.originsArray).each(function() {
-            results += $(this)[0].outerHTML;
+        var trnaslationArray = this.translationsArray;
+        $(this.originsArray).each(function(i) {
+            results += $(this)[0].outerHTML + trnaslationArray[i].outerHTML;
         });
 
         this.showResults(curElement, results);
+    },
+    swap: function(array, array2, indexA, indexB) {
+        var temp = array[indexA];
+        array[indexA] = array[indexB];
+        array[indexB] = temp;
+
+        var temp2 = array2[indexA];
+        array2[indexA] = array2[indexB];
+        array2[indexB] = temp2;
+    },
+    partition: function(array, array2, pivot, left, right) {
+
+        var storeIndex = left,
+                pivotValue = array[pivot];
+
+        // put the pivot on the right
+        this.swap(array, array2, pivot, right);
+
+        // go through the rest
+        for (var v = left; v < right; v++) {
+            if (this.isAsc) {
+                this.condition = $.trim($(array[v]).find('.' + this.sortType).text()).toLowerCase() < $.trim($(pivotValue).find('.' + this.sortType).text()).toLowerCase();
+            } else {
+                this.condition = $.trim($(array[v]).find('.' + this.sortType).text()).toLowerCase() > $.trim($(pivotValue).find('.' + this.sortType).text()).toLowerCase();
+            }
+            if (this.condition) {
+                this.swap(array, array2, v, storeIndex);
+                storeIndex++;
+            }
+        }
+
+        // finally put the pivot in the correct place
+        this.swap(array, array2, right, storeIndex);
+
+        return storeIndex;
+    },
+    sort: function(array, array2, left, right) {
+        var pivot = null;
+
+        if (typeof left !== 'number') {
+            left = 0;
+        }
+
+        if (typeof right !== 'number') {
+            right = array.length - 1;
+        }
+
+        if (left < right) {
+
+            pivot = left + Math.ceil((right - left) * 0.5);
+            newPivot = this.partition(array, array2, pivot, left, right);
+
+            // recursively sort to the left and right
+            this.sort(array, array2, left, newPivot - 1);
+            this.sort(array, array2, newPivot + 1, right);
+        }
 
     }
 };
@@ -373,26 +376,31 @@ var Search = {
                 $($('.pagination ul li')[1]).addClass('active');
 
                 if (this.countResults) {
-                    showMessage('Message', 'Was found ' + this.countResults + 'results');
+                    showMessage(lang('Message'), lang('Number of searched matches') + ': ' + this.countResults + '.');
                 } else {
-                    showMessage('Message', 'Was not found any results', 'r')
+                    showMessage(lang('Message'), lang('Was not found any results'), 'r')
                 }
                 this.countResults = 0;
             } else {
-                showMessage('Error', 'Please, enter more than 1 symbol', 'r')
+                showMessage(lang('Error'), lang('Please, enter more than 1 symbol'), 'r')
             }
         } else {
-            showMessage('Error', 'You did not select search criteria', 'r')
+            showMessage(lang('Error'), lang('You did not select search criteria'), 'r')
         }
     },
     goOnEnterPress: function() {
+//        var start = new Date().getTime();
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
             this.go();
         } else {
             return false;
         }
+//        var end = new Date().getTime();
+//        var time = end - start;
+//        console.log('Execution time: ' + time);
     }
+
 
 };
 
@@ -542,16 +550,32 @@ var Translator = {
         }
     },
     render: function(data) {
-        if (data === 'no file') {
-            $('#po_table tbody').html('');
-            $('#po_table').css('display', 'none');
-            $('.pagination ul').html('');
-            $('.fileNotExist').show();
-            $('.pathHolder').html('');
-            $('.po_settings').html('');
-            $('.pathParseHolder').hide();
-            return false;
+        try
+        {
+            var respons = $.parseJSON(data);
+            if (typeof respons == 'object') {
+                console.log('333')
+                var respons = JSON.parse(data);
+                if (respons['error']) {
+                    $('#po_table tbody').html('');
+                    $('#po_table').css('display', 'none');
+                    $('.pagination ul').html('');
+                    $('.fileNotExist').show();
+                    $('.fileNotExist .errors').html(respons['errors']);
+                    if (respons['type'] == 'create') {
+                        $('.fileNotExist .needToCreate').show();
+                    }
+                    $('.pathHolder').html('');
+                    $('.po_settings').html('');
+                    $('.pathParseHolder').hide();
+                    return false;
+                }
+            }
         }
+        catch (err)
+        {
+        }
+
 
         $('#cancel').removeAttr('disabled');
         if (!data) {
@@ -565,7 +589,8 @@ var Translator = {
             $('.alert-info').css('display', 'none');
             $('#per_page').css('display', 'block');
 
-            $('#po_table tbody').html(data);
+            var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+            $('#po_table tbody').html(tableData);
             $('#po_table').css('display', 'table');
 
             this.statisticRecount();
@@ -586,44 +611,6 @@ var Translator = {
 
 
     },
-    translateString: function(curElement) {
-        var YandexApiKey = $.trim($('.YandexApiKey').val());
-        var originLang = $('#originLang').val();
-
-        if (!YandexApiKey) {
-            showMessage('Error', 'You have not specified Yandex Api Key.', 'r');
-            return false;
-        }
-
-        if (!originLang) {
-            showMessage('Error', 'You have not specified origins strings language.', 'r');
-            return false;
-        }
-
-        var word = $.trim($(curElement).next('.origin').val());
-        var originTR = $(curElement).closest('tr');
-        var translationTR = originTR.next();
-        var translation = translationTR.find('.translation').val();
-        var lang = $('#langs').val();
-        lang = lang.split("_", 1);
-
-        translationTR.find('.translationTEMP').val(translation);
-        translationTR.find('.translationCancel').show();
-        $.ajax({
-            type: 'POST',
-            data: {
-                word: word
-            },
-            url: '/admin/components/init_window/translator/translateWord/' + lang,
-            success: function(Answer) {
-                Answer = JSON.parse(Answer);
-                if (Answer.code == '200') {
-                    translationTR.find('.translation').val(Answer.text[0]);
-                    Translator.statisticRecount();
-                }
-            }
-        });
-    },
     setOriginsLang: function(curElement) {
         var originLang = $(curElement).val();
         $.ajax({
@@ -633,6 +620,11 @@ var Translator = {
             },
             url: '/admin/components/init_window/translator/setSettings',
             success: function(data) {
+                if (data) {
+                    showMessage(lang('Message'), lang('Origin language was successfully setted.'));
+                } else {
+                    showMessage(lang('Error'), lang('Can not set origin language.', 'r'));
+                }
             }
         });
     },
@@ -750,7 +742,8 @@ var Translator = {
                 $('.modal_update_results').addClass('hide').addClass('fade');
                 $('.modal_update_results').modal('hide');
                 $('.modal-backdrop').hide();
-                $('#po_table tbody').html(data);
+                var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');
                 $($('.pagination ul li')[1]).addClass('active');
                 $('.per_page10').attr('selected', 'selected');
@@ -826,6 +819,7 @@ var Translator = {
     },
     correctPaths: function(curElement) {
         this.init();
+        $('#loading').fadeIn(100);
         $.ajax({
             url: this.getUrl('makeCorrectPoPaths'),
             type: 'POST',
@@ -834,7 +828,8 @@ var Translator = {
             },
             success: function(data) {
                 if (data) {
-                    $('#po_table tbody').html(data);
+                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                    $('#po_table tbody').html(tableData);
                 }
             }
         });
@@ -853,17 +848,27 @@ var Translator = {
             },
             url: url,
             success: function(data) {
-                var fileContent = JSON.parse(data);
-                var fileExtention = filePath.match(/\.([a-z]{2,4})/);
-                if (fileExtention) {
-                    fileExtention = fileExtention[1];
+                var response = JSON.parse(data);
+                if (response['success']) {
+                    var fileContent = response['data'];
+                    var fileExtention = filePath.match(/\.([a-z]{2,4})/);
+                    if (fileExtention) {
+                        fileExtention = fileExtention[1];
+                    }
+                    AceEditor.render(fileContent, line, fileExtention);
+                    $('.originStringInFileEdit').html(originString);
+                    $('.originStringLineInFileEdit').html(line);
+                    showMessage(lang('Message'), lang('File was successfully rendered.'));
+                    $('.modal_file_edit').modal();
+                } else {
+                    if (response['error']) {
+                        showMessage(lang('Error'), response['errors'], 'r');
+                    }
                 }
-                AceEditor.render(fileContent, line, fileExtention);
-                $('.originStringInFileEdit').html(originString);
-                $('.originStringLineInFileEdit').html(line);
+
             }
         });
-        $('.modal_file_edit').modal();
+        
     },
     saveEditingFile: function(curElement) {
         var fileText = this.editor.getValue();
@@ -886,12 +891,12 @@ var Translator = {
         var originLang = $('#originLang').val();
 
         if (!YandexApiKey) {
-            showMessage('Error', 'You have not specified Yandex Api Key.', 'r');
+            showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
             return false;
         }
 
         if (!originLang) {
-            showMessage('Error', 'You have not specified origins strings language.', 'r');
+            showMessage(lang('Error'), lang('You have not specified origins strings language.'), 'r');
             return false;
         }
 
@@ -899,6 +904,7 @@ var Translator = {
         lang = lang.split("_", 1);
 
         this.init();
+        $('#loading').fadeIn(100);
         $.ajax({
             type: 'POST',
             data: {
@@ -906,13 +912,90 @@ var Translator = {
                 lang: lang
             },
             url: this.getUrl('translate'),
-            success: function(data) {
-                if (data) {
-                    $('#po_table tbody').html(data);
-                    Translator.statisticRecount();
+            success: function(response) {
+                if (response) {
+                    var data = JSON.parse(response);
+                    var answers = data['answers'];
+                    var maxCode = Math.max.apply(Math, answers);
+                    Translator.getAnswerCodeMessage(maxCode);
+                    if (maxCode == '200') {
+                        var tableData = data['data'].replace(/<script[\W\w]+<\/script>/, '');
+                        $('#po_table tbody').html(tableData);
+                        Translator.statisticRecount();
+                    }
                 }
             }
         });
+    },
+    translateString: function(curElement) {
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
+        var originLang = $('#originLang').val();
+
+        if (!YandexApiKey) {
+            showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
+            return false;
+        }
+
+        if (!originLang) {
+            showMessage(lang('Error'), lang('You have not specified origins strings language.'), 'r');
+            return false;
+        }
+
+        var word = $.trim($(curElement).next('.origin').val());
+        var originTR = $(curElement).closest('tr');
+        var translationTR = originTR.next();
+        var translation = translationTR.find('.translation').val();
+        var language = $('#langs').val();
+        language = language.split("_", 1);
+
+        translationTR.find('.translationTEMP').val(translation);
+        translationTR.find('.translationCancel').show();
+        $.ajax({
+            type: 'POST',
+            data: {
+                word: word
+            },
+            url: '/admin/components/init_window/translator/translateWord/' + language,
+            success: function(Answer) {
+                Answer = JSON.parse(Answer);
+                if (Answer.code == '200') {
+                    translationTR.find('.translation').val(Answer.text[0]);
+                    Translator.statisticRecount();
+                }
+                Translator.getAnswerCodeMessage(Answer.code);
+            }
+        });
+    },
+    getAnswerCodeMessage: function(code) {
+        switch (code.toString()) {
+            case '200':
+                showMessage(lang('Message'), lang('Successfully translated'));
+                break;
+            case '401':
+                showMessage(lang('Error'), lang('Wrong API key.'), 'r');
+                break;
+            case '402':
+                showMessage(lang('Error'), lang('API key is locked.'), 'r');
+                break;
+            case '403':
+                showMessage(lang('Error'), lang('Exceeded the daily limit on the number of requests.'), 'r');
+                break;
+            case '404':
+                showMessage(lang('Error'), lang('Exceeded the daily limit on the amount of translated text.'), 'r');
+                break;
+            case '413':
+                showMessage(lang('Error'), lang('Exceeded the maximum allowable size of text.'), 'r');
+                break;
+            case '422':
+                showMessage(lang('Error'), lang('Text can not be translated.'), 'r');
+                break;
+            case '501':
+                showMessage(lang('Error'), lang('Set direction of translation is not supported.'), 'r');
+                break;
+            default:
+                showMessage(lang('Error'), lang('Translation fails.'), 'r');
+
+        }
     },
     getPoArray: function() {
         var origins = $('#po_table .originTR');
@@ -950,6 +1033,11 @@ var Translator = {
             },
             url: '/admin/components/init_window/translator/setSettings',
             success: function(data) {
+                if (data) {
+                    showMessage(lang('Message'), lang('Yandex Api Key was successfully setted.'));
+                } else {
+                    showMessage(lang('Error'), lang('Can not set Yandex Api Key.', 'r'));
+                }
             }
         });
     }
@@ -1105,7 +1193,8 @@ var Exchange = {
             url: '/admin/components/init_window/translator/exchangeTranslation',
             success: function(data) {
                 if (data) {
-                    $('#mainContent').html(data);
+                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                    $('#mainContent').html(tableData);
                     window.history.pushState({}, "", "/admin/components/init_window/translator");
                 }
             }
@@ -1145,10 +1234,7 @@ var AceEditor = {
     },
     render: function(fileContent, selectedLine, fileExtention) {
         this.init();
-        this.editor.setValue('');
-        for (var fileLine in fileContent) {
-            this.editor.setValue(this.editor.getValue() + fileContent[fileLine]);
-        }
+        this.editor.setValue(fileContent);
         this.editor.gotoLine(selectedLine, 0, false);
         this.setTheme();
         if (fileExtention) {
@@ -1161,7 +1247,7 @@ var AceEditor = {
     },
     goToLang: function(curElement) {
         var line = $.trim($('.originStringLineInFileEdit').html());
-        if(line){
+        if (line) {
             this.editor.gotoLine(line, 0, false);
         }
 
@@ -1175,8 +1261,4 @@ function escapeHtml(text) {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
-}
-
-function lang(str) {
-    console.log(str)
 }

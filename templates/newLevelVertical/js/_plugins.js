@@ -1580,8 +1580,8 @@ function getCookie(c_name)
         defaultParams: {
             trigger: 'click',
             exit: '[data-closed = "closed-js"]',
-            effon: 'show',
-            effoff: 'hide',
+            effon: 'fadeIn',
+            effoff: 'fadeOut',
             durationOn: 200,
             durationOff: 100,
             place: 'center',
@@ -1604,7 +1604,7 @@ function getCookie(c_name)
             delayAfter: 0,
             closeClick: false,
             closeEsc: false,
-            droppable: true,
+            droppable: false,
             before: function() {
             },
             after: function() {
@@ -1929,7 +1929,7 @@ function getCookie(c_name)
                 'closeClick': closeClick,
                 'closeEsc': closeEsc,
                 'droppable': droppable,
-                'dropableIn': false
+                'droppableIn': false
             }).attr('data-elrun', selSource);
             drop.off('click.drop', set.exit).on('click.drop', set.exit, function() {
                 methods.close($(this).closest('[data-elrun]'));
@@ -2249,7 +2249,7 @@ function getCookie(c_name)
         center: function(drop, start) {
             if (drop === undefined)
                 drop = this;
-            if (!drop.data('dropableIn')) {
+            if (!drop.data('droppableIn')) {
                 start = start === undefined ? true : false;
                 var method = drop.data('animate') && start ? 'animate' : 'css',
                         dropV = drop.is(':visible'),
@@ -2269,7 +2269,7 @@ function getCookie(c_name)
         noinherit: function(drop, start) {
             if (drop === undefined)
                 drop = this;
-            if (!drop.data('dropableIn')) {
+            if (!drop.data('droppableIn')) {
                 start = start === undefined ? true : false;
                 var method = drop.data('animate') && start ? 'animate' : 'css',
                         placement = drop.data('placement'),
@@ -2382,7 +2382,7 @@ function getCookie(c_name)
                     var condH = $(document).height() > wnd.height() && drop.data('place') == 'center';
 
                     body.on('mousemove.drop', function(e) {
-                        drop.data('dropableIn', true);
+                        drop.data('droppableIn', true);
                         var l = e.pageX - left,
                                 t = e.pageY - top;
                         l = l < 0 ? 0 : l;
