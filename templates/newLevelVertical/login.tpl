@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="horizontal-form frame-register">
-            <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', '#login_form');
+            <form method="post" id="login_form_main" onsubmit="ImageCMSApi.formAction('{site_url("/auth/authapi/login")}', '#login_form_main');
                     return false;">
                 <label>
                     <span class="title">{lang('Почта','newLevel')}</span>

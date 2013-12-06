@@ -240,9 +240,6 @@ class Commentsapi extends Comments {
         if (strstr($url, '/shop/'))
             return 'shop';
 
-        if (strstr($url, 'shop/'))
-            return 'shop';
-
         if (strstr($url, '/bloh/'))
             return 'core';
 

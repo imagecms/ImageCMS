@@ -1,9 +1,10 @@
 {$pricePrecision = ShopCore::app()->SSettings->pricePrecision}
+{$opi_otherlist = $opi_otherlist != false && $opi_otherlist != NULL}
 {foreach $products as $key => $p}
     {if $key >= $limit && isset($limit)}
         {break}
     {/if}
-    <li class="item-WL {if $p.stock == 0}not-avail{/if}">
+    <li class="globalFrameProduct item-WL {if $p.stock == 0}not-avail{/if}">
         <a href="{shop_url('product/' . $p.url)}" class="frame-photo-title">
             <span class="photo-block">
                 <span class="helper"></span>
@@ -11,7 +12,7 @@
                 <img data-original="{echo $photo}"
                      src="{$THEME}images/blank.gif"
                      alt="{echo ShopCore::encode($p.name)}"
-                     class="vimg lazy"/>
+                     class="vImg lazy"/>
                 {$discount = 0}
                 {promoLabel($p.action, $p.hot, $p.hit)}
             </span>
@@ -50,10 +51,10 @@
             <div class="funcs-buttons">
                 <!-- Start. Collect information about Variants, for future processing -->
                 {if $p.stock > 0}
-                    <div class="frame-count-buy variant_{echo $p.variant_id} variant">
-                        <div class="frame-count">
-                            <div class="number" data-title="{lang('количество на складе', 'newLevel')} {echo $p.stock}" data-prodid="{echo $p.id}" data-varid="{echo $p.variant_id}" data-rel="frameplusminus">
-                                <div class="frame-change-count">
+                    <div class="frame-count-buy js-variant-{echo $p.variant_id} js-variant">
+                        <div class="frame-count frameCount">
+                            <div class="number js-number" data-title="{lang('количество на складе', 'newLevel')} {echo $p.stock}" data-prodid="{echo $p.id}" data-varid="{echo $p.variant_id}">
+                                <div class="frame-change-count frameChangeCount">
                                     <div class="btn-plus">
                                         <button type="button">
                                             <span class="icon-plus"></span>
@@ -65,7 +66,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <input type="text" value="1" data-rel="plusminus" data-title="{lang('только цифры', 'newLevel')}" data-min="1" data-max="{echo $p.stock}">
+                                <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('только цифры', 'newLevel')}" data-min="1" data-max="{echo $p.stock}">
                             </div>
                         </div>
                         <div class="btn-buy">
@@ -93,7 +94,7 @@
                         </div>
                     </div>
                 {else:}
-                    <div class="btn-not-avail variant_{echo $p.variant_id} variant" >
+                    <div class="btn-not-avail js-variant-{echo $p.variant_id} js-variant" >
                         <button
                             class="infoBut"
                             type="button"
@@ -111,6 +112,7 @@
                             data-mediumImage="{echo $photo}"
                             data-img="{echo $photo}"
                             data-url="{echo shop_url('product/'.$p.url)}"
+                            >
                             <span class="icon-but"></span>
                             <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                         </button>
@@ -123,7 +125,7 @@
                 {$p[comment]}
             </p>
         {/if}
-        {if $p.access == 'private' || !$otherlist}
+        {if $p.access == 'private' || !$opi_otherlist}
             <div class="funcs-buttons-WL-item">
                 <div class="btn-remove-item-wl">
                     <button
@@ -135,7 +137,7 @@
                         data-effect-on="fadeIn"
                         data-effect-off="fadeOut"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
-                        data-callback="removeItem"
+                        data-after="removeItem"
                         ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
                 </div>
                 <div class="btn-move-item-wl">

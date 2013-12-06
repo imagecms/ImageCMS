@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-04 11:18+0200\n"
-"PO-Revision-Date: 2013-11-04 11:18+0200\n"
+"POT-Creation-Date: 2013-12-06 09:29+0200\n"
+"PO-Revision-Date: 2013-12-06 09:29+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -11,23 +11,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
-"X-Poedit-Basepath: \n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:11
-msgid "Fields groups"
-msgstr "Группы полей"
+#: ./application/modules/cfcm/templates/admin/index.tpl:47
+msgid "Without catagory"
+msgstr "Без категории"
 
 #: ./application/modules/cfcm/templates/admin/index.tpl:19
 msgid "Add field"
 msgstr "Добавить поле"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:47
-msgid "Without catagory"
-msgstr "Без категории"
+#: ./application/modules/cfcm/templates/admin/index.tpl:11
+msgid "Fields groups"
+msgstr "Группы полей"
 
 #: ./application/modules/cfcm/templates/admin/index.tpl:69
 msgid "List of additional fields is empty"
@@ -182,12 +183,10 @@ msgstr "ID"
 msgid "Edit"
 msgstr "Редактировать"
 
-# ��������
 #: ./application/modules/cfcm/templates/admin/group_list.tpl:101
 msgid "Empty group list or group list is empty"
 msgstr "Пустой список группы или группы список пуст"
 
-# ��������
 #: ./application/modules/cfcm/cfcm_forms.php:31
 msgid "To name will be prefixed with"
 msgstr "К имени будет добавлен префикс"

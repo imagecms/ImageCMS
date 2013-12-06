@@ -53,6 +53,7 @@
                         <button
                             type="submit"
                             onclick="serializeForm(this)"
+                            data-vid="{$varId}"
                             data-drop="#notification"
                             data-source="{if $wish_list_id}{site_url('/wishlist/wishlistApi/moveItem/'.$varId . '/' . $wish_list_id)}{else:}{site_url('/wishlist/wishlistApi/addItem/'.$varId)}{/if}"
                             data-type="json"
@@ -60,10 +61,10 @@
                             data-effect-on="fadeIn"
                             data-effect-off="fadeOut"
                             {if $wish_list_id}
-                                data-callback="reload"
+                                data-after="reload"
                                 data-start="validateWishPopup"
                             {else:}
-                                data-callback="addToWL"
+                                data-after="addToWL"
                                 data-start="validateWishPopup"
                             {/if}
                             >
