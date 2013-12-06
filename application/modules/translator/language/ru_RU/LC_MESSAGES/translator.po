@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-06 04:41+0200\n"
-"PO-Revision-Date: 2013-12-06 04:41+0200\n"
+"POT-Creation-Date: 2013-12-06 05:50+0200\n"
+"PO-Revision-Date: 2013-12-06 05:50+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/translator/assets/js/admin.js:886
+msgid "File was successfully saved."
+msgstr "Файл был успешно сохранен."
 
 #: ./application/modules/translator/admin.php:636
 #: ./application/modules/translator/admin.php:1150
@@ -482,10 +486,6 @@ msgstr "Комментарий"
 #: ./application/modules/translator/assets/admin/list.tpl:229
 msgid "Links"
 msgstr "Ссылки"
-
-#: ./application/modules/translator/assets/admin/list.tpl:240
-msgid "File not exist"
-msgstr "Файл не существует"
 
 #: ./application/modules/translator/assets/admin/list.tpl:242
 msgid "Create file"
