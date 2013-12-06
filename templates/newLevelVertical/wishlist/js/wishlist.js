@@ -58,7 +58,8 @@ var wishList = {
         $.post('/wishlist/wishlistApi/sync', function(data) {
             localStorage.setItem('wishList', data);
             $(document).trigger({
-                'type': 'wish_list_sync'
+                'type': 'wish_list_sync',
+                dataObj: data
             });
         })
     }
