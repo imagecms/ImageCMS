@@ -15,8 +15,8 @@
         {/if}
     </div>
     <div class="modal-body">
-        <div id="fileEdit" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 925px; margin-top: -15px;
-             margin-bottom: -15px;"></div>
+        <div id="fileEdit" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 995px; margin-top: -15px;
+             margin-bottom: -15px; margin-left: -15px;"></div>
     </div>
     <div class="modal-footer">
         <div class="pull-left" style="text-align: left">
@@ -119,16 +119,17 @@
                     <table class=" table-hover table-bordered" style="width: 140px; height: 50px; padding-left: 10px; border-left: 1px solid #ddd ">
                         <tr>
                             <td style="width: 90px; border: none!important"><b>{lang('All strings', 'translator')}:</b></td>
-                            <td style="width: 50px; border: none!important; color: grey"><b><i class="allStringsCount">300</i></b></td>
-                            <td style="width: 100px; border: none!important"><b>{lang('Not translated', 'translator')}:</b></td>
-                            <td style="width: 50px; border: none!important; color: grey"><b><i class="notTranslatedStringsCount">300</i></b></td>
+                            <td style="width: 50px; border: none!important; color: grey"><b><i class="allStringsCount"></i></b></td>
+                            <td style="width: 100px; border: none!important"><b>{lang('Fuzzy strings', 'translator')}:</b></td>
+                            <td style="width: 50px; border: none!important; color: grey"><b><i class="fuzzyStringsCount"></i></b></td>
+
                         </tr>
                         <tr>
                             <td style="width: 90px; border: none!important"><b>{lang('Translated', 'translator')}:</b></td>
-                            <td style="width: 50px; border: none!important; color: grey"><b><i class="translatedStringsCount">400</i></b></td>
-                            <td style="width: 100px; border: none!important"><b>{lang('Fuzzy strings', 'translator')}:</b></td>
-                            <td style="width: 50px; border: none!important; color: grey"><b><i class="fuzzyStringsCount">400</i></b></td>
-                        </tr>
+                            <td style="width: 50px; border: none!important; color: grey"><b><i class="translatedStringsCount"></i></b></td>
+                            <td style="width: 100px; border: none!important"><b>{lang('Not translated', 'translator')}:</b></td>
+                            <td style="width: 50px; border: none!important; color: grey"><b><i class="notTranslatedStringsCount"></i></b></td>
+                            </tr>
                     </table>
                 </div>
             </div>
@@ -236,9 +237,9 @@
                         <div class="alert alert-info" style="display: none">
                             {lang('There is no Po-file in such locale', 'translator')}                        
                         </div>
-                        <div class="alert alert-info fileNotExist" style="display: none; margin-top: 70px">
-                            <span style="font-size:15px">{lang('File not exist', 'translator')}...</span> 
-                            <a style="color: #5bb75b; font-size: 15px" onclick="Translator.createFile($(this))"><i><b>{lang('Create file', 'translator')}</b></i></a> 
+                        <div class="alert alert-error fileNotExist" style="display: none; margin-top: 70px">
+                            <span style="font-size:15px" class="errors"></span> 
+                            <a class="needToCreate" style="color: #5bb75b; font-size: 15px; display: none" onclick="Translator.createFile($(this))"><i><b>{lang('Create file', 'translator')}</b></i></a> 
                         </div>
 
 
