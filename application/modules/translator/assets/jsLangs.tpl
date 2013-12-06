@@ -1,5 +1,4 @@
 <script>
-langs["asdasdasd"] = '{echo lang("asdasdasd", "translator")}';
 langs["Message"] = '{echo lang("Message", "translator")}';
 langs["Successfully sorted."] = '{echo lang("Successfully sorted.", "translator")}';
 langs["Error"] = '{echo lang("Error", "translator")}';
@@ -12,6 +11,7 @@ langs["Origin language was successfully setted."] = '{echo lang("Origin language
 langs["Can not set origin language."] = '{echo lang("Can not set origin language.", "translator")}';
 langs["File was successfuly updated."] = '{echo lang("File was successfuly updated.", "translator")}';
 langs["File was successfully rendered."] = '{echo lang("File was successfully rendered.", "translator")}';
+langs["File was successfully saved."] = '{echo lang("File was successfully saved.", "translator")}';
 langs["You have not specified Yandex Api Key."] = '{echo lang("You have not specified Yandex Api Key.", "translator")}';
 langs["You have not specified origins strings language."] = '{echo lang("You have not specified origins strings language.", "translator")}';
 langs["Successfully translated"] = '{echo lang("Successfully translated", "translator")}';
