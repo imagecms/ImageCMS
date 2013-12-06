@@ -1,0 +1,130 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-04 12:24+0200\n"
+"PO-Revision-Date: 2013-12-04 12:24+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/mail_chimp/admin.php:65
+#: Array
+msgid "Campain not found"
+msgstr "Кампания не найдена"
+
+#: ./application/modules/mail_chimp/assets/admin/edit.tpl:20
+#: Array
+msgid "Save"
+msgstr "Сохранить"
+
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:64
+msgid "Subscribers"
+msgstr "Подписчики"
+
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:78
+msgid "Users"
+msgstr "Пользователи"
+
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:43
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:45
+msgid "Email subject"
+msgstr "Тема письма"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:12
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:37
+msgid "Delete"
+msgstr "Удалить"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:13
+msgid "Cancel"
+msgstr "Отменить"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:27
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:12
+msgid "Go back"
+msgstr "Вернуться"
+
+#: ./application/modules/mail_chimp/module_info.php:6
+msgid "Mail Chimp"
+msgstr "Mail Chimp"
+
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:36
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:38
+msgid "Email"
+msgstr "Email отправителя"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:21
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:6
+msgid "MailChimp"
+msgstr "MailChimp"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:56
+msgid "Campain created time"
+msgstr "Дата создания"
+
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:50
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:52
+msgid "Sender name"
+msgstr "Имя отправителя"
+
+#: ./application/modules/mail_chimp/admin.php:109
+msgid "Campain create successful"
+msgstr "Кампания создана успешно"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:54
+msgid "Campain title"
+msgstr "Название кампании"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:57
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:88
+msgid "Send"
+msgstr "Отправить"
+
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:26
+msgid "Subscribe"
+msgstr "Подписать"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:86
+msgid "Sendet"
+msgstr "Разослано"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:74
+msgid "Edit"
+msgstr "Редактировать"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:33
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:20
+msgid "Create campain"
+msgstr "Создание кампании"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:55
+msgid "Campain autor"
+msgstr "Создатель кампании"
+
+#: ./application/modules/mail_chimp/assets/admin/main.tpl:57
+msgid "Email text"
+msgstr "Текст рассылки"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:6
+msgid "Delete campains"
+msgstr "Удалить кампании"
+
+#: ./application/modules/mail_chimp/assets/admin/list.tpl:9
+msgid "Delete campains?"
+msgstr "Удалить кампании?"
+
+#: ./application/modules/mail_chimp/admin.php:55
+msgid "Successfuly deleted"
+msgstr "Успешно удалено"
+
