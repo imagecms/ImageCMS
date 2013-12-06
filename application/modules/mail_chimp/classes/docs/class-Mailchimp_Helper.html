@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Mailchimp_Helper</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?2821599371"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Mailchimp.html">Mailchimp</a></li>
+				<li><a href="class-Mailchimp_Campaigns.html">Mailchimp_Campaigns</a></li>
+				<li><a href="class-Mailchimp_Ecomm.html">Mailchimp_Ecomm</a></li>
+				<li><a href="class-Mailchimp_Folders.html">Mailchimp_Folders</a></li>
+				<li><a href="class-Mailchimp_Gallery.html">Mailchimp_Gallery</a></li>
+				<li class="active"><a href="class-Mailchimp_Helper.html">Mailchimp_Helper</a></li>
+				<li><a href="class-Mailchimp_Lists.html">Mailchimp_Lists</a></li>
+				<li><a href="class-Mailchimp_Mobile.html">Mailchimp_Mobile</a></li>
+				<li><a href="class-Mailchimp_Neapolitan.html">Mailchimp_Neapolitan</a></li>
+				<li><a href="class-Mailchimp_Reports.html">Mailchimp_Reports</a></li>
+				<li><a href="class-Mailchimp_Templates.html">Mailchimp_Templates</a></li>
+				<li><a href="class-Mailchimp_Users.html">Mailchimp_Users</a></li>
+				<li><a href="class-Mailchimp_Vip.html">Mailchimp_Vip</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Mailchimp_Absplit_UnknownError.html">Mailchimp_Absplit_UnknownError</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownSplitTest.html">Mailchimp_Absplit_UnknownSplitTest</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownTestType.html">Mailchimp_Absplit_UnknownTestType</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownWaitUnit.html">Mailchimp_Absplit_UnknownWaitUnit</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownWinnerType.html">Mailchimp_Absplit_UnknownWinnerType</a></li>
+				<li><a href="class-Mailchimp_Absplit_WinnerNotSelected.html">Mailchimp_Absplit_WinnerNotSelected</a></li>
+				<li><a href="class-Mailchimp_Avesta_Db_Exception.html">Mailchimp_Avesta_Db_Exception</a></li>
+				<li><a href="class-Mailchimp_Campaign_BounceMissing.html">Mailchimp_Campaign_BounceMissing</a></li>
+				<li><a href="class-Mailchimp_Campaign_DoesNotExist.html">Mailchimp_Campaign_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidAbsplit.html">Mailchimp_Campaign_InvalidAbsplit</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidAuto.html">Mailchimp_Campaign_InvalidAuto</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidContent.html">Mailchimp_Campaign_InvalidContent</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidOption.html">Mailchimp_Campaign_InvalidOption</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidRss.html">Mailchimp_Campaign_InvalidRss</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidSegment.html">Mailchimp_Campaign_InvalidSegment</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidStatus.html">Mailchimp_Campaign_InvalidStatus</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidTemplate.html">Mailchimp_Campaign_InvalidTemplate</a></li>
+				<li><a href="class-Mailchimp_Campaign_NotSaved.html">Mailchimp_Campaign_NotSaved</a></li>
+				<li><a href="class-Mailchimp_Campaign_StatsNotAvailable.html">Mailchimp_Campaign_StatsNotAvailable</a></li>
+				<li><a href="class-Mailchimp_Email_AlreadySubscribed.html">Mailchimp_Email_AlreadySubscribed</a></li>
+				<li><a href="class-Mailchimp_Email_AlreadyUnsubscribed.html">Mailchimp_Email_AlreadyUnsubscribed</a></li>
+				<li><a href="class-Mailchimp_Email_NotExists.html">Mailchimp_Email_NotExists</a></li>
+				<li><a href="class-Mailchimp_Email_NotSubscribed.html">Mailchimp_Email_NotSubscribed</a></li>
+				<li><a href="class-Mailchimp_Error.html">Mailchimp_Error</a></li>
+				<li><a href="class-Mailchimp_HttpError.html">Mailchimp_HttpError</a></li>
+				<li><a href="class-Mailchimp_Invalid_Analytics.html">Mailchimp_Invalid_Analytics</a></li>
+				<li><a href="class-Mailchimp_Invalid_ApiKey.html">Mailchimp_Invalid_ApiKey</a></li>
+				<li><a href="class-Mailchimp_Invalid_AppKey.html">Mailchimp_Invalid_AppKey</a></li>
+				<li><a href="class-Mailchimp_Invalid_DateTime.html">Mailchimp_Invalid_DateTime</a></li>
+				<li><a href="class-Mailchimp_Invalid_EcommOrder.html">Mailchimp_Invalid_EcommOrder</a></li>
+				<li><a href="class-Mailchimp_Invalid_Email.html">Mailchimp_Invalid_Email</a></li>
+				<li><a href="class-Mailchimp_Invalid_Folder.html">Mailchimp_Invalid_Folder</a></li>
+				<li><a href="class-Mailchimp_Invalid_IP.html">Mailchimp_Invalid_IP</a></li>
+				<li><a href="class-Mailchimp_Invalid_Options.html">Mailchimp_Invalid_Options</a></li>
+				<li><a href="class-Mailchimp_Invalid_PagingLimit.html">Mailchimp_Invalid_PagingLimit</a></li>
+				<li><a href="class-Mailchimp_Invalid_PagingStart.html">Mailchimp_Invalid_PagingStart</a></li>
+				<li><a href="class-Mailchimp_Invalid_SendType.html">Mailchimp_Invalid_SendType</a></li>
+				<li><a href="class-Mailchimp_Invalid_Template.html">Mailchimp_Invalid_Template</a></li>
+				<li><a href="class-Mailchimp_Invalid_TrackingOptions.html">Mailchimp_Invalid_TrackingOptions</a></li>
+				<li><a href="class-Mailchimp_Invalid_URL.html">Mailchimp_Invalid_URL</a></li>
+				<li><a href="class-Mailchimp_List_AlreadySubscribed.html">Mailchimp_List_AlreadySubscribed</a></li>
+				<li><a href="class-Mailchimp_List_CannotRemoveEmailMerge.html">Mailchimp_List_CannotRemoveEmailMerge</a></li>
+				<li><a href="class-Mailchimp_List_DoesNotExist.html">Mailchimp_List_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_List_InvalidBounceMember.html">Mailchimp_List_InvalidBounceMember</a></li>
+				<li><a href="class-Mailchimp_List_InvalidImport.html">Mailchimp_List_InvalidImport</a></li>
+				<li><a href="class-Mailchimp_List_InvalidInterestFieldType.html">Mailchimp_List_InvalidInterestFieldType</a></li>
+				<li><a href="class-Mailchimp_List_InvalidInterestGroup.html">Mailchimp_List_InvalidInterestGroup</a></li>
+				<li><a href="class-Mailchimp_List_InvalidMergeField.html">Mailchimp_List_InvalidMergeField</a></li>
+				<li><a href="class-Mailchimp_List_InvalidOption.html">Mailchimp_List_InvalidOption</a></li>
+				<li><a href="class-Mailchimp_List_InvalidUnsubMember.html">Mailchimp_List_InvalidUnsubMember</a></li>
+				<li><a href="class-Mailchimp_List_Merge_InvalidMergeID.html">Mailchimp_List_Merge_InvalidMergeID</a></li>
+				<li><a href="class-Mailchimp_List_MergeFieldRequired.html">Mailchimp_List_MergeFieldRequired</a></li>
+				<li><a href="class-Mailchimp_List_NotSubscribed.html">Mailchimp_List_NotSubscribed</a></li>
+				<li><a href="class-Mailchimp_List_TooManyInterestGroups.html">Mailchimp_List_TooManyInterestGroups</a></li>
+				<li><a href="class-Mailchimp_List_TooManyMergeFields.html">Mailchimp_List_TooManyMergeFields</a></li>
+				<li><a href="class-Mailchimp_Max_Size_Reached.html">Mailchimp_Max_Size_Reached</a></li>
+				<li><a href="class-Mailchimp_MC_ContentImport_InvalidArchive.html">Mailchimp_MC_ContentImport_InvalidArchive</a></li>
+				<li><a href="class-Mailchimp_MC_InvalidPayment.html">Mailchimp_MC_InvalidPayment</a></li>
+				<li><a href="class-Mailchimp_MC_PastedList_Duplicate.html">Mailchimp_MC_PastedList_Duplicate</a></li>
+				<li><a href="class-Mailchimp_MC_PastedList_InvalidImport.html">Mailchimp_MC_PastedList_InvalidImport</a></li>
+				<li><a href="class-Mailchimp_MC_SearchException.html">Mailchimp_MC_SearchException</a></li>
+				<li><a href="class-Mailchimp_Module_Unknown.html">Mailchimp_Module_Unknown</a></li>
+				<li><a href="class-Mailchimp_MonthlyPlan_Unknown.html">Mailchimp_MonthlyPlan_Unknown</a></li>
+				<li><a href="class-Mailchimp_Order_TypeUnknown.html">Mailchimp_Order_TypeUnknown</a></li>
+				<li><a href="class-Mailchimp_Parse_Exception.html">Mailchimp_Parse_Exception</a></li>
+				<li><a href="class-Mailchimp_PDOException.html">Mailchimp_PDOException</a></li>
+				<li><a href="class-Mailchimp_Request_TimedOut.html">Mailchimp_Request_TimedOut</a></li>
+				<li><a href="class-Mailchimp_ServerError_InvalidParameters.html">Mailchimp_ServerError_InvalidParameters</a></li>
+				<li><a href="class-Mailchimp_ServerError_MethodUnknown.html">Mailchimp_ServerError_MethodUnknown</a></li>
+				<li><a href="class-Mailchimp_Too_Many_Connections.html">Mailchimp_Too_Many_Connections</a></li>
+				<li><a href="class-Mailchimp_Unknown_Exception.html">Mailchimp_Unknown_Exception</a></li>
+				<li><a href="class-Mailchimp_User_CannotSendCampaign.html">Mailchimp_User_CannotSendCampaign</a></li>
+				<li><a href="class-Mailchimp_User_Disabled.html">Mailchimp_User_Disabled</a></li>
+				<li><a href="class-Mailchimp_User_DoesExist.html">Mailchimp_User_DoesExist</a></li>
+				<li><a href="class-Mailchimp_User_DoesNotExist.html">Mailchimp_User_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_User_InvalidAction.html">Mailchimp_User_InvalidAction</a></li>
+				<li><a href="class-Mailchimp_User_InvalidRole.html">Mailchimp_User_InvalidRole</a></li>
+				<li><a href="class-Mailchimp_User_MissingEmail.html">Mailchimp_User_MissingEmail</a></li>
+				<li><a href="class-Mailchimp_User_MissingModuleOutbox.html">Mailchimp_User_MissingModuleOutbox</a></li>
+				<li><a href="class-Mailchimp_User_ModuleAlreadyPurchased.html">Mailchimp_User_ModuleAlreadyPurchased</a></li>
+				<li><a href="class-Mailchimp_User_ModuleNotPurchased.html">Mailchimp_User_ModuleNotPurchased</a></li>
+				<li><a href="class-Mailchimp_User_NotApproved.html">Mailchimp_User_NotApproved</a></li>
+				<li><a href="class-Mailchimp_User_NotEnoughCredit.html">Mailchimp_User_NotEnoughCredit</a></li>
+				<li><a href="class-Mailchimp_User_UnderMaintenance.html">Mailchimp_User_UnderMaintenance</a></li>
+				<li><a href="class-Mailchimp_User_Unknown.html">Mailchimp_User_Unknown</a></li>
+				<li><a href="class-Mailchimp_ValidationError.html">Mailchimp_ValidationError</a></li>
+				<li><a href="class-Mailchimp_XML_RPC2_Exception.html">Mailchimp_XML_RPC2_Exception</a></li>
+				<li><a href="class-Mailchimp_XML_RPC2_FaultException.html">Mailchimp_XML_RPC2_FaultException</a></li>
+				<li><a href="class-Mailchimp_Zend_Uri_Exception.html">Mailchimp_Zend_Uri_Exception</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Mailchimp_Helper</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+		<b>Located at</b> <a href="source-class-Mailchimp_Helper.html#3-236" title="Go to source code">Mailchimp/Helper.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#4-6" title="Go to source code">__construct</a>( <span><code><a href="class-Mailchimp.html">Mailchimp</a></code> <var>$master</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="accountDetails" id="_accountDetails">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_accountDetails">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#8-92" title="Go to source code">accountDetails</a>( <span>array <var>$exclude</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve lots of account information including payments made, plan info, some
+account stats, installed modules, contact info, and more. No private information
+like Credit Card numbers is available.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve lots of account information including payments made, plan info, some
+account stats, installed modules, contact info, and more. No private information
+like Credit Card numbers is available.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$exclude</var></dt>
+					<dd><code>array</code><br>$exclude</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>containing the details for the account tied to this API Key - username string
+The Account username - user_id string The Account user unique id (for building
+some links) - is_trial bool Whether the Account is in Trial mode (can only send
+campaigns to less than 100 emails) - is_approved bool Whether the Account has
+been approved for purchases - has_activated bool Whether the Account has been
+activated - timezone string The timezone for the Account - default is
+"US/Eastern" - plan_type string Plan Type - "monthly", "payasyougo", or "free" -
+plan_low int &lt;em&gt;only for Monthly plans&lt;/em&gt; - the lower tier for
+list size - plan_high int &lt;em&gt;only for Monthly plans&lt;/em&gt; - the
+upper tier for list size - plan_start_date string &lt;em&gt;only for Monthly
+plans&lt;/em&gt; - the start date for a monthly plan - emails_left int
+&lt;em&gt;only for Free and Pay-as-you-go plans&lt;/em&gt; emails credits left
+for the account - pending_monthly bool Whether the account is finishing Pay As
+You Go credits before switching to a Monthly plan - first_payment string date of
+first payment - last_payment string date of most recent payment -
+times_logged_in int total number of times the account has been logged into via
+the web - last_login string date/time of last login via the web - affiliate_link
+string Monkey Rewards link for our Affiliate program - industry string the
+user's selected industry - contact associative_array Contact details for the
+account - fname string First Name - lname string Last Name - email string Email
+Address - company string Company Name - address1 string Address Line 1 -
+address2 string Address Line 2 - city string City - state string State or
+Province - zip string Zip or Postal Code - country string Country name - url
+string Website URL - phone string Phone number - fax string Fax number - modules
+array a struct for each addon module installed in the account - id string An
+internal module id - name string The module name - added string The date the
+module was added - data associative_array Any extra data associated with this
+module as key=&gt;value pairs - orders array a struct for each order for the
+account - order_id int The order id - type string The order type - either
+"monthly" or "credits" - amount double The order amount - date string The order
+date - credits_used double The total credits used - rewards associative_array
+Rewards details for the account including credits &amp; inspections earned,
+number of referrals, referral details, and rewards used - referrals_this_month
+int the total number of referrals this month - notify_on string whether or not
+we notify the user when rewards are earned - notify_email string the email
+address address used for rewards notifications - credits associative_array Email
+credits earned: - this_month int credits earned this month - total_earned int
+credits earned all time - remaining int credits remaining - inspections
+associative_array Inbox Inspections earned: - this_month int credits earned this
+month - total_earned int credits earned all time - remaining int credits
+remaining - referrals array a struct for each referral, including: - name string
+the name of the account - email string the email address associated with the
+account - signup_date string the signup date for the account - type string the
+source for the referral - applied array a struct for each applied rewards,
+including: - value int the number of credits user - date string the date applied
+- order_id int the order number credits were applied to - order_desc string the
+order description - integrations array a struct for each connected integrations
+that can be used with campaigns, including: - id int an internal id for the
+integration - name string the integration name - list_id string either "_any_"
+when globally accessible or the list id it's valid for use against - user_id
+string if applicable, the user id for the integrated system - account string if
+applicable, the user/account name for the integrated system - profiles array For
+Facebook, users/page that can be posted to. - id string the user or page id -
+name string the user or page name - is_page bool whether this is a user or a
+page<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="campaignsForEmail" id="_campaignsForEmail">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_campaignsForEmail">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#94-112" title="Go to source code">campaignsForEmail</a>( <span>associative_array <var>$email</var></span>, <span>associative_array <var>$options</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve minimal data for all Campaigns a member was sent</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve minimal data for all Campaigns a member was sent</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>associative_array</code><br>$email - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>associative_array</code><br>$options - list_id string optional A list_id to limit the campaigns to</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>an array of structs containing campaign data for each matching campaign (ordered
+by send time ascending), including: - id string the campaign unique id - title
+string the campaign's title - subject string the campaign's subject - send_time
+string the time the campaign was sent - type string the campaign type<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="chimpChatter" id="_chimpChatter">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_chimpChatter">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#114-127" title="Go to source code">chimpChatter</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return the current Chimp Chatter messages for an account.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return the current Chimp Chatter messages for an account.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>An array of structs containing data for each chatter message - message string
+The chatter message - type string The type of the message - one of
+lists:new-subscriber, lists:unsubscribes, lists:profile-updates,
+campaigns:facebook-likes, campaigns:facebook-comments,
+campaigns:forward-to-friend, lists:imports, or campaigns:inbox-inspections - url
+string a url into the web app that the message could link to, if applicable -
+list_id string the list_id a message relates to, if applicable. Deleted lists
+will return -DELETED- - campaign_id string the list_id a message relates to, if
+applicable. Deleted campaigns will return -DELETED- - update_time string The
+date/time the message was last updated<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateText" id="_generateText">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateText">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#129-146" title="Go to source code">generateText</a>( <span>string <var>$type</var></span>, <span>associative_array <var>$content</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Have HTML content auto-converted to a text-only format. You can send: plain
+HTML, an existing Campaign Id, or an existing Template Id. Note that this will
+&lt;strong&gt;not&lt;/strong&gt; save anything to or update any of your lists,
+campaigns, or templates. It's also not just Lynx and is very fine tuned for our
+template layouts - your mileage may vary.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Have HTML content auto-converted to a text-only format. You can send: plain
+HTML, an existing Campaign Id, or an existing Template Id. Note that this will
+&lt;strong&gt;not&lt;/strong&gt; save anything to or update any of your lists,
+campaigns, or templates. It's also not just Lynx and is very fine tuned for our
+template layouts - your mileage may vary.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type</dd>
+					<dt><var>$content</var></dt>
+					<dd><code>associative_array</code><br>$content - html string optional a single string value, - cid string a valid
+Campaign Id - user_template_id string the id of a user template -
+base_template_id string the id of a built in base/basic template -
+gallery_template_id string the id of a built in gallery template - url string a
+valid &amp; public URL to pull html content from</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>the content pass in converted to text. - text string the converted html<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="inlineCss" id="_inlineCss">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_inlineCss">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#148-158" title="Go to source code">inlineCss</a>( <span>string <var>$html</var></span>, <span>boolean <var>$strip_css</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Send your HTML content to have the CSS inlined and optionally remove the
+original styles.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Send your HTML content to have the CSS inlined and optionally remove the
+original styles.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$html</var></dt>
+					<dd><code>string</code><br>$html</dd>
+					<dt><var>$strip_css</var></dt>
+					<dd><code>boolean</code><br>$strip_css</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a "html" key - html string Your HTML content with all CSS inlined, just
+like if we sent it.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listsForEmail" id="_listsForEmail">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listsForEmail">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#160-174" title="Go to source code">listsForEmail</a>( <span>associative_array <var>$email</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve minimal List data for all lists a member is subscribed to.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve minimal List data for all lists a member is subscribed to.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>associative_array</code><br>$email - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>An array of structs with info on the list_id the member is subscribed to. - id
+string the list unique id - the web_id id referenced in web interface urls - the
+name list name<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ping" id="_ping">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ping">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#176-186" title="Go to source code">ping</a>( )</code>
+
+		<div class="description short">
+			
+<p>"Ping" the MailChimp API - a simple method you can call that will return a
+constant value as long as everything is good. Note than unlike most all of our
+methods, we don't throw an Exception if we are having issues. You will simply
+receive a different string back that will explain our view on what is going
+on.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>"Ping" the MailChimp API - a simple method you can call that will return a
+constant value as long as everything is good. Note than unlike most all of our
+methods, we don't throw an Exception if we are having issues. You will simply
+receive a different string back that will explain our view on what is going
+on.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>a with a "msg" key - msg string containing "Everything's Chimpy!" if everything
+is chimpy, otherwise returns an error message<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="searchCampaigns" id="_searchCampaigns">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_searchCampaigns">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#188-204" title="Go to source code">searchCampaigns</a>( <span>string <var>$query</var></span>, <span>integer <var>$offset</var> = <span class="php-num">0</span></span>, <span>string <var>$snip_start</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$snip_end</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Search all campaigns for the specified query terms</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Search all campaigns for the specified query terms</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$offset</var></dt>
+					<dd><code>integer</code><br>$offset</dd>
+					<dt><var>$snip_start</var></dt>
+					<dd><code>string</code><br>$snip_start</dd>
+					<dt><var>$snip_end</var></dt>
+					<dd><code>string</code><br>$snip_end</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>containing the total matches and current results - total int total campaigns
+matching - results array matching campaigns and snippets - snippet string the
+matching snippet for the campaign - campaign associative_array the matching
+campaign's details - will return same data as single campaign from
+campaigns/list() - summary associative_array if available, the matching
+campaign's report/summary data, other wise empty<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="searchMembers" id="_searchMembers">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_searchMembers">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#206-222" title="Go to source code">searchMembers</a>( <span>string <var>$query</var></span>, <span>string <var>$id</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$offset</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Search account wide or on a specific list using the specified query terms</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Search account wide or on a specific list using the specified query terms</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$offset</var></dt>
+					<dd><code>integer</code><br>$offset</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>An array of both exact matches and partial matches over a full search -
+exact_matches associative_array containing the total matches and current results
+- total int total members matching - members array each entry will be struct
+matching the data format for a single member as returned by lists/member-info()
+- full_search associative_array containing the total matches and current results
+- total int total members matching - members array each entry will be struct
+matching the data format for a single member as returned by lists/member-info()<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="verifiedDomains" id="_verifiedDomains">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_verifiedDomains">#</a>
+		<code><a href="source-class-Mailchimp_Helper.html#224-234" title="Go to source code">verifiedDomains</a>( )</code>
+
+		<div class="description short">
+			
+<p>Retrieve all domain verification records for an account</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve all domain verification records for an account</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>structs for each domain verification has been attempted for - domain string the
+verified domain - status string the status of the verification - either
+"verified" or "pending" - email string the email address used for verification -
+"pre-existing" if we automatically backfilled it at some point<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
