@@ -807,7 +807,11 @@ class Admin extends BaseAdminController {
                     $this->resize_and_thumb($data[$i]['upload_data']);
                     $this->add_image($album_id, $data[$i]['upload_data']);
                 }
-                $this->conf = $temp_conf;
+                $buf = $this->conf['upload_path'];
+
+				$this->conf = $temp_conf;
+				$this->conf['upload_path'] = $buf;
+				
                 $i++;
             }
 
