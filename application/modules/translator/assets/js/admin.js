@@ -112,23 +112,28 @@ var Sort = {
         }
     },
     showResults: function(curElement, results) {
-        $('#po_table tbody').html(results);
+        if (results) {
+            $('#po_table tbody').html(results);
 
-        var per_page = this.per_page;
-        $('#po_table tbody tr').each(function(iteration) {
-            iteration = iteration / 2;
-            if (iteration < per_page) {
-                $(this).show();
+            var per_page = this.per_page;
+            $('#po_table tbody tr').each(function(iteration) {
+                iteration = iteration / 2;
+                if (iteration < per_page) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+            $(curElement).addClass('active');
+            if ($(curElement).hasClass('asc')) {
+                $(curElement).removeClass('asc').addClass('desc');
             } else {
-                $(this).hide();
+                $(curElement).removeClass('desc').addClass('asc');
             }
-        });
-
-        $(curElement).addClass('active');
-        if ($(curElement).hasClass('asc')) {
-            $(curElement).removeClass('asc').addClass('desc');
+            showMessage(lang('Message'), lang('Successfully sorted.'));
         } else {
-            $(curElement).removeClass('desc').addClass('asc');
+            showMessage(lang('Error'), lang('Can not sort.'), 'r');
         }
     },
     go: function(curElement) {
@@ -371,16 +376,16 @@ var Search = {
                 $($('.pagination ul li')[1]).addClass('active');
 
                 if (this.countResults) {
-                    showMessage('Message', 'Was found ' + this.countResults + 'results');
+                    showMessage(lang('Message'), lang('Number of searched matches') + ': ' + this.countResults + '.');
                 } else {
-                    showMessage('Message', 'Was not found any results', 'r')
+                    showMessage(lang('Message'), lang('Was not found any results'), 'r')
                 }
                 this.countResults = 0;
             } else {
-                showMessage('Error', 'Please, enter more than 1 symbol', 'r')
+                showMessage(lang('Error'), lang('Please, enter more than 1 symbol'), 'r')
             }
         } else {
-            showMessage('Error', 'You did not select search criteria', 'r')
+            showMessage(lang('Error'), lang('You did not select search criteria'), 'r')
         }
     },
     goOnEnterPress: function() {
@@ -545,16 +550,32 @@ var Translator = {
         }
     },
     render: function(data) {
-        if (data === 'no file') {
-            $('#po_table tbody').html('');
-            $('#po_table').css('display', 'none');
-            $('.pagination ul').html('');
-            $('.fileNotExist').show();
-            $('.pathHolder').html('');
-            $('.po_settings').html('');
-            $('.pathParseHolder').hide();
-            return false;
+        try
+        {
+            var respons = $.parseJSON(data);
+            if (typeof respons == 'object') {
+                console.log('333')
+                var respons = JSON.parse(data);
+                if (respons['error']) {
+                    $('#po_table tbody').html('');
+                    $('#po_table').css('display', 'none');
+                    $('.pagination ul').html('');
+                    $('.fileNotExist').show();
+                    $('.fileNotExist .errors').html(respons['errors']);
+                    if (respons['type'] == 'create') {
+                        $('.fileNotExist .needToCreate').show();
+                    }
+                    $('.pathHolder').html('');
+                    $('.po_settings').html('');
+                    $('.pathParseHolder').hide();
+                    return false;
+                }
+            }
         }
+        catch (err)
+        {
+        }
+
 
         $('#cancel').removeAttr('disabled');
         if (!data) {
@@ -590,44 +611,6 @@ var Translator = {
 
 
     },
-    translateString: function(curElement) {
-        var YandexApiKey = $.trim($('.YandexApiKey').val());
-        var originLang = $('#originLang').val();
-
-        if (!YandexApiKey) {
-            showMessage('Error', 'You have not specified Yandex Api Key.', 'r');
-            return false;
-        }
-
-        if (!originLang) {
-            showMessage('Error', 'You have not specified origins strings language.', 'r');
-            return false;
-        }
-
-        var word = $.trim($(curElement).next('.origin').val());
-        var originTR = $(curElement).closest('tr');
-        var translationTR = originTR.next();
-        var translation = translationTR.find('.translation').val();
-        var lang = $('#langs').val();
-        lang = lang.split("_", 1);
-
-        translationTR.find('.translationTEMP').val(translation);
-        translationTR.find('.translationCancel').show();
-        $.ajax({
-            type: 'POST',
-            data: {
-                word: word
-            },
-            url: '/admin/components/init_window/translator/translateWord/' + lang,
-            success: function(Answer) {
-                Answer = JSON.parse(Answer);
-                if (Answer.code == '200') {
-                    translationTR.find('.translation').val(Answer.text[0]);
-                    Translator.statisticRecount();
-                }
-            }
-        });
-    },
     setOriginsLang: function(curElement) {
         var originLang = $(curElement).val();
         $.ajax({
@@ -637,6 +620,11 @@ var Translator = {
             },
             url: '/admin/components/init_window/translator/setSettings',
             success: function(data) {
+                if (data) {
+                    showMessage(lang('Message'), lang('Origin language was successfully setted.'));
+                } else {
+                    showMessage(lang('Error'), lang('Can not set origin language.', 'r'));
+                }
             }
         });
     },
@@ -849,7 +837,7 @@ var Translator = {
     openFileToEdit: function(curElement) {
         var filePath = $(curElement).val();
         var line = filePath.slice(filePath.indexOf(':') + 1, filePath.length);
-        filePath = filePath.slice(2, filePath.indexOf(':'));
+        filePath = filePath.slice(0, filePath.indexOf(':'));
         var originString = $(curElement).closest('tr').find('.origin').val();
         this.filePath = filePath;
         var url = '/admin/components/init_window/translator/renderFile';
@@ -860,20 +848,30 @@ var Translator = {
             },
             url: url,
             success: function(data) {
-                var fileContent = JSON.parse(data);
-                var fileExtention = filePath.match(/\.([a-z]{2,4})/);
-                if (fileExtention) {
-                    fileExtention = fileExtention[1];
+                var response = JSON.parse(data);
+                if (response['success']) {
+                    var fileContent = response['data'];
+                    var fileExtention = filePath.match(/\.([a-z]{2,4})/);
+                    if (fileExtention) {
+                        fileExtention = fileExtention[1];
+                    }
+                    AceEditor.render(fileContent, line, fileExtention);
+                    $('.originStringInFileEdit').html(originString);
+                    $('.originStringLineInFileEdit').html(line);
+                    showMessage(lang('Message'), lang('File was successfully rendered.'));
+                    $('.modal_file_edit').modal();
+                } else {
+                    if (response['error']) {
+                        showMessage(lang('Error'), response['errors'], 'r');
+                    }
                 }
-                AceEditor.render(fileContent, line, fileExtention);
-                $('.originStringInFileEdit').html(originString);
-                $('.originStringLineInFileEdit').html(line);
+
             }
         });
-        $('.modal_file_edit').modal();
+
     },
     saveEditingFile: function(curElement) {
-        var fileText = this.editor.getValue();
+        var fileText = AceEditor.editor.getValue();
         var url = '/admin/components/init_window/translator/saveEditingFile';
         $.ajax({
             type: 'POST',
@@ -883,7 +881,15 @@ var Translator = {
             },
             url: url,
             success: function(data) {
-
+                var response = JSON.parse(data);
+                if (response['success']) {
+                    showMessage(lang('Message'), lang('File was successfully saved.'));
+                    $('.modal').modal('hide');
+                } else {
+                    if (response['error']) {
+                        showMessage(lang('Error'), response['errors'], 'r');
+                    }
+                }
             }
         });
 
@@ -893,12 +899,12 @@ var Translator = {
         var originLang = $('#originLang').val();
 
         if (!YandexApiKey) {
-            showMessage('Error', 'You have not specified Yandex Api Key.', 'r');
+            showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
             return false;
         }
 
         if (!originLang) {
-            showMessage('Error', 'You have not specified origins strings language.', 'r');
+            showMessage(lang('Error'), lang('You have not specified origins strings language.'), 'r');
             return false;
         }
 
@@ -914,14 +920,90 @@ var Translator = {
                 lang: lang
             },
             url: this.getUrl('translate'),
-            success: function(data) {
-                if (data) {
-                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
-                    $('#po_table tbody').html(tableData);
-                    Translator.statisticRecount();
+            success: function(response) {
+                if (response) {
+                    var data = JSON.parse(response);
+                    var answers = data['answers'];
+                    var maxCode = Math.max.apply(Math, answers);
+                    Translator.getAnswerCodeMessage(maxCode);
+                    if (maxCode == '200') {
+                        var tableData = data['data'].replace(/<script[\W\w]+<\/script>/, '');
+                        $('#po_table tbody').html(tableData);
+                        Translator.statisticRecount();
+                    }
                 }
             }
         });
+    },
+    translateString: function(curElement) {
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
+        var originLang = $('#originLang').val();
+
+        if (!YandexApiKey) {
+            showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
+            return false;
+        }
+
+        if (!originLang) {
+            showMessage(lang('Error'), lang('You have not specified origins strings language.'), 'r');
+            return false;
+        }
+
+        var word = $.trim($(curElement).next('.origin').val());
+        var originTR = $(curElement).closest('tr');
+        var translationTR = originTR.next();
+        var translation = translationTR.find('.translation').val();
+        var language = $('#langs').val();
+        language = language.split("_", 1);
+
+        translationTR.find('.translationTEMP').val(translation);
+        translationTR.find('.translationCancel').show();
+        $.ajax({
+            type: 'POST',
+            data: {
+                word: word
+            },
+            url: '/admin/components/init_window/translator/translateWord/' + language,
+            success: function(Answer) {
+                Answer = JSON.parse(Answer);
+                if (Answer.code == '200') {
+                    translationTR.find('.translation').val(Answer.text[0]);
+                    Translator.statisticRecount();
+                }
+                Translator.getAnswerCodeMessage(Answer.code);
+            }
+        });
+    },
+    getAnswerCodeMessage: function(code) {
+        switch (code.toString()) {
+            case '200':
+                showMessage(lang('Message'), lang('Successfully translated'));
+                break;
+            case '401':
+                showMessage(lang('Error'), lang('Wrong API key.'), 'r');
+                break;
+            case '402':
+                showMessage(lang('Error'), lang('API key is locked.'), 'r');
+                break;
+            case '403':
+                showMessage(lang('Error'), lang('Exceeded the daily limit on the number of requests.'), 'r');
+                break;
+            case '404':
+                showMessage(lang('Error'), lang('Exceeded the daily limit on the amount of translated text.'), 'r');
+                break;
+            case '413':
+                showMessage(lang('Error'), lang('Exceeded the maximum allowable size of text.'), 'r');
+                break;
+            case '422':
+                showMessage(lang('Error'), lang('Text can not be translated.'), 'r');
+                break;
+            case '501':
+                showMessage(lang('Error'), lang('Set direction of translation is not supported.'), 'r');
+                break;
+            default:
+                showMessage(lang('Error'), lang('Translation fails.'), 'r');
+
+        }
     },
     getPoArray: function() {
         var origins = $('#po_table .originTR');
@@ -959,6 +1041,11 @@ var Translator = {
             },
             url: '/admin/components/init_window/translator/setSettings',
             success: function(data) {
+                if (data) {
+                    showMessage(lang('Message'), lang('Yandex Api Key was successfully setted.'));
+                } else {
+                    showMessage(lang('Error'), lang('Can not set Yandex Api Key.', 'r'));
+                }
             }
         });
     }
@@ -1155,10 +1242,7 @@ var AceEditor = {
     },
     render: function(fileContent, selectedLine, fileExtention) {
         this.init();
-        this.editor.setValue('');
-        for (var fileLine in fileContent) {
-            this.editor.setValue(this.editor.getValue() + fileContent[fileLine]);
-        }
+        this.editor.setValue(fileContent);
         this.editor.gotoLine(selectedLine, 0, false);
         this.setTheme();
         if (fileExtention) {
@@ -1185,8 +1269,4 @@ function escapeHtml(text) {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
-}
-
-function lang(str) {
-    console.log(str)
 }
