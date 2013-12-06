@@ -24,6 +24,7 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+                
     }
 
     /**
@@ -53,7 +54,7 @@ class Admin extends BaseAdminController {
         if ($this->input->post('YandexApiKey')) {
             $settings['YandexApiKey'] = $this->input->post('YandexApiKey');
         }
-        
+
         if ($this->input->post('theme')) {
             $settings['editorTheme'] = $this->input->post('theme');
         }
@@ -161,7 +162,7 @@ class Admin extends BaseAdminController {
                 ->setData('settings', $settings)
                 ->setData('locales', $locales_unique)
                 ->setData('editorStyles', $this->getEditorStyles())
-                ->renderAdmin('list');
+                ->renderAdmin('list', FALSE, FALSE);
 
 
 
@@ -180,6 +181,7 @@ class Admin extends BaseAdminController {
             $names = preg_replace('/<link[\W\w]+\/>/', '', $names);
             $names = preg_replace('/<script[\W\w]+<\/script>/', '', $names);
             $data = trim(preg_replace('/\s\s+/', ' ', $po_table));
+//            $data = preg_replace('/<script>[a-zA-Z\[\];\s\.\=\(\)\,\_\-\!\?"]+<\/script>/', '', $data);
             jsCode("Translator.start('" . $data . "','" . $names . "', '" . $type . "', '" . $lang . "', '" . $name . "');");
         }
     }
@@ -233,7 +235,7 @@ class Admin extends BaseAdminController {
                         ->setData('po_array', $receiverPoArray)
                         ->setData('paths', $this->paths)
                         ->setData('page', 1)
-                        ->fetchAdminTemplate('po_table');
+                        ->fetchAdminTemplate('po_table', FALSE);
                 return $this->index(TRUE);
             }
         } else {
@@ -277,12 +279,12 @@ class Admin extends BaseAdminController {
                 }
 
                 if (file_exists($url)) {
-                    return showMessage(lang('File is already exists.'), lang('Error'), 'r');
+                    return showMessage(lang('File is already exists.'), lang('Error', 'translator'), 'r');
                 }
 
                 $handle = @fopen($url, "wb");
                 if (!$handle) {
-                    return showMessage(lang('Can not create file. Check if path to the file is correct - ') . $url, lang('Error'), 'r');
+                    return showMessage(lang('Can not create file. Check if path to the file is correct - ') . $url, lang('Error', 'translator'), 'r');
                 }
                 fwrite($handle, b"\xEF\xBB\xBF");
                 if ($handle !== false) {
@@ -329,7 +331,7 @@ class Admin extends BaseAdminController {
                 }
                 chmod($url, 0777);
                 fclose($handle);
-                showMessage(lang('File was succcessfuly created.'), lang('Message'));
+                showMessage(lang('File was succcessfuly created.'), lang('Message', 'translator'));
 
                 if ($this->input->post('action') == 'showEdit') {
                     $this->session->set_userdata('translation', array(
@@ -435,7 +437,7 @@ class Admin extends BaseAdminController {
         $langs = $langs[$lang];
         return \CMSFactory\assetManager::create()
                         ->setData('langs', $langs)
-                        ->fetchAdminTemplate('modules_names');
+                        ->fetchAdminTemplate('modules_names', FALSE);
     }
 
     public function renderTemplatesNames($lang) {
@@ -443,7 +445,7 @@ class Admin extends BaseAdminController {
         $langs = $langs[$lang];
         return \CMSFactory\assetManager::create()
                         ->setData('langs', $langs)
-                        ->fetchAdminTemplate('templates_names');
+                        ->fetchAdminTemplate('templates_names', FALSE);
     }
 
     public function renderModulePoFile($module_template, $type, $lang, $offset = 0, $limit = 10) {
@@ -464,7 +466,7 @@ class Admin extends BaseAdminController {
                             ->setData('paths', $this->paths)
                             ->setData('page', $page)
                             ->setData('rows_count', ceil(count($translations) / ($limit + 1)))
-                            ->fetchAdminTemplate('po_table');
+                            ->fetchAdminTemplate('po_table', FALSE);
         } else {
             return 'no file';
         }
@@ -500,28 +502,32 @@ class Admin extends BaseAdminController {
 
             if (preg_match('/Last-Translator/', $line)) {
                 $from = strpos($line, ':');
-                $last_translator = '';
-                if (substr($line, -5, -4) == '\\') {
-                    $last_translator = explode(' ', substr($line, $from + 2, -5));
-                } else {
-                    $last_translator = explode(' ', substr($line, $from + 2, -4));
-                }
+                if ($from) {
+                    $last_translator = '';
+                    if (substr($line, -5, -4) == '\\') {
+                        $last_translator = explode(' ', substr($line, $from + 2, -5));
+                    } else {
+                        $last_translator = explode(' ', substr($line, $from + 2, -4));
+                    }
 
-                $this->po_settings['Last-Translator-Name'] = $last_translator[0];
-                $this->po_settings['Last-Translator-Email'] = $last_translator[1];
+                    $this->po_settings['Last-Translator-Name'] = $last_translator[0];
+                    $this->po_settings['Last-Translator-Email'] = $last_translator[1];
+                }
             }
 
             if (preg_match('/Language-Team/', $line)) {
                 $from = strpos($line, ':');
-                $lang_team = '';
-                if (substr($line, -5, -4) == '\\') {
-                    $lang_team = explode(' ', substr($line, $from + 2, -5));
-                } else {
-                    $lang_team = explode(' ', substr($line, $from + 2, -4));
-                }
+                if ($from) {
+                    $lang_team = '';
+                    if (substr($line, -5, -4) == '\\') {
+                        $lang_team = explode(' ', substr($line, $from + 2, -5));
+                    } else {
+                        $lang_team = explode(' ', substr($line, $from + 2, -4));
+                    }
 
-                $this->po_settings['Language-Team-Name'] = $lang_team[0];
-                $this->po_settings['Language-Team-Email'] = $lang_team[1];
+                    $this->po_settings['Language-Team-Name'] = $lang_team[0];
+                    $this->po_settings['Language-Team-Email'] = $lang_team[1];
+                }
             }
 
             if (preg_match('/X-Poedit-Language/', $line)) {
@@ -544,24 +550,28 @@ class Admin extends BaseAdminController {
 
             if (preg_match('/Basepath/', $line)) {
                 $from = strpos($line, ':');
-                if (substr($line, -5, -4) == '\\') {
-                    $this->paths[]['base'] = substr($line, $from + 2, -5);
-                } else {
-                    $this->paths[]['base'] = substr($line, $from + 2, -4);
+                if ($from) {
+                    if (substr($line, -5, -4) == '\\') {
+                        $this->paths[]['base'] = substr($line, $from + 2, -5);
+                    } else {
+                        $this->paths[]['base'] = substr($line, $from + 2, -4);
+                    }
                 }
             }
 
             if (preg_match('/SearchPath/', $line)) {
                 $from = strpos($line, ':');
-                if (substr($line, -5, -4) == '\\') {
-                    $this->paths[] = trim(substr($line, $from + 2, -5));
-                } else {
-                    $this->paths[] = trim(substr($line, $from + 2, -4));
+                if ($from) {
+                    if (substr($line, -5, -4) == '\\') {
+                        $this->paths[] = trim(substr($line, $from + 2, -5));
+                    } else {
+                        $this->paths[] = trim(substr($line, $from + 2, -4));
+                    }
                 }
             }
 
             if (substr($line, 0, 1) == '#' && substr($line, 0, 2) != '#:' && substr($line, 0, 2) != '#,') {
-                $comment = trim(substr(trim(substr($line, 1)), 0, -1));
+                $comment = trim(substr(trim(substr($line, 1)), 0, strlen($line)));
             }
             if (substr($line, 0, 2) == '#,') {
                 $fuzzy = TRUE;
@@ -634,7 +644,7 @@ class Admin extends BaseAdminController {
         }
 
         if (!$this->checkFile($url)) {
-            return showMessage($this->fileError, lang('Error'), 'r');
+            return showMessage($this->fileError, lang('Error', 'translator'), 'r');
         }
 
         $handle = @fopen($url, "wb");
@@ -724,9 +734,9 @@ class Admin extends BaseAdminController {
             }
 
             if ($this->convertToMO($url)) {
-                showMessage(lang('Translation file was successfuly saved.'), lang('Message'));
+                showMessage(lang('Translation file was successfuly saved.'), lang('Message', 'translator'));
             } else {
-                showMessage(lang('Operation failed. Can not convert to mo-file.'), lang('Error'), 'r');
+                showMessage(lang('Operation failed. Can not convert to mo-file.'), lang('Error', 'translator'), 'r');
             }
         }
     }
@@ -734,10 +744,10 @@ class Admin extends BaseAdminController {
     public function canselTranslation() {
         $this->session->unset_userdata('translation');
         if (!$this->session->userdata('translation')) {
-            showMessage(lang('Selection path memory was successfuly cleared.'), lang('Message'));
+            showMessage(lang('Selection path memory was successfuly cleared.'), lang('Message', 'translator'));
             jsCode('window.location.reload();');
         } else {
-            showMessage(lang('Operation failed!'), lang('Error'), 'r');
+            showMessage(lang('Operation failed!'), lang('Error', 'translator'), 'r');
         }
     }
 
@@ -821,7 +831,7 @@ class Admin extends BaseAdminController {
                             ->setData('po_array', $po_array)
                             ->setData('page', 1)
                             ->setData('rows_count', ceil(count($po_array) / 11))
-                            ->fetchAdminTemplate('po_table');
+                            ->fetchAdminTemplate('po_table', FALSE);
         }
     }
 
@@ -1012,7 +1022,7 @@ class Admin extends BaseAdminController {
                         ->setData('po_array', $currentLangs)
                         ->setData('page', 1)
                         ->setData('rows_count', ceil(count($currentLangs) / 11))
-                        ->fetchAdminTemplate('po_table');
+                        ->fetchAdminTemplate('po_table', FALSE);
     }
 
     public function makeCorrectUrl($from = '', $to = "") {
@@ -1077,7 +1087,7 @@ class Admin extends BaseAdminController {
                         ->setData('po_array', $result_array)
                         ->setData('page', 1)
                         ->setData('rows_count', ceil(count($result_array) / 11))
-                        ->fetchAdminTemplate('po_table');
+                        ->fetchAdminTemplate('po_table', FALSE);
     }
 
     public function renderFile() {
