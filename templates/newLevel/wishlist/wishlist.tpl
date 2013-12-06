@@ -85,7 +85,7 @@
                                                     data-drop="#notification"
                                                     data-effect-on="fadeIn"
                                                     data-effect-off="fadeOut"
-                                                    data-after="createWishList"
+                                                    data-after="WishListFront.createWishList"
                                                     >
                                                     <span class="text-el">{lang('Создать новий список','newLevel')}</span>
                                                 </button>
@@ -149,7 +149,7 @@
                                                         data-modal="true"
 
                                                         data-drop="#notification"
-                                                        data-after="removeWL"
+                                                        data-after="WishListFront.removeWL"
                                                         data-confirm="true"
 
                                                         data-effect-on="fadeIn"
@@ -262,7 +262,7 @@
 
                                                     data-drop="#notification"
                                                     data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
-                                                    data-after="deleteImage"
+                                                    data-after="WishListFront.deleteImage"
                                                     data-wishlist="delete_img"
 
                                                     data-effect-on="fadeIn"
@@ -326,7 +326,7 @@
 
                                             data-drop="#notification"
                                             onclick="serializeForm(this)"
-                                            data-after="changeDataWishlist"
+                                            data-after="WishListFront.changeDataWishlist"
                                             >
                                             <span class="text-el">{lang('Сохранить','newLevel')}</span>
                                         </button>

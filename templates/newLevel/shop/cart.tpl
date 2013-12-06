@@ -300,7 +300,7 @@
         <!-- for single product -->
                                 <% if (!item.kit) { %>
                                 <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cart-product">
-                                    <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
+                                    <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="ShopFront.Cart.rm(this);"></button></td>
                                     <td class="frame-items">
                                         <a href="<%-item.url%>" class="frame-photo-title">
                                             <span class="photo-block">
@@ -355,7 +355,7 @@
                                                         </div>
                                                         <input type="text" value="<%- item.count %>" class="plusMinus plus-minus" data-title="{/literal}{lang('Только цифры','newLevel')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                                     </div>
-                                                    <span class="countOrCompl"><%-pluralStr(item.count, plurProd)%></span>
+                                                    <span class="countOrCompl"><%-pluralStr(item.count, text.plurProd)%></span>
                                                 </div>
                                             </div>
                                             <div class="frame-cur-sum-price">
@@ -403,7 +403,7 @@
                                 <% var prodstatus = typeof item.prodstatus == "string" ? JSON.parse(item.prodstatus) : item.prodstatus %>
 
                                 <tr class="row-kits rowKits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-kitId="<%- item.kitId %>" data-id="popupKit_<%- item.kitId %>">
-                                    <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
+                                    <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="ShopFront.Cart.rm(this, true);"></button></td>
                                     <td class="frame-items frame-items-kit">
                                         <ul class="items items-bask">
                                             <% _.each(prices, function(id){  %>
@@ -508,7 +508,7 @@
                                                     </div>
                                                     <input type="text" value="<%- item.count %>" class="plusMinus plus-minus" data-title="{/literal}{lang('Только цифры','newLevel')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                                 </div>
-                                                <span class="countOrCompl"><%-pluralStr(item.count, plurKits)%></span>
+                                                <span class="countOrCompl"><%-pluralStr(item.count, text.plurKits)%></span>
                                             </div>
                                         </div>
                                         </div>
@@ -654,5 +654,5 @@
 </script>
 {/* <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}
 <script type="text/javascript">
-    initDownloadScripts(['order'], 'initOrderTrEv', 'initOrder');
+    initDownloadScripts(['_order'], 'initOrderTrEv', 'initOrder');
 </script>

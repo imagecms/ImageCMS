@@ -283,7 +283,7 @@
                             <div class="short-desc">
                                 {echo strip_tags($p->getShortDescription())}
                             </div>
-                        {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId(), 1)}
+                        {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId())}
                             <div class="short-desc">
                                 <p>{echo $props}</p>
                             </div>
