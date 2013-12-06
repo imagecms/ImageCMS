@@ -837,7 +837,7 @@ var Translator = {
     openFileToEdit: function(curElement) {
         var filePath = $(curElement).val();
         var line = filePath.slice(filePath.indexOf(':') + 1, filePath.length);
-        filePath = filePath.slice(2, filePath.indexOf(':'));
+        filePath = filePath.slice(0, filePath.indexOf(':'));
         var originString = $(curElement).closest('tr').find('.origin').val();
         this.filePath = filePath;
         var url = '/admin/components/init_window/translator/renderFile';
@@ -868,10 +868,10 @@ var Translator = {
 
             }
         });
-        
+
     },
     saveEditingFile: function(curElement) {
-        var fileText = this.editor.getValue();
+        var fileText = AceEditor.editor.getValue();
         var url = '/admin/components/init_window/translator/saveEditingFile';
         $.ajax({
             type: 'POST',
@@ -881,7 +881,15 @@ var Translator = {
             },
             url: url,
             success: function(data) {
-
+                var response = JSON.parse(data);
+                if (response['success']) {
+                    showMessage(lang('Message'), lang('File was successfully saved.'));
+                    $('.modal').modal('hide');
+                } else {
+                    if (response['error']) {
+                        showMessage(lang('Error'), response['errors'], 'r');
+                    }
+                }
             }
         });
 

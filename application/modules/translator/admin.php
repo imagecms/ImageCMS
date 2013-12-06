@@ -1132,14 +1132,13 @@ class Admin extends BaseAdminController {
     public function saveEditingFile() {
         $filePath = $this->input->post('filePath');
         $content = $this->input->post('content');
-
-        $filePath = str_replace('/', '\\', $filePath);
-        $filePath = preg_replace('/application[\W\w]+/', '', __DIR__) . $filePath;
-        if (!file_put_contents($filePath, $content)) {
-            $filePath = str_replace('\\', '/', $filePath);
-            file_put_contents($filePath, $content);
+        
+        if ($this->checkFile($filePath)) {
+            $file = file_put_contents($filePath, $content);
+            return json_encode(array('success' => TRUE, 'data' => $file));
+        } else {
+            return json_encode(array('error' => TRUE, 'errors' => $this->fileError));
         }
-//        return file_put_contents($filePath, $content);
     }
 
 }
