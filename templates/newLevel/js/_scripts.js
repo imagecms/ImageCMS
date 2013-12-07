@@ -32,16 +32,15 @@ function init() {
         ieBoxSize($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
     }
 
-    optionsDrop.before = function(el, dropEl, isajax) {
-        var dropEl = $(dropEl);
-        if (dropEl.hasClass('drop-report')) {
-            var dropElRep = dropEl.find('[data-rel="pastehere"]');
-            dropElRep.html(_.template($('#reportappearance').html(), {
+    optionsDrop.before = function(el, drop, isajax, data, elSet) {
+        if (drop.hasClass('drop-report')) {
+            var dropRep = drop.find('[data-rel="pastehere"]');
+            dropRep.html(_.template($('#reportappearance').html(), {
                 item: Shop.Cart.composeCartItem(el)
             }));
 
-            dropElRep.append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
-            dropElRep.find('input[name="ProductId"]').val(el.data('prodid'));
+            dropRep.append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
+            dropRep.find('input[name="ProductId"]').val(el.data('prodid'));
             return el;
         }
 
@@ -52,42 +51,42 @@ function init() {
         } catch (err) {
         }
 
-        dropEl.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
-        dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
+        drop.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
+        drop.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
     };
-    optionsDrop.after = function(el, dropEl, isajax) {
-        drawIcons(dropEl.find(selIcons));
+    optionsDrop.after = function(el, drop, isajax, data, elSet) {
+        drawIcons(drop.find(selIcons));
 
-        dropEl.find("img.lazy:not(.load)").lazyload(lazyload);
+        drop.find("img.lazy:not(.load)").lazyload(lazyload);
         wnd.scroll(); //for lazyload
 
-        if (dropEl.hasClass('drop-wishlist')) {
-            dropEl.nStRadio({
+        if (drop.hasClass('drop-wishlist')) {
+            drop.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
                         //,classRemove: 'b_n'//if not standart
             });
         }
-        if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]'))) {
-            var input = dropEl.find('form input[type="text"]:first');
+        if ($.existsN(drop.find('[onsubmit*="ImageCMSApi"]'))) {
+            var input = drop.find('form input[type="text"]:first');
             input.setCursorPosition(input.val().length);
         }
-        var carouselInDrop = dropEl.find('.carousel-js-css');
-        if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !dropEl.is('#photo')) {
+        var carouselInDrop = drop.find('.carousel-js-css');
+        if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !drop.is('#photo')) {
             carouselInDrop.addClass('visited');
             carouselInDrop.myCarousel(carousel);
         }
-        cuselInit(dropEl, '.drop:visible .lineForm select');
+        cuselInit(drop, '.drop:visible .lineForm select');
     };
-    optionsDrop.close = function(el, dropEl) {
+    optionsDrop.close = function(el, drop, data) {
     };
-    optionsDrop.closed = function(el, dropEl) {
-        if ($(dropEl).hasClass('frame-already-show')) {
+    optionsDrop.closed = function(el, drop, data) {
+        if (drop.hasClass('frame-already-show')) {
             $('.frame-user-toolbar').css({
                 'width': body.width(),
                 'z-index': ''
             });
-            dropEl.prev().css('z-index', '');
+            drop.prev().css('z-index', '');
         }
         if ($('#fancybox-wrap').is(':visible'))
             $.drop('scrollEmulate')();
@@ -283,7 +282,7 @@ function init() {
         }, 300);
     });
     try {
-        $('a.fancybox').fancybox();
+        $('a.fancybox, [rel="group"]').fancybox();
     } catch (e) {
     }
     doc.on('drop.successJson', function(e) {

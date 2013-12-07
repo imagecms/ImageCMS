@@ -222,6 +222,7 @@ var wishList = {
                 'type': 'wish_list_sync',
                 dataObj: data
             });
+            returnMsg("=== WishList sync. call wish_list_sync ===");
         })
     }
 };
