@@ -20,7 +20,7 @@ var optionsPhoto = {
 };
 
 Product = {
-    tovarChangeVariant: function(el) {
+    changeVariant: function(el) {
         el = el == undefined ? body : el;
         /*Variants in Product*/
         el.find(genObj.parentBtnBuy).find(genObj.changeVariantProduct).on('change', function() {
@@ -300,5 +300,5 @@ function initPhotoTrEv() {
 $(document).on('scriptDefer', function() {
     initPhoto();
     cuselInit(body, '#variantSwitcher');
-    Order.tovarChangeVariant();
+    Product.changeVariant();
 })
