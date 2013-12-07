@@ -7,17 +7,17 @@ var ShopFront = {
                 $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockNoEmpty).removeClass('d_b').addClass('d_n');
                 $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockEmpty).removeClass('d_n').addClass('d_b');
 
-                $(genObj.tinyBask + '.' + genObj.isAvail).removeClass(genObj.isAvail);
-                $(genObj.tinyBask + ' ' + genObj.blockEmpty).show();
-                $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).hide();
+                $(genObj.tinyBask).removeClass(genObj.isAvail);
+                $(genObj.tinyBask).find(genObj.blockEmpty).show();
+                $(genObj.tinyBask).find(genObj.blockNoEmpty).hide();
             }
             else {
                 $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockNoEmpty).removeClass('d_n').addClass('d_b');
                 $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockEmpty).removeClass('d_b').addClass('d_n');
 
                 $(genObj.tinyBask).addClass(genObj.isAvail);
-                $(genObj.tinyBask + ' ' + genObj.blockEmpty).hide();
-                $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).show();
+                $(genObj.tinyBask).find(genObj.blockEmpty).hide();
+                $(genObj.tinyBask).find(genObj.blockNoEmpty).show();
             }
         },
         processBtnBuyCount: function(el) {
@@ -76,7 +76,7 @@ var ShopFront = {
             el.find(genObj.parentBtnBuy).find(genObj.changeVariantCategory).on('change', function() {
                 var productId = parseInt($(this).attr('value')),
                         liBlock = $(this).closest(genObj.parentBtnBuy),
-                        btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut),
+                        btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
                         vMediumImage = btnInfo.attr('data-mediumImage'),
                         vId = btnInfo.attr('data-id'),
                         vName = btnInfo.attr('data-vname'),
@@ -97,7 +97,7 @@ var ShopFront = {
                 liBlock.find(genObj.priceAddPrice).html(vAddPrice);
                 ShopCart.Cart.existsVnumber(vNumber, liBlock);
                 ShopCart.Cart.existsVnames(vName, liBlock);
-                ShopCart.Cart.condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + ' ' + genObj.infoBut));
+                ShopCart.Cart.condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId).find(genObj.infoBut));
             });
             /*/Variants in Category*/
         },
@@ -148,7 +148,7 @@ var ShopFront = {
                     type: 'render_popup_cart',
                     el: $(genObj.popupCart)
                 });
-            $(genObj.frameBasks + ' ' + genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
+            $(genObj.frameBasks).find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
                 ajax: true,
                 after: function(e, el, input) {
                     chCountInCart(el.closest(genObj.frameChangeCount), true, input);
@@ -242,7 +242,7 @@ var ShopFront = {
             $(genObj.addSumBask).each(function() {
                 $(this).html(addSumBask.toFixed(pricePrecision));
             })
-            $(genObj.tinyBask + ' ' + genObj.plurProd).each(function() {
+            $(genObj.tinyBask).find(genObj.plurProd).each(function() {
                 $(this).html(pluralStr(length, text.plurProd));
             });
         },
@@ -292,9 +292,9 @@ var ShopFront = {
         count: function() {
             var count = Shop.CompareList.all().length;
             if (count > 0)
-                $(genObj.tinyCompareList).show()
+                $(genObj.tinyCompareList).addClass(genObj.isAvail).show();
             else
-                $(genObj.tinyCompareList).hide()
+                $(genObj.tinyCompareList).removeClass(genObj.isAvail).hide();
             $(genObj.countTinyCompareList).each(function() {
                 $(this).html(count);
             })
@@ -334,7 +334,7 @@ var DiscountFront = {
                 if (!discountInPopup && !k)
                     return false;
                 else if (Discount) {
-                    Discount.getDiscountBack(k);
+                    Discount.getDiscount(k);
                 }
             }
         });
@@ -393,10 +393,10 @@ var global = {
     wishListCount: function() {
         var count = wishList.all().length;
         if (count > 0) {
-            $(genObj.tinyWishList).show();
+            $(genObj.tinyWishList).show().addClass(genObj.isAvail);
         }
         else {
-            $(genObj.tinyWishList).hide();
+            $(genObj.tinyWishList).hide().removeClass(genObj.isAvail);
         }
         $(genObj.countTinyWishList).each(function() {
             $(this).html(count);
