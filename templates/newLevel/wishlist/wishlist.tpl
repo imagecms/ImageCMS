@@ -74,7 +74,6 @@
                                         <div class="frame-form-field">
                                             <div class="btn-def">
                                                 <button
-                                                    class="btn"
                                                     type="submit"
                                                     data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
                                                     data-type="json"

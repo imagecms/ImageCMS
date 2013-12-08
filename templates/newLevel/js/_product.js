@@ -1,5 +1,5 @@
-var productPhotoCZoom = window.productPhotoCZoom != undefined,
-productPhotoDrop = window.productPhotoDrop != undefined;
+var productPhotoCZoom = window.productPhotoCZoom !== undefined,
+productPhotoDrop = window.productPhotoDrop !== undefined;
 
 var hrefOptions = {
     next: '#photo .drop-content-photo .next',
@@ -21,7 +21,7 @@ var optionsPhoto = {
 
 Product = {
     changeVariant: function(el) {
-        el = el == undefined ? body : el;
+        el = el === undefined ? body : el;
         /*Variants in Product*/
         el.find(genObj.parentBtnBuy).find(genObj.changeVariantProduct).on('change', function() {
             var productId = parseInt($(this).attr('value')),
@@ -37,7 +37,7 @@ Product = {
             vMainImage = btnInfo.attr('data-mainImage'),
             vStock = btnInfo.attr('data-maxcount');
             
-            if (vMainImage.search(/nophoto/) == -1) {
+            if (vMainImage.search(/nophoto/) === -1) {
                 $(genObj.photoProduct).add($(genObj.mainThumb)).attr('href', vLargeImage);
                 
                 $(genObj.imgVP).attr({
@@ -47,7 +47,7 @@ Product = {
                 $('.left-product .items-thumbs > li').removeClass('active').filter(':eq(0)').addClass('active');
             }
             
-            if (vOrigPrice != '')
+            if (vOrigPrice !== '')
                 liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
             liBlock.find(genObj.priceVariant).html(vPrice);
             liBlock.find(genObj.priceAddPrice).html(vAddPrice);
@@ -84,19 +84,19 @@ Product = {
             'height': img.actual('height')
         });
     
-        if (s != undefined)
+        if (s !== undefined)
             s();
         drop.find(drop.data('dropHeader')).add(drop.find(drop.data('dropFooter'))).each(function() {
             hNotC += dropV ? $(this).outerHeight() : $(this).actual('outerHeight');
         });
         fancyFrame.css({
             'height': dropH - hNotC - 20
-        })
+        });
         img.css({
             'width': '',
             'height': ''
         });
-        if (c != undefined)
+        if (c !== undefined)
             c();
         $.drop('center')(drop);
     },
@@ -117,7 +117,7 @@ Product = {
                 $.drop('center')(drop);
             });
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
-        })
+        });
     },
     beforeShowHref: function(el, drop, isajax, data, elSet) {
         var arg = arguments,
@@ -139,9 +139,9 @@ Product = {
 
         function condBtn(acA) {
             if (!cycle) {
-                if (acA == 0)
+                if (acA === 0)
                     prev.attr('disabled', 'disabled');
-                if (acA == itemGalL - 1)
+                if (acA === itemGalL - 1)
                     next.attr('disabled', 'disabled');
             }
         }
@@ -154,29 +154,29 @@ Product = {
             acA = ($.inArray(hrefOptions.curHref, hrefOptions.thumbs));
             if (btn.is(prev)) {
                 if (cycle) {
-                    if (acA != 0)
+                    if (acA !== 0)
                         acA = acA - 1;
                     else
                         acA = itemGalL - 1;
                 }
                 else {
-                    if (acA != 0)
+                    if (acA !== 0)
                         acA = acA - 1;
-                    if (acA == 0)
+                    if (acA === 0)
                         prev.attr('disabled', 'disabled');
                 }
             }
             else {
                 if (cycle) {
-                    if (acA != itemGalL - 1)
+                    if (acA !== itemGalL - 1)
                         acA = acA + 1;
                     else
                         acA = 0;
                 }
                 else {
-                    if (acA != itemGalL - 1)
+                    if (acA !== itemGalL - 1)
                         acA = acA + 1;
-                    if (acA == itemGalL - 1)
+                    if (acA === itemGalL - 1)
                         next.attr('disabled', 'disabled');
                 }
             }
@@ -194,7 +194,7 @@ Product = {
             hrefOptions.thumbs = new Array();
 
             thumbsA.each(function() {
-                hrefOptions.thumbs.push($(this).attr('href'))
+                hrefOptions.thumbs.push($(this).attr('href'));
             });
 
             var btns = prev.add(next).removeAttr('disabled').fadeIn(),
@@ -208,15 +208,15 @@ Product = {
             thumbsA.off('click').on('click', function(e) {
                 btns.removeAttr('disabled');
                 itemGal.removeClass('active');
-                $(this).parent().addClass('active')
+                $(this).parent().addClass('active');
                 var href = $(this).attr('href'),
                 acA = ($.inArray(href, hrefOptions.thumbs));
                 e.preventDefault();
                 Product.changePhoto(arg, fancyFrameInPH, href);
                 condBtn(acA);
-            })
+            });
             btns.off('click').on('click', function(e) {
-                btnSClick($(this))
+                btnSClick($(this));
             });
             condBtn(acA);
         }
@@ -245,9 +245,9 @@ Product = {
                     el.find('ul').css('visibility', 'visible');
                 }
             }));
-        })
+        });
     }
-}
+};
 function initPhoto() {
     if (productPhotoCZoom) {
         function margZoomLens() {
@@ -255,8 +255,8 @@ function initPhoto() {
                 var $this = $(this),
                 mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
                 mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
-                $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
-            })
+                $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}');
+            });
             $('.left-product').off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
                 var cloudzoomlens = $('.cloud-zoom-lens');
                 if (cloudzoomlens.width() > $(genObj.photoProduct).width()) {
@@ -274,7 +274,7 @@ function initPhoto() {
         margZoomLens();
         $(genObj.photoProduct).find('img').load(function() {
             margZoomLens();
-        })
+        });
     }
     $('.item-product .items-thumbs > li > a').on('click.thumb', function(e) {
         e.preventDefault();
@@ -301,4 +301,4 @@ $(document).on('scriptDefer', function() {
     initPhoto();
     cuselInit(body, '#variantSwitcher');
     Product.changeVariant();
-})
+});
