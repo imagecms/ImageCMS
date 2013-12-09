@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 01:45+0200\n"
-"PO-Revision-Date: 2013-12-09 01:45+0200\n"
+"POT-Creation-Date: 2013-12-09 06:48+0200\n"
+"PO-Revision-Date: 2013-12-09 06:48+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -23,9 +23,21 @@ msgstr ""
 "X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
 
+#: ./application/modules/shop/admin/templates/search/form.tpl:31
+msgid "Specify"
+msgstr "Укажите"
+
+#: ./templates/administrator/desktop.tpl:104
+msgid "Contents"
+msgstr "Содержимое"
+
+#: ./application/modules/shop/admin/templates/banners/translate.tpl:6
+msgid "Error "
+msgstr "Ошибка"
+
 #: ./application/modules/admin/mod_search.php:248
 msgid "Module installation error"
-msgstr "Ошыбка установки модуля"
+msgstr "Ошибка установки модуля"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
 msgid "Sort by name."
@@ -1269,10 +1281,6 @@ msgstr "Контакты"
 msgid "Content"
 msgstr "Страницы"
 
-#: ./templates/administrator/desktop.tpl:104
-msgid "Contents"
-msgstr "Содержымое"
-
 #: ./templates/administrator/sys_update.tpl:67
 msgid "Control sum"
 msgstr "Контрольная сумма"
@@ -2440,10 +2448,6 @@ msgstr "Тип"
 #: ./application/modules/admin/sys_update.php:106
 msgid "Error"
 msgstr "Ошибка"
-
-#: ./application/modules/shop/admin/templates/banners/translate.tpl:6
-msgid "Error "
-msgstr "Ошыбка"
 
 #: ./application/modules/admin/sys_upgrade.php:96
 msgid "Error downloading update file"
@@ -5762,10 +5766,6 @@ msgstr "Указаной URL занят"
 #: ./application/modules/admin/languages.php:282
 msgid "Specified a language or selected a language"
 msgstr "Указажите язык"
-
-#: ./application/modules/shop/admin/templates/search/form.tpl:31
-msgid "Specify"
-msgstr "Укажыте"
 
 #: ./application/modules/shop/models/build/classes/Shop/ShopDiscounts.php:26
 msgid "Start date"

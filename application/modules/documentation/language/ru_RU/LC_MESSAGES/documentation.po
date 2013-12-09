@@ -115,7 +115,7 @@ msgstr "Описание"
 #: ./application/modules/documentation/documentation.php:107
 #: ./application/modules/documentation/documentation.php:224
 msgid "Content"
-msgstr "Содержымое"
+msgstr "Содеримое"
 
 #: ./application/modules/documentation/assets/edit_page.tpl:14
 #: ./application/modules/documentation/assets/edit_page.tpl:187
@@ -309,7 +309,7 @@ msgstr "Отменить"
 
 #: ./application/modules/documentation/assets/admin/list.tpl:50
 msgid "Content list"
-msgstr "Список содержымого"
+msgstr "Список содержимого"
 
 #: ./application/modules/documentation/assets/admin/list.tpl:51
 msgid "Menu categories"

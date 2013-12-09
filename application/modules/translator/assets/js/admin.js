@@ -240,7 +240,7 @@ var Search = {
     origin: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var origin = $(this.searchedObject[i]).find('.origin').text();
+            var origin = $(this.searchedObject[i]).find('.origin').val();
             if (this.checkCondition(origin)) {
                 this.countResults += 1;
                 $(this.searchedObject[i]).find('.origin').addClass('searched');
@@ -259,7 +259,7 @@ var Search = {
     translation: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var translate = $(this.searchedObject[i + 1]).find('.translation').text();
+            var translate = $(this.searchedObject[i + 1]).find('.translation').val();
             if (this.checkCondition(translate)) {
                 this.countResults += 1;
                 $(this.searchedObject[i + 1]).find('.translation').addClass('searched');
