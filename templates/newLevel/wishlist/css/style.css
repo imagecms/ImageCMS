@@ -14,7 +14,7 @@
 .items-wish-data .photo-block > span{max-width: 100%;}
 .items-wish-data .frame-photo-title .group-buttons{position: absolute;left: 0;top: 0;bottom: 0;right: 0;margin: auto;z-index: 1;width: 78px;height: 31px;display: none;}
 .items-wish-data > li > .frame-photo-title .overlay{position: absolute;left: 0;top: 0;width: 100%;height: 100%;}
-.items-wish-data > li > .frame-photo-title:hover .overlay{background-color: rgba(0,0,0, 0.3);}
+.items-wish-data .frame-photo-title .photo-block:hover .overlay{background-color: rgba(0,0,0, 0.3);}
 .items-wish-data > li > .frame-photo-title:hover .group-buttons{display: block;}
 
 .hidden input[type="file"]{width: 100%;height: 100%;position: absolute;left: 0;top: 0;opacity: 0;-moz-opacity: 0;-khtml-opacity: 0;padding: 0;}
@@ -74,3 +74,4 @@
 .btn-send-wishlist .text-el{color: #0c9acb;font-weight: bold;}
 .drop-sendemail{width: 400px;}
 .ui-datepicker-month, .ui-datepicker-year{height: 20px;}
+.page-wishlist .frame-tabs-ref > div:first-child{display: none;}

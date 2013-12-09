@@ -16,80 +16,77 @@ function init() {
     ShopFront.Cart.processBtnBuyCount();
     ShopFront.Cart.initShopPage(false);
     ShopFront.Cart.changeVariant();
-
-    doc.on('discount.display', function(e) {
-        Shop.Cart.discount = e.discount;
-        DiscountFront.displayDiscount(Shop.Cart.discount);
-    });
     DiscountFront.getDiscount('start');
-
     global.processWish();
     ShopFront.CompareList.process();
     ShopFront.CompareList.count();
     global.wishListCount();
+    /*changecount product in category and product*/
+    ShopFront.Cart.changeCount($('.items-catalog, .item-product'));
+    /*/changecount product in category and product*/
     /*/ call functions for shop objects*/
 
     /*call front plugins and functions*/
-    $.onlyNumber(genObj.numberC + ' input');
     if (ltie7) {
         ieBoxSize();
         ieBoxSize($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
     }
 
-    optionsDrop.before = function(el, dropEl, isajax) {
-        var dropEl = $(dropEl);
-        if (dropEl.hasClass('drop-report')) {
-            var dropElRep = dropEl.find('[data-rel="pastehere"]');
-            dropElRep.html(_.template($('#reportappearance').html(), {
+    optionsDrop.before = function(el, drop, isajax, data, elSet) {
+        if (drop.hasClass('drop-report')) {
+            var dropRep = drop.find('[data-rel="pastehere"]');
+            dropRep.html(_.template($('#reportappearance').html(), {
                 item: Shop.Cart.composeCartItem(el)
             }));
 
-            dropElRep.append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
-            dropElRep.find('input[name="ProductId"]').val(el.data('prodid'));
+            dropRep.append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
+            dropRep.find('input[name="ProductId"]').val(el.data('prodid'));
             return el;
         }
 
-        if (dropEl.hasClass('frame-already-show')) {
-            var zInd = parseFloat(dropEl.css('z-index')) + 1;
-            dropEl.parent().css('z-index', zInd).end().prev().css('z-index', zInd + 1).closest('.frame-user-toolbar').css('z-index', zInd+1);
+        try {
+            var fAS = $('.frame-already-show'),
+                    zInd = parseFloat(fAS.data('dropOver').css('z-index'));
+            fAS.prev().css('z-index', zInd + 3).closest('.frame-user-toolbar').css('z-index', zInd + 1);
+        } catch (err) {
         }
 
-        dropEl.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
-        dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
+        drop.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
+        drop.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
     };
-    optionsDrop.after = function(el, dropEl, isajax) {
-        drawIcons(dropEl.find(selIcons));
+    optionsDrop.after = function(el, drop, isajax, data, elSet) {
+        drawIcons(drop.find(selIcons));
 
-        dropEl.find("img.lazy:not(.load)").lazyload(lazyload);
+        drop.find("img.lazy:not(.load)").lazyload(lazyload);
         wnd.scroll(); //for lazyload
 
-        if (dropEl.hasClass('drop-wishlist')) {
-            dropEl.nStRadio({
+        if (drop.hasClass('drop-wishlist')) {
+            drop.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                        //,classRemove: 'b_n'//if not standart
             });
         }
-        if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]'))) {
-            var input = dropEl.find('form input[type="text"]:first');
+        if ($.existsN(drop.find('[onsubmit*="ImageCMSApi"]'))) {
+            var input = drop.find('form input[type="text"]:first');
             input.setCursorPosition(input.val().length);
         }
-        var carouselInDrop = dropEl.find('.carousel-js-css');
-        if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !dropEl.is('#photo')) {
+        var carouselInDrop = drop.find('.carousel-js-css');
+        if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !drop.is('#photo')) {
             carouselInDrop.addClass('visited');
             carouselInDrop.myCarousel(carousel);
         }
-        cuselInit(dropEl, '.drop:visible .lineForm select');
+        cuselInit(drop, '.drop:visible .lineForm select');
     };
-    optionsDrop.close = function(el, dropEl) {
+    optionsDrop.close = function(el, drop, data) {
     };
-    optionsDrop.closed = function(el, dropEl) {
-        if ($(dropEl).hasClass('frame-already-show')) {
+    optionsDrop.closed = function(el, drop, data) {
+        if (drop.hasClass('frame-already-show')) {
             $('.frame-user-toolbar').css({
                 'width': body.width(),
                 'z-index': ''
             });
-            dropEl.parent().css('z-index', '').end().prev().css('z-index', '');
+            drop.prev().css('z-index', '');
         }
         if ($('#fancybox-wrap').is(':visible'))
             $.drop('scrollEmulate')();
@@ -109,12 +106,9 @@ function init() {
                 showHidePart($('.patch-product-view'));
                 showHidePart($('.frame-list-comment__icsi-css.sub-2'));
             }
+            wnd.scroll();
         }
     });
-
-    /*changecount product in category and product*/
-    ShopFront.Cart.changeCount($('.items-catalog, .item-product'));
-    /*/changecount product in category and product*/
 
     $('#suggestions').autocomplete({
         minValue: 3,
@@ -125,7 +119,7 @@ function init() {
     showHidePart($('.patch-product-view'));
     showHidePart($('.frame-list-comment__icsi-css.sub-2'));
     var userTool = new itemUserToolbar(),
-    btnToUp = $('.btn-to-up');
+            btnToUp = $('.btn-to-up');
     btnToUp.click(function() {
         $("html, body").animate({
             scrollTop: "0"
@@ -145,6 +139,7 @@ function init() {
     initCarouselJscrollPaneCycle(body);
 
     reinitializeScrollPane(body);
+    testNumber();
     $("img.lazy").lazyload(lazyload);
     wnd.scroll(); //for lazy load start initialize
     /*/call front plugins and functions*/
@@ -189,7 +184,7 @@ function init() {
         ShopFront.Cart.countSum();
         ShopFront.Cart.process();
     });
-    
+
     doc.on('after_add_to_cart', function(e) {
         ShopFront.Cart.initShopPage(e.show);
         //ShopFront.Cart.initShopPage(false, e.cartItem); //for animate img to tinybask
@@ -241,7 +236,15 @@ function init() {
         else
             $('.content-user-toolbar').fadeOut();
     });
-
+    doc.on('widget_ajax', function(e) {
+        initCarouselJscrollPaneCycle(e.el);
+        reinitializeScrollPane(e.el);
+        ShopFront.Cart.pasteItems(e.el);
+    });
+    doc.on('discount.display', function(e) {
+        Shop.Cart.discount = e.discount;
+        DiscountFront.displayDiscount(Shop.Cart.discount);
+    });
     /*/sample of events shop/*/
 
     /*sample of events front*/
@@ -279,7 +282,7 @@ function init() {
         }, 300);
     });
     try {
-        $('a.fancybox').fancybox();
+        $('a.fancybox, [rel="group"]').fancybox();
     } catch (e) {
     }
     doc.on('drop.successJson', function(e) {
@@ -338,7 +341,7 @@ function init() {
     doc.on('comments.beforehideformreply', function(e) {
         var patchCom = e.el.closest('.patch-product-view');
         patchCom.css({
-            'max-height': 'none', 
+            'max-height': 'none',
             'height': patchCom.height() - e.el.outerHeight()
         });
     });
@@ -354,11 +357,6 @@ function init() {
             trigger: true
         });
     });
-    doc.on('widget_ajax', function(e) {
-        initCarouselJscrollPaneCycle(e.el);
-        reinitializeScrollPane(e.el);
-        ShopFront.Cart.pasteItems(e.el);
-    });
     /*/sample of events front*/
 
     if (!$.browser.opera)
@@ -373,7 +371,7 @@ function init() {
 
             if (orderDetails)
                 Order.renderOrderDetails();
-            
+
             ShopFront.Cart.countSum();
             ShopFront.Cart.process();
         });
