@@ -116,10 +116,10 @@ class Languages extends BaseAdminController {
             $templates = scandir($templates_dir);
             foreach ($templates as $template) {
                 if (is_dir($templates_dir . '/' . $template) && $template != "." && $template != '..' && $template[0] != '.') {
-                    if (!is_dir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang)) {
-                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang, 0777);
-                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang . '/' . 'LC_MESSAGES', 0777);
-                        file_put_contents($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang . '/' . 'LC_MESSAGES/' . $template . '.po', '');
+                    if (!is_dir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang)) {
+                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang, 0777);
+                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang . '/' . 'LC_MESSAGES', 0777);
+                        file_put_contents($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang . '/' . 'LC_MESSAGES/' . $template . '.po', '');
                     }
                 }
             }
