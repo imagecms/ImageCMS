@@ -1,22 +1,28 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 13:18+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-12-09 03:59+0200\n"
+"PO-Revision-Date: 2013-12-09 03:59+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
 "X-Poedit-Basepath: ../../../\n"
-"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
+
+#: pages.php:137
+msgid "The %s field can only contain Latin characters"
+msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:20
 msgid "Edit page"
@@ -188,12 +194,6 @@ msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:70
 msgid "Without category"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:71
-msgid ""
-"don\");\n"
-"_("
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:20
@@ -653,12 +653,6 @@ msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:194
 msgid "Pages fields group"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:196
-msgid ""
-"Select a field group to be displayed/ viewed  in the created category of the "
-"group or group category"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:198
@@ -1317,12 +1311,6 @@ msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:148
 msgid "Access denied"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:149
-msgid ""
-"This is a demo version ImageCMS. Part of the actions are limited. For a "
-"complete functional download and install the distribution."
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:150
@@ -2242,11 +2230,6 @@ msgstr ""
 msgid "Price checking"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:146
-msgid ""
-"Will be recalculated prices of products in accordance to the default currency"
-msgstr ""
-
 #: /var/www/image.loc/_tempLangs.php:147
 msgid "Refresh prices after import"
 msgstr ""
@@ -2719,12 +2702,6 @@ msgstr ""
 msgid "Orders on the page"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:227
-msgid ""
-" This product has been deleted  from the shop! You can only change the "
-"quantity or replace by another product"
-msgstr ""
-
 #: /var/www/image.loc/_tempLangs.php:231
 msgid "Product price has been changed. Old product price"
 msgstr ""
@@ -3039,12 +3016,6 @@ msgstr ""
 msgid "Validators"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:160 /var/www/image.loc/_tempLangs.php:214
-msgid ""
-"Snippet of a certain format,<br /> verifies syntactic correctness<br /> of "
-"the entered information - that is,<br /> to validate."
-msgstr ""
-
 #: /var/www/image.loc/_tempLangs.php:162 /var/www/image.loc/_tempLangs.php:164
 msgid "Classes"
 msgstr ""
@@ -3055,13 +3026,6 @@ msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:165 /var/www/image.loc/_tempLangs.php:167
 msgid "Access rights"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:166
-msgid ""
-"Access rights define <br />a set of actions (eg, read,<br /> write, execute) "
-"permissions for<br /> the subjects (for example, users<br /> of the system) "
-"of <br />the data objects."
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:168
@@ -3142,12 +3106,6 @@ msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:74 /var/www/image.loc/_tempLangs.php:201
 msgid "ID : "
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:75
-msgid ""
-"User has already been notified by e-mail  about  product arrival! Notify "
-"again? "
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:76
@@ -3979,12 +3937,6 @@ msgstr ""
 msgid " Popularity formula coefficient "
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:432
-msgid ""
-" Popularity formula: number of views+ products added to the cart "
-"*coefficient . For example: 1000."
-msgstr ""
-
 #: /var/www/image.loc/_tempLangs.php:437
 msgid "Site name"
 msgstr ""
@@ -4388,12 +4340,6 @@ msgstr ""
 msgid "Export CSV gives <br />jumps file with <br />a list of all<br /> users."
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:96
-msgid ""
-"Export Mailchimp sent <br />to all users on their<br /> email "
-"subscription<br /> form on your<br /> news rassilku."
-msgstr ""
-
 #: /var/www/image.loc/_tempLangs.php:97
 msgid "Orders history"
 msgstr ""
@@ -4570,11 +4516,6 @@ msgstr ""
 msgid "Deleted ID page"
 msgstr ""
 
-#: pages.php:137
-#, php-format
-msgid "The %s field can only contain Latin characters"
-msgstr ""
-
 #: pages.php:152 pages.php:486 widgets_manager.php:95 widgets_manager.php:168
 #: widgets_manager.php:254 widgets_manager.php:309
 msgid "Description "
@@ -4606,11 +4547,6 @@ msgstr ""
 
 #: pages.php:197 pages.php:530
 msgid "Reserved of the same name category"
-msgstr ""
-
-#: pages.php:209
-msgid ""
-"Page with the same URL has been created yet. Specify or select another URL"
 msgstr ""
 
 #: pages.php:275
@@ -4705,11 +4641,6 @@ msgstr ""
 msgid "Username and password have not been found"
 msgstr ""
 
-#: login.php:98
-msgid ""
-"Please check your email for instructions on how to activate the new password."
-msgstr ""
-
 #: login.php:120 login.php:124
 msgid "Wrong protection code"
 msgstr ""
@@ -4724,11 +4655,6 @@ msgstr ""
 
 #: widgets_manager.php:30 widgets_manager.php:80 widgets_manager.php:214
 msgid "Set the directory access rights to continue the work with widgets"
-msgstr ""
-
-#: widgets_manager.php:90
-msgid ""
-"Widget with the same name already exists. Choose or select another name."
 msgstr ""
 
 #: widgets_manager.php:98
@@ -5456,11 +5382,6 @@ msgstr ""
 msgid "Error. Currency used by other objects. Check the payment methods"
 msgstr ""
 
-#: ../../modules/shop/admin/currencies.php:222
-msgid ""
-"Error. The currency used in the products. Check the currency options products"
-msgstr ""
-
 #: ../../modules/shop/admin/currencies.php:231
 msgid "Currency successfully removed"
 msgstr ""
@@ -5599,3 +5520,4 @@ msgstr ""
 #: ../../modules/shop/admin/system.php:361
 msgid "No configuration key or<br /> key account list on Mailchimp"
 msgstr ""
+
