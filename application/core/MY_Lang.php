@@ -45,12 +45,8 @@ class MY_Lang extends MX_Lang {
         if (!extension_loaded('gettext')) {
             include_once('gettext/gettext.inc');
             $_SESSION['GETTEXT_EXIST'] = FALSE;
-            //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
-            //      echo "gettext is not installed\n";
         } else {
             $_SESSION['GETTEXT_EXIST'] = TRUE;
-            //      echo "gettext is supported\n";
-            //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
         }
     }
 
@@ -91,9 +87,6 @@ class MY_Lang extends MX_Lang {
         }
 
         unset($sett);
-
-//        $this->ci->load->library('gettext_php/gettext_extension', array());
-//        $this->gettext = & $this->ci->gettext_extension->getInstance();
     }
 
     private function _language() {
