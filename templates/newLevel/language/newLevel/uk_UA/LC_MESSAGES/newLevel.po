@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 11:36+0200\n"
-"PO-Revision-Date: 2013-12-09 11:36+0200\n"
+"POT-Creation-Date: 2013-12-09 01:00+0200\n"
+"PO-Revision-Date: 2013-12-09 01:00+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: uk_UA\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ./templates/newLevel/header.tpl:71
 msgid "Поиск по сайту"
-msgstr "2"
+msgstr ""
 
 #: ./templates/newLevel/_comments.tpl:21
 #: ./templates/newLevel/shop/product.tpl:308
