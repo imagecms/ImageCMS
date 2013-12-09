@@ -7,7 +7,7 @@
             <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
             <div class="no-empty js-no-empty">
                 <div class="drop-header">
-                    <div class="title bask"><span>{/literal}{lang('В корзине','newLevel')}{literal}</span> <span class="add-info"><span class="topCartCount"><%- Shop.Cart.totalCount %></span></span> <span class="plurProd"><%- pluralStr(Shop.Cart.totalCount, plurProd) %></span> <span>{/literal}{lang('Сумма','newLevel')}{literal}</span> <span class="add-info"><span class="topCartTotalPrice"><%- parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision) %></span></span> <%-curr%></div>
+                    <div class="title bask"><span>{/literal}{lang('В корзине','newLevel')}{literal}</span> <span class="add-info"><span class="topCartCount"><%- Shop.Cart.totalCount %></span></span> <span class="plurProd"><%- pluralStr(Shop.Cart.totalCount, text.plurProd) %></span> <span>{/literal}{lang('Сумма','newLevel')}{literal}</span> <span class="add-info"><span class="topCartTotalPrice"><%- parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision) %></span></span> <%-curr%></div>
                 </div>
             </div>
             <div class="drop-content">
@@ -21,7 +21,7 @@
         <!-- for single product -->
                                     <% if (!item.kit) { %>
                                     <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cart-product <%if(Shop.Cart.lastAdd.id == item.id && Shop.Cart.lastAdd.vId == item.vId){%>cart-last-add<%}%>">
-                                        <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
+                                        <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="ShopFront.Cart.rm(this);"></button></td>
                                         <td class="frame-items">
                                             <a href="<%-item.url%>" class="frame-photo-title">
                                                 <span class="photo-block">
@@ -62,7 +62,7 @@
                                             </div>
                                         </td>
                                         <td class="frame-count frameCount">
-                                            <span class="countOrCompl"><%-pcs%></span>
+                                            <span class="countOrCompl"><%-text.pcs%></span>
                                             <div class="number js-number" data-title="{/literal}{lang('Количество на складе','newLevel')} {literal}<%-' '+item.maxcount%>">
                                                 <div class="frame-change-count frameChangeCount" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
                                                     <div class="btn-plus">
@@ -128,7 +128,7 @@
                                             <table>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
+                                                        <td class="frame-remove-bask-btn"><button type="button" class="icon_times_cart" onclick="ShopFront.Cart.rm(this, true);"></button></td>
                                                         <td class="frame-items frame-items-kit">
                                                             <ul class="items items-bask">
                                                                 <% _.each(prices, function(id){  %>
@@ -211,7 +211,7 @@
                                                             </ul>
                                                         </td>
                                                         <td class="frame-count frameCount">
-                                                            <span class="countOrCompl"><%-kits%></span>
+                                                            <span class="countOrCompl"><%-text.kits%></span>
                                                             <div class="number js-number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-' '+item.maxcount%>">
                                                                 <div class="frame-change-count frameChangeCount" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>">
                                                                     <div class="btn-plus">

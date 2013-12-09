@@ -61,11 +61,11 @@
                             data-effect-on="fadeIn"
                             data-effect-off="fadeOut"
                             {if $wish_list_id}
-                                data-after="reload"
-                                data-start="validateWishPopup"
+                                data-after="WishListFront.reload"
+                                data-start="WishListFront.validateWishPopup"
                             {else:}
-                                data-after="addToWL"
-                                data-start="validateWishPopup"
+                                data-after="WishListFront.addToWL"
+                                data-start="WishListFront.validateWishPopup"
                             {/if}
                             >
                             <span class="text-el">{if $wish_list_id}{lang('Переместить в список','newLevel')}{else:}{lang('Добавить в список','newLevel')}{/if}</span> 

@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Mailchimp_Lists</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?2821599371"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Mailchimp.html">Mailchimp</a></li>
+				<li><a href="class-Mailchimp_Campaigns.html">Mailchimp_Campaigns</a></li>
+				<li><a href="class-Mailchimp_Ecomm.html">Mailchimp_Ecomm</a></li>
+				<li><a href="class-Mailchimp_Folders.html">Mailchimp_Folders</a></li>
+				<li><a href="class-Mailchimp_Gallery.html">Mailchimp_Gallery</a></li>
+				<li><a href="class-Mailchimp_Helper.html">Mailchimp_Helper</a></li>
+				<li class="active"><a href="class-Mailchimp_Lists.html">Mailchimp_Lists</a></li>
+				<li><a href="class-Mailchimp_Mobile.html">Mailchimp_Mobile</a></li>
+				<li><a href="class-Mailchimp_Neapolitan.html">Mailchimp_Neapolitan</a></li>
+				<li><a href="class-Mailchimp_Reports.html">Mailchimp_Reports</a></li>
+				<li><a href="class-Mailchimp_Templates.html">Mailchimp_Templates</a></li>
+				<li><a href="class-Mailchimp_Users.html">Mailchimp_Users</a></li>
+				<li><a href="class-Mailchimp_Vip.html">Mailchimp_Vip</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Mailchimp_Absplit_UnknownError.html">Mailchimp_Absplit_UnknownError</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownSplitTest.html">Mailchimp_Absplit_UnknownSplitTest</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownTestType.html">Mailchimp_Absplit_UnknownTestType</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownWaitUnit.html">Mailchimp_Absplit_UnknownWaitUnit</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownWinnerType.html">Mailchimp_Absplit_UnknownWinnerType</a></li>
+				<li><a href="class-Mailchimp_Absplit_WinnerNotSelected.html">Mailchimp_Absplit_WinnerNotSelected</a></li>
+				<li><a href="class-Mailchimp_Avesta_Db_Exception.html">Mailchimp_Avesta_Db_Exception</a></li>
+				<li><a href="class-Mailchimp_Campaign_BounceMissing.html">Mailchimp_Campaign_BounceMissing</a></li>
+				<li><a href="class-Mailchimp_Campaign_DoesNotExist.html">Mailchimp_Campaign_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidAbsplit.html">Mailchimp_Campaign_InvalidAbsplit</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidAuto.html">Mailchimp_Campaign_InvalidAuto</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidContent.html">Mailchimp_Campaign_InvalidContent</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidOption.html">Mailchimp_Campaign_InvalidOption</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidRss.html">Mailchimp_Campaign_InvalidRss</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidSegment.html">Mailchimp_Campaign_InvalidSegment</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidStatus.html">Mailchimp_Campaign_InvalidStatus</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidTemplate.html">Mailchimp_Campaign_InvalidTemplate</a></li>
+				<li><a href="class-Mailchimp_Campaign_NotSaved.html">Mailchimp_Campaign_NotSaved</a></li>
+				<li><a href="class-Mailchimp_Campaign_StatsNotAvailable.html">Mailchimp_Campaign_StatsNotAvailable</a></li>
+				<li><a href="class-Mailchimp_Email_AlreadySubscribed.html">Mailchimp_Email_AlreadySubscribed</a></li>
+				<li><a href="class-Mailchimp_Email_AlreadyUnsubscribed.html">Mailchimp_Email_AlreadyUnsubscribed</a></li>
+				<li><a href="class-Mailchimp_Email_NotExists.html">Mailchimp_Email_NotExists</a></li>
+				<li><a href="class-Mailchimp_Email_NotSubscribed.html">Mailchimp_Email_NotSubscribed</a></li>
+				<li><a href="class-Mailchimp_Error.html">Mailchimp_Error</a></li>
+				<li><a href="class-Mailchimp_HttpError.html">Mailchimp_HttpError</a></li>
+				<li><a href="class-Mailchimp_Invalid_Analytics.html">Mailchimp_Invalid_Analytics</a></li>
+				<li><a href="class-Mailchimp_Invalid_ApiKey.html">Mailchimp_Invalid_ApiKey</a></li>
+				<li><a href="class-Mailchimp_Invalid_AppKey.html">Mailchimp_Invalid_AppKey</a></li>
+				<li><a href="class-Mailchimp_Invalid_DateTime.html">Mailchimp_Invalid_DateTime</a></li>
+				<li><a href="class-Mailchimp_Invalid_EcommOrder.html">Mailchimp_Invalid_EcommOrder</a></li>
+				<li><a href="class-Mailchimp_Invalid_Email.html">Mailchimp_Invalid_Email</a></li>
+				<li><a href="class-Mailchimp_Invalid_Folder.html">Mailchimp_Invalid_Folder</a></li>
+				<li><a href="class-Mailchimp_Invalid_IP.html">Mailchimp_Invalid_IP</a></li>
+				<li><a href="class-Mailchimp_Invalid_Options.html">Mailchimp_Invalid_Options</a></li>
+				<li><a href="class-Mailchimp_Invalid_PagingLimit.html">Mailchimp_Invalid_PagingLimit</a></li>
+				<li><a href="class-Mailchimp_Invalid_PagingStart.html">Mailchimp_Invalid_PagingStart</a></li>
+				<li><a href="class-Mailchimp_Invalid_SendType.html">Mailchimp_Invalid_SendType</a></li>
+				<li><a href="class-Mailchimp_Invalid_Template.html">Mailchimp_Invalid_Template</a></li>
+				<li><a href="class-Mailchimp_Invalid_TrackingOptions.html">Mailchimp_Invalid_TrackingOptions</a></li>
+				<li><a href="class-Mailchimp_Invalid_URL.html">Mailchimp_Invalid_URL</a></li>
+				<li><a href="class-Mailchimp_List_AlreadySubscribed.html">Mailchimp_List_AlreadySubscribed</a></li>
+				<li><a href="class-Mailchimp_List_CannotRemoveEmailMerge.html">Mailchimp_List_CannotRemoveEmailMerge</a></li>
+				<li><a href="class-Mailchimp_List_DoesNotExist.html">Mailchimp_List_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_List_InvalidBounceMember.html">Mailchimp_List_InvalidBounceMember</a></li>
+				<li><a href="class-Mailchimp_List_InvalidImport.html">Mailchimp_List_InvalidImport</a></li>
+				<li><a href="class-Mailchimp_List_InvalidInterestFieldType.html">Mailchimp_List_InvalidInterestFieldType</a></li>
+				<li><a href="class-Mailchimp_List_InvalidInterestGroup.html">Mailchimp_List_InvalidInterestGroup</a></li>
+				<li><a href="class-Mailchimp_List_InvalidMergeField.html">Mailchimp_List_InvalidMergeField</a></li>
+				<li><a href="class-Mailchimp_List_InvalidOption.html">Mailchimp_List_InvalidOption</a></li>
+				<li><a href="class-Mailchimp_List_InvalidUnsubMember.html">Mailchimp_List_InvalidUnsubMember</a></li>
+				<li><a href="class-Mailchimp_List_Merge_InvalidMergeID.html">Mailchimp_List_Merge_InvalidMergeID</a></li>
+				<li><a href="class-Mailchimp_List_MergeFieldRequired.html">Mailchimp_List_MergeFieldRequired</a></li>
+				<li><a href="class-Mailchimp_List_NotSubscribed.html">Mailchimp_List_NotSubscribed</a></li>
+				<li><a href="class-Mailchimp_List_TooManyInterestGroups.html">Mailchimp_List_TooManyInterestGroups</a></li>
+				<li><a href="class-Mailchimp_List_TooManyMergeFields.html">Mailchimp_List_TooManyMergeFields</a></li>
+				<li><a href="class-Mailchimp_Max_Size_Reached.html">Mailchimp_Max_Size_Reached</a></li>
+				<li><a href="class-Mailchimp_MC_ContentImport_InvalidArchive.html">Mailchimp_MC_ContentImport_InvalidArchive</a></li>
+				<li><a href="class-Mailchimp_MC_InvalidPayment.html">Mailchimp_MC_InvalidPayment</a></li>
+				<li><a href="class-Mailchimp_MC_PastedList_Duplicate.html">Mailchimp_MC_PastedList_Duplicate</a></li>
+				<li><a href="class-Mailchimp_MC_PastedList_InvalidImport.html">Mailchimp_MC_PastedList_InvalidImport</a></li>
+				<li><a href="class-Mailchimp_MC_SearchException.html">Mailchimp_MC_SearchException</a></li>
+				<li><a href="class-Mailchimp_Module_Unknown.html">Mailchimp_Module_Unknown</a></li>
+				<li><a href="class-Mailchimp_MonthlyPlan_Unknown.html">Mailchimp_MonthlyPlan_Unknown</a></li>
+				<li><a href="class-Mailchimp_Order_TypeUnknown.html">Mailchimp_Order_TypeUnknown</a></li>
+				<li><a href="class-Mailchimp_Parse_Exception.html">Mailchimp_Parse_Exception</a></li>
+				<li><a href="class-Mailchimp_PDOException.html">Mailchimp_PDOException</a></li>
+				<li><a href="class-Mailchimp_Request_TimedOut.html">Mailchimp_Request_TimedOut</a></li>
+				<li><a href="class-Mailchimp_ServerError_InvalidParameters.html">Mailchimp_ServerError_InvalidParameters</a></li>
+				<li><a href="class-Mailchimp_ServerError_MethodUnknown.html">Mailchimp_ServerError_MethodUnknown</a></li>
+				<li><a href="class-Mailchimp_Too_Many_Connections.html">Mailchimp_Too_Many_Connections</a></li>
+				<li><a href="class-Mailchimp_Unknown_Exception.html">Mailchimp_Unknown_Exception</a></li>
+				<li><a href="class-Mailchimp_User_CannotSendCampaign.html">Mailchimp_User_CannotSendCampaign</a></li>
+				<li><a href="class-Mailchimp_User_Disabled.html">Mailchimp_User_Disabled</a></li>
+				<li><a href="class-Mailchimp_User_DoesExist.html">Mailchimp_User_DoesExist</a></li>
+				<li><a href="class-Mailchimp_User_DoesNotExist.html">Mailchimp_User_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_User_InvalidAction.html">Mailchimp_User_InvalidAction</a></li>
+				<li><a href="class-Mailchimp_User_InvalidRole.html">Mailchimp_User_InvalidRole</a></li>
+				<li><a href="class-Mailchimp_User_MissingEmail.html">Mailchimp_User_MissingEmail</a></li>
+				<li><a href="class-Mailchimp_User_MissingModuleOutbox.html">Mailchimp_User_MissingModuleOutbox</a></li>
+				<li><a href="class-Mailchimp_User_ModuleAlreadyPurchased.html">Mailchimp_User_ModuleAlreadyPurchased</a></li>
+				<li><a href="class-Mailchimp_User_ModuleNotPurchased.html">Mailchimp_User_ModuleNotPurchased</a></li>
+				<li><a href="class-Mailchimp_User_NotApproved.html">Mailchimp_User_NotApproved</a></li>
+				<li><a href="class-Mailchimp_User_NotEnoughCredit.html">Mailchimp_User_NotEnoughCredit</a></li>
+				<li><a href="class-Mailchimp_User_UnderMaintenance.html">Mailchimp_User_UnderMaintenance</a></li>
+				<li><a href="class-Mailchimp_User_Unknown.html">Mailchimp_User_Unknown</a></li>
+				<li><a href="class-Mailchimp_ValidationError.html">Mailchimp_ValidationError</a></li>
+				<li><a href="class-Mailchimp_XML_RPC2_Exception.html">Mailchimp_XML_RPC2_Exception</a></li>
+				<li><a href="class-Mailchimp_XML_RPC2_FaultException.html">Mailchimp_XML_RPC2_FaultException</a></li>
+				<li><a href="class-Mailchimp_Zend_Uri_Exception.html">Mailchimp_Zend_Uri_Exception</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Mailchimp_Lists</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+		<b>Located at</b> <a href="source-class-Mailchimp_Lists.html#3-893" title="Go to source code">Mailchimp/Lists.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#4-6" title="Go to source code">__construct</a>( <span><code><a href="class-Mailchimp.html">Mailchimp</a></code> <var>$master</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="abuseReports" id="_abuseReports">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_abuseReports">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#8-25" title="Go to source code">abuseReports</a>( <span>string <var>$id</var></span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$limit</var> = <span class="php-num">500</span></span>, <span>string <var>$since</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get all email addresses that complained about a campaign sent to a list</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all email addresses that complained about a campaign sent to a list</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$start</var></dt>
+					<dd><code>integer</code><br>$start</dd>
+					<dt><var>$limit</var></dt>
+					<dd><code>integer</code><br>$limit</dd>
+					<dt><var>$since</var></dt>
+					<dd><code>string</code><br>$since</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>the total of all reports and the specific reports reports this page - total int
+the total number of matching abuse reports - data array structs for the actual
+data for each reports, including: - date string date+time the abuse report was
+received and processed - email string the email address that reported abuse -
+campaign_id string the unique id for the campaign that report was made against -
+type string an internal type generally specifying the originating mail provider
+- may not be useful outside of filling report views<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="activity" id="_activity">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_activity">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#27-35" title="Go to source code">activity</a>( <span>string <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Access up to the previous 180 days of daily detailed aggregated activity
+stats for a given list. Does not include AutoResponder activity.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Access up to the previous 180 days of daily detailed aggregated activity
+stats for a given list. Does not include AutoResponder activity.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>of structs containing daily values, each containing:<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="batchSubscribe" id="_batchSubscribe">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_batchSubscribe">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#37-76" title="Go to source code">batchSubscribe</a>( <span>string <var>$id</var></span>, <span>array <var>$batch</var></span>, <span>boolean <var>$double_optin</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$update_existing</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$replace_interests</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Subscribe a batch of email addresses to a list at once. If you are using a
+serialized version of the API, we strongly suggest that you only run this method
+as a POST request, and &lt;em&gt;not&lt;/em&gt; a GET request. Maximum batch
+sizes vary based on the amount of data in each record, though you should cap
+them at 5k - 10k records, depending on your experience. These calls are also
+long, so be sure you increase your timeout values.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Subscribe a batch of email addresses to a list at once. If you are using a
+serialized version of the API, we strongly suggest that you only run this method
+as a POST request, and &lt;em&gt;not&lt;/em&gt; a GET request. Maximum batch
+sizes vary based on the amount of data in each record, though you should cap
+them at 5k - 10k records, depending on your experience. These calls are also
+long, so be sure you increase your timeout values.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$batch</var></dt>
+					<dd><code>array</code><br>$batch - email associative_array a struct with one of the following keys -
+failing to provide anything will produce an error relating to the email address.
+Provide multiples and we'll use the first we see in this same order. - email
+string an email address - euid string the unique id for an email address (not
+list related) - the email "id" returned from listMemberInfo, Webhooks,
+Campaigns, etc. - leid string the list email id (previously called web_id) for a
+list-member-info type call. this doesn't change when the email address changes -
+email_type string for the email type option (html or text) - merge_vars
+associative_array data for the various list specific and special merge vars
+documented in lists/subscribe</dd>
+					<dt><var>$double_optin</var></dt>
+					<dd><code>boolean</code><br>$double_optin</dd>
+					<dt><var>$update_existing</var></dt>
+					<dd><code>boolean</code><br>$update_existing</dd>
+					<dt><var>$replace_interests</var></dt>
+					<dd><code>boolean</code><br>$replace_interests</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>struct of result counts and associated data - add_count int Number of email
+addresses that were successfully added - adds array array of structs for each
+add - email string the email address added - euid string the email unique id -
+leid string the list member's truly unique id - update_count int Number of email
+addresses that were successfully updated - updates array array of structs for
+each update - email string the email address added - euid string the email
+unique id - leid string the list member's truly unique id - error_count int
+Number of email addresses that failed during addition/updating - errors array
+array of error structs including: - email string whatever was passed in the
+batch record's email parameter - email string the email address added - euid
+string the email unique id - leid string the list member's truly unique id -
+code int the error code - error string the full error message - row
+associative_array the row from the batch that caused the error<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="batchUnsubscribe" id="_batchUnsubscribe">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_batchUnsubscribe">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#78-103" title="Go to source code">batchUnsubscribe</a>( <span>string <var>$id</var></span>, <span>array <var>$batch</var></span>, <span>boolean <var>$delete_member</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$send_goodbye</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$send_notify</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Unsubscribe a batch of email addresses from a list</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unsubscribe a batch of email addresses from a list</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$batch</var></dt>
+					<dd><code>array</code><br>$batch - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
+					<dt><var>$delete_member</var></dt>
+					<dd><code>boolean</code><br>$delete_member</dd>
+					<dt><var>$send_goodbye</var></dt>
+					<dd><code>boolean</code><br>$send_goodbye</dd>
+					<dt><var>$send_notify</var></dt>
+					<dd><code>boolean</code><br>$send_notify</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Array of structs containing results and any errors that occurred - success_count
+int Number of email addresses that were successfully removed - error_count int
+Number of email addresses that failed during addition/updating - of array
+structs contain error details including: - errors array array of error structs
+including: - email string whatever was passed in the batch record's email
+parameter - email string the email address added - euid string the email unique
+id - leid string the list member's truly unique id - code int the error code -
+error string the full error message<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="clients" id="_clients">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_clients">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#105-127" title="Go to source code">clients</a>( <span>string <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve the clients that the list's subscribers have been tagged as being
+used based on user agents seen. Made possible by <a
+href="http://user-agent-string.info"
+target="_blank">user-agent-string.info</a></p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve the clients that the list's subscribers have been tagged as being
+used based on user agents seen. Made possible by <a
+href="http://user-agent-string.info"
+target="_blank">user-agent-string.info</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>the desktop and mobile user agents in use on the list - desktop
+associative_array desktop user agents and percentages - penetration double the
+percent of desktop clients in use - clients array array of structs for each
+client including: - client string the common name for the client - icon string a
+url to an image representing this client - percent string percent of list using
+the client - members string total members using the client - mobile
+associative_array mobile user agents and percentages - penetration double the
+percent of mobile clients in use - clients array array of structs for each
+client including: - client string the common name for the client - icon string a
+url to an image representing this client - percent string percent of list using
+the client - members string total members using the client<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="growthHistory" id="_growthHistory">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_growthHistory">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#129-141" title="Go to source code">growthHistory</a>( <span>string <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Access the Growth History by Month in aggregate or for a given list.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Access the Growth History by Month in aggregate or for a given list.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>array of structs containing months and growth data - month string The Year and
+Month in question using YYYY-MM format - existing int number of existing
+subscribers to start the month - imports int number of subscribers imported
+during the month - optins int number of subscribers who opted-in during the
+month<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="interestGroupings" id="_interestGroupings">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_interestGroupings">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#143-160" title="Go to source code">interestGroupings</a>( <span>string <var>$id</var></span>, <span>boolean <var>$counts</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the list of interest groupings for a given list, including the label,
+form information, and included groups for each</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the list of interest groupings for a given list, including the label,
+form information, and included groups for each</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$counts</var></dt>
+					<dd><code>boolean</code><br>$counts</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>array of structs of the interest groupings for the list - id int The id for the
+Grouping - name string Name for the Interest groups - form_field string Gives
+the type of interest group: checkbox,radio,select - groups array Array structs
+of the grouping options (interest groups) including: - bit string the bit value
+- not really anything to be done with this - name string the name of the group -
+display_order string the display order of the group, if set - subscribers int
+total number of subscribers who have this group if "counts" is true. otherwise
+empty<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="interestGroupAdd" id="_interestGroupAdd">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_interestGroupAdd">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#162-174" title="Go to source code">interestGroupAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$group_name</var></span>, <span>integer <var>$grouping_id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a single Interest Group - if interest groups for the List are not yet
+enabled, adding the first group will automatically turn them on.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a single Interest Group - if interest groups for the List are not yet
+enabled, adding the first group will automatically turn them on.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$group_name</var></dt>
+					<dd><code>string</code><br>$group_name</dd>
+					<dt><var>$grouping_id</var></dt>
+					<dd><code>integer</code><br>$grouping_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="interestGroupDel" id="_interestGroupDel">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_interestGroupDel">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#176-187" title="Go to source code">interestGroupDel</a>( <span>string <var>$id</var></span>, <span>string <var>$group_name</var></span>, <span>integer <var>$grouping_id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete a single Interest Group - if the last group for a list is deleted,
+this will also turn groups for the list off.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete a single Interest Group - if the last group for a list is deleted,
+this will also turn groups for the list off.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$group_name</var></dt>
+					<dd><code>string</code><br>$group_name</dd>
+					<dt><var>$grouping_id</var></dt>
+					<dd><code>integer</code><br>$grouping_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="interestGroupUpdate" id="_interestGroupUpdate">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_interestGroupUpdate">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#189-201" title="Go to source code">interestGroupUpdate</a>( <span>string <var>$id</var></span>, <span>string <var>$old_name</var></span>, <span>string <var>$new_name</var></span>, <span>integer <var>$grouping_id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Change the name of an Interest Group</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Change the name of an Interest Group</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$old_name</var></dt>
+					<dd><code>string</code><br>$old_name</dd>
+					<dt><var>$new_name</var></dt>
+					<dd><code>string</code><br>$new_name</dd>
+					<dt><var>$grouping_id</var></dt>
+					<dd><code>integer</code><br>$grouping_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="interestGroupingAdd" id="_interestGroupingAdd">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_interestGroupingAdd">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#203-216" title="Go to source code">interestGroupingAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$name</var></span>, <span>string <var>$type</var></span>, <span>array <var>$groups</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a new Interest Grouping - if interest groups for the List are not yet
+enabled, adding the first grouping will automatically turn them on.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a new Interest Grouping - if interest groups for the List are not yet
+enabled, adding the first grouping will automatically turn them on.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type</dd>
+					<dt><var>$groups</var></dt>
+					<dd><code>array</code><br>$groups</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - id int the new grouping id if the request succeeds,
+otherwise an error will be thrown<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="interestGroupingDel" id="_interestGroupingDel">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_interestGroupingDel">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#218-227" title="Go to source code">interestGroupingDel</a>( <span>integer <var>$grouping_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete an existing Interest Grouping - this will permanently delete all
+contained interest groups and will remove those selections from all list
+members</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete an existing Interest Grouping - this will permanently delete all
+contained interest groups and will remove those selections from all list
+members</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$grouping_id</var></dt>
+					<dd><code>integer</code><br>$grouping_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="interestGroupingUpdate" id="_interestGroupingUpdate">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_interestGroupingUpdate">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#229-240" title="Go to source code">interestGroupingUpdate</a>( <span>integer <var>$grouping_id</var></span>, <span>string <var>$name</var></span>, <span>string <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Update an existing Interest Grouping</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Update an existing Interest Grouping</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$grouping_id</var></dt>
+					<dd><code>integer</code><br>$grouping_id</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="locations" id="_locations">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_locations">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#242-254" title="Go to source code">locations</a>( <span>string <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve the locations (countries) that the list's subscribers have been
+tagged to based on geocoding their IP address</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve the locations (countries) that the list's subscribers have been
+tagged to based on geocoding their IP address</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>array of locations - country string the country name - cc string the ISO 3166 2
+digit country code - percent double the percent of subscribers in the country -
+total double the total number of subscribers in the country<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="memberActivity" id="_memberActivity">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_memberActivity">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#256-289" title="Go to source code">memberActivity</a>( <span>string <var>$id</var></span>, <span>array <var>$emails</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the most recent 100 activities for particular list members (open, click,
+bounce, unsub, abuse, sent to, etc.)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the most recent 100 activities for particular list members (open, click,
+bounce, unsub, abuse, sent to, etc.)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$emails</var></dt>
+					<dd><code>array</code><br>$emails - email string an email address - for new subscribers obviously this
+should be used - euid string the unique id for an email address (not list
+related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns,
+etc. - leid string the list email id (previously called web_id) for a
+list-member-info type call. this doesn't change when the email address changes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>of data and success/error counts - success_count int the number of subscribers
+successfully found on the list - error_count int the number of subscribers who
+were not found on the list - errors array array of error structs including: -
+email string whatever was passed in the email parameter - email string the email
+address added - euid string the email unique id - leid string the list member's
+truly unique id - error string the error message - code string the error code -
+data array an array of structs where each activity record has: - email string
+whatever was passed in the email parameter - email string the email address
+added - euid string the email unique id - leid string the list member's truly
+unique id - activity array an array of structs containing the activity,
+including: - action string The action name, one of: open, click, bounce, unsub,
+abuse, sent, queued, ecomm, mandrill_send, mandrill_hard_bounce,
+mandrill_soft_bounce, mandrill_open, mandrill_click, mandrill_spam,
+mandrill_unsub, mandrill_reject - timestamp string The date+time of the action
+(GMT) - url string For click actions, the url clicked, otherwise this is empty -
+type string If there's extra bounce, unsub, etc data it will show up here. -
+campaign_id string The campaign id the action was related to, if it exists -
+otherwise empty (ie, direct unsub from list) - campaign_data associative_array
+If not deleted, the campaigns/list data for the campaign<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="memberInfo" id="_memberInfo">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_memberInfo">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#291-361" title="Go to source code">memberInfo</a>( <span>string <var>$id</var></span>, <span>array <var>$emails</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get all the information for particular members of a list</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all the information for particular members of a list</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$emails</var></dt>
+					<dd><code>array</code><br>$emails - email string an email address - for new subscribers obviously this
+should be used - euid string the unique id for an email address (not list
+related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns,
+etc. - leid string the list email id (previously called web_id) for a
+list-member-info type call. this doesn't change when the email address changes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>of data and success/error counts - success_count int the number of subscribers
+successfully found on the list - error_count int the number of subscribers who
+were not found on the list - errors array array of error structs including: -
+email associative_array whatever was passed in the email parameter - email
+string the email address added - euid string the email unique id - leid string
+the list member's truly unique id - error string the error message - data array
+array of structs for each valid list member - id string The unique id (euid) for
+this email address on an account - email string The email address associated
+with this record - email_type string The type of emails this customer asked to
+get: html or text - merges associative_array a struct containing a key for each
+merge tags and the data for those tags for this email address, plus: - GROUPINGS
+array if Interest groupings are enabled, this will exist with structs for each
+grouping: - id int the grouping id - name string the interest group name -
+groups array structs for each group in the grouping - name string the group name
+- interested bool whether the member has this group selected - status string The
+subscription status for this email address, either pending, subscribed,
+unsubscribed, or cleaned - ip_signup string IP Address this address signed up
+from. This may be blank if single optin is used. - timestamp_signup string The
+date+time the double optin was initiated. This may be blank if single optin is
+used. - ip_opt string IP Address this address opted in from. - timestamp_opt
+string The date+time the optin completed - member_rating int the rating of the
+subscriber. This will be 1 - 5 as described <a href="http://eepurl.com/f-2P"
+target="_blank">here</a> - campaign_id string If the user is unsubscribed and
+they unsubscribed from a specific campaign, that campaign_id will be listed,
+otherwise this is not returned. - lists array An array of structs for the other
+lists this member belongs to - id string the list id - status string the members
+status on that list - timestamp string The date+time this email address entered
+it's current status - info_changed string The last time this record was changed.
+If the record is old enough, this may be blank. - web_id int The Member id used
+in our web app, allows you to create a link directly to it - leid int The Member
+id used in our web app, allows you to create a link directly to it - list_id
+string The list id the for the member record being returned - list_name string
+The list name the for the member record being returned - language string if
+set/detected, a language code from <a
+href="http://kb.mailchimp.com/article/can-i-see-what-languages-my-subscribers-use#code"
+target="_blank">here</a> - is_gmonkey bool Whether the member is a <a
+href="http://mailchimp.com/features/golden-monkeys/" target="_blank">Golden
+Monkey</a> or not. - geo associative_array the geographic information if we have
+it. including: - latitude string the latitude - longitude string the longitude -
+gmtoff string GMT offset - dstoff string GMT offset during daylight savings (if
+DST not observered, will be same as gmtoff) - timezone string the timezone we've
+place them in - cc string 2 digit ISO-3166 country code - region string
+generally state, province, or similar - clients associative_array the client
+we've tracked the address as using with two keys: - name string the common name
+of the client - icon_url string a url representing a path to an icon
+representing this client - static_segments array structs for each static
+segments the member is a part of including: - id int the segment id - name
+string the name given to the segment - added string the date the member was
+added - notes array structs for each note entered for this member. For each
+note: - id int the note id - note string the text entered - created string the
+date the note was created - updated string the date the note was last updated -
+created_by_name string the name of the user who created the note. This can
+change as users update their profile.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="members" id="_members">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_members">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#363-381" title="Go to source code">members</a>( <span>string <var>$id</var></span>, <span>string <var>$status</var> = <span class="php-quote">'subscribed'</span></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Get all of the list members for a list that are of a particular status and
+potentially matching a segment. This will cause locking, so don't run multiples
+at once. Are you trying to get a dump including lots of merge data or specific
+members of a list? If so, checkout the <a href="/export/1.0/list.func.php">List
+Export API</a></p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the list members for a list that are of a particular status and
+potentially matching a segment. This will cause locking, so don't run multiples
+at once. Are you trying to get a dump including lots of merge data or specific
+members of a list? If so, checkout the <a href="/export/1.0/list.func.php">List
+Export API</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$status</var></dt>
+					<dd><code>string</code><br>$status</dd>
+					<dt><var>$opts</var></dt>
+					<dd><code>associative_array</code><br>$opts - start int optional for large data sets, the page number to start at -
+defaults to 1st page of data (page 0) - limit int optional for large data sets,
+the number of results to return - defaults to 25, upper limit set at 100 -
+sort_field string optional the data field to sort by - mergeX (1-30), your
+custom merge tags, "email", "rating","last_update_time", or "optin_time" -
+invalid fields will be ignored - sort_dir string optional the direct - ASC or
+DESC. defaults to ASC (case insensitive) - segment associative_array a properly
+formatted segment that works with campaigns/segment-test</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>of the total records matched and limited list member data for this page - total
+int the total matching records - data array structs for each member as returned
+by member-info<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeVarAdd" id="_mergeVarAdd">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeVarAdd">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#383-417" title="Go to source code">mergeVarAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$tag</var></span>, <span>string <var>$name</var></span>, <span>associative_array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Add a new merge tag to a given list</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a new merge tag to a given list</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>associative_array</code><br>$options - field_type string optional one of: text, number, radio, dropdown,
+date, address, phone, url, imageurl, zip, birthday - defaults to text - req
+boolean optional indicates whether the field is required - defaults to false -
+public boolean optional indicates whether the field is displayed in public -
+defaults to true - show boolean optional indicates whether the field is
+displayed in the app's list member view - defaults to true - order int The order
+this merge tag should be displayed in - this will cause existing values to be
+reset so this fits - default_value string optional the default value for the
+field. See lists/subscribe() for formatting info. Defaults to blank - max 255
+bytes - helptext string optional the help text to be used with some newer forms.
+Defaults to blank - max 255 bytes - choices array optional kind of - an array of
+strings to use as the choices for radio and dropdown type fields - dateformat
+string optional only valid for birthday and date fields. For birthday type, must
+be "MM/DD" (default) or "DD/MM". For date type, must be "MM/DD/YYYY" (default)
+or "DD/MM/YYYY". Any other values will be converted to the default. -
+phoneformat string optional "US" is the default - any other value will cause
+them to be unformatted (international) - defaultcountry string optional the <a
+href="http://www.iso.org/iso/english_country_names_and_code_elements"
+target="_blank">ISO 3166 2 digit character code</a> for the default country.
+Defaults to "US". Anything unrecognized will be converted to the default.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>the full data for the new merge var, just like merge-vars returns - name string
+Name/description of the merge field - req bool Denotes whether the field is
+required (true) or not (false) - field_type string The "data type" of this merge
+var. One of: email, text, number, radio, dropdown, date, address, phone, url,
+imageurl - public bool Whether or not this field is visible to list subscribers
+- show bool Whether the field is displayed in thelist dashboard - order string
+The order this field displays in on forms - default string The default value for
+this field - helptext string The helptext for this field - size string The width
+of the field to be used - tag string The merge tag that's used for forms and
+lists/subscribe() and lists/update-member() - choices array the options
+available for radio and dropdown field types - id int an unchanging id for the
+merge var<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeVarDel" id="_mergeVarDel">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeVarDel">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#419-430" title="Go to source code">mergeVarDel</a>( <span>string <var>$id</var></span>, <span>string <var>$tag</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete a merge tag from a given list and all its members. Seriously - the
+data is removed from all members as well! Note that on large lists this method
+may seem a bit slower than calls you typically make.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete a merge tag from a given list and all its members. Seriously - the
+data is removed from all members as well! Note that on large lists this method
+may seem a bit slower than calls you typically make.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeVarReset" id="_mergeVarReset">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeVarReset">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#432-442" title="Go to source code">mergeVarReset</a>( <span>string <var>$id</var></span>, <span>string <var>$tag</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Completely resets all data stored in a merge var on a list. All data is
+removed and this action can not be undone.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Completely resets all data stored in a merge var on a list. All data is
+removed and this action can not be undone.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeVarSet" id="_mergeVarSet">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeVarSet">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#444-456" title="Go to source code">mergeVarSet</a>( <span>string <var>$id</var></span>, <span>string <var>$tag</var></span>, <span>string <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Sets a particular merge var to the specified value for every list member.
+Only merge var ids 1 - 30 may be modified this way. This is generally a dirty
+method unless you're fixing data since you should probably be using
+default_values and/or conditional content. as with lists/merge-var-reset(), this
+can not be undone.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sets a particular merge var to the specified value for every list member.
+Only merge var ids 1 - 30 may be modified this way. This is generally a dirty
+method unless you're fixing data since you should probably be using
+default_values and/or conditional content. as with lists/merge-var-reset(), this
+can not be undone.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeVarUpdate" id="_mergeVarUpdate">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeVarUpdate">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#458-480" title="Go to source code">mergeVarUpdate</a>( <span>string <var>$id</var></span>, <span>string <var>$tag</var></span>, <span>associative_array <var>$options</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Update most parameters for a merge tag on a given list. You cannot currently
+change the merge type</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Update most parameters for a merge tag on a given list. You cannot currently
+change the merge type</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>associative_array</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>the full data for the new merge var, just like merge-vars returns - name string
+Name/description of the merge field - req bool Denotes whether the field is
+required (true) or not (false) - field_type string The "data type" of this merge
+var. One of: email, text, number, radio, dropdown, date, address, phone, url,
+imageurl - public bool Whether or not this field is visible to list subscribers
+- show bool Whether the field is displayed in thelist dashboard - order string
+The order this field to displays in on forms - default string The default value
+for this field - helptext string The helptext for this field - size string The
+width of the field to be used - tag string The merge tag that's used for forms
+and lists/subscribe() and lists/update-member() - choices array the options
+available for radio and dropdown field types - id int an unchanging id for the
+merge var<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeVars" id="_mergeVars">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeVars">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#482-512" title="Go to source code">mergeVars</a>( <span>array <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the list of merge tags for a given list, including their name, tag, and
+required setting</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the list of merge tags for a given list, including their name, tag, and
+required setting</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>array</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>of data and success/error counts - success_count int the number of subscribers
+successfully found on the list - error_count int the number of subscribers who
+were not found on the list - data array of structs for the merge tags on each
+list - id string the list id - name string the list name - merge_vars array of
+structs for each merge var - name string Name of the merge field - req bool
+Denotes whether the field is required (true) or not (false) - field_type string
+The "data type" of this merge var. One of the options accepted by field_type in
+lists/merge-var-add - public bool Whether or not this field is visible to list
+subscribers - show bool Whether the list owner has this field displayed on their
+list dashboard - order string The order the list owner has set this field to
+display in - default string The default value the list owner has set for this
+field - helptext string The helptext for this field - size string The width of
+the field to be used - tag string The merge tag that's used for forms and
+lists/subscribe() and listUpdateMember() - choices array For radio and dropdown
+field types, an array of the options available - id int an unchanging id for the
+merge var - errors array of error structs - id string the passed list id that
+failed - code int the resulting error code - msg string the resulting error
+message<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segments" id="_segments">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segments">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#514-526" title="Go to source code">segments</a>( <span>string <var>$id</var></span>, <span>string <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve all of Segments for a list.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve all of Segments for a list.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with 2 keys: - static.id int the id of the segment - created_date string the
+date+time the segment was created - last_update string the date+time the segment
+was last updated (add or del)<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segmentAdd" id="_segmentAdd">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segmentAdd">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#528-547" title="Go to source code">segmentAdd</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$opts</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Save a segment against a list for later use. There is no limit to the number
+of segments which can be saved. Static Segments &lt;strong&gt;are
+not&lt;/strong&gt; tied to any merge data, interest groups, etc. They
+essentially allow you to configure an unlimited number of custom segments which
+will have standard performance. When using proper segments, Static Segments are
+one of the available options for segmentation just as if you used a merge var
+(and they can be used with other segmentation options), though performance may
+degrade at that point. Saved Segments (called "auto-updating" in the app) are
+essentially just the match+conditions typically used.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save a segment against a list for later use. There is no limit to the number
+of segments which can be saved. Static Segments &lt;strong&gt;are
+not&lt;/strong&gt; tied to any merge data, interest groups, etc. They
+essentially allow you to configure an unlimited number of custom segments which
+will have standard performance. When using proper segments, Static Segments are
+one of the available options for segmentation just as if you used a merge var
+(and they can be used with other segmentation options), though performance may
+degrade at that point. Saved Segments (called "auto-updating" in the app) are
+essentially just the match+conditions typically used.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$opts</var></dt>
+					<dd><code>associative_array</code><br>$opts - type string either "static" or "saved" - name string a unique name per
+list for the segment - 100 byte maximum length, anything longer will throw an
+error - segment_opts associative_array for "saved" only, the standard segment
+match+conditions, just like campaigns/segment-test - match string "any" or "all"
+- conditions array structs for each condition, just like campaigns/segment-test</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - id int the id of the new segment, otherwise an error will
+be thrown.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segmentDel" id="_segmentDel">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segmentDel">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#549-559" title="Go to source code">segmentDel</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete a segment. Note that this will, of course, remove any member
+affiliations with any static segments deleted</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete a segment. Note that this will, of course, remove any member
+affiliations with any static segments deleted</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$seg_id</var></dt>
+					<dd><code>integer</code><br>$seg_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segmentTest" id="_segmentTest">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segmentTest">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#561-575" title="Go to source code">segmentTest</a>( <span>string <var>$list_id</var></span>, <span>associative_array <var>$options</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Allows one to test their segmentation rules before creating a campaign using
+them - this is no different from campaigns/segment-test() and will eventually
+replace it. For the time being, the crazy segmenting condition documentation
+will continue to live over there.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Allows one to test their segmentation rules before creating a campaign using
+them - this is no different from campaigns/segment-test() and will eventually
+replace it. For the time being, the crazy segmenting condition documentation
+will continue to live over there.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$list_id</var></dt>
+					<dd><code>string</code><br>$list_id</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>associative_array</code><br>$options - saved_segment_id string a saved segment id from lists/segments() -
+this will take precendence, otherwise the match+conditions are required. - match
+string controls whether to use AND or OR when applying your options - expects
+"&lt;strong&gt;any&lt;/strong&gt;" (for OR) or
+"&lt;strong&gt;all&lt;/strong&gt;" (for AND) - conditions array of up to 5
+structs for different criteria to apply while segmenting. Each criteria row must
+contain 3 keys - "&lt;strong&gt;field&lt;/strong&gt;",
+"&lt;strong&gt;op&lt;/strong&gt;", and "&lt;strong&gt;value&lt;/strong&gt;" -
+and possibly a fourth, "&lt;strong&gt;extra&lt;/strong&gt;", based on these
+definitions:</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - total int The total number of subscribers matching your
+segmentation options<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segmentUpdate" id="_segmentUpdate">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segmentUpdate">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#577-592" title="Go to source code">segmentUpdate</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span>, <span>associative_array <var>$opts</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Update an existing segment. The list and type can not be changed.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Update an existing segment. The list and type can not be changed.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$seg_id</var></dt>
+					<dd><code>integer</code><br>$seg_id</dd>
+					<dt><var>$opts</var></dt>
+					<dd><code>associative_array</code><br>$opts - name string a unique name per list for the segment - 100 byte maximum
+length, anything longer will throw an error - segment_opts associative_array for
+"saved" only, the standard segment match+conditions, just like
+campaigns/segment-test - match associative_array "any" or "all" - conditions
+array structs for each condition, just like campaigns/segment-test</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="staticSegmentAdd" id="_staticSegmentAdd">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_staticSegmentAdd">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#594-607" title="Go to source code">staticSegmentAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Save a segment against a list for later use. There is no limit to the number
+of segments which can be saved. Static Segments &lt;strong&gt;are
+not&lt;/strong&gt; tied to any merge data, interest groups, etc. They
+essentially allow you to configure an unlimited number of custom segments which
+will have standard performance. When using proper segments, Static Segments are
+one of the available options for segmentation just as if you used a merge var
+(and they can be used with other segmentation options), though performance may
+degrade at that point.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save a segment against a list for later use. There is no limit to the number
+of segments which can be saved. Static Segments &lt;strong&gt;are
+not&lt;/strong&gt; tied to any merge data, interest groups, etc. They
+essentially allow you to configure an unlimited number of custom segments which
+will have standard performance. When using proper segments, Static Segments are
+one of the available options for segmentation just as if you used a merge var
+(and they can be used with other segmentation options), though performance may
+degrade at that point.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - id int the id of the new segment, otherwise an error will
+be thrown.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="staticSegmentDel" id="_staticSegmentDel">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_staticSegmentDel">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#609-619" title="Go to source code">staticSegmentDel</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete a static segment. Note that this will, of course, remove any member
+affiliations with the segment</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete a static segment. Note that this will, of course, remove any member
+affiliations with the segment</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$seg_id</var></dt>
+					<dd><code>integer</code><br>$seg_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="staticSegmentMembersAdd" id="_staticSegmentMembersAdd">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_staticSegmentMembersAdd">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#621-643" title="Go to source code">staticSegmentMembersAdd</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span>, <span>array <var>$batch</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add list members to a static segment. It is suggested that you limit batch
+size to no more than 10,000 addresses per call. Email addresses must exist on
+the list in order to be included - this &lt;strong&gt;will not&lt;/strong&gt;
+subscribe them to the list!</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add list members to a static segment. It is suggested that you limit batch
+size to no more than 10,000 addresses per call. Email addresses must exist on
+the list in order to be included - this &lt;strong&gt;will not&lt;/strong&gt;
+subscribe them to the list!</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$seg_id</var></dt>
+					<dd><code>integer</code><br>$seg_id</dd>
+					<dt><var>$batch</var></dt>
+					<dd><code>array</code><br>$batch - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>an array with the results of the operation - success_count int the total number
+of successful updates (will include members already in the segment) - errors
+array structs for each error including: - email string whatever was passed in
+the email parameter - email string the email address added - euid string the
+email unique id - leid string the list member's truly unique id - code string
+the error code - error string the full error message<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="staticSegmentMembersDel" id="_staticSegmentMembersDel">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_staticSegmentMembersDel">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#645-668" title="Go to source code">staticSegmentMembersDel</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span>, <span>array <var>$batch</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove list members from a static segment. It is suggested that you limit
+batch size to no more than 10,000 addresses per call. Email addresses must exist
+on the list in order to be removed - this &lt;strong&gt;will not&lt;/strong&gt;
+unsubscribe them from the list!</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove list members from a static segment. It is suggested that you limit
+batch size to no more than 10,000 addresses per call. Email addresses must exist
+on the list in order to be removed - this &lt;strong&gt;will not&lt;/strong&gt;
+unsubscribe them from the list!</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$seg_id</var></dt>
+					<dd><code>integer</code><br>$seg_id</dd>
+					<dt><var>$batch</var></dt>
+					<dd><code>array</code><br>$batch - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>an array with the results of the operation - success_count int the total number
+of successful removals - error_count int the total number of unsuccessful
+removals - errors array structs for each error including: - email string
+whatever was passed in the email parameter - email string the email address
+added - euid string the email unique id - leid string the list member's truly
+unique id - code string the error code - error string the full error message<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="staticSegmentReset" id="_staticSegmentReset">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_staticSegmentReset">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#670-680" title="Go to source code">staticSegmentReset</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Resets a static segment - removes &lt;strong&gt;all&lt;/strong&gt; members
+from the static segment. Note: does not actually affect list member data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resets a static segment - removes &lt;strong&gt;all&lt;/strong&gt; members
+from the static segment. Note: does not actually affect list member data</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$seg_id</var></dt>
+					<dd><code>integer</code><br>$seg_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="staticSegments" id="_staticSegments">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_staticSegments">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#682-696" title="Go to source code">staticSegments</a>( <span>string <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve all of the Static Segments for a list.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve all of the Static Segments for a list.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>an of structs with data for each static segment - id int the id of the segment -
+name string the name for the segment - member_count int the total number of
+subscribed members currently in a segment - created_date string the date+time
+the segment was created - last_update string the date+time the segment was last
+updated (add or del) - last_reset string the date+time the segment was last
+reset (ie had all members cleared from it)<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="subscribe" id="_subscribe">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_subscribe">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#698-735" title="Go to source code">subscribe</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>associative_array <var>$merge_vars</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$email_type</var> = <span class="php-quote">'html'</span></span>, <span>boolean <var>$double_optin</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$update_existing</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$replace_interests</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$send_welcome</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Subscribe the provided email to a list. By default this sends a confirmation
+email - you will not see new members until the link contained in it is
+clicked!</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Subscribe the provided email to a list. By default this sends a confirmation
+email - you will not see new members until the link contained in it is
+clicked!</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$email</var></dt>
+					<dd><code>associative_array</code><br>$email - email string an email address - for new subscribers obviously this
+should be used - euid string the unique id for an email address (not list
+related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns,
+etc. - leid string the list email id (previously called web_id) for a
+list-member-info type call. this doesn't change when the email address changes</dd>
+					<dt><var>$merge_vars</var></dt>
+					<dd><code>associative_array</code><br>$merge_vars - new-email string set this to change the email address. This is
+only respected on calls using update_existing or when passed to
+listUpdateMember(). - groupings array of Interest Grouping structs. Each should
+contain: - id int Grouping "id" from lists/interest-groupings (either this or
+name must be present) - this id takes precedence and can't change (unlike the
+name) - name string Grouping "name" from lists/interest-groupings (either this
+or id must be present) - groups array an array of valid group names for this
+grouping. - optin_ip string Set the Opt-in IP field. &lt;em&gt;Abusing this may
+cause your account to be suspended.&lt;/em&gt; We do validate this and it must
+not be a private IP address. - optin_time string Set the Opt-in Time field.
+&lt;em&gt;Abusing this may cause your account to be suspended.&lt;/em&gt; We do
+validate this and it must be a valid date. Use - 24 hour format in
+&lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" to be safe.
+Generally, though, anything strtotime() understands we'll understand - <a
+href="http://us2.php.net/strtotime"
+target="_blank">http://us2.php.net/strtotime</a> - mc_location associative_array
+Set the member's geographic location either by optin_ip or geo data. - latitude
+string use the specified latitude (longitude must exist for this to work) -
+longitude string use the specified longitude (latitude must exist for this to
+work) - anything string if this (or any other key exists here) we'll try to use
+the optin ip. NOTE - this will slow down each subscribe call a bit, especially
+for lat/lng pairs in sparsely populated areas. Currently our automated
+background processes can and will overwrite this based on opens and clicks. -
+mc_language string Set the member's language preference. Supported codes are
+fully case-sensitive and can be found <a
+href="http://kb.mailchimp.com/article/can-i-see-what-languages-my-subscribers-use#code"
+target="_new">here</a>. - mc_notes array of structs for managing notes - it may
+contain: - note string the note to set. this is required unless you're deleting
+a note - id int the note id to operate on. not including this (or using an
+invalid id) causes a new note to be added - action string if the "id" key exists
+and is valid, an "update" key may be set to "append" (default), "prepend",
+"replace", or "delete" to handle how we should update existing notes. "delete",
+obviously, will only work with a valid "id" - passing that along with "note" and
+an invalid "id" is wrong and will be ignored.</dd>
+					<dt><var>$email_type</var></dt>
+					<dd><code>string</code><br>$email_type</dd>
+					<dt><var>$double_optin</var></dt>
+					<dd><code>boolean</code><br>$double_optin</dd>
+					<dt><var>$update_existing</var></dt>
+					<dd><code>boolean</code><br>$update_existing</dd>
+					<dt><var>$replace_interests</var></dt>
+					<dd><code>boolean</code><br>$replace_interests</dd>
+					<dt><var>$send_welcome</var></dt>
+					<dd><code>boolean</code><br>$send_welcome</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>the ids for this subscriber - email string the email address added - euid string
+the email unique id - leid string the list member's truly unique id<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unsubscribe" id="_unsubscribe">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unsubscribe">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#737-753" title="Go to source code">unsubscribe</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>boolean <var>$delete_member</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$send_goodbye</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$send_notify</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Unsubscribe the given email address from the list</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unsubscribe the given email address from the list</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$email</var></dt>
+					<dd><code>associative_array</code><br>$email - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
+					<dt><var>$delete_member</var></dt>
+					<dd><code>boolean</code><br>$delete_member</dd>
+					<dt><var>$send_goodbye</var></dt>
+					<dd><code>boolean</code><br>$send_goodbye</dd>
+					<dt><var>$send_notify</var></dt>
+					<dd><code>boolean</code><br>$send_notify</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="updateMember" id="_updateMember">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_updateMember">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#755-774" title="Go to source code">updateMember</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>array <var>$merge_vars</var></span>, <span>string <var>$email_type</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$replace_interests</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Edit the email address, merge fields, and interest groups for a list member.
+If you are doing a batch update on lots of users, consider using
+lists/batch-subscribe() with the update_existing and possible replace_interests
+parameter.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Edit the email address, merge fields, and interest groups for a list member.
+If you are doing a batch update on lots of users, consider using
+lists/batch-subscribe() with the update_existing and possible replace_interests
+parameter.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$email</var></dt>
+					<dd><code>associative_array</code><br>$email - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
+					<dt><var>$merge_vars</var></dt>
+					<dd><code>array</code><br>$merge_vars</dd>
+					<dt><var>$email_type</var></dt>
+					<dd><code>string</code><br>$email_type</dd>
+					<dt><var>$replace_interests</var></dt>
+					<dd><code>boolean</code><br>$replace_interests</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>the ids for this subscriber - email string the email address added - euid string
+the email unique id - leid string the list member's truly unique id<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="webhookAdd" id="_webhookAdd">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_webhookAdd">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#776-797" title="Go to source code">webhookAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$url</var></span>, <span>associative_array <var>$actions</var> = <span class="php-keyword1">array</span>()</span>, <span>associative_array <var>$sources</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Add a new Webhook URL for the given list</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a new Webhook URL for the given list</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$url</var></dt>
+					<dd><code>string</code><br>$url</dd>
+					<dt><var>$actions</var></dt>
+					<dd><code>associative_array</code><br>$actions - subscribe bool optional as subscribes occur, defaults to true -
+unsubscribe bool optional as subscribes occur, defaults to true - profile bool
+optional as profile updates occur, defaults to true - cleaned bool optional as
+emails are cleaned from the list, defaults to true - upemail bool optional when
+subscribers change their email address, defaults to true - campaign bool option
+when a campaign is sent or canceled, defaults to true</dd>
+					<dt><var>$sources</var></dt>
+					<dd><code>associative_array</code><br>$sources - user bool optional user/subscriber initiated actions, defaults to
+true - admin bool optional admin actions in our web app, defaults to true - api
+bool optional actions that happen via API calls, defaults to false</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - id int the id of the new webhook, otherwise an error will
+be thrown.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="webhookDel" id="_webhookDel">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_webhookDel">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#799-809" title="Go to source code">webhookDel</a>( <span>string <var>$id</var></span>, <span>string <var>$url</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete an existing Webhook URL from a given list</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete an existing Webhook URL from a given list</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$url</var></dt>
+					<dd><code>string</code><br>$url</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="webhooks" id="_webhooks">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_webhooks">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#811-831" title="Go to source code">webhooks</a>( <span>string <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Return the Webhooks configured for the given list</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return the Webhooks configured for the given list</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>of structs for each webhook - url string the URL for this Webhook - actions
+associative_array the possible actions and whether they are enabled - subscribe
+bool triggered when subscribes happen - unsubscribe bool triggered when
+unsubscribes happen - profile bool triggered when profile updates happen -
+cleaned bool triggered when a subscriber is cleaned (bounced) from a list -
+upemail bool triggered when a subscriber's email address is changed - campaign
+bool triggered when a campaign is sent or canceled - sources associative_array
+the possible sources and whether they are enabled - user bool whether
+user/subscriber triggered actions are returned - admin bool whether admin
+(manual, in-app) triggered actions are returned - api bool whether api triggered
+actions are returned<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getList" id="_getList">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getList">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#833-891" title="Go to source code">getList</a>( <span>associative_array <var>$filters</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$limit</var> = <span class="php-num">25</span></span>, <span>string <var>$sort_field</var> = <span class="php-quote">'created'</span></span>, <span>string <var>$sort_dir</var> = <span class="php-quote">'DESC'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve all of the lists defined for your user account</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve all of the lists defined for your user account</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filters</var></dt>
+					<dd><code>associative_array</code><br>$filters - list_id string optional - return a single list using a known list_id.
+Accepts multiples separated by commas when not using exact matching - list_name
+string optional - only lists that match this name - from_name string optional -
+only lists that have a default from name matching this - from_email string
+optional - only lists that have a default from email matching this -
+from_subject string optional - only lists that have a default from email
+matching this - created_before string optional - only show lists that were
+created before this date+time - 24 hour format in
+&lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" - created_after
+string optional - only show lists that were created since this date+time - 24
+hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" -
+exact boolean optional - flag for whether to filter on exact values when
+filtering, or search within content for filter values - defaults to true</dd>
+					<dt><var>$start</var></dt>
+					<dd><code>integer</code><br>$start</dd>
+					<dt><var>$limit</var></dt>
+					<dd><code>integer</code><br>$limit</dd>
+					<dt><var>$sort_field</var></dt>
+					<dd><code>string</code><br>$sort_field</dd>
+					<dt><var>$sort_dir</var></dt>
+					<dd><code>string</code><br>$sort_dir</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>result of the operation including valid data and any errors - total int the
+total number of lists which matched the provided filters - data array structs
+for the lists which matched the provided filters, including the following - id
+string The list id for this list. This will be used for all other list
+management functions. - web_id int The list id used in our web app, allows you
+to create a link directly to it - name string The name of the list. -
+date_created string The date that this list was created. - email_type_option
+boolean Whether or not the List supports multiple formats for emails or just
+HTML - use_awesomebar boolean Whether or not campaigns for this list use the
+Awesome Bar in archives by default - default_from_name string Default From Name
+for campaigns using this list - default_from_email string Default From Email for
+campaigns using this list - default_subject string Default Subject Line for
+campaigns using this list - default_language string Default Language for this
+list's forms - list_rating double An auto-generated activity score for the list
+(0 - 5) - subscribe_url_short string Our eepurl shortened version of this list's
+subscribe form (will not change) - subscribe_url_long string The full version of
+this list's subscribe form (host will vary) - beamer_address string The email
+address to use for this list's <a
+href="http://kb.mailchimp.com/article/how-do-i-import-a-campaign-via-email-email-beamer/">Email
+Beamer</a> - visibility string Whether this list is Public (pub) or Private
+(prv). Used internally for projects like <a
+href="http://blog.mailchimp.com/introducing-wavelength/"
+target="_blank">Wavelength</a> - stats associative_array various stats and
+counts for the list - many of these are cached for at least 5 minutes -
+member_count double The number of active members in the given list. -
+unsubscribe_count double The number of members who have unsubscribed from the
+given list. - cleaned_count double The number of members cleaned from the given
+list. - member_count_since_send double The number of active members in the given
+list since the last campaign was sent - unsubscribe_count_since_send double The
+number of members who have unsubscribed from the given list since the last
+campaign was sent - cleaned_count_since_send double The number of members
+cleaned from the given list since the last campaign was sent - campaign_count
+double The number of campaigns in any status that use this list - grouping_count
+double The number of Interest Groupings for this list - group_count double The
+number of Interest Groups (regardless of grouping) for this list -
+merge_var_count double The number of merge vars for this list (not including the
+required EMAIL one) - avg_sub_rate double the average number of subscribe per
+month for the list (empty value if we haven't calculated this yet) -
+avg_unsub_rate double the average number of unsubscribe per month for the list
+(empty value if we haven't calculated this yet) - target_sub_rate double the
+target subscription rate for the list to keep it growing (empty value if we
+haven't calculated this yet) - open_rate double the average open rate per
+campaign for the list (empty value if we haven't calculated this yet) -
+click_rate double the average click rate per campaign for the list (empty value
+if we haven't calculated this yet) - modules array Any list specific modules
+installed for this list (example is SocialPro) - errors array structs of any
+errors found while loading lists - usually just from providing invalid list ids
+- param string the data that caused the failure - code int the error code -
+error int the error message<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

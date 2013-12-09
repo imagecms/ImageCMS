@@ -37,26 +37,37 @@ $.exists = function(selector) {
 $.existsN = function(nabir) {
     return (nabir.length > 0);
 };
-$.testNumber = function(e) {
-    if (!e)
-        var e = window.event;
-    var key = e.keyCode;
-    if (key === null || key === 0 || key === 8 || key === 13 || key === 9 || key === 46 || key === 37 || key === 39)
-        return true;
-    if ((key >= 48 && key <= 57) || (key >= 96 && key <= 105)) {
-        return true;
+$.getChar = function(e) {
+    if (e.which == null) {  // IE
+        if (e.keyCode < 32)
+            return null; // спец. символ
+        return String.fromCharCode(e.keyCode)
     }
-    else
-        return false;
-};
-$.onlyNumber = function(el) {
-    body.on('keydown', el, function(e) {
-        if (!$.testNumber(e)) {
-            $(this).tooltip();
-            return false;
-        }
+
+    if (e.which != 0 && e.charCode != 0) { // все кроме IE
+        if (e.which < 32)
+            return null; // спец. символ
+        return String.fromCharCode(e.which); // остальные
+    }
+
+    return null; // спец. символ
+}
+$.fn.testNumber = function(add) {
+    $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
+        $this = $(this);
+
+        if (e.ctrlKey || e.altKey || e.metaKey)
+            return;
+
+        var chr = $.getChar(e);
+
+        if (chr == null)
+            return;
+        if (!isNaN(parseFloat(chr)) || $.inArray(chr, add) != -1)
+            $this.trigger({type: 'testNumber', 'res': true});
         else {
-            $(this).tooltip('remove');
+            $this.trigger({type: 'testNumber', 'res': false});
+            return false;
         }
     });
 };
@@ -1580,8 +1591,8 @@ function getCookie(c_name)
         defaultParams: {
             trigger: 'click',
             exit: '[data-closed = "closed-js"]',
-            effon: 'fadeIn',
-            effoff: 'fadeOut',
+            effectOn: 'fadeIn',
+            effectOff: 'fadeOut',
             durationOn: 200,
             durationOff: 100,
             place: 'center',
@@ -1860,11 +1871,11 @@ function getCookie(c_name)
                     trigger = elSet.trigger || set.trigger,
                     place = elSet.place || set.place,
                     placement = elSet.placement || set.placement,
-                    $thisEOff = elSet.effectOff || set.effoff,
+                    $thisEOff = elSet.effectOff || set.effectOff,
                     $thisD = elSet.durationOn !== undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
                     $thisDOff = elSet.durationOff !== undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
                     $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
-                    $thisEOn = elSet.effectOn || set.effon,
+                    $thisEOn = elSet.effectOn || set.effectOn,
                     overlayColor = elSet.overlayColor || set.overlayColor,
                     overlayOpacity = elSet.overlayOpacity !== undefined ? elSet.overlayOpacity.toString() : elSet.overlayOpacity || set.overlayOpacity,
                     modal = elSet.modal || set.modal,
@@ -2569,12 +2580,16 @@ function getCookie(c_name)
     $.maxminValue = function(m) {
         return methods[m];
     };
-    body.off('keyup.max', '[data-max]').on('keyup.max', '[data-max]', function(e) {
-        $(this).trigger({
-            'type': 'maxminValue',
-            'event': e
-        });
-        $(this).maxminValue(e);
+    body.off('keypress.max', '[data-max]').on('keypress.max', '[data-max]', function(e) {
+        var el = $(this);
+        setTimeout(function() {
+            var res = el.maxminValue(e);
+            el.trigger({
+                'type': 'maxminValue',
+                'event': e,
+                'res': res
+            });
+        }, 0);
     });
     body.off('blur.max', '[data-max]').on('blur.max', '[data-max]', function(e) {
         var $this = $(this);
@@ -2592,6 +2607,14 @@ function getCookie(c_name)
         var $this = $(this),
                 $min = $this.attr('data-min');
         if ($this.val() === "" && keyChar === 0) {
+            $this.val($min);
+            return false;
+        }
+    });
+    body.off('keyup', '[data-min]').on('keyup', '[data-min]', function(e) {
+        var $this = $(this),
+        $min = $this.attr('data-min');
+        if ($this.val() === "0") {
             $this.val($min);
             return false;
         }

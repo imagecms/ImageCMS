@@ -259,7 +259,7 @@ var Comments = {
                     });
                     if (parseInt(obj.commentsCount) != 0) {
                         $('#cc').html('');
-                        $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), plurComments));
+                        $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), text.plurComments));
                     }
                     $(document).trigger({
                         'type': 'rendercomment.after', 
