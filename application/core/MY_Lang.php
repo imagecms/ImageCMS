@@ -57,11 +57,21 @@ class MY_Lang extends MX_Lang {
         return isset($langs[$language]) ? $langs[$language] : array('ru', 'ru_RU');
     }
 
+    public function getDBFrontLanguages() {
+        if (!isset($this->ci))
+            $this->ci = & get_instance();
+        
+        $languages = $this->ci->db->select('lang_name, identif, locale')->get('languages');
+        if ($languages) {
+            return $languages->result_array();
+        }
+    }
+
     public function getFrontLangCode($language) {
-        $langs = $this->ci->config->item('languages');
-        foreach ($langs as $lang) {
+        $languages = $this->getDBFrontLanguages();
+        foreach ($languages as $lang) {
             if (in_array($language, $lang)) {
-                return $lang;
+                return array($lang['identif'], $lang['locale']);
             }
         }
 
@@ -136,7 +146,7 @@ class MY_Lang extends MX_Lang {
             }
         }
 //        $lang = 'ru_RU';
-
+        
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->addDomain('application/language/main/', 'main', $lang);
