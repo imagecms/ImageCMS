@@ -13,13 +13,13 @@
                 </div>
             {/foreach}
         {/if}
-        <ul class="tabs tabs-wishlist">
-            <li>
+        <ul class="tabs tabs-wishlist" data-cookie="wishlistTabs">
+            <li {if $_COOKIE['wishlistTabs'] == "#list-products"}class="active"{/if}>
                 <button type="button" data-href="#list-products">
                     <span class="text-el d_l_1">{lang('Список товаров','newLevel')}</span>
                 </button>
             </li>
-            <li>
+            <li {if $_COOKIE['wishlistTabs'] == "#data-users"}class="active"{/if}>
                 <button type="button" data-href="#data-users">
                     <span class="text-el d_l_1">{lang('Дополнительные данные','newLevel')}</span>
                 </button>
@@ -29,7 +29,7 @@
             <div id="list-products">
                 <div class="frame-button-add-wish-list">
                     <div class="btn-cart">
-                        <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0">
+                        <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0" data-effect-on="slideDown" data-effect-off="slideUp">
                             <span class="icon_add_wish"></span>
                             <span class="text-el">{lang('Создать новый список','newLevel')}</span>
                         </button>
@@ -74,7 +74,6 @@
                                         <div class="frame-form-field">
                                             <div class="btn-def">
                                                 <button
-                                                    class="btn"
                                                     type="submit"
                                                     data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
                                                     data-type="json"
