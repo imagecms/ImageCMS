@@ -1,10 +1,10 @@
 ﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 03:46+0200\n"
-"PO-Revision-Date: 2013-12-09 03:46+0200\n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"POT-Creation-Date: 2013-12-09 07:19+0200\n"
+"PO-Revision-Date: 2013-12-09 07:19+0200\n"
+"Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -14,10 +14,358 @@ msgstr ""
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: Russian\n"
+"X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
+
+#: ./templates/newLevel/404.tpl:10
+msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться поиском по сайту либо перейти на"
+msgstr ""
+
+#: ./templates/newLevel/mod_discount/gift.tpl:3
+msgid "Промо код:"
+msgstr ""
+
+#: ./templates/newLevel/config.js.tpl:124
+msgid "Введите боллее"
+msgstr ""
+
+#: ./templates/newLevel/config.js.tpl:124
+msgid "символов"
+msgstr ""
+
+#: ./templates/newLevel/config.js.tpl:127
+msgid "В список желаний могут добавлять только авторизированные пользователи"
+msgstr ""
+
+#: ./templates/newLevel/config.js.tpl:129
+msgid "Выберете размер меньше или равно"
+msgstr ""
+
+#: ./templates/newLevel/config.js.tpl:131
+msgid "Введите название"
+msgstr ""
+
+#: ./templates/newLevel/config.js.tpl:137
+msgid "Количество:"
+msgstr ""
+
+#: ./templates/newLevel/config.js.tpl:138
+msgid "Комплектов:"
+msgstr ""
+
+#: ./templates/newLevel/reset_password.tpl:5
+msgid "Войти в магазин"
+msgstr ""
+
+#: ./templates/newLevel/new_level/one_product_item.tpl:67
+#: ./templates/newLevel/shop/product.tpl:51
+msgid "Бренд"
+msgstr ""
+
+#: ./templates/newLevel/start_page_category_menu/level_1/container.tpl:5
+#: ./templates/newLevel/category_menu_first/level_2/container.tpl:7
+#: ./templates/newLevel/comments/comments_api.tpl:178
+msgid "Скрыть"
+msgstr ""
+
+#: ./templates/newLevel/start_page_category_menu/level_1/container.tpl:5
+msgid "Показать все"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/button.tpl:3
+msgid "В список желаний"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/button.tpl:7
+msgid "В списке желаний"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/other_list.tpl:69
+#: ./templates/newLevel/wishlist/wishlist.tpl:211
+msgid "Докупить все доступные товары"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/other_list.tpl:93
+#: ./templates/newLevel/wishlist/wishlist.tpl:227
+msgid "Список Желания пуст"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка желаний"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishPopup.tpl:42
+msgid "Создать список"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishPopup.tpl:71
+msgid "Переместить в список"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishPopup.tpl:71
+msgid "Добавить в список"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlist.tpl:19
+msgid "Список товаров"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlist.tpl:24
+msgid "Дополнительные данные"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlist.tpl:140
+msgid "Редактировать список"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlist.tpl:158
+msgid "Удалить список"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlist.tpl:170
+msgid "Поделится с другом"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlist.tpl:193
+msgid "на сумму"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/sendEmail.tpl:5
+msgid "Отправить другу"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/sendEmail.tpl:13
+msgid "Email друга"
+msgstr ""
+
+#: ./templates/newLevel/widgets/path.tpl:7
+msgid "Главная"
+msgstr ""
+
+#: ./templates/newLevel/widgets/brands.tpl:41
+msgid "Смотреть все"
+msgstr ""
+
+#: ./templates/newLevel/widgets/latest_news.tpl:5
+msgid "Новости"
+msgstr ""
+
+#: ./templates/newLevel/widgets/latest_news.tpl:7
+msgid "Остальные новости"
+msgstr ""
+
+#: ./templates/newLevel/shop/compare.tpl:127
+msgid "Категория"
+msgstr ""
+
+#: ./templates/newLevel/shop/js_templates.tpl:284
+msgid "Вернуться к оформлению"
+msgstr ""
+
+#: ./templates/newLevel/shop/js_templates.tpl:323
+#: ./templates/newLevel/shop/js_templates.tpl:350
+#: ./templates/newLevel/shop/cart.tpl:596
+msgid "Вернуться к покупкам"
+msgstr ""
+
+#: ./templates/newLevel/shop/js_templates.tpl:329
+#: ./templates/newLevel/shop/cart.tpl:602
+msgid "Оформить заказ"
+msgstr ""
+
+#: ./templates/newLevel/shop/js_templates.tpl:478
+msgid "Фильтр"
+msgstr ""
+
+#: ./templates/newLevel/shop/brands_images.tpl:8
+#: ./templates/newLevel/shop/brands_list.tpl:8
+msgid "Все бренды магазина"
+msgstr ""
+
+#: ./templates/newLevel/shop/order_view.tpl:25
+msgid "Ваш заказ принят."
+msgstr ""
+
+#: ./templates/newLevel/shop/order_view.tpl:84
+msgid "Способ оплаты"
+msgstr ""
+
+#: ./templates/newLevel/shop/order_view.tpl:113
+msgid "Оплачен"
+msgstr ""
+
+#: ./templates/newLevel/shop/order_view.tpl:130
+msgid "Ваши данные"
+msgstr ""
+
+#: ./templates/newLevel/shop/catalogue_header.tpl:7
+msgid "Показывать"
+msgstr ""
+
+#: ./templates/newLevel/shop/profile_history.tpl:6
+msgid "Вы ище не совершали покупки"
+msgstr ""
+
+#: ./templates/newLevel/shop/profile_history.tpl:39
+msgid "Не оплачен"
+msgstr ""
+
+#: ./templates/newLevel/shop/profile_data.tpl:126
+msgid "Размер скидки"
+msgstr ""
+
+#: ./templates/newLevel/shop/profile_data.tpl:127
+msgid "От"
+msgstr ""
+
+#: ./templates/newLevel/shop/profile_data.tpl:128
+msgid "До"
+msgstr ""
+
+#: ./templates/newLevel/shop/report_appearance.tpl:44
+#: ./templates/newLevel/shop/cart.tpl:92
+msgid "Комментарий:"
+msgstr ""
+
+#: ./templates/newLevel/shop/callback.tpl:42
+msgid "Позвоните мне"
+msgstr ""
+
+#: ./templates/newLevel/shop/cart.tpl:28
+msgid "Я новый покупатель"
+msgstr ""
+
+#: ./templates/newLevel/shop/cart.tpl:71
+msgid "Email"
+msgstr ""
+
+#: ./templates/newLevel/shop/cart.tpl:98
+msgid "Доставка:"
+msgstr ""
+
+#: ./templates/newLevel/shop/cart.tpl:155
+msgid "Оплата:"
+msgstr ""
+
+#: ./templates/newLevel/shop/cart.tpl:212
+msgid "Доставка: "
+msgstr ""
+
+#: ./templates/newLevel/shop/product.tpl:369
+msgid "Специальное предложение! Купить, установить и получить скидку на аксессуары!"
+msgstr ""
+
+#: ./templates/newLevel/smart_filter/filter.tpl:38
+msgid "Производитель"
+msgstr ""
+
+#: ./templates/newLevel/smart_filter/filter.tpl:118
+msgid "Не выбрано"
+msgstr ""
+
+#: ./templates/newLevel/smart_filter/filter.tpl:145
+msgid "Фильтровать"
+msgstr ""
+
+#: ./templates/newLevel/smart_filter/filter.tpl:149
+msgid "Сбросить фильтр"
+msgstr ""
+
+#: ./templates/newLevel/category_menu_first/level_2/container.tpl:7
+msgid "Все категории"
+msgstr ""
+
+#: ./templates/newLevel/category.tpl:10
+msgid "Категорія на стадії розробки"
+msgstr ""
+
+#: ./templates/newLevel/user_toolbar.tpl:25
+msgid "Вы уже смотрели"
+msgstr ""
+
+#: ./templates/newLevel/user_toolbar.tpl:36
+msgid "Свернуть"
+msgstr ""
+
+#: ./templates/newLevel/user_toolbar.tpl:39
+msgid "Развернуть"
+msgstr ""
+
+#: ./templates/newLevel/user_toolbar.tpl:48
+msgid "Наверх"
+msgstr ""
+
+#: ./templates/newLevel/star_rating/star_rating.tpl:9
+#: ./templates/newLevel/star_rating/star_rating.tpl:18
+msgid "Leav"
+msgstr ""
+
+#: ./templates/newLevel/star_rating/star_rating.tpl:9
+#: ./templates/newLevel/star_rating/star_rating.tpl:19
+msgid "people(s)"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:3
+msgid "Пожалуйста, войдите для комментирования"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:7
+msgid "Отзывы покупателей"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:24
+#: ./templates/newLevel/comments/comments_api.tpl:220
+msgid "Комментарий будет отправлен на модерацию"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:37
+#: ./templates/newLevel/comments/comments_api.tpl:211
+msgid "Ваш email:"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:44
+msgid "Текст комментария:"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:51
+msgid "Ваша оценка:"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:64
+msgid "Код защиты"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:75
+#: ./templates/newLevel/comments/comments_api.tpl:236
+msgid "Комментировать"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:103
+msgid "Оценка:"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:138
+msgid "Отзыв полезен?"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:159
+msgid "Комментарий от"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:178
+#: ./templates/newLevel/comments/comments_api.tpl:185
+msgid "Смотреть все ответы"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:193
+msgid "Ваш ответ"
+msgstr ""
+
+#: ./templates/newLevel/comments/comments_api.tpl:227
+msgid "Текст ответа:"
+msgstr ""
 
 #: ./templates/newLevel/header.tpl:71
 msgid "Поиск по сайту"
@@ -31,24 +379,8 @@ msgstr ""
 msgid "Страница не найдена"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:22
-msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться  поиском по сайту либо перейти на"
-msgstr ""
-
 #: ./templates/newLevel/404.tpl:12
 msgid "Перейти на главную страницу"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:24
-msgid "Минимизировать"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:25
-msgid "Расширять"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:26
-msgid "Верхний"
 msgstr ""
 
 #: ./templates/newLevel/footer.tpl:6
@@ -67,10 +399,6 @@ msgstr ""
 #: ./templates/newLevel/footer.tpl:27
 #: ./templates/newLevel/footer.tpl:28
 msgid "Выход"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:31
-msgid "Счет"
 msgstr ""
 
 #: ./templates/newLevel/shop/wish_list_data.tpl:9
@@ -114,14 +442,6 @@ msgstr ""
 msgid "Главный офис"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:39
-msgid "Shevchenko St., Apt. 22, office: 39, Kiev"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:40
-msgid "Интернет-магазин"
-msgstr ""
-
 #: ./templates/newLevel/footer.tpl:79
 msgid "Все права защищены"
 msgstr ""
@@ -159,18 +479,10 @@ msgstr ""
 msgid "ImageCMS активно развивается в создание качественных интернет-магазинов"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:49
-msgid "Только авторизованные пользователи могут оставлять комментарии."
-msgstr ""
-
 #: ./templates/newLevel/_comments.tpl:21
 #: ./templates/newLevel/shop/product.tpl:308
 #: ./templates/newLevel/shop/product.tpl:570
 msgid "Оставить отзыв"
-msgstr ""
-
-#: ./templates/newLevel/_comments.tpl:41
-msgid "Вы вошли как"
 msgstr ""
 
 #: ./templates/newLevel/shop/profile_data.tpl:7
@@ -184,39 +496,16 @@ msgstr ""
 msgid "Почта"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:55
-msgid "Вашa оценка"
-msgstr ""
-
 #: ./templates/newLevel/paymentSystem/QIWI.tpl:29
 msgid "Комментарий"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:57
-#: /var/www/image.loc/_temp2.php:62
-msgid "Плюсы"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:58
-#: /var/www/image.loc/_temp2.php:63
-msgid "Минусы"
 msgstr ""
 
 #: ./templates/newLevel/config.js.tpl:117
 msgid "Код протекции"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:61
-#: /var/www/image.loc/_temp2.php:72
-msgid "оставлен"
-msgstr ""
-
 #: ./templates/newLevel/comments/comments_api.tpl:131
 msgid "Ответить"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:65
-msgid "Отзыв был полезен?"
 msgstr ""
 
 #: ./templates/newLevel/shop/order_view.tpl:114
@@ -229,10 +518,6 @@ msgstr ""
 #: ./templates/newLevel/comments/comments_api.tpl:121
 #: ./templates/newLevel/comments/comments_api.tpl:146
 msgid "Нет"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:68
-msgid "Комментарийe"
 msgstr ""
 
 #: ./templates/newLevel/login_popup.tpl:10
@@ -280,21 +565,9 @@ msgstr ""
 msgid "Отправить"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:85
-msgid "Имя"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:87
-msgid "Повторите"
-msgstr ""
-
 #: ./templates/newLevel/register.tpl:59
 #: ./templates/newLevel/register_popup.tpl:56
 msgid "Зарегистрироваться"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:89
-msgid "Регистрация прошла успешно!"
 msgstr ""
 
 #: ./templates/newLevel/shop/report_appearance.tpl:23
@@ -317,10 +590,6 @@ msgstr ""
 #: ./templates/newLevel/register.tpl:61
 #: ./templates/newLevel/register_popup.tpl:58
 msgid "Я уже зарегистрирован"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:96
-msgid "Я помню пароль"
 msgstr ""
 
 #: ./templates/newLevel/register.tpl:71
@@ -371,10 +640,6 @@ msgstr ""
 #: ./templates/newLevel/category_menu_second/error.tpl:23
 #: ./templates/newLevel/footer_category_menu/error.tpl:23
 msgid "Переустановите модуль меню "
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:105
-msgid "Вы следили уже"
 msgstr ""
 
 #: ./templates/newLevel/shop/cart_data.tpl:19
@@ -441,10 +706,6 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:21
-msgid "All categories"
-msgstr ""
-
 #: ./templates/newLevel/mod_discount/gift_succes.tpl:3
 msgid "Promo код"
 msgstr ""
@@ -478,10 +739,6 @@ msgstr ""
 msgid "Ключ скидки: "
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:31
-msgid "Тип расчета скидки: "
-msgstr ""
-
 #: ./templates/newLevel/mod_discount/discount_order.tpl:32
 msgid "Размер скидки: "
 msgstr ""
@@ -492,18 +749,6 @@ msgstr ""
 
 #: ./templates/newLevel/mod_discount/gift.tpl:7
 msgid "Применить"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:36
-msgid "Интернет-магазин бытовой техники"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:38
-msgid "Существует два основных вида данного предмета зимнего гардероба. Длинные модели прекрасно защитят своих обладательниц от мороза и снегопада. Любительницам спорта, шопинга и вождения автомобилей следует купить пухловики небольшого размера, которые также называют «короткими». Кроме длинных и коротких моделей существуют так называемые универсальные варианты пуховиков. Под такой одеждой располагается специальная прокладка, отстегнув которую можно изменить размеры пуховика. Качественные и удобные пуховики можно в большом ассортименте приобрести в любом магазине зимней одежды. Чтобы найти такие магазины достаточно ввести в поиск купить пуховики киев и в результате посмотреть информацию о расположении предприятий."
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:39
-msgid "Магазин брендов"
 msgstr ""
 
 #: ./templates/newLevel/shop/callback.tpl:18
@@ -582,18 +827,6 @@ msgstr ""
 msgid "Накопительные скидки"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:41
-msgid "Процентная скидка"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:42
-msgid "Сумма покупок"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:43
-msgid "Количество покупок"
-msgstr ""
-
 #: ./templates/newLevel/shop/profile_data.tpl:136
 msgid "Бесконечно"
 msgstr ""
@@ -603,17 +836,9 @@ msgstr ""
 msgid "Корзина пуста"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:46
-msgid "Товар"
-msgstr ""
-
 #: ./templates/newLevel/shop/category.tpl:38
 #: ./templates/newLevel/shop/search.tpl:32
 msgid "Не найдено товаров"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:52
-msgid "Спасибо, Ваш заказ принят."
 msgstr ""
 
 #: ./templates/newLevel/shop/order_view.tpl:36
@@ -632,42 +857,17 @@ msgstr ""
 msgid "К оплате"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:57
-msgid "Способ оплаты:"
-msgstr ""
-
 #: ./templates/newLevel/shop/order_view.tpl:107
 #: ./templates/newLevel/shop/profile_history.tpl:16
 msgid "Статус заказа"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:60
-msgid "Paid"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:61
-#: /var/www/image.loc/_temp2.php:162
-msgid "Not paid"
 msgstr ""
 
 #: ./templates/newLevel/shop/order_view.tpl:120
 msgid "Способ доставки"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:63
-msgid "Данные клиентов"
-msgstr ""
-
 #: ./templates/newLevel/shop/report_appearance.tpl:38
 msgid "Телефон:"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:66
-msgid "Город:"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:67
-msgid "Адрес:"
 msgstr ""
 
 #: ./templates/newLevel/shop/order_view.tpl:162
@@ -751,20 +951,8 @@ msgstr ""
 msgid "Оформление заказа"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:93
-msgid "Контроль"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:94
-msgid "Я хочу зарегистрироваться!"
-msgstr ""
-
 #: ./templates/newLevel/shop/cart.tpl:33
 msgid "Я постоянный покупатель"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:98
-msgid "Email:"
 msgstr ""
 
 #: ./templates/newLevel/shop/order_view.tpl:150
@@ -772,20 +960,8 @@ msgstr ""
 msgid "Город"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:101
-msgid "Доставка"
-msgstr ""
-
 #: ./templates/newLevel/shop/cart.tpl:145
 msgid "Цена: "
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:103
-msgid "Варианты оплаты"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:104
-msgid "Варианты доставки: "
 msgstr ""
 
 #: ./templates/newLevel/shop/cart.tpl:229
@@ -854,12 +1030,6 @@ msgstr ""
 msgid "Всего"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:124
-#: /var/www/image.loc/_temp2.php:129
-#: /var/www/image.loc/_temp2.php:142
-msgid "Вернуться к списку товаров"
-msgstr ""
-
 #: ./templates/newLevel/shop/js_templates.tpl:340
 msgid "Ваша корзина"
 msgstr ""
@@ -870,10 +1040,6 @@ msgstr ""
 
 #: ./templates/newLevel/shop/js_templates.tpl:345
 msgid "Вы удалили все элементы из корзины"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:141
-msgid "Всего:"
 msgstr ""
 
 #: ./templates/newLevel/shop/cart.tpl:613
@@ -896,10 +1062,6 @@ msgstr ""
 msgid "По Вашему запросу ничего не найдено"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:149
-msgid "Filter"
-msgstr ""
-
 #: ./templates/newLevel/shop/js_templates.tpl:479
 #: ./templates/newLevel/shop/search.tpl:25
 #: ./templates/newLevel/shop/brand.tpl:33
@@ -916,10 +1078,6 @@ msgstr ""
 
 #: ./templates/newLevel/shop/js_templates.tpl:506
 msgid "Отменить"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:154
-msgid "У Вас нет зарегистрированных заказов"
 msgstr ""
 
 #: ./templates/newLevel/shop/profile_history.tpl:13
@@ -951,14 +1109,6 @@ msgstr ""
 msgid "Категории"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:170
-msgid "Код"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:20
-msgid "Показивать:"
-msgstr ""
-
 #: ./templates/newLevel/shop/catalogue_header.tpl:39
 msgid "Смотреть"
 msgstr ""
@@ -977,14 +1127,6 @@ msgstr ""
 msgid "На странице"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:27
-msgid "Wishlist"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:28
-msgid "Отметить"
-msgstr ""
-
 #: ./templates/newLevel/shop/categorySubTable.tpl:96
 #: ./templates/newLevel/shop/report_appearance.tpl:4
 #: ./templates/newLevel/shop/product.tpl:215
@@ -993,24 +1135,8 @@ msgstr ""
 msgid "Сообщить о появлении"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:32
-msgid "Адрес электронной почты получателя"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:33
-msgid "Показать другу"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:34
-msgid "Список желаний пуст"
-msgstr ""
-
 #: ./templates/newLevel/shop/report_appearance.tpl:34
 msgid "Вы получите письмо, когда товар будет доступен"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:40
-msgid "Артикул:"
 msgstr ""
 
 #: ./templates/newLevel/shop/product.tpl:73
@@ -1037,10 +1163,6 @@ msgstr ""
 
 #: ./templates/newLevel/shop/product.tpl:267
 msgid "Рассказать друзьям:"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:56
-msgid "Специальное предложение! Купить установить и получить скидку на аксессуары!"
 msgstr ""
 
 #: ./templates/newLevel/shop/product.tpl:547
@@ -1094,10 +1216,6 @@ msgstr ""
 msgid "Только Различия"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:76
-msgid "Категория:"
-msgstr ""
-
 #: ./templates/newLevel/shop/compare.tpl:158
 msgid "Вы удалили все товары из сравнения"
 msgstr ""
@@ -1116,10 +1234,6 @@ msgstr ""
 
 #: ./templates/newLevel/shop/brand.tpl:85
 msgid "Найдено в категориях:"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:21
-msgid "All Categories"
 msgstr ""
 
 #: ./templates/newLevel/wishlist/other_list.tpl:52
@@ -1184,10 +1298,6 @@ msgstr ""
 msgid "загрузить катринку"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:38
-msgid "Максимальный размер"
-msgstr ""
-
 #: ./templates/newLevel/config.js.tpl:137
 msgid "пикселей"
 msgstr ""
@@ -1224,14 +1334,6 @@ msgstr ""
 msgid "Создать новий список"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:53
-msgid "Отправить письмом"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:20
-msgid "News"
-msgstr ""
-
 #: ./templates/newLevel/patterns/widgets/brands.tpl:41
 msgid "Show all"
 msgstr ""
@@ -1239,14 +1341,6 @@ msgstr ""
 #: ./templates/newLevel/widgets/ViewedProducts.tpl:26
 #: ./templates/newLevel/patterns/widgets/view_product.tpl:26
 msgid "No viewed products"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:23
-msgid "s_home"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:24
-msgid "Просмотреть все"
 msgstr ""
 
 #: ./templates/newLevel/left_menu/error.tpl:13
@@ -1289,14 +1383,6 @@ msgstr ""
 msgid "Переустановите модуль меню"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:19
-msgid "Отметить: "
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:20
-msgid "Вариант: "
-msgstr ""
-
 #: ./templates/newLevel/new_level/one_product_item.tpl:262
 #: ./templates/newLevel/new_level/one_product_item.tpl:263
 #: ./templates/newLevel/new_level/one_product_item.tpl:267
@@ -1321,101 +1407,6 @@ msgstr ""
 
 #: ./templates/newLevel/new_level/array_product_item.tpl:149
 msgid "Переместить"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:36
-msgid "login_for_comments"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:37
-msgid "s_clients_comment"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:38
-msgid "Average customer rating:"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:39
-msgid "s_plus"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:40
-msgid "s_cons"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:41
-msgid "s_comment_answer"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:42
-msgid "Comment was helpful?"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:43
-msgid "Yes"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:44
-msgid "No"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:45
-msgid "Comment from"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:47
-msgid "See all comments"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:48
-msgid "See all customer comments"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:49
-msgid "Leave comment"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:50
-#: /var/www/image.loc/_temp2.php:60
-msgid "The comment will be sent for moderation"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:51
-msgid "Who are you?"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:52
-#: /var/www/image.loc/_temp2.php:59
-msgid "lang_comment_email"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:53
-msgid "s_you_raiting"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:54
-msgid "s_text_comment_one"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:55
-msgid "lang_captcha"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:56
-#: /var/www/image.loc/_temp2.php:62
-msgid "s_leave_comment"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:57
-msgid "Your comment"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:58
-msgid "lang_comment_author"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:61
-msgid "Additional note"
 msgstr ""
 
 #: ./templates/newLevel/shop/helpers/helper.php:6
