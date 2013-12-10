@@ -37,10 +37,8 @@
             countBask: '.topCartCount',
             sumBask: '.topCartTotalPrice',
             addSumBask: '.topCartTotalAddPrice',
-            frameDiscount: '#discount',
+            frameGift: "#frameGift",
             gift: '#gift',
-            curDiscount: '.curDiscount',
-            genSumDiscount: '.genSumDiscount',
             shipping: '#shipping',
             finalAmountAdd: '#finalAmountAdd',
             finalAmount: '#finalAmount',
@@ -64,8 +62,12 @@
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
             frameBasks: '.frameBask',
-            frameCurDiscount: '.frameDiscount',
-            frameGenDiscount: '.genDiscount',
+            genSumDiscount: '.genSumDiscount',//общяя сумма скидки
+            curDiscount: '.curDiscount',//продуктовая скидка
+            frameCurDiscount: '.frameDiscount',//фрейм продуктовой скидки
+            discount: '#discount',//общяя скидка на оформлении
+            frameGenDiscount: '#frameGenDiscount',//фрейм общей скидки на оформлении
+            frameGenSumDiscount: '#frameGenSumDiscount',//фрейм общей суммы скидки на оформлении
             tinyBask: '.tinyBask',
             err: 'mError',
             scs: 'mSuccess',
@@ -113,7 +115,7 @@
         colorScheme = "{$colorScheme}",
         isLogin = "{$is_logged_in}" == '1' ? true : false,
         selectDeliv = false,
-        selectPayment = false,
+        selectPayment = true,
         selIcons = '[class*=icon_]',
         preloader = '.preloader',
         selScrollPane = '.frame-scroll-pane .content-carousel';
@@ -133,6 +135,9 @@
                                                             }
     {/literal}
         text.inCart = '{lang('В корзине','newLevel')}';
+        text.pc = '{lang('шт','newLevel')}.';
+        text.quant = '{lang('Кол-во','newLevel')}:';
+        text.sum = '{lang('Сумма','newLevel')}:';
         text.toCart = '{lang('Купить','newLevel')}';
         text.pcs = '{lang('Количество:')}';
         text.kits = '{lang('Комплектов:')}';

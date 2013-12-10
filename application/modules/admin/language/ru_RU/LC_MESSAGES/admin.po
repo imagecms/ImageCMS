@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-29 12:28+0200\n"
-"PO-Revision-Date: 2013-11-29 12:28+0200\n"
+"POT-Creation-Date: 2013-12-09 06:48+0200\n"
+"PO-Revision-Date: 2013-12-09 06:48+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -22,6 +22,18 @@ msgstr ""
 "X-Poedit-SearchPath-3: ../../modules/shop/models\n"
 "X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
+
+#: ./application/modules/shop/admin/templates/search/form.tpl:31
+msgid "Specify"
+msgstr "Укажите"
+
+#: ./templates/administrator/desktop.tpl:104
+msgid "Contents"
+msgstr "Содержимое"
+
+#: ./application/modules/shop/admin/templates/banners/translate.tpl:6
+msgid "Error "
+msgstr "Ошибка"
 
 #: ./application/modules/admin/mod_search.php:248
 msgid "Module installation error"
@@ -792,10 +804,6 @@ msgstr "Темы колбеков"
 msgid "Callback was removed"
 msgstr "Колбек удален"
 
-#: ./application/modules/shop/admin/callbacks.php:249
-msgid "Callback's status was changed"
-msgstr "Cтатус колбека изменен"
-
 #: ./templates/administrator/shop_menu.tpl:13
 #: ./templates/administrator/inc/menus.php:171
 msgid "Callbacks"
@@ -1272,10 +1280,6 @@ msgstr "Контакты"
 #: ./templates/administrator/inc/menus.php:254
 msgid "Content"
 msgstr "Страницы"
-
-#: ./templates/administrator/desktop.tpl:104
-msgid "Contents"
-msgstr "Содержымое"
 
 #: ./templates/administrator/sys_update.tpl:67
 msgid "Control sum"
@@ -2445,10 +2449,6 @@ msgstr "Тип"
 msgid "Error"
 msgstr "Ошибка"
 
-#: ./application/modules/shop/admin/templates/banners/translate.tpl:6
-msgid "Error "
-msgstr "Ошыбка"
-
 #: ./application/modules/admin/sys_upgrade.php:96
 msgid "Error downloading update file"
 msgstr "Ошибка при загрузке файлов обновления"
@@ -2731,11 +2731,6 @@ msgstr "Размер шрифта"
 #: ./templates/administrator/mod_install.tpl:62
 msgid "For example"
 msgstr "Например"
-
-#: ./templates/administrator/sys_upgrade.tpl:40
-#: Array
-msgid "For example:"
-msgstr "Например:"
 
 #: ./application/modules/shop/admin/templates/system/import.tpl:116
 msgid "For imported images will be produced resize"
@@ -3691,10 +3686,6 @@ msgstr "Ошибка удаления модуля"
 msgid "Module install"
 msgstr "Установка модулей"
 
-#: ./application/modules/admin/mod_search.php:248
-msgid "Module installation error"
-msgstr "Ошыбка установки модуля"
-
 #: ./application/modules/admin/mod_search.php:296
 msgid "Module installation module"
 msgstr "Установка модуля"
@@ -4001,11 +3992,6 @@ msgstr "Сообщить пользователю с помощью электр
 #: ./application/modules/shop/admin/templates/categories/create.tpl:124
 msgid "Novelty"
 msgstr "Новинка"
-
-#: ./application/modules/shop/admin/templates/discounts/create.tpl:77
-#: ./application/modules/shop/admin/templates/discounts/edit.tpl:80
-msgid "Number greater than zero. To use a percent discount apply: SUM format."
-msgstr "Число больше нуля. Для использования процентной скидки примените: SUM формат."
 
 #: ./application/modules/shop/admin/templates/charts/orders.tpl:49
 msgid "Number of Orders"
@@ -5535,11 +5521,6 @@ msgstr "Настройки"
 msgid "Settings Yandex.Market"
 msgstr "Настройки Яндекс.Маркет"
 
-#: ./application/modules/admin/components.php:290
-#: Array
-msgid "Settings are saved"
-msgstr ""
-
 #: ./application/modules/admin/settings.php:262
 msgid "Settings have been saved"
 msgstr "Настройки сохранены"
@@ -5732,10 +5713,6 @@ msgstr "Сортировать по дате"
 msgid "Sort by name ."
 msgstr "Сортировать по имени."
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
-msgid "Sort by name."
-msgstr "Сортировать по имени."
-
 #: /var/www/image.loc/_tempLangs.php:174
 #: /var/www/image.loc/_tempLangs.php:189
 msgid "Sort by number"
@@ -5790,10 +5767,6 @@ msgstr "Указаной URL занят"
 msgid "Specified a language or selected a language"
 msgstr "Указажите язык"
 
-#: ./application/modules/shop/admin/templates/search/form.tpl:31
-msgid "Specify"
-msgstr "Укажыте"
-
 #: ./application/modules/shop/models/build/classes/Shop/ShopDiscounts.php:26
 msgid "Start date"
 msgstr "Дата начала"
@@ -5833,11 +5806,6 @@ msgstr "Статус и связанных с ним заказы удалены
 #: ./application/modules/admin/pages.php:939
 msgid "Status change success"
 msgstr "Статус был изменен"
-
-#: ./application/modules/admin/mod_search.php:258
-#: ./application/modules/admin/mod_search.php:306
-msgid "Modul has been installed"
-msgstr "Модуль был установлен"
 
 #: ./application/modules/shop/admin/notificationstatuses.php:71
 msgid "Status pending created"
