@@ -90,7 +90,7 @@
                         <i class="icon-white icon-ok"></i>
                         {lang('Save', 'translator')}
                     </button>
-                    <button id="update" onclick="Translator.parse($(this))" type="button" class="btn btn-small btn-success pjax">
+                    <button id="update" onclick="Translator.parse($(this))" type="button" class="btn btn-small btn-success">
                         <i class="icon-white icon-refresh"></i>
                         {lang('Update', 'translator')}
                     </button>
@@ -99,7 +99,8 @@
                         {lang('Reset', 'translator')}
                     </button>
                     <span class="btn-group">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" style="margin-top: -5px;">
+                        <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" style="margin-top: -5px;">
+                            <i class="icon-white icon-list"></i>
                             {lang('Others', 'translator')}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
@@ -107,7 +108,8 @@
                             <li><a class="pjax" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Exchange', 'translator')}</a></li>
                             <li><a onclick="Translator.correctPaths($(this))">{lang('Correct paths', 'translator')}</a></li>
                             <li class="divider"></li>
-                            <li><a onclick="Translator.translate($(this))">{lang('Translate', 'translator')}</a></li>
+                            <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
+                            <li><a onclick="Translator.translate($(this), true)">{lang('Translate untranslated', 'translator')}</a></li>
                         </ul>
                     </span>
                 </div>
@@ -198,11 +200,11 @@
                                         {lang('Search in origin strings', 'translator')}
                                     </label><br>
                                     <label>
-                                        <input id="translationSearch" type="checkbox" class="searchObjects">
+                                        <input id="translationSearch" type="checkbox" checked="ckecked" class="searchObjects">
                                         {lang('Search in translation strings', 'translator')}
                                     </label><br>
                                     <label>
-                                        <input id="commentSearch" type="checkbox" class="searchObjects">
+                                        <input id="commentSearch" type="checkbox" checked="ckecked" class="searchObjects">
                                         {lang('Search in comments strings', 'translator')}
                                     </label>
                                 </ul>

@@ -610,7 +610,7 @@ class ImportXML {
             //prepare update data
             $data = array();
             $data['external_id'] = $offer->ID . '';
-            $data['price'] = (float) $offer->Цена;
+            $data['price'] = number_format((float) $offer->Цена, 2, '.', '');
             $data['action'] = (int) $offer->ЭтоАкционнаяЦена;
             if ($offer->IDWebНоменклатура . '') {
                 $data['product_id'] = $offer->IDWebНоменклатура . '';

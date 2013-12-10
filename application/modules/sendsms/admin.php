@@ -25,7 +25,7 @@ class Admin extends BaseAdminController {
         $Exceptions = new Exceptions($Gateway);
         $Account = new Account($Gateway);
         $Stat = new Stat($Gateway);
-
+        var_dump($Stat->sendSMS('sender', 'text', '380938681961', $datetime, 0));exit;
 //Первым делом, зарегистрируем имя отправителя, если собираемся рассылать СМС
 // в том числе в Украину
 //Если вы собираетесь отправлять смс исключительно в Россию - 
