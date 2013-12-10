@@ -271,6 +271,7 @@ a:focus, a:active {color: #51d2ff;}
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#31b3dd', endColorstr='#31b3dd',GradientType=0 ); /* IE6-9 */
 }
 .menu-row-category li:hover > .title-category-l1 > .text-el{color: #fff;}
+.menu-col-category .title-category-l1 > .text-el{color: #333;font-weight: bold;}
 /*/main-menu*/
 
 /*filter*/
