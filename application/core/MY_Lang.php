@@ -45,12 +45,8 @@ class MY_Lang extends MX_Lang {
         if (!extension_loaded('gettext')) {
             include_once('gettext/gettext.inc');
             $_SESSION['GETTEXT_EXIST'] = FALSE;
-            //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
-            //      echo "gettext is not installed\n";
         } else {
             $_SESSION['GETTEXT_EXIST'] = TRUE;
-            //      echo "gettext is supported\n";
-            //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
         }
     }
 
@@ -61,11 +57,21 @@ class MY_Lang extends MX_Lang {
         return isset($langs[$language]) ? $langs[$language] : array('ru', 'ru_RU');
     }
 
+    public function getDBFrontLanguages() {
+        if (!isset($this->ci))
+            $this->ci = & get_instance();
+        
+        $languages = $this->ci->db->select('lang_name, identif, locale')->get('languages');
+        if ($languages) {
+            return $languages->result_array();
+        }
+    }
+
     public function getFrontLangCode($language) {
-        $langs = $this->ci->config->item('languages');
-        foreach ($langs as $lang) {
+        $languages = $this->getDBFrontLanguages();
+        foreach ($languages as $lang) {
             if (in_array($language, $lang)) {
-                return $lang;
+                return array($lang['identif'], $lang['locale']);
             }
         }
 
@@ -91,9 +97,6 @@ class MY_Lang extends MX_Lang {
         }
 
         unset($sett);
-
-//        $this->ci->load->library('gettext_php/gettext_extension', array());
-//        $this->gettext = & $this->ci->gettext_extension->getInstance();
     }
 
     private function _language() {
@@ -143,7 +146,7 @@ class MY_Lang extends MX_Lang {
             }
         }
 //        $lang = 'ru_RU';
-
+        
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->addDomain('application/language/main/', 'main', $lang);

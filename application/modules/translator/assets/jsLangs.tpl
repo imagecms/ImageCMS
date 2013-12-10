@@ -9,6 +9,7 @@ langs["Please, enter more than 1 symbol"] = '{echo lang("Please, enter more than
 langs["You did not select search criteria"] = '{echo lang("You did not select search criteria", "translator")}';
 langs["Origin language was successfully setted."] = '{echo lang("Origin language was successfully setted.", "translator")}';
 langs["Can not set origin language."] = '{echo lang("Can not set origin language.", "translator")}';
+langs["Please set paths to parsing files."] = '{echo lang("Please set paths to parsing files.", "translator")}';
 langs["File was successfuly updated."] = '{echo lang("File was successfuly updated.", "translator")}';
 langs["File was successfully rendered."] = '{echo lang("File was successfully rendered.", "translator")}';
 langs["File was successfully saved."] = '{echo lang("File was successfully saved.", "translator")}';
