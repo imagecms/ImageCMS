@@ -240,7 +240,7 @@ var Search = {
     origin: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var origin = $(this.searchedObject[i]).find('.origin').text();
+            var origin = $(this.searchedObject[i]).find('.origin').val();
             if (this.checkCondition(origin)) {
                 this.countResults += 1;
                 $(this.searchedObject[i]).find('.origin').addClass('searched');
@@ -259,7 +259,7 @@ var Search = {
     translation: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var translate = $(this.searchedObject[i + 1]).find('.translation').text();
+            var translate = $(this.searchedObject[i + 1]).find('.translation').val();
             if (this.checkCondition(translate)) {
                 this.countResults += 1;
                 $(this.searchedObject[i + 1]).find('.translation').addClass('searched');
@@ -648,72 +648,82 @@ var Translator = {
     deletePath: function(curElement) {
         $(curElement).parent().remove();
     },
+    checkPaths: function() {
+
+    },
     parse: function(curElement) {
         this.init();
+        var paths = this.getPaths();
+        if (!paths.length) {
+            showMessage(lang('Error'), lang('Please set paths to parsing files.'), 'r');
+        } else {
+            $('#loading').show();
+            $.ajax({
+                url: this.getUrl('updatePoFile'),
+                type: 'POST',
+                data: {
+                    paths: paths
+                },
+                success: function(data) {
+                    if (data) {
+                        var results = JSON.parse(data);
+                        var newCount = 0;
+                        var oldCount = 0;
+                        $('.modal_update_results').removeClass('hide').removeClass('fade');
+                        $('.modal_update_results').modal('show');
+                        $('.modal-backdrop').show();
+                        $('.newStrings').html('');
+                        $('.obsoleteStrings').html('');
 
-        $.ajax({
-            url: this.getUrl('updatePoFile'),
-            type: 'POST',
-            data: {
-                paths: this.getPaths()
-            },
-            success: function(data) {
-                if (data) {
-                    var results = JSON.parse(data);
-                    var newCount = 0;
-                    var oldCount = 0;
-                    $('.modal_update_results').removeClass('hide').removeClass('fade');
-                    $('.modal_update_results').modal('show');
-                    $('.modal-backdrop').show();
-                    $('.newStrings').html('');
-                    $('.obsoleteStrings').html('');
+                        for (var newString in results['new']) {
+                            if (newString) {
+                                var paths = [];
+                                var tooltipMsg = '';
 
-                    for (var newString in results['new']) {
-                        if (newString) {
-                            var paths = [];
-                            var tooltipMsg = '';
-
-                            newCount++;
-                            for (var path in results['new'][newString]) {
-                                paths.push(results['new'][newString][path]);
+                                newCount++;
+                                for (var path in results['new'][newString]) {
+                                    paths.push(results['new'][newString][path]);
+                                }
+                                for (var path in paths) {
+                                    tooltipMsg += paths[path] + '<br>';
+                                }
+                                $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
                             }
-                            for (var path in paths) {
-                                tooltipMsg += paths[path] + '<br>';
-                            }
-                            $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
                         }
+
+                        for (var obsoleteString in results['old']) {
+                            if (obsoleteString && obsoleteString != '0') {
+                                var paths = [];
+                                var tooltipMsg = '';
+
+                                oldCount++;
+                                for (var path in results['old'][obsoleteString]['links']) {
+                                    paths.push(results['old'][obsoleteString]['links'][path]);
+                                }
+                                for (var path in paths) {
+                                    tooltipMsg += paths[path] + '<br>';
+                                }
+
+                                $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(obsoleteString) + '</span><br>');
+                            }
+                        }
+
+
+                        $('.parsedNewStringsCount').html(newCount);
+                        $('.parsedRemoveStringsCount').html(oldCount);
+                        $('.updateResults span').tooltip({
+                            'delay': {
+                                show: 300,
+                                hide: 100
+                            }
+                        });
+
                     }
-
-                    for (var obsoleteString in results['old']) {
-                        if (obsoleteString && obsoleteString != '0') {
-                            var paths = [];
-                            var tooltipMsg = '';
-
-                            oldCount++;
-                            for (var path in results['old'][obsoleteString]['links']) {
-                                paths.push(results['old'][obsoleteString]['links'][path]);
-                            }
-                            for (var path in paths) {
-                                tooltipMsg += paths[path] + '<br>';
-                            }
-
-                            $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(obsoleteString) + '</span><br>');
-                        }
-                    }
-
-
-                    $('.parsedNewStringsCount').html(newCount);
-                    $('.parsedRemoveStringsCount').html(oldCount);
-                    $('.updateResults span').tooltip({
-                        'delay': {
-                            show: 300,
-                            hide: 100
-                        }
-                    });
-
+                    $('#loading').hide();
                 }
-            }
-        });
+            });
+        }
+
     },
     update: function(curElement) {
         this.init();
@@ -813,7 +823,9 @@ var Translator = {
         var paths = [];
 
         $(pathHorders).each(function() {
-            paths.push($(this).val());
+            if ($(this).val()) {
+                paths.push($(this).val());
+            }
         });
         return paths;
     },
@@ -855,11 +867,12 @@ var Translator = {
                     if (fileExtention) {
                         fileExtention = fileExtention[1];
                     }
-                    AceEditor.render(fileContent, line, fileExtention);
+
                     $('.originStringInFileEdit').html(originString);
                     $('.originStringLineInFileEdit').html(line);
                     showMessage(lang('Message'), lang('File was successfully rendered.'));
                     $('.modal_file_edit').modal();
+                    AceEditor.render(fileContent, line, fileExtention);
                 } else {
                     if (response['error']) {
                         showMessage(lang('Error'), response['errors'], 'r');
@@ -894,7 +907,8 @@ var Translator = {
         });
 
     },
-    translate: function(curElement) {
+    translate: function(curElement, withEmptyTranslation) {
+        withEmptyTranslation = withEmptyTranslation || false;
         var YandexApiKey = $.trim($('.YandexApiKey').val());
         var originLang = $('#originLang').val();
 
@@ -917,7 +931,8 @@ var Translator = {
             type: 'POST',
             data: {
                 po_array: JSON.stringify(this.getPoArray()),
-                lang: lang
+                lang: lang,
+                withEmptyTranslation: withEmptyTranslation
             },
             url: this.getUrl('translate'),
             success: function(response) {
@@ -1011,6 +1026,7 @@ var Translator = {
 
         var po_array = {};
         for (var i = 0; i < origins.length; i++) {
+
             var links = [];
             origin = $(origins[i]).find('.origin').text();
             comment = $(origins[i]).find('.comment').val();
@@ -1028,6 +1044,7 @@ var Translator = {
                 'comment': comment,
                 'links': links
             };
+
         }
         return po_array;
 
@@ -1243,11 +1260,14 @@ var AceEditor = {
     render: function(fileContent, selectedLine, fileExtention) {
         this.init();
         this.editor.setValue(fileContent);
-        this.editor.gotoLine(selectedLine, 0, false);
         this.setTheme();
         if (fileExtention) {
             this.setHighlight(fileExtention);
         }
+        setTimeout(function() {
+            AceEditor.editor.gotoLine(selectedLine, 0);
+        }, 500);
+
     },
     setHighlight: function(extention) {
         var mode = this.highlightModes[extention] ? this.highlightModes[extention] : 'html';
@@ -1256,7 +1276,7 @@ var AceEditor = {
     goToLang: function(curElement) {
         var line = $.trim($('.originStringLineInFileEdit').html());
         if (line) {
-            this.editor.gotoLine(line, 0, false);
+            this.editor.gotoLine(line, 0);
         }
 
     }
