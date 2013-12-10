@@ -37,10 +37,7 @@
             countBask: '.topCartCount',
             sumBask: '.topCartTotalPrice',
             addSumBask: '.topCartTotalAddPrice',
-            frameDiscount: '#discount',
             gift: '#gift',
-            curDiscount: '.curDiscount',
-            genSumDiscount: '.genSumDiscount',
             shipping: '#shipping',
             finalAmountAdd: '#finalAmountAdd',
             finalAmount: '#finalAmount',
@@ -64,8 +61,11 @@
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
             frameBasks: '.frameBask',
-            frameCurDiscount: '.frameDiscount',
-            frameGenDiscount: '.genDiscount',
+            genSumDiscount: '.genSumDiscount',//общяя сумма скидки в попап козине
+            curDiscount: '.curDiscount',//продуктовая скидка
+            frameCurDiscount: '.frameDiscount',//фрейм продуктовой скидки
+            discount: '#discount',//общяя скидка на оформлении
+            frameGenDiscount: '.genDiscount',//сумма товаров на оформлении со скидкой
             tinyBask: '.tinyBask',
             err: 'mError',
             scs: 'mSuccess',
@@ -113,7 +113,7 @@
         colorScheme = "{$colorScheme}",
         isLogin = "{$is_logged_in}" == '1' ? true : false,
         selectDeliv = false,
-        selectPayment = false,
+        selectPayment = true,
         selIcons = '[class*=icon_]',
         preloader = '.preloader',
         selScrollPane = '.frame-scroll-pane .content-carousel';

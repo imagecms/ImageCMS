@@ -73,8 +73,10 @@ var Order = {
             else
                 $(genObj.frameGenDiscount).hide();
         }
-        else
+        else if (kitDiscount == 0)
             $(genObj.frameGenDiscount).hide();
+        else
+            $(genObj.frameGenDiscount).show();
     },
     recountCartPage: function(a) {
         Shop.Cart.totalRecount();
@@ -91,14 +93,14 @@ var Order = {
             DiscountFront.getDiscount('recountCartPage');
     },
     hideInfoDiscount: function() {
-        var frameDiscountO = $(genObj.frameDiscount);
-        frameDiscountO.empty();
-        frameDiscountO.next(preloader).show(); //preloader
+        $(genObj.discount).empty().next(preloader).show();
     },
     displayInfoDiscount: function(tpl) {
-        var frameDiscountO = $(genObj.frameDiscount);
-        frameDiscountO.html(tpl);
-        frameDiscountO.next(preloader).hide(); //preloader
+        if ($.trim(tpl) != '')
+            $(genObj.pageCart).find(genObj.frameCurDiscount).hide();
+        else
+            $(genObj.pageCart).find(genObj.frameCurDiscount).show();
+        $(genObj.discount).html(tpl).next(preloader).hide();
     },
     renderGiftInput: function(tpl) {
         if (tpl == '')
