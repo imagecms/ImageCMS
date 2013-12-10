@@ -39,7 +39,7 @@
     <tr>
         <td colspan="4">
             <div class="alert alert-info" style="margin: 0px; text-align: center">
-                {lang('The file is empty.', 'translator')}                        
+                {lang('The file is empty.', 'translator')}  
             </div>
         </td>
     </tr>
@@ -103,7 +103,7 @@
                 <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px;">
                     {echo $key+1}.
                 </b>
-                <input type="text" name="path[]" style="width: 390px; margin-bottom: 25px;" value="{echo $path['base']}">
+                <input type="text" name="path[]" class="basePath" style="width: 390px; margin-bottom: 25px;" value="{echo $path['base']}">
                 <b style="font-size: 15px; margin-right: -10px; float: right;">({lang('Basic path', 'translator')})</b>
                 <br>
             </div>
