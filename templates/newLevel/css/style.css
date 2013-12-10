@@ -170,7 +170,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .b-r_4{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
 .b-r_3{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
 
-.empty, .no-empty, .frameCurDiscount, .frame-price-discount{display: none;}
+.empty, .no-empty, .frameDiscount, .frame-price-discount{display: none;}
 /*/adding selectors*/
 
 /*icons*/
@@ -395,7 +395,7 @@ input.input-search{height: 33px;}
 .frame-kit, .next-kit{display: inline-block;vertical-align: top;}
 .frame-kit{width: 150px;}
 .next-kit, .gen-sum-kit{width: 35px;position: relative;top: 63px;line-height: 0.8;text-align: center;}
-.row .next-kit, .row .gen-sum-kit{top: -10px;left: 13px;}
+.row .next-kit, .row .gen-sum-kit{top: -10px;left: 13px;display: block;}
 .gen-sum-kit{display: inline-block;vertical-align: middle;top: 0;}
 .complect-gen-sum .price-discount{display: block;}
 .frame-gen-price-buy-complect .price-new{margin-bottom: 5px;}

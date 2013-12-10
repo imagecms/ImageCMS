@@ -62,12 +62,15 @@
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
             frameBasks: '.frameBask',
-            genSumDiscount: '.genSumDiscount',//общяя сумма скидки
-            curDiscount: '.curDiscount',//продуктовая скидка
-            frameCurDiscount: '.frameDiscount',//фрейм продуктовой скидки
-            discount: '#discount',//общяя скидка на оформлении
-            frameGenDiscount: '#frameGenDiscount',//фрейм общей скидки на оформлении
-            frameGenSumDiscount: '#frameGenSumDiscount',//фрейм общей суммы скидки на оформлении
+            
+            genSumDiscount: '.genSumDiscount', //сумма скидки
+            curDiscount: '.curDiscount', //сумма товаров без скидки
+            frameDiscount: '.frameDiscount', //фрейм продуктовой скидки
+
+            discount: '#discount', //общяя скидка на оформлении
+            frameGenDiscount: '#frameGenDiscount', //фрейм общей скидки на оформлении
+            frameGenSumDiscount: '#frameGenSumDiscount', //фрейм общей суммы без скидки
+
             tinyBask: '.tinyBask',
             err: 'mError',
             scs: 'mSuccess',
@@ -79,7 +82,6 @@
             code: '.js-code',
             numberC: '.js-number',
             msgF: '.js-msg',
-            
             compareIn: 'btn-comp-in',
             wishIn: 'btn-wish-in',
             isAvail: 'pointer',
@@ -89,7 +91,6 @@
             btnBuyCss: 'btn-buy',
             btnCartCss: 'btn-cart',
             textEl: '.text-el',
-            
             changeVariantCategory: '[id ^= сVariantSwitcher_]',
             changeVariantProduct: '#variantSwitcher'
         };
@@ -100,25 +101,25 @@
         {$cnt_comp = 0}
     {/if}
         var curr = '{$CS}',
-        nextCs = '{echo $NextCS}',
-        nextCsCond = nextCs == '' ? false : true;
+                nextCs = '{echo $NextCS}',
+                nextCsCond = nextCs == '' ? false : true;
         Discount = false,
-        discountInPopup = true,
-        pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
-        checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
-        inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
-        inServerCompare = parseInt("{$cnt_comp}"),
-        inServerWishList = parseInt("{$countWL}"),
-        countViewProd = parseInt("{$countSh}"),
-        theme = "{$THEME}",
-        siteUrl = "{echo site_url()}",
-        colorScheme = "{$colorScheme}",
-        isLogin = "{$is_logged_in}" == '1' ? true : false,
-        selectDeliv = false,
-        selectPayment = true,
-        selIcons = '[class*=icon_]',
-        preloader = '.preloader',
-        selScrollPane = '.frame-scroll-pane .content-carousel';
+                discountInPopup = true,
+                pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
+                checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
+                inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
+                inServerCompare = parseInt("{$cnt_comp}"),
+                inServerWishList = parseInt("{$countWL}"),
+                countViewProd = parseInt("{$countSh}"),
+                theme = "{$THEME}",
+                siteUrl = "{echo site_url()}",
+                colorScheme = "{$colorScheme}",
+                isLogin = "{$is_logged_in}" == '1' ? true : false,
+                selectDeliv = false,
+                selectPayment = true,
+                selIcons = '[class*=icon_]',
+                preloader = '.preloader',
+                selScrollPane = '.frame-scroll-pane .content-carousel';
 
     {literal}
         text = {
