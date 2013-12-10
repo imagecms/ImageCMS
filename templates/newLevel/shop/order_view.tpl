@@ -252,7 +252,7 @@
                             {foreach $model->getOrderKits() as $orderProduct}
                                 <tr class="row-kits rowKits items-order row">
                                     <td class="frame-items frame-items-kit">
-                                        <div class="title-h3 c_9">Комплект товаров</div>
+                                        <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
                                         <ul class="items items-bask">
                                             <li>
                                                 <div class="frame-kit main-product">

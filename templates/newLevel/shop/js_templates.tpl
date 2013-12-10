@@ -33,6 +33,7 @@
                                             <div class="description">
                                                 <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
                                                 <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                                <%/*%>
                                                 <div class="frame-prices f-s_0">
                                                     <%if (item.origprice) { %>
                                                     <span class="price-discount">
@@ -59,6 +60,7 @@
                                                         <%}%>
                                                     </span>
                                                 </div>
+                                                <%*/%>
                                             </div>
                                         </td>
                                         <td class="frame-count frameCount">
@@ -148,6 +150,7 @@
                                                                         <div class="description">
                                                                             <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
                                                                             <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                                                            <%/*%>
                                                                             <div class="frame-prices f-s_0">
                                                                                 <span class="current-prices f-s_0">
                                                                                     <span class="price-new">
@@ -166,6 +169,7 @@
                                                                                     <%}%>
                                                                                 </span>
                                                                             </div>
+                                                                            <%*/%>
                                                                         </div>
                                                                         <% } else { %>
 
@@ -179,6 +183,7 @@
                                                                         <div class="description">
                                                                             <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
                                                                             <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                                                            <%/*%>
                                                                             <div class="frame-prices f-s_0">
                                                                                 <span class="price-discount">
                                                                                     <span>
@@ -203,6 +208,7 @@
                                                                                     <%}%>
                                                                                 </span>
                                                                             </div>
+                                                                            <%*/%>
                                                                         </div>
                                                                         <% } %>
                                                                     </div>

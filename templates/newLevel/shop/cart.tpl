@@ -49,20 +49,23 @@
                                     <input type="text" value="{$profile.name}" name="userInfo[fullName]">
                                 </span>
                             </label>
-                            <label>
+                            <div class="frame-label">
                                 <span class="title">{lang('Телефон','newLevel')}:</span>
-                                <span class="frame-form-field">
+                                <div class="frame-form-field">
                                     <span class="f_r l-h_35">
-                                        <button type="button" class="d_l_1">Еще один номер</button>
+                                        <button type="button" class="d_l_1" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">Еще один номер</button>
                                     </span>
-                                    <span class="d_b o_h">
+                                    <div class="d_b o_h maskPhoneFrame">
                                         {if $isRequired['userInfo[phone]']}
                                             <span class="must">*</span>
                                         {/if}
                                         <input type="text" name="userInfo[phone]" value="{$profile.phone}">
-                                    </span>
-                                </span>
-                            </label>
+                                        <div class="drop drop-add-phone m-t_5">
+                                            {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <label>
                                 <span class="title">{lang('Email','newLevel')}:</span>
                                 <span class="frame-form-field">
@@ -72,7 +75,6 @@
                                     <input type="text" value="{$profile.email}" name="userInfo[email]">
                                 </span>
                             </label>
-                            {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
                             {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('country','order',$profile.id,'user')->asHtml()}
                             {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('Selo','order',$profile.id,'user')->asHtml()}
                         </div>
@@ -138,9 +140,10 @@
                             {if $isRequired['userInfo[deliverTo]']}
                                 <span class="must">*</span>
                             {/if}
-                            <input name="userInfo[deliverTo]" placeholder="{lang('Адрес','newLevel')}" type="text" value="{$profile.address}"/>
+                            <input name="userInfo[deliverTo]" type="text" value="{$profile.address}"/>
                         </span>
                     </div>
+                    {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
                     <div class="frame-label">
                         <div class="frame-form-field">
                             <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">Добавить комментарий к заказу</button>
@@ -214,18 +217,24 @@
             </div>
             <div class="right-cart">
                 <div class="frameBask frame-bask frame-bask-order">
+                    <div class="title-cart-order clearfix">
+                        <div class="title-h3 f_l">Мой заказ</div>
+                        <div class="f_r">
+                            <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">Редактировать</button>
+                        </div>
+                    </div>
                     <div id="orderDetails">
                         <div class="preloader"></div>
                     </div>
                     <table class="table-order table-order-view">
                         <tfoot class="gen-info-price">
-                            <tr>
+                            <tr class="frame-gen-discount" id="frameGenSumDiscount">
                                 <td colspan="2">
                                     <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
                                 </td>
                                 <td>
-                                    <span class="price frame-gen-discount genDiscount f-w_b" id="totalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
-                                    <span class="curr frame-gen-discount genDiscount"> {$CS}</span>
+                                    <span class="price f-w_b genSumDiscount" id="totalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
+                                    <span class="curr"> {$CS}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -237,7 +246,7 @@
                                     <span class="curr">{$CS}</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr id="frameGenDiscount" style="display: none;">
                                 <td colspan="2">
                                     <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
                                 </td>
@@ -249,7 +258,7 @@
                                     <div id="discount"></div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr id="frameGift" style="display: none;">
                                 <td>
                                     <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
                                 </td>
@@ -323,6 +332,7 @@
                                     <div class="description">
                                         <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
                                         <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                        <%/*%>
                                         <div class="frame-prices f-s_0">
                                             <%if (item.origprice) { %>
                                             <span class="price-discount">
@@ -349,20 +359,23 @@
                                                 <%}%>
                                             </span>
                                         </div>
+                                        <%*/%>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="frame-frame-count">
                                         <div class="frame-count frameCount">
-                                            <div class="number js-number d_i-b">
+                                            <div class="s-t"><%-text.quant%></div>
+                                            <div class="js-number d_i-b">
                                                 <div class="frameChangeCount" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>"></div>
                                                 <span class="plusMinus"><%- item.count %></span>
+                                                <span><%-text.pc%></span>
                                             </div>
-                                            <span class="countOrCompl"><%-pluralStr(item.count, text.plurProd)%></span>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
+                                    <div class="s-t"><%-text.sum%></div>
                                     <div class="frame-cur-sum-price">
                                         <div class="frame-prices f-s_0">
                                             <%if (item.origprice) { %>
@@ -380,6 +393,7 @@
                                                         <span class="curr"><%-curr%></span>
                                                     </span>
                                                 </span>
+                                                <%/*%>
                                                 <%if (nextCsCond){%>
                                                 <span class="price-add">
                                                     <span>
@@ -388,6 +402,7 @@
                                                     </span>
                                                 </span>
                                                 <%}%>
+                                                <%*/%>
                                             </span>
                                         </div>
                                     </div>
@@ -407,6 +422,7 @@
 
                             <tr class="row row-kits rowKits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-kitId="<%- item.kitId %>" data-id="popupKit_<%- item.kitId %>">
                                 <td class="frame-items frame-items-kit">
+                                    <div class="title-h3 c_9">{/literal}{lang('Комплект товаров', 'newLevel')}{literal}</div>
                                     <ul class="items items-bask">
                                         <% _.each(prices, function(id){  %>
                                         <li>
@@ -425,6 +441,7 @@
                                                 <div class="description">
                                                     <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
                                                     <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                                    <%/*%>
                                                     <div class="frame-prices f-s_0">
                                                         <span class="current-prices f-s_0">
                                                             <span class="price-new">
@@ -443,6 +460,7 @@
                                                             <%}%>
                                                         </span>
                                                     </div>
+                                                    <%*/%>
                                                 </div>
                                                 <% } else { %>
 
@@ -456,6 +474,7 @@
                                                 <div class="description">
                                                     <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
                                                     <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                                    <%/*%>
                                                     <div class="frame-prices f-s_0">
                                                         <span class="price-discount">
                                                             <span>
@@ -480,6 +499,7 @@
                                                             <%}%>
                                                         </span>
                                                     </div>
+                                                    <%*/%>
                                                 </div>
                                                 <% } %>
                                             </div>
@@ -487,24 +507,20 @@
                                         <% i++;  }); %>
                                     </ul>
                                 </td>
-
                                 <td data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
-                                    <div class="frame-kits-gen-sum">
-                                        <div class="kits-gen-sum">
-                                            <img src="<%-theme%><%-colorScheme%>/images/kits_sum.png" />
-                                        </div>
-                                        <div class="frame-frame-count">
-                                            <div class="frame-count frameCount">
-                                                <div class="number js-number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-item.maxcount%>">
-                                                    <div class="frameChangeCount" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>"></div>
-                                                    <span class="plusMinus"><%- item.count %></span>
-                                                </div>
-                                                <span class="countOrCompl"><%-pluralStr(item.count, text.plurKits)%></span>
+                                    <div class="frame-frame-count">
+                                        <div class="frame-count frameCount">
+                                            <span class="s-t"><%-text.quant%></span>
+                                            <div class="js-number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-item.maxcount%>">
+                                                <div class="frameChangeCount" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>"></div>
+                                                <span class="plusMinus"><%- item.count %></span>
+                                                <span><%-text.pc%></span>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
+                                    <div class="s-t"><%-text.sum%></div>
                                     <div class="frame-cur-sum-price">
                                         <div class="frame-prices f-s_0">
                                             <%if (item.origprice) { %>
@@ -522,6 +538,7 @@
                                                         <span class="curr"><%-curr%></span>
                                                     </span>
                                                 </span>
+                                                <%/*%>
                                                 <%if (nextCsCond){%>
                                                 <span class="price-add">
                                                     <span>
@@ -530,6 +547,7 @@
                                                     </span>
                                                 </span>
                                                 <%}%>
+                                                <%*/%>
                                             </span>
                                         </div>
                                     </div>
@@ -588,5 +606,5 @@
     {/literal}
 </script>
 <script type="text/javascript">
-    initDownloadScripts(['cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
+    initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
 </script>

@@ -37,6 +37,7 @@
             countBask: '.topCartCount',
             sumBask: '.topCartTotalPrice',
             addSumBask: '.topCartTotalAddPrice',
+            frameGift: "#frameGift",
             gift: '#gift',
             shipping: '#shipping',
             finalAmountAdd: '#finalAmountAdd',
@@ -61,11 +62,12 @@
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
             frameBasks: '.frameBask',
-            genSumDiscount: '.genSumDiscount',//общяя сумма скидки в попап козине
+            genSumDiscount: '.genSumDiscount',//общяя сумма скидки
             curDiscount: '.curDiscount',//продуктовая скидка
             frameCurDiscount: '.frameDiscount',//фрейм продуктовой скидки
             discount: '#discount',//общяя скидка на оформлении
-            frameGenDiscount: '.genDiscount',//сумма товаров на оформлении со скидкой
+            frameGenDiscount: '#frameGenDiscount',//фрейм общей скидки на оформлении
+            frameGenSumDiscount: '#frameGenSumDiscount',//фрейм общей суммы скидки на оформлении
             tinyBask: '.tinyBask',
             err: 'mError',
             scs: 'mSuccess',
@@ -133,6 +135,9 @@
                                                             }
     {/literal}
         text.inCart = '{lang('В корзине','newLevel')}';
+        text.pc = '{lang('шт','newLevel')}.';
+        text.quant = '{lang('Кол-во','newLevel')}:';
+        text.sum = '{lang('Сумма','newLevel')}:';
         text.toCart = '{lang('Купить','newLevel')}';
         text.pcs = '{lang('Количество:')}';
         text.kits = '{lang('Комплектов:')}';
