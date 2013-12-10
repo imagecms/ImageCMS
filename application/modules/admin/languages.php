@@ -103,6 +103,78 @@ class Languages extends BaseAdminController {
         }
     }
 
+    function getPoFileSettingsText($lang = '', $type = '') {
+        $content =
+                b"\xEF\xBB\xBF" .
+                'msgid ""' . PHP_EOL .
+                'msgstr ""' . PHP_EOL .
+                '"Project-Id-Version: \n"' . PHP_EOL .
+                '"Report-Msgid-Bugs-To: \n"' . PHP_EOL .
+                '"POT-Creation-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
+                '"PO-Revision-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
+                '"Last-Translator:  \n"' . PHP_EOL .
+                '"Language-Team:  \n"' . PHP_EOL .
+                '"Language: ' . $lang . '\n"' . PHP_EOL .
+                '"MIME-Version: 1.0\n"' . PHP_EOL .
+                '"Content-Type: text/plain; charset=UTF-8\n"' . PHP_EOL .
+                '"Content-Transfer-Encoding: 8bit\n"' . PHP_EOL .
+                '"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"' . PHP_EOL;
+        switch ($type) {
+            case 'main':
+                if (file_exists('./application/language/main/ru_RU/LC_MESSAGES/main.po')) {
+                    $main_content = file('./application/language/main/ru_RU/LC_MESSAGES/main.po');
+
+                    $content .=
+                            '"X-Poedit-Basepath: .\n"' . PHP_EOL .
+                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                            '"X-Poedit-Language: \n"' . PHP_EOL .
+                            '"X-Poedit-Country: \n"' . PHP_EOL;
+
+                    foreach ($main_content as $line) {
+                        if (strstr($line, 'X-Poedit-SearchPath')) {
+                            $content .= $line;
+                        }
+                        if(!$line){
+                            break;
+                        }
+                    }
+                } else {
+                    $content .=
+                            '"X-Poedit-Basepath: .\n"' . PHP_EOL .
+                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                            '"X-Poedit-Language: \n"' . PHP_EOL .
+                            '"X-Poedit-Country: \n"' . PHP_EOL .
+                            '"X-Poedit-SearchPath-0: ..\n"' . PHP_EOL;
+                }
+
+
+                break;
+            case 'module':
+
+                $content .=
+                        '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
+                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                        '"X-Poedit-Language: \n"' . PHP_EOL .
+                        '"X-Poedit-Country: \n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
+                break;
+            case 'template':
+                $content .=
+                        '"X-Poedit-Basepath: ../../../..\n"' . PHP_EOL .
+                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                        '"X-Poedit-Language: \n"' . PHP_EOL .
+                        '"X-Poedit-Country: \n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-1: ..\n"' . PHP_EOL;
+                break;
+        }
+        return $content;
+    }
+
     /**
      * Create language folders for templates, front, and modules
      * @param string $lang - locale identifier: ru_RU, en_US, de_DC
@@ -111,28 +183,30 @@ class Languages extends BaseAdminController {
         $templates_dir = './templates';
         $main_dir = './application/language/main';
         $modules_dir = './application/modules';
-
+        $module_content = $this->getPoFileSettingsText($lang, 'module');
+        $template_content = $this->getPoFileSettingsText($lang, 'template');
+        $main_content = $this->getPoFileSettingsText($lang, 'main');
         if (is_dir($templates_dir)) {
             $templates = scandir($templates_dir);
             foreach ($templates as $template) {
                 if (is_dir($templates_dir . '/' . $template) && $template != "." && $template != '..' && $template[0] != '.') {
-                    if (!is_dir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang)) {
-                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang, 0777);
-                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang . '/' . 'LC_MESSAGES', 0777);
-                        file_put_contents($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang . '/' . 'LC_MESSAGES/' . $template . '.po', '');
+                    if (!is_dir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang)) {
+                        var_dumps($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang);
+                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang, 0777);
+                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang . '/' . 'LC_MESSAGES', 0777);
+                        file_put_contents($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang . '/' . 'LC_MESSAGES/' . $template . '.po', $template_content);
                     }
                 }
             }
         }
-
+//
         if (is_dir($main_dir)) {
             if (!is_dir($main_dir . '/' . $lang)) {
                 mkdir($main_dir . '/' . $lang, 0777);
                 mkdir($main_dir . '/' . $lang . '/LC_MESSAGES', 0777);
-                file_put_contents($main_dir . '/' . $lang . '/LC_MESSAGES/main.po', '');
+                file_put_contents($main_dir . '/' . $lang . '/LC_MESSAGES/main.po', $main_content);
             }
         }
-
         if (is_dir($modules_dir)) {
             $modules = scandir($modules_dir);
             foreach ($modules as $module) {
@@ -140,7 +214,7 @@ class Languages extends BaseAdminController {
                     if (!is_dir($modules_dir . '/' . $module . '/language/' . $lang)) {
                         mkdir($modules_dir . '/' . $module . '/language/' . $lang, 0777);
                         mkdir($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES', 0777);
-                        file_put_contents($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES/main.po', '');
+                        file_put_contents($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES/' . $module . '.po', $module_content);
                         // to delete lang folders
 //                         system("rm -rf " . escapeshellarg($modules_dir . '/' . $module . '/language/de_DE'));
                     }

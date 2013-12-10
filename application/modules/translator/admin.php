@@ -631,6 +631,7 @@ class Admin extends BaseAdminController {
     }
 
     public function checkFile($file_path) {
+        clearstatcache();
         if (file_exists($file_path)) {
             if (!is_readable($file_path)) {
                 $this->fileError = lang('File cant be read. Please, set read file permissions.', 'translator');
@@ -811,6 +812,7 @@ class Admin extends BaseAdminController {
     public function translate() {
         $po_array = (array) json_decode($this->input->post('po_array'));
         $lang = $this->input->post('lang');
+        $withEmptyTranslation = $this->input->post('withEmptyTranslation');
         if ($po_array) {
             $values = array();
             $counter = 0;
@@ -843,13 +845,22 @@ class Admin extends BaseAdminController {
 
             $counter = 0;
             foreach ($po_array as $origin => $value) {
+
                 if ($origin) {
                     $po_array[$origin] = (array) $po_array[$origin];
-                    $po_array[$origin]['text'] = $result[$counter];
+
+                    if ($withEmptyTranslation) {
+                        if (!strlen($po_array[$origin]['translation'])) {
+                            $po_array[$origin]['text'] = $result[$counter];
+                        } else {
+                            $po_array[$origin]['text'] = $po_array[$origin]['translation'];
+                        }
+                    } else {
+                        $po_array[$origin]['text'] = $result[$counter];
+                    }
                     $counter+=1;
                 }
             }
-
             return json_encode(array(
                 'data' => \CMSFactory\assetManager::create()
                         ->setData('po_array', $po_array)
@@ -872,7 +883,7 @@ class Admin extends BaseAdminController {
                     $content = @file($main . $file);
                     foreach ($content as $line_number => $line) {
                         $lang = array();
-                        if (preg_match_all("/lang\([\"]{1}(.*?)[\"]{1}/", $line, $lang)) {
+                        if (preg_match_all("/lang\([\"]{1}(?!\')(.*?)[\"]{1}/", $line, $lang)) {
                             foreach ($lang[1] as $origin) {
                                 $origin = preg_replace('!\s+!', ' ', $origin);
                                 if (!$this->parsed_langs[$origin]) {
@@ -885,7 +896,7 @@ class Admin extends BaseAdminController {
                                 array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
                             }
                         }
-                        if (preg_match_all("/lang\([']{1}(.*?)[']{1}/", $line, $lang)) {
+                        if (preg_match_all("/lang\([']{1}(?!\")(.*?)[']{1}/", $line, $lang)) {
                             foreach ($lang[1] as $origin) {
                                 $origin = preg_replace('!\s+!', ' ', $origin);
                                 if (!$this->parsed_langs[$origin]) {
@@ -946,7 +957,7 @@ class Admin extends BaseAdminController {
                 }
             }
 
-            if ($this->js_langs) {
+            if (!$this->js_langs) {
                 $js_content = '<script>' . PHP_EOL;
                 foreach ($this->js_langs as $origin) {
                     $js_content .='langs["' . $origin . '"] = \'{echo lang("' . $origin . '", "' . $this->domain . '")}\';' . PHP_EOL;
@@ -1132,7 +1143,7 @@ class Admin extends BaseAdminController {
     public function saveEditingFile() {
         $filePath = $this->input->post('filePath');
         $content = $this->input->post('content');
-        
+
         if ($this->checkFile($filePath)) {
             $file = file_put_contents($filePath, $content);
             return json_encode(array('success' => TRUE, 'data' => $file));

@@ -16,16 +16,15 @@ class Admin extends BaseAdminController {
         //$lang = new MY_Lang();
         //$lang->load('mail_chimp');
         require_once('classes/Mailchimp.php');
-        $this->mailChimp = new Mailchimp('d1c21e881ec90a3f72ff9335e4bbfc7c-us3'); //mine
-        
+        $this->mailChimp = new Mailchimp('c557dbc83d9815ddde07a937249421cb-us3'); //mine
 //        $this->UnSubscribeAll('ada53b97a7');
-        $users = $this->db->get('users')->result_array();
-        $this->SubscribeAll($users, 'ada53b97a7');
-        
-
-        $members = $this->mailChimp->lists->members('ada53b97a7');
-        var_dump($members['data']);
-        exit;
+//        $users = $this->db->get('users')->result_array();
+//        $this->SubscribeAll($users, 'ada53b97a7');
+//        
+//
+//        $members = $this->mailChimp->lists->members('ada53b97a7');
+//        var_dump($members['data']);
+//        exit;
 
         $this->mailChimp->debug = TRUE;
         $this->mailChimp->ssl_verifyhost = FALSE;
@@ -118,12 +117,14 @@ class Admin extends BaseAdminController {
     }
 
     function create_campain() {
-
-        $lists = $this->mailChimp->lists->getList();
-
-        \CMSFactory\assetManager::create()
-                ->setData('lists', $lists)
-                ->renderAdmin('main');
+        try {
+            $lists = $this->mailChimp->lists->getList();
+            \CMSFactory\assetManager::create()
+                    ->setData('lists', $lists)
+                    ->renderAdmin('main');
+        } catch (Exception $exc) {
+            showMessage($exc->getMessage(), FALSE, 'r');
+        }
     }
 
     function create() {
@@ -138,7 +139,6 @@ class Admin extends BaseAdminController {
 
         $content->html = $this->input->post('text');
         $content->text = $this->input->post('text');
-
 
         try {
             $this->mailChimp->campaigns->create('regular', $options, $content, $segment_opts, $type_opts);
@@ -184,25 +184,22 @@ class Admin extends BaseAdminController {
             echo $exc->getMessage();
         }
     }
-    
-    public function viewLists(){
-        
+
+    public function viewLists() {
+
         $lists = $this->mailChimp->lists->getList();
         \CMSFactory\assetManager::create()
                 ->setData('lists', $lists)
                 ->renderAdmin('listAll');
-        
     }
-    
-    public function edit_list($id){
-        
+
+    public function edit_list($id) {
+
         $members = $this->mailChimp->lists->members($id);
-        
+
         \CMSFactory\assetManager::create()
                 ->setData('users', $members)
                 ->renderAdmin('listAll');
-
-        
     }
 
 }

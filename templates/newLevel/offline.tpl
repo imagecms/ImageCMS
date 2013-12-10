@@ -193,7 +193,7 @@
     <footer class="b_c_n">
         <div class="container w_260">
             <div class="d_t_c l_h_17">
-                <span class="l_h_27">© {lang('ООО «Сайт Имидж','newLevel')}</span>
+                <span class="l_h_27">© {lang('ООО «Сайт Имидж»','newLevel')}</span>
                 {lang('ImageCMS активно развивается в создание качественных интернет-магазинов','newLevel')}
             </div>            
         </div>

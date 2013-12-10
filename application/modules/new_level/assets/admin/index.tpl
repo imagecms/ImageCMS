@@ -85,7 +85,7 @@
                                 <tr>
                                     <td colspan="6">
                                         <div class="inside_padd">
-                                            <div class="row-fluid">
+                                            <div class="row-fluid" style="overflow: auto;">
                                                 <div class="span3">
                                                     <table class="table-columns">
                                                         <tr>
