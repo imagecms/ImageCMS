@@ -14,6 +14,7 @@
                     {$page.full_text}
                 {/if}
 
+                {/*}
                 {$Comments = $CI->load->module('comments')->init($page)}
 
                 <script type="text/javascript">
@@ -28,6 +29,7 @@
                         <div class="preloader"></div>
                     </div>
                 </div>
+                { */}
 
             </div>
         </div>
