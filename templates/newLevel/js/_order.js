@@ -68,15 +68,25 @@ var Order = {
         $(genObj.shipping).html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
 
         if (obj != null) {
-            if (parseFloat(obj.result_sum_discount_convert) > 0)
-                $(genObj.frameGenDiscount).show();
-            else
-                $(genObj.frameGenDiscount).hide();
+            if (parseFloat(obj.result_sum_discount_convert) > 0){
+                $(genObj.frameGenSumDiscount).show();
+                $(genObj.totalPrice).show();
+            }
+            else{
+                $(genObj.frameGenSumDiscount).hide();
+                $(genObj.totalPrice).hide();
+            }
         }
-        else if (kitDiscount == 0)
-            $(genObj.frameGenDiscount).hide();
-        else
-            $(genObj.frameGenDiscount).show();
+        else if (kitDiscount == 0){
+            $(genObj.frameGenSumDiscount).hide();
+            $(genObj.genSumDiscount).hide();
+            $(genObj.totalPrice).hide();
+        }
+        else{
+            $(genObj.genSumDiscount).show();
+            $(genObj.frameGenSumDiscount).show();
+            $(genObj.totalPrice).show();
+        }
     },
     recountCartPage: function(a) {
         Shop.Cart.totalRecount();
@@ -100,13 +110,21 @@ var Order = {
             $(genObj.pageCart).find(genObj.frameCurDiscount).hide();
         else
             $(genObj.pageCart).find(genObj.frameCurDiscount).show();
+        if ($.trim(tpl) == '' && Shop.Cart.discountProduct == 0)
+            $(genObj.frameGenDiscount).hide();
+        else
+            $(genObj.frameGenDiscount).show();
         $(genObj.discount).html(tpl).next(preloader).hide();
     },
     renderGiftInput: function(tpl) {
-        if (tpl == '')
+        if (tpl == ''){
             $(genObj.gift).empty();
-        else
+            $(genObj.frameGift).hide();
+        }
+        else{
             $(genObj.gift).html(tpl);
+            $(genObj.frameGift).show();
+        }
 
         $('#giftButton').click(function(e) {
             $(genObj.gift).find(preloader).show();
@@ -222,4 +240,6 @@ function initOrderTrEv() {
     $(document).on('displayDiscount', function(e) {
         Order.displayOrderSum(e.obj);
     });
+    
+    $(".maskPhoneFrame input").mask("+9 (9999) 999-99-99");
 }

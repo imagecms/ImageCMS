@@ -125,8 +125,8 @@ a:focus, a:active {color: #51d2ff;}
 /*/fill*/
 
 /*groups selectors*/
-.phones-header .phone, .start-page-category-menu > li .title, .frame-cur-sum-price .price-new .price, .pagination li > a, .pagination li > span{font-size: 14px;}
-.frame-item-menu > .frame-title .text-el, .frame-drop-menu .title-category-l1 > .text-el, .cusel, .compare-characteristic > li > span{font-size: 12px;}
+.phones-header .phone, .start-page-category-menu > li .title, .pagination li > a, .pagination li > span{font-size: 14px;}
+.frame-item-menu > .frame-title .text-el, .frame-drop-menu .title-category-l1 > .text-el, .cusel, .compare-characteristic > li > span, .frame-cur-sum-price .price-new .price, .frame-cur-sum-price .price-discount .price{font-size: 12px;}
 .frame-kit, .items-default > li, .frame-item-menu > .frame-title > .title > .text-el, .tabs-data > li > a, .tabs-data > li > button, .drop-bask .frame-items .price, .drop-bask .frame-items .curr, .frame-bask-order .description > .frame-prices .price, .frame-bask-order .description > .frame-prices .curr, .table-info-order .price-new .price, .table-profile .price-new .price, .nav > li > a, .nav > li > span, .nav.nav-vertical ul{font-size: 13px;}
 .table-info-order .price-new .price, .table-profile .price-new .price, .cusel, .characteristic, .table-info-order td{font-weight: normal;}
 .title-default > .title, .gen-sum-order .title, footer [class^="box"] .main-title, .drop-header > .title, .frame-menu-category-first .title-category-l1 > .text-el{font-size: 18px;}
@@ -933,7 +933,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .icon_remove{color: #0c9acb;margin: 25px 0 0 27px;}
 .icon_arrow_down{color: #fff;margin: 17px 7px 0 17px;}
 .icon_arrow_p2{margin-right: 7px!important;color: #fff;margin: 15px 0 0 15px;}
-.icon_ask{color: #c6c1bb;margin: 17px 7px 0 17px;}
+.icon_ask{color: #c6c1bb;margin: 11px 7px 0 11px;}
 /*/icons*/
 
 /*prices*/
@@ -1366,3 +1366,4 @@ footer .box-4{overflow: visible;}
 .not-paid{background-color: #d6d6d6;}
 .frame-variant-code{display: none !important;}
 .table-info-order hr{border: 0;border-top: 1px solid #999;}
+.title-cart-order{border: 1px solid #eae5e1;background-color: #fff;}
