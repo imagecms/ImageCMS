@@ -1,18 +1,26 @@
-{if $is_logged_in}
-    {$wish_list = $CI->load->module('wishlist')}
-    {$countWL = $wish_list->getUserWishListItemsCount($CI->dx_auth->get_user_id())}
-    <div id="wishListData">
-        <div class="wish-list-btn tinyWishList" {if $countWL == 0}style="display:none;"{/if}>
-            <button onclick="location = '{site_url('wishlist')}'">
-                <span class="icon_wish_list"></span>
-                <span class="text-wish-list f-s_0">
-                    <span class="text-el">{lang('Список желаний','newLevel')} </span>
-                    <span class="text-el">(</span>
-                    <span class="text-el wishListCount">{echo $countWL}</span>
-                </span>
+{$count = $CI->load->module('wishlist')->getUserWishListItemsCount($CI->dx_auth->get_user_id())}
+<div class="wish-list-btn tinyWishList">
+    <button data-href="{site_url('wishlist')}" data-drop=".drop-info-wishlist" data-place="inherit" data-overlay-opacity="0">
+        <span class="icon_wish_list"></span>
+        <span class="text-wish-list">
+            <span class="js-empty empty" {if $count == 0}style="display: inline"{/if}>
+                <span class="text-el">{lang('Список желаний','newLevel')} </span>
+                <span class="text-el">(</span>
+                <span class="text-el wishListCount">0</span>
                 <span class="text-el">)</span>
-                </span>
-            </button>
-        </div>
-    </div>
-{/if}
+            </span>
+            <span class="js-no-empty no-empty" {if $count != 0}style="display: inline"{/if}>
+                <span class="text-el">{lang('Список желаний','newLevel')} </span>
+                <span class="text-el">(</span>
+                <span class="text-el wishListCount">{echo $count}</span>
+                <span class="text-el">)</span>
+            </span>
+        </span>
+    </button>
+</div>
+<div class="drop drop-info drop-info-wishlist">
+    <span class="helper"></span>
+    <span class="text-el">
+        Ваш список <br/>
+        “Список желаний” пуст</span>
+</div>

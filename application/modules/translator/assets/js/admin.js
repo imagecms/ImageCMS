@@ -8,7 +8,7 @@ $(document).ready(function() {
     });
 
     // *********************** Navigate pagination *********************************************
-    $('.pagination ul li').live('click', function() {
+    $('.pagination ul li').on('click', function() {
         Pagination.navigate($(this));
     });
 
@@ -27,15 +27,21 @@ $(document).ready(function() {
         }
     });
 
-    $('.translationCancel').live('click', function() {
+    $('.translationCancel').on('click', function() {
         $(this).next().val($(this).next().next().val());
         Translator.statisticRecount();
     });
 
-    $('.translation').live('blur', function() {
+    $('.translation').on('blur', function() {
         $(this).next().val($(this).val());
+        $(this).text($(this).val());
         Translator.statisticRecount();
     });
+
+    $('.comment').on('blur', function() {
+        $(this).text($(this).val());
+    });
+
 });
 
 var Sort = {
@@ -281,14 +287,14 @@ var Search = {
     comment: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var comment = $(this.searchedObject[i]).find('.comment').text();
+            var comment = $(this.searchedObject[i]).find('.comment').val();
             if (this.checkCondition(comment)) {
                 $(this.searchedObject[i]).find('.comment').addClass('searched');
                 this.findValues.push(this.searchedObject[i]);
                 this.findValues.push(this.searchedObject[i + 1]);
+                this.countResults += 1;
             } else {
                 if (!$('#translationSearch').attr('checked')) {
-                    this.countResults += 1;
                     $(this.searchedObject[i + 1]).find('.translation').removeClass('searched');
                 }
                 if (!$('#originSearch').attr('checked')) {
@@ -669,14 +675,17 @@ var Translator = {
                         var results = JSON.parse(data);
                         var newCount = 0;
                         var oldCount = 0;
+                        var ignoredCount = 0;
                         $('.modal_update_results').removeClass('hide').removeClass('fade');
                         $('.modal_update_results').modal('show');
                         $('.modal-backdrop').show();
                         $('.newStrings').html('');
                         $('.obsoleteStrings').html('');
+                        $('.notCorrectStrings').html('');
+                        
 
                         for (var newString in results['new']) {
-                            if (newString) {
+                            if (newString && newString.match(/[\D]/)) {
                                 var paths = [];
                                 var tooltipMsg = '';
 
@@ -688,6 +697,20 @@ var Translator = {
                                     tooltipMsg += paths[path] + '<br>';
                                 }
                                 $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
+                            } else {
+                                if (!newString.match(/[\D]/)) {
+                                    var paths = [];
+                                    var tooltipMsg = '';
+
+                                    ignoredCount++;
+                                    for (var path in results['new'][newString]) {
+                                        paths.push(results['new'][newString][path]);
+                                    }
+                                    for (var path in paths) {
+                                        tooltipMsg += paths[path] + '<br>';
+                                    }
+                                    $('.notCorrectStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
+                                }
                             }
                         }
 
@@ -711,6 +734,12 @@ var Translator = {
 
                         $('.parsedNewStringsCount').html(newCount);
                         $('.parsedRemoveStringsCount').html(oldCount);
+                        
+                        if(ignoredCount){
+                            $('.notCorrectStringsLI').show();
+                            $('.notCorrectStringsCount').html(ignoredCount);
+                        }
+                        
                         $('.updateResults span').tooltip({
                             'delay': {
                                 show: 300,
@@ -741,6 +770,7 @@ var Translator = {
 
         results['new'] = newStrings;
         results['old'] = obsoleteStrings;
+
 
         $.ajax({
             url: this.getUrl('update'),
