@@ -361,10 +361,10 @@ var DiscountFront = {
             $(genObj.genSumDiscount).each(function() {
                 $(this).html(Shop.Cart.totalPriceOrigin.toFixed(pricePrecision));
             });
-            $(genObj.frameCurDiscount).show();
+            $(genObj.frameDiscount).show();
         }
         else {
-            $(genObj.frameCurDiscount).hide();
+            $(genObj.frameDiscount).hide();
         }
 
         ShopFront.Cart.countSum();

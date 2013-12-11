@@ -6,7 +6,7 @@
         {if $origin}
             <tr class="originTR" {if $counter > 10}style="display: none"{/if}>
                 <td class="t-a_c fuzzyTD" rowspan="2">
-                    <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-danger {/if}btn btn-large notCorrect" style="margin-top: 30px"><i class="icon-lock"></i></button>
+                    <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-danger {/if}btn btn-small notCorrect" style="margin-top: 30px"><i class="icon-lock"></i></button>
                 </td>
                 <td>
                     <button type="button" class="btn btn-small" onclick="Translator.translateString($(this))" style="float: right; margin-left: 600px; margin-bottom: -30px"><i class="icon-globe"></i></button>
