@@ -214,20 +214,20 @@
                         <table id="po_table" style="display: none" class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
-                                    <th class="t-a_c" style='width: 20px;'>
+                                    <th style="width: 45px">
                                         <a class="fuzzy asc" onclick="Sort.sortFuzzy($(this))">{lang('Fuzzy', 'translator')}</a>
                                     </th>
-                                    <th class="span4 t-a_c">
+                                    <th class="span6 t-a_c">
                                         <a class="originHead sortTable asc" onclick="Sort.go($(this))">{lang('Origin', 'translator', 'wishlist')}</a>
                                         /
                                         <a class="translation sortTable asc" onclick="Sort.go($(this))">{lang('Translation', 'translator')}</a>
                                         /
                                         <a class="defaultSort sortTable" onclick="Sort.default()">{lang('Default sort', 'translator')}</a>
                                     </th>
-                                    <th style="width: 75px" class="commentTH t-a_c">
+                                    <th class="commentTH t-a_c span3">
                                         <a class="comment sortTable asc" onclick="Sort.go($(this))">{lang('Comment', 'translator')}</a>
                                     </th>
-                                    <th class="span2 t-a_c" class="linksTH">
+                                    <th class="span3 t-a_c" class="linksTH">
                                         {lang('Links', 'translator')}
                                     </th>
                                 </tr>
@@ -302,6 +302,7 @@
                                 {lang('Save', 'translator')}
                             </button>
                         </div>
+                            <br>
 
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
                             <table class="table table-striped table-bordered table-hover table-condensed">
