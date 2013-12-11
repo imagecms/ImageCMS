@@ -8,7 +8,7 @@ $(document).ready(function() {
     });
 
     // *********************** Navigate pagination *********************************************
-    $('.pagination ul li').live('click', function() {
+    $('.pagination ul li').on('click', function() {
         Pagination.navigate($(this));
     });
 
@@ -27,15 +27,21 @@ $(document).ready(function() {
         }
     });
 
-    $('.translationCancel').live('click', function() {
+    $('.translationCancel').on('click', function() {
         $(this).next().val($(this).next().next().val());
         Translator.statisticRecount();
     });
 
-    $('.translation').live('blur', function() {
+    $('.translation').on('blur', function() {
         $(this).next().val($(this).val());
+        $(this).text($(this).val());
         Translator.statisticRecount();
     });
+    
+    $('.comment').on('blur', function() {
+        $(this).text($(this).val());
+    });
+    
 });
 
 var Sort = {
@@ -240,7 +246,7 @@ var Search = {
     origin: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var origin = $(this.searchedObject[i]).find('.origin').text();
+            var origin = $(this.searchedObject[i]).find('.origin').val();
             if (this.checkCondition(origin)) {
                 this.countResults += 1;
                 $(this.searchedObject[i]).find('.origin').addClass('searched');
@@ -259,7 +265,7 @@ var Search = {
     translation: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var translate = $(this.searchedObject[i + 1]).find('.translation').text();
+            var translate = $(this.searchedObject[i + 1]).find('.translation').val();
             if (this.checkCondition(translate)) {
                 this.countResults += 1;
                 $(this.searchedObject[i + 1]).find('.translation').addClass('searched');
@@ -281,14 +287,14 @@ var Search = {
     comment: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var comment = $(this.searchedObject[i]).find('.comment').text();
+            var comment = $(this.searchedObject[i]).find('.comment').val();
             if (this.checkCondition(comment)) {
                 $(this.searchedObject[i]).find('.comment').addClass('searched');
                 this.findValues.push(this.searchedObject[i]);
                 this.findValues.push(this.searchedObject[i + 1]);
+                this.countResults += 1;
             } else {
                 if (!$('#translationSearch').attr('checked')) {
-                    this.countResults += 1;
                     $(this.searchedObject[i + 1]).find('.translation').removeClass('searched');
                 }
                 if (!$('#originSearch').attr('checked')) {
@@ -741,6 +747,7 @@ var Translator = {
 
         results['new'] = newStrings;
         results['old'] = obsoleteStrings;
+
 
         $.ajax({
             url: this.getUrl('update'),

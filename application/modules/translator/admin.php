@@ -603,7 +603,7 @@ class Admin extends BaseAdminController {
 
             if (substr($line, 0, 5) == 'msgid') {
                 $current = substr(substr($line, 6), 1, -2);
-                if (strlen($current) > 1) {
+                if (strlen($current)) {
                     if (substr($current, -1) == '"') {
                         $current = substr($current, 0, -1);
                     }
@@ -883,31 +883,46 @@ class Admin extends BaseAdminController {
                     $content = @file($main . $file);
                     foreach ($content as $line_number => $line) {
                         $lang = array();
-                        if (preg_match_all("/lang\([\"]{1}(?!\')(.*?)[\"]{1}/", $line, $lang)) {
-                            foreach ($lang[1] as $origin) {
-                                $origin = preg_replace('!\s+!', ' ', $origin);
-                                if (!$this->parsed_langs[$origin]) {
-                                    $this->parsed_langs[$origin] = array();
-                                }
+                        mb_regex_encoding("UTF-8");
+                        mb_ereg_search_init($line, "(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1");
+                        $lang = mb_ereg_search();
+                        if ($lang) {
+                            $lang = mb_ereg_search_getregs(); //get first result
+                            do {
+                                $origin = mb_ereg_replace('!\s+!', ' ', $lang[1]);
+//                                if (preg_match("/[\D]/", $origin)) {
+                                    if (!$this->parsed_langs[$origin]) {
+                                        $this->parsed_langs[$origin] = array();
+                                    }
 
-                                if (strstr($main . $file, '.js')) {
-                                    $this->js_langs[$origin] = $origin;
-                                }
-                                array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
-                            }
+                                    if (strstr($main . $file, '.js')) {
+                                        $this->js_langs[$origin] = $origin;
+                                    }
+                                    array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
+//                                }
+                                $lang = mb_ereg_search_regs(); //get next result
+                            } while ($lang);
                         }
-                        if (preg_match_all("/lang\([']{1}(?!\")(.*?)[']{1}/", $line, $lang)) {
-                            foreach ($lang[1] as $origin) {
-                                $origin = preg_replace('!\s+!', ' ', $origin);
-                                if (!$this->parsed_langs[$origin]) {
-                                    $this->parsed_langs[$origin] = array();
-                                }
+                        $lang = array();
+                        mb_regex_encoding("UTF-8");
+                        mb_ereg_search_init($line, "(?<!\w)lang\([']{1}(?!\")(.*?)[']{1}");
+                        $lang = mb_ereg_search();
+                        if ($lang) {
+                            $lang = mb_ereg_search_getregs(); //get first result
+                            do {
+                                $origin = mb_ereg_replace('!\s+!', ' ', $lang[1]);
+//                                if (preg_match("/[\D]/", $origin)) {
+                                    if (!$this->parsed_langs[$origin]) {
+                                        $this->parsed_langs[$origin] = array();
+                                    }
 
-                                if (strstr($main . $file, '.js')) {
-                                    $this->js_langs[$origin] = $origin;
-                                }
-                                array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
-                            }
+                                    if (strstr($main . $file, '.js')) {
+                                        $this->js_langs[$origin] = $origin;
+                                    }
+                                    array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
+//                                }
+                                $lang = mb_ereg_search_regs(); //get next result
+                            } while ($lang);
                         }
                     }
                 }
@@ -957,7 +972,8 @@ class Admin extends BaseAdminController {
                 }
             }
 
-            if (!$this->js_langs) {
+
+            if (!empty($this->js_langs)) {
                 $js_content = '<script>' . PHP_EOL;
                 foreach ($this->js_langs as $origin) {
                     $js_content .='langs["' . $origin . '"] = \'{echo lang("' . $origin . '", "' . $this->domain . '")}\';' . PHP_EOL;
@@ -971,6 +987,18 @@ class Admin extends BaseAdminController {
                     file_put_contents($base_dir . '/templates/administrator/inc/jsLangs.tpl', $js_content);
                 } else {
                     file_put_contents($base_dir . '/application/modules/' . $this->domain . '/assets/jsLangs.tpl', $js_content);
+                }
+            } else {
+                $cut_pos = strpos(__DIR__, "/application/") ? strpos(__DIR__, "/application/") : strpos(__DIR__, "\\application\\");
+                $base_dir = substr_replace(__DIR__, '', $cut_pos, strlen(__DIR__));
+                if ($this->domain == "admin") {
+                    if (file_exists($base_dir . '/templates/administrator/inc/jsLangs.tpl')) {
+                        unlink($base_dir . '/templates/administrator/inc/jsLangs.tpl');
+                    }
+                } else {
+                    if (file_exists($base_dir . '/application/modules/' . $this->domain . '/assets/jsLangs.tpl')) {
+                        unlink($base_dir . '/application/modules/' . $this->domain . '/assets/jsLangs.tpl');
+                    }
                 }
             }
         }
@@ -989,13 +1017,15 @@ class Admin extends BaseAdminController {
         $currentLangs = $this->poFileToArray($module_template, $type, $lang);
 
         foreach ($all_langs as $key => $newLang) {
-            if (!isset($currentLangs[$key])) {
-                $results['new'][$key] = $newLang;
+            if (!isset($currentLangs[encode($key)])) {
+                $results['new'][encode($key)] = $newLang;
             } else {
-                unset($currentLangs[$key]);
+                unset($currentLangs[encode($key)]);
             }
         }
+
         $results['old'] = $currentLangs;
+//        var_dumps($results);exit;
         return json_encode($results);
     }
 
@@ -1119,7 +1149,6 @@ class Admin extends BaseAdminController {
             'type' => $type,
             'lang' => $lang,
         ));
-
         return \CMSFactory\assetManager::create()
                         ->setData('po_array', $result_array)
                         ->setData('page', 1)
