@@ -19,8 +19,7 @@ function init() {
     DiscountFront.getDiscount('start');
     global.processWish();
     ShopFront.CompareList.process();
-    ShopFront.CompareList.count();
-    global.wishListCount();
+
     /*changecount product in category and product*/
     ShopFront.Cart.changeCount($('.items-catalog, .item-product'));
     /*/changecount product in category and product*/
@@ -94,6 +93,8 @@ function init() {
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $('[data-drop]').drop(optionsDrop);
+    ShopFront.CompareList.count();
+    global.wishListCount();
     $('.tabs').tabs({
         after: function(el) {
             if (el.hasClass('tabs-compare-category')) {
@@ -230,15 +231,13 @@ function init() {
         global.processWish();
         global.wishListCount();
     });
-    doc.on('change_count_cl change_count_wl', function(e) {
-        if (wishList.count + Shop.CompareList.count + countViewProd > 0)
-            $('.content-user-toolbar').fadeIn();
-        else
-            $('.content-user-toolbar').fadeOut();
-    });
     doc.on('widget_ajax', function(e) {
         initCarouselJscrollPaneCycle(e.el);
         reinitializeScrollPane(e.el);
+        
+        e.el.find("img.lazy").lazyload(lazyload);
+        wnd.scroll()
+        
         ShopFront.Cart.pasteItems(e.el);
     });
     doc.on('discount.display', function(e) {
