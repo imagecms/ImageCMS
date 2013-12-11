@@ -51,9 +51,9 @@ Product = {
                 liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
             liBlock.find(genObj.priceVariant).html(vPrice);
             liBlock.find(genObj.priceAddPrice).html(vAddPrice);
-            ShopCart.Cart.existsVnumber(vNumber, liBlock);
-            ShopCart.Cart.existsVnames(vName, liBlock);
-            ShopCart.Cart.condProduct(vStock, liBlock, btnInfo);
+            ShopFront.Cart.existsVnumber(vNumber, liBlock);
+            ShopFront.Cart.existsVnames(vName, liBlock);
+            ShopFront.Cart.condProduct(vStock, liBlock, btnInfo);
             liBlock.find(genObj.selVariant).hide();
             liBlock.find(genObj.prefV + vId).show();
             
