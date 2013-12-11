@@ -9,7 +9,7 @@ $com_info = array(
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe
     'w' => 800,                     // Window width
     'h' => 550,                     // Window height
-    'version' => '0.1',             // Module version
+    'version' => '1.0',             // Module version
     'author' => 'dev@imagecms.net'  // Author info
 );
 
