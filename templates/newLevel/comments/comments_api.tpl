@@ -2,10 +2,13 @@
     <label>
         <span class="title__icsi-css"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'newLevel'), site_url($modules.auth))}</b></span>
     </label>
+    <button type="button" data-trigger="#loginButton">
+        <span class="text-el d_l_1">{lang('Войти','newLevel')}</span>
+    </button>
 {/if}
 <div class="comment__icsi-css" id="comment__icsi-css">
-    <div class="title_h2__icsi-css">{lang('Отзывы покупателей', 'newLevel')}</div>
     {if $can_comment == 0 OR $is_logged_in}
+        <div class="title_h2__icsi-css">{lang('Отзывы покупателей', 'newLevel')}</div>
         <div class="main-form-comments__icsi-css {if !$comments_arr}noComments{/if}">
             <div class="frame-comments__icsi-css layout-highlight">
                 <div class="title_h2__icsi-css title-default">
@@ -60,13 +63,17 @@
                             </div>
                             <!-- End star reiting -->
                             {if $use_captcha}
-                                <label>
-                                    <span class="title__icsi-css">{lang('Код защиты')}</span>
-                                    {$cap_image}
-                                    <span class="frame_form_field__icsi-css">
-                                        <input type="text" name="captcha" id="captcha"/>
-                                    </span>
-                                </label>
+                                <div class="frameLabel m-b_10">
+                                    <span class="title__icsi-css">{lang('Код защиты')}:</span>
+                                    <div class="clearfix">
+                                        <div class="m-b_10 m-t_5 f_l">
+                                            {$cap_image}
+                                        </div>
+                                        <div class="frame_form_field__icsi-css o_h">
+                                            <input type="text" name="captcha" id="captcha" class="m-t_5"/>
+                                        </div>
+                                    </div>
+                                </div>
                             {/if}
 
                             <div class="frameLabel__icsi-css">

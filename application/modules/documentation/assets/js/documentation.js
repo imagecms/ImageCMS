@@ -46,7 +46,7 @@ tinymce.init({
                 },
                 url: '/documentation/save_desc',
                 complete: function(obj) {
-                    tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                    tinyMCE.activeEditor.windowManager.alert("Измeнения сохранены");
                     wasChanges = false;
                 }
             });
@@ -136,7 +136,7 @@ tinymce.init({
                     },
                     url: '/documentation/save_desc',
                     complete: function(obj) {
-                        tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                        tinyMCE.activeEditor.windowManager.alert("Измeнения сохранены");
                         wasChanges = false;
                     }
                 });
@@ -172,7 +172,7 @@ tinymce.init({
                 },
                 url: '/documentation/save_title',
                 complete: function(obj) {
-                    tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                    tinyMCE.activeEditor.windowManager.alert("Измeнения сохранены");
                     wasChanges = false;
                 }
             });
@@ -190,7 +190,7 @@ tinymce.init({
                     },
                     url: '/documentation/save_title',
                     complete: function(obj) {
-                        tinyMCE.activeEditor.windowManager.alert("Изминения сохранены");
+                        tinyMCE.activeEditor.windowManager.alert("Измeнения сохранены");
                         wasChanges = false;
                     }
                 });
