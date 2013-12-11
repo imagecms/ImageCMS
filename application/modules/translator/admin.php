@@ -183,9 +183,8 @@ class Admin extends BaseAdminController {
             $names = trim(preg_replace('/\s\s+/', ' ', $names));
             $names = preg_replace('/<link[\W\w]+\/>/', '', $names);
             $names = preg_replace('/<script[\W\w]+<\/script>/', '', $names);
-            $data_locale = trim(preg_replace('/\s\s+/', ' ', $po_table));
-//            $data = preg_replace('/<script>[a-zA-Z\[\];\s\.\=\(\)\,\_\-\!\?"]+<\/script>/', '', $data);
-            jsCode("Translator.start('" . $data_locale . "','" . $names . "', '" . $type . "', '" . $lang . "', '" . $name . "');");
+            $data = trim(preg_replace('/\s\s+/', ' ', $po_table));
+            jsCode("Translator.start('" . $data . "','" . $names . "', '" . $type . "', '" . $lang . "', '" . $name . "');");
         }
     }
 
@@ -803,8 +802,7 @@ class Admin extends BaseAdminController {
         } else {
             $text = '&text=' . str_replace(' ', '%20', $this->input->post('word'));
         }
-//        var_dumps($to);exit;
-//        $apiKey = 'trnsl.1.1.20131007T222753Z.ce6162bf76f36118.5e8c33d185b2e48c6504492cdf203081c5085384';
+
         if ($return) {
             return $this->open_https_url('https://translate.yandex.net/api/v1.5/tr.json/translate?key=' . $apiKey . $text . '&lang=' . $from . '-' . $to . '&format=plain');
         } else {
@@ -893,7 +891,6 @@ class Admin extends BaseAdminController {
                             $lang = mb_ereg_search_getregs(); //get first result
                             do {
                                 $origin = mb_ereg_replace('!\s+!', ' ', $lang[1]);
-//                                if (preg_match("/[\D]/", $origin)) {
                                     if (!$this->parsed_langs[$origin]) {
                                         $this->parsed_langs[$origin] = array();
                                     }
@@ -902,7 +899,6 @@ class Admin extends BaseAdminController {
                                         $this->js_langs[$origin] = $origin;
                                     }
                                     array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
-//                                }
                                 $lang = mb_ereg_search_regs(); //get next result
                             } while ($lang);
                         }
@@ -914,7 +910,6 @@ class Admin extends BaseAdminController {
                             $lang = mb_ereg_search_getregs(); //get first result
                             do {
                                 $origin = mb_ereg_replace('!\s+!', ' ', $lang[1]);
-//                                if (preg_match("/[\D]/", $origin)) {
                                     if (!$this->parsed_langs[$origin]) {
                                         $this->parsed_langs[$origin] = array();
                                     }
@@ -923,7 +918,6 @@ class Admin extends BaseAdminController {
                                         $this->js_langs[$origin] = $origin;
                                     }
                                     array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
-//                                }
                                 $lang = mb_ereg_search_regs(); //get next result
                             } while ($lang);
                         }
@@ -1028,7 +1022,6 @@ class Admin extends BaseAdminController {
         }
 
         $results['old'] = $currentLangs;
-//        var_dumps($results);exit;
         return json_encode($results);
     }
 
@@ -1185,21 +1178,3 @@ class Admin extends BaseAdminController {
     }
 
 }
-
-//public function checkFile($file_path) {
-//        if (file_exists($file_path)) {
-//            if (!is_readable($file_path)) {
-//                $this->fileError = lang('File cant be read. Please, set read file permissions.', 'translator');
-//                return FALSE;
-//            }
-//
-//            if (!is_writable($file_path)) {
-//                $this->fileError = lang('File cant be written. Please, set write file permissions.', 'translator');
-//                return FALSE;
-//            }
-//            return TRUE;
-//        } else {
-//            $this->fileError = lang('File does not exist.', 'translator');
-//            return FALSE;
-//        }
-//    }
