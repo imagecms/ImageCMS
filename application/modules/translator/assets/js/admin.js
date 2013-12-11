@@ -37,11 +37,11 @@ $(document).ready(function() {
         $(this).text($(this).val());
         Translator.statisticRecount();
     });
-    
+
     $('.comment').on('blur', function() {
         $(this).text($(this).val());
     });
-    
+
 });
 
 var Sort = {
@@ -675,14 +675,17 @@ var Translator = {
                         var results = JSON.parse(data);
                         var newCount = 0;
                         var oldCount = 0;
+                        var ignoredCount = 0;
                         $('.modal_update_results').removeClass('hide').removeClass('fade');
                         $('.modal_update_results').modal('show');
                         $('.modal-backdrop').show();
                         $('.newStrings').html('');
                         $('.obsoleteStrings').html('');
+                        $('.notCorrectStrings').html('');
+                        
 
                         for (var newString in results['new']) {
-                            if (newString) {
+                            if (newString && newString.match(/[\D]/)) {
                                 var paths = [];
                                 var tooltipMsg = '';
 
@@ -694,6 +697,20 @@ var Translator = {
                                     tooltipMsg += paths[path] + '<br>';
                                 }
                                 $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
+                            } else {
+                                if (!newString.match(/[\D]/)) {
+                                    var paths = [];
+                                    var tooltipMsg = '';
+
+                                    ignoredCount++;
+                                    for (var path in results['new'][newString]) {
+                                        paths.push(results['new'][newString][path]);
+                                    }
+                                    for (var path in paths) {
+                                        tooltipMsg += paths[path] + '<br>';
+                                    }
+                                    $('.notCorrectStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
+                                }
                             }
                         }
 
@@ -717,6 +734,12 @@ var Translator = {
 
                         $('.parsedNewStringsCount').html(newCount);
                         $('.parsedRemoveStringsCount').html(oldCount);
+                        
+                        if(ignoredCount){
+                            $('.notCorrectStringsLI').show();
+                            $('.notCorrectStringsCount').html(ignoredCount);
+                        }
+                        
                         $('.updateResults span').tooltip({
                             'delay': {
                                 show: 300,

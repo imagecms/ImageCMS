@@ -51,6 +51,11 @@
                         <span class="parsedRemoveStringsCount" style="font-weight: bold"></span> {lang('string(s) will be removed', 'translator')}
                     </a>
                 </li>
+                <li style="display: none;" class="notCorrectStringsLI">
+                    <a href="#notCorrectStringsTab" data-toggle="tab">
+                        <span class="notCorrectStringsCount" style="font-weight: bold"></span> {lang('string(s) will be ignored', 'translator')}
+                    </a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="newStringsTab">
@@ -59,6 +64,10 @@
                 </div>
                 <div class="tab-pane" id="obsoleteStringsTab">
                     <div class="updateResults obsoleteStrings">
+                    </div>
+                </div>
+                <div class="tab-pane" id="notCorrectStringsTab">
+                    <div class="updateResults notCorrectStrings">
                     </div>
                 </div>
             </div>
@@ -131,7 +140,7 @@
                             <td style="width: 50px; border: none!important; color: grey"><b><i class="translatedStringsCount"></i></b></td>
                             <td style="width: 100px; border: none!important"><b>{lang('Not translated', 'translator')}:</b></td>
                             <td style="width: 50px; border: none!important; color: grey"><b><i class="notTranslatedStringsCount"></i></b></td>
-                            </tr>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -302,7 +311,7 @@
                                 {lang('Save', 'translator')}
                             </button>
                         </div>
-                            <br>
+                        <br>
 
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
                             <table class="table table-striped table-bordered table-hover table-condensed">
