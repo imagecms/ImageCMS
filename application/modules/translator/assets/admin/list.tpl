@@ -51,6 +51,11 @@
                         <span class="parsedRemoveStringsCount" style="font-weight: bold"></span> {lang('string(s) will be removed', 'translator')}
                     </a>
                 </li>
+                <li style="display: none;" class="notCorrectStringsLI">
+                    <a href="#notCorrectStringsTab" data-toggle="tab">
+                        <span class="notCorrectStringsCount" style="font-weight: bold"></span> {lang('string(s) will be ignored', 'translator')}
+                    </a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="newStringsTab">
@@ -59,6 +64,10 @@
                 </div>
                 <div class="tab-pane" id="obsoleteStringsTab">
                     <div class="updateResults obsoleteStrings">
+                    </div>
+                </div>
+                <div class="tab-pane" id="notCorrectStringsTab">
+                    <div class="updateResults notCorrectStrings">
                     </div>
                 </div>
             </div>
@@ -131,7 +140,7 @@
                             <td style="width: 50px; border: none!important; color: grey"><b><i class="translatedStringsCount"></i></b></td>
                             <td style="width: 100px; border: none!important"><b>{lang('Not translated', 'translator')}:</b></td>
                             <td style="width: 50px; border: none!important; color: grey"><b><i class="notTranslatedStringsCount"></i></b></td>
-                            </tr>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -173,7 +182,7 @@
                         </div>
                         <div class="pull-right" style="position: relative; right: 150px">
                             <div class="input-append">
-                                <input class="span2 searchString" onkeypress="Search.goOnEnterPress()" id="appendedInputButtons" type="text">
+                                <input class="span2 searchString" placeholder="{lang('Please, enter search string...', 'translator')}" onkeypress="Search.goOnEnterPress()" id="appendedInputButtons" type="text">
                                 <button id="searchTranslator" class="btn" type="button">{lang('Search', 'translator')}</button>
                                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                     {lang('Options', 'translator')}
@@ -214,20 +223,20 @@
                         <table id="po_table" style="display: none" class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
-                                    <th class="t-a_c" style='width: 20px;'>
+                                    <th style="width: 45px">
                                         <a class="fuzzy asc" onclick="Sort.sortFuzzy($(this))">{lang('Fuzzy', 'translator')}</a>
                                     </th>
-                                    <th class="span4 t-a_c">
+                                    <th class="span6 t-a_c">
                                         <a class="originHead sortTable asc" onclick="Sort.go($(this))">{lang('Origin', 'translator', 'wishlist')}</a>
                                         /
                                         <a class="translation sortTable asc" onclick="Sort.go($(this))">{lang('Translation', 'translator')}</a>
                                         /
                                         <a class="defaultSort sortTable" onclick="Sort.default()">{lang('Default sort', 'translator')}</a>
                                     </th>
-                                    <th style="width: 75px" class="commentTH t-a_c">
+                                    <th class="commentTH t-a_c span3">
                                         <a class="comment sortTable asc" onclick="Sort.go($(this))">{lang('Comment', 'translator')}</a>
                                     </th>
-                                    <th class="span2 t-a_c" class="linksTH">
+                                    <th class="span3 t-a_c" class="linksTH">
                                         {lang('Links', 'translator')}
                                     </th>
                                 </tr>
@@ -302,6 +311,7 @@
                                 {lang('Save', 'translator')}
                             </button>
                         </div>
+                        <br>
 
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
                             <table class="table table-striped table-bordered table-hover table-condensed">
