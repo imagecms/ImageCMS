@@ -278,6 +278,7 @@ var Comments = {
             dataType: "json",
             beforeSend: function(){
                 $(document).trigger('showActivity');
+                $(el).closest('.forComments').append('<div class="preloader"></div>');
             },
             type: "post",
             success: function(obj) {
