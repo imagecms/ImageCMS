@@ -5,6 +5,8 @@
 /**
  * Image CMS 
  * Sample Module Admin
+ * @version 1.0
+ * 
  */
 class Admin extends BaseAdminController {
 
@@ -151,7 +153,8 @@ class Admin extends BaseAdminController {
         $locales_unique = array();
         $locales = $this->config->item('locales');
         foreach ($locales as $locale) {
-            $locales_unique[preg_replace("/_[A-Z]+/", '', $locale)] = preg_replace("/_[A-Z]+/", '', $locale);
+            $data_locale = preg_replace("/_[A-Z]+/", '', $locale);
+            $locales_unique[$data_locale] = $data_locale;
         }
 
         $settings = $this->getSettings();

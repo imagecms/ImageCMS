@@ -182,7 +182,7 @@
                         </div>
                         <div class="pull-right" style="position: relative; right: 150px">
                             <div class="input-append">
-                                <input class="span2 searchString" onkeypress="Search.goOnEnterPress()" id="appendedInputButtons" type="text">
+                                <input class="span2 searchString" placeholder="{lang('Please, enter search string...', 'translator')}" onkeypress="Search.goOnEnterPress()" id="appendedInputButtons" type="text">
                                 <button id="searchTranslator" class="btn" type="button">{lang('Search', 'translator')}</button>
                                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                     {lang('Options', 'translator')}
