@@ -188,12 +188,12 @@ var Comments = {
             },
             after: function(el, elInserted) {
                 $(elInserted).find('input[name=comment_parent]').val(el.data('parid'));
-                $('#comment__icsi-css form').submit(function() {
+                $('#comments form').submit(function() {
                     return false;
                 });
             }
         });
-        $('.comment__icsi-css form').submit(function(e) {
+        $('.comments form').submit(function(e) {
             e.preventDefault();
         });
         $('.usefullyes').bind('click', function() {
@@ -283,7 +283,7 @@ var Comments = {
                     });
                     $('.comment_plus').val('');
                     $('.comment_minus').val('');
-                    Comments.renderPosts($(el).closest('.for_comments'));
+                    Comments.renderPosts($(el).closest('.forComments'));
                 }
                 else {
                     var form = $(el).closest('form');

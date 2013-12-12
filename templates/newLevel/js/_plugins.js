@@ -1903,7 +1903,7 @@ function getCookie(c_name)
                     elClosed = elSet.closed,
                     selSource = elSet.drop,
                     drop = $(selSource);
-            $this.attr('data-drop', $this.data('drop')).parent().addClass(aC);
+            $this.attr({'data-drop': $this.data('drop'), 'data-trigger': trigger}).parent().addClass(aC);
             methods.defaultParams.durationOff = $thisDOff;
             drop.data({
                 'trigger': trigger,
@@ -2431,7 +2431,6 @@ function getCookie(c_name)
             var settings = $.extend({
                 prev: 'prev',
                 next: 'next',
-                ajax: false,
                 step: 1,
                 checkProdStock: false,
                 after: function() {
@@ -2444,7 +2443,6 @@ function getCookie(c_name)
                     var $this = $(this),
                             prev = settings.prev.split('.'),
                             next = settings.next.split('.'),
-                            ajax = settings.ajax,
                             checkProdStock = settings.checkProdStock,
                             step = settings.step,
                             $thisPrev = $this,
@@ -2484,15 +2482,8 @@ function getCookie(c_name)
                                     input.val(input.data('min') || 1);
                                 else
                                     input.val(inputVal + step);
-                                if (ajax && !checkProdStock)
-                                    $(document).trigger({
-                                        'type': 'showActivity'
-                                    });
-                                if (ajax && inputVal + step <= input.data('max') && checkProdStock)
-                                    $(document).trigger({
-                                        'type': 'showActivity'
-                                    });
-                                if (ajax && inputVal + step === input.data('max'))
+                                
+                                if (inputVal + step === input.data('max'))
                                     $thisNext.attr('disabled', 'disabled');
                                 if (checkProdStock)
                                     input.maxminValue(e);
@@ -2513,13 +2504,8 @@ function getCookie(c_name)
                                 if (isNaN(inputVal))
                                     input.val(input.data('min') || 1);
                                 else if (inputVal > parseFloat(input.data('min') || 1)) {
-                                    if (ajax) {
-                                        $(document).trigger({
-                                            'type': 'showActivity'
-                                        });
-                                    }
                                     input.val(inputVal - step);
-                                    if (ajax && inputVal - step === input.data('min'))
+                                    if (inputVal - step === input.data('min'))
                                         $thisPrev.attr('disabled', 'disabled');
                                 }
 

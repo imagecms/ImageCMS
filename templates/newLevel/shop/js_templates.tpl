@@ -26,9 +26,9 @@
                                             <a href="<%-item.url%>" class="frame-photo-title">
                                                 <span class="photo-block">
                                                     <span class="helper"></span>
-                                                    <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
+                                                    <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>"/>
                                                 </span>
-                                                <span class="title"><%- item.name %>
+                                                <span class="title"><%- item.name %></span>
                                             </a>
                                             <div class="description">
                                                 <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>

@@ -93,7 +93,7 @@ var Shop = {
         chCount: function(cartItem, f) {
             Shop.Cart.currentItem = this.load(cartItem.storageId());
             if (Shop.Cart.currentItem) {
-                if (Shop.Cart.currentItem.count != cartItem.count) {
+                if (Shop.Cart.currentItem.count != cartItem.count && cartItem.count != 0) {
                     Shop.Cart.currentItem.count = cartItem.count;
                     Shop.currentCallbackFn = f;
                     if (cartItem.kit)
@@ -104,6 +104,7 @@ var Shop = {
                         recount: 1
                     };
                     postData[postName] = cartItem.count;
+                    $(document).trigger('showActivity');
                     $.post(siteUrl + 'shop/cart_api/recount', postData, function(data) {
                         var dataObj = JSON.parse(data);
                         if (dataObj.success) {
