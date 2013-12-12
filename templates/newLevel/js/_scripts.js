@@ -105,7 +105,7 @@ function init() {
             }
             if (el.hasClass('tabs-product')) {
                 showHidePart($('.patch-product-view'));
-                showHidePart($('.frame-list-comment__icsi-css.sub-2'));
+                showHidePart($('.frame-list-comments.sub-2'));
             }
             wnd.scroll();
         }
@@ -118,7 +118,7 @@ function init() {
     drawIcons($(selIcons));
     showHidePart($('.sub-category'));
     showHidePart($('.patch-product-view'));
-    showHidePart($('.frame-list-comment__icsi-css.sub-2'));
+    showHidePart($('.frame-list-comments.sub-2'));
     var userTool = new itemUserToolbar(),
             btnToUp = $('.btn-to-up');
     btnToUp.click(function() {
@@ -293,8 +293,9 @@ function init() {
         }
     });
     doc.on('rendercomment.after', function(e) {
-        showHidePart(e.el.find('.frame-list-comment__icsi-css.sub-2'));
+        showHidePart(e.el.find('.frame-list-comments.sub-2'));
         showHidePart(e.el.find('.product-comment'));
+        e.el.find('[data-drop]').drop(optionsDrop);
         e.el.find(preloader).remove();
     });
     doc.on('render_popup_cart autocomplete.after rendercomment.after imageapi.pastemsg showCleaverFilter tabs.afterload renderorder.after', function(e) {
