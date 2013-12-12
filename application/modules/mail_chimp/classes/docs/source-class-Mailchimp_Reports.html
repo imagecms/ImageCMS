@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta name="robots" content="noindex" />
+
+	<title>File Mailchimp/Reports.php</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?2821599371"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Mailchimp.html">Mailchimp</a></li>
+				<li><a href="class-Mailchimp_Campaigns.html">Mailchimp_Campaigns</a></li>
+				<li><a href="class-Mailchimp_Ecomm.html">Mailchimp_Ecomm</a></li>
+				<li><a href="class-Mailchimp_Folders.html">Mailchimp_Folders</a></li>
+				<li><a href="class-Mailchimp_Gallery.html">Mailchimp_Gallery</a></li>
+				<li><a href="class-Mailchimp_Helper.html">Mailchimp_Helper</a></li>
+				<li><a href="class-Mailchimp_Lists.html">Mailchimp_Lists</a></li>
+				<li><a href="class-Mailchimp_Mobile.html">Mailchimp_Mobile</a></li>
+				<li><a href="class-Mailchimp_Neapolitan.html">Mailchimp_Neapolitan</a></li>
+				<li class="active"><a href="class-Mailchimp_Reports.html">Mailchimp_Reports</a></li>
+				<li><a href="class-Mailchimp_Templates.html">Mailchimp_Templates</a></li>
+				<li><a href="class-Mailchimp_Users.html">Mailchimp_Users</a></li>
+				<li><a href="class-Mailchimp_Vip.html">Mailchimp_Vip</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Mailchimp_Absplit_UnknownError.html">Mailchimp_Absplit_UnknownError</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownSplitTest.html">Mailchimp_Absplit_UnknownSplitTest</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownTestType.html">Mailchimp_Absplit_UnknownTestType</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownWaitUnit.html">Mailchimp_Absplit_UnknownWaitUnit</a></li>
+				<li><a href="class-Mailchimp_Absplit_UnknownWinnerType.html">Mailchimp_Absplit_UnknownWinnerType</a></li>
+				<li><a href="class-Mailchimp_Absplit_WinnerNotSelected.html">Mailchimp_Absplit_WinnerNotSelected</a></li>
+				<li><a href="class-Mailchimp_Avesta_Db_Exception.html">Mailchimp_Avesta_Db_Exception</a></li>
+				<li><a href="class-Mailchimp_Campaign_BounceMissing.html">Mailchimp_Campaign_BounceMissing</a></li>
+				<li><a href="class-Mailchimp_Campaign_DoesNotExist.html">Mailchimp_Campaign_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidAbsplit.html">Mailchimp_Campaign_InvalidAbsplit</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidAuto.html">Mailchimp_Campaign_InvalidAuto</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidContent.html">Mailchimp_Campaign_InvalidContent</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidOption.html">Mailchimp_Campaign_InvalidOption</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidRss.html">Mailchimp_Campaign_InvalidRss</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidSegment.html">Mailchimp_Campaign_InvalidSegment</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidStatus.html">Mailchimp_Campaign_InvalidStatus</a></li>
+				<li><a href="class-Mailchimp_Campaign_InvalidTemplate.html">Mailchimp_Campaign_InvalidTemplate</a></li>
+				<li><a href="class-Mailchimp_Campaign_NotSaved.html">Mailchimp_Campaign_NotSaved</a></li>
+				<li><a href="class-Mailchimp_Campaign_StatsNotAvailable.html">Mailchimp_Campaign_StatsNotAvailable</a></li>
+				<li><a href="class-Mailchimp_Email_AlreadySubscribed.html">Mailchimp_Email_AlreadySubscribed</a></li>
+				<li><a href="class-Mailchimp_Email_AlreadyUnsubscribed.html">Mailchimp_Email_AlreadyUnsubscribed</a></li>
+				<li><a href="class-Mailchimp_Email_NotExists.html">Mailchimp_Email_NotExists</a></li>
+				<li><a href="class-Mailchimp_Email_NotSubscribed.html">Mailchimp_Email_NotSubscribed</a></li>
+				<li><a href="class-Mailchimp_Error.html">Mailchimp_Error</a></li>
+				<li><a href="class-Mailchimp_HttpError.html">Mailchimp_HttpError</a></li>
+				<li><a href="class-Mailchimp_Invalid_Analytics.html">Mailchimp_Invalid_Analytics</a></li>
+				<li><a href="class-Mailchimp_Invalid_ApiKey.html">Mailchimp_Invalid_ApiKey</a></li>
+				<li><a href="class-Mailchimp_Invalid_AppKey.html">Mailchimp_Invalid_AppKey</a></li>
+				<li><a href="class-Mailchimp_Invalid_DateTime.html">Mailchimp_Invalid_DateTime</a></li>
+				<li><a href="class-Mailchimp_Invalid_EcommOrder.html">Mailchimp_Invalid_EcommOrder</a></li>
+				<li><a href="class-Mailchimp_Invalid_Email.html">Mailchimp_Invalid_Email</a></li>
+				<li><a href="class-Mailchimp_Invalid_Folder.html">Mailchimp_Invalid_Folder</a></li>
+				<li><a href="class-Mailchimp_Invalid_IP.html">Mailchimp_Invalid_IP</a></li>
+				<li><a href="class-Mailchimp_Invalid_Options.html">Mailchimp_Invalid_Options</a></li>
+				<li><a href="class-Mailchimp_Invalid_PagingLimit.html">Mailchimp_Invalid_PagingLimit</a></li>
+				<li><a href="class-Mailchimp_Invalid_PagingStart.html">Mailchimp_Invalid_PagingStart</a></li>
+				<li><a href="class-Mailchimp_Invalid_SendType.html">Mailchimp_Invalid_SendType</a></li>
+				<li><a href="class-Mailchimp_Invalid_Template.html">Mailchimp_Invalid_Template</a></li>
+				<li><a href="class-Mailchimp_Invalid_TrackingOptions.html">Mailchimp_Invalid_TrackingOptions</a></li>
+				<li><a href="class-Mailchimp_Invalid_URL.html">Mailchimp_Invalid_URL</a></li>
+				<li><a href="class-Mailchimp_List_AlreadySubscribed.html">Mailchimp_List_AlreadySubscribed</a></li>
+				<li><a href="class-Mailchimp_List_CannotRemoveEmailMerge.html">Mailchimp_List_CannotRemoveEmailMerge</a></li>
+				<li><a href="class-Mailchimp_List_DoesNotExist.html">Mailchimp_List_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_List_InvalidBounceMember.html">Mailchimp_List_InvalidBounceMember</a></li>
+				<li><a href="class-Mailchimp_List_InvalidImport.html">Mailchimp_List_InvalidImport</a></li>
+				<li><a href="class-Mailchimp_List_InvalidInterestFieldType.html">Mailchimp_List_InvalidInterestFieldType</a></li>
+				<li><a href="class-Mailchimp_List_InvalidInterestGroup.html">Mailchimp_List_InvalidInterestGroup</a></li>
+				<li><a href="class-Mailchimp_List_InvalidMergeField.html">Mailchimp_List_InvalidMergeField</a></li>
+				<li><a href="class-Mailchimp_List_InvalidOption.html">Mailchimp_List_InvalidOption</a></li>
+				<li><a href="class-Mailchimp_List_InvalidUnsubMember.html">Mailchimp_List_InvalidUnsubMember</a></li>
+				<li><a href="class-Mailchimp_List_Merge_InvalidMergeID.html">Mailchimp_List_Merge_InvalidMergeID</a></li>
+				<li><a href="class-Mailchimp_List_MergeFieldRequired.html">Mailchimp_List_MergeFieldRequired</a></li>
+				<li><a href="class-Mailchimp_List_NotSubscribed.html">Mailchimp_List_NotSubscribed</a></li>
+				<li><a href="class-Mailchimp_List_TooManyInterestGroups.html">Mailchimp_List_TooManyInterestGroups</a></li>
+				<li><a href="class-Mailchimp_List_TooManyMergeFields.html">Mailchimp_List_TooManyMergeFields</a></li>
+				<li><a href="class-Mailchimp_Max_Size_Reached.html">Mailchimp_Max_Size_Reached</a></li>
+				<li><a href="class-Mailchimp_MC_ContentImport_InvalidArchive.html">Mailchimp_MC_ContentImport_InvalidArchive</a></li>
+				<li><a href="class-Mailchimp_MC_InvalidPayment.html">Mailchimp_MC_InvalidPayment</a></li>
+				<li><a href="class-Mailchimp_MC_PastedList_Duplicate.html">Mailchimp_MC_PastedList_Duplicate</a></li>
+				<li><a href="class-Mailchimp_MC_PastedList_InvalidImport.html">Mailchimp_MC_PastedList_InvalidImport</a></li>
+				<li><a href="class-Mailchimp_MC_SearchException.html">Mailchimp_MC_SearchException</a></li>
+				<li><a href="class-Mailchimp_Module_Unknown.html">Mailchimp_Module_Unknown</a></li>
+				<li><a href="class-Mailchimp_MonthlyPlan_Unknown.html">Mailchimp_MonthlyPlan_Unknown</a></li>
+				<li><a href="class-Mailchimp_Order_TypeUnknown.html">Mailchimp_Order_TypeUnknown</a></li>
+				<li><a href="class-Mailchimp_Parse_Exception.html">Mailchimp_Parse_Exception</a></li>
+				<li><a href="class-Mailchimp_PDOException.html">Mailchimp_PDOException</a></li>
+				<li><a href="class-Mailchimp_Request_TimedOut.html">Mailchimp_Request_TimedOut</a></li>
+				<li><a href="class-Mailchimp_ServerError_InvalidParameters.html">Mailchimp_ServerError_InvalidParameters</a></li>
+				<li><a href="class-Mailchimp_ServerError_MethodUnknown.html">Mailchimp_ServerError_MethodUnknown</a></li>
+				<li><a href="class-Mailchimp_Too_Many_Connections.html">Mailchimp_Too_Many_Connections</a></li>
+				<li><a href="class-Mailchimp_Unknown_Exception.html">Mailchimp_Unknown_Exception</a></li>
+				<li><a href="class-Mailchimp_User_CannotSendCampaign.html">Mailchimp_User_CannotSendCampaign</a></li>
+				<li><a href="class-Mailchimp_User_Disabled.html">Mailchimp_User_Disabled</a></li>
+				<li><a href="class-Mailchimp_User_DoesExist.html">Mailchimp_User_DoesExist</a></li>
+				<li><a href="class-Mailchimp_User_DoesNotExist.html">Mailchimp_User_DoesNotExist</a></li>
+				<li><a href="class-Mailchimp_User_InvalidAction.html">Mailchimp_User_InvalidAction</a></li>
+				<li><a href="class-Mailchimp_User_InvalidRole.html">Mailchimp_User_InvalidRole</a></li>
+				<li><a href="class-Mailchimp_User_MissingEmail.html">Mailchimp_User_MissingEmail</a></li>
+				<li><a href="class-Mailchimp_User_MissingModuleOutbox.html">Mailchimp_User_MissingModuleOutbox</a></li>
+				<li><a href="class-Mailchimp_User_ModuleAlreadyPurchased.html">Mailchimp_User_ModuleAlreadyPurchased</a></li>
+				<li><a href="class-Mailchimp_User_ModuleNotPurchased.html">Mailchimp_User_ModuleNotPurchased</a></li>
+				<li><a href="class-Mailchimp_User_NotApproved.html">Mailchimp_User_NotApproved</a></li>
+				<li><a href="class-Mailchimp_User_NotEnoughCredit.html">Mailchimp_User_NotEnoughCredit</a></li>
+				<li><a href="class-Mailchimp_User_UnderMaintenance.html">Mailchimp_User_UnderMaintenance</a></li>
+				<li><a href="class-Mailchimp_User_Unknown.html">Mailchimp_User_Unknown</a></li>
+				<li><a href="class-Mailchimp_ValidationError.html">Mailchimp_ValidationError</a></li>
+				<li><a href="class-Mailchimp_XML_RPC2_Exception.html">Mailchimp_XML_RPC2_Exception</a></li>
+				<li><a href="class-Mailchimp_XML_RPC2_FaultException.html">Mailchimp_XML_RPC2_FaultException</a></li>
+				<li><a href="class-Mailchimp_Zend_Uri_Exception.html">Mailchimp_Zend_Uri_Exception</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li>
+				<a href="class-Mailchimp_Reports.html" title="Summary of Mailchimp_Reports"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1">  1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2">  2: </a>
+</span><span id="3" class="l"><a class="l" href="#3">  3: </a><span class="php-keyword1">class</span> <a id="Mailchimp_Reports" href="#Mailchimp_Reports">Mailchimp_Reports</a> {
+</span><span id="4" class="l"><a class="l" href="#4">  4: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(Mailchimp <span class="php-var">$master</span>) {
+</span><span id="5" class="l"><a class="l" href="#5">  5: </a>        <span class="php-var">$this</span>-&gt;master = <span class="php-var">$master</span>;
+</span><span id="6" class="l"><a class="l" href="#6">  6: </a>    }
+</span><span id="7" class="l"><a class="l" href="#7">  7: </a>
+</span><span id="8" class="l"><a class="l" href="#8">  8: </a>    <span class="php-comment">/**
+</span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment">     * Get all email addresses that complained about a given campaign
+</span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment">     * @param associative_array $opts
+</span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
+</span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
+</span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment">     *     - since string optional pull only messages since this time - 24 hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg &quot;2013-12-30 20:30:00&quot;
+</span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment">     * @return associative_array abuse report data for this campaign
+</span></span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment">     *     - total int the total reports matched
+</span></span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-comment">     *     - data array a struct for the each report, including:
+</span></span><span id="18" class="l"><a class="l" href="#18"> 18: </a><span class="php-comment">     *         - date string date/time the abuse report was received and processed
+</span></span><span id="19" class="l"><a class="l" href="#19"> 19: </a><span class="php-comment">     *         - member string the email address that reported abuse - will only contain email if the list or member has been removed
+</span></span><span id="20" class="l"><a class="l" href="#20"> 20: </a><span class="php-comment">     *         - type string an internal type generally specifying the originating mail provider - may not be useful outside of filling report views
+</span></span><span id="21" class="l"><a class="l" href="#21"> 21: </a><span class="php-comment">     */</span>
+</span><span id="22" class="l"><a class="l" href="#22"> 22: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_abuse" href="#_abuse">abuse</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="23" class="l"><a class="l" href="#23"> 23: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="24" class="l"><a class="l" href="#24"> 24: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/abuse'</span>, <span class="php-var">$_params</span>);
+</span><span id="25" class="l"><a class="l" href="#25"> 25: </a>    }
+</span><span id="26" class="l"><a class="l" href="#26"> 26: </a>
+</span><span id="27" class="l"><a class="l" href="#27"> 27: </a>    <span class="php-comment">/**
+</span></span><span id="28" class="l"><a class="l" href="#28"> 28: </a><span class="php-comment">     * Retrieve the text presented in our app for how a campaign performed and any advice we may have for you - best
+</span></span><span id="29" class="l"><a class="l" href="#29"> 29: </a><span class="php-comment">suited for display in customized reports pages. Note: some messages will contain HTML - clean tags as necessary
+</span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="31" class="l"><a class="l" href="#31"> 31: </a><span class="php-comment">     * @return array of structs for advice on the campaign's performance, each containing:
+</span></span><span id="32" class="l"><a class="l" href="#32"> 32: </a><span class="php-comment">     *     - msg string the advice message
+</span></span><span id="33" class="l"><a class="l" href="#33"> 33: </a><span class="php-comment">     *     - type string the &quot;type&quot; of the message. one of: negative, positive, or neutral
+</span></span><span id="34" class="l"><a class="l" href="#34"> 34: </a><span class="php-comment">     */</span>
+</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_advice" href="#_advice">advice</a>(<span class="php-var">$cid</span>) {
+</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="37" class="l"><a class="l" href="#37"> 37: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/advice'</span>, <span class="php-var">$_params</span>);
+</span><span id="38" class="l"><a class="l" href="#38"> 38: </a>    }
+</span><span id="39" class="l"><a class="l" href="#39"> 39: </a>
+</span><span id="40" class="l"><a class="l" href="#40"> 40: </a>    <span class="php-comment">/**
+</span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     * Retrieve the most recent full bounce message for a specific email address on the given campaign.
+</span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment">Messages over 30 days old are subject to being removed
+</span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     * @param associative_array $email
+</span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment">     *     - email string an email address - this is recommended for this method
+</span></span><span id="46" class="l"><a class="l" href="#46"> 46: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
+</span></span><span id="47" class="l"><a class="l" href="#47"> 47: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
+</span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     * @return associative_array the full bounce message for this email+campaign along with some extra data.
+</span></span><span id="49" class="l"><a class="l" href="#49"> 49: </a><span class="php-comment">     *     - date string date the bounce was received and processed
+</span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment">     *     - member associative_array the member record as returned by lists/member-info()
+</span></span><span id="51" class="l"><a class="l" href="#51"> 51: </a><span class="php-comment">     *     - message string the entire bounce message received
+</span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">     */</span>
+</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_bounceMessage" href="#_bounceMessage">bounceMessage</a>(<span class="php-var">$cid</span>, <span class="php-var">$email</span>) {
+</span><span id="54" class="l"><a class="l" href="#54"> 54: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;email&quot;</span> =&gt; <span class="php-var">$email</span>);
+</span><span id="55" class="l"><a class="l" href="#55"> 55: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/bounce-message'</span>, <span class="php-var">$_params</span>);
+</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>    }
+</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>
+</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>    <span class="php-comment">/**
+</span></span><span id="59" class="l"><a class="l" href="#59"> 59: </a><span class="php-comment">     * Retrieve the full bounce messages for the given campaign. Note that this can return very large amounts
+</span></span><span id="60" class="l"><a class="l" href="#60"> 60: </a><span class="php-comment">of data depending on how large the campaign was and how much cruft the bounce provider returned. Also,
+</span></span><span id="61" class="l"><a class="l" href="#61"> 61: </a><span class="php-comment">messages over 30 days old are subject to being removed
+</span></span><span id="62" class="l"><a class="l" href="#62"> 62: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="63" class="l"><a class="l" href="#63"> 63: </a><span class="php-comment">     * @param associative_array $opts
+</span></span><span id="64" class="l"><a class="l" href="#64"> 64: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
+</span></span><span id="65" class="l"><a class="l" href="#65"> 65: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
+</span></span><span id="66" class="l"><a class="l" href="#66"> 66: </a><span class="php-comment">     *     - since string optional pull only messages since this time - 24 hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg &quot;2013-12-30 20:30:00&quot;
+</span></span><span id="67" class="l"><a class="l" href="#67"> 67: </a><span class="php-comment">     * @return associative_array data for the full bounce messages for this campaign
+</span></span><span id="68" class="l"><a class="l" href="#68"> 68: </a><span class="php-comment">     *     - total int that total number of bounce messages for the campaign
+</span></span><span id="69" class="l"><a class="l" href="#69"> 69: </a><span class="php-comment">     *     - data array structs containing the data for this page
+</span></span><span id="70" class="l"><a class="l" href="#70"> 70: </a><span class="php-comment">     *         - date string date the bounce was received and processed
+</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info()
+</span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">     *         - message string the entire bounce message received
+</span></span><span id="73" class="l"><a class="l" href="#73"> 73: </a><span class="php-comment">     */</span>
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_bounceMessages" href="#_bounceMessages">bounceMessages</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/bounce-messages'</span>, <span class="php-var">$_params</span>);
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>    }
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>    <span class="php-comment">/**
+</span></span><span id="80" class="l"><a class="l" href="#80"> 80: </a><span class="php-comment">     * Return the list of email addresses that clicked on a given url, and how many times they clicked
+</span></span><span id="81" class="l"><a class="l" href="#81"> 81: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="82" class="l"><a class="l" href="#82"> 82: </a><span class="php-comment">     * @param int $tid
+</span></span><span id="83" class="l"><a class="l" href="#83"> 83: </a><span class="php-comment">     * @param associative_array $opts
+</span></span><span id="84" class="l"><a class="l" href="#84"> 84: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
+</span></span><span id="85" class="l"><a class="l" href="#85"> 85: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
+</span></span><span id="86" class="l"><a class="l" href="#86"> 86: </a><span class="php-comment">     *     - sort_field string optional the data to sort by - &quot;clicked&quot; (order clicks occurred, default) or &quot;clicks&quot; (total number of opens). Invalid fields will fall back on the default.
+</span></span><span id="87" class="l"><a class="l" href="#87"> 87: </a><span class="php-comment">     *     - sort_dir string optional the direct - ASC or DESC. defaults to ASC (case insensitive)
+</span></span><span id="88" class="l"><a class="l" href="#88"> 88: </a><span class="php-comment">     * @return associative_array containing the total records matched and the specific records for this page
+</span></span><span id="89" class="l"><a class="l" href="#89"> 89: </a><span class="php-comment">     *     - total int the total number of records matched
+</span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-comment">     *     - data array structs for each email addresses that click the requested url
+</span></span><span id="91" class="l"><a class="l" href="#91"> 91: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info()
+</span></span><span id="92" class="l"><a class="l" href="#92"> 92: </a><span class="php-comment">     *         - clicks int Total number of times the URL was clicked by this email address
+</span></span><span id="93" class="l"><a class="l" href="#93"> 93: </a><span class="php-comment">     */</span>
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_clickDetail" href="#_clickDetail">clickDetail</a>(<span class="php-var">$cid</span>, <span class="php-var">$tid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;tid&quot;</span> =&gt; <span class="php-var">$tid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/click-detail'</span>, <span class="php-var">$_params</span>);
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>    }
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>    <span class="php-comment">/**
+</span></span><span id="100" class="l"><a class="l" href="#100">100: </a><span class="php-comment">     * The urls tracked and their click counts for a given campaign.
+</span></span><span id="101" class="l"><a class="l" href="#101">101: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="102" class="l"><a class="l" href="#102">102: </a><span class="php-comment">     * @return associative_array including:
+</span></span><span id="103" class="l"><a class="l" href="#103">103: </a><span class="php-comment">     *     - total array structs for each url tracked for the full campaign
+</span></span><span id="104" class="l"><a class="l" href="#104">104: </a><span class="php-comment">     *         - url string the url being tracked - urls are tracked individually, so duplicates can exist with vastly different stats
+</span></span><span id="105" class="l"><a class="l" href="#105">105: </a><span class="php-comment">     *         - clicks int Number of times the specific link was clicked
+</span></span><span id="106" class="l"><a class="l" href="#106">106: </a><span class="php-comment">     *         - clicks_percent double the percentage of total clicks &quot;clicks&quot; represents
+</span></span><span id="107" class="l"><a class="l" href="#107">107: </a><span class="php-comment">     *         - unique int Number of unique people who clicked on the specific link
+</span></span><span id="108" class="l"><a class="l" href="#108">108: </a><span class="php-comment">     *         - unique_percent double the percentage of unique clicks &quot;unique&quot; represents
+</span></span><span id="109" class="l"><a class="l" href="#109">109: </a><span class="php-comment">     *         - tid int the tracking id used in campaign links - used primarily for reports/click-activity. also can be used to order urls by the order they appeared in the campaign to recreate our heat map.
+</span></span><span id="110" class="l"><a class="l" href="#110">110: </a><span class="php-comment">     *     - a array if this was an absplit campaign, stat structs for the a group
+</span></span><span id="111" class="l"><a class="l" href="#111">111: </a><span class="php-comment">     *         - url string the url being tracked - urls are tracked individually, so duplicates can exist with vastly different stats
+</span></span><span id="112" class="l"><a class="l" href="#112">112: </a><span class="php-comment">     *         - clicks int Number of times the specific link was clicked
+</span></span><span id="113" class="l"><a class="l" href="#113">113: </a><span class="php-comment">     *         - clicks_percent double the percentage of total clicks &quot;clicks&quot; represents
+</span></span><span id="114" class="l"><a class="l" href="#114">114: </a><span class="php-comment">     *         - unique int Number of unique people who clicked on the specific link
+</span></span><span id="115" class="l"><a class="l" href="#115">115: </a><span class="php-comment">     *         - unique_percent double the percentage of unique clicks &quot;unique&quot; represents
+</span></span><span id="116" class="l"><a class="l" href="#116">116: </a><span class="php-comment">     *         - tid int the tracking id used in campaign links - used primarily for reports/click-activity. also can be used to order urls by the order they appeared in the campaign to recreate our heat map.
+</span></span><span id="117" class="l"><a class="l" href="#117">117: </a><span class="php-comment">     *     - b array if this was an absplit campaign, stat structs for the b group
+</span></span><span id="118" class="l"><a class="l" href="#118">118: </a><span class="php-comment">     *         - url string the url being tracked - urls are tracked individually, so duplicates can exist with vastly different stats
+</span></span><span id="119" class="l"><a class="l" href="#119">119: </a><span class="php-comment">     *         - clicks int Number of times the specific link was clicked
+</span></span><span id="120" class="l"><a class="l" href="#120">120: </a><span class="php-comment">     *         - clicks_percent double the percentage of total clicks &quot;clicks&quot; represents
+</span></span><span id="121" class="l"><a class="l" href="#121">121: </a><span class="php-comment">     *         - unique int Number of unique people who clicked on the specific link
+</span></span><span id="122" class="l"><a class="l" href="#122">122: </a><span class="php-comment">     *         - unique_percent double the percentage of unique clicks &quot;unique&quot; represents
+</span></span><span id="123" class="l"><a class="l" href="#123">123: </a><span class="php-comment">     *         - tid int the tracking id used in campaign links - used primarily for reports/click-activity. also can be used to order urls by the order they appeared in the campaign to recreate our heat map.
+</span></span><span id="124" class="l"><a class="l" href="#124">124: </a><span class="php-comment">     */</span>
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_clicks" href="#_clicks">clicks</a>(<span class="php-var">$cid</span>) {
+</span><span id="126" class="l"><a class="l" href="#126">126: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/clicks'</span>, <span class="php-var">$_params</span>);
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>    }
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>
+</span><span id="130" class="l"><a class="l" href="#130">130: </a>    <span class="php-comment">/**
+</span></span><span id="131" class="l"><a class="l" href="#131">131: </a><span class="php-comment">     * Retrieve the Ecommerce Orders tracked by ecomm/order-add()
+</span></span><span id="132" class="l"><a class="l" href="#132">132: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="133" class="l"><a class="l" href="#133">133: </a><span class="php-comment">     * @param associative_array $opts
+</span></span><span id="134" class="l"><a class="l" href="#134">134: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
+</span></span><span id="135" class="l"><a class="l" href="#135">135: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
+</span></span><span id="136" class="l"><a class="l" href="#136">136: </a><span class="php-comment">     *     - since string optional pull only messages since this time - 24 hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg &quot;2013-12-30 20:30:00&quot;
+</span></span><span id="137" class="l"><a class="l" href="#137">137: </a><span class="php-comment">     * @return associative_array the total matching orders and the specific orders for the requested page
+</span></span><span id="138" class="l"><a class="l" href="#138">138: </a><span class="php-comment">     *     - total int the total matching orders
+</span></span><span id="139" class="l"><a class="l" href="#139">139: </a><span class="php-comment">     *     - data array structs for the actual data for each order being returned
+</span></span><span id="140" class="l"><a class="l" href="#140">140: </a><span class="php-comment">     *     - store_id string the store id generated by the plugin used to uniquely identify a store
+</span></span><span id="141" class="l"><a class="l" href="#141">141: </a><span class="php-comment">     *     - store_name string the store name collected by the plugin - often the domain name
+</span></span><span id="142" class="l"><a class="l" href="#142">142: </a><span class="php-comment">     *     - order_id string the internal order id the store tracked this order by
+</span></span><span id="143" class="l"><a class="l" href="#143">143: </a><span class="php-comment">     *     - member associative_array the member record as returned by lists/member-info() that received this campaign and is associated with this order
+</span></span><span id="144" class="l"><a class="l" href="#144">144: </a><span class="php-comment">     *     - order_total double the order total
+</span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     *     - tax_total double the total tax for the order (if collected)
+</span></span><span id="146" class="l"><a class="l" href="#146">146: </a><span class="php-comment">     *     - ship_total double the shipping total for the order (if collected)
+</span></span><span id="147" class="l"><a class="l" href="#147">147: </a><span class="php-comment">     *     - order_date string the date the order was tracked - from the store if possible, otherwise the GMT time we received it
+</span></span><span id="148" class="l"><a class="l" href="#148">148: </a><span class="php-comment">     *     - lines array structs containing details of the order:
+</span></span><span id="149" class="l"><a class="l" href="#149">149: </a><span class="php-comment">     *         - line_num int the line number assigned to this line
+</span></span><span id="150" class="l"><a class="l" href="#150">150: </a><span class="php-comment">     *         - product_id int the product id assigned to this item
+</span></span><span id="151" class="l"><a class="l" href="#151">151: </a><span class="php-comment">     *         - product_name string the product name
+</span></span><span id="152" class="l"><a class="l" href="#152">152: </a><span class="php-comment">     *         - product_sku string the sku for the product
+</span></span><span id="153" class="l"><a class="l" href="#153">153: </a><span class="php-comment">     *         - product_category_id int the id for the product category
+</span></span><span id="154" class="l"><a class="l" href="#154">154: </a><span class="php-comment">     *         - product_category_name string the product category name
+</span></span><span id="155" class="l"><a class="l" href="#155">155: </a><span class="php-comment">     *         - qty double optional the quantity of the item ordered - defaults to 1
+</span></span><span id="156" class="l"><a class="l" href="#156">156: </a><span class="php-comment">     *         - cost double optional the cost of a single item (ie, not the extended cost of the line) - defaults to 0
+</span></span><span id="157" class="l"><a class="l" href="#157">157: </a><span class="php-comment">     */</span>
+</span><span id="158" class="l"><a class="l" href="#158">158: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_ecommOrders" href="#_ecommOrders">ecommOrders</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="159" class="l"><a class="l" href="#159">159: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="160" class="l"><a class="l" href="#160">160: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/ecomm-orders'</span>, <span class="php-var">$_params</span>);
+</span><span id="161" class="l"><a class="l" href="#161">161: </a>    }
+</span><span id="162" class="l"><a class="l" href="#162">162: </a>
+</span><span id="163" class="l"><a class="l" href="#163">163: </a>    <span class="php-comment">/**
+</span></span><span id="164" class="l"><a class="l" href="#164">164: </a><span class="php-comment">     * Retrieve the eepurl stats from the web/Twitter mentions for this campaign
+</span></span><span id="165" class="l"><a class="l" href="#165">165: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="166" class="l"><a class="l" href="#166">166: </a><span class="php-comment">     * @return associative_array containing tweets, retweets, clicks, and referrer related to using the campaign's eepurl
+</span></span><span id="167" class="l"><a class="l" href="#167">167: </a><span class="php-comment">     *     - twitter associative_array various Twitter related stats
+</span></span><span id="168" class="l"><a class="l" href="#168">168: </a><span class="php-comment">     *         - tweets int Total number of tweets seen
+</span></span><span id="169" class="l"><a class="l" href="#169">169: </a><span class="php-comment">     *         - first_tweet string date and time of the first tweet seen
+</span></span><span id="170" class="l"><a class="l" href="#170">170: </a><span class="php-comment">     *         - last_tweet string date and time of the last tweet seen
+</span></span><span id="171" class="l"><a class="l" href="#171">171: </a><span class="php-comment">     *         - retweets int Total number of retweets seen
+</span></span><span id="172" class="l"><a class="l" href="#172">172: </a><span class="php-comment">     *         - first_retweet string date and time of the first retweet seen
+</span></span><span id="173" class="l"><a class="l" href="#173">173: </a><span class="php-comment">     *         - last_retweet string date and time of the last retweet seen
+</span></span><span id="174" class="l"><a class="l" href="#174">174: </a><span class="php-comment">     *         - statuses array an structs for statuses recorded including:
+</span></span><span id="175" class="l"><a class="l" href="#175">175: </a><span class="php-comment">     *             - status string the text of the tweet/update
+</span></span><span id="176" class="l"><a class="l" href="#176">176: </a><span class="php-comment">     *             - screen_name string the screen name as recorded when first seen
+</span></span><span id="177" class="l"><a class="l" href="#177">177: </a><span class="php-comment">     *             - status_id string the status id of the tweet (they are really unsigned 64 bit ints)
+</span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     *             - datetime string the date/time of the tweet
+</span></span><span id="179" class="l"><a class="l" href="#179">179: </a><span class="php-comment">     *             - is_retweet bool whether or not this was a retweet
+</span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     *     - clicks associative_array stats related to click-throughs on the eepurl
+</span></span><span id="181" class="l"><a class="l" href="#181">181: </a><span class="php-comment">     *         - clicks int Total number of clicks seen
+</span></span><span id="182" class="l"><a class="l" href="#182">182: </a><span class="php-comment">     *         - first_click string date and time of the first click seen
+</span></span><span id="183" class="l"><a class="l" href="#183">183: </a><span class="php-comment">     *         - last_click string date and time of the first click seen
+</span></span><span id="184" class="l"><a class="l" href="#184">184: </a><span class="php-comment">     *         - locations array structs for geographic locations including:
+</span></span><span id="185" class="l"><a class="l" href="#185">185: </a><span class="php-comment">     *             - country string the country name the click was tracked to
+</span></span><span id="186" class="l"><a class="l" href="#186">186: </a><span class="php-comment">     *             - region string the region in the country the click was tracked to (if available)
+</span></span><span id="187" class="l"><a class="l" href="#187">187: </a><span class="php-comment">     *     - referrers array structs for referrers, including
+</span></span><span id="188" class="l"><a class="l" href="#188">188: </a><span class="php-comment">     *         - referrer string the referrer, truncated to 100 bytes
+</span></span><span id="189" class="l"><a class="l" href="#189">189: </a><span class="php-comment">     *         - clicks int Total number of clicks seen from this referrer
+</span></span><span id="190" class="l"><a class="l" href="#190">190: </a><span class="php-comment">     *         - first_click string date and time of the first click seen from this referrer
+</span></span><span id="191" class="l"><a class="l" href="#191">191: </a><span class="php-comment">     *         - last_click string date and time of the first click seen from this referrer
+</span></span><span id="192" class="l"><a class="l" href="#192">192: </a><span class="php-comment">     */</span>
+</span><span id="193" class="l"><a class="l" href="#193">193: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_eepurl" href="#_eepurl">eepurl</a>(<span class="php-var">$cid</span>) {
+</span><span id="194" class="l"><a class="l" href="#194">194: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="195" class="l"><a class="l" href="#195">195: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/eepurl'</span>, <span class="php-var">$_params</span>);
+</span><span id="196" class="l"><a class="l" href="#196">196: </a>    }
+</span><span id="197" class="l"><a class="l" href="#197">197: </a>
+</span><span id="198" class="l"><a class="l" href="#198">198: </a>    <span class="php-comment">/**
+</span></span><span id="199" class="l"><a class="l" href="#199">199: </a><span class="php-comment">     * Given a campaign and email address, return the entire click and open history with timestamps, ordered by time. If you need to dump the full activity for a campaign
+</span></span><span id="200" class="l"><a class="l" href="#200">200: </a><span class="php-comment">and/or get incremental results, you should use the &lt;a href=&quot;http://apidocs.mailchimp.com/export/1.0/campaignsubscriberactivity.func.php&quot; targret=&quot;_new&quot;&gt;campaignSubscriberActivity Export API method&lt;/a&gt;,
+</span></span><span id="201" class="l"><a class="l" href="#201">201: </a><span class="php-comment">&lt;strong&gt;not&lt;/strong&gt; this, especially for large campaigns.
+</span></span><span id="202" class="l"><a class="l" href="#202">202: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="203" class="l"><a class="l" href="#203">203: </a><span class="php-comment">     * @param array $emails
+</span></span><span id="204" class="l"><a class="l" href="#204">204: </a><span class="php-comment">     *     - email string an email address
+</span></span><span id="205" class="l"><a class="l" href="#205">205: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
+</span></span><span id="206" class="l"><a class="l" href="#206">206: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
+</span></span><span id="207" class="l"><a class="l" href="#207">207: </a><span class="php-comment">     * @return associative_array of data and success/error counts
+</span></span><span id="208" class="l"><a class="l" href="#208">208: </a><span class="php-comment">     *     - success_count int the number of subscribers successfully found on the list
+</span></span><span id="209" class="l"><a class="l" href="#209">209: </a><span class="php-comment">     *     - error_count int the number of subscribers who were not found on the list
+</span></span><span id="210" class="l"><a class="l" href="#210">210: </a><span class="php-comment">     *     - errors array array of error structs including:
+</span></span><span id="211" class="l"><a class="l" href="#211">211: </a><span class="php-comment">     *         - email string whatever was passed in the email parameter
+</span></span><span id="212" class="l"><a class="l" href="#212">212: </a><span class="php-comment">     *             - email string the email address added
+</span></span><span id="213" class="l"><a class="l" href="#213">213: </a><span class="php-comment">     *             - euid string the email unique id
+</span></span><span id="214" class="l"><a class="l" href="#214">214: </a><span class="php-comment">     *             - leid string the list member's truly unique id
+</span></span><span id="215" class="l"><a class="l" href="#215">215: </a><span class="php-comment">     *         - msg string the error message
+</span></span><span id="216" class="l"><a class="l" href="#216">216: </a><span class="php-comment">     *     - data array an array of structs where each activity record has:
+</span></span><span id="217" class="l"><a class="l" href="#217">217: </a><span class="php-comment">     *         - email string whatever was passed in the email parameter
+</span></span><span id="218" class="l"><a class="l" href="#218">218: </a><span class="php-comment">     *             - email string the email address added
+</span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">     *             - euid string the email unique id
+</span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">     *             - leid string the list member's truly unique id
+</span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info()
+</span></span><span id="222" class="l"><a class="l" href="#222">222: </a><span class="php-comment">     *         - activity array an array of structs containing the activity, including:
+</span></span><span id="223" class="l"><a class="l" href="#223">223: </a><span class="php-comment">     *             - action string The action name - either open or click
+</span></span><span id="224" class="l"><a class="l" href="#224">224: </a><span class="php-comment">     *             - timestamp string The date/time of the action (GMT)
+</span></span><span id="225" class="l"><a class="l" href="#225">225: </a><span class="php-comment">     *             - url string For click actions, the url clicked, otherwise this is empty
+</span></span><span id="226" class="l"><a class="l" href="#226">226: </a><span class="php-comment">     *             - ip string The IP address the activity came from
+</span></span><span id="227" class="l"><a class="l" href="#227">227: </a><span class="php-comment">     */</span>
+</span><span id="228" class="l"><a class="l" href="#228">228: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_memberActivity" href="#_memberActivity">memberActivity</a>(<span class="php-var">$cid</span>, <span class="php-var">$emails</span>) {
+</span><span id="229" class="l"><a class="l" href="#229">229: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;emails&quot;</span> =&gt; <span class="php-var">$emails</span>);
+</span><span id="230" class="l"><a class="l" href="#230">230: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/member-activity'</span>, <span class="php-var">$_params</span>);
+</span><span id="231" class="l"><a class="l" href="#231">231: </a>    }
+</span><span id="232" class="l"><a class="l" href="#232">232: </a>
+</span><span id="233" class="l"><a class="l" href="#233">233: </a>    <span class="php-comment">/**
+</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">     * Retrieve the list of email addresses that did not open a given campaign
+</span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     * @param associative_array $opts
+</span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
+</span></span><span id="238" class="l"><a class="l" href="#238">238: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
+</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">     * @return associative_array a total of all matching emails and the specific emails for this page
+</span></span><span id="240" class="l"><a class="l" href="#240">240: </a><span class="php-comment">     *     - total int the total number of members who didn't open the campaign
+</span></span><span id="241" class="l"><a class="l" href="#241">241: </a><span class="php-comment">     *     - data array structs for each campaign member matching as returned by lists/member-info()
+</span></span><span id="242" class="l"><a class="l" href="#242">242: </a><span class="php-comment">     */</span>
+</span><span id="243" class="l"><a class="l" href="#243">243: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_notOpened" href="#_notOpened">notOpened</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="244" class="l"><a class="l" href="#244">244: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="245" class="l"><a class="l" href="#245">245: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/not-opened'</span>, <span class="php-var">$_params</span>);
+</span><span id="246" class="l"><a class="l" href="#246">246: </a>    }
+</span><span id="247" class="l"><a class="l" href="#247">247: </a>
+</span><span id="248" class="l"><a class="l" href="#248">248: </a>    <span class="php-comment">/**
+</span></span><span id="249" class="l"><a class="l" href="#249">249: </a><span class="php-comment">     * Retrieve the list of email addresses that opened a given campaign with how many times they opened
+</span></span><span id="250" class="l"><a class="l" href="#250">250: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="251" class="l"><a class="l" href="#251">251: </a><span class="php-comment">     * @param associative_array $opts
+</span></span><span id="252" class="l"><a class="l" href="#252">252: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
+</span></span><span id="253" class="l"><a class="l" href="#253">253: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
+</span></span><span id="254" class="l"><a class="l" href="#254">254: </a><span class="php-comment">     *     - sort_field string optional the data to sort by - &quot;opened&quot; (order opens occurred, default) or &quot;opens&quot; (total number of opens). Invalid fields will fall back on the default.
+</span></span><span id="255" class="l"><a class="l" href="#255">255: </a><span class="php-comment">     *     - sort_dir string optional the direct - ASC or DESC. defaults to ASC (case insensitive)
+</span></span><span id="256" class="l"><a class="l" href="#256">256: </a><span class="php-comment">     * @return associative_array containing the total records matched and the specific records for this page
+</span></span><span id="257" class="l"><a class="l" href="#257">257: </a><span class="php-comment">     *     - total int the total number of records matched
+</span></span><span id="258" class="l"><a class="l" href="#258">258: </a><span class="php-comment">     *     - data array structs for the actual opens data, including:
+</span></span><span id="259" class="l"><a class="l" href="#259">259: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info()
+</span></span><span id="260" class="l"><a class="l" href="#260">260: </a><span class="php-comment">     *         - opens int Total number of times the campaign was opened by this email address
+</span></span><span id="261" class="l"><a class="l" href="#261">261: </a><span class="php-comment">     */</span>
+</span><span id="262" class="l"><a class="l" href="#262">262: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_opened" href="#_opened">opened</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="263" class="l"><a class="l" href="#263">263: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="264" class="l"><a class="l" href="#264">264: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/opened'</span>, <span class="php-var">$_params</span>);
+</span><span id="265" class="l"><a class="l" href="#265">265: </a>    }
+</span><span id="266" class="l"><a class="l" href="#266">266: </a>
+</span><span id="267" class="l"><a class="l" href="#267">267: </a>    <span class="php-comment">/**
+</span></span><span id="268" class="l"><a class="l" href="#268">268: </a><span class="php-comment">     * Get the top 5 performing email domains for this campaign. Users wanting more than 5 should use campaign reports/member-activity()
+</span></span><span id="269" class="l"><a class="l" href="#269">269: </a><span class="php-comment">or campaignEmailStatsAIMAll() and generate any additional stats they require.
+</span></span><span id="270" class="l"><a class="l" href="#270">270: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="271" class="l"><a class="l" href="#271">271: </a><span class="php-comment">     * @return array domains structs for each email domains and their associated stats
+</span></span><span id="272" class="l"><a class="l" href="#272">272: </a><span class="php-comment">     *     - domain string Domain name or special &quot;Other&quot; to roll-up stats past 5 domains
+</span></span><span id="273" class="l"><a class="l" href="#273">273: </a><span class="php-comment">     *     - total_sent int Total Email across all domains - this will be the same in every row
+</span></span><span id="274" class="l"><a class="l" href="#274">274: </a><span class="php-comment">     *     - emails int Number of emails sent to this domain
+</span></span><span id="275" class="l"><a class="l" href="#275">275: </a><span class="php-comment">     *     - bounces int Number of bounces
+</span></span><span id="276" class="l"><a class="l" href="#276">276: </a><span class="php-comment">     *     - opens int Number of opens
+</span></span><span id="277" class="l"><a class="l" href="#277">277: </a><span class="php-comment">     *     - clicks int Number of clicks
+</span></span><span id="278" class="l"><a class="l" href="#278">278: </a><span class="php-comment">     *     - unsubs int Number of unsubs
+</span></span><span id="279" class="l"><a class="l" href="#279">279: </a><span class="php-comment">     *     - delivered int Number of deliveries
+</span></span><span id="280" class="l"><a class="l" href="#280">280: </a><span class="php-comment">     *     - emails_pct int Percentage of emails that went to this domain (whole number)
+</span></span><span id="281" class="l"><a class="l" href="#281">281: </a><span class="php-comment">     *     - bounces_pct int Percentage of bounces from this domain (whole number)
+</span></span><span id="282" class="l"><a class="l" href="#282">282: </a><span class="php-comment">     *     - opens_pct int Percentage of opens from this domain (whole number)
+</span></span><span id="283" class="l"><a class="l" href="#283">283: </a><span class="php-comment">     *     - clicks_pct int Percentage of clicks from this domain (whole number)
+</span></span><span id="284" class="l"><a class="l" href="#284">284: </a><span class="php-comment">     *     - unsubs_pct int Percentage of unsubs from this domain (whole number)
+</span></span><span id="285" class="l"><a class="l" href="#285">285: </a><span class="php-comment">     */</span>
+</span><span id="286" class="l"><a class="l" href="#286">286: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_domainPerformance" href="#_domainPerformance">domainPerformance</a>(<span class="php-var">$cid</span>) {
+</span><span id="287" class="l"><a class="l" href="#287">287: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/domain-performance'</span>, <span class="php-var">$_params</span>);
+</span><span id="289" class="l"><a class="l" href="#289">289: </a>    }
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>    <span class="php-comment">/**
+</span></span><span id="292" class="l"><a class="l" href="#292">292: </a><span class="php-comment">     * Retrieve the countries/regions and number of opens tracked for each. Email address are not returned.
+</span></span><span id="293" class="l"><a class="l" href="#293">293: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="294" class="l"><a class="l" href="#294">294: </a><span class="php-comment">     * @return array an array of country structs where opens occurred
+</span></span><span id="295" class="l"><a class="l" href="#295">295: </a><span class="php-comment">     *     - code string The ISO3166 2 digit country code
+</span></span><span id="296" class="l"><a class="l" href="#296">296: </a><span class="php-comment">     *     - name string A version of the country name, if we have it
+</span></span><span id="297" class="l"><a class="l" href="#297">297: </a><span class="php-comment">     *     - opens int The total number of opens that occurred in the country
+</span></span><span id="298" class="l"><a class="l" href="#298">298: </a><span class="php-comment">     *     - regions array structs of data for each sub-region in the country
+</span></span><span id="299" class="l"><a class="l" href="#299">299: </a><span class="php-comment">     *         - code string An internal code for the region. When this is blank, it indicates we know the country, but not the region
+</span></span><span id="300" class="l"><a class="l" href="#300">300: </a><span class="php-comment">     *         - name string The name of the region, if we have one. For blank &quot;code&quot; values, this will be &quot;Rest of Country&quot;
+</span></span><span id="301" class="l"><a class="l" href="#301">301: </a><span class="php-comment">     *         - opens int The total number of opens that occurred in the country
+</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">     */</span>
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_geoOpens" href="#_geoOpens">geoOpens</a>(<span class="php-var">$cid</span>) {
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="305" class="l"><a class="l" href="#305">305: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/geo-opens'</span>, <span class="php-var">$_params</span>);
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>    }
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>    <span class="php-comment">/**
+</span></span><span id="309" class="l"><a class="l" href="#309">309: </a><span class="php-comment">     * Retrieve the Google Analytics data we've collected for this campaign. Note, requires Google Analytics Add-on to be installed and configured.
+</span></span><span id="310" class="l"><a class="l" href="#310">310: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="311" class="l"><a class="l" href="#311">311: </a><span class="php-comment">     * @return array of structs for analytics we've collected for the passed campaign.
+</span></span><span id="312" class="l"><a class="l" href="#312">312: </a><span class="php-comment">     *     - visits int number of visits
+</span></span><span id="313" class="l"><a class="l" href="#313">313: </a><span class="php-comment">     *     - pages int number of page views
+</span></span><span id="314" class="l"><a class="l" href="#314">314: </a><span class="php-comment">     *     - new_visits int new visits recorded
+</span></span><span id="315" class="l"><a class="l" href="#315">315: </a><span class="php-comment">     *     - bounces int vistors who &quot;bounced&quot; from your site
+</span></span><span id="316" class="l"><a class="l" href="#316">316: </a><span class="php-comment">     *     - time_on_site double the total time visitors spent on your sites
+</span></span><span id="317" class="l"><a class="l" href="#317">317: </a><span class="php-comment">     *     - goal_conversions int number of goals converted
+</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-comment">     *     - goal_value double value of conversion in dollars
+</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">     *     - revenue double revenue generated by campaign
+</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">     *     - transactions int number of transactions tracked
+</span></span><span id="321" class="l"><a class="l" href="#321">321: </a><span class="php-comment">     *     - ecomm_conversions int number Ecommerce transactions tracked
+</span></span><span id="322" class="l"><a class="l" href="#322">322: </a><span class="php-comment">     *     - goals array structs containing goal names and number of conversions
+</span></span><span id="323" class="l"><a class="l" href="#323">323: </a><span class="php-comment">     *         - name string the name of the goal
+</span></span><span id="324" class="l"><a class="l" href="#324">324: </a><span class="php-comment">     *         - conversions int the number of conversions for the goal
+</span></span><span id="325" class="l"><a class="l" href="#325">325: </a><span class="php-comment">     */</span>
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_googleAnalytics" href="#_googleAnalytics">googleAnalytics</a>(<span class="php-var">$cid</span>) {
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/google-analytics'</span>, <span class="php-var">$_params</span>);
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>    }
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>
+</span><span id="331" class="l"><a class="l" href="#331">331: </a>    <span class="php-comment">/**
+</span></span><span id="332" class="l"><a class="l" href="#332">332: </a><span class="php-comment">     * Get email addresses the campaign was sent to
+</span></span><span id="333" class="l"><a class="l" href="#333">333: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="334" class="l"><a class="l" href="#334">334: </a><span class="php-comment">     * @param associative_array $opts
+</span></span><span id="335" class="l"><a class="l" href="#335">335: </a><span class="php-comment">     *     - status string optional the status to pull - one of 'sent', 'hard' (bounce), or 'soft' (bounce). By default, all records are returned
+</span></span><span id="336" class="l"><a class="l" href="#336">336: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
+</span></span><span id="337" class="l"><a class="l" href="#337">337: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
+</span></span><span id="338" class="l"><a class="l" href="#338">338: </a><span class="php-comment">     * @return associative_array a total of all matching emails and the specific emails for this page
+</span></span><span id="339" class="l"><a class="l" href="#339">339: </a><span class="php-comment">     *     - total int the total number of members for the campaign and status
+</span></span><span id="340" class="l"><a class="l" href="#340">340: </a><span class="php-comment">     *     - data array structs for each campaign member matching
+</span></span><span id="341" class="l"><a class="l" href="#341">341: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info()
+</span></span><span id="342" class="l"><a class="l" href="#342">342: </a><span class="php-comment">     *         - status string the status of the send - one of 'sent', 'hard', 'soft'
+</span></span><span id="343" class="l"><a class="l" href="#343">343: </a><span class="php-comment">     *         - absplit_group string if this was an absplit campaign, one of 'a','b', or 'winner'
+</span></span><span id="344" class="l"><a class="l" href="#344">344: </a><span class="php-comment">     *         - tz_group string if this was an timewarp campaign the timezone GMT offset the member was included in
+</span></span><span id="345" class="l"><a class="l" href="#345">345: </a><span class="php-comment">     */</span>
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sentTo" href="#_sentTo">sentTo</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/sent-to'</span>, <span class="php-var">$_params</span>);
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>    }
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>    <span class="php-comment">/**
+</span></span><span id="352" class="l"><a class="l" href="#352">352: </a><span class="php-comment">     * Get the URL to a customized &lt;a href=&quot;http://eepurl.com/gKmL&quot; target=&quot;_blank&quot;&gt;VIP Report&lt;/a&gt; for the specified campaign and optionally send an email to someone with links to it. Note subsequent calls will overwrite anything already set for the same campign (eg, the password)
+</span></span><span id="353" class="l"><a class="l" href="#353">353: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="354" class="l"><a class="l" href="#354">354: </a><span class="php-comment">     * @param array $opts
+</span></span><span id="355" class="l"><a class="l" href="#355">355: </a><span class="php-comment">     *     - to_email string optional - optional, comma delimited list of email addresses to share the report with - no value means an email will not be sent
+</span></span><span id="356" class="l"><a class="l" href="#356">356: </a><span class="php-comment">     *     - theme_id int optional - either a global or a user-specific theme id. Currently this needs to be pulled out of either the Share Report or Cobranding web views by grabbing the &quot;theme&quot; attribute from the list presented.
+</span></span><span id="357" class="l"><a class="l" href="#357">357: </a><span class="php-comment">     *     - css_url string optional - a link to an external CSS file to be included after our default CSS (http://vip-reports.net/css/vip.css) &lt;strong&gt;only if&lt;/strong&gt; loaded via the &quot;secure_url&quot; - max 255 bytes
+</span></span><span id="358" class="l"><a class="l" href="#358">358: </a><span class="php-comment">     * @return associative_array details for the shared report, including:
+</span></span><span id="359" class="l"><a class="l" href="#359">359: </a><span class="php-comment">     *     - title string The Title of the Campaign being shared
+</span></span><span id="360" class="l"><a class="l" href="#360">360: </a><span class="php-comment">     *     - url string The URL to the shared report
+</span></span><span id="361" class="l"><a class="l" href="#361">361: </a><span class="php-comment">     *     - secure_url string The URL to the shared report, including the password (good for loading in an IFRAME). For non-secure reports, this will not be returned
+</span></span><span id="362" class="l"><a class="l" href="#362">362: </a><span class="php-comment">     *     - password string If secured, the password for the report, otherwise this field will not be returned
+</span></span><span id="363" class="l"><a class="l" href="#363">363: </a><span class="php-comment">     */</span>
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_share" href="#_share">share</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/share'</span>, <span class="php-var">$_params</span>);
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>    }
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>    <span class="php-comment">/**
+</span></span><span id="370" class="l"><a class="l" href="#370">370: </a><span class="php-comment">     * Retrieve relevant aggregate campaign statistics (opens, bounces, clicks, etc.)
+</span></span><span id="371" class="l"><a class="l" href="#371">371: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="372" class="l"><a class="l" href="#372">372: </a><span class="php-comment">     * @return associative_array the statistics for this campaign
+</span></span><span id="373" class="l"><a class="l" href="#373">373: </a><span class="php-comment">     *     - syntax_errors int Number of email addresses in campaign that had syntactical errors.
+</span></span><span id="374" class="l"><a class="l" href="#374">374: </a><span class="php-comment">     *     - hard_bounces int Number of email addresses in campaign that hard bounced.
+</span></span><span id="375" class="l"><a class="l" href="#375">375: </a><span class="php-comment">     *     - soft_bounces int Number of email addresses in campaign that soft bounced.
+</span></span><span id="376" class="l"><a class="l" href="#376">376: </a><span class="php-comment">     *     - unsubscribes int Number of email addresses in campaign that unsubscribed.
+</span></span><span id="377" class="l"><a class="l" href="#377">377: </a><span class="php-comment">     *     - abuse_reports int Number of email addresses in campaign that reported campaign for abuse.
+</span></span><span id="378" class="l"><a class="l" href="#378">378: </a><span class="php-comment">     *     - forwards int Number of times email was forwarded to a friend.
+</span></span><span id="379" class="l"><a class="l" href="#379">379: </a><span class="php-comment">     *     - forwards_opens int Number of times a forwarded email was opened.
+</span></span><span id="380" class="l"><a class="l" href="#380">380: </a><span class="php-comment">     *     - opens int Number of times the campaign was opened.
+</span></span><span id="381" class="l"><a class="l" href="#381">381: </a><span class="php-comment">     *     - last_open string Date of the last time the email was opened.
+</span></span><span id="382" class="l"><a class="l" href="#382">382: </a><span class="php-comment">     *     - unique_opens int Number of people who opened the campaign.
+</span></span><span id="383" class="l"><a class="l" href="#383">383: </a><span class="php-comment">     *     - clicks int Number of times a link in the campaign was clicked.
+</span></span><span id="384" class="l"><a class="l" href="#384">384: </a><span class="php-comment">     *     - unique_clicks int Number of unique recipient/click pairs for the campaign.
+</span></span><span id="385" class="l"><a class="l" href="#385">385: </a><span class="php-comment">     *     - last_click string Date of the last time a link in the email was clicked.
+</span></span><span id="386" class="l"><a class="l" href="#386">386: </a><span class="php-comment">     *     - users_who_clicked int Number of unique recipients who clicked on a link in the campaign.
+</span></span><span id="387" class="l"><a class="l" href="#387">387: </a><span class="php-comment">     *     - emails_sent int Number of email addresses campaign was sent to.
+</span></span><span id="388" class="l"><a class="l" href="#388">388: </a><span class="php-comment">     *     - unique_likes int total number of unique likes (Facebook)
+</span></span><span id="389" class="l"><a class="l" href="#389">389: </a><span class="php-comment">     *     - recipient_likes int total number of recipients who liked (Facebook) the campaign
+</span></span><span id="390" class="l"><a class="l" href="#390">390: </a><span class="php-comment">     *     - facebook_likes int total number of likes (Facebook) that came from Facebook
+</span></span><span id="391" class="l"><a class="l" href="#391">391: </a><span class="php-comment">     *     - industry associative_array Various rates/percentages for the account's selected industry - empty otherwise. These will vary across calls, do not use them for anything important.
+</span></span><span id="392" class="l"><a class="l" href="#392">392: </a><span class="php-comment">     *         - type string the selected industry
+</span></span><span id="393" class="l"><a class="l" href="#393">393: </a><span class="php-comment">     *         - open_rate float industry open rate
+</span></span><span id="394" class="l"><a class="l" href="#394">394: </a><span class="php-comment">     *         - click_rate float industry click rate
+</span></span><span id="395" class="l"><a class="l" href="#395">395: </a><span class="php-comment">     *         - bounce_rate float industry bounce rate
+</span></span><span id="396" class="l"><a class="l" href="#396">396: </a><span class="php-comment">     *         - unopen_rate float industry unopen rate
+</span></span><span id="397" class="l"><a class="l" href="#397">397: </a><span class="php-comment">     *         - unsub_rate float industry unsub rate
+</span></span><span id="398" class="l"><a class="l" href="#398">398: </a><span class="php-comment">     *         - abuse_rate float industry abuse rate
+</span></span><span id="399" class="l"><a class="l" href="#399">399: </a><span class="php-comment">     *     - absplit associative_array If this was an absplit campaign, stats for the A and B groups will be returned - otherwise this is empty
+</span></span><span id="400" class="l"><a class="l" href="#400">400: </a><span class="php-comment">     *         - bounces_a int bounces for the A group
+</span></span><span id="401" class="l"><a class="l" href="#401">401: </a><span class="php-comment">     *         - bounces_b int bounces for the B group
+</span></span><span id="402" class="l"><a class="l" href="#402">402: </a><span class="php-comment">     *         - forwards_a int forwards for the A group
+</span></span><span id="403" class="l"><a class="l" href="#403">403: </a><span class="php-comment">     *         - forwards_b int forwards for the B group
+</span></span><span id="404" class="l"><a class="l" href="#404">404: </a><span class="php-comment">     *         - abuse_reports_a int abuse reports for the A group
+</span></span><span id="405" class="l"><a class="l" href="#405">405: </a><span class="php-comment">     *         - abuse_reports_b int abuse reports for the B group
+</span></span><span id="406" class="l"><a class="l" href="#406">406: </a><span class="php-comment">     *         - unsubs_a int unsubs for the A group
+</span></span><span id="407" class="l"><a class="l" href="#407">407: </a><span class="php-comment">     *         - unsubs_b int unsubs for the B group
+</span></span><span id="408" class="l"><a class="l" href="#408">408: </a><span class="php-comment">     *         - recipients_click_a int clicks for the A group
+</span></span><span id="409" class="l"><a class="l" href="#409">409: </a><span class="php-comment">     *         - recipients_click_b int clicks for the B group
+</span></span><span id="410" class="l"><a class="l" href="#410">410: </a><span class="php-comment">     *         - forwards_opens_a int opened forwards for the A group
+</span></span><span id="411" class="l"><a class="l" href="#411">411: </a><span class="php-comment">     *         - forwards_opens_b int opened forwards for the B group
+</span></span><span id="412" class="l"><a class="l" href="#412">412: </a><span class="php-comment">     *         - opens_a int total opens for the A group
+</span></span><span id="413" class="l"><a class="l" href="#413">413: </a><span class="php-comment">     *         - opens_b int total opens for the B group
+</span></span><span id="414" class="l"><a class="l" href="#414">414: </a><span class="php-comment">     *         - last_open_a string date/time of last open for the A group
+</span></span><span id="415" class="l"><a class="l" href="#415">415: </a><span class="php-comment">     *         - last_open_b string date/time of last open for the BG group
+</span></span><span id="416" class="l"><a class="l" href="#416">416: </a><span class="php-comment">     *         - unique_opens_a int unique opens for the A group
+</span></span><span id="417" class="l"><a class="l" href="#417">417: </a><span class="php-comment">     *         - unique_opens_b int unique opens for the B group
+</span></span><span id="418" class="l"><a class="l" href="#418">418: </a><span class="php-comment">     *     - timewarp array If this campaign was a Timewarp campaign, an array of structs from each timezone stats exist for. Each will contain:
+</span></span><span id="419" class="l"><a class="l" href="#419">419: </a><span class="php-comment">     *         - opens int opens for this timezone
+</span></span><span id="420" class="l"><a class="l" href="#420">420: </a><span class="php-comment">     *         - last_open string the date/time of the last open for this timezone
+</span></span><span id="421" class="l"><a class="l" href="#421">421: </a><span class="php-comment">     *         - unique_opens int the unique opens for this timezone
+</span></span><span id="422" class="l"><a class="l" href="#422">422: </a><span class="php-comment">     *         - clicks int the total clicks for this timezone
+</span></span><span id="423" class="l"><a class="l" href="#423">423: </a><span class="php-comment">     *         - last_click string the date/time of the last click for this timezone
+</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     *         - unique_opens int the unique clicks for this timezone
+</span></span><span id="425" class="l"><a class="l" href="#425">425: </a><span class="php-comment">     *         - bounces int the total bounces for this timezone
+</span></span><span id="426" class="l"><a class="l" href="#426">426: </a><span class="php-comment">     *         - total int the total number of members sent to in this timezone
+</span></span><span id="427" class="l"><a class="l" href="#427">427: </a><span class="php-comment">     *         - sent int the total number of members delivered to in this timezone
+</span></span><span id="428" class="l"><a class="l" href="#428">428: </a><span class="php-comment">     *     - timeseries array structs for the first 24 hours of the campaign, per-hour stats:
+</span></span><span id="429" class="l"><a class="l" href="#429">429: </a><span class="php-comment">     *         - timestamp string The timestemp in Y-m-d H:00:00 format
+</span></span><span id="430" class="l"><a class="l" href="#430">430: </a><span class="php-comment">     *         - emails_sent int the total emails sent during the hour
+</span></span><span id="431" class="l"><a class="l" href="#431">431: </a><span class="php-comment">     *         - unique_opens int unique opens seen during the hour
+</span></span><span id="432" class="l"><a class="l" href="#432">432: </a><span class="php-comment">     *         - recipients_click int unique clicks seen during the hour
+</span></span><span id="433" class="l"><a class="l" href="#433">433: </a><span class="php-comment">     */</span>
+</span><span id="434" class="l"><a class="l" href="#434">434: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_summary" href="#_summary">summary</a>(<span class="php-var">$cid</span>) {
+</span><span id="435" class="l"><a class="l" href="#435">435: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="436" class="l"><a class="l" href="#436">436: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/summary'</span>, <span class="php-var">$_params</span>);
+</span><span id="437" class="l"><a class="l" href="#437">437: </a>    }
+</span><span id="438" class="l"><a class="l" href="#438">438: </a>
+</span><span id="439" class="l"><a class="l" href="#439">439: </a>    <span class="php-comment">/**
+</span></span><span id="440" class="l"><a class="l" href="#440">440: </a><span class="php-comment">     * Get all unsubscribed email addresses for a given campaign
+</span></span><span id="441" class="l"><a class="l" href="#441">441: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="442" class="l"><a class="l" href="#442">442: </a><span class="php-comment">     * @param associative_array $opts
+</span></span><span id="443" class="l"><a class="l" href="#443">443: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
+</span></span><span id="444" class="l"><a class="l" href="#444">444: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
+</span></span><span id="445" class="l"><a class="l" href="#445">445: </a><span class="php-comment">     * @return associative_array a total of all unsubscribed emails and the specific members for this page
+</span></span><span id="446" class="l"><a class="l" href="#446">446: </a><span class="php-comment">     *     - total int the total number of unsubscribes for the campaign
+</span></span><span id="447" class="l"><a class="l" href="#447">447: </a><span class="php-comment">     *     - data array structs for the email addresses that unsubscribed
+</span></span><span id="448" class="l"><a class="l" href="#448">448: </a><span class="php-comment">     *         - member string the member that unsubscribed as returned by lists/member-info()
+</span></span><span id="449" class="l"><a class="l" href="#449">449: </a><span class="php-comment">     *         - reason string the reason collected for the unsubscribe. If populated, one of 'NORMAL','NOSIGNUP','INAPPROPRIATE','SPAM','OTHER'
+</span></span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-comment">     *         - reason_text string if the reason is OTHER, the text entered.
+</span></span><span id="451" class="l"><a class="l" href="#451">451: </a><span class="php-comment">     */</span>
+</span><span id="452" class="l"><a class="l" href="#452">452: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_unsubscribes" href="#_unsubscribes">unsubscribes</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
+</span><span id="453" class="l"><a class="l" href="#453">453: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;opts&quot;</span> =&gt; <span class="php-var">$opts</span>);
+</span><span id="454" class="l"><a class="l" href="#454">454: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'reports/unsubscribes'</span>, <span class="php-var">$_params</span>);
+</span><span id="455" class="l"><a class="l" href="#455">455: </a>    }
+</span><span id="456" class="l"><a class="l" href="#456">456: </a>
+</span><span id="457" class="l"><a class="l" href="#457">457: </a>}
+</span><span id="458" class="l"><a class="l" href="#458">458: </a>
+</span><span id="459" class="l"><a class="l" href="#459">459: </a>
+</span><span id="460" class="l"><a class="l" href="#460">460: </a></span></code></pre>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

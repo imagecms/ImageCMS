@@ -27,6 +27,10 @@ var Shop = {
         discountProduct: 0,
         gift: undefined,
         giftValue: 0,
+        lastAdd: {
+            id: null,
+            vId: null
+        },
         add: function(cartItem, show, addEvent) {
             var obj = this;
             $(document).trigger({
@@ -55,16 +59,19 @@ var Shop = {
                             currentItem = cartItem;
                         obj.save(currentItem);
 
+                        Shop.Cart.lastAdd.id = currentItem.id;
+                        Shop.Cart.lastAdd.vId = currentItem.vId;
+
                         $(document).trigger({
                             type: 'after_add_to_cart',
-                            cartItem: _.clone(cartItem),
+                            cartItem: _.clone(currentItem),
                             show: show
                         });
 
                         if (addEvent != undefined) {
                             $(document).trigger({
                                 type: addEvent,
-                                cartItem: _.clone(cartItem),
+                                cartItem: _.clone(currentItem),
                                 show: show
                             });
                         }
@@ -344,7 +351,7 @@ var Shop = {
             }
         },
         rm: function(key, el) {
-            this.items = JSON.parse(localStorage.getItem('compareList')) ? JSON.parse(localStorage.getItem('compareList')) : [];
+            this.items = this.all();
             if (this.items.indexOf(key) !== -1) {
                 this.items = _.without(this.items, key);
                 this.items = this.all();
@@ -371,19 +378,16 @@ var Shop = {
         },
         sync: function() {
             $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
-                if (typeof (data) == 'object' || typeof (data) == 'Array') {
-                    localStorage.setItem('compareList', JSON.parse(data));
-                    $(document).trigger({
-                        type: 'compare_list_sync'
-                    });
+                if (typeof data == 'object' || typeof data == 'Array') {
+                    localStorage.setItem('compareList', JSON.stringify(data));
                 }
-                else
-                if (data === false) {
+                else if (data === false) {
                     localStorage.removeItem('compareList');
-                    $(document).trigger({
-                        type: 'compare_list_sync'
-                    });
                 }
+                $(document).trigger({
+                    type: 'compare_list_sync',
+                    dataObj: data
+                });
             });
         }
     }
@@ -401,7 +405,8 @@ if (typeof (wishList) != 'object')
             $.get('/wishlist/wishlistApi/sync', function(data) {
                 localStorage.setItem('wishList', data);
                 $(document).trigger({
-                    'type': 'wish_list_sync'
+                    'type': 'wish_list_sync',
+                    dataObj: data
                 });
             })
         }

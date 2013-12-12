@@ -37,10 +37,8 @@
             countBask: '.topCartCount',
             sumBask: '.topCartTotalPrice',
             addSumBask: '.topCartTotalAddPrice',
-            frameDiscount: '#discount',
+            frameGift: "#frameGift",
             gift: '#gift',
-            curDiscount: '.curDiscount',
-            genSumDiscount: '.genSumDiscount',
             shipping: '#shipping',
             finalAmountAdd: '#finalAmountAdd',
             finalAmount: '#finalAmount',
@@ -64,8 +62,15 @@
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
             frameBasks: '.frameBask',
-            frameCurDiscount: '.frameDiscount',
-            frameGenDiscount: '.genDiscount',
+            
+            genSumDiscount: '.genSumDiscount', //сумма скидки
+            curDiscount: '.curDiscount', //сумма товаров без скидки
+            frameDiscount: '.frameDiscount', //фрейм продуктовой скидки
+
+            discount: '#discount', //общяя скидка на оформлении
+            frameGenDiscount: '#frameGenDiscount', //фрейм общей скидки на оформлении
+            frameGenSumDiscount: '#frameGenSumDiscount', //фрейм общей суммы без скидки
+
             tinyBask: '.tinyBask',
             err: 'mError',
             scs: 'mSuccess',
@@ -77,7 +82,6 @@
             code: '.js-code',
             numberC: '.js-number',
             msgF: '.js-msg',
-            
             compareIn: 'btn-comp-in',
             wishIn: 'btn-wish-in',
             isAvail: 'pointer',
@@ -87,7 +91,6 @@
             btnBuyCss: 'btn-buy',
             btnCartCss: 'btn-cart',
             textEl: '.text-el',
-            
             changeVariantCategory: '[id ^= сVariantSwitcher_]',
             changeVariantProduct: '#variantSwitcher'
         };
@@ -100,7 +103,8 @@
         var curr = '{$CS}',
                 nextCs = '{echo $NextCS}',
                 nextCsCond = nextCs == '' ? false : true;
-        discountInPopup = true,
+        Discount = false,
+                discountInPopup = true,
                 pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
                 checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
                 inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
@@ -110,17 +114,9 @@
                 theme = "{$THEME}",
                 siteUrl = "{echo site_url()}",
                 colorScheme = "{$colorScheme}",
-                inCart = '{lang('В корзине','newLevel')}',
-                toCart = '{lang('Купить','newLevel')}',
-                pcs = '{lang('Количество:')}',
-                kits = '{lang('Комплектов:')}',
-                captchaText = '{lang('Код протекции')}',
                 isLogin = "{$is_logged_in}" == '1' ? true : false,
-                plurProd = ['{lang("товар","newLevel")}', '{lang("товара","newLevel")}', '{lang("товаров","newLevel")}'],
-                plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'],
-                plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'],
                 selectDeliv = false,
-                selectPayment = false,
+                selectPayment = true,
                 selIcons = '[class*=icon_]',
                 preloader = '.preloader',
                 selScrollPane = '.frame-scroll-pane .content-carousel';
@@ -139,4 +135,15 @@
                                                                 }
                                                             }
     {/literal}
+        text.inCart = '{lang('В корзине','newLevel')}';
+        text.pc = '{lang('шт','newLevel')}.';
+        text.quant = '{lang('Кол-во','newLevel')}:';
+        text.sum = '{lang('Сумма','newLevel')}:';
+        text.toCart = '{lang('Купить','newLevel')}';
+        text.pcs = '{lang('Количество:')}';
+        text.kits = '{lang('Комплектов:')}';
+        text.captchaText = '{lang('Код протекции')}';
+        text.plurProd = ['{lang("товар","newLevel")}', '{lang("товара","newLevel")}', '{lang("товаров","newLevel")}'];
+        text.plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'];
+        text.plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
 </script>

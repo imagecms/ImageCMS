@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-29 09:48+0200\n"
-"PO-Revision-Date: 2013-11-29 09:48+0200\n"
+"POT-Creation-Date: 2013-12-06 09:29+0200\n"
+"PO-Revision-Date: 2013-12-06 09:29+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -26,7 +26,6 @@ msgstr "Без категории"
 msgid "Add field"
 msgstr "Добавить поле"
 
-# Без категории
 #: ./application/modules/cfcm/templates/admin/index.tpl:11
 msgid "Fields groups"
 msgstr "Группы полей"
@@ -184,12 +183,10 @@ msgstr "ID"
 msgid "Edit"
 msgstr "Редактировать"
 
-# �����������
 #: ./application/modules/cfcm/templates/admin/group_list.tpl:101
 msgid "Empty group list or group list is empty"
 msgstr "Пустой список группы или группы список пуст"
 
-# �����������
 #: ./application/modules/cfcm/cfcm_forms.php:31
 msgid "To name will be prefixed with"
 msgstr "К имени будет добавлен префикс"

@@ -27,3 +27,7 @@ div[class="tooltip-inner"] {
     min-width: 325px;
     text-align: left;
 }
+#po_table textarea{
+    resize: vertical;
+    max-height: 250px;
+}

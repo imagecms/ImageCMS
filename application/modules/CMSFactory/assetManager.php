@@ -163,13 +163,13 @@ class assetManager {
 
         try {
 
-            
+
             /** Start. If file doesn't exists thorow exception */
             file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/admin/%s.tpl</i>', $this->getTrace(), $tpl));
 
             /** Start. Load template file */
             \CI_Controller::get_instance()->template->show('file:' . $this->buildAdminTemplatePath($tpl), !$ignoreWrap);
-            
+
             if ($fetchJsTpl) {
                 /** Start. If file doesn't exists thorow exception */
                 if (file_exists($this->buildTemplatePath($this->module_js) . '.tpl')) {
@@ -177,7 +177,6 @@ class assetManager {
                     \CI_Controller::get_instance()->template->display('file:' . $this->buildTemplatePath($this->module_js));
                 }
             }
-            
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
@@ -197,13 +196,13 @@ class assetManager {
             $ignoreWrap = TRUE;
 
         try {
-            
+
             /** Start. If file doesn't exists thorow exception */
             file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/%s.tpl</i>', $this->getTrace(), $tpl));
 
             /** Start. Load template file */
             \CI_Controller::get_instance()->template->show('file:' . $this->buildTemplatePath($tpl), !$ignoreWrap);
-            
+
             if ($fetchJsTpl) {
                 /** Start. If file doesn't exists thorow exception */
                 if (file_exists($this->buildTemplatePath($this->module_js) . '.tpl')) {
@@ -211,7 +210,6 @@ class assetManager {
                     \CI_Controller::get_instance()->template->display('file:' . $this->buildTemplatePath($this->module_js));
                 }
             }
-            
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
@@ -250,13 +248,15 @@ class assetManager {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function fetchAdminTemplate($tpl) {
+    public function fetchAdminTemplate($tpl, $fetchLangsTpl = TRUE) {
         try {
 
-            /** Start. If file doesn't exists thorow exception */
-            if (file_exists($this->buildTemplatePath($this->module_js) . '.tpl')) {
-                /** Start. Load template file */
-                $view = \CI_Controller::get_instance()->template->fetch('file:' . $this->buildTemplatePath($this->module_js));
+            if ($fetchLangsTpl) {
+                /** Start. If file doesn't exists thorow exception */
+                if (file_exists($this->buildTemplatePath($this->module_js) . '.tpl')) {
+                    /** Start. Load template file */
+                    $view = \CI_Controller::get_instance()->template->fetch('file:' . $this->buildTemplatePath($this->module_js));
+                }
             }
             /** Start. If file doesn't exists thorow exception */
             file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
