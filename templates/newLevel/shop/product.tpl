@@ -262,11 +262,11 @@
                     <dl class="social-product">
                         <dt class="s-t text-social-like">{lang('Понравился товар?', 'newLevel')}</dt>
                         <dd class="social-like">
-                            {echo $CI->load->module('share')->_make_like_buttons()}
+                            {/*echo $CI->load->module('share')->_make_like_buttons()*/}
                         </dd>
                         <dt class="s-t text-social-tell">{lang('Рассказать друзьям:', 'newLevel')}</dt>
                         <dd class="social-tell">
-                            {echo $CI->load->module('share')->_make_share_form()}
+                            {/*echo $CI->load->module('share')->_make_share_form()*/}
                         </dd>
                     </dl>
                     <!-- End. Share -->
@@ -279,7 +279,7 @@
             </div>
             <div class="left-product">
                 <!-- Start. Photo block-->
-                <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="initDrop">
+                <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop">
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vImgPr"/>
@@ -611,21 +611,11 @@
 
                 {/if}
 
-                <div class="inside-padd">
-                    <!--Start. Comments block-->
-                    <div class="frame-form-comment">
-                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                        <div class="for_comments">
-                            {echo $c['comments']}
-                        </div>
-                        <!--End. Comments block-->
-                    </div>
-                </div>
                 {if $accessories}
                     <div class="accessories">
                         <div class="title-default">
                             <div class="title">
-                                <h2 class="d_i">{lang('Аксессуары','newLevel')} {echo $model->getName()}</h2>
+                                <h2 class="d_i">{lang('С этим товаром покупают','newLevel')}</h2>
                                 {if count($accessories) > 4}
                                     <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
                                         <span class="icon_arrow"></span>
@@ -641,6 +631,16 @@
                         </div>
                     </div>
                 {/if}
+                <div class="inside-padd">
+                    <!--Start. Comments block-->
+                    <div class="frame-form-comment">
+                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
+                        <div class="forComments">
+                            {echo $c['comments']}
+                        </div>
+                        <!--End. Comments block-->
+                    </div>
+                </div>
             </div>
             <!--             Start. Characteristic-->
             <div id="first">
@@ -661,7 +661,7 @@
                 </div>
             </div>
             <div id="comment">
-                <div class="inside-padd for_comments">
+                <div class="inside-padd forComments">
                     <div class="preloader"></div>
                 </div>
             </div>
@@ -669,7 +669,7 @@
             {if $accessories}
                 <div id="fourth" class="accessories">
                     <div class="inside-padd">
-                        <div class="title-h2">{lang('Аксессуары','newLevel')} {echo $model->getName()}</div>
+                        <h2 class="m-b_30">{lang('С этим товаром покупают','newLevel')}</h2>
                         <ul class="items items-default">
                             <div class="preloader"></div>
                         </ul>
@@ -755,5 +755,5 @@
 <!-- End. JS vars-->
 
 <script type="text/javascript">
-    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
+    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', '_product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>

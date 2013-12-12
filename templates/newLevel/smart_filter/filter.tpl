@@ -114,7 +114,7 @@
                             </div>
                         {else:}
                             <div class="lineForm">
-                                <select name="p[{echo $prop->property_id}][]" id="p{echo $prop->property_id}" onchange="changeSelectFilter(this)">
+                                <select name="p[{echo $prop->property_id}][]" id="p{echo $prop->property_id}" onchange="Filter.changeSelectFilter(this)">
                                     <option id="none"  value=''>--{lang('Не выбрано', 'newLevel')}--</option>
                                     {foreach $prop->possibleValues as $item}
                                         {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}

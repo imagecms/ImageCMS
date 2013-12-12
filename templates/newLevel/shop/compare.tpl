@@ -38,8 +38,8 @@
                     <!--Start. Show categories of products which are in list -->
                     <!--End. Show categories of products which are in list -->
                     <div class="frame-tabs-ref frame-tabs-compare horizontal-carousel">
-                        {foreach $categories as $category}
-                            <div id="tab_{$category[Url]}" class="items-carousel" data-refresh {if $_COOKIE['category'] == '#tab_'.$category[Url]}style="display: block;"{/if}>
+                        {foreach $categories as $key => $category}
+                            <div id="tab_{$category[Url]}" class="items-carousel" data-refresh {if $_COOKIE['category'] == '#tab_'.$category[Url] || ($_COOKIE['category'] == NULL && $key == 0)}style="display: block;"{/if}>
                                 <div class="left-compare">
                                     <ul>
                                         <li></li>
@@ -176,5 +176,5 @@
     </div>
 </div>
 <script type="text/javascript">
-    initDownloadScripts(['jquery.equalhorizcell', 'cusel-min-2.5'], '', '');
+    initDownloadScripts(['jquery.equalhorizcell', 'cusel-min-2.5', '_compare'], '', '');
 </script>
