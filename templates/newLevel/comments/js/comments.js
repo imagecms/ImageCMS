@@ -235,15 +235,16 @@ var Comments = {
         if (data != undefined) {
             dataSend = data;
         }
-        if (el.data() != undefined) {
-            dataSend = el.data();
-        }
         $.ajax({
             url: "/comments/commentsapi/renderPosts",
             dataType: "json",
             data: dataSend,
             type: "post",
+            beforeSend: function(){
+                $(document).trigger('showActivity');
+            },
             success: function(obj) {
+                $(document).trigger('hideActivity');
                 el.each(function() {
                     $(this).empty();
                 });
@@ -269,21 +270,25 @@ var Comments = {
             }
         });
     },
-    post: function (el) {
+    post: function (el, data) {
         $.ajax({
             url: "/comments/commentsapi/newPost",
             data: $(el).closest('form').serialize() +
             '&action=newPost',
             dataType: "json",
+            beforeSend: function(){
+                $(document).trigger('showActivity');
+            },
             type: "post",
             success: function(obj) {
+                $(document).trigger('hideActivity');
                 if (obj.answer === 'sucesfull') {
                     $('.comment_text').each(function() {
                         $(this).val('');
                     });
                     $('.comment_plus').val('');
                     $('.comment_minus').val('');
-                    Comments.renderPosts($(el).closest('.forComments'));
+                    Comments.renderPosts($(el).closest('.forComments'), data);
                 }
                 else {
                     var form = $(el).closest('form');

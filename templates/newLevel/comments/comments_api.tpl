@@ -6,8 +6,8 @@
 {/if}
 <div class="comments" id="comments">
     {if $can_comment == 0 OR $is_logged_in}
-        <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} <button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0">Оставить свой отзыв</button></div>
-        <div class="drop comments-main-form {if !$comments_arr}noComments{/if}">
+        <div class="title-comment{if $visibleMainForm} active{/if}">{lang('Отзывы покупателей', 'newLevel')} <button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0">Оставить свой отзыв</button></div>
+        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight">
                 <div class="title-default title-comment">
                     <div class="title">{lang('Оставить комментарий','newLevel')}</div>
@@ -77,7 +77,7 @@
                             <div class="frame-label">
                                 <span class="frame-form-field">
                                     <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this)"/>
+                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
                                     </div>
                                 </span>
                             </div>
