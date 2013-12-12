@@ -58,7 +58,8 @@
 .comments .mark-pr > .star-small{position: relative;top: 2px;}
 .author-data-comment-sub2{margin-bottom: 5px;}
 
-.frame-mark{float: right;width: 207px;}
+.comments .frame-mark{float: right;width: 207px;}
 .comments .comments-main-form{max-width: 650px;}
 .comments .comments-main-form.noComments{float: none;}
+.forComments{position: relative;}
 /*/comments*/
