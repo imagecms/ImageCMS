@@ -40,17 +40,17 @@ $.existsN = function(nabir) {
 $.getChar = function(e) {
     if (e.which == null) {  // IE
         if (e.keyCode < 32)
-            return null; // спец. символ
+            return null;
         return String.fromCharCode(e.keyCode)
     }
 
-    if (e.which != 0 && e.charCode != 0) { // все кроме IE
+    if (e.which != 0 && e.charCode != 0) { // non IE
         if (e.which < 32)
-            return null; // спец. символ
-        return String.fromCharCode(e.which); // остальные
+            return null;
+        return String.fromCharCode(e.which);
     }
 
-    return null; // спец. символ
+    return null;
 }
 $.fn.testNumber = function(add) {
     $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
@@ -1746,7 +1746,7 @@ function getCookie(c_name)
                 }
             }
             else
-                methods.close($($this.data('drop')));
+                methods.close($($this.data('drop')), '', $this);
 
             return $this;
         },
@@ -1903,7 +1903,7 @@ function getCookie(c_name)
                     elClosed = elSet.closed,
                     selSource = elSet.drop,
                     drop = $(selSource);
-            $this.attr('data-drop', $this.data('drop')).parent().addClass(aC);
+            $this.attr({'data-drop': $this.data('drop'), 'data-trigger': trigger}).parent().addClass(aC);
             methods.defaultParams.durationOff = $thisDOff;
             drop.data({
                 'trigger': trigger,
@@ -2141,7 +2141,7 @@ function getCookie(c_name)
                 });
             }
         },
-        close: function(sel, datas) {
+        close: function(sel, datas, el) {
             if (sel === undefined)
                 sel = this;
             clearTimeout(methods.defaultParams.closeDropTime);
@@ -2153,10 +2153,12 @@ function getCookie(c_name)
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this),
-                            data = drop.data(),
+                            data = Object.keys(drop.data()) != 0 ? drop.data() : methods.defaultParams,
                             condOverlay = (data.overlayOpacity !== undefined ? data.overlayOpacity.toString() : data.overlayOpacity) !== '0';
                     if (data.modal || sel || condOverlay || data.place === 'noinherit') {
                         $thisB = data.elrun;
+                        if (el)
+                            $thisB = el;
                         if ($thisB !== undefined) {
                             var $thisEOff = data.effectOff,
                                     durOff = data.durationOff;
@@ -2176,9 +2178,9 @@ function getCookie(c_name)
                                 }
 
                                 drop.removeClass(aC);
-                                var method = data.animate ? 'animate' : 'css';
-                                var $thisPMT = data.placeAfterClose.toLowerCase().split(' ');
-                                var l = 0, t = 0;
+                                var method = data.animate ? 'animate' : 'css',
+                                $thisPMT = data.placeAfterClose.toLowerCase().split(' '),
+                                l = 0, t = 0;
                                 if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
                                     t = wnd.height();
                                 if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
@@ -2199,6 +2201,7 @@ function getCookie(c_name)
                                     });
                                 if (data.forCenter)
                                     data.forCenter.stop(true, false).fadeOut(durOff);
+                                
                                 drop[$thisEOff](durOff, function() {
                                     if (data.dropOver)
                                         data.dropOver.fadeOut(durOff);
@@ -2431,7 +2434,6 @@ function getCookie(c_name)
             var settings = $.extend({
                 prev: 'prev',
                 next: 'next',
-                ajax: false,
                 step: 1,
                 checkProdStock: false,
                 after: function() {
@@ -2444,7 +2446,6 @@ function getCookie(c_name)
                     var $this = $(this),
                             prev = settings.prev.split('.'),
                             next = settings.next.split('.'),
-                            ajax = settings.ajax,
                             checkProdStock = settings.checkProdStock,
                             step = settings.step,
                             $thisPrev = $this,
@@ -2484,15 +2485,8 @@ function getCookie(c_name)
                                     input.val(input.data('min') || 1);
                                 else
                                     input.val(inputVal + step);
-                                if (ajax && !checkProdStock)
-                                    $(document).trigger({
-                                        'type': 'showActivity'
-                                    });
-                                if (ajax && inputVal + step <= input.data('max') && checkProdStock)
-                                    $(document).trigger({
-                                        'type': 'showActivity'
-                                    });
-                                if (ajax && inputVal + step === input.data('max'))
+                                
+                                if (inputVal + step === input.data('max'))
                                     $thisNext.attr('disabled', 'disabled');
                                 if (checkProdStock)
                                     input.maxminValue(e);
@@ -2513,13 +2507,8 @@ function getCookie(c_name)
                                 if (isNaN(inputVal))
                                     input.val(input.data('min') || 1);
                                 else if (inputVal > parseFloat(input.data('min') || 1)) {
-                                    if (ajax) {
-                                        $(document).trigger({
-                                            'type': 'showActivity'
-                                        });
-                                    }
                                     input.val(inputVal - step);
-                                    if (ajax && inputVal - step === input.data('min'))
+                                    if (inputVal - step === input.data('min'))
                                         $thisPrev.attr('disabled', 'disabled');
                                 }
 
