@@ -111,7 +111,7 @@ a{cursor: pointer;}
 .baner a:active, .baner a:focus, .items > li > a:focus, .items > li > a:active, input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus{outline: none}
 
 .preloader{min-height: 35px;width: 100%;}
-.baner .preloader, .p_r .preloader, .frame-tabs-ref .preloader{position: absolute;left: 0;top: 0;height: 100%;z-index: 100;}
+.baner .preloader, .p_r .preloader, .frame-tabs-ref .preloader{position: absolute;left: 0;top: 0;height: 100%;z-index: 10000;}
 /*/base settings*/
 
 /*base icons*/

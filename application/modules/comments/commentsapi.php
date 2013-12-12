@@ -147,7 +147,8 @@ class Commentsapi extends Comments {
             'can_comment' => $this->can_comment,
             'use_captcha' => $this->use_captcha,
             'use_moderation' => $this->use_moderation,
-            'enable_comments' => $this->enable_comments
+            'enable_comments' => $this->enable_comments,
+            'visibleMainForm' => $_POST[visibleMainForm]
         );
 
         if ($this->use_captcha == TRUE) {
