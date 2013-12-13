@@ -93,7 +93,6 @@ function init() {
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $('[data-drop]').drop(optionsDrop);
-    $('.frame-title').drop(optionsDrop);
     ShopFront.CompareList.count();
     global.wishListCount();
     $('.tabs').tabs({

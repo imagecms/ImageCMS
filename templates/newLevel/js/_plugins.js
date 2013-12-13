@@ -1954,6 +1954,7 @@ function getCookie(c_name)
                 'data-trigger': trigger
             }).parent().addClass(aC);
             methods.defaultParams.durationOff = $thisDOff;
+            console.log(selSource)
             drop.data({
                 'trigger': trigger,
                 'effectOn': $thisEOn,
