@@ -1624,7 +1624,9 @@ function getCookie(c_name)
             },
             closed: function() {
             },
-            start: undefined
+            start: undefined,
+            drop: '.drop-default',
+            pattern: '<div class="drop drop-style"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-content"><div class="inside-padd"></div></div></div>'
         },
         init: function(options) {
             var settings = $.extend(methods.defaultParams, options);
@@ -1643,39 +1645,56 @@ function getCookie(c_name)
         get: function(el, modal, e) {
             if (el == undefined)
                 el = this;
-            var elSet = el.data(),
-                    drop = $(elSet.drop);
-            $.ajax({
-                type: "post",
-                data: elSet.data,
-                url: elSet.source,
-                beforeSend: function() {
-                    $(document).trigger({
-                        'type': 'showActivity'
-                    });
-                },
-                dataType: elSet.type ? elSet.type : 'html',
-                success: function(data) {
-                    if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
+            var elSet = el.data();
+            if (elSet.drop != undefined) {
+                var drop = $(elSet.drop);
+
+                $.ajax({
+                    type: "post",
+                    data: elSet.data,
+                    url: elSet.source,
+                    beforeSend: function() {
                         $(document).trigger({
-                            type: 'drop.successJson',
-                            el: drop,
-                            datas: data
+                            'type': 'showActivity'
                         });
-                        methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
+                    },
+                    dataType: elSet.type ? elSet.type : 'html',
+                    success: function(data) {
+                        if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
+                            $(document).trigger({
+                                type: 'drop.successJson',
+                                el: drop,
+                                datas: data
+                            });
+                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
+                        }
+                        else {
+                            $(document).trigger({
+                                type: 'drop.successHtml',
+                                el: drop,
+                                datas: data
+                            });
+                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), data);
+                        }
+                        methods.init.call(drop.find('[data-drop]'), $.extend({}, methods.defaultParams));
+                        methods._show(el, e, methods.defaultParams, true, data);
                     }
-                    else {
-                        $(document).trigger({
-                            type: 'drop.successHtml',
-                            el: drop,
-                            datas: data
-                        });
-                        methods._pasteDrop($.extend({}, methods.defaultParams, elSet), data);
-                    }
-                    methods.init.call(drop.find('[data-drop]'), $.extend({}, methods.defaultParams));
-                    methods._show(el, e, methods.defaultParams, true, data);
-                }
-            });
+                });
+            }
+            else {
+                $('.' + methods.defaultParams.curDefault).remove();
+                methods.defaultParams.curDefault = (methods.defaultParams.drop + (new Date()).getTime()).toString().replace('.', '');
+                var drop = methods._pasteDrop($.extend({}, methods.defaultParams, elSet), methods.defaultParams.pattern, methods.defaultParams.drop.replace('.', '') + ' ' + methods.defaultParams.curDefault);
+                if (elSet.source.match(/jpg|gif|png|bmp|jpeg/))
+                    $('<img src="'+elSet.source+'"/>').load(function(data) {
+                        drop.find('*:last').append($(this))
+                        methods._show(el, e, methods.defaultParams, true, data);
+                    })
+                else
+                    drop.find('*:last').load(elSet.source, function(data) {
+                        methods._show(el, e, methods.defaultParams, true, data);
+                    })
+            }
         },
         open: function($this, e, settings) {
             if (e == undefined)
@@ -1750,33 +1769,36 @@ function getCookie(c_name)
 
             return $this;
         },
-        _pasteDrop: function(set, drop) {
+        _pasteDrop: function(set, drop, addClass) {
+            if (addClass == undefined)
+                addClass = '';
             if (set.place !== 'inherit') {
                 function _for_center(rel) {
                     body.append('<div class="for-center" rel="' + rel + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
                 }
                 if (set.place === 'noinherit')
-                    body.append(drop);
+                    drop = $(drop).appendTo(body);
                 else {
                     var sel = '[rel="' + set.drop + '"].for-center';
                     if (typeof drop !== 'string') {
                         if (!$.existsN(drop.parent('.for-center'))) {
                             if (drop.data('forCenter') === undefined) {
                                 _for_center(set.drop);
-                                drop.data('forCenter', $(sel));
                             }
-                            drop.data('forCenter').append(drop);
+                            var forCenter = $(sel);
+                            drop = drop.appendTo(forCenter).data('forCenter', forCenter);
                         }
                     }
                     else {
                         if (!$.exists(sel)) {
                             _for_center(set.drop);
                         }
-                        var forCenter = $(sel).append(drop);
-                        $(set.drop).data('forCenter', forCenter);
+                        var forCenter = $(sel);
+                        drop = $(drop).appendTo(forCenter).data('forCenter', forCenter);
                     }
                 }
             }
+            return drop.addClass(addClass);
         },
         closeModal: function() {
             $('[data-elrun]:visible').each(function() {
@@ -1901,7 +1923,7 @@ function getCookie(c_name)
                     elClose = elSet.close,
                     closed = set.closed,
                     elClosed = elSet.closed,
-                    selSource = elSet.drop,
+                    selSource = elSet.drop || methods.defaultParams.drop,
                     drop = $(selSource);
             $this.attr({'data-drop': $this.data('drop'), 'data-trigger': trigger}).parent().addClass(aC);
             methods.defaultParams.durationOff = $thisDOff;
@@ -2179,8 +2201,8 @@ function getCookie(c_name)
 
                                 drop.removeClass(aC);
                                 var method = data.animate ? 'animate' : 'css',
-                                $thisPMT = data.placeAfterClose.toLowerCase().split(' '),
-                                l = 0, t = 0;
+                                        $thisPMT = data.placeAfterClose.toLowerCase().split(' '),
+                                        l = 0, t = 0;
                                 if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
                                     t = wnd.height();
                                 if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
@@ -2201,7 +2223,7 @@ function getCookie(c_name)
                                     });
                                 if (data.forCenter)
                                     data.forCenter.stop(true, false).fadeOut(durOff);
-                                
+
                                 drop[$thisEOff](durOff, function() {
                                     if (data.dropOver)
                                         data.dropOver.fadeOut(durOff);
@@ -2485,7 +2507,7 @@ function getCookie(c_name)
                                     input.val(input.data('min') || 1);
                                 else
                                     input.val(inputVal + step);
-                                
+
                                 if (inputVal + step === input.data('max'))
                                     $thisNext.attr('disabled', 'disabled');
                                 if (checkProdStock)
@@ -2602,7 +2624,7 @@ function getCookie(c_name)
     });
     body.off('keyup', '[data-min]').on('keyup', '[data-min]', function(e) {
         var $this = $(this),
-        $min = $this.attr('data-min');
+                $min = $this.attr('data-min');
         if ($this.val() === "0") {
             $this.val($min);
             return false;

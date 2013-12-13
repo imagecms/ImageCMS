@@ -23,7 +23,7 @@
         <div class="clearfix item-product globalFrameProduct {if $model->firstVariant->getStock() == 0}not-avail{/if}">
             <div class="f-s_0 title-product">
                 <!-- Start. Name product -->
-                <div class="frame-title">
+                <div class="frame-title" data-source="http://image.loc/uploads/shop/products/additional/189_0.jpg">
                     <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
                 <!-- End. Name product -->
