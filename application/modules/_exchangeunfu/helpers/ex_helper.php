@@ -349,7 +349,6 @@ if (!function_exists('is_prop_multiple')) {
      * @return boolean
      */
     function is_prop_multiple($prop_id, $props) {
-
         foreach ($props as $val) {
             if ($val[external_id] == $prop_id) {
                 if ($val[multiple]) {

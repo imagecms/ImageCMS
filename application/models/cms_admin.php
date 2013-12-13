@@ -20,6 +20,11 @@ class Cms_admin extends CI_Model {
      */
     function add_page($data) {
         $this->db->limit(1);
+        $data['comments_count'] = 0;
+        $data['position'] = 0;
+        $data['updated'] = 0;
+        $data['showed'] = 0;
+        $data['lang_alias'] = 0;
         $this->db->insert('content', $data);
 
         return $this->db->insert_id();
