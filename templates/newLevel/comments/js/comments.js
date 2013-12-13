@@ -203,6 +203,12 @@ var Comments = {
                 data: "comid=" + comid,
                 dataType: "json",
                 url: '/comments/commentsapi/setyes',
+                beforeSend: function(){
+                    $(document).trigger('showActivity');
+                },
+                complete: function(){
+                    $(document).trigger('hideActivity');
+                },
                 success: function(obj) {
                     if (obj !== null) {
                         $('.yesholder' + comid).each(function() {
@@ -220,6 +226,12 @@ var Comments = {
                 data: "comid=" + comid,
                 dataType: "json",
                 url: '/comments/commentsapi/setno',
+                beforeSend: function(){
+                    $(document).trigger('showActivity');
+                },
+                complete: function(){
+                    $(document).trigger('hideActivity');
+                },
                 success: function(obj) {
                     if (obj !== null) {
                         $('.noholder' + comid).each(function() {
@@ -235,6 +247,7 @@ var Comments = {
         if (data != undefined) {
             dataSend = data;
         }
+        var el = $(el);
         $.ajax({
             url: "/comments/commentsapi/renderPosts",
             dataType: "json",
@@ -281,8 +294,11 @@ var Comments = {
                 $(el).closest('.forComments').append('<div class="preloader"></div>');
             },
             type: "post",
-            success: function(obj) {
+            complete: function(){
+                $(el).closest('.forComments').find(preloader).remove();
                 $(document).trigger('hideActivity');
+            },
+            success: function(obj) {
                 if (obj.answer === 'sucesfull') {
                     $('.comment_text').each(function() {
                         $(this).val('');
