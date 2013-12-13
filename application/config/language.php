@@ -19,6 +19,7 @@ $config['languages'] = array(
     'russian' => array('ru', 'ru_RU'),
     'english' => array('en', 'en_US'),
     'german' => array('de', 'de_CH'),
+    'kazakh' => array('kz', 'kk_KZ'),
     'ukrainian' => array('ua', 'uk_UA')
 );
 

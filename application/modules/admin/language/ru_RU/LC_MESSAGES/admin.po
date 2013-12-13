@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 07:41+0200\n"
-"PO-Revision-Date: 2013-12-09 07:41+0200\n"
+"POT-Creation-Date: 2013-12-13 02:19+0200\n"
+"PO-Revision-Date: 2013-12-13 02:19+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -22,6 +22,10 @@ msgstr ""
 "X-Poedit-SearchPath-3: ../../modules/shop/models\n"
 "X-Poedit-SearchPath-4: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-5: ../../../templates/administrator/.\n"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:121
+msgid "There are no currencies"
+msgstr "Нет валют"
 
 #: ./application/modules/shop/admin/templates/search/form.tpl:31
 msgid "Specify"
@@ -6119,10 +6123,6 @@ msgstr "Тема"
 #: ./application/modules/shop/admin/templates/categories/list.tpl:38
 msgid "There are no categories at the site"
 msgstr "Нет категорий на сайте"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:121
-msgid "There are no currencies"
-msgstr "Ннет валют"
 
 #: ./application/modules/shop/admin/templates/search/list.tpl:450
 msgid "There are no results. Modify your search or click the Reset Filter"
