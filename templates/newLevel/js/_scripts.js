@@ -285,14 +285,6 @@ function init() {
         $('a.fancybox, [rel="group"]').fancybox();
     } catch (e) {
     }
-    doc.on('drop.successJson', function(e) {
-        if (e.el.is('#notification')) {
-            if (e.datas.answer === "success")
-                e.el.find(optionsDrop.modalPlace).empty().append(message.success(e.datas.data));
-            else
-                e.el.find(optionsDrop.modalPlace).empty().append(message.error(e.datas.data));
-        }
-    });
     doc.on('rendercomment.after', function(e) {
         showHidePart(e.el.find('.frame-list-comments.sub-2'));
         showHidePart(e.el.find('.product-comment'));
