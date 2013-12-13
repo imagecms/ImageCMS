@@ -1629,15 +1629,15 @@ function getCookie(c_name)
             pattern: '<div class="drop drop-style"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-content"><div class="inside-padd"></div></div></div>'
         },
         init: function(options) {
-            var settings = $.extend(methods.defaultParams, options);
+            $.extend(methods.defaultParams, options);
             this.add($('[data-drop]')).each(function() {
                 var el = $(this),
-                        trigger = (settings.trigger || el.data('trigger')).toString();
+                        trigger = (methods.defaultParams.trigger || el.data('trigger')).toString();
 
                 el.off(trigger + '.drop').on(trigger + '.drop', function(e) {
                     e.stopPropagation();
                     e.preventDefault();
-                    methods.open($(this), e, settings)
+                    methods.open($(this), e)
                 });
             });
             return $(this);
@@ -1696,16 +1696,14 @@ function getCookie(c_name)
                     })
             }
         },
-        open: function($this, e, settings) {
+        open: function($this, e) {
             if (e == undefined)
                 e = window.event;
-            if (settings == undefined)
-                settings = methods.defaultParams;
             if ($this == undefined)
                 $this = this;
 
-            var moreOne = settings.moreOne,
-                    confirmSel = settings.confirmSel;
+            var moreOne = methods.defaultParams.moreOne,
+                    confirmSel = methods.defaultParams.confirmSel;
             methods.closeModal();
             function _confirmF() {
                 if (!$.existsN(drop) || modal || always) {
@@ -1716,7 +1714,7 @@ function getCookie(c_name)
             }
             var elSet = $this.data(),
                     drop = $(elSet.drop),
-                    start = elSet.start !== undefined ? elSet.start : settings.start;
+                    start = elSet.start !== undefined ? elSet.start : methods.defaultParams.start;
             if (!$this.parent().hasClass(aC)) {
                 if (!(elSet.moreOne || moreOne) && start === undefined) {
                     if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
@@ -1726,9 +1724,9 @@ function getCookie(c_name)
                 }
 
                 if (!$this.is(':disabled')) {
-                    var modal = elSet.modal || settings.modal,
-                            confirm = elSet.confirm || settings.confirm,
-                            always = elSet.always || settings.always;
+                    var modal = elSet.modal || methods.defaultParams.modal,
+                            confirm = elSet.confirm || methods.defaultParams.confirm,
+                            always = elSet.always || methods.defaultParams.always;
                     if (start !== undefined) {
                         var res = eval(start)($this, drop);
                         if (!res)
@@ -1736,14 +1734,14 @@ function getCookie(c_name)
                     }
                     if (start === undefined || (start !== undefined && res)) {
                         if ($.existsN(drop) && !modal && !always && !confirm) {
-                            methods._pasteDrop($.extend({}, settings, elSet), drop);
+                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
                             methods._show($this, e, methods.defaultParams, false);
                         }
                         else if (elSet.source || always || confirm) {
                             if (!confirm)
                                 _confirmF();
                             else {
-                                methods._pasteDrop($.extend({}, settings, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
+                                methods._pasteDrop($.extend({}, methods.defaultParams, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
                                 methods._show($('[data-drop="' + confirmSel + '"]').data({
                                     'elrun': $this
                                 }), e, methods.defaultParams, false);
@@ -1758,7 +1756,7 @@ function getCookie(c_name)
                             }
                         }
                         else {//for front validations
-                            methods._pasteDrop($.extend({}, settings, elSet), drop);
+                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
                             methods._show($this, e, methods.defaultParams, false);
                         }
                     }
