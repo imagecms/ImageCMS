@@ -373,7 +373,6 @@ class Documentation_model extends CI_Model {
             if (key_exists($col, $someOldData))
                 unset($someOldData[$col]);
         }
-        var_dump($this->db->where('id', $pageId)->update('content', $someOldData));
         echo $this->db->_error_message();
     }
 
