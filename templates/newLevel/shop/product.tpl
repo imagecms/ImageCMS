@@ -23,7 +23,7 @@
         <div class="clearfix item-product globalFrameProduct {if $model->firstVariant->getStock() == 0}not-avail{/if}">
             <div class="f-s_0 title-product">
                 <!-- Start. Name product -->
-                <div class="frame-title">
+                <div class="frame-title" data-source="http://image.loc/uploads/shop/products/additional/189_0.jpg">
                     <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
                 <!-- End. Name product -->
@@ -559,7 +559,7 @@
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
-                    <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'))">
+                    <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'), {literal}{'visibleMainForm': '1'}{/literal})">
                         <span class="icon_comment-tab"></span>
                         <span class="text-el">
                             <span id="cc">
@@ -636,7 +636,9 @@
                     <div class="frame-form-comment">
                         {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                         <div class="forComments">
-                            {echo $c['comments']}
+                            {if intval($c['commentsCount']) > 0}
+                                {echo $c['comments']}
+                            {/if}
                         </div>
                         <!--End. Comments block-->
                     </div>
