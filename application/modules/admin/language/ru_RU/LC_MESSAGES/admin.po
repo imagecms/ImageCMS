@@ -5662,7 +5662,7 @@ msgstr "Миниатюра дополнительних"
 #: ./application/modules/shop/admin/templates/customfields/edit.tpl:109
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:119
 msgid "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
-msgstr "Фрагмента кода определённого формату, <br /> ппроверяет синтаксическую корректность введеной информации — то есть, <br /> производит валидацию."
+msgstr "Фрагмента кода определённого формату, <br /> проверяет синтаксическую корректность введеной информации — то есть, <br /> производит валидацию."
 
 #: ./application/modules/admin/backup.php:43
 msgid "Some of settings not saved"
