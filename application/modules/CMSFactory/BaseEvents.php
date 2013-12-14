@@ -374,8 +374,13 @@ abstract class BaseEvents {
         return $this;
     }
 
-    final public function onShopOrderCreate() {
+    final public function onShopAdminOrderCreate() {
         $this->key = 'ShopAdminOrder:create';
+        return $this;
+    }
+
+    final public function onShopMakeOrder() {
+        $this->key = 'Cart:MakeOrder';
         return $this;
     }
 
