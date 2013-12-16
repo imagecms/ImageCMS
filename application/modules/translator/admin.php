@@ -20,7 +20,7 @@ class Admin extends BaseAdminController {
     public $paths = array();
     public $po_settings = array();
     public $exchangePoArray;
-    public $js_langs;
+    public $js_langs = array();
     public $domain;
     public $fileError = '';
     public $filePermissionsErrors;
@@ -885,20 +885,20 @@ class Admin extends BaseAdminController {
                     foreach ($content as $line_number => $line) {
                         $lang = array();
                         mb_regex_encoding("UTF-8");
-                        mb_ereg_search_init($line, "(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1");
+                        mb_ereg_search_init($line, "(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1}");
                         $lang = mb_ereg_search();
                         if ($lang) {
                             $lang = mb_ereg_search_getregs(); //get first result
                             do {
                                 $origin = mb_ereg_replace('!\s+!', ' ', $lang[1]);
-                                    if (!$this->parsed_langs[$origin]) {
-                                        $this->parsed_langs[$origin] = array();
-                                    }
+                                if (!$this->parsed_langs[$origin]) {
+                                    $this->parsed_langs[$origin] = array();
+                                }
 
-                                    if (strstr($main . $file, '.js')) {
-                                        $this->js_langs[$origin] = $origin;
-                                    }
-                                    array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
+                                if (strstr($main . $file, '.js')) {
+                                    $this->js_langs[$origin] = $origin;
+                                }
+                                array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
                                 $lang = mb_ereg_search_regs(); //get next result
                             } while ($lang);
                         }
@@ -910,14 +910,14 @@ class Admin extends BaseAdminController {
                             $lang = mb_ereg_search_getregs(); //get first result
                             do {
                                 $origin = mb_ereg_replace('!\s+!', ' ', $lang[1]);
-                                    if (!$this->parsed_langs[$origin]) {
-                                        $this->parsed_langs[$origin] = array();
-                                    }
+                                if (!$this->parsed_langs[$origin]) {
+                                    $this->parsed_langs[$origin] = array();
+                                }
 
-                                    if (strstr($main . $file, '.js')) {
-                                        $this->js_langs[$origin] = $origin;
-                                    }
-                                    array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
+                                if (strstr($main . $file, '.js')) {
+                                    $this->js_langs[$origin] = $origin;
+                                }
+                                array_push($this->parsed_langs[$origin], $main . $file . ':' . ($line_number + 1));
                                 $lang = mb_ereg_search_regs(); //get next result
                             } while ($lang);
                         }
@@ -968,6 +968,7 @@ class Admin extends BaseAdminController {
                     $url = substr_replace($url, '', strlen($url) - 1);
                 }
             }
+//            exit;
 
 
             if (!empty($this->js_langs)) {
@@ -1014,14 +1015,21 @@ class Admin extends BaseAdminController {
         $currentLangs = $this->poFileToArray($module_template, $type, $lang);
 
         foreach ($all_langs as $key => $newLang) {
-            if (!isset($currentLangs[encode($key)])) {
-                $results['new'][encode($key)] = $newLang;
+            if (!isset($currentLangs[$key])) {
+                $results['new'][$key] = $newLang;
             } else {
-                unset($currentLangs[encode($key)]);
+                unset($currentLangs[$key]);
             }
         }
 
+        foreach ($results['new'] as $key => $langNew) {
+            $results['new'][encode($key)] = $langNew;
+        }
+
         $results['old'] = $currentLangs;
+        foreach ($results['old'] as $key => $langOld) {
+            $results['old'][encode($key)] = $langOld;
+        }
         return json_encode($results);
     }
 
@@ -1127,6 +1135,7 @@ class Admin extends BaseAdminController {
         $oldStringsArray = (array) $strings['old'];
 
         foreach ($newStringsArray as $origin => $newStrings) {
+//            $origin = htmlspecialchars_decode($origin);
             $translationTEMP[$origin]['text'] = '';
             $translationTEMP[$origin]['comment'] = '';
             $translationTEMP[$origin]['links'] = $newStrings;

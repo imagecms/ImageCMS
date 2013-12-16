@@ -101,7 +101,7 @@
                                                                 <option value="{$k}" {if $k == $category_field_group} selected="selected" {/if}>{$v}</option>
                                                             {/foreach}
                                                         </select>
-                                                        <p class="help-block">{lang("Select  a field group  for a category","admin")}</p>
+                                                        <p class="help-block">{lang("Select a field group for a category","admin")}</p>
                                                         <span class="frame_label no_connection m-t_20">
                                                             <span class="niceCheck b_n">
                                                                 <input type="checkbox" value="1" name="category_apply_for_subcats" 
@@ -123,7 +123,7 @@
                                                         <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
                                                     {/foreach}
                                                 </select>
-                                                <p class="help-block">{lang('Select a field group to be displayed/ viewed  in the created category of the group or group category', 'admin')}</p>
+                                                <p class="help-block">{lang('Select a field group to be displayed/ viewed in the created category of the group or group category', 'admin')}</p>
                                                 <span class="frame_label no_connection m-t_20">
                                                     <span class="niceCheck b_n">
                                                         <input type="checkbox" value="1" name="apply_for_subcats"
@@ -187,7 +187,7 @@
                                                 <div class="pull-left span6">
                                                     <select name="order_by" id="order_by">
                                                         <option value="publish_date" {if $order_by == "publish_date"} selected="selected" {/if}>{lang('by date', 'admin')}</option>
-                                                        <option value="title" {if $order_by == "title"} selected="selected" {/if}>{lang('By alphabet or  in the alphabetic order', 'admin')}</option>
+                                                        <option value="title" {if $order_by == "title"} selected="selected" {/if}>{lang('By alphabet or in the alphabetic order', 'admin')}</option>
                                                         <option value="position" {if $order_by == "position"} selected="selected" {/if}>{lang('By position', 'admin')}</option>
                                                     </select>
                                                 </div>
