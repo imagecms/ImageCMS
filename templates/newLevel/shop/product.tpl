@@ -262,11 +262,11 @@
                     <dl class="social-product">
                         <dt class="s-t text-social-like">{lang('Понравился товар?', 'newLevel')}</dt>
                         <dd class="social-like">
-                            {echo $CI->load->module('share')->_make_like_buttons()}
+                            {/*echo $CI->load->module('share')->_make_like_buttons()*/}
                         </dd>
                         <dt class="s-t text-social-tell">{lang('Рассказать друзьям:', 'newLevel')}</dt>
                         <dd class="social-tell">
-                            {echo $CI->load->module('share')->_make_share_form()}
+                            {/*echo $CI->load->module('share')->_make_share_form()*/}
                         </dd>
                     </dl>
                     <!-- End. Share -->
@@ -559,7 +559,7 @@
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
-                    <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'))">
+                    <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'), {literal}{'visibleMainForm': '1'}{/literal})">
                         <span class="icon_comment-tab"></span>
                         <span class="text-el">
                             <span id="cc">
@@ -611,21 +611,11 @@
 
                 {/if}
 
-                <div class="inside-padd">
-                    <!--Start. Comments block-->
-                    <div class="frame-form-comment">
-                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                        <div class="for_comments">
-                            {echo $c['comments']}
-                        </div>
-                        <!--End. Comments block-->
-                    </div>
-                </div>
                 {if $accessories}
                     <div class="accessories">
                         <div class="title-default">
                             <div class="title">
-                                <h2 class="d_i">{lang('Аксессуары','newLevel')} {echo $model->getName()}</h2>
+                                <h2 class="d_i">{lang('С этим товаром покупают','newLevel')}</h2>
                                 {if count($accessories) > 4}
                                     <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
                                         <span class="icon_arrow"></span>
@@ -641,6 +631,18 @@
                         </div>
                     </div>
                 {/if}
+                <div class="inside-padd">
+                    <!--Start. Comments block-->
+                    <div class="frame-form-comment">
+                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
+                        <div class="forComments">
+                            {if intval($c['commentsCount']) > 0}
+                                {echo $c['comments']}
+                            {/if}
+                        </div>
+                        <!--End. Comments block-->
+                    </div>
+                </div>
             </div>
             <!--             Start. Characteristic-->
             <div id="first">
@@ -661,7 +663,7 @@
                 </div>
             </div>
             <div id="comment">
-                <div class="inside-padd for_comments">
+                <div class="inside-padd forComments">
                     <div class="preloader"></div>
                 </div>
             </div>
@@ -669,7 +671,7 @@
             {if $accessories}
                 <div id="fourth" class="accessories">
                     <div class="inside-padd">
-                        <div class="title-h2">{lang('Аксессуары','newLevel')} {echo $model->getName()}</div>
+                        <h2 class="m-b_30">{lang('С этим товаром покупают','newLevel')}</h2>
                         <ul class="items items-default">
                             <div class="preloader"></div>
                         </ul>

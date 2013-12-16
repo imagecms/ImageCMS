@@ -188,12 +188,12 @@ var Comments = {
             },
             after: function(el, elInserted) {
                 $(elInserted).find('input[name=comment_parent]').val(el.data('parid'));
-                $('#comment__icsi-css form').submit(function() {
+                $('#comments form').submit(function() {
                     return false;
                 });
             }
         });
-        $('.comment__icsi-css form').submit(function(e) {
+        $('.comments form').submit(function(e) {
             e.preventDefault();
         });
         $('.usefullyes').bind('click', function() {
@@ -203,6 +203,12 @@ var Comments = {
                 data: "comid=" + comid,
                 dataType: "json",
                 url: '/comments/commentsapi/setyes',
+                beforeSend: function(){
+                    $(document).trigger('showActivity');
+                },
+                complete: function(){
+                    $(document).trigger('hideActivity');
+                },
                 success: function(obj) {
                     if (obj !== null) {
                         $('.yesholder' + comid).each(function() {
@@ -220,6 +226,12 @@ var Comments = {
                 data: "comid=" + comid,
                 dataType: "json",
                 url: '/comments/commentsapi/setno',
+                beforeSend: function(){
+                    $(document).trigger('showActivity');
+                },
+                complete: function(){
+                    $(document).trigger('hideActivity');
+                },
                 success: function(obj) {
                     if (obj !== null) {
                         $('.noholder' + comid).each(function() {
@@ -235,15 +247,17 @@ var Comments = {
         if (data != undefined) {
             dataSend = data;
         }
-        if (el.data() != undefined) {
-            dataSend = el.data();
-        }
+        var el = $(el);
         $.ajax({
             url: "/comments/commentsapi/renderPosts",
             dataType: "json",
             data: dataSend,
             type: "post",
+            beforeSend: function(){
+                $(document).trigger('showActivity');
+            },
             success: function(obj) {
+                $(document).trigger('hideActivity');
                 el.each(function() {
                     $(this).empty();
                 });
@@ -269,13 +283,21 @@ var Comments = {
             }
         });
     },
-    post: function (el) {
+    post: function (el, data) {
         $.ajax({
             url: "/comments/commentsapi/newPost",
             data: $(el).closest('form').serialize() +
             '&action=newPost',
             dataType: "json",
+            beforeSend: function(){
+                $(document).trigger('showActivity');
+                $(el).closest('.forComments').append('<div class="preloader"></div>');
+            },
             type: "post",
+            complete: function(){
+                $(el).closest('.forComments').find(preloader).remove();
+                $(document).trigger('hideActivity');
+            },
             success: function(obj) {
                 if (obj.answer === 'sucesfull') {
                     $('.comment_text').each(function() {
@@ -283,7 +305,7 @@ var Comments = {
                     });
                     $('.comment_plus').val('');
                     $('.comment_minus').val('');
-                    Comments.renderPosts($(el).closest('.for_comments'));
+                    Comments.renderPosts($(el).closest('.forComments'), data);
                 }
                 else {
                     var form = $(el).closest('form');

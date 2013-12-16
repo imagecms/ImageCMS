@@ -1,0 +1,244 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-04 11:19+0200\n"
+"PO-Revision-Date: 2013-11-04 11:19+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:27
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:35
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:51
+msgid "Not choose"
+msgstr "Не выбрано"
+
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:44
+#: ./application/modules/exchangeunfu/assets/js/admin.js:119
+msgid "Error"
+msgstr "Ошибка"
+
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:45
+msgid "Can not create a price twice for partner"
+msgstr "Невозможно создать цену для партнера дважды"
+
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:96
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:119
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:143
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:166
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:189
+#: ./application/modules/exchangeunfu/assets/js/admin.js:47
+#: ./application/modules/exchangeunfu/assets/js/admin.js:83
+#: ./application/modules/exchangeunfu/assets/js/admin.js:85
+#: ./application/modules/exchangeunfu/assets/js/admin.js:116
+msgid "Message"
+msgstr "Ошибка"
+
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:97
+msgid "Upgrade successful."
+msgstr "Успешно обновлено"
+
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:120
+msgid "Successful deleting."
+msgstr "Удаление успешное"
+
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:144
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:167
+#: ./application/modules/exchangeunfu/assets/js/exchangeunfu.js:190
+msgid "Value is changed."
+msgstr "Значение изменено"
+
+#: ./application/modules/exchangeunfu/assets/js/admin.js:48
+msgid "Partner updated"
+msgstr "Партнеры обновлены"
+
+#: ./application/modules/exchangeunfu/assets/js/admin.js:84
+msgid "Partner successfully deleted"
+msgstr "Партнер успешно удален"
+
+#: ./application/modules/exchangeunfu/assets/js/admin.js:86
+msgid "Partner not deleted"
+msgstr "Партнер не удален"
+
+#: ./application/modules/exchangeunfu/assets/js/admin.js:117
+msgid "Partner successfully added"
+msgstr "Партнер успешно додан"
+
+#: ./application/modules/exchangeunfu/assets/js/admin.js:120
+msgid "Partner not added"
+msgstr "Партнеры не обновлены"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:5
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:30
+msgid "Region"
+msgstr "Регион"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:6
+msgid "Price"
+msgstr "Цена"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:7
+msgid "Count"
+msgstr "Считать"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:8
+msgid "Status"
+msgstr "Статус"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:9
+msgid "Update"
+msgstr "Обновление"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:10
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:42
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:32
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:64
+msgid "Delete"
+msgstr "Удалить"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:28
+msgid "Hit"
+msgstr "Хит"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:30
+msgid "Novelty"
+msgstr "Новинка"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:32
+msgid "Promotion"
+msgstr "Реклама"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:36
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:31
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:58
+msgid "Edit"
+msgstr "Редактировать"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:38
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:60
+msgid "Refresh"
+msgstr "Обновление"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:76
+msgid "Empty list"
+msgstr "Список пуст"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:80
+msgid "Create partner"
+msgstr "Создать партнера"
+
+#: ./application/modules/exchangeunfu/assets/admin/main.tpl:83
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:15
+msgid "Add partner"
+msgstr "Добавить партнера"
+
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:5
+msgid "Partners"
+msgstr "Партнеры"
+
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:12
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:12
+msgid "Back"
+msgstr "Назад"
+
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:17
+msgid "Settings"
+msgstr "Настройки"
+
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:27
+msgid "Name"
+msgstr "Название"
+
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:28
+msgid "Prefix"
+msgstr "Префикс"
+
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:29
+msgid "Code"
+msgstr "Код"
+
+#: ./application/modules/exchangeunfu/assets/admin/partners.tpl:87
+msgid "Add"
+msgstr "Добавить"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:5
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:28
+msgid "Integration settings with 1C"
+msgstr "Настройки интеграции с 1С"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:18
+msgid "Save"
+msgstr "Сохранить"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:39
+msgid "Use commpres"
+msgstr "Использувать сжатие"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:50
+msgid "Set up a login to access the server 1C"
+msgstr "Задать логин для доступа к серверу 1С"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:57
+msgid "Server password"
+msgstr "Пароль сервера"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:64
+msgid "Database backup"
+msgstr "Резервное копирование базы данных"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:75
+msgid "Select order status"
+msgstr "Выбрать статус заказа"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:88
+msgid "Status after treatment"
+msgstr "Состояние после лечения"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:105
+msgid "All errors will be written to the file"
+msgstr "Все ошибки будут записаны в файл"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:106
+msgid "Debugging mode"
+msgstr "Режим отладки"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:121
+msgid "If you specify an email errors when incorrect password"
+msgstr "Если вы укажите адрес электронной почты, ошибки при неверном пароле"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:122
+msgid "and security  will be sent to administrator"
+msgstr "и безопасности будут отправлены ​​администратору"
+
+#: ./application/modules/exchangeunfu/assets/admin/settings.tpl:123
+msgid "Email Administrator for sending important safety mistakes"
+msgstr "E-mail администратора для отправки важных ошибок безопасности"
+
+#: ./application/modules/exchangeunfu/admin.php:147
+msgid "Settings saved"
+msgstr "Настройки сохранены"
+
+#: ./application/modules/exchangeunfu/module_info.php:6
+#: ./application/modules/exchangeunfu/module_info.php:7
+msgid "exchangeunfu"
+msgstr "exchangeunfu"
+
+#: ./application/modules/exchangeunfu/exchangeunfu.php:179
+msgid "Incorrect password"
+msgstr "Неверный пароль"
+
+#: ./application/modules/exchangeunfu/exchangeunfu.php:237
+#: ./application/modules/exchangeunfu/exchangeunfu.php:238
+msgid "Security error!!!"
+msgstr "Ошибка безопасности!"
+
