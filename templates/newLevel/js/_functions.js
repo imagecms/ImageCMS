@@ -149,7 +149,6 @@ var ShopFront = {
                     el: $(genObj.popupCart)
                 });
             $(genObj.frameBasks).find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
-                ajax: true,
                 after: function(e, el, input) {
                     chCountInCart(el.closest(genObj.frameChangeCount), true, input);
                 }
@@ -290,14 +289,18 @@ var ShopFront = {
             });
         },
         count: function() {
-            var count = Shop.CompareList.all().length;
+            var count = Shop.CompareList.all().length,
+            btn = $(genObj.tinyCompareList).find('[data-href]').off('click.drop').off('click.tocompare');
+            
             if (count > 0){
-                $(genObj.tinyCompareList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide().end().find('[data-href]').off('click.drop').off('click.tocompare').on('click.tocompare', function(){
+                $(genObj.tinyCompareList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
+                btn.on('click.tocompare', function(){
                     location.href = $(this).data('href');
                 });
             }
             else{
-                $(genObj.tinyCompareList).removeClass(genObj.isAvail).find(genObj.blockNoEmpty).hide().end().find(genObj.blockEmpty).show().end().find('[data-href]').off('click.tocompare').drop();
+                $(genObj.tinyCompareList).removeClass(genObj.isAvail).find(genObj.blockNoEmpty).hide().end().find(genObj.blockEmpty).show();
+                btn.drop();
             }
             $(genObj.countTinyCompareList).each(function() {
                 $(this).html(count);
@@ -395,14 +398,18 @@ var global = {
         });
     },
     wishListCount: function() {
-        var count = wishList.all().length;
+        var count = wishList.all().length,
+        btn = $(genObj.tinyWishList).find('[data-href]').off('click.drop').off('click.towish');
+        
         if (count > 0) {
-            $(genObj.tinyWishList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide().end().find('[data-href]').off('click.drop').off('click.towish').on('click.towish', function(){
+            $(genObj.tinyWishList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
+            btn.on('click.towish', function(){
                 location.href = $(this).data('href');
             });
         }
         else {
-            $(genObj.tinyWishList).removeClass(genObj.isAvail).find(genObj.blockNoEmpty).hide().end().find(genObj.blockEmpty).show().end().find('[data-href]').off('click.towish').drop();
+            $(genObj.tinyWishList).removeClass(genObj.isAvail).find(genObj.blockNoEmpty).hide().end().find(genObj.blockEmpty).show();
+            btn.drop();
         }
         $(genObj.countTinyWishList).each(function() {
             $(this).html(count);
@@ -594,7 +601,7 @@ function showHidePart(el, absolute, time, btnPlace) {
         $this.addClass('showHidePart').data('maxHeight', $thisH);
         $this.find('*').css('max-height', 'none');
         $item.each(function() {
-            sumHeight += $(this).outerHeight();
+            sumHeight += $(this).outerHeight(true);
         })
         $this.find('*').css('max-height', '');
         if (sumHeight > $thisH) {

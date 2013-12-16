@@ -11,7 +11,7 @@
 
                 {$Comments = $CI->load->module('comments')->init($page)}
                 {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                <div class="for_comments">
+                <div class="forComments">
                     {echo $c['comments']}
                 </div>
             </div>

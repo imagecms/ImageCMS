@@ -159,7 +159,7 @@
                     </div>
                     <div class="span4 t-a_r">
                         <div class="muted">Copyright © imageCMS 2013</div>
-                        <a href="http://wiki.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
+                        <a href="http://docs.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
                     </div>
                 </div>
             </div>

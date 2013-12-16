@@ -4,7 +4,7 @@
 
 /**
  * Image CMS 
- * Sample Module Admin
+ * Translator Module Admin
  * @version 1.0
  * 
  */
