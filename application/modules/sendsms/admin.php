@@ -4,28 +4,36 @@
 
 /**
  * Image CMS 
- * Sample Module Admin
+ * Sendsms Module Admin
+ * @property Addressbook $Addressbook
+ * @property Exceptions $Exceptions 
+ * @property Account $Account
+ * @property Stat $Stat
  */
 class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-    }
-
-    public function index() {
         include 'epochtasmsApi/config.php';
         include 'epochtasmsApi/Addressbook.php';
         include 'epochtasmsApi/Exceptions.php';
         include 'epochtasmsApi/Account.php';
         include 'epochtasmsApi/Stat.php';
-        $sms_key_private = 'b69857c0c3c35976c1dd509a58b94160';
-        $sms_key_public = '2812ab0f6509b6904884bb8ff0fd7a05';
+        $sms_key_private = '';
+        $sms_key_public = '';
         $Gateway = new APISMS($sms_key_private, $sms_key_public, 'http://atompark.com/api/sms/');
-        $Addressbook = new Addressbook($Gateway);
-        $Exceptions = new Exceptions($Gateway);
-        $Account = new Account($Gateway);
-        $Stat = new Stat($Gateway);
-        var_dump($Stat->sendSMS('sender', 'text', '380938681961', $datetime, 0));exit;
+        $this->Addressbook = new Addressbook($Gateway);
+        $this->Exceptions = new Exceptions($Gateway);
+        $this->Account = new Account($Gateway);
+        $this->Stat = new Stat($Gateway);
+    }
+
+    public function index() {
+        $acaunt = $this->Account->getUserBalance();
+
+        var_dump($acaunt['result']['balance_currency']);
+        exit;
+
 //Первым делом, зарегистрируем имя отправителя, если собираемся рассылать СМС
 // в том числе в Украину
 //Если вы собираетесь отправлять смс исключительно в Россию - 

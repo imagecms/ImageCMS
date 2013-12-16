@@ -1330,7 +1330,7 @@ msgid "Создание списка избранных товаров"
 msgstr ""
 
 #: ./templates/newLevel/wishlist/wishlist.tpl:90
-msgid "Создать новий список"
+msgid "Создать новый список"
 msgstr ""
 
 #: ./templates/newLevel/patterns/widgets/brands.tpl:41
