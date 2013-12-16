@@ -256,11 +256,17 @@
 
                         <div class="clearfix">
                             <div class="pagination pull-left" style="display: none">
-                                <ul>
+                                <ul class="pagination">
 
                                 </ul>
                             </div>                        
                             <div class="pagination pull-right" style="margin-right: 25px;">
+                                { /* } 
+                                <ul>
+                                    <li><a onclick="Pagination.movePrev()">&lt;&nbsp;Назад</a></li>
+                                    <li><a onclick="Pagination.moveNext()">Вперед&nbsp;&gt;</a></li>
+                                </ul>
+                                { */ }  
                                 <select id="per_page" style="max-width:60px; display: none" onchange="Pagination.perPage()" >
                                     <option class="per_page10" value="10">10</option>
                                     <option class="per_page20" value="20">20</option>
@@ -273,6 +279,7 @@
                                     <option class="per_page90" value="90">90</option>
                                     <option class="per_page100" value="100">100</option>
                                 </select>
+
                             </div>
                         </div>
                     </div>
