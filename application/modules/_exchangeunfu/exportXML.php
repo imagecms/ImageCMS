@@ -316,7 +316,13 @@ class ExportXML {
             } else {
                 $order['paid'] = 'false';
             }
-            
+
+            if ($order['status'] == 2) {
+                $order['status'] = 'true';
+            } else {
+                $order['status'] = 'false';
+            }
+
             /** order export data */
             $this->order_export .=
                     "\t<СписокЗаказыПокупателя>\r\n" .
@@ -330,7 +336,7 @@ class ExportXML {
                     "\t\t<Адрес>" . $order['user_deliver_to'] . "</Адрес>\r\n" .
                     "\t\t<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\r\n" .
                     "\t\t<ПризнакПередоплаты>" . $order['paid'] . "</ПризнакПередоплаты>\r\n" .
-                    "\t\t<ПризнакВыполнения>" . $order['paid'] . "</ПризнакВыполнения>\r\n" .
+                    "\t\t<ПризнакВыполнения>" . $order['status'] . "</ПризнакВыполнения>\r\n" .
                     "\t\t<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\r\n" .
                     "\t\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n";
 
@@ -357,7 +363,7 @@ class ExportXML {
                     $this->invoice_export .= $products;
                 }
             }
-            
+
             $this->order_export .= $products;
             if ($order['status'] == 2) {
                 $this->invoice_export .= "\t\t</СписокРасходныеНакладные>\r\n";
