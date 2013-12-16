@@ -8,7 +8,7 @@ $(document).ready(function() {
     });
 
     // *********************** Navigate pagination *********************************************
-    $('.pagination ul li').on('click', function() {
+    $('ul.pagination li').on('click', function() {
         Pagination.navigate($(this));
     });
 
@@ -1115,9 +1115,9 @@ var Pagination = {
             var to = rows_count;
         }
 
-        var pages = "<li><a>< First</a></li><li data-number='1'><span>1</span></li>";
+        var pages = "<li><a>< " + lang('First') + "</a></li><li data-number='1'><span>1</span></li>";
         if (page_number == 1) {
-            pages = "<li><a>< First</a></li><li class='active' data-number='1'><span>1</span></li>";
+            pages = "<li><a>< " + lang('First') + "</a></li><li class='active' data-number='1'><span>1</span></li>";
         }
 
         var i = 2;
@@ -1131,9 +1131,9 @@ var Pagination = {
             pages += "<li class='" + active + "' data-number='" + i + "'><span>" + i + "</span></li>";
             i++;
         }
-        pages += "<li data-number='" + rows_count + "'><a>Last ></a></li>";
+        pages += "<li data-number='" + rows_count + "'><a>" + lang('Last ') + " ></a></li>";
 
-        $('.pagination ul').html(pages);
+        $('.pagination ul.pagination').html(pages);
     },
     navigate: function(curElement) {
         var module = $('#modules_templates').val();
@@ -1196,7 +1196,7 @@ var Pagination = {
             i++;
         }
         pages += "<li data-number='" + rows_count + "'><a>Last ></a></li>";
-        $('.pagination ul').html(pages);
+        $('.pagination ul.pagination').html(pages);
     },
     perPage: function() {
         var perPageCurrent = parseInt($('#per_page').val());
@@ -1211,6 +1211,21 @@ var Pagination = {
         });
 
         this.generate()
+    },
+    movePrev: function() {
+        var activeNum = $('ul.pagination li.active').data('number');
+        console.log(activeNum)
+        if(activeNum > 1){
+            if($('ul.pagination li')[activeNum-1]){
+                console.log($($('ul.pagination li')[activeNum-1]))
+                $($('ul.pagination li')[activeNum-1]).click();
+            }
+        }
+        
+        return false;
+    },
+    moveNext: function() {
+        return false;
     }
 
 }
