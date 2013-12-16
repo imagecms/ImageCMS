@@ -682,7 +682,7 @@ var Translator = {
                         $('.newStrings').html('');
                         $('.obsoleteStrings').html('');
                         $('.notCorrectStrings').html('');
-                        
+
 
                         for (var newString in results['new']) {
                             if (newString && newString.match(/[\D]/)) {
@@ -696,7 +696,7 @@ var Translator = {
                                 for (var path in paths) {
                                     tooltipMsg += paths[path] + '<br>';
                                 }
-                                $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
+                                $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
                             } else {
                                 if (!newString.match(/[\D]/)) {
                                     var paths = [];
@@ -709,7 +709,7 @@ var Translator = {
                                     for (var path in paths) {
                                         tooltipMsg += paths[path] + '<br>';
                                     }
-                                    $('.notCorrectStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
+                                    $('.notCorrectStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
                                 }
                             }
                         }
@@ -727,19 +727,19 @@ var Translator = {
                                     tooltipMsg += paths[path] + '<br>';
                                 }
 
-                                $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(obsoleteString) + '</span><br>');
+                                $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + obsoleteString + '</span><br>');
                             }
                         }
 
 
                         $('.parsedNewStringsCount').html(newCount);
                         $('.parsedRemoveStringsCount').html(oldCount);
-                        
-                        if(ignoredCount){
+
+                        if (ignoredCount) {
                             $('.notCorrectStringsLI').show();
                             $('.notCorrectStringsCount').html(ignoredCount);
                         }
-                        
+
                         $('.updateResults span').tooltip({
                             'delay': {
                                 show: 300,
@@ -1319,4 +1319,12 @@ function escapeHtml(text) {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+}
+
+function htmlspecialchars_decode(str) {
+    str = str_replace('&lt;', '<', str);
+    str = str_replace('&gt;', '>', str);
+    str = str_replace('&amp;', '&', str);
+
+    return str;
 }

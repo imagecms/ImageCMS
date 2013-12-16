@@ -47,7 +47,7 @@ function show_m_install_window(id)
         </li>
         <li>
             {if $install_type == 'ftp'}
-                <span class="help-block">{lang("set write rights  on the directory for  simple module installation","admin")} ./application/modules/</span>
+                <span class="help-block">{lang("set write rights on the directory for simple module installation","admin")} ./application/modules/</span>
             {/if}
         </li>
     </ul>
@@ -91,7 +91,7 @@ function show_m_install_window(id)
                 </table>
 
             {else:}
-                {lang("No  modules have been found at your request","admin")}
+                {lang("No modules have been found at your request","admin")}
             {/if}
         {/if}
 
