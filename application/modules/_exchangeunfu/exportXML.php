@@ -330,6 +330,7 @@ class ExportXML {
                     "\t\t<Адрес>" . $order['user_deliver_to'] . "</Адрес>\r\n" .
                     "\t\t<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\r\n" .
                     "\t\t<ПризнакПередоплаты>" . $order['paid'] . "</ПризнакПередоплаты>\r\n" .
+                    "\t\t<ПризнакВыполнения>" . $order['paid'] . "</ПризнакВыполнения>\r\n" .
                     "\t\t<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\r\n" .
                     "\t\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n";
 
