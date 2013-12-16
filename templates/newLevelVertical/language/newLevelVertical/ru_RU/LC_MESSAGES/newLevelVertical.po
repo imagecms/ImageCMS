@@ -1113,7 +1113,7 @@ msgid "Создание списка избранных товаров"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:51
-msgid "Создать новий список"
+msgid "Создать новый список"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:53
