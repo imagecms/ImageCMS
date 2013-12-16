@@ -1,5 +1,5 @@
 <script type="text/javascript">
-   // var lang = new Object();
+    // var lang = new Object();
     var langs = new Object();
 
     langs.moduleInstall = "{lang('Module installed','admin')}";
@@ -105,7 +105,11 @@
 
     {literal}
         function lang(value) {
-            return  langs[value];
+            if (langs[value]) {
+                return  langs[value];
+            } else {
+                return value;
+            }
         }
     {/literal}
 
