@@ -305,15 +305,15 @@ var Filter = {
         $('.tooltip').tooltip('remove');
         $('.clear-filter').click(function() {
             var nm = $(this).data('name');
-            $('#' + nm + ' input').attr('checked', false);
-            $(this.catalogForm).submit();
+            $('#' + nm + ' input').parent().nStCheck('checkUnChecked');
+            $(catalogForm).submit();
             return false;
         });
         $('.clear-slider').click(function() {
             var obj = eval($(this).data('rel'));
             $(obj.minCost).val(obj.defMin);
             $(obj.maxCost).val(obj.defMax);
-            $(this.catalogForm).submit();
+            $(catalogForm).submit();
 
             return false;
         });
