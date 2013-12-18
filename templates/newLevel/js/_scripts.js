@@ -177,7 +177,7 @@ function init() {
             DiscountFront.getDiscount('count_changed');
         ShopFront.Cart.processBtnBuyCount(body);
     });
-    doc.on('displayDiscount', function(e) {
+    doc.on('beforeDisplayDiscount', function(e) {
         ShopFront.Cart.countSum();
         ShopFront.Cart.process();
     });
@@ -185,6 +185,7 @@ function init() {
     doc.on('after_add_to_cart', function(e) {
         ShopFront.Cart.initShopPage(e.show);
         //ShopFront.Cart.initShopPage(false, e.cartItem); //for animate img to tinybask
+        ShopFront.Cart.processBtnBuyCount();
         DiscountFront.getDiscount('after_add_to_cart');
     });
     doc.on('cart_rm', function(data) {
