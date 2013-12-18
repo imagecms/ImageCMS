@@ -1400,7 +1400,7 @@ $(document).ready(function() {
     /* ----------------------- Siteinfo ---------------------------*/
 
     // for adding contacts rows in Admin panel - system - site config - site info
-    $("#site_info_tab").delegate('#siteinfo_addcontact', "click", function() {
+    $("#siteinfo_addcontact").die('click').live("click", function() {
         var trs = $("#siteinfo_contacts_table tr").clone();
         var firstTr = trs[0];
         $(firstTr)

@@ -8,6 +8,7 @@
             </div>
             <div class="big-container">
                 <div class="carousel-js-css items-carousel">
+                    {/*frame-scroll-pane || carousel-js-css || ' '*/}
                     <div class="content-carousel container">
                         <ul class="items items-catalog items-h-carousel">
                             {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true))}

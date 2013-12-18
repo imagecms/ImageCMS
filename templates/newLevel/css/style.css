@@ -116,7 +116,7 @@ a{cursor: pointer;}
 
 /*base icons*/
 a.f-s_0{display: inline-block;text-decoration: none;}
-[class*="frame-icon"]{text-align: center;float: left;font-size: 0;}
+[class*="frame-icon"]{text-align: center;float: left;font-size: 0;background-image: none !important;}
 [class*="icon_"], [class*="icon-"]{display: inline-block;font-size: 0;line-height: 0;position: relative;width: 0;height: 0;}
 [class*="icon_"]{position: absolute;}
 /*/base icons*/

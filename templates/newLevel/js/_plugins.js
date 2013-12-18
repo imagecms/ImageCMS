@@ -1647,17 +1647,32 @@ function getCookie(c_name)
         },
         init: function(options) {
             $.extend(methods.defaultParams, options);
-            this.add($('[data-drop]')).each(function() {
+            this.filter(':not(.isDrop)').each(function() {
                 var el = $(this),
-                trigger = (methods.defaultParams.trigger || el.data('trigger')).toString();
+                trigger = (el.data('trigger') || methods.defaultParams.trigger).toString();
                 methods._modalTrigger();
-                el.off(trigger + '.drop').on(trigger + '.drop', function(e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    methods.open($(this), e)
+                
+                el.addClass('isDrop');
+                el.on(trigger + '.drop', function(e) {
+                    if ($(this).hasClass('isDrop')){
+                        e.stopPropagation();
+                        e.preventDefault();
+                        methods.open($(this), e)
+                    }
                 });
             });
             return $(this);
+        },
+        destroy: function(el, trigger){
+            if (el == undefined)
+                el = this;
+            if (trigger == undefined)
+                trigger = el.attr('data-trigger');
+            el.removeAttr('data-trigger').removeData('trigger').removeClass('isDrop').off(trigger + '.drop');
+            var drop = $(el.attr('data-drop'));
+            methods.close(drop);
+            drop.removeData();
+            return el;
         },
         _modalTrigger: function(){
             $(document).off('drop.successJson').on('drop.successJson', function(e) {
@@ -1672,8 +1687,7 @@ function getCookie(c_name)
                 el = this;
             var elSet = el.data();
             if (elSet.drop != undefined) {
-                var drop = $(elSet.drop);
-
+                
                 $.ajax({
                     type: "post",
                     data: elSet.data,
@@ -1687,22 +1701,24 @@ function getCookie(c_name)
                     success: function(data) {
                         if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
                             methods._modalTrigger();
+                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
+                            var drop = $(elSet.drop);
                             $(document).trigger({
                                 type: 'drop.successJson',
                                 el: drop,
                                 datas: data
                             });
-                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
                         }
                         else {
+                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), data);
+                            var drop = $(elSet.drop);
                             $(document).trigger({
                                 type: 'drop.successHtml',
                                 el: drop,
                                 datas: data
                             });
-                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), data);
                         }
-                        methods.init.call(drop.find('[data-drop]'), $.extend({}, methods.defaultParams));
+                        methods.init.call(drop.find('[data-drop]:not(.isDrop)'), $.extend({}, methods.defaultParams));
                         methods._show(el, e, methods.defaultParams, true, data);
                     }
                 });
@@ -1809,9 +1825,9 @@ function getCookie(c_name)
                             if (drop.data('forCenter') === undefined) {
                                 _for_center(set.drop);
                             }
-                            var forCenter = $(sel);
-                            drop = drop.appendTo(forCenter).data('forCenter', forCenter);
                         }
+                        var forCenter = $(sel);
+                        drop = drop.appendTo(forCenter).data('forCenter', forCenter);
                     }
                     else {
                         if (!$.exists(sel)) {
@@ -1954,7 +1970,6 @@ function getCookie(c_name)
                 'data-trigger': trigger
             }).parent().addClass(aC);
             methods.defaultParams.durationOff = $thisDOff;
-            console.log(selSource)
             drop.data({
                 'trigger': trigger,
                 'effectOn': $thisEOn,
