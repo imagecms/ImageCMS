@@ -4,7 +4,7 @@
 
 /**
  * Image CMS
- * Module Frame
+ * Translator Module 
  */
 class Translator extends MY_Controller {
 

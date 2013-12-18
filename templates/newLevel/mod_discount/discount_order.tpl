@@ -26,6 +26,6 @@
 </div>
 <div>
     <span class="s-t">{lang('Общая скидка: ','newLevel')}</span>
-    <span class="price-item text-discount"><span>-{echo $discount->result_sum_discount_convert + $kitDisc} <span class="curr">{$CS}</span></span></span>
+    <span class="price-item text-discount"><span>{echo $discount->result_sum_discount_convert + $kitDisc} <span class="curr">{$CS}</span></span></span>
 </div>
 {/if}

@@ -83,7 +83,7 @@
                                                             {/foreach}
                                                         </select>
 
-                                                        <p class="help-block">{lang("Select  a field group  for a category","admin")}.</p>
+                                                        <p class="help-block">{lang("Select a field group for a category","admin")}.</p>
                                                         <span class="frame_label no_connection m-t_20">
                                                             <span class="niceCheck b_n">
                                                                 <input type="checkbox" value="1" name="category_apply_for_subcats" /> 
@@ -103,7 +103,7 @@
                                                                 <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
                                                             {/foreach}
                                                         </select>
-                                                        <span class="help-block">{lang("Select a field group to be displayed/ viewed  in the created category of the group or group category", 'admin')}.</span>
+                                                        <span class="help-block">{lang("Select a field group to be displayed/ viewed in the created category of the group or group category", 'admin')}.</span>
                                                         <span class="frame_label no_connection m-t_20">
                                                             <span class="niceCheck b_n">
                                                                 <input type="checkbox" value="1" name="apply_for_subcats" /> 
@@ -169,7 +169,7 @@
                                                         <div class="pull-left span6 p-r_10">
                                                             <select name="order_by" id="order_by">
                                                                 <option value="publish_date" selected="selected">{lang("by date","admin")}</option>    
-                                                                <option value="title">{lang("By alphabet or  in the alphabetic order","admin")}</option>    
+                                                                <option value="title">{lang("By alphabet or in the alphabetic order","admin")}</option>    
                                                                 <option value="position">{lang("By position","admin")}</option>    
                                                             </select>
                                                         </div>

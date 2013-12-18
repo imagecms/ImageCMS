@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 07:19+0200\n"
-"PO-Revision-Date: 2013-12-09 07:19+0200\n"
+"POT-Creation-Date: 2013-12-11 12:01+0200\n"
+"PO-Revision-Date: 2013-12-11 12:01+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,7 +17,6 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ..\n"
 
 #: ./templates/newLevel/404.tpl:10
 msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться поиском по сайту либо перейти на"
@@ -1331,7 +1330,7 @@ msgid "Создание списка избранных товаров"
 msgstr ""
 
 #: ./templates/newLevel/wishlist/wishlist.tpl:90
-msgid "Создать новий список"
+msgid "Создать новый список"
 msgstr ""
 
 #: ./templates/newLevel/patterns/widgets/brands.tpl:41

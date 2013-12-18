@@ -8,7 +8,7 @@ $(document).ready(function() {
     });
 
     // *********************** Navigate pagination *********************************************
-    $('.pagination ul li').live('click', function() {
+    $('ul.pagination li').on('click', function() {
         Pagination.navigate($(this));
     });
 
@@ -27,15 +27,21 @@ $(document).ready(function() {
         }
     });
 
-    $('.translationCancel').live('click', function() {
+    $('.translationCancel').on('click', function() {
         $(this).next().val($(this).next().next().val());
         Translator.statisticRecount();
     });
 
-    $('.translation').live('blur', function() {
+    $('.translation').on('blur', function() {
         $(this).next().val($(this).val());
+        $(this).text($(this).val());
         Translator.statisticRecount();
     });
+
+    $('.comment').on('blur', function() {
+        $(this).text($(this).val());
+    });
+
 });
 
 var Sort = {
@@ -281,14 +287,14 @@ var Search = {
     comment: function() {
         this.init();
         for (var i = 0; i < this.searchedObjectLength; ) {
-            var comment = $(this.searchedObject[i]).find('.comment').text();
+            var comment = $(this.searchedObject[i]).find('.comment').val();
             if (this.checkCondition(comment)) {
                 $(this.searchedObject[i]).find('.comment').addClass('searched');
                 this.findValues.push(this.searchedObject[i]);
                 this.findValues.push(this.searchedObject[i + 1]);
+                this.countResults += 1;
             } else {
                 if (!$('#translationSearch').attr('checked')) {
-                    this.countResults += 1;
                     $(this.searchedObject[i + 1]).find('.translation').removeClass('searched');
                 }
                 if (!$('#originSearch').attr('checked')) {
@@ -669,14 +675,17 @@ var Translator = {
                         var results = JSON.parse(data);
                         var newCount = 0;
                         var oldCount = 0;
+                        var ignoredCount = 0;
                         $('.modal_update_results').removeClass('hide').removeClass('fade');
                         $('.modal_update_results').modal('show');
                         $('.modal-backdrop').show();
                         $('.newStrings').html('');
                         $('.obsoleteStrings').html('');
+                        $('.notCorrectStrings').html('');
+
 
                         for (var newString in results['new']) {
-                            if (newString) {
+                            if (newString && newString.match(/[\D]/)) {
                                 var paths = [];
                                 var tooltipMsg = '';
 
@@ -687,7 +696,21 @@ var Translator = {
                                 for (var path in paths) {
                                     tooltipMsg += paths[path] + '<br>';
                                 }
-                                $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(newString) + '</span><br>');
+                                $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
+                            } else {
+                                if (!newString.match(/[\D]/)) {
+                                    var paths = [];
+                                    var tooltipMsg = '';
+
+                                    ignoredCount++;
+                                    for (var path in results['new'][newString]) {
+                                        paths.push(results['new'][newString][path]);
+                                    }
+                                    for (var path in paths) {
+                                        tooltipMsg += paths[path] + '<br>';
+                                    }
+                                    $('.notCorrectStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
+                                }
                             }
                         }
 
@@ -704,13 +727,19 @@ var Translator = {
                                     tooltipMsg += paths[path] + '<br>';
                                 }
 
-                                $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + escapeHtml(obsoleteString) + '</span><br>');
+                                $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + obsoleteString + '</span><br>');
                             }
                         }
 
 
                         $('.parsedNewStringsCount').html(newCount);
                         $('.parsedRemoveStringsCount').html(oldCount);
+
+                        if (ignoredCount) {
+                            $('.notCorrectStringsLI').show();
+                            $('.notCorrectStringsCount').html(ignoredCount);
+                        }
+
                         $('.updateResults span').tooltip({
                             'delay': {
                                 show: 300,
@@ -741,6 +770,7 @@ var Translator = {
 
         results['new'] = newStrings;
         results['old'] = obsoleteStrings;
+
 
         $.ajax({
             url: this.getUrl('update'),
@@ -1085,9 +1115,9 @@ var Pagination = {
             var to = rows_count;
         }
 
-        var pages = "<li><a>< First</a></li><li data-number='1'><span>1</span></li>";
+        var pages = "<li><a>< " + lang('First') + "</a></li><li data-number='1'><span>1</span></li>";
         if (page_number == 1) {
-            pages = "<li><a>< First</a></li><li class='active' data-number='1'><span>1</span></li>";
+            pages = "<li><a>< " + lang('First') + "</a></li><li class='active' data-number='1'><span>1</span></li>";
         }
 
         var i = 2;
@@ -1101,9 +1131,9 @@ var Pagination = {
             pages += "<li class='" + active + "' data-number='" + i + "'><span>" + i + "</span></li>";
             i++;
         }
-        pages += "<li data-number='" + rows_count + "'><a>Last ></a></li>";
+        pages += "<li data-number='" + rows_count + "'><a>" + lang('Last ') + " ></a></li>";
 
-        $('.pagination ul').html(pages);
+        $('.pagination ul.pagination').html(pages);
     },
     navigate: function(curElement) {
         var module = $('#modules_templates').val();
@@ -1166,7 +1196,7 @@ var Pagination = {
             i++;
         }
         pages += "<li data-number='" + rows_count + "'><a>Last ></a></li>";
-        $('.pagination ul').html(pages);
+        $('.pagination ul.pagination').html(pages);
     },
     perPage: function() {
         var perPageCurrent = parseInt($('#per_page').val());
@@ -1181,6 +1211,21 @@ var Pagination = {
         });
 
         this.generate()
+    },
+    movePrev: function() {
+        var activeNum = $('ul.pagination li.active').data('number');
+        console.log(activeNum)
+        if(activeNum > 1){
+            if($('ul.pagination li')[activeNum-1]){
+                console.log($($('ul.pagination li')[activeNum-1]))
+                $($('ul.pagination li')[activeNum-1]).click();
+            }
+        }
+        
+        return false;
+    },
+    moveNext: function() {
+        return false;
     }
 
 }
@@ -1289,4 +1334,12 @@ function escapeHtml(text) {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+}
+
+function htmlspecialchars_decode(str) {
+    str = str_replace('&lt;', '<', str);
+    str = str_replace('&gt;', '>', str);
+    str = str_replace('&amp;', '&', str);
+
+    return str;
 }

@@ -94,7 +94,7 @@
                                         <a href="#" class="btn btn-large pjax" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
                                             <i class="icon-callback "></i>
                                         </a>
-                                        <a href="/admin/components/cp/comments" class="btn btn-large pjax" data-title="{lang("Latest/recent  comments")}" data-rel="tooltip" data-original-title="{lang("Latest/recent  comments")}">
+                                        <a href="/admin/components/cp/comments" class="btn btn-large pjax" data-title="{lang("Latest/recent comments","admin")}" data-rel="tooltip" data-original-title="{lang("Latest/recent comments","admin")}">
                                             <i class="icon-comment_head "></i>
                                         </a>
                                     </div>
@@ -240,7 +240,7 @@
                     </div>
                     <div class="span4 t-a_r">
                         <div class="muted">Copyright © ImageCMS 2013</div>
-                        <a href="http://wiki.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
+                        <a href="http://docs.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
                     </div>
                 </div>
             </div>

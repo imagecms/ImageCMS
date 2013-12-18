@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 03:11+0200\n"
-"PO-Revision-Date: 2013-12-09 03:11+0200\n"
+"POT-Creation-Date: 2013-12-16 03:00+0200\n"
+"PO-Revision-Date: 2013-12-16 03:00+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,23 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/translator/assets/js/admin.js:1118
+#: ./application/modules/translator/assets/js/admin.js:1120
+msgid "First"
+msgstr "Начало"
+
+#: ./application/modules/translator/assets/js/admin.js:1134
+msgid "Last "
+msgstr "Конец"
+
+#: ./application/modules/translator/assets/admin/list.tpl:185
+msgid "Please, enter search string..."
+msgstr "Пожалуйста, введите строку поиска..."
+
+#: ./application/modules/translator/assets/admin/list.tpl:56
+msgid "string(s) will be ignored"
+msgstr "будет проигнорировано"
 
 #: ./application/modules/translator/assets/js/admin.js:658
 msgid "Please set paths to parsing files."
