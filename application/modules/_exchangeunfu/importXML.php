@@ -856,7 +856,7 @@ class ImportXML {
             $data = array();
             $data['total_price'] = $total_price;
             $data['external_id'] = $order->ID . '';
-            $data['id'] = $order->IDWeb . '';
+            $data['id'] = $order_id['id'];
             $this->update[] = $data;
         }
     }
