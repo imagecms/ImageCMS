@@ -330,7 +330,7 @@ class ExportXML {
                     "\t\t<ID>" . $order['external_id'] . "</ID>\r\n" .
                     "\t\t<Дата>" . date('Y-m-d\Th:m:s', $order['date_created']) . "</Дата>\r\n" .
                     "\t\t<Номер>" . $order['code'] . "</Номер>\r\n" .
-                    "\t\t<СрокДоставки>" . date('Y-m-d\Th:m:s', $order['delivery_date']) . "</СрокДоставки>\r\n" .
+                    "\t\t<СрокДоставки>" . date('Y-m-d\TH:i:s', $order['delivery_date'] + $order['delivery_hour'] * 60 * 60) . "</СрокДоставки>\r\n" .
                     "\t\t<IDКонтрагент>" . $users[$order['user_id']] . "</IDКонтрагент>\r\n" .
                     "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n" .
                     "\t\t<Адрес>" . $order['user_deliver_to'] . "</Адрес>\r\n" .
