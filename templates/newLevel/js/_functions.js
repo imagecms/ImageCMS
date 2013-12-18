@@ -712,10 +712,6 @@ function dropBaskResize() {
     wnd.trigger('resize.drop');
 }
 function decorElemntItemProduct(el) {
-    try {
-        clearTimeout(curFuncTime);
-    } catch (err) {
-    }
     if (!el)
         el = $('.animateListItems > li');
     if ($.existsN(el.closest('.animateListItems'))) {

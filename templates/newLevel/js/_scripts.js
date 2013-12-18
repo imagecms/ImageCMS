@@ -87,8 +87,6 @@ function init() {
             });
             drop.prev().css('z-index', '');
         }
-        if ($('#fancybox-wrap').is(':visible'))
-            $.drop('scrollEmulate')();
     };
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
@@ -163,8 +161,6 @@ function init() {
         ShopFront.Cart.process();
         ShopFront.Cart.processBtnBuyCount();
         ShopFront.Cart.initShopPage(false);
-        if ($.exists(optionCompare.frameCompare))
-            $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
 
     $('#bask_block').on('click.toTiny', genObj.tinyBask + '.' + genObj.isAvail, function() {
@@ -190,9 +186,6 @@ function init() {
         ShopFront.Cart.initShopPage(e.show);
         //ShopFront.Cart.initShopPage(false, e.cartItem); //for animate img to tinybask
         DiscountFront.getDiscount('after_add_to_cart');
-        ShopFront.Cart.processBtnBuyCount();
-        if ($.exists(optionCompare.frameCompare))
-            $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
     doc.on('cart_rm', function(data) {
         if (!data.cartItem.kitId)
@@ -374,8 +367,6 @@ function init() {
             var userTool = new itemUserToolbar();
             userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
             $('.menu-main').menuImageCms('refresh');
-            if ($.exists(optionCompare.frameCompare))
-                $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
             banerResize('.baner:has(.cycle)');
         }, 300);
     });
