@@ -168,8 +168,7 @@ class Languages extends BaseAdminController {
                         '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
                         '"X-Poedit-Language: \n"' . PHP_EOL .
                         '"X-Poedit-Country: \n"' . PHP_EOL .
-                        '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
-                        '"X-Poedit-SearchPath-1: ..\n"' . PHP_EOL;
+                        '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
                 break;
         }
         return $content;

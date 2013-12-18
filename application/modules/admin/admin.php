@@ -92,7 +92,7 @@ class Admin extends MY_Controller {
             case 'expried':
                 $files = $this->cache->Clean();
                 if ($files)
-                    $message = lang("Outdated files  have been deleted", "admin") . $files;
+                    $message = lang("Outdated files have been deleted", "admin") . $files;
                 else
                     $message = lang("Cache has been cleared", "admin");
                 break;

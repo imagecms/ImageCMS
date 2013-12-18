@@ -269,6 +269,15 @@ function dis_un_dis() {
 }
 
 function init_2() {
+    $('.products_table').find('span.prod-on_off').add($('[data-page="tovar"]')).off('click').on('click', function() {
+        var page_id = $(this).attr('data-id');
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeActive/' + page_id,
+            onComplete: function(response) {
+            }
+        });
+    });
     // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
 
     if ($.exists('.buy_prod, .popover_ref')) {
