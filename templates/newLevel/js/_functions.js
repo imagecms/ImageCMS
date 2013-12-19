@@ -715,11 +715,15 @@ function dropBaskResize() {
     wnd.trigger('resize.drop');
 }
 function decorElemntItemProduct(el) {
+    try {
+        clearTimeout(curFuncTime);
+    } catch (err) {
+    }
     if (!el)
         el = $('.animateListItems > li');
     if ($.existsN(el.closest('.animateListItems'))) {
         function curFunc() {
-            clearTimeout(varcurFuncTime);
+            clearTimeout(curFuncTime);
             el.each(function() {
                 var $thisLi = $(this),
                 sumH = 0,
@@ -821,7 +825,7 @@ function decorElemntItemProduct(el) {
             });
             wnd.scroll(); //if lazyload
         }
-        var varcurFuncTime = setTimeout(curFunc, 400)
+        var curFuncTime = setTimeout(curFunc, 400)
     }
 }
 
