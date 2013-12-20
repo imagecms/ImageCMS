@@ -85,24 +85,24 @@
                                 <span class="title">{lang('Доставка:','newLevel')}</span>
                                 {$counter = true}
                                 <div class="frame-form-field check-variant-delivery">
-                                    {/*<div class="lineForm">
+                                    { /* <div class="lineForm">
                                         <select id="method_deliv" name="deliveryMethodId">
-                                    {foreach $deliveryMethods as $deliveryMethod}
-                                    {$del_id = $deliveryMethod->getId()}
-                                    <option
-                                    {if $counter} selected="selected"{/if}
-                                    {$counter = false}
-                                    {$del_id = $deliveryMethod->getId()}
-                                    {$price = ceil($deliveryMethod->getPrice())}
-                                    {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
+                                            {foreach $deliveryMethods as $deliveryMethod}
+                                                {$del_id = $deliveryMethod->getId()}
+                                                <option
+                                                {if $counter} selected="selected"{/if}
+                                                {$counter = false}
+                                                {$del_id = $deliveryMethod->getId()}
+                                                {$price = ceil($deliveryMethod->getPrice())}
+                                                {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
 
-                                    name="met_del"
-                                    value="{echo $del_id}"
-                                    data-price="{$price}"
-                                    data-freefrom="{echo $del_freefrom}"/>
-                                {echo $deliveryMethod->getName()}
-                                </option>
-                                {/foreach}
+                                                name="met_del"
+                                                value="{echo $del_id}"
+                                                data-price="{$price}"
+                                                data-freefrom="{echo $del_freefrom}"/>
+                                            {echo $deliveryMethod->getName()}
+                                            </option>
+                                        {/foreach}
                                     </select>
                                 </div>*/}
                                 <div class="frame-radio">
@@ -215,7 +215,7 @@
                                 </span>
                             </div>
                         </div>
-                </div>
+                    </div>
             </div>
             <div class="right-cart">
                 <div class="frameBask frame-bask frame-bask-order">
