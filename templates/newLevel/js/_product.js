@@ -231,8 +231,7 @@ Product = {
         drop.find('.addingphoto').remove();
     },
     onComplete: function(el, drop, isajax, data, elSet) {
-        drop.find('[data-drop]').drop(optionsDrop);
-
+        
         var carGal = drop.find('.content-carousel');
         drop.find('.drop-content-photo img').css('visibility', 'visible');
 

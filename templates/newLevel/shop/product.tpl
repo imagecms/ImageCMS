@@ -24,7 +24,7 @@
             <div class="f-s_0 title-product">
                 <!-- Start. Name product -->
                 <div class="frame-title">
-                    <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
+                    <h1 class="d_i title">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
                 <!-- End. Name product -->
                 <!-- Start. article & variant name & brand name -->
@@ -262,11 +262,11 @@
                     <dl class="social-product">
                         <dt class="s-t text-social-like">{lang('Понравился товар?', 'newLevel')}</dt>
                         <dd class="social-like">
-                            {/*echo $CI->load->module('share')->_make_like_buttons()*/}
+                            {echo $CI->load->module('share')->_make_like_buttons()}
                         </dd>
                         <dt class="s-t text-social-tell">{lang('Рассказать друзьям:', 'newLevel')}</dt>
                         <dd class="social-tell">
-                            {/*echo $CI->load->module('share')->_make_share_form()*/}
+                            {echo $CI->load->module('share')->_make_share_form()}
                         </dd>
                     </dl>
                     <!-- End. Share -->
@@ -365,7 +365,7 @@
     {if $model->getShopKits() && $model->getShopKits()->count() > 0 && $CI->dx_auth->is_logged_in()}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
-                <div class="title-complect">
+                <div class="frame-title">
                     <div class="title">{lang('Специальное предложение! Купить, установить и получить скидку на аксессуары!','newLevel')}</div>
                 </div>
                 <div class="carousel-js-css items-carousel complects-carousel">
@@ -684,13 +684,11 @@
     </div>
 </div>
 <!-- Start. Similar Products-->
-<div class="horizontal-carousel">
-    {widget('similar')}
-</div>
+{widget('similar')}
 <!-- End. Similar Products-->
 
 <!-- Start. News-->
-{widget('latest_news')}
+    {widget('latest_news')}
 <!-- End. News-->
 
 <!-- Start. Photo Popup Frame-->
