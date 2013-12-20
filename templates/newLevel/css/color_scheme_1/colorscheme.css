@@ -41,7 +41,6 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .not-avail .product-status .text-el{color: #eee !important;}
 .next-kit, .gen-sum-kit, .countOrCompl, .frame-cur-sum-price .title, .s-t, .count, .code{color: #999;}
 .text-discount{color: #ff7e00;}
-.name-check-filter{color: #0c9acb;}
 
 .list-style-1 li{position: relative;padding-left: 22px;}
 .list-style-1 li:before{content: "\b7";position: absolute;left: 9px;top: -6px;color: #0c9acb;font-size: 25px;}
@@ -89,7 +88,8 @@ input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:fo
 /*/user-toolbar*/
 
 /*links*/
-a, .ref{color: #287fc3;text-decoration: underline;}
+a, .ref, .name-check-filter{color: #287fc3;text-decoration: underline;}
+.name-check-filter{text-decoration: none;}
 a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{color: #51d2ff;text-decoration: none;}
 a.c_w:hover{color: #51d2ff !important;}
 a:focus, a:active {color: #51d2ff;}

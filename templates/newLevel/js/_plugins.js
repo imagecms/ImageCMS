@@ -1334,11 +1334,14 @@ function getCookie(c_name)
                                     var showBlock = $thisAO.add($('[data-id=' + $thisA + ']')),
                                     addDiv = toggle ? $([]) : showBlock;
                                     tabsDiv[index].add(tabsId[index]).not(addDiv)[effectOff](durationOff).removeClass(aC);
-                                    if (!($thisAO.is(':visible') && toggle))
+                                    if ($thisA.indexOf('#') !== -1 && !($thisAO.is(':visible') && toggle)){
                                         if (!$thisAO.is(':visible'))
                                             showBlock[effectOn](durationOn, function() {
                                                 settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
                                             }).addClass(aC);
+                                    }
+                                    else if ($thisA.indexOf('#') === -1)
+                                        settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
                                 }
                                 if (!$thisDD) {
                                     var activeP = $this.parent();
