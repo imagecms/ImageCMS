@@ -339,7 +339,7 @@ input.input-search{height: 33px;}
 .items-catalog .photo-block{margin-bottom: 10px;width: 200px;height: 180px;}
 .items-catalog.list .photo-block{float: left;margin-right: 10px;}
 .items-catalog.list .description{margin-left: 210px;}
-.items-catalog.list .frame-without-top{top: auto !important;}
+.items-catalog.list .frame-without-top{position: static !important;}
 .items-catalog .frame-star{margin-bottom: 8px;}
 .items-catalog .price-discount{margin-bottom: 10px;display: block;}
 .items-catalog .price-discount + .current-prices{margin-bottom: 10px;}
@@ -587,9 +587,8 @@ input.input-search{height: 33px;}
 .scrollNSP > div{height: 1px;}
 .jspArrow{text-indent: -20000px;display: block;cursor: pointer;}
 .jspArrow.jspDisabled{cursor: default;}
-.jspVerticalBar .jspArrow{height: 16px;}
+.jspVerticalBar .jspArrow{height: 16px;width: 100%;}
 .jspHorizontalBar .jspArrow{width: 16px;float: left;height: 100%;}
-.jspVerticalBar .jspArrow{width: 100%;}
 .jspVerticalBar .jspArrow:focus{outline: none;}
 .jspCorner{float: left;height: 100%;}
 /*/carousels*/
@@ -869,14 +868,13 @@ input + .msg{margin-top: 5px;}
 .list-check-filter{padding: 5px 13px 7px;}
 .list-check-filter > li{overflow: hidden;margin-bottom: 1px;}
 .frame-check-filter .title{padding: 5px 12px;}
-.name-check-filter{margin-left: 16px;display: block;line-height: 1.2;}
+.name-check-filter{margin-left: 16px;display: block;line-height: 1.2;text-align: left;}
 .foot-check-filter{position: relative;overflow: hidden;}
 .check-filter{margin: 0 0 8px;}
 .check-filter li{margin-bottom: 1px;}
 .check-filter > li > div{margin-left: 16px;}
 
 .frames-checks-sliders .title{margin-bottom: 9px;}
-.name-check-filter{text-align: left;}
 
 .slider-cont{margin: 17px 0 17px;position: relative;}
 .slider {position: relative;height: 9px;}
@@ -915,7 +913,6 @@ input + .msg{margin-top: 5px;}
 .header-category .groups-buttons, .header-category .lineForm{vertical-align: middle;}
 
 .title-category{margin-bottom: 14px;}
-#searchSortForm{position: relative;z-index: 2;}
 .item-brand-category .photo-block{width: 176px;height: 86px;}
 .item-brand-category .description{margin-left: 200px;}
 .frame-category-brand .inside-padd{padding: 20px 15px;}
