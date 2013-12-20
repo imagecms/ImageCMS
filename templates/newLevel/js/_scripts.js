@@ -251,14 +251,6 @@ function init() {
         ShopFront.Cart.pasteItems(e.el);
         e.els.find(preloader).remove();
     });
-
-    //if select in compare
-    $('#compare').change(function() {
-        var $this = $(this);
-        $($this.val()).siblings().hide().end().show();
-        optionCompare.compareChangeCategory();
-    }).change();
-
     doc.on('autocomplete.fewLength', function(e) {
         e.el.tooltip({
             'title': text.search(e.value)
