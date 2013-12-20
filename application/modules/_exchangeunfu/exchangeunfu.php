@@ -107,6 +107,19 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public static function _setHour($date) {
+        $ci = &get_instance();
+        $extId = self::getDefaultRegionIds();
+        $parter = $ci->db->where('external_id', $extId["external_id"])->get('mod_exchangeunfu_partners');
+        if ($parter) {
+            $parter = $parter->row_array();
+
+            $ci->db
+                    ->where('external_id', $parter['external_id'])
+                    ->set('send_cat', 1)
+                    ->set('send_users', 1)
+                    ->set('send_prod', 1)
+                    ->update('mod_exchangeunfu_partners');
+        }
 
         preg_match_all('/\d+/', $_POST['timedilivery'], $hours);
         $i = $hours[0][0];
@@ -994,10 +1007,18 @@ class Exchangeunfu extends MY_Controller {
         if ($this->check_perm() === true) {
             $this->export = new \exchangeunfu\exportXML();
             if ($this->input->get('partner')) {
-                $parter_id = $this->db->select('external_id')->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
-                if ($parter_id) {
-                    $parter_id = $parter_id->row_array();
-                    $this->export->export($parter_id['external_id']);
+                $parter = $this->db->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
+                if ($parter) {
+                    $parter = $parter->row_array();
+
+                    $this->db
+                            ->where('external_id', $parter['external_id'])
+                            ->set('send_cat', 0)
+                            ->set('send_users', 0)
+                            ->set('send_prod', 0)
+                            ->update('mod_exchangeunfu_partners');
+
+                    $this->export->export($parter['external_id'], $parter['send_cat'], $parter['send_prod'], $parter['send_users']);
                 }
             } else {
                 $this->export->export();
