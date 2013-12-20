@@ -70,41 +70,6 @@ var optionsCycle = {
         return '<a href="#"></a>';
     }
 };
-var optionCompare = {
-    frameCompare: '.frame-tabs-compare > div',
-    left: '.left-compare li',
-    right: '.items-compare > li',
-    elEven: 'li',
-    frameScroll: '.items-compare',
-    mouseWhell: true,
-    scrollNSP: true, //show scroll
-    jScrollPane: true,
-    scrollNSPT: '.items-catalog',
-    onlyDif: $('[data-href="#only-dif"]'),
-    allParams: $('[data-href="#all-params"]'),
-    hoverParent: '.compare-characteristic',
-    after: function(el) {
-        $('.comprasion-head').css('height', el.find(optionCompare.scrollNSPT).height())
-        //        if carousel in compare
-        if ($.existsN(el.find('.carousel-js-css:not(.iscarousel)')))
-            el.find('.carousel-js-css:not(.iscarousel)').myCarousel(carousel);
-        wnd.scroll(); //for lazy
-    },
-    compareChangeCategory: function() {
-        if ($.exists(optionCompare.frameCompare)) {
-            $(optionCompare.frameCompare).equalHorizCell(optionCompare);
-            if (optionCompare.onlyDif.parent().hasClass('active'))
-                optionCompare.onlyDif.click();
-            else
-                optionCompare.allParams.click();
-        }
-    },
-    scrollPane: {
-        animateScroll: true,
-        showArrows: true,
-        arrowButtonSpeed: 250
-    }
-};
 var optionsDrop = {
     overlayColor: '#000',
     overlayOpacity: '0.6',
@@ -156,20 +121,6 @@ var imageCmsApiDefaults = {
     }
 // callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide 
 // any other
-};
-var cleaverFilterObj = {
-    elClosed: '.icon_times_apply',
-    elCount: '#apply-count',
-    effectIn: 'fadeIn',
-    effectOff: 'fadeOut',
-    duration: '300',
-    location: 'right', //if vertical has be left
-    //addingClass: 'left',//if vertical has be left
-    elPos: '.frame-group-checks .frame-label',
-    dropDownEff: 'slideToggle',
-    dropDownEffDur: '400',
-    currentPosScroll: [],
-    dropDownArr: []
 };
 var icons = {
     icon_enter: "M18.386,16.009l0.009-0.006l-0.58-0.912c1.654-2.226,1.876-5.319,0.3-7.8c-2.043-3.213-6.303-4.161-9.516-2.118c-3.212,2.042-4.163,6.302-2.12,9.517c1.528,2.402,4.3,3.537,6.944,3.102l0.424,0.669l0.206,0.045l0.779-0.447l-0.305,1.377l2.483,0.552l-0.296,1.325l1.903,0.424l-0.68,3.06l1.406,0.313l-0.424,1.906l4.135,0.918l0.758-3.392L18.386,16.009z M10.996,8.944c-0.685,0.436-1.593,0.233-2.029-0.452C8.532,7.807,8.733,6.898,9.418,6.463s1.594-0.233,2.028,0.452C11.883,7.6,11.68,8.509,10.996,8.944z",
