@@ -323,6 +323,9 @@ var DiscountFront = {
         if (!orderDetails)
             k = false;
         $(document).trigger('showActivity');
+        $(document).trigger({
+            'type': 'beforeDisplayDiscount'
+        });
         $.ajax({
             type: 'GET',
             url: '/shop/cart_api/get_kit_discount',
@@ -720,7 +723,7 @@ function decorElemntItemProduct(el) {
         el = $('.animateListItems > li');
     if ($.existsN(el.closest('.animateListItems'))) {
         function curFunc() {
-            clearTimeout(varcurFuncTime);
+            clearTimeout(curFuncTime);
             el.each(function() {
                 var $thisLi = $(this),
                 sumH = 0,
@@ -822,7 +825,7 @@ function decorElemntItemProduct(el) {
             });
             wnd.scroll(); //if lazyload
         }
-        var varcurFuncTime = setTimeout(curFunc, 400)
+        var curFuncTime = setTimeout(curFunc, 400)
     }
 }
 

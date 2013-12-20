@@ -49,8 +49,7 @@ class Admin extends BaseAdminController {
             else {
                 showMessage($this->email->errors, '', 'r');
             }
-        }
-        else
+        } else
             \CMSFactory\assetManager::create()
                     ->registerScript('email', TRUE)
                     ->setData('settings', $this->email->getSettings())
@@ -67,12 +66,12 @@ class Admin extends BaseAdminController {
     }
 
     public function edit($id, $locale = null) {
-        if(null === $locale)
+        if (null === $locale)
             $locale = chose_language();
-        
+
         $model = $this->email->getTemplateById($id, $locale);
-        
-        if(!$model){
+
+        if (!$model) {
             $this->load->module('core');
             $this->core->error_404();
             exit;
@@ -89,11 +88,10 @@ class Admin extends BaseAdminController {
             else {
                 showMessage($this->email->errors, '', 'r');
             }
-        }
-        else
+        } else
             \CMSFactory\assetManager::create()
                     ->setData('locale', $locale)
-                    ->setData('languages',  $this->db->get('languages')->result_array())
+                    ->setData('languages', $this->db->get('languages')->result_array())
                     ->setData('model', $model)
                     ->setData('variables', $variables)
                     ->registerScript('email', TRUE)
@@ -174,7 +172,7 @@ class Admin extends BaseAdminController {
 
     public function getTemplateVariables($locale = null) {
         if (null === $locale)
-            $locale = chose_language ();
+            $locale = chose_language();
         $template_id = $this->input->post('template_id');
         $variables = $this->email->getTemplateVariables($template_id, $locale);
         if ($variables) {
@@ -189,14 +187,16 @@ class Admin extends BaseAdminController {
     /**
      * import templates from file
      */
-    public function import_templates(){
-        $this->db->where_in('id', array(1,2,3,4,5,6,7))->delete('mod_email_paterns');
+    public function import_templates() {
+        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7))->delete('mod_email_paterns');
+        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7))->delete('mod_email_paterns_i18n');
+
         $file = $this->load->file(dirname(__FILE__) . '/models/paterns.sql', true);
         $this->db->query($file);
+
         $file = $this->load->file(dirname(__FILE__) . '/models/patterns_i18n.sql', true);
         $this->db->query($file);
         redirect('/admin/components/cp/cmsemail/');
-        
     }
 
 }
