@@ -395,7 +395,7 @@ a:focus, a:active {color: #51d2ff;}
 }
 .items-v-carousel > li{border-top: 1px solid #eae5e1;}/*because border*/
 .items-v-carousel > li:first-child{border-top: 0;}
-.group-button-carousel .arrow > [class*="icon_arrow"]{width: 14px;height: 21px;top: 3px;}
+.arrow > [class*="icon_arrow"]{width: 14px;height: 21px;top: 3px;}
 .horizontal-carousel .group-button-carousel .arrow{width: 50px;height: 50px;margin-top: -25px;-moz-border-radius: 25px;-webkit-border-radius: 25px;border-radius: 25px;}
 .vertical-carousel .group-button-carousel .arrow{left: 50%;margin-left: -9px;width: 15px;}
 .vertical-carousel .group-button-carousel .prev{top: 9px;}
@@ -894,10 +894,10 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .icon_phone_header{margin: 23px 6px 0 20px;top: 3px;}
 .icon_search{color: #fff;margin: 16px 0 0 14px;}
 .icon_cleaner{margin: 5px 0 0 3px;color: #999;}
-.group-button-carousel .arrow > [class*="icon_arrow"]{color: #0c9acb;margin: 6px 0 0 9px;left: 0;}
-.group-button-carousel .next > [class*="icon_arrow"]{left: 2px;}
-.vertical-carousel .group-button-carousel .prev > [class*="icon_arrow"], .btn-to-up [class*="icon_arrow"]{transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
-.vertical-carousel .group-button-carousel .next > [class*="icon_arrow"]{left: 1px;transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
+[class*="icon_arrow"]{color: #0c9acb;margin: 6px 0 0 9px;left: 0;}
+.next > [class*="icon_arrow"]{left: 2px;}
+.vertical-carousel .prev > [class*="icon_arrow"], .btn-to-up [class*="icon_arrow"]{transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
+.vertical-carousel .next > [class*="icon_arrow"]{left: 1px;transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
 .icon_cleaner_buy{top: 1px;margin: 20px 8px 0 16px;color:#fff;}
 /*.btn-buy-p .icon_cleaner_buy{top: 4px;margin: 10px 8px 0 10px;}*/
 .icon_time{color: #373737;margin: 24px 4px 0 22px;}
