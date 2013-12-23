@@ -844,10 +844,10 @@ class ImportXML {
 //                    $data['id'] = $product->IDWebДокумента . '';
 //                    $this->update_order_products[] = $data;
 //                } else {
-                    $data['order_id'] = $order_id['id'];
-                    $data['external_order_id'] = $order_id['external_id'];
-                    $data['external_id'] = $product->IDДокумента . '';
-                    $this->insert_order_products[] = $data;
+                $data['order_id'] = $order_id['id'];
+                $data['external_order_id'] = $order_id['external_id'];
+                $data['external_id'] = $product->IDДокумента . '';
+                $this->insert_order_products[] = $data;
 //                }
 
                 $total_price += (int) $product->Сумма;
@@ -856,7 +856,7 @@ class ImportXML {
             $data = array();
             $data['total_price'] = $total_price;
             $data['external_id'] = $order->ID . '';
-            $data['id'] = $order->IDWeb . '';
+            $data['id'] = $order_id['id'];
             $this->update[] = $data;
         }
     }
@@ -873,9 +873,9 @@ class ImportXML {
             $data['hour'] = $productivity->Час . '';
             $data['count'] = (int) $productivity->Количество;
             $data['partner_external_id'] = $productivity->IDОрганизация . '';
-
+            
             if (is_partner($data['partner_external_id'], $this->partners)) {
-                $is_productivity = is_productivity($data['external_id'], $this->productivity);
+                $is_productivity = is_productivity($data['external_id'], $data['partner_external_id'], $this->productivity);
                 if ($productivity->IDWeb || $is_productivity) {
                     $data['id'] = $productivity->IDWeb . '' ? $productivity->IDWeb . '' : $is_productivity['id'];
                     $this->update[] = $data;
