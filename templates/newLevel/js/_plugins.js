@@ -1706,8 +1706,8 @@ function getCookie(c_name)
                     success: function(data) {
                         if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
                             methods._modalTrigger();
-                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
                             var drop = $(elSet.drop);
+                            methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
                             $(document).trigger({
                                 type: 'successJson.' + nS,
                                 el: drop,
