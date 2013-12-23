@@ -59,7 +59,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
     public static function changeCart($cart){
         
         $obj = new \mod_discount\discount_order;
-        $obj->update_cart_discount($cart);
+        $obj->update_cart_discount($cart['object']);
         
     }
 
