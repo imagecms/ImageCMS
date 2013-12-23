@@ -118,10 +118,12 @@ if (!function_exists('is_price')) {
 
 if (!function_exists('is_productivity')) {
 
-    function is_productivity($productivity_ext_id, $productivity_db) {
+    function is_productivity($productivity_ext_id, $partnetExtId, $productivity_db) {
+
         foreach ($productivity_db as $val) {
             if ($val['external_id'] == $productivity_ext_id)
-                return $val;
+                if ($val['partner_external_id'] == $partnetExtId)
+                    return $val;
         }
         return false;
     }
@@ -276,7 +278,7 @@ if (!function_exists('is_orders_product')) {
 
     function is_orders_product($order_id, $products, $product_id) {
         foreach ($products as $val) {
-            if ($val['product_id'] == $product_id && $val['order_id'] == $order_id){
+            if ($val['product_id'] == $product_id && $val['order_id'] == $order_id) {
                 return $val;
             }
         }
