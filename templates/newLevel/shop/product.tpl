@@ -174,7 +174,7 @@
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
                                                             data-url="{echo shop_url('product/'.$model->getUrl())}"
-                                                            data-img="{echo $productVariant->getSmallPhoto()}"
+                                                            data-img="{if preg_match('/nophoto/', $productVariant->getSmallPhoto()) > 0}{echo $model->firstVariant->getSmallPhoto()}{else:}{echo $productVariant->getSmallPhoto()}{/if}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
@@ -207,7 +207,7 @@
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
-                                                            data-img="{echo $productVariant->getSmallPhoto()}"
+                                                            data-img="{if preg_match('/nophoto/', $productVariant->getSmallPhoto()) > 0}{echo $model->firstVariant->getSmallPhoto()}{else:}{echo $productVariant->getSmallPhoto()}{/if}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             class="infoBut">
