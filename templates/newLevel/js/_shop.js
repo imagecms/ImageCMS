@@ -575,9 +575,9 @@ var ImageCMSApi = {
                 return this;
             }
         }).done(function() {
-            ImageCMSApi.returnMsg("=== Api request success!!! ===");
+            returnMsg("=== Api request success!!! ===");
         }).fail(function() {
-            ImageCMSApi.returnMsg("=== Api request breake with error!!! ===");
+            returnMsg("=== Api request breake with error!!! ===");
         });
         return;
     },

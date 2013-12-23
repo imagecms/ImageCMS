@@ -38,8 +38,10 @@
                                     <div class="control-group">
                                         <label class="control-label" for="old_url">{lang('Old URL', 'trash')}</label>
                                         <div class="controls">
-                                            <label name="old_url" id="old_url">{echo site_url().$trash->trash_url}</label>
-                                            <input type="hidden" name="old_url" id="old_url" value="{echo $trash->trash_url}" required/>
+                                            <div class="input-prepend">
+                                                <span class="add-on">{site_url()}</span>
+                                                <input name="old_url" type="text" value="{echo $trash->trash_url}" required>
+                                            </div>
                                         </div>
                                     </div>
 

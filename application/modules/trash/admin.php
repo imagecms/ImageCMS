@@ -2,6 +2,9 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+/**
+ * @author Gula Andriw <a.gula@imagecms.net>
+ */
 class Admin extends BaseAdminController {
 
     public function __construct() {
@@ -10,7 +13,7 @@ class Admin extends BaseAdminController {
         $lang->load('trash');
 
         $this->load->library('DX_Auth');
-        
+
         \CMSFactory\assetManager::create()->registerScript('script');
         //cp_check_perm('module_admin');
     }
@@ -20,6 +23,59 @@ class Admin extends BaseAdminController {
         $this->template->add_array(array('model' => $query->result()));
         if (!$this->ajaxRequest)
             $this->display_tpl('main');
+    }
+
+    /**
+     * 
+     * @param type $trash_url
+     * @param type $redirect_url
+     * @param type $type
+     * @throws Exception
+     */
+    function create_redirect($trash_url, $redirect_url, $type = 301) {
+        if (!isset($trash_url))
+            throw new Exception(lang('Old URL is not specified', 'tresh'));
+
+        if (!isset($redirect_url))
+            throw new Exception(lang('New URL is not specified', 'tresh'));
+
+        $array = array(
+            'trash_url' => ltrim($trash_url, '/'),
+            'trash_redirect_type' => 'url',
+            'trash_type' => in_array($type, array(301, 302)) ? $type : 301,
+            'trash_redirect' => 'http://' . ltrim($redirect_url, 'http://')
+        );
+
+        $this->db->insert('trash', $array);
+
+        if ($this->db->_error_message())
+            throw new Exception($this->db->_error_message());
+    }
+
+    function create_trash_list() {
+        $this->display_tpl('create_trash_list');
+    }
+
+    function trash_list() {
+        if ($this->input->post('urls')) {
+            $data = nl2br($this->input->post('urls'));
+            $data = explode('<br />', $data);
+            $data = array_map('trim', $data);
+            $data = array_filter($data);
+            foreach ($data as $value) {
+
+                $value = explode(' ', $value);
+                try {
+                    $this->create_redirect($value[0], $value[1], $value[2]);
+                } catch (Exception $exc) {
+                    showMessage($exc->getMessage(), FALSE, 'r');
+                    exit;
+                }
+            }
+            showMessage(lang('Success', 'trash'));
+        } else {
+            showMessage(lang('Failure', 'trash'), FALSE, 'r');
+        }
     }
 
     function create_trash() {
@@ -215,8 +271,8 @@ class Admin extends BaseAdminController {
             $this->db->update('trash', $array);
         }
 
-        if ($this->input->post('action') == 'save')
-            pjax('/admin/components/init_window/trash/edit_trash/' . $this->input->post('id'));
+        if ($this->input->post('action'))
+            showMessage(lang('Success', 'trash'));
         if ($this->input->post('action') == 'exit')
             pjax('/admin/components/init_window/trash');
     }

@@ -1,4 +1,4 @@
-<div class="drop-static-page drop drop-style" id="staticPage">
+<div class="drop-staticpage drop drop-style" id="staticPage">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">

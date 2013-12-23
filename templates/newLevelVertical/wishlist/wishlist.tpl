@@ -87,7 +87,7 @@
                                                     data-effect-off="fadeOut"
                                                     data-after="createWishList"
                                                     >
-                                                    <span class="text-el">{lang('Создать новий список','newLevel')}</span>
+                                                    <span class="text-el">{lang('Создать новый список','newLevel')}</span>
                                                 </button>
                                             </div>
                                         </div>

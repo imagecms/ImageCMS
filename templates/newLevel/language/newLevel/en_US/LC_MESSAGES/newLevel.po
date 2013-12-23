@@ -1061,7 +1061,7 @@ msgid "Создание списка избранных товаров"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:49
-msgid "Создать новий список"
+msgid "Создать новый список"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:51

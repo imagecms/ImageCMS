@@ -559,7 +559,7 @@
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
-                    <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'))">
+                    <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'), {literal}{'visibleMainForm': '1'}{/literal})">
                         <span class="icon_comment-tab"></span>
                         <span class="text-el">
                             <span id="cc">
@@ -636,7 +636,9 @@
                     <div class="frame-form-comment">
                         {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                         <div class="forComments">
-                            {echo $c['comments']}
+                            {if intval($c['commentsCount']) > 0}
+                                {echo $c['comments']}
+                            {/if}
                         </div>
                         <!--End. Comments block-->
                     </div>
