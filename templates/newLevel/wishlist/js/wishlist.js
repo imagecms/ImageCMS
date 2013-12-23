@@ -241,7 +241,7 @@ $(document).on('scriptDefer', function() {
         $(img).load(function() {
             if ($(this).actual('width') > wishPhoto.data('widht') || $(this).actual('height') > wishPhoto.data('height')) {
                 $(document).trigger({
-                    type: 'drop.successJson',
+                    type: 'successJson.drop',
                     el: $('#notification'),
                     datas: {
                         'answer': true,
@@ -293,7 +293,7 @@ $(document).on('scriptDefer', function() {
     if (!isLogin) {
         $('.' + genObj.toWishlist).on('click.toWish', function(e) {
             $(document).trigger({
-                type: 'drop.successJson',
+                type: 'successJson.drop',
                 el: $('#notification'),
                 datas: {
                     'answer': true,
