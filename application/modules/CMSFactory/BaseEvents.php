@@ -68,9 +68,10 @@ abstract class BaseEvents {
     public function runFactory() {
         (defined('BASEPATH')) OR exit('No direct script access allowed');
         foreach (Events::create()->storage as $key => $value) {
-            if ($value['run'] === TRUE && count($value['collable']))
-                foreach ($value['collable'] as $run)
-                    call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
+            if (isset($value['run']))
+                if ($value['run'] === TRUE && count($value['collable']))
+                    foreach ($value['collable'] as $run)
+                        call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
         }
 //        \CMSFactory\Events::create()->get();
     }
@@ -389,6 +390,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onCartInit() {
+        $this->key = 'Cart:__construct';
+        return $this;
+    }
+
     final public function onSearchPageLoad() {
         $this->key = 'search:load';
         return $this;
@@ -397,4 +403,3 @@ abstract class BaseEvents {
 }
 
 /* End of file /application/modules/CMSFactory/BaseEvents.php */
-?>

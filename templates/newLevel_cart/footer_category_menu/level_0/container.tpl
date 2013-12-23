@@ -1,1 +1,0 @@
-<ul class="footer-category-menu">{$wrapper}</ul>

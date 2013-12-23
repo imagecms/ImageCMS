@@ -90,7 +90,8 @@ class Gift extends \mod_discount\classes\BaseDiscount {
                 $value = $this->get_discount_value($disc,$totalPrice);
                 $cart = new \CartNew\BaseCart(); 
                 $cart->setTotalPrice($cart->getTotalPrice() - $value); 
-                $cart->gift_info = $disc;               
+                $cart->gift_info = $disc;  
+                
                 break;
             } 
         
