@@ -5,7 +5,7 @@
         <div class="inside-padd">
             <div class="title">Цена</div>
             <div class="slider-cont">
-                <noscript>Джаваскрипт не включен</noscript>
+                <noscript>{lang('Джаваскрипт не включен', 'newLevel')}</noscript>
                 {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}
                 <div class="slider" id="slider1">
                     <a href="#" class="ui-slider-handle left-slider"></a>
@@ -16,10 +16,10 @@
                 <div class="t-a_j">
                     {/*may been delete*/}
                     <label>
-                        <input type="text" class="minCost" data-title="только цифры" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
+                        <input type="text" class="minCost" data-title="{lang('только цифры', 'newLevel')}" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
                     </label>
                     <label>
-                        <input type="text" class="maxCost" data-title="только цифры" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
+                        <input type="text" class="maxCost" data-title="{lang('только цифры', 'newLevel')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
                     </label>
                     <div class="btn-def">
                         <input type="submit" value="ОК"/>

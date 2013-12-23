@@ -50,7 +50,7 @@ class ExportXML {
     }
 
     /** export */
-    public function export($partner_id = null) {
+    public function export($partner_id = null, $send_cat = 1, $send_prod = 1, $send_users = 1) {
         //load db data
         $this->users = $this->ci->export_model->getUsers();
         $this->partners = $this->ci->export_model->getPartners($partner_id);
@@ -82,13 +82,13 @@ class ExportXML {
         }
 
         /** export products */
-        if ($this->products) {
+        if ($this->products && $send_prod) {
             $this->exportProducts();
         }
 //        } else {
         /** all export */
         /** export users */
-        if ($this->users) {
+        if ($this->users && $send_users) {
             $this->exportUsers();
         }
 
@@ -113,7 +113,7 @@ class ExportXML {
 //            }
 
         /** export categories */
-        if ($this->categories) {
+        if ($this->categories && $send_cat) {
             $this->exportCategories();
         }
 
