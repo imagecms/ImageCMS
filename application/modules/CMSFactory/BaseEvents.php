@@ -383,6 +383,11 @@ abstract class BaseEvents {
         $this->key = 'Cart:MakeOrder';
         return $this;
     }
+    
+    final public function onCartInit() {
+        $this->key = 'Cart:Init';
+        return $this;
+    }
 
     final public function onSearchPageLoad() {
         $this->key = 'search:load';

@@ -98,6 +98,21 @@ class BaseDiscount extends \MY_Controller {
         $this->cart_data = \ShopCore::app()->SCart->getData();
         return $this->cart_data;
     }
+     /**
+     * get Cart items for current session
+     * @access public
+     * @author DevImageCms
+     * @param ---
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_cart_data_new() {
+
+        $cart = new \CartNew\BaseCart();
+        $cart = $cart->getItems();
+        $this->cart_data = $cart['data'];
+        return $this->cart_data;
+    }
 
      /**
      * get current user amout
@@ -129,6 +144,21 @@ class BaseDiscount extends \MY_Controller {
         if (null === $data)
             $data = $this->cart_data;
         $this->total_price = $this->discount_model_front->get_total_price($data);
+        return $this->total_price;
+    }
+    
+     /**
+     * get totall origin price for current session
+     * @access public
+     * @author DevImageCms
+     * @param cart_data optional
+     * @return float
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_total_price_new($data = null) {
+
+        $cart = new \CartNew\BaseCart();
+        $this->total_price = $cart->getOriginTotalPrice();
         return $this->total_price;
     }
 
