@@ -37,7 +37,7 @@
                 <div class="p_r">
                     <!--Start. Show categories of products which are in list -->
                     <!--End. Show categories of products which are in list -->
-                    <div class="frame-tabs-ref frame-tabs-compare horizontal-carousel">
+                    <div class="frame-tabs-ref frame-tabs-compare">
                         {foreach $categories as $key => $category}
                             <div id="tab_{$category[Url]}" class="items-carousel" data-refresh {if $_COOKIE['category'] == '#tab_'.$category[Url] || ($_COOKIE['category'] == NULL && $key == 0)}style="display: block;"{/if}>
                                 <div class="left-compare">
@@ -49,7 +49,7 @@
                                         {$data = ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray($category['Id'])}
                                         {foreach $data as $d}
                                             <li>
-                                                <span class="helper"></span>
+                                                <span class="helper helper-comp"></span>
                                                 <span>{echo $d} </span>
                                             </li>
                                         {/foreach}
@@ -76,7 +76,7 @@
                                                                     {$cval = ShopCore::encode($d)}
                                                                     {if is_array($pdata[$cval])}
                                                                         <li>
-                                                                            <span class="helper"></span>
+                                                                            <span class="helper helper-comp"></span>
                                                                             <span>
                                                                                 {$i = 0}
                                                                                 {foreach $pdata[$cval] as $ms}
@@ -91,12 +91,12 @@
                                                                     {else:}
                                                                         {if $pdata[$cval]}
                                                                             <li>
-                                                                                <span class="helper"></span>
+                                                                                <span class="helper helper-comp"></span>
                                                                                 <span>{echo $pdata[$cval]}</span>
                                                                             </li>
                                                                         {else:}
                                                                             <li>
-                                                                                <span class="helper"></span>
+                                                                                <span class="helper helper-comp"></span>
                                                                                 <span>-</span>
                                                                             </li>
                                                                         {/if}
@@ -176,5 +176,5 @@
     </div>
 </div>
 <script type="text/javascript">
-    initDownloadScripts(['jquery.equalhorizcell', 'cusel-min-2.5', '_compare'], '', '');
+    initDownloadScripts(['_jquery.equalhorizcell', 'cusel-min-2.5', '_compare'], '', '');
 </script>
