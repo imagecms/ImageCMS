@@ -295,11 +295,11 @@ function init() {
     doc.on('autocomplete.before showActivity before_sync_cart before_add_to_compare discount.load_certificate', function(e) {
         $.fancybox.showActivity();
     });
-    doc.on('autocomplete.after drop.after drop.closed hideActivity sync_cart end_sync_cart compare_list_add compare_list_rm compare_list_sync count_changed cart_clear cart_rm discount.renderGiftInput discount.giftError discount.renderGiftSucces imageapi.success', function(e) {
+    doc.on('autocomplete.after after.drop drop.closed hideActivity sync_cart end_sync_cart compare_list_add compare_list_rm compare_list_sync count_changed cart_clear cart_rm discount.renderGiftInput discount.giftError discount.renderGiftSucces imageapi.success', function(e) {
         $.fancybox.hideActivity();
     });
 
-    doc.on('comments.showformreply tabs.showtabs drop.after', function(e) {
+    doc.on('comments.showformreply tabs.showtabs after.drop', function(e) {
         if (ltie7)
             ieBoxSize(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
     });
