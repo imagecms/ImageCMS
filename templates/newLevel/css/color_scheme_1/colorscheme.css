@@ -120,7 +120,7 @@ a:focus, a:active {color: #51d2ff;}
 .btn-wish > button:hover path, .btn-compare > button:hover path, .btn-wish > button:focus path, .btn-compare > button:focus path{fill: #51d2ff;}
 .btn-wish-in path, .btn-comp-in path{fill: #699200;}
 .btn-already-show.active > button path{fill: #0c9acb;}
-.btn-bask.pointer:hover path, .btn-bask.pointer:active path{fill: #fff;}
+.btn-bask.pointer > button:hover path, .btn-bask.pointer:active path{fill: #fff;}
 .btn-bask.pointer path{fill: #0c9acb;}
 /*/fill*/
 
@@ -733,7 +733,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
     box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(208, 208, 208, 0.6);
 }
 .btn-bask .divider.text-el{color: #999;}
-.btn-bask.pointer:hover{
+.btn-bask.pointer > button:hover{
     -moz-box-shadow: 0 1px 2px rgba(208, 208, 208, 0.6);
     -webkit-box-shadow: 0 1px 2px rgba(208, 208, 208, 0.6);
     box-shadow: 0 1px 2px rgba(208, 208, 208, 0.6);
@@ -751,9 +751,9 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
     -webkit-box-shadow: inset 0 1px 3px #0a82b1, 0 2px #fff;
     box-shadow: inset 0 1px 3px #0a82b1, 0 2px #fff;
 }
-.btn-bask.pointer:hover .divider{color: #d8d3ce;}
-.btn-bask.pointer:hover:before{border-left-color: #1386af;border-right-color: #57b9db;}
-.btn-bask.pointer:hover .text-el{color: #fff;}
+.btn-bask.pointer > button:hover .divider{color: #d8d3ce;}
+.btn-bask.pointer > button:hover:before{border-left-color: #1386af;border-right-color: #57b9db;}
+.btn-bask.pointer > button:hover .text-el{color: #fff;}
 
 .btn-buy{
     border: 1px solid #0e9dcd;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-moz-box-shadow: inset 0 1px 0 #5bcfff, 0 2px 3px #bbb;-webkit-box-shadow: inset 0 1px 0 #5bcfff, 0 2px 3px #bbb;box-shadow: inset 0 1px 0 #5bcfff, 0 2px 3px #bbb;
@@ -780,7 +780,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 }
 .btn-buy:active{-moz-box-shadow: inset 0 1px 3px #1398c5, 0 2px #fff;-webkit-box-shadow: inset 0 1px 3px #1398c5, 0 2px #fff;box-shadow: inset 0 1px 3px #1398c5, 0 2px #fff;}
 
-.btn-cart, .frame-payment input[type="submit"]{
+.btn-cart{
     border: 1px solid #769c00;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-moz-box-shadow: inset 0 1px 0 #a9d200, 0 2px 3px #bbb;-webkit-box-shadow: inset 0 1px 0 #a9d200, 0 2px 3px #bbb;box-shadow: inset 0 1px 0 #a9d200, 0 2px 3px #bbb;
     background: #9ec300; /* Old browsers */
     background: -moz-linear-gradient(top,  #9ec300 0%, #719500 50%, #638a00 51%, #638a00 100%); /* FF3.6+ */
@@ -792,10 +792,10 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ec300', endColorstr='#638a00',GradientType=0 ); /* IE6-9 */
 }
 .btn-cart > button, .btn-cart > a, .btn-cart > input{height: 32px;line-height: 31px;padding: 0 24px 0 17px;}
-.btn-cart .text-el, .btn-cart > input, .frame-payment input[type="submit"]{text-transform: uppercase;font-size: 13px;color: #fff;}
+.btn-cart .text-el, .btn-cart > input{text-transform: uppercase;font-size: 13px;color: #fff;}
 
-.btn-cart-p .text-el, .btn-cart-p > input, .frame-payment input[type="submit"]{font-size: 18px;}
-.btn-cart-p > button, .btn-cart-p > a, .btn-cart-p > input, .frame-payment input[type="submit"]{height: 45px;line-height: 44px;padding: 0 24px;}
+.btn-cart-p .text-el, .btn-cart-p > input{font-size: 18px;}
+.btn-cart-p > button, .btn-cart-p > a, .btn-cart-p > input{height: 45px;line-height: 44px;padding: 0 24px;}
 .btn-cart:hover, .btn-cart:active{
     background: #a5cb04; /* Old browsers */
     background: -moz-linear-gradient(top,  #a5cb04 0%, #7ea404 49%, #699202 50%, #83ab07 100%); /* FF3.6+ */
