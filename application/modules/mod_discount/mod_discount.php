@@ -44,7 +44,23 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
         if ($this->check_module_install()) {
             \CMSFactory\Events::create()->on('getVariantProduct')->setListener('get_discount_for_product');
             \CMSFactory\Events::create()->on('MakeOrder')->setListener('make_order_with_discount');
+            \CMSFactory\Events::create()->on('Cart:Operation')->setListener('changeCart');
         }
+    }
+    
+    /**
+     * change price cart
+     * @access public
+     * @author DevImageCms
+     * @param cart
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    public static function changeCart($cart){
+        
+        $obj = new \mod_discount\discount_order;
+        $obj->update_cart_discount($cart);
+        
     }
 
     /**
