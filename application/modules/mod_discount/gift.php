@@ -88,7 +88,7 @@ class Gift extends \mod_discount\classes\BaseDiscount {
         foreach ($this->discount_type['all_order'] as $disc) 
             if ($disc['key'] == $key and $disc['is_gift']) {
                 $value = $this->get_discount_value($disc,$totalPrice);
-                $cart = new \CartNew\BaseCart(); 
+                $cart = \CartNew\BaseCart::getInstance();
                 $cart->setTotalPrice($cart->getTotalPrice() - $value); 
                 $cart->gift_info = $disc;  
                 
