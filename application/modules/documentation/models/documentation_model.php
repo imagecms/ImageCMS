@@ -381,7 +381,6 @@ class Documentation_model extends CI_Model {
     }
 
     /**
-      <<<<<<< HEAD
      * Get module settings
      * @return array
      */
