@@ -90,14 +90,9 @@ class Discount_order extends classes\BaseDiscount {
      */        
     public function update_cart_discount($cart){
         
-        
-        
-      
-        
         if ($this->check_module_install()) {
             $discobj = new \mod_discount\discount;
-            $discount = $discobj->init()->get_result_discount(1);
-            
+            $discount = $discobj->init($cart)->get_result_discount(1);           
 
             
             if ($discount['result_sum_discount']){
