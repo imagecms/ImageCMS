@@ -17,6 +17,8 @@ if (!defined('BASEPATH'))
 class discount extends classes\BaseDiscount {
 
     public $result_discount;
+    
+    private $new_cart = false;
 
     /**
      * __construct base object loaded
@@ -45,14 +47,18 @@ class discount extends classes\BaseDiscount {
         $this->get_user_id();
 
         $this->get_user_group_id();
-
-        $this->get_cart_data(); //--
         
-        //$this->get_cart_data_new(); // new Cart
+        if (!$this->new_cart)
+            $this->get_cart_data(); //--
+        else
+            $this->get_cart_data_new(); // new Cart
 
-        if ($this->cart_data)
-            $this->get_total_price(); //--
-            //$this->get_total_price_new(); // new Cart
+        if ($this->cart_data){
+            if (!$this->new_cart)
+                $this->get_total_price(); //--
+            else
+                $this->get_total_price_new(); // new Cart
+        }
 
         $this->get_all_discount();
 
@@ -97,9 +103,11 @@ class discount extends classes\BaseDiscount {
         $discount_max = $this->get_max_discount($this->result_discount, $totalPrice);
 
         $discount_value_no_product = $this->get_discount_value($discount_max, $totalPrice);
-
-        $discount_product_value = $this->get_discount_products(); //--
-        //$discount_product_value = $this->get_discount_products_new(); // new Cart
+        
+        if (!$this->new_cart)
+            $discount_product_value = $this->get_discount_products(); //--
+        else
+            $discount_product_value = $this->get_discount_products_new(); // new Cart
 
         if ($discount_value_no_product > $discount_product_value)
             $result = $discount_value_no_product;
@@ -212,11 +220,10 @@ class discount extends classes\BaseDiscount {
      */
     public function get_discount_products_new() {
         foreach ($this->cart_data as $item) {
-            $item = get_object_vars($item); // new Cart
-            if ($item['instance'] == 'SProducts') {
-                $price_origin = $item['originPrice']; // new Cart
-                if (abs($price_origin - $item['price']) > 1)
-                    $discount_value += ($price_origin - $item['price']) * $item['quantity'];
+            if ($item->instance == 'SProducts') {
+                $price_origin = $item->originPrice; // new Cart
+                if (abs($price_origin - $item->price) > 1)
+                    $discount_value += ($price_origin - $item->price) * $item->quantity;
             }
         }
 

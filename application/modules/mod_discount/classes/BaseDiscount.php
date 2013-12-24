@@ -108,7 +108,7 @@ class BaseDiscount extends \MY_Controller {
      */
     public function get_cart_data_new() {
 
-        $cart = new \CartNew\BaseCart();
+        $cart = \CartNew\BaseCart::getInstance();
         $cart = $cart->getItems();
         $this->cart_data = $cart['data'];
         return $this->cart_data;
@@ -157,7 +157,7 @@ class BaseDiscount extends \MY_Controller {
      */
     public function get_total_price_new($data = null) {
 
-        $cart = new \CartNew\BaseCart();
+        $cart = \CartNew\BaseCart::getInstance();
         $this->total_price = $cart->getOriginTotalPrice();
         return $this->total_price;
     }
