@@ -220,9 +220,14 @@
                         <!-- Start. Collect information about Variants, for future processing -->
                         {foreach $variants as $key => $pv}
                             {if $pv->getStock() > 0}
+                                
                                 <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                     <div class="btn-buy">
-                                        <button
+                                        <a class="btnBuy infoBut" href="{site_url('shop/cart_new/add_item/'.$pv->getId())}">
+                                            <span class="icon_cleaner_buy"></span>
+                                            <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                        </a>
+                                        {/*}<button
                                             {$discount = 0}
                                             {if $hasDiscounts}
                                                 {$discount = $pv->getvirtual('numDiscount')/$pv->toCurrency()*100}
@@ -248,7 +253,7 @@
                                             >
                                             <span class="icon_cleaner_buy"></span>
                                             <span class="text-el">{lang('Купить', 'newLevel')}</span>
-                                        </button>
+                                        </button>{ */}
                                     </div>
                                 </div>
                             {else:}
