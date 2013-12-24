@@ -30,7 +30,6 @@ function init() {
         ieBoxSize();
         ieBoxSize($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
     }
-
     optionsDrop.before = function(el, drop, isajax, data, elSet) {
         if (drop.hasClass('drop-report')) {
             var dropRep = drop.find('[data-rel="pastehere"]');
