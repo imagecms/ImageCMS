@@ -1357,7 +1357,7 @@ function getCookie(c_name)
                                     }
                                     else if ($thisA.indexOf('#') === -1)
                                         settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
-                                    
+
                                     tabsDiv[index].add(tabsId[index]).not(addDiv)[effectOff](durationOff).removeClass(aC);
                                 }
                                 if (!$thisDD) {
@@ -1600,6 +1600,7 @@ function getCookie(c_name)
     var nS = 'drop';
     var methods = {
         defaultParams: {
+            galleries: [],
             message: {
                 success: function(text) {
                     return '<div class = "msg js-msg"><div class = "success ' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
@@ -1648,7 +1649,10 @@ function getCookie(c_name)
             },
             start: undefined,
             drop: '.drop-default',
-            pattern: '<div class="drop drop-style"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-content"><div class="inside-padd"></div></div></div>'
+            pattern: '<div class="drop drop-style"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placeImg" style="height: 100%;"></div></div></div>',
+            next: '.drop-next',
+            prev: '.drop-prev',
+            cycle: false
         },
         init: function(options) {
             $.extend(methods.defaultParams, options);
@@ -1656,6 +1660,17 @@ function getCookie(c_name)
                 var el = $(this),
                         trigger = (el.data('trigger') || methods.defaultParams.trigger).toString();
                 methods._modalTrigger();
+
+                var rel = this.rel;
+                if (rel !== undefined && rel !== '') {
+                    rel = rel.replace(/[^a-zA-Z0-9]+/ig, '');
+                    var source = el.data('source') || this.href;
+                    if (source !== undefined) {
+                        if (typeof methods.defaultParams.galleries[rel] === 'undefined')
+                            methods.defaultParams.galleries[rel] = [];
+                        methods.defaultParams.galleries[rel].push(source);
+                    }
+                }
 
                 el.addClass('isDrop');
                 el.attr('data-trigger', trigger + '.' + nS).on(trigger + '.' + nS, function(e) {
@@ -1666,6 +1681,11 @@ function getCookie(c_name)
                     }
                 });
             });
+
+            for (i in methods.defaultParams.galleries)
+                if (methods.defaultParams.galleries[i].length <= 1) {
+                    delete methods.defaultParams.galleries[i];
+                }
             return $(this);
         },
         destroy: function(el, trigger) {
@@ -1690,13 +1710,14 @@ function getCookie(c_name)
         get: function(el, modal, e) {
             if (el == undefined)
                 el = this;
-            var elSet = el.data();
+            var elSet = el.data(),
+                    source = elSet.source || el.attr('href');
             if (elSet.drop != undefined) {
 
                 $.ajax({
                     type: "post",
                     data: elSet.data,
-                    url: elSet.source,
+                    url: source,
                     beforeSend: function() {
                         $(document).trigger({
                             'type': 'showActivity'
@@ -1731,14 +1752,14 @@ function getCookie(c_name)
             else {
                 $('.' + methods.defaultParams.curDefault).remove();
                 methods.defaultParams.curDefault = (methods.defaultParams.drop + (new Date()).getTime()).toString().replace('.', '');
-                var drop = methods._pasteDrop($.extend({}, methods.defaultParams, elSet), methods.defaultParams.pattern, methods.defaultParams.drop.replace('.', '') + ' ' + methods.defaultParams.curDefault);
-                if (elSet.source.match(/jpg|gif|png|bmp|jpeg/))
-                    $('<img src="' + elSet.source + '"/>').load(function(data) {
-                        drop.find('*:last').append($(this))
+                var drop = methods._pasteDrop($.extend({}, methods.defaultParams, elSet), methods.defaultParams.pattern, methods.defaultParams.drop.replace('.', '') + ' ' + methods.defaultParams.curDefault, el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, ''));
+                if (source.match(/jpg|gif|png|bmp|jpeg/))
+                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
+                        drop.find('.placeImg').append($(this))
                         methods._show(el, e, methods.defaultParams, true, data);
                     })
                 else
-                    drop.find('*:last').load(elSet.source, function(data) {
+                    drop.find('.placeImg').load(source, function(data) {
                         methods._show(el, e, methods.defaultParams, true, data);
                     })
             }
@@ -1760,6 +1781,7 @@ function getCookie(c_name)
                 }
             }
             var elSet = $this.data(),
+                    source = elSet.source || $this.attr('href'),
                     drop = $(elSet.drop),
                     start = elSet.start !== undefined ? elSet.start : methods.defaultParams.start;
             if (!$this.parent().hasClass(aC)) {
@@ -1784,7 +1806,7 @@ function getCookie(c_name)
                             methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
                             methods._show($this, e, methods.defaultParams, false);
                         }
-                        else if (elSet.source || always || confirm) {
+                        else if (source || always || confirm) {
                             if (!confirm)
                                 _confirmF();
                             else {
@@ -1797,7 +1819,7 @@ function getCookie(c_name)
                                         $(confirmSel).data('elClosed', elSet.after)
                                     methods.close($(confirmSel));
                                     $this.data('confirm', false);
-                                    if (elSet.source)
+                                    if (source)
                                         _confirmF();
                                 });
                             }
@@ -1814,7 +1836,7 @@ function getCookie(c_name)
 
             return $this;
         },
-        _pasteDrop: function(set, drop, addClass) {
+        _pasteDrop: function(set, drop, addClass, rel) {
             if (addClass == undefined)
                 addClass = '';
             if (set.place !== 'inherit') {
@@ -1843,7 +1865,7 @@ function getCookie(c_name)
                     }
                 }
             }
-            return drop.addClass(addClass);
+            return drop.addClass(addClass).attr('rel', rel);
         },
         closeModal: function() {
             $('[data-elrun]:visible').each(function() {
@@ -1959,6 +1981,10 @@ function getCookie(c_name)
                     closeClick = elSet.closeClick || set.closeClick,
                     closeEsc = elSet.closeEsc || set.closeEsc,
                     droppable = elSet.droppable || set.droppable,
+                    next = elSet.next || set.next,
+                    prev = elSet.prev || set.prev,
+                    cycle = elSet.cycle || set.cycle,
+                    source = elSet.source || $this.attr('href'),
                     start = elSet.start,
                     elBefore = elSet.before,
                     elAfter = elSet.after,
@@ -2009,11 +2035,55 @@ function getCookie(c_name)
                 'closeClick': closeClick,
                 'closeEsc': closeEsc,
                 'droppable': droppable,
+                'source': source,
+                'prev': prev,
+                'next': next,
+                'cycle': cycle,
                 'droppableIn': false
             }).attr('data-elrun', selSource);
             drop.off('click.' + nS, set.exit).on('click.' + nS, set.exit, function() {
                 methods.close($(this).closest('[data-elrun]'));
             });
+            function gal(source) {
+                if ($this.get(0).rel != '' && $this.get(0).rel !== undefined) {
+                    var rel = $this.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, ''),
+                            relA = methods.defaultParams.galleries[rel];
+                    if (relA !== undefined) {
+                        var relL = relA.length;
+                        var relP = $.inArray(source, relA);
+                        $(prev).add($(next)).hide();
+                        if (relP == 0)
+                            $(next).show();
+                        if (relP == relL - 1)
+                            $(prev).show();
+                        if ((relP > 0 && relP < relL - 1) || cycle)
+                            $(prev).add($(next)).show();
+                    }
+
+                    $(prev).add($(next)).attr('rel', rel).off('click.' + nS).on('click.' + nS, function() {
+                        var $this = $(this).attr('disabled', 'disabled'),
+                                relCur = relP + ($this.is(prev) ? -1 : 1);
+                        if (cycle) {
+                            if (relCur >= relL)
+                                relCur = 0;
+                            if (relCur < 0)
+                                relCur = relL - 1;
+                        }
+                        source = relA[relCur];
+                        $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
+                            var drop = $('[data-elrun][rel="' + $this.attr('rel') + '"]');
+                            drop.find('.placeImg').empty().append($(this))
+                            gal(source);
+                            $this.removeAttr('disabled');
+                            methods.limitSize(drop);
+                            methods.heightContent(drop);
+                            if (place != 'inherit')
+                                methods[place](drop, true);
+                        });
+                    });
+                }
+            }
+            gal(source);
 
             var overlays = $('.overlayDrop').css('z-index', 1103),
                     condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
@@ -2068,6 +2138,7 @@ function getCookie(c_name)
                 wnd.off('resize.' + nS).on('resize.' + nS, function() {
                     clearTimeout(dropTimeout);
                     dropTimeout = setTimeout(function() {
+                        methods.limitSize(drop);
                         if (place !== 'inherit')
                             methods[place](drop);
                     }, 300);
@@ -2129,11 +2200,14 @@ function getCookie(c_name)
                     drop[$thisEOn]($thisD, function(e) {
                         var drop = $(this);
                         drop.addClass(aC);
+
                         if (!confirm && modal)
                             methods.defaultParams.closeDropTime = setTimeout(function() {
                                 methods.close(drop);
                             }, timeclosemodal);
                         methods.limitSize(drop);
+                        if (place != 'inherit')
+                            methods[place](drop);
                         var cB = elAfter;
                         if (cB !== undefined) {
                             eval(cB)($this, drop, isajax, data, elSet);
@@ -2188,6 +2262,7 @@ function getCookie(c_name)
                 'width': '',
                 'height': ''
             });
+            drop.find('.placeImg img').css('max-height', 'none');
             if (drop.data('place') === 'center') {
                 var wndW = wnd.width(),
                         wndH = wnd.height();
@@ -2198,6 +2273,7 @@ function getCookie(c_name)
                     drop.css('width', wndW - 40);
                 if (h > wndH)
                     drop.css('height', wndH - 40);
+                drop.find('.placeImg img').css('max-height', '100%');
             }
         },
         positionType: function(drop) {
