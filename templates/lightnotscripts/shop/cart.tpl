@@ -225,10 +225,10 @@
                                             {/if}
 
                                             <div class="frame-prices f-s_0">
-                                                {if $item->getOriginPrice() != $item->getPrice()}
+                                                {if $item->originPrice != $item->price}
                                                     <span class="price-discount">
                                                         <span>
-                                                            <span class="price">{echo $item->getOriginPrice()}</span>
+                                                            <span class="price">{echo $item->originPrice}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
@@ -237,18 +237,11 @@
                                                 <span class="current-prices f-s_0">
                                                     <span class="price-new">
                                                         <span>
-                                                            <span class="price">{echo $item->getPrice()}</span>
+                                                            <span class="price">{echo $item->price}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
-                                                    {if $NextCSIdCond}
-                                                        <span class="price-add">
-                                                            <span>
-                                                                <span class="price">{echo $item->toCurrency('Price',$NextCSId)}</span>
-                                                                <span class="curr-add">{echo $NextCSIdCond}</span>
-                                                            </span>
-                                                        </span>
-                                                    {/if}
+
                                                 </span>
                                             </div>
 
@@ -285,10 +278,10 @@
                                                                 </span> 
                                                             {/if}
                                                             <div class="frame-prices f-s_0">
-                                                                {if $kitItem->getOriginPrice() != $kitItem->getPrice()}
+                                                                {if $kitItem->originPrice != $kitItem->price}
                                                                     <span class="price-discount">
                                                                         <span>
-                                                                            <span class="price">{echo $kitItem->getOriginPrice()}</span>
+                                                                            <span class="price">{echo $kitItem->originPrice}</span>
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
@@ -296,18 +289,10 @@
                                                                 <span class="current-prices f-s_0">
                                                                     <span class="price-new">
                                                                         <span>
-                                                                            <span class="price">{echo $kitItem->getPrice()}</span>
+                                                                            <span class="price">{echo $kitItem->price}</span>
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
-                                                                    {if $NextCSIdCond}
-                                                                        <span class="price-add">
-                                                                            <span>
-                                                                                <span class="price">{echo $kitItem->toCurrency('Price',$NextCSId)}</span>
-                                                                                <span class="curr-add">{echo $NextCSIdCond}</span>
-                                                                            </span>
-                                                                        </span>
-                                                                    {/if}
                                                                 </span>
                                                             </div>
                                                         </div>
