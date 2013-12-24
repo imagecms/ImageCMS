@@ -15,7 +15,7 @@ class Module_frame extends MY_Controller {
     }
 
     public function index() {
-        $test = new CartNew\BaseCart();
+        $test = \CartNew\BaseCart::getInstance();
         $data['instance'] = 'SProducts';
         $data['id'] = '893';
         $data['quantity'] = 2;
