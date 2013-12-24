@@ -3,7 +3,7 @@
         <section class="special-proposition">
             <div class="frame-title">
                 <div class="title">
-                    <span class="text-el text-proposition-v">{$title}</span>
+                    <span class="text-el text-proposition-v" title="{$title}">{$title}</span>
                 </div>
             </div>
             <div class="big-container">
