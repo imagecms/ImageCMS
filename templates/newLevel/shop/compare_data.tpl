@@ -16,7 +16,7 @@
                 <span class="text-el">)</span>
             </span>
             <span class="js-no-empty no-empty" {if $count != 0}style="display: inline"{/if}>
-                <span class="text-el">{lang('Товары на сравнение','newLevel')} </span>
+                <span class="text-el">{lang('В сравнение','newLevel')} </span>
                 <span class="text-el">(</span>
                 <span class="f-s_0">
                     <span class="text-el compareListCount"></span>
