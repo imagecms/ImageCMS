@@ -90,6 +90,10 @@ class Discount_order extends classes\BaseDiscount {
      */        
     public function update_cart_discount($cart){
         
+        
+        
+      
+        
         if ($this->check_module_install()) {
             $discobj = new \mod_discount\discount;
             $discount = $discobj->init()->get_result_discount(1);
@@ -98,6 +102,7 @@ class Discount_order extends classes\BaseDiscount {
             
             if ($discount['result_sum_discount']){
                 $cart->setTotalPrice( (float)$cart->getOriginTotalPrice() - (float)$discount['result_sum_discount'] );
+                //$this->template->assign($key, $value)
                 $cart->discount_info = $discount;
                 
             }

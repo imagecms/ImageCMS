@@ -47,7 +47,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
             \CMSFactory\Events::create()->on('Cart:Operation')->setListener('changeCart');
         }
     }
-    
+
     /**
      * change price cart
      * @access public
@@ -56,11 +56,10 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
      * @return ---
      * @copyright (c) 2013, ImageCMS
      */
-    public static function changeCart($cart){
-        
+    public static function changeCart($cart) {
+
         $obj = new \mod_discount\discount_order;
-        $obj->update_cart_discount($cart);
-        
+        $obj->update_cart_discount($cart['object']);
     }
 
     /**
