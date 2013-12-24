@@ -188,6 +188,19 @@
                     <div id="orderDetails">
                         {foreach $items as $item}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <!-- Start. For single product -->
                             {if  $item->instance == 'SProducts'}
                                 <tr class="items items-bask cart-product">
@@ -242,8 +255,9 @@
                                         </div>
                                         {echo 'Кількість - '.$item->quantity}
                                     </td>
-                                {else:}
-                                    <!-- Start. Shop kit -->
+                                </tr>
+                            {else:}
+                                <!-- Start. Shop kit -->
                                 <tr class="row row-kits rowKits">
                                     <td class="frame-items frame-items-kit">
                                         <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
@@ -282,7 +296,7 @@
                                                                 <span class="current-prices f-s_0">
                                                                     <span class="price-new">
                                                                         <span>
-                                                                            <span class="price">{echo $kitItem->getOriginPrice()}</span>
+                                                                            <span class="price">{echo $kitItem->getPrice()}</span>
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
@@ -299,11 +313,12 @@
                                                         </div>
                                                         {if !next($item->items)}
                                                             <div class="next-kit">+</div>
-                                                            {else:}
-                                                               {echo $item->quantity} x {echo $item->price} 
-                                                               <hr/>
+                                                        {else:}
+                                                            {echo $item->quantity} x {echo $item->price} 
+                                                            <hr/>
                                                         {/if}
-                                                    {/foreach}
+                                                    </div>
+                                                {/foreach}
                                             </li>
                                         </ul>
                                     </td>
