@@ -390,11 +390,6 @@ abstract class BaseEvents {
         return $this;
     }
 
-    final public function onCartInit() {
-        $this->key = 'Cart:__construct';
-        return $this;
-    }
-
     final public function onSearchPageLoad() {
         $this->key = 'search:load';
         return $this;
