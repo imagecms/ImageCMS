@@ -78,7 +78,7 @@ class Gift extends \mod_discount\classes\BaseDiscount {
      * @return ----
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_gift_certificate_new($key = null, $totalPrice = null) {
+    public function get_gift_certificate_new($key = null, $totalPrice = null, $order = null) {
         
         $this->get_cart_data();
         if ($totalPrice === null)
@@ -90,7 +90,10 @@ class Gift extends \mod_discount\classes\BaseDiscount {
                 $value = $this->get_discount_value($disc,$totalPrice);
                 $cart = \CartNew\BaseCart::getInstance();
                 $cart->setTotalPrice($cart->getTotalPrice() - $value); 
-                $cart->gift_info = $disc;  
+                $cart->gift_info = $disc['key'];  
+                $cart->gift_value = $value; 
+                if ($order)
+                    $this->updatediskapply($disc['key'], 'gift'); 
                 
                 break;
             } 
