@@ -99,6 +99,7 @@ class Discount_order extends classes\BaseDiscount {
                 $cart->setTotalPrice( (float)$cart->getOriginTotalPrice() - (float)$discount['result_sum_discount'] );
                 //$this->template->assign($key, $value)
                 $cart->discount_info = $discount;
+                $this->updatediskapply($discount['max_discount']['key']);
                 
             }
 
