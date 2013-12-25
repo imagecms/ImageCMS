@@ -106,7 +106,8 @@
                                                     <input type="radio"
                                                            name="deliveryMethodId"
                                                            value="{echo $del_id}" 
-                                                           onchange="Cart.getPaymentSystems({$del_id})"
+                                                           data-price="{echo $price}"
+                                                           onchange="Cart.getPaymentSystems(this,{$del_id})"
                                                            />
                                                 </span>
                                                 <div class="name-count">
@@ -310,10 +311,10 @@
                                 <tfoot class="gen-info-price">
                                     <tr>
                                         <td colspan="2">
-                                            <span class="s-t">{lang('Стоимость товаров','newLevel')}:</span>
+                                            <span class="s-t">{lang('Начальная стоимость товаров','newLevel')}:</span>
                                         </td>
                                         <td class="t-a_r">
-                                            <span class="price"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span><span class="f-w_b" id="shipping"></span></span>
+                                            <span class="price"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span><span class="f-w_b" id="shipping"></span></span>
                                             <span class="curr">{$CS}</span>
                                         </td>
                                     </tr>
@@ -351,19 +352,25 @@
                             <div class="gen-sum-order frame-foot">
                                 <div class="header-frame-foot">
                                     <div class="inside-padd clearfix">
-                                        <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                                        <span class="title f_l">{lang('К оплате','newLevel')}:</span>
                                         <span class="frame-prices f_r">
                                             <span class="current-prices f-s_0">
                                                 <span class="price-new">
                                                     <span>
-                                                        <span class="price" id="finalAmount"></span>
+                                                        <span class="price" id="finalAmount">
+                                                            {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
+                                                        </span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
+                                                    <br>+ {lang('Доставка','newLevel')}
+                                                    <div class="deliveryPriceSum">
+
+                                                    </div>
                                                 </span>
                                                 {if $NextCS != null}
                                                     <span class="price-add">
                                                         <span>
-                                                            (<span class="price" id="finalAmountAdd"></span>
+                                                            (<span class="price" id="finalAmountAdd">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice, $NextCSId)}</span>
                                                             <span class="curr-add">{$NextCS}</span>)
                                                         </span>
                                                     </span>
@@ -382,6 +389,18 @@
         </div>
         <!-- End. Show cart -->
     </div>
-    <script type="text/javascript">
-        initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
-    </script>
+</div>
+<script type="text/javascript">
+    initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
+</script>
+
+
+<!-- Start. Uses as template for select payment methods -->
+<div id="paymentMethodSelectItemTemplate">
+    <div class="lineForm">
+        <select name="paymentMethodId" id="paymentMethod">
+        </select>
+    </div>
+
+</div>
+<!-- End. Uses as template for select payment methods -->
