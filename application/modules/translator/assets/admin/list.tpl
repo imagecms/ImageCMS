@@ -256,17 +256,11 @@
 
                         <div class="clearfix">
                             <div class="pagination pull-left" style="display: none">
-                                <ul class="pagination">
+                                <ul>
 
                                 </ul>
                             </div>                        
                             <div class="pagination pull-right" style="margin-right: 25px;">
-                                { /* } 
-                                <ul>
-                                    <li><a onclick="Pagination.movePrev()">&lt;&nbsp;Назад</a></li>
-                                    <li><a onclick="Pagination.moveNext()">Вперед&nbsp;&gt;</a></li>
-                                </ul>
-                                { */ }  
                                 <select id="per_page" style="max-width:60px; display: none" onchange="Pagination.perPage()" >
                                     <option class="per_page10" value="10">10</option>
                                     <option class="per_page20" value="20">20</option>

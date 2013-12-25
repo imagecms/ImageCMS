@@ -8,7 +8,7 @@ $(document).ready(function() {
     });
 
     // *********************** Navigate pagination *********************************************
-    $('ul.pagination li').on('click', function() {
+    $('.pagination li').live('click', function() {
         Pagination.navigate($(this));
     });
 
@@ -1133,7 +1133,7 @@ var Pagination = {
         }
         pages += "<li data-number='" + rows_count + "'><a>" + lang('Last ') + " ></a></li>";
 
-        $('.pagination ul.pagination').html(pages);
+        $('.pagination ul').html(pages);
     },
     navigate: function(curElement) {
         var module = $('#modules_templates').val();
@@ -1155,7 +1155,7 @@ var Pagination = {
             }
         });
         var rows_count = Math.ceil(($('#po_table tbody tr').length / 2) / per_page);
-        var pages = '<li  data-number="1"><a>< First</a></li>';
+        var pages = '<li data-number="1"><a>< First</a></li>';
         var from = 1;
         var plus_to = 0;
 
@@ -1196,7 +1196,7 @@ var Pagination = {
             i++;
         }
         pages += "<li data-number='" + rows_count + "'><a>Last ></a></li>";
-        $('.pagination ul.pagination').html(pages);
+        $('.pagination ul').html(pages);
     },
     perPage: function() {
         var perPageCurrent = parseInt($('#per_page').val());
