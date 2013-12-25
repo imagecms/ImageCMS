@@ -318,6 +318,15 @@
                                             <span class="curr">{$CS}</span>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <span class="s-t">{lang('Доставка','newLevel')}:</span>
+                                        </td>
+                                        <td class="t-a_r">
+                                            <span class="price"><span class="text-el deliveryPriceSum">0</span>
+                                            <span class="curr">{$CS}</span>
+                                        </td>
+                                    </tr>
                                     {if $discount_val}
                                         <tr id="frameGenDiscount">
                                             <td colspan="2">
@@ -362,10 +371,6 @@
                                                         </span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
-                                                    <br>+ {lang('Доставка','newLevel')}
-                                                    <div class="deliveryPriceSum">
-
-                                                    </div>
                                                 </span>
                                                 {if $NextCS != null}
                                                     <span class="price-add">
