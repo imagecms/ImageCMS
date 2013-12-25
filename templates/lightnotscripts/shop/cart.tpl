@@ -155,10 +155,7 @@
                                 <span class="title">{lang('Оплата:','newLevel')}</span>
                                 <div class="frame-form-field check-variant-payment p_r">
                                     <div class="paymentMethod">
-                                        <div class="lineForm">
-                                            <select name="paymentMethodId" id="paymentMethod">
-                                            </select>
-                                        </div>
+                                        
 
                                     </div>
                                 </div>
@@ -385,3 +382,6 @@
     <script type="text/javascript">
         initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
     </script>
+    
+    
+    <!-- Start. 
