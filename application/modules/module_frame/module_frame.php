@@ -21,11 +21,9 @@ class Module_frame extends MY_Controller {
         $data['quantity'] = 2;
         $data['product_id'] = '873';
 
-//        var_dump('removeAll', $test->removeAll(), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('getItems', $test->setQuantity($data, 1000), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
+        var_dump('removeAll', $test->removeAll(), '-------------');
+        var_dump('addItem', $test->addItem($data), '-------------');
+        var_dump('getItems', $test->setQuantity($data, 1000), '-------------');
 //        var_dump('addItem', $test->addItem($data), '-------------');
 //        var_dump('addItem', $test->addItem($data), '-------------');
 //        var_dump('addItem', $test->addItem($data), '-------------');
@@ -37,9 +35,12 @@ class Module_frame extends MY_Controller {
 //        var_dump('addItem', $test->addItem($data), '-------------');
 //        var_dump('addItem', $test->addItem($data), '-------------');
 //        var_dump('addItem', $test->addItem($data), '-------------');
+//        var_dump('addItem', $test->addItem($data), '-------------');
+//        var_dump('addItem', $test->addItem($data), '-------------');
+        
         var_dump('getItems', $test->getItems(), '-------------');
 
-//        $test->removeAll();
+        $test->removeAll();
     }
 
     public function autoload() {
