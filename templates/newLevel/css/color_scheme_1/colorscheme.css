@@ -780,7 +780,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 }
 .btn-buy:active{-moz-box-shadow: inset 0 1px 3px #1398c5, 0 2px #fff;-webkit-box-shadow: inset 0 1px 3px #1398c5, 0 2px #fff;box-shadow: inset 0 1px 3px #1398c5, 0 2px #fff;}
 
-.btn-cart{
+.btn-cart, .frame-payment input[type="submit"]{
     border: 1px solid #769c00;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-moz-box-shadow: inset 0 1px 0 #a9d200, 0 2px 3px #bbb;-webkit-box-shadow: inset 0 1px 0 #a9d200, 0 2px 3px #bbb;box-shadow: inset 0 1px 0 #a9d200, 0 2px 3px #bbb;
     background: #9ec300; /* Old browsers */
     background: -moz-linear-gradient(top,  #9ec300 0%, #719500 50%, #638a00 51%, #638a00 100%); /* FF3.6+ */
@@ -794,9 +794,9 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 .btn-cart > button, .btn-cart > a, .btn-cart > input{height: 32px;line-height: 31px;padding: 0 24px 0 17px;}
 .btn-cart .text-el, .btn-cart > input{text-transform: uppercase;font-size: 13px;color: #fff;}
 
-.btn-cart-p .text-el, .btn-cart-p > input{font-size: 18px;}
-.btn-cart-p > button, .btn-cart-p > a, .btn-cart-p > input{height: 45px;line-height: 44px;padding: 0 24px;}
-.btn-cart:hover, .btn-cart:active{
+.btn-cart-p .text-el, .btn-cart-p > input, .frame-payment input[type="submit"]{font-size: 18px;}
+.btn-cart-p > button, .btn-cart-p > a, .btn-cart-p > input, .frame-payment input[type="submit"]{height: 45px;line-height: 44px;padding: 0 24px;}
+.btn-cart:hover, .btn-cart:active, .frame-payment input[type="submit"]:hover, frame-payment input[type="submit"]:active{
     background: #a5cb04; /* Old browsers */
     background: -moz-linear-gradient(top,  #a5cb04 0%, #7ea404 49%, #699202 50%, #83ab07 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cb04), color-stop(49%,#7ea404), color-stop(50%,#699202), color-stop(100%,#83ab07)); /* Chrome,Safari4+ */
@@ -806,7 +806,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
     background: linear-gradient(to bottom,  #a5cb04 0%,#7ea404 49%,#699202 50%,#83ab07 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a5cb04', endColorstr='#83ab07',GradientType=0 ); /* IE6-9 */
 }
-.btn-cart:active{-moz-box-shadow: inset 0 1px 3px #79a508, 0 2px #fff;-webkit-box-shadow: inset 0 1px 3px #79a508, 0 2px #fff;box-shadow: inset 0 1px 3px #79a508, 0 2px #fff;}
+.btn-cart:active, .frame-payment input[type="submit"]:active{-moz-box-shadow: inset 0 1px 3px #79a508, 0 2px #fff;-webkit-box-shadow: inset 0 1px 3px #79a508, 0 2px #fff;box-shadow: inset 0 1px 3px #79a508, 0 2px #fff;}
 
 .btn-plus, .btn-minus{display: block;}
 .btn-plus > button, .btn-minus > button{display: block;height: 16px;width: 33px;}
@@ -1279,7 +1279,8 @@ input.input-search{-moz-border-radius: 2px 0 0 2px;-webkit-border-radius: 2px 0 
 
 /*page order*/
 .gen-sum-row .count{color: #333;font-weight: bold;}
-.frame-payment{}
+.frame-payment button, .frame-payment input[type="submit"]{font-size: 18px !important;color: #fff;}
+.frame-payment [class*="btn"] input[type="submit"], .frame-payment [class*="btn"] button, .frame-payment [class*="btn"] input[type="submit"]:active, .frame-payment [class*="btn"] button:active{background: none;border: 0;}
 /*/page order*/
 
 .page-404{background: url("images/fon_404.png") repeat;}
