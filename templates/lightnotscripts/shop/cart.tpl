@@ -26,7 +26,7 @@
                     {/if}
                 </div>
             </div>
-            <form method="post" action="{$BASE_URL}shop/cart_new/makeOrder" class="clearfix">
+            <form method="post" action="{$BASE_URL}shop/order/make_order" class="clearfix">
                 <div class="left-cart">
                     <div class="horizontal-form order-form big-title">
                         {if $errors}
@@ -63,7 +63,7 @@
                                         {/if}
                                         <input type="text" name="userInfo[phone]" value="{$profile.phone}" class="m-b_5">
                                         <div class="drop drop-add-phone">
-                                            {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()}
+                                            {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
                                         </div>
                                     </div>
                                 </div>
@@ -351,14 +351,14 @@
                                     <span class="curr">{$CS}</span>
                                 </td>
                             </tr>
-                            <tr id="frameGenDiscount" style="display: none;">
+                            <tr id="frameGenDiscount">
                                 <td colspan="2">
                                     <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
                                 </td>
                                 <td class="t-a_r">
                                     <div class="text-discount current-discount frameDiscount">
                                         <span class="curDiscount"></span>
-                                        <span class="curr">{$CS}</span>
+                                        <span class="curr">{echo $discount_val}{$CS}</span>
                                     </div>
                                     <div id="discount"></div>
                                 </td>
