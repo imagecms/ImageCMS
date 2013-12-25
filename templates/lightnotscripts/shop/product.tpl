@@ -205,12 +205,11 @@
                                         <div class="funcs-buttons">
                                             <!-- Start. Collect information about Variants, for future processing -->
                                             {foreach $variants as $key => $productVariant}
-                                                {$amountInCart = getAmountInCart('SProducts', $productVariant->getId());}
                                                 {$discount = 0}
                                                 {if $hasDiscounts}
                                                     {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                                 {/if}
-                                                {if $productVariant->getStock() > 0 & $productVariant->getStock() > $amountInCart}
+                                                {if $productVariant->getStock() > 0}
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                         <form method="POST" action="/shop/cart_new/addProductByVariantId/{echo $productVariant->getId()}">
                                                             <div class="btn-buy btn-buy-p">
@@ -224,35 +223,19 @@
                                                         </form>
                                                     </div>
                                                 {else:}
-                                                    {if $productVariant->getStock() > 0 & $productVariant->getStock() == $amountInCart}
-                                                        <div class="d_i-b v-a_m">
-                                                            <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                                <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
-                                                                <div class="btn-not-avail">
-                                                                    <button
-                                                                        type="button"
-                                                                        class="infoBut">
-                                                                        <span class="icon-but"></span>
-                                                                        <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
-                                                                    </button>
-                                                                </div>
+                                                    <div class="d_i-b v-a_m">
+                                                        <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                                                            <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
+                                                            <div class="btn-not-avail">
+                                                                <button
+                                                                    type="button"
+                                                                    class="infoBut">
+                                                                    <span class="icon-but"></span>
+                                                                    <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                                                </button>
                                                             </div>
                                                         </div>
-                                                    {else:}
-                                                        <div class="d_i-b v-a_m">
-                                                            <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                                <div class="alert-exists">{lang('Нет в наличии','newLevel')} <br /> {lang('На складе','newLevel')}: {echo $pv->getStock()} <br /> {lang('В корзине','newLevel')}: {$amountInCart}</div>
-                                                                <div class="btn-not-avail">
-                                                                    <button
-                                                                        type="button"
-                                                                        class="infoBut">
-                                                                        <span class="icon-but"></span>
-                                                                        <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {/if}
+                                                    </div>
                                                 {/if}
                                             {/foreach}
                                         </div>
@@ -441,11 +424,12 @@
                                                         <form method="POST" action="/shop/cart_new/addKit/{echo $kitProducts->getId()}">
                                                             <input type="hidden" name="redirect" value="cart" />
                                                             <div class="btn-buy">
-                                                                <button class="btnBuy" type="button">
+                                                                <button class="btnBuy" type="submit">
                                                                     <span class="icon_cleaner icon_cleaner_buy"></span>
                                                                     <span class="text-el">{lang('Купить')}</span>
                                                                 </button>
                                                             </div>
+                                                            {form_csrf()}
                                                         </form>
                                                     </div>
                                                 </div>
