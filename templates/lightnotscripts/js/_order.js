@@ -12,8 +12,8 @@ $(document).on('scriptDefer', function() {
         
     }
 
-    if (selectPayment)
-        cuselInit($(genObj.pM), '#paymentMethod');
+//    if (selectPayment)
+//        cuselInit($(genObj.pM), '#paymentMethod');
 });
 function initOrderTrEv() {
     $(".maskPhoneFrame input").mask("+9 (9999) 999-99-99");
