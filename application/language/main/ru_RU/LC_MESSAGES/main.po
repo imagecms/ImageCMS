@@ -1,19 +1,21 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-06 18:54+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2013-12-25 02:00+0200\n"
+"PO-Revision-Date: 2013-12-25 02:00+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: ../../../../../application/core\n"
 "X-Poedit-SearchPath-2: ../../../../../application/errors\n"
@@ -408,17 +410,6 @@ msgstr "Пароль"
 msgid "Merchant id"
 msgstr "Мерчант ID"
 
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:166
-#: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:173
-#: ../../../../../application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:167
-msgid ""
-"Trick seller to which the customer has to make a payment. Format - letter "
-"and 12 digits."
-msgstr ""
-"Кошелек продавца, на который покупатель должен совершить платеж. Формат – "
-"буква и 12 цифр."
-
 #: ../../../../../application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:163
 msgid "Merchant password"
 msgstr "Пароль Мерчанта"
@@ -585,7 +576,6 @@ msgstr "Поле %s может содержать только алфавитн�
 #: ../../../../../system/language/form_validation/form_validation.php:20
 msgid "alpha_dash"
 msgstr ""
-"Поле %s может содержать только символы латиницы, цифры, подчеркивания и тире."
 
 #: ../../../../../system/language/form_validation/form_validation.php:21
 msgid "numeric"
@@ -647,14 +637,10 @@ msgstr "Не удается найти переменную UserFile."
 #: ../../../../../system/language/upload/upload_validation.php:10
 msgid "upload_file_exceeds_limit"
 msgstr ""
-"Загруженный файл превышает максимально допустимый размер в конфигурационном "
-"файле PHP."
 
 #: ../../../../../system/language/upload/upload_validation.php:11
 msgid "upload_file_exceeds_form_limit"
 msgstr ""
-"Загруженный файл превышает максимально допустимый размер по представлению "
-"формы."
 
 #: ../../../../../system/language/upload/upload_validation.php:12
 msgid "upload_file_partial"
@@ -723,335 +709,3 @@ msgstr "Конец"
 msgid "migration_none_found"
 msgstr ""
 
-#~ msgid "January"
-#~ msgstr "Января"
-
-#~ msgid "February"
-#~ msgstr "Февраля"
-
-#~ msgid "March"
-#~ msgstr "Марта"
-
-#~ msgid "April"
-#~ msgstr "Апреля"
-
-#~ msgid "May"
-#~ msgstr "Мая"
-
-#~ msgid "June"
-#~ msgstr "Июня"
-
-#~ msgid "July"
-#~ msgstr "Июля"
-
-#~ msgid "August"
-#~ msgstr "Августа"
-
-#~ msgid "September"
-#~ msgstr "Сентября"
-
-#~ msgid "October"
-#~ msgstr "Октября"
-
-#~ msgid "November"
-#~ msgstr "Ноября"
-
-#~ msgid "December"
-#~ msgstr "Декабря"
-
-#~ msgid "Января"
-#~ msgstr "Января"
-
-#~ msgid "Февраля"
-#~ msgstr "Февраля"
-
-#~ msgid "Марта"
-#~ msgstr "Марта"
-
-#~ msgid "Апреля"
-#~ msgstr "Апреля"
-
-#~ msgid "Мая"
-#~ msgstr "Мая"
-
-#~ msgid "Июня"
-#~ msgstr "Июня"
-
-#~ msgid "Июля"
-#~ msgstr "Июля"
-
-#~ msgid "Августа"
-#~ msgstr "Августа"
-
-#~ msgid "Сентября"
-#~ msgstr "Сентября"
-
-#~ msgid "Октября"
-#~ msgstr "Октября"
-
-#~ msgid "Ноября"
-#~ msgstr "Ноября"
-
-#~ msgid "Декабря"
-#~ msgstr "Декабря"
-
-#~ msgid "s_buy"
-#~ msgstr "купить"
-
-#~ msgid "s_footer_create"
-#~ msgstr "Создание сайта"
-
-#~ msgid "s_footer_seo"
-#~ msgstr "Футер сео"
-
-#, fuzzy
-#~ msgid "Site under construction"
-#~ msgstr "Настройки сайта"
-
-#~ msgid "Wish List"
-#~ msgstr "Список желаний"
-
-#, fuzzy
-#~ msgid "Order data"
-#~ msgstr "Cписок замовлень"
-
-#~ msgid "List of comparisons"
-#~ msgstr "Список порівнянь"
-
-#, fuzzy
-#~ msgid "Order History"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Order date"
-#~ msgstr "Cписок замовлень"
-
-#~ msgid "Add to wish list"
-#~ msgstr "Додать в список желаний"
-
-#~ msgid "a_web_m_sall"
-#~ msgstr "asdasd"
-
-#~ msgid "a_payment_recip"
-#~ msgstr "dasdasd"
-
-#, fuzzy
-#~ msgid "Moving products"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Items list"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Meta data"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Warehouse list"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Removing status"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Order status"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Orders on page"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "a_footer_save_exit"
-#~ msgstr "Футер сео"
-
-#~ msgid "New orders"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "New users"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "Orders sum"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Order create"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Order removal"
-#~ msgstr "Cписок замовлень"
-
-#~ msgid "Orders list"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Edit order"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "Date of order"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "Orders"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Order status edit"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Additional fields list"
-#~ msgstr "Додать в список желаний"
-
-#, fuzzy
-#~ msgid "Role create"
-#~ msgstr "Создание сайта"
-
-#, fuzzy
-#~ msgid "Privileges list"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "List"
-#~ msgstr "Список желаний"
-
-#, fuzzy
-#~ msgid "Remove a Role"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Remove roles?"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "New Role"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "a_date_create"
-#~ msgstr "Создание сайта"
-
-#, fuzzy
-#~ msgid "Removing banner"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Banner list"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Removing currency"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Removing properties"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "List of currencies"
-#~ msgstr "Список порівнянь"
-
-#, fuzzy
-#~ msgid "Removing brand"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "List of brands"
-#~ msgstr "Список порівнянь"
-
-#, fuzzy
-#~ msgid "Orders statistics"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Number of Orders"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "Key to view the wishlist"
-#~ msgstr "Додать в список желаний"
-
-#, fuzzy
-#~ msgid "ID order"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "New order status"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "order"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "Removing discounts"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "List of cumulative discounts"
-#~ msgstr "Список порівнянь"
-
-#, fuzzy
-#~ msgid "chose date"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "View WishList"
-#~ msgstr "Список желаний"
-
-#, fuzzy
-#~ msgid "Order comment"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "View orders"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "New order"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "Create date"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Created date"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Updated date"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Show in comparison goods"
-#~ msgstr "Список порівнянь"
-
-#, fuzzy
-#~ msgid "Order ID"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "User created"
-#~ msgstr "Создание сайта"
-
-#, fuzzy
-#~ msgid "Order status created"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Order status changed"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Price updated"
-#~ msgstr "Cписок замовлень"
-
-#~ msgid "STAAAAAr"
-#~ msgstr "Зірка"
