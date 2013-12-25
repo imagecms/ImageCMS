@@ -44,7 +44,7 @@ Product = {
                     'src': vMainImage,
                     'alt': vName
                 });
-                $('.left-product .items-thumbs > li').removeClass('active').filter(':eq(0)').addClass('active');
+                $('.leftProduct .items-thumbs > li').removeClass('active').filter(':eq(0)').addClass('active');
             }
             
             if (vOrigPrice !== '')
@@ -256,7 +256,7 @@ function initPhoto() {
                 mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
                 $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}');
             });
-            $('.left-product').off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
+            $('.leftProduct').off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
                 var cloudzoomlens = $('.cloud-zoom-lens');
                 if (cloudzoomlens.width() > $(genObj.photoProduct).width()) {
                     $(this).remove();
@@ -284,7 +284,7 @@ function initPhoto() {
         $(genObj.photoProduct).attr('href', href).find('img').attr('src', href);
     });
     if (productPhotoDrop && productPhotoCZoom) {
-        $('.left-product').on('click.mousetrap', '.mousetrap', function() {
+        $('.leftProduct').on('click.mousetrap', '.mousetrap', function() {
             var $this = $(this).prev();
             $(this).data($.extend({
                 'frame': $this.closest(genObj.parentBtnBuy),
