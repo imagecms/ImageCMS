@@ -220,9 +220,8 @@
                     <div class="funcs-buttons">
                         <!-- Start. Collect information about Variants, for future processing -->
                         {foreach $variants as $key => $pv}
-                            {$amountInCart = getAmountInCart('SProducts', $pv->getId())}
-                            {if $pv->getStock() > 0 & $pv->getStock() > $amountInCart}
-                                <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                            {if $pv->getStock() > 0}
+                                <div class="frame-count-buy" {if $key != 0}style="display:none"{/if}>
                                     <form method="POST" action="/shop/cart_new/addProductByVariantId/{echo $pv->getId()}">
                                         <div class="btn-buy">
                                             <input type="hidden" name="redirect" value="cart" />
@@ -235,23 +234,13 @@
                                     </form>
                                 </div>
                             {else:}
-                                {if $pv->getStock() > 0 & $pv->getStock() == $amountInCart}
-                                    <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                        <span class="f-w_b f-s_12">{lang('Нет в наличии','newLevel')}.<br /> {lang('На складе','newLevel')}: {echo $pv->getStock()} <br /> {lang('В корзине','newLevel')}: {$amountInCart}</span>
-                                        <button class="infoBut d_l_1" type="button">
-                                            <span class="icon-but"></span>
-                                            <span class="text-el">{lang('Сообщите, когда появится','newLevel')}</span>
-                                        </button>
-                                    </div>
-                                {else:}
-                                    <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                        <span class="f-w_b f-s_12">Нет в наличии</span>
-                                        <button class="infoBut d_l_1" type="button">
-                                            <span class="icon-but"></span>
-                                            <span class="text-el">{lang('Сообщите, когда появится','newLevel')}</span>
-                                        </button>
-                                    </div>
-                                {/if}
+                                <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                                    <span class="f-w_b f-s_12">Нет в наличии</span>
+                                    <button class="infoBut d_l_1" type="button">
+                                        <span class="icon-but"></span>
+                                        <span class="text-el">{lang('Сообщите, когда появится','newLevel')}</span>
+                                    </button>
+                                </div>
                             {/if}
                         {/foreach}
                     </div>
