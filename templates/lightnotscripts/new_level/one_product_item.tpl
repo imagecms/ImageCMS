@@ -223,39 +223,22 @@
                             {if $pv->getStock() > 0}
                                 
                                 <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                    <div class="btn-buy">
-                                        <a class="btnBuy infoBut" href="{site_url('shop/cart_new/add_item/'.$pv->getId())}">
-                                            <span class="icon_cleaner_buy"></span>
-                                            <span class="text-el">{lang('Купить', 'newLevel')}</span>
-                                        </a>
-                                        {/*}<button
-                                            {$discount = 0}
-                                            {if $hasDiscounts}
-                                                {$discount = $pv->getvirtual('numDiscount')/$pv->toCurrency()*100}
-                                            {/if}
-                                            disabled="disabled"
-                                            class="btnBuy infoBut"
-                                            type="button"
-                                            data-id="{echo $pv->getId()}"
-                                            data-prodid="{echo $p->getId()}"
-                                            data-varid="{echo $pv->getId()}"
-                                            data-count="1"
-                                            data-name="{echo ShopCore::encode($p->getName())}"
-                                            data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
-                                            data-maxcount="{echo $pv->getstock()}"
-                                            data-number="{echo trim($pv->getNumber())}"
-                                            data-mediumImage="{echo $pv->getMediumPhoto()}"
-                                            data-img="{echo $pv->getSmallPhoto()}"
-                                            data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                            data-price="{echo $pv->toCurrency()}"
-                                            data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                            data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                            data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
-                                            >
-                                            <span class="icon_cleaner_buy"></span>
-                                            <span class="text-el">{lang('Купить', 'newLevel')}</span>
-                                        </button>{ */}
-                                    </div>
+                                    <form method="POST" action="/shop/cart_new/add">
+                                        <div class="btn-buy">
+                                            <input type="hidden" name="id" value="{echo $pv->getId()}" />
+                                            <input type="hidden" name="instance" value="SProducts" />
+                                            <input type="hidden" name="redirect" value="cart" />
+                                            <button
+                                                class="btnBuy infoBut"
+                                                type="submit"
+                                                value="buy"
+                                                >
+                                                <span class="icon_cleaner_buy"></span>
+                                                <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                            </button>
+                                        </div>
+                                        {form_csrf()}
+                                    </form>
                                 </div>
                             {else:}
                                 <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
@@ -267,18 +250,6 @@
                                         data-source="/shop/ajax/getNotifyingRequest"
 
                                         data-id="{echo $pv->getId()}"
-                                        data-prodid="{echo $p->getId()}"
-                                        data-varid="{echo $pv->getId()}"
-                                        data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                        data-price="{echo $pv->toCurrency()}"
-                                        data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                        data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                        data-name="{echo ShopCore::encode($p->getName())}"
-                                        data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
-                                        data-maxcount="{echo $pv->getstock()}"
-                                        data-number="{echo trim($pv->getNumber())}"
-                                        data-img="{echo $pv->getSmallPhoto()}"
-                                        data-mediumImage="{echo $pv->getMediumPhoto()}"
                                         >
                                         <span class="icon-but"></span>
                                         <span class="text-el">{lang('Сообщите, когда появится','newLevel')}</span>
