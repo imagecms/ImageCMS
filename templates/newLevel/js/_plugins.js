@@ -1216,6 +1216,7 @@ function getCookie(c_name)
                                     }
                                     $this.removeClass(hM);
                                 }
+                                return false;
                             });
                     menu.off('hover')['hover'](
                             function(e) {
