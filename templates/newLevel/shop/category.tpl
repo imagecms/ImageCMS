@@ -94,8 +94,6 @@
     </div>
 {/if}
 <!--Start. Popular products -->
-<div class="horizontal-carousel">
-    {widget('popular_products_cartogory_h')}
-</div>
+{widget('popular_products_cartogory_h')}
 <!--End. Popular products -->
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

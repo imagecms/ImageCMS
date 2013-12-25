@@ -25,7 +25,7 @@ class BaseDiscount extends \MY_Controller {
     protected $amout_user;
     public $ci;
 
-     /**
+    /**
      * __construct base object loaded
      * @access public
      * @author DevImageCms
@@ -57,7 +57,7 @@ class BaseDiscount extends \MY_Controller {
             return true;
     }
 
-     /**
+    /**
      * get user by id
      * @access public
      * @author DevImageCms
@@ -71,7 +71,7 @@ class BaseDiscount extends \MY_Controller {
         return $this->user_id;
     }
 
-     /**
+    /**
      * get user group for current user
      * @access public
      * @author DevImageCms
@@ -85,7 +85,7 @@ class BaseDiscount extends \MY_Controller {
         return $this->user_group_id;
     }
 
-     /**
+    /**
      * get Cart items for current session
      * @access public
      * @author DevImageCms
@@ -98,8 +98,23 @@ class BaseDiscount extends \MY_Controller {
         $this->cart_data = \ShopCore::app()->SCart->getData();
         return $this->cart_data;
     }
-
      /**
+     * get Cart items for current session
+     * @access public
+     * @author DevImageCms
+     * @param ---
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_cart_data_new() {
+
+        $cart = \CartNew\BaseCart::getInstance();
+        $cart = $cart->getItems();
+        $this->cart_data = $cart['data'];
+        return $this->cart_data;
+    }
+
+    /**
      * get current user amout
      * @access public
      * @author DevImageCms
@@ -116,7 +131,7 @@ class BaseDiscount extends \MY_Controller {
         return $this->amout_user;
     }
 
-     /**
+    /**
      * get totall origin price for current session
      * @access public
      * @author DevImageCms
@@ -131,8 +146,23 @@ class BaseDiscount extends \MY_Controller {
         $this->total_price = $this->discount_model_front->get_total_price($data);
         return $this->total_price;
     }
-
+    
      /**
+     * get totall origin price for current session
+     * @access public
+     * @author DevImageCms
+     * @param cart_data optional
+     * @return float
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_total_price_new($data = null) {
+
+        $cart = \CartNew\BaseCart::getInstance();
+        $this->total_price = $cart->getOriginTotalPrice();
+        return $this->total_price;
+    }
+
+    /**
      * get all active discount joined whith his type
      * @access public
      * @author DevImageCms
@@ -141,12 +171,13 @@ class BaseDiscount extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_all_discount() {
-        
+
         if (!self::$discount)
             self::$discount = $this->join_discount_settings($this->discount_model_front->get_discount());
         return self::$discount;
     }
-     /**
+
+    /**
      * joined discount whith his type
      * @access private
      * @author DevImageCms
@@ -162,8 +193,7 @@ class BaseDiscount extends \MY_Controller {
         return $discount;
     }
 
-
-     /**
+    /**
      * partitioning discounts on their types
      * @access public
      * @author DevImageCms
@@ -183,7 +213,7 @@ class BaseDiscount extends \MY_Controller {
         return $this->discount_type;
     }
 
-     /**
+    /**
      * set empty array for null ellement discount
      * @access private
      * @author DevImageCms
@@ -191,31 +221,30 @@ class BaseDiscount extends \MY_Controller {
      * @return ----
      * @copyright (c) 2013, ImageCMS
      */
-    private function empty_to_array(){
-        if (!$this->discount_type['product'])
+    private function empty_to_array() {
+        if (!isset($this->discount_type['product']))
             $this->discount_type['product'] = array();
 
-        if (!$this->discount_type['brand'])
+        if (!isset($this->discount_type['brand']))
             $this->discount_type['brand'] = array();
 
-        if (!$this->discount_type['category'])
+        if (!isset($this->discount_type['category']))
             $this->discount_type['category'] = array();
 
-        if (!$this->discount_type['all_order'])
+        if (!isset($this->discount_type['all_order']))
             $this->discount_type['all_order'] = array();
 
-        if (!$this->discount_type['comulativ'])
+        if (!isset($this->discount_type['comulativ']))
             $this->discount_type['comulativ'] = array();
 
-        if (!$this->discount_type['group_user'])
+        if (!isset($this->discount_type['group_user']))
             $this->discount_type['group_user'] = array();
 
-        if (!$this->discount_type['user'])
+        if (!isset($this->discount_type['user']))
             $this->discount_type['user'] = array();
-
     }
 
-     /**
+    /**
      * get max discount considering type value and price
      * @access public
      * @author DevImageCms
@@ -240,7 +269,7 @@ class BaseDiscount extends \MY_Controller {
         return $discount[$key_max];
     }
 
-     /**
+    /**
      * get value discount considering type value and price
      * @access public
      * @author DevImageCms
@@ -258,7 +287,7 @@ class BaseDiscount extends \MY_Controller {
         return $discount_value;
     }
 
-     /**
+    /**
      * update discount apply
      * @access public
      * @author DevImageCms
@@ -266,10 +295,9 @@ class BaseDiscount extends \MY_Controller {
      * @return -----
      * @copyright (c) 2013, ImageCMS
      */
-    public function updatediskapply($key, $gift = null){
+    public function updatediskapply($key, $gift = null) {
 
         return $this->discount_model_front->updateapply($key, $gift);
     }
-
 
 }

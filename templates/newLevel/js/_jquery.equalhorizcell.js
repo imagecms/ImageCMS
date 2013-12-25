@@ -15,6 +15,7 @@
                     jScrollPane = settings.jScrollPane || false,
                     after = settings.after,
                     scrollPane = settings.scrollPane,
+                    helper = settings.helper,
                     nS = '.equal';
             $this.each(function(index) {
                 var $this = $(this),
@@ -42,7 +43,7 @@
                                 liH[index] = thisCh.outerHeight();
                                 liH[index] > h ? h = liH[index] : h = h;
                             });
-                            tempNabir.add(tempNabir.find('.helper')).css('height', h).attr('data-equalHorizCell', '');
+                            tempNabir.add(tempNabir.find(helper)).css('height', h).attr('data-equalHorizCell', '');
                             liH = [];
                             h = 0;
                         }

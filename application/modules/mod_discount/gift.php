@@ -69,6 +69,37 @@ class Gift extends \mod_discount\classes\BaseDiscount {
         
         return json_encode(array('error'=>true, 'mes'=>lang('Invalid code try again', 'mod_discount')));
     }
+    
+     /**
+     * get gift certificate
+     * @access public
+     * @author DevImageCms
+     * @param key optional
+     * @return ----
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_gift_certificate_new($key = null, $totalPrice = null, $order = null) {
+        
+        $this->get_cart_data();
+        if ($totalPrice === null)
+            $totalPrice = $this->get_total_price();
+        if (null === $key)
+            $key = strip_tags(trim($_GET['key']));
+        foreach ($this->discount_type['all_order'] as $disc) 
+            if ($disc['key'] == $key and $disc['is_gift']) {
+                $value = $this->get_discount_value($disc,$totalPrice);
+                $cart = \CartNew\BaseCart::getInstance();
+                $cart->setTotalPrice($cart->getTotalPrice() - $value); 
+                $cart->gift_info = $disc['key'];  
+                $cart->gift_value = $value; 
+                if ($order)
+                    $this->updatediskapply($disc['key'], 'gift'); 
+                
+                break;
+            } 
+        
+        
+    }
       /**
      * render gift input
      * @access public

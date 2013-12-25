@@ -197,7 +197,7 @@
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-number="{echo trim($pv->getNumber())}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
-                                    data-img="{echo $pv->getSmallPhoto()}"
+                                    data-img="{if preg_match('/nophoto/', $pv->getSmallPhoto()) > 0}{echo $p->firstVariant->getSmallPhoto()}{else:}{echo $pv->getSmallPhoto()}{/if}"
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
                                     data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
