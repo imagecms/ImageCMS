@@ -369,6 +369,9 @@
                                                         <span class="price" id="finalAmount">
                                                             {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
                                                         </span>
+                                                        <span class="price deliveryPriceSum" id="finalAmount">
+                                                            
+                                                        </span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
