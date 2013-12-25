@@ -10,7 +10,7 @@
                 <span class="text-el">)</span>
             </span>
             <span class="js-no-empty no-empty" {if $count != 0}style="display: inline"{/if}>
-                <span class="text-el">{lang('Список желаний','newLevel')} </span>
+                <span class="text-el">{lang('Избранные','newLevel')} </span>
                 <span class="text-el">(</span>
                 <span class="text-el wishListCount">{echo $count}</span>
                 <span class="text-el">)</span>

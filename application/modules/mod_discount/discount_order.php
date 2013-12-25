@@ -79,4 +79,35 @@ class Discount_order extends classes\BaseDiscount {
         
         
     }
+    
+     /**
+     * update order table
+     * @access public
+     * @author DevImageCms
+     * @param array
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */        
+    public function update_cart_discount($cart){
+        
+        if ($this->check_module_install()) {
+            $discobj = new \mod_discount\discount;
+            $discount = $discobj->init($cart)->get_result_discount(1);           
+
+            
+            if ($discount['result_sum_discount']){
+                $cart->setTotalPrice( (float)$cart->getOriginTotalPrice() - (float)$discount['result_sum_discount'] );
+                //$this->template->assign($key, $value)
+                $cart->discount_info = $discount;
+                $this->updatediskapply($discount['max_discount']['key']);
+                
+            }
+
+            
+            
+        }
+       
+  
+        
+    }
 }

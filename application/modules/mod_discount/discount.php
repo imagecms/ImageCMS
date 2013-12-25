@@ -15,9 +15,12 @@ if (!defined('BASEPATH'))
  * @property discount_model_front $discount_model_front
  */
 class discount extends classes\BaseDiscount {
-    
+
     public $result_discount;
-     /**
+    
+    private $new_cart = false;
+
+    /**
      * __construct base object loaded
      * @access public
      * @author DevImageCms
@@ -30,8 +33,8 @@ class discount extends classes\BaseDiscount {
         $lang = new \MY_Lang();
         $lang->load('mod_discount');
     }
-    
-   /**
+
+    /**
      * initializing all method for getting discount
      * @access public
      * @author DevImageCms
@@ -42,40 +45,46 @@ class discount extends classes\BaseDiscount {
     public function init() {
 
         $this->get_user_id();
-        
+
         $this->get_user_group_id();
         
-        $this->get_cart_data();
-        
-        if ($this->cart_data)
-            $this->get_total_price();
-        
+        if (!$this->new_cart)
+            $this->get_cart_data(); //--
+        else
+            $this->get_cart_data_new(); // new Cart
+
+        if ($this->cart_data){
+            if (!$this->new_cart)
+                $this->get_total_price(); //--
+            else
+                $this->get_total_price_new(); // new Cart
+        }
+
         $this->get_all_discount();
-        
+
         $this->collect_type();
-        
+
         $discount_all_order = $this->get_all_order_discount_not_register();
-        
+
         if ($this->user_id) {
-            
+
             $this->get_amout_user();
-            
-            $discount_user = $this->get_user_discount();            
+
+            $discount_user = $this->get_user_discount();
 
             $discount_group_user = $this->get_user_group_discount();
 
             $discount_comulativ = $this->get_comulativ_discount();
 
             $discount_all_order = $this->get_all_order_discount_register();
-            
         }
-   
+
         $this->result_discount = array(
-                                'all_order'=>$discount_all_order, 
-                                'comulative' => $discount_comulativ, 
-                                'user' => $discount_user, 
-                                'user_group' => $discount_group_user);
-        
+            'all_order' => $discount_all_order,
+            'comulative' => $discount_comulativ,
+            'user' => $discount_user,
+            'user_group' => $discount_group_user);
+
         return $this;
     }
 
@@ -90,18 +99,21 @@ class discount extends classes\BaseDiscount {
     public function get_result_discount($render = null, $totalPrice = null) {
         if (null === $totalPrice)
             $totalPrice = $this->total_price;
-        
-        $discount_max = $this->get_max_discount($this->result_discount, $totalPrice);        
-        
-        $discount_value_no_product = $this->get_discount_value($discount_max, $totalPrice);
 
-        $discount_product_value = $this->get_discount_products();
+        $discount_max = $this->get_max_discount($this->result_discount, $totalPrice);
+
+        $discount_value_no_product = $this->get_discount_value($discount_max, $totalPrice);
+        
+        if (!$this->new_cart)
+            $discount_product_value = $this->get_discount_products(); //--
+        else
+            $discount_product_value = $this->get_discount_products_new(); // new Cart
 
         if ($discount_value_no_product > $discount_product_value)
             $result = $discount_value_no_product;
         else
             $result = $discount_product_value;
-        
+
         if (null === $render)
             return $result;
         else
@@ -124,7 +136,7 @@ class discount extends classes\BaseDiscount {
      * @return array 
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_user_discount() {       
+    public function get_user_discount() {
 
         $discount_user = array();
         foreach ($this->discount_type['user'] as $user_disc)
@@ -137,7 +149,7 @@ class discount extends classes\BaseDiscount {
             return false;
     }
 
-     /**
+    /**
      * get max discount for current user_group
      * @access public
      * @author DevImageCms
@@ -158,7 +170,7 @@ class discount extends classes\BaseDiscount {
             return false;
     }
 
-     /**
+    /**
      * get max comulativ discount for current user with current amout
      * @access public
      * @author DevImageCms
@@ -170,7 +182,7 @@ class discount extends classes\BaseDiscount {
 
         $discount_comulativ = array();
         foreach ($this->discount_type['comulativ'] as $disc)
-            if (($disc['begin_value'] <= (float)$this->amout_user and $disc['end_value'] > (float)$this->amout_user ) or ($disc['begin_value'] <= (float)$this->amout_user and !$disc['end_value']))
+            if (($disc['begin_value'] <= (float) $this->amout_user and $disc['end_value'] > (float) $this->amout_user ) or ($disc['begin_value'] <= (float) $this->amout_user and !$disc['end_value']))
                 $discount_comulativ[] = $disc;
         if (count($discount_comulativ) > 0)
             return $this->get_max_discount($discount_comulativ, $this->total_price);
@@ -178,8 +190,7 @@ class discount extends classes\BaseDiscount {
             return false;
     }
 
-
-     /**
+    /**
      * get discount for product in cart with his discount
      * @access public
      * @author DevImageCms
@@ -188,9 +199,9 @@ class discount extends classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_products() {
-        foreach ($this->cart_data as $item) {
+        foreach ($this->cart_data as $item) {      
             if ($item['instance'] == 'SProducts') {
-                $price_origin = $this->discount_model_front->get_price($item['variantId']);
+                $price_origin = $this->discount_model_front->get_price($item['variantId']);              
                 if (abs($price_origin - $item['price']) > 1)
                     $discount_value += ($price_origin - $item['price']) * $item['quantity'];
             }
@@ -199,7 +210,28 @@ class discount extends classes\BaseDiscount {
         return $discount_value;
     }
     
-     /**
+    /**
+     * get discount for product in cart with his discount
+     * @access public
+     * @author DevImageCms
+     * @param ----
+     * @return float 
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_discount_products_new() {
+        foreach ($this->cart_data as $item) {
+            if ($item->instance == 'SProducts') {
+                $price_origin = $item->originPrice; // new Cart
+                if (abs($price_origin - $item->price) > 1)
+                    $discount_value += ($price_origin - $item->price) * $item->quantity;
+            }
+        }
+
+        return $discount_value;
+    }
+
+
+    /**
      * get max discount for all order for register and not register user
      * @access public
      * @author DevImageCms
@@ -212,16 +244,16 @@ class discount extends classes\BaseDiscount {
         $all_order_arr_reg = array();
         foreach ($this->discount_type['all_order'] as $disc)
             if (!$disc['is_gift'])
-                if ($disc['begin_value'] <= (int)$this->total_price)
+                if ($disc['begin_value'] <= (int) $this->total_price)
                     $all_order_arr_reg[] = $disc;
-                
+
         if (count($all_order_arr_reg) > 0)
             return $this->get_max_discount($all_order_arr_reg, $this->total_price);
         else
             return false;
     }
 
-     /**
+    /**
      * get max discount for all order for not register user
      * @access public
      * @author DevImageCms
@@ -242,4 +274,5 @@ class discount extends classes\BaseDiscount {
         else
             return false;
     }
+
 }

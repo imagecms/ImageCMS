@@ -747,6 +747,7 @@ class ImportXML {
         }
 
         $this->insertData($this->orders_table);
+        $this->updateData($this->orders_table, 'id');
 
         $inserted_orders = load_orders();
 
@@ -816,13 +817,13 @@ class ImportXML {
     public function updateOrder($order, $data) {
         $total_price = 0;
         $this->update[] = $data;
-
         if (isset($order->IDЗаказПокупателя)) {
-            $order_id = is_order($order->IDЗаказПокупателя . '', $this->orders);
+            $order_id['external_id'] = (string) $order->IDЗаказПокупателя;
+            $order_id['id'] = (string) $order->IDWebЗаказПокупателя;
         } else {
-            $order_id = is_order($order->ID . '', $this->orders);
+            $order_id['external_id'] = (string) $order->ID;
+            $order_id['id'] = (string) $order->IDWeb;
         }
-
         if (isset($order->Строки)) {
             $this->ci->db->where('order_id', $order_id['id'])->delete('shop_orders_products');
             foreach ($order->Строки as $key => $product) {
@@ -873,7 +874,7 @@ class ImportXML {
             $data['hour'] = $productivity->Час . '';
             $data['count'] = (int) $productivity->Количество;
             $data['partner_external_id'] = $productivity->IDОрганизация . '';
-            
+
             if (is_partner($data['partner_external_id'], $this->partners)) {
                 $is_productivity = is_productivity($data['external_id'], $data['partner_external_id'], $this->productivity);
                 if ($productivity->IDWeb || $is_productivity) {

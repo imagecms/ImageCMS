@@ -1,4 +1,5 @@
 var optionCompare = {
+    helper: '.helper-comp',
     frameCompare: '.frame-tabs-compare > div',
     left: '.left-compare li',
     right: '.items-compare > li',
@@ -75,4 +76,10 @@ doc.on('scriptDefer', function() {
             optionCompare.allParams.click();
     });
     $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
+    //if select in compare
+    $('#compare').change(function() {
+        var $this = $(this);
+        $($this.val()).siblings().hide().end().show();
+        optionCompare.compareChangeCategory();
+    }).change();
 });

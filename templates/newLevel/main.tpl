@@ -51,7 +51,9 @@
                                     if (cL == scriptsL)
                                         if (callback) {
                                             eval(callback)();
-                                            $(document).trigger({'type': customEvent});
+                                            setTimeout(function(){
+                                                $(document).trigger({'type': customEvent});
+                                            }, 0);
                                         }
                                 }
                             });
@@ -99,6 +101,7 @@
         </footer>
         {include_tpl('user_toolbar')}
 
+        {/*}delete before upload to server{ */}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -107,19 +110,26 @@
         <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
-
-        <script type="text/javascript">
-            {/*initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');*/}
-        </script>
-        {literal}
-        <script type="text/javascript">
-            $(window).load(function(){
-                init();
-                $(document).trigger({type: 'scriptDefer'})
-            })
-        </script>
-        {/literal}
-        {include_shop_tpl('js_templates')}
         <!-- scripts end -->
+
+        {literal}
+            <script type="text/javascript">
+                $(window).load(function(){
+                    init();
+                    setTimeout(function(){
+                        $(document).trigger({type: 'scriptDefer'})
+                    }, 0)
+                })
+            </script>
+        {/literal}
+        {/*}//delete before upload to server{ */}
+        
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
+        {/*}
+        <script type="text/javascript">
+            {initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');}
+        </script>
+        { */}
+        {include_shop_tpl('js_templates')}
     </body>
 </html>

@@ -6,8 +6,8 @@
 {/if}
 <div class="comments" id="comments">
     {if $can_comment == 0 OR $is_logged_in}
-        <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if !$visibleMainForm}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0">Оставить свой отзыв</button>{/if}</div>
-        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
+        <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if !$visibleMainForm || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0">Оставить свой отзыв</button>{/if}</div>
+        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm || $visibleMainForm == NULL}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight">
                 <div class="title-default title-comment">
                     <div class="title">{lang('Оставить комментарий','newLevel')}</div>
@@ -118,11 +118,13 @@
                                     <span class="s-t">{lang('Отзыв полезен?','newLevel')}</span>
                                     <span class="btn like">
                                         <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
+                                            <span class="icon_like"></span>
                                             <span class="text-el d_l_1">{lang('Да','newLevel')} <span class="yesholder{$comment.id}">({echo $comment.like})</span></span>
                                         </button>
                                     </span>
                                     <span class="btn dis-like">
                                         <button type="button" class="usefullno" data-comid="{echo $comment.id}">
+                                            <span class="icon_dislike"></span>
                                             <span class="text-el d_l_1">{lang('Нет','newLevel')} <span class="noholder{$comment.id}">({echo $comment.disslike})</span></span>
                                         </button>
                                     </span>
