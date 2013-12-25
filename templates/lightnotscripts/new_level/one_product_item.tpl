@@ -1,3 +1,4 @@
+
 {$opi_widget = $opi_widget != false && $opi_widget != NULL}
 {$opi_wishlist = $opi_wishlist != false && $opi_wishlist != NULL}
 {$opi_compare = $opi_compare != false && $opi_compare != NULL}
@@ -220,6 +221,7 @@
                         <!-- Start. Collect information about Variants, for future processing -->
                         {foreach $variants as $key => $pv}
                             {if $pv->getStock() > 0}
+                                
                                 <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                     <form method="POST" action="/shop/cart_new/add">
                                         <div class="btn-buy">
@@ -266,4 +268,5 @@
         {/if}
         <!-- End. Remove buttons if compare-->
     </li>
+
 {/foreach}

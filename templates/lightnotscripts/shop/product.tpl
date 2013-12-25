@@ -211,21 +211,31 @@
                                                 {/if}
                                                 {if $productVariant->getStock() > 0}
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                        <form method="POST" action="/shop/cart_new/add">
-                                                            <div class="btn-buy btn-buy-p">
-                                                                <input type="hidden" name="id" value="{echo $productVariant->getId()}" />
-                                                                <input type="hidden" name="instance" value="SProducts" />
-                                                                <input type="hidden" name="redirect" value="cart" />
-                                                                <button class="btnBuy infoBut"
-                                                                        type="submit"
-                                                                        value="buy"
-                                                                        >
-                                                                    <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                                    <span class="text-el">{lang('Купить')}</span>
-                                                                </button>
-                                                            </div>
-                                                            {form_csrf()}
-                                                        </form>
+                                                        <div class="btn-buy btn-buy-p">
+                                                            <button class="btnBuy infoBut"
+                                                                    disabled="disabled"
+                                                                    type="button"
+                                                                    data-id="{echo $productVariant->getId()}"
+                                                                    data-prodid="{echo $model->getId()}"
+                                                                    data-varid="{echo $productVariant->getId()}"
+                                                                    data-price="{echo $productVariant->toCurrency()}"
+                                                                    data-count="1"
+                                                                    data-name="{echo ShopCore::encode($model->getName())}"
+                                                                    data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
+                                                                    data-maxcount="{echo $productVariant->getstock()}"
+                                                                    data-number="{echo trim($productVariant->getNumber())}"
+                                                                    data-url="{echo shop_url('product/'.$model->getUrl())}"
+                                                                    data-img="{echo $productVariant->getSmallPhoto()}"
+                                                                    data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                                    data-largeImage="{echo $productVariant->getlargePhoto()}"
+                                                                    data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                                    data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
+                                                                    data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
+                                                                    >
+                                                                <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                                <span class="text-el">{lang('Купить')}</span>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 {else:}
                                                     <div class="d_i-b v-a_m">
@@ -237,6 +247,21 @@
                                                                     data-drop=".drop-report"
                                                                     data-source="/shop/ajax/getNotifyingRequest"
                                                                     class="d_l_1"
+
+                                                                    data-id="{echo $productVariant->getId()}"
+                                                                    data-prodid="{echo $model->getId()}"
+                                                                    data-varid="{echo $productVariant->getId()}"
+                                                                    data-url="{echo shop_url('product/'.$model->getUrl())}"
+                                                                    data-price="{echo $productVariant->toCurrency()}"
+                                                                    data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                                    data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
+                                                                    data-name="{echo ShopCore::encode($model->getName())}"
+                                                                    data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
+                                                                    data-maxcount="{echo $productVariant->getstock()}"
+                                                                    data-number="{echo trim($productVariant->getNumber())}"
+                                                                    data-img="{echo $productVariant->getSmallPhoto()}"
+                                                                    data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                                    data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                                     class="infoBut">
                                                                     <span class="icon-but"></span>
                                                                     <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
