@@ -114,6 +114,7 @@
         <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts313.js"></script>
 
         <script type="text/javascript">
             {/*initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');*/}
