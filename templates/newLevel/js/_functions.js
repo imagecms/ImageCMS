@@ -586,9 +586,7 @@ function hideDrop(drop, form, durationHideForm) {
     $(document).off('closed.drop').on('closed.drop', function(e) {
         clearTimeout(closedrop);
         if (e.drop.is(drop)) {
-            console.log(e.drop.find(genObj.msgF).length)
             e.drop.find(genObj.msgF).hide().remove();
-            console.log(e.drop.find(genObj.msgF).length)
             form.show();
         }
     })
