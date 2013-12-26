@@ -33,7 +33,7 @@ msgstr "Номер телефона"
 #: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:40
 #: ./application/modules/found_less_expensive/assets/admin/list.tpl:41
 msgid "Product link"
-msgstr "Ссилка на товар"
+msgstr "Ссылка на товар"
 
 #: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:46
 #: ./application/modules/found_less_expensive/assets/admin/list.tpl:40
