@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.0deb0ubuntu1ppa1
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Трв 10 2013 р., 14:39
--- Версія сервера: 5.5.31-0ubuntu0.13.04.1
--- Версія PHP: 5.4.9-4ubuntu2
+-- Время создания: Дек 26 2013 г., 17:29
+-- Версия сервера: 5.1.41
+-- Версия PHP: 5.3.1
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,16 +16,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База даних: `premium`
+-- База данных: `imagedemoshop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `answer_notifications`
+-- Структура таблицы `answer_notifications`
 --
 
-DROP TABLE IF EXISTS `answer_notifications`;
 CREATE TABLE IF NOT EXISTS `answer_notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
@@ -36,22 +34,23 @@ CREATE TABLE IF NOT EXISTS `answer_notifications` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Дамп даних таблиці `answer_notifications`
+-- Дамп данных таблицы `answer_notifications`
 --
 
 INSERT INTO `answer_notifications` (`id`, `locale`, `name`, `message`) VALUES
 (1, 'ua', 'incoming', '<h1>Дякуємо</h1>\n<div>В короткий час наші менеджери звяжуться з Вами</div>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>'),
 (2, 'ua', 'callback', '<h1>Дякуємо</h1>\n<div>В короткий час наші менеджери звяжуться з Вами</div>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>'),
 (3, 'ua', 'order', '<h1>Дякуємо</h1>\n<div>В короткий час наші менеджери звяжуться з Вами</div>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>'),
-(4, 'ru', 'incoming', '<h1>Спасибо</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>'),
-(5, 'ru', 'callback', '<h1>Спасибо</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>'),
-(6, 'ru', 'order', '<h1>Спасибо</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>');
+(4, 'ru', 'incoming', '<h1>Спасибо</h1>\r\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>'),
+(5, 'ru', 'callback', '<h1>Спасибо</h1>\r\n<div>В ближайіваівашее время наши менеджеры свяжутся с Вами</div>'),
+(6, 'ru', 'order', '<h1>Спасибо</h1>\r\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>');
+
+-- --------------------------------------------------------
 
 --
--- Структура таблиці `category`
+-- Структура таблицы `category`
 --
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -80,21 +79,18 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=72 ;
 
 --
--- Дамп даних таблиці `category`
+-- Дамп данных таблицы `category`
 --
 
 INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
-(69, 0, 1, 'Новости', '', '', 'novosti', '', '', '', 'a:3:{i:0;s:2:"69";i:1;s:2:"70";i:2;s:2:"71";}', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(70, 69, 2, 'Последние новости', '', '', 'poslednie-novosti', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(71, 69, 3, 'Архив', '', '', 'arhiv', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}');
+(69, 0, 1, 'Новости', '', '', 'novosti', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, 13, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `category_translate`
+-- Структура таблицы `category_translate`
 --
 
-DROP TABLE IF EXISTS `category_translate`;
 CREATE TABLE IF NOT EXISTS `category_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` int(11) NOT NULL,
@@ -109,13 +105,17 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
   KEY `name` (`name`,`lang`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
+--
+-- Дамп данных таблицы `category_translate`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `comments`
+-- Структура таблицы `comments`
 --
 
-DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(25) NOT NULL DEFAULT 'core',
@@ -139,10 +139,10 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `module` (`module`),
   KEY `item_id` (`item_id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=88 ;
 
 --
--- Дамп даних таблиці `comments`
+-- Дамп данных таблицы `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -157,15 +157,20 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 (77, 'shop', 1, 'Игор Петрович', 'kalmar@gmail.com', '', 115, 'Покупайте! Отличный выбор', 1314057600, 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', 0, '', '', 0, 0, 0),
 (78, 'shop', 1, 'Игор Петрович', 'kalmar@gmail.com', '', 123, 'Покупайте! Отличный выбор', 1303516800, 0, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', 0, '', '', 0, 0, 0),
 (79, 'shop', 1, 'Василий Пупкин', 'vasil.pypkin@mail.ru', '', 105, 'Купил пару месяцев назат доволен как слон работает как часы))', 1296777600, 0, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', 0, 'Работоспособность 100% во всех аспектах', '', 0, 0, 0),
-(80, 'shop', 1, 'Василий Пупкин', 'vasil.pypkin@mail.ru', '', 107, 'Купил 2 дня юзаю все в норме', 1305417600, 0, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', 0, '', '', 0, 0, 0);
+(80, 'shop', 1, 'Василий Пупкин', 'vasil.pypkin@mail.ru', '', 107, 'Купил 2 дня юзаю все в норме', 1305417600, 0, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', 0, '', '', 0, 0, 0),
+(82, 'shop', 48, 'Administrator', 'ad@min.com', '', 88, 'Отличный товар! Всем рекомендую', 1387390738, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', '127.0.0.1', 5, '', '', 0, 0, 0),
+(83, 'shop', 48, 'Administrator', 'ad@min.com', '', 190, 'Купила это чудо техники на прошлой неделе. Пользуясь вторую неделю минусов не нашла, в основном все нравится - быстрый и удобный, сравниваю с 710.\r<br/>\r<br/>Фоточехол - действительно тема, очень практично и действительно удобней фотографировать с ним.', 1387480883, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', '127.0.0.1', 4, '', '', 1, 0, 0),
+(84, 'shop', 48, 'Administrator', 'ad@min.com', '', 190, 'Никого не слушайте на сегодняшний день лучшее из того что на мировом рынке предлагают производители камерофонов, обязательно надо докупать камеру грип (там дополнительная батарея да и держать удобней), привезли как подарок из США, жду теперь когда поступит в продажу у нас чтоб поменять второй...', 1387480905, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', '127.0.0.1', 5, '', '', 0, 1, 0),
+(85, 'shop', 48, 'Administrator', 'ad@min.com', '', 190, 'У самого Lumia 925. Мне даже страшно представить качество фотографий на 1020. Аппарат должен стать хитом!', 1387480922, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', '127.0.0.1', 2, '', '', 1, 0, 0),
+(86, 'shop', 48, 'Administrator', 'ad@min.com', '', 190, 'не смеши) толщина вообще не должна рассматриваться как минус) это же не кирпич, наоборот, хорошо когда плотно лежит в руке, а не лист жести держишь', 1387480940, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', '127.0.0.1', 0, '', '', 0, 0, 83),
+(87, 'shop', 48, 'Administrator', 'ad@min.com', '', 190, 'большой и удобный и.............толшена ТОРМОЗ', 1387480966, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', '127.0.0.1', 0, '', '', 0, 0, 83);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `components`
+-- Структура таблицы `components`
 --
 
-DROP TABLE IF EXISTS `components`;
 CREATE TABLE IF NOT EXISTS `components` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -180,22 +185,22 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=177 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=346 ;
 
 --
--- Дамп даних таблиці `components`
+-- Дамп данных таблицы `components`
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
-(1, 'user_manager', 'user_manager', 0, 0, 0, NULL, 11),
+(1, 'user_manager', 'user_manager', 0, 0, 1, NULL, 11),
 (2, 'auth', 'auth', 1, 0, 0, NULL, 20),
 (4, 'comments', 'comments', 1, 1, 0, NULL, 9),
 (7, 'navigation', 'navigation', 0, 0, 0, NULL, 21),
-(30, 'tags', 'tags', 1, 1, 0, NULL, 22),
+(30, 'tags', 'tags', 0, 0, 0, NULL, 22),
 (92, 'gallery', 'gallery', 1, 0, 0, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 10),
 (55, 'rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 14),
 (60, 'menu', 'menu', 0, 1, 1, NULL, 3),
-(58, 'sitemap', 'sitemap', 1, 1, 0, 'a:6:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.8";s:14:"pages_priority";s:3:"0.6";s:20:"main_page_changefreq";s:6:"always";s:21:"categories_changefreq";s:6:"hourly";s:16:"pages_changefreq";s:5:"daily";}', 15),
+(58, 'sitemap', 'sitemap', 0, 0, 0, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 15),
 (80, 'search', 'search', 1, 0, 0, NULL, 24),
 (84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 12),
 (117, 'template_editor', 'template_editor', 0, 0, 0, NULL, 16),
@@ -203,29 +208,28 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (95, 'filter', 'filter', 1, 0, 0, NULL, 25),
 (96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 17),
 (121, 'shop', 'shop', 1, 0, 0, NULL, 17),
-(137, 'mailer', 'mailer', 1, 0, 1, NULL, 2),
+(137, 'mailer', 'mailer', 1, 0, 0, NULL, 2),
 (181, 'shop_news', 'shop_news', 1, 1, 0, NULL, 18),
-(153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 8),
+(153, 'share', 'share', 1, 0, 0, 'a:10:{s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:4:"none";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:7:"4066028";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 8),
 (177, 'banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 1),
-(205, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, 0),
-(253, 'smart_filter', 'smart_filter', 0, 1, 0, NULL, 23),
-(185, 'exchange', 'exchange', 1, 0, 1, 'a:13:{s:3:"zip";s:2:"no";s:8:"filesize";s:7:"2048000";s:7:"validIP";s:9:"127.0.0.1";s:5:"login";s:10:"ad@min.com";s:8:"password";s:5:"admin";s:11:"usepassword";s:2:"on";s:12:"userstatuses";N;s:10:"autoresize";N;s:5:"debug";N;s:5:"email";s:0:"";s:5:"brand";s:0:"";s:18:"userstatuses_after";s:1:"1";s:6:"backup";s:1:"1";}', 5),
-(344, 'wishlist', 'wishlist', 1, 1, 1, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', 2),
-(188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>$content</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 7),
-(216, 'new_level', 'new_level', 1, 1, 1, 'a:3:{s:15:"propertiesTypes";a:3:{i:0;s:6:"scroll";i:1;s:4:"full";i:2;s:8:"dropDown";}s:7:"columns";a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}s:5:"thema";s:18:"css/color_scheme_1";}', 4),
-(261, 'trash', 'trash', 0, 1, 0, NULL, 7),
-(204, 'mobile', 'mobile', 1, 1, 1, NULL, 6),
+(205, 'mod_discount', 'mod_discount', 1, 1, 0, NULL, 0),
+(253, 'smart_filter', 'smart_filter', 1, 0, 0, NULL, 23),
+(185, 'exchange', 'exchange', 1, 0, 0, 'a:13:{s:3:"zip";s:2:"no";s:8:"filesize";s:7:"2048000";s:7:"validIP";s:9:"127.0.0.1";s:5:"login";s:10:"ad@min.com";s:8:"password";s:5:"admin";s:11:"usepassword";s:2:"on";s:12:"userstatuses";N;s:10:"autoresize";N;s:5:"debug";N;s:5:"email";s:0:"";s:5:"brand";s:0:"";s:18:"userstatuses_after";s:1:"1";s:6:"backup";s:1:"1";}', 5),
+(344, 'wishlist', 'wishlist', 1, 1, 0, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', 2),
+(188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:55:"Интернет-магазин Сайт клиента";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:55:"Интернет-магазин Сайт клиента";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:500:"<h2>Интернет-магазин "Сайт клиента"</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Интернет-магазин "Сайт клиента"</p>\n<p>При возникновении любых вопросов, обращайтесь по телефонам:&nbsp;<br />+38 (044)227-95-72, +38 (050)578-17-40</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:4:"port";s:0:"";}', 7),
+(216, 'new_level', 'new_level', 1, 1, 1, 'a:3:{s:15:"propertiesTypes";a:2:{i:0;s:6:"scroll";i:2;s:8:"dropDown";}s:7:"columns";a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}s:5:"thema";s:18:"css/color_scheme_1";}', 4),
+(261, 'trash', 'trash', 0, 0, 0, NULL, 7),
+(204, 'mobile', 'mobile', 0, 0, 0, NULL, 6),
 (264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 19),
-(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 26),
+(265, 'star_rating', 'star_rating', 1, 0, 0, '{"main":"1"}', 26),
 (266, 'imagebox', 'imagebox', 0, 1, 0, NULL, 27);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content`
+-- Структура таблицы `content`
 --
 
-DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(500) NOT NULL,
@@ -262,37 +266,29 @@ CREATE TABLE IF NOT EXISTS `content` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
 
 --
--- Дамп даних таблиці `content`
+-- Дамп данных таблицы `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
-(35, 'О сайте', '', 'o-sajte', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Это базовый шаблон ImageCMS, на котором релизованы следующие функции: вывод фотогалереи, вывод статической статьи, вывод блога.', '<p>Это базовый шаблон ImageCMS, на котором релизованы следующие функции: отображение фотогалереи, отображение статической статьи, отображение корпоративного блога, отображение формы обратной связи.</p>\n<p>Общий вид шаблона можно отредактировать и изменить лого, графическую вставку на свои тематические.</p>\n<p>Слева в сайдбаре Вы видите список категорий блога, который легко вставляется с помощью функции {sub_category_list()} в файле main.tpl. Также в левом сайдбаре находится форма поиска по сайту, виджет последних комментариев и виджет тегов сайта. В этот сайдбар можно также добавить виджет последних либо популярных новостей, а также любые счетчики, информеры.</p>\n<p>Верхнее меню реализовано с помощью модуля Меню. Управлять его содержимым можно из административной части в разделе Меню - Главное меню. Сюда как правило можно еще добавить страницы: о компании, контакты, услуги и т.п.</p>\n<p>За дополнительной информацией обращайтесь в официальный раздел документации: <a href="http://www.imagecms.net/wiki">http://www.imagecms.net/wiki</a></p>\n<p>Обсудить дополнительные возможности, а также вопросы по установке, настройке системы можно на официальном форуме: <a href="http://forum.imagecms.net/index.php">http://forum.imagecms.net/</a></p>', 'іаіаіваіваіваів', 0, '', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1357651935, 13, 3, 0),
-(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'Roman Koloda', 1291295776, 0, 1354551261, 305, 3, 0),
-(65, 'Оплата', '', 'oplata', '', 'оплата', 'Оплата', '<p>Наш магазин поддерживает все доступные на данный момент методы оплаты.</p>\n<p>Также действует возможность оплаты курьеру при доставке для всех крупных городов Украины и России. (возможность оплаты курьеру в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1291743521, 167, 3, 0),
-(66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 151, 3, 0),
-(67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 90, 3, 0),
-(68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 93, 3, 0),
-(75, 'Contact', '', 'contact_us', '', 'ssss', 'ssss', '<p><span id="result_box" lang="en"><span>Hot Phone</span><span>:</span> <span>0800</span> <span>80</span> <span>80 800</span><br /><br /> <span>Head office in</span> <span>Moscow</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>095</span> <span>095</span> <span>00</span> <span>00</span><br /><br /> <span>The main office</span> <span>in Kiev</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>098</span> <span>098</span> <span>00</span> <span>00</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295870, 1291295888, 1343664873, 35, 30, 68),
-(76, 'Delivery', '', 'dostavka', '', 'support, the, delivery, service, autoworld, around, world, also, possible, all, major, cities, ukraine, and, russia, possibility, courier, your, area, please, call, desired, you, can, pick, purchased, goods, themselves, our, offices', 'We support the delivery of service Autoworld around the world. It is also possible delivery to all major cities of Ukraine and Russia (the possibility of delivery by courier in your area please call 0800820 22 22.) If desired, you can pick up the purchase', '<p><span id="result_box" lang="en"><span>We support the</span> <span>delivery of</span> <span>service</span> <span>Autoworld</span> <span>around the world.</span><br /><br /> <span>It is also possible</span> <span>delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine and Russia</span> <span>(the possibility of</span> <span>delivery</span> <span>by courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span><br /><br /> <span>If desired,</span> <span>you can</span> <span>pick up the</span> <span>purchased goods</span> <span>themselves</span> <span>in our offices.</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295844, 1291295851, 1343664842, 8, 30, 66),
-(77, 'Help', '', 'help', '', 'order, purchase, goods, our, store, you, must, follow, few, simple, steps, choose, the, right, product, vospolzovavshit, navigation, left, search, add, products, cart, shopping, select, shipping, method, and, provide, your, contact', 'In order to purchase goods in our store, you must follow a few simple steps: Choose the right product, vospolzovavshit navigation on the left, or search. Add products to cart. Go to the shopping cart, select shipping method and provide your contact inform', '<p><span id="result_box" lang="en"><span>In order to</span> <span>purchase goods</span> <span>in our store,</span> <span>you must follow</span> <span>a few simple steps</span><span>:</span><br /><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Choose</span> <span>the right product,</span> <span>vospolzovavshit</span> <span>navigation</span> <span>on the left</span><span>, or</span> <span>search.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Add products</span> <span>to cart</span><span>.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Go to the</span> <span>shopping cart,</span> <span>select</span> <span>shipping method</span> <span>and provide</span> <span>your contact information.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Proceed to checkout</span> <span>and select the</span> <span>payment method.</span><br /><br /> <span>After that,</span> <span>our managers</span> <span>will contact</span> <span>you and</span> <span>help you</span> <span>with payment</span> <span>and delivery</span> <span>of the goods</span><span>, as well</span> <span>as give advice on</span> <span>any subject.</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1343664897, 11, 30, 67),
-(78, 'Payment', '', 'oplata', '', 'our, store, supports, all, currently, available, methods, payment, also, there, possibility, pay, the, courier, for, delivery, major, cities, ukraine, and, russia, ability, your, area, please, call', 'Our store supports all currently available methods of payment. Also there is a possibility to pay the courier for delivery to all major cities of Ukraine and Russia. (ability to pay for the courier in your area please call 0800820 22 22.)', '<p><span id="result_box" lang="en"><span>Our store</span> <span>supports all</span> <span>currently available</span> <span>methods of payment.</span><br /><br /> <span>Also there is</span> <span>a possibility to pay</span> <span>the courier</span> <span>for delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine</span> <span>and Russia.</span> <span>(ability to</span> <span>pay for</span> <span>the courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span></span></p>', '', 0, '', '', 0, 1, 3, 'publish', 'admin', 1291295824, 1291295836, 1343664949, 1, 30, 65),
-(79, 'About us', '', 'about', '', 'shop, imagecms, offers, huge, selection, vehicles, suit, every, taste, the, best, prices, our, store, has, more, than, years, and, during, that, time, was, not, single, return, goods, serve, hundreds, customers', 'Shop ImageCMS Shop offers a huge selection of vehicles to suit every taste at the best prices. Our store has more than 5 years and during that time was not a single return of the goods. We serve hundreds of customers every day and do it with joy. Buy equi', '<p><span id="result_box" lang="en"><span>Shop</span> <span>ImageCMS Shop</span> <span>offers</span> <span>a huge selection</span> <span>of vehicles</span> <span>to suit every taste</span> <span>at the best prices</span><span>.</span><br /><br /> <span>Our store</span> <span>has more than</span> <span>5 years</span> <span>and during that time</span> <span>was not a single</span> <span>return of the goods</span><span>.</span><br /><br /> <span>We serve</span> <span>hundreds of</span> <span>customers</span> <span>every day</span> <span>and do</span> <span>it with joy.</span><br /><br /> <span>Buy</span> <span>equipment from</span> <span>us and</span> <span>become the owner of</span> <span>the world''s best</span> <span>technology</span><span>!</span></span></p>', '', 0, '', '', 0, 1, 1, 'publish', 'admin', 1291295776, 1291295792, 1343745649, 5, 30, 64),
-(80, 'Site', '', 'o-sajte', '', 'new', 'new', '<p><span id="result_box" lang="en"><span>This is</span> <span>the basic template</span> <span>ImageCMS,</span> <span>which</span> <span>relizovany</span> <span>the following functions</span><span>: display</span> <span>gallery</span><span>, displaying</span> <span>static</span> <span>articles</span><span>, displaying</span> <span>a corporate blog</span><span>, displaying</span> <span>the feedback form.</span><br /><br /> <span>General view of the</span> <span>template, you can</span> <span>edit and</span> <span>change the</span> <span>logo,</span> <span>a graphic</span> <span>box on</span> <span>your</span> <span>case</span><span>.</span><br /><br /> <span>On the left</span> <span>you can see</span> <span>in the sidebar</span> <span>list of</span> <span>categories of</span> <span>the blog,</span> <span>which is easily</span> <span>inserted</span> <span>by using the</span> <span>{sub_category_list ()}</span> <span>in the file</span> <span>main.tpl.</span> <span>Also</span> <span>in the left</span> <span>sidebar</span> <span>is</span> <span>a search form</span> <span>on the site,</span> <span>recent comments</span> <span>widget</span> <span>and the widget</span> <span>tag</span> <span>site.</span> <span>In</span> <span>this</span> <span>sidebar</span> <span>you can also</span> <span>add a widget</span><span>, or</span> <span>the latest</span> <span>popular</span> <span>news,</span> <span>as well as any</span> <span>counters,</span> <span>widgets</span><span>.</span><br /><br /> <span>The top menu</span> <span>is implemented</span> <span>by the module</span> <span>menu</span><span>.</span> <span>And manage</span> <span>its content</span> <span>can be</span> <span>part</span> <span>of the</span> <span>administration</span> <span>in Menu</span> <span>-</span> <span>Main Menu.</span> <span>It</span> <span>is usually</span> <span>possible to add</span> <span>page</span> <span>about the company</span><span>, contacts,</span> <span>services, etc.</span><br /><br /> <span>For more</span> <span>information, contact the</span> <span>official</span> <span>section of the documentation</span><span>: http://www.imagecms.net/wiki</span><br /><br /> <span>Discuss</span> <span>additional opportunities</span><span>, as well as</span> <span>questions about</span> <span>installation, configuration,</span> <span>the system can be</span> <span>on the official forum</span><span>: http://forum.imagecms.net/</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1343722704, 0, 30, 35),
-(91, 'Как раскрутить сайт? Методы поискового продвижения', '', 'kak-raskrutit-sait-metody-poiskovogo-prodvizheniia', 'novosti/poslednie-novosti/', 'наличие, корпоративного, сайта, стало, стандартом, факто, знаком, хорошего, тона, любой, компании, только, известных, игроков, рынка, независимо, области, вашей, деятельности, собственный, ресурс, любом, случае, принесет, пользу, особенно, знаете, раскрутить, сайт, самостоятельно', 'Наличие корпоративного сайта уже стало стандартом де-факто и знаком   хорошего тона любой компании, а не только известных игроков рынка.   Независимо от области вашей деятельности, собственный ресурс в любом   случае принесет вам пользу, особенно если вы', '<p>Наличие корпоративного сайта уже стало стандартом де-факто и знаком  \nхорошего тона любой компании, а не только известных игроков рынка.  \nНезависимо от области вашей деятельности, собственный ресурс в любом  \nслучае принесет вам пользу, особенно если вы знаете как раскрутить сайт \n самостоятельно. Его можно использовать не только для повышения  \nузнаваемости бренда, но и в качестве эффективного инструмента продаж.</p>', '<p>Наличие корпоративного сайта уже стало стандартом де-факто и знаком \nхорошего тона любой компании, а не только известных игроков рынка. \nНезависимо от области вашей деятельности, собственный ресурс в любом \nслучае принесет вам пользу, особенно если вы знаете как раскрутить сайт \nсамостоятельно. Его можно использовать не только для повышения \nузнаваемости бренда, но и в качестве эффективного инструмента продаж.\n</p><p>После разработки и создания, каждый владелец Интернет-ресурса \nнепременно задумается как раскрутить сайт, ведь это - очень важный \nмомент. И тогда стоит разобраться в актуальных методах продвижения с \nцелью выбора оптимального.</p>\n<p>Все методы можно разделить на две основные группы: белые и черные \n(или спамные) - не важно, интересует ли вас как раскрутить сайт \nбесплатно или же с помощью студии. Если применение «белых» методов не \nвлечет за собой возможные санкции со стороны поисковых систем, то \nприменение запрещенных «черных» методов хотя и обещает быстрый результат\n и высокую эффективность в краткосрочном периоде, в долгосрочном периоде\n может обернутся жесткими санкциями со стороны поисковых систем.</p>\n<p>Но, скорее всего, большинство интересуется именно вопросом как \nраскрутить сайт бесплатно или с минимальными финансовыми вложениями. А \nзначит, стоит обратить внимание на такие методы бесплатного продвижения \nкак добавление в специализированные каталоги, рассылку пресс-релизов, \ne-mail маркетинг, обмен ссылками с другими сайтами схожей тематики. В \nтаком случае вопрос сколько стоит раскрутить сайт отпадает, так как все \nделается своими силами. Но прежде нужно хорошо подумать, не лучше ли \nобратиться к профессионалам своего дела? Ведь <a href="http://www.imagecms.net/blog/obzory/biznes-v-internete-kak-perspektivnyi-trend" target="_blank">бизнес в Интернете</a>\n требует затрат времени и они могут оказаться колоссальными, и в случае с\n профессиональными подрядчиками по крайней мере можно быть уверенным в \nрезультате.</p>\n<p>Кроме того, стоит обратить внимание на специализированные движки для \nсайтов, которые “с коробки” обладают хорошими возможностями в плане \nSEO-оптимизации. Одной из таких систем является <a href="http://www.imagecms.net/download">ImageCMS</a>\n - благодаря тому, что движок изначально является SEO-friendly, не нужно\n устанавливать дополнительные модули и компоненты, а значит можно \nсэкономить массу времени и нервов.</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Система для создания интернет-магазинов - ImageCMS" height="183" width="705"></a></p>\n<p>Если анализировать сколько стоит раскрутить сайт, то стоит \nотталкиваться от того факта, что это - комплексный процесс, и \nпредусматривает он работу сразу в нескольких направлениях, а значит \nлучше, если работу будут вести несколько человек. Поэтому самостоятельно\n справиться будет нелегко.</p>\n<p>Если вы задумались как раскрутить сайт бесплатно в сжатые сроки, то \nлучше сразу отбросьте эту идею и обратите внимание на платные методы - с\n их помощью можно сделать это гораздо быстрее, да и эффективность в этом\n случае на порядок выше. Здесь важен вопрос сколько стоит раскрутить \nсайт и вопрос больше по бюджету. Продвижение в таком случае ведется с \nиспользованием покупных ссылок на тематических сайтах, \nспециализированных бирж, заказа текстов у копирайтеров, организации \nкампаний в сетях контекстной рекламы, а также использования потенциала \nсоциальных медиа. Кроме того, <a href="http://www.imagecms.net/blog/obzory/osnovy-iuzabiliti-saita" target="_blank">юзабилити сайта</a> также играет важную роль.</p>\n<p>Выбирать между возможностью раскрутить сайт самостоятельно и заказать\n продвижение у специализированного агентства – нелегко. Во многом из-за \nнеобходимости хорошо проанализировать, что для вас важнее – экономия \nсредств или экономия времени. Да порой, если задумываешься как \nраскрутить сайт самостоятельно, стоит обратить внимание в сторону услуг \nподрядчиков, ведь с помощью профессионалов гораздо лучше сделать все \nбыстро и сэкономленный временной ресурс направить на получение прибыли в\n области, в которой вы действительно хорошо разбираетесь.</p>', 70, '', '', 0, 1, 0, 'publish', 'admin', 1362225580, 1362225580, 0, 1, 3, 0),
-(92, 'Как добавить сайт в Яндекс и Гугл. Советы начинающим вебмастерам', '', 'kak-dobavit-sait-v-iandeks-i-gugl-sovety-nachinaiushchim-vebmasteram', 'novosti/poslednie-novosti/', 'создание, сайта, само, себе, является, нелегким, довольно, продолжительным, процессом, позади, неприятно, обнаружить, ваш, красивый, наполненный, полезными, материалами, сайт, никто, кроме, самих, заходит, пожалуй, владельцы, сайтов, которые, запустили, свой, первый, проект', 'Создание сайта само по себе является нелегким и довольно продолжительным   процессом, и когда все уже позади, довольно неприятно обнаружить, что   на ваш красивый и наполненный полезными материалами сайт никто кроме  вас  самих не заходит. Пожалуй, владел', '<p>Создание сайта само по себе является нелегким и довольно продолжительным\n  процессом, и когда все уже позади, довольно неприятно обнаружить, что \n на ваш красивый и наполненный полезными материалами сайт никто кроме \nвас  самих не заходит. Пожалуй, владельцы сайтов, которые запустили свой\n  первый проект, чаще всего испытывают неприятное удивление в связи с \nэтим  фактом. А на самом деле все просто – прежде всего, нужно знать как\n  добавить сайт в поисковики.</p>', '<p>Создание сайта само по себе является нелегким и довольно \nпродолжительным процессом, и когда все уже позади, довольно неприятно \nобнаружить, что на ваш красивый и наполненный полезными материалами сайт\n никто кроме вас самих не заходит. Пожалуй, владельцы сайтов, которые \nзапустили свой первый проект, чаще всего испытывают неприятное удивление\n в связи с этим фактом. А на самом деле все просто – прежде всего, нужно\n знать как добавить сайт в поисковики.\n</p><p>Посетители переходят на сайты из результатов поиска, выдаваемых им \nGoogle при вводе определенного запроса. Но, чтобы появится в выдаче по \nэтому запросу, нужно сначала, чтобы поисковый робот проиндексировал ваш \nсайт, то есть, внес его в свою поисковую базу. Поэтому, если вы имеете \nпонятие про <a href="http://www.imagecms.net/blog/obzory/biznes-v-internete-kak-perspektivnyi-trend" target="_blank">бизнес в Интернете</a>, и уже запустили собственный ресурс, вопрос как добавить сайт в поисковики будет актуальным для каждого вебмастера.</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Мощная система для создания сайтов любых типов" height="183" width="705"></a></p>\n<p>Часто бывает, что ресурс может проиндексироваться сразу же после \nрегистрации доменного имени, но лучше всего самостоятельно добавить сайт\n в поисковые системы. Тем более, учитывая тот факт, что это займет \nсовсем немного времени.</p><br><h3>Добавить сайт в Яндекс</h3><br><p>Для того, чтобы сообщить этому поисковику о новом сайте, нужно \nперейти на страницу со специальной формой, которая находится по  \nследующему адресу: <a href="http://webmaster.yandex.ua/addurl.xml" target="_blank">http://webmaster.yandex.ua/addurl.xml</a></p>\n<p>С помощью панельки можно просто и быстро добавить сайт в Яндекс с \nминимальными затратами времени и сил. Перейдя по ссылке, вы увидите \nследующую форму: <br><img src="http://www.imagecms.net/uploads/images/blog/add_yandex.jpg" alt="Форма добавления сайта в индекс ПС Яндекс" height="266" width="695"> <br>В\n поле URL ведите адрес сайта, ниже введите цифры с картинки каптчи \n(защита от спама), после чего нажмите кнопку «Добавить». Поздравляем! \nТолько что вы смогли добавить сайт в Яндекс и уже в ближайшее время на \nнего заглянет поисковый паук, чтобы внести в свою базу. После этого он \nпоявится в результатах поиска, и вы получите первых посетителей.</p><br><h3>Добавить сайт в Гугл</h3><br><p>Эта поисковая система является мировым лидером в области web-поиска, и\n сообщить ей о своем сайте нужно обязательно. Добавить сайт в Гугл еще \nпроще, чем в предыдущем случае, ведь не нужно даже вводить каптчу. \nПерейдите <a href="https://www.google.com/webmasters/tools/submit-url?hl=ru" target="_blank">по этой ссылке</a> и перед вами откроется окно, с помощью которого можно добавить сайт в Google: <br><img src="http://www.imagecms.net/uploads/images/blog/add_google.jpg" alt="Добавление url в индекс ПС Google" height="311" width="695"><br>\n Введите адрес и по желанию можно добавить примечание. Хотя вряд ли в \nэтом есть смысл, так как это ни на что не влияет. Кстати, не нужно \nвводить никаких отдельных страниц, чтобы добавить сайт в Гугл достаточно\n вставить в поле формы URL главной страницы.</p>\n<p>Как видите, добавить сайт в поисковые системы совсем не сложно. Тем \nболее, если учитывать, что хорошая индексация ведет к росту \nпосещаемости, а значит и повышает <a href="http://www.imagecms.net/blog/obzory/otsenka-stoimosti-saita-i-faktory-kotorye-vliiaiut-na-tsenu" target="_blank">стоимость сайта</a>\n в целом. Это займет у вас минимум времени, но благодаря проделанным \nоперациям вы сможете быть уверены в том, что поисковые системы узнают о \nсайте и добавят его в базу, а значит, на сайт начнут заходить \nпосетители. Теперь вы знаете как добавить сайт в Google и можете без \nпроблем сделать это самостоятельно.</p>', 70, '', '', 0, 1, 0, 'publish', 'admin', 1362225699, 1362225699, 0, 1, 3, 0),
-(93, '8Р: Бизнес в сети', '', '8r-biznes-v-seti', 'novosti/poslednie-novosti/', 'редкий, предприниматель, наше, время, задается, вопросом, «как, помощью, интернета, увеличить, продажи, подробный, обстоятельный, ответ, каждый, сможет, получить, традиционной, ежегодной, конференции, бизнес, сети, которая, третий, состоится, одессе, ожидается, около, участников, этом', 'Редкий предприниматель в наше время не задается вопросом: «Как с помощью  интернета увеличить продажи?» Подробный и обстоятельный ответ каждый  сможет получить на традиционной ежегодной конференции “8Р: Бизнес в  сети”, которая в третий раз состоится в Од', '<p>Редкий предприниматель в наше время не задается вопросом: «Как с помощью\n интернета увеличить продажи?» Подробный и обстоятельный ответ каждый \nсможет получить на традиционной ежегодной конференции “8Р: Бизнес в \nсети”, которая в третий раз состоится &nbsp;в Одессе 13.07.2013г. Ожидается \nоколо 700 участников.</p>', '<br><p><img src="http://www.imagecms.net/uploads/images/8p_logo.jpg" height="70" width="300">Редкий\n предприниматель в наше время не задается вопросом: «Как с помощью \nинтернета увеличить продажи?» Подробный и обстоятельный ответ каждый \nсможет получить на традиционной ежегодной конференции “8Р: Бизнес в \nсети”, которая в третий раз состоится &nbsp;в Одессе 13.07.2013г. Ожидается \nоколо 700 участников.</p>\n<p dir="ltr">В этом году оргкомитет выбрал наиболее актуальные темы, \nпригласил более 40 докладчиков и решил немного отойти от теоретики, \nсделав упор на примеры из практики. Большое количество кейсов – \nотличительная черта “8P” 2013.</p>\n<p dir="ltr">В программе конференции предусмотрены 4 потока:</p><br><ul><li dir="ltr">Интернет-маркетинг &nbsp;– инструменты онлайн продвижения бизнеса</li><li dir="ltr">E-commerce – привлечение новых клиентов, увеличение конверсии, формирование лояльности</li><li dir="ltr">Кейсы – примеры успешного продвижения в сети</li><li dir="ltr">Мастер-классы – полтора часа непрерывного общения&nbsp;</li></ul><br><p>Оформить регистрацию на конференцию “8Р: Бизнес в сети” 2013 можно <a href="http://8p.ua/?utm_source=p20954&amp;utm_medium=press_release&amp;utm_campaign=8p">здесь</a>.</p>\n<p dir="ltr">Там же вы можете посмотреть фото и видео с прошлогодней конференции, прочитать отзывы участников.</p>\n<p dir="ltr">Стартовая цена билета – 950 грн. Внимание: с каждым проданным билетом она возрастает на 1 грн.<br>Адрес\n конференции: г.Одесса, банкетный дом Ренессанс. От железнодорожного \nвокзала будет курсировать комфортабельный автобус. Добираться можно и на\n своем автомобиле - бесплатная парковка к вашим услугам.</p>\n<p>В программе также кофе-брейки, обед, афтер-пати.<br>Испытание на стойкость - афтер-афтер-пати.<br> <br>Организатор конференции: <a href="http://netpeak.ua">Netpeak</a> - агентство интернет-маркетинга</p>', 70, '', '', 0, 1, 0, 'publish', 'admin', 1362225792, 1362225792, 0, 1, 3, 0),
-(94, 'Lviv Social Media Camp 2013', '', 'lviv-social-media-camp-2013', 'novosti/arhiv/', 'lviv, social, media, camp, третья, ежегодная, конференция, вопросам, продвижения, малого, бизнеса, социальных, сетях, состоится, февраля, успешные, форумы, года, собравшие, почти, участников, доказали, покорения, изменчивого, мира, медиа, необходимы, незаурядные, знания, опыт', 'Lviv Social Media Camp 2013 - третья ежегодная конференция по вопросам  продвижения малого бизнеса в социальных сетях - состоится 23 февраля.  Успешные форумы 2011 и 2012 года, собравшие почти 700 участников,  доказали - для покорения изменчивого мира соц', '<p>Lviv Social Media Camp 2013 - третья ежегодная конференция по вопросам \nпродвижения малого бизнеса в социальных сетях - состоится 23 февраля. \nУспешные форумы 2011 и 2012 года, собравшие почти 700 участников, \nдоказали - для покорения &nbsp;изменчивого мира социальных медиа необходимы \nнезаурядные знания и опыт, которыми могут поделиться только настоящие \nпрофессионалы. Как следствие - десятки новых ярких звезд, вспыхнувших в \nукраинском бизнес-пространстве. Такие результаты не могли не вдохновить \nорганизаторов на продолжение работы в этом перспективном направлении.</p>', '<p><img src="http://www.imagecms.net/uploads/images/smcamp2013.png" height="237" width="850"><br><a href="http://smcamp.com.ua">Lviv Social Media Camp 2013</a>\n - третья ежегодная конференция по вопросам продвижения малого бизнеса в\n социальных сетях - состоится 23 февраля. Успешные форумы 2011 и 2012 \nгода, собравшие почти 700 участников, доказали - для покорения \n&nbsp;изменчивого мира социальных медиа необходимы незаурядные знания и опыт,\n которыми могут поделиться только настоящие профессионалы. Как следствие\n - десятки новых ярких звезд, вспыхнувших в украинском \nбизнес-пространстве. Такие результаты не могли не вдохновить \nорганизаторов на продолжение работы в этом перспективном направлении.<br> <br>Красноречивые факты:</p><br><ul><li dir="ltr">22 млн. гривен - общий объем видеорекламы в Уанете.</li><li dir="ltr">680 млн. гривен - объем украинского рынка интернет-рекламы</li><li dir="ltr">180 млн. гривен - объем прошлогоднего рынка Digital-услуг</li><li dir="ltr">Около 20% - &nbsp;прогнозируемый рост Digital на 2013 год</li></ul><br><p><br>Нынешняя программа конференции разработана специально для \nпредпринимателей и представителей малого бизнеса, которым интересны \n&nbsp;новые возможности для продвижения своего продукта. К тому же, \nконференция станет точкой сбора для украинских профессионалов SMM.<br> <br>По традиции, в программе конференции будет три потока:<br> <br>Social Media Marketing:</p><br><ul><li dir="ltr">Украинский SMM в 2013 году - успехи и провалы</li><li dir="ltr">Нужен ли SMM украинскому бизнесу?</li><li dir="ltr">Методы манипулирования выдачей Facebook</li><li dir="ltr">Как продвигать "звезд" в YouTube</li><li dir="ltr">Вирусные промокампании</li><li dir="ltr">Использование возможностей Pinterest и Instagram</li><li dir="ltr">Social Media Optimization: о секретных алгоритмах Facebook</li><li dir="ltr">Опыт работы лучших украинских Digital-агентств</li></ul><br><p><br>Social Media и бизнес:</p><br><ul><li dir="ltr">Нуждается ли мой бизнес в использовании &nbsp;соц. сетей - как узнать?</li><li dir="ltr">Успешные локальные маркетинговые кампании - рассмотрим примеры</li><li dir="ltr">Facebook в Украине, Киеве, во Львове - определяем пользу</li><li dir="ltr">Facebook-страница - как правильно оформить?</li><li dir="ltr">Максимум результата за минимум времени - как добиться?</li><li dir="ltr">Агентства – стоит ли доверяться?</li></ul><br><p><br>Новые медиа, разработка, стартапы:</p><br><ul><li dir="ltr">Собственные сервисы и social media - вопросы интеграции</li><li dir="ltr">Mixed media</li><li dir="ltr">Twitter, Facebook, Foursquare API</li><li dir="ltr">BlogCamp</li><li dir="ltr">SmartTV</li><li dir="ltr">Линчи social media стартапов </li></ul><br><p><br>Стоимость билета:<br>200 грн. - Первые 50 билетов для ранних пташек<br>300 грн. - Следующие 200 билетов<br>500 грн. - Предпоследние 50 билетов<br>800 грн. - Кто поздно приходит, тому последние 20 билетов<br> <br>Встречаемся&nbsp;23 февраля в конференц-зале УКУ (ул.. Хуторовка, 35а).</p>', 71, '', '', 0, 1, 0, 'publish', 'admin', 1362225886, 1362225886, 0, 1, 3, 0);
-INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
-(95, 'Оценка стоимости сайта и факторы, которые влияют на цену', '', 'otsenka-stoimosti-saita-i-faktory-kotorye-vliiaiut-na-tsenu', 'novosti/arhiv/', 'как, время, разработки, продажи, интернет, ресурса, учитывается, достаточно, много, факторов, влияющих, цену, поэтому, нужно, уметь, оценить, стоимость, сайта, своими, силами, важно, планируете, создание, коммерческого, собираетесь, запустить, личный, блог, знать, финансовые', 'Как во время разработки, так и во время продажи Интернет-ресурса   учитывается достаточно много факторов, влияющих на его цену. Поэтому   нужно уметь оценить стоимость сайта своими силами. Не важно, планируете   ли вы создание коммерческого сайта или соби', '<p>Как во время разработки, так и во время продажи Интернет-ресурса  \nучитывается достаточно много факторов, влияющих на его цену. Поэтому  \nнужно уметь оценить стоимость сайта своими силами. Не важно, планируете \n ли вы создание коммерческого сайта или собираетесь запустить личный  \nблог, знать финансовые стороны вопроса никогда не будет лишним.</p>', '<br><p><img src="http://www.imagecms.net/uploads/images/blog/site-price.jpg" alt="Быстрая оценка любого сайта" height="172" width="250">Как\n во время разработки, так и во время продажи Интернет-ресурса \nучитывается достаточно много факторов, влияющих на его цену. Поэтому \nнужно уметь оценить стоимость сайта своими силами. Не важно, планируете \nли вы создание коммерческого сайта или собираетесь запустить личный \nблог, знать финансовые стороны вопроса никогда не будет лишним. <a title="стоимость создания сайта" href="http://www.imagecms.net/blog/obzory/skolko-stoit-sait-postroit" target="_blank">Стоимость создания сайта</a>\n для многих является ключевым фактором, влияющим на принятие решения о \nразработка. Многое зависит от необходимых вам возможностей, ведь для \nпростого блога вполне хватит бесплатной версии ImageCMS, а вот уже для \nторговой площадки понадобится коммерческий модуль Интернет-магазина.</p>\n<p>Оценка стоимости сайта при его разработке зависит от нескольких факторов. Пройдемся по пунктам:</p><br><ul><li>Дизайн. Если он уникальный – стоимость будет выше, но в этом случае \nучитываются все ваши пожелания и специфика вашего бизнеса. \nИндивидуальный подход позволяет сделать внешний вид сайта именно таким, \nкаким вы бы хотели его видеть, и поднять <a title="юзабилити сайт" href="http://www.imagecms.net/blog/obzory/osnovy-iuzabiliti-saita" target="_blank">юзабилити сайта</a>\n на действительно высокий уровень. Шаблонный сайт обойдется дешевле, что\n позволит оценить стоимость сайта ниже, но и качество не будет на \nвысоком уровне. Кроме того, такой же шаблон может использоваться и на \nдесятках других сайтов.</li><li>Функциональность. Думаю, не нужно быть профессионалом в \nweb-разработке, чтобы понять, что различие в цене разработки \nсайта-визитки для местного фотографа и туристического портала, будет \nсущественным. Оценка стоимости сайта в таком случае определяется \nсложностью добавляемых модулей.</li><li>Контент. Пожалуй, о важности качественного контента на данный момент\n можно и не напоминать, это аксиома известная всем, как заказчикам,  так\n и исполнителям. Конечно, качественный копирайтинг не может стоить \nдешево, и чем больше таких страниц нужно создать, тем дороже это \nобойдется. Точные знания относительно необходимого количества контента, \nпозволяет узнать стоимость сайта более подробно. Но стоит помнить, что \nвложения в качество обязательно окупятся в долгосрочной перспективе.</li><li>Оптимизация под поисковые системы (SEO). Если вам не нужны \nпосетители, а сайт сделан просто для галочки и надписи на визитке – \nможете смело пропускать этот пункт. Вот только зачем тогда его вообще \nсоздавать? Оптимизация сайта является важным пунктом договора, который \nзаранее оговаривается при разработке. Чтобы узнать стоимость сайта, \nнеобязательно сразу же просчитывать этот пункт, это скорее затраты \nбудущего периода. Особенно хорошо нужно проработать такой момент как <a title="подбор ключевых слов для сайта" href="http://www.imagecms.net/blog/obzory/podbor-kliuchevyh-slov-kak-sdelat-vse-pravilno" target="_blank">подбор ключевых слов</a> для сайта, то есть, составление семантического ядра.</li><li>Тематика сайта. Коммерческая ниша в любом случае будет цениться гораздо выше, чем развлекательная.</li><li>Количество страниц в индексе. Чем их больше, тем выше можно \nвыставить цену при продаже. Хороший багаж в плане контента будет полезен\n для любого проекта, как залог лояльности со стороны поисковых систем. \nГлавное – чтобы все материалы сайта были уникальными, а не обычным \nкопипастом.</li><li>Показатели тИЦ и PR. Пожалуй, оценить стоимость сайта на основе \nэтого показателя проще всего. Тут действует простое правило – чем \nбольше, тем лучше.</li><li>Посещаемость сайта. Оценка стоимости сайта с высокой посещаемостью \nвсегда была высокой. В последнее время, в связи с ужесточением поисковых\n алгоритмов и увеличением конкуренции, сайты с более-менее пристойным \nколичеством посетителей стали цениться еще выше.</li><li>Присутствие в каталогах DMOZ, Mail.ru и Яндекс.Каталог. Хотя данный \nфактор уже не имеет такого веса как во времена расцвета ссылочных бирж, \nно он все еще играет весомую роль, если вас интересует оценка стоимости \nсайта, так как является своеобразным знаком качества от поисковиков.</li></ul><br><p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Загрузить ImageCMS Corporate бесплатно" height="183" width="705"></a></p>\n<p>Перечисленные выше факторы позволяют точно оценить стоимость сайта \nеще на этапе проектирования, и в случае надобности – внести необходимые \nкорректировки. В случае, если ресурс принадлежит вам лично, а не \nкомпании, узнать стоимость сайта также очень важно, ведь он является \nвыгодным активом, который можно в любой момент продать. Это может быть \nкак блог, так и узкотематический проект, который хорошо закрепился в \nсвоей нише и представляет ценность для пользователей.</p>\n<p>В таком случае узнать стоимость сайта можно с помощью оценки немного \nдругих показателей, чем в первом случае. При продаже на стоимость \nповлияют такие показатели:</p>\n<p>В этой статье мы перечислили все основные факторы, с учетом которых \nможно оценить стоимость сайта и применить данные методики по отношению \nкак корпоративному, так и личному проекту.</p>', 71, '', '', 0, 1, 0, 'publish', 'admin', 1362225958, 1362225958, 0, 1, 3, 0),
-(96, 'Зачем вашему оффлайн-бизнесу нужен Интернет-магазин?', '', 'zachem-vashemu-offlain-biznesu-nuzhen-internet-magazin', 'novosti/arhiv/', 'несмотря, бурный, рост, интернет, коммерции, далеко, предприниматели, понимают, преимущества, магазина, особенно, оффлайная, торговая, точка, именно, таком, случае, проявляются, лучше, всего, ведь, получаете, только, отличный, источник, дополнительного, дохода, возможность, сравнения, эффективности', 'Несмотря на бурный рост Интернет-коммерции, далеко не все  предприниматели понимают, в чем преимущества Интернет-магазина, особенно  если уже есть оффлайная торговая точка. Но именно в таком случае  преимущества Интернет-магазина проявляются лучше всего,', '<p>Несмотря на бурный рост Интернет-коммерции, далеко не все \nпредприниматели понимают, в чем преимущества Интернет-магазина, особенно\n если уже есть оффлайная торговая точка. Но именно в таком случае \nпреимущества Интернет-магазина проявляются лучше всего, ведь вы \nполучаете не только отличный источник дополнительного дохода, но и \nвозможность сравнения эффективности вложения средств.</p>', '<br><p><img src="http://www.imagecms.net/uploads/images/blog/inet-magaz.jpg" alt="Интернет как перспективная бизнес-среда" height="200" width="213">Несмотря\n на бурный рост Интернет-коммерции, далеко не все предприниматели \nпонимают, в чем преимущества Интернет-магазина, особенно если уже есть \nоффлайная торговая точка. Но именно в таком случае преимущества \nИнтернет-магазина проявляются лучше всего, ведь вы получаете не только \nотличный источник дополнительного дохода, но и возможность сравнения \nэффективности вложения средств.</p>\n<p>Так зачем нужен Интернет-магазин современному предпринимателю? В \nзависимости от того, есть ли у вас уже действующий оффлайн-бизнес, он \nможет быть как дополнением к нему, или же основным источником дохода. \nУже отталкиваясь от этого, нужно планировать бюджет создания магазина и \nего развития. Над онлайновой торговой площадкой нужно вести постоянную \nработу, подробно проработать <a href="http://www.imagecms.net/blog/obzory/biznes-plan-internet-magazina-na-chto-obratit-vnimanie" target="_blank">бизнес-план Интернет-магазина</a>\n - это не просто визитка, созданная «для галочки»... это полноценный и \nочень эффективный инструмент продаж. Плюсов у онлайн-бизнеса, по \nсравнению с оффлайном, довольно много.</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Система для создания интернет-магазинов - ImageCMS" height="183" width="705"></a></p>\n<p>Перечислим основные преимущества Интернет-магазина:</p><br><ul><li>можно обойтись без аренды производственных площадей и складов -  достаточно небольшого офиса для обслуживания;</li><li>может быть как основным источником прибыли, так и дополнительным по \nотношению к основному бизнесу - это важное обоснование при вопросе зачем\n нужен Интернет-магазин;</li><li>гораздо меньший порог вхождения, хотя конкуренция в разных тематиках отличается;</li><li>нет региональных ограничений: можно находить клиентов как в своем городе или области, так и по всей стране;</li><li>доступность в режиме 24/7: круглосуточно и семь дней в неделю;</li><li>такие преимущества Интернет-магазина как экономия времени и свобода выбора, играют важную роль и для покупателей;</li><li><a title="бизнес в Интернете" href="http://www.imagecms.net/blog/obzory/biznes-v-internete-kak-perspektivnyi-trend" target="_blank">бизнес в Интернете</a>\n не требует большого количества обслуживающего персонала: можно обойтись\n одним консультантом там, где обычные торговые точки обслуживают \nпятерых;</li><li>нет ограничений по количеству представленных на виртуальной витрине товаров;</li><li>в случае с раскруткой и продвижением можно сфокусироваться только на\n потенциально заинтересованных в ваших товарах или услугах \nпользователях.</li></ul><br><p>Можно привести несколько примеров развертывания Интернет-магазинов на платформе <a href="http://www.imagecms.net/products/imagecms-shop-professional">ImageCMS Shop Professional</a>:\n boutique-ekaterinasmolina.ru, euro-technika.com.ua и др. Как видно из \nпримеров, можно торговать в онлайне как с небольшим ассортиментом, так и\n предлагая тысячи наименований товаров. Учитывая вышеперечисленное, \nкаждый владелец бизнеса может понять, зачем нужен Интернет-магазин и \nкакие выгоды от его разработки можно получить (независимо от того, \nработаете ли вы с розничной торговлей или в области B2B).</p>', 71, '', '', 0, 1, 0, 'publish', 'admin', 1362226037, 1362226037, 0, 3, 3, 0);
+(64, 'О магазине', '', 'o-magazine', '', 'магазине', 'О магазине', '<p>Страница на стадии разработки</p>', '', 0, '', '', 0, 0, 0, 'publish', 'Administrator', 1291295776, 0, 1387364012, 312, 3, 0),
+(66, 'Доставка и оплата', '', 'dostavka-i-oplata', '', 'доставка', 'Доставка и оплата', '<p>Страница на стадии разработки</p>', '', 0, '', '', 1, 0, 0, 'publish', 'Administrator', 1291295844, 1291295851, 1387364099, 152, 3, 0),
+(68, 'Контакты', '', 'kontakty', '', 'контакты', 'Контакты', '<p>Страница на стадии разработки</p>', '', 0, '', '', 4, 0, 0, 'publish', 'Administrator', 1291295870, 1291295888, 1387364083, 96, 3, 0),
+(75, 'Contact', '', 'kontakty', '', 'ssss', 'ssss', '<p><span id="result_box" lang="en"><span>Hot Phone</span><span>:</span> <span>0800</span> <span>80</span> <span>80 800</span><br /><br /> <span>Head office in</span> <span>Moscow</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>095</span> <span>095</span> <span>00</span> <span>00</span><br /><br /> <span>The main office</span> <span>in Kiev</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>098</span> <span>098</span> <span>00</span> <span>00</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295870, 1291295888, 1343664873, 35, 30, 68),
+(76, 'Delivery', '', 'dostavka-i-oplata', '', 'support, the, delivery, service, autoworld, around, world, also, possible, all, major, cities, ukraine, and, russia, possibility, courier, your, area, please, call, desired, you, can, pick, purchased, goods, themselves, our, offices', 'We support the delivery of service Autoworld around the world. It is also possible delivery to all major cities of Ukraine and Russia (the possibility of delivery by courier in your area please call 0800820 22 22.) If desired, you can pick up the purchase', '<p><span id="result_box" lang="en"><span>We support the</span> <span>delivery of</span> <span>service</span> <span>Autoworld</span> <span>around the world.</span><br /><br /> <span>It is also possible</span> <span>delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine and Russia</span> <span>(the possibility of</span> <span>delivery</span> <span>by courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span><br /><br /> <span>If desired,</span> <span>you can</span> <span>pick up the</span> <span>purchased goods</span> <span>themselves</span> <span>in our offices.</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295844, 1291295851, 1343664842, 8, 30, 66),
+(79, 'About us', '', 'o-magazine', '', 'shop, imagecms, offers, huge, selection, vehicles, suit, every, taste, the, best, prices, our, store, has, more, than, years, and, during, that, time, was, not, single, return, goods, serve, hundreds, customers', 'Shop ImageCMS Shop offers a huge selection of vehicles to suit every taste at the best prices. Our store has more than 5 years and during that time was not a single return of the goods. We serve hundreds of customers every day and do it with joy. Buy equi', '<p><span id="result_box" lang="en"><span>Shop</span> <span>ImageCMS Shop</span> <span>offers</span> <span>a huge selection</span> <span>of vehicles</span> <span>to suit every taste</span> <span>at the best prices</span><span>.</span><br /><br /> <span>Our store</span> <span>has more than</span> <span>5 years</span> <span>and during that time</span> <span>was not a single</span> <span>return of the goods</span><span>.</span><br /><br /> <span>We serve</span> <span>hundreds of</span> <span>customers</span> <span>every day</span> <span>and do</span> <span>it with joy.</span><br /><br /> <span>Buy</span> <span>equipment from</span> <span>us and</span> <span>become the owner of</span> <span>the world''s best</span> <span>technology</span><span>!</span></span></p>', '', 0, '', '', 0, 1, 1, 'publish', 'admin', 1291295776, 1291295792, 1343745649, 5, 30, 64),
+(91, 'Как раскрутить сайт? Методы поискового продвижения', '', 'kak-raskrutit-sait-metody-poiskovogo-prodvizheniia', 'novosti/', 'наличие, корпоративного, сайта, стало, стандартом, факто, знаком, хорошего, тона, любой, компании, только, известных, игроков, рынка, независимо, области, вашей, деятельности, собственный, ресурс, любом, случае, принесет, пользу, особенно, знаете, раскрутить, сайт, самостоятельно', 'Наличие корпоративного сайта уже стало стандартом де-факто и знаком   хорошего тона любой компании, а не только известных игроков рынка.   Независимо от области вашей деятельности, собственный ресурс в любом   случае принесет вам пользу, особенно если вы', '<p>Наличие корпоративного сайта уже стало стандартом де-факто и знаком хорошего тона любой компании, а не только известных игроков рынка. Независимо от области вашей деятельности, собственный ресурс в любом случае принесет вам пользу, особенно если вы знаете как раскрутить сайт самостоятельно. Его можно использовать не только для повышения узнаваемости бренда, но и в качестве эффективного инструмента продаж.</p>', '<h1>Интернет-магазин</h1>\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\n<h2>Заголовок второго уровня</h2>\n<h3>Заголовок третьего уровня</h3>\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\n<h3>Заголовок третьего уровня</h3>\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\n<ul>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ul>\n<h4>Заголовок четвертого уровня</h4>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\n<table>\n<tbody>\n<tr>\n<td>название</td>\n<td>размер</td>\n<td>цена</td>\n</tr>\n<tr>\n<td>длинна трубы</td>\n<td>10 метров</td>\n<td>145 уе</td>\n</tr>\n<tr>\n<td>ширина трубы</td>\n<td>2 метра</td>\n<td>134 уе</td>\n</tr>\n</tbody>\n</table>\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\n<ol>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ol>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>', 69, '', '', 0, 0, 0, 'publish', 'Administrator', 1362225580, 1362225580, 1387472085, 3, 3, 0),
+(92, 'Как добавить сайт в Яндекс и Гугл. Советы начинающим вебмастерам', '', 'kak-dobavit-sait-v-iandeks-i-gugl-sovety-nachinaiushchim-vebmasteram', 'novosti/', 'создание, сайта, само, себе, является, нелегким, довольно, продолжительным, процессом, позади, неприятно, обнаружить, ваш, красивый, наполненный, полезными, материалами, сайт, никто, кроме, самих, заходит, пожалуй, владельцы, сайтов, которые, запустили, свой, первый, проект', 'Создание сайта само по себе является нелегким и довольно продолжительным   процессом, и когда все уже позади, довольно неприятно обнаружить, что   на ваш красивый и наполненный полезными материалами сайт никто кроме  вас  самих не заходит. Пожалуй, владел', '<p>Создание сайта само по себе является нелегким и довольно продолжительным процессом, и когда все уже позади, довольно неприятно обнаружить, что на ваш красивый и наполненный полезными материалами сайт никто кроме вас самих не заходит. Пожалуй, владельцы сайтов, которые запустили свой первый проект, чаще всего испытывают неприятное удивление в связи с этим фактом. А на самом деле все просто &ndash; прежде всего, нужно знать как добавить сайт в поисковики.</p>', '<p>Создание сайта само по себе является нелегким и довольно продолжительным процессом, и когда все уже позади, довольно неприятно обнаружить, что на ваш красивый и наполненный полезными материалами сайт никто кроме вас самих не заходит. Пожалуй, владельцы сайтов, которые запустили свой первый проект, чаще всего испытывают неприятное удивление в связи с этим фактом. А на самом деле все просто &ndash; прежде всего, нужно знать как добавить сайт в поисковики.</p>\n<p>Посетители переходят на сайты из результатов поиска, выдаваемых им Google при вводе определенного запроса. Но, чтобы появится в выдаче по этому запросу, нужно сначала, чтобы поисковый робот проиндексировал ваш сайт, то есть, внес его в свою поисковую базу. Поэтому, если вы имеете понятие про <a href="http://www.imagecms.net/blog/obzory/biznes-v-internete-kak-perspektivnyi-trend" target="_blank">бизнес в Интернете</a>, и уже запустили собственный ресурс, вопрос как добавить сайт в поисковики будет актуальным для каждого вебмастера.</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Мощная система для создания сайтов любых типов" width="705" height="183" /></a></p>\n<p>Часто бывает, что ресурс может проиндексироваться сразу же после регистрации доменного имени, но лучше всего самостоятельно добавить сайт в поисковые системы. Тем более, учитывая тот факт, что это займет совсем немного времени.</p>\n<p>&nbsp;</p>\n<h3>Добавить сайт в Яндекс</h3>\n<p>&nbsp;</p>\n<p>Для того, чтобы сообщить этому поисковику о новом сайте, нужно перейти на страницу со специальной формой, которая находится по следующему адресу: <a href="http://webmaster.yandex.ua/addurl.xml" target="_blank">http://webmaster.yandex.ua/addurl.xml</a></p>\n<p>С помощью панельки можно просто и быстро добавить сайт в Яндекс с минимальными затратами времени и сил. Перейдя по ссылке, вы увидите следующую форму: <br /><img src="http://www.imagecms.net/uploads/images/blog/add_yandex.jpg" alt="Форма добавления сайта в индекс ПС Яндекс" width="695" height="266" /> <br />В поле URL ведите адрес сайта, ниже введите цифры с картинки каптчи (защита от спама), после чего нажмите кнопку &laquo;Добавить&raquo;. Поздравляем! Только что вы смогли добавить сайт в Яндекс и уже в ближайшее время на него заглянет поисковый паук, чтобы внести в свою базу. После этого он появится в результатах поиска, и вы получите первых посетителей.</p>\n<p>&nbsp;</p>\n<h3>Добавить сайт в Гугл</h3>\n<p>&nbsp;</p>\n<p>Эта поисковая система является мировым лидером в области web-поиска, и сообщить ей о своем сайте нужно обязательно. Добавить сайт в Гугл еще проще, чем в предыдущем случае, ведь не нужно даже вводить каптчу. Перейдите <a href="https://www.google.com/webmasters/tools/submit-url?hl=ru" target="_blank">по этой ссылке</a> и перед вами откроется окно, с помощью которого можно добавить сайт в Google: <br /><img src="http://www.imagecms.net/uploads/images/blog/add_google.jpg" alt="Добавление url в индекс ПС Google" width="695" height="311" /><br /> Введите адрес и по желанию можно добавить примечание. Хотя вряд ли в этом есть смысл, так как это ни на что не влияет. Кстати, не нужно вводить никаких отдельных страниц, чтобы добавить сайт в Гугл достаточно вставить в поле формы URL главной страницы.</p>\n<p>Как видите, добавить сайт в поисковые системы совсем не сложно. Тем более, если учитывать, что хорошая индексация ведет к росту посещаемости, а значит и повышает <a href="http://www.imagecms.net/blog/obzory/otsenka-stoimosti-saita-i-faktory-kotorye-vliiaiut-na-tsenu" target="_blank">стоимость сайта</a> в целом. Это займет у вас минимум времени, но благодаря проделанным операциям вы сможете быть уверены в том, что поисковые системы узнают о сайте и добавят его в базу, а значит, на сайт начнут заходить посетители. Теперь вы знаете как добавить сайт в Google и можете без проблем сделать это самостоятельно.</p>', 69, '', '', 0, 0, 0, 'publish', 'Administrator', 1362225699, 1362225699, 1387364028, 1, 3, 0),
+(93, '8Р: Бизнес в сети', '', '8r-biznes-v-seti', 'novosti/', 'редкий, предприниматель, наше, время, задается, вопросом, «как, помощью, интернета, увеличить, продажи, подробный, обстоятельный, ответ, каждый, сможет, получить, традиционной, ежегодной, конференции, бизнес, сети, которая, третий, состоится, одессе, ожидается, около, участников, этом', 'Редкий предприниматель в наше время не задается вопросом: «Как с помощью  интернета увеличить продажи?» Подробный и обстоятельный ответ каждый  сможет получить на традиционной ежегодной конференции “8Р: Бизнес в  сети”, которая в третий раз состоится в Од', '<p>Редкий предприниматель в наше время не задается вопросом: &laquo;Как с помощью интернета увеличить продажи?&raquo; Подробный и обстоятельный ответ каждый сможет получить на традиционной ежегодной конференции &ldquo;8Р: Бизнес в сети&rdquo;, которая в третий раз состоится &nbsp;в Одессе 13.07.2013г. Ожидается около 700 участников.</p>', '<p>&nbsp;</p>\n<p><img src="http://www.imagecms.net/uploads/images/8p_logo.jpg" alt="" width="300" height="70" />Редкий предприниматель в наше время не задается вопросом: &laquo;Как с помощью интернета увеличить продажи?&raquo; Подробный и обстоятельный ответ каждый сможет получить на традиционной ежегодной конференции &ldquo;8Р: Бизнес в сети&rdquo;, которая в третий раз состоится &nbsp;в Одессе 13.07.2013г. Ожидается около 700 участников.</p>\n<p dir="ltr">В этом году оргкомитет выбрал наиболее актуальные темы, пригласил более 40 докладчиков и решил немного отойти от теоретики, сделав упор на примеры из практики. Большое количество кейсов &ndash; отличительная черта &ldquo;8P&rdquo; 2013.</p>\n<p dir="ltr">В программе конференции предусмотрены 4 потока:</p>\n<p>&nbsp;</p>\n<ul>\n<li dir="ltr">Интернет-маркетинг &nbsp;&ndash; инструменты онлайн продвижения бизнеса</li>\n<li dir="ltr">E-commerce &ndash; привлечение новых клиентов, увеличение конверсии, формирование лояльности</li>\n<li dir="ltr">Кейсы &ndash; примеры успешного продвижения в сети</li>\n<li dir="ltr">Мастер-классы &ndash; полтора часа непрерывного общения&nbsp;</li>\n</ul>\n<p>&nbsp;</p>\n<p>Оформить регистрацию на конференцию &ldquo;8Р: Бизнес в сети&rdquo; 2013 можно <a href="http://8p.ua/?utm_source=p20954&amp;utm_medium=press_release&amp;utm_campaign=8p">здесь</a>.</p>\n<p dir="ltr">Там же вы можете посмотреть фото и видео с прошлогодней конференции, прочитать отзывы участников.</p>\n<p dir="ltr">Стартовая цена билета &ndash; 950 грн. Внимание: с каждым проданным билетом она возрастает на 1 грн.<br />Адрес конференции: г.Одесса, банкетный дом Ренессанс. От железнодорожного вокзала будет курсировать комфортабельный автобус. Добираться можно и на своем автомобиле - бесплатная парковка к вашим услугам.</p>\n<p>В программе также кофе-брейки, обед, афтер-пати.<br />Испытание на стойкость - афтер-афтер-пати.<br /> <br />Организатор конференции: <a href="http://netpeak.ua">Netpeak</a> - агентство интернет-маркетинга</p>', 69, '', '', 0, 0, 0, 'publish', 'Administrator', 1362225792, 1362225792, 1387364038, 1, 3, 0),
+(94, 'Lviv Social Media Camp 2013', '', 'lviv-social-media-camp-2013', 'novosti/', 'lviv, social, media, camp, третья, ежегодная, конференция, вопросам, продвижения, малого, бизнеса, социальных, сетях, состоится, февраля, успешные, форумы, года, собравшие, почти, участников, доказали, покорения, изменчивого, мира, медиа, необходимы, незаурядные, знания, опыт', 'Lviv Social Media Camp 2013 - третья ежегодная конференция по вопросам  продвижения малого бизнеса в социальных сетях - состоится 23 февраля.  Успешные форумы 2011 и 2012 года, собравшие почти 700 участников,  доказали - для покорения изменчивого мира соц', '<p>Lviv Social Media Camp 2013 - третья ежегодная конференция по вопросам продвижения малого бизнеса в социальных сетях - состоится 23 февраля. Успешные форумы 2011 и 2012 года, собравшие почти 700 участников, доказали - для покорения &nbsp;изменчивого мира социальных медиа необходимы незаурядные знания и опыт, которыми могут поделиться только настоящие профессионалы. Как следствие - десятки новых ярких звезд, вспыхнувших в украинском бизнес-пространстве. Такие результаты не могли не вдохновить организаторов на продолжение работы в этом перспективном направлении.</p>', '<p><img src="http://www.imagecms.net/uploads/images/smcamp2013.png" alt="" width="850" height="237" /><br /><a href="http://smcamp.com.ua">Lviv Social Media Camp 2013</a> - третья ежегодная конференция по вопросам продвижения малого бизнеса в социальных сетях - состоится 23 февраля. Успешные форумы 2011 и 2012 года, собравшие почти 700 участников, доказали - для покорения &nbsp;изменчивого мира социальных медиа необходимы незаурядные знания и опыт, которыми могут поделиться только настоящие профессионалы. Как следствие - десятки новых ярких звезд, вспыхнувших в украинском бизнес-пространстве. Такие результаты не могли не вдохновить организаторов на продолжение работы в этом перспективном направлении.<br /> <br />Красноречивые факты:</p>\n<p>&nbsp;</p>\n<ul>\n<li dir="ltr">22 млн. гривен - общий объем видеорекламы в Уанете.</li>\n<li dir="ltr">680 млн. гривен - объем украинского рынка интернет-рекламы</li>\n<li dir="ltr">180 млн. гривен - объем прошлогоднего рынка Digital-услуг</li>\n<li dir="ltr">Около 20% - &nbsp;прогнозируемый рост Digital на 2013 год</li>\n</ul>\n<p>&nbsp;</p>\n<p><br />Нынешняя программа конференции разработана специально для предпринимателей и представителей малого бизнеса, которым интересны &nbsp;новые возможности для продвижения своего продукта. К тому же, конференция станет точкой сбора для украинских профессионалов SMM.<br /> <br />По традиции, в программе конференции будет три потока:<br /> <br />Social Media Marketing:</p>\n<p>&nbsp;</p>\n<ul>\n<li dir="ltr">Украинский SMM в 2013 году - успехи и провалы</li>\n<li dir="ltr">Нужен ли SMM украинскому бизнесу?</li>\n<li dir="ltr">Методы манипулирования выдачей Facebook</li>\n<li dir="ltr">Как продвигать "звезд" в YouTube</li>\n<li dir="ltr">Вирусные промокампании</li>\n<li dir="ltr">Использование возможностей Pinterest и Instagram</li>\n<li dir="ltr">Social Media Optimization: о секретных алгоритмах Facebook</li>\n<li dir="ltr">Опыт работы лучших украинских Digital-агентств</li>\n</ul>\n<p>&nbsp;</p>\n<p><br />Social Media и бизнес:</p>\n<p>&nbsp;</p>\n<ul>\n<li dir="ltr">Нуждается ли мой бизнес в использовании &nbsp;соц. сетей - как узнать?</li>\n<li dir="ltr">Успешные локальные маркетинговые кампании - рассмотрим примеры</li>\n<li dir="ltr">Facebook в Украине, Киеве, во Львове - определяем пользу</li>\n<li dir="ltr">Facebook-страница - как правильно оформить?</li>\n<li dir="ltr">Максимум результата за минимум времени - как добиться?</li>\n<li dir="ltr">Агентства &ndash; стоит ли доверяться?</li>\n</ul>\n<p>&nbsp;</p>\n<p><br />Новые медиа, разработка, стартапы:</p>\n<p>&nbsp;</p>\n<ul>\n<li dir="ltr">Собственные сервисы и social media - вопросы интеграции</li>\n<li dir="ltr">Mixed media</li>\n<li dir="ltr">Twitter, Facebook, Foursquare API</li>\n<li dir="ltr">BlogCamp</li>\n<li dir="ltr">SmartTV</li>\n<li dir="ltr">Линчи social media стартапов</li>\n</ul>\n<p>&nbsp;</p>\n<p><br />Стоимость билета:<br />200 грн. - Первые 50 билетов для ранних пташек<br />300 грн. - Следующие 200 билетов<br />500 грн. - Предпоследние 50 билетов<br />800 грн. - Кто поздно приходит, тому последние 20 билетов<br /> <br />Встречаемся&nbsp;23 февраля в конференц-зале УКУ (ул.. Хуторовка, 35а).</p>', 69, '', '', 0, 0, 0, 'publish', 'Administrator', 1362225886, 1362225886, 1387364053, 1, 3, 0),
+(95, 'Оценка стоимости сайта и факторы, которые влияют на цену', '', 'otsenka-stoimosti-saita-i-faktory-kotorye-vliiaiut-na-tsenu', 'novosti/', 'как, время, разработки, продажи, интернет, ресурса, учитывается, достаточно, много, факторов, влияющих, цену, поэтому, нужно, уметь, оценить, стоимость, сайта, своими, силами, важно, планируете, создание, коммерческого, собираетесь, запустить, личный, блог, знать, финансовые', 'Как во время разработки, так и во время продажи Интернет-ресурса   учитывается достаточно много факторов, влияющих на его цену. Поэтому   нужно уметь оценить стоимость сайта своими силами. Не важно, планируете   ли вы создание коммерческого сайта или соби', '<p>Как во время разработки, так и во время продажи Интернет-ресурса учитывается достаточно много факторов, влияющих на его цену. Поэтому нужно уметь оценить стоимость сайта своими силами. Не важно, планируете ли вы создание коммерческого сайта или собираетесь запустить личный блог, знать финансовые стороны вопроса никогда не будет лишним.</p>', '<p>&nbsp;</p>\n<p><img src="http://www.imagecms.net/uploads/images/blog/site-price.jpg" alt="Быстрая оценка любого сайта" width="250" height="172" />Как во время разработки, так и во время продажи Интернет-ресурса учитывается достаточно много факторов, влияющих на его цену. Поэтому нужно уметь оценить стоимость сайта своими силами. Не важно, планируете ли вы создание коммерческого сайта или собираетесь запустить личный блог, знать финансовые стороны вопроса никогда не будет лишним. <a title="стоимость создания сайта" href="http://www.imagecms.net/blog/obzory/skolko-stoit-sait-postroit" target="_blank">Стоимость создания сайта</a> для многих является ключевым фактором, влияющим на принятие решения о разработка. Многое зависит от необходимых вам возможностей, ведь для простого блога вполне хватит бесплатной версии ImageCMS, а вот уже для торговой площадки понадобится коммерческий модуль Интернет-магазина.</p>\n<p>Оценка стоимости сайта при его разработке зависит от нескольких факторов. Пройдемся по пунктам:</p>\n<p>&nbsp;</p>\n<ul>\n<li>Дизайн. Если он уникальный &ndash; стоимость будет выше, но в этом случае учитываются все ваши пожелания и специфика вашего бизнеса. Индивидуальный подход позволяет сделать внешний вид сайта именно таким, каким вы бы хотели его видеть, и поднять <a title="юзабилити сайт" href="http://www.imagecms.net/blog/obzory/osnovy-iuzabiliti-saita" target="_blank">юзабилити сайта</a> на действительно высокий уровень. Шаблонный сайт обойдется дешевле, что позволит оценить стоимость сайта ниже, но и качество не будет на высоком уровне. Кроме того, такой же шаблон может использоваться и на десятках других сайтов.</li>\n<li>Функциональность. Думаю, не нужно быть профессионалом в web-разработке, чтобы понять, что различие в цене разработки сайта-визитки для местного фотографа и туристического портала, будет существенным. Оценка стоимости сайта в таком случае определяется сложностью добавляемых модулей.</li>\n<li>Контент. Пожалуй, о важности качественного контента на данный момент можно и не напоминать, это аксиома известная всем, как заказчикам, так и исполнителям. Конечно, качественный копирайтинг не может стоить дешево, и чем больше таких страниц нужно создать, тем дороже это обойдется. Точные знания относительно необходимого количества контента, позволяет узнать стоимость сайта более подробно. Но стоит помнить, что вложения в качество обязательно окупятся в долгосрочной перспективе.</li>\n<li>Оптимизация под поисковые системы (SEO). Если вам не нужны посетители, а сайт сделан просто для галочки и надписи на визитке &ndash; можете смело пропускать этот пункт. Вот только зачем тогда его вообще создавать? Оптимизация сайта является важным пунктом договора, который заранее оговаривается при разработке. Чтобы узнать стоимость сайта, необязательно сразу же просчитывать этот пункт, это скорее затраты будущего периода. Особенно хорошо нужно проработать такой момент как <a title="подбор ключевых слов для сайта" href="http://www.imagecms.net/blog/obzory/podbor-kliuchevyh-slov-kak-sdelat-vse-pravilno" target="_blank">подбор ключевых слов</a> для сайта, то есть, составление семантического ядра.</li>\n<li>Тематика сайта. Коммерческая ниша в любом случае будет цениться гораздо выше, чем развлекательная.</li>\n<li>Количество страниц в индексе. Чем их больше, тем выше можно выставить цену при продаже. Хороший багаж в плане контента будет полезен для любого проекта, как залог лояльности со стороны поисковых систем. Главное &ndash; чтобы все материалы сайта были уникальными, а не обычным копипастом.</li>\n<li>Показатели тИЦ и PR. Пожалуй, оценить стоимость сайта на основе этого показателя проще всего. Тут действует простое правило &ndash; чем больше, тем лучше.</li>\n<li>Посещаемость сайта. Оценка стоимости сайта с высокой посещаемостью всегда была высокой. В последнее время, в связи с ужесточением поисковых алгоритмов и увеличением конкуренции, сайты с более-менее пристойным количеством посетителей стали цениться еще выше.</li>\n<li>Присутствие в каталогах DMOZ, Mail.ru и Яндекс.Каталог. Хотя данный фактор уже не имеет такого веса как во времена расцвета ссылочных бирж, но он все еще играет весомую роль, если вас интересует оценка стоимости сайта, так как является своеобразным знаком качества от поисковиков.</li>\n</ul>\n<p>&nbsp;</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Загрузить ImageCMS Corporate бесплатно" width="705" height="183" /></a></p>\n<p>Перечисленные выше факторы позволяют точно оценить стоимость сайта еще на этапе проектирования, и в случае надобности &ndash; внести необходимые корректировки. В случае, если ресурс принадлежит вам лично, а не компании, узнать стоимость сайта также очень важно, ведь он является выгодным активом, который можно в любой момент продать. Это может быть как блог, так и узкотематический проект, который хорошо закрепился в своей нише и представляет ценность для пользователей.</p>\n<p>В таком случае узнать стоимость сайта можно с помощью оценки немного других показателей, чем в первом случае. При продаже на стоимость повлияют такие показатели:</p>\n<p>В этой статье мы перечислили все основные факторы, с учетом которых можно оценить стоимость сайта и применить данные методики по отношению как корпоративному, так и личному проекту.</p>', 69, '', '', 0, 0, 0, 'publish', 'Administrator', 1362225958, 1362225958, 1388060535, 1, 3, 0),
+(96, 'Зачем вашему оффлайн-бизнесу нужен Интернет-магазин?', '', 'zachem-vashemu-offlain-biznesu-nuzhen-internet-magazin', 'novosti/', 'несмотря, бурный, рост, интернет, коммерции, далеко, предприниматели, понимают, преимущества, магазина, особенно, оффлайная, торговая, точка, именно, таком, случае, проявляются, лучше, всего, ведь, получаете, только, отличный, источник, дополнительного, дохода, возможность, сравнения, эффективности', 'Несмотря на бурный рост Интернет-коммерции, далеко не все  предприниматели понимают, в чем преимущества Интернет-магазина, особенно  если уже есть оффлайная торговая точка. Но именно в таком случае  преимущества Интернет-магазина проявляются лучше всего,', '<p>Несмотря на бурный рост Интернет-коммерции, далеко не все предприниматели понимают, в чем преимущества Интернет-магазина, особенно если уже есть оффлайная торговая точка. Но именно в таком случае преимущества Интернет-магазина проявляются лучше всего, ведь вы получаете не только отличный источник дополнительного дохода, но и возможность сравнения эффективности вложения средств.</p>', '<p>&nbsp;</p>\n<p><img src="http://www.imagecms.net/uploads/images/blog/inet-magaz.jpg" alt="Интернет как перспективная бизнес-среда" width="213" height="200" />Несмотря на бурный рост Интернет-коммерции, далеко не все предприниматели понимают, в чем преимущества Интернет-магазина, особенно если уже есть оффлайная торговая точка. Но именно в таком случае преимущества Интернет-магазина проявляются лучше всего, ведь вы получаете не только отличный источник дополнительного дохода, но и возможность сравнения эффективности вложения средств.</p>\n<p>Так зачем нужен Интернет-магазин современному предпринимателю? В зависимости от того, есть ли у вас уже действующий оффлайн-бизнес, он может быть как дополнением к нему, или же основным источником дохода. Уже отталкиваясь от этого, нужно планировать бюджет создания магазина и его развития. Над онлайновой торговой площадкой нужно вести постоянную работу, подробно проработать <a href="http://www.imagecms.net/blog/obzory/biznes-plan-internet-magazina-na-chto-obratit-vnimanie" target="_blank">бизнес-план Интернет-магазина</a> - это не просто визитка, созданная &laquo;для галочки&raquo;... это полноценный и очень эффективный инструмент продаж. Плюсов у онлайн-бизнеса, по сравнению с оффлайном, довольно много.</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Система для создания интернет-магазинов - ImageCMS" width="705" height="183" /></a></p>\n<p>Перечислим основные преимущества Интернет-магазина:</p>\n<p>&nbsp;</p>\n<ul>\n<li>можно обойтись без аренды производственных площадей и складов - достаточно небольшого офиса для обслуживания;</li>\n<li>может быть как основным источником прибыли, так и дополнительным по отношению к основному бизнесу - это важное обоснование при вопросе зачем нужен Интернет-магазин;</li>\n<li>гораздо меньший порог вхождения, хотя конкуренция в разных тематиках отличается;</li>\n<li>нет региональных ограничений: можно находить клиентов как в своем городе или области, так и по всей стране;</li>\n<li>доступность в режиме 24/7: круглосуточно и семь дней в неделю;</li>\n<li>такие преимущества Интернет-магазина как экономия времени и свобода выбора, играют важную роль и для покупателей;</li>\n<li><a title="бизнес в Интернете" href="http://www.imagecms.net/blog/obzory/biznes-v-internete-kak-perspektivnyi-trend" target="_blank">бизнес в Интернете</a> не требует большого количества обслуживающего персонала: можно обойтись одним консультантом там, где обычные торговые точки обслуживают пятерых;</li>\n<li>нет ограничений по количеству представленных на виртуальной витрине товаров;</li>\n<li>в случае с раскруткой и продвижением можно сфокусироваться только на потенциально заинтересованных в ваших товарах или услугах пользователях.</li>\n</ul>\n<p>&nbsp;</p>\n<p>Можно привести несколько примеров развертывания Интернет-магазинов на платформе <a href="http://www.imagecms.net/products/imagecms-shop-professional">ImageCMS Shop Professional</a>: boutique-ekaterinasmolina.ru, euro-technika.com.ua и др. Как видно из примеров, можно торговать в онлайне как с небольшим ассортиментом, так и предлагая тысячи наименований товаров. Учитывая вышеперечисленное, каждый владелец бизнеса может понять, зачем нужен Интернет-магазин и какие выгоды от его разработки можно получить (независимо от того, работаете ли вы с розничной торговлей или в области B2B).</p>', 69, '', '', 0, 0, 0, 'publish', 'Administrator', 1362226037, 1362226037, 1388060560, 5, 3, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields`
+-- Структура таблицы `content_fields`
 --
 
-DROP TABLE IF EXISTS `content_fields`;
 CREATE TABLE IF NOT EXISTS `content_fields` (
   `field_name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -307,19 +303,18 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `content_fields`
+-- Дамп данных таблицы `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
-('field_doc', 'text', 'Documentation', 'a:4:{s:7:"initial";s:0:"";s:9:"help_text";s:8:"PDF-file";s:19:"enable_file_browser";s:1:"1";s:10:"validation";s:0:"";}', 6, 0);
+('field_image', 'text', 'Изображение в списке', 'a:7:{s:5:"label";s:38:"Изображение в списке";s:7:"initial";s:0:"";s:9:"help_text";s:109:"Это изображение будет выводиться на странице списка статей";s:4:"type";s:4:"text";s:20:"enable_image_browser";s:1:"1";s:10:"validation";s:0:"";s:6:"groups";a:1:{i:0;s:2:"13";}}', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields_data`
+-- Структура таблицы `content_fields_data`
 --
 
-DROP TABLE IF EXISTS `content_fields_data`;
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -330,70 +325,67 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
   KEY `item_id` (`item_id`),
   KEY `item_type` (`item_type`),
   KEY `field_name` (`field_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
--- Дамп даних таблиці `content_fields_data`
+-- Дамп данных таблицы `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
-(23, 89, 'page', 'field_doc', '');
+(24, 91, 'page', 'field_image', ''),
+(25, 95, 'page', 'field_image', '/uploads/images/apgreyder-robotov.jpg'),
+(26, 96, 'page', 'field_image', '/uploads/images/boeviye-roboty.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields_groups_relations`
+-- Структура таблицы `content_fields_groups_relations`
 --
 
-DROP TABLE IF EXISTS `content_fields_groups_relations`;
 CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
   `field_name` varchar(64) NOT NULL,
   `group_id` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Дамп даних таблиці `content_fields_groups_relations`
+-- Дамп данных таблицы `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 ('field_sfsdfsdf', 0),
-('field_sfsdfsdf', 11),
+('field_sfsdfsdf', 0),
 ('field_fyjtyutyu', 0),
-('field_fg12', 9),
-('field_fg12', 9),
-('field_doc', 11);
+('field_fg12', 0),
+('field_fg12', 0),
+('field_image', 13);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_field_groups`
+-- Структура таблицы `content_field_groups`
 --
 
-DROP TABLE IF EXISTS `content_field_groups`;
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
--- Дамп даних таблиці `content_field_groups`
+-- Дамп данных таблицы `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
-(9, 'g1', ''),
-(11, 'g4', ''),
-(12, 'g3', '');
+(13, 'Акции и Новости', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_permissions`
+-- Структура таблицы `content_permissions`
 --
 
-DROP TABLE IF EXISTS `content_permissions`;
 CREATE TABLE IF NOT EXISTS `content_permissions` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `page_id` bigint(11) NOT NULL,
@@ -403,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Дамп даних таблиці `content_permissions`
+-- Дамп данных таблицы `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -412,10 +404,9 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_tags`
+-- Структура таблицы `content_tags`
 --
 
-DROP TABLE IF EXISTS `content_tags`;
 CREATE TABLE IF NOT EXISTS `content_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
@@ -425,12 +416,17 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
   KEY `tag_id` (`tag_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Дамп данных таблицы `content_tags`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields`
+-- Структура таблицы `custom_fields`
 --
-DROP TABLE IF EXISTS `custom_fields`;
+
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -447,24 +443,16 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96 ;
 
 --
--- Структура таблиці `custom_fields_i18n`
+-- Дамп данных таблицы `custom_fields`
 --
-DROP TABLE IF EXISTS `custom_fields_i18n`;
-CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
-  `id` int(11) NOT NULL,
-  `locale` varchar(4) NOT NULL,
-  `field_label` varchar(255) DEFAULT NULL,
-  `field_description` text,
-  `possible_values` text,
-  PRIMARY KEY (`id`,`locale`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields_data`
+-- Структура таблицы `custom_fields_data`
 --
-DROP TABLE IF EXISTS `custom_fields_data`;
+
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -474,18 +462,37 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=514 ;
 
+--
+-- Дамп данных таблицы `custom_fields_data`
+--
 
---
--- Дамп даних таблиці `custom_fields_data`
---
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `emails`
+-- Структура таблицы `custom_fields_i18n`
 --
 
-DROP TABLE IF EXISTS `emails`;
+CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(4) NOT NULL,
+  `field_label` varchar(255) DEFAULT NULL,
+  `field_description` text,
+  `possible_values` text,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `custom_fields_i18n`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `emails`
+--
+
 CREATE TABLE IF NOT EXISTS `emails` (
   `name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `template` text CHARACTER SET utf8 NOT NULL,
@@ -495,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `emails` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Дамп даних таблиці `emails`
+-- Дамп данных таблицы `emails`
 --
 
 INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) VALUES
@@ -520,9 +527,10 @@ INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) V
 
 -- --------------------------------------------------------
 
--- Структура таблиці `gallery_albums`
 --
-DROP TABLE IF EXISTS `gallery_albums`;
+-- Структура таблицы `gallery_albums`
+--
+
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
@@ -537,14 +545,16 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
+-- Дамп данных таблицы `gallery_albums`
+--
 
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_albums_i18n`
+-- Структура таблицы `gallery_albums_i18n`
 --
-DROP TABLE IF EXISTS `gallery_albums_i18n`;
+
 CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -553,12 +563,17 @@ CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `gallery_albums_i18n`
+--
 
 
+-- --------------------------------------------------------
+
 --
--- Структура таблиці `gallery_category`
+-- Структура таблицы `gallery_category`
 --
-DROP TABLE IF EXISTS `gallery_category`;
+
 CREATE TABLE IF NOT EXISTS `gallery_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cover_id` int(11) NOT NULL DEFAULT '0',
@@ -568,13 +583,16 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
+-- Дамп данных таблицы `gallery_category`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_category_i18n`
+-- Структура таблицы `gallery_category_i18n`
 --
-DROP TABLE IF EXISTS `gallery_category_i18n`;
+
 CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -583,14 +601,17 @@ CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `gallery_category_i18n`
+--
 
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_images`
+-- Структура таблицы `gallery_images`
 --
-DROP TABLE IF EXISTS `gallery_images`;
+
 CREATE TABLE IF NOT EXISTS `gallery_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) NOT NULL,
@@ -605,28 +626,35 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
+--
+-- Дамп данных таблицы `gallery_images`
+--
 
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_images_i18n`
+-- Структура таблицы `gallery_images_i18n`
 --
-DROP TABLE IF EXISTS `gallery_images_i18n`;
+
 CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
   `id` int(11) NOT NULL,
-  `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
-  `description` text CHARACTER SET utf8,
+  `locale` varchar(5) NOT NULL,
+  `description` text,
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
-
---
--- Структура таблиці `languages`
+-- Дамп данных таблицы `gallery_images_i18n`
 --
 
-DROP TABLE IF EXISTS `languages`;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `languages`
+--
+
 CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_name` varchar(100) NOT NULL,
@@ -635,26 +663,25 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `folder` varchar(100) NOT NULL,
   `template` varchar(100) NOT NULL,
   `default` int(1) NOT NULL,
-`locale` varchar(100) NOT NULL,
+  `locale` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `identif` (`identif`),
   KEY `default` (`default`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп даних таблиці `languages`
+-- Дамп данных таблицы `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
-(3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU');
+(3, 'Русский', 'ru', '', 'russian', 'newLevel', 1, 'ru_RU');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `login_attempts`
+-- Структура таблицы `login_attempts`
 --
 
-DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) NOT NULL,
@@ -664,13 +691,17 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   KEY `time` (`time`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
 
+--
+-- Дамп данных таблицы `login_attempts`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `logs`
+-- Структура таблицы `logs`
 --
 
-DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -679,10 +710,10 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=759 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=846 ;
 
 --
--- Дамп даних таблиці `logs`
+-- Дамп данных таблицы `logs`
 --
 
 INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
@@ -703,15 +734,101 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (755, 1, 'admin', 'Вышел из панели управления', 1363617075),
 (756, 47, 'admin', 'Вышел из панели управления', 1368174639),
 (757, 47, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1368174783),
-(758, 47, 'admin', 'Очистил кеш', 1368174887);
+(758, 47, 'admin', 'Очистил кеш', 1368174887),
+(759, 48, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1387210853),
+(760, 48, 'Administrator', 'Кэш очищен', 1387211003),
+(761, 48, 'Administrator', 'Настройки сайта изменены', 1387211491),
+(762, 48, 'Administrator', 'Настройки сайта изменены', 1387211868),
+(763, 48, 'Administrator', 'Настройки сайта изменены', 1387212205),
+(764, 48, 'Administrator', 'Язык изменен Русский', 1387212257),
+(765, 48, 'Administrator', 'Кэш очищен', 1387212263),
+(766, 48, 'Administrator', 'Язык изменен Русский', 1387212284),
+(767, 48, 'Administrator', 'Язык изменен Русский', 1387212386),
+(768, 48, 'Administrator', 'Язык изменен Русский', 1387212435),
+(769, 48, 'Administrator', 'Язык изменен Русский', 1387212446),
+(770, 48, 'Administrator', 'Кэш очищен', 1387360548),
+(771, 48, 'Administrator', 'Кэш очищен', 1387360626),
+(772, 48, 'Administrator', 'Модуль установлен mail_chimp', 1387363480),
+(773, 48, 'Administrator', 'Кэш очищен', 1387363505),
+(774, 48, 'Administrator', 'Удаленный модуль mail_chimp', 1387363744),
+(775, 48, 'Administrator', 'Удалено категорию с ID 70', 1387363841),
+(776, 48, 'Administrator', 'Удалено категорию с ID 71', 1387363841),
+(777, 48, 'Administrator', 'ID удаленой страницы 35', 1387363866),
+(778, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/64">О магазине</a>', 1387363906),
+(779, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/66">Доставка</a>', 1387363934),
+(780, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/66">Доставка и оплата</a>', 1387363950),
+(781, 48, 'Administrator', 'ID удаленой страницы 65', 1387363957),
+(782, 48, 'Administrator', 'ID удаленой страницы 67', 1387363957),
+(783, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/68">Контакты</a>', 1387363966),
+(784, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/68">Контакты</a>', 1387363982),
+(785, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/64">О магазине</a>', 1387364012),
+(786, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/91">Как раскрутить сайт? Методы поискового продвижения</a>', 1387364019),
+(787, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/92">Как добавить сайт в Яндекс и Гугл. Советы начинающим вебмастерам</a>', 1387364028),
+(788, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/93">8Р: Бизнес в сети</a>', 1387364039),
+(789, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/94">Lviv Social Media Camp 2013</a>', 1387364046),
+(790, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/94">Lviv Social Media Camp 2013</a>', 1387364053),
+(791, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/95">Оценка стоимости сайта и факторы, которые влияют на цену</a>', 1387364060),
+(792, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/96">Зачем вашему оффлайн-бизнесу нужен Интернет-магазин?</a>', 1387364069),
+(793, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/66">Доставка и оплата</a>', 1387364077),
+(794, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/68">Контакты</a>', 1387364083),
+(795, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/66">Доставка и оплата</a>', 1387364099),
+(796, 48, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Новости</a>', 1387364144),
+(797, 48, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Новости</a>', 1387364284),
+(798, 48, 'Administrator', 'Кэш очищен', 1387364523),
+(799, 48, 'Administrator', 'Кэш очищен', 1387364606),
+(800, 48, 'Administrator', 'Кэш очищен', 1387365248),
+(801, 48, 'Administrator', 'Кэш очищен', 1387366399),
+(802, 48, 'Administrator', 'Кэш очищен', 1387366500),
+(803, 48, 'Administrator', 'Кэш очищен', 1387366519),
+(804, 48, 'Administrator', 'Кэш очищен', 1387366882),
+(805, 48, 'Administrator', 'Кэш очищен', 1387389710),
+(806, 48, 'Administrator', 'Кэш очищен', 1387389910),
+(807, 48, 'Administrator', 'Кэш очищен', 1387389970),
+(808, 48, 'Administrator', 'Настройки сайта изменены', 1387390535),
+(809, 48, 'Administrator', 'Настройки сайта изменены', 1387390549),
+(810, 48, 'Administrator', 'Настройки сайта изменены', 1387390611),
+(811, 48, 'Administrator', 'Кэш очищен', 1387390792),
+(812, 48, 'Administrator', 'Кэш очищен', 1387390850),
+(813, 48, 'Administrator', 'Кэш очищен', 1387391025),
+(814, 48, 'Administrator', 'Кэш очищен', 1387391114),
+(815, 48, 'Administrator', 'Кэш очищен', 1387391135),
+(816, 48, 'Administrator', 'Кэш очищен', 1387391277),
+(817, 48, 'Administrator', 'Кэш очищен', 1387391304),
+(818, 48, 'Administrator', 'Кэш очищен', 1387391333),
+(819, 48, 'Administrator', 'Кэш очищен', 1387391623),
+(820, 48, 'Administrator', 'Кэш очищен', 1387391769),
+(821, 48, 'Administrator', 'Кэш очищен', 1387391838),
+(822, 48, 'Administrator', 'Виджет изменен ', 1387471429),
+(823, 48, 'Administrator', 'Виджет изменен ', 1387471478),
+(824, 48, 'Administrator', 'Виджет изменен ', 1387471527),
+(825, 48, 'Administrator', 'Виджет изменен ', 1387471580),
+(826, 48, 'Administrator', 'Виджет изменен ', 1387471616),
+(827, 48, 'Administrator', 'Страница изменена <a href="http://newlevel.loc/admin/pages/edit/91">Как раскрутить сайт? Методы поискового продвижения</a>', 1387472085),
+(828, 48, 'Administrator', 'Кэш очищен', 1387472629),
+(829, 48, 'Administrator', 'Кэш очищен', 1387476557),
+(830, 48, 'Administrator', 'Кэш очищен', 1387543508),
+(831, 48, 'Administrator', 'Кэш очищен', 1387548212),
+(832, 48, 'Administrator', 'Кэш очищен', 1387548227),
+(833, 48, 'Administrator', 'Кэш очищен', 1387548244),
+(834, 48, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1387559624),
+(835, 51, 'admin', 'Кэш очищен', 1388059853),
+(836, 48, 'Administrator', 'Сиджетов создан popular_products_cartogory_h', 1388059999),
+(837, 48, 'Administrator', 'Сиджетов создан popular_products_category_v', 1388060051),
+(838, 48, 'Administrator', 'Кэш очищен', 1388060084),
+(839, 48, 'Administrator', 'Кэш очищен', 1388060137),
+(840, 48, 'Administrator', 'Кэш очищен', 1388060193),
+(841, 48, 'Administrator', 'Кэш очищен', 1388060243),
+(842, 48, 'Administrator', 'Страница изменена <a href="http://image.loc/admin/pages/edit/95">Оценка стоимости сайта и факторы, которые влияют на цену</a>', 1388060535),
+(843, 48, 'Administrator', 'Страница изменена <a href="http://image.loc/admin/pages/edit/96">Зачем вашему оффлайн-бизнесу нужен Интернет-магазин?</a>', 1388060560),
+(844, 48, 'Administrator', 'Кэш очищен', 1388060584),
+(845, 48, 'Administrator', 'Кэш очищен', 1388060640);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mail`
+-- Структура таблицы `mail`
 --
 
-DROP TABLE IF EXISTS `mail`;
 CREATE TABLE IF NOT EXISTS `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -719,13 +836,17 @@ CREATE TABLE IF NOT EXISTS `mail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Дамп данных таблицы `mail`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menus`
+-- Структура таблицы `menus`
 --
 
-DROP TABLE IF EXISTS `menus`;
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -736,26 +857,23 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `created` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп даних таблиці `menus`
+-- Дамп данных таблицы `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
-(1, 'main_menu', 'Главное меню', 'shop_menu', 0, 'Главное меню шаблона', '2012-02-07 15:34:41'),
-(4, 'top_menu', 'Top menu', 'top_menu', 0, 'Меню в верхней части шаблона', '2012-05-11 14:53:24'),
-(5, 'footer_menu', 'Footer menu', 'footer_menu', 0, 'Нижнее меню шаблона', '2012-05-25 11:43:06'),
+(4, 'top_menu', 'Top menu', 'top_menu', 0, 'Меню в верхней части шаблона', '2013-12-18 13:35:13'),
 (11, 'left_menu', 'left_menu', 'left_menu', 1, 'Меню в левой части шаблона', '2013-03-18 16:13:38'),
 (12, 'footer_menu_mobile', 'footer_menu_mobile', '', 0, 'Меню нижней части мобильной версии', '2013-09-19 17:42:17');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menus_data`
+-- Структура таблицы `menus_data`
 --
 
-DROP TABLE IF EXISTS `menus_data`;
 CREATE TABLE IF NOT EXISTS `menus_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(9) NOT NULL,
@@ -772,54 +890,33 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
--- Дамп даних таблиці `menus_data`
+-- Дамп данных таблицы `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
-(10, 1, 0, 'url', '', '', 0, 'Оплата', 0, 3, NULL, 'a:2:{s:3:"url";s:7:"/oplata";s:7:"newpage";s:1:"0";}'),
-(8, 1, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";s:1:"0";}'),
-(9, 1, 64, 'page', '', '', 0, 'О магазине', 0, 2, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(11, 1, 0, 'url', '', '', 0, 'Доставка', 0, 4, NULL, 'a:2:{s:3:"url";s:9:"/dostavka";s:7:"newpage";s:1:"0";}'),
-(12, 1, 0, 'url', '', '', 0, 'Помощь', 0, 5, NULL, 'a:2:{s:3:"url";s:5:"/help";s:7:"newpage";s:1:"0";}'),
-(13, 1, 0, 'url', '', '', 0, 'Контакты', 0, 6, NULL, 'a:2:{s:3:"url";s:11:"/contact_us";s:7:"newpage";s:1:"0";}'),
 (14, 4, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";s:1:"0";}'),
-(15, 4, 64, 'page', '', '', 0, 'О магазине', 0, 2, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(16, 4, 66, 'page', '', '', 0, 'Доставка', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(17, 4, 67, 'page', '', '', 0, 'Помощь', 0, 4, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(18, 4, 68, 'page', '', '', 0, 'Контакты', 0, 5, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(19, 5, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";s:1:"0";}'),
-(20, 5, 0, 'url', '', '', 0, 'Видео', 0, 2, NULL, 'a:2:{s:3:"url";s:20:"/shop/category/video";s:7:"newpage";s:1:"0";}'),
-(21, 5, 64, 'page', '', '', 0, 'О магазине', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(22, 5, 0, 'url', '', '', 0, 'Домашнее  аудио', 0, 4, NULL, 'a:2:{s:3:"url";s:30:"/shop/category/domashnee_audio";s:7:"newpage";s:1:"0";}'),
-(23, 5, 66, 'page', '', '', 0, 'Доставка и оплата', 0, 5, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(24, 5, 0, 'url', '', '', 0, 'Фото и камеры', 0, 6, NULL, 'a:2:{s:3:"url";s:28:"/shop/category/foto_i_kamery";s:7:"newpage";s:1:"0";}'),
-(25, 5, 67, 'page', '', '', 0, 'Помощь', 0, 7, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(26, 5, 0, 'url', '', '', 0, 'Домашняя электроника', 0, 8, NULL, 'a:2:{s:3:"url";s:38:"/shop/category/domashniaia_elektronika";s:7:"newpage";s:1:"0";}'),
-(27, 5, 68, 'page', '', '', 0, 'Контакты', 0, 9, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(28, 5, 0, 'url', '', '', 0, 'Авто музыка и видео', 0, 10, NULL, 'a:2:{s:3:"url";s:34:"/shop/category/avto_muzyka_i_video";s:7:"newpage";s:1:"0";}'),
-(37, 11, 69, 'category', NULL, '', 0, 'Новости', 0, 2, NULL, 'N;'),
-(38, 11, 70, 'category', NULL, '', 0, 'Последние новости', 37, 1, NULL, 'a:1:{s:7:"newpage";i:0;}'),
-(39, 11, 71, 'category', NULL, '', 0, 'Архив', 37, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
-(40, 4, 69, 'category', NULL, '', 0, 'Новости', 0, 6, NULL, 'a:1:{s:7:"newpage";i:0;}'),
-(41, 11, 64, 'page', NULL, 'a:1:{i:0;s:1:"0";}', 0, 'О магазине', 0, 6, NULL, 'a:2:{s:4:"page";N;s:7:"newpage";i:0;}'),
-(42, 11, 66, 'page', NULL, '', 0, 'Доставка', 0, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
-(43, 11, 67, 'page', NULL, '', 0, 'Помощь', 0, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(53, 4, 68, 'page', '', '', 0, 'Контакты', 0, 5, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(52, 4, 66, 'page', '', '', 0, 'Доставка и оплата', 0, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(58, 4, 69, 'category', '', '', 0, 'Новости', 0, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(57, 11, 69, 'category', '', '', 0, 'Новости', 0, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(51, 4, 64, 'page', '', '', 0, 'О магазине', 0, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(54, 11, 64, 'page', '', '', 0, 'О магазине', 0, 1, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(55, 11, 66, 'page', '', '', 0, 'Доставка и оплата', 0, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(56, 11, 68, 'page', '', '', 0, 'Контакты', 0, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
 (44, 12, 67, 'page', '', '', 0, 'Помощь', 0, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
 (45, 12, 65, 'page', '', '', 0, 'Оплата', 0, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
 (46, 12, 35, 'page', '', '', 0, 'О сайте', 0, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
 (47, 12, 66, 'page', '', '', 0, 'Доставка', 0, 5, NULL, 'a:1:{s:7:"newpage";i:0;}');
 
-
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menu_translate`
+-- Структура таблицы `menu_translate`
 --
 
-DROP TABLE IF EXISTS `menu_translate`;
 CREATE TABLE IF NOT EXISTS `menu_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -831,7 +928,7 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
--- Дамп даних таблиці `menu_translate`
+-- Дамп данных таблицы `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
@@ -879,16 +976,441 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `propel_migration`
+-- Структура таблицы `mod_banner`
 --
 
-DROP TABLE IF EXISTS `propel_migration`;
+CREATE TABLE IF NOT EXISTS `mod_banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` tinyint(4) NOT NULL,
+  `active_to` int(11) DEFAULT NULL,
+  `where_show` text,
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп данных таблицы `mod_banner`
+--
+
+INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `position`) VALUES
+(1, 1, 1512079200, 'a:4:{i:0;s:6:"main_0";i:1;s:16:"shop_category_40";i:2;s:16:"shop_category_43";i:3;s:16:"shop_category_36";}', 1),
+(2, 1, 1572386400, 'a:3:{i:0;s:6:"main_0";i:1;s:8:"brand_26";i:2;s:16:"shop_category_36";}', 0),
+(3, 1, 1564776000, 'a:1:{i:0;s:6:"main_0";}', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_banner_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
+  `id` int(11) NOT NULL,
+  `url` text,
+  `locale` varchar(5) NOT NULL,
+  `name` varchar(25) DEFAULT NULL,
+  `description` text,
+  `photo` varchar(255) DEFAULT NULL,
+  KEY `id` (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `mod_banner_i18n`
+--
+
+INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
+(1, 'shop/brand/epson', 'ru', 'epson', '', '/uploads/shop/banners/template-imageshop-banner-1.jpg'),
+(2, '/shop/brand/sony', 'ru', 'sony', '', '/uploads/shop/banners/template-imageshop-banner-2.jpg'),
+(3, 'shop/brand/samsung', 'ru', 'apple/samsung', '', '/uploads/shop/banners/template-imageshop-banner-3.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_discount_all_order`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_discount_all_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `for_autorized` tinyint(4) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  `is_gift` tinyint(4) DEFAULT NULL,
+  `begin_value` float DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `mod_discount_all_order`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_discount_brand`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_discount_brand` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `brand_id` (`brand_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `mod_discount_brand`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_discount_category`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_discount_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `mod_discount_category`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_discount_comulativ`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_discount_comulativ` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discount_id` int(11) DEFAULT NULL,
+  `begin_value` int(11) DEFAULT NULL,
+  `end_value` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `mod_discount_comulativ`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_discount_group_user`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_discount_group_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `group_id` (`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `mod_discount_group_user`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_discount_product`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_discount_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `mod_discount_product`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_discount_user`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_discount_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `mod_discount_user`
+--
+
+INSERT INTO `mod_discount_user` (`id`, `user_id`, `discount_id`) VALUES
+(1, 48, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_email_paterns`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `patern` text,
+  `from` varchar(256) NOT NULL,
+  `from_email` varchar(256) NOT NULL,
+  `admin_email` varchar(256) NOT NULL,
+  `type` enum('HTML','Text') NOT NULL DEFAULT 'HTML',
+  `user_message_active` tinyint(1) NOT NULL,
+  `admin_message_active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Дамп данных таблицы `mod_email_paterns`
+--
+
+INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
+(1, 'make_order', '', '', '', '', 'HTML', 1, 1),
+(2, 'change_order_status', '', '', '', '', 'HTML', 1, 0),
+(3, 'notification_email', '', '', '', '', 'HTML', 1, 0),
+(4, 'create_user', '', '', '', '', 'HTML', 1, 0),
+(5, 'forgot_password', '', '', '', '', 'HTML', 1, 0),
+(6, 'change_password', '', '', '', '', 'HTML', 1, 0),
+(7, 'price_change', '', '', '', '', 'HTML', 1, 0),
+(8, 'wish_list', '', '', '', '', 'HTML', 0, 1),
+(9, 'callback', '', '', '', '', 'HTML', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_email_paterns_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `theme` varchar(256) NOT NULL,
+  `user_message` text NOT NULL,
+  `admin_message` text NOT NULL,
+  `description` text NOT NULL,
+  `variables` text NOT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `mod_email_paterns_i18n`
+--
+
+INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`) VALUES
+(1, 'ru', 'Заказ товара', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Мы благодарны Вам за то, что совершили заказ в нашем магазине.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Вы указали следующие контактные данные:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$userEmail$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Номер телефона: </span>$userPhone$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Адрес доставки: </span>$userDeliver$</div>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</p>\n<p style="font-family: arial; font-size: 13px;">Также, Вы можете всегда посмотреть за статусом Вашего заказа, <a href="$orderLink$" target="_blank">перейдя по ссылке</a>.</p>', '<p>Пользователь&nbsp;$userName$ совершил заказ товара</p>\n<p>Email адрес: $userEmail$</p>\n<p>Номер телефона: $userPhone$</p>\n<p>Адрес доставки: $userDeliver$</p>', '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$userPhone$";s:39:"Телефон Пользователя";s:13:"$userDeliver$";s:27:"Адрес доставки";s:11:"$orderLink$";s:28:"Ссылка на заказ";}'),
+(2, 'ru', 'Смена статуса заказа', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Статус вашего заказа изменен на <strong>$status$</strong></p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Вы указали следующие контактные данные:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$userEmail$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Номер телефона: </span>$userPhone$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Адрес доставки: </span>$userDeliver$</div>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</p>\n<p style="font-family: arial; font-size: 13px;">Также, Вы можете всегда посмотреть за статусом Вашего заказа, <a href="$orderLink$" target="_blank">перейдя по ссылке</a>.</p>', '', '<p>Смена статуса заказа</p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";}'),
+(3, 'ru', 'Товар появился на складе!', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Товар&nbsp;<a href="$productLink$" target="_blank">$productName$</a>&nbsp;появился на складе. Вы можете его заказать.</p>', '', '<p>Уведомление о появлении</p>', 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:13:"$productName$";s:33:"Название продукта";s:8:"$status$";s:12:"Статус";s:13:"$productLink$";s:32:"Ссылка на продукт";}'),
+(4, 'ru', 'Регистрация пользователя', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Поздравляем! Ваша регистрация прошла успешно.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Данные для входа в магазин:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$userEmail$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Пароль: </span>$user_password$</div>', '', '<p>Шаблон письма на создание пользователя</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
+(5, 'ru', 'Восстановление пароля', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Запрос на восстановление пароля для Вашего аккаунта</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Для завершения процедуры восстановления пароля перейдите по ссылке <a href="$resetPasswordUri$">Подтвердить</a></p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Ваш новый пароль для входа: $password$</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Если это письмо попало к Вам по ошибке просто проигнорируйте его.</p>', '', '<p>Шаблон письма на восстановление пароля</p>', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
+(6, 'ru', 'Смена пароля', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Вы успешно изменили пароль</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Ваш новый пароль для входа: $password$</p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"Новий пароль";}'),
+(7, 'ru', 'Изменение цены', '<p>Цена на $name$ за которым вы следите на сайте $server$ изменилась.</p>\n<p><a title="Посмотреть список слежения" href="$list_url_look$">Посмотреть список слежения</a></p>\n<p><a title="Отписатся от слежения" href="$delete_list_url_look$">Отписатся от слежения</a></p>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Изменение цены</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
+(7, 'ua', 'Ціна змінилася', '<p>Ціна на $name$ за яким Ви слідкуєте на сайті $server$ змінилася.<br /> <a title="Переглянути список слідкувань" href="$list_url_look$">Переглянути список слідкувань</a><br /> <a title="Відписатися від слідкування" href="$delete_list_url_look$">Відписатися від слідкування</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Слідкування за ціною</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
+(8, 'ru', 'Список Желаний', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Вы создали список желаний $wishName$</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Ссылка на просмотр списка желаний <a href="$wishLink$" target="_blank">$wishLink$</a></p>', '<p>Пользователь&nbsp;<span>$userName$ совершил заказ товара&nbsp;</span></p>\n<p><span><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span></span></p>', '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:10:"$wishName$";s:29:"Название списка";s:10:"$wishLink$";s:30:"Ссилка на список";s:15:"$wishListViews$";s:54:"Количество просмотров списка";}'),
+(9, 'ru', 'Заказ звонка', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Вы заказали звонок в нашей компании<br />Менеджеры нашего магазина вскоре свяжутся с Вами.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Вы указали следующие контактные данные:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Телефон: </span>$userPhone$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Коментарий: </span>$userComment$</div>', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Новий запрос о Заказе дзвонка от $userName$</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Дата колбека: </span>$dateCreated$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Телефон пользователя: </span>$userPhone$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Коментарий пользователя: </span>$userComment$</div>', '<p>Шаблон заказа звонока</p>', 'a:6:{s:16:"$callbackStatus$";s:27:"Статус колбека";s:15:"$callbackTheme$";s:23:"Тема колбека";s:10:"$userName$";s:69:"Имя пользователя запросившего звонок";s:11:"$userPhone$";s:87:"Номер телефона пользователя запросившего Сallback";s:13:"$dateCreated$";s:23:"Дата колбека";s:13:"$userComment$";s:63:" Комментарии пользователя колбека";}');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_new_level_columns`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_new_level_columns` (
+  `category_id` varchar(500) NOT NULL,
+  `column` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `mod_new_level_columns`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_new_level_product_properties_types`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_new_level_product_properties_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `property_id` int(11) NOT NULL,
+  `name` int(11) NOT NULL,
+  `type` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Дамп данных таблицы `mod_new_level_product_properties_types`
+--
+
+INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name`, `type`) VALUES
+(1, 29, 0, 'a:1:{i:0;s:6:"scroll";}'),
+(4, 28, 0, 'a:2:{i:0;s:6:"scroll";i:1;s:8:"dropDown";}'),
+(5, 22, 0, 'a:1:{i:0;s:8:"dropDown";}'),
+(6, 21, 0, 'a:1:{i:0;s:6:"scroll";}'),
+(7, 24, 0, 'a:2:{i:0;s:8:"dropDown";i:1;s:6:"scroll";}');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_shop_discounts`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_shop_discounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(25) DEFAULT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  `active` tinyint(4) DEFAULT NULL,
+  `max_apply` int(11) DEFAULT NULL,
+  `count_apply` int(11) DEFAULT NULL,
+  `date_begin` int(11) DEFAULT NULL,
+  `date_end` int(11) DEFAULT NULL,
+  `type_value` tinyint(4) DEFAULT NULL,
+  `value` int(11) DEFAULT NULL,
+  `type_discount` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key_UNIQUE` (`key`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `mod_shop_discounts`
+--
+
+INSERT INTO `mod_shop_discounts` (`id`, `key`, `name`, `active`, `max_apply`, `count_apply`, `date_begin`, `date_end`, `type_value`, `value`, `type_discount`) VALUES
+(1, '1mf82j8lypb107d5', NULL, 1, NULL, NULL, 1387490400, 0, 1, 12, 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_shop_discounts_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `mod_shop_discounts_i18n`
+--
+
+INSERT INTO `mod_shop_discounts_i18n` (`id`, `locale`, `name`) VALUES
+(1, 'ru', 'знижка адміна');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_shop_news`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_shop_news` (
+  `content_id` int(11) NOT NULL,
+  `shop_categories_ids` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `mod_shop_news`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_wish_list`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_wish_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(254) NOT NULL,
+  `description` text,
+  `access` enum('public','private','shared') NOT NULL DEFAULT 'shared',
+  `user_id` int(11) NOT NULL,
+  `review_count` int(11) NOT NULL DEFAULT '0',
+  `hash` varchar(16) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `mod_wish_list`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_wish_list_products`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_wish_list_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `wish_list_id` int(11) NOT NULL,
+  `variant_id` int(11) NOT NULL,
+  `comment` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `mod_wish_list_products`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_wish_list_users`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_wish_list_users` (
+  `id` int(11) NOT NULL,
+  `user_name` varchar(254) DEFAULT NULL,
+  `user_image` text,
+  `user_birthday` int(11) DEFAULT NULL,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `mod_wish_list_users`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `propel_migration`
+--
+
 CREATE TABLE IF NOT EXISTS `propel_migration` (
   `version` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `propel_migration`
+-- Дамп данных таблицы `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
@@ -897,10 +1419,29 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `search`
+-- Структура таблицы `rating`
 --
 
-DROP TABLE IF EXISTS `search`;
+CREATE TABLE IF NOT EXISTS `rating` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_type` varchar(25) DEFAULT NULL,
+  `type` varchar(25) DEFAULT NULL,
+  `votes` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `rating`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `search`
+--
+
 CREATE TABLE IF NOT EXISTS `search` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hash` varchar(264) NOT NULL,
@@ -918,13 +1459,17 @@ CREATE TABLE IF NOT EXISTS `search` (
   KEY `datetime` (`datetime`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
+--
+-- Дамп данных таблицы `search`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `settings`
+-- Структура таблицы `settings`
 --
 
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
@@ -960,19 +1505,18 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `settings`
+-- Дамп данных таблицы `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'newLevel', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:7:{s:20:"siteinfo_companytype";s:54:"© Интернет-магазин «Imageshop», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:13:"siteinfo_logo";a:3:{s:8:"newLevel";a:2:{s:3:"url";s:63:"http://image.loc/templates/newLevel/css/color_scheme_1/logo.png";s:4:"path";s:46:"templates/newLevel/css/color_scheme_1/logo.png";}s:9:"corporate";a:2:{s:3:"url";s:52:"http://image.loc/templates/corporate/images/logo.png";s:4:"path";s:35:"templates/corporate/images/logo.png";}s:10:"commerce4x";a:2:{s:3:"url";s:53:"http://image.loc/templates/commerce4x/images/logo.png";s:4:"path";s:36:"templates/commerce4x/images/logo.png";}}s:8:"contacts";a:2:{s:5:"Email";s:20:"partner@imagecms.net";s:5:"Skype";s:8:"imagecms";}s:16:"siteinfo_favicon";a:3:{s:8:"newLevel";a:2:{s:3:"url";s:66:"http://image.loc/templates/newLevel/css/color_scheme_1/favicon.ico";s:4:"path";s:49:"templates/newLevel/css/color_scheme_1/favicon.ico";}s:9:"corporate";a:2:{s:3:"url";s:55:"http://image.loc/templates/corporate/images/favicon.png";s:4:"path";s:38:"templates/corporate/images/favicon.png";}s:10:"commerce4x";a:2:{s:3:"url";s:56:"http://image.loc/templates/commerce4x/images/favicon.png";s:4:"path";s:39:"templates/commerce4x/images/favicon.png";}}}');
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`) VALUES
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'newLevel', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:7:{s:20:"siteinfo_companytype";s:54:"© Интернет-магазин «Imageshop», 2013";s:16:"siteinfo_address";s:40:"г. Киев, ул. Шевченка 214";s:18:"siteinfo_mainphone";s:15:"(097) 234-56-78";s:19:"siteinfo_adminemail";s:18:"info@client.com.ua";s:13:"siteinfo_logo";a:3:{s:8:"newLevel";a:2:{s:3:"url";s:63:"http://image.loc/templates/newLevel/css/color_scheme_1/logo.png";s:4:"path";s:46:"templates/newLevel/css/color_scheme_1/logo.png";}s:9:"corporate";a:2:{s:3:"url";s:52:"http://image.loc/templates/corporate/images/logo.png";s:4:"path";s:35:"templates/corporate/images/logo.png";}s:10:"commerce4x";a:2:{s:3:"url";s:53:"http://image.loc/templates/commerce4x/images/logo.png";s:4:"path";s:36:"templates/commerce4x/images/logo.png";}}s:16:"siteinfo_favicon";a:3:{s:8:"newLevel";a:2:{s:3:"url";s:66:"http://image.loc/templates/newLevel/css/color_scheme_1/favicon.ico";s:4:"path";s:49:"templates/newLevel/css/color_scheme_1/favicon.ico";}s:9:"corporate";a:2:{s:3:"url";s:55:"http://image.loc/templates/corporate/images/favicon.png";s:4:"path";s:38:"templates/corporate/images/favicon.png";}s:10:"commerce4x";a:2:{s:3:"url";s:56:"http://image.loc/templates/commerce4x/images/favicon.png";s:4:"path";s:39:"templates/commerce4x/images/favicon.png";}}s:8:"contacts";a:2:{s:5:"Email";s:18:"info@client.com.ua";s:5:"Skype";s:6:"client";}}', 'a:3:{i:0;b:0;s:10:"newVersion";s:1:"0";s:9:"checkTime";i:1387212551;}', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `settings_i18n`
+-- Структура таблицы `settings_i18n`
 --
 
-DROP TABLE IF EXISTS `settings_i18n`;
 CREATE TABLE IF NOT EXISTS `settings_i18n` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_ident` int(11) NOT NULL,
@@ -981,22 +1525,21 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
   `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `keywords` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `settings_i18n`
+-- Дамп данных таблицы `settings_i18n`
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
-(1, 3, 'ImageCMS DemoShop', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
+(1, 3, 'Сайт клиента', 'Клиент', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_banners`
+-- Структура таблицы `shop_banners`
 --
 
-DROP TABLE IF EXISTS `shop_banners`;
 CREATE TABLE IF NOT EXISTS `shop_banners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1009,7 +1552,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп даних таблиці `shop_banners`
+-- Дамп данных таблицы `shop_banners`
 --
 
 INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`, `on_main`, `espdate`) VALUES
@@ -1020,10 +1563,9 @@ INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`, `on_main`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_banners_i18n`
+-- Структура таблицы `shop_banners_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_banners_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1035,7 +1577,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_banners_i18n`
+-- Дамп данных таблицы `shop_banners_i18n`
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
@@ -1046,10 +1588,9 @@ INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`)
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_brands`
+-- Структура таблицы `shop_brands`
 --
 
-DROP TABLE IF EXISTS `shop_brands`;
 CREATE TABLE IF NOT EXISTS `shop_brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -1061,7 +1602,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Дамп даних таблиці `shop_brands`
+-- Дамп данных таблицы `shop_brands`
 --
 
 INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
@@ -1080,10 +1621,9 @@ INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_brands_i18n`
+-- Структура таблицы `shop_brands_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_brands_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1097,7 +1637,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_brands_i18n`
+-- Дамп данных таблицы `shop_brands_i18n`
 --
 
 INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -1121,10 +1661,9 @@ INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_tit
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks`
+-- Структура таблицы `shop_callbacks`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -1139,15 +1678,19 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   KEY `shop_callbacks_I_2` (`status_id`),
   KEY `shop_callbacks_I_3` (`theme_id`),
   KEY `shop_callbacks_I_4` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Дамп данных таблицы `shop_callbacks`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_statuses`
+-- Структура таблицы `shop_callbacks_statuses`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `is_default` tinyint(1) DEFAULT NULL,
@@ -1155,7 +1698,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Дамп даних таблиці `shop_callbacks_statuses`
+-- Дамп данных таблицы `shop_callbacks_statuses`
 --
 
 INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
@@ -1165,10 +1708,9 @@ INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_statuses_i18n`
+-- Структура таблицы `shop_callbacks_statuses_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1178,7 +1720,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_callbacks_statuses_i18n`
+-- Дамп данных таблицы `shop_callbacks_statuses_i18n`
 --
 
 INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
@@ -1188,10 +1730,9 @@ INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_themes`
+-- Структура таблицы `shop_callbacks_themes`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks_themes`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` int(11) DEFAULT NULL,
@@ -1199,19 +1740,16 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп даних таблиці `shop_callbacks_themes`
+-- Дамп данных таблицы `shop_callbacks_themes`
 --
 
-INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
-(1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_themes_i18n`
+-- Структура таблицы `shop_callbacks_themes_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks_themes_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1221,20 +1759,16 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_callbacks_themes_i18n`
+-- Дамп данных таблицы `shop_callbacks_themes_i18n`
 --
 
-INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
-(1, 'ru', 'Первая тема'),
-(1, 'ua', 'Перша тема');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_category`
+-- Структура таблицы `shop_category`
 --
 
-DROP TABLE IF EXISTS `shop_category`;
 CREATE TABLE IF NOT EXISTS `shop_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -1253,43 +1787,48 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
   KEY `shop_category_I_3` (`active`),
   KEY `shop_category_I_4` (`parent_id`),
   KEY `shop_category_I_5` (`position`),
-  KEY `shop_category_I_1` (`url`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
+  KEY `shop_category_I_1` (`url`),
+  KEY `external_id` (`external_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
 
 --
--- Дамп даних таблиці `shop_category`
+-- Дамп данных таблицы `shop_category`
 --
 
 INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`, `showsitetitle`) VALUES
 (52, 'avto_muzyka_i_video', 0, 7, 'avto_muzyka_i_video', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
 (51, 'bluetooth', 48, 13, 'domashniaia_elektronika/bluetooth', 'a:1:{i:0;i:48;}', 1, NULL, NULL, '', 1, NULL),
 (50, 'telefony', 48, 12, 'domashniaia_elektronika/telefony', 'a:1:{i:0;i:48;}', 1, NULL, NULL, '', 1, NULL),
-(48, 'domashniaia_elektronika', 0, 11, 'domashniaia_elektronika', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
+(48, 'domashniaia_elektronika', 0, 8, 'domashniaia_elektronika', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
 (46, 'fotoprintery', 44, 16, 'foto_i_kamery/fotoprintery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1, NULL),
 (45, 'tsifrovye_kamery', 44, 15, 'foto_i_kamery/tsifrovye_kamery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1, NULL),
-(44, 'foto_i_kamery', 0, 14, 'foto_i_kamery', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
+(44, 'foto_i_kamery', 0, 9, 'foto_i_kamery', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
 (43, 'saund_bary', 40, 6, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, '/uploads/shop/products/origin/94_vM105.jpg', '', 1, NULL),
 (41, 'domashnie_teatry', 40, 5, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, '/uploads/shop/products/origin/28cbf811f4fe849a05ac81f85a22932d.jpg', '', 1, NULL),
-(40, 'domashnee_audio', 0, 4, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL, 'categorysubfirst', NULL, NULL),
-(36, 'video', 0, 0, 'video', 'a:0:{}', 1, NULL, NULL, 'categorysubfirst', NULL, NULL),
-(37, 'tv_hdtv', 36, 1, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/188_vS216.jpg', '', 0, NULL),
-(38, 'dvd_dvr_pleery', 36, 2, 'video/dvd_dvr_pleery', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/84_vM95.jpg', '', 0, NULL),
-(39, 'blu-ray', 36, 3, 'video/blu-ray', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/85_vS96.jpg', NULL, NULL, NULL),
+(40, 'domashnee_audio', 0, 6, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL, 'categorysubfirst', NULL, NULL),
+(36, 'video', 0, 0, 'video', 'a:0:{}', 1, NULL, '', 'categorysubfirst', 0, NULL),
+(37, 'tv_hdtv', 36, 2, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/188_vS216.jpg', 'categorysubsecond', 0, NULL),
+(38, 'dvd_dvr_pleery', 36, 3, 'video/dvd_dvr_pleery', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/84_vM95.jpg', '', 0, NULL),
+(39, 'blu-ray', 36, 4, 'video/blu-ray', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/85_vS96.jpg', NULL, NULL, NULL),
 (53, 'subwoofer', 52, 8, 'avto_muzyka_i_video/subwoofer', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL),
 (54, 'cd_chendzhery', 52, 9, 'avto_muzyka_i_video/cd_chendzhery', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL),
 (55, 'gps', 52, 10, 'avto_muzyka_i_video/gps', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL),
-(74, 'tv', 37, 17, 'video/tv_hdtv/tv', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '', '', 0, NULL),
-(75, 'hd-tv', 37, 18, 'video/tv_hdtv/hd-tv', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '', '', 0, NULL),
-(76, 'dvd', 36, NULL, 'video/dvd', 'a:1:{i:0;s:2:"36";}', 1, NULL, '/uploads/shop/products/origin/69d5045a28b88ae8c53ae414b0a581f3.jpg', NULL, NULL, NULL),
-(77, 'dvr-pleery', 76, NULL, 'video/dvd/dvr-pleery', 'a:2:{i:0;s:2:"36";i:1;i:76;}', 1, NULL, NULL, NULL, NULL, NULL);
+(74, 'zhk-televizory', 37, 17, 'video/tv_hdtv/zhk-televizory', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '/uploads/shop/products/origin/187_vS215.jpg', '', 0, NULL),
+(75, 'dvd-hd-mediapleery', 37, 18, 'video/tv_hdtv/dvd-hd-mediapleery', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '/uploads/shop/products/origin/122_vM133.jpg', '', 0, NULL),
+(76, 'dvd', 36, 1, 'video/dvd', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/69d5045a28b88ae8c53ae414b0a581f3.jpg', NULL, NULL, NULL),
+(77, 'dvr-pleery', 76, NULL, 'video/dvd/dvr-pleery', 'a:2:{i:0;i:36;i:1;i:76;}', 1, NULL, NULL, NULL, NULL, NULL),
+(79, 'domashnie-kinoteatry', 37, 19, 'video/tv_hdtv/domashnie-kinoteatry', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '/uploads/shop/products/origin/89_vM100.jpg', '', 0, NULL),
+(80, 'multimedia-proektory-dlia-domashnego-kinoteatra', 37, 20, 'video/tv_hdtv/multimedia-proektory-dlia-domashnego-kinoteatra', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '/uploads/shop/products/origin/85_vS96.jpg', '', 0, NULL),
+(81, '3d-ochki', 37, 21, 'video/tv_hdtv/3d-ochki', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '/uploads/shop/products/origin/112_vM123.jpg', '', 0, NULL),
+(82, 'tv-antenny', 37, 22, 'video/tv_hdtv/tv-antenny', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '/uploads/shop/products/origin/121_vS132.jpg', '', 0, NULL),
+(83, 'veb-kamery-dlia-tv', 37, 23, 'video/tv_hdtv/veb-kamery-dlia-tv', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '/uploads/shop/products/origin/119_vS130.jpg', '', 0, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_category_i18n`
+-- Структура таблицы `shop_category_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_category_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1304,7 +1843,7 @@ CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_category_i18n`
+-- Дамп данных таблицы `shop_category_i18n`
 --
 
 INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `meta_desc`, `meta_title`, `meta_keywords`) VALUES
@@ -1318,8 +1857,8 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 (43, 'ru', 'Спикеры', '', '', '', '', ''),
 (41, 'ru', 'Домашние театры', '', '', '', '', ''),
 (40, 'ru', 'Домашнее аудио', '', '', '', '', ''),
-(36, 'ru', 'Видео', '', '', '', '', ''),
-(37, 'ru', 'TV & HDTV', '', ' ', '', '', ''),
+(36, 'ru', 'Видео', '', '<h1>Интернет-магазин</h1>\r\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\r\n<h2>Заголовок второго уровня</h2>\r\n<h3>Заголовок третьего уровня</h3>\r\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\r\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\r\n<h3>Заголовок третьего уровня</h3>\r\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\r\n<ul>\r\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\r\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\r\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\r\n</ul>\r\n<h4>Заголовок четвертого уровня</h4>\r\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>название</td>\r\n<td>размер</td>\r\n<td>цена</td>\r\n</tr>\r\n<tr>\r\n<td>длинна трубы</td>\r\n<td>10 метров</td>\r\n<td>145 уе</td>\r\n</tr>\r\n<tr>\r\n<td>ширина трубы</td>\r\n<td>2 метра</td>\r\n<td>134 уе</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\r\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\r\n<ol>\r\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\r\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\r\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\r\n</ol>\r\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>', '', '', ''),
+(37, 'ru', 'Телевизоры', '', '<h1>Интернет-магазин</h1>\r\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\r\n<h2>Заголовок второго уровня</h2>\r\n<h3>Заголовок третьего уровня</h3>\r\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\r\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\r\n<h3>Заголовок третьего уровня</h3>\r\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\r\n<ul>\r\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\r\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\r\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\r\n</ul>\r\n<h4>Заголовок четвертого уровня</h4>\r\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>название</td>\r\n<td>размер</td>\r\n<td>цена</td>\r\n</tr>\r\n<tr>\r\n<td>длинна трубы</td>\r\n<td>10 метров</td>\r\n<td>145 уе</td>\r\n</tr>\r\n<tr>\r\n<td>ширина трубы</td>\r\n<td>2 метра</td>\r\n<td>134 уе</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\r\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\r\n<ol>\r\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\r\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\r\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\r\n</ol>\r\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>', '', '', ''),
 (38, 'ru', 'DVD/DVR Плееры', '', '', '', '', ''),
 (39, 'ru', 'Blu-Ray Плееры', '', '', '', '', ''),
 (53, 'ru', 'Сабвуферы', '', '', '', '', ''),
@@ -1343,18 +1882,22 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 (53, 'en', 'Subwoofers', '', '', '', '', ''),
 (54, 'en', 'CD changer ', '', '', '', '', ''),
 (55, 'en', 'GPS', '', '', '', '', ''),
-(74, 'ru', 'TV', '', ' ', '', '', ''),
-(75, 'ru', 'HD TV', '', ' ', '', '', ''),
+(74, 'ru', 'ЖК-телевизоры', '', '', '', '', ''),
+(75, 'ru', 'DVD/HD-медиаплееры', '', '<h1>Интернет-магазин</h1>\r\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\r\n<h2>Заголовок второго уровня</h2>\r\n<h3>Заголовок третьего уровня</h3>\r\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\r\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\r\n<h3>Заголовок третьего уровня</h3>\r\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\r\n<ul>\r\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\r\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\r\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\r\n</ul>\r\n<h4>Заголовок четвертого уровня</h4>\r\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>название</td>\r\n<td>размер</td>\r\n<td>цена</td>\r\n</tr>\r\n<tr>\r\n<td>длинна трубы</td>\r\n<td>10 метров</td>\r\n<td>145 уе</td>\r\n</tr>\r\n<tr>\r\n<td>ширина трубы</td>\r\n<td>2 метра</td>\r\n<td>134 уе</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\r\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\r\n<ol>\r\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\r\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\r\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\r\n</ol>\r\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>', '', '', ''),
 (76, 'ru', 'DVD', '', NULL, '', '', ''),
-(77, 'ru', 'DVR Плееры', '', NULL, '', '', '');
+(77, 'ru', 'DVR Плееры', '', NULL, '', '', ''),
+(79, 'ru', 'Домашние кинотеатры', '', '', '', '', ''),
+(80, 'ru', 'Мультимедиа проекторы для домашнего кинотеатра', '', '', '', '', ''),
+(81, 'ru', '3D-очки', '', '', '', '', ''),
+(82, 'ru', 'ТВ-антенны', '', '', '', '', ''),
+(83, 'ru', 'Веб-камеры для ТВ', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_comulativ_discount`
+-- Структура таблицы `shop_comulativ_discount`
 --
 
-DROP TABLE IF EXISTS `shop_comulativ_discount`;
 CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
@@ -1366,13 +1909,17 @@ CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
+--
+-- Дамп данных таблицы `shop_comulativ_discount`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_currencies`
+-- Структура таблицы `shop_currencies`
 --
 
-DROP TABLE IF EXISTS `shop_currencies`;
 CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -1389,20 +1936,19 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_currencies`
+-- Дамп данных таблицы `shop_currencies`
 --
 
-INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
-(1, 'Dollars', 0, 0, 'USD', '$', 0.031),
-(2, 'Ruble', 1, 1, 'RUR', 'RUR', 1.000);
+INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`) VALUES
+(1, 'Dollars', 0, 0, 'USD', '$', 0.122, 1),
+(2, 'Гривна', 1, 1, 'UAH', 'грн', 1.000, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods`
+-- Структура таблицы `shop_delivery_methods`
 --
 
-DROP TABLE IF EXISTS `shop_delivery_methods`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` float(10,2) NOT NULL,
@@ -1416,21 +1962,20 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
--- Дамп даних таблиці `shop_delivery_methods`
+-- Дамп данных таблицы `shop_delivery_methods`
 --
 
-INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`) VALUES
-(7, 0.00, 0.00, 1, 0),
-(5, 56.00, 0.00, 1, 0),
-(6, 355.00, 0.00, 1, 0);
+INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`, `position`) VALUES
+(7, 0.00, 100000000.00, 1, 0, NULL),
+(5, 80.00, 100000000.00, 1, 0, NULL),
+(6, 50.00, 100000000.00, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods_i18n`
+-- Структура таблицы `shop_delivery_methods_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_delivery_methods_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1442,22 +1987,21 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_delivery_methods_i18n`
+-- Дамп данных таблицы `shop_delivery_methods_i18n`
 --
 
 INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`) VALUES
-(7, 'ru', 'Самовывоз', ' ', ' '),
-(5, 'ru', 'Курьером', '<p>Только по Киеву и Москве</p>  ', ' '),
-(6, 'ru', 'АвтоМир', '<p>Доставка по всему миру</p>  ', ' '),
+(7, 'ru', 'Самовывоз в Киеве', '<p>г. Киев, ул. Тестовая 12/34</p>', ''),
+(5, 'ru', 'Адресная доставка курьером', '', ''),
+(6, 'ru', 'Нова Пошта', '<p>Доставка по Украине</p>', ''),
 (7, 'ua', 'Самовивезення', '', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods_systems`
+-- Структура таблицы `shop_delivery_methods_systems`
 --
 
-DROP TABLE IF EXISTS `shop_delivery_methods_systems`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
   `delivery_method_id` int(11) NOT NULL,
   `payment_method_id` int(11) NOT NULL,
@@ -1466,19 +2010,22 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_delivery_methods_systems`
+-- Дамп данных таблицы `shop_delivery_methods_systems`
 --
 
 INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_method_id`) VALUES
 (5, 1),
-(5, 2),
-(5, 3),
-(5, 4),
+(5, 9),
+(5, 10),
+(5, 11),
 (6, 1),
-(6, 2),
-(6, 3),
-(6, 4),
+(6, 9),
+(6, 10),
+(6, 11),
 (7, 1),
+(7, 9),
+(7, 10),
+(7, 11),
 (15, 1),
 (16, 1),
 (16, 2),
@@ -1496,156 +2043,9 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_discount_all_order`
---
-DROP TABLE IF EXISTS `mod_discount_all_order`;
-CREATE TABLE IF NOT EXISTS `mod_discount_all_order` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `for_autorized` tinyint(4) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  `is_gift` tinyint(4) DEFAULT NULL,
-  `begin_value` float DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_brand`
---
-DROP TABLE IF EXISTS `mod_discount_brand`;
-CREATE TABLE IF NOT EXISTS `mod_discount_brand` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `brand_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `brand_id` (`brand_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_category`
---
-DROP TABLE IF EXISTS `mod_discount_category`;
-CREATE TABLE IF NOT EXISTS `mod_discount_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `category_id` (`category_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_comulativ`
---
-DROP TABLE IF EXISTS `mod_discount_comulativ`;
-CREATE TABLE IF NOT EXISTS `mod_discount_comulativ` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `discount_id` int(11) DEFAULT NULL,
-  `begin_value` int(11) DEFAULT NULL,
-  `end_value` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_group_user`
---
-DROP TABLE IF EXISTS `mod_discount_group_user`;
-CREATE TABLE IF NOT EXISTS `mod_discount_group_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `group_id` (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_product`
---
-DROP TABLE IF EXISTS `mod_discount_product`;
-CREATE TABLE IF NOT EXISTS `mod_discount_product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_user`
---
-DROP TABLE IF EXISTS `mod_discount_user`;
-CREATE TABLE IF NOT EXISTS `mod_discount_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Дамп даних таблиці `mod_discount_user`
+-- Структура таблицы `shop_discounts`
 --
 
-
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_shop_discounts`
---
-DROP TABLE IF EXISTS `mod_shop_discounts`;
-CREATE TABLE IF NOT EXISTS `mod_shop_discounts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `key` varchar(25) DEFAULT NULL,
-  `active` tinyint(4) DEFAULT NULL,
-  `max_apply` int(11) DEFAULT NULL,
-  `count_apply` int(11) DEFAULT NULL,
-  `date_begin` int(11) DEFAULT NULL,
-  `date_end` int(11) DEFAULT NULL,
-  `type_value` tinyint(4) DEFAULT NULL,
-  `value` int(11) DEFAULT NULL,
-  `type_discount` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `key_UNIQUE` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
-
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_shop_discounts_i18n`
---
-DROP TABLE IF EXISTS `mod_shop_discounts_i18n`;
-CREATE TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
-  `id` int(11) NOT NULL,
-  `locale` varchar(5) NOT NULL,
-  `name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`,`locale`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
-
--- ----------------discount_old----------------------------------------
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1661,11 +2061,18 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `user_group` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
 --
--- Структура таблиці `shop_gifts`
+-- Дамп данных таблицы `shop_discounts`
 --
 
-DROP TABLE IF EXISTS `shop_gifts`;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `shop_gifts`
+--
+
 CREATE TABLE IF NOT EXISTS `shop_gifts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) DEFAULT NULL,
@@ -1677,7 +2084,7 @@ CREATE TABLE IF NOT EXISTS `shop_gifts` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_gifts`
+-- Дамп данных таблицы `shop_gifts`
 --
 
 INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) VALUES
@@ -1688,10 +2095,9 @@ INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_kit`
+-- Структура таблицы `shop_kit`
 --
 
-DROP TABLE IF EXISTS `shop_kit`;
 CREATE TABLE IF NOT EXISTS `shop_kit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
@@ -1699,24 +2105,25 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
   `position` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_kit_FI_1` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп даних таблиці `shop_kit`
+-- Дамп данных таблицы `shop_kit`
 --
 
 INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
 (8, 185, 1, 0),
 (9, 96, 1, 0),
-(10, 71, 1, 0);
+(10, 71, 1, 0),
+(11, 190, 1, 0),
+(12, 190, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_kit_product`
+-- Структура таблицы `shop_kit_product`
 --
 
-DROP TABLE IF EXISTS `shop_kit_product`;
 CREATE TABLE IF NOT EXISTS `shop_kit_product` (
   `product_id` int(11) NOT NULL,
   `kit_id` int(11) NOT NULL,
@@ -1726,21 +2133,26 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_kit_product`
+-- Дамп данных таблицы `shop_kit_product`
 --
 
 INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
 (107, 8, '5'),
 (100, 9, '40'),
-(93, 10, '0');
+(93, 10, '0'),
+(96, 11, '12'),
+(71, 11, '5'),
+(102, 12, '5'),
+(100, 12, '5'),
+(93, 12, '2'),
+(81, 12, '4');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notifications`
+-- Структура таблицы `shop_notifications`
 --
 
-DROP TABLE IF EXISTS `shop_notifications`;
 CREATE TABLE IF NOT EXISTS `shop_notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -1762,15 +2174,21 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
   KEY `shop_notifications_I_5` (`active_to`),
   KEY `shop_notifications_FI_1` (`product_id`),
   KEY `shop_notifications_FI_2` (`variant_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Дамп данных таблицы `shop_notifications`
+--
+
+INSERT INTO `shop_notifications` (`id`, `product_id`, `variant_id`, `user_name`, `user_email`, `user_phone`, `user_comment`, `status`, `date_created`, `active_to`, `manager_id`, `notified_by_email`) VALUES
+(5, 0, 0, 'Administrator', 'ad@min.com', '', '', 1, 1388059918, 1388059918, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notification_statuses`
+-- Структура таблицы `shop_notification_statuses`
 --
 
-DROP TABLE IF EXISTS `shop_notification_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1780,7 +2198,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `shop_notification_statuses`
+-- Дамп данных таблицы `shop_notification_statuses`
 --
 
 INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
@@ -1790,10 +2208,9 @@ INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notification_statuses_i18n`
+-- Структура таблицы `shop_notification_statuses_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_notification_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1803,7 +2220,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_notification_statuses_i18n`
+-- Дамп данных таблицы `shop_notification_statuses_i18n`
 --
 
 INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -1813,10 +2230,9 @@ INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders`
+-- Структура таблицы `shop_orders`
 --
 
-DROP TABLE IF EXISTS `shop_orders`;
 CREATE TABLE IF NOT EXISTS `shop_orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -1840,7 +2256,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `gift_cert_price` int(11) DEFAULT NULL,
   `comulativ` int(3) DEFAULT NULL,
   `discount` float(10,2) DEFAULT NULL,
-  `discount_info` text DEFAULT NULL,
+  `discount_info` text,
   `origin_price` float(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
@@ -1848,38 +2264,22 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   KEY `shop_orders_I_3` (`date_created`),
   KEY `shop_orders_FI_1` (`delivery_method`),
   KEY `shop_orders_FI_2` (`payment_method`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
 
 --
--- Дамп даних таблиці `shop_orders`
+-- Дамп данных таблицы `shop_orders`
 --
 
-INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`) VALUES
-(31, 'f409841g1b', 6, 0.00, 2, 1, 'Оксана', 'ad@min.com', '', '', '', 1296950400, 1296950400, '127.0.0.1', 1, 1, 62.18, NULL, NULL, NULL, NULL),
-(32, 'vi653829e7', 6, 0.00, 2, NULL, 'Валентина', 'geg@g.com', '', '', '', 1311379200, 1311379200, '127.0.0.1', 6, 1, 68.80, NULL, NULL, NULL, NULL),
-(30, 'w81299k2j2', 6, 0.00, 1, 1, 'Игорь Петрович', 'ad@min.com', '', '', '', 1311638400, 1311638400, '127.0.0.1', 1, 3, 443.31, NULL, NULL, NULL, NULL),
-(29, 'g3x517u800', 6, 0.00, 1, 1, 'Игорь Петрович', 'ad@min.com', '', '', '', 1309046400, 1309046400, '127.0.0.1', 1, 1, 58.89, NULL, NULL, NULL, NULL),
-(28, '68176pt39h', 6, 0.00, 2, 0, 'Василий Пупкин', 'ad@min.com', '', '', '', 1299456000, 1299456000, '127.0.0.1', 1, 1, 35.00, NULL, NULL, NULL, NULL),
-(33, '3zw82m7510', 6, 0.00, 2, NULL, 'Юлия', 'gola@go.go', '', '', '', 1296950400, 1296950400, '127.0.0.1', 7, 1, 45.00, NULL, NULL, NULL, NULL),
-(34, 'p9334a80d9', 6, 0.00, 2, 1, 'Микола', 'hi@hello.com', '', '', '', 1301270400, 1301270400, '127.0.0.1', 8, 1, 372.00, NULL, NULL, NULL, NULL),
-(35, '36f8u736h1', 6, 0.00, 1, 1, 'Петр', 'go@gmail.com', '', '', '', 1301443200, 1301443200, '127.0.0.1', 9, 1, 179.87, NULL, NULL, NULL, NULL),
-(36, '00x41ly257', 7, 0.00, 1, 1, 'Петр', 'go@gmail.com', '', '', '', 1322611200, 1322611200, '127.0.0.1', 9, 4, 534.61, NULL, NULL, NULL, NULL),
-(37, '64p2cy7539', 6, 0.00, 1, 1, 'Юрий', 'hell@hi.com', '', '', '', 1297036800, 1297036800, '127.0.0.1', 10, 1, 1032.00, NULL, NULL, NULL, NULL),
-(38, '758mil1438', 6, 0.00, 2, 1, 'Артур', 'joker@g.com', '', '', '', 1322956800, 1322956800, '127.0.0.1', 11, 1, 500.00, NULL, NULL, NULL, NULL),
-(39, '1l6f17647c', 6, 0.00, 2, 1, 'Роман', 'h@g.com', '', '', '', 1300492800, 1300492800, '127.0.0.1', 12, 1, 777.65, NULL, NULL, NULL, NULL),
-(40, 'b04a24866n', 6, 0.00, 2, 1, 'Иван', 't@com.com', '', '', '', 1310169600, 1310169600, '127.0.0.1', 13, 1, 39.95, NULL, NULL, NULL, NULL),
-(41, '1p4491f5m5', 6, 0.00, 2, 1, 'roman', 'hh@f.com', '', '', '', 1302134400, 1302134400, '127.0.0.1', 14, 1, 60.99, NULL, NULL, NULL, NULL),
-(42, 'bx41g39564', 6, 0.00, 2, 1, 'Степа', 'w@go.com', '', '', '', 1306108800, 1306108800, '127.0.0.1', 15, 1, 42.00, NULL, NULL, NULL, NULL),
-(43, 'd5fw278457', 5, 0.00, 2, 1, 'Катерина', 'd@com.ua', '', '', '', 1302048000, 1302048000, '127.0.0.1', 16, 2, 500.00, NULL, NULL, NULL, NULL),
-(44, 'h82681tn83', 6, 0.00, 2, 1, 'Валерия', 'q@w.com', '', '', '', 1299196800, 1299196800, '127.0.0.1', 17, 1, 1178.99, NULL, NULL, NULL, NULL);
+INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`, `discount`, `discount_info`, `origin_price`) VALUES
+(49, 'n47081w21g', 5, 80.00, 1, 1, 'Administrator', 'ad@min.com', '+2 (4353) 453-45-34', '', '', 1387558994, 1387558994, '127.0.0.1', 48, 10, 19656.07, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(50, '947hq681z2', 5, 80.00, 1, 1, 'Administrator', 'ad@min.com', '', '', '', 1387559471, 1387559471, '127.0.0.1', 48, 1, 289.97, NULL, NULL, NULL, NULL, 39.54, '{"id":"1","key":"1mf82j8lypb107d5","name":"\\u0437\\u043d\\u0438\\u0436\\u043a\\u0430 \\u0430\\u0434\\u043c\\u0456\\u043d\\u0430","active":"1","max_apply":null,"count_apply":null,"date_begin":"1387490400","date_end":"0","type_value":"1","value":"12","type_discount":"user","locale":"ru","ids":"1","user_id":"48","discount_id":"1"}', 329.51);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders_products`
+-- Структура таблицы `shop_orders_products`
 --
 
-DROP TABLE IF EXISTS `shop_orders_products`;
 CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1894,49 +2294,28 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   PRIMARY KEY (`id`),
   KEY `shop_orders_products_I_1` (`order_id`),
   KEY `shop_orders_products_FI_1` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=81 ;
 
 --
--- Дамп даних таблиці `shop_orders_products`
+-- Дамп данных таблицы `shop_orders_products`
 --
 
 INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`, `product_name`, `variant_name`, `price`, `quantity`, `kit_id`, `is_main`) VALUES
-(42, 29, 120, 131, 'Pioneer JD-1212S 12-disc CD', '', 30.71, 1, NULL, NULL),
-(41, 29, 121, 132, 'Pioneer JD-612V 6-disc CD Magazine', '', 28.18, 1, NULL, NULL),
-(40, 28, 122, 133, 'Panasonic CX-DP880U 8-Disc', '', 35.00, 1, NULL, NULL),
-(44, 30, 105, 116, 'Panasonic KX-TG6582T Cordless Phone', '', 99.95, 1, NULL, NULL),
-(45, 30, 109, 120, 'Panasonic KX-TG6445 Cordless Phone', '', 123.37, 1, NULL, NULL),
-(46, 30, 108, 119, 'Plantronics CS55 Wireless Earset', '', 219.99, 1, NULL, NULL),
-(47, 31, 124, 135, 'JVC - CHX1500RF - FM Modulation', '', 34.00, 1, NULL, NULL),
-(48, 31, 121, 132, 'Pioneer JD-612V 6-disc CD Magazine', '', 28.18, 1, NULL, NULL),
-(49, 32, 81, 92, 'Samsung DVD-H1080 - 1080p', '', 68.80, 1, NULL, NULL),
-(50, 33, 115, 126, 'Pioneer TS-SW3041D Shallow-Mount Subwoofer', '', 45.00, 1, NULL, NULL),
-(51, 34, 106, 117, 'Panasonic KX-TG7433B Expandable', 'Panasonic KX-TG7433B Expandabledsf', 272.05, 1, NULL, NULL),
-(52, 34, 105, 116, 'Panasonic KX-TG6582T Cordless Phone', '', 99.95, 1, NULL, NULL),
-(53, 35, 100, 111, 'Canon PIXMA iP100 Photo Printer', 'Черный', 179.87, 1, NULL, NULL),
-(54, 36, 100, 210, 'Canon PIXMA iP100 Photo Printer', 'Белый', 174.87, 1, NULL, NULL),
-(55, 36, 100, 111, 'Canon PIXMA iP100 Photo Printer', 'Черный', 179.87, 2, NULL, NULL),
-(56, 37, 81, 92, 'Samsung DVD-H1080 - 1080p', '', 68.80, 15, NULL, NULL),
-(57, 38, 185, 213, 'Apple iPhone 5 16GB Black & Slate', '', 500.00, 1, NULL, NULL),
-(58, 39, 94, 105, 'Yamaha NSIW760 Speaker', '', 99.95, 1, NULL, NULL),
-(59, 39, 93, 104, 'Yamaha HS80M Powered Speaker', '', 349.99, 1, NULL, NULL),
-(60, 39, 92, 103, 'Samsung HW-C700 7.2 Channel', '', 297.00, 1, NULL, NULL),
-(61, 39, 120, 131, 'Pioneer JD-1212S 12-disc CD', '', 30.71, 1, NULL, NULL),
-(62, 40, 79, 90, 'Panasonic DVD-S38 DVD', '', 39.95, 1, NULL, NULL),
-(63, 41, 116, 127, 'Pyle PLT-AB8 Subwoofer - PLTAB8', '', 60.99, 1, NULL, NULL),
-(64, 42, 123, 134, 'JVC - XCM200 - 12-Disc CD', '', 42.00, 1, NULL, NULL),
-(65, 43, 185, 213, 'Apple iPhone 5 16GB Black & Slate', '', 500.00, 1, NULL, NULL),
-(66, 44, 102, 113, 'Epson Stylus R1900 Photo Printer', '', 549.99, 1, NULL, NULL),
-(67, 44, 83, 94, 'Sony BDP-S470 Network', '', 129.00, 1, NULL, NULL),
-(68, 44, 185, 213, 'Apple iPhone 5 16GB Black & Slate', '', 500.00, 1, NULL, NULL);
+(73, 49, 191, 219, 'Sony KDL-22EX553', '', 6762.30, 1, NULL, NULL),
+(74, 49, 84, 95, 'Panasonic DMP-BD45 Ultra-Fast', '', 329.51, 1, NULL, NULL),
+(75, 49, 190, 218, 'Samsung LE40D550K1WXUA', 'черный', 625.00, 3, 12, 1),
+(76, 49, 81, 92, 'Samsung DVD-H1080 - 1080p', '', 165.12, 3, 12, 0),
+(77, 49, 93, 104, 'Yamaha HS80M Powered Speaker', '', 1124.59, 3, 12, 0),
+(78, 49, 100, 111, 'Canon PIXMA iP100 Photo Printer', 'Черный', 560.26, 3, 12, 0),
+(79, 49, 102, 113, 'Epson Stylus R1900 Photo Printer', '', 1713.12, 3, 12, 0),
+(80, 50, 84, 95, 'Panasonic DMP-BD45 Ultra-Fast', '', 329.51, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders_status_history`
+-- Структура таблицы `shop_orders_status_history`
 --
 
-DROP TABLE IF EXISTS `shop_orders_status_history`;
 CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1947,33 +2326,22 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
   PRIMARY KEY (`id`),
   KEY `shop_orders_status_history_I_1` (`order_id`),
   KEY `shop_orders_status_history_FI_2` (`status_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
--- Дамп даних таблиці `shop_orders_status_history`
+-- Дамп данных таблицы `shop_orders_status_history`
 --
 
 INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_id`, `date_created`, `comment`) VALUES
-(9, 28, 2, 1, 1355496663, NULL),
-(10, 31, 2, 1, 1355497680, NULL),
-(11, 32, 2, 1, 1355497680, NULL),
-(12, 33, 2, 1, 1355497680, NULL),
-(13, 38, 2, 1, 1355500445, NULL),
-(14, 39, 2, 1, 1355500445, NULL),
-(15, 40, 2, 1, 1355500445, NULL),
-(16, 41, 2, 1, 1355500445, NULL),
-(17, 42, 2, 1, 1355500445, NULL),
-(18, 43, 2, 1, 1355500445, NULL),
-(19, 44, 2, 1, 1355500445, NULL),
-(20, 34, 2, 1, 1355822371, NULL);
+(21, 49, 1, 48, 1387558995, ''),
+(22, 50, 1, 48, 1387559471, '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_order_statuses`
+-- Структура таблицы `shop_order_statuses`
 --
 
-DROP TABLE IF EXISTS `shop_order_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1983,7 +2351,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп даних таблиці `shop_order_statuses`
+-- Дамп данных таблицы `shop_order_statuses`
 --
 
 INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
@@ -1993,10 +2361,9 @@ INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_order_statuses_i18n`
+-- Структура таблицы `shop_order_statuses_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_order_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -2006,7 +2373,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_order_statuses_i18n`
+-- Дамп данных таблицы `shop_order_statuses_i18n`
 --
 
 INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -2016,10 +2383,9 @@ INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_payment_methods`
+-- Структура таблицы `shop_payment_methods`
 --
 
-DROP TABLE IF EXISTS `shop_payment_methods`;
 CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `active` tinyint(1) DEFAULT NULL,
@@ -2030,25 +2396,24 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
   KEY `shop_payment_methods_I_2` (`position`),
   KEY `shop_payment_methods_FI_1` (`currency_id`),
   KEY `shop_payment_methods_I_1` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп даних таблиці `shop_payment_methods`
+-- Дамп данных таблицы `shop_payment_methods`
 --
 
 INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `payment_system_name`) VALUES
-(1, 1, 1, 0, 'WebMoneySystem'),
-(2, 1, 2, 1, 'OschadBankInvoiceSystem'),
-(3, 1, 2, 2, 'SberBankInvoiceSystem'),
-(4, 1, 2, 3, 'RobokassaSystem');
+(1, 1, 2, 0, '0'),
+(11, 1, 2, 3, 'LiqPaySystem'),
+(10, 1, 2, 2, 'PrivateBankSystem'),
+(9, 1, 2, 1, '0');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_payment_methods_i18n`
+-- Структура таблицы `shop_payment_methods_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_payment_methods_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -2059,26 +2424,22 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_payment_methods_i18n`
+-- Дамп данных таблицы `shop_payment_methods_i18n`
 --
 
 INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) VALUES
-(1, 'ru', 'Оплата курьеру', '<p>Оплата через веб-моней</p>'),
-(2, 'ru', 'Оплата через Банк', '<p>Оплата через ОщадБанк Украины</p>'),
-(3, 'ru', 'СберБанк России', '<p>Оплата через СберБанк России</p>'),
-(4, 'ru', 'Robokassa', '<p>Оплата с помощью Robokassa</p>'),
+(1, 'ru', 'Наличными при получении', ''),
+(11, 'ru', 'Visa/Mastercard', '<p>Предоплата заказа с помощью кредитной карты</p>'),
+(9, 'ru', 'Безналичный перевод', '<p>Предоплата заказа с помощью перевода на кредитную карту. После оформления заказа с Вами свяжутся менеджеры и укажут Вам номер карты</p>'),
 (1, 'en', 'Payment for the courier', ''),
-(2, 'en', 'Payment by bank', ''),
-(3, 'en', 'Sberbank of Russia', ''),
-(4, 'en', 'Robokassa', '');
+(10, 'ru', 'Privat24', '<p>Предоплата заказа с помощью системы Приват24</p>');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products`
+-- Структура таблицы `shop_products`
 --
 
-DROP TABLE IF EXISTS `shop_products`;
 CREATE TABLE IF NOT EXISTS `shop_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -2106,76 +2467,76 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
   KEY `shop_products_I_2` (`url`),
   KEY `shop_products_I_3` (`brand_id`),
   KEY `shop_products_I_4` (`category_id`),
-  KEY `shop_products_I_1` (`url`)
+  KEY `shop_products_I_1` (`url`),
+  KEY `external_id` (`external_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=195 ;
 
 --
--- Дамп даних таблиці `shop_products`
+-- Дамп данных таблицы `shop_products`
 --
 
 INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
-(71, '71', 1, 1, 26, 74, '96', '71_main.jpg', '71_mainMod.jpg', 1307542725, 1355746808, 1150.00, 189, 1, 1, 1, 1, NULL, '71_mainMod.jpg', '71_smallMod.jpg', '', NULL),
-(96, '96', 1, 1, 0, 45, '100', '96_vM107.jpg', '96_vS107.jpg', 1307542081, 1356345896, 0.00, 6, NULL, NULL, NULL, 1, NULL, '96_mainMod.jpg', '96_smallMod.jpg', '', NULL),
-(78, '78', 1, 0, 29, 75, '', '191_vM219.jpg', '191_vS219.jpg', 1307543572, 1356345897, 0.00, 11, NULL, NULL, 2, 1, NULL, '191_mainMod.jpg', '191_smallMod.jpg', '', NULL),
-(79, '79', 1, NULL, 29, 38, '', '79_main.jpg', '79_mainMod.jpg', 1307544450, 1359364970, 0.00, 10, 1, NULL, 1, 1, NULL, '79_mainMod.jpg', '79_smallMod.jpg', '', NULL),
-(81, '81', 1, 1, 28, 77, '', '81_vM92.jpg', '81_vS92.jpg', 1307544442, 1356345897, 0.00, 24, 1, 1, 17, 1, NULL, '81_mainMod.jpg', '81_smallMod.jpg', '', NULL),
-(82, '82', 1, NULL, 28, 39, '', '82_main.jpg', '82_small.jpg', 1307542064, 1355495998, 0.00, 10, NULL, 1, NULL, 1, NULL, '82_mainMod.jpg', '82_smallMod.jpg', '', NULL),
-(83, '83', 1, NULL, 26, 39, '', '83_main.jpg', '83_small.jpg', 1307545378, 1355496017, 0.00, 7, NULL, 1, 2, 1, NULL, '83_mainMod.jpg', '83_smallMod.jpg', '', NULL),
-(84, '84', 1, NULL, 29, 39, '', '84_main.jpg', '84_small.jpg', 1307541602, 1355496060, 0.00, NULL, NULL, 1, NULL, 1, NULL, '84_mainMod.jpg', '84_smallMod.jpg', '', NULL),
-(85, '85', 1, 0, 0, 39, '', '85_vM96.jpg', '85_vS96.jpg', 1307544238, 1356345896, 0.00, 5, NULL, NULL, NULL, 1, NULL, '85_mainMod.jpg', '85_smallMod.jpg', '', NULL),
-(86, '86', 1, NULL, 28, 39, '', '86_main.jpg', '86_small.jpg', 1307545023, 1355496108, 0.00, 8, NULL, NULL, NULL, 1, NULL, '86_mainMod.jpg', '86_smallMod.jpg', '', NULL),
-(87, '87', 1, NULL, 26, 41, '', '87_main.jpg', '87_mainMod.jpg', 1307541766, 1355746473, 0.00, 33, NULL, NULL, 2, 1, NULL, '87_mainMod.jpg', '87_smallMod.jpg', '', NULL),
-(88, '88', 1, NULL, 28, 41, '', '88_main.jpg', '88_small.jpg', 1307544977, 1355496171, 0.00, 22, NULL, NULL, NULL, 1, NULL, '88_mainMod.jpg', '88_smallMod.jpg', '', NULL),
+(71, '71', 1, 0, 26, 74, '96', '71_main.jpg', '71_mainMod.jpg', 1307542725, 1387557404, 1150.00, 192, 0, 0, 1, 1, NULL, '71_mainMod.jpg', '71_smallMod.jpg', '', NULL),
+(96, '96', 1, 0, 0, 45, '100', '96_vM107.jpg', '96_vS107.jpg', 1307542081, 1387391583, 0.00, 9, NULL, NULL, NULL, 1, NULL, '96_mainMod.jpg', '96_smallMod.jpg', '', NULL),
+(78, '78', 1, 0, 29, 74, '', '191_vM219.jpg', '191_vS219.jpg', 1307543572, 1387557414, 0.00, 11, NULL, NULL, 2, 1, NULL, '191_mainMod.jpg', '191_smallMod.jpg', '', NULL),
+(79, '79', 1, NULL, 29, 38, '', '79_main.jpg', '79_mainMod.jpg', 1307544450, 1387389884, 120.00, 12, 1, NULL, 1, 1, NULL, '79_mainMod.jpg', '79_smallMod.jpg', '', NULL),
+(81, '81', 1, 0, 28, 77, '', '81_vM92.jpg', '81_vS92.jpg', 1307544442, 1356345897, 0.00, 25, 0, 1, 20, 1, NULL, '81_mainMod.jpg', '81_smallMod.jpg', '', NULL),
+(82, '82', 1, 0, 28, 74, '', '82_main.jpg', '82_small.jpg', 1307542064, 1387556041, 0.00, 12, NULL, 0, NULL, 1, NULL, '82_mainMod.jpg', '82_smallMod.jpg', '', NULL),
+(83, '83', 1, NULL, 26, 74, '', '83_main.jpg', '83_small.jpg', 1307545378, 1387556057, 0.00, 7, 1, 0, 2, 1, NULL, '83_mainMod.jpg', '83_smallMod.jpg', '', NULL),
+(84, '84', 1, NULL, 29, 74, '', '84_main.jpg', '84_small.jpg', 1307541602, 1387556072, 0.00, NULL, NULL, 1, 2, 1, NULL, '84_mainMod.jpg', '84_smallMod.jpg', '', NULL),
+(85, '85', 1, 0, 0, 74, '', '85_vM96.jpg', '85_vS96.jpg', 1307544238, 1387556087, 0.00, 5, NULL, NULL, NULL, 1, NULL, '85_mainMod.jpg', '85_smallMod.jpg', '', NULL),
+(86, '86', 1, 0, 28, 74, '', '86_main.jpg', '86_small.jpg', 1307545023, 1387556102, 0.00, 10, NULL, 1, NULL, 1, NULL, '86_mainMod.jpg', '86_smallMod.jpg', '', NULL),
+(87, '87', 1, NULL, 26, 74, '', '87_main.jpg', '87_mainMod.jpg', 1307541766, 1387556564, 0.00, 33, 1, NULL, 2, 1, NULL, '87_mainMod.jpg', '87_smallMod.jpg', '', NULL),
+(88, '88', 1, 1, 28, 74, '', '88_main.jpg', '88_small.jpg', 1307544977, 1387556546, 32000.00, 27, NULL, NULL, NULL, 1, NULL, '88_mainMod.jpg', '88_smallMod.jpg', '', NULL),
 (95, '95', 1, NULL, 0, 45, '', '95_main.jpg', '95_small.jpg', 1307542081, 1355496317, 0.00, 4, NULL, NULL, NULL, 1, NULL, '95_mainMod.jpg', '95_smallMod.jpg', '', NULL),
-(89, '89', 1, NULL, 29, 41, '', '89_main.jpg', '89_small.jpg', 1307541636, 1355496361, 0.00, 6, NULL, NULL, NULL, 1, NULL, '89_mainMod.jpg', '89_smallMod.jpg', '', NULL),
-(90, '90', 1, NULL, 28, 41, '', '90_main.jpg', '90_small.jpg', 1307543337, 1355496381, 0.00, 4, NULL, NULL, 1, 1, NULL, '90_mainMod.jpg', '90_smallMod.jpg', '', NULL),
-(91, '91', 1, NULL, 26, 41, '', '91_main.jpg', '91_small.jpg', 1307544214, 1355496404, 0.00, 2, NULL, NULL, NULL, 1, NULL, '91_mainMod.jpg', '91_smallMod.jpg', '', NULL),
-(92, '92', 1, NULL, 28, 43, '', '92_main.jpg', '92_small.jpg', 1307544791, 1355496417, 0.00, 1, NULL, NULL, 1, 1, NULL, '92_mainMod.jpg', '92_smallMod.jpg', '', NULL),
-(93, '93', 1, NULL, 36, 43, '', '93_main.jpg', '93_small.jpg', 1307542628, 1355496427, 0.00, 3, NULL, NULL, 1, 1, NULL, '93_mainMod.jpg', '93_smallMod.jpg', '', NULL),
-(94, '94', 1, 1, 36, 43, '', '94_main.jpg', '94_small.jpg', 1307544425, 1355496438, 0.00, 44, 1, 1, 2, 1, NULL, '94_mainMod.jpg', '94_smallMod.jpg', '', NULL),
-(97, '97', 1, NULL, 26, 45, '', '97_main.jpg', '97_small.jpg', 1307541628, 1355496499, 0.00, 35, NULL, NULL, NULL, 1, NULL, '97_mainMod.jpg', '97_smallMod.jpg', '', NULL),
-(98, '98', 1, 1, 28, 45, '', '98_main.jpg', '98_small.jpg', 1307542730, 1355496515, 0.00, 19, NULL, NULL, NULL, 1, NULL, '98_mainMod.jpg', '98_smallMod.jpg', '', NULL),
-(99, '99', 1, NULL, 28, 45, '', '99_main.jpg', '99_small.jpg', 1307543877, 1355496240, 0.00, 7, NULL, NULL, NULL, 1, NULL, '99_mainMod.jpg', '99_smallMod.jpg', '', NULL),
-(100, '100', 1, NULL, 0, 46, '', '100_main.jpg', '100_small.jpg', 1307543018, 1355744136, 0.00, 66, NULL, NULL, 4, 1, NULL, '100_mainMod.jpg', '100_smallMod.jpg', '', NULL),
-(101, '101', 1, NULL, 0, 46, '', '101_main.jpg', '101_small.jpg', 1307543107, 1355496292, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '101_mainMod.jpg', '101_smallMod.jpg', '', NULL),
-(102, '102', 1, 1, 37, 46, '', '102_main.jpg', '102_small.jpg', 1307545161, 1355844036, 550.00, 21, 0, 1, 1, 1, NULL, '102_mainMod.jpg', '102_smallMod.jpg', '', NULL),
-(103, '103', 1, 1, 37, 46, '', '103_main.jpg', '103_small.jpg', 1307543901, 1355844048, 86.00, NULL, 0, 1, NULL, 1, NULL, '103_mainMod.jpg', '103_smallMod.jpg', '', NULL),
-(104, '104', 1, 1, 37, 46, '', '104_main.jpg', '104_small.jpg', 1307543227, 1355844058, 800.00, NULL, 0, 1, NULL, 1, NULL, '104_mainMod.jpg', '104_smallMod.jpg', '', NULL),
+(89, '89', 1, NULL, 29, 74, '', '89_main.jpg', '89_small.jpg', 1307541636, 1387557675, 0.00, 6, NULL, NULL, NULL, 1, NULL, '89_mainMod.jpg', '89_smallMod.jpg', '', NULL),
+(90, '90', 1, NULL, 28, 74, '', '90_main.jpg', '90_small.jpg', 1307543337, 1387556187, 0.00, 4, NULL, NULL, 1, 1, NULL, '90_mainMod.jpg', '90_smallMod.jpg', '', NULL),
+(91, '91', 1, NULL, 26, 74, '', '91_main.jpg', '91_small.jpg', 1307544214, 1387556204, 0.00, 2, NULL, NULL, NULL, 1, NULL, '91_mainMod.jpg', '91_smallMod.jpg', '', NULL),
+(92, '92', 1, NULL, 28, 43, '', '92_main.jpg', '92_small.jpg', 1307544791, 1387557630, 0.00, 1, NULL, NULL, 1, 1, NULL, '92_mainMod.jpg', '92_smallMod.jpg', '', NULL),
+(93, '93', 1, NULL, 36, 43, '', '93_main.jpg', '93_small.jpg', 1307542628, 1355496427, 0.00, 3, NULL, NULL, 4, 1, NULL, '93_mainMod.jpg', '93_smallMod.jpg', '', NULL),
+(94, '94', 1, 0, 36, 43, '', '94_main.jpg', '94_small.jpg', 1307544425, 1355496438, 0.00, 44, 1, 0, 2, 1, NULL, '94_mainMod.jpg', '94_smallMod.jpg', '', NULL),
+(97, '97', 1, NULL, 26, 74, '', '97_main.jpg', '97_small.jpg', 1307541628, 1387556226, 0.00, 35, NULL, NULL, NULL, 1, NULL, '97_mainMod.jpg', '97_smallMod.jpg', '', NULL),
+(98, '98', 1, 1, 28, 74, '', '98_main.jpg', '98_small.jpg', 1307542730, 1387556241, 0.00, 22, NULL, NULL, NULL, 1, NULL, '98_mainMod.jpg', '98_smallMod.jpg', '', NULL),
+(99, '99', 1, NULL, 28, 74, '', '99_main.jpg', '99_small.jpg', 1307543877, 1387556256, 0.00, 7, NULL, NULL, NULL, 1, NULL, '99_mainMod.jpg', '99_smallMod.jpg', '', NULL),
+(100, '100', 1, NULL, 0, 74, '', '100_main.jpg', '100_small.jpg', 1307543018, 1387556276, 0.00, 66, NULL, NULL, 7, 1, NULL, '100_mainMod.jpg', '100_smallMod.jpg', '', NULL),
+(101, '101', 1, NULL, 0, 74, '', '101_main.jpg', '101_small.jpg', 1307543107, 1387556297, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '101_mainMod.jpg', '101_smallMod.jpg', '', NULL),
+(102, '102', 1, 0, 37, 46, '', '102_main.jpg', '102_small.jpg', 1307545161, 1355844036, 550.00, 21, 0, 1, 4, 1, NULL, '102_mainMod.jpg', '102_smallMod.jpg', '', NULL),
+(103, '103', 1, 0, 37, 46, '', '103_main.jpg', '103_small.jpg', 1307543901, 1355844048, 86.00, NULL, 0, 1, NULL, 1, NULL, '103_mainMod.jpg', '103_smallMod.jpg', '', NULL),
+(104, '104', 1, 1, 37, 46, '', '104_main.jpg', '104_small.jpg', 1307543227, 1387391108, 400.00, NULL, 0, 0, NULL, 1, NULL, '104_mainMod.jpg', '104_smallMod.jpg', '', NULL),
 (105, '105', 1, NULL, 29, 50, '', '105_main.jpg', '105_small.jpg', 1307543429, 1355497850, 0.00, 13, NULL, NULL, 2, 1, NULL, '105_mainMod.jpg', '105_smallMod.jpg', '', NULL),
-(106, '106', 1, 1, 29, 50, '', '106_main.jpg', '106_small.jpg', 1307543089, 1355763302, 0.00, 27, NULL, NULL, 2, 1, NULL, '106_mainMod.jpg', '106_smallMod.jpg', '', NULL),
+(106, '106', 1, 0, 29, 50, '', '106_main.jpg', '106_small.jpg', 1307543089, 1387389760, 300.00, 29, NULL, NULL, 2, 1, NULL, '106_mainMod.jpg', '106_smallMod.jpg', '', NULL),
 (107, '107', 1, NULL, 0, 51, '', '107_main.jpg', '107_small.jpg', 1307541701, 1355496710, 0.00, 4, NULL, NULL, NULL, 1, NULL, '107_mainMod.jpg', '107_smallMod.jpg', '', NULL),
-(108, '108', 1, 1, 0, 51, '', '108_main.jpg', '108_small.jpg', 1307544069, 1355496690, 0.00, 133, NULL, NULL, 5, 1, NULL, '108_mainMod.jpg', '108_smallMod.jpg', '', NULL),
-(109, '109', 1, NULL, 29, 50, '', '109_main.jpg', '109_small.jpg', 1307544627, 1355496650, 0.00, 2, NULL, NULL, 1, 1, NULL, '109_mainMod.jpg', '109_smallMod.jpg', '', NULL),
+(108, '108', 1, 1, 0, 51, '', '108_main.jpg', '108_small.jpg', 1307544069, 1355496690, 0.00, 134, NULL, NULL, 5, 1, NULL, '108_mainMod.jpg', '108_smallMod.jpg', '', NULL),
+(109, '109', 1, NULL, 29, 50, '', '109_main.jpg', '109_small.jpg', 1307544627, 1355496650, 0.00, 2, 1, NULL, 1, 1, NULL, '109_mainMod.jpg', '109_smallMod.jpg', '', NULL),
 (110, '110', 1, NULL, 0, 51, '', '110_main.jpg', '110_small.jpg', 1307543831, 1355496634, 0.00, 5, NULL, NULL, 2, 1, NULL, '110_mainMod.jpg', '110_smallMod.jpg', '', NULL),
 (111, '111', 1, NULL, 0, 51, '', '111_main.jpg', '111_small.jpg', 1307543077, 1355496626, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '111_mainMod.jpg', '111_smallMod.jpg', '', NULL),
 (112, '112', 1, NULL, 39, 51, '', '112_main.jpg', '112_small.jpg', 1307543753, 1355496967, 0.00, 5, NULL, NULL, 1, 1, NULL, '112_mainMod.jpg', '112_smallMod.jpg', '', NULL),
-(113, '113', 1, NULL, 35, 51, '', '113_main.jpg', '113_small.jpg', 1307542831, 1355496921, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '113_mainMod.jpg', '113_smallMod.jpg', '', NULL),
+(113, '113', 1, NULL, 35, 51, '', '113_main.jpg', '113_small.jpg', 1307542831, 1355496921, 0.00, NULL, 1, NULL, NULL, 1, NULL, '113_mainMod.jpg', '113_smallMod.jpg', '', NULL),
 (114, '114', 1, NULL, 28, 51, '', '114_main.jpg', '114_small.jpg', 1307543699, 1355496903, 0.00, 1, NULL, NULL, NULL, 1, NULL, '114_mainMod.jpg', '114_smallMod.jpg', '', NULL),
 (115, '115', 1, NULL, 30, 53, '', '115_main.jpg', '115_small.jpg', 1307543689, 1355496893, 0.00, 17, NULL, NULL, 1, 1, NULL, '115_mainMod.jpg', '115_smallMod.jpg', '', NULL),
 (116, '116', 1, NULL, 0, 53, '', '116_main.jpg', '116_small.jpg', 1307542992, 1355496886, 0.00, NULL, NULL, NULL, 1, 1, NULL, '116_mainMod.jpg', '116_smallMod.jpg', '', NULL),
 (117, '117', 1, NULL, 0, 53, '', '117_main.jpg', '117_small.jpg', 1307542495, 1355496876, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '117_mainMod.jpg', '117_smallMod.jpg', '', NULL),
 (118, '118', 1, NULL, 30, 53, '', '118_main.jpg', '118_small.jpg', 1307543269, 1355496864, 0.00, 1, NULL, NULL, NULL, 1, NULL, '118_mainMod.jpg', '118_smallMod.jpg', '', NULL),
-(119, '119', 1, 1, 30, 53, '', '119_main.jpg', '119_small.jpg', 1307543316, 1355496856, 0.00, 7, NULL, NULL, NULL, 1, NULL, '119_mainMod.jpg', '119_smallMod.jpg', '', NULL),
+(119, '119', 1, 1, 30, 53, '', '119_main.jpg', '119_small.jpg', 1307543316, 1387391023, 0.00, 8, NULL, NULL, NULL, 1, NULL, '119_mainMod.jpg', '119_smallMod.jpg', '', NULL),
 (120, '120', 1, NULL, 30, 54, '', '120_main.jpg', '120_small.jpg', 1307542029, 1355496824, 0.00, 9, NULL, NULL, 2, 1, NULL, '120_mainMod.jpg', '120_smallMod.jpg', '', NULL),
 (121, '121', 1, NULL, 30, 54, '', '121_main.jpg', '121_small.jpg', 1307543909, 1355497245, 0.00, 5, NULL, NULL, 2, 1, NULL, '121_mainMod.jpg', '121_smallMod.jpg', '', NULL),
 (122, '122', 1, NULL, 29, 54, '', '122_main.jpg', '122_small.jpg', 1307543511, 1355497077, 0.00, 1, NULL, NULL, 2, 1, NULL, '122_mainMod.jpg', '122_smallMod.jpg', '', NULL),
 (123, '123', 1, NULL, 0, 54, '', '123_main.jpg', '123_small.jpg', 1307543925, 1355497060, 0.00, 25, NULL, NULL, 1, 1, NULL, '123_mainMod.jpg', '123_smallMod.jpg', '', NULL),
 (124, '124', 1, NULL, 0, 54, '', '124_main.jpg', '124_small.jpg', 1307542680, 1355497269, 0.00, NULL, NULL, NULL, 1, 1, NULL, '124_mainMod.jpg', '124_smallMod.jpg', '', NULL),
 (185, 'apple-iphone-5-16gb-black-slate', 1, 0, 27, 50, '108,111,107', '185_main.jpg', '185_small.jpg', 1355428800, 1363607089, 0.00, 20, NULL, NULL, 3, 1, NULL, '185_mainMod.jpg', '185_smallMod.jpg', '', NULL),
-(186, 'samsung-ue32eh4030wxua', 1, NULL, 0, 74, '', '186_main.jpg', '186_mainMod.jpg', 1355688000, 1355745194, 0.00, 23, NULL, NULL, 1, 1, NULL, '186_mainMod.jpg', '186_smallMod.jpg', '', NULL),
+(186, 'samsung-ue32eh4030wxua', 1, NULL, 0, 74, '', '186_main.jpg', '186_mainMod.jpg', 1355688000, 1387556311, 0.00, 23, NULL, NULL, 1, 1, NULL, '186_mainMod.jpg', '186_smallMod.jpg', '', NULL),
 (187, 'samsung-ue40es6307uxua', 1, NULL, 28, 74, '', '187_main.jpg', '187_mainMod.jpg', 1355688000, 1355745685, 0.00, 1, NULL, NULL, NULL, 1, NULL, '187_mainMod.jpg', '187_smallMod.jpg', '', NULL),
-(188, 'lg-32ls359t', 1, NULL, 29, 74, '', '188_main.jpg', '188_mainMod.jpg', 1355688000, 1355746100, 0.00, 9, NULL, NULL, 2, 1, NULL, '188_mainMod.jpg', '188_smallMod.jpg', '', NULL),
-(189, 'lg-47lm580t', 1, 1, 35, 75, '', '189_main.jpg', '189_mainMod.jpg', 1355688000, 1355750041, 0.00, 4, 1, 1, 1, 1, NULL, '189_mainMod.jpg', '189_smallMod.jpg', '', NULL),
-(190, 'samsung-le40d550k1wxua', 1, 1, 28, 75, '', '190_main.jpg', '190_mainMod.jpg', 1355688000, 1355747897, 0.00, 3, NULL, NULL, NULL, 1, NULL, '190_mainMod.jpg', '190_smallMod.jpg', '', NULL),
-(191, 'sony-kdl-22ex553', 1, NULL, 26, 75, '', '191_main.jpg', '191_mainMod.jpg', 1355688000, 1355749805, 0.00, 2, 1, 1, NULL, 1, NULL, '191_mainMod.jpg', '191_smallMod.jpg', '', NULL);
+(188, 'lg-32ls359t', 1, NULL, 29, 74, '', '188_main.jpg', '188_mainMod.jpg', 1355688000, 1387556494, 0.00, 9, NULL, NULL, 2, 1, NULL, '188_mainMod.jpg', '188_smallMod.jpg', '', NULL),
+(189, 'lg-47lm580t', 1, 0, 35, 74, '', '189_main.jpg', '189_mainMod.jpg', 1355688000, 1387557554, 1500.00, 7, 1, 0, 1, 1, NULL, '189_mainMod.jpg', '189_smallMod.jpg', '', NULL),
+(190, 'samsung-le40d550k1wxua', 1, 1, 28, 74, '186,187,86,88,79,99,114,98,71,89,97', '190_main.jpg', '190_mainMod.jpg', 1355688000, 1387557543, 800.00, 38, NULL, NULL, 3, 1, NULL, '190_mainMod.jpg', '190_smallMod.jpg', '', NULL),
+(191, 'sony-kdl-22ex553', 1, NULL, 26, 74, '', '191_main.jpg', '191_mainMod.jpg', 1355688000, 1387557532, 0.00, 2, 0, 1, 1, 1, NULL, '191_mainMod.jpg', '191_smallMod.jpg', '', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products_i18n`
+-- Структура таблицы `shop_products_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_products_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -2190,40 +2551,40 @@ CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_products_i18n`
+-- Дамп данных таблицы `shop_products_i18n`
 --
 
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
-(71, 'ru', 'Sony KDL46EX710', 'ЖК ТВ: технология Motionflow 100Hz, эко-функции, экран с Edge LED, \nдиагональ 117 см / 46, Full HD 1080, Wireless LAN Ready  ', '<p><strong>Множество функций для вашего отдыха</strong><br>\nСупертонкий <strong>EX710</strong> очень просто перемещать из комнаты в комнату. \nВеликолепное ТВ-изображение и потрясающий просмотр в Full HD. Дизайн без\n лишних проводов для удобного размещения в любом пространстве. \nОнлайн-развлечения для приятного отдыха на многие часы. Отличные функции\n и экономия электричества.<br>\n<br>\n<strong>Потрясающий просмотр в качестве Full HD</strong><br>\nПередовая технология подсветки Edge LED помогает реализовывать \nбесподобное качество изображения в ультра-тонком корпусе. Технология \nMotionflow 100Hz позволяет добиться бесподобной контрастности и \nчеткости, а также насыщенных цветов и плавного отображения динамичных \nсцен – максимум удовольствия от любимых фильмов и видеоигр.<br>\n<br>\n<strong>Порядок без проводов</strong><br>\nЭта модель позволит сэкономить место в доме. Тонкий корпус с гладкими \nповерхностями идеально впишется в интерьер вашей комнаты. Телевизор \nтакже предусматривает соединение по Wi-Fi, что позволит подключиться к \nИнтернету, без использования неприглядных проводов.<br>\n<br>\n<strong>Развлечения и экономия электроэнергии</strong><br>\nДанная модель позволяет экономить электричество. Датчик присутствия \nопределяет, когда в комнате никого нет, и выключает телевизор \nавтоматически. Датчик освещения автоматически подбирает оптимальные \nнастройки яркости изображения в соответствии с освещением и экономит \nэлектроэнергию при низком освещении.  </p>  ', '', '', ''),
-(96, 'ru', 'Canon VIXIA HF R11 Digital', '<strong>Тип</strong>:  компактный, <strong>\nКоличество мегапикселей</strong>:  12,1, <strong>\nОптическое увеличение</strong>:  5, <strong>\nСлот для карт памяти</strong>:  SD, SDHC, SDXC, <strong>\nПитание</strong>:  Li-Ion аккумулятор, <strong>\nВес, г</strong>:  198  ', '<br><h3>Система HS&nbsp;</h3>\n  <p>В представленной модели установлена \nспециальная система HS, в которую входят процессор DIGIC 5 и \n12,1-мегапиксельный сенсор. Их совместная работа обеспечивает фото с \nнизким уровнем шума, высокой детализацией и естественной цветопередачей.\n Вы получите великолепный результат и при плохом освещении без \nиспользования штатива и вспышки.&nbsp;</p>\n  <h3>Универсальный объектив</h3>\n  <p>В отзывах о Canon PowerShot S100 \nSilver упоминают и об универсальных возможностях объектива. \n24-миллиметровый широкоугольный объектив легко справится и с пейзажами, и\n с портретами, и с макросъемкой, а 5-кратный зум приблизит удаленные \nобъекты. Благодаря интеллектуальному стабилизатору изображения камера \nавтоматически выберет наиболее подходящий режим оптической стабилизации \nиз 7-ми возможных вариантов.&nbsp;&lt;p&gt;&lt;a \nhref="http://repka.ua/products/cifrovye-fotoapparaty/canon-powershot-s100-silver/42633.html?gclid=CM2qwKHIl7QCFYJP3godkBEAfA"&gt;.&lt;/a&gt;&lt;/p&gt;</p>  ', '', '', ''),
-(78, 'ru', 'Sony KDL-22EX553', '22 // 1366x768 пикс // 50 Гц // LED подсветка // эфирный (DVB-T) // \nкабельный (DVB-C) // HDMI: 2 шт // Компонентный //Композитный // SCART \n// USB // LAN // Линейный', '&lt;div&gt;&lt;strong&gt;KDL-22EX553&lt;br&gt;\nНовый способ просмотра ТВ&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;\n55 см / 22&quot;, телевизор HD Ready с технологией подсветки Edge LED, X-Reality, встроенным Wi-Fi® и интернет-телевидением от Sony&lt;br&gt;\nНаслаждайтесь четким отображением на тонком экране Edge LED&lt;br&gt;\nWi-Fi обеспечивает быстрый доступ к функции просмотра пропущенных программ, фильмам и приложениям&lt;br&gt;\nДля более комфортного просмотра предусматривается изменение угла наклона телевизора&lt;br&gt;\n&lt;br&gt;\n&lt;div&gt;&lt;strong&gt;Мир развлечений на кончиках пальцев&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;\nНачните революцию интернет-телевидения у себя дома. Откройте \nувлекательный новый мир передачи контента по запросу, просмотра \nпропущенных программ, приложений и многого другого, и все это - с \nчетким, детализированным изображением, на большом и тонком ЖК-экране. \nПришло время управлять центром развлечений в вашем доме.&lt;br&gt;\n&lt;br&gt;\n&lt;div&gt;&lt;strong&gt;Четкое, реалистичное изображение&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;\nX-Reality обеспечивает более четкое и реалистичное HD-изображение, вне \nзависимости от источника: будь то интернет-канал, DVD-диск или \nлюбительский клип. Кроме того, эта технология убирает эффект мерцания, \nгарантируя более плавное отображение динамичных спортивных передач.&lt;br&gt;\n&lt;br&gt;\n&lt;div&gt;&lt;strong&gt;Новый дизайн, легкие материалы&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;\nТелевизоры серии HX75 выполнены из контрастных материалов и имеют \nбезукоризненный дизайн. Вас восхитит легкость этого телевизора, который \nрасполагается на подставке в форме мольберта, позволяющей вращать его в \nвертикальной и горизонтальной плоскости для идеального угла обзора.&lt;br&gt;\n&lt;br&gt;\n&lt;div&gt;&lt;strong&gt;Беспроводной доступ к онлайн-развлечениям&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;\nТеперь доступ к контенту сетевого сервиса Sony Entertainment Network — \nHD-фильмам, миллионам музыкальных композиций, любимым телеканалам, \nвеб-браузеру, приложениям Twitter™, Facebook®, YouTube™, Skype™ и \nмногому другому — осуществляется с помощью дистанционного пульта или \nмобильного устройства с поддержкой распознавания голоса.&lt;br&gt;\n&lt;br&gt;\n&lt;div&gt;&lt;strong&gt;Энергосберегающие функции телевизоров&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;\nНовая функция затемнения LED Frame автоматически подстраивает яркость \nподсветки при просмотре и снижает потребление энергии, позволяя \nэкономить деньги. При этом изображение остается резким и \nвысококонтрастным.', '', '', ''),
-(79, 'ru', 'Panasonic DVD-S38 DVD', 'DVD-S38 - DVD-плеер&nbsp; для домашнего использования.  ', '<p>DVD-S38 - DVD-плеер&nbsp; для домашнего использования.\n<br>\n<br>\n • Высококачественное изображение: \n<br>\n С технологией 1080p Up-Conversion и цифроаналоговым преобразователем видеосигнала 108 МГц/12 бит \n<br>\n С прогрессивной разверткой и цифроаналоговым преобразователем видеосигнала 108 МГц/12 бит \n<br>\n<br>\n • Слайд-шоу JPEG с музыкой MP3 \n<br>\n<br>\n • Экологичные материалы и компактный дизайн (ширина 360 мм) <strong>\n  </strong>  </p>  ', '', '', ''),
+(71, 'ru', 'Sony KDL46EX710', '<p>ЖК ТВ: технология Motionflow 100Hz, эко-функции, экран с Edge LED, диагональ 117 см / 46, Full HD 1080, Wireless LAN Ready</p>', '<p><strong>Множество функций для вашего отдыха</strong><br /> Супертонкий <strong>EX710</strong> очень просто перемещать из комнаты в комнату. Великолепное ТВ-изображение и потрясающий просмотр в Full HD. Дизайн без лишних проводов для удобного размещения в любом пространстве. Онлайн-развлечения для приятного отдыха на многие часы. Отличные функции и экономия электричества.<br /> <br /> <strong>Потрясающий просмотр в качестве Full HD</strong><br /> Передовая технология подсветки Edge LED помогает реализовывать бесподобное качество изображения в ультра-тонком корпусе. Технология Motionflow 100Hz позволяет добиться бесподобной контрастности и четкости, а также насыщенных цветов и плавного отображения динамичных сцен &ndash; максимум удовольствия от любимых фильмов и видеоигр.<br /> <br /> <strong>Порядок без проводов</strong><br /> Эта модель позволит сэкономить место в доме. Тонкий корпус с гладкими поверхностями идеально впишется в интерьер вашей комнаты. Телевизор также предусматривает соединение по Wi-Fi, что позволит подключиться к Интернету, без использования неприглядных проводов.<br /> <br /> <strong>Развлечения и экономия электроэнергии</strong><br /> Данная модель позволяет экономить электричество. Датчик присутствия определяет, когда в комнате никого нет, и выключает телевизор автоматически. Датчик освещения автоматически подбирает оптимальные настройки яркости изображения в соответствии с освещением и экономит электроэнергию при низком освещении.</p>', '', '', ''),
+(96, 'ru', 'Canon VIXIA HF R11 Digital', '<p><strong>Тип</strong>: компактный, <strong> Количество мегапикселей</strong>: 12,1, <strong> Оптическое увеличение</strong>: 5, <strong> Слот для карт памяти</strong>: SD, SDHC, SDXC, <strong> Питание</strong>: Li-Ion аккумулятор, <strong> Вес, г</strong>: 198</p>', '<p>&nbsp;</p>\r\n<h3>Система HS&nbsp;</h3>\r\n<p>В представленной модели установлена специальная система HS, в которую входят процессор DIGIC 5 и 12,1-мегапиксельный сенсор. Их совместная работа обеспечивает фото с низким уровнем шума, высокой детализацией и естественной цветопередачей. Вы получите великолепный результат и при плохом освещении без использования штатива и вспышки.&nbsp;</p>\r\n<h3>Универсальный объектив</h3>\r\n<p>В отзывах о Canon PowerShot S100 Silver упоминают и об универсальных возможностях объектива. 24-миллиметровый широкоугольный объектив легко справится и с пейзажами, и с портретами, и с макросъемкой, а 5-кратный зум приблизит удаленные объекты. Благодаря интеллектуальному стабилизатору изображения камера автоматически выберет наиболее подходящий режим оптической стабилизации из 7-ми возможных вариантов.&nbsp;&lt;p&gt;&lt;a href="http://repka.ua/products/cifrovye-fotoapparaty/canon-powershot-s100-silver/42633.html?gclid=CM2qwKHIl7QCFYJP3godkBEAfA"&gt;.&lt;/a&gt;&lt;/p&gt;</p>', '', '', ''),
+(78, 'ru', 'Sony KDL-22EX553', '<p>22 // 1366x768 пикс // 50 Гц // LED подсветка // эфирный (DVB-T) // кабельный (DVB-C) // HDMI: 2 шт // Компонентный //Композитный // SCART // USB // LAN // Линейный</p>', '<p>&lt;div&gt;&lt;strong&gt;KDL-22EX553&lt;br&gt; Новый способ просмотра ТВ&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; 55 см / 22", телевизор HD Ready с технологией подсветки Edge LED, X-Reality, встроенным Wi-Fi&reg; и интернет-телевидением от Sony&lt;br&gt; Наслаждайтесь четким отображением на тонком экране Edge LED&lt;br&gt; Wi-Fi обеспечивает быстрый доступ к функции просмотра пропущенных программ, фильмам и приложениям&lt;br&gt; Для более комфортного просмотра предусматривается изменение угла наклона телевизора&lt;br&gt; &lt;br&gt; &lt;div&gt;&lt;strong&gt;Мир развлечений на кончиках пальцев&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; Начните революцию интернет-телевидения у себя дома. Откройте увлекательный новый мир передачи контента по запросу, просмотра пропущенных программ, приложений и многого другого, и все это - с четким, детализированным изображением, на большом и тонком ЖК-экране. Пришло время управлять центром развлечений в вашем доме.&lt;br&gt; &lt;br&gt; &lt;div&gt;&lt;strong&gt;Четкое, реалистичное изображение&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; X-Reality обеспечивает более четкое и реалистичное HD-изображение, вне зависимости от источника: будь то интернет-канал, DVD-диск или любительский клип. Кроме того, эта технология убирает эффект мерцания, гарантируя более плавное отображение динамичных спортивных передач.&lt;br&gt; &lt;br&gt; &lt;div&gt;&lt;strong&gt;Новый дизайн, легкие материалы&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; Телевизоры серии HX75 выполнены из контрастных материалов и имеют безукоризненный дизайн. Вас восхитит легкость этого телевизора, который располагается на подставке в форме мольберта, позволяющей вращать его в вертикальной и горизонтальной плоскости для идеального угла обзора.&lt;br&gt; &lt;br&gt; &lt;div&gt;&lt;strong&gt;Беспроводной доступ к онлайн-развлечениям&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; Теперь доступ к контенту сетевого сервиса Sony Entertainment Network &mdash; HD-фильмам, миллионам музыкальных композиций, любимым телеканалам, веб-браузеру, приложениям Twitter&trade;, Facebook&reg;, YouTube&trade;, Skype&trade; и многому другому &mdash; осуществляется с помощью дистанционного пульта или мобильного устройства с поддержкой распознавания голоса.&lt;br&gt; &lt;br&gt; &lt;div&gt;&lt;strong&gt;Энергосберегающие функции телевизоров&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; Новая функция затемнения LED Frame автоматически подстраивает яркость подсветки при просмотре и снижает потребление энергии, позволяя экономить деньги. При этом изображение остается резким и высококонтрастным.</p>', '', '', ''),
+(79, 'ru', 'Panasonic DVD-S38 DVD', '<p>DVD-S38 - DVD-плеер&nbsp; для домашнего использования.</p>', '<p>DVD-S38 - DVD-плеер&nbsp; для домашнего использования. <br /> <br /> &bull; Высококачественное изображение: <br /> С технологией 1080p Up-Conversion и цифроаналоговым преобразователем видеосигнала 108 МГц/12 бит <br /> С прогрессивной разверткой и цифроаналоговым преобразователем видеосигнала 108 МГц/12 бит <br /> <br /> &bull; Слайд-шоу JPEG с музыкой MP3 <br /> <br /> &bull; Экологичные материалы и компактный дизайн (ширина 360 мм)</p>', '', '', ''),
 (81, 'ru', 'Samsung DVD-H1080 - 1080p', 'DVD-плеер/выход HDMI/воспроизведение с USB-накопителей/поддержка видео в формате MPEG4, DivX  ', '<p>Чем занять выдавшийся свободным вечер? Посмотреть телевизор? Но там, как\n назло, нет ничего интересного. Сходить в гости? Но на улице холодно и \nветрено. А может, взять свежий DVD с фильмом и насладиться хорошим кино?\n Было бы неплохо, но вот беда — у вас все еще нет DVD-проигрывателя и вы\n смотрите кассеты на допотопном видеомагнитофоне. Значит, надо срочно \nобзаводиться более прогрессивным устройством. Ну а как же запись любимых\n телепередач, которые идут именно тогда, когда вы заняты? Как же старые \nвидеоархивы? Все решаемо, ведь современный DVD-проигрыватель — это не \nобязательно только воспроизведение DVD-дисков. Есть модели, совмещенные с\n классическим видеомагнитофоном; устройства, способные самостоятельно \nзаписывать DVD-диски; аппараты, оснащенные жесткими дисками для записи \nтелевизионных программ. Осталось только определиться, что вам нужно, и \nсделать правильный выбор.<br>\n<br>\nDVD – формат оптических носителей последнего поколения. DVD-диски \nзначительно объемнее и быстрее, чем обычные CD. Они могут содержать \nвидеоматериалы кинотеатрального качества, музыкальные файлы, цифровые \nфотографии и компьютерные данные. Цель DVD – объединить мультимедиа, \nкомпьютерную и деловую информацию в одном универсальном формате. DVD уже\n практически вытеснил лазерные диски, видеокассеты и игровые картриджи \nи, возможно, в скором будущем вытеснит и CD-диски. Формат DVD обладает \nширокой поддержкой среди основных производителей электроники и \nкомпьютерных изделий, а также среди звукозаписывающих и кино- студий. По\n этой причине DVD завоевал столь огромную популярность среди покупателей\n и стал самым распространенным форматом всего за три года. К 2003 году, \nза шесть лет существования, в мире насчитывалось уже более 250 миллионов\n DVD-устройств: DVD-плееры, рекордеры, компьютерные DVD-приводы и \nигровые приставки, - что сделало DVD передовым стандартом \nвидеоиндустрии.  </p>  ', '', '', ''),
-(82, 'ru', 'Samsung BD-C5500 Blu-ray', 'Тип оборудования Blu-ray плеер \nЦвета, использованные в оформлении черный \nМеханизм загрузки дисков лоток \nПоддерживаемые типы дисков (воспроизведение) CD-R, CD-RW, DVD-R, DVD+R, DVD-RW, DVD+RW, BD-R, BD-RE \nПоддерживаемые размеры дисков 12 см, 8 см \nРазъемы и выходы\nРазъемы на передней панели USB 2.0 Type A  ', '<p>Чем занять выдавшийся свободным вечер? Посмотреть телевизор? Но там, как\n назло, нет ничего интересного. Сходить в гости? Но на улице холодно и \nветрено. А может, взять свежий DVD с фильмом и насладиться хорошим кино?\n Было бы неплохо, но вот беда — у вас все еще нет DVD-проигрывателя и вы\n смотрите кассеты на допотопном видеомагнитофоне. Значит, надо срочно \nобзаводиться более прогрессивным устройством. Ну а как же запись любимых\n телепередач, которые идут именно тогда, когда вы заняты? Как же старые \nвидеоархивы? Все решаемо, ведь современный DVD-проигрыватель — это не \nобязательно только воспроизведение DVD-дисков. Есть модели, совмещенные с\n классическим видеомагнитофоном; устройства, способные самостоятельно \nзаписывать DVD-диски; аппараты, оснащенные жесткими дисками для записи \nтелевизионных программ. Осталось только определиться, что вам нужно, и \nсделать правильный выбор.<br>\n<br>\nDVD – формат оптических носителей последнего поколения. DVD-диски \nзначительно объемнее и быстрее, чем обычные CD. Они могут содержать \nвидеоматериалы кинотеатрального качества, музыкальные файлы, цифровые \nфотографии и компьютерные данные. Цель DVD – объединить мультимедиа, \nкомпьютерную и деловую информацию в одном универсальном формате. DVD уже\n практически вытеснил лазерные диски, видеокассеты и игровые картриджи \nи, возможно, в скором будущем вытеснит и CD-диски. Формат DVD обладает \nширокой поддержкой среди основных производителей электроники и \nкомпьютерных изделий, а также среди звукозаписывающих и кино- студий. По\n этой причине DVD завоевал столь огромную популярность среди покупателей\n и стал самым распространенным форматом всего за три года. К 2003 году, \nза шесть лет существования, в мире насчитывалось уже более 250 миллионов\n DVD-устройств: DVD-плееры, рекордеры, компьютерные DVD-приводы и \nигровые приставки, - что сделало DVD передовым стандартом \nвидеоиндустрии.  <br></p>  ', '', '', ''),
-(83, 'ru', 'Sony BDP-S470 Network', 'Проигрыватель Blu-ray дисков SONY BDP-S470 B -Сверхсовременный \nвысококачественный проигрыватель дисков Blu-ray Sony , позволяющий \nвоспроизводить как обычные диски Blu-ray, так и диски Blu-ray 3D — с \n3D-видео.  ', '<p>Плеер дисков Blu-ray Disc 3D Ready с мгновенным доступом к онлайн-видеоматериалам!<br>\nBRAVIA Internet Video, Wireless LAN ready, Entertainment Database Browser с Gracenote.<br>\nЕдиное дизайнерское решение с линейкой техники домашних развлечений<br>\nМгновенный доступ к бесплатным фильмам и другому онлайн-содержимому<br>\niPhone/iPod touch для управления Blu-ray Disc<br>\nДомашние развлечения нового поколения, в том числе потрясающая 3D-динамика на экране 3D-телевизора.<br>\nАбсолютно новая модель плеера Blu-ray Disc: доступ к онлайн-контенту, работа с ПК и беспроводное подключение к Интернету.<br>\nDLNA — позволяет плееру Sony Blu-ray Disc Player обмениваться \nинформацией с другими DLNA-устройствами в доме и создавать домашнюю сеть\n для цифровых материалов. <br>\nНовый дизайн 2010 г. BRAVIA Monolith: превосходные материалы и стильный \nминималистичный внешний вид. Подберите к своему телевизору BRAVIA и \nдомашнему кинотеатру плеер Blu-ray Disc в едином стиле.<br>\nФункция BRAVIA Internet Video — это доступ к онлайн-контенту. Смотрите \nтелевизор так, как вы сами пожелаете с функцией просмотра пропущенных \nпрограмм. Находите любимые записи в Интернете на таких интернет-сайтах \nпо запросу, как YouTube и Dailymotion.<br>\nФункция WLAN ready позволяет выходить в сеть без проводов: просто \nподключите ключ USB WIFI (приобретается дополнительно) — и вы в сети \nодним нажатием кнопки<br>\nПолный контроль при помощи iPhone: управление работой плеера Blu-ray \nDisc, просмотр информации на диске и поиск связанного контента на \nYoutube — все это при помощи интерфейса на вашем сенсорном экране.<br>\nСверхбыстрая скорость работы: включение за 3 секунды, открытие лотка за 2 секунды и ускоренная загрузка.<br>\nПросмотр фильмов Blu-ray Disc в формате Full HD 1080p и улучшенный просмотр фильмов из вашей DVD-коллекции.<br>\nУзнать дополнительную информацию о фильме с диска Blu-ray Disc вы можете\n с помощью браузера по базе данных развлечений (Entertainment Database \nBrowser) с технологией Gracenote.  </p>  ', '', '', ''),
-(84, 'ru', 'Panasonic DMP-BD45 Ultra-Fast', '<div>\n                <div>\n                Проигрыватели Blu-ray Panasonic&nbsp;DMP-BD45 Ultra-Fast  </div></div>  ', '<p>Процессор цветности PHL Reference Chroma Plus<br>\nPHL Reference Chroma Processor Plus - это высококачественная \nинтегральная схема, созданная для точной обработки каждого пикселя \nBlu-Ray видеосигнала в вертикальном направлении. Она воспроизводит \nцветовую информацию с удвоенной точностью по сравнению с обычными \nсистемами, чтобы поддерживать достоверность и резкость цветопередачи.<br>\n<br>\nСверхбыстрая 0, 5-сек загрузка<br>\nВремя перехода из режима ожидания в рабочий режим значительно \nсократилось по сравнению с прежними моделями. Благодаря этому \nусовершенствованию вы сможете быстрее начать просмотр, не теряя времени \nна ожидание.  </p>  ', '', '', ''),
-(85, 'ru', 'LG BD570 Network Audio', 'Програвач BD LG BD570 (V-DAC 162 МГц/12bit, A-DAC 192 кГц/24bit, \n1080p/60 Гц, BD-ROM, BD-R, BD-RE, DVD-R/RW, DVD+R/RW, CD-R/RW, MP3, WMA,\n JPEG, DivX, XviD, MKV(H.264), AVCHD, Dolby True HD/DTS HD MA/DTS / \nDolby Digital, BD Live 2.0, Gracenote, NetCast (Youtube, Picassa, \nAccuWeather), DLNA/CIFS, HDMI 1.3, USB 2.0, Подкючение внешнего HDD, 430\n х 45 х...', '&amp;lt;p&amp;gt;LG BD570 является необычным Blu-ray плеером: встроенный модуль \nбеспроводной связи Wi-Fi позволяет новой модели подключаться к домашней \nбеспроводной сети и Интернету, расширяя тем самым возможности домашних \nразвлечений.&amp;lt;br&amp;gt;\n“Люди не должны ограничивать себя только просмотром фильмов, которые \nвыходят на дисках, - сказал Саймон Канг (Simon Kang), исполнительный \nдиректор и президент компании LG Home Entertainment. – Они должны иметь \nдоступ к дополнительному медиа контенту из Интернета. Мы добавили в \nBD570 эту возможность, позволяющую передавать большой объем аудио-, \nвидеофайлов и прочих развлечений прямо на экран телевизора”.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\nБеспроводный доступ в Интернет, который обеспечивает новая модель \nBlu-Ray проигрывателя LG, позволяет его владельцам смотреть потоковое \nвидео с сайта YouTube или фотографии из веб- альбома Picasa на большом \nэкране Full HD телевизора, а не на маленьком экране компьютерного \nмонитора. Также с помощью BD570 можно дополнить содержимое Blu- Ray \nдиска, загрузив дополнительную информацию через профиль BD Live 2. 0. \nБеспроводное подключение обеспечивает удобный доступ к информационным \nсайтам, например прогнозу погоды от Accuweather, а благодаря интуитивно \nпонятному интерфейсу пользоваться BD570 сможет даже ребенок.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\nВо многих семьях накопились уже целые медиа- библиотеки, состоящие из \nбольшого числа фильмов, музыки, домашнего видео и фотографий. BD570 \nпомогает собрать подобные медиа- файлы воедино, подключаясь ко всем \nкомпьютерам или DNLA- совместимым устройствам хранения данных, входящим в\n домашнюю сеть, посредством Wi- Fi и позволяет просматривать всю эту \nинформацию на экране телевизора. Также плеер способен воспроизводить \nфильмы в формате DivX или MKV непосредственно с внешних жестких дисков \nили флэш- накопителей, подключенных по USB.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\nИнтерфейс HDMI позволяет подключать LG BD570 к большинству современных \nтелевизоров с помощью единственного кабеля, обеспечивая зрителям \nмаксимально качественное изображение как при воспроизведении Blu- Ray \nдисков, так и обычных DVD, которые он декодирует в разрешении до 1080p.  &amp;lt;/p&amp;gt;', '', '', ''),
-(86, 'ru', 'Samsung BD-C6900 1080p 3D Blu-ray', 'Програвач Blu-ray Samsung BD-C6900 (3D Blu-ray, BD-R/RE, DVD-Video, \nDVD/DVD±R/DVD±RW, USB Storage, MPEG2, H.264,VC-1, AVCHD, DivX HD, MKV, \nMP4, WMV9, HD JPEG, Internet@TV, All Share Ethernet, HDMI (V.1.4 + \n3D)430 x 205 x 43/1,8кг, чорний)  ', '<br><div>\nЧем занять выдавшийся свободным вечер? Посмотреть телевизор? Но там, как\n назло, нет ничего интересного. Сходить в гости? Но на улице холодно и \nветрено. А может, взять свежий DVD с фильмом и насладиться хорошим кино?\n Было бы неплохо, но вот беда — у вас все еще нет DVD-проигрывателя и вы\n смотрите кассеты на допотопном видеомагнитофоне. Значит, надо срочно \nобзаводиться более прогрессивным устройством. Ну а как же запись любимых\n телепередач, которые идут именно тогда, когда вы заняты? Как же старые \nвидеоархивы? Все решаемо, ведь современный DVD-проигрыватель — это не \nобязательно только воспроизведение DVD-дисков. Есть модели, совмещенные с\n классическим видеомагнитофоном; устройства, способные самостоятельно \nзаписывать DVD-диски; аппараты, оснащенные жесткими дисками для записи \nтелевизионных программ. Осталось только определиться, что вам нужно, и \nсделать правильный выбор.<br>\n<br>\nDVD – формат оптических носителей последнего поколения. DVD-диски \nзначительно объемнее и быстрее, чем обычные CD. Они могут содержать \nвидеоматериалы кинотеатрального качества, музыкальные файлы, цифровые \nфотографии и компьютерные данные. Цель DVD – объединить мультимедиа, \nкомпьютерную и деловую информацию в одном универсальном формате. DVD уже\n практически вытеснил лазерные диски, видеокассеты и игровые картриджи \nи, возможно, в скором будущем вытеснит и CD-диски. Формат DVD обладает \nширокой поддержкой среди основных производителей электроники и \nкомпьютерных изделий, а также среди звукозаписывающих и кино- студий. По\n этой причине DVD завоевал столь огромную популярность среди покупателей\n и стал самым распространенным форматом всего за три года. К 2003 году, \nза шесть лет существования, в мире насчитывалось уже более 250 миллионов\n DVD-устройств: DVD-плееры, рекордеры, компьютерные DVD-приводы и \nигровые приставки, - что сделало DVD передовым стандартом \nвидеоиндустрии.</div>  ', '', '', ''),
-(87, 'ru', 'Sony HT-SS370 Home Theater', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
-(88, 'ru', 'Samsung HW-C770BS 7.1 Channel', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
+(82, 'ru', 'Samsung BD-C5500 Blu-ray', '<p>Тип оборудования Blu-ray плеер Цвета, использованные в оформлении черный Механизм загрузки дисков лоток Поддерживаемые типы дисков (воспроизведение) CD-R, CD-RW, DVD-R, DVD+R, DVD-RW, DVD+RW, BD-R, BD-RE Поддерживаемые размеры дисков 12 см, 8 см Разъемы и выходы Разъемы на передней панели USB 2.0 Type A</p>', '<p>Чем занять выдавшийся свободным вечер? Посмотреть телевизор? Но там, как назло, нет ничего интересного. Сходить в гости? Но на улице холодно и ветрено. А может, взять свежий DVD с фильмом и насладиться хорошим кино? Было бы неплохо, но вот беда &mdash; у вас все еще нет DVD-проигрывателя и вы смотрите кассеты на допотопном видеомагнитофоне. Значит, надо срочно обзаводиться более прогрессивным устройством. Ну а как же запись любимых телепередач, которые идут именно тогда, когда вы заняты? Как же старые видеоархивы? Все решаемо, ведь современный DVD-проигрыватель &mdash; это не обязательно только воспроизведение DVD-дисков. Есть модели, совмещенные с классическим видеомагнитофоном; устройства, способные самостоятельно записывать DVD-диски; аппараты, оснащенные жесткими дисками для записи телевизионных программ. Осталось только определиться, что вам нужно, и сделать правильный выбор.<br /> <br /> DVD &ndash; формат оптических носителей последнего поколения. DVD-диски значительно объемнее и быстрее, чем обычные CD. Они могут содержать видеоматериалы кинотеатрального качества, музыкальные файлы, цифровые фотографии и компьютерные данные. Цель DVD &ndash; объединить мультимедиа, компьютерную и деловую информацию в одном универсальном формате. DVD уже практически вытеснил лазерные диски, видеокассеты и игровые картриджи и, возможно, в скором будущем вытеснит и CD-диски. Формат DVD обладает широкой поддержкой среди основных производителей электроники и компьютерных изделий, а также среди звукозаписывающих и кино- студий. По этой причине DVD завоевал столь огромную популярность среди покупателей и стал самым распространенным форматом всего за три года. К 2003 году, за шесть лет существования, в мире насчитывалось уже более 250 миллионов DVD-устройств: DVD-плееры, рекордеры, компьютерные DVD-приводы и игровые приставки, - что сделало DVD передовым стандартом видеоиндустрии. </p>', '', '', ''),
+(83, 'ru', 'Sony BDP-S470 Network', '<p>Проигрыватель Blu-ray дисков SONY BDP-S470 B -Сверхсовременный высококачественный проигрыватель дисков Blu-ray Sony , позволяющий воспроизводить как обычные диски Blu-ray, так и диски Blu-ray 3D &mdash; с 3D-видео.</p>', '<p>Плеер дисков Blu-ray Disc 3D Ready с мгновенным доступом к онлайн-видеоматериалам!<br /> BRAVIA Internet Video, Wireless LAN ready, Entertainment Database Browser с Gracenote.<br /> Единое дизайнерское решение с линейкой техники домашних развлечений<br /> Мгновенный доступ к бесплатным фильмам и другому онлайн-содержимому<br /> iPhone/iPod touch для управления Blu-ray Disc<br /> Домашние развлечения нового поколения, в том числе потрясающая 3D-динамика на экране 3D-телевизора.<br /> Абсолютно новая модель плеера Blu-ray Disc: доступ к онлайн-контенту, работа с ПК и беспроводное подключение к Интернету.<br /> DLNA &mdash; позволяет плееру Sony Blu-ray Disc Player обмениваться информацией с другими DLNA-устройствами в доме и создавать домашнюю сеть для цифровых материалов. <br /> Новый дизайн 2010 г. BRAVIA Monolith: превосходные материалы и стильный минималистичный внешний вид. Подберите к своему телевизору BRAVIA и домашнему кинотеатру плеер Blu-ray Disc в едином стиле.<br /> Функция BRAVIA Internet Video &mdash; это доступ к онлайн-контенту. Смотрите телевизор так, как вы сами пожелаете с функцией просмотра пропущенных программ. Находите любимые записи в Интернете на таких интернет-сайтах по запросу, как YouTube и Dailymotion.<br /> Функция WLAN ready позволяет выходить в сеть без проводов: просто подключите ключ USB WIFI (приобретается дополнительно) &mdash; и вы в сети одним нажатием кнопки<br /> Полный контроль при помощи iPhone: управление работой плеера Blu-ray Disc, просмотр информации на диске и поиск связанного контента на Youtube &mdash; все это при помощи интерфейса на вашем сенсорном экране.<br /> Сверхбыстрая скорость работы: включение за 3 секунды, открытие лотка за 2 секунды и ускоренная загрузка.<br /> Просмотр фильмов Blu-ray Disc в формате Full HD 1080p и улучшенный просмотр фильмов из вашей DVD-коллекции.<br /> Узнать дополнительную информацию о фильме с диска Blu-ray Disc вы можете с помощью браузера по базе данных развлечений (Entertainment Database Browser) с технологией Gracenote.</p>', '', '', ''),
+(84, 'ru', 'Panasonic DMP-BD45 Ultra-Fast', '<div>\r\n<div>Проигрыватели Blu-ray Panasonic&nbsp;DMP-BD45 Ultra-Fast</div>\r\n</div>', '<p>Процессор цветности PHL Reference Chroma Plus<br /> PHL Reference Chroma Processor Plus - это высококачественная интегральная схема, созданная для точной обработки каждого пикселя Blu-Ray видеосигнала в вертикальном направлении. Она воспроизводит цветовую информацию с удвоенной точностью по сравнению с обычными системами, чтобы поддерживать достоверность и резкость цветопередачи.<br /> <br /> Сверхбыстрая 0, 5-сек загрузка<br /> Время перехода из режима ожидания в рабочий режим значительно сократилось по сравнению с прежними моделями. Благодаря этому усовершенствованию вы сможете быстрее начать просмотр, не теряя времени на ожидание.</p>', '', '', ''),
+(85, 'ru', 'LG BD570 Network Audio', '<p>Програвач BD LG BD570 (V-DAC 162 МГц/12bit, A-DAC 192 кГц/24bit, 1080p/60 Гц, BD-ROM, BD-R, BD-RE, DVD-R/RW, DVD+R/RW, CD-R/RW, MP3, WMA, JPEG, DivX, XviD, MKV(H.264), AVCHD, Dolby True HD/DTS HD MA/DTS / Dolby Digital, BD Live 2.0, Gracenote, NetCast (Youtube, Picassa, AccuWeather), DLNA/CIFS, HDMI 1.3, USB 2.0, Подкючение внешнего HDD, 430 х 45 х...</p>', '<p>&amp;lt;p&amp;gt;LG BD570 является необычным Blu-ray плеером: встроенный модуль беспроводной связи Wi-Fi позволяет новой модели подключаться к домашней беспроводной сети и Интернету, расширяя тем самым возможности домашних развлечений.&amp;lt;br&amp;gt; &ldquo;Люди не должны ограничивать себя только просмотром фильмов, которые выходят на дисках, - сказал Саймон Канг (Simon Kang), исполнительный директор и президент компании LG Home Entertainment. &ndash; Они должны иметь доступ к дополнительному медиа контенту из Интернета. Мы добавили в BD570 эту возможность, позволяющую передавать большой объем аудио-, видеофайлов и прочих развлечений прямо на экран телевизора&rdquo;.&amp;lt;br&amp;gt; &amp;lt;br&amp;gt; Беспроводный доступ в Интернет, который обеспечивает новая модель Blu-Ray проигрывателя LG, позволяет его владельцам смотреть потоковое видео с сайта YouTube или фотографии из веб- альбома Picasa на большом экране Full HD телевизора, а не на маленьком экране компьютерного монитора. Также с помощью BD570 можно дополнить содержимое Blu- Ray диска, загрузив дополнительную информацию через профиль BD Live 2. 0. Беспроводное подключение обеспечивает удобный доступ к информационным сайтам, например прогнозу погоды от Accuweather, а благодаря интуитивно понятному интерфейсу пользоваться BD570 сможет даже ребенок.&amp;lt;br&amp;gt; &amp;lt;br&amp;gt; &amp;lt;br&amp;gt; Во многих семьях накопились уже целые медиа- библиотеки, состоящие из большого числа фильмов, музыки, домашнего видео и фотографий. BD570 помогает собрать подобные медиа- файлы воедино, подключаясь ко всем компьютерам или DNLA- совместимым устройствам хранения данных, входящим в домашнюю сеть, посредством Wi- Fi и позволяет просматривать всю эту информацию на экране телевизора. Также плеер способен воспроизводить фильмы в формате DivX или MKV непосредственно с внешних жестких дисков или флэш- накопителей, подключенных по USB.&amp;lt;br&amp;gt; &amp;lt;br&amp;gt; Интерфейс HDMI позволяет подключать LG BD570 к большинству современных телевизоров с помощью единственного кабеля, обеспечивая зрителям максимально качественное изображение как при воспроизведении Blu- Ray дисков, так и обычных DVD, которые он декодирует в разрешении до 1080p. &amp;lt;/p&amp;gt;</p>', '', '', ''),
+(86, 'ru', 'Samsung BD-C6900 1080p 3D Blu-ray', '<p>Програвач Blu-ray Samsung BD-C6900 (3D Blu-ray, BD-R/RE, DVD-Video, DVD/DVD&plusmn;R/DVD&plusmn;RW, USB Storage, MPEG2, H.264,VC-1, AVCHD, DivX HD, MKV, MP4, WMV9, HD JPEG, Internet@TV, All Share Ethernet, HDMI (V.1.4 + 3D)430 x 205 x 43/1,8кг, чорний)</p>', '<p>&nbsp;</p>\r\n<div>Чем занять выдавшийся свободным вечер? Посмотреть телевизор? Но там, как назло, нет ничего интересного. Сходить в гости? Но на улице холодно и ветрено. А может, взять свежий DVD с фильмом и насладиться хорошим кино? Было бы неплохо, но вот беда &mdash; у вас все еще нет DVD-проигрывателя и вы смотрите кассеты на допотопном видеомагнитофоне. Значит, надо срочно обзаводиться более прогрессивным устройством. Ну а как же запись любимых телепередач, которые идут именно тогда, когда вы заняты? Как же старые видеоархивы? Все решаемо, ведь современный DVD-проигрыватель &mdash; это не обязательно только воспроизведение DVD-дисков. Есть модели, совмещенные с классическим видеомагнитофоном; устройства, способные самостоятельно записывать DVD-диски; аппараты, оснащенные жесткими дисками для записи телевизионных программ. Осталось только определиться, что вам нужно, и сделать правильный выбор.<br /> <br /> DVD &ndash; формат оптических носителей последнего поколения. DVD-диски значительно объемнее и быстрее, чем обычные CD. Они могут содержать видеоматериалы кинотеатрального качества, музыкальные файлы, цифровые фотографии и компьютерные данные. Цель DVD &ndash; объединить мультимедиа, компьютерную и деловую информацию в одном универсальном формате. DVD уже практически вытеснил лазерные диски, видеокассеты и игровые картриджи и, возможно, в скором будущем вытеснит и CD-диски. Формат DVD обладает широкой поддержкой среди основных производителей электроники и компьютерных изделий, а также среди звукозаписывающих и кино- студий. По этой причине DVD завоевал столь огромную популярность среди покупателей и стал самым распространенным форматом всего за три года. К 2003 году, за шесть лет существования, в мире насчитывалось уже более 250 миллионов DVD-устройств: DVD-плееры, рекордеры, компьютерные DVD-приводы и игровые приставки, - что сделало DVD передовым стандартом видеоиндустрии.</div>', '', '', ''),
+(87, 'ru', 'Sony HT-SS370 Home Theater', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(88, 'ru', 'Samsung HW-C770BS 7.1 Channel', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (95, 'ru', 'Canon EOS Rebel T2i 18 Megapixel Digital', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
-(89, 'ru', 'Panasonic SCPTX7 Home Theater', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
-(90, 'ru', 'Samsung HT-C7530W 5.1 Channel', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
-(91, 'ru', 'Sony BDV-E770W Home Theater', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
-(92, 'ru', 'Samsung HW-C700 7.2 Channel', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
+(89, 'ru', 'Panasonic SCPTX7 Home Theater', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(90, 'ru', 'Samsung HT-C7530W 5.1 Channel', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(91, 'ru', 'Sony BDV-E770W Home Theater', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(92, 'ru', 'Samsung HW-C700 7.2 Channel', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (93, 'ru', 'Yamaha HS80M Powered Speaker', 'Изящные спикеры с белым конусом, используемые в мониторах HS-ряда \nобеспечивают превосходное звучание, которое улучшено тщательно \nспроектируемым корпусом  ', '<p>Изящные спикеры с белым конусом, используемые в мониторах HS-ряда \nобеспечивают превосходное звучание, которое улучшено тщательно \nспроектируемым корпусом. Комбинация винтов и специально разработанного \nкольца устраняют вибрацию и резонанс, разрешая спикеру выдавать ровный \nзвуковой диапазон. Другая особенность, которая повышает работу басового \nспикера - специально отобранный магнит. Динамик для передачи высокого \nтона использует передовой проект гладкого контура, который минимизирует \nпотери так, чтобы высокочастотные детали воспроизводились с превосходной\n точностью.  </p>  ', '', '', ''),
 (94, 'ru', 'Yamaha NSIW760 Speaker', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
-(97, 'ru', 'Sony Handycam HDR-CX3', 'Flash, AVCHD, Full HD, 1920x1080, 1/4, 1CMOS, фоторежим, zoom 12x/160x, \nMS Duo, SD, SDHC, 112x52x64 мм, 320 г  ', '<p>Запись до 13 ч видео Full HD великолепного качества на встроенную память\n 32 ГБ, и еще больше — с дополнительной картой памяти. Великолепный \nдизайн, передовые оптические технологии и удобные функции помогают \nснимать прекрасные видеофильмы и фотографии с исключительным уровнем \nдетализации.<br>\n<br>\n<strong>Мало света – не проблема</strong><br>\nМногие камеры плохо снимают в условиях низкой освещенности, делая \nзернистые, шумные кадры. Сверхчувствительная матрица CMOS Exmor R™ \nсокращает шум и улучшает четкость. А в сочетании с мощным процессором \nBIONZ камера обеспечивает отличные результаты при плохом свете, в темных\n помещениях и сумерках.<br>\n<br>\n<strong>Уместить больше в одном кадре</strong><br>\nТеперь при съемке праздника, дня рождения и других знаменательных \nсобытий точно никто не останется за кадром. Высококачественный объектив G\n от Sony в камере Handycam® теперь снабжен улучшенными возможностями \nширокоугольной съемки, и снимает почти в 2 раза больше, чем предыдущие \nмодели.<br>\n<br>\n<strong>Двигайтесь. Используйте зум. Делайте снимки: Еще больше четкости</strong><br>\nБез штатива снимки часто получаются смазанные. Новый оптический режим \nSteadyShot Active Mode обеспечивает коррекцию дрожания камеры в трех \nнаправлениях, на любом значении зума, даже если вы снимаете на ходу. \nКамера обладает в десять раз более эффективной стабилизацией изображения\n при широкоугольной съемке.<br>\n<br>\n<strong>Наилучшее качество изображения в стандарте Full HD</strong><br>\nЧем больше бит содержит каждый кадр, тем лучше качество изображения. Для\n наиболее ответственных видеосъемок в камере FX Mode предусмотрен режим с\n разрешением 1920x1080/50i и скоростью передачи данных 24 Мб/с — самое \nвысокое возможное значение для формата AVCHD.<br>\n<br>\n<strong>Ловите момент</strong><br>\nФункция Golf Shot позволяет снимать серию кадров на высокой скорости. \nОтличный способ улучшить свою технику удара... или запечатлеть любую \nдинамичную сцену в мельчайших подробностях.  </p>  ', '', '', ''),
-(98, 'ru', 'Samsung NX10 14 Megapixel Digital', 'Матрица 23,4x15,6мм, 14,6 Мп / Объектив: 18-55mm OIS / поддержка карт \nпамяти SD/SDHC / AMOLED-дисплей 3" / поддержка RAW / HD-видео / питание \nот литий-ионного аккумулятора / 123 x 87 x 39,8 мм, 353 г / черный<a href="http://rozetka.com.ua/ru/products/details/90268/index.html"></a>  ', '<p><em>Samsung NX10</em> — 14,6 Мп камера со сменной оптикой и электронным \nвидоискателем. Так как оптического видоискателя с зеркалом и призмой для\n прямого визирования через объектив у нее нет, корпус получился \nсущественно более компактным, чем у зеркалок. Отсутствие зеркала \nпозволило максимально приблизить объектив к матрице. Что, в свою \nочередь, дает возможность делать короткофокусные объективы более \nпростыми и компактными, чем у камер с зеркальной системой видоискателя.  </p>  ', '', '', ''),
-(99, 'ru', 'Samsung NX100 Interchangeable Lens', 'Матрица 23.5  ', '<p>Матрица 23.5 × 15.7 мм, 20.3 Мп / объектив: 20-50 мм / поддержка карт \nпамяти SD/SDHC/SDXC / LCD-дисплей 3" / FullHD-видео / Wi-Fi / питание от\n литий-ионного аккумулятора / 114 x 62.5 x 37.5 мм, 220.4 г / черный  <br></p>  ', '', '', ''),
-(100, 'ru', 'Canon PIXMA iP100 Photo Printer', 'принтер струменевий з акумулятором iP100 with battery  <a href="http://rozetka.com.ua/fly_e141_tv_black/p217847/"></a>  ', '<p>Принцип действия струйных принтеров похож на матричные принтеры тем, что\n изображение на носителе формируется из точек. Но вместо головок с \nиголками в струйных принтерах используется матрица сопел (т. н. \nголовка), печатающая жидкими красителями. Печатающая головка может быть \nвстроена в картриджи с красителями (в основном такой подход используется\n компаниями Hewlett-Packard, Lexmark), а может и является деталью \nпринтера, а сменные картриджи содержат только краситель (Epson, Canon).<br>\n<br>\nПри длительном простое принтера (неделя и больше) происходит высыхание \nостатков красителя на соплах печатающей головки (особенно критично \nзасорение сопел печатающей матрицы принтеров Epson, Canon). Принтер \nумеет сам автоматически чистить печатающую головку. Но также возможно \nпровести принудительную очистку сопел из соответствующего раздела \nнастройки драйвера принтера. При прочистке сопел печатающей головки \nпроисходит интенсивный расход красителя. Если штатными средствами \nпринтера не удалось очистить сопла печатающей головки, то дальнейшая \nочистка и/или замена печатающей головки проводится в ремонтных \nмастерских. Замена картриджа, содержащего печатающую головку, на новый \nпроблем не вызывает.<br>\n<br>\nДля уменьшения стоимости печати и улучшения некоторых других \nхарактеристик печати также применяют систему непрерывной подачи чернил \n(СНПЧ).  </p>  ', '', '', ''),
-(101, 'ru', 'Canon PIXMA iP4820 Premium', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
+(97, 'ru', 'Sony Handycam HDR-CX3', '<p>Flash, AVCHD, Full HD, 1920x1080, 1/4, 1CMOS, фоторежим, zoom 12x/160x, MS Duo, SD, SDHC, 112x52x64 мм, 320 г</p>', '<p>Запись до 13 ч видео Full HD великолепного качества на встроенную память 32 ГБ, и еще больше &mdash; с дополнительной картой памяти. Великолепный дизайн, передовые оптические технологии и удобные функции помогают снимать прекрасные видеофильмы и фотографии с исключительным уровнем детализации.<br /> <br /> <strong>Мало света &ndash; не проблема</strong><br /> Многие камеры плохо снимают в условиях низкой освещенности, делая зернистые, шумные кадры. Сверхчувствительная матрица CMOS Exmor R&trade; сокращает шум и улучшает четкость. А в сочетании с мощным процессором BIONZ камера обеспечивает отличные результаты при плохом свете, в темных помещениях и сумерках.<br /> <br /> <strong>Уместить больше в одном кадре</strong><br /> Теперь при съемке праздника, дня рождения и других знаменательных событий точно никто не останется за кадром. Высококачественный объектив G от Sony в камере Handycam&reg; теперь снабжен улучшенными возможностями широкоугольной съемки, и снимает почти в 2 раза больше, чем предыдущие модели.<br /> <br /> <strong>Двигайтесь. Используйте зум. Делайте снимки: Еще больше четкости</strong><br /> Без штатива снимки часто получаются смазанные. Новый оптический режим SteadyShot Active Mode обеспечивает коррекцию дрожания камеры в трех направлениях, на любом значении зума, даже если вы снимаете на ходу. Камера обладает в десять раз более эффективной стабилизацией изображения при широкоугольной съемке.<br /> <br /> <strong>Наилучшее качество изображения в стандарте Full HD</strong><br /> Чем больше бит содержит каждый кадр, тем лучше качество изображения. Для наиболее ответственных видеосъемок в камере FX Mode предусмотрен режим с разрешением 1920x1080/50i и скоростью передачи данных 24 Мб/с &mdash; самое высокое возможное значение для формата AVCHD.<br /> <br /> <strong>Ловите момент</strong><br /> Функция Golf Shot позволяет снимать серию кадров на высокой скорости. Отличный способ улучшить свою технику удара... или запечатлеть любую динамичную сцену в мельчайших подробностях.</p>', '', '', ''),
+(98, 'ru', 'Samsung NX10 14 Megapixel Digital', '<p>Матрица 23,4x15,6мм, 14,6 Мп / Объектив: 18-55mm OIS / поддержка карт памяти SD/SDHC / AMOLED-дисплей 3" / поддержка RAW / HD-видео / питание от литий-ионного аккумулятора / 123 x 87 x 39,8 мм, 353 г / черный</p>', '<p><em>Samsung NX10</em> &mdash; 14,6 Мп камера со сменной оптикой и электронным видоискателем. Так как оптического видоискателя с зеркалом и призмой для прямого визирования через объектив у нее нет, корпус получился существенно более компактным, чем у зеркалок. Отсутствие зеркала позволило максимально приблизить объектив к матрице. Что, в свою очередь, дает возможность делать короткофокусные объективы более простыми и компактными, чем у камер с зеркальной системой видоискателя.</p>', '', '', ''),
+(99, 'ru', 'Samsung NX100 Interchangeable Lens', '<p>Матрица 23.5</p>', '<p>Матрица 23.5 &times; 15.7 мм, 20.3 Мп / объектив: 20-50 мм / поддержка карт памяти SD/SDHC/SDXC / LCD-дисплей 3" / FullHD-видео / Wi-Fi / питание от литий-ионного аккумулятора / 114 x 62.5 x 37.5 мм, 220.4 г / черный </p>', '', '', ''),
+(100, 'ru', 'Canon PIXMA iP100 Photo Printer', '<p>принтер струменевий з акумулятором iP100 with battery</p>', '<p>Принцип действия струйных принтеров похож на матричные принтеры тем, что изображение на носителе формируется из точек. Но вместо головок с иголками в струйных принтерах используется матрица сопел (т. н. головка), печатающая жидкими красителями. Печатающая головка может быть встроена в картриджи с красителями (в основном такой подход используется компаниями Hewlett-Packard, Lexmark), а может и является деталью принтера, а сменные картриджи содержат только краситель (Epson, Canon).<br /> <br /> При длительном простое принтера (неделя и больше) происходит высыхание остатков красителя на соплах печатающей головки (особенно критично засорение сопел печатающей матрицы принтеров Epson, Canon). Принтер умеет сам автоматически чистить печатающую головку. Но также возможно провести принудительную очистку сопел из соответствующего раздела настройки драйвера принтера. При прочистке сопел печатающей головки происходит интенсивный расход красителя. Если штатными средствами принтера не удалось очистить сопла печатающей головки, то дальнейшая очистка и/или замена печатающей головки проводится в ремонтных мастерских. Замена картриджа, содержащего печатающую головку, на новый проблем не вызывает.<br /> <br /> Для уменьшения стоимости печати и улучшения некоторых других характеристик печати также применяют систему непрерывной подачи чернил (СНПЧ).</p>', '', '', ''),
+(101, 'ru', 'Canon PIXMA iP4820 Premium', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (102, 'ru', 'Epson Stylus R1900 Photo Printer', 'Epson Stylus Photo R1900, компакт-диск с драйверам и программным \nобеспечением, руководство по установке, руководство пользователя, кабель\n питания,&nbsp; СНПЧ Epson Stylus Photo R1900, полностью заправленаня \nчернилами (по 130 мл в каждом цвете), гарантийный талон, Инструкция по \nустановке и эксплуатации СНПЧ  ', '<p>Epson Stylus Photo R1900, компакт-диск с драйверам и программным \nобеспечением, руководство по установке, руководство пользователя, кабель\n питания,&nbsp; СНПЧ Epson Stylus Photo R1900, полностью заправленаня \nчернилами (по 130 мл в каждом цвете), гарантийный талон, Инструкция по \nустановке и эксплуатации СНПЧ  <br></p>  ', '', '', ''),
 (103, 'ru', 'Epson Stylus C88+ Inkjet Printer', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
-(104, 'ru', 'Epson Stylus Photo R2880 Color', 'Насладитесь удивительным результатам на каждом документе по доступной цене с помощью этого мощного струйного принтера  ', '<p>Насладитесь удивительным результатам на каждом документе по доступной цене с помощью этого мощного струйного принтера.  DURABrite ® Ultra пигментные чернила производит яркие, долговечные результаты, которые, несомненно, впечатляет. \n Продукция полей, готовых к отпечатки кадров в популярных размерах до 8 \n1/2 х 11 дюймов Удобный, раздельных картриджей позволяет заменять только\n цвета вам нужно.  Особенности USB и параллельный порт подключения для дополнительного удобства и совместимости.  Большой 120-листов лоток для бумаги максимальную производительность. \n Максимальная скорость печати (черный): 23,0 промилле; сети Ready: Нет, \nТип принтера: струйный; Разрешение печати (цветной) (ширина х высота): \n5760 х 1440 точек на дюйм.  <br></p>  ', '', '', '');
+(104, 'ru', 'Epson Stylus Photo R2880 Color', '<p>Насладитесь удивительным результатам на каждом документе по доступной цене с помощью этого мощного струйного принтера</p>', '<p>Насладитесь удивительным результатам на каждом документе по доступной цене с помощью этого мощного струйного принтера. DURABrite &reg; Ultra пигментные чернила производит яркие, долговечные результаты, которые, несомненно, впечатляет. Продукция полей, готовых к отпечатки кадров в популярных размерах до 8 1/2 х 11 дюймов Удобный, раздельных картриджей позволяет заменять только цвета вам нужно. Особенности USB и параллельный порт подключения для дополнительного удобства и совместимости. Большой 120-листов лоток для бумаги максимальную производительность. Максимальная скорость печати (черный): 23,0 промилле; сети Ready: Нет, Тип принтера: струйный; Разрешение печати (цветной) (ширина х высота): 5760 х 1440 точек на дюйм. </p>', '', '', '');
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
 (105, 'ru', 'Panasonic KX-TG6582T Cordless Phone', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
-(106, 'ru', 'Panasonic KX-TG7433B Expandable', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
+(106, 'ru', 'Panasonic KX-TG7433B Expandable', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (107, 'ru', 'Plantronics CS70N Wireless Earset', 'Гарнитура CS70N представляет собой модификацию популярной гарнитуры \nCS70, в которую добавлена система шумоподавления, повышающая качество \nпередаваемого звука. В отличие от предыдущей модели микрофон гарнитуры \nCS70N размещен на элегантном держателе, что позволяет существенно \nснизить уровень посторонних шумов в передаваемом звуке. Кроме того, \nпрозрачный  ', '<p>Гарнитура CS70N представляет собой модификацию популярной гарнитуры \nCS70, в которую добавлена система шумоподавления, повышающая качество \nпередаваемого звука. В отличие от предыдущей модели микрофон гарнитуры \nCS70N размещен на элегантном держателе, что позволяет существенно \nснизить уровень посторонних шумов в передаваемом звуке. Кроме того, \nпрозрачный держатель микрофона делает гарнитуру практически незаметной. \nCS70N состоит из базового блока и самой гарнитуры. Базовый блок \nвыполняет функцию радиоадаптера для подключения гарнитуры к офисным \nтелефонным аппаратам, служит подставкой для гарнитуры, а также выполняет\n роль зарядного устройства. Время работы гарнитуры составляет 5 часов в \nрежиме разговора и 28 часов в режиме ожидания. Для возможности \nудаленного принятия вызова, в комплект CS70N™ входит специальное \nустройство - микролифт HL10, а функция IntelliStand™ позволяет \nавтоматически осуществлять прием вызова снятием гарнитуры с подставки \nбез нажатия на кнопку принятия вызова. Вес гарнитуры составляет всего 22\n грамма. В комплекте с системой CS70N поставляются 3 гелевые подушечки \nразных размеров, что позволяет, оптимально подобрать вариант крепления \nгарнитуры для комфортного использования.  </p>  ', '', '', ''),
 (108, 'ru', 'Plantronics CS55 Wireless Earset', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (109, 'ru', 'Panasonic KX-TG6445 Cordless Phone', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
@@ -2236,7 +2597,7 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 (116, 'ru', 'Pyle PLT-AB8 Subwoofer - PLTAB8', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (117, 'ru', 'Pyle PLSQ10D Red Label Square', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (118, 'ru', 'Pioneer TS-W251R Subwoofer', 'Автомобильный сабвуферный динамик Pioneer TS-W251R  ', '<p>Автомобильный сабвуферный динамик Pioneer TS-W251R представляет собой \nбюджетное решение проблемы баса в вашем автомобиле. Высокая \nчувствительность, непритязательность к акустическому оформлению, \nспособность работать даже под маломощными усилителями делают этот \nсабвуфер выгодным приобретением. Опять же ни для кого не секрет, что \nнизкие частоты и Pioneer это практически слова синонимы - от этого \nдинамика вы получите именно то, чего ожидаете - бас, драйв, скорость.  </p>  ', '', '', ''),
-(119, 'ru', 'Pioneer TSSW2541D Subwoofer', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
+(119, 'ru', 'Pioneer TSSW2541D Subwoofer', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (120, 'ru', 'Pioneer JD-1212S 12-disc CD', '<ul><li>\n    Магазин-кассета для дисков для CD-чейнджера</li><li>\n    Вместимость 12 дисков</li></ul>  ', '<br><ul><li>\n    Магазин-кассета для дисков для CD-чейнджера</li><li>\n    Вместимость 12 дисков</li></ul>  ', '', '', ''),
 (121, 'ru', 'Pioneer JD-612V 6-disc CD Magazine', '<div>\n                <ul><li>\n    Магазин-кассета для дисков для CD-чейнджеров</li><li>\n    Вместимость 6 дисков</li></ul></div>  ', '<br><div>\n                <ul><li>\n    Магазин-кассета для дисков для CD-чейнджеров</li><li>\n    Вместимость 6 дисков</li></ul></div>  ', '', '', ''),
 (122, 'ru', 'Panasonic CX-DP880U 8-Disc', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
@@ -2291,21 +2652,20 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 (122, 'en', 'Panasonic CX-DP880U 8-Disc', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (121, 'en', 'Pioneer JD-612V 6-disc CD Magazine', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (185, 'ru', 'Apple iPhone 5 16GB Black Slate', ' ', ' ', '', '', ''),
-(186, 'ru', 'Samsung UE32EH4030WXUA', '32 дюйма, 1366x768, 720p, 16:9, LED-подсветка, 300000:1, звук: 2х10 Вт, SCART, RGB, VGA, HDMI x2, USB  ', '<div>\nСупертонкий и плоский LED телевизор Samsung UE32EH4030WXUA идеально \nподойдет для вашей гостиной. При минималистичном дизайне этот телевизор \nобеспечивает кинематографическую реалистичность впечатлений во время \nпросмотра, благодаря светодиодной подсветке матрицы ТВ Samsung \nUE32EH4030WXUA. Получите удовольствие от максимальной четкости \nдинамичного изображения, насыщенности и многообразия цветовых оттенков. \n           </div>  ', '', '', '');
+(186, 'ru', 'Samsung UE32EH4030WXUA', '<p>32 дюйма, 1366x768, 720p, 16:9, LED-подсветка, 300000:1, звук: 2х10 Вт, SCART, RGB, VGA, HDMI x2, USB</p>', '<div>Супертонкий и плоский LED телевизор Samsung UE32EH4030WXUA идеально подойдет для вашей гостиной. При минималистичном дизайне этот телевизор обеспечивает кинематографическую реалистичность впечатлений во время просмотра, благодаря светодиодной подсветке матрицы ТВ Samsung UE32EH4030WXUA. Получите удовольствие от максимальной четкости динамичного изображения, насыщенности и многообразия цветовых оттенков.</div>', '', '', '');
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
 (187, 'ru', 'Samsung UE40ES6307UXUA', '40 дюймов, LED, 1920x1080, 16:9, Full HD, 178°/178°, 2х10 Вт, 3xHDMI, 3xUSB, Ethernet (LAN), Wi-Fi, Smart TV  ', '<strong>Новый уровень ощущений в формате 3D</strong><br>\nLED телевизоры Samsung внесли в мир развлечений совершенно новые \nощущения. Благодаря новейшим достижениям технологии 3D вы погружаетесь в\n совершенно новый мир ТВ-реальности.<br>\n<br>\n<strong>Смотрите фильмы, загружая их прямо с USB-накопителя</strong><br>\nБлагодаря функции ConnectShare Movie, вы можете росто вставить ваш USB \nнакопитель или жесткий диск в USB разъем телевизора, чтобы записанные на\n носителе фильмы, фотоснимки или музыкальные треки начали \nвоспроизводиться на экране телевизора. Теперь на большом экране \nтелевизора, установленного в гостиной, вы можете просмотреть или \nпрослушать любой контент.<br>\n<br>\n<strong>Видеозвонки по Skype на большом экране</strong><br>\nПриложение Skype для Smart TV доступно бесплатно в магазине Samsung App.\n В сочетании с отдельно приобретаемой веб-камерой Skype вы сможете \nсовершать видеозвонки своим друзьям и близким на большом экране почти \nили совсем бесплатно. С помощью пульта ДУ вы можете легко создать новые \nSkype эккаунты и получать доступ к существующим. Теперь видеосвязь \nбуквально в ваших руках.<br>\n<br>\n<strong>Доступ в Интернет без проводов</strong><br>\nВстроенная поддержка сети, широкие возможности подключения других устройств сочетаются с привлекательным дизайном.<br>\n<br>\n<strong>Наслаждайтесь приложениями, видео, Skype, серфингом в Интернете и многими другими возможностями</strong><br>\nБлагодаря вашей домашней системе развлечений вы откроете для себя новый \nмир социальных и персонализированных развлечений на обновленном портале \nSamsung Smart Hub и трех новых сервисах. Раздел Family Story позволит \nподелиться в друзьями и близкими фотоснимками, текстовыми комментариями и\n самыми знаменательными событиями вашей жизни. Кроме того, дети могут \nвоспользоваться развлекательными, обучающими и познавательными \nпрограммами в разделе Kids (Для детей). С помощью раздела "Фитнес" \n(Fitness) вы можете заниматься фитнесом и контролировать результаты на \nэкране телевизора. Доступ к большой библиотеке контента, приложениям на \nпортале Samsung Apps и возможность бродить по страницам Интернета \nсущественно разнообразит ваш семейный досуг и позволит получить массу \nновых положительных эмоций.  ', '', '', ''),
-(188, 'ru', 'LG 32LS359T', 'LED телевізор 32 LG 32LS359T (81,28 см, 16:9, HD Ready, 1366x768, \n1000000:1, 178/178, 3 мс, Pal/Secam-B/G, Pal/Secam-D/K, Pal-I/I'', \nDVB-T2, DVB-C, Triple XD Engine, 2x5 Вт, телетекст (1000), годинник, \nтаймер, CI Slot, RF In (T2/C), Composite, Full Scart, Component \n(Y,Pb,Pr), HDMI/HDCP (1.4)x2, USB 2.0 (JPEG/ MP3/ DivX), LAN, 100~240 В,\n 50-60 Гц, 755x530x288.8  ', 'LED телевізор 32" LG 32LS359T (81, 28 см, 16:9, HD Ready, 1366x768, \n1000000:1, 178/178, 3 мс, Pal/Secam-B/G, Pal/Secam-D/K, Pal-I/I'', \nDVB-T2, DVB-C, Triple XD Engine, 2x5 Вт, телетекст (1000), годинник, \nтаймер, CI Slot, RF In (T2/C), Composite, Full Scart, Component (Y, Pb, \nPr), HDMI/HDCP (1.4)x2, USB 2.0 (JPEG/ MP3/ DivX), LAN, 100~240 В, 50-60\n Гц, 755x530x288.8 мм, 9.1 кг, білий)  ', '', '', ''),
-(189, 'ru', 'LG 47LM580T', '<div>\n                <div>ЖК-телевизор, 47, 16:9, 1920x1080, HDTV, 1080p (Full HD), LED-подсветка,\n 200 Гц, 3D, мощность звука 20 Вт, HDMI x3, VGA  </div></div>  ', 'ЖК-телевизор, 47", 16:9, 1920x1080, HDTV, 1080p (Full HD), \nLED-подсветка, 200 Гц, 3D, мощность звука 20 Вт, HDMI x3, VGA  ', '', '', ''),
-(190, 'ru', 'Samsung LE40D550K1WXUA', '<div>\n                <div>\n                LCD телевізор 40 Samsung LE-40D550K1WXUA (Full HD 1080p \n1920х1080, 500 cd/m2, 50Hz, 10 Wx2 SRS TheaterSound, HDMI 1.4, USB, \nComponent In (Y/Pb/Pr), Composite In (AV), Digital Audio Out (Optical), \nPC In (D-sub), CI Slot, Scart, RF In (Terrestrial/Cable Input), \nheadphones, PC Audio In (Mini Jack), DVI Audio In (Mini Jack), Ethernet \n(LAN) , VESA 200х200mm</div></div>  ', 'SAMSUNG LE40D550K1WXUA - ЖК телевизор диагональю 40". Уникальная система\n подключения устройств позволит вам централизованно управлять всем \nцифровым контентом. Технология Samsung AllShare дает возможность \nподключить ваш телевизор ко всем совместимым цифровым устройствам, чтобы\n воспроизводить файлы с них на большом экране. Для подсоединения \nустройств, не поддерживающих беспроводную связь, можно использовать \nчетыре порта HDMI . Технология ConnectShare Movie™ позволяет подключить \nотдельный жесткий диск непосредственно к телевизору для потоковой \nпередачи фильмов. Гладкий корпус без видимых стыков и супертонкая рамка \nдовершают впечатление сдержанной элегантности.  ', '', '', ''),
-(191, 'ru', 'Sony KDL-22EX553', '22 // 1366x768 пикс // 50 Гц // LED подсветка // эфирный (DVB-T) // \nкабельный (DVB-C) // HDMI: 2 шт // Компонентный //Композитный // SCART \n// USB // LAN // Линейный  ', '<div><strong>KDL-22EX553<br>\nНовый способ просмотра ТВ</strong></div><br>\n55 см / 22", телевизор HD Ready с технологией подсветки Edge LED, X-Reality, встроенным Wi-Fi® и интернет-телевидением от Sony<br>\nНаслаждайтесь четким отображением на тонком экране Edge LED<br>\nWi-Fi обеспечивает быстрый доступ к функции просмотра пропущенных программ, фильмам и приложениям<br>\nДля более комфортного просмотра предусматривается изменение угла наклона телевизора<br>\n<br>\n<div><strong>Мир развлечений на кончиках пальцев</strong></div><br>\nНачните революцию интернет-телевидения у себя дома. Откройте \nувлекательный новый мир передачи контента по запросу, просмотра \nпропущенных программ, приложений и многого другого, и все это - с \nчетким, детализированным изображением, на большом и тонком ЖК-экране. \nПришло время управлять центром развлечений в вашем доме.<br>\n<br>\n<div><strong>Четкое, реалистичное изображение</strong></div><br>\nX-Reality обеспечивает более четкое и реалистичное HD-изображение, вне \nзависимости от источника: будь то интернет-канал, DVD-диск или \nлюбительский клип. Кроме того, эта технология убирает эффект мерцания, \nгарантируя более плавное отображение динамичных спортивных передач.<br>\n<br>\n<div><strong>Новый дизайн, легкие материалы</strong></div><br>\nТелевизоры серии HX75 выполнены из контрастных материалов и имеют \nбезукоризненный дизайн. Вас восхитит легкость этого телевизора, который \nрасполагается на подставке в форме мольберта, позволяющей вращать его в \nвертикальной и горизонтальной плоскости для идеального угла обзора.<br>\n<br>\n<div><strong>Беспроводной доступ к онлайн-развлечениям</strong></div><br>\nТеперь доступ к контенту сетевого сервиса Sony Entertainment Network — \nHD-фильмам, миллионам музыкальных композиций, любимым телеканалам, \nвеб-браузеру, приложениям Twitter™, Facebook®, YouTube™, Skype™ и \nмногому другому — осуществляется с помощью дистанционного пульта или \nмобильного устройства с поддержкой распознавания голоса.<br>\n<br>\n<div><strong>Энергосберегающие функции телевизоров</strong></div><br>\nНовая функция затемнения LED Frame автоматически подстраивает яркость \nподсветки при просмотре и снижает потребление энергии, позволяя \nэкономить деньги. При этом изображение остается резким и \nвысококонтрастным.  ', '', '', '');
+(188, 'ru', 'LG 32LS359T', '<p>LED телевізор 32 LG 32LS359T (81,28 см, 16:9, HD Ready, 1366x768, 1000000:1, 178/178, 3 мс, Pal/Secam-B/G, Pal/Secam-D/K, Pal-I/I'', DVB-T2, DVB-C, Triple XD Engine, 2x5 Вт, телетекст (1000), годинник, таймер, CI Slot, RF In (T2/C), Composite, Full Scart, Component (Y,Pb,Pr), HDMI/HDCP (1.4)x2, USB 2.0 (JPEG/ MP3/ DivX), LAN, 100~240 В, 50-60 Гц, 755x530x288.8</p>', '<p>LED телевізор 32" LG 32LS359T (81, 28 см, 16:9, HD Ready, 1366x768, 1000000:1, 178/178, 3 мс, Pal/Secam-B/G, Pal/Secam-D/K, Pal-I/I'', DVB-T2, DVB-C, Triple XD Engine, 2x5 Вт, телетекст (1000), годинник, таймер, CI Slot, RF In (T2/C), Composite, Full Scart, Component (Y, Pb, Pr), HDMI/HDCP (1.4)x2, USB 2.0 (JPEG/ MP3/ DivX), LAN, 100~240 В, 50-60 Гц, 755x530x288.8 мм, 9.1 кг, білий)</p>', '', '', ''),
+(189, 'ru', 'LG 47LM580T', '<div>\r\n<div>ЖК-телевизор, 47, 16:9, 1920x1080, HDTV, 1080p (Full HD), LED-подсветка, 200 Гц, 3D, мощность звука 20 Вт, HDMI x3, VGA</div>\r\n</div>', '<p>ЖК-телевизор, 47", 16:9, 1920x1080, HDTV, 1080p (Full HD), LED-подсветка, 200 Гц, 3D, мощность звука 20 Вт, HDMI x3, VGA</p>', '', '', ''),
+(190, 'ru', 'Samsung LE40D550K1WXUA', '<div>\r\n<div>LCD телевізор 40 Samsung LE-40D550K1WXUA (Full HD 1080p 1920х1080, 500 cd/m2, 50Hz, 10 Wx2 SRS TheaterSound, HDMI 1.4, USB, Component In (Y/Pb/Pr), Composite In (AV), Digital Audio Out (Optical), PC In (D-sub), CI Slot, Scart, RF In (Terrestrial/Cable Input), headphones, PC Audio In (Mini Jack), DVI Audio In (Mini Jack), Ethernet (LAN) , VESA 200х200mm</div>\r\n</div>', '<h1>Интернет-магазин</h1>\r\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\r\n<h2>Заголовок второго уровня</h2>\r\n<h3>Заголовок третьего уровня</h3>\r\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\r\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\r\n<h3>Заголовок третьего уровня</h3>\r\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\r\n<ul>\r\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\r\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\r\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\r\n</ul>\r\n<h4>Заголовок четвертого уровня</h4>\r\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>название</td>\r\n<td>размер</td>\r\n<td>цена</td>\r\n</tr>\r\n<tr>\r\n<td>длинна трубы</td>\r\n<td>10 метров</td>\r\n<td>145 уе</td>\r\n</tr>\r\n<tr>\r\n<td>ширина трубы</td>\r\n<td>2 метра</td>\r\n<td>134 уе</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\r\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\r\n<ol>\r\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\r\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\r\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\r\n</ol>\r\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>', '', '', ''),
+(191, 'ru', 'Sony KDL-22EX553', '<p>22 // 1366x768 пикс // 50 Гц // LED подсветка // эфирный (DVB-T) // кабельный (DVB-C) // HDMI: 2 шт // Компонентный //Композитный // SCART // USB // LAN // Линейный</p>', '<div><strong>KDL-22EX553<br /> Новый способ просмотра ТВ</strong></div>\r\n<p><br /> 55 см / 22", телевизор HD Ready с технологией подсветки Edge LED, X-Reality, встроенным Wi-Fi&reg; и интернет-телевидением от Sony<br /> Наслаждайтесь четким отображением на тонком экране Edge LED<br /> Wi-Fi обеспечивает быстрый доступ к функции просмотра пропущенных программ, фильмам и приложениям<br /> Для более комфортного просмотра предусматривается изменение угла наклона телевизора</p>\r\n<div><strong>Мир развлечений на кончиках пальцев</strong></div>\r\n<p><br /> Начните революцию интернет-телевидения у себя дома. Откройте увлекательный новый мир передачи контента по запросу, просмотра пропущенных программ, приложений и многого другого, и все это - с четким, детализированным изображением, на большом и тонком ЖК-экране. Пришло время управлять центром развлечений в вашем доме.</p>\r\n<div><strong>Четкое, реалистичное изображение</strong></div>\r\n<p><br /> X-Reality обеспечивает более четкое и реалистичное HD-изображение, вне зависимости от источника: будь то интернет-канал, DVD-диск или любительский клип. Кроме того, эта технология убирает эффект мерцания, гарантируя более плавное отображение динамичных спортивных передач.</p>\r\n<div><strong>Новый дизайн, легкие материалы</strong></div>\r\n<p><br /> Телевизоры серии HX75 выполнены из контрастных материалов и имеют безукоризненный дизайн. Вас восхитит легкость этого телевизора, который располагается на подставке в форме мольберта, позволяющей вращать его в вертикальной и горизонтальной плоскости для идеального угла обзора.</p>\r\n<div><strong>Беспроводной доступ к онлайн-развлечениям</strong></div>\r\n<p><br /> Теперь доступ к контенту сетевого сервиса Sony Entertainment Network &mdash; HD-фильмам, миллионам музыкальных композиций, любимым телеканалам, веб-браузеру, приложениям Twitter&trade;, Facebook&reg;, YouTube&trade;, Skype&trade; и многому другому &mdash; осуществляется с помощью дистанционного пульта или мобильного устройства с поддержкой распознавания голоса.</p>\r\n<div><strong>Энергосберегающие функции телевизоров</strong></div>\r\n<p><br /> Новая функция затемнения LED Frame автоматически подстраивает яркость подсветки при просмотре и снижает потребление энергии, позволяя экономить деньги. При этом изображение остается резким и высококонтрастным.</p>', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products_rating`
+-- Структура таблицы `shop_products_rating`
 --
 
-DROP TABLE IF EXISTS `shop_products_rating`;
 CREATE TABLE IF NOT EXISTS `shop_products_rating` (
   `product_id` int(11) NOT NULL,
   `votes` int(11) DEFAULT NULL,
@@ -2314,13 +2674,13 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_products_rating`
+-- Дамп данных таблицы `shop_products_rating`
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 (71, 1, 2),
 (81, 1, 5),
-(88, 1, 1),
+(88, 2, 6),
 (76, 3, 11),
 (82, 1, 4),
 (77, 2, 7),
@@ -2331,15 +2691,15 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 (75, 2, 9),
 (94, 1, 4),
 (87, 1, 5),
-(79, 1, 5);
+(79, 1, 5),
+(190, 3, 11);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_categories`
+-- Структура таблицы `shop_product_categories`
 --
 
-DROP TABLE IF EXISTS `shop_product_categories`;
 CREATE TABLE IF NOT EXISTS `shop_product_categories` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2348,7 +2708,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_categories`
+-- Дамп данных таблицы `shop_product_categories`
 --
 
 INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
@@ -2357,32 +2717,32 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 (71, 74),
 (78, 36),
 (78, 37),
-(78, 75),
+(78, 74),
 (79, 36),
 (79, 38),
 (81, 36),
 (81, 76),
 (81, 77),
 (82, 36),
-(82, 39),
+(82, 74),
 (83, 36),
-(83, 39),
+(83, 74),
 (84, 36),
-(84, 39),
+(84, 74),
 (85, 36),
-(85, 39),
+(85, 74),
 (86, 36),
-(86, 39),
+(86, 74),
 (87, 36),
-(87, 41),
+(87, 74),
 (88, 40),
-(88, 41),
+(88, 74),
 (89, 40),
-(89, 41),
+(89, 74),
 (90, 40),
-(90, 41),
+(90, 74),
 (91, 40),
-(91, 41),
+(91, 74),
 (92, 40),
 (92, 43),
 (93, 40),
@@ -2394,15 +2754,15 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 (96, 44),
 (96, 45),
 (97, 44),
-(97, 45),
+(97, 74),
 (98, 44),
-(98, 45),
+(98, 74),
 (99, 44),
-(99, 45),
+(99, 74),
 (100, 44),
-(100, 46),
+(100, 74),
 (101, 44),
-(101, 46),
+(101, 74),
 (102, 44),
 (102, 46),
 (103, 44),
@@ -2459,21 +2819,20 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 (188, 74),
 (189, 36),
 (189, 37),
-(189, 75),
+(189, 74),
 (190, 36),
 (190, 37),
-(190, 75),
+(190, 74),
 (191, 36),
 (191, 37),
-(191, 75);
+(191, 74);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_images`
+-- Структура таблицы `shop_product_images`
 --
 
-DROP TABLE IF EXISTS `shop_product_images`;
 CREATE TABLE IF NOT EXISTS `shop_product_images` (
   `product_id` int(11) NOT NULL,
   `image_name` varchar(255) NOT NULL,
@@ -2483,7 +2842,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_images` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_images`
+-- Дамп данных таблицы `shop_product_images`
 --
 
 INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUES
@@ -2517,10 +2876,9 @@ INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties`
+-- Структура таблицы `shop_product_properties`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `csv_name` varchar(50) NOT NULL,
@@ -2538,42 +2896,29 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
   KEY `shop_product_properties_I_3` (`show_on_site`),
   KEY `shop_product_properties_I_4` (`show_in_compare`),
   KEY `shop_product_properties_I_5` (`position`),
-  KEY `shop_product_properties_I_1` (`active`)
+  KEY `shop_product_properties_I_1` (`active`),
+  KEY `external_id` (`external_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Дамп даних таблиці `shop_product_properties`
+-- Дамп данных таблицы `shop_product_properties`
 --
 
-INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
-(20, 'displaytech', 1, 1, 13, 1, 0, NULL, 1, 0),
-(21, 'razmerekrana', 1, 1, 14, 1, 0, NULL, 0, 0),
-(22, 'hdmi', 1, 1, 15, 1, 0, NULL, 1, 0),
-(23, 'power', 1, 1, 16, 1, 0, NULL, 0, 0),
-(24, 'digitalopticalinput', 1, 1, 17, 1, 0, NULL, 0, 0),
-(25, 'focus', 1, 1, 18, 1, 0, NULL, 0, 0),
-(26, 'megapixel', 1, 1, 19, 1, 0, NULL, 0, 0),
-(28, 'audioformats', 1, 1, 12, 1, 1, NULL, 1, 0),
-(29, 'videoformats', 1, 1, 11, 1, 1, NULL, 1, 0),
-(30, 'warranty', 1, 1, 10, 1, 0, NULL, 0, 0),
-(31, 'ram', 1, NULL, 9, NULL, NULL, NULL, NULL, NULL),
-(32, 'cpu', 1, 1, 1, 1, NULL, NULL, 1, NULL),
-(33, 'displaytype', 1, 1, 2, 1, NULL, NULL, NULL, NULL),
-(34, 'organizer', 1, 1, 3, 1, 1, NULL, NULL, NULL),
-(35, 'printertype', 1, 1, 4, 1, 1, NULL, 1, 0),
-(36, 'paperformat', 1, 1, 5, 1, 1, NULL, 0, 0),
-(37, 'network', 1, 1, 6, 1, 1, NULL, 0, 0),
-(38, 'sensitivity', 1, 1, 7, 1, 1, NULL, 0, 0),
-(39, 'korpys', 1, 1, 8, 1, 0, NULL, 0, 0),
-(40, 'range', 1, 1, 0, 1, 0, NULL, 0, 0);
+INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`, `show_faq`) VALUES
+(20, 'displaytech', 1, 1, 0, 1, 0, NULL, 1, 1, 0),
+(21, 'razmerekrana', 1, 1, 1, 1, 0, NULL, 1, 0, 0),
+(22, 'hdmi', 1, 1, 2, 1, 0, NULL, 1, 0, 0),
+(23, 'power', 1, 1, 3, 1, 0, NULL, 1, 1, 0),
+(24, 'digitalopticalinput', 1, 1, 4, 1, 1, NULL, 1, 1, 0),
+(25, 'focus', 1, 1, 5, 1, 0, NULL, 1, 0, 0),
+(26, 'megapixel', 1, 1, 6, 1, 0, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_categories`
+-- Структура таблицы `shop_product_properties_categories`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties_categories`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
   `property_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2582,25 +2927,88 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_properties_categories`
+-- Дамп данных таблицы `shop_product_properties_categories`
 --
 
 INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) VALUES
 (20, 36),
 (20, 37),
+(20, 38),
+(20, 39),
+(20, 40),
+(20, 41),
+(20, 43),
+(20, 44),
+(20, 45),
+(20, 46),
+(20, 48),
+(20, 50),
+(20, 51),
+(20, 52),
+(20, 53),
+(20, 54),
+(20, 55),
 (20, 74),
 (20, 75),
+(20, 76),
+(20, 77),
+(20, 79),
+(20, 80),
+(20, 81),
+(20, 82),
+(20, 83),
 (21, 36),
 (21, 37),
+(21, 38),
+(21, 39),
+(21, 40),
+(21, 41),
+(21, 43),
+(21, 44),
+(21, 45),
+(21, 46),
 (21, 48),
+(21, 50),
+(21, 51),
+(21, 52),
+(21, 53),
+(21, 54),
+(21, 55),
 (21, 74),
 (21, 75),
+(21, 76),
+(21, 77),
+(21, 79),
+(21, 80),
+(21, 81),
+(21, 82),
+(21, 83),
 (22, 36),
 (22, 37),
+(22, 38),
+(22, 39),
 (22, 40),
 (22, 41),
+(22, 43),
+(22, 44),
+(22, 45),
+(22, 46),
+(22, 48),
+(22, 50),
+(22, 51),
+(22, 52),
+(22, 53),
+(22, 54),
+(22, 55),
 (22, 74),
 (22, 75),
+(22, 76),
+(22, 77),
+(22, 79),
+(22, 80),
+(22, 81),
+(22, 82),
+(22, 83),
 (23, 36),
 (23, 37),
 (23, 38),
@@ -2608,90 +3016,86 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 (23, 40),
 (23, 41),
 (23, 43),
+(23, 44),
+(23, 45),
+(23, 46),
+(23, 48),
+(23, 50),
+(23, 51),
 (23, 52),
 (23, 53),
 (23, 54),
+(23, 55),
+(23, 74),
 (23, 75),
 (23, 76),
 (23, 77),
+(23, 79),
+(23, 80),
+(23, 81),
+(23, 82),
+(23, 83),
+(24, 36),
+(24, 37),
+(24, 38),
+(24, 39),
 (24, 40),
 (24, 41),
+(24, 43),
+(24, 44),
+(24, 45),
+(24, 46),
+(24, 48),
+(24, 50),
+(24, 51),
 (24, 52),
+(24, 53),
 (24, 54),
+(24, 55),
+(24, 74),
+(24, 75),
+(24, 76),
+(24, 77),
+(24, 79),
+(24, 80),
+(24, 81),
+(24, 82),
+(24, 83),
+(25, 36),
+(25, 37),
+(25, 38),
+(25, 39),
+(25, 40),
+(25, 41),
+(25, 43),
 (25, 44),
 (25, 45),
+(25, 46),
+(25, 48),
+(25, 50),
+(25, 51),
+(25, 52),
+(25, 53),
+(25, 54),
+(25, 55),
+(25, 74),
+(25, 75),
+(25, 76),
+(25, 77),
+(25, 79),
+(25, 80),
+(25, 81),
+(25, 82),
+(25, 83),
 (26, 44),
-(26, 45),
-(28, 36),
-(28, 37),
-(28, 38),
-(28, 39),
-(28, 40),
-(28, 41),
-(28, 52),
-(28, 54),
-(28, 75),
-(28, 76),
-(28, 77),
-(29, 36),
-(29, 37),
-(29, 38),
-(29, 40),
-(29, 41),
-(29, 75),
-(29, 76),
-(29, 77),
-(30, 36),
-(30, 37),
-(30, 38),
-(30, 39),
-(30, 40),
-(30, 41),
-(30, 43),
-(30, 44),
-(30, 45),
-(30, 46),
-(30, 48),
-(30, 50),
-(30, 51),
-(30, 52),
-(30, 53),
-(30, 54),
-(30, 55),
-(30, 74),
-(30, 75),
-(30, 76),
-(30, 77),
-(32, 48),
-(32, 50),
-(33, 48),
-(33, 50),
-(35, 44),
-(35, 46),
-(36, 44),
-(36, 46),
-(37, 44),
-(37, 46),
-(37, 48),
-(37, 50),
-(37, 55),
-(38, 44),
-(38, 45),
-(39, 40),
-(39, 41),
-(39, 43),
-(39, 52),
-(39, 53),
-(40, 48),
-(40, 51);
+(26, 45);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_data`
+-- Структура таблицы `shop_product_properties_data`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties_data`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `property_id` int(11) DEFAULT NULL,
@@ -2702,5318 +3106,1840 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   KEY `shop_product_properties_data_I_1` (`value`(333)),
   KEY `shop_product_properties_data_FI_2` (`product_id`),
   KEY `shop_product_properties_data_FI_1` (`property_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5975 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6300 ;
 
 --
--- Дамп даних таблиці `shop_product_properties_data`
+-- Дамп данных таблицы `shop_product_properties_data`
 --
 
 INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
-(429, 29, 91, 'ASF', 'ru'),
-(428, 28, 91, 'DTS', 'ru'),
-(427, 28, 91, 'AC3', 'ru'),
 (22, 22, 91, 'Да', 'en'),
 (23, 23, 91, '1500 Вт', 'en'),
 (24, 24, 91, '2', 'en'),
-(589, 36, 100, 'A1', 'ru'),
-(365, 30, 95, '12 месяцев', 'ru'),
-(550, 30, 121, '12 месяцев', 'ru'),
-(344, 30, 99, '12 месяцев', 'ru'),
-(446, 30, 97, '24 месяца', 'ru'),
-(795, 22, 71, 'Да', 'ru'),
-(794, 20, 71, 'LED', 'ru'),
-(819, 29, 81, 'WMV', 'ru'),
-(818, 29, 81, 'VOB', 'ru'),
-(817, 29, 81, 'VIDEO_TS', 'ru'),
-(280, 28, 86, 'AC3', 'ru'),
-(324, 28, 88, 'AAC', 'ru'),
-(397, 28, 90, 'AC3', 'ru'),
-(396, 28, 90, 'AAC', 'ru'),
-(450, 30, 98, '12 месяцев', 'ru'),
-(526, 28, 122, 'AAC', 'ru'),
-(551, 28, 124, 'AAC', 'ru'),
-(865, 30, 106, '36 месяцев', 'ru'),
-(669, 28, 78, 'FLAC', 'ru'),
-(703, 28, 79, 'FLAC', 'ru'),
-(259, 28, 84, 'AAC', 'ru'),
-(373, 28, 89, 'AC3', 'ru'),
-(372, 28, 89, 'AAC', 'ru'),
-(565, 33, 105, 'Моноблок', 'ru'),
-(461, 30, 109, '12 месяцев', 'ru'),
-(255, 28, 83, 'MPA', 'ru'),
-(763, 28, 87, 'MPA', 'ru'),
-(762, 28, 87, 'MP3', 'ru'),
-(426, 28, 91, 'AAC', 'ru'),
-(793, 30, 71, '24 месяца', 'ru'),
-(825, 30, 96, '12 месяцев', 'ru'),
-(668, 28, 78, 'DTS', 'ru'),
-(667, 28, 78, 'AC3', 'ru'),
-(666, 28, 78, 'AAC', 'ru'),
-(665, 29, 78, 'WMV', 'ru'),
-(664, 29, 78, 'VOB', 'ru'),
-(663, 29, 78, 'VIDEO_TS', 'ru'),
-(662, 29, 78, 'QT', 'ru'),
-(661, 29, 78, 'MPEG-TS', 'ru'),
-(660, 29, 78, 'MPEG-PS', 'ru'),
-(659, 29, 78, 'MP4', 'ru'),
-(658, 29, 78, 'MOV', 'ru'),
-(657, 29, 78, 'MKV', 'ru'),
-(656, 29, 78, 'M2TS', 'ru'),
-(655, 29, 78, 'DVD-ISO', 'ru'),
-(654, 29, 78, 'Blu-ray-ISO', 'ru'),
-(653, 29, 78, 'BDMV', 'ru'),
-(652, 29, 78, 'AVI', 'ru'),
-(651, 29, 78, 'ASF', 'ru'),
-(650, 30, 78, '12 месяцев', 'ru'),
-(704, 23, 79, '50 Вт', 'ru'),
-(702, 28, 79, 'DTS-WAV', 'ru'),
-(701, 28, 79, 'DTS', 'ru'),
-(700, 28, 79, 'AC3', 'ru'),
-(699, 28, 79, 'AAC', 'ru'),
-(698, 29, 79, 'BDMV', 'ru'),
-(697, 29, 79, 'AVI', 'ru'),
-(816, 29, 81, 'QT', 'ru'),
-(815, 29, 81, 'MPEG-TS', 'ru'),
-(814, 29, 81, 'MPEG-PS', 'ru'),
-(813, 29, 81, 'MP4', 'ru'),
-(812, 29, 81, 'MOV', 'ru'),
-(811, 29, 81, 'MKV', 'ru'),
-(810, 29, 81, 'M2TS', 'ru'),
-(809, 29, 81, 'DVD-ISO', 'ru'),
-(808, 29, 81, 'Blu-ray-ISO', 'ru'),
-(807, 29, 81, 'BDMV', 'ru'),
-(806, 29, 81, 'AVI', 'ru'),
-(805, 29, 81, 'ASF', 'ru'),
-(804, 30, 81, '12 месяцев', 'ru'),
-(227, 28, 82, 'AAC', 'ru'),
-(228, 28, 82, 'AC3', 'ru'),
-(229, 28, 82, 'DTS', 'ru'),
-(230, 28, 82, 'DTS-WAV', 'ru'),
-(231, 28, 82, 'FLAC', 'ru'),
-(232, 28, 82, 'M4A', 'ru'),
-(233, 28, 82, 'MP3', 'ru'),
-(234, 28, 82, 'MPA', 'ru'),
-(235, 28, 82, 'WAV', 'ru'),
-(236, 28, 82, 'WMA', 'ru'),
-(237, 30, 82, '12 месяцев', 'ru'),
-(238, 23, 82, '100 Вт', 'ru'),
-(254, 28, 83, 'MP3', 'ru'),
-(253, 28, 83, 'M4A', 'ru'),
-(252, 28, 83, 'FLAC', 'ru'),
-(251, 28, 83, 'DTS-WAV', 'ru'),
-(250, 28, 83, 'DTS', 'ru'),
-(249, 28, 83, 'AC3', 'ru'),
-(248, 28, 83, 'AAC', 'ru'),
-(256, 28, 83, 'WAV', 'ru'),
-(257, 30, 83, '24 месяца', 'ru'),
-(258, 23, 83, '100 Вт', 'ru'),
-(260, 28, 84, 'AC3', 'ru'),
-(261, 28, 84, 'DTS', 'ru'),
-(262, 28, 84, 'M4A', 'ru'),
-(263, 28, 84, 'MP3', 'ru'),
-(264, 28, 84, 'WAV', 'ru'),
-(265, 28, 84, 'WMA', 'ru'),
-(266, 30, 84, '6 месяцев', 'ru'),
-(267, 23, 84, '40 Вт', 'ru'),
-(268, 28, 85, 'AAC', 'ru'),
-(269, 28, 85, 'AC3', 'ru'),
-(270, 28, 85, 'DTS', 'ru'),
-(271, 28, 85, 'DTS-WAV', 'ru'),
-(272, 28, 85, 'FLAC', 'ru'),
-(273, 28, 85, 'M4A', 'ru'),
-(274, 28, 85, 'MP3', 'ru'),
-(275, 28, 85, 'MPA', 'ru'),
-(276, 28, 85, 'WAV', 'ru'),
-(277, 28, 85, 'WMA', 'ru'),
-(278, 30, 85, '36 месяцев', 'ru'),
-(279, 23, 85, '100 Вт', 'ru'),
-(281, 28, 86, 'DTS', 'ru'),
-(282, 28, 86, 'DTS-WAV', 'ru'),
-(283, 28, 86, 'FLAC', 'ru'),
-(284, 28, 86, 'M4A', 'ru'),
-(285, 28, 86, 'MP3', 'ru'),
-(286, 28, 86, 'MPA', 'ru'),
-(287, 28, 86, 'WAV', 'ru'),
-(288, 28, 86, 'WMA', 'ru'),
-(289, 30, 86, '12 месяцев', 'ru'),
-(290, 23, 86, '50 Вт', 'ru'),
-(761, 28, 87, 'M4A', 'ru'),
-(760, 28, 87, 'FLAC', 'ru'),
-(759, 28, 87, 'DTS-WAV', 'ru'),
-(758, 28, 87, 'DTS', 'ru'),
-(757, 28, 87, 'AC3', 'ru'),
-(756, 28, 87, 'AAC', 'ru'),
-(754, 29, 87, 'WMV', 'ru'),
-(753, 29, 87, 'VOB', 'ru'),
-(752, 29, 87, 'VIDEO_TS', 'ru'),
-(751, 29, 87, 'QT', 'ru'),
-(750, 29, 87, 'MPEG-TS', 'ru'),
-(749, 29, 87, 'MPEG-PS', 'ru'),
-(748, 29, 87, 'MP4', 'ru'),
-(747, 29, 87, 'MOV', 'ru'),
-(746, 29, 87, 'MKV', 'ru'),
-(745, 29, 87, 'M2TS', 'ru'),
-(744, 29, 87, 'DVD-ISO', 'ru'),
-(743, 29, 87, 'Blu-ray-ISO', 'ru'),
-(742, 29, 87, 'BDMV', 'ru'),
-(741, 29, 87, 'AVI', 'ru'),
-(325, 28, 88, 'AC3', 'ru'),
-(326, 28, 88, 'DTS', 'ru'),
-(327, 29, 88, 'ASF', 'ru'),
-(328, 29, 88, 'AVI', 'ru'),
-(329, 29, 88, 'BDMV', 'ru'),
-(330, 29, 88, 'Blu-ray-ISO', 'ru'),
-(331, 29, 88, 'DVD-ISO', 'ru'),
-(332, 29, 88, 'M2TS', 'ru'),
-(333, 29, 88, 'MKV', 'ru'),
-(334, 29, 88, 'MOV', 'ru'),
-(335, 29, 88, 'MP4', 'ru'),
-(336, 29, 88, 'MPEG-PS', 'ru'),
-(337, 29, 88, 'MPEG-TS', 'ru'),
-(338, 29, 88, 'QT', 'ru'),
-(339, 29, 88, 'VIDEO_TS', 'ru'),
-(340, 30, 88, '12 месяцев', 'ru'),
-(341, 39, 88, 'Метал', 'ru'),
-(342, 22, 88, 'Да', 'ru'),
-(343, 23, 88, '100 Вт', 'ru'),
-(345, 38, 99, '80~3200 ISO', 'ru'),
-(346, 25, 99, 'Да', 'ru'),
-(347, 26, 99, '15 Мп', 'ru'),
-(588, 35, 100, 'Лазерная печать (цветная)', 'ru'),
-(587, 30, 100, '36 месяцев', 'ru'),
-(360, 35, 101, 'Лазерная печать', 'ru'),
-(359, 30, 101, '12 месяцев', 'ru'),
-(361, 36, 101, 'A3', 'ru'),
-(362, 36, 101, 'A4', 'ru'),
-(363, 37, 101, 'Bluetooth', 'ru'),
-(364, 37, 101, 'Wi-Fi', 'ru'),
-(366, 38, 95, 'Авто', 'ru'),
-(367, 38, 95, '1600', 'ru'),
-(368, 38, 95, '3200', 'ru'),
-(369, 38, 95, '6400', 'ru'),
+(6141, 23, 83, '100 Вт', 'ru'),
+(6258, 25, 71, 'Да', 'ru'),
+(6257, 24, 71, '3', 'ru'),
+(6133, 21, 82, '17', 'ru'),
+(6134, 22, 82, 'Нет', 'ru'),
+(6135, 23, 82, '100 Вт', 'ru'),
+(6136, 24, 82, '1', 'ru'),
+(6137, 25, 82, 'Да', 'ru'),
+(6139, 21, 83, '17', 'ru'),
+(6140, 22, 83, 'Нет', 'ru'),
+(5990, 23, 79, '50 Вт', 'ru'),
+(6084, 26, 96, '15 Мп', 'ru'),
+(6132, 20, 82, 'LCD', 'ru'),
+(6138, 20, 83, 'LED', 'ru'),
+(6145, 20, 84, 'LED', 'ru'),
+(6151, 20, 85, 'LCD', 'ru'),
+(6157, 20, 86, 'LED', 'ru'),
+(6215, 21, 101, '19', 'ru'),
+(6204, 20, 99, 'Plasma', 'ru'),
+(6205, 21, 99, '19', 'ru'),
+(6206, 22, 99, 'Нет', 'ru'),
+(6207, 24, 99, '1', 'ru'),
+(6208, 25, 99, 'Нет', 'ru'),
+(6209, 20, 100, 'LED', 'ru'),
+(6210, 21, 100, '40', 'ru'),
+(6211, 22, 100, 'Да', 'ru'),
+(6212, 24, 100, '3', 'ru'),
+(6213, 25, 100, 'Да', 'ru'),
+(6214, 20, 101, 'LED', 'ru'),
 (370, 25, 95, 'Да', 'ru'),
 (371, 26, 95, '12 Мп', 'ru'),
-(374, 28, 89, 'DTS', 'ru'),
-(375, 28, 89, 'M4A', 'ru'),
-(376, 28, 89, 'MP3', 'ru'),
-(377, 28, 89, 'MPA', 'ru'),
-(378, 28, 89, 'WAV', 'ru'),
-(379, 29, 89, 'ASF', 'ru'),
-(380, 29, 89, 'AVI', 'ru'),
-(381, 29, 89, 'BDMV', 'ru'),
-(382, 29, 89, 'Blu-ray-ISO', 'ru'),
-(383, 29, 89, 'DVD-ISO', 'ru'),
-(384, 29, 89, 'M2TS', 'ru'),
-(385, 29, 89, 'MKV', 'ru'),
-(386, 29, 89, 'MOV', 'ru'),
-(387, 29, 89, 'MP4', 'ru'),
-(388, 29, 89, 'MPEG-PS', 'ru'),
-(389, 29, 89, 'MPEG-TS', 'ru'),
-(390, 29, 89, 'QT', 'ru'),
-(391, 30, 89, '12 месяцев', 'ru'),
-(392, 39, 89, 'Метал', 'ru'),
-(393, 22, 89, 'Да', 'ru'),
-(394, 23, 89, '100 Вт', 'ru'),
-(395, 24, 89, '2', 'ru'),
-(398, 28, 90, 'DTS', 'ru'),
-(399, 28, 90, 'DTS-WAV', 'ru'),
-(400, 28, 90, 'FLAC', 'ru'),
-(401, 28, 90, 'M4A', 'ru'),
-(402, 28, 90, 'MP3', 'ru'),
-(403, 28, 90, 'MPA', 'ru'),
-(404, 28, 90, 'WAV', 'ru'),
-(405, 28, 90, 'WMA', 'ru'),
-(406, 29, 90, 'ASF', 'ru'),
-(407, 29, 90, 'AVI', 'ru'),
-(408, 29, 90, 'BDMV', 'ru'),
-(409, 29, 90, 'Blu-ray-ISO', 'ru'),
-(410, 29, 90, 'DVD-ISO', 'ru'),
-(411, 29, 90, 'M2TS', 'ru'),
-(412, 29, 90, 'MKV', 'ru'),
-(413, 29, 90, 'MOV', 'ru'),
-(414, 29, 90, 'MP4', 'ru'),
-(415, 29, 90, 'MPEG-PS', 'ru'),
-(416, 29, 90, 'MPEG-TS', 'ru'),
-(417, 29, 90, 'QT', 'ru'),
-(418, 29, 90, 'VIDEO_TS', 'ru'),
-(419, 29, 90, 'VOB', 'ru'),
-(420, 29, 90, 'WMV', 'ru'),
-(421, 30, 90, '12 месяцев', 'ru'),
-(422, 39, 90, 'Метал', 'ru'),
-(423, 22, 90, 'Да', 'ru'),
-(424, 23, 90, '100 Вт', 'ru'),
-(425, 24, 90, '1', 'ru'),
-(430, 29, 91, 'AVI', 'ru'),
-(431, 29, 91, 'BDMV', 'ru'),
-(432, 30, 91, '36 месяцев', 'ru'),
-(433, 39, 91, 'Пластик', 'ru'),
-(434, 22, 91, 'Нет', 'ru'),
-(435, 23, 91, '100 Вт', 'ru'),
-(436, 24, 91, '1', 'ru'),
-(437, 30, 92, '36 месяцев', 'ru'),
-(438, 39, 92, 'Метал', 'ru'),
-(439, 23, 92, '100 Вт', 'ru'),
-(440, 30, 93, '12 месяцев', 'ru'),
-(441, 39, 93, 'Пластик', 'ru'),
+(6299, 25, 89, 'Нет', 'ru'),
+(6298, 24, 89, '12', 'ru'),
+(6296, 24, 89, '10', 'ru'),
+(6297, 24, 89, '11', 'ru'),
+(6183, 22, 90, 'Нет', 'ru'),
+(6182, 21, 90, '21', 'ru'),
+(6181, 20, 90, 'LCD', 'ru'),
+(6189, 22, 91, 'Да', 'ru'),
+(6188, 21, 91, '17', 'ru'),
+(6187, 20, 91, 'Plasma', 'ru'),
+(6283, 23, 92, '100 Вт', 'ru'),
 (442, 23, 93, '80 Вт', 'ru'),
-(443, 30, 94, '24 месяца', 'ru'),
-(444, 39, 94, 'Метал', 'ru'),
 (445, 23, 94, '100 Вт', 'ru'),
-(447, 38, 97, '80~3200 ISO', 'ru'),
-(448, 25, 97, 'Да', 'ru'),
-(449, 26, 97, '15 Мп', 'ru'),
-(451, 38, 98, 'Авто', 'ru'),
-(452, 38, 98, '1600', 'ru'),
-(453, 38, 98, '3200', 'ru'),
-(454, 38, 98, '6400', 'ru'),
-(455, 25, 98, 'Да', 'ru'),
-(456, 26, 98, '10 Мп', 'ru'),
-(457, 30, 111, '12 месяцев', 'ru'),
-(458, 40, 111, '10 м', 'ru'),
-(459, 30, 110, '24 месяца', 'ru'),
-(460, 40, 110, '20 м', 'ru'),
-(462, 33, 109, 'Моноблок', 'ru'),
-(469, 40, 108, '5 м', 'ru'),
-(468, 30, 108, '12 месяцев', 'ru'),
-(471, 30, 107, '24 месяца', 'ru'),
-(472, 40, 107, '3 м', 'ru'),
-(864, 37, 106, 'Bluetooth', 'ru'),
-(564, 30, 105, '12 месяцев', 'ru'),
-(874, 35, 104, 'Лазерная печать (цветная)', 'ru'),
-(871, 36, 103, 'A3', 'ru'),
-(870, 35, 103, 'Струйная печать', 'ru'),
-(867, 36, 102, 'A3', 'ru'),
-(507, 39, 118, 'Дерево', 'ru'),
-(506, 30, 118, '36 месяцев', 'ru'),
-(505, 23, 119, '40 Вт', 'ru'),
-(504, 39, 119, 'Метал', 'ru'),
-(503, 30, 119, '12 месяцев', 'ru'),
-(502, 30, 120, '12 месяцев', 'ru'),
+(6194, 21, 97, '19', 'ru'),
+(6193, 20, 97, 'LCD', 'ru'),
+(6199, 21, 98, '19', 'ru'),
+(6198, 20, 98, 'LCD', 'ru'),
 (508, 23, 118, '100 Вт', 'ru'),
-(509, 30, 117, '12 месяцев', 'ru'),
-(510, 39, 117, 'Пластик', 'ru'),
 (511, 23, 117, '40 Вт', 'ru'),
-(512, 30, 116, '24 месяца', 'ru'),
-(513, 39, 116, 'Дерево', 'ru'),
 (514, 23, 116, '40 Вт', 'ru'),
-(515, 30, 115, '12 месяцев', 'ru'),
-(516, 39, 115, 'Дерево', 'ru'),
 (517, 23, 115, '40 Вт', 'ru'),
-(518, 30, 114, '12 месяцев', 'ru'),
-(519, 40, 114, '5 м', 'ru'),
-(520, 30, 113, '12 месяцев', 'ru'),
-(521, 40, 113, '2 м', 'ru'),
-(522, 30, 112, '12 месяцев', 'ru'),
-(523, 40, 112, '5 м', 'ru'),
-(525, 30, 123, '12 месяцев', 'ru'),
-(527, 28, 122, 'AC3', 'ru'),
-(528, 28, 122, 'DTS', 'ru'),
-(529, 28, 122, 'DTS-WAV', 'ru'),
-(530, 28, 122, 'FLAC', 'ru'),
-(531, 28, 122, 'M4A', 'ru'),
-(532, 28, 122, 'MP3', 'ru'),
-(533, 28, 122, 'MPA', 'ru'),
-(534, 28, 122, 'WAV', 'ru'),
-(535, 28, 122, 'WMA', 'ru'),
-(536, 30, 122, '12 месяцев', 'ru'),
 (537, 23, 122, '100 Вт', 'ru'),
 (538, 24, 122, '4', 'ru'),
-(5974, 30, 185, '12 месяцев', 'ru'),
-(5973, 37, 185, 'Wi-Fi', 'ru'),
-(5972, 37, 185, 'Ethernet', 'ru'),
-(552, 28, 124, 'AC3', 'ru'),
-(553, 28, 124, 'DTS', 'ru'),
-(554, 28, 124, 'DTS-WAV', 'ru'),
-(555, 28, 124, 'FLAC', 'ru'),
-(556, 28, 124, 'M4A', 'ru'),
-(557, 28, 124, 'MP3', 'ru'),
-(558, 28, 124, 'MPA', 'ru'),
-(559, 28, 124, 'WAV', 'ru'),
-(560, 28, 124, 'WMA', 'ru'),
-(561, 30, 124, '36 месяцев', 'ru'),
 (562, 23, 124, '100 Вт', 'ru'),
 (563, 24, 124, '2', 'ru'),
-(866, 35, 102, 'Лазерная печать', 'ru'),
-(824, 38, 96, '80~3200 ISO', 'ru'),
-(5970, 33, 185, 'Сенсор', 'ru'),
-(590, 36, 100, 'A2', 'ru'),
-(591, 36, 100, 'A3', 'ru'),
-(592, 36, 100, 'A4', 'ru'),
-(593, 37, 100, 'Wi-Fi', 'ru'),
-(613, 22, 186, 'Да', 'ru'),
-(612, 21, 186, '32', 'ru'),
-(610, 30, 186, '24 месяца', 'ru'),
-(611, 20, 186, 'LED', 'ru'),
+(6083, 25, 96, 'Да', 'ru'),
+(6222, 22, 186, 'Да', 'ru'),
+(6221, 21, 186, '32', 'ru'),
+(6220, 20, 186, 'LED', 'ru'),
 (641, 22, 187, 'Да', 'ru'),
 (640, 21, 187, '40', 'ru'),
-(638, 30, 187, '24 месяца', 'ru'),
 (639, 20, 187, 'LED', 'ru'),
-(648, 21, 188, '32', 'ru'),
-(647, 20, 188, 'LED', 'ru'),
-(646, 30, 188, '24 месяца', 'ru'),
-(649, 22, 188, 'Да', 'ru'),
-(670, 28, 78, 'M4A', 'ru'),
-(671, 28, 78, 'MP3', 'ru'),
-(672, 28, 78, 'WAV', 'ru'),
-(673, 28, 78, 'WMA', 'ru'),
-(674, 23, 78, '100 Вт', 'ru'),
-(696, 29, 79, 'ASF', 'ru'),
-(695, 30, 79, '12 месяцев', 'ru'),
-(740, 29, 87, 'ASF', 'ru'),
-(738, 30, 87, '12 месяцев', 'ru'),
-(737, 39, 87, 'Дерево', 'ru'),
-(764, 28, 87, 'WAV', 'ru'),
-(765, 28, 87, 'WMA', 'ru'),
-(766, 22, 87, 'Да', 'ru'),
-(767, 23, 87, '100 Вт', 'ru'),
-(768, 24, 87, '2', 'ru'),
-(859, 22, 189, 'Нет', 'ru'),
-(858, 21, 189, '40', 'ru'),
-(857, 20, 189, 'Plasma', 'ru'),
-(820, 28, 81, 'AAC', 'ru'),
-(821, 28, 81, 'AC3', 'ru'),
-(822, 28, 81, 'DTS', 'ru'),
+(6239, 22, 188, 'Да', 'ru'),
+(6237, 20, 188, 'LED', 'ru'),
+(6238, 21, 188, '23', 'ru'),
+(6286, 24, 92, '9', 'ru'),
+(6285, 24, 92, '5', 'ru'),
+(6264, 25, 78, 'Нет', 'ru'),
+(6263, 24, 78, '2', 'ru'),
+(6262, 23, 78, '100 Вт', 'ru'),
+(6259, 20, 78, 'LED', 'ru'),
+(6260, 21, 78, '39', 'ru'),
+(6261, 22, 78, 'Да', 'ru'),
+(6280, 22, 189, 'Нет', 'ru'),
+(6278, 20, 189, 'Plasma', 'ru'),
+(6279, 21, 189, '34', 'ru'),
 (823, 23, 81, '50 Вт', 'ru'),
-(826, 25, 96, 'Да', 'ru'),
-(827, 26, 96, '15 Мп', 'ru'),
-(834, 21, 190, '40', 'ru'),
-(833, 20, 190, 'LCD', 'ru'),
-(832, 30, 190, '36 месяцев', 'ru'),
-(835, 22, 190, 'Нет', 'ru'),
-(842, 21, 191, '21', 'ru'),
-(841, 20, 191, 'LCD', 'ru'),
-(840, 30, 191, '24 месяца', 'ru'),
-(843, 22, 191, 'Да', 'ru'),
-(856, 30, 189, '24 месяца', 'ru'),
-(869, 30, 102, '12 месяцев', 'ru'),
-(872, 37, 103, 'Wi-Fi', 'ru'),
-(873, 30, 103, '36 месяцев', 'ru'),
-(875, 36, 104, 'A4', 'ru'),
-(876, 37, 104, 'Ethernet', 'ru'),
+(6275, 22, 190, 'Нет', 'ru'),
+(6276, 24, 190, '5', 'ru'),
+(6277, 24, 190, '7', 'ru'),
+(6281, 24, 189, '3', 'ru'),
+(6282, 24, 189, '8', 'ru'),
+(6267, 22, 191, 'Да', 'ru'),
+(6268, 24, 191, '6', 'ru'),
+(6269, 24, 191, '7', 'ru'),
+(6270, 24, 191, '8', 'ru'),
+(6271, 24, 191, '9', 'ru'),
+(6272, 25, 191, 'Да', 'ru'),
 (877, 23, NULL, '100 Вт', 'ru'),
-(878, 28, NULL, 'FLAC', 'ru'),
-(879, 29, NULL, 'WMV', 'ru'),
-(880, 30, NULL, '12 месяцев', 'ru'),
 (881, 23, NULL, '50 Вт', 'ru'),
-(882, 28, NULL, 'FLAC', 'ru'),
-(883, 29, NULL, 'BDMV', 'ru'),
-(884, 30, NULL, '12 месяцев', 'ru'),
 (885, 23, NULL, '50 Вт', 'ru'),
-(886, 28, NULL, 'AAC', 'ru'),
-(887, 29, NULL, 'WMV', 'ru'),
-(888, 30, NULL, '12 месяцев', 'ru'),
 (889, 23, NULL, '100 Вт', 'ru'),
-(890, 28, NULL, 'AAC', 'ru'),
-(891, 30, NULL, '12 месяцев', 'ru'),
 (892, 23, NULL, '100 Вт', 'ru'),
-(893, 28, NULL, 'MPA', 'ru'),
-(894, 30, NULL, '24 месяца', 'ru'),
 (895, 23, NULL, '40 Вт', 'ru'),
-(896, 28, NULL, 'AAC', 'ru'),
-(897, 30, NULL, '6 месяцев', 'ru'),
 (898, 23, NULL, '100 Вт', 'ru'),
-(899, 28, NULL, 'AAC', 'ru'),
-(900, 30, NULL, '36 месяцев', 'ru'),
 (901, 23, NULL, '50 Вт', 'ru'),
-(902, 28, NULL, 'AC3', 'ru'),
-(903, 30, NULL, '12 месяцев', 'ru'),
 (904, 23, NULL, '50 Вт', 'ru'),
-(905, 28, NULL, 'AC3', 'ru'),
-(906, 30, NULL, '12 месяцев', 'ru'),
 (907, 22, NULL, 'Да', 'ru'),
 (908, 23, NULL, '100 Вт', 'ru'),
 (909, 24, NULL, '2', 'ru'),
-(910, 28, NULL, 'MPA', 'ru'),
-(911, 29, NULL, 'WMV', 'ru'),
-(912, 30, NULL, '12 месяцев', 'ru'),
-(913, 39, NULL, 'Дерево', 'ru'),
 (914, 22, NULL, 'Да', 'ru'),
 (915, 23, NULL, '100 Вт', 'ru'),
-(916, 28, NULL, 'AAC', 'ru'),
-(917, 29, NULL, 'ASF', 'ru'),
-(918, 30, NULL, '12 месяцев', 'ru'),
-(919, 39, NULL, 'Метал', 'ru'),
 (920, 22, NULL, 'Да', 'ru'),
 (921, 23, NULL, '100 Вт', 'ru'),
 (922, 24, NULL, '2', 'ru'),
-(923, 28, NULL, 'AC3', 'ru'),
-(924, 29, NULL, 'ASF', 'ru'),
-(925, 30, NULL, '12 месяцев', 'ru'),
-(926, 39, NULL, 'Метал', 'ru'),
 (927, 22, NULL, 'Да', 'ru'),
 (928, 23, NULL, '100 Вт', 'ru'),
 (929, 24, NULL, '1', 'ru'),
-(930, 28, NULL, 'AC3', 'ru'),
-(931, 29, NULL, 'ASF', 'ru'),
-(932, 30, NULL, '12 месяцев', 'ru'),
-(933, 39, NULL, 'Метал', 'ru'),
 (934, 22, NULL, 'Да', 'ru'),
 (935, 23, NULL, '1500 Вт', 'ru'),
 (936, 24, NULL, '2', 'ru'),
-(937, 28, NULL, 'DTS', 'ru'),
-(938, 29, NULL, 'ASF', 'ru'),
-(939, 30, NULL, '36 месяцев', 'ru'),
-(940, 39, NULL, 'Пластик', 'ru'),
 (941, 23, NULL, '100 Вт', 'ru'),
-(942, 30, NULL, '36 месяцев', 'ru'),
-(943, 39, NULL, 'Метал', 'ru'),
 (944, 23, NULL, '80 Вт', 'ru'),
-(945, 30, NULL, '12 месяцев', 'ru'),
-(946, 39, NULL, 'Пластик', 'ru'),
 (947, 23, NULL, '100 Вт', 'ru'),
-(948, 30, NULL, '24 месяца', 'ru'),
-(949, 39, NULL, 'Метал', 'ru'),
 (950, 25, NULL, 'Да', 'ru'),
 (951, 26, NULL, '15 Мп', 'ru'),
-(952, 30, NULL, '12 месяцев', 'ru'),
-(953, 38, NULL, '80~3200 ISO', 'ru'),
 (954, 25, NULL, 'Да', 'ru'),
 (955, 26, NULL, '12 Мп', 'ru'),
-(956, 30, NULL, '12 месяцев', 'ru'),
-(957, 38, NULL, 'Авто', 'ru'),
 (958, 25, NULL, 'Да', 'ru'),
 (959, 26, NULL, '15 Мп', 'ru'),
-(960, 30, NULL, '24 месяца', 'ru'),
-(961, 38, NULL, '80~3200 ISO', 'ru'),
 (962, 25, NULL, 'Да', 'ru'),
 (963, 26, NULL, '10 Мп', 'ru'),
-(964, 30, NULL, '12 месяцев', 'ru'),
-(965, 38, NULL, 'Авто', 'ru'),
 (966, 25, NULL, 'Да', 'ru'),
 (967, 26, NULL, '15 Мп', 'ru'),
-(968, 30, NULL, '12 месяцев', 'ru'),
-(969, 38, NULL, '80~3200 ISO', 'ru'),
-(970, 30, NULL, '36 месяцев', 'ru'),
-(971, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(972, 36, NULL, 'A1', 'ru'),
-(973, 37, NULL, 'Wi-Fi', 'ru'),
-(974, 30, NULL, '36 месяцев', 'ru'),
-(975, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(976, 36, NULL, 'A1', 'ru'),
-(977, 37, NULL, 'Wi-Fi', 'ru'),
-(978, 30, NULL, '12 месяцев', 'ru'),
-(979, 35, NULL, 'Лазерная печать', 'ru'),
-(980, 36, NULL, 'A3', 'ru'),
-(981, 37, NULL, 'Bluetooth', 'ru'),
-(982, 30, NULL, '12 месяцев', 'ru'),
-(983, 35, NULL, 'Лазерная печать', 'ru'),
-(984, 36, NULL, 'A3', 'ru'),
-(985, 30, NULL, '36 месяцев', 'ru'),
-(986, 35, NULL, 'Струйная печать', 'ru'),
-(987, 36, NULL, 'A3', 'ru'),
-(988, 37, NULL, 'Wi-Fi', 'ru'),
-(989, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(990, 36, NULL, 'A4', 'ru'),
-(991, 37, NULL, 'Ethernet', 'ru'),
-(992, 30, NULL, '12 месяцев', 'ru'),
-(993, 33, NULL, 'Моноблок', 'ru'),
-(994, 30, NULL, '36 месяцев', 'ru'),
-(995, 37, NULL, 'Bluetooth', 'ru'),
-(996, 30, NULL, '12 месяцев', 'ru'),
-(997, 33, NULL, 'Моноблок', 'ru'),
-(998, 30, NULL, '12 месяцев', 'ru'),
-(999, 32, NULL, '2 ГГц', 'ru'),
-(1000, 33, NULL, 'Сенсор', 'ru'),
-(1001, 37, NULL, 'Ethernet', 'ru'),
-(1002, 30, NULL, '24 месяца', 'ru'),
-(1003, 40, NULL, '3 м', 'ru'),
-(1004, 30, NULL, '12 месяцев', 'ru'),
-(1005, 40, NULL, '5 м', 'ru'),
-(1006, 30, NULL, '24 месяца', 'ru'),
-(1007, 40, NULL, '20 м', 'ru'),
-(1008, 30, NULL, '24 месяца', 'ru'),
-(1009, 40, NULL, '20 м', 'ru'),
-(1010, 30, NULL, '12 месяцев', 'ru'),
-(1011, 40, NULL, '10 м', 'ru'),
-(1012, 30, NULL, '12 месяцев', 'ru'),
-(1013, 40, NULL, '5 м', 'ru'),
-(1014, 30, NULL, '12 месяцев', 'ru'),
-(1015, 40, NULL, '2 м', 'ru'),
-(1016, 30, NULL, '12 месяцев', 'ru'),
-(1017, 40, NULL, '5 м', 'ru'),
 (1018, 23, NULL, '40 Вт', 'ru'),
-(1019, 30, NULL, '12 месяцев', 'ru'),
-(1020, 39, NULL, 'Дерево', 'ru'),
 (1021, 23, NULL, '40 Вт', 'ru'),
-(1022, 30, NULL, '24 месяца', 'ru'),
-(1023, 39, NULL, 'Дерево', 'ru'),
 (1024, 23, NULL, '40 Вт', 'ru'),
-(1025, 30, NULL, '12 месяцев', 'ru'),
-(1026, 39, NULL, 'Пластик', 'ru'),
 (1027, 23, NULL, '100 Вт', 'ru'),
-(1028, 30, NULL, '36 месяцев', 'ru'),
-(1029, 39, NULL, 'Дерево', 'ru'),
 (1030, 23, NULL, '40 Вт', 'ru'),
-(1031, 30, NULL, '12 месяцев', 'ru'),
-(1032, 39, NULL, 'Метал', 'ru'),
-(1033, 30, NULL, '12 месяцев', 'ru'),
-(1034, 30, NULL, '12 месяцев', 'ru'),
 (1035, 23, NULL, '100 Вт', 'ru'),
 (1036, 24, NULL, '4', 'ru'),
-(1037, 28, NULL, 'AAC', 'ru'),
-(1038, 30, NULL, '12 месяцев', 'ru'),
-(1039, 30, NULL, '12 месяцев', 'ru'),
 (1040, 23, NULL, '100 Вт', 'ru'),
 (1041, 24, NULL, '2', 'ru'),
-(1042, 28, NULL, 'AAC', 'ru'),
-(1043, 30, NULL, '36 месяцев', 'ru'),
 (1044, 20, NULL, 'LED', 'ru'),
 (1045, 22, NULL, 'Да', 'ru'),
-(1046, 30, NULL, '24 месяца', 'ru'),
 (1047, 20, NULL, 'LED', 'ru'),
 (1048, 21, NULL, '32', 'ru'),
 (1049, 22, NULL, 'Да', 'ru'),
-(1050, 30, NULL, '24 месяца', 'ru'),
 (1051, 20, NULL, 'LED', 'ru'),
 (1052, 21, NULL, '40', 'ru'),
 (1053, 22, NULL, 'Да', 'ru'),
-(1054, 30, NULL, '24 месяца', 'ru'),
 (1055, 20, NULL, 'LED', 'ru'),
 (1056, 21, NULL, '32', 'ru'),
 (1057, 22, NULL, 'Да', 'ru'),
-(1058, 30, NULL, '24 месяца', 'ru'),
 (1059, 20, NULL, 'Plasma', 'ru'),
 (1060, 21, NULL, '40', 'ru'),
 (1061, 22, NULL, 'Нет', 'ru'),
-(1062, 30, NULL, '24 месяца', 'ru'),
 (1063, 20, NULL, 'LCD', 'ru'),
 (1064, 21, NULL, '40', 'ru'),
 (1065, 22, NULL, 'Нет', 'ru'),
-(1066, 30, NULL, '36 месяцев', 'ru'),
 (1067, 20, NULL, 'LCD', 'ru'),
 (1068, 21, NULL, '21', 'ru'),
 (1069, 22, NULL, 'Да', 'ru'),
-(1070, 30, NULL, '24 месяца', 'ru'),
 (1071, 23, NULL, '100 Вт', 'ru'),
-(1072, 28, NULL, 'FLAC', 'ru'),
-(1073, 29, NULL, 'WMV', 'ru'),
-(1074, 30, NULL, '12 месяцев', 'ru'),
 (1075, 23, NULL, '50 Вт', 'ru'),
-(1076, 28, NULL, 'FLAC', 'ru'),
-(1077, 29, NULL, 'BDMV', 'ru'),
-(1078, 30, NULL, '12 месяцев', 'ru'),
 (1079, 23, NULL, '50 Вт', 'ru'),
-(1080, 28, NULL, 'AAC', 'ru'),
-(1081, 29, NULL, 'WMV', 'ru'),
-(1082, 30, NULL, '12 месяцев', 'ru'),
 (1083, 23, NULL, '100 Вт', 'ru'),
-(1084, 28, NULL, 'AAC', 'ru'),
-(1085, 30, NULL, '12 месяцев', 'ru'),
 (1086, 23, NULL, '100 Вт', 'ru'),
-(1087, 28, NULL, 'MPA', 'ru'),
-(1088, 30, NULL, '24 месяца', 'ru'),
 (1089, 23, NULL, '40 Вт', 'ru'),
-(1090, 28, NULL, 'AAC', 'ru'),
-(1091, 30, NULL, '6 месяцев', 'ru'),
 (1092, 23, NULL, '100 Вт', 'ru'),
-(1093, 28, NULL, 'AAC', 'ru'),
-(1094, 30, NULL, '36 месяцев', 'ru'),
 (1095, 23, NULL, '50 Вт', 'ru'),
-(1096, 28, NULL, 'AC3', 'ru'),
-(1097, 30, NULL, '12 месяцев', 'ru'),
 (1098, 23, NULL, '50 Вт', 'ru'),
-(1099, 28, NULL, 'AC3', 'ru'),
-(1100, 30, NULL, '12 месяцев', 'ru'),
 (1101, 22, NULL, 'Да', 'ru'),
 (1102, 23, NULL, '100 Вт', 'ru'),
 (1103, 24, NULL, '2', 'ru'),
-(1104, 28, NULL, 'MPA', 'ru'),
-(1105, 29, NULL, 'WMV', 'ru'),
-(1106, 30, NULL, '12 месяцев', 'ru'),
-(1107, 39, NULL, 'Дерево', 'ru'),
 (1108, 22, NULL, 'Да', 'ru'),
 (1109, 23, NULL, '100 Вт', 'ru'),
-(1110, 28, NULL, 'AAC', 'ru'),
-(1111, 29, NULL, 'ASF', 'ru'),
-(1112, 30, NULL, '12 месяцев', 'ru'),
-(1113, 39, NULL, 'Метал', 'ru'),
 (1114, 22, NULL, 'Да', 'ru'),
 (1115, 23, NULL, '100 Вт', 'ru'),
 (1116, 24, NULL, '2', 'ru'),
-(1117, 28, NULL, 'AC3', 'ru'),
-(1118, 29, NULL, 'ASF', 'ru'),
-(1119, 30, NULL, '12 месяцев', 'ru'),
-(1120, 39, NULL, 'Метал', 'ru'),
 (1121, 22, NULL, 'Да', 'ru'),
 (1122, 23, NULL, '100 Вт', 'ru'),
 (1123, 24, NULL, '1', 'ru'),
-(1124, 28, NULL, 'AC3', 'ru'),
-(1125, 29, NULL, 'ASF', 'ru'),
-(1126, 30, NULL, '12 месяцев', 'ru'),
-(1127, 39, NULL, 'Метал', 'ru'),
 (1128, 22, NULL, 'Да', 'ru'),
 (1129, 23, NULL, '1500 Вт', 'ru'),
 (1130, 24, NULL, '2', 'ru'),
-(1131, 28, NULL, 'DTS', 'ru'),
-(1132, 29, NULL, 'ASF', 'ru'),
-(1133, 30, NULL, '36 месяцев', 'ru'),
-(1134, 39, NULL, 'Пластик', 'ru'),
 (1135, 23, NULL, '100 Вт', 'ru'),
-(1136, 30, NULL, '36 месяцев', 'ru'),
-(1137, 39, NULL, 'Метал', 'ru'),
 (1138, 23, NULL, '80 Вт', 'ru'),
-(1139, 30, NULL, '12 месяцев', 'ru'),
-(1140, 39, NULL, 'Пластик', 'ru'),
 (1141, 23, NULL, '100 Вт', 'ru'),
-(1142, 30, NULL, '24 месяца', 'ru'),
-(1143, 39, NULL, 'Метал', 'ru'),
 (1144, 25, NULL, 'Да', 'ru'),
 (1145, 26, NULL, '15 Мп', 'ru'),
-(1146, 30, NULL, '12 месяцев', 'ru'),
-(1147, 38, NULL, '80~3200 ISO', 'ru'),
 (1148, 25, NULL, 'Да', 'ru'),
 (1149, 26, NULL, '12 Мп', 'ru'),
-(1150, 30, NULL, '12 месяцев', 'ru'),
-(1151, 38, NULL, 'Авто', 'ru'),
 (1152, 25, NULL, 'Да', 'ru'),
 (1153, 26, NULL, '15 Мп', 'ru'),
-(1154, 30, NULL, '24 месяца', 'ru'),
-(1155, 38, NULL, '80~3200 ISO', 'ru'),
 (1156, 25, NULL, 'Да', 'ru'),
 (1157, 26, NULL, '10 Мп', 'ru'),
-(1158, 30, NULL, '12 месяцев', 'ru'),
-(1159, 38, NULL, 'Авто', 'ru'),
 (1160, 25, NULL, 'Да', 'ru'),
 (1161, 26, NULL, '15 Мп', 'ru'),
-(1162, 30, NULL, '12 месяцев', 'ru'),
-(1163, 38, NULL, '80~3200 ISO', 'ru'),
-(1164, 30, NULL, '36 месяцев', 'ru'),
-(1165, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1166, 36, NULL, 'A1', 'ru'),
-(1167, 37, NULL, 'Wi-Fi', 'ru'),
-(1168, 30, NULL, '36 месяцев', 'ru'),
-(1169, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1170, 36, NULL, 'A1', 'ru'),
-(1171, 37, NULL, 'Wi-Fi', 'ru'),
-(1172, 30, NULL, '12 месяцев', 'ru'),
-(1173, 35, NULL, 'Лазерная печать', 'ru'),
-(1174, 36, NULL, 'A3', 'ru'),
-(1175, 37, NULL, 'Bluetooth', 'ru'),
-(1176, 30, NULL, '12 месяцев', 'ru'),
-(1177, 35, NULL, 'Лазерная печать', 'ru'),
-(1178, 36, NULL, 'A3', 'ru'),
-(1179, 30, NULL, '36 месяцев', 'ru'),
-(1180, 35, NULL, 'Струйная печать', 'ru'),
-(1181, 36, NULL, 'A3', 'ru'),
-(1182, 37, NULL, 'Wi-Fi', 'ru'),
-(1183, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1184, 36, NULL, 'A4', 'ru'),
-(1185, 37, NULL, 'Ethernet', 'ru'),
-(1186, 30, NULL, '12 месяцев', 'ru'),
-(1187, 33, NULL, 'Моноблок', 'ru'),
-(1188, 30, NULL, '36 месяцев', 'ru'),
-(1189, 37, NULL, 'Bluetooth', 'ru'),
-(1190, 30, NULL, '12 месяцев', 'ru'),
-(1191, 33, NULL, 'Моноблок', 'ru'),
-(1192, 30, NULL, '12 месяцев', 'ru'),
-(1193, 32, NULL, '2 ГГц', 'ru'),
-(1194, 33, NULL, 'Сенсор', 'ru'),
-(1195, 37, NULL, 'Ethernet', 'ru'),
-(1196, 30, NULL, '24 месяца', 'ru'),
-(1197, 40, NULL, '3 м', 'ru'),
-(1198, 30, NULL, '12 месяцев', 'ru'),
-(1199, 40, NULL, '5 м', 'ru'),
-(1200, 30, NULL, '24 месяца', 'ru'),
-(1201, 40, NULL, '20 м', 'ru'),
-(1202, 30, NULL, '24 месяца', 'ru'),
-(1203, 40, NULL, '20 м', 'ru'),
-(1204, 30, NULL, '12 месяцев', 'ru'),
-(1205, 40, NULL, '10 м', 'ru'),
-(1206, 30, NULL, '12 месяцев', 'ru'),
-(1207, 40, NULL, '5 м', 'ru'),
-(1208, 30, NULL, '12 месяцев', 'ru'),
-(1209, 40, NULL, '2 м', 'ru'),
-(1210, 30, NULL, '12 месяцев', 'ru'),
-(1211, 40, NULL, '5 м', 'ru'),
 (1212, 23, NULL, '40 Вт', 'ru'),
-(1213, 30, NULL, '12 месяцев', 'ru'),
-(1214, 39, NULL, 'Дерево', 'ru'),
 (1215, 23, NULL, '40 Вт', 'ru'),
-(1216, 30, NULL, '24 месяца', 'ru'),
-(1217, 39, NULL, 'Дерево', 'ru'),
 (1218, 23, NULL, '40 Вт', 'ru'),
-(1219, 30, NULL, '12 месяцев', 'ru'),
-(1220, 39, NULL, 'Пластик', 'ru'),
 (1221, 23, NULL, '100 Вт', 'ru'),
-(1222, 30, NULL, '36 месяцев', 'ru'),
-(1223, 39, NULL, 'Дерево', 'ru'),
 (1224, 23, NULL, '40 Вт', 'ru'),
-(1225, 30, NULL, '12 месяцев', 'ru'),
-(1226, 39, NULL, 'Метал', 'ru'),
-(1227, 30, NULL, '12 месяцев', 'ru'),
-(1228, 30, NULL, '12 месяцев', 'ru'),
 (1229, 23, NULL, '100 Вт', 'ru'),
 (1230, 24, NULL, '4', 'ru'),
-(1231, 28, NULL, 'AAC', 'ru'),
-(1232, 30, NULL, '12 месяцев', 'ru'),
-(1233, 30, NULL, '12 месяцев', 'ru'),
 (1234, 23, NULL, '100 Вт', 'ru'),
 (1235, 24, NULL, '2', 'ru'),
-(1236, 28, NULL, 'AAC', 'ru'),
-(1237, 30, NULL, '36 месяцев', 'ru'),
 (1238, 20, NULL, 'LED', 'ru'),
 (1239, 22, NULL, 'Да', 'ru'),
-(1240, 30, NULL, '24 месяца', 'ru'),
 (1241, 20, NULL, 'LED', 'ru'),
 (1242, 21, NULL, '32', 'ru'),
 (1243, 22, NULL, 'Да', 'ru'),
-(1244, 30, NULL, '24 месяца', 'ru'),
 (1245, 20, NULL, 'LED', 'ru'),
 (1246, 21, NULL, '40', 'ru'),
 (1247, 22, NULL, 'Да', 'ru'),
-(1248, 30, NULL, '24 месяца', 'ru'),
 (1249, 20, NULL, 'LED', 'ru'),
 (1250, 21, NULL, '32', 'ru'),
 (1251, 22, NULL, 'Да', 'ru'),
-(1252, 30, NULL, '24 месяца', 'ru'),
 (1253, 20, NULL, 'Plasma', 'ru'),
 (1254, 21, NULL, '40', 'ru'),
 (1255, 22, NULL, 'Нет', 'ru'),
-(1256, 30, NULL, '24 месяца', 'ru'),
 (1257, 20, NULL, 'LCD', 'ru'),
 (1258, 21, NULL, '40', 'ru'),
 (1259, 22, NULL, 'Нет', 'ru'),
-(1260, 30, NULL, '36 месяцев', 'ru'),
 (1261, 20, NULL, 'LCD', 'ru'),
 (1262, 21, NULL, '21', 'ru'),
 (1263, 22, NULL, 'Да', 'ru'),
-(1264, 30, NULL, '24 месяца', 'ru'),
 (1265, 23, NULL, '100 Вт', 'ru'),
-(1266, 28, NULL, 'FLAC', 'ru'),
-(1267, 29, NULL, 'WMV', 'ru'),
-(1268, 30, NULL, '12 месяцев', 'ru'),
 (1269, 23, NULL, '50 Вт', 'ru'),
-(1270, 28, NULL, 'FLAC', 'ru'),
-(1271, 29, NULL, 'BDMV', 'ru'),
-(1272, 30, NULL, '12 месяцев', 'ru'),
 (1273, 23, NULL, '50 Вт', 'ru'),
-(1274, 28, NULL, 'AAC', 'ru'),
-(1275, 29, NULL, 'WMV', 'ru'),
-(1276, 30, NULL, '12 месяцев', 'ru'),
 (1277, 23, NULL, '100 Вт', 'ru'),
-(1278, 28, NULL, 'AAC', 'ru'),
-(1279, 30, NULL, '12 месяцев', 'ru'),
 (1280, 23, NULL, '100 Вт', 'ru'),
-(1281, 28, NULL, 'MPA', 'ru'),
-(1282, 30, NULL, '24 месяца', 'ru'),
 (1283, 23, NULL, '40 Вт', 'ru'),
-(1284, 28, NULL, 'AAC', 'ru'),
-(1285, 30, NULL, '6 месяцев', 'ru'),
 (1286, 23, NULL, '100 Вт', 'ru'),
-(1287, 28, NULL, 'AAC', 'ru'),
-(1288, 30, NULL, '36 месяцев', 'ru'),
 (1289, 23, NULL, '50 Вт', 'ru'),
-(1290, 28, NULL, 'AC3', 'ru'),
-(1291, 30, NULL, '12 месяцев', 'ru'),
 (1292, 23, NULL, '50 Вт', 'ru'),
-(1293, 28, NULL, 'AC3', 'ru'),
-(1294, 30, NULL, '12 месяцев', 'ru'),
 (1295, 22, NULL, 'Да', 'ru'),
 (1296, 23, NULL, '100 Вт', 'ru'),
 (1297, 24, NULL, '2', 'ru'),
-(1298, 28, NULL, 'MPA', 'ru'),
-(1299, 29, NULL, 'WMV', 'ru'),
-(1300, 30, NULL, '12 месяцев', 'ru'),
-(1301, 39, NULL, 'Дерево', 'ru'),
 (1302, 22, NULL, 'Да', 'ru'),
 (1303, 23, NULL, '100 Вт', 'ru'),
-(1304, 28, NULL, 'AAC', 'ru'),
-(1305, 29, NULL, 'ASF', 'ru'),
-(1306, 30, NULL, '12 месяцев', 'ru'),
-(1307, 39, NULL, 'Метал', 'ru'),
 (1308, 22, NULL, 'Да', 'ru'),
 (1309, 23, NULL, '100 Вт', 'ru'),
 (1310, 24, NULL, '2', 'ru'),
-(1311, 28, NULL, 'AC3', 'ru'),
-(1312, 29, NULL, 'ASF', 'ru'),
-(1313, 30, NULL, '12 месяцев', 'ru'),
-(1314, 39, NULL, 'Метал', 'ru'),
 (1315, 22, NULL, 'Да', 'ru'),
 (1316, 23, NULL, '100 Вт', 'ru'),
 (1317, 24, NULL, '1', 'ru'),
-(1318, 28, NULL, 'AC3', 'ru'),
-(1319, 29, NULL, 'ASF', 'ru'),
-(1320, 30, NULL, '12 месяцев', 'ru'),
-(1321, 39, NULL, 'Метал', 'ru'),
 (1322, 22, NULL, 'Да', 'ru'),
 (1323, 23, NULL, '1500 Вт', 'ru'),
 (1324, 24, NULL, '2', 'ru'),
-(1325, 28, NULL, 'DTS', 'ru'),
-(1326, 29, NULL, 'ASF', 'ru'),
-(1327, 30, NULL, '36 месяцев', 'ru'),
-(1328, 39, NULL, 'Пластик', 'ru'),
 (1329, 23, NULL, '100 Вт', 'ru'),
-(1330, 30, NULL, '36 месяцев', 'ru'),
-(1331, 39, NULL, 'Метал', 'ru'),
 (1332, 23, NULL, '80 Вт', 'ru'),
-(1333, 30, NULL, '12 месяцев', 'ru'),
-(1334, 39, NULL, 'Пластик', 'ru'),
 (1335, 23, NULL, '100 Вт', 'ru'),
-(1336, 30, NULL, '24 месяца', 'ru'),
-(1337, 39, NULL, 'Метал', 'ru'),
 (1338, 25, NULL, 'Да', 'ru'),
 (1339, 26, NULL, '15 Мп', 'ru'),
-(1340, 30, NULL, '12 месяцев', 'ru'),
-(1341, 38, NULL, '80~3200 ISO', 'ru'),
 (1342, 25, NULL, 'Да', 'ru'),
 (1343, 26, NULL, '12 Мп', 'ru'),
-(1344, 30, NULL, '12 месяцев', 'ru'),
-(1345, 38, NULL, 'Авто', 'ru'),
 (1346, 25, NULL, 'Да', 'ru'),
 (1347, 26, NULL, '15 Мп', 'ru'),
-(1348, 30, NULL, '24 месяца', 'ru'),
-(1349, 38, NULL, '80~3200 ISO', 'ru'),
 (1350, 25, NULL, 'Да', 'ru'),
 (1351, 26, NULL, '10 Мп', 'ru'),
-(1352, 30, NULL, '12 месяцев', 'ru'),
-(1353, 38, NULL, 'Авто', 'ru'),
 (1354, 25, NULL, 'Да', 'ru'),
 (1355, 26, NULL, '15 Мп', 'ru'),
-(1356, 30, NULL, '12 месяцев', 'ru'),
-(1357, 38, NULL, '80~3200 ISO', 'ru'),
-(1358, 30, NULL, '36 месяцев', 'ru'),
-(1359, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1360, 36, NULL, 'A1', 'ru'),
-(1361, 37, NULL, 'Wi-Fi', 'ru'),
-(1362, 30, NULL, '36 месяцев', 'ru'),
-(1363, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1364, 36, NULL, 'A1', 'ru'),
-(1365, 37, NULL, 'Wi-Fi', 'ru'),
-(1366, 30, NULL, '12 месяцев', 'ru'),
-(1367, 35, NULL, 'Лазерная печать', 'ru'),
-(1368, 36, NULL, 'A3', 'ru'),
-(1369, 37, NULL, 'Bluetooth', 'ru'),
-(1370, 30, NULL, '12 месяцев', 'ru'),
-(1371, 35, NULL, 'Лазерная печать', 'ru'),
-(1372, 36, NULL, 'A3', 'ru'),
-(1373, 30, NULL, '36 месяцев', 'ru'),
-(1374, 35, NULL, 'Струйная печать', 'ru'),
-(1375, 36, NULL, 'A3', 'ru'),
-(1376, 37, NULL, 'Wi-Fi', 'ru'),
-(1377, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1378, 36, NULL, 'A4', 'ru'),
-(1379, 37, NULL, 'Ethernet', 'ru'),
-(1380, 30, NULL, '12 месяцев', 'ru'),
-(1381, 33, NULL, 'Моноблок', 'ru'),
-(1382, 30, NULL, '36 месяцев', 'ru'),
-(1383, 37, NULL, 'Bluetooth', 'ru'),
-(1384, 30, NULL, '12 месяцев', 'ru'),
-(1385, 33, NULL, 'Моноблок', 'ru'),
-(1386, 30, NULL, '12 месяцев', 'ru'),
-(1387, 32, NULL, '2 ГГц', 'ru'),
-(1388, 33, NULL, 'Сенсор', 'ru'),
-(1389, 37, NULL, 'Ethernet', 'ru'),
-(1390, 30, NULL, '24 месяца', 'ru'),
-(1391, 40, NULL, '3 м', 'ru'),
-(1392, 30, NULL, '12 месяцев', 'ru'),
-(1393, 40, NULL, '5 м', 'ru'),
-(1394, 30, NULL, '24 месяца', 'ru'),
-(1395, 40, NULL, '20 м', 'ru'),
-(1396, 30, NULL, '24 месяца', 'ru'),
-(1397, 40, NULL, '20 м', 'ru'),
-(1398, 30, NULL, '12 месяцев', 'ru'),
-(1399, 40, NULL, '10 м', 'ru'),
-(1400, 30, NULL, '12 месяцев', 'ru'),
-(1401, 40, NULL, '5 м', 'ru'),
-(1402, 30, NULL, '12 месяцев', 'ru'),
-(1403, 40, NULL, '2 м', 'ru'),
-(1404, 30, NULL, '12 месяцев', 'ru'),
-(1405, 40, NULL, '5 м', 'ru'),
 (1406, 23, NULL, '40 Вт', 'ru'),
-(1407, 30, NULL, '12 месяцев', 'ru'),
-(1408, 39, NULL, 'Дерево', 'ru'),
 (1409, 23, NULL, '40 Вт', 'ru'),
-(1410, 30, NULL, '24 месяца', 'ru'),
-(1411, 39, NULL, 'Дерево', 'ru'),
 (1412, 23, NULL, '40 Вт', 'ru'),
-(1413, 30, NULL, '12 месяцев', 'ru'),
-(1414, 39, NULL, 'Пластик', 'ru'),
 (1415, 23, NULL, '100 Вт', 'ru'),
-(1416, 30, NULL, '36 месяцев', 'ru'),
-(1417, 39, NULL, 'Дерево', 'ru'),
 (1418, 23, NULL, '40 Вт', 'ru'),
-(1419, 30, NULL, '12 месяцев', 'ru'),
-(1420, 39, NULL, 'Метал', 'ru'),
-(1421, 30, NULL, '12 месяцев', 'ru'),
-(1422, 30, NULL, '12 месяцев', 'ru'),
 (1423, 23, NULL, '100 Вт', 'ru'),
 (1424, 24, NULL, '4', 'ru'),
-(1425, 28, NULL, 'AAC', 'ru'),
-(1426, 30, NULL, '12 месяцев', 'ru'),
-(1427, 30, NULL, '12 месяцев', 'ru'),
 (1428, 23, NULL, '100 Вт', 'ru'),
 (1429, 24, NULL, '2', 'ru'),
-(1430, 28, NULL, 'AAC', 'ru'),
-(1431, 30, NULL, '36 месяцев', 'ru'),
 (1432, 20, NULL, 'LED', 'ru'),
 (1433, 22, NULL, 'Да', 'ru'),
-(1434, 30, NULL, '24 месяца', 'ru'),
 (1435, 20, NULL, 'LED', 'ru'),
 (1436, 21, NULL, '32', 'ru'),
 (1437, 22, NULL, 'Да', 'ru'),
-(1438, 30, NULL, '24 месяца', 'ru'),
 (1439, 20, NULL, 'LED', 'ru'),
 (1440, 21, NULL, '40', 'ru'),
 (1441, 22, NULL, 'Да', 'ru'),
-(1442, 30, NULL, '24 месяца', 'ru'),
 (1443, 20, NULL, 'LED', 'ru'),
 (1444, 21, NULL, '32', 'ru'),
 (1445, 22, NULL, 'Да', 'ru'),
-(1446, 30, NULL, '24 месяца', 'ru'),
 (1447, 20, NULL, 'Plasma', 'ru'),
 (1448, 21, NULL, '40', 'ru'),
 (1449, 22, NULL, 'Нет', 'ru'),
-(1450, 30, NULL, '24 месяца', 'ru'),
 (1451, 20, NULL, 'LCD', 'ru'),
 (1452, 21, NULL, '40', 'ru'),
 (1453, 22, NULL, 'Нет', 'ru'),
-(1454, 30, NULL, '36 месяцев', 'ru'),
 (1455, 20, NULL, 'LCD', 'ru'),
 (1456, 21, NULL, '21', 'ru'),
 (1457, 22, NULL, 'Да', 'ru'),
-(1458, 30, NULL, '24 месяца', 'ru'),
 (1459, 23, NULL, '100 Вт', 'ru'),
-(1460, 28, NULL, 'FLAC', 'ru'),
-(1461, 29, NULL, 'WMV', 'ru'),
-(1462, 30, NULL, '12 месяцев', 'ru'),
 (1463, 23, NULL, '50 Вт', 'ru'),
-(1464, 28, NULL, 'FLAC', 'ru'),
-(1465, 29, NULL, 'BDMV', 'ru'),
-(1466, 30, NULL, '12 месяцев', 'ru'),
 (1467, 23, NULL, '50 Вт', 'ru'),
-(1468, 28, NULL, 'AAC', 'ru'),
-(1469, 29, NULL, 'WMV', 'ru'),
-(1470, 30, NULL, '12 месяцев', 'ru'),
 (1471, 23, NULL, '100 Вт', 'ru'),
-(1472, 28, NULL, 'AAC', 'ru'),
-(1473, 30, NULL, '12 месяцев', 'ru'),
 (1474, 23, NULL, '100 Вт', 'ru'),
-(1475, 28, NULL, 'MPA', 'ru'),
-(1476, 30, NULL, '24 месяца', 'ru'),
 (1477, 23, NULL, '40 Вт', 'ru'),
-(1478, 28, NULL, 'AAC', 'ru'),
-(1479, 30, NULL, '6 месяцев', 'ru'),
 (1480, 23, NULL, '100 Вт', 'ru'),
-(1481, 28, NULL, 'AAC', 'ru'),
-(1482, 30, NULL, '36 месяцев', 'ru'),
 (1483, 23, NULL, '50 Вт', 'ru'),
-(1484, 28, NULL, 'AC3', 'ru'),
-(1485, 30, NULL, '12 месяцев', 'ru'),
 (1486, 23, NULL, '50 Вт', 'ru'),
-(1487, 28, NULL, 'AC3', 'ru'),
-(1488, 30, NULL, '12 месяцев', 'ru'),
 (1489, 22, NULL, 'Да', 'ru'),
 (1490, 23, NULL, '100 Вт', 'ru'),
 (1491, 24, NULL, '2', 'ru'),
-(1492, 28, NULL, 'MPA', 'ru'),
-(1493, 29, NULL, 'WMV', 'ru'),
-(1494, 30, NULL, '12 месяцев', 'ru'),
-(1495, 39, NULL, 'Дерево', 'ru'),
 (1496, 22, NULL, 'Да', 'ru'),
 (1497, 23, NULL, '100 Вт', 'ru'),
-(1498, 28, NULL, 'AAC', 'ru'),
-(1499, 29, NULL, 'ASF', 'ru'),
-(1500, 30, NULL, '12 месяцев', 'ru'),
-(1501, 39, NULL, 'Метал', 'ru'),
 (1502, 22, NULL, 'Да', 'ru'),
 (1503, 23, NULL, '100 Вт', 'ru'),
 (1504, 24, NULL, '2', 'ru'),
-(1505, 28, NULL, 'AC3', 'ru'),
-(1506, 29, NULL, 'ASF', 'ru'),
-(1507, 30, NULL, '12 месяцев', 'ru'),
-(1508, 39, NULL, 'Метал', 'ru'),
 (1509, 22, NULL, 'Да', 'ru'),
 (1510, 23, NULL, '100 Вт', 'ru'),
 (1511, 24, NULL, '1', 'ru'),
-(1512, 28, NULL, 'AC3', 'ru'),
-(1513, 29, NULL, 'ASF', 'ru'),
-(1514, 30, NULL, '12 месяцев', 'ru'),
-(1515, 39, NULL, 'Метал', 'ru'),
 (1516, 22, NULL, 'Да', 'ru'),
 (1517, 23, NULL, '1500 Вт', 'ru'),
 (1518, 24, NULL, '2', 'ru'),
-(1519, 28, NULL, 'DTS', 'ru'),
-(1520, 29, NULL, 'ASF', 'ru'),
-(1521, 30, NULL, '36 месяцев', 'ru'),
-(1522, 39, NULL, 'Пластик', 'ru'),
 (1523, 23, NULL, '100 Вт', 'ru'),
-(1524, 30, NULL, '36 месяцев', 'ru'),
-(1525, 39, NULL, 'Метал', 'ru'),
 (1526, 23, NULL, '80 Вт', 'ru'),
-(1527, 30, NULL, '12 месяцев', 'ru'),
-(1528, 39, NULL, 'Пластик', 'ru'),
 (1529, 23, NULL, '100 Вт', 'ru'),
-(1530, 30, NULL, '24 месяца', 'ru'),
-(1531, 39, NULL, 'Метал', 'ru'),
 (1532, 25, NULL, 'Да', 'ru'),
 (1533, 26, NULL, '15 Мп', 'ru'),
-(1534, 30, NULL, '12 месяцев', 'ru'),
-(1535, 38, NULL, '80~3200 ISO', 'ru'),
 (1536, 25, NULL, 'Да', 'ru'),
 (1537, 26, NULL, '12 Мп', 'ru'),
-(1538, 30, NULL, '12 месяцев', 'ru'),
-(1539, 38, NULL, 'Авто', 'ru'),
 (1540, 25, NULL, 'Да', 'ru'),
 (1541, 26, NULL, '15 Мп', 'ru'),
-(1542, 30, NULL, '24 месяца', 'ru'),
-(1543, 38, NULL, '80~3200 ISO', 'ru'),
 (1544, 25, NULL, 'Да', 'ru'),
 (1545, 26, NULL, '10 Мп', 'ru'),
-(1546, 30, NULL, '12 месяцев', 'ru'),
-(1547, 38, NULL, 'Авто', 'ru'),
 (1548, 25, NULL, 'Да', 'ru'),
 (1549, 26, NULL, '15 Мп', 'ru'),
-(1550, 30, NULL, '12 месяцев', 'ru'),
-(1551, 38, NULL, '80~3200 ISO', 'ru'),
-(1552, 30, NULL, '36 месяцев', 'ru'),
-(1553, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1554, 36, NULL, 'A1', 'ru'),
-(1555, 37, NULL, 'Wi-Fi', 'ru'),
-(1556, 30, NULL, '36 месяцев', 'ru'),
-(1557, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1558, 36, NULL, 'A1', 'ru'),
-(1559, 37, NULL, 'Wi-Fi', 'ru'),
-(1560, 30, NULL, '12 месяцев', 'ru'),
-(1561, 35, NULL, 'Лазерная печать', 'ru'),
-(1562, 36, NULL, 'A3', 'ru'),
-(1563, 37, NULL, 'Bluetooth', 'ru'),
-(1564, 30, NULL, '12 месяцев', 'ru'),
-(1565, 35, NULL, 'Лазерная печать', 'ru'),
-(1566, 36, NULL, 'A3', 'ru'),
-(1567, 30, NULL, '36 месяцев', 'ru'),
-(1568, 35, NULL, 'Струйная печать', 'ru'),
-(1569, 36, NULL, 'A3', 'ru'),
-(1570, 37, NULL, 'Wi-Fi', 'ru'),
-(1571, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1572, 36, NULL, 'A4', 'ru'),
-(1573, 37, NULL, 'Ethernet', 'ru'),
-(1574, 30, NULL, '12 месяцев', 'ru'),
-(1575, 33, NULL, 'Моноблок', 'ru'),
-(1576, 30, NULL, '36 месяцев', 'ru'),
-(1577, 37, NULL, 'Bluetooth', 'ru'),
-(1578, 30, NULL, '12 месяцев', 'ru'),
-(1579, 33, NULL, 'Моноблок', 'ru'),
-(1580, 30, NULL, '12 месяцев', 'ru'),
-(1581, 32, NULL, '2 ГГц', 'ru'),
-(1582, 33, NULL, 'Сенсор', 'ru'),
-(1583, 37, NULL, 'Ethernet', 'ru'),
-(1584, 30, NULL, '24 месяца', 'ru'),
-(1585, 40, NULL, '3 м', 'ru'),
-(1586, 30, NULL, '12 месяцев', 'ru'),
-(1587, 40, NULL, '5 м', 'ru'),
-(1588, 30, NULL, '24 месяца', 'ru'),
-(1589, 40, NULL, '20 м', 'ru'),
-(1590, 30, NULL, '24 месяца', 'ru'),
-(1591, 40, NULL, '20 м', 'ru'),
-(1592, 30, NULL, '12 месяцев', 'ru'),
-(1593, 40, NULL, '10 м', 'ru'),
-(1594, 30, NULL, '12 месяцев', 'ru'),
-(1595, 40, NULL, '5 м', 'ru'),
-(1596, 30, NULL, '12 месяцев', 'ru'),
-(1597, 40, NULL, '2 м', 'ru'),
-(1598, 30, NULL, '12 месяцев', 'ru'),
-(1599, 40, NULL, '5 м', 'ru'),
 (1600, 23, NULL, '40 Вт', 'ru'),
-(1601, 30, NULL, '12 месяцев', 'ru'),
-(1602, 39, NULL, 'Дерево', 'ru'),
 (1603, 23, NULL, '40 Вт', 'ru'),
-(1604, 30, NULL, '24 месяца', 'ru'),
-(1605, 39, NULL, 'Дерево', 'ru'),
 (1606, 23, NULL, '40 Вт', 'ru'),
-(1607, 30, NULL, '12 месяцев', 'ru'),
-(1608, 39, NULL, 'Пластик', 'ru'),
 (1609, 23, NULL, '100 Вт', 'ru'),
-(1610, 30, NULL, '36 месяцев', 'ru'),
-(1611, 39, NULL, 'Дерево', 'ru'),
 (1612, 23, NULL, '40 Вт', 'ru'),
-(1613, 30, NULL, '12 месяцев', 'ru'),
-(1614, 39, NULL, 'Метал', 'ru'),
-(1615, 30, NULL, '12 месяцев', 'ru'),
-(1616, 30, NULL, '12 месяцев', 'ru'),
 (1617, 23, NULL, '100 Вт', 'ru'),
 (1618, 24, NULL, '4', 'ru'),
-(1619, 28, NULL, 'AAC', 'ru'),
-(1620, 30, NULL, '12 месяцев', 'ru'),
-(1621, 30, NULL, '12 месяцев', 'ru'),
 (1622, 23, NULL, '100 Вт', 'ru'),
 (1623, 24, NULL, '2', 'ru'),
-(1624, 28, NULL, 'AAC', 'ru'),
-(1625, 30, NULL, '36 месяцев', 'ru'),
 (1626, 20, NULL, 'LED', 'ru'),
 (1627, 22, NULL, 'Да', 'ru'),
-(1628, 30, NULL, '24 месяца', 'ru'),
 (1629, 20, NULL, 'LED', 'ru'),
 (1630, 21, NULL, '32', 'ru'),
 (1631, 22, NULL, 'Да', 'ru'),
-(1632, 30, NULL, '24 месяца', 'ru'),
 (1633, 20, NULL, 'LED', 'ru'),
 (1634, 21, NULL, '40', 'ru'),
 (1635, 22, NULL, 'Да', 'ru'),
-(1636, 30, NULL, '24 месяца', 'ru'),
 (1637, 20, NULL, 'LED', 'ru'),
 (1638, 21, NULL, '32', 'ru'),
 (1639, 22, NULL, 'Да', 'ru'),
-(1640, 30, NULL, '24 месяца', 'ru'),
 (1641, 20, NULL, 'Plasma', 'ru'),
 (1642, 21, NULL, '40', 'ru'),
 (1643, 22, NULL, 'Нет', 'ru'),
-(1644, 30, NULL, '24 месяца', 'ru'),
 (1645, 20, NULL, 'LCD', 'ru'),
 (1646, 21, NULL, '40', 'ru'),
 (1647, 22, NULL, 'Нет', 'ru'),
-(1648, 30, NULL, '36 месяцев', 'ru'),
 (1649, 20, NULL, 'LCD', 'ru'),
 (1650, 21, NULL, '21', 'ru'),
 (1651, 22, NULL, 'Да', 'ru'),
-(1652, 30, NULL, '24 месяца', 'ru'),
 (1653, 23, NULL, '100 Вт', 'ru'),
-(1654, 28, NULL, 'FLAC', 'ru'),
-(1655, 29, NULL, 'WMV', 'ru'),
-(1656, 30, NULL, '12 месяцев', 'ru'),
 (1657, 23, NULL, '50 Вт', 'ru'),
-(1658, 28, NULL, 'FLAC', 'ru'),
-(1659, 29, NULL, 'BDMV', 'ru'),
-(1660, 30, NULL, '12 месяцев', 'ru'),
 (1661, 23, NULL, '50 Вт', 'ru'),
-(1662, 28, NULL, 'AAC', 'ru'),
-(1663, 29, NULL, 'WMV', 'ru'),
-(1664, 30, NULL, '12 месяцев', 'ru'),
 (1665, 23, NULL, '100 Вт', 'ru'),
-(1666, 28, NULL, 'AAC', 'ru'),
-(1667, 30, NULL, '12 месяцев', 'ru'),
 (1668, 23, NULL, '100 Вт', 'ru'),
-(1669, 28, NULL, 'MPA', 'ru'),
-(1670, 30, NULL, '24 месяца', 'ru'),
 (1671, 23, NULL, '40 Вт', 'ru'),
-(1672, 28, NULL, 'AAC', 'ru'),
-(1673, 30, NULL, '6 месяцев', 'ru'),
 (1674, 23, NULL, '100 Вт', 'ru'),
-(1675, 28, NULL, 'AAC', 'ru'),
-(1676, 30, NULL, '36 месяцев', 'ru'),
 (1677, 23, NULL, '50 Вт', 'ru'),
-(1678, 28, NULL, 'AC3', 'ru'),
-(1679, 30, NULL, '12 месяцев', 'ru'),
 (1680, 23, NULL, '50 Вт', 'ru'),
-(1681, 28, NULL, 'AC3', 'ru'),
-(1682, 30, NULL, '12 месяцев', 'ru'),
 (1683, 22, NULL, 'Да', 'ru'),
 (1684, 23, NULL, '100 Вт', 'ru'),
 (1685, 24, NULL, '2', 'ru'),
-(1686, 28, NULL, 'MPA', 'ru'),
-(1687, 29, NULL, 'WMV', 'ru'),
-(1688, 30, NULL, '12 месяцев', 'ru'),
-(1689, 39, NULL, 'Дерево', 'ru'),
 (1690, 22, NULL, 'Да', 'ru'),
 (1691, 23, NULL, '100 Вт', 'ru'),
-(1692, 28, NULL, 'AAC', 'ru'),
-(1693, 29, NULL, 'ASF', 'ru'),
-(1694, 30, NULL, '12 месяцев', 'ru'),
-(1695, 39, NULL, 'Метал', 'ru'),
 (1696, 22, NULL, 'Да', 'ru'),
 (1697, 23, NULL, '100 Вт', 'ru'),
 (1698, 24, NULL, '2', 'ru'),
-(1699, 28, NULL, 'AC3', 'ru'),
-(1700, 29, NULL, 'ASF', 'ru'),
-(1701, 30, NULL, '12 месяцев', 'ru'),
-(1702, 39, NULL, 'Метал', 'ru'),
 (1703, 22, NULL, 'Да', 'ru'),
 (1704, 23, NULL, '100 Вт', 'ru'),
 (1705, 24, NULL, '1', 'ru'),
-(1706, 28, NULL, 'AC3', 'ru'),
-(1707, 29, NULL, 'ASF', 'ru'),
-(1708, 30, NULL, '12 месяцев', 'ru'),
-(1709, 39, NULL, 'Метал', 'ru'),
 (1710, 22, NULL, 'Да', 'ru'),
 (1711, 23, NULL, '1500 Вт', 'ru'),
 (1712, 24, NULL, '2', 'ru'),
-(1713, 28, NULL, 'DTS', 'ru'),
-(1714, 29, NULL, 'ASF', 'ru'),
-(1715, 30, NULL, '36 месяцев', 'ru'),
-(1716, 39, NULL, 'Пластик', 'ru'),
 (1717, 23, NULL, '100 Вт', 'ru'),
-(1718, 30, NULL, '36 месяцев', 'ru'),
-(1719, 39, NULL, 'Метал', 'ru'),
 (1720, 23, NULL, '80 Вт', 'ru'),
-(1721, 30, NULL, '12 месяцев', 'ru'),
-(1722, 39, NULL, 'Пластик', 'ru'),
 (1723, 23, NULL, '100 Вт', 'ru'),
-(1724, 30, NULL, '24 месяца', 'ru'),
-(1725, 39, NULL, 'Метал', 'ru'),
 (1726, 25, NULL, 'Да', 'ru'),
 (1727, 26, NULL, '15 Мп', 'ru'),
-(1728, 30, NULL, '12 месяцев', 'ru'),
-(1729, 38, NULL, '80~3200 ISO', 'ru'),
 (1730, 25, NULL, 'Да', 'ru'),
 (1731, 26, NULL, '12 Мп', 'ru'),
-(1732, 30, NULL, '12 месяцев', 'ru'),
-(1733, 38, NULL, 'Авто', 'ru'),
 (1734, 25, NULL, 'Да', 'ru'),
 (1735, 26, NULL, '15 Мп', 'ru'),
-(1736, 30, NULL, '24 месяца', 'ru'),
-(1737, 38, NULL, '80~3200 ISO', 'ru'),
 (1738, 25, NULL, 'Да', 'ru'),
 (1739, 26, NULL, '10 Мп', 'ru'),
-(1740, 30, NULL, '12 месяцев', 'ru'),
-(1741, 38, NULL, 'Авто', 'ru'),
 (1742, 25, NULL, 'Да', 'ru'),
 (1743, 26, NULL, '15 Мп', 'ru'),
-(1744, 30, NULL, '12 месяцев', 'ru'),
-(1745, 38, NULL, '80~3200 ISO', 'ru'),
-(1746, 30, NULL, '36 месяцев', 'ru'),
-(1747, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1748, 36, NULL, 'A1', 'ru'),
-(1749, 37, NULL, 'Wi-Fi', 'ru'),
-(1750, 30, NULL, '36 месяцев', 'ru'),
-(1751, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1752, 36, NULL, 'A1', 'ru'),
-(1753, 37, NULL, 'Wi-Fi', 'ru'),
-(1754, 30, NULL, '12 месяцев', 'ru'),
-(1755, 35, NULL, 'Лазерная печать', 'ru'),
-(1756, 36, NULL, 'A3', 'ru'),
-(1757, 37, NULL, 'Bluetooth', 'ru'),
-(1758, 30, NULL, '12 месяцев', 'ru'),
-(1759, 35, NULL, 'Лазерная печать', 'ru'),
-(1760, 36, NULL, 'A3', 'ru'),
-(1761, 30, NULL, '36 месяцев', 'ru'),
-(1762, 35, NULL, 'Струйная печать', 'ru'),
-(1763, 36, NULL, 'A3', 'ru'),
-(1764, 37, NULL, 'Wi-Fi', 'ru'),
-(1765, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1766, 36, NULL, 'A4', 'ru'),
-(1767, 37, NULL, 'Ethernet', 'ru'),
-(1768, 30, NULL, '12 месяцев', 'ru'),
-(1769, 33, NULL, 'Моноблок', 'ru'),
-(1770, 30, NULL, '36 месяцев', 'ru'),
-(1771, 37, NULL, 'Bluetooth', 'ru'),
-(1772, 30, NULL, '12 месяцев', 'ru'),
-(1773, 33, NULL, 'Моноблок', 'ru'),
-(1774, 30, NULL, '12 месяцев', 'ru'),
-(1775, 32, NULL, '2 ГГц', 'ru'),
-(1776, 33, NULL, 'Сенсор', 'ru'),
-(1777, 37, NULL, 'Ethernet', 'ru'),
-(1778, 30, NULL, '24 месяца', 'ru'),
-(1779, 40, NULL, '3 м', 'ru'),
-(1780, 30, NULL, '12 месяцев', 'ru'),
-(1781, 40, NULL, '5 м', 'ru'),
-(1782, 30, NULL, '24 месяца', 'ru'),
-(1783, 40, NULL, '20 м', 'ru'),
-(1784, 30, NULL, '24 месяца', 'ru'),
-(1785, 40, NULL, '20 м', 'ru'),
-(1786, 30, NULL, '12 месяцев', 'ru'),
-(1787, 40, NULL, '10 м', 'ru'),
-(1788, 30, NULL, '12 месяцев', 'ru'),
-(1789, 40, NULL, '5 м', 'ru'),
-(1790, 30, NULL, '12 месяцев', 'ru'),
-(1791, 40, NULL, '2 м', 'ru'),
-(1792, 30, NULL, '12 месяцев', 'ru'),
-(1793, 40, NULL, '5 м', 'ru'),
 (1794, 23, NULL, '40 Вт', 'ru'),
-(1795, 30, NULL, '12 месяцев', 'ru'),
-(1796, 39, NULL, 'Дерево', 'ru'),
 (1797, 23, NULL, '40 Вт', 'ru'),
-(1798, 30, NULL, '24 месяца', 'ru'),
-(1799, 39, NULL, 'Дерево', 'ru'),
 (1800, 23, NULL, '40 Вт', 'ru'),
-(1801, 30, NULL, '12 месяцев', 'ru'),
-(1802, 39, NULL, 'Пластик', 'ru'),
 (1803, 23, NULL, '100 Вт', 'ru'),
-(1804, 30, NULL, '36 месяцев', 'ru'),
-(1805, 39, NULL, 'Дерево', 'ru'),
 (1806, 23, NULL, '40 Вт', 'ru'),
-(1807, 30, NULL, '12 месяцев', 'ru'),
-(1808, 39, NULL, 'Метал', 'ru'),
-(1809, 30, NULL, '12 месяцев', 'ru'),
-(1810, 30, NULL, '12 месяцев', 'ru'),
 (1811, 23, NULL, '100 Вт', 'ru'),
 (1812, 24, NULL, '4', 'ru'),
-(1813, 28, NULL, 'AAC', 'ru'),
-(1814, 30, NULL, '12 месяцев', 'ru'),
-(1815, 30, NULL, '12 месяцев', 'ru'),
 (1816, 23, NULL, '100 Вт', 'ru'),
 (1817, 24, NULL, '2', 'ru'),
-(1818, 28, NULL, 'AAC', 'ru'),
-(1819, 30, NULL, '36 месяцев', 'ru'),
 (1820, 20, NULL, 'LED', 'ru'),
 (1821, 22, NULL, 'Да', 'ru'),
-(1822, 30, NULL, '24 месяца', 'ru'),
 (1823, 20, NULL, 'LED', 'ru'),
 (1824, 21, NULL, '32', 'ru'),
 (1825, 22, NULL, 'Да', 'ru'),
-(1826, 30, NULL, '24 месяца', 'ru'),
 (1827, 20, NULL, 'LED', 'ru'),
 (1828, 21, NULL, '40', 'ru'),
 (1829, 22, NULL, 'Да', 'ru'),
-(1830, 30, NULL, '24 месяца', 'ru'),
 (1831, 20, NULL, 'LED', 'ru'),
 (1832, 21, NULL, '32', 'ru'),
 (1833, 22, NULL, 'Да', 'ru'),
-(1834, 30, NULL, '24 месяца', 'ru'),
 (1835, 20, NULL, 'Plasma', 'ru'),
 (1836, 21, NULL, '40', 'ru'),
 (1837, 22, NULL, 'Нет', 'ru'),
-(1838, 30, NULL, '24 месяца', 'ru'),
 (1839, 20, NULL, 'LCD', 'ru'),
 (1840, 21, NULL, '40', 'ru'),
 (1841, 22, NULL, 'Нет', 'ru'),
-(1842, 30, NULL, '36 месяцев', 'ru'),
 (1843, 20, NULL, 'LCD', 'ru'),
 (1844, 21, NULL, '21', 'ru'),
 (1845, 22, NULL, 'Да', 'ru'),
-(1846, 30, NULL, '24 месяца', 'ru'),
 (1847, 23, NULL, '100 Вт', 'ru'),
-(1848, 28, NULL, 'FLAC', 'ru'),
-(1849, 29, NULL, 'WMV', 'ru'),
-(1850, 30, NULL, '12 месяцев', 'ru'),
 (1851, 23, NULL, '50 Вт', 'ru'),
-(1852, 28, NULL, 'FLAC', 'ru'),
-(1853, 29, NULL, 'BDMV', 'ru'),
-(1854, 30, NULL, '12 месяцев', 'ru'),
 (1855, 23, NULL, '50 Вт', 'ru'),
-(1856, 28, NULL, 'AAC', 'ru'),
-(1857, 29, NULL, 'WMV', 'ru'),
-(1858, 30, NULL, '12 месяцев', 'ru'),
 (1859, 23, NULL, '100 Вт', 'ru'),
-(1860, 28, NULL, 'AAC', 'ru'),
-(1861, 30, NULL, '12 месяцев', 'ru'),
 (1862, 23, NULL, '100 Вт', 'ru'),
-(1863, 28, NULL, 'MPA', 'ru'),
-(1864, 30, NULL, '24 месяца', 'ru'),
 (1865, 23, NULL, '40 Вт', 'ru'),
-(1866, 28, NULL, 'AAC', 'ru'),
-(1867, 30, NULL, '6 месяцев', 'ru'),
 (1868, 23, NULL, '100 Вт', 'ru'),
-(1869, 28, NULL, 'AAC', 'ru'),
-(1870, 30, NULL, '36 месяцев', 'ru'),
 (1871, 23, NULL, '50 Вт', 'ru'),
-(1872, 28, NULL, 'AC3', 'ru'),
-(1873, 30, NULL, '12 месяцев', 'ru'),
 (1874, 23, NULL, '50 Вт', 'ru'),
-(1875, 28, NULL, 'AC3', 'ru'),
-(1876, 30, NULL, '12 месяцев', 'ru'),
 (1877, 22, NULL, 'Да', 'ru'),
 (1878, 23, NULL, '100 Вт', 'ru'),
 (1879, 24, NULL, '2', 'ru'),
-(1880, 28, NULL, 'MPA', 'ru'),
-(1881, 29, NULL, 'WMV', 'ru'),
-(1882, 30, NULL, '12 месяцев', 'ru'),
-(1883, 39, NULL, 'Дерево', 'ru'),
 (1884, 22, NULL, 'Да', 'ru'),
 (1885, 23, NULL, '100 Вт', 'ru'),
-(1886, 28, NULL, 'AAC', 'ru'),
-(1887, 29, NULL, 'ASF', 'ru'),
-(1888, 30, NULL, '12 месяцев', 'ru'),
-(1889, 39, NULL, 'Метал', 'ru'),
 (1890, 22, NULL, 'Да', 'ru'),
 (1891, 23, NULL, '100 Вт', 'ru'),
 (1892, 24, NULL, '2', 'ru'),
-(1893, 28, NULL, 'AC3', 'ru'),
-(1894, 29, NULL, 'ASF', 'ru'),
-(1895, 30, NULL, '12 месяцев', 'ru'),
-(1896, 39, NULL, 'Метал', 'ru'),
 (1897, 22, NULL, 'Да', 'ru'),
 (1898, 23, NULL, '100 Вт', 'ru'),
 (1899, 24, NULL, '1', 'ru'),
-(1900, 28, NULL, 'AC3', 'ru'),
-(1901, 29, NULL, 'ASF', 'ru'),
-(1902, 30, NULL, '12 месяцев', 'ru'),
-(1903, 39, NULL, 'Метал', 'ru'),
 (1904, 22, NULL, 'Да', 'ru'),
 (1905, 23, NULL, '1500 Вт', 'ru'),
 (1906, 24, NULL, '2', 'ru'),
-(1907, 28, NULL, 'DTS', 'ru'),
-(1908, 29, NULL, 'ASF', 'ru'),
-(1909, 30, NULL, '36 месяцев', 'ru'),
-(1910, 39, NULL, 'Пластик', 'ru'),
 (1911, 23, NULL, '100 Вт', 'ru'),
-(1912, 30, NULL, '36 месяцев', 'ru'),
-(1913, 39, NULL, 'Метал', 'ru'),
 (1914, 23, NULL, '80 Вт', 'ru'),
-(1915, 30, NULL, '12 месяцев', 'ru'),
-(1916, 39, NULL, 'Пластик', 'ru'),
 (1917, 23, NULL, '100 Вт', 'ru'),
-(1918, 30, NULL, '24 месяца', 'ru'),
-(1919, 39, NULL, 'Метал', 'ru'),
 (1920, 25, NULL, 'Да', 'ru'),
 (1921, 26, NULL, '15 Мп', 'ru'),
-(1922, 30, NULL, '12 месяцев', 'ru'),
-(1923, 38, NULL, '80~3200 ISO', 'ru'),
 (1924, 25, NULL, 'Да', 'ru'),
 (1925, 26, NULL, '12 Мп', 'ru'),
-(1926, 30, NULL, '12 месяцев', 'ru'),
-(1927, 38, NULL, 'Авто', 'ru'),
 (1928, 25, NULL, 'Да', 'ru'),
 (1929, 26, NULL, '15 Мп', 'ru'),
-(1930, 30, NULL, '24 месяца', 'ru'),
-(1931, 38, NULL, '80~3200 ISO', 'ru'),
 (1932, 25, NULL, 'Да', 'ru'),
 (1933, 26, NULL, '10 Мп', 'ru'),
-(1934, 30, NULL, '12 месяцев', 'ru'),
-(1935, 38, NULL, 'Авто', 'ru'),
 (1936, 25, NULL, 'Да', 'ru'),
 (1937, 26, NULL, '15 Мп', 'ru'),
-(1938, 30, NULL, '12 месяцев', 'ru'),
-(1939, 38, NULL, '80~3200 ISO', 'ru'),
-(1940, 30, NULL, '36 месяцев', 'ru'),
-(1941, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1942, 36, NULL, 'A1', 'ru'),
-(1943, 37, NULL, 'Wi-Fi', 'ru'),
-(1944, 30, NULL, '36 месяцев', 'ru'),
-(1945, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(1946, 36, NULL, 'A1', 'ru'),
-(1947, 37, NULL, 'Wi-Fi', 'ru'),
-(1948, 30, NULL, '12 месяцев', 'ru'),
-(1949, 35, NULL, 'Лазерная печать', 'ru'),
-(1950, 36, NULL, 'A3', 'ru'),
-(1951, 37, NULL, 'Bluetooth', 'ru'),
-(1953, 35, NULL, 'Лазерная печать', 'ru'),
-(1954, 36, NULL, 'A3', 'ru');
-INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
-(1955, 30, NULL, '36 месяцев', 'ru'),
-(1956, 35, NULL, 'Струйная печать', 'ru'),
-(1957, 36, NULL, 'A3', 'ru'),
-(1958, 37, NULL, 'Wi-Fi', 'ru'),
-(1960, 36, NULL, 'A4', 'ru'),
-(1961, 37, NULL, 'Ethernet', 'ru'),
-(1962, 30, NULL, '12 месяцев', 'ru'),
-(1963, 33, NULL, 'Моноблок', 'ru'),
-(1964, 30, NULL, '36 месяцев', 'ru'),
-(1965, 37, NULL, 'Bluetooth', 'ru'),
-(1966, 30, NULL, '12 месяцев', 'ru'),
-(1967, 33, NULL, 'Моноблок', 'ru'),
-(1968, 30, NULL, '12 месяцев', 'ru'),
-(1969, 32, NULL, '2 ГГц', 'ru'),
-(1970, 33, NULL, 'Сенсор', 'ru'),
-(1971, 37, NULL, 'Ethernet', 'ru'),
-(1972, 30, NULL, '24 месяца', 'ru'),
-(1973, 40, NULL, '3 м', 'ru'),
-(1974, 30, NULL, '12 месяцев', 'ru'),
-(1975, 40, NULL, '5 м', 'ru'),
-(1976, 30, NULL, '24 месяца', 'ru'),
-(1977, 40, NULL, '20 м', 'ru'),
-(1978, 30, NULL, '24 месяца', 'ru'),
-(1979, 40, NULL, '20 м', 'ru'),
-(1980, 30, NULL, '12 месяцев', 'ru'),
-(1981, 40, NULL, '10 м', 'ru'),
-(1982, 30, NULL, '12 месяцев', 'ru'),
-(1983, 40, NULL, '5 м', 'ru'),
-(1984, 30, NULL, '12 месяцев', 'ru'),
-(1985, 40, NULL, '2 м', 'ru'),
-(1986, 30, NULL, '12 месяцев', 'ru'),
-(1987, 40, NULL, '5 м', 'ru'),
 (1988, 23, NULL, '40 Вт', 'ru'),
-(1989, 30, NULL, '12 месяцев', 'ru'),
-(1990, 39, NULL, 'Дерево', 'ru'),
 (1991, 23, NULL, '40 Вт', 'ru'),
-(1992, 30, NULL, '24 месяца', 'ru'),
-(1993, 39, NULL, 'Дерево', 'ru'),
 (1994, 23, NULL, '40 Вт', 'ru'),
-(1995, 30, NULL, '12 месяцев', 'ru'),
-(1996, 39, NULL, 'Пластик', 'ru'),
 (1997, 23, NULL, '100 Вт', 'ru'),
-(1998, 30, NULL, '36 месяцев', 'ru'),
-(1999, 39, NULL, 'Дерево', 'ru'),
 (2000, 23, NULL, '40 Вт', 'ru'),
-(2001, 30, NULL, '12 месяцев', 'ru'),
-(2002, 39, NULL, 'Метал', 'ru'),
-(2003, 30, NULL, '12 месяцев', 'ru'),
-(2004, 30, NULL, '12 месяцев', 'ru'),
 (2005, 23, NULL, '100 Вт', 'ru'),
 (2006, 24, NULL, '4', 'ru'),
-(2007, 28, NULL, 'AAC', 'ru'),
-(2008, 30, NULL, '12 месяцев', 'ru'),
-(2009, 30, NULL, '12 месяцев', 'ru'),
 (2010, 23, NULL, '100 Вт', 'ru'),
 (2011, 24, NULL, '2', 'ru'),
-(2012, 28, NULL, 'AAC', 'ru'),
-(2013, 30, NULL, '36 месяцев', 'ru'),
 (2014, 20, NULL, 'LED', 'ru'),
 (2015, 22, NULL, 'Да', 'ru'),
-(2016, 30, NULL, '24 месяца', 'ru'),
 (2017, 20, NULL, 'LED', 'ru'),
 (2018, 21, NULL, '32', 'ru'),
 (2019, 22, NULL, 'Да', 'ru'),
-(2020, 30, NULL, '24 месяца', 'ru'),
 (2021, 20, NULL, 'LED', 'ru'),
 (2022, 21, NULL, '40', 'ru'),
 (2023, 22, NULL, 'Да', 'ru'),
-(2024, 30, NULL, '24 месяца', 'ru'),
 (2025, 20, NULL, 'LED', 'ru'),
 (2026, 21, NULL, '32', 'ru'),
 (2027, 22, NULL, 'Да', 'ru'),
-(2028, 30, NULL, '24 месяца', 'ru'),
 (2029, 20, NULL, 'Plasma', 'ru'),
 (2030, 21, NULL, '40', 'ru'),
 (2031, 22, NULL, 'Нет', 'ru'),
-(2032, 30, NULL, '24 месяца', 'ru'),
 (2033, 20, NULL, 'LCD', 'ru'),
 (2034, 21, NULL, '40', 'ru'),
 (2035, 22, NULL, 'Нет', 'ru'),
-(2036, 30, NULL, '36 месяцев', 'ru'),
 (2037, 20, NULL, 'LCD', 'ru'),
 (2038, 21, NULL, '21', 'ru'),
 (2039, 22, NULL, 'Да', 'ru'),
-(2040, 30, NULL, '24 месяца', 'ru'),
 (2041, 23, NULL, '100 Вт', 'ru'),
-(2042, 28, NULL, 'FLAC', 'ru'),
-(2043, 29, NULL, 'WMV', 'ru'),
-(2044, 30, NULL, '12 месяцев', 'ru'),
 (2045, 23, NULL, '50 Вт', 'ru'),
-(2046, 28, NULL, 'FLAC', 'ru'),
-(2047, 29, NULL, 'BDMV', 'ru'),
-(2048, 30, NULL, '12 месяцев', 'ru'),
 (2049, 23, NULL, '50 Вт', 'ru'),
-(2050, 28, NULL, 'AAC', 'ru'),
-(2051, 29, NULL, 'WMV', 'ru'),
-(2052, 30, NULL, '12 месяцев', 'ru'),
 (2053, 23, NULL, '100 Вт', 'ru'),
-(2054, 28, NULL, 'AAC', 'ru'),
-(2055, 30, NULL, '12 месяцев', 'ru'),
 (2056, 23, NULL, '100 Вт', 'ru'),
-(2057, 28, NULL, 'MPA', 'ru'),
-(2058, 30, NULL, '24 месяца', 'ru'),
 (2059, 23, NULL, '40 Вт', 'ru'),
-(2060, 28, NULL, 'AAC', 'ru'),
-(2061, 30, NULL, '6 месяцев', 'ru'),
 (2062, 23, NULL, '100 Вт', 'ru'),
-(2063, 28, NULL, 'AAC', 'ru'),
-(2064, 30, NULL, '36 месяцев', 'ru'),
 (2065, 23, NULL, '50 Вт', 'ru'),
-(2066, 28, NULL, 'AC3', 'ru'),
-(2067, 30, NULL, '12 месяцев', 'ru'),
 (2068, 23, NULL, '50 Вт', 'ru'),
-(2069, 28, NULL, 'AC3', 'ru'),
-(2070, 30, NULL, '12 месяцев', 'ru'),
 (2071, 22, NULL, 'Да', 'ru'),
 (2072, 23, NULL, '100 Вт', 'ru'),
 (2073, 24, NULL, '2', 'ru'),
-(2074, 28, NULL, 'MPA', 'ru'),
-(2075, 29, NULL, 'WMV', 'ru'),
-(2076, 30, NULL, '12 месяцев', 'ru'),
-(2077, 39, NULL, 'Дерево', 'ru'),
 (2078, 22, NULL, 'Да', 'ru'),
 (2079, 23, NULL, '100 Вт', 'ru'),
-(2080, 28, NULL, 'AAC', 'ru'),
-(2081, 29, NULL, 'ASF', 'ru'),
-(2082, 30, NULL, '12 месяцев', 'ru'),
-(2083, 39, NULL, 'Метал', 'ru'),
 (2084, 22, NULL, 'Да', 'ru'),
 (2085, 23, NULL, '100 Вт', 'ru'),
 (2086, 24, NULL, '2', 'ru'),
-(2087, 28, NULL, 'AC3', 'ru'),
-(2088, 29, NULL, 'ASF', 'ru'),
-(2089, 30, NULL, '12 месяцев', 'ru'),
-(2090, 39, NULL, 'Метал', 'ru'),
 (2091, 22, NULL, 'Да', 'ru'),
 (2092, 23, NULL, '100 Вт', 'ru'),
 (2093, 24, NULL, '1', 'ru'),
-(2094, 28, NULL, 'AC3', 'ru'),
-(2095, 29, NULL, 'ASF', 'ru'),
-(2096, 30, NULL, '12 месяцев', 'ru'),
-(2097, 39, NULL, 'Метал', 'ru'),
 (2098, 22, NULL, 'Да', 'ru'),
 (2099, 23, NULL, '1500 Вт', 'ru'),
 (2100, 24, NULL, '2', 'ru'),
-(2101, 28, NULL, 'DTS', 'ru'),
-(2102, 29, NULL, 'ASF', 'ru'),
-(2103, 30, NULL, '36 месяцев', 'ru'),
-(2104, 39, NULL, 'Пластик', 'ru'),
 (2105, 23, NULL, '100 Вт', 'ru'),
-(2106, 30, NULL, '36 месяцев', 'ru'),
-(2107, 39, NULL, 'Метал', 'ru'),
 (2108, 23, NULL, '80 Вт', 'ru'),
-(2109, 30, NULL, '12 месяцев', 'ru'),
-(2110, 39, NULL, 'Пластик', 'ru'),
 (2111, 23, NULL, '100 Вт', 'ru'),
-(2112, 30, NULL, '24 месяца', 'ru'),
-(2113, 39, NULL, 'Метал', 'ru'),
 (2114, 25, NULL, 'Да', 'ru'),
 (2115, 26, NULL, '15 Мп', 'ru'),
-(2116, 30, NULL, '12 месяцев', 'ru'),
-(2117, 38, NULL, '80~3200 ISO', 'ru'),
 (2118, 25, NULL, 'Да', 'ru'),
 (2119, 26, NULL, '12 Мп', 'ru'),
-(2120, 30, NULL, '12 месяцев', 'ru'),
-(2121, 38, NULL, 'Авто', 'ru'),
 (2122, 25, NULL, 'Да', 'ru'),
 (2123, 26, NULL, '15 Мп', 'ru'),
-(2124, 30, NULL, '24 месяца', 'ru'),
-(2125, 38, NULL, '80~3200 ISO', 'ru'),
 (2126, 25, NULL, 'Да', 'ru'),
 (2127, 26, NULL, '10 Мп', 'ru'),
-(2128, 30, NULL, '12 месяцев', 'ru'),
-(2129, 38, NULL, 'Авто', 'ru'),
 (2130, 25, NULL, 'Да', 'ru'),
 (2131, 26, NULL, '15 Мп', 'ru'),
-(2132, 30, NULL, '12 месяцев', 'ru'),
-(2133, 38, NULL, '80~3200 ISO', 'ru'),
-(2134, 30, NULL, '36 месяцев', 'ru'),
-(2135, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2136, 36, NULL, 'A1', 'ru'),
-(2137, 37, NULL, 'Wi-Fi', 'ru'),
-(2138, 30, NULL, '36 месяцев', 'ru'),
-(2139, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2140, 36, NULL, 'A1', 'ru'),
-(2141, 37, NULL, 'Wi-Fi', 'ru'),
-(2142, 30, NULL, '12 месяцев', 'ru'),
-(2143, 35, NULL, 'Лазерная печать', 'ru'),
-(2144, 36, NULL, 'A3', 'ru'),
-(2145, 37, NULL, 'Bluetooth', 'ru'),
-(2146, 30, NULL, '12 месяцев', 'ru'),
-(2147, 35, NULL, 'Лазерная печать', 'ru'),
-(2148, 36, NULL, 'A3', 'ru'),
-(2149, 30, NULL, '36 месяцев', 'ru'),
-(2150, 35, NULL, 'Струйная печать', 'ru'),
-(2151, 36, NULL, 'A3', 'ru'),
-(2152, 37, NULL, 'Wi-Fi', 'ru'),
-(2153, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2154, 36, NULL, 'A4', 'ru'),
-(2155, 37, NULL, 'Ethernet', 'ru'),
-(2156, 30, NULL, '12 месяцев', 'ru'),
-(2157, 33, NULL, 'Моноблок', 'ru'),
-(2158, 30, NULL, '36 месяцев', 'ru'),
-(2159, 37, NULL, 'Bluetooth', 'ru'),
-(2160, 30, NULL, '12 месяцев', 'ru'),
-(2161, 33, NULL, 'Моноблок', 'ru'),
-(2162, 30, NULL, '12 месяцев', 'ru'),
-(2163, 32, NULL, '2 ГГц', 'ru'),
-(2164, 33, NULL, 'Сенсор', 'ru'),
-(2165, 37, NULL, 'Ethernet', 'ru'),
-(2166, 30, NULL, '24 месяца', 'ru'),
-(2167, 40, NULL, '3 м', 'ru'),
-(2168, 30, NULL, '12 месяцев', 'ru'),
-(2169, 40, NULL, '5 м', 'ru'),
-(2170, 30, NULL, '24 месяца', 'ru'),
-(2171, 40, NULL, '20 м', 'ru'),
-(2172, 30, NULL, '24 месяца', 'ru'),
-(2173, 40, NULL, '20 м', 'ru'),
-(2174, 30, NULL, '12 месяцев', 'ru'),
-(2175, 40, NULL, '10 м', 'ru'),
-(2176, 30, NULL, '12 месяцев', 'ru'),
-(2177, 40, NULL, '5 м', 'ru'),
-(2178, 30, NULL, '12 месяцев', 'ru'),
-(2179, 40, NULL, '2 м', 'ru'),
-(2180, 30, NULL, '12 месяцев', 'ru'),
-(2181, 40, NULL, '5 м', 'ru'),
 (2182, 23, NULL, '40 Вт', 'ru'),
-(2183, 30, NULL, '12 месяцев', 'ru'),
-(2184, 39, NULL, 'Дерево', 'ru'),
 (2185, 23, NULL, '40 Вт', 'ru'),
-(2186, 30, NULL, '24 месяца', 'ru'),
-(2187, 39, NULL, 'Дерево', 'ru'),
 (2188, 23, NULL, '40 Вт', 'ru'),
-(2189, 30, NULL, '12 месяцев', 'ru'),
-(2190, 39, NULL, 'Пластик', 'ru'),
 (2191, 23, NULL, '100 Вт', 'ru'),
-(2192, 30, NULL, '36 месяцев', 'ru'),
-(2193, 39, NULL, 'Дерево', 'ru'),
 (2194, 23, NULL, '40 Вт', 'ru'),
-(2195, 30, NULL, '12 месяцев', 'ru'),
-(2196, 39, NULL, 'Метал', 'ru'),
-(2197, 30, NULL, '12 месяцев', 'ru'),
-(2198, 30, NULL, '12 месяцев', 'ru'),
 (2199, 23, NULL, '100 Вт', 'ru'),
 (2200, 24, NULL, '4', 'ru'),
-(2201, 28, NULL, 'AAC', 'ru'),
-(2202, 30, NULL, '12 месяцев', 'ru'),
-(2203, 30, NULL, '12 месяцев', 'ru'),
 (2204, 23, NULL, '100 Вт', 'ru'),
 (2205, 24, NULL, '2', 'ru'),
-(2206, 28, NULL, 'AAC', 'ru'),
-(2207, 30, NULL, '36 месяцев', 'ru'),
 (2208, 20, NULL, 'LED', 'ru'),
 (2209, 22, NULL, 'Да', 'ru'),
-(2210, 30, NULL, '24 месяца', 'ru'),
 (2211, 20, NULL, 'LED', 'ru'),
 (2212, 21, NULL, '32', 'ru'),
 (2213, 22, NULL, 'Да', 'ru'),
-(2214, 30, NULL, '24 месяца', 'ru'),
 (2215, 20, NULL, 'LED', 'ru'),
 (2216, 21, NULL, '40', 'ru'),
 (2217, 22, NULL, 'Да', 'ru'),
-(2218, 30, NULL, '24 месяца', 'ru'),
 (2219, 20, NULL, 'LED', 'ru'),
 (2220, 21, NULL, '32', 'ru'),
 (2221, 22, NULL, 'Да', 'ru'),
-(2222, 30, NULL, '24 месяца', 'ru'),
 (2223, 20, NULL, 'Plasma', 'ru'),
 (2224, 21, NULL, '40', 'ru'),
 (2225, 22, NULL, 'Нет', 'ru'),
-(2226, 30, NULL, '24 месяца', 'ru'),
 (2227, 20, NULL, 'LCD', 'ru'),
 (2228, 21, NULL, '40', 'ru'),
 (2229, 22, NULL, 'Нет', 'ru'),
-(2230, 30, NULL, '36 месяцев', 'ru'),
 (2231, 20, NULL, 'LCD', 'ru'),
 (2232, 21, NULL, '21', 'ru'),
 (2233, 22, NULL, 'Да', 'ru'),
-(2234, 30, NULL, '24 месяца', 'ru'),
 (2235, 23, NULL, '100 Вт', 'ru'),
-(2236, 28, NULL, 'FLAC', 'ru'),
-(2237, 29, NULL, 'WMV', 'ru'),
-(2238, 30, NULL, '12 месяцев', 'ru'),
 (2239, 23, NULL, '50 Вт', 'ru'),
-(2240, 28, NULL, 'FLAC', 'ru'),
-(2241, 29, NULL, 'BDMV', 'ru'),
-(2242, 30, NULL, '12 месяцев', 'ru'),
 (2243, 23, NULL, '50 Вт', 'ru'),
-(2244, 28, NULL, 'AAC', 'ru'),
-(2245, 29, NULL, 'WMV', 'ru'),
-(2246, 30, NULL, '12 месяцев', 'ru'),
 (2247, 23, NULL, '100 Вт', 'ru'),
-(2248, 28, NULL, 'AAC', 'ru'),
-(2249, 30, NULL, '12 месяцев', 'ru'),
 (2250, 23, NULL, '100 Вт', 'ru'),
-(2251, 28, NULL, 'MPA', 'ru'),
-(2252, 30, NULL, '24 месяца', 'ru'),
 (2253, 23, NULL, '40 Вт', 'ru'),
-(2254, 28, NULL, 'AAC', 'ru'),
-(2255, 30, NULL, '6 месяцев', 'ru'),
 (2256, 23, NULL, '100 Вт', 'ru'),
-(2257, 28, NULL, 'AAC', 'ru'),
-(2258, 30, NULL, '36 месяцев', 'ru'),
 (2259, 23, NULL, '50 Вт', 'ru'),
-(2260, 28, NULL, 'AC3', 'ru'),
-(2261, 30, NULL, '12 месяцев', 'ru'),
 (2262, 23, NULL, '50 Вт', 'ru'),
-(2263, 28, NULL, 'AC3', 'ru'),
-(2264, 30, NULL, '12 месяцев', 'ru'),
 (2265, 22, NULL, 'Да', 'ru'),
 (2266, 23, NULL, '100 Вт', 'ru'),
 (2267, 24, NULL, '2', 'ru'),
-(2268, 28, NULL, 'MPA', 'ru'),
-(2269, 29, NULL, 'WMV', 'ru'),
-(2270, 30, NULL, '12 месяцев', 'ru'),
-(2271, 39, NULL, 'Дерево', 'ru'),
 (2272, 22, NULL, 'Да', 'ru'),
 (2273, 23, NULL, '100 Вт', 'ru'),
-(2274, 28, NULL, 'AAC', 'ru'),
-(2275, 29, NULL, 'ASF', 'ru'),
-(2276, 30, NULL, '12 месяцев', 'ru'),
-(2277, 39, NULL, 'Метал', 'ru'),
 (2278, 22, NULL, 'Да', 'ru'),
 (2279, 23, NULL, '100 Вт', 'ru'),
 (2280, 24, NULL, '2', 'ru'),
-(2281, 28, NULL, 'AC3', 'ru'),
-(2282, 29, NULL, 'ASF', 'ru'),
-(2283, 30, NULL, '12 месяцев', 'ru'),
-(2284, 39, NULL, 'Метал', 'ru'),
 (2285, 22, NULL, 'Да', 'ru'),
 (2286, 23, NULL, '100 Вт', 'ru'),
 (2287, 24, NULL, '1', 'ru'),
-(2288, 28, NULL, 'AC3', 'ru'),
-(2289, 29, NULL, 'ASF', 'ru'),
-(2290, 30, NULL, '12 месяцев', 'ru'),
-(2291, 39, NULL, 'Метал', 'ru'),
 (2292, 22, NULL, 'Да', 'ru'),
 (2293, 23, NULL, '1500 Вт', 'ru'),
 (2294, 24, NULL, '2', 'ru'),
-(2295, 28, NULL, 'DTS', 'ru'),
-(2296, 29, NULL, 'ASF', 'ru'),
-(2297, 30, NULL, '36 месяцев', 'ru'),
-(2298, 39, NULL, 'Пластик', 'ru'),
 (2299, 23, NULL, '100 Вт', 'ru'),
-(2300, 30, NULL, '36 месяцев', 'ru'),
-(2301, 39, NULL, 'Метал', 'ru'),
 (2302, 23, NULL, '80 Вт', 'ru'),
-(2303, 30, NULL, '12 месяцев', 'ru'),
-(2304, 39, NULL, 'Пластик', 'ru'),
 (2305, 23, NULL, '100 Вт', 'ru'),
-(2306, 30, NULL, '24 месяца', 'ru'),
-(2307, 39, NULL, 'Метал', 'ru'),
 (2308, 25, NULL, 'Да', 'ru'),
 (2309, 26, NULL, '15 Мп', 'ru'),
-(2310, 30, NULL, '12 месяцев', 'ru'),
-(2311, 38, NULL, '80~3200 ISO', 'ru'),
 (2312, 25, NULL, 'Да', 'ru'),
 (2313, 26, NULL, '12 Мп', 'ru'),
-(2314, 30, NULL, '12 месяцев', 'ru'),
-(2315, 38, NULL, 'Авто', 'ru'),
 (2316, 25, NULL, 'Да', 'ru'),
 (2317, 26, NULL, '15 Мп', 'ru'),
-(2318, 30, NULL, '24 месяца', 'ru'),
-(2319, 38, NULL, '80~3200 ISO', 'ru'),
 (2320, 25, NULL, 'Да', 'ru'),
 (2321, 26, NULL, '10 Мп', 'ru'),
-(2322, 30, NULL, '12 месяцев', 'ru'),
-(2323, 38, NULL, 'Авто', 'ru'),
 (2324, 25, NULL, 'Да', 'ru'),
 (2325, 26, NULL, '15 Мп', 'ru'),
-(2326, 30, NULL, '12 месяцев', 'ru'),
-(2327, 38, NULL, '80~3200 ISO', 'ru'),
-(2328, 30, NULL, '36 месяцев', 'ru'),
-(2329, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2330, 36, NULL, 'A1', 'ru'),
-(2331, 37, NULL, 'Wi-Fi', 'ru'),
-(2332, 30, NULL, '36 месяцев', 'ru'),
-(2333, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2334, 36, NULL, 'A1', 'ru'),
-(2335, 37, NULL, 'Wi-Fi', 'ru'),
-(2336, 30, NULL, '12 месяцев', 'ru'),
-(2337, 35, NULL, 'Лазерная печать', 'ru'),
-(2338, 36, NULL, 'A3', 'ru'),
-(2339, 37, NULL, 'Bluetooth', 'ru'),
-(2340, 30, NULL, '12 месяцев', 'ru'),
-(2341, 35, NULL, 'Лазерная печать', 'ru'),
-(2342, 36, NULL, 'A3', 'ru'),
-(2343, 30, NULL, '36 месяцев', 'ru'),
-(2344, 35, NULL, 'Струйная печать', 'ru'),
-(2345, 36, NULL, 'A3', 'ru'),
-(2346, 37, NULL, 'Wi-Fi', 'ru'),
-(2347, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2348, 36, NULL, 'A4', 'ru'),
-(2349, 37, NULL, 'Ethernet', 'ru'),
-(2350, 30, NULL, '12 месяцев', 'ru'),
-(2351, 33, NULL, 'Моноблок', 'ru'),
-(2352, 30, NULL, '36 месяцев', 'ru'),
-(2353, 37, NULL, 'Bluetooth', 'ru'),
-(2354, 30, NULL, '12 месяцев', 'ru'),
-(2355, 33, NULL, 'Моноблок', 'ru'),
-(2356, 30, NULL, '12 месяцев', 'ru'),
-(2357, 32, NULL, '2 ГГц', 'ru'),
-(2358, 33, NULL, 'Сенсор', 'ru'),
-(2359, 37, NULL, 'Ethernet', 'ru'),
-(2360, 30, NULL, '24 месяца', 'ru'),
-(2361, 40, NULL, '3 м', 'ru'),
-(2362, 30, NULL, '12 месяцев', 'ru'),
-(2363, 40, NULL, '5 м', 'ru'),
-(2364, 30, NULL, '24 месяца', 'ru'),
-(2365, 40, NULL, '20 м', 'ru'),
-(2366, 30, NULL, '24 месяца', 'ru'),
-(2367, 40, NULL, '20 м', 'ru'),
-(2368, 30, NULL, '12 месяцев', 'ru'),
-(2369, 40, NULL, '10 м', 'ru'),
-(2370, 30, NULL, '12 месяцев', 'ru'),
-(2371, 40, NULL, '5 м', 'ru'),
-(2372, 30, NULL, '12 месяцев', 'ru'),
-(2373, 40, NULL, '2 м', 'ru'),
-(2374, 30, NULL, '12 месяцев', 'ru'),
-(2375, 40, NULL, '5 м', 'ru'),
 (2376, 23, NULL, '40 Вт', 'ru'),
-(2377, 30, NULL, '12 месяцев', 'ru'),
-(2378, 39, NULL, 'Дерево', 'ru'),
 (2379, 23, NULL, '40 Вт', 'ru'),
-(2380, 30, NULL, '24 месяца', 'ru'),
-(2381, 39, NULL, 'Дерево', 'ru'),
 (2382, 23, NULL, '40 Вт', 'ru'),
-(2383, 30, NULL, '12 месяцев', 'ru'),
-(2384, 39, NULL, 'Пластик', 'ru'),
 (2385, 23, NULL, '100 Вт', 'ru'),
-(2386, 30, NULL, '36 месяцев', 'ru'),
-(2387, 39, NULL, 'Дерево', 'ru'),
 (2388, 23, NULL, '40 Вт', 'ru'),
-(2389, 30, NULL, '12 месяцев', 'ru'),
-(2390, 39, NULL, 'Метал', 'ru'),
-(2391, 30, NULL, '12 месяцев', 'ru'),
-(2392, 30, NULL, '12 месяцев', 'ru'),
 (2393, 23, NULL, '100 Вт', 'ru'),
 (2394, 24, NULL, '4', 'ru'),
-(2395, 28, NULL, 'AAC', 'ru'),
-(2396, 30, NULL, '12 месяцев', 'ru'),
-(2397, 30, NULL, '12 месяцев', 'ru'),
 (2398, 23, NULL, '100 Вт', 'ru'),
 (2399, 24, NULL, '2', 'ru'),
-(2400, 28, NULL, 'AAC', 'ru'),
-(2401, 30, NULL, '36 месяцев', 'ru'),
 (2402, 20, NULL, 'LED', 'ru'),
 (2403, 22, NULL, 'Да', 'ru'),
-(2404, 30, NULL, '24 месяца', 'ru'),
 (2405, 20, NULL, 'LED', 'ru'),
 (2406, 21, NULL, '32', 'ru'),
 (2407, 22, NULL, 'Да', 'ru'),
-(2408, 30, NULL, '24 месяца', 'ru'),
 (2409, 20, NULL, 'LED', 'ru'),
 (2410, 21, NULL, '40', 'ru'),
 (2411, 22, NULL, 'Да', 'ru'),
-(2412, 30, NULL, '24 месяца', 'ru'),
 (2413, 20, NULL, 'LED', 'ru'),
 (2414, 21, NULL, '32', 'ru'),
 (2415, 22, NULL, 'Да', 'ru'),
-(2416, 30, NULL, '24 месяца', 'ru'),
 (2417, 20, NULL, 'Plasma', 'ru'),
 (2418, 21, NULL, '40', 'ru'),
 (2419, 22, NULL, 'Нет', 'ru'),
-(2420, 30, NULL, '24 месяца', 'ru'),
 (2421, 20, NULL, 'LCD', 'ru'),
 (2422, 21, NULL, '40', 'ru'),
 (2423, 22, NULL, 'Нет', 'ru'),
-(2424, 30, NULL, '36 месяцев', 'ru'),
 (2425, 20, NULL, 'LCD', 'ru'),
 (2426, 21, NULL, '21', 'ru'),
 (2427, 22, NULL, 'Да', 'ru'),
-(2428, 30, NULL, '24 месяца', 'ru'),
 (2429, 23, NULL, '100 Вт', 'ru'),
-(2430, 28, NULL, 'FLAC', 'ru'),
-(2431, 29, NULL, 'WMV', 'ru'),
-(2432, 30, NULL, '12 месяцев', 'ru'),
 (2433, 23, NULL, '50 Вт', 'ru'),
-(2434, 28, NULL, 'FLAC', 'ru'),
-(2435, 29, NULL, 'BDMV', 'ru'),
-(2436, 30, NULL, '12 месяцев', 'ru'),
 (2437, 23, NULL, '50 Вт', 'ru'),
-(2438, 28, NULL, 'AAC', 'ru'),
-(2439, 29, NULL, 'WMV', 'ru'),
-(2440, 30, NULL, '12 месяцев', 'ru'),
 (2441, 23, NULL, '100 Вт', 'ru'),
-(2442, 28, NULL, 'AAC', 'ru'),
-(2443, 30, NULL, '12 месяцев', 'ru'),
 (2444, 23, NULL, '100 Вт', 'ru'),
-(2445, 28, NULL, 'MPA', 'ru'),
-(2446, 30, NULL, '24 месяца', 'ru'),
 (2447, 23, NULL, '40 Вт', 'ru'),
-(2448, 28, NULL, 'AAC', 'ru'),
-(2449, 30, NULL, '6 месяцев', 'ru'),
 (2450, 23, NULL, '100 Вт', 'ru'),
-(2451, 28, NULL, 'AAC', 'ru'),
-(2452, 30, NULL, '36 месяцев', 'ru'),
 (2453, 23, NULL, '50 Вт', 'ru'),
-(2454, 28, NULL, 'AC3', 'ru'),
-(2455, 30, NULL, '12 месяцев', 'ru'),
 (2456, 23, NULL, '50 Вт', 'ru'),
-(2457, 28, NULL, 'AC3', 'ru'),
-(2458, 30, NULL, '12 месяцев', 'ru'),
 (2459, 22, NULL, 'Да', 'ru'),
 (2460, 23, NULL, '100 Вт', 'ru'),
 (2461, 24, NULL, '2', 'ru'),
-(2462, 28, NULL, 'MPA', 'ru'),
-(2463, 29, NULL, 'WMV', 'ru'),
-(2464, 30, NULL, '12 месяцев', 'ru'),
-(2465, 39, NULL, 'Дерево', 'ru'),
 (2466, 22, NULL, 'Да', 'ru'),
 (2467, 23, NULL, '100 Вт', 'ru'),
-(2468, 28, NULL, 'AAC', 'ru'),
-(2469, 29, NULL, 'ASF', 'ru'),
-(2470, 30, NULL, '12 месяцев', 'ru'),
-(2471, 39, NULL, 'Метал', 'ru'),
 (2472, 22, NULL, 'Да', 'ru'),
 (2473, 23, NULL, '100 Вт', 'ru'),
 (2474, 24, NULL, '2', 'ru'),
-(2475, 28, NULL, 'AC3', 'ru'),
-(2476, 29, NULL, 'ASF', 'ru'),
-(2477, 30, NULL, '12 месяцев', 'ru'),
-(2478, 39, NULL, 'Метал', 'ru'),
 (2479, 22, NULL, 'Да', 'ru'),
 (2480, 23, NULL, '100 Вт', 'ru'),
 (2481, 24, NULL, '1', 'ru'),
-(2482, 28, NULL, 'AC3', 'ru'),
-(2483, 29, NULL, 'ASF', 'ru'),
-(2484, 30, NULL, '12 месяцев', 'ru'),
-(2485, 39, NULL, 'Метал', 'ru'),
 (2486, 22, NULL, 'Да', 'ru'),
 (2487, 23, NULL, '1500 Вт', 'ru'),
 (2488, 24, NULL, '2', 'ru'),
-(2489, 28, NULL, 'DTS', 'ru'),
-(2490, 29, NULL, 'ASF', 'ru'),
-(2491, 30, NULL, '36 месяцев', 'ru'),
-(2492, 39, NULL, 'Пластик', 'ru'),
 (2493, 23, NULL, '100 Вт', 'ru'),
-(2494, 30, NULL, '36 месяцев', 'ru'),
-(2495, 39, NULL, 'Метал', 'ru'),
 (2496, 23, NULL, '80 Вт', 'ru'),
-(2497, 30, NULL, '12 месяцев', 'ru'),
-(2498, 39, NULL, 'Пластик', 'ru'),
 (2499, 23, NULL, '100 Вт', 'ru'),
-(2500, 30, NULL, '24 месяца', 'ru'),
-(2501, 39, NULL, 'Метал', 'ru'),
 (2502, 25, NULL, 'Да', 'ru'),
 (2503, 26, NULL, '15 Мп', 'ru'),
-(2504, 30, NULL, '12 месяцев', 'ru'),
-(2505, 38, NULL, '80~3200 ISO', 'ru'),
 (2506, 25, NULL, 'Да', 'ru'),
 (2507, 26, NULL, '12 Мп', 'ru'),
-(2508, 30, NULL, '12 месяцев', 'ru'),
-(2509, 38, NULL, 'Авто', 'ru'),
 (2510, 25, NULL, 'Да', 'ru'),
 (2511, 26, NULL, '15 Мп', 'ru'),
-(2512, 30, NULL, '24 месяца', 'ru'),
-(2513, 38, NULL, '80~3200 ISO', 'ru'),
 (2514, 25, NULL, 'Да', 'ru'),
 (2515, 26, NULL, '10 Мп', 'ru'),
-(2516, 30, NULL, '12 месяцев', 'ru'),
-(2517, 38, NULL, 'Авто', 'ru'),
 (2518, 25, NULL, 'Да', 'ru'),
 (2519, 26, NULL, '15 Мп', 'ru'),
-(2520, 30, NULL, '12 месяцев', 'ru'),
-(2521, 38, NULL, '80~3200 ISO', 'ru'),
-(2522, 30, NULL, '36 месяцев', 'ru'),
-(2523, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2524, 36, NULL, 'A1', 'ru'),
-(2525, 37, NULL, 'Wi-Fi', 'ru'),
-(2526, 30, NULL, '36 месяцев', 'ru'),
-(2527, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2528, 36, NULL, 'A1', 'ru'),
-(2529, 37, NULL, 'Wi-Fi', 'ru'),
-(2530, 30, NULL, '12 месяцев', 'ru'),
-(2531, 35, NULL, 'Лазерная печать', 'ru'),
-(2532, 36, NULL, 'A3', 'ru'),
-(2533, 37, NULL, 'Bluetooth', 'ru'),
-(2534, 30, NULL, '12 месяцев', 'ru'),
-(2535, 35, NULL, 'Лазерная печать', 'ru'),
-(2536, 36, NULL, 'A3', 'ru'),
-(2537, 30, NULL, '36 месяцев', 'ru'),
-(2538, 35, NULL, 'Струйная печать', 'ru'),
-(2539, 36, NULL, 'A3', 'ru'),
-(2540, 37, NULL, 'Wi-Fi', 'ru'),
-(2541, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2542, 36, NULL, 'A4', 'ru'),
-(2543, 37, NULL, 'Ethernet', 'ru'),
-(2544, 30, NULL, '12 месяцев', 'ru'),
-(2545, 33, NULL, 'Моноблок', 'ru'),
-(2546, 30, NULL, '36 месяцев', 'ru'),
-(2547, 37, NULL, 'Bluetooth', 'ru'),
-(2548, 30, NULL, '12 месяцев', 'ru'),
-(2549, 33, NULL, 'Моноблок', 'ru'),
-(2550, 30, NULL, '12 месяцев', 'ru'),
-(2551, 32, NULL, '2 ГГц', 'ru'),
-(2552, 33, NULL, 'Сенсор', 'ru'),
-(2553, 37, NULL, 'Ethernet', 'ru'),
-(2554, 30, NULL, '24 месяца', 'ru'),
-(2555, 40, NULL, '3 м', 'ru'),
-(2556, 30, NULL, '12 месяцев', 'ru'),
-(2557, 40, NULL, '5 м', 'ru'),
-(2558, 30, NULL, '24 месяца', 'ru'),
-(2559, 40, NULL, '20 м', 'ru'),
-(2560, 30, NULL, '24 месяца', 'ru'),
-(2561, 40, NULL, '20 м', 'ru'),
-(2562, 30, NULL, '12 месяцев', 'ru'),
-(2563, 40, NULL, '10 м', 'ru'),
-(2564, 30, NULL, '12 месяцев', 'ru'),
-(2565, 40, NULL, '5 м', 'ru'),
-(2566, 30, NULL, '12 месяцев', 'ru'),
-(2567, 40, NULL, '2 м', 'ru'),
-(2568, 30, NULL, '12 месяцев', 'ru'),
-(2569, 40, NULL, '5 м', 'ru'),
 (2570, 23, NULL, '40 Вт', 'ru'),
-(2571, 30, NULL, '12 месяцев', 'ru'),
-(2572, 39, NULL, 'Дерево', 'ru'),
 (2573, 23, NULL, '40 Вт', 'ru'),
-(2574, 30, NULL, '24 месяца', 'ru'),
-(2575, 39, NULL, 'Дерево', 'ru'),
 (2576, 23, NULL, '40 Вт', 'ru'),
-(2577, 30, NULL, '12 месяцев', 'ru'),
-(2578, 39, NULL, 'Пластик', 'ru'),
 (2579, 23, NULL, '100 Вт', 'ru'),
-(2580, 30, NULL, '36 месяцев', 'ru'),
-(2581, 39, NULL, 'Дерево', 'ru'),
 (2582, 23, NULL, '40 Вт', 'ru'),
-(2583, 30, NULL, '12 месяцев', 'ru'),
-(2584, 39, NULL, 'Метал', 'ru'),
-(2585, 30, NULL, '12 месяцев', 'ru'),
-(2586, 30, NULL, '12 месяцев', 'ru'),
 (2587, 23, NULL, '100 Вт', 'ru'),
 (2588, 24, NULL, '4', 'ru'),
-(2589, 28, NULL, 'AAC', 'ru'),
-(2590, 30, NULL, '12 месяцев', 'ru'),
-(2591, 30, NULL, '12 месяцев', 'ru'),
 (2592, 23, NULL, '100 Вт', 'ru'),
 (2593, 24, NULL, '2', 'ru'),
-(2594, 28, NULL, 'AAC', 'ru'),
-(2595, 30, NULL, '36 месяцев', 'ru'),
 (2596, 20, NULL, 'LED', 'ru'),
 (2597, 22, NULL, 'Да', 'ru'),
-(2598, 30, NULL, '24 месяца', 'ru'),
 (2599, 20, NULL, 'LED', 'ru'),
 (2600, 21, NULL, '32', 'ru'),
 (2601, 22, NULL, 'Да', 'ru'),
-(2602, 30, NULL, '24 месяца', 'ru'),
 (2603, 20, NULL, 'LED', 'ru'),
 (2604, 21, NULL, '40', 'ru'),
 (2605, 22, NULL, 'Да', 'ru'),
-(2606, 30, NULL, '24 месяца', 'ru'),
 (2607, 20, NULL, 'LED', 'ru'),
 (2608, 21, NULL, '32', 'ru'),
 (2609, 22, NULL, 'Да', 'ru'),
-(2610, 30, NULL, '24 месяца', 'ru'),
 (2611, 20, NULL, 'Plasma', 'ru'),
 (2612, 21, NULL, '40', 'ru'),
 (2613, 22, NULL, 'Нет', 'ru'),
-(2614, 30, NULL, '24 месяца', 'ru'),
 (2615, 20, NULL, 'LCD', 'ru'),
 (2616, 21, NULL, '40', 'ru'),
 (2617, 22, NULL, 'Нет', 'ru'),
-(2618, 30, NULL, '36 месяцев', 'ru'),
 (2619, 20, NULL, 'LCD', 'ru'),
 (2620, 21, NULL, '21', 'ru'),
 (2621, 22, NULL, 'Да', 'ru'),
-(2622, 30, NULL, '24 месяца', 'ru'),
 (2623, 23, NULL, '100 Вт', 'ru'),
-(2624, 28, NULL, 'FLAC', 'ru'),
-(2625, 29, NULL, 'WMV', 'ru'),
-(2626, 30, NULL, '12 месяцев', 'ru'),
 (2627, 23, NULL, '50 Вт', 'ru'),
-(2628, 28, NULL, 'FLAC', 'ru'),
-(2629, 29, NULL, 'BDMV', 'ru'),
-(2630, 30, NULL, '12 месяцев', 'ru'),
 (2631, 23, NULL, '50 Вт', 'ru'),
-(2632, 28, NULL, 'AAC', 'ru'),
-(2633, 29, NULL, 'WMV', 'ru'),
-(2634, 30, NULL, '12 месяцев', 'ru'),
 (2635, 23, NULL, '100 Вт', 'ru'),
-(2636, 28, NULL, 'AAC', 'ru'),
-(2637, 30, NULL, '12 месяцев', 'ru'),
 (2638, 23, NULL, '100 Вт', 'ru'),
-(2639, 28, NULL, 'MPA', 'ru'),
-(2640, 30, NULL, '24 месяца', 'ru'),
 (2641, 23, NULL, '40 Вт', 'ru'),
-(2642, 28, NULL, 'AAC', 'ru'),
-(2643, 30, NULL, '6 месяцев', 'ru'),
 (2644, 23, NULL, '100 Вт', 'ru'),
-(2645, 28, NULL, 'AAC', 'ru'),
-(2646, 30, NULL, '36 месяцев', 'ru'),
 (2647, 23, NULL, '50 Вт', 'ru'),
-(2648, 28, NULL, 'AC3', 'ru'),
-(2649, 30, NULL, '12 месяцев', 'ru'),
 (2650, 23, NULL, '50 Вт', 'ru'),
-(2651, 28, NULL, 'AC3', 'ru'),
-(2652, 30, NULL, '12 месяцев', 'ru'),
 (2653, 22, NULL, 'Да', 'ru'),
 (2654, 23, NULL, '100 Вт', 'ru'),
 (2655, 24, NULL, '2', 'ru'),
-(2656, 28, NULL, 'MPA', 'ru'),
-(2657, 29, NULL, 'WMV', 'ru'),
-(2658, 30, NULL, '12 месяцев', 'ru'),
-(2659, 39, NULL, 'Дерево', 'ru'),
 (2660, 22, NULL, 'Да', 'ru'),
 (2661, 23, NULL, '100 Вт', 'ru'),
-(2662, 28, NULL, 'AAC', 'ru'),
-(2663, 29, NULL, 'ASF', 'ru'),
-(2664, 30, NULL, '12 месяцев', 'ru'),
-(2665, 39, NULL, 'Метал', 'ru'),
 (2666, 22, NULL, 'Да', 'ru'),
 (2667, 23, NULL, '100 Вт', 'ru'),
 (2668, 24, NULL, '2', 'ru'),
-(2669, 28, NULL, 'AC3', 'ru'),
-(2670, 29, NULL, 'ASF', 'ru'),
-(2671, 30, NULL, '12 месяцев', 'ru'),
-(2672, 39, NULL, 'Метал', 'ru'),
 (2673, 22, NULL, 'Да', 'ru'),
 (2674, 23, NULL, '100 Вт', 'ru'),
 (2675, 24, NULL, '1', 'ru'),
-(2676, 28, NULL, 'AC3', 'ru'),
-(2677, 29, NULL, 'ASF', 'ru'),
-(2678, 30, NULL, '12 месяцев', 'ru'),
-(2679, 39, NULL, 'Метал', 'ru'),
 (2680, 22, NULL, 'Да', 'ru'),
 (2681, 23, NULL, '1500 Вт', 'ru'),
 (2682, 24, NULL, '2', 'ru'),
-(2683, 28, NULL, 'DTS', 'ru'),
-(2684, 29, NULL, 'ASF', 'ru'),
-(2685, 30, NULL, '36 месяцев', 'ru'),
-(2686, 39, NULL, 'Пластик', 'ru'),
 (2687, 23, NULL, '100 Вт', 'ru'),
-(2688, 30, NULL, '36 месяцев', 'ru'),
-(2689, 39, NULL, 'Метал', 'ru'),
 (2690, 23, NULL, '80 Вт', 'ru'),
-(2691, 30, NULL, '12 месяцев', 'ru'),
-(2692, 39, NULL, 'Пластик', 'ru'),
 (2693, 23, NULL, '100 Вт', 'ru'),
-(2694, 30, NULL, '24 месяца', 'ru'),
-(2695, 39, NULL, 'Метал', 'ru'),
 (2696, 25, NULL, 'Да', 'ru'),
 (2697, 26, NULL, '15 Мп', 'ru'),
-(2698, 30, NULL, '12 месяцев', 'ru'),
-(2699, 38, NULL, '80~3200 ISO', 'ru'),
 (2700, 25, NULL, 'Да', 'ru'),
 (2701, 26, NULL, '12 Мп', 'ru'),
-(2702, 30, NULL, '12 месяцев', 'ru'),
-(2703, 38, NULL, 'Авто', 'ru'),
 (2704, 25, NULL, 'Да', 'ru'),
 (2705, 26, NULL, '15 Мп', 'ru'),
-(2706, 30, NULL, '24 месяца', 'ru'),
-(2707, 38, NULL, '80~3200 ISO', 'ru'),
 (2708, 25, NULL, 'Да', 'ru'),
 (2709, 26, NULL, '10 Мп', 'ru'),
-(2710, 30, NULL, '12 месяцев', 'ru'),
-(2711, 38, NULL, 'Авто', 'ru'),
 (2712, 25, NULL, 'Да', 'ru'),
 (2713, 26, NULL, '15 Мп', 'ru'),
-(2714, 30, NULL, '12 месяцев', 'ru'),
-(2715, 38, NULL, '80~3200 ISO', 'ru'),
-(2716, 30, NULL, '36 месяцев', 'ru'),
-(2717, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2718, 36, NULL, 'A1', 'ru'),
-(2719, 37, NULL, 'Wi-Fi', 'ru'),
-(2720, 30, NULL, '36 месяцев', 'ru'),
-(2721, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2722, 36, NULL, 'A1', 'ru'),
-(2723, 37, NULL, 'Wi-Fi', 'ru'),
-(2724, 30, NULL, '12 месяцев', 'ru'),
-(2725, 35, NULL, 'Лазерная печать', 'ru'),
-(2726, 36, NULL, 'A3', 'ru'),
-(2727, 37, NULL, 'Bluetooth', 'ru'),
-(2728, 30, NULL, '12 месяцев', 'ru'),
-(2729, 35, NULL, 'Лазерная печать', 'ru'),
-(2730, 36, NULL, 'A3', 'ru'),
-(2731, 30, NULL, '36 месяцев', 'ru'),
-(2732, 35, NULL, 'Струйная печать', 'ru'),
-(2733, 36, NULL, 'A3', 'ru'),
-(2734, 37, NULL, 'Wi-Fi', 'ru'),
-(2735, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2736, 36, NULL, 'A4', 'ru'),
-(2737, 37, NULL, 'Ethernet', 'ru'),
-(2738, 30, NULL, '12 месяцев', 'ru'),
-(2739, 33, NULL, 'Моноблок', 'ru'),
-(2740, 30, NULL, '36 месяцев', 'ru'),
-(2741, 37, NULL, 'Bluetooth', 'ru'),
-(2742, 30, NULL, '12 месяцев', 'ru'),
-(2743, 33, NULL, 'Моноблок', 'ru'),
-(2744, 30, NULL, '12 месяцев', 'ru'),
-(2745, 32, NULL, '2 ГГц', 'ru'),
-(2746, 33, NULL, 'Сенсор', 'ru'),
-(2747, 37, NULL, 'Ethernet', 'ru'),
-(2748, 30, NULL, '24 месяца', 'ru'),
-(2749, 40, NULL, '3 м', 'ru'),
-(2750, 30, NULL, '12 месяцев', 'ru'),
-(2751, 40, NULL, '5 м', 'ru'),
-(2752, 30, NULL, '24 месяца', 'ru'),
-(2753, 40, NULL, '20 м', 'ru'),
-(2754, 30, NULL, '24 месяца', 'ru'),
-(2755, 40, NULL, '20 м', 'ru'),
-(2756, 30, NULL, '12 месяцев', 'ru'),
-(2757, 40, NULL, '10 м', 'ru'),
-(2758, 30, NULL, '12 месяцев', 'ru'),
-(2759, 40, NULL, '5 м', 'ru'),
-(2760, 30, NULL, '12 месяцев', 'ru'),
-(2761, 40, NULL, '2 м', 'ru'),
-(2762, 30, NULL, '12 месяцев', 'ru'),
-(2763, 40, NULL, '5 м', 'ru'),
 (2764, 23, NULL, '40 Вт', 'ru'),
-(2765, 30, NULL, '12 месяцев', 'ru'),
-(2766, 39, NULL, 'Дерево', 'ru'),
 (2767, 23, NULL, '40 Вт', 'ru'),
-(2768, 30, NULL, '24 месяца', 'ru'),
-(2769, 39, NULL, 'Дерево', 'ru'),
 (2770, 23, NULL, '40 Вт', 'ru'),
-(2771, 30, NULL, '12 месяцев', 'ru'),
-(2772, 39, NULL, 'Пластик', 'ru'),
 (2773, 23, NULL, '100 Вт', 'ru'),
-(2774, 30, NULL, '36 месяцев', 'ru'),
-(2775, 39, NULL, 'Дерево', 'ru'),
 (2776, 23, NULL, '40 Вт', 'ru'),
-(2777, 30, NULL, '12 месяцев', 'ru'),
-(2778, 39, NULL, 'Метал', 'ru'),
-(2779, 30, NULL, '12 месяцев', 'ru'),
-(2780, 30, NULL, '12 месяцев', 'ru'),
 (2781, 23, NULL, '100 Вт', 'ru'),
 (2782, 24, NULL, '4', 'ru'),
-(2783, 28, NULL, 'AAC', 'ru'),
-(2784, 30, NULL, '12 месяцев', 'ru'),
-(2785, 30, NULL, '12 месяцев', 'ru'),
 (2786, 23, NULL, '100 Вт', 'ru'),
 (2787, 24, NULL, '2', 'ru'),
-(2788, 28, NULL, 'AAC', 'ru'),
-(2789, 30, NULL, '36 месяцев', 'ru'),
 (2790, 20, NULL, 'LED', 'ru'),
 (2791, 22, NULL, 'Да', 'ru'),
-(2792, 30, NULL, '24 месяца', 'ru'),
 (2793, 20, NULL, 'LED', 'ru'),
 (2794, 21, NULL, '32', 'ru'),
 (2795, 22, NULL, 'Да', 'ru'),
-(2796, 30, NULL, '24 месяца', 'ru'),
 (2797, 20, NULL, 'LED', 'ru'),
 (2798, 21, NULL, '40', 'ru'),
 (2799, 22, NULL, 'Да', 'ru'),
-(2800, 30, NULL, '24 месяца', 'ru'),
 (2801, 20, NULL, 'LED', 'ru'),
 (2802, 21, NULL, '32', 'ru'),
 (2803, 22, NULL, 'Да', 'ru'),
-(2804, 30, NULL, '24 месяца', 'ru'),
 (2805, 20, NULL, 'Plasma', 'ru'),
 (2806, 21, NULL, '40', 'ru'),
 (2807, 22, NULL, 'Нет', 'ru'),
-(2808, 30, NULL, '24 месяца', 'ru'),
 (2809, 20, NULL, 'LCD', 'ru'),
 (2810, 21, NULL, '40', 'ru'),
 (2811, 22, NULL, 'Нет', 'ru'),
-(2812, 30, NULL, '36 месяцев', 'ru'),
 (2813, 20, NULL, 'LCD', 'ru'),
 (2814, 21, NULL, '21', 'ru'),
 (2815, 22, NULL, 'Да', 'ru'),
-(2816, 30, NULL, '24 месяца', 'ru'),
 (2817, 23, NULL, '100 Вт', 'ru'),
-(2818, 28, NULL, 'FLAC', 'ru'),
-(2819, 29, NULL, 'WMV', 'ru'),
-(2820, 30, NULL, '12 месяцев', 'ru'),
 (2821, 23, NULL, '50 Вт', 'ru'),
-(2822, 28, NULL, 'FLAC', 'ru'),
-(2823, 29, NULL, 'BDMV', 'ru'),
-(2824, 30, NULL, '12 месяцев', 'ru'),
 (2825, 23, NULL, '50 Вт', 'ru'),
-(2826, 28, NULL, 'AAC', 'ru'),
-(2827, 29, NULL, 'WMV', 'ru'),
-(2828, 30, NULL, '12 месяцев', 'ru'),
 (2829, 23, NULL, '100 Вт', 'ru'),
-(2830, 28, NULL, 'AAC', 'ru'),
-(2831, 30, NULL, '12 месяцев', 'ru'),
 (2832, 23, NULL, '100 Вт', 'ru'),
-(2833, 28, NULL, 'MPA', 'ru'),
-(2834, 30, NULL, '24 месяца', 'ru'),
 (2835, 23, NULL, '40 Вт', 'ru'),
-(2836, 28, NULL, 'AAC', 'ru'),
-(2837, 30, NULL, '6 месяцев', 'ru'),
 (2838, 23, NULL, '100 Вт', 'ru'),
-(2839, 28, NULL, 'AAC', 'ru'),
-(2840, 30, NULL, '36 месяцев', 'ru'),
 (2841, 23, NULL, '50 Вт', 'ru'),
-(2842, 28, NULL, 'AC3', 'ru'),
-(2843, 30, NULL, '12 месяцев', 'ru'),
 (2844, 23, NULL, '50 Вт', 'ru'),
-(2845, 28, NULL, 'AC3', 'ru'),
-(2846, 30, NULL, '12 месяцев', 'ru'),
 (2847, 22, NULL, 'Да', 'ru'),
 (2848, 23, NULL, '100 Вт', 'ru'),
 (2849, 24, NULL, '2', 'ru'),
-(2850, 28, NULL, 'MPA', 'ru'),
-(2851, 29, NULL, 'WMV', 'ru'),
-(2852, 30, NULL, '12 месяцев', 'ru'),
-(2853, 39, NULL, 'Дерево', 'ru'),
 (2854, 22, NULL, 'Да', 'ru'),
 (2855, 23, NULL, '100 Вт', 'ru'),
-(2856, 28, NULL, 'AAC', 'ru'),
-(2857, 29, NULL, 'ASF', 'ru'),
-(2858, 30, NULL, '12 месяцев', 'ru'),
-(2859, 39, NULL, 'Метал', 'ru'),
 (2860, 22, NULL, 'Да', 'ru'),
 (2861, 23, NULL, '100 Вт', 'ru'),
 (2862, 24, NULL, '2', 'ru'),
-(2863, 28, NULL, 'AC3', 'ru'),
-(2864, 29, NULL, 'ASF', 'ru'),
-(2865, 30, NULL, '12 месяцев', 'ru'),
-(2866, 39, NULL, 'Метал', 'ru'),
 (2867, 22, NULL, 'Да', 'ru'),
 (2868, 23, NULL, '100 Вт', 'ru'),
 (2869, 24, NULL, '1', 'ru'),
-(2870, 28, NULL, 'AC3', 'ru'),
-(2871, 29, NULL, 'ASF', 'ru'),
-(2872, 30, NULL, '12 месяцев', 'ru'),
-(2873, 39, NULL, 'Метал', 'ru'),
 (2874, 22, NULL, 'Да', 'ru'),
 (2875, 23, NULL, '1500 Вт', 'ru'),
 (2876, 24, NULL, '2', 'ru'),
-(2877, 28, NULL, 'DTS', 'ru'),
-(2878, 29, NULL, 'ASF', 'ru'),
-(2879, 30, NULL, '36 месяцев', 'ru'),
-(2880, 39, NULL, 'Пластик', 'ru'),
 (2881, 23, NULL, '100 Вт', 'ru'),
-(2882, 30, NULL, '36 месяцев', 'ru'),
-(2883, 39, NULL, 'Метал', 'ru'),
 (2884, 23, NULL, '80 Вт', 'ru'),
-(2885, 30, NULL, '12 месяцев', 'ru'),
-(2886, 39, NULL, 'Пластик', 'ru'),
 (2887, 23, NULL, '100 Вт', 'ru'),
-(2888, 30, NULL, '24 месяца', 'ru'),
-(2889, 39, NULL, 'Метал', 'ru'),
 (2890, 25, NULL, 'Да', 'ru'),
 (2891, 26, NULL, '15 Мп', 'ru'),
-(2892, 30, NULL, '12 месяцев', 'ru'),
-(2893, 38, NULL, '80~3200 ISO', 'ru'),
 (2894, 25, NULL, 'Да', 'ru'),
 (2895, 26, NULL, '12 Мп', 'ru'),
-(2896, 30, NULL, '12 месяцев', 'ru'),
-(2897, 38, NULL, 'Авто', 'ru'),
 (2898, 25, NULL, 'Да', 'ru'),
 (2899, 26, NULL, '15 Мп', 'ru'),
-(2900, 30, NULL, '24 месяца', 'ru'),
-(2901, 38, NULL, '80~3200 ISO', 'ru'),
 (2902, 25, NULL, 'Да', 'ru'),
 (2903, 26, NULL, '10 Мп', 'ru'),
-(2904, 30, NULL, '12 месяцев', 'ru'),
-(2905, 38, NULL, 'Авто', 'ru'),
 (2906, 25, NULL, 'Да', 'ru'),
 (2907, 26, NULL, '15 Мп', 'ru'),
-(2908, 30, NULL, '12 месяцев', 'ru'),
-(2909, 38, NULL, '80~3200 ISO', 'ru'),
-(2910, 30, NULL, '36 месяцев', 'ru'),
-(2911, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2912, 36, NULL, 'A1', 'ru'),
-(2913, 37, NULL, 'Wi-Fi', 'ru'),
-(2914, 30, NULL, '36 месяцев', 'ru'),
-(2915, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2916, 36, NULL, 'A1', 'ru'),
-(2917, 37, NULL, 'Wi-Fi', 'ru'),
-(2918, 30, NULL, '12 месяцев', 'ru'),
-(2919, 35, NULL, 'Лазерная печать', 'ru'),
-(2920, 36, NULL, 'A3', 'ru'),
-(2921, 37, NULL, 'Bluetooth', 'ru'),
-(2922, 30, NULL, '12 месяцев', 'ru'),
-(2923, 35, NULL, 'Лазерная печать', 'ru'),
-(2924, 36, NULL, 'A3', 'ru'),
-(2925, 30, NULL, '36 месяцев', 'ru'),
-(2926, 35, NULL, 'Струйная печать', 'ru'),
-(2927, 36, NULL, 'A3', 'ru'),
-(2928, 37, NULL, 'Wi-Fi', 'ru'),
-(2929, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(2930, 36, NULL, 'A4', 'ru'),
-(2931, 37, NULL, 'Ethernet', 'ru'),
-(2932, 30, NULL, '12 месяцев', 'ru'),
-(2933, 33, NULL, 'Моноблок', 'ru'),
-(2934, 30, NULL, '36 месяцев', 'ru'),
-(2935, 37, NULL, 'Bluetooth', 'ru'),
-(2936, 30, NULL, '12 месяцев', 'ru'),
-(2937, 33, NULL, 'Моноблок', 'ru'),
-(2938, 30, NULL, '12 месяцев', 'ru'),
-(2939, 32, NULL, '2 ГГц', 'ru'),
-(2940, 33, NULL, 'Сенсор', 'ru'),
-(2941, 37, NULL, 'Ethernet', 'ru'),
-(2942, 30, NULL, '24 месяца', 'ru'),
-(2943, 40, NULL, '3 м', 'ru'),
-(2944, 30, NULL, '12 месяцев', 'ru'),
-(2945, 40, NULL, '5 м', 'ru'),
-(2946, 30, NULL, '24 месяца', 'ru'),
-(2947, 40, NULL, '20 м', 'ru'),
-(2948, 30, NULL, '24 месяца', 'ru'),
-(2949, 40, NULL, '20 м', 'ru'),
-(2950, 30, NULL, '12 месяцев', 'ru'),
-(2951, 40, NULL, '10 м', 'ru'),
-(2952, 30, NULL, '12 месяцев', 'ru'),
-(2953, 40, NULL, '5 м', 'ru'),
-(2954, 30, NULL, '12 месяцев', 'ru'),
-(2955, 40, NULL, '2 м', 'ru'),
-(2956, 30, NULL, '12 месяцев', 'ru'),
-(2957, 40, NULL, '5 м', 'ru'),
 (2958, 23, NULL, '40 Вт', 'ru'),
-(2959, 30, NULL, '12 месяцев', 'ru'),
-(2960, 39, NULL, 'Дерево', 'ru'),
 (2961, 23, NULL, '40 Вт', 'ru'),
-(2962, 30, NULL, '24 месяца', 'ru'),
-(2963, 39, NULL, 'Дерево', 'ru'),
 (2964, 23, NULL, '40 Вт', 'ru'),
-(2965, 30, NULL, '12 месяцев', 'ru'),
-(2966, 39, NULL, 'Пластик', 'ru'),
 (2967, 23, NULL, '100 Вт', 'ru'),
-(2968, 30, NULL, '36 месяцев', 'ru'),
-(2969, 39, NULL, 'Дерево', 'ru'),
 (2970, 23, NULL, '40 Вт', 'ru'),
-(2971, 30, NULL, '12 месяцев', 'ru'),
-(2972, 39, NULL, 'Метал', 'ru'),
-(2973, 30, NULL, '12 месяцев', 'ru'),
-(2974, 30, NULL, '12 месяцев', 'ru'),
 (2975, 23, NULL, '100 Вт', 'ru'),
 (2976, 24, NULL, '4', 'ru'),
-(2977, 28, NULL, 'AAC', 'ru'),
-(2978, 30, NULL, '12 месяцев', 'ru'),
-(2979, 30, NULL, '12 месяцев', 'ru'),
 (2980, 23, NULL, '100 Вт', 'ru'),
 (2981, 24, NULL, '2', 'ru'),
-(2982, 28, NULL, 'AAC', 'ru'),
-(2983, 30, NULL, '36 месяцев', 'ru'),
 (2984, 20, NULL, 'LED', 'ru'),
 (2985, 22, NULL, 'Да', 'ru'),
-(2986, 30, NULL, '24 месяца', 'ru'),
 (2987, 20, NULL, 'LED', 'ru'),
 (2988, 21, NULL, '32', 'ru'),
 (2989, 22, NULL, 'Да', 'ru'),
-(2990, 30, NULL, '24 месяца', 'ru'),
 (2991, 20, NULL, 'LED', 'ru'),
 (2992, 21, NULL, '40', 'ru'),
 (2993, 22, NULL, 'Да', 'ru'),
-(2994, 30, NULL, '24 месяца', 'ru'),
 (2995, 20, NULL, 'LED', 'ru'),
 (2996, 21, NULL, '32', 'ru'),
 (2997, 22, NULL, 'Да', 'ru'),
-(2998, 30, NULL, '24 месяца', 'ru'),
 (2999, 20, NULL, 'Plasma', 'ru'),
 (3000, 21, NULL, '40', 'ru'),
 (3001, 22, NULL, 'Нет', 'ru'),
-(3002, 30, NULL, '24 месяца', 'ru'),
 (3003, 20, NULL, 'LCD', 'ru'),
 (3004, 21, NULL, '40', 'ru'),
 (3005, 22, NULL, 'Нет', 'ru'),
-(3006, 30, NULL, '36 месяцев', 'ru'),
 (3007, 20, NULL, 'LCD', 'ru'),
 (3008, 21, NULL, '21', 'ru'),
 (3009, 22, NULL, 'Да', 'ru'),
-(3010, 30, NULL, '24 месяца', 'ru'),
 (3011, 23, NULL, '100 Вт', 'ru'),
-(3012, 28, NULL, 'FLAC', 'ru'),
-(3013, 29, NULL, 'WMV', 'ru'),
-(3014, 30, NULL, '12 месяцев', 'ru'),
 (3015, 23, NULL, '50 Вт', 'ru'),
-(3016, 28, NULL, 'FLAC', 'ru'),
-(3017, 29, NULL, 'BDMV', 'ru'),
-(3018, 30, NULL, '12 месяцев', 'ru'),
 (3019, 23, NULL, '50 Вт', 'ru'),
-(3020, 28, NULL, 'AAC', 'ru'),
-(3021, 29, NULL, 'WMV', 'ru'),
-(3022, 30, NULL, '12 месяцев', 'ru'),
 (3023, 23, NULL, '100 Вт', 'ru'),
-(3024, 28, NULL, 'AAC', 'ru'),
-(3025, 30, NULL, '12 месяцев', 'ru'),
 (3026, 23, NULL, '100 Вт', 'ru'),
-(3027, 28, NULL, 'MPA', 'ru'),
-(3028, 30, NULL, '24 месяца', 'ru'),
 (3029, 23, NULL, '40 Вт', 'ru'),
-(3030, 28, NULL, 'AAC', 'ru'),
-(3031, 30, NULL, '6 месяцев', 'ru'),
 (3032, 23, NULL, '100 Вт', 'ru'),
-(3033, 28, NULL, 'AAC', 'ru'),
-(3034, 30, NULL, '36 месяцев', 'ru'),
 (3035, 23, NULL, '50 Вт', 'ru'),
-(3036, 28, NULL, 'AC3', 'ru'),
-(3037, 30, NULL, '12 месяцев', 'ru'),
 (3038, 23, NULL, '50 Вт', 'ru'),
-(3039, 28, NULL, 'AC3', 'ru'),
-(3040, 30, NULL, '12 месяцев', 'ru'),
 (3041, 22, NULL, 'Да', 'ru'),
 (3042, 23, NULL, '100 Вт', 'ru'),
 (3043, 24, NULL, '2', 'ru'),
-(3044, 28, NULL, 'MPA', 'ru'),
-(3045, 29, NULL, 'WMV', 'ru'),
-(3046, 30, NULL, '12 месяцев', 'ru'),
-(3047, 39, NULL, 'Дерево', 'ru'),
 (3048, 22, NULL, 'Да', 'ru'),
 (3049, 23, NULL, '100 Вт', 'ru'),
-(3050, 28, NULL, 'AAC', 'ru'),
-(3051, 29, NULL, 'ASF', 'ru'),
-(3052, 30, NULL, '12 месяцев', 'ru'),
-(3053, 39, NULL, 'Метал', 'ru'),
 (3054, 22, NULL, 'Да', 'ru'),
 (3055, 23, NULL, '100 Вт', 'ru'),
 (3056, 24, NULL, '2', 'ru'),
-(3057, 28, NULL, 'AC3', 'ru'),
-(3058, 29, NULL, 'ASF', 'ru'),
-(3059, 30, NULL, '12 месяцев', 'ru'),
-(3060, 39, NULL, 'Метал', 'ru'),
 (3061, 22, NULL, 'Да', 'ru'),
 (3062, 23, NULL, '100 Вт', 'ru'),
 (3063, 24, NULL, '1', 'ru'),
-(3064, 28, NULL, 'AC3', 'ru'),
-(3065, 29, NULL, 'ASF', 'ru'),
-(3066, 30, NULL, '12 месяцев', 'ru'),
-(3067, 39, NULL, 'Метал', 'ru'),
 (3068, 22, NULL, 'Да', 'ru'),
 (3069, 23, NULL, '1500 Вт', 'ru'),
 (3070, 24, NULL, '2', 'ru'),
-(3071, 28, NULL, 'DTS', 'ru'),
-(3072, 29, NULL, 'ASF', 'ru'),
-(3073, 30, NULL, '36 месяцев', 'ru'),
-(3074, 39, NULL, 'Пластик', 'ru'),
 (3075, 23, NULL, '100 Вт', 'ru'),
-(3076, 30, NULL, '36 месяцев', 'ru'),
-(3077, 39, NULL, 'Метал', 'ru'),
 (3078, 23, NULL, '80 Вт', 'ru'),
-(3079, 30, NULL, '12 месяцев', 'ru'),
-(3080, 39, NULL, 'Пластик', 'ru'),
 (3081, 23, NULL, '100 Вт', 'ru'),
-(3082, 30, NULL, '24 месяца', 'ru'),
-(3083, 39, NULL, 'Метал', 'ru'),
 (3084, 25, NULL, 'Да', 'ru'),
 (3085, 26, NULL, '15 Мп', 'ru'),
-(3086, 30, NULL, '12 месяцев', 'ru'),
-(3087, 38, NULL, '80~3200 ISO', 'ru'),
 (3088, 25, NULL, 'Да', 'ru'),
 (3089, 26, NULL, '12 Мп', 'ru'),
-(3090, 30, NULL, '12 месяцев', 'ru'),
-(3091, 38, NULL, 'Авто', 'ru'),
 (3092, 25, NULL, 'Да', 'ru'),
 (3093, 26, NULL, '15 Мп', 'ru'),
-(3094, 30, NULL, '24 месяца', 'ru'),
-(3095, 38, NULL, '80~3200 ISO', 'ru'),
 (3096, 25, NULL, 'Да', 'ru'),
 (3097, 26, NULL, '10 Мп', 'ru'),
-(3098, 30, NULL, '12 месяцев', 'ru'),
-(3099, 38, NULL, 'Авто', 'ru'),
 (3100, 25, NULL, 'Да', 'ru'),
 (3101, 26, NULL, '15 Мп', 'ru'),
-(3102, 30, NULL, '12 месяцев', 'ru'),
-(3103, 38, NULL, '80~3200 ISO', 'ru'),
-(3104, 30, NULL, '36 месяцев', 'ru'),
-(3105, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3106, 36, NULL, 'A1', 'ru'),
-(3107, 37, NULL, 'Wi-Fi', 'ru'),
-(3108, 30, NULL, '36 месяцев', 'ru'),
-(3109, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3110, 36, NULL, 'A1', 'ru'),
-(3111, 37, NULL, 'Wi-Fi', 'ru'),
-(3112, 30, NULL, '12 месяцев', 'ru'),
-(3113, 35, NULL, 'Лазерная печать', 'ru'),
-(3114, 36, NULL, 'A3', 'ru'),
-(3115, 37, NULL, 'Bluetooth', 'ru'),
-(3116, 30, NULL, '12 месяцев', 'ru'),
-(3117, 35, NULL, 'Лазерная печать', 'ru'),
-(3118, 36, NULL, 'A3', 'ru'),
-(3119, 30, NULL, '36 месяцев', 'ru'),
-(3120, 35, NULL, 'Струйная печать', 'ru'),
-(3121, 36, NULL, 'A3', 'ru'),
-(3122, 37, NULL, 'Wi-Fi', 'ru'),
-(3123, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3124, 36, NULL, 'A4', 'ru'),
-(3125, 37, NULL, 'Ethernet', 'ru'),
-(3126, 30, NULL, '12 месяцев', 'ru'),
-(3127, 33, NULL, 'Моноблок', 'ru'),
-(3128, 30, NULL, '36 месяцев', 'ru'),
-(3129, 37, NULL, 'Bluetooth', 'ru'),
-(3130, 30, NULL, '12 месяцев', 'ru'),
-(3131, 33, NULL, 'Моноблок', 'ru'),
-(3132, 30, NULL, '12 месяцев', 'ru'),
-(3133, 32, NULL, '2 ГГц', 'ru'),
-(3134, 33, NULL, 'Сенсор', 'ru'),
-(3135, 37, NULL, 'Ethernet', 'ru'),
-(3136, 30, NULL, '24 месяца', 'ru'),
-(3137, 40, NULL, '3 м', 'ru'),
-(3138, 30, NULL, '12 месяцев', 'ru'),
-(3139, 40, NULL, '5 м', 'ru'),
-(3140, 30, NULL, '24 месяца', 'ru'),
-(3141, 40, NULL, '20 м', 'ru'),
-(3142, 30, NULL, '24 месяца', 'ru'),
-(3143, 40, NULL, '20 м', 'ru'),
-(3144, 30, NULL, '12 месяцев', 'ru'),
-(3145, 40, NULL, '10 м', 'ru'),
-(3146, 30, NULL, '12 месяцев', 'ru'),
-(3147, 40, NULL, '5 м', 'ru'),
-(3148, 30, NULL, '12 месяцев', 'ru'),
-(3149, 40, NULL, '2 м', 'ru'),
-(3150, 30, NULL, '12 месяцев', 'ru'),
-(3151, 40, NULL, '5 м', 'ru'),
 (3152, 23, NULL, '40 Вт', 'ru'),
-(3153, 30, NULL, '12 месяцев', 'ru'),
-(3154, 39, NULL, 'Дерево', 'ru'),
 (3155, 23, NULL, '40 Вт', 'ru'),
-(3156, 30, NULL, '24 месяца', 'ru'),
-(3157, 39, NULL, 'Дерево', 'ru'),
 (3158, 23, NULL, '40 Вт', 'ru'),
-(3159, 30, NULL, '12 месяцев', 'ru'),
-(3160, 39, NULL, 'Пластик', 'ru'),
 (3161, 23, NULL, '100 Вт', 'ru'),
-(3162, 30, NULL, '36 месяцев', 'ru'),
-(3163, 39, NULL, 'Дерево', 'ru'),
 (3164, 23, NULL, '40 Вт', 'ru'),
-(3165, 30, NULL, '12 месяцев', 'ru'),
-(3166, 39, NULL, 'Метал', 'ru'),
-(3167, 30, NULL, '12 месяцев', 'ru'),
-(3168, 30, NULL, '12 месяцев', 'ru'),
 (3169, 23, NULL, '100 Вт', 'ru'),
 (3170, 24, NULL, '4', 'ru'),
-(3171, 28, NULL, 'AAC', 'ru'),
-(3172, 30, NULL, '12 месяцев', 'ru'),
-(3173, 30, NULL, '12 месяцев', 'ru'),
 (3174, 23, NULL, '100 Вт', 'ru'),
 (3175, 24, NULL, '2', 'ru'),
-(3176, 28, NULL, 'AAC', 'ru'),
-(3177, 30, NULL, '36 месяцев', 'ru'),
 (3178, 20, NULL, 'LED', 'ru'),
 (3179, 22, NULL, 'Да', 'ru'),
-(3180, 30, NULL, '24 месяца', 'ru'),
 (3181, 20, NULL, 'LED', 'ru'),
 (3182, 21, NULL, '32', 'ru'),
 (3183, 22, NULL, 'Да', 'ru'),
-(3184, 30, NULL, '24 месяца', 'ru'),
 (3185, 20, NULL, 'LED', 'ru'),
 (3186, 21, NULL, '40', 'ru'),
 (3187, 22, NULL, 'Да', 'ru'),
-(3188, 30, NULL, '24 месяца', 'ru'),
 (3189, 20, NULL, 'LED', 'ru'),
 (3190, 21, NULL, '32', 'ru'),
 (3191, 22, NULL, 'Да', 'ru'),
-(3192, 30, NULL, '24 месяца', 'ru'),
 (3193, 20, NULL, 'Plasma', 'ru'),
 (3194, 21, NULL, '40', 'ru'),
 (3195, 22, NULL, 'Нет', 'ru'),
-(3196, 30, NULL, '24 месяца', 'ru'),
 (3197, 20, NULL, 'LCD', 'ru'),
 (3198, 21, NULL, '40', 'ru'),
 (3199, 22, NULL, 'Нет', 'ru'),
-(3200, 30, NULL, '36 месяцев', 'ru'),
 (3201, 20, NULL, 'LCD', 'ru'),
 (3202, 21, NULL, '21', 'ru'),
 (3203, 22, NULL, 'Да', 'ru'),
-(3204, 30, NULL, '24 месяца', 'ru'),
 (3205, 23, NULL, '100 Вт', 'ru'),
-(3206, 28, NULL, 'FLAC', 'ru'),
-(3207, 29, NULL, 'WMV', 'ru'),
-(3208, 30, NULL, '12 месяцев', 'ru'),
 (3209, 23, NULL, '50 Вт', 'ru'),
-(3210, 28, NULL, 'FLAC', 'ru'),
-(3211, 29, NULL, 'BDMV', 'ru'),
-(3212, 30, NULL, '12 месяцев', 'ru'),
 (3213, 23, NULL, '50 Вт', 'ru'),
-(3214, 28, NULL, 'AAC', 'ru'),
-(3215, 29, NULL, 'WMV', 'ru'),
-(3216, 30, NULL, '12 месяцев', 'ru'),
 (3217, 23, NULL, '100 Вт', 'ru'),
-(3218, 28, NULL, 'AAC', 'ru'),
-(3219, 30, NULL, '12 месяцев', 'ru'),
 (3220, 23, NULL, '100 Вт', 'ru'),
-(3221, 28, NULL, 'MPA', 'ru'),
-(3222, 30, NULL, '24 месяца', 'ru'),
 (3223, 23, NULL, '40 Вт', 'ru'),
-(3224, 28, NULL, 'AAC', 'ru'),
-(3225, 30, NULL, '6 месяцев', 'ru'),
 (3226, 23, NULL, '100 Вт', 'ru'),
-(3227, 28, NULL, 'AAC', 'ru'),
-(3228, 30, NULL, '36 месяцев', 'ru'),
 (3229, 23, NULL, '50 Вт', 'ru'),
-(3230, 28, NULL, 'AC3', 'ru'),
-(3231, 30, NULL, '12 месяцев', 'ru'),
 (3232, 23, NULL, '50 Вт', 'ru'),
-(3233, 28, NULL, 'AC3', 'ru'),
-(3234, 30, NULL, '12 месяцев', 'ru'),
 (3235, 22, NULL, 'Да', 'ru'),
 (3236, 23, NULL, '100 Вт', 'ru'),
 (3237, 24, NULL, '2', 'ru'),
-(3238, 28, NULL, 'MPA', 'ru'),
-(3239, 29, NULL, 'WMV', 'ru'),
-(3240, 30, NULL, '12 месяцев', 'ru'),
-(3241, 39, NULL, 'Дерево', 'ru'),
 (3242, 22, NULL, 'Да', 'ru'),
 (3243, 23, NULL, '100 Вт', 'ru'),
-(3244, 28, NULL, 'AAC', 'ru'),
-(3245, 29, NULL, 'ASF', 'ru'),
-(3246, 30, NULL, '12 месяцев', 'ru'),
-(3247, 39, NULL, 'Метал', 'ru'),
 (3248, 22, NULL, 'Да', 'ru'),
 (3249, 23, NULL, '100 Вт', 'ru'),
 (3250, 24, NULL, '2', 'ru'),
-(3251, 28, NULL, 'AC3', 'ru'),
-(3252, 29, NULL, 'ASF', 'ru'),
-(3253, 30, NULL, '12 месяцев', 'ru'),
-(3254, 39, NULL, 'Метал', 'ru'),
 (3255, 22, NULL, 'Да', 'ru'),
 (3256, 23, NULL, '100 Вт', 'ru'),
 (3257, 24, NULL, '1', 'ru'),
-(3258, 28, NULL, 'AC3', 'ru'),
-(3259, 29, NULL, 'ASF', 'ru'),
-(3260, 30, NULL, '12 месяцев', 'ru'),
-(3261, 39, NULL, 'Метал', 'ru'),
 (3262, 22, NULL, 'Да', 'ru'),
 (3263, 23, NULL, '1500 Вт', 'ru'),
 (3264, 24, NULL, '2', 'ru'),
-(3265, 28, NULL, 'DTS', 'ru'),
-(3266, 29, NULL, 'ASF', 'ru'),
-(3267, 30, NULL, '36 месяцев', 'ru'),
-(3268, 39, NULL, 'Пластик', 'ru'),
 (3269, 23, NULL, '100 Вт', 'ru'),
-(3270, 30, NULL, '36 месяцев', 'ru'),
-(3271, 39, NULL, 'Метал', 'ru'),
 (3272, 23, NULL, '80 Вт', 'ru'),
-(3273, 30, NULL, '12 месяцев', 'ru'),
-(3274, 39, NULL, 'Пластик', 'ru'),
 (3275, 23, NULL, '100 Вт', 'ru'),
-(3276, 30, NULL, '24 месяца', 'ru'),
-(3277, 39, NULL, 'Метал', 'ru'),
 (3278, 25, NULL, 'Да', 'ru'),
 (3279, 26, NULL, '15 Мп', 'ru'),
-(3280, 30, NULL, '12 месяцев', 'ru'),
-(3281, 38, NULL, '80~3200 ISO', 'ru'),
 (3282, 25, NULL, 'Да', 'ru'),
 (3283, 26, NULL, '12 Мп', 'ru'),
-(3284, 30, NULL, '12 месяцев', 'ru'),
-(3285, 38, NULL, 'Авто', 'ru'),
 (3286, 25, NULL, 'Да', 'ru'),
 (3287, 26, NULL, '15 Мп', 'ru'),
-(3288, 30, NULL, '24 месяца', 'ru'),
-(3289, 38, NULL, '80~3200 ISO', 'ru'),
 (3290, 25, NULL, 'Да', 'ru'),
 (3291, 26, NULL, '10 Мп', 'ru'),
-(3292, 30, NULL, '12 месяцев', 'ru'),
-(3293, 38, NULL, 'Авто', 'ru'),
 (3294, 25, NULL, 'Да', 'ru'),
 (3295, 26, NULL, '15 Мп', 'ru'),
-(3296, 30, NULL, '12 месяцев', 'ru'),
-(3297, 38, NULL, '80~3200 ISO', 'ru'),
-(3298, 30, NULL, '36 месяцев', 'ru'),
-(3299, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3300, 36, NULL, 'A1', 'ru'),
-(3301, 37, NULL, 'Wi-Fi', 'ru'),
-(3302, 30, NULL, '36 месяцев', 'ru'),
-(3303, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3304, 36, NULL, 'A1', 'ru'),
-(3305, 37, NULL, 'Wi-Fi', 'ru'),
-(3306, 30, NULL, '12 месяцев', 'ru'),
-(3307, 35, NULL, 'Лазерная печать', 'ru'),
-(3308, 36, NULL, 'A3', 'ru'),
-(3309, 37, NULL, 'Bluetooth', 'ru'),
-(3310, 30, NULL, '12 месяцев', 'ru'),
-(3311, 35, NULL, 'Лазерная печать', 'ru'),
-(3312, 36, NULL, 'A3', 'ru'),
-(3313, 30, NULL, '36 месяцев', 'ru'),
-(3314, 35, NULL, 'Струйная печать', 'ru'),
-(3315, 36, NULL, 'A3', 'ru'),
-(3316, 37, NULL, 'Wi-Fi', 'ru'),
-(3317, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3318, 36, NULL, 'A4', 'ru'),
-(3319, 37, NULL, 'Ethernet', 'ru'),
-(3320, 30, NULL, '12 месяцев', 'ru'),
-(3321, 33, NULL, 'Моноблок', 'ru'),
-(3322, 30, NULL, '36 месяцев', 'ru'),
-(3323, 37, NULL, 'Bluetooth', 'ru'),
-(3324, 30, NULL, '12 месяцев', 'ru'),
-(3325, 33, NULL, 'Моноблок', 'ru'),
-(3326, 30, NULL, '12 месяцев', 'ru'),
-(3327, 32, NULL, '2 ГГц', 'ru'),
-(3328, 33, NULL, 'Сенсор', 'ru'),
-(3329, 37, NULL, 'Ethernet', 'ru'),
-(3330, 30, NULL, '24 месяца', 'ru'),
-(3331, 40, NULL, '3 м', 'ru'),
-(3332, 30, NULL, '12 месяцев', 'ru'),
-(3333, 40, NULL, '5 м', 'ru'),
-(3334, 30, NULL, '24 месяца', 'ru'),
-(3335, 40, NULL, '20 м', 'ru'),
-(3336, 30, NULL, '24 месяца', 'ru'),
-(3337, 40, NULL, '20 м', 'ru'),
-(3338, 30, NULL, '12 месяцев', 'ru'),
-(3339, 40, NULL, '10 м', 'ru'),
-(3340, 30, NULL, '12 месяцев', 'ru'),
-(3341, 40, NULL, '5 м', 'ru'),
-(3343, 40, NULL, '2 м', 'ru'),
-(3344, 30, NULL, '12 месяцев', 'ru'),
-(3345, 40, NULL, '5 м', 'ru'),
 (3346, 23, NULL, '40 Вт', 'ru'),
-(3347, 30, NULL, '12 месяцев', 'ru');
-INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
-(3348, 39, NULL, 'Дерево', 'ru'),
 (3349, 23, NULL, '40 Вт', 'ru'),
-(3350, 30, NULL, '24 месяца', 'ru'),
-(3351, 39, NULL, 'Дерево', 'ru'),
 (3352, 23, NULL, '40 Вт', 'ru'),
-(3353, 30, NULL, '12 месяцев', 'ru'),
-(3354, 39, NULL, 'Пластик', 'ru'),
 (3355, 23, NULL, '100 Вт', 'ru'),
-(3356, 30, NULL, '36 месяцев', 'ru'),
-(3357, 39, NULL, 'Дерево', 'ru'),
 (3358, 23, NULL, '40 Вт', 'ru'),
-(3359, 30, NULL, '12 месяцев', 'ru'),
-(3360, 39, NULL, 'Метал', 'ru'),
-(3361, 30, NULL, '12 месяцев', 'ru'),
-(3362, 30, NULL, '12 месяцев', 'ru'),
 (3363, 23, NULL, '100 Вт', 'ru'),
 (3364, 24, NULL, '4', 'ru'),
-(3365, 28, NULL, 'AAC', 'ru'),
-(3366, 30, NULL, '12 месяцев', 'ru'),
-(3367, 30, NULL, '12 месяцев', 'ru'),
 (3368, 23, NULL, '100 Вт', 'ru'),
 (3369, 24, NULL, '2', 'ru'),
-(3370, 28, NULL, 'AAC', 'ru'),
-(3371, 30, NULL, '36 месяцев', 'ru'),
 (3372, 20, NULL, 'LED', 'ru'),
 (3373, 22, NULL, 'Да', 'ru'),
-(3374, 30, NULL, '24 месяца', 'ru'),
 (3375, 20, NULL, 'LED', 'ru'),
 (3376, 21, NULL, '32', 'ru'),
 (3377, 22, NULL, 'Да', 'ru'),
-(3378, 30, NULL, '24 месяца', 'ru'),
 (3379, 20, NULL, 'LED', 'ru'),
 (3380, 21, NULL, '40', 'ru'),
 (3381, 22, NULL, 'Да', 'ru'),
-(3382, 30, NULL, '24 месяца', 'ru'),
 (3383, 20, NULL, 'LED', 'ru'),
 (3384, 21, NULL, '32', 'ru'),
 (3385, 22, NULL, 'Да', 'ru'),
-(3386, 30, NULL, '24 месяца', 'ru'),
 (3387, 20, NULL, 'Plasma', 'ru'),
 (3388, 21, NULL, '40', 'ru'),
 (3389, 22, NULL, 'Нет', 'ru'),
-(3390, 30, NULL, '24 месяца', 'ru'),
 (3391, 20, NULL, 'LCD', 'ru'),
 (3392, 21, NULL, '40', 'ru'),
 (3393, 22, NULL, 'Нет', 'ru'),
-(3394, 30, NULL, '36 месяцев', 'ru'),
 (3395, 20, NULL, 'LCD', 'ru'),
 (3396, 21, NULL, '21', 'ru'),
 (3397, 22, NULL, 'Да', 'ru'),
-(3398, 30, NULL, '24 месяца', 'ru'),
 (3399, 23, NULL, '100 Вт', 'ru'),
-(3400, 28, NULL, 'FLAC', 'ru'),
-(3401, 29, NULL, 'WMV', 'ru'),
-(3402, 30, NULL, '12 месяцев', 'ru'),
 (3403, 23, NULL, '50 Вт', 'ru'),
-(3404, 28, NULL, 'FLAC', 'ru'),
-(3405, 29, NULL, 'BDMV', 'ru'),
-(3406, 30, NULL, '12 месяцев', 'ru'),
 (3407, 23, NULL, '50 Вт', 'ru'),
-(3408, 28, NULL, 'AAC', 'ru'),
-(3409, 29, NULL, 'WMV', 'ru'),
-(3410, 30, NULL, '12 месяцев', 'ru'),
 (3411, 23, NULL, '100 Вт', 'ru'),
-(3412, 28, NULL, 'AAC', 'ru'),
-(3413, 30, NULL, '12 месяцев', 'ru'),
 (3414, 23, NULL, '100 Вт', 'ru'),
-(3415, 28, NULL, 'MPA', 'ru'),
-(3416, 30, NULL, '24 месяца', 'ru'),
 (3417, 23, NULL, '40 Вт', 'ru'),
-(3418, 28, NULL, 'AAC', 'ru'),
-(3419, 30, NULL, '6 месяцев', 'ru'),
 (3420, 23, NULL, '100 Вт', 'ru'),
-(3421, 28, NULL, 'AAC', 'ru'),
-(3422, 30, NULL, '36 месяцев', 'ru'),
 (3423, 23, NULL, '50 Вт', 'ru'),
-(3424, 28, NULL, 'AC3', 'ru'),
-(3425, 30, NULL, '12 месяцев', 'ru'),
 (3426, 23, NULL, '50 Вт', 'ru'),
-(3427, 28, NULL, 'AC3', 'ru'),
-(3428, 30, NULL, '12 месяцев', 'ru'),
 (3429, 22, NULL, 'Да', 'ru'),
 (3430, 23, NULL, '100 Вт', 'ru'),
 (3431, 24, NULL, '2', 'ru'),
-(3432, 28, NULL, 'MPA', 'ru'),
-(3433, 29, NULL, 'WMV', 'ru'),
-(3434, 30, NULL, '12 месяцев', 'ru'),
-(3435, 39, NULL, 'Дерево', 'ru'),
 (3436, 22, NULL, 'Да', 'ru'),
 (3437, 23, NULL, '100 Вт', 'ru'),
-(3438, 28, NULL, 'AAC', 'ru'),
-(3439, 29, NULL, 'ASF', 'ru'),
-(3440, 30, NULL, '12 месяцев', 'ru'),
-(3441, 39, NULL, 'Метал', 'ru'),
 (3442, 22, NULL, 'Да', 'ru'),
 (3443, 23, NULL, '100 Вт', 'ru'),
 (3444, 24, NULL, '2', 'ru'),
-(3445, 28, NULL, 'AC3', 'ru'),
-(3446, 29, NULL, 'ASF', 'ru'),
-(3447, 30, NULL, '12 месяцев', 'ru'),
-(3448, 39, NULL, 'Метал', 'ru'),
 (3449, 22, NULL, 'Да', 'ru'),
 (3450, 23, NULL, '100 Вт', 'ru'),
 (3451, 24, NULL, '1', 'ru'),
-(3452, 28, NULL, 'AC3', 'ru'),
-(3453, 29, NULL, 'ASF', 'ru'),
-(3454, 30, NULL, '12 месяцев', 'ru'),
-(3455, 39, NULL, 'Метал', 'ru'),
 (3456, 22, NULL, 'Да', 'ru'),
 (3457, 23, NULL, '1500 Вт', 'ru'),
 (3458, 24, NULL, '2', 'ru'),
-(3459, 28, NULL, 'DTS', 'ru'),
-(3460, 29, NULL, 'ASF', 'ru'),
-(3461, 30, NULL, '36 месяцев', 'ru'),
-(3462, 39, NULL, 'Пластик', 'ru'),
 (3463, 23, NULL, '100 Вт', 'ru'),
-(3464, 30, NULL, '36 месяцев', 'ru'),
-(3465, 39, NULL, 'Метал', 'ru'),
 (3466, 23, NULL, '80 Вт', 'ru'),
-(3467, 30, NULL, '12 месяцев', 'ru'),
-(3468, 39, NULL, 'Пластик', 'ru'),
 (3469, 23, NULL, '100 Вт', 'ru'),
-(3470, 30, NULL, '24 месяца', 'ru'),
-(3471, 39, NULL, 'Метал', 'ru'),
 (3472, 25, NULL, 'Да', 'ru'),
 (3473, 26, NULL, '15 Мп', 'ru'),
-(3474, 30, NULL, '12 месяцев', 'ru'),
-(3475, 38, NULL, '80~3200 ISO', 'ru'),
 (3476, 25, NULL, 'Да', 'ru'),
 (3477, 26, NULL, '12 Мп', 'ru'),
-(3478, 30, NULL, '12 месяцев', 'ru'),
-(3479, 38, NULL, 'Авто', 'ru'),
 (3480, 25, NULL, 'Да', 'ru'),
 (3481, 26, NULL, '15 Мп', 'ru'),
-(3482, 30, NULL, '24 месяца', 'ru'),
-(3483, 38, NULL, '80~3200 ISO', 'ru'),
 (3484, 25, NULL, 'Да', 'ru'),
 (3485, 26, NULL, '10 Мп', 'ru'),
-(3486, 30, NULL, '12 месяцев', 'ru'),
-(3487, 38, NULL, 'Авто', 'ru'),
 (3488, 25, NULL, 'Да', 'ru'),
 (3489, 26, NULL, '15 Мп', 'ru'),
-(3490, 30, NULL, '12 месяцев', 'ru'),
-(3491, 38, NULL, '80~3200 ISO', 'ru'),
-(3492, 30, NULL, '36 месяцев', 'ru'),
-(3493, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3494, 36, NULL, 'A1', 'ru'),
-(3495, 37, NULL, 'Wi-Fi', 'ru'),
-(3496, 30, NULL, '36 месяцев', 'ru'),
-(3497, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3498, 36, NULL, 'A1', 'ru'),
-(3499, 37, NULL, 'Wi-Fi', 'ru'),
-(3500, 30, NULL, '12 месяцев', 'ru'),
-(3501, 35, NULL, 'Лазерная печать', 'ru'),
-(3502, 36, NULL, 'A3', 'ru'),
-(3503, 37, NULL, 'Bluetooth', 'ru'),
-(3504, 30, NULL, '12 месяцев', 'ru'),
-(3505, 35, NULL, 'Лазерная печать', 'ru'),
-(3506, 36, NULL, 'A3', 'ru'),
-(3507, 30, NULL, '36 месяцев', 'ru'),
-(3508, 35, NULL, 'Струйная печать', 'ru'),
-(3509, 36, NULL, 'A3', 'ru'),
-(3510, 37, NULL, 'Wi-Fi', 'ru'),
-(3511, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3512, 36, NULL, 'A4', 'ru'),
-(3513, 37, NULL, 'Ethernet', 'ru'),
-(3514, 30, NULL, '12 месяцев', 'ru'),
-(3515, 33, NULL, 'Моноблок', 'ru'),
-(3516, 30, NULL, '36 месяцев', 'ru'),
-(3517, 37, NULL, 'Bluetooth', 'ru'),
-(3518, 30, NULL, '12 месяцев', 'ru'),
-(3519, 33, NULL, 'Моноблок', 'ru'),
-(3520, 30, NULL, '12 месяцев', 'ru'),
-(3521, 32, NULL, '2 ГГц', 'ru'),
-(3522, 33, NULL, 'Сенсор', 'ru'),
-(3523, 37, NULL, 'Ethernet', 'ru'),
-(3524, 30, NULL, '24 месяца', 'ru'),
-(3525, 40, NULL, '3 м', 'ru'),
-(3526, 30, NULL, '12 месяцев', 'ru'),
-(3527, 40, NULL, '5 м', 'ru'),
-(3528, 30, NULL, '24 месяца', 'ru'),
-(3529, 40, NULL, '20 м', 'ru'),
-(3530, 30, NULL, '24 месяца', 'ru'),
-(3531, 40, NULL, '20 м', 'ru'),
-(3532, 30, NULL, '12 месяцев', 'ru'),
-(3533, 40, NULL, '10 м', 'ru'),
-(3534, 30, NULL, '12 месяцев', 'ru'),
-(3535, 40, NULL, '5 м', 'ru'),
-(3536, 30, NULL, '12 месяцев', 'ru'),
-(3537, 40, NULL, '2 м', 'ru'),
-(3538, 30, NULL, '12 месяцев', 'ru'),
-(3539, 40, NULL, '5 м', 'ru'),
 (3540, 23, NULL, '40 Вт', 'ru'),
-(3541, 30, NULL, '12 месяцев', 'ru'),
-(3542, 39, NULL, 'Дерево', 'ru'),
 (3543, 23, NULL, '40 Вт', 'ru'),
-(3544, 30, NULL, '24 месяца', 'ru'),
-(3545, 39, NULL, 'Дерево', 'ru'),
 (3546, 23, NULL, '40 Вт', 'ru'),
-(3547, 30, NULL, '12 месяцев', 'ru'),
-(3548, 39, NULL, 'Пластик', 'ru'),
 (3549, 23, NULL, '100 Вт', 'ru'),
-(3550, 30, NULL, '36 месяцев', 'ru'),
-(3551, 39, NULL, 'Дерево', 'ru'),
 (3552, 23, NULL, '40 Вт', 'ru'),
-(3553, 30, NULL, '12 месяцев', 'ru'),
-(3554, 39, NULL, 'Метал', 'ru'),
-(3555, 30, NULL, '12 месяцев', 'ru'),
-(3556, 30, NULL, '12 месяцев', 'ru'),
 (3557, 23, NULL, '100 Вт', 'ru'),
 (3558, 24, NULL, '4', 'ru'),
-(3559, 28, NULL, 'AAC', 'ru'),
-(3560, 30, NULL, '12 месяцев', 'ru'),
-(3561, 30, NULL, '12 месяцев', 'ru'),
 (3562, 23, NULL, '100 Вт', 'ru'),
 (3563, 24, NULL, '2', 'ru'),
-(3564, 28, NULL, 'AAC', 'ru'),
-(3565, 30, NULL, '36 месяцев', 'ru'),
 (3566, 20, NULL, 'LED', 'ru'),
 (3567, 22, NULL, 'Да', 'ru'),
-(3568, 30, NULL, '24 месяца', 'ru'),
 (3569, 20, NULL, 'LED', 'ru'),
 (3570, 21, NULL, '32', 'ru'),
 (3571, 22, NULL, 'Да', 'ru'),
-(3572, 30, NULL, '24 месяца', 'ru'),
 (3573, 20, NULL, 'LED', 'ru'),
 (3574, 21, NULL, '40', 'ru'),
 (3575, 22, NULL, 'Да', 'ru'),
-(3576, 30, NULL, '24 месяца', 'ru'),
 (3577, 20, NULL, 'LED', 'ru'),
 (3578, 21, NULL, '32', 'ru'),
 (3579, 22, NULL, 'Да', 'ru'),
-(3580, 30, NULL, '24 месяца', 'ru'),
 (3581, 20, NULL, 'Plasma', 'ru'),
 (3582, 21, NULL, '40', 'ru'),
 (3583, 22, NULL, 'Нет', 'ru'),
-(3584, 30, NULL, '24 месяца', 'ru'),
 (3585, 20, NULL, 'LCD', 'ru'),
 (3586, 21, NULL, '40', 'ru'),
 (3587, 22, NULL, 'Нет', 'ru'),
-(3588, 30, NULL, '36 месяцев', 'ru'),
 (3589, 20, NULL, 'LCD', 'ru'),
 (3590, 21, NULL, '21', 'ru'),
 (3591, 22, NULL, 'Да', 'ru'),
-(3592, 30, NULL, '24 месяца', 'ru'),
 (3593, 23, NULL, '100 Вт', 'ru'),
-(3594, 28, NULL, 'FLAC', 'ru'),
-(3595, 29, NULL, 'WMV', 'ru'),
-(3596, 30, NULL, '12 месяцев', 'ru'),
 (3597, 23, NULL, '50 Вт', 'ru'),
-(3598, 28, NULL, 'FLAC', 'ru'),
-(3599, 29, NULL, 'BDMV', 'ru'),
-(3600, 30, NULL, '12 месяцев', 'ru'),
 (3601, 23, NULL, '50 Вт', 'ru'),
-(3602, 28, NULL, 'AAC', 'ru'),
-(3603, 29, NULL, 'WMV', 'ru'),
-(3604, 30, NULL, '12 месяцев', 'ru'),
 (3605, 23, NULL, '100 Вт', 'ru'),
-(3606, 28, NULL, 'AAC', 'ru'),
-(3607, 30, NULL, '12 месяцев', 'ru'),
 (3608, 23, NULL, '100 Вт', 'ru'),
-(3609, 28, NULL, 'MPA', 'ru'),
-(3610, 30, NULL, '24 месяца', 'ru'),
 (3611, 23, NULL, '40 Вт', 'ru'),
-(3612, 28, NULL, 'AAC', 'ru'),
-(3613, 30, NULL, '6 месяцев', 'ru'),
 (3614, 23, NULL, '100 Вт', 'ru'),
-(3615, 28, NULL, 'AAC', 'ru'),
-(3616, 30, NULL, '36 месяцев', 'ru'),
 (3617, 23, NULL, '50 Вт', 'ru'),
-(3618, 28, NULL, 'AC3', 'ru'),
-(3619, 30, NULL, '12 месяцев', 'ru'),
 (3620, 23, NULL, '50 Вт', 'ru'),
-(3621, 28, NULL, 'AC3', 'ru'),
-(3622, 30, NULL, '12 месяцев', 'ru'),
 (3623, 22, NULL, 'Да', 'ru'),
 (3624, 23, NULL, '100 Вт', 'ru'),
 (3625, 24, NULL, '2', 'ru'),
-(3626, 28, NULL, 'MPA', 'ru'),
-(3627, 29, NULL, 'WMV', 'ru'),
-(3628, 30, NULL, '12 месяцев', 'ru'),
-(3629, 39, NULL, 'Дерево', 'ru'),
 (3630, 22, NULL, 'Да', 'ru'),
 (3631, 23, NULL, '100 Вт', 'ru'),
-(3632, 28, NULL, 'AAC', 'ru'),
-(3633, 29, NULL, 'ASF', 'ru'),
-(3634, 30, NULL, '12 месяцев', 'ru'),
-(3635, 39, NULL, 'Метал', 'ru'),
 (3636, 22, NULL, 'Да', 'ru'),
 (3637, 23, NULL, '100 Вт', 'ru'),
 (3638, 24, NULL, '2', 'ru'),
-(3639, 28, NULL, 'AC3', 'ru'),
-(3640, 29, NULL, 'ASF', 'ru'),
-(3641, 30, NULL, '12 месяцев', 'ru'),
-(3642, 39, NULL, 'Метал', 'ru'),
 (3643, 22, NULL, 'Да', 'ru'),
 (3644, 23, NULL, '100 Вт', 'ru'),
 (3645, 24, NULL, '1', 'ru'),
-(3646, 28, NULL, 'AC3', 'ru'),
-(3647, 29, NULL, 'ASF', 'ru'),
-(3648, 30, NULL, '12 месяцев', 'ru'),
-(3649, 39, NULL, 'Метал', 'ru'),
 (3650, 22, NULL, 'Да', 'ru'),
 (3651, 23, NULL, '1500 Вт', 'ru'),
 (3652, 24, NULL, '2', 'ru'),
-(3653, 28, NULL, 'DTS', 'ru'),
-(3654, 29, NULL, 'ASF', 'ru'),
-(3655, 30, NULL, '36 месяцев', 'ru'),
-(3656, 39, NULL, 'Пластик', 'ru'),
 (3657, 23, NULL, '100 Вт', 'ru'),
-(3658, 30, NULL, '36 месяцев', 'ru'),
-(3659, 39, NULL, 'Метал', 'ru'),
 (3660, 23, NULL, '80 Вт', 'ru'),
-(3661, 30, NULL, '12 месяцев', 'ru'),
-(3662, 39, NULL, 'Пластик', 'ru'),
 (3663, 23, NULL, '100 Вт', 'ru'),
-(3664, 30, NULL, '24 месяца', 'ru'),
-(3665, 39, NULL, 'Метал', 'ru'),
 (3666, 25, NULL, 'Да', 'ru'),
 (3667, 26, NULL, '15 Мп', 'ru'),
-(3668, 30, NULL, '12 месяцев', 'ru'),
-(3669, 38, NULL, '80~3200 ISO', 'ru'),
 (3670, 25, NULL, 'Да', 'ru'),
 (3671, 26, NULL, '12 Мп', 'ru'),
-(3672, 30, NULL, '12 месяцев', 'ru'),
-(3673, 38, NULL, 'Авто', 'ru'),
 (3674, 25, NULL, 'Да', 'ru'),
 (3675, 26, NULL, '15 Мп', 'ru'),
-(3676, 30, NULL, '24 месяца', 'ru'),
-(3677, 38, NULL, '80~3200 ISO', 'ru'),
 (3678, 25, NULL, 'Да', 'ru'),
 (3679, 26, NULL, '10 Мп', 'ru'),
-(3680, 30, NULL, '12 месяцев', 'ru'),
-(3681, 38, NULL, 'Авто', 'ru'),
 (3682, 25, NULL, 'Да', 'ru'),
 (3683, 26, NULL, '15 Мп', 'ru'),
-(3684, 30, NULL, '12 месяцев', 'ru'),
-(3685, 38, NULL, '80~3200 ISO', 'ru'),
-(3686, 30, NULL, '36 месяцев', 'ru'),
-(3687, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3688, 36, NULL, 'A1', 'ru'),
-(3689, 37, NULL, 'Wi-Fi', 'ru'),
-(3690, 30, NULL, '36 месяцев', 'ru'),
-(3691, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3692, 36, NULL, 'A1', 'ru'),
-(3693, 37, NULL, 'Wi-Fi', 'ru'),
-(3694, 30, NULL, '12 месяцев', 'ru'),
-(3695, 35, NULL, 'Лазерная печать', 'ru'),
-(3696, 36, NULL, 'A3', 'ru'),
-(3697, 37, NULL, 'Bluetooth', 'ru'),
-(3698, 30, NULL, '12 месяцев', 'ru'),
-(3699, 35, NULL, 'Лазерная печать', 'ru'),
-(3700, 36, NULL, 'A3', 'ru'),
-(3701, 30, NULL, '36 месяцев', 'ru'),
-(3702, 35, NULL, 'Струйная печать', 'ru'),
-(3703, 36, NULL, 'A3', 'ru'),
-(3704, 37, NULL, 'Wi-Fi', 'ru'),
-(3705, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3706, 36, NULL, 'A4', 'ru'),
-(3707, 37, NULL, 'Ethernet', 'ru'),
-(3708, 30, NULL, '12 месяцев', 'ru'),
-(3709, 33, NULL, 'Моноблок', 'ru'),
-(3710, 30, NULL, '36 месяцев', 'ru'),
-(3711, 37, NULL, 'Bluetooth', 'ru'),
-(3712, 30, NULL, '12 месяцев', 'ru'),
-(3713, 33, NULL, 'Моноблок', 'ru'),
-(3714, 30, NULL, '12 месяцев', 'ru'),
-(3715, 32, NULL, '2 ГГц', 'ru'),
-(3716, 33, NULL, 'Сенсор', 'ru'),
-(3717, 37, NULL, 'Ethernet', 'ru'),
-(3718, 30, NULL, '24 месяца', 'ru'),
-(3719, 40, NULL, '3 м', 'ru'),
-(3720, 30, NULL, '12 месяцев', 'ru'),
-(3721, 40, NULL, '5 м', 'ru'),
-(3722, 30, NULL, '24 месяца', 'ru'),
-(3723, 40, NULL, '20 м', 'ru'),
-(3724, 30, NULL, '24 месяца', 'ru'),
-(3725, 40, NULL, '20 м', 'ru'),
-(3726, 30, NULL, '12 месяцев', 'ru'),
-(3727, 40, NULL, '10 м', 'ru'),
-(3728, 30, NULL, '12 месяцев', 'ru'),
-(3729, 40, NULL, '5 м', 'ru'),
-(3730, 30, NULL, '12 месяцев', 'ru'),
-(3731, 40, NULL, '2 м', 'ru'),
-(3732, 30, NULL, '12 месяцев', 'ru'),
-(3733, 40, NULL, '5 м', 'ru'),
 (3734, 23, NULL, '40 Вт', 'ru'),
-(3735, 30, NULL, '12 месяцев', 'ru'),
-(3736, 39, NULL, 'Дерево', 'ru'),
 (3737, 23, NULL, '40 Вт', 'ru'),
-(3738, 30, NULL, '24 месяца', 'ru'),
-(3739, 39, NULL, 'Дерево', 'ru'),
 (3740, 23, NULL, '40 Вт', 'ru'),
-(3741, 30, NULL, '12 месяцев', 'ru'),
-(3742, 39, NULL, 'Пластик', 'ru'),
 (3743, 23, NULL, '100 Вт', 'ru'),
-(3744, 30, NULL, '36 месяцев', 'ru'),
-(3745, 39, NULL, 'Дерево', 'ru'),
 (3746, 23, NULL, '40 Вт', 'ru'),
-(3747, 30, NULL, '12 месяцев', 'ru'),
-(3748, 39, NULL, 'Метал', 'ru'),
-(3749, 30, NULL, '12 месяцев', 'ru'),
-(3750, 30, NULL, '12 месяцев', 'ru'),
 (3751, 23, NULL, '100 Вт', 'ru'),
 (3752, 24, NULL, '4', 'ru'),
-(3753, 28, NULL, 'AAC', 'ru'),
-(3754, 30, NULL, '12 месяцев', 'ru'),
-(3755, 30, NULL, '12 месяцев', 'ru'),
 (3756, 23, NULL, '100 Вт', 'ru'),
 (3757, 24, NULL, '2', 'ru'),
-(3758, 28, NULL, 'AAC', 'ru'),
-(3759, 30, NULL, '36 месяцев', 'ru'),
 (3760, 20, NULL, 'LED', 'ru'),
 (3761, 22, NULL, 'Да', 'ru'),
-(3762, 30, NULL, '24 месяца', 'ru'),
 (3763, 20, NULL, 'LED', 'ru'),
 (3764, 21, NULL, '32', 'ru'),
 (3765, 22, NULL, 'Да', 'ru'),
-(3766, 30, NULL, '24 месяца', 'ru'),
 (3767, 20, NULL, 'LED', 'ru'),
 (3768, 21, NULL, '40', 'ru'),
 (3769, 22, NULL, 'Да', 'ru'),
-(3770, 30, NULL, '24 месяца', 'ru'),
 (3771, 20, NULL, 'LED', 'ru'),
 (3772, 21, NULL, '32', 'ru'),
 (3773, 22, NULL, 'Да', 'ru'),
-(3774, 30, NULL, '24 месяца', 'ru'),
 (3775, 20, NULL, 'Plasma', 'ru'),
 (3776, 21, NULL, '40', 'ru'),
 (3777, 22, NULL, 'Нет', 'ru'),
-(3778, 30, NULL, '24 месяца', 'ru'),
 (3779, 20, NULL, 'LCD', 'ru'),
 (3780, 21, NULL, '40', 'ru'),
 (3781, 22, NULL, 'Нет', 'ru'),
-(3782, 30, NULL, '36 месяцев', 'ru'),
 (3783, 20, NULL, 'LCD', 'ru'),
 (3784, 21, NULL, '21', 'ru'),
 (3785, 22, NULL, 'Да', 'ru'),
-(3786, 30, NULL, '24 месяца', 'ru'),
 (3787, 23, NULL, '100 Вт', 'ru'),
-(3788, 28, NULL, 'FLAC', 'ru'),
-(3789, 29, NULL, 'WMV', 'ru'),
-(3790, 30, NULL, '12 месяцев', 'ru'),
 (3791, 23, NULL, '50 Вт', 'ru'),
-(3792, 28, NULL, 'FLAC', 'ru'),
-(3793, 29, NULL, 'BDMV', 'ru'),
-(3794, 30, NULL, '12 месяцев', 'ru'),
 (3795, 23, NULL, '50 Вт', 'ru'),
-(3796, 28, NULL, 'AAC', 'ru'),
-(3797, 29, NULL, 'WMV', 'ru'),
-(3798, 30, NULL, '12 месяцев', 'ru'),
 (3799, 23, NULL, '100 Вт', 'ru'),
-(3800, 28, NULL, 'AAC', 'ru'),
-(3801, 30, NULL, '12 месяцев', 'ru'),
 (3802, 23, NULL, '100 Вт', 'ru'),
-(3803, 28, NULL, 'MPA', 'ru'),
-(3804, 30, NULL, '24 месяца', 'ru'),
 (3805, 23, NULL, '40 Вт', 'ru'),
-(3806, 28, NULL, 'AAC', 'ru'),
-(3807, 30, NULL, '6 месяцев', 'ru'),
 (3808, 23, NULL, '100 Вт', 'ru'),
-(3809, 28, NULL, 'AAC', 'ru'),
-(3810, 30, NULL, '36 месяцев', 'ru'),
 (3811, 23, NULL, '50 Вт', 'ru'),
-(3812, 28, NULL, 'AC3', 'ru'),
-(3813, 30, NULL, '12 месяцев', 'ru'),
 (3814, 23, NULL, '50 Вт', 'ru'),
-(3815, 28, NULL, 'AC3', 'ru'),
-(3816, 30, NULL, '12 месяцев', 'ru'),
 (3817, 22, NULL, 'Да', 'ru'),
 (3818, 23, NULL, '100 Вт', 'ru'),
 (3819, 24, NULL, '2', 'ru'),
-(3820, 28, NULL, 'MPA', 'ru'),
-(3821, 29, NULL, 'WMV', 'ru'),
-(3822, 30, NULL, '12 месяцев', 'ru'),
-(3823, 39, NULL, 'Дерево', 'ru'),
 (3824, 22, NULL, 'Да', 'ru'),
 (3825, 23, NULL, '100 Вт', 'ru'),
-(3826, 28, NULL, 'AAC', 'ru'),
-(3827, 29, NULL, 'ASF', 'ru'),
-(3828, 30, NULL, '12 месяцев', 'ru'),
-(3829, 39, NULL, 'Метал', 'ru'),
 (3830, 22, NULL, 'Да', 'ru'),
 (3831, 23, NULL, '100 Вт', 'ru'),
 (3832, 24, NULL, '2', 'ru'),
-(3833, 28, NULL, 'AC3', 'ru'),
-(3834, 29, NULL, 'ASF', 'ru'),
-(3835, 30, NULL, '12 месяцев', 'ru'),
-(3836, 39, NULL, 'Метал', 'ru'),
 (3837, 22, NULL, 'Да', 'ru'),
 (3838, 23, NULL, '100 Вт', 'ru'),
 (3839, 24, NULL, '1', 'ru'),
-(3840, 28, NULL, 'AC3', 'ru'),
-(3841, 29, NULL, 'ASF', 'ru'),
-(3842, 30, NULL, '12 месяцев', 'ru'),
-(3843, 39, NULL, 'Метал', 'ru'),
 (3844, 22, NULL, 'Да', 'ru'),
 (3845, 23, NULL, '1500 Вт', 'ru'),
 (3846, 24, NULL, '2', 'ru'),
-(3847, 28, NULL, 'DTS', 'ru'),
-(3848, 29, NULL, 'ASF', 'ru'),
-(3849, 30, NULL, '36 месяцев', 'ru'),
-(3850, 39, NULL, 'Пластик', 'ru'),
 (3851, 23, NULL, '100 Вт', 'ru'),
-(3852, 30, NULL, '36 месяцев', 'ru'),
-(3853, 39, NULL, 'Метал', 'ru'),
 (3854, 23, NULL, '80 Вт', 'ru'),
-(3855, 30, NULL, '12 месяцев', 'ru'),
-(3856, 39, NULL, 'Пластик', 'ru'),
 (3857, 23, NULL, '100 Вт', 'ru'),
-(3858, 30, NULL, '24 месяца', 'ru'),
-(3859, 39, NULL, 'Метал', 'ru'),
 (3860, 25, NULL, 'Да', 'ru'),
 (3861, 26, NULL, '15 Мп', 'ru'),
-(3862, 30, NULL, '12 месяцев', 'ru'),
-(3863, 38, NULL, '80~3200 ISO', 'ru'),
 (3864, 25, NULL, 'Да', 'ru'),
 (3865, 26, NULL, '12 Мп', 'ru'),
-(3866, 30, NULL, '12 месяцев', 'ru'),
-(3867, 38, NULL, 'Авто', 'ru'),
 (3868, 25, NULL, 'Да', 'ru'),
 (3869, 26, NULL, '15 Мп', 'ru'),
-(3870, 30, NULL, '24 месяца', 'ru'),
-(3871, 38, NULL, '80~3200 ISO', 'ru'),
 (3872, 25, NULL, 'Да', 'ru'),
 (3873, 26, NULL, '10 Мп', 'ru'),
-(3874, 30, NULL, '12 месяцев', 'ru'),
-(3875, 38, NULL, 'Авто', 'ru'),
 (3876, 25, NULL, 'Да', 'ru'),
 (3877, 26, NULL, '15 Мп', 'ru'),
-(3878, 30, NULL, '12 месяцев', 'ru'),
-(3879, 38, NULL, '80~3200 ISO', 'ru'),
-(3880, 30, NULL, '36 месяцев', 'ru'),
-(3881, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3882, 36, NULL, 'A1', 'ru'),
-(3883, 37, NULL, 'Wi-Fi', 'ru'),
-(3884, 30, NULL, '36 месяцев', 'ru'),
-(3885, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3886, 36, NULL, 'A1', 'ru'),
-(3887, 37, NULL, 'Wi-Fi', 'ru'),
-(3888, 30, NULL, '12 месяцев', 'ru'),
-(3889, 35, NULL, 'Лазерная печать', 'ru'),
-(3890, 36, NULL, 'A3', 'ru'),
-(3891, 37, NULL, 'Bluetooth', 'ru'),
-(3892, 30, NULL, '12 месяцев', 'ru'),
-(3893, 35, NULL, 'Лазерная печать', 'ru'),
-(3894, 36, NULL, 'A3', 'ru'),
-(3895, 30, NULL, '36 месяцев', 'ru'),
-(3896, 35, NULL, 'Струйная печать', 'ru'),
-(3897, 36, NULL, 'A3', 'ru'),
-(3898, 37, NULL, 'Wi-Fi', 'ru'),
-(3899, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(3900, 36, NULL, 'A4', 'ru'),
-(3901, 37, NULL, 'Ethernet', 'ru'),
-(3902, 30, NULL, '12 месяцев', 'ru'),
-(3903, 33, NULL, 'Моноблок', 'ru'),
-(3904, 30, NULL, '36 месяцев', 'ru'),
-(3905, 37, NULL, 'Bluetooth', 'ru'),
-(3906, 30, NULL, '12 месяцев', 'ru'),
-(3907, 33, NULL, 'Моноблок', 'ru'),
-(3908, 30, NULL, '12 месяцев', 'ru'),
-(3909, 32, NULL, '2 ГГц', 'ru'),
-(3910, 33, NULL, 'Сенсор', 'ru'),
-(3911, 37, NULL, 'Ethernet', 'ru'),
-(3912, 30, NULL, '24 месяца', 'ru'),
-(3913, 40, NULL, '3 м', 'ru'),
-(3914, 30, NULL, '12 месяцев', 'ru'),
-(3915, 40, NULL, '5 м', 'ru'),
-(3916, 30, NULL, '24 месяца', 'ru'),
-(3917, 40, NULL, '20 м', 'ru'),
-(3918, 30, NULL, '24 месяца', 'ru'),
-(3919, 40, NULL, '20 м', 'ru'),
-(3920, 30, NULL, '12 месяцев', 'ru'),
-(3921, 40, NULL, '10 м', 'ru'),
-(3922, 30, NULL, '12 месяцев', 'ru'),
-(3923, 40, NULL, '5 м', 'ru'),
-(3924, 30, NULL, '12 месяцев', 'ru'),
-(3925, 40, NULL, '2 м', 'ru'),
-(3926, 30, NULL, '12 месяцев', 'ru'),
-(3927, 40, NULL, '5 м', 'ru'),
 (3928, 23, NULL, '40 Вт', 'ru'),
-(3929, 30, NULL, '12 месяцев', 'ru'),
-(3930, 39, NULL, 'Дерево', 'ru'),
 (3931, 23, NULL, '40 Вт', 'ru'),
-(3932, 30, NULL, '24 месяца', 'ru'),
-(3933, 39, NULL, 'Дерево', 'ru'),
 (3934, 23, NULL, '40 Вт', 'ru'),
-(3935, 30, NULL, '12 месяцев', 'ru'),
-(3936, 39, NULL, 'Пластик', 'ru'),
 (3937, 23, NULL, '100 Вт', 'ru'),
-(3938, 30, NULL, '36 месяцев', 'ru'),
-(3939, 39, NULL, 'Дерево', 'ru'),
 (3940, 23, NULL, '40 Вт', 'ru'),
-(3941, 30, NULL, '12 месяцев', 'ru'),
-(3942, 39, NULL, 'Метал', 'ru'),
-(3943, 30, NULL, '12 месяцев', 'ru'),
-(3944, 30, NULL, '12 месяцев', 'ru'),
 (3945, 23, NULL, '100 Вт', 'ru'),
 (3946, 24, NULL, '4', 'ru'),
-(3947, 28, NULL, 'AAC', 'ru'),
-(3948, 30, NULL, '12 месяцев', 'ru'),
-(3949, 30, NULL, '12 месяцев', 'ru'),
 (3950, 23, NULL, '100 Вт', 'ru'),
 (3951, 24, NULL, '2', 'ru'),
-(3952, 28, NULL, 'AAC', 'ru'),
-(3953, 30, NULL, '36 месяцев', 'ru'),
 (3954, 20, NULL, 'LED', 'ru'),
 (3955, 22, NULL, 'Да', 'ru'),
-(3956, 30, NULL, '24 месяца', 'ru'),
 (3957, 20, NULL, 'LED', 'ru'),
 (3958, 21, NULL, '32', 'ru'),
 (3959, 22, NULL, 'Да', 'ru'),
-(3960, 30, NULL, '24 месяца', 'ru'),
 (3961, 20, NULL, 'LED', 'ru'),
 (3962, 21, NULL, '40', 'ru'),
 (3963, 22, NULL, 'Да', 'ru'),
-(3964, 30, NULL, '24 месяца', 'ru'),
 (3965, 20, NULL, 'LED', 'ru'),
 (3966, 21, NULL, '32', 'ru'),
 (3967, 22, NULL, 'Да', 'ru'),
-(3968, 30, NULL, '24 месяца', 'ru'),
 (3969, 20, NULL, 'Plasma', 'ru'),
 (3970, 21, NULL, '40', 'ru'),
 (3971, 22, NULL, 'Нет', 'ru'),
-(3972, 30, NULL, '24 месяца', 'ru'),
 (3973, 20, NULL, 'LCD', 'ru'),
 (3974, 21, NULL, '40', 'ru'),
 (3975, 22, NULL, 'Нет', 'ru'),
-(3976, 30, NULL, '36 месяцев', 'ru'),
 (3977, 20, NULL, 'LCD', 'ru'),
 (3978, 21, NULL, '21', 'ru'),
 (3979, 22, NULL, 'Да', 'ru'),
-(3980, 30, NULL, '24 месяца', 'ru'),
 (3981, 23, NULL, '100 Вт', 'ru'),
-(3982, 28, NULL, 'FLAC', 'ru'),
-(3983, 29, NULL, 'WMV', 'ru'),
-(3984, 30, NULL, '12 месяцев', 'ru'),
 (3985, 23, NULL, '50 Вт', 'ru'),
-(3986, 28, NULL, 'FLAC', 'ru'),
-(3987, 29, NULL, 'BDMV', 'ru'),
-(3988, 30, NULL, '12 месяцев', 'ru'),
 (3989, 23, NULL, '50 Вт', 'ru'),
-(3990, 28, NULL, 'AAC', 'ru'),
-(3991, 29, NULL, 'WMV', 'ru'),
-(3992, 30, NULL, '12 месяцев', 'ru'),
 (3993, 23, NULL, '100 Вт', 'ru'),
-(3994, 28, NULL, 'AAC', 'ru'),
-(3995, 30, NULL, '12 месяцев', 'ru'),
 (3996, 23, NULL, '100 Вт', 'ru'),
-(3997, 28, NULL, 'MPA', 'ru'),
-(3998, 30, NULL, '24 месяца', 'ru'),
 (3999, 23, NULL, '40 Вт', 'ru'),
-(4000, 28, NULL, 'AAC', 'ru'),
-(4001, 30, NULL, '6 месяцев', 'ru'),
 (4002, 23, NULL, '100 Вт', 'ru'),
-(4003, 28, NULL, 'AAC', 'ru'),
-(4004, 30, NULL, '36 месяцев', 'ru'),
 (4005, 23, NULL, '50 Вт', 'ru'),
-(4006, 28, NULL, 'AC3', 'ru'),
-(4007, 30, NULL, '12 месяцев', 'ru'),
 (4008, 23, NULL, '50 Вт', 'ru'),
-(4009, 28, NULL, 'AC3', 'ru'),
-(4010, 30, NULL, '12 месяцев', 'ru'),
 (4011, 22, NULL, 'Да', 'ru'),
 (4012, 23, NULL, '100 Вт', 'ru'),
 (4013, 24, NULL, '2', 'ru'),
-(4014, 28, NULL, 'MPA', 'ru'),
-(4015, 29, NULL, 'WMV', 'ru'),
-(4016, 30, NULL, '12 месяцев', 'ru'),
-(4017, 39, NULL, 'Дерево', 'ru'),
 (4018, 22, NULL, 'Да', 'ru'),
 (4019, 23, NULL, '100 Вт', 'ru'),
-(4020, 28, NULL, 'AAC', 'ru'),
-(4021, 29, NULL, 'ASF', 'ru'),
-(4022, 30, NULL, '12 месяцев', 'ru'),
-(4023, 39, NULL, 'Метал', 'ru'),
 (4024, 22, NULL, 'Да', 'ru'),
 (4025, 23, NULL, '100 Вт', 'ru'),
 (4026, 24, NULL, '2', 'ru'),
-(4027, 28, NULL, 'AC3', 'ru'),
-(4028, 29, NULL, 'ASF', 'ru'),
-(4029, 30, NULL, '12 месяцев', 'ru'),
-(4030, 39, NULL, 'Метал', 'ru'),
 (4031, 22, NULL, 'Да', 'ru'),
 (4032, 23, NULL, '100 Вт', 'ru'),
 (4033, 24, NULL, '1', 'ru'),
-(4034, 28, NULL, 'AC3', 'ru'),
-(4035, 29, NULL, 'ASF', 'ru'),
-(4036, 30, NULL, '12 месяцев', 'ru'),
-(4037, 39, NULL, 'Метал', 'ru'),
 (4038, 22, NULL, 'Да', 'ru'),
 (4039, 23, NULL, '1500 Вт', 'ru'),
 (4040, 24, NULL, '2', 'ru'),
-(4041, 28, NULL, 'DTS', 'ru'),
-(4042, 29, NULL, 'ASF', 'ru'),
-(4043, 30, NULL, '36 месяцев', 'ru'),
-(4044, 39, NULL, 'Пластик', 'ru'),
 (4045, 23, NULL, '100 Вт', 'ru'),
-(4046, 30, NULL, '36 месяцев', 'ru'),
-(4047, 39, NULL, 'Метал', 'ru'),
 (4048, 23, NULL, '80 Вт', 'ru'),
-(4049, 30, NULL, '12 месяцев', 'ru'),
-(4050, 39, NULL, 'Пластик', 'ru'),
 (4051, 23, NULL, '100 Вт', 'ru'),
-(4052, 30, NULL, '24 месяца', 'ru'),
-(4053, 39, NULL, 'Метал', 'ru'),
 (4054, 25, NULL, 'Да', 'ru'),
 (4055, 26, NULL, '15 Мп', 'ru'),
-(4056, 30, NULL, '12 месяцев', 'ru'),
-(4057, 38, NULL, '80~3200 ISO', 'ru'),
 (4058, 25, NULL, 'Да', 'ru'),
 (4059, 26, NULL, '12 Мп', 'ru'),
-(4060, 30, NULL, '12 месяцев', 'ru'),
-(4061, 38, NULL, 'Авто', 'ru'),
 (4062, 25, NULL, 'Да', 'ru'),
 (4063, 26, NULL, '15 Мп', 'ru'),
-(4064, 30, NULL, '24 месяца', 'ru'),
-(4065, 38, NULL, '80~3200 ISO', 'ru'),
 (4066, 25, NULL, 'Да', 'ru'),
 (4067, 26, NULL, '10 Мп', 'ru'),
-(4068, 30, NULL, '12 месяцев', 'ru'),
-(4069, 38, NULL, 'Авто', 'ru'),
 (4070, 25, NULL, 'Да', 'ru'),
 (4071, 26, NULL, '15 Мп', 'ru'),
-(4072, 30, NULL, '12 месяцев', 'ru'),
-(4073, 38, NULL, '80~3200 ISO', 'ru'),
-(4074, 30, NULL, '36 месяцев', 'ru'),
-(4075, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4076, 36, NULL, 'A1', 'ru'),
-(4077, 37, NULL, 'Wi-Fi', 'ru'),
-(4078, 30, NULL, '36 месяцев', 'ru'),
-(4079, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4080, 36, NULL, 'A1', 'ru'),
-(4081, 37, NULL, 'Wi-Fi', 'ru'),
-(4082, 30, NULL, '12 месяцев', 'ru'),
-(4083, 35, NULL, 'Лазерная печать', 'ru'),
-(4084, 36, NULL, 'A3', 'ru'),
-(4085, 37, NULL, 'Bluetooth', 'ru'),
-(4086, 30, NULL, '12 месяцев', 'ru'),
-(4087, 35, NULL, 'Лазерная печать', 'ru'),
-(4088, 36, NULL, 'A3', 'ru'),
-(4089, 30, NULL, '36 месяцев', 'ru'),
-(4090, 35, NULL, 'Струйная печать', 'ru'),
-(4091, 36, NULL, 'A3', 'ru'),
-(4092, 37, NULL, 'Wi-Fi', 'ru'),
-(4093, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4094, 36, NULL, 'A4', 'ru'),
-(4095, 37, NULL, 'Ethernet', 'ru'),
-(4096, 30, NULL, '12 месяцев', 'ru'),
-(4097, 33, NULL, 'Моноблок', 'ru'),
-(4098, 30, NULL, '36 месяцев', 'ru'),
-(4099, 37, NULL, 'Bluetooth', 'ru'),
-(4100, 30, NULL, '12 месяцев', 'ru'),
-(4101, 33, NULL, 'Моноблок', 'ru'),
-(4102, 30, NULL, '12 месяцев', 'ru'),
-(4103, 32, NULL, '2 ГГц', 'ru'),
-(4104, 33, NULL, 'Сенсор', 'ru'),
-(4105, 37, NULL, 'Ethernet', 'ru'),
-(4106, 30, NULL, '24 месяца', 'ru'),
-(4107, 40, NULL, '3 м', 'ru'),
-(4108, 30, NULL, '12 месяцев', 'ru'),
-(4109, 40, NULL, '5 м', 'ru'),
-(4110, 30, NULL, '24 месяца', 'ru'),
-(4111, 40, NULL, '20 м', 'ru'),
-(4112, 30, NULL, '24 месяца', 'ru'),
-(4113, 40, NULL, '20 м', 'ru'),
-(4114, 30, NULL, '12 месяцев', 'ru'),
-(4115, 40, NULL, '10 м', 'ru'),
-(4116, 30, NULL, '12 месяцев', 'ru'),
-(4117, 40, NULL, '5 м', 'ru'),
-(4118, 30, NULL, '12 месяцев', 'ru'),
-(4119, 40, NULL, '2 м', 'ru'),
-(4120, 30, NULL, '12 месяцев', 'ru'),
-(4121, 40, NULL, '5 м', 'ru'),
 (4122, 23, NULL, '40 Вт', 'ru'),
-(4123, 30, NULL, '12 месяцев', 'ru'),
-(4124, 39, NULL, 'Дерево', 'ru'),
 (4125, 23, NULL, '40 Вт', 'ru'),
-(4126, 30, NULL, '24 месяца', 'ru'),
-(4127, 39, NULL, 'Дерево', 'ru'),
 (4128, 23, NULL, '40 Вт', 'ru'),
-(4129, 30, NULL, '12 месяцев', 'ru'),
-(4130, 39, NULL, 'Пластик', 'ru'),
 (4131, 23, NULL, '100 Вт', 'ru'),
-(4132, 30, NULL, '36 месяцев', 'ru'),
-(4133, 39, NULL, 'Дерево', 'ru'),
 (4134, 23, NULL, '40 Вт', 'ru'),
-(4135, 30, NULL, '12 месяцев', 'ru'),
-(4136, 39, NULL, 'Метал', 'ru'),
-(4137, 30, NULL, '12 месяцев', 'ru'),
-(4138, 30, NULL, '12 месяцев', 'ru'),
 (4139, 23, NULL, '100 Вт', 'ru'),
 (4140, 24, NULL, '4', 'ru'),
-(4141, 28, NULL, 'AAC', 'ru'),
-(4142, 30, NULL, '12 месяцев', 'ru'),
-(4143, 30, NULL, '12 месяцев', 'ru'),
 (4144, 23, NULL, '100 Вт', 'ru'),
 (4145, 24, NULL, '2', 'ru'),
-(4146, 28, NULL, 'AAC', 'ru'),
-(4147, 30, NULL, '36 месяцев', 'ru'),
 (4148, 20, NULL, 'LED', 'ru'),
 (4149, 22, NULL, 'Да', 'ru'),
-(4150, 30, NULL, '24 месяца', 'ru'),
 (4151, 20, NULL, 'LED', 'ru'),
 (4152, 21, NULL, '32', 'ru'),
 (4153, 22, NULL, 'Да', 'ru'),
-(4154, 30, NULL, '24 месяца', 'ru'),
 (4155, 20, NULL, 'LED', 'ru'),
 (4156, 21, NULL, '40', 'ru'),
 (4157, 22, NULL, 'Да', 'ru'),
-(4158, 30, NULL, '24 месяца', 'ru'),
 (4159, 20, NULL, 'LED', 'ru'),
 (4160, 21, NULL, '32', 'ru'),
 (4161, 22, NULL, 'Да', 'ru'),
-(4162, 30, NULL, '24 месяца', 'ru'),
 (4163, 20, NULL, 'Plasma', 'ru'),
 (4164, 21, NULL, '40', 'ru'),
 (4165, 22, NULL, 'Нет', 'ru'),
-(4166, 30, NULL, '24 месяца', 'ru'),
 (4167, 20, NULL, 'LCD', 'ru'),
 (4168, 21, NULL, '40', 'ru'),
 (4169, 22, NULL, 'Нет', 'ru'),
-(4170, 30, NULL, '36 месяцев', 'ru'),
 (4171, 20, NULL, 'LCD', 'ru'),
 (4172, 21, NULL, '21', 'ru'),
 (4173, 22, NULL, 'Да', 'ru'),
-(4174, 30, NULL, '24 месяца', 'ru'),
 (4175, 23, NULL, '100 Вт', 'ru'),
-(4176, 28, NULL, 'FLAC', 'ru'),
-(4177, 29, NULL, 'WMV', 'ru'),
-(4178, 30, NULL, '12 месяцев', 'ru'),
 (4179, 23, NULL, '50 Вт', 'ru'),
-(4180, 28, NULL, 'FLAC', 'ru'),
-(4181, 29, NULL, 'BDMV', 'ru'),
-(4182, 30, NULL, '12 месяцев', 'ru'),
 (4183, 23, NULL, '50 Вт', 'ru'),
-(4184, 28, NULL, 'AAC', 'ru'),
-(4185, 29, NULL, 'WMV', 'ru'),
-(4186, 30, NULL, '12 месяцев', 'ru'),
 (4187, 23, NULL, '100 Вт', 'ru'),
-(4188, 28, NULL, 'AAC', 'ru'),
-(4189, 30, NULL, '12 месяцев', 'ru'),
 (4190, 23, NULL, '100 Вт', 'ru'),
-(4191, 28, NULL, 'MPA', 'ru'),
-(4192, 30, NULL, '24 месяца', 'ru'),
 (4193, 23, NULL, '40 Вт', 'ru'),
-(4194, 28, NULL, 'AAC', 'ru'),
-(4195, 30, NULL, '6 месяцев', 'ru'),
 (4196, 23, NULL, '100 Вт', 'ru'),
-(4197, 28, NULL, 'AAC', 'ru'),
-(4198, 30, NULL, '36 месяцев', 'ru'),
 (4199, 23, NULL, '50 Вт', 'ru'),
-(4200, 28, NULL, 'AC3', 'ru'),
-(4201, 30, NULL, '12 месяцев', 'ru'),
 (4202, 23, NULL, '50 Вт', 'ru'),
-(4203, 28, NULL, 'AC3', 'ru'),
-(4204, 30, NULL, '12 месяцев', 'ru'),
 (4205, 22, NULL, 'Да', 'ru'),
 (4206, 23, NULL, '100 Вт', 'ru'),
 (4207, 24, NULL, '2', 'ru'),
-(4208, 28, NULL, 'MPA', 'ru'),
-(4209, 29, NULL, 'WMV', 'ru'),
-(4210, 30, NULL, '12 месяцев', 'ru'),
-(4211, 39, NULL, 'Дерево', 'ru'),
 (4212, 22, NULL, 'Да', 'ru'),
 (4213, 23, NULL, '100 Вт', 'ru'),
-(4214, 28, NULL, 'AAC', 'ru'),
-(4215, 29, NULL, 'ASF', 'ru'),
-(4216, 30, NULL, '12 месяцев', 'ru'),
-(4217, 39, NULL, 'Метал', 'ru'),
 (4218, 22, NULL, 'Да', 'ru'),
 (4219, 23, NULL, '100 Вт', 'ru'),
 (4220, 24, NULL, '2', 'ru'),
-(4221, 28, NULL, 'AC3', 'ru'),
-(4222, 29, NULL, 'ASF', 'ru'),
-(4223, 30, NULL, '12 месяцев', 'ru'),
-(4224, 39, NULL, 'Метал', 'ru'),
 (4225, 22, NULL, 'Да', 'ru'),
 (4226, 23, NULL, '100 Вт', 'ru'),
 (4227, 24, NULL, '1', 'ru'),
-(4228, 28, NULL, 'AC3', 'ru'),
-(4229, 29, NULL, 'ASF', 'ru'),
-(4230, 30, NULL, '12 месяцев', 'ru'),
-(4231, 39, NULL, 'Метал', 'ru'),
 (4232, 22, NULL, 'Да', 'ru'),
 (4233, 23, NULL, '1500 Вт', 'ru'),
 (4234, 24, NULL, '2', 'ru'),
-(4235, 28, NULL, 'DTS', 'ru'),
-(4236, 29, NULL, 'ASF', 'ru'),
-(4237, 30, NULL, '36 месяцев', 'ru'),
-(4238, 39, NULL, 'Пластик', 'ru'),
 (4239, 23, NULL, '100 Вт', 'ru'),
-(4240, 30, NULL, '36 месяцев', 'ru'),
-(4241, 39, NULL, 'Метал', 'ru'),
 (4242, 23, NULL, '80 Вт', 'ru'),
-(4243, 30, NULL, '12 месяцев', 'ru'),
-(4244, 39, NULL, 'Пластик', 'ru'),
 (4245, 23, NULL, '100 Вт', 'ru'),
-(4246, 30, NULL, '24 месяца', 'ru'),
-(4247, 39, NULL, 'Метал', 'ru'),
 (4248, 25, NULL, 'Да', 'ru'),
 (4249, 26, NULL, '15 Мп', 'ru'),
-(4250, 30, NULL, '12 месяцев', 'ru'),
-(4251, 38, NULL, '80~3200 ISO', 'ru'),
 (4252, 25, NULL, 'Да', 'ru'),
 (4253, 26, NULL, '12 Мп', 'ru'),
-(4254, 30, NULL, '12 месяцев', 'ru'),
-(4255, 38, NULL, 'Авто', 'ru'),
 (4256, 25, NULL, 'Да', 'ru'),
 (4257, 26, NULL, '15 Мп', 'ru'),
-(4258, 30, NULL, '24 месяца', 'ru'),
-(4259, 38, NULL, '80~3200 ISO', 'ru'),
 (4260, 25, NULL, 'Да', 'ru'),
 (4261, 26, NULL, '10 Мп', 'ru'),
-(4262, 30, NULL, '12 месяцев', 'ru'),
-(4263, 38, NULL, 'Авто', 'ru'),
 (4264, 25, NULL, 'Да', 'ru'),
 (4265, 26, NULL, '15 Мп', 'ru'),
-(4266, 30, NULL, '12 месяцев', 'ru'),
-(4267, 38, NULL, '80~3200 ISO', 'ru'),
-(4268, 30, NULL, '36 месяцев', 'ru'),
-(4269, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4270, 36, NULL, 'A1', 'ru'),
-(4271, 37, NULL, 'Wi-Fi', 'ru'),
-(4272, 30, NULL, '36 месяцев', 'ru'),
-(4273, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4274, 36, NULL, 'A1', 'ru'),
-(4275, 37, NULL, 'Wi-Fi', 'ru'),
-(4276, 30, NULL, '12 месяцев', 'ru'),
-(4277, 35, NULL, 'Лазерная печать', 'ru'),
-(4278, 36, NULL, 'A3', 'ru'),
-(4279, 37, NULL, 'Bluetooth', 'ru'),
-(4280, 30, NULL, '12 месяцев', 'ru'),
-(4281, 35, NULL, 'Лазерная печать', 'ru'),
-(4282, 36, NULL, 'A3', 'ru'),
-(4283, 30, NULL, '36 месяцев', 'ru'),
-(4284, 35, NULL, 'Струйная печать', 'ru'),
-(4285, 36, NULL, 'A3', 'ru'),
-(4286, 37, NULL, 'Wi-Fi', 'ru'),
-(4287, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4288, 36, NULL, 'A4', 'ru'),
-(4289, 37, NULL, 'Ethernet', 'ru'),
-(4290, 30, NULL, '12 месяцев', 'ru'),
-(4291, 33, NULL, 'Моноблок', 'ru'),
-(4292, 30, NULL, '36 месяцев', 'ru'),
-(4293, 37, NULL, 'Bluetooth', 'ru'),
-(4294, 30, NULL, '12 месяцев', 'ru'),
-(4295, 33, NULL, 'Моноблок', 'ru'),
-(4296, 30, NULL, '12 месяцев', 'ru'),
-(4297, 32, NULL, '2 ГГц', 'ru'),
-(4298, 33, NULL, 'Сенсор', 'ru'),
-(4299, 37, NULL, 'Ethernet', 'ru'),
-(4300, 30, NULL, '24 месяца', 'ru'),
-(4301, 40, NULL, '3 м', 'ru'),
-(4302, 30, NULL, '12 месяцев', 'ru'),
-(4303, 40, NULL, '5 м', 'ru'),
-(4304, 30, NULL, '24 месяца', 'ru'),
-(4305, 40, NULL, '20 м', 'ru'),
-(4306, 30, NULL, '24 месяца', 'ru'),
-(4307, 40, NULL, '20 м', 'ru'),
-(4308, 30, NULL, '12 месяцев', 'ru'),
-(4309, 40, NULL, '10 м', 'ru'),
-(4310, 30, NULL, '12 месяцев', 'ru'),
-(4311, 40, NULL, '5 м', 'ru'),
-(4312, 30, NULL, '12 месяцев', 'ru'),
-(4313, 40, NULL, '2 м', 'ru'),
-(4314, 30, NULL, '12 месяцев', 'ru'),
-(4315, 40, NULL, '5 м', 'ru'),
 (4316, 23, NULL, '40 Вт', 'ru'),
-(4317, 30, NULL, '12 месяцев', 'ru'),
-(4318, 39, NULL, 'Дерево', 'ru'),
 (4319, 23, NULL, '40 Вт', 'ru'),
-(4320, 30, NULL, '24 месяца', 'ru'),
-(4321, 39, NULL, 'Дерево', 'ru'),
 (4322, 23, NULL, '40 Вт', 'ru'),
-(4323, 30, NULL, '12 месяцев', 'ru'),
-(4324, 39, NULL, 'Пластик', 'ru'),
 (4325, 23, NULL, '100 Вт', 'ru'),
-(4326, 30, NULL, '36 месяцев', 'ru'),
-(4327, 39, NULL, 'Дерево', 'ru'),
 (4328, 23, NULL, '40 Вт', 'ru'),
-(4329, 30, NULL, '12 месяцев', 'ru'),
-(4330, 39, NULL, 'Метал', 'ru'),
-(4331, 30, NULL, '12 месяцев', 'ru'),
-(4332, 30, NULL, '12 месяцев', 'ru'),
 (4333, 23, NULL, '100 Вт', 'ru'),
 (4334, 24, NULL, '4', 'ru'),
-(4335, 28, NULL, 'AAC', 'ru'),
-(4336, 30, NULL, '12 месяцев', 'ru'),
-(4337, 30, NULL, '12 месяцев', 'ru'),
 (4338, 23, NULL, '100 Вт', 'ru'),
 (4339, 24, NULL, '2', 'ru'),
-(4340, 28, NULL, 'AAC', 'ru'),
-(4341, 30, NULL, '36 месяцев', 'ru'),
 (4342, 20, NULL, 'LED', 'ru'),
 (4343, 22, NULL, 'Да', 'ru'),
-(4344, 30, NULL, '24 месяца', 'ru'),
 (4345, 20, NULL, 'LED', 'ru'),
 (4346, 21, NULL, '32', 'ru'),
 (4347, 22, NULL, 'Да', 'ru'),
-(4348, 30, NULL, '24 месяца', 'ru'),
 (4349, 20, NULL, 'LED', 'ru'),
 (4350, 21, NULL, '40', 'ru'),
 (4351, 22, NULL, 'Да', 'ru'),
-(4352, 30, NULL, '24 месяца', 'ru'),
 (4353, 20, NULL, 'LED', 'ru'),
 (4354, 21, NULL, '32', 'ru'),
 (4355, 22, NULL, 'Да', 'ru'),
-(4356, 30, NULL, '24 месяца', 'ru'),
 (4357, 20, NULL, 'Plasma', 'ru'),
 (4358, 21, NULL, '40', 'ru'),
 (4359, 22, NULL, 'Нет', 'ru'),
-(4360, 30, NULL, '24 месяца', 'ru'),
 (4361, 20, NULL, 'LCD', 'ru'),
 (4362, 21, NULL, '40', 'ru'),
 (4363, 22, NULL, 'Нет', 'ru'),
-(4364, 30, NULL, '36 месяцев', 'ru'),
 (4365, 20, NULL, 'LCD', 'ru'),
 (4366, 21, NULL, '21', 'ru'),
 (4367, 22, NULL, 'Да', 'ru'),
-(4368, 30, NULL, '24 месяца', 'ru'),
 (4369, 23, NULL, '100 Вт', 'ru'),
-(4370, 28, NULL, 'FLAC', 'ru'),
-(4371, 29, NULL, 'WMV', 'ru'),
-(4372, 30, NULL, '12 месяцев', 'ru'),
 (4373, 23, NULL, '50 Вт', 'ru'),
-(4374, 28, NULL, 'FLAC', 'ru'),
-(4375, 29, NULL, 'BDMV', 'ru'),
-(4376, 30, NULL, '12 месяцев', 'ru'),
 (4377, 23, NULL, '50 Вт', 'ru'),
-(4378, 28, NULL, 'AAC', 'ru'),
-(4379, 29, NULL, 'WMV', 'ru'),
-(4380, 30, NULL, '12 месяцев', 'ru'),
 (4381, 23, NULL, '100 Вт', 'ru'),
-(4382, 28, NULL, 'AAC', 'ru'),
-(4383, 30, NULL, '12 месяцев', 'ru'),
 (4384, 23, NULL, '100 Вт', 'ru'),
-(4385, 28, NULL, 'MPA', 'ru'),
-(4386, 30, NULL, '24 месяца', 'ru'),
 (4387, 23, NULL, '40 Вт', 'ru'),
-(4388, 28, NULL, 'AAC', 'ru'),
-(4389, 30, NULL, '6 месяцев', 'ru'),
 (4390, 23, NULL, '100 Вт', 'ru'),
-(4391, 28, NULL, 'AAC', 'ru'),
-(4392, 30, NULL, '36 месяцев', 'ru'),
 (4393, 23, NULL, '50 Вт', 'ru'),
-(4394, 28, NULL, 'AC3', 'ru'),
-(4395, 30, NULL, '12 месяцев', 'ru'),
 (4396, 23, NULL, '50 Вт', 'ru'),
-(4397, 28, NULL, 'AC3', 'ru'),
-(4398, 30, NULL, '12 месяцев', 'ru'),
 (4399, 22, NULL, 'Да', 'ru'),
 (4400, 23, NULL, '100 Вт', 'ru'),
 (4401, 24, NULL, '2', 'ru'),
-(4402, 28, NULL, 'MPA', 'ru'),
-(4403, 29, NULL, 'WMV', 'ru'),
-(4404, 30, NULL, '12 месяцев', 'ru'),
-(4405, 39, NULL, 'Дерево', 'ru'),
 (4406, 22, NULL, 'Да', 'ru'),
 (4407, 23, NULL, '100 Вт', 'ru'),
-(4408, 28, NULL, 'AAC', 'ru'),
-(4409, 29, NULL, 'ASF', 'ru'),
-(4410, 30, NULL, '12 месяцев', 'ru'),
-(4411, 39, NULL, 'Метал', 'ru'),
 (4412, 22, NULL, 'Да', 'ru'),
 (4413, 23, NULL, '100 Вт', 'ru'),
 (4414, 24, NULL, '2', 'ru'),
-(4415, 28, NULL, 'AC3', 'ru'),
-(4416, 29, NULL, 'ASF', 'ru'),
-(4417, 30, NULL, '12 месяцев', 'ru'),
-(4418, 39, NULL, 'Метал', 'ru'),
 (4419, 22, NULL, 'Да', 'ru'),
 (4420, 23, NULL, '100 Вт', 'ru'),
 (4421, 24, NULL, '1', 'ru'),
-(4422, 28, NULL, 'AC3', 'ru'),
-(4423, 29, NULL, 'ASF', 'ru'),
-(4424, 30, NULL, '12 месяцев', 'ru'),
-(4425, 39, NULL, 'Метал', 'ru'),
 (4426, 22, NULL, 'Да', 'ru'),
 (4427, 23, NULL, '1500 Вт', 'ru'),
 (4428, 24, NULL, '2', 'ru'),
-(4429, 28, NULL, 'DTS', 'ru'),
-(4430, 29, NULL, 'ASF', 'ru'),
-(4431, 30, NULL, '36 месяцев', 'ru'),
-(4432, 39, NULL, 'Пластик', 'ru'),
+(6265, 20, 191, 'LCD', 'ru'),
+(6266, 21, 191, '35', 'ru'),
 (4433, 23, NULL, '100 Вт', 'ru'),
-(4434, 30, NULL, '36 месяцев', 'ru'),
-(4435, 39, NULL, 'Метал', 'ru'),
 (4436, 23, NULL, '80 Вт', 'ru'),
-(4437, 30, NULL, '12 месяцев', 'ru'),
-(4438, 39, NULL, 'Пластик', 'ru'),
 (4439, 23, NULL, '100 Вт', 'ru'),
-(4440, 30, NULL, '24 месяца', 'ru'),
-(4441, 39, NULL, 'Метал', 'ru'),
 (4442, 25, NULL, 'Да', 'ru'),
 (4443, 26, NULL, '15 Мп', 'ru'),
-(4444, 30, NULL, '12 месяцев', 'ru'),
-(4445, 38, NULL, '80~3200 ISO', 'ru'),
 (4446, 25, NULL, 'Да', 'ru'),
 (4447, 26, NULL, '12 Мп', 'ru'),
-(4448, 30, NULL, '12 месяцев', 'ru'),
-(4449, 38, NULL, 'Авто', 'ru'),
 (4450, 25, NULL, 'Да', 'ru'),
 (4451, 26, NULL, '15 Мп', 'ru'),
-(4452, 30, NULL, '24 месяца', 'ru'),
-(4453, 38, NULL, '80~3200 ISO', 'ru'),
 (4454, 25, NULL, 'Да', 'ru'),
 (4455, 26, NULL, '10 Мп', 'ru'),
-(4456, 30, NULL, '12 месяцев', 'ru'),
-(4457, 38, NULL, 'Авто', 'ru'),
 (4458, 25, NULL, 'Да', 'ru'),
 (4459, 26, NULL, '15 Мп', 'ru'),
-(4460, 30, NULL, '12 месяцев', 'ru'),
-(4461, 38, NULL, '80~3200 ISO', 'ru'),
-(4462, 30, NULL, '36 месяцев', 'ru'),
-(4463, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4464, 36, NULL, 'A1', 'ru'),
-(4465, 37, NULL, 'Wi-Fi', 'ru'),
-(4466, 30, NULL, '36 месяцев', 'ru'),
-(4467, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4468, 36, NULL, 'A1', 'ru'),
-(4469, 37, NULL, 'Wi-Fi', 'ru'),
-(4470, 30, NULL, '12 месяцев', 'ru'),
-(4471, 35, NULL, 'Лазерная печать', 'ru'),
-(4472, 36, NULL, 'A3', 'ru'),
-(4473, 37, NULL, 'Bluetooth', 'ru'),
-(4474, 30, NULL, '12 месяцев', 'ru'),
-(4475, 35, NULL, 'Лазерная печать', 'ru'),
-(4476, 36, NULL, 'A3', 'ru'),
-(4477, 30, NULL, '36 месяцев', 'ru'),
-(4478, 35, NULL, 'Струйная печать', 'ru'),
-(4479, 36, NULL, 'A3', 'ru'),
-(4480, 37, NULL, 'Wi-Fi', 'ru'),
-(4481, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4482, 36, NULL, 'A4', 'ru'),
-(4483, 37, NULL, 'Ethernet', 'ru'),
-(4484, 30, NULL, '12 месяцев', 'ru'),
-(4485, 33, NULL, 'Моноблок', 'ru'),
-(4486, 30, NULL, '36 месяцев', 'ru'),
-(4487, 37, NULL, 'Bluetooth', 'ru'),
-(4488, 30, NULL, '12 месяцев', 'ru'),
-(4489, 33, NULL, 'Моноблок', 'ru'),
-(4490, 30, NULL, '12 месяцев', 'ru'),
-(4491, 32, NULL, '2 ГГц', 'ru'),
-(4492, 33, NULL, 'Сенсор', 'ru'),
-(4493, 37, NULL, 'Ethernet', 'ru'),
-(4494, 30, NULL, '24 месяца', 'ru'),
-(4495, 40, NULL, '3 м', 'ru'),
-(4496, 30, NULL, '12 месяцев', 'ru'),
-(4497, 40, NULL, '5 м', 'ru'),
-(4498, 30, NULL, '24 месяца', 'ru'),
-(4499, 40, NULL, '20 м', 'ru'),
-(4500, 30, NULL, '24 месяца', 'ru'),
-(4501, 40, NULL, '20 м', 'ru'),
-(4502, 30, NULL, '12 месяцев', 'ru'),
-(4503, 40, NULL, '10 м', 'ru'),
-(4504, 30, NULL, '12 месяцев', 'ru'),
-(4505, 40, NULL, '5 м', 'ru'),
-(4506, 30, NULL, '12 месяцев', 'ru'),
-(4507, 40, NULL, '2 м', 'ru'),
-(4508, 30, NULL, '12 месяцев', 'ru'),
-(4509, 40, NULL, '5 м', 'ru'),
 (4510, 23, NULL, '40 Вт', 'ru'),
-(4511, 30, NULL, '12 месяцев', 'ru'),
-(4512, 39, NULL, 'Дерево', 'ru'),
 (4513, 23, NULL, '40 Вт', 'ru'),
-(4514, 30, NULL, '24 месяца', 'ru'),
-(4515, 39, NULL, 'Дерево', 'ru'),
 (4516, 23, NULL, '40 Вт', 'ru'),
-(4517, 30, NULL, '12 месяцев', 'ru'),
-(4518, 39, NULL, 'Пластик', 'ru'),
 (4519, 23, NULL, '100 Вт', 'ru'),
-(4520, 30, NULL, '36 месяцев', 'ru'),
-(4521, 39, NULL, 'Дерево', 'ru'),
 (4522, 23, NULL, '40 Вт', 'ru'),
-(4523, 30, NULL, '12 месяцев', 'ru'),
-(4524, 39, NULL, 'Метал', 'ru'),
-(4525, 30, NULL, '12 месяцев', 'ru'),
-(4526, 30, NULL, '12 месяцев', 'ru'),
 (4527, 23, NULL, '100 Вт', 'ru'),
 (4528, 24, NULL, '4', 'ru'),
-(4529, 28, NULL, 'AAC', 'ru'),
-(4530, 30, NULL, '12 месяцев', 'ru'),
-(4531, 30, NULL, '12 месяцев', 'ru'),
 (4532, 23, NULL, '100 Вт', 'ru'),
 (4533, 24, NULL, '2', 'ru'),
-(4534, 28, NULL, 'AAC', 'ru'),
-(4535, 30, NULL, '36 месяцев', 'ru'),
 (4536, 20, NULL, 'LED', 'ru'),
 (4537, 22, NULL, 'Да', 'ru'),
-(4538, 30, NULL, '24 месяца', 'ru'),
 (4539, 20, NULL, 'LED', 'ru'),
 (4540, 21, NULL, '32', 'ru'),
 (4541, 22, NULL, 'Да', 'ru'),
-(4542, 30, NULL, '24 месяца', 'ru'),
 (4543, 20, NULL, 'LED', 'ru'),
 (4544, 21, NULL, '40', 'ru'),
 (4545, 22, NULL, 'Да', 'ru'),
-(4546, 30, NULL, '24 месяца', 'ru'),
 (4547, 20, NULL, 'LED', 'ru'),
 (4548, 21, NULL, '32', 'ru'),
 (4549, 22, NULL, 'Да', 'ru'),
-(4550, 30, NULL, '24 месяца', 'ru'),
 (4551, 20, NULL, 'Plasma', 'ru'),
 (4552, 21, NULL, '40', 'ru'),
 (4553, 22, NULL, 'Нет', 'ru'),
-(4554, 30, NULL, '24 месяца', 'ru'),
 (4555, 20, NULL, 'LCD', 'ru'),
 (4556, 21, NULL, '40', 'ru'),
 (4557, 22, NULL, 'Нет', 'ru'),
-(4558, 30, NULL, '36 месяцев', 'ru'),
 (4559, 20, NULL, 'LCD', 'ru'),
 (4560, 21, NULL, '21', 'ru'),
 (4561, 22, NULL, 'Да', 'ru'),
-(4562, 30, NULL, '24 месяца', 'ru'),
 (4563, 23, NULL, '100 Вт', 'ru'),
-(4564, 28, NULL, 'FLAC', 'ru'),
-(4565, 29, NULL, 'WMV', 'ru'),
-(4566, 30, NULL, '12 месяцев', 'ru'),
+(6284, 24, 92, '3', 'ru'),
 (4567, 23, NULL, '50 Вт', 'ru'),
-(4568, 28, NULL, 'FLAC', 'ru'),
-(4569, 29, NULL, 'BDMV', 'ru'),
-(4570, 30, NULL, '12 месяцев', 'ru'),
+(6223, 25, 186, 'Нет', 'ru'),
 (4571, 23, NULL, '50 Вт', 'ru'),
-(4572, 28, NULL, 'AAC', 'ru'),
-(4573, 29, NULL, 'WMV', 'ru'),
-(4574, 30, NULL, '12 месяцев', 'ru'),
+(6219, 25, 101, 'Нет', 'ru'),
 (4575, 23, NULL, '100 Вт', 'ru'),
-(4576, 28, NULL, 'AAC', 'ru'),
-(4577, 30, NULL, '12 месяцев', 'ru'),
 (4578, 23, NULL, '100 Вт', 'ru'),
-(4579, 28, NULL, 'MPA', 'ru'),
-(4580, 30, NULL, '24 месяца', 'ru'),
 (4581, 23, NULL, '40 Вт', 'ru'),
-(4582, 28, NULL, 'AAC', 'ru'),
-(4583, 30, NULL, '6 месяцев', 'ru'),
 (4584, 23, NULL, '100 Вт', 'ru'),
-(4585, 28, NULL, 'AAC', 'ru'),
-(4586, 30, NULL, '36 месяцев', 'ru'),
 (4587, 23, NULL, '50 Вт', 'ru'),
-(4588, 28, NULL, 'AC3', 'ru'),
-(4589, 30, NULL, '12 месяцев', 'ru'),
 (4590, 23, NULL, '50 Вт', 'ru'),
-(4591, 28, NULL, 'AC3', 'ru'),
-(4592, 30, NULL, '12 месяцев', 'ru'),
 (4593, 22, NULL, 'Да', 'ru'),
 (4594, 23, NULL, '100 Вт', 'ru'),
 (4595, 24, NULL, '2', 'ru'),
-(4596, 28, NULL, 'MPA', 'ru'),
-(4597, 29, NULL, 'WMV', 'ru'),
-(4598, 30, NULL, '12 месяцев', 'ru'),
-(4599, 39, NULL, 'Дерево', 'ru'),
+(6218, 24, 101, '2', 'ru'),
 (4600, 22, NULL, 'Да', 'ru'),
 (4601, 23, NULL, '100 Вт', 'ru'),
-(4602, 28, NULL, 'AAC', 'ru'),
-(4603, 29, NULL, 'ASF', 'ru'),
-(4604, 30, NULL, '12 месяцев', 'ru'),
-(4605, 39, NULL, 'Метал', 'ru'),
+(6217, 24, 101, '1', 'ru'),
 (4606, 22, NULL, 'Да', 'ru'),
 (4607, 23, NULL, '100 Вт', 'ru'),
 (4608, 24, NULL, '2', 'ru'),
-(4609, 28, NULL, 'AC3', 'ru'),
-(4610, 29, NULL, 'ASF', 'ru'),
-(4611, 30, NULL, '12 месяцев', 'ru'),
-(4612, 39, NULL, 'Метал', 'ru'),
+(6216, 22, 101, 'Нет', 'ru'),
 (4613, 22, NULL, 'Да', 'ru'),
 (4614, 23, NULL, '100 Вт', 'ru'),
 (4615, 24, NULL, '1', 'ru'),
-(4616, 28, NULL, 'AC3', 'ru'),
-(4617, 29, NULL, 'ASF', 'ru'),
-(4618, 30, NULL, '12 месяцев', 'ru'),
-(4619, 39, NULL, 'Метал', 'ru'),
+(6203, 25, 98, 'Да', 'ru'),
 (4620, 22, NULL, 'Да', 'ru'),
 (4621, 23, NULL, '1500 Вт', 'ru'),
 (4622, 24, NULL, '2', 'ru'),
-(4623, 28, NULL, 'DTS', 'ru'),
-(4624, 29, NULL, 'ASF', 'ru'),
-(4625, 30, NULL, '36 месяцев', 'ru'),
-(4626, 39, NULL, 'Пластик', 'ru'),
+(6202, 24, 98, '3', 'ru'),
 (4627, 23, NULL, '100 Вт', 'ru'),
-(4628, 30, NULL, '36 месяцев', 'ru'),
-(4629, 39, NULL, 'Метал', 'ru'),
 (4630, 23, NULL, '80 Вт', 'ru'),
-(4631, 30, NULL, '12 месяцев', 'ru'),
-(4632, 39, NULL, 'Пластик', 'ru'),
 (4633, 23, NULL, '100 Вт', 'ru'),
-(4634, 30, NULL, '24 месяца', 'ru'),
-(4635, 39, NULL, 'Метал', 'ru'),
 (4636, 25, NULL, 'Да', 'ru'),
 (4637, 26, NULL, '15 Мп', 'ru'),
-(4638, 30, NULL, '12 месяцев', 'ru'),
-(4639, 38, NULL, '80~3200 ISO', 'ru'),
 (4640, 25, NULL, 'Да', 'ru'),
 (4641, 26, NULL, '12 Мп', 'ru'),
-(4642, 30, NULL, '12 месяцев', 'ru'),
-(4643, 38, NULL, 'Авто', 'ru'),
 (4644, 25, NULL, 'Да', 'ru'),
 (4645, 26, NULL, '15 Мп', 'ru'),
-(4646, 30, NULL, '24 месяца', 'ru'),
-(4647, 38, NULL, '80~3200 ISO', 'ru'),
 (4648, 25, NULL, 'Да', 'ru'),
 (4649, 26, NULL, '10 Мп', 'ru'),
-(4650, 30, NULL, '12 месяцев', 'ru'),
-(4651, 38, NULL, 'Авто', 'ru'),
 (4652, 25, NULL, 'Да', 'ru'),
 (4653, 26, NULL, '15 Мп', 'ru'),
-(4654, 30, NULL, '12 месяцев', 'ru'),
-(4655, 38, NULL, '80~3200 ISO', 'ru'),
-(4656, 30, NULL, '36 месяцев', 'ru'),
-(4657, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4658, 36, NULL, 'A1', 'ru'),
-(4659, 37, NULL, 'Wi-Fi', 'ru'),
-(4660, 30, NULL, '36 месяцев', 'ru'),
-(4661, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4662, 36, NULL, 'A1', 'ru'),
-(4663, 37, NULL, 'Wi-Fi', 'ru'),
-(4664, 30, NULL, '12 месяцев', 'ru'),
-(4665, 35, NULL, 'Лазерная печать', 'ru'),
-(4666, 36, NULL, 'A3', 'ru'),
-(4667, 37, NULL, 'Bluetooth', 'ru'),
-(4668, 30, NULL, '12 месяцев', 'ru'),
-(4669, 35, NULL, 'Лазерная печать', 'ru'),
-(4670, 36, NULL, 'A3', 'ru'),
-(4671, 30, NULL, '36 месяцев', 'ru'),
-(4672, 35, NULL, 'Струйная печать', 'ru'),
-(4673, 36, NULL, 'A3', 'ru'),
-(4674, 37, NULL, 'Wi-Fi', 'ru'),
-(4675, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4676, 36, NULL, 'A4', 'ru'),
-(4677, 37, NULL, 'Ethernet', 'ru'),
-(4678, 30, NULL, '12 месяцев', 'ru'),
-(4679, 33, NULL, 'Моноблок', 'ru'),
-(4680, 30, NULL, '36 месяцев', 'ru'),
-(4681, 37, NULL, 'Bluetooth', 'ru'),
-(4682, 30, NULL, '12 месяцев', 'ru'),
-(4683, 33, NULL, 'Моноблок', 'ru'),
-(4684, 30, NULL, '12 месяцев', 'ru'),
-(4685, 32, NULL, '2 ГГц', 'ru'),
-(4686, 33, NULL, 'Сенсор', 'ru'),
-(4687, 37, NULL, 'Ethernet', 'ru'),
-(4688, 30, NULL, '24 месяца', 'ru'),
-(4689, 40, NULL, '3 м', 'ru'),
-(4690, 30, NULL, '12 месяцев', 'ru'),
-(4691, 40, NULL, '5 м', 'ru'),
-(4692, 30, NULL, '24 месяца', 'ru'),
-(4693, 40, NULL, '20 м', 'ru'),
-(4694, 30, NULL, '24 месяца', 'ru'),
-(4695, 40, NULL, '20 м', 'ru'),
-(4696, 30, NULL, '12 месяцев', 'ru'),
-(4697, 40, NULL, '10 м', 'ru'),
-(4698, 30, NULL, '12 месяцев', 'ru'),
-(4699, 40, NULL, '5 м', 'ru'),
-(4700, 30, NULL, '12 месяцев', 'ru'),
-(4701, 40, NULL, '2 м', 'ru'),
-(4702, 30, NULL, '12 месяцев', 'ru'),
-(4703, 40, NULL, '5 м', 'ru'),
 (4704, 23, NULL, '40 Вт', 'ru'),
-(4705, 30, NULL, '12 месяцев', 'ru'),
-(4706, 39, NULL, 'Дерево', 'ru'),
 (4707, 23, NULL, '40 Вт', 'ru'),
-(4708, 30, NULL, '24 месяца', 'ru'),
-(4709, 39, NULL, 'Дерево', 'ru'),
 (4710, 23, NULL, '40 Вт', 'ru'),
-(4711, 30, NULL, '12 месяцев', 'ru'),
-(4712, 39, NULL, 'Пластик', 'ru'),
 (4713, 23, NULL, '100 Вт', 'ru'),
-(4714, 30, NULL, '36 месяцев', 'ru'),
-(4715, 39, NULL, 'Дерево', 'ru'),
 (4716, 23, NULL, '40 Вт', 'ru'),
-(4717, 30, NULL, '12 месяцев', 'ru'),
-(4718, 39, NULL, 'Метал', 'ru'),
-(4719, 30, NULL, '12 месяцев', 'ru'),
-(4720, 30, NULL, '12 месяцев', 'ru'),
 (4721, 23, NULL, '100 Вт', 'ru'),
 (4722, 24, NULL, '4', 'ru'),
-(4723, 28, NULL, 'AAC', 'ru'),
-(4724, 30, NULL, '12 месяцев', 'ru'),
-(4725, 30, NULL, '12 месяцев', 'ru'),
 (4726, 23, NULL, '100 Вт', 'ru'),
 (4727, 24, NULL, '2', 'ru'),
-(4728, 28, NULL, 'AAC', 'ru'),
-(4729, 30, NULL, '36 месяцев', 'ru'),
 (4730, 20, NULL, 'LED', 'ru'),
 (4731, 22, NULL, 'Да', 'ru'),
-(4732, 30, NULL, '24 месяца', 'ru'),
 (4733, 20, NULL, 'LED', 'ru'),
 (4734, 21, NULL, '32', 'ru'),
 (4735, 22, NULL, 'Да', 'ru'),
-(4736, 30, NULL, '24 месяца', 'ru'),
 (4737, 20, NULL, 'LED', 'ru'),
 (4738, 21, NULL, '40', 'ru'),
 (4739, 22, NULL, 'Да', 'ru'),
-(4740, 30, NULL, '24 месяца', 'ru');
-INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
 (4741, 20, NULL, 'LED', 'ru'),
 (4742, 21, NULL, '32', 'ru'),
 (4743, 22, NULL, 'Да', 'ru'),
-(4744, 30, NULL, '24 месяца', 'ru'),
 (4745, 20, NULL, 'Plasma', 'ru'),
 (4746, 21, NULL, '40', 'ru'),
 (4747, 22, NULL, 'Нет', 'ru'),
-(4748, 30, NULL, '24 месяца', 'ru'),
 (4749, 20, NULL, 'LCD', 'ru'),
 (4750, 21, NULL, '40', 'ru'),
 (4751, 22, NULL, 'Нет', 'ru'),
-(4752, 30, NULL, '36 месяцев', 'ru'),
 (4753, 20, NULL, 'LCD', 'ru'),
 (4754, 21, NULL, '21', 'ru'),
 (4755, 22, NULL, 'Да', 'ru'),
-(4756, 30, NULL, '24 месяца', 'ru'),
 (4757, 23, NULL, '100 Вт', 'ru'),
-(4758, 28, NULL, 'FLAC', 'ru'),
-(4759, 29, NULL, 'WMV', 'ru'),
-(4760, 30, NULL, '12 месяцев', 'ru'),
+(6201, 24, 98, '1', 'ru'),
 (4761, 23, NULL, '50 Вт', 'ru'),
-(4762, 28, NULL, 'FLAC', 'ru'),
-(4763, 29, NULL, 'BDMV', 'ru'),
-(4764, 30, NULL, '12 месяцев', 'ru'),
+(6200, 22, 98, 'Нет', 'ru'),
 (4765, 23, NULL, '50 Вт', 'ru'),
-(4766, 28, NULL, 'AAC', 'ru'),
-(4767, 29, NULL, 'WMV', 'ru'),
-(4768, 30, NULL, '12 месяцев', 'ru'),
+(6197, 25, 97, 'Да', 'ru'),
 (4769, 23, NULL, '100 Вт', 'ru'),
-(4770, 28, NULL, 'AAC', 'ru'),
-(4771, 30, NULL, '12 месяцев', 'ru'),
 (4772, 23, NULL, '100 Вт', 'ru'),
-(4773, 28, NULL, 'MPA', 'ru'),
-(4774, 30, NULL, '24 месяца', 'ru'),
 (4775, 23, NULL, '40 Вт', 'ru'),
-(4776, 28, NULL, 'AAC', 'ru'),
-(4777, 30, NULL, '6 месяцев', 'ru'),
 (4778, 23, NULL, '100 Вт', 'ru'),
-(4779, 28, NULL, 'AAC', 'ru'),
-(4780, 30, NULL, '36 месяцев', 'ru'),
 (4781, 23, NULL, '50 Вт', 'ru'),
-(4782, 28, NULL, 'AC3', 'ru'),
-(4783, 30, NULL, '12 месяцев', 'ru'),
 (4784, 23, NULL, '50 Вт', 'ru'),
-(4785, 28, NULL, 'AC3', 'ru'),
-(4786, 30, NULL, '12 месяцев', 'ru'),
 (4787, 22, NULL, 'Да', 'ru'),
 (4788, 23, NULL, '100 Вт', 'ru'),
 (4789, 24, NULL, '2', 'ru'),
-(4790, 28, NULL, 'MPA', 'ru'),
-(4791, 29, NULL, 'WMV', 'ru'),
-(4792, 30, NULL, '12 месяцев', 'ru'),
-(4793, 39, NULL, 'Дерево', 'ru'),
+(6196, 24, 97, '2', 'ru'),
 (4794, 22, NULL, 'Да', 'ru'),
 (4795, 23, NULL, '100 Вт', 'ru'),
-(4796, 28, NULL, 'AAC', 'ru'),
-(4797, 29, NULL, 'ASF', 'ru'),
-(4798, 30, NULL, '12 месяцев', 'ru'),
-(4799, 39, NULL, 'Метал', 'ru'),
+(6195, 22, 97, 'Нет', 'ru'),
 (4800, 22, NULL, 'Да', 'ru'),
 (4801, 23, NULL, '100 Вт', 'ru'),
 (4802, 24, NULL, '2', 'ru'),
-(4803, 28, NULL, 'AC3', 'ru'),
-(4804, 29, NULL, 'ASF', 'ru'),
-(4805, 30, NULL, '12 месяцев', 'ru'),
-(4806, 39, NULL, 'Метал', 'ru'),
+(6192, 25, 91, 'Нет', 'ru'),
 (4807, 22, NULL, 'Да', 'ru'),
 (4808, 23, NULL, '100 Вт', 'ru'),
 (4809, 24, NULL, '1', 'ru'),
-(4810, 28, NULL, 'AC3', 'ru'),
-(4811, 29, NULL, 'ASF', 'ru'),
-(4812, 30, NULL, '12 месяцев', 'ru'),
-(4813, 39, NULL, 'Метал', 'ru'),
+(6191, 24, 91, '3', 'ru'),
 (4814, 22, NULL, 'Да', 'ru'),
 (4815, 23, NULL, '1500 Вт', 'ru'),
 (4816, 24, NULL, '2', 'ru'),
-(4817, 28, NULL, 'DTS', 'ru'),
-(4818, 29, NULL, 'ASF', 'ru'),
-(4819, 30, NULL, '36 месяцев', 'ru'),
-(4820, 39, NULL, 'Пластик', 'ru'),
+(6190, 23, 91, '100 Вт', 'ru'),
 (4821, 23, NULL, '100 Вт', 'ru'),
-(4822, 30, NULL, '36 месяцев', 'ru'),
-(4823, 39, NULL, 'Метал', 'ru'),
 (4824, 23, NULL, '80 Вт', 'ru'),
-(4825, 30, NULL, '12 месяцев', 'ru'),
-(4826, 39, NULL, 'Пластик', 'ru'),
 (4827, 23, NULL, '100 Вт', 'ru'),
-(4828, 30, NULL, '24 месяца', 'ru'),
-(4829, 39, NULL, 'Метал', 'ru'),
 (4830, 25, NULL, 'Да', 'ru'),
 (4831, 26, NULL, '15 Мп', 'ru'),
-(4832, 30, NULL, '12 месяцев', 'ru'),
-(4833, 38, NULL, '80~3200 ISO', 'ru'),
 (4834, 25, NULL, 'Да', 'ru'),
 (4835, 26, NULL, '12 Мп', 'ru'),
-(4836, 30, NULL, '12 месяцев', 'ru'),
-(4837, 38, NULL, 'Авто', 'ru'),
 (4838, 25, NULL, 'Да', 'ru'),
 (4839, 26, NULL, '15 Мп', 'ru'),
-(4840, 30, NULL, '24 месяца', 'ru'),
-(4841, 38, NULL, '80~3200 ISO', 'ru'),
 (4842, 25, NULL, 'Да', 'ru'),
 (4843, 26, NULL, '10 Мп', 'ru'),
-(4844, 30, NULL, '12 месяцев', 'ru'),
-(4845, 38, NULL, 'Авто', 'ru'),
 (4846, 25, NULL, 'Да', 'ru'),
 (4847, 26, NULL, '15 Мп', 'ru'),
-(4848, 30, NULL, '12 месяцев', 'ru'),
-(4849, 38, NULL, '80~3200 ISO', 'ru'),
-(4850, 30, NULL, '36 месяцев', 'ru'),
-(4851, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4852, 36, NULL, 'A1', 'ru'),
-(4853, 37, NULL, 'Wi-Fi', 'ru'),
-(4854, 30, NULL, '36 месяцев', 'ru'),
-(4855, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4856, 36, NULL, 'A1', 'ru'),
-(4857, 37, NULL, 'Wi-Fi', 'ru'),
-(4858, 30, NULL, '12 месяцев', 'ru'),
-(4859, 35, NULL, 'Лазерная печать', 'ru'),
-(4860, 36, NULL, 'A3', 'ru'),
-(4861, 37, NULL, 'Bluetooth', 'ru'),
-(4862, 30, NULL, '12 месяцев', 'ru'),
-(4863, 35, NULL, 'Лазерная печать', 'ru'),
-(4864, 36, NULL, 'A3', 'ru'),
-(4865, 30, NULL, '36 месяцев', 'ru'),
-(4866, 35, NULL, 'Струйная печать', 'ru'),
-(4867, 36, NULL, 'A3', 'ru'),
-(4868, 37, NULL, 'Wi-Fi', 'ru'),
-(4869, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(4870, 36, NULL, 'A4', 'ru'),
-(4871, 37, NULL, 'Ethernet', 'ru'),
-(4872, 30, NULL, '12 месяцев', 'ru'),
-(4873, 33, NULL, 'Моноблок', 'ru'),
-(4874, 30, NULL, '36 месяцев', 'ru'),
-(4875, 37, NULL, 'Bluetooth', 'ru'),
-(4876, 30, NULL, '12 месяцев', 'ru'),
-(4877, 33, NULL, 'Моноблок', 'ru'),
-(4878, 30, NULL, '12 месяцев', 'ru'),
-(4879, 32, NULL, '2 ГГц', 'ru'),
-(4880, 33, NULL, 'Сенсор', 'ru'),
-(4881, 37, NULL, 'Ethernet', 'ru'),
-(4882, 30, NULL, '24 месяца', 'ru'),
-(4883, 40, NULL, '3 м', 'ru'),
-(4884, 30, NULL, '12 месяцев', 'ru'),
-(4885, 40, NULL, '5 м', 'ru'),
-(4886, 30, NULL, '24 месяца', 'ru'),
-(4887, 40, NULL, '20 м', 'ru'),
-(4888, 30, NULL, '24 месяца', 'ru'),
-(4889, 40, NULL, '20 м', 'ru'),
-(4890, 30, NULL, '12 месяцев', 'ru'),
-(4891, 40, NULL, '10 м', 'ru'),
-(4892, 30, NULL, '12 месяцев', 'ru'),
-(4893, 40, NULL, '5 м', 'ru'),
-(4894, 30, NULL, '12 месяцев', 'ru'),
-(4895, 40, NULL, '2 м', 'ru'),
-(4896, 30, NULL, '12 месяцев', 'ru'),
-(4897, 40, NULL, '5 м', 'ru'),
 (4898, 23, NULL, '40 Вт', 'ru'),
-(4899, 30, NULL, '12 месяцев', 'ru'),
-(4900, 39, NULL, 'Дерево', 'ru'),
 (4901, 23, NULL, '40 Вт', 'ru'),
-(4902, 30, NULL, '24 месяца', 'ru'),
-(4903, 39, NULL, 'Дерево', 'ru'),
 (4904, 23, NULL, '40 Вт', 'ru'),
-(4905, 30, NULL, '12 месяцев', 'ru'),
-(4906, 39, NULL, 'Пластик', 'ru'),
 (4907, 23, NULL, '100 Вт', 'ru'),
-(4908, 30, NULL, '36 месяцев', 'ru'),
-(4909, 39, NULL, 'Дерево', 'ru'),
 (4910, 23, NULL, '40 Вт', 'ru'),
-(4911, 30, NULL, '12 месяцев', 'ru'),
-(4912, 39, NULL, 'Метал', 'ru'),
-(4913, 30, NULL, '12 месяцев', 'ru'),
-(4914, 30, NULL, '12 месяцев', 'ru'),
 (4915, 23, NULL, '100 Вт', 'ru'),
 (4916, 24, NULL, '4', 'ru'),
-(4917, 28, NULL, 'AAC', 'ru'),
-(4918, 30, NULL, '12 месяцев', 'ru'),
-(4919, 30, NULL, '12 месяцев', 'ru'),
 (4920, 23, NULL, '100 Вт', 'ru'),
 (4921, 24, NULL, '2', 'ru'),
-(4922, 28, NULL, 'AAC', 'ru'),
-(4923, 30, NULL, '36 месяцев', 'ru'),
 (4924, 20, NULL, 'LED', 'ru'),
 (4925, 22, NULL, 'Да', 'ru'),
-(4926, 30, NULL, '24 месяца', 'ru'),
 (4927, 20, NULL, 'LED', 'ru'),
 (4928, 21, NULL, '32', 'ru'),
 (4929, 22, NULL, 'Да', 'ru'),
-(4930, 30, NULL, '24 месяца', 'ru'),
 (4931, 20, NULL, 'LED', 'ru'),
 (4932, 21, NULL, '40', 'ru'),
 (4933, 22, NULL, 'Да', 'ru'),
-(4934, 30, NULL, '24 месяца', 'ru'),
 (4935, 20, NULL, 'LED', 'ru'),
 (4936, 21, NULL, '32', 'ru'),
 (4937, 22, NULL, 'Да', 'ru'),
-(4938, 30, NULL, '24 месяца', 'ru'),
 (4939, 20, NULL, 'Plasma', 'ru'),
 (4940, 21, NULL, '40', 'ru'),
 (4941, 22, NULL, 'Нет', 'ru'),
-(4942, 30, NULL, '24 месяца', 'ru'),
 (4943, 20, NULL, 'LCD', 'ru'),
 (4944, 21, NULL, '40', 'ru'),
 (4945, 22, NULL, 'Нет', 'ru'),
-(4946, 30, NULL, '36 месяцев', 'ru'),
 (4947, 20, NULL, 'LCD', 'ru'),
 (4948, 21, NULL, '21', 'ru'),
 (4949, 22, NULL, 'Да', 'ru'),
-(4950, 30, NULL, '24 месяца', 'ru'),
 (4951, 23, NULL, '100 Вт', 'ru'),
-(4952, 28, NULL, 'FLAC', 'ru'),
-(4953, 29, NULL, 'WMV', 'ru'),
-(4954, 30, NULL, '12 месяцев', 'ru'),
+(6186, 25, 90, 'Нет', 'ru'),
 (4955, 23, NULL, '50 Вт', 'ru'),
-(4956, 28, NULL, 'FLAC', 'ru'),
-(4957, 29, NULL, 'BDMV', 'ru'),
-(4958, 30, NULL, '12 месяцев', 'ru'),
+(6185, 24, 90, '1', 'ru'),
 (4959, 23, NULL, '50 Вт', 'ru'),
-(4960, 28, NULL, 'AAC', 'ru'),
-(4961, 29, NULL, 'WMV', 'ru'),
-(4962, 30, NULL, '12 месяцев', 'ru'),
+(6184, 23, 90, '100 Вт', 'ru'),
 (4963, 23, NULL, '100 Вт', 'ru'),
-(4964, 28, NULL, 'AAC', 'ru'),
-(4965, 30, NULL, '12 месяцев', 'ru'),
 (4966, 23, NULL, '100 Вт', 'ru'),
-(4967, 28, NULL, 'MPA', 'ru'),
-(4968, 30, NULL, '24 месяца', 'ru'),
 (4969, 23, NULL, '40 Вт', 'ru'),
-(4970, 28, NULL, 'AAC', 'ru'),
-(4971, 30, NULL, '6 месяцев', 'ru'),
 (4972, 23, NULL, '100 Вт', 'ru'),
-(4973, 28, NULL, 'AAC', 'ru'),
-(4974, 30, NULL, '36 месяцев', 'ru'),
 (4975, 23, NULL, '50 Вт', 'ru'),
-(4976, 28, NULL, 'AC3', 'ru'),
-(4977, 30, NULL, '12 месяцев', 'ru'),
 (4978, 23, NULL, '50 Вт', 'ru'),
-(4979, 28, NULL, 'AC3', 'ru'),
-(4980, 30, NULL, '12 месяцев', 'ru'),
 (4981, 22, NULL, 'Да', 'ru'),
 (4982, 23, NULL, '100 Вт', 'ru'),
 (4983, 24, NULL, '2', 'ru'),
-(4984, 28, NULL, 'MPA', 'ru'),
-(4985, 29, NULL, 'WMV', 'ru'),
-(4986, 30, NULL, '12 месяцев', 'ru'),
-(4987, 39, NULL, 'Дерево', 'ru'),
+(6294, 24, 89, '3', 'ru'),
+(6295, 24, 89, '4', 'ru'),
 (4988, 22, NULL, 'Да', 'ru'),
 (4989, 23, NULL, '100 Вт', 'ru'),
-(4990, 28, NULL, 'AAC', 'ru'),
-(4991, 29, NULL, 'ASF', 'ru'),
-(4992, 30, NULL, '12 месяцев', 'ru'),
-(4993, 39, NULL, 'Метал', 'ru'),
+(6292, 22, 89, 'Да', 'ru'),
+(6293, 23, 89, '100 Вт', 'ru'),
 (4994, 22, NULL, 'Да', 'ru'),
 (4995, 23, NULL, '100 Вт', 'ru'),
 (4996, 24, NULL, '2', 'ru'),
-(4997, 28, NULL, 'AC3', 'ru'),
-(4998, 29, NULL, 'ASF', 'ru'),
-(4999, 30, NULL, '12 месяцев', 'ru'),
-(5000, 39, NULL, 'Метал', 'ru'),
+(6290, 20, 89, 'LED', 'ru'),
+(6291, 21, 89, '32', 'ru'),
 (5001, 22, NULL, 'Да', 'ru'),
 (5002, 23, NULL, '100 Вт', 'ru'),
 (5003, 24, NULL, '1', 'ru'),
-(5004, 28, NULL, 'AC3', 'ru'),
-(5005, 29, NULL, 'ASF', 'ru'),
-(5006, 30, NULL, '12 месяцев', 'ru'),
-(5007, 39, NULL, 'Метал', 'ru'),
+(6288, 24, 92, '11', 'ru'),
+(6289, 24, 92, '12', 'ru'),
 (5008, 22, NULL, 'Да', 'ru'),
 (5009, 23, NULL, '1500 Вт', 'ru'),
 (5010, 24, NULL, '2', 'ru'),
-(5011, 28, NULL, 'DTS', 'ru'),
-(5012, 29, NULL, 'ASF', 'ru'),
-(5013, 30, NULL, '36 месяцев', 'ru'),
-(5014, 39, NULL, 'Пластик', 'ru'),
+(6244, 24, 88, '1', 'ru'),
+(6245, 25, 88, 'Да', 'ru'),
 (5015, 23, NULL, '100 Вт', 'ru'),
-(5016, 30, NULL, '36 месяцев', 'ru'),
-(5017, 39, NULL, 'Метал', 'ru'),
 (5018, 23, NULL, '80 Вт', 'ru'),
-(5019, 30, NULL, '12 месяцев', 'ru'),
-(5020, 39, NULL, 'Пластик', 'ru'),
 (5021, 23, NULL, '100 Вт', 'ru'),
-(5022, 30, NULL, '24 месяца', 'ru'),
-(5023, 39, NULL, 'Метал', 'ru'),
 (5024, 25, NULL, 'Да', 'ru'),
 (5025, 26, NULL, '15 Мп', 'ru'),
-(5026, 30, NULL, '12 месяцев', 'ru'),
-(5027, 38, NULL, '80~3200 ISO', 'ru'),
 (5028, 25, NULL, 'Да', 'ru'),
 (5029, 26, NULL, '12 Мп', 'ru'),
-(5030, 30, NULL, '12 месяцев', 'ru'),
-(5031, 38, NULL, 'Авто', 'ru'),
 (5032, 25, NULL, 'Да', 'ru'),
 (5033, 26, NULL, '15 Мп', 'ru'),
-(5034, 30, NULL, '24 месяца', 'ru'),
-(5035, 38, NULL, '80~3200 ISO', 'ru'),
 (5036, 25, NULL, 'Да', 'ru'),
 (5037, 26, NULL, '10 Мп', 'ru'),
-(5038, 30, NULL, '12 месяцев', 'ru'),
-(5039, 38, NULL, 'Авто', 'ru'),
 (5040, 25, NULL, 'Да', 'ru'),
 (5041, 26, NULL, '15 Мп', 'ru'),
-(5042, 30, NULL, '12 месяцев', 'ru'),
-(5043, 38, NULL, '80~3200 ISO', 'ru'),
-(5044, 30, NULL, '36 месяцев', 'ru'),
-(5045, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5046, 36, NULL, 'A1', 'ru'),
-(5047, 37, NULL, 'Wi-Fi', 'ru'),
-(5048, 30, NULL, '36 месяцев', 'ru'),
-(5049, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5050, 36, NULL, 'A1', 'ru'),
-(5051, 37, NULL, 'Wi-Fi', 'ru'),
-(5052, 30, NULL, '12 месяцев', 'ru'),
-(5053, 35, NULL, 'Лазерная печать', 'ru'),
-(5054, 36, NULL, 'A3', 'ru'),
-(5055, 37, NULL, 'Bluetooth', 'ru'),
-(5056, 30, NULL, '12 месяцев', 'ru'),
-(5057, 35, NULL, 'Лазерная печать', 'ru'),
-(5058, 36, NULL, 'A3', 'ru'),
-(5059, 30, NULL, '36 месяцев', 'ru'),
-(5060, 35, NULL, 'Струйная печать', 'ru'),
-(5061, 36, NULL, 'A3', 'ru'),
-(5062, 37, NULL, 'Wi-Fi', 'ru'),
-(5063, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5064, 36, NULL, 'A4', 'ru'),
-(5065, 37, NULL, 'Ethernet', 'ru'),
-(5066, 30, NULL, '12 месяцев', 'ru'),
-(5067, 33, NULL, 'Моноблок', 'ru'),
-(5068, 30, NULL, '36 месяцев', 'ru'),
-(5069, 37, NULL, 'Bluetooth', 'ru'),
-(5070, 30, NULL, '12 месяцев', 'ru'),
-(5071, 33, NULL, 'Моноблок', 'ru'),
-(5072, 30, NULL, '12 месяцев', 'ru'),
-(5073, 32, NULL, '2 ГГц', 'ru'),
-(5074, 33, NULL, 'Сенсор', 'ru'),
-(5075, 37, NULL, 'Ethernet', 'ru'),
-(5076, 30, NULL, '24 месяца', 'ru'),
-(5077, 40, NULL, '3 м', 'ru'),
-(5078, 30, NULL, '12 месяцев', 'ru'),
-(5079, 40, NULL, '5 м', 'ru'),
-(5080, 30, NULL, '24 месяца', 'ru'),
-(5081, 40, NULL, '20 м', 'ru'),
-(5082, 30, NULL, '24 месяца', 'ru'),
-(5083, 40, NULL, '20 м', 'ru'),
-(5084, 30, NULL, '12 месяцев', 'ru'),
-(5085, 40, NULL, '10 м', 'ru'),
-(5086, 30, NULL, '12 месяцев', 'ru'),
-(5087, 40, NULL, '5 м', 'ru'),
-(5088, 30, NULL, '12 месяцев', 'ru'),
-(5089, 40, NULL, '2 м', 'ru'),
-(5090, 30, NULL, '12 месяцев', 'ru'),
-(5091, 40, NULL, '5 м', 'ru'),
 (5092, 23, NULL, '40 Вт', 'ru'),
-(5093, 30, NULL, '12 месяцев', 'ru'),
-(5094, 39, NULL, 'Дерево', 'ru'),
 (5095, 23, NULL, '40 Вт', 'ru'),
-(5096, 30, NULL, '24 месяца', 'ru'),
-(5097, 39, NULL, 'Дерево', 'ru'),
 (5098, 23, NULL, '40 Вт', 'ru'),
-(5099, 30, NULL, '12 месяцев', 'ru'),
-(5100, 39, NULL, 'Пластик', 'ru'),
 (5101, 23, NULL, '100 Вт', 'ru'),
-(5102, 30, NULL, '36 месяцев', 'ru'),
-(5103, 39, NULL, 'Дерево', 'ru'),
 (5104, 23, NULL, '40 Вт', 'ru'),
-(5105, 30, NULL, '12 месяцев', 'ru'),
-(5106, 39, NULL, 'Метал', 'ru'),
-(5107, 30, NULL, '12 месяцев', 'ru'),
-(5108, 30, NULL, '12 месяцев', 'ru'),
 (5109, 23, NULL, '100 Вт', 'ru'),
 (5110, 24, NULL, '4', 'ru'),
-(5111, 28, NULL, 'AAC', 'ru'),
-(5112, 30, NULL, '12 месяцев', 'ru'),
-(5113, 30, NULL, '12 месяцев', 'ru'),
 (5114, 23, NULL, '100 Вт', 'ru'),
 (5115, 24, NULL, '2', 'ru'),
-(5116, 28, NULL, 'AAC', 'ru'),
-(5117, 30, NULL, '36 месяцев', 'ru'),
 (5118, 20, NULL, 'LED', 'ru'),
 (5119, 22, NULL, 'Да', 'ru'),
-(5120, 30, NULL, '24 месяца', 'ru'),
 (5121, 20, NULL, 'LED', 'ru'),
 (5122, 21, NULL, '32', 'ru'),
 (5123, 22, NULL, 'Да', 'ru'),
-(5124, 30, NULL, '24 месяца', 'ru'),
 (5125, 20, NULL, 'LED', 'ru'),
 (5126, 21, NULL, '40', 'ru'),
 (5127, 22, NULL, 'Да', 'ru'),
-(5128, 30, NULL, '24 месяца', 'ru'),
 (5129, 20, NULL, 'LED', 'ru'),
 (5130, 21, NULL, '32', 'ru'),
 (5131, 22, NULL, 'Да', 'ru'),
-(5132, 30, NULL, '24 месяца', 'ru'),
 (5133, 20, NULL, 'Plasma', 'ru'),
 (5134, 21, NULL, '40', 'ru'),
 (5135, 22, NULL, 'Нет', 'ru'),
-(5136, 30, NULL, '24 месяца', 'ru'),
 (5137, 20, NULL, 'LCD', 'ru'),
 (5138, 21, NULL, '40', 'ru'),
 (5139, 22, NULL, 'Нет', 'ru'),
-(5140, 30, NULL, '36 месяцев', 'ru'),
 (5141, 20, NULL, 'LCD', 'ru'),
 (5142, 21, NULL, '21', 'ru'),
 (5143, 22, NULL, 'Да', 'ru'),
-(5144, 30, NULL, '24 месяца', 'ru'),
 (5145, 23, NULL, '100 Вт', 'ru'),
-(5146, 28, NULL, 'FLAC', 'ru'),
-(5147, 29, NULL, 'WMV', 'ru'),
-(5148, 30, NULL, '12 месяцев', 'ru'),
+(6243, 23, 88, '100 Вт', 'ru'),
 (5149, 23, NULL, '50 Вт', 'ru'),
-(5150, 28, NULL, 'FLAC', 'ru'),
-(5151, 29, NULL, 'BDMV', 'ru'),
-(5152, 30, NULL, '12 месяцев', 'ru'),
+(6242, 22, 88, 'Да', 'ru'),
 (5153, 23, NULL, '50 Вт', 'ru'),
-(5154, 28, NULL, 'AAC', 'ru'),
-(5155, 29, NULL, 'WMV', 'ru'),
-(5156, 30, NULL, '12 месяцев', 'ru'),
+(6287, 24, 92, '10', 'ru'),
 (5157, 23, NULL, '100 Вт', 'ru'),
-(5158, 28, NULL, 'AAC', 'ru'),
-(5159, 30, NULL, '12 месяцев', 'ru'),
 (5160, 23, NULL, '100 Вт', 'ru'),
-(5161, 28, NULL, 'MPA', 'ru'),
-(5162, 30, NULL, '24 месяца', 'ru'),
 (5163, 23, NULL, '40 Вт', 'ru'),
-(5164, 28, NULL, 'AAC', 'ru'),
-(5165, 30, NULL, '6 месяцев', 'ru'),
 (5166, 23, NULL, '100 Вт', 'ru'),
-(5167, 28, NULL, 'AAC', 'ru'),
-(5168, 30, NULL, '36 месяцев', 'ru'),
 (5169, 23, NULL, '50 Вт', 'ru'),
-(5170, 28, NULL, 'AC3', 'ru'),
-(5171, 30, NULL, '12 месяцев', 'ru'),
 (5172, 23, NULL, '50 Вт', 'ru'),
-(5173, 28, NULL, 'AC3', 'ru'),
-(5174, 30, NULL, '12 месяцев', 'ru'),
 (5175, 22, NULL, 'Да', 'ru'),
 (5176, 23, NULL, '100 Вт', 'ru'),
 (5177, 24, NULL, '2', 'ru'),
-(5178, 28, NULL, 'MPA', 'ru'),
-(5179, 29, NULL, 'WMV', 'ru'),
-(5180, 30, NULL, '12 месяцев', 'ru'),
-(5181, 39, NULL, 'Дерево', 'ru'),
+(6250, 24, 87, '2', 'ru'),
+(6251, 25, 87, 'Да', 'ru'),
 (5182, 22, NULL, 'Да', 'ru'),
 (5183, 23, NULL, '100 Вт', 'ru'),
-(5184, 28, NULL, 'AAC', 'ru'),
-(5185, 29, NULL, 'ASF', 'ru'),
-(5186, 30, NULL, '12 месяцев', 'ru'),
-(5187, 39, NULL, 'Метал', 'ru'),
+(6248, 22, 87, 'Да', 'ru'),
+(6249, 23, 87, '100 Вт', 'ru'),
 (5188, 22, NULL, 'Да', 'ru'),
 (5189, 23, NULL, '100 Вт', 'ru'),
 (5190, 24, NULL, '2', 'ru'),
-(5191, 28, NULL, 'AC3', 'ru'),
-(5192, 29, NULL, 'ASF', 'ru'),
-(5193, 30, NULL, '12 месяцев', 'ru'),
-(5194, 39, NULL, 'Метал', 'ru'),
+(6246, 20, 87, 'Plasma', 'ru'),
+(6247, 21, 87, '37', 'ru'),
 (5195, 22, NULL, 'Да', 'ru'),
 (5196, 23, NULL, '100 Вт', 'ru'),
 (5197, 24, NULL, '1', 'ru'),
-(5198, 28, NULL, 'AC3', 'ru'),
-(5199, 29, NULL, 'ASF', 'ru'),
-(5200, 30, NULL, '12 месяцев', 'ru'),
-(5201, 39, NULL, 'Метал', 'ru'),
+(6162, 25, 86, 'Нет', 'ru'),
 (5202, 22, NULL, 'Да', 'ru'),
 (5203, 23, NULL, '1500 Вт', 'ru'),
 (5204, 24, NULL, '2', 'ru'),
-(5205, 28, NULL, 'DTS', 'ru'),
-(5206, 29, NULL, 'ASF', 'ru'),
-(5207, 30, NULL, '36 месяцев', 'ru'),
-(5208, 39, NULL, 'Пластик', 'ru'),
+(6161, 24, 86, '1', 'ru'),
 (5209, 23, NULL, '100 Вт', 'ru'),
-(5210, 30, NULL, '36 месяцев', 'ru'),
-(5211, 39, NULL, 'Метал', 'ru'),
 (5212, 23, NULL, '80 Вт', 'ru'),
-(5213, 30, NULL, '12 месяцев', 'ru'),
-(5214, 39, NULL, 'Пластик', 'ru'),
 (5215, 23, NULL, '100 Вт', 'ru'),
-(5216, 30, NULL, '24 месяца', 'ru'),
-(5217, 39, NULL, 'Метал', 'ru'),
 (5218, 25, NULL, 'Да', 'ru'),
 (5219, 26, NULL, '15 Мп', 'ru'),
-(5220, 30, NULL, '12 месяцев', 'ru'),
-(5221, 38, NULL, '80~3200 ISO', 'ru'),
 (5222, 25, NULL, 'Да', 'ru'),
 (5223, 26, NULL, '12 Мп', 'ru'),
-(5224, 30, NULL, '12 месяцев', 'ru'),
-(5225, 38, NULL, 'Авто', 'ru'),
 (5226, 25, NULL, 'Да', 'ru'),
 (5227, 26, NULL, '15 Мп', 'ru'),
-(5228, 30, NULL, '24 месяца', 'ru'),
-(5229, 38, NULL, '80~3200 ISO', 'ru'),
 (5230, 25, NULL, 'Да', 'ru'),
 (5231, 26, NULL, '10 Мп', 'ru'),
-(5232, 30, NULL, '12 месяцев', 'ru'),
-(5233, 38, NULL, 'Авто', 'ru'),
 (5234, 25, NULL, 'Да', 'ru'),
 (5235, 26, NULL, '15 Мп', 'ru'),
-(5236, 30, NULL, '12 месяцев', 'ru'),
-(5237, 38, NULL, '80~3200 ISO', 'ru'),
-(5238, 30, NULL, '36 месяцев', 'ru'),
-(5239, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5240, 36, NULL, 'A1', 'ru'),
-(5241, 37, NULL, 'Wi-Fi', 'ru'),
-(5242, 30, NULL, '36 месяцев', 'ru'),
-(5243, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5244, 36, NULL, 'A1', 'ru'),
-(5245, 37, NULL, 'Wi-Fi', 'ru'),
-(5246, 30, NULL, '12 месяцев', 'ru'),
-(5247, 35, NULL, 'Лазерная печать', 'ru'),
-(5248, 36, NULL, 'A3', 'ru'),
-(5249, 37, NULL, 'Bluetooth', 'ru'),
-(5250, 30, NULL, '12 месяцев', 'ru'),
-(5251, 35, NULL, 'Лазерная печать', 'ru'),
-(5252, 36, NULL, 'A3', 'ru'),
-(5253, 30, NULL, '36 месяцев', 'ru'),
-(5254, 35, NULL, 'Струйная печать', 'ru'),
-(5255, 36, NULL, 'A3', 'ru'),
-(5256, 37, NULL, 'Wi-Fi', 'ru'),
-(5257, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5258, 36, NULL, 'A4', 'ru'),
-(5259, 37, NULL, 'Ethernet', 'ru'),
-(5260, 30, NULL, '12 месяцев', 'ru'),
-(5261, 33, NULL, 'Моноблок', 'ru'),
-(5262, 30, NULL, '36 месяцев', 'ru'),
-(5263, 37, NULL, 'Bluetooth', 'ru'),
-(5264, 30, NULL, '12 месяцев', 'ru'),
-(5265, 33, NULL, 'Моноблок', 'ru'),
-(5266, 30, NULL, '12 месяцев', 'ru'),
-(5267, 32, NULL, '2 ГГц', 'ru'),
-(5268, 33, NULL, 'Сенсор', 'ru'),
-(5269, 37, NULL, 'Ethernet', 'ru'),
-(5270, 30, NULL, '24 месяца', 'ru'),
-(5271, 40, NULL, '3 м', 'ru'),
-(5272, 30, NULL, '12 месяцев', 'ru'),
-(5273, 40, NULL, '5 м', 'ru'),
-(5274, 30, NULL, '24 месяца', 'ru'),
-(5275, 40, NULL, '20 м', 'ru'),
-(5276, 30, NULL, '24 месяца', 'ru'),
-(5277, 40, NULL, '20 м', 'ru'),
-(5278, 30, NULL, '12 месяцев', 'ru'),
-(5279, 40, NULL, '10 м', 'ru'),
-(5280, 30, NULL, '12 месяцев', 'ru'),
-(5281, 40, NULL, '5 м', 'ru'),
-(5282, 30, NULL, '12 месяцев', 'ru'),
-(5283, 40, NULL, '2 м', 'ru'),
-(5284, 30, NULL, '12 месяцев', 'ru'),
-(5285, 40, NULL, '5 м', 'ru'),
 (5286, 23, NULL, '40 Вт', 'ru'),
-(5287, 30, NULL, '12 месяцев', 'ru'),
-(5288, 39, NULL, 'Дерево', 'ru'),
 (5289, 23, NULL, '40 Вт', 'ru'),
-(5290, 30, NULL, '24 месяца', 'ru'),
-(5291, 39, NULL, 'Дерево', 'ru'),
 (5292, 23, NULL, '40 Вт', 'ru'),
-(5293, 30, NULL, '12 месяцев', 'ru'),
-(5294, 39, NULL, 'Пластик', 'ru'),
 (5295, 23, NULL, '100 Вт', 'ru'),
-(5296, 30, NULL, '36 месяцев', 'ru'),
-(5297, 39, NULL, 'Дерево', 'ru'),
 (5298, 23, NULL, '40 Вт', 'ru'),
-(5299, 30, NULL, '12 месяцев', 'ru'),
-(5300, 39, NULL, 'Метал', 'ru'),
-(5301, 30, NULL, '12 месяцев', 'ru'),
-(5302, 30, NULL, '12 месяцев', 'ru'),
 (5303, 23, NULL, '100 Вт', 'ru'),
 (5304, 24, NULL, '4', 'ru'),
-(5305, 28, NULL, 'AAC', 'ru'),
-(5306, 30, NULL, '12 месяцев', 'ru'),
-(5307, 30, NULL, '12 месяцев', 'ru'),
 (5308, 23, NULL, '100 Вт', 'ru'),
 (5309, 24, NULL, '2', 'ru'),
-(5310, 28, NULL, 'AAC', 'ru'),
-(5311, 30, NULL, '36 месяцев', 'ru'),
 (5312, 20, NULL, 'LED', 'ru'),
 (5313, 22, NULL, 'Да', 'ru'),
-(5314, 30, NULL, '24 месяца', 'ru'),
 (5315, 20, NULL, 'LED', 'ru'),
 (5316, 21, NULL, '32', 'ru'),
 (5317, 22, NULL, 'Да', 'ru'),
-(5318, 30, NULL, '24 месяца', 'ru'),
 (5319, 20, NULL, 'LED', 'ru'),
 (5320, 21, NULL, '40', 'ru'),
 (5321, 22, NULL, 'Да', 'ru'),
-(5322, 30, NULL, '24 месяца', 'ru'),
-(5323, 20, NULL, 'LED', 'ru'),
+(5323, 20, NULL, 'LED', 'ru');
+INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
 (5324, 21, NULL, '32', 'ru'),
 (5325, 22, NULL, 'Да', 'ru'),
-(5326, 30, NULL, '24 месяца', 'ru'),
 (5327, 20, NULL, 'Plasma', 'ru'),
 (5328, 21, NULL, '40', 'ru'),
 (5329, 22, NULL, 'Нет', 'ru'),
-(5330, 30, NULL, '24 месяца', 'ru'),
 (5331, 20, NULL, 'LCD', 'ru'),
 (5332, 21, NULL, '40', 'ru'),
 (5333, 22, NULL, 'Нет', 'ru'),
-(5334, 30, NULL, '36 месяцев', 'ru'),
 (5335, 20, NULL, 'LCD', 'ru'),
 (5336, 21, NULL, '21', 'ru'),
 (5337, 22, NULL, 'Да', 'ru'),
-(5338, 30, NULL, '24 месяца', 'ru'),
 (5339, 23, NULL, '50 Вт', 'ru'),
-(5340, 28, NULL, 'FLAC', 'ru'),
-(5341, 29, NULL, 'BDMV', 'ru'),
-(5342, 30, NULL, '12 месяцев', 'ru'),
+(6160, 23, 86, '50 Вт', 'ru'),
 (5343, 23, NULL, '100 Вт', 'ru'),
-(5344, 28, NULL, 'AAC', 'ru'),
-(5345, 30, NULL, '12 месяцев', 'ru'),
 (5346, 23, NULL, '100 Вт', 'ru'),
-(5347, 28, NULL, 'MPA', 'ru'),
-(5348, 30, NULL, '24 месяца', 'ru'),
 (5349, 23, NULL, '40 Вт', 'ru'),
-(5350, 28, NULL, 'AAC', 'ru'),
-(5351, 30, NULL, '6 месяцев', 'ru'),
 (5352, 23, NULL, '100 Вт', 'ru'),
-(5353, 28, NULL, 'AAC', 'ru'),
-(5354, 30, NULL, '36 месяцев', 'ru'),
 (5355, 23, NULL, '50 Вт', 'ru'),
-(5356, 28, NULL, 'AC3', 'ru'),
-(5357, 30, NULL, '12 месяцев', 'ru'),
 (5358, 23, NULL, '50 Вт', 'ru'),
-(5359, 28, NULL, 'AC3', 'ru'),
-(5360, 30, NULL, '12 месяцев', 'ru'),
 (5361, 22, NULL, 'Да', 'ru'),
 (5362, 23, NULL, '100 Вт', 'ru'),
 (5363, 24, NULL, '2', 'ru'),
-(5364, 28, NULL, 'MPA', 'ru'),
-(5365, 29, NULL, 'WMV', 'ru'),
-(5366, 30, NULL, '12 месяцев', 'ru'),
-(5367, 39, NULL, 'Дерево', 'ru'),
+(6159, 22, 86, 'Нет', 'ru'),
 (5368, 22, NULL, 'Да', 'ru'),
 (5369, 23, NULL, '100 Вт', 'ru'),
-(5370, 28, NULL, 'AAC', 'ru'),
-(5371, 29, NULL, 'ASF', 'ru'),
-(5372, 30, NULL, '12 месяцев', 'ru'),
-(5373, 39, NULL, 'Метал', 'ru'),
+(6158, 21, 86, '21', 'ru'),
 (5374, 22, NULL, 'Да', 'ru'),
 (5375, 23, NULL, '100 Вт', 'ru'),
 (5376, 24, NULL, '2', 'ru'),
-(5377, 28, NULL, 'AC3', 'ru'),
-(5378, 29, NULL, 'ASF', 'ru'),
-(5379, 30, NULL, '12 месяцев', 'ru'),
-(5380, 39, NULL, 'Метал', 'ru'),
+(6156, 25, 85, 'Нет', 'ru'),
 (5381, 22, NULL, 'Да', 'ru'),
 (5382, 23, NULL, '100 Вт', 'ru'),
 (5383, 24, NULL, '1', 'ru'),
-(5384, 28, NULL, 'AC3', 'ru'),
-(5385, 29, NULL, 'ASF', 'ru'),
-(5386, 30, NULL, '12 месяцев', 'ru'),
-(5387, 39, NULL, 'Метал', 'ru'),
+(6155, 24, 85, '2', 'ru'),
 (5388, 22, NULL, 'Да', 'ru'),
 (5389, 23, NULL, '1500 Вт', 'ru'),
 (5390, 24, NULL, '2', 'ru'),
-(5391, 28, NULL, 'DTS', 'ru'),
-(5392, 29, NULL, 'ASF', 'ru'),
-(5393, 30, NULL, '36 месяцев', 'ru'),
-(5394, 39, NULL, 'Пластик', 'ru'),
+(6154, 23, 85, '100 Вт', 'ru'),
 (5395, 23, NULL, '100 Вт', 'ru'),
-(5396, 30, NULL, '36 месяцев', 'ru'),
-(5397, 39, NULL, 'Метал', 'ru'),
 (5398, 23, NULL, '80 Вт', 'ru'),
-(5399, 30, NULL, '12 месяцев', 'ru'),
-(5400, 39, NULL, 'Пластик', 'ru'),
 (5401, 23, NULL, '100 Вт', 'ru'),
-(5402, 30, NULL, '24 месяца', 'ru'),
-(5403, 39, NULL, 'Метал', 'ru'),
 (5404, 25, NULL, 'Да', 'ru'),
 (5405, 26, NULL, '15 Мп', 'ru'),
-(5406, 30, NULL, '12 месяцев', 'ru'),
-(5407, 38, NULL, '80~3200 ISO', 'ru'),
 (5408, 25, NULL, 'Да', 'ru'),
 (5409, 26, NULL, '12 Мп', 'ru'),
-(5410, 30, NULL, '12 месяцев', 'ru'),
-(5411, 38, NULL, 'Авто', 'ru'),
 (5412, 25, NULL, 'Да', 'ru'),
 (5413, 26, NULL, '15 Мп', 'ru'),
-(5414, 30, NULL, '24 месяца', 'ru'),
-(5415, 38, NULL, '80~3200 ISO', 'ru'),
 (5416, 25, NULL, 'Да', 'ru'),
 (5417, 26, NULL, '10 Мп', 'ru'),
-(5418, 30, NULL, '12 месяцев', 'ru'),
-(5419, 38, NULL, 'Авто', 'ru'),
 (5420, 25, NULL, 'Да', 'ru'),
 (5421, 26, NULL, '15 Мп', 'ru'),
-(5422, 30, NULL, '12 месяцев', 'ru'),
-(5423, 38, NULL, '80~3200 ISO', 'ru'),
-(5424, 30, NULL, '36 месяцев', 'ru'),
-(5425, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5426, 36, NULL, 'A1', 'ru'),
-(5427, 37, NULL, 'Wi-Fi', 'ru'),
-(5428, 30, NULL, '36 месяцев', 'ru'),
-(5429, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5430, 36, NULL, 'A1', 'ru'),
-(5431, 37, NULL, 'Wi-Fi', 'ru'),
-(5432, 30, NULL, '12 месяцев', 'ru'),
-(5433, 35, NULL, 'Лазерная печать', 'ru'),
-(5434, 36, NULL, 'A3', 'ru'),
-(5435, 37, NULL, 'Bluetooth', 'ru'),
-(5436, 30, NULL, '12 месяцев', 'ru'),
-(5437, 35, NULL, 'Лазерная печать', 'ru'),
-(5438, 36, NULL, 'A3', 'ru'),
-(5439, 30, NULL, '36 месяцев', 'ru'),
-(5440, 35, NULL, 'Струйная печать', 'ru'),
-(5441, 36, NULL, 'A3', 'ru'),
-(5442, 37, NULL, 'Wi-Fi', 'ru'),
-(5443, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5444, 36, NULL, 'A4', 'ru'),
-(5445, 37, NULL, 'Ethernet', 'ru'),
-(5446, 30, NULL, '12 месяцев', 'ru'),
-(5447, 33, NULL, 'Моноблок', 'ru'),
-(5448, 30, NULL, '36 месяцев', 'ru'),
-(5449, 37, NULL, 'Bluetooth', 'ru'),
-(5450, 30, NULL, '12 месяцев', 'ru'),
-(5451, 33, NULL, 'Моноблок', 'ru'),
-(5452, 30, NULL, '12 месяцев', 'ru'),
-(5453, 32, NULL, '2 ГГц', 'ru'),
-(5454, 33, NULL, 'Сенсор', 'ru'),
-(5455, 37, NULL, 'Ethernet', 'ru'),
-(5456, 30, NULL, '24 месяца', 'ru'),
-(5457, 40, NULL, '3 м', 'ru'),
-(5458, 30, NULL, '12 месяцев', 'ru'),
-(5459, 40, NULL, '5 м', 'ru'),
-(5460, 30, NULL, '24 месяца', 'ru'),
-(5461, 40, NULL, '20 м', 'ru'),
-(5462, 30, NULL, '24 месяца', 'ru'),
-(5463, 40, NULL, '20 м', 'ru'),
-(5464, 30, NULL, '12 месяцев', 'ru'),
-(5465, 40, NULL, '10 м', 'ru'),
-(5466, 30, NULL, '12 месяцев', 'ru'),
-(5467, 40, NULL, '5 м', 'ru'),
-(5468, 30, NULL, '12 месяцев', 'ru'),
-(5469, 40, NULL, '2 м', 'ru'),
-(5470, 30, NULL, '12 месяцев', 'ru'),
-(5471, 40, NULL, '5 м', 'ru'),
 (5472, 23, NULL, '40 Вт', 'ru'),
-(5473, 30, NULL, '12 месяцев', 'ru'),
-(5474, 39, NULL, 'Дерево', 'ru'),
 (5475, 23, NULL, '40 Вт', 'ru'),
-(5476, 30, NULL, '24 месяца', 'ru'),
-(5477, 39, NULL, 'Дерево', 'ru'),
 (5478, 23, NULL, '40 Вт', 'ru'),
-(5479, 30, NULL, '12 месяцев', 'ru'),
-(5480, 39, NULL, 'Пластик', 'ru'),
 (5481, 23, NULL, '100 Вт', 'ru'),
-(5482, 30, NULL, '36 месяцев', 'ru'),
-(5483, 39, NULL, 'Дерево', 'ru'),
 (5484, 23, NULL, '40 Вт', 'ru'),
-(5485, 30, NULL, '12 месяцев', 'ru'),
-(5486, 39, NULL, 'Метал', 'ru'),
-(5487, 30, NULL, '12 месяцев', 'ru'),
-(5488, 30, NULL, '12 месяцев', 'ru'),
 (5489, 23, NULL, '100 Вт', 'ru'),
 (5490, 24, NULL, '4', 'ru'),
-(5491, 28, NULL, 'AAC', 'ru'),
-(5492, 30, NULL, '12 месяцев', 'ru'),
-(5493, 30, NULL, '12 месяцев', 'ru'),
 (5494, 23, NULL, '100 Вт', 'ru'),
 (5495, 24, NULL, '2', 'ru'),
-(5496, 28, NULL, 'AAC', 'ru'),
-(5497, 30, NULL, '36 месяцев', 'ru'),
 (5498, 20, NULL, 'LED', 'ru'),
 (5499, 22, NULL, 'Да', 'ru'),
-(5500, 30, NULL, '24 месяца', 'ru'),
 (5501, 20, NULL, 'LED', 'ru'),
 (5502, 21, NULL, '32', 'ru'),
 (5503, 22, NULL, 'Да', 'ru'),
-(5504, 30, NULL, '24 месяца', 'ru'),
 (5505, 20, NULL, 'LED', 'ru'),
 (5506, 21, NULL, '40', 'ru'),
 (5507, 22, NULL, 'Да', 'ru'),
-(5508, 30, NULL, '24 месяца', 'ru'),
 (5509, 20, NULL, 'LED', 'ru'),
 (5510, 21, NULL, '32', 'ru'),
 (5511, 22, NULL, 'Да', 'ru'),
-(5512, 30, NULL, '24 месяца', 'ru'),
 (5513, 23, NULL, '100 Вт', 'ru'),
-(5514, 28, NULL, 'FLAC', 'ru'),
-(5515, 29, NULL, 'WMV', 'ru'),
-(5516, 30, NULL, '12 месяцев', 'ru'),
+(6153, 22, 85, 'Нет', 'ru'),
 (5517, 20, NULL, 'Plasma', 'ru'),
 (5518, 21, NULL, '40', 'ru'),
 (5519, 22, NULL, 'Нет', 'ru'),
-(5520, 30, NULL, '24 месяца', 'ru'),
 (5521, 20, NULL, 'LCD', 'ru'),
 (5522, 21, NULL, '40', 'ru'),
 (5523, 22, NULL, 'Нет', 'ru'),
-(5524, 30, NULL, '36 месяцев', 'ru'),
 (5525, 20, NULL, 'LCD', 'ru'),
 (5526, 21, NULL, '21', 'ru'),
 (5527, 22, NULL, 'Да', 'ru'),
-(5528, 30, NULL, '24 месяца', 'ru'),
 (5529, 23, NULL, '50 Вт', 'ru'),
-(5530, 28, NULL, 'AAC', 'ru'),
-(5531, 29, NULL, 'WMV', 'ru'),
-(5532, 30, NULL, '12 месяцев', 'ru'),
+(6152, 21, 85, '17', 'ru'),
 (5533, 23, NULL, '50 Вт', 'ru'),
-(5534, 28, NULL, 'FLAC', 'ru'),
-(5535, 29, NULL, 'BDMV', 'ru'),
-(5536, 30, NULL, '12 месяцев', 'ru'),
+(6150, 25, 84, 'Да', 'ru'),
 (5537, 23, NULL, '100 Вт', 'ru'),
-(5538, 28, NULL, 'AAC', 'ru'),
-(5539, 30, NULL, '12 месяцев', 'ru'),
 (5540, 23, NULL, '100 Вт', 'ru'),
-(5541, 28, NULL, 'MPA', 'ru'),
-(5542, 30, NULL, '24 месяца', 'ru'),
 (5543, 23, NULL, '40 Вт', 'ru'),
-(5544, 28, NULL, 'AAC', 'ru'),
-(5545, 30, NULL, '6 месяцев', 'ru'),
 (5546, 23, NULL, '100 Вт', 'ru'),
-(5547, 28, NULL, 'AAC', 'ru'),
-(5548, 30, NULL, '36 месяцев', 'ru'),
 (5549, 23, NULL, '50 Вт', 'ru'),
-(5550, 28, NULL, 'AC3', 'ru'),
-(5551, 30, NULL, '12 месяцев', 'ru'),
 (5552, 23, NULL, '50 Вт', 'ru'),
-(5553, 28, NULL, 'AC3', 'ru'),
-(5554, 30, NULL, '12 месяцев', 'ru'),
 (5555, 22, NULL, 'Да', 'ru'),
 (5556, 23, NULL, '100 Вт', 'ru'),
 (5557, 24, NULL, '2', 'ru'),
-(5558, 28, NULL, 'MPA', 'ru'),
-(5559, 29, NULL, 'WMV', 'ru'),
-(5560, 30, NULL, '12 месяцев', 'ru'),
-(5561, 39, NULL, 'Дерево', 'ru'),
+(6149, 24, 84, '3', 'ru'),
 (5562, 22, NULL, 'Да', 'ru'),
 (5563, 23, NULL, '100 Вт', 'ru'),
-(5564, 28, NULL, 'AAC', 'ru'),
-(5565, 29, NULL, 'ASF', 'ru'),
-(5566, 30, NULL, '12 месяцев', 'ru'),
-(5567, 39, NULL, 'Метал', 'ru'),
+(6148, 23, 84, '40 Вт', 'ru'),
 (5568, 22, NULL, 'Да', 'ru'),
 (5569, 23, NULL, '100 Вт', 'ru'),
 (5570, 24, NULL, '2', 'ru'),
-(5571, 28, NULL, 'AC3', 'ru'),
-(5572, 29, NULL, 'ASF', 'ru'),
-(5573, 30, NULL, '12 месяцев', 'ru'),
-(5574, 39, NULL, 'Метал', 'ru'),
+(6147, 22, 84, 'Нет', 'ru'),
 (5575, 22, NULL, 'Да', 'ru'),
 (5576, 23, NULL, '100 Вт', 'ru'),
 (5577, 24, NULL, '1', 'ru'),
-(5578, 28, NULL, 'AC3', 'ru'),
-(5579, 29, NULL, 'ASF', 'ru'),
-(5580, 30, NULL, '12 месяцев', 'ru'),
-(5581, 39, NULL, 'Метал', 'ru'),
+(6146, 21, 84, '40', 'ru'),
 (5582, 22, NULL, 'Да', 'ru'),
 (5583, 23, NULL, '1500 Вт', 'ru'),
 (5584, 24, NULL, '2', 'ru'),
-(5585, 28, NULL, 'DTS', 'ru'),
-(5586, 29, NULL, 'ASF', 'ru'),
-(5587, 30, NULL, '36 месяцев', 'ru'),
-(5588, 39, NULL, 'Пластик', 'ru'),
+(6144, 25, 83, 'Да', 'ru'),
 (5589, 23, NULL, '100 Вт', 'ru'),
-(5590, 30, NULL, '36 месяцев', 'ru'),
-(5591, 39, NULL, 'Метал', 'ru'),
 (5592, 23, NULL, '80 Вт', 'ru'),
-(5593, 30, NULL, '12 месяцев', 'ru'),
-(5594, 39, NULL, 'Пластик', 'ru'),
 (5595, 23, NULL, '100 Вт', 'ru'),
-(5596, 30, NULL, '24 месяца', 'ru'),
-(5597, 39, NULL, 'Метал', 'ru'),
 (5598, 25, NULL, 'Да', 'ru'),
 (5599, 26, NULL, '15 Мп', 'ru'),
-(5600, 30, NULL, '12 месяцев', 'ru'),
-(5601, 38, NULL, '80~3200 ISO', 'ru'),
 (5602, 25, NULL, 'Да', 'ru'),
 (5603, 26, NULL, '12 Мп', 'ru'),
-(5604, 30, NULL, '12 месяцев', 'ru'),
-(5605, 38, NULL, 'Авто', 'ru'),
 (5606, 25, NULL, 'Да', 'ru'),
 (5607, 26, NULL, '15 Мп', 'ru'),
-(5608, 30, NULL, '24 месяца', 'ru'),
-(5609, 38, NULL, '80~3200 ISO', 'ru'),
 (5610, 25, NULL, 'Да', 'ru'),
 (5611, 26, NULL, '10 Мп', 'ru'),
-(5612, 30, NULL, '12 месяцев', 'ru'),
-(5613, 38, NULL, 'Авто', 'ru'),
 (5614, 25, NULL, 'Да', 'ru'),
 (5615, 26, NULL, '15 Мп', 'ru'),
-(5616, 30, NULL, '12 месяцев', 'ru'),
-(5617, 38, NULL, '80~3200 ISO', 'ru'),
-(5618, 30, NULL, '36 месяцев', 'ru'),
-(5619, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5620, 36, NULL, 'A1', 'ru'),
-(5621, 37, NULL, 'Wi-Fi', 'ru'),
-(5622, 30, NULL, '36 месяцев', 'ru'),
-(5623, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5624, 36, NULL, 'A1', 'ru'),
-(5625, 37, NULL, 'Wi-Fi', 'ru'),
-(5626, 30, NULL, '12 месяцев', 'ru'),
-(5627, 35, NULL, 'Лазерная печать', 'ru'),
-(5628, 36, NULL, 'A3', 'ru'),
-(5629, 37, NULL, 'Bluetooth', 'ru'),
-(5630, 30, NULL, '12 месяцев', 'ru'),
-(5631, 35, NULL, 'Лазерная печать', 'ru'),
-(5632, 36, NULL, 'A3', 'ru'),
-(5633, 30, NULL, '36 месяцев', 'ru'),
-(5634, 35, NULL, 'Струйная печать', 'ru'),
-(5635, 36, NULL, 'A3', 'ru'),
-(5636, 37, NULL, 'Wi-Fi', 'ru'),
-(5637, 35, NULL, 'Лазерная печать (цветная)', 'ru'),
-(5638, 36, NULL, 'A4', 'ru'),
-(5639, 37, NULL, 'Ethernet', 'ru'),
-(5640, 30, NULL, '12 месяцев', 'ru'),
-(5641, 33, NULL, 'Моноблок', 'ru'),
-(5642, 30, NULL, '36 месяцев', 'ru'),
-(5643, 37, NULL, 'Bluetooth', 'ru'),
-(5644, 30, NULL, '12 месяцев', 'ru'),
-(5645, 33, NULL, 'Моноблок', 'ru'),
-(5646, 30, NULL, '12 месяцев', 'ru'),
-(5647, 32, NULL, '2 ГГц', 'ru'),
-(5648, 33, NULL, 'Сенсор', 'ru'),
-(5649, 37, NULL, 'Ethernet', 'ru'),
-(5650, 30, NULL, '24 месяца', 'ru'),
-(5651, 40, NULL, '3 м', 'ru'),
-(5652, 30, NULL, '12 месяцев', 'ru'),
-(5653, 40, NULL, '5 м', 'ru'),
-(5654, 30, NULL, '24 месяца', 'ru'),
-(5655, 40, NULL, '20 м', 'ru'),
-(5656, 30, NULL, '24 месяца', 'ru'),
-(5657, 40, NULL, '20 м', 'ru'),
-(5658, 30, NULL, '12 месяцев', 'ru'),
-(5659, 40, NULL, '10 м', 'ru'),
-(5660, 30, NULL, '12 месяцев', 'ru'),
-(5661, 40, NULL, '5 м', 'ru'),
-(5662, 30, NULL, '12 месяцев', 'ru'),
-(5663, 40, NULL, '2 м', 'ru'),
-(5664, 30, NULL, '12 месяцев', 'ru'),
-(5665, 40, NULL, '5 м', 'ru'),
 (5666, 23, NULL, '40 Вт', 'ru'),
-(5667, 30, NULL, '12 месяцев', 'ru'),
-(5668, 39, NULL, 'Дерево', 'ru'),
 (5669, 23, NULL, '40 Вт', 'ru'),
-(5670, 30, NULL, '24 месяца', 'ru'),
-(5671, 39, NULL, 'Дерево', 'ru'),
 (5672, 23, NULL, '40 Вт', 'ru'),
-(5673, 30, NULL, '12 месяцев', 'ru'),
-(5674, 39, NULL, 'Пластик', 'ru'),
 (5675, 23, NULL, '100 Вт', 'ru'),
-(5676, 30, NULL, '36 месяцев', 'ru'),
-(5677, 39, NULL, 'Дерево', 'ru'),
 (5678, 23, NULL, '40 Вт', 'ru'),
-(5679, 30, NULL, '12 месяцев', 'ru'),
-(5680, 39, NULL, 'Метал', 'ru'),
-(5681, 30, NULL, '12 месяцев', 'ru'),
-(5682, 30, NULL, '12 месяцев', 'ru'),
 (5683, 23, NULL, '100 Вт', 'ru'),
 (5684, 24, NULL, '4', 'ru'),
-(5685, 28, NULL, 'AAC', 'ru'),
-(5686, 30, NULL, '12 месяцев', 'ru'),
-(5687, 30, NULL, '12 месяцев', 'ru'),
 (5688, 23, NULL, '100 Вт', 'ru'),
 (5689, 24, NULL, '2', 'ru'),
-(5690, 28, NULL, 'AAC', 'ru'),
-(5691, 30, NULL, '36 месяцев', 'ru'),
 (5692, 20, NULL, 'LED', 'ru'),
 (5693, 22, NULL, 'Да', 'ru'),
-(5694, 30, NULL, '24 месяца', 'ru'),
 (5695, 20, NULL, 'LED', 'ru'),
 (5696, 21, NULL, '32', 'ru'),
 (5697, 22, NULL, 'Да', 'ru'),
-(5698, 30, NULL, '24 месяца', 'ru'),
 (5699, 20, NULL, 'LED', 'ru'),
 (5700, 21, NULL, '40', 'ru'),
 (5701, 22, NULL, 'Да', 'ru'),
-(5702, 30, NULL, '24 месяца', 'ru'),
 (5703, 20, NULL, 'LED', 'ru'),
 (5704, 21, NULL, '32', 'ru'),
 (5705, 22, NULL, 'Да', 'ru'),
-(5706, 30, NULL, '24 месяца', 'ru'),
 (5707, 23, NULL, '100 Вт', 'ru'),
-(5708, 28, NULL, 'FLAC', 'ru'),
-(5709, 29, NULL, 'WMV', 'ru'),
-(5710, 30, NULL, '12 месяцев', 'ru'),
+(6143, 24, 83, '4', 'ru'),
 (5711, 20, NULL, 'Plasma', 'ru'),
 (5712, 21, NULL, '40', 'ru'),
 (5713, 22, NULL, 'Нет', 'ru'),
-(5714, 30, NULL, '24 месяца', 'ru'),
 (5715, 20, NULL, 'LCD', 'ru'),
 (5716, 21, NULL, '40', 'ru'),
 (5717, 22, NULL, 'Нет', 'ru'),
-(5718, 30, NULL, '36 месяцев', 'ru'),
 (5719, 20, NULL, 'LCD', 'ru'),
 (5720, 21, NULL, '21', 'ru'),
 (5721, 22, NULL, 'Да', 'ru'),
-(5722, 30, NULL, '24 месяца', 'ru'),
 (5723, 23, NULL, '50 Вт', 'ru'),
-(5724, 28, NULL, 'AAC', 'ru'),
-(5725, 29, NULL, 'WMV', 'ru'),
-(5726, 30, NULL, '12 месяцев', 'ru'),
-(5872, 28, 86, 'MPA', 'ru'),
-(5868, 28, 86, 'DTS-WAV', 'ru'),
-(5866, 28, 86, 'AC3', 'ru'),
-(5867, 28, 86, 'DTS', 'ru'),
-(5865, 30, 86, '12 месяцев', 'ru'),
-(5809, 28, 81, 'AAC', 'ru'),
-(5810, 28, 81, 'AC3', 'ru'),
-(5811, 28, 81, 'DTS', 'ru'),
-(5812, 28, 81, 'DTS-WAV', 'ru'),
-(5813, 28, 81, 'FLAC', 'ru'),
-(5814, 28, 81, 'M4A', 'ru'),
-(5815, 28, 81, 'MP3', 'ru'),
-(5816, 28, 81, 'MPA', 'ru'),
-(5817, 28, 81, 'WAV', 'ru'),
-(5818, 28, 81, 'WMA', 'ru'),
+(6142, 24, 83, '3', 'ru'),
 (5819, 23, 81, '50 Вт', 'ru'),
 (5820, 22, 195, 'Да', 'ru'),
 (5821, 20, 195, 'LED', 'ru'),
-(5822, 30, 195, '24 месяца', 'ru'),
 (5823, 22, 196, 'Да', 'ru'),
 (5824, 21, 196, '32', 'ru'),
-(5825, 30, 196, '24 месяца', 'ru'),
 (5826, 20, 196, 'LED', 'ru'),
 (5827, 22, 197, 'Да', 'ru'),
 (5828, 21, 197, '40', 'ru'),
-(5829, 30, 197, '24 месяца', 'ru'),
 (5830, 20, 197, 'LED', 'ru'),
 (5831, 21, 198, '32', 'ru'),
 (5832, 20, 198, 'LED', 'ru'),
-(5833, 30, 198, '24 месяца', 'ru'),
 (5834, 22, 198, 'Да', 'ru'),
 (5835, 22, 202, 'Да', 'ru'),
 (5836, 20, 202, 'LED', 'ru'),
-(5837, 30, 202, '24 месяца', 'ru'),
 (5838, 22, 203, 'Да', 'ru'),
 (5839, 21, 203, '32', 'ru'),
-(5840, 30, 203, '24 месяца', 'ru'),
 (5841, 20, 203, 'LED', 'ru'),
 (5842, 22, 204, 'Да', 'ru'),
 (5843, 21, 204, '40', 'ru'),
-(5844, 30, 204, '24 месяца', 'ru'),
 (5845, 20, 204, 'LED', 'ru'),
 (5846, 21, 205, '32', 'ru'),
 (5847, 20, 205, 'LED', 'ru'),
-(5848, 30, 205, '24 месяца', 'ru'),
 (5849, 22, 205, 'Да', 'ru'),
 (5850, 22, 209, 'Да', 'ru'),
 (5851, 20, 209, 'LED', 'ru'),
-(5852, 30, 209, '24 месяца', 'ru'),
 (5853, 22, 210, 'Да', 'ru'),
 (5854, 21, 210, '32', 'ru'),
-(5855, 30, 210, '24 месяца', 'ru'),
 (5856, 20, 210, 'LED', 'ru'),
 (5857, 22, 211, 'Да', 'ru'),
 (5858, 21, 211, '40', 'ru'),
-(5859, 30, 211, '24 месяца', 'ru'),
 (5860, 20, 211, 'LED', 'ru'),
 (5861, 21, 212, '32', 'ru'),
 (5862, 20, 212, 'LED', 'ru'),
-(5863, 30, 212, '24 месяца', 'ru'),
 (5864, 22, 212, 'Да', 'ru'),
-(5898, 37, 100, 'Wi-Fi', 'ru'),
-(5899, 30, 100, '36 месяцев', 'ru'),
-(5956, 38, 96, '80~3200 ISO', 'ru'),
-(5971, 37, 185, 'Bluetooth', 'ru'),
-(5969, 32, 185, '2 ГГц', 'ru');
+(6274, 21, 190, '36', 'ru'),
+(6256, 24, 71, '1', 'ru'),
+(6255, 23, 71, '40 Вт', 'ru'),
+(6254, 22, 71, 'Да', 'ru'),
+(6017, 23, 119, '40 Вт', 'ru'),
+(6253, 21, 71, '38', 'ru'),
+(6252, 20, 71, 'LED', 'ru'),
+(6241, 21, 88, '33', 'ru'),
+(6240, 20, 88, 'LED', 'ru'),
+(6273, 20, 190, 'LCD', 'ru');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_data_i18n`
+-- Структура таблицы `shop_product_properties_data_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties_data_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -8022,13 +4948,17 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
   KEY `shop_product_properties_data_i18n_I_1` (`value`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Дамп данных таблицы `shop_product_properties_data_i18n`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_i18n`
+-- Структура таблицы `shop_product_properties_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -8041,46 +4971,32 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_properties_i18n`
+-- Дамп данных таблицы `shop_product_properties_i18n`
 --
 
-INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALUES
-(26, 'Количество мегапикселей', 'ru', 'a:6:{i:0;s:5:"3 Mп";i:1;s:6:"5 Мп";i:2;s:6:"8 Мп";i:3;s:7:"10 Мп";i:4;s:7:"12 Мп";i:5;s:7:"15 Мп";}'),
-(25, 'Настройка фокуса', 'ru', 'a:2:{i:0;s:4:"Да";i:1;s:6:"Нет";}'),
-(24, 'Количество цифровых входов', 'ru', 'a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}'),
-(23, 'Мощность', 'ru', 'a:5:{i:0;s:7:"40 Вт";i:1;s:7:"50 Вт";i:2;s:7:"80 Вт";i:3;s:8:"100 Вт";i:4;s:9:"1500 Вт";}'),
-(22, 'HDMI', 'ru', 'a:2:{i:0;s:4:"Да";i:1;s:6:"Нет";}'),
-(21, 'Размер экрана', 'ru', 'a:6:{i:0;s:2:"17";i:1;s:2:"19";i:2;s:2:"21";i:3;s:2:"23";i:4;s:2:"32";i:5;s:2:"40";}'),
-(20, 'Технология дисплея', 'ru', 'a:3:{i:0;s:3:"LED";i:1;s:3:"LCD";i:2;s:6:"Plasma";}'),
-(20, 'Технологія дисплею', 'ua', 'a:4:{i:0;s:6:"LED-ua";i:1;s:9:"Plasma-ua";i:2;s:9:"Litium-ua";i:3;s:8:"Freon-ua";}'),
-(20, 'Display Technology', 'en', ''),
-(21, 'Screen Size', 'en', ''),
-(22, 'HDMI', 'en', 'a:2:{i:0;s:3:"Yes";i:1;s:2:"No";}'),
-(23, 'Power', 'en', ''),
-(24, 'Number of digital inputs', 'en', ''),
-(25, 'Setting the focus', 'en', ''),
-(26, 'The number of megapixels', 'en', ''),
-(28, 'Аудио форматы ', 'ru', 'a:10:{i:0;s:3:"MP3";i:1;s:3:"MPA";i:2;s:3:"M4A";i:3;s:3:"WMA";i:4;s:4:"FLAC";i:5;s:3:"WAV";i:6;s:7:"DTS-WAV";i:7;s:3:"DTS";i:8;s:3:"AC3";i:9;s:3:"AAC";}'),
-(29, 'Видео формати', 'ru', 'a:15:{i:0;s:3:"MKV";i:1;s:7:"MPEG-TS";i:2;s:7:"MPEG-PS";i:3;s:4:"M2TS";i:4;s:3:"VOB";i:5;s:3:"AVI";i:6;s:3:"MOV";i:7;s:3:"MP4";i:8;s:2:"QT";i:9;s:3:"ASF";i:10;s:3:"WMV";i:11;s:11:"Blu-ray-ISO";i:12;s:4:"BDMV";i:13;s:7:"DVD-ISO";i:14;s:8:"VIDEO_TS";}'),
-(30, 'Гарантия', 'ru', 'a:4:{i:0;s:16:"6 месяцев";i:1;s:17:"12 месяцев";i:2;s:15:"24 месяца";i:3;s:17:"36 месяцев";}'),
-(31, 'Объем оперативной памяти', 'ru', 'a:6:{i:0;s:8:"256 Мб";i:1;s:8:"512 Мб";i:2;s:6:"1 Гб";i:3;s:6:"2 Гб";i:4;s:6:"4 Гб";i:5;s:6:"8 Гб";}'),
-(32, 'Процессор', 'ru', 'a:6:{i:0;s:8:"600 Гц";i:1;s:8:"800 Гц";i:2;s:8:"1 ГГц";i:3;s:8:"2 ГГц";i:4;s:10:"2,6 ГГц";i:5;s:10:"3,3 ГГц";}'),
-(33, 'Тип дисплея', 'ru', 'a:2:{i:0;s:12:"Сенсор";i:1;s:16:"Моноблок";}'),
-(34, 'Органайзер', 'ru', 'a:6:{i:0;s:18:"Календарь";i:1;s:8:"Часы";i:2;s:16:"Диктофон";i:3;s:18:"Будильник";i:4;s:22:"Калькулятор";i:5;s:14:"Заметки";}'),
-(35, 'Технология печати', 'ru', 'a:3:{i:0;s:29:"Струйная печать";i:1;s:29:"Лазерная печать";i:2;s:46:"Лазерная печать (цветная)";}'),
-(36, 'Формат бумаги', 'ru', 'a:5:{i:0;s:2:"A1";i:1;s:2:"A2";i:2;s:2:"A3";i:3;s:2:"A4";i:4;s:2:"A5";}'),
-(37, 'Сетевые интерфейсы', 'ru', 'a:3:{i:0;s:5:"Wi-Fi";i:1;s:8:"Ethernet";i:2;s:9:"Bluetooth";}'),
-(38, 'Светочувствительность', 'ru', 'a:5:{i:0;s:8:"Авто";i:1;s:4:"6400";i:2;s:4:"3200";i:3;s:4:"1600";i:4;s:11:"80~3200 ISO";}'),
-(39, 'Материал корпуса', 'ru', 'a:3:{i:0;s:14:"Пластик";i:1;s:12:"Дерево";i:2;s:10:"Метал";}'),
-(40, 'Максимальная дальность связи', 'ru', 'a:6:{i:0;s:4:"2 м";i:1;s:4:"3 м";i:2;s:4:"5 м";i:3;s:5:"10 м";i:4;s:5:"15 м";i:5;s:5:"20 м";}');
+INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`, `description`) VALUES
+(26, 'Количество мегапикселей', 'ru', 'a:6:{i:0;s:5:"3 Mп";i:1;s:6:"5 Мп";i:2;s:6:"8 Мп";i:3;s:7:"10 Мп";i:4;s:7:"12 Мп";i:5;s:7:"15 Мп";}', ''),
+(25, 'Настройка фокуса', 'ru', 'a:2:{i:0;s:4:"Да";i:1;s:6:"Нет";}', ''),
+(24, 'Количество цифровых входов', 'ru', 'a:12:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";i:4;s:1:"5";i:5;s:1:"6";i:6;s:1:"7";i:7;s:1:"8";i:8;s:1:"9";i:9;s:2:"10";i:10;s:2:"11";i:11;s:2:"12";}', ''),
+(23, 'Мощность', 'ru', '', ''),
+(22, 'HDMI', 'ru', 'a:2:{i:0;s:4:"Да";i:1;s:6:"Нет";}', ''),
+(21, 'Размер экрана', 'ru', 'a:14:{i:0;s:2:"17";i:1;s:2:"19";i:2;s:2:"21";i:3;s:2:"23";i:4;s:2:"30";i:5;s:2:"32";i:6;s:2:"33";i:7;s:2:"34";i:8;s:2:"35";i:9;s:2:"36";i:10;s:2:"37";i:11;s:2:"38";i:12;s:2:"39";i:13;s:2:"40";}', ''),
+(20, 'Технология дисплея', 'ru', 'a:3:{i:0;s:3:"LED";i:1;s:3:"LCD";i:2;s:6:"Plasma";}', ''),
+(20, 'Технологія дисплею', 'ua', 'a:4:{i:0;s:6:"LED-ua";i:1;s:9:"Plasma-ua";i:2;s:9:"Litium-ua";i:3;s:8:"Freon-ua";}', NULL),
+(20, 'Display Technology', 'en', '', NULL),
+(21, 'Screen Size', 'en', '', NULL),
+(22, 'HDMI', 'en', 'a:2:{i:0;s:3:"Yes";i:1;s:2:"No";}', NULL),
+(23, 'Power', 'en', '', NULL),
+(24, 'Number of digital inputs', 'en', '', NULL),
+(25, 'Setting the focus', 'en', '', NULL),
+(26, 'The number of megapixels', 'en', '', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_variants`
+-- Структура таблицы `shop_product_variants`
 --
 
-DROP TABLE IF EXISTS `shop_product_variants`;
 CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -8099,79 +5015,82 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   KEY `shop_product_variants_I_3` (`number`),
   KEY `shop_product_variants_I_5` (`price`),
   KEY `shop_product_variants_I_4` (`price`),
-  KEY `shop_product_variants_FI_2` (`currency`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=224 ;
+  KEY `shop_product_variants_FI_2` (`currency`),
+  KEY `external_id` (`external_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=227 ;
 
 --
--- Дамп даних таблиці `shop_product_variants`
+-- Дамп данных таблицы `shop_product_variants`
 --
 
 INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`, `price_in_main`) VALUES
-(82, 71, 80645.16406, ' 034976', 3, 0, '71_vM82.jpg', '71_vS82.jpg', NULL, 1, 2500.00000),
+(82, 71, 20491.80328, ' 034976', 3, 0, '71_vM82.jpg', '71_vS82.jpg', NULL, 1, 2500.00000),
 (89, 78, 825.00000, '', 8, 0, '78_vM89.jpg', NULL, NULL, 2, 825.00000),
-(90, 79, 3221.93530, '', 9, 0, '79_vM90.jpg', '79_vS90.jpg', NULL, 1, 99.88000),
+(90, 79, 99.88000, '', 9, 0, '79_vM90.jpg', '79_vS90.jpg', NULL, 2, 99.88000),
 (92, 81, 172.00000, 'AD-78-SA-QW', 7, 0, '81_vM92.jpg', '81_vS92.jpg', NULL, 2, 172.00000),
-(93, 82, 1664.51611, '', 5, 0, '82_vM93.jpg', '82_vS93.jpg', NULL, 1, 51.60000),
-(94, 83, 1664.51611, '', 6, 0, '83_vM94.jpg', '83_vS94.jpg', NULL, 1, 51.60000),
-(95, 84, 1296.77417, '', 8, 0, '84_vM95.jpg', '84_vS95.jpg', NULL, 1, 40.20000),
+(93, 82, 422.95082, '', 5, 0, '82_vM93.jpg', '82_vS93.jpg', NULL, 1, 51.60000),
+(94, 83, 422.95082, '', 6, 0, '83_vM94.jpg', '83_vS94.jpg', NULL, 1, 51.60000),
+(95, 84, 329.50820, '', 8, 0, '84_vM95.jpg', '84_vS95.jpg', NULL, 1, 40.20000),
 (96, 85, 88.00000, 'D01B570', 7, 0, '85_vM96.jpg', '85_vS96.jpg', NULL, 2, 88.00000),
-(97, 86, 1987.09668, '', 4, 0, '86_vM97.jpg', '86_vS97.jpg', NULL, 1, 61.60000),
-(98, 87, 28145.16211, '', 7, 0, '87_vM98.jpg', '87_vS98.jpg', NULL, 1, 872.50000),
-(99, 88, 7096.77441, '', 8, 0, '88_vM99.jpg', '88_vS99.jpg', NULL, 1, 220.00000),
-(100, 89, 4800.00000, '', 9, 0, '89_vM100.jpg', '89_vS100.jpg', NULL, 1, 148.80000),
-(101, 90, 12890.32324, '', 2, 0, '90_vM101.jpg', '90_vS101.jpg', NULL, 1, 399.60001),
-(102, 91, 7070.96777, '', 1, 0, '91_vM102.jpg', '91_vS102.jpg', NULL, 1, 219.20000),
-(103, 92, 3832.25806, '', 4, 0, '92_vM103.jpg', '92_vS103.jpg', NULL, 1, 118.80000),
-(104, 93, 4516.12891, '', 8, 0, '93_vM104.jpg', '93_vS104.jpg', NULL, 1, 140.00000),
-(105, 94, 1289.67737, '', 4, 0, '94_vM105.jpg', '94_vS105.jpg', NULL, 1, 39.98000),
-(106, 95, 10309.67773, '', 5, 0, NULL, NULL, NULL, 1, 319.60001),
-(107, 96, 1747.50000, '4383B001', 6, 0, '96_vM107.jpg', '96_vS107.jpg', NULL, 2, 1747.50000),
-(108, 97, 10309.67773, '', 1, 0, '97_vM108.jpg', '97_vS108.jpg', NULL, 1, 319.60001),
-(109, 98, 7083.87109, '', 4, 0, '98_vM109.jpg', '98_vS109.jpg', NULL, 1, 219.60001),
-(110, 99, 6451.61279, '', 8, 0, '99_vM110.jpg', '99_vS110.jpg', NULL, 1, 200.00000),
-(111, 100, 2320.96753, '', 2, 0, '100_vM111.jpg', '100_vS111.jpg', NULL, 1, 71.95000),
-(112, 101, 967.74194, '', 9, 0, '101_vM112.jpg', '101_vS112.jpg', NULL, 1, 30.00000),
-(113, 102, 7096.77441, '', 2, 0, '102_vM113.jpg', '102_vS113.jpg', NULL, 1, 220.00000),
-(114, 103, 1121.29028, '', 8, 0, '103_vM114.jpg', '103_vS114.jpg', NULL, 1, 34.76000),
-(115, 104, 10322.58105, '', 1, 0, '104_vM115.jpg', '104_vS115.jpg', NULL, 1, 320.00000),
-(116, 105, 1289.67737, '', 2, 0, '105_vM116.jpg', '105_vS116.jpg', NULL, 1, 39.98000),
+(97, 86, 504.91803, '', 4, 0, '86_vM97.jpg', '86_vS97.jpg', NULL, 1, 61.60000),
+(98, 87, 7151.63934, '', 7, 0, '87_vM98.jpg', '87_vS98.jpg', NULL, 1, 872.50000),
+(99, 88, 22900.00000, '', 8, 0, '88_vM99.jpg', '88_vS99.jpg', NULL, 2, 22900.00000),
+(100, 89, 1219.67213, '', 9, 0, '89_vM100.jpg', '89_vS100.jpg', NULL, 1, 148.80000),
+(101, 90, 3275.40992, '', 2, 0, '90_vM101.jpg', '90_vS101.jpg', NULL, 1, 399.60001),
+(102, 91, 1796.72131, '', 1, 0, '91_vM102.jpg', '91_vS102.jpg', NULL, 1, 219.20000),
+(103, 92, 973.77049, '', 4, 0, '92_vM103.jpg', '92_vS103.jpg', NULL, 1, 118.80000),
+(104, 93, 1147.54098, '', 8, 0, '93_vM104.jpg', '93_vS104.jpg', NULL, 1, 140.00000),
+(105, 94, 327.70492, '', 4, 0, '94_vM105.jpg', '94_vS105.jpg', NULL, 1, 39.98000),
+(106, 95, 2619.67221, '', 5, 0, NULL, NULL, NULL, 1, 319.60001),
+(107, 96, 1747.50000, '4383B001', 6, 0, 'CANON-VIXIA-HF-G10.jpg', '96_vS107.jpg', NULL, 2, 1747.50000),
+(108, 97, 2619.67221, '', 1, 0, '97_vM108.jpg', '97_vS108.jpg', NULL, 1, 319.60001),
+(109, 98, 1800.00008, '', 4, 0, '98_vM109.jpg', '98_vS109.jpg', NULL, 1, 219.60001),
+(110, 99, 1639.34426, '', 8, 0, '99_vM110.jpg', '99_vS110.jpg', NULL, 1, 200.00000),
+(111, 100, 589.75410, '', 2, 0, '100_vM111.jpg', '100_vS111.jpg', NULL, 1, 71.95000),
+(112, 101, 245.90164, '', 9, 0, '101_vM112.jpg', '101_vS112.jpg', NULL, 1, 30.00000),
+(113, 102, 1803.27869, '', 2, 0, '102_vM113.jpg', '102_vS113.jpg', NULL, 1, 220.00000),
+(114, 103, 284.91803, '', 8, 0, '103_vM114.jpg', '103_vS114.jpg', NULL, 1, 34.76000),
+(115, 104, 320.00000, '', 0, 0, '104_vM115.jpg', '104_vS115.jpg', NULL, 2, 320.00000),
+(116, 105, 327.70492, '', 2, 0, '105_vM116.jpg', '105_vS116.jpg', NULL, 1, 39.98000),
 (117, 106, 272.04999, '', 0, 0, '106_vM117.jpg', '106_vS117.jpg', NULL, 2, 272.04999),
-(118, 107, 2829.35474, '', 5, 0, '107_vM118.jpg', '107_vS118.jpg', NULL, 1, 87.71000),
-(119, 108, 2838.70972, '', 2, 0, NULL, NULL, NULL, 1, 88.00000),
-(120, 109, 1591.93542, '', 9, 0, '109_vM120.jpg', '109_vS120.jpg', NULL, 1, 49.35000),
-(121, 110, 476.77417, '', 5, 0, '110_vM121.jpg', '110_vS121.jpg', NULL, 1, 14.78000),
-(122, 111, 263.22580, '', 7, 0, '111_vM122.jpg', '111_vS122.jpg', NULL, 1, 8.16000),
-(123, 112, 167.74193, '', 6, 0, '112_vM123.jpg', '112_vS123.jpg', NULL, 1, 5.20000),
-(124, 113, 141.93549, '', 9, 0, '113_vM124.jpg', '113_vS124.jpg', NULL, 1, 4.40000),
-(125, 114, 258.06451, '', 3, 0, '114_vM125.jpg', '114_vS125.jpg', NULL, 1, 8.00000),
-(126, 115, 580.64514, '', 5, 0, '115_vM126.jpg', '115_vS126.jpg', NULL, 1, 18.00000),
-(127, 116, 787.09674, '', 6, 0, '116_vM127.jpg', '116_vS127.jpg', NULL, 1, 24.40000),
-(128, 117, 609.35480, '', 7, 0, '117_vM128.jpg', '117_vS128.jpg', NULL, 1, 18.89000),
-(129, 118, 722.58063, '', 2, 0, '118_vM129.jpg', '118_vS129.jpg', NULL, 1, 22.40000),
-(130, 119, 890.32257, '', 5, 0, '119_vM130.jpg', '119_vS130.jpg', NULL, 1, 27.60000),
-(131, 120, 396.12903, '', 6, 0, '120_vM131.jpg', NULL, NULL, 1, 12.28000),
-(132, 121, 363.54840, '', 4, 0, '121_vM132.jpg', '121_vS132.jpg', NULL, 1, 11.27000),
-(133, 122, 451.61292, '', 6, 0, '122_vM133.jpg', NULL, NULL, 1, 14.00000),
-(134, 123, 541.93549, '', 1, 0, '123_vM134.jpg', '123_vS134.jpg', NULL, 1, 16.80000),
-(135, 124, 438.70969, '', 2, 0, '124_vM135.jpg', '124_vS135.jpg', NULL, 1, 13.60000),
-(210, 100, 2256.45142, '', 1, 1, '100_vM210.jpg', '100_vS210.jpg', NULL, 1, 69.95000),
-(211, 110, 476.77417, '', 2, 1, '110_vM211.jpg', '110_vS211.jpg', NULL, 1, 14.78000),
-(212, 86, 2000.00000, '', 0, 1, '86_vM212.jpg', '86_vS212.jpg', NULL, 1, 62.00000),
+(118, 107, 718.93443, '', 5, 0, '107_vM118.jpg', '107_vS118.jpg', NULL, 1, 87.71000),
+(119, 108, 721.31148, '', 2, 0, NULL, NULL, NULL, 1, 88.00000),
+(120, 109, 404.50820, '', 9, 0, '109_vM120.jpg', '109_vS120.jpg', NULL, 1, 49.35000),
+(121, 110, 121.14754, '', 5, 0, '110_vM121.jpg', '110_vS121.jpg', NULL, 1, 14.78000),
+(122, 111, 66.88525, '', 7, 0, '111_vM122.jpg', '111_vS122.jpg', NULL, 1, 8.16000),
+(123, 112, 42.62295, '', 6, 0, '112_vM123.jpg', '112_vS123.jpg', NULL, 1, 5.20000),
+(124, 113, 36.06557, '', 9, 0, '113_vM124.jpg', '113_vS124.jpg', NULL, 1, 4.40000),
+(125, 114, 65.57377, '', 3, 0, '114_vM125.jpg', '114_vS125.jpg', NULL, 1, 8.00000),
+(126, 115, 147.54098, '', 5, 0, '115_vM126.jpg', '115_vS126.jpg', NULL, 1, 18.00000),
+(127, 116, 200.00000, '', 6, 0, '116_vM127.jpg', '116_vS127.jpg', NULL, 1, 24.40000),
+(128, 117, 154.83607, '', 7, 0, '117_vM128.jpg', '117_vS128.jpg', NULL, 1, 18.89000),
+(129, 118, 183.60656, '', 2, 0, '118_vM129.jpg', '118_vS129.jpg', NULL, 1, 22.40000),
+(130, 119, 1600.60000, '', 0, 0, '119_vM130.jpg', '119_vS130.jpg', NULL, 2, 1600.60000),
+(131, 120, 100.65574, '', 6, 0, '120_vM131.jpg', NULL, NULL, 1, 12.28000),
+(132, 121, 92.37705, '', 4, 0, '121_vM132.jpg', '121_vS132.jpg', NULL, 1, 11.27000),
+(133, 122, 114.75410, '', 6, 0, '122_vM133.jpg', NULL, NULL, 1, 14.00000),
+(134, 123, 137.70492, '', 1, 0, '123_vM134.jpg', '123_vS134.jpg', NULL, 1, 16.80000),
+(135, 124, 111.47541, '', 2, 0, '124_vM135.jpg', '124_vS135.jpg', NULL, 1, 13.60000),
+(210, 100, 573.36066, '', 1, 1, '100_vM210.jpg', '100_vS210.jpg', NULL, 1, 69.95000),
+(211, 110, 121.14754, '', 2, 1, '110_vM211.jpg', '110_vS211.jpg', NULL, 1, 14.78000),
+(212, 86, 508.19672, '', 0, 1, '86_vM212.jpg', '86_vS212.jpg', NULL, 1, 62.00000),
 (213, 185, 200.00000, '123456', 5, 0, '185_main.jpg', '185_small.jpg', NULL, 2, 200.00000),
-(214, 186, 24193.54883, ' 130835', 4, 0, '186_vM214.jpg', '186_vS214.jpg', NULL, 1, 750.00000),
-(215, 187, 28225.80664, ' 155763', 0, 0, '187_vM215.jpg', '187_vS215.jpg', NULL, 1, 875.00000),
-(216, 188, 20161.29102, '', 10, 0, '188_vM216.jpg', '188_vS216.jpg', NULL, 1, 625.00000),
-(217, 189, 403225.81250, '', 10, 0, '189_vM217.jpg', NULL, NULL, 1, 12500.00000),
-(218, 190, 20161.29102, '', 5, 0, '190_vM218.jpg', NULL, NULL, 1, 625.00000),
-(219, 191, 26612.90234, '', 8, 0, '191_vM219.jpg', '191_vS219.jpg', NULL, 1, 825.00000);
+(214, 186, 6147.54098, ' 130835', 4, 0, '186_vM214.jpg', '186_vS214.jpg', NULL, 1, 750.00000),
+(215, 187, 7172.13115, ' 155763', 0, 0, '187_vM215.jpg', '187_vS215.jpg', NULL, 1, 875.00000),
+(216, 188, 5122.95082, '', 10, 0, '188_vM216.jpg', '188_vS216.jpg', NULL, 1, 625.00000),
+(217, 189, 1250.00000, '', 10, 0, '189_vM217.jpg', NULL, NULL, 2, 1250.00000),
+(218, 190, 625.00000, '1234', 5, 0, '190_vM218.jpg', NULL, NULL, 2, 625.00000),
+(219, 191, 6762.29508, '', 8, 0, '191_vM219.jpg', '191_vS219.jpg', NULL, 1, 825.00000),
+(224, 190, 700.00000, '5345', 1, 1, NULL, NULL, NULL, 2, 700.00000),
+(225, 190, 700.00000, '6256', 2, 2, NULL, NULL, NULL, 2, 700.00000),
+(226, 190, 700.00000, '8265', 1, 3, NULL, NULL, NULL, 2, 700.00000);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_variants_i18n`
+-- Структура таблицы `shop_product_variants_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_product_variants_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -8181,7 +5100,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_variants_i18n`
+-- Дамп данных таблицы `shop_product_variants_i18n`
 --
 
 INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
@@ -8259,16 +5178,18 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (215, 'ru', ''),
 (216, 'ru', ''),
 (217, 'ru', ''),
-(218, 'ru', ''),
-(219, 'ru', '');
+(218, 'ru', 'черный'),
+(219, 'ru', ''),
+(224, 'ru', 'красный'),
+(225, 'ru', 'синий'),
+(226, 'ru', 'белый');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_group`
+-- Структура таблицы `shop_rbac_group`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_group`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(10) NOT NULL,
@@ -8278,7 +5199,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
--- Дамп даних таблиці `shop_rbac_group`
+-- Дамп данных таблицы `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
@@ -8342,10 +5263,9 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_group_i18n`
+-- Структура таблицы `shop_rbac_group_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_group_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
   `id` int(11) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -8354,7 +5274,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_group_i18n`
+-- Дамп данных таблицы `shop_rbac_group_i18n`
 --
 
 INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
@@ -8420,10 +5340,9 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_privileges`
+-- Структура таблицы `shop_rbac_privileges`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -8435,7 +5354,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
 
 --
--- Дамп даних таблиці `shop_rbac_privileges`
+-- Дамп данных таблицы `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VALUES
@@ -8913,10 +5832,9 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VAL
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_privileges_i18n`
+-- Структура таблицы `shop_rbac_privileges_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_privileges_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
   `id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -8926,7 +5844,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_privileges_i18n`
+-- Дамп данных таблицы `shop_rbac_privileges_i18n`
 --
 
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
@@ -9190,7 +6108,7 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (267, 'Смена статуса автозагрузки модуля', 'Доступ к смене статуса автозагрузки модуля', 'ru'),
 (268, 'Смена доступа по url к модулю', 'Смена доступа по url к модулю', 'ru'),
 (269, 'Смена порядка компонентов в списке', 'Доступ к смене порядка компонентов в списке', 'ru'),
-(270, 'Включение\\отключение отображения модуля в меню', 'Доступ к включению\\отключению отображения модуля в меню', 'ru'),
+(270, 'Включение\\отключение отображения модуля в мен', 'Доступ к включению\\отключению отображения модуля в меню', 'ru'),
 (271, 'Отображение дашборда админки', 'Доступ к отображению дашборда админки', 'ru'),
 (272, 'Отображение дашборда админки', 'Доступ к отображению дашборда админки', 'ru'),
 (273, 'Управление языками', 'Доступ к управлению языками', 'ru'),
@@ -9345,9 +6263,9 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (422, 'Список шаблонов писем', 'Доступ к списку шаблонов писем', 'ru'),
 (423, 'Удаление шаблона письма', 'Доступ к удалению шаблона письма', 'ru'),
 (424, 'sample_module::__construct', '', 'ru'),
-(425, 'sample_module::index', '', 'ru'),
-(426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru');
+(425, 'sample_module::index', '', 'ru');
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
+(426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (427, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (428, 'Обновление настроек модуля кнопок соцсетей', 'Доступ к обновлению настроек модуля кнопок соцсетей', 'ru'),
 (429, 'Получение настроек модуля кнопок соцсетей', 'Доступ к настройкам модуля кнопок соцсетей', 'ru'),
@@ -9407,10 +6325,9 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles`
+-- Структура таблицы `shop_rbac_roles`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_roles`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -9421,21 +6338,18 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_rbac_roles`
+-- Дамп данных таблицы `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`, `description`) VALUES
-(1, 'Administrator', 1, NULL),
-(2, 'Sales_manager', 2, NULL),
-(3, 'Content_manager', 3, NULL);
+(1, 'Administrator', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles_i18n`
+-- Структура таблицы `shop_rbac_roles_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_roles_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
   `id` int(11) NOT NULL,
   `alt_name` varchar(45) DEFAULT NULL,
@@ -9445,21 +6359,18 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_roles_i18n`
+-- Дамп данных таблицы `shop_rbac_roles_i18n`
 --
 
 INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
-(1, 'Администратор', 'ru', 'Доступны все елементы управления админкой'),
-(2, 'Продавец', 'ru', 'Имеет доступ только к заказам и пользователям'),
-(3, 'Контент-менеджер', 'ru', 'Доступ к вкладке товары, наполнитель контента');
+(1, 'Администратор', 'ru', 'Доступны все елементы управления');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles_privileges`
+-- Структура таблицы `shop_rbac_roles_privileges`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_roles_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
@@ -9470,7 +6381,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
 
 --
--- Дамп даних таблиці `shop_rbac_roles_privileges`
+-- Дамп данных таблицы `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -9643,20 +6554,6 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (167, 1, 167),
 (168, 1, 168),
 (169, 1, 169),
-(170, 1, 170),
-(171, 1, 171),
-(172, 1, 172),
-(173, 1, 173),
-(174, 1, 174),
-(175, 1, 175),
-(176, 1, 176),
-(177, 1, 177),
-(178, 1, 178),
-(179, 1, 179),
-(180, 1, 180),
-(181, 1, 181),
-(182, 1, 182),
-(183, 1, 183),
 (184, 1, 184),
 (185, 1, 185),
 (186, 1, 186),
@@ -9761,11 +6658,6 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (285, 1, 285),
 (286, 1, 286),
 (287, 1, 287),
-(288, 1, 288),
-(289, 1, 289),
-(290, 1, 290),
-(291, 1, 291),
-(292, 1, 292),
 (293, 1, 293),
 (294, 1, 294),
 (295, 1, 295),
@@ -9791,10 +6683,6 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (315, 1, 315),
 (316, 1, 316),
 (317, 1, 317),
-(318, 1, 318),
-(319, 1, 319),
-(320, 1, 320),
-(321, 1, 321),
 (322, 1, 322),
 (323, 1, 323),
 (324, 1, 324),
@@ -9897,8 +6785,6 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (421, 1, 421),
 (422, 1, 422),
 (423, 1, 423),
-(424, 1, 424),
-(425, 1, 425),
 (426, 1, 426),
 (427, 1, 427),
 (428, 1, 428),
@@ -9954,145 +6840,15 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (478, 1, 478),
 (479, 1, 479),
 (480, 1, 480),
-(481, 1, 481),
 (482, 1, 482),
-(483, 1, 483),
-(484, 1, 484),
-(485, 2, 200),
-(486, 2, 201),
-(487, 2, 202),
-(488, 2, 203),
-(489, 2, 204),
-(490, 2, 205),
-(491, 2, 107),
-(492, 2, 108),
-(493, 2, 109),
-(494, 2, 110),
-(495, 2, 111),
-(496, 2, 112),
-(497, 2, 113),
-(498, 2, 114),
-(499, 2, 115),
-(500, 2, 116),
-(501, 2, 117),
-(502, 2, 118),
-(503, 2, 119),
-(504, 2, 120),
-(505, 2, 121),
-(506, 2, 122),
-(507, 2, 123),
-(508, 2, 124),
-(509, 2, 125),
-(510, 2, 126),
-(511, 2, 127),
-(512, 2, 281),
-(513, 2, 282),
-(514, 2, 283),
-(515, 2, 284),
-(516, 2, 285),
-(517, 2, 286),
-(518, 2, 287),
-(519, 2, 210),
-(520, 2, 211),
-(521, 2, 212),
-(522, 2, 213),
-(523, 2, 214),
-(524, 2, 215),
-(525, 2, 216),
-(526, 2, 217),
-(527, 2, 218),
-(528, 2, 219),
-(529, 2, 65),
-(530, 3, 65),
-(531, 3, 184),
-(532, 3, 185),
-(533, 3, 186),
-(534, 3, 187),
-(535, 3, 188),
-(536, 3, 1),
-(537, 3, 2),
-(538, 3, 3),
-(539, 3, 4),
-(540, 3, 5),
-(541, 3, 6),
-(542, 3, 7),
-(543, 3, 8),
-(544, 3, 9),
-(545, 3, 10),
-(546, 3, 11),
-(547, 3, 12),
-(548, 3, 163),
-(549, 3, 164),
-(550, 3, 165),
-(551, 3, 166),
-(552, 3, 167),
-(553, 3, 168),
-(554, 3, 169),
-(555, 3, 85),
-(556, 3, 86),
-(557, 3, 87),
-(558, 3, 88),
-(559, 3, 89),
-(560, 3, 90),
-(561, 3, 91),
-(562, 3, 92),
-(563, 3, 29),
-(564, 3, 30),
-(565, 3, 31),
-(566, 3, 32),
-(567, 3, 33),
-(568, 3, 34),
-(569, 3, 35),
-(570, 3, 36),
-(571, 3, 37),
-(572, 3, 38),
-(573, 3, 39),
-(574, 3, 141),
-(575, 3, 142),
-(576, 3, 143),
-(577, 3, 144),
-(578, 3, 145),
-(579, 3, 146),
-(580, 3, 147),
-(581, 3, 148),
-(582, 3, 149),
-(583, 3, 150),
-(584, 3, 151),
-(585, 3, 152),
-(586, 3, 153),
-(587, 3, 154),
-(588, 3, 155),
-(589, 3, 156),
-(590, 3, 157),
-(591, 3, 158),
-(592, 3, 159),
-(593, 3, 271),
-(594, 3, 272),
-(595, 3, 281),
-(596, 3, 282),
-(597, 3, 283),
-(598, 3, 284),
-(599, 3, 285),
-(600, 3, 286),
-(601, 3, 287),
-(602, 3, 210),
-(603, 3, 211),
-(604, 3, 212),
-(605, 3, 213),
-(606, 3, 214),
-(607, 3, 215),
-(608, 3, 216),
-(609, 3, 217),
-(610, 3, 218),
-(611, 3, 219);
+(483, 1, 483);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_settings`
+-- Структура таблицы `shop_settings`
 --
 
-DROP TABLE IF EXISTS `shop_settings`;
 CREATE TABLE IF NOT EXISTS `shop_settings` (
   `name` varchar(255) NOT NULL,
   `value` text,
@@ -10101,7 +6857,7 @@ CREATE TABLE IF NOT EXISTS `shop_settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_settings`
+-- Дамп данных таблицы `shop_settings`
 --
 
 INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
@@ -10113,12 +6869,12 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('addImageHeight', '600', ''),
 ('imagesQuality', '99', ''),
 ('systemTemplatePath', './templates/newLevel/shop/', ''),
-('frontProductsPerPage', '12', ''),
+('frontProductsPerPage', '24', ''),
 ('adminProductsPerPage', '24', ''),
-('ordersMessageFormat', 'text', ''),
+('ordersMessageFormat', NULL, ''),
 ('ordersMessageText', 'Здравствуйте, %userName%.  \n\nМы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop" \nВы указали следующие контактные данные: \n\nEmail адрес: %userEmail% \nНомер телефона: %userPhone% \nАдрес доставки: %userDeliver%  \n\nМенеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.  \n\nТакже, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:  %orderLink%.  \n\nСпасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.  \n\nПри возникновении любых вопросов, обращайтесь за телефонами:  \n+7 (095) 222-33-22 +38 (098) 222-33-22', ''),
-('ordersSendMessage', 'true', ''),
-('ordersSenderEmail', 'noreply@example.com', ''),
+('ordersSendMessage', NULL, ''),
+('ordersSenderEmail', NULL, ''),
 ('ordersSenderName', 'DemoShop ImageCms.net', ''),
 ('ordersMessageTheme', 'Данные для просмотра совершенной покупки', ''),
 ('2_LMI_SECRET_KEY', 'bank', ''),
@@ -10128,9 +6884,9 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('2_OschadBankData', 'a:5:{s:8:"receiver";s:41:"ТЗОВ "Екзампл Магазин" ";s:4:"code";s:9:"123456789";s:7:"account";s:12:"123456789123";s:3:"mfo";s:6:"123456";s:8:"banknote";s:7:"грн.";}', ''),
 ('3_SberBankData', 'a:8:{s:12:"receiverName";s:45:"Наименование получателя";s:8:"bankName";s:29:"Банк получателя";s:11:"receiverInn";s:10:"1231231231";s:7:"account";s:20:"15412398123312341237";s:3:"BIK";s:9:"123123123";s:11:"cor_account";s:20:"12312312334012340123";s:8:"bankNote";s:7:"руб.";s:9:"bankNote2";s:7:"коп.";}', ''),
 ('4_RobokassaData', 'a:3:{s:5:"login";s:5:"login";s:9:"password1";s:9:"password1";s:9:"password2";s:9:"password2";}', ''),
-('notifyOrderStatusMessageFormat', 'text', ''),
+('notifyOrderStatusMessageFormat', NULL, ''),
 ('notifyOrderStatusMessageText', '', ''),
-('notifyOrderStatusSenderEmail', 'noreply@example.com', ''),
+('notifyOrderStatusSenderEmail', NULL, ''),
 ('notifyOrderStatusSenderName', '', ''),
 ('notifyOrderStatusMessageTheme', '', ''),
 ('wishListsMessageFormat', 'text', ''),
@@ -10172,23 +6928,24 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('watermark_watermark_color', '', ''),
 ('watermark_watermark_font_path', '', ''),
 ('watermark_active', '', ''),
-('forgotPasswordMessageText', 'Здравствуйте!\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri%\nВаш новый пароль для входа: %password%\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\nС уважением, \nсотрудники службы продаж %webSiteName%  ', 'ru'),
-('ordersMessageText', 'Здравствуйте, %userName%.\nМы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop" \nВы указали следующие контактные данные:\nEmail адрес: %userEmail% \nНомер телефона: %userPhone% \nАдрес доставки: %userDeliver%\nМенеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.\nТакже, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:  %orderLink%.\nСпасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.\nПри возникновении любых вопросов, обращайтесь за телефонами:  \n+7 (095) 222-33-22 +38 (098) 222-33-22  ', 'ru'),
-('ordersSenderName', '', 'ru'),
-('ordersMessageTheme', 'Данные для просмотра совершенной покупки', 'ru'),
-('notifyOrderStatusMessageText', ' ', 'ru'),
-('notifyOrderStatusSenderName', '', 'ru'),
-('notifyOrderStatusMessageTheme', '', 'ru'),
-('wishListsMessageText', ' ', 'ru'),
+('forgotPasswordMessageText', NULL, 'ru'),
+('ordersMessageText', NULL, 'ru'),
+('ordersSenderName', NULL, 'ru'),
+('ordersMessageTheme', NULL, 'ru'),
+('11_LiqPayData', 'a:2:{s:11:"merchant_id";s:6:"111111";s:12:"merchant_sig";s:6:"111111";}', ''),
+('notifyOrderStatusMessageText', NULL, 'ru'),
+('notifyOrderStatusSenderName', NULL, 'ru'),
+('notifyOrderStatusMessageTheme', NULL, 'ru'),
+('wishListsMessageText', '', 'ru'),
 ('wishListsSenderName', 'admin', 'ru'),
 ('wishListsMessageTheme', '', 'ru'),
-('notificationsMessageText', ' ', 'ru'),
+('notificationsMessageText', '', 'ru'),
 ('notificationsSenderName', '', 'ru'),
 ('notificationsMessageTheme', '', 'ru'),
-('callbacksMessageText', ' ', 'ru'),
+('callbacksMessageText', '', 'ru'),
 ('callbacksSenderName', '', 'ru'),
 ('callbacksMessageTheme', '', 'ru'),
-('userInfoMessageText', ' ', 'ru'),
+('userInfoMessageText', '', 'ru'),
 ('userInfoSenderName', '', 'ru'),
 ('userInfoMessageTheme', '', 'ru'),
 ('adminMessageCallback', '<h1>Спасибо за заказ звонка</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>  ', ''),
@@ -10200,13 +6957,13 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('mainModImageHeight', '480', ''),
 ('smallModImageWidth', '90', ''),
 ('smallModImageHeight', '90', ''),
-('order_method', '7', ''),
+('order_method', NULL, ''),
 ('forgotPasswordMessageText', 'Здравствуйте!\n\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\n\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri% \n\nВаш новый пароль для входа: %password%\n\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\n\n\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\n\nС уважением, \nсотрудники службы продаж %webSiteName%', 'en'),
 ('ordersMessageText', 'Здравствуйте, %userName%.  \n\nМы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop" \nВы указали следующие контактные данные: \n\nEmail адрес: %userEmail% \nНомер телефона: %userPhone% \nАдрес доставки: %userDeliver%  \n\nМенеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.  \n\nТакже, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:  %orderLink%.  \n\nСпасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.  \n\nПри возникновении любых вопросов, обращайтесь за телефонами:  \n+7 (095) 222-33-22 +38 (098) 222-33-22', 'en'),
 ('ordersSenderName', 'DemoShop ImageCms.net', 'en'),
 ('ordersMessageTheme', 'Данные для просмотра совершенной покупки', 'en'),
-('ordersManagerEmail', 'noreply@example.com', ''),
-('ordersSendManagerMessage', 'true', ''),
+('ordersManagerEmail', NULL, ''),
+('ordersSendManagerMessage', NULL, ''),
 ('notifyOrderStatusMessageText', '', 'en'),
 ('notifyOrderStatusSenderName', '', 'en'),
 ('notifyOrderStatusMessageTheme', '', 'en'),
@@ -10222,17 +6979,20 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('userInfoMessageText', '', 'en'),
 ('userInfoSenderName', '', 'en'),
 ('userInfoMessageTheme', '', 'en'),
-('MemcachedSettings', 'a:5:{s:11:"MEMCACHE_ON";b:0;s:17:"MEMCACHE_HOSTNAME";s:9:"localhost";s:13:"MEMCACHE_PORT";s:5:"11211";s:18:"MEMCACHE_NAMESPACE";s:13:"imagecms_shop";s:13:"CACHE_EXPIRES";s:4:"3600";}', ''),
+('MemcachedSettings', 'a:1:{s:11:"MEMCACHE_ON";b:0;}', ''),
+('10_PB_MERCHANT_PASSWORD', '999999999999', ''),
+('10_PB_API_URL', 'https://api.privatbank.ua/p24api/ishop', ''),
 ('adminMessageMonkey', '', ''),
 ('adminMessageMonkeylist', '', ''),
-('MobileVersionSettings', 'a:3:{s:15:"MobileVersionON";b:1;s:17:"MobileVersionSite";s:9:"localhost";s:20:"MobileVersionAddress";s:16:"mobile.localhost";}', ''),
-('facebook_int', 'a:3:{s:9:"secretkey";s:0:"";s:9:"appnumber";s:0:"";s:8:"template";s:16:"commerce_mobiles";}', ''),
-('vk_int', 'a:3:{s:7:"protkey";s:0:"";s:9:"appnumber";s:0:"";s:8:"template";s:16:"commerce_mobiles";}', ''),
-('xmlSiteMap', 'a:6:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.8";s:14:"pages_priority";s:3:"0.6";s:20:"main_page_changefreq";s:6:"always";s:21:"categories_changefreq";s:6:"hourly";s:16:"pages_changefreq";s:5:"daily";}', ''),
+('MobileVersionSettings', 'a:1:{s:15:"MobileVersionON";b:0;}', ''),
+('10_PB_MERCHANT_ID', '99999', ''),
+('facebook_int', 'a:3:{s:9:"secretkey";s:0:"";s:9:"appnumber";s:0:"";s:8:"template";s:8:"newLevel";}', ''),
+('vk_int', 'a:3:{s:7:"protkey";s:0:"";s:9:"appnumber";s:0:"";s:8:"template";s:8:"newLevel";}', ''),
+('xmlSiteMap', 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', ''),
 ('mobileTemplatePath', './templates/commerce_mobiles/shop/PIE', ''),
 ('ordersRecountGoods', '', ''),
 ('ordersuserInfoRegister', NULL, ''),
-('notifyOrderStatusStatusEmail', '1', ''),
+('notifyOrderStatusStatusEmail', NULL, ''),
 ('8_LMI_PAYEE_PURSE', '6456456456464', ''),
 ('8_LMI_SECRET_KEY', '456', ''),
 ('watermark_watermark_interest', '25', ''),
@@ -10242,30 +7002,40 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('1CSettingsOS', 'N;', ''),
 ('usegifts', '0;', 'ru'),
 ('ordersCheckStocks', '', ''),
-('imageSizesBlock', 'a:4:{s:5:"small";a:3:{s:4:"name";s:5:"small";s:6:"height";s:2:"65";s:5:"width";s:2:"63";}s:6:"medium";a:3:{s:4:"name";s:6:"medium";s:6:"height";s:3:"260";s:5:"width";s:3:"149";}s:4:"main";a:3:{s:4:"name";s:4:"main";s:6:"height";s:3:"452";s:5:"width";s:3:"288";}s:5:"large";a:3:{s:4:"name";s:5:"large";s:6:"height";s:3:"600";s:5:"width";s:3:"384";}}', ''),
+('imageSizesBlock', 'a:4:{s:5:"small";a:3:{s:4:"name";s:5:"small";s:6:"height";s:2:"62";s:5:"width";s:2:"62";}s:6:"medium";a:3:{s:4:"name";s:6:"medium";s:6:"height";s:3:"149";s:5:"width";s:3:"260";}s:4:"main";a:3:{s:4:"name";s:4:"main";s:6:"height";s:3:"288";s:5:"width";s:3:"452";}s:5:"large";a:3:{s:4:"name";s:5:"large";s:6:"height";s:4:"1000";s:5:"width";s:4:"1000";}}', ''),
 ('imagesMainSize', 'auto', ''),
-('additionalImageWidth', '600', ''),
-('additionalImageHeight', '384', ''),
-('arrayFrontProductsPerPage', 'a:3:{i:0;s:2:"12";i:1;s:2:"24";i:2;s:2:"48";}', ''),
+('additionalImageWidth', '1000', ''),
+('additionalImageHeight', '1000', ''),
+('arrayFrontProductsPerPage', 'a:3:{i:0;s:2:"24";i:1;s:2:"48";i:2;s:2:"96";}', ''),
 ('thumbImageWidth', '62', ''),
 ('thumbImageHeight', '62', '');
 
--- --------------------------------------------------------
+INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`) VALUES
+(1, 'ru', 'Заказ товара', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Мы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop"</span><br /><br /><span>Вы указали следующие контактные данные:</span><br /><br /><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span><br /><br /><span>Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</span><br /><br /><span>Также, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:&nbsp; $orderLink$.</span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span></p>', '<p>Пользователь&nbsp;<span>$userName$ совершил заказ товара&nbsp;</span></p>\n<p><span><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span></span></p>', '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:8:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$userPhone$";s:39:"Телефон Пользователя";s:13:"$userDeliver$";s:27:"Адрес доставки";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:10:"$products$";s:29:"Продукты заказа";s:11:"$checkLink$";s:37:"Ссылка на чек заказа";s:12:"$totalPrice$";s:23:"Сумма заказа";}'),
+(2, 'ru', 'Смена статуса заказа', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Статус вашего заказа изменен на&nbsp;<span>$status$</span></span><br /><br /><span>Вы указали следующие контактные данные:</span><br /><br /><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span><br /><br /><span>Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</span><br /><br /><span>Также, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:&nbsp; $orderLink$.</span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span>&nbsp;</p>', '', '<p>Смена статуса заказа</p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";}'),
+(3, 'ru', 'Уведомление', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Статус товара $productName$&nbsp;за которым вы следите изменен на <span>$status$</span></span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span>&nbsp;</p>', '', '<p>Уведомление о появлении</p>', 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:13:"$productName$";s:33:"Название продукта";s:8:"$status$";s:12:"Статус";s:13:"$productLink$";s:32:"Ссылка на продукт";}'),
+(4, 'ru', 'Создание пользователя', '<p><span>Успешно пройдена реєстрация $user_name$&nbsp;</span></p>\n<p>Ваши данние:<br /><span>Пароль: $user_password$</span><br /><span>Адрес: &nbsp;$user_address$</span><br /><span>Email: $user_email$</span><br /><span>Телефон: $user_phone$</span></p>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
+(5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссылка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудников службы продаж";}'),
+(6, 'ru', 'Смена пароля', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}'),
+(7, 'ru', 'Изменение цены', '<p>Цена на $name$ за которым вы следите на сайте $server$ изменилась.<br /> <a title="Посмотреть список слежения" href="$list_url_look$">Посмотреть список слежения</a><br /> <a title="Отписатся от слежения" href="$delete_list_url_look$">Отписатся от слежения</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Изменение цены</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
+(7, 'ua', 'Ціна змінилася', '<p>Ціна на $name$ за яким Ви слідкуєте на сайті $server$ змінилася.<br /> <a title="Переглянути список слідкувань" href="$list_url_look$">Переглянути список слідкувань</a><br /> <a title="Відписатися від слідкування" href="$delete_list_url_look$">Відписатися від слідкування</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Слідкування за ціною</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
+(8, 'ru', 'Список Желаний', '<h2>Уважаемый $userName$.</h2>\n<p>Вы создали следующий список желаний $wishName$ null</p>\n<div>Ссылка на просмотр списка желаний -&nbsp;&nbsp; $wishLink$ <br /> Количество просмотров списка - $wishListViews$</div>', '<p>Пользователь&nbsp;<span>$userName$ совершил заказ товара&nbsp;</span></p>\n<p><span><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span></span></p>', '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:10:"$wishName$";s:29:"Название списка";s:10:"$wishLink$";s:30:"Ссилка на список";s:15:"$wishListViews$";s:54:"Количество просмотров списка";}'),
+(9, 'ru', 'Заказать звонок', '<p><span style="font-size: medium;">Спасибо за Ваше обращение, в ближайшее время администраторы свяжутся с Вами.</span></p>', '<p><span style="font-size: medium;">новый запрос о Заказе дзвонка от&nbsp; $userName$.</span></p>\n<p>Тема колбека:&nbsp; $callbackTheme$</p>\n<p>Дата колбека:&nbsp; $dateCreated$</p>\n<p>Коментарий пользователя:&nbsp; $userComment$</p>', '<p>Шаблон заказа звонока</p>', 'a:6:{s:16:"$callbackStatus$";s:27:"Статус колбека";s:15:"$callbackTheme$";s:23:"Тема колбека";s:10:"$userName$";s:69:"Имя пользователя запросившего звонок";s:11:"$userPhone$";s:87:"Номер телефона пользователя запросившего Сallback";s:13:"$dateCreated$";s:23:"Дата колбека";s:13:"$userComment$";s:63:" Комментарии пользователя колбека";}');
+
 --
--- Структура таблиці `shop_sorting`
+-- Структура таблицы `shop_sorting`
 --
 
-DROP TABLE IF EXISTS `shop_sorting`;
 CREATE TABLE IF NOT EXISTS `shop_sorting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pos` int(11) DEFAULT NULL,
   `get` varchar(25) NOT NULL,
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп даних таблиці `shop_sorting`
+-- Дамп данных таблицы `shop_sorting`
 --
 
 INSERT INTO `shop_sorting` (`id`, `pos`, `get`, `active`) VALUES
@@ -10283,10 +7053,9 @@ INSERT INTO `shop_sorting` (`id`, `pos`, `get`, `active`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_sorting_i18n`
+-- Структура таблицы `shop_sorting_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_sorting_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_sorting_i18n` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `locale` varchar(11) NOT NULL DEFAULT 'ru',
@@ -10294,10 +7063,10 @@ CREATE TABLE IF NOT EXISTS `shop_sorting_i18n` (
   `name_front` varchar(50) DEFAULT NULL,
   `tooltip` varchar(256) NOT NULL,
   PRIMARY KEY (`id`,`locale`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп даних таблиці `shop_sorting_i18n`
+-- Дамп данных таблицы `shop_sorting_i18n`
 --
 
 INSERT INTO `shop_sorting_i18n` (`id`, `locale`, `name`, `name_front`, `tooltip`) VALUES
@@ -10313,14 +7082,12 @@ INSERT INTO `shop_sorting_i18n` (`id`, `locale`, `name`, `name_front`, `tooltip`
 (9, 'ru', 'Просмотров', 'Количеству просмотров', ''),
 (10, 'ru', 'Топ продаж', 'Топ продаж', '');
 
-
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_spy`
+-- Структура таблицы `shop_spy`
 --
 
-DROP TABLE IF EXISTS `shop_spy`;
 CREATE TABLE IF NOT EXISTS `shop_spy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -10334,7 +7101,7 @@ CREATE TABLE IF NOT EXISTS `shop_spy` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `shop_spy`
+-- Дамп данных таблицы `shop_spy`
 --
 
 INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `key`, `email`, `old_price`) VALUES
@@ -10343,10 +7110,9 @@ INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `k
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_warehouse`
+-- Структура таблицы `shop_warehouse`
 --
 
-DROP TABLE IF EXISTS `shop_warehouse`;
 CREATE TABLE IF NOT EXISTS `shop_warehouse` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -10358,7 +7124,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `shop_warehouse`
+-- Дамп данных таблицы `shop_warehouse`
 --
 
 INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) VALUES
@@ -10368,10 +7134,9 @@ INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_warehouse_data`
+-- Структура таблицы `shop_warehouse_data`
 --
 
-DROP TABLE IF EXISTS `shop_warehouse_data`;
 CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -10383,7 +7148,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Дамп даних таблиці `shop_warehouse_data`
+-- Дамп данных таблицы `shop_warehouse_data`
 --
 
 INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) VALUES
@@ -10394,10 +7159,9 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_comments`
+-- Структура таблицы `support_comments`
 --
 
-DROP TABLE IF EXISTS `support_comments`;
 CREATE TABLE IF NOT EXISTS `support_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_id` int(11) NOT NULL,
@@ -10410,7 +7174,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `support_comments`
+-- Дамп данных таблицы `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -10419,10 +7183,9 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_departments`
+-- Структура таблицы `support_departments`
 --
 
-DROP TABLE IF EXISTS `support_departments`;
 CREATE TABLE IF NOT EXISTS `support_departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -10430,7 +7193,7 @@ CREATE TABLE IF NOT EXISTS `support_departments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `support_departments`
+-- Дамп данных таблицы `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -10441,10 +7204,9 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_tickets`
+-- Структура таблицы `support_tickets`
 --
 
-DROP TABLE IF EXISTS `support_tickets`;
 CREATE TABLE IF NOT EXISTS `support_tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -10460,7 +7222,7 @@ CREATE TABLE IF NOT EXISTS `support_tickets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `support_tickets`
+-- Дамп данных таблицы `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
@@ -10471,10 +7233,9 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `tags`
+-- Структура таблицы `tags`
 --
 
-DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) NOT NULL,
@@ -10482,13 +7243,38 @@ CREATE TABLE IF NOT EXISTS `tags` (
   KEY `value` (`value`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Дамп данных таблицы `tags`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `users`
+-- Структура таблицы `trash`
 --
 
-DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `trash` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `trash_id` varchar(255) DEFAULT NULL,
+  `trash_url` varchar(255) DEFAULT NULL,
+  `trash_redirect_type` varchar(20) DEFAULT NULL,
+  `trash_redirect` varchar(255) DEFAULT NULL,
+  `trash_type` varchar(3) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Дамп данных таблицы `trash`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -10513,13 +7299,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
--- Структура таблиці `user_autologin`
+-- Дамп данных таблицы `users`
 --
 
-DROP TABLE IF EXISTS `user_autologin`;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user_autologin`
+--
+
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_id` mediumint(8) NOT NULL DEFAULT '0',
@@ -10530,13 +7322,19 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
   KEY `last_ip` (`last_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `user_autologin`
+--
+
+INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
+('d8ac010406de3dc720e8acb2f436016b', 48, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36', '127.0.0.1', '2013-12-12 18:26:20');
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `user_temp`
+-- Структура таблицы `user_temp`
 --
 
-DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -10548,13 +7346,17 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Дамп данных таблицы `user_temp`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `widgets`
+-- Структура таблицы `widgets`
 --
 
-DROP TABLE IF EXISTS `widgets`;
 CREATE TABLE IF NOT EXISTS `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -10567,14 +7369,14 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `created` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп даних таблиці `widgets`
+-- Дамп данных таблицы `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
-(3, 'latest_news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"2";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', 'Последние новости', '', 1291632457),
+(3, 'latest_news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"2";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"69";}s:7:"display";s:6:"recent";}', 'Последние новости', '', 1291632457),
 (4, 'recent_product_comments', 'module', 'comments', 'recent_product_comments', 'a:2:{s:14:"comments_count";s:1:"5";s:13:"symbols_count";s:1:"0";}', 'Последние комментарии продукта', '', 1308300371),
 (5, 'tags', 'module', 'tags', 'tags_cloud', '', 'Теги', '', 1312362714),
 (6, 'path', 'module', 'navigation', 'widget_navigation', '', 'Виджет навигации', '', 1328631622),
@@ -10588,428 +7390,33 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (27, 'ViewedProducts', 'module', 'shop', 'view_product', 'a:4:{s:12:"productsType";b:0;s:5:"title";s:14:"ViewedProducts";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'Просмотренные товары', '', 1374575092),
 (16, 'benefits', 'html', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>', '', '', 'Преимущества', '', 1371214822),
 (17, 'payments_delivery_methods_info', 'html', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>', '', '', 'Информация о способах доставки', '', 1371821417),
-(20, 'start_page_seo_text', 'html', '', '', '', '', '', 1378821714);
+(20, 'start_page_seo_text', 'html', '', '', '', '', '', 1378821714),
+(29, 'popular_products_cartogory_h', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:20:"popular,hit,category";s:5:"title";s:16:"Popular products";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'popular_products_cartogory_h', '', 1388059999),
+(30, 'popular_products_category_v', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:20:"popular,hit,category";s:5:"title";s:16:"Popular products";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'popular_products_category_v', '', 1388060051);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_email_paterns`
+-- Структура таблицы `widget_i18n`
 --
 
-DROP TABLE IF EXISTS `mod_email_paterns`;
-CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(256) NOT NULL,
-  `patern` text,
-  `from` varchar(256) NOT NULL,
-  `from_email` varchar(256) NOT NULL,
-  `admin_email` varchar(256) NOT NULL,
-  `type` enum('HTML','Text') NOT NULL DEFAULT 'HTML',
-  `user_message_active` tinyint(1) NOT NULL,
-  `admin_message_active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
-
---
--- Дамп даних таблиці `mod_email_paterns`
---
-
-INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
-(1, 'make_order', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 1),
-(2, 'change_order_status', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(3, 'notification_email', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(4, 'create_user', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 1),
-(5, 'forgot_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(6, 'change_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(7, 'price_change', '', 'Администрация сайта', 'admin@local.loc', 'admin@local.loc', 'HTML', 1, 0),
-(8, 'wish_list', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 1),
-(9, 'callback', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 1);
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_email_paterns_i18n`
---
-
-DROP TABLE IF EXISTS `mod_email_paterns_i18n`;
-CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
-  `id` int(11) NOT NULL,
-  `locale` varchar(5) NOT NULL,
-  `theme` varchar(256) NOT NULL,
-  `user_message` text NOT NULL,
-  `admin_message` text NOT NULL,
-  `description` text NOT NULL,
-  `variables` text NOT NULL,
-  PRIMARY KEY (`id`,`locale`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп даних таблиці `mod_email_paterns_i18n`
---
-
-
-INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`) VALUES
-(1, 'ru', 'Заказ товара', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Мы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop"</span><br /><br /><span>Вы указали следующие контактные данные:</span><br /><br /><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span><br /><br /><span>Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</span><br /><br /><span>Также, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:&nbsp; $orderLink$.</span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span></p>', '<p>Пользователь&nbsp;<span>$userName$ совершил заказ товара&nbsp;</span></p>\n<p><span><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span></span></p>', '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:8:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$userPhone$";s:39:"Телефон Пользователя";s:13:"$userDeliver$";s:27:"Адрес доставки";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:10:"$products$";s:29:"Продукты заказа";s:11:"$checkLink$";s:37:"Ссылка на чек заказа";s:12:"$totalPrice$";s:23:"Сумма заказа";}'),
-(2, 'ru', 'Смена статуса заказа', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Статус вашего заказа изменен на&nbsp;<span>$status$</span></span><br /><br /><span>Вы указали следующие контактные данные:</span><br /><br /><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span><br /><br /><span>Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</span><br /><br /><span>Также, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:&nbsp; $orderLink$.</span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span>&nbsp;</p>', '', '<p>Смена статуса заказа</p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";}'),
-(3, 'ru', 'Уведомление', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Статус товара $productName$&nbsp;за которым вы следите изменен на <span>$status$</span></span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span>&nbsp;</p>', '', '<p>Уведомление о появлении</p>', 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:13:"$productName$";s:33:"Название продукта";s:8:"$status$";s:12:"Статус";s:13:"$productLink$";s:32:"Ссылка на продукт";}'),
-(4, 'ru', 'Создание пользователя', '<p><span>Успешно пройдена реєстрация $user_name$&nbsp;</span></p>\n<p>Ваши данние:<br /><span>Пароль: $user_password$</span><br /><span>Адрес: &nbsp;$user_address$</span><br /><span>Email: $user_email$</span><br /><span>Телефон: $user_phone$</span></p>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
-(5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссылка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудников службы продаж";}'),
-(6, 'ru', 'Смена пароля', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}'),
-(7, 'ru', 'Изменение цены', '<p>Цена на $name$ за которым вы следите на сайте $server$ изменилась.<br /> <a title="Посмотреть список слежения" href="$list_url_look$">Посмотреть список слежения</a><br /> <a title="Отписатся от слежения" href="$delete_list_url_look$">Отписатся от слежения</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Изменение цены</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
-(7, 'ua', 'Ціна змінилася', '<p>Ціна на $name$ за яким Ви слідкуєте на сайті $server$ змінилася.<br /> <a title="Переглянути список слідкувань" href="$list_url_look$">Переглянути список слідкувань</a><br /> <a title="Відписатися від слідкування" href="$delete_list_url_look$">Відписатися від слідкування</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Слідкування за ціною</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
-(8, 'ru', 'Список Желаний', '<h2>Уважаемый $userName$.</h2>\n<p>Вы создали следующий список желаний $wishName$ null</p>\n<div>Ссылка на просмотр списка желаний -&nbsp;&nbsp; $wishLink$ <br /> Количество просмотров списка - $wishListViews$</div>', '<p>Пользователь&nbsp;<span>$userName$ совершил заказ товара&nbsp;</span></p>\n<p><span><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span></span></p>', '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:10:"$wishName$";s:29:"Название списка";s:10:"$wishLink$";s:30:"Ссилка на список";s:15:"$wishListViews$";s:54:"Количество просмотров списка";}'),
-(9, 'ru', 'Заказать звонок', '<p><span style="font-size: medium;">Спасибо за Ваше обращение, в ближайшее время администраторы свяжутся с Вами.</span></p>', '<p><span style="font-size: medium;">новый запрос о Заказе дзвонка от&nbsp; $userName$.</span></p>\n<p>Тема колбека:&nbsp; $callbackTheme$</p>\n<p>Дата колбека:&nbsp; $dateCreated$</p>\n<p>Коментарий пользователя:&nbsp; $userComment$</p>', '<p>Шаблон заказа звонока</p>', 'a:6:{s:16:"$callbackStatus$";s:27:"Статус колбека";s:15:"$callbackTheme$";s:23:"Тема колбека";s:10:"$userName$";s:69:"Имя пользователя запросившего звонок";s:11:"$userPhone$";s:87:"Номер телефона пользователя запросившего Сallback";s:13:"$dateCreated$";s:23:"Дата колбека";s:13:"$userComment$";s:63:" Комментарии пользователя колбека";}');
-
-
---
--- Структура таблиці `mod_banner`
---
-
-DROP TABLE IF EXISTS `mod_banner`;
-CREATE TABLE IF NOT EXISTS `mod_banner` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `active` tinyint(4) NOT NULL,
-  `active_to` int(11) DEFAULT NULL,
-  `where_show` text,
-  `position` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Дамп даних таблиці `mod_banner`
---
-
-INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `position`) VALUES
-(1, 0, 1512158400, 'a:1:{i:0;s:6:"main_0";}', 0),
-(2, 1, 1572465600, 'a:2:{i:0;s:6:"main_0";i:1;s:8:"brand_26";}', 1),
-(3, 1, 1564776000, 'a:1:{i:0;s:6:"main_0";}', 2);
-
---
--- Структура таблиці `mod_banner_i18n`
---
-
-DROP TABLE IF EXISTS `mod_banner_i18n`;
-CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
-  `id` int(11) NOT NULL,
-  `url` text,
-  `locale` varchar(5) NOT NULL,
-  `name` varchar(25) DEFAULT NULL,
-  `description` text,
-  `photo` varchar(255) DEFAULT NULL,
-  KEY `id` (`id`,`locale`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп даних таблиці `mod_banner_i18n`
---
-
-INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
-(1, 'shop/brand/epson', 'ru', 'epson', '', '/uploads/shop/banners/template-imageshop-banner-1.jpg'),
-(2, '/shop/brand/sony', 'ru', 'sony', '', '/uploads/shop/banners/template-imageshop-banner-2.jpg'),
-(3, 'shop/brand/samsung', 'ru', 'apple/samsung', '', '/uploads/shop/banners/template-imageshop-banner-3.jpg');
-
-
---
--- Структура таблиці `mod_discount_all_order`
---
-
-DROP TABLE IF EXISTS `mod_discount_all_order`;
-CREATE TABLE IF NOT EXISTS `mod_discount_all_order` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `for_autorized` tinyint(4) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  `is_gift` tinyint(4) DEFAULT NULL,
-  `begin_value` float DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_brand`
---
-
-DROP TABLE IF EXISTS `mod_discount_brand`;
-CREATE TABLE IF NOT EXISTS `mod_discount_brand` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `brand_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `brand_id` (`brand_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_category`
---
-
-DROP TABLE IF EXISTS `mod_discount_category`;
-CREATE TABLE IF NOT EXISTS `mod_discount_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `category_id` (`category_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_comulativ`
---
-
-DROP TABLE IF EXISTS `mod_discount_comulativ`;
-CREATE TABLE IF NOT EXISTS `mod_discount_comulativ` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `discount_id` int(11) DEFAULT NULL,
-  `begin_value` int(11) DEFAULT NULL,
-  `end_value` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_group_user`
---
-
-DROP TABLE IF EXISTS `mod_discount_group_user`;
-CREATE TABLE IF NOT EXISTS `mod_discount_group_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `group_id` (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_product`
---
-
-DROP TABLE IF EXISTS `mod_discount_product`;
-CREATE TABLE IF NOT EXISTS `mod_discount_product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_discount_user`
---
-
-DROP TABLE IF EXISTS `mod_discount_user`;
-CREATE TABLE IF NOT EXISTS `mod_discount_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `discount_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_id` (`discount_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_shop_discounts`
---
-
-DROP TABLE IF EXISTS `mod_shop_discounts`;
-CREATE TABLE IF NOT EXISTS `mod_shop_discounts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `key` varchar(25) DEFAULT NULL,
-  `name` varchar(150) DEFAULT NULL,
-  `active` tinyint(4) DEFAULT NULL,
-  `max_apply` int(11) DEFAULT NULL,
-  `count_apply` int(11) DEFAULT NULL,
-  `date_begin` int(11) DEFAULT NULL,
-  `date_end` int(11) DEFAULT NULL,
-  `type_value` tinyint(4) DEFAULT NULL,
-  `value` int(11) DEFAULT NULL,
-  `type_discount` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `key_UNIQUE` (`key`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Table structure for table `mod_new_level_columns`
---
-
-DROP TABLE IF EXISTS `mod_new_level_columns`;
-CREATE TABLE IF NOT EXISTS `mod_new_level_columns` (
-  `category_id` varchar(500) NOT NULL,
-  `column` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-DROP TABLE IF EXISTS `shop_discounts`;
-CREATE TABLE IF NOT EXISTS `shop_discounts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  `date_start` int(11) DEFAULT NULL,
-  `date_stop` int(11) DEFAULT NULL,
-  `discount` varchar(11) DEFAULT NULL,
-  `min_price` float(10,2) DEFAULT NULL,
-  `max_price` float(10,2) DEFAULT NULL,
-  `categories` text,
-  `products` text,
-  `description` text,
-  `user_group` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mod_new_level_product_properties_types`
---
-
-DROP TABLE IF EXISTS `mod_new_level_product_properties_types`;
-CREATE TABLE IF NOT EXISTS `mod_new_level_product_properties_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `property_id` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
-  `type` varchar(500) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
-INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name`, `type`) VALUES
-(1, 29, 0, 'a:1:{i:0;s:6:"scroll";}'),
-(4, 28, 0, 'a:1:{i:0;s:6:"scroll";}');
-
-DROP TABLE IF EXISTS `widget_i18n`;
 CREATE TABLE IF NOT EXISTS `widget_i18n` (
   `id` int(11) NOT NULL,
-  `locale` varchar(11) CHARACTER SET utf8 NOT NULL,
-  `data` text CHARACTER SET utf8 NOT NULL,
+  `locale` varchar(11) NOT NULL,
+  `data` text NOT NULL,
   PRIMARY KEY (`id`,`locale`),
   KEY `locale` (`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+--
+-- Дамп данных таблицы `widget_i18n`
+--
 
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
-('16', 'ru', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>'),
-('17', 'ru','<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>'),
-('20', 'ru', '<h1>Интернет-магазин</h1>\n<p>Интернет-магазин &ndash; это интерактивный сайт с каталогом, в котором представляются товары и услуги, а также корзиной для формирования заказа. В правильном интернет-магазине обязательно должны присутствовать: рекламируемые товары и услуги, контактная информация, предложения различных вариантов оплаты, предоставление счета.</p>\n<p>Работа интернет-магазина похожа на работу простого магазина. Клиент, просматривая каталог, помещает интересующую его позицию в корзину. Для оплаты заказанных товаров и услуг предлагаются различные варинаты способов оплаты: электронными деньгами, банковская карта, банковский перевод, наличный расчет, терминалы моментальной оплат.</p>\n<p>С помощью логина и пароля клиент имеет возможность зарегистрироваться и в дальнейшем использовать свои данные при входе. Информация о нем хранится в базе данных магазина. Клиенту также обеспечивается конфиденциальность совершаемой сделки.</p>');
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `rating`
---
-
-DROP TABLE IF EXISTS `rating`;
-CREATE TABLE IF NOT EXISTS `rating` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_type` varchar(25) DEFAULT NULL,
-  `type` varchar(25) DEFAULT NULL,
-  `votes` int(11) NOT NULL,
-  `rating` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `trash`
---
-
-DROP TABLE IF EXISTS `trash`;
-CREATE TABLE IF NOT EXISTS `trash` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `trash_id` varchar(255) DEFAULT NULL,
-  `trash_url` varchar(255) DEFAULT NULL,
-  `trash_redirect_type` varchar(20) DEFAULT NULL,
-  `trash_redirect` varchar(255) DEFAULT NULL,
-  `trash_type` varchar(3) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_shop_news`
---
-
-CREATE TABLE IF NOT EXISTS `mod_shop_news` (
-  `content_id` int(11) NOT NULL,
-  `shop_categories_ids` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- --------------------------------------------------------
-
-
---
--- Структура таблиці `mod_wish_list`
---
-
-DROP TABLE IF EXISTS `mod_wish_list`;
-CREATE TABLE IF NOT EXISTS `mod_wish_list` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(254) NOT NULL,
-  `description` text,
-  `access` enum('public','private','shared') NOT NULL DEFAULT 'shared',
-  `user_id` int(11) NOT NULL,
-  `review_count` int(11) NOT NULL DEFAULT '0',
-  `hash` varchar(16) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_wish_list_products`
---
-
-DROP TABLE IF EXISTS `mod_wish_list_products`;
-CREATE TABLE IF NOT EXISTS `mod_wish_list_products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `wish_list_id` int(11) NOT NULL,
-  `variant_id` int(11) NOT NULL,
-  `comment` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_wish_list_users`
---
-
-DROP TABLE IF EXISTS `mod_wish_list_users`;
-CREATE TABLE IF NOT EXISTS `mod_wish_list_users` (
-  `id` int(11) NOT NULL,
-  `user_name` varchar(254) DEFAULT NULL,
-  `user_image` text,
-  `user_birthday` int(11) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-ALTER TABLE `shop_products` ADD INDEX ( `external_id` ) ;
-ALTER TABLE `shop_category` ADD INDEX ( `external_id` ) ;
-ALTER TABLE `shop_product_properties` ADD INDEX ( `external_id` ) ;
-ALTER TABLE `shop_product_variants` ADD INDEX ( `external_id` ) ;
-
-
--- --------------------------------------------------------
+(16, 'ru', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>'),
+(17, 'ru', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>'),
+(20, 'ru', '<h1>Интернет-магазин</h1>\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\n<h2>Заголовок второго уровня</h2>\n<h3>Заголовок третьего уровня</h3>\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\n<h3>Заголовок третьего уровня</h3>\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\n<ul>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ul>\n<h4>Заголовок четвертого уровня</h4>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\n<table>\n<tbody>\n<tr>\n<td>название</td>\n<td>размер</td>\n<td>цена</td>\n</tr>\n<tr>\n<td>длинна трубы</td>\n<td>10 метров</td>\n<td>145 уе</td>\n</tr>\n<tr>\n<td>ширина трубы</td>\n<td>2 метра</td>\n<td>134 уе</td>\n</tr>\n</tbody>\n</table>\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\n<ol>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ol>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
