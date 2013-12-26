@@ -127,7 +127,7 @@ msgstr "Ключ, чтобы просмотреть заказ"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:869
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:936
 msgid " Link to the order"
-msgstr "Сссилка на заказ"
+msgstr "Ссылка на заказ"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:623
 msgid " Name of the user who made a request "
