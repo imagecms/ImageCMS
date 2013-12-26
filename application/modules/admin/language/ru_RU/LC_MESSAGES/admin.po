@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-16 02:26+0200\n"
-"PO-Revision-Date: 2013-12-16 02:26+0200\n"
+"POT-Creation-Date: 2013-12-26 03:12+0400\n"
+"PO-Revision-Date: 2013-12-26 03:12+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,26 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/products.php:1099
+msgid "Deleted complete"
+msgstr "Удаление выполнено"
+
+#: ./application/modules/shop/admin/templates/users/edit.tpl:65
+msgid "New password"
+msgstr ""
+
+#: ./application/modules/shop/admin/templates/users/edit.tpl:71
+msgid "Password confirm"
+msgstr ""
+
+#: ./application/modules/shop/admin/users.php:382
+msgid "amt_password"
+msgstr ""
+
+#: ./application/modules/shop/admin/users.php:383
+msgid "amt_new_pass_confirm"
+msgstr ""
 
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:424
 msgid "Status history"
