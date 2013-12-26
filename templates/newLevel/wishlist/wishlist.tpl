@@ -26,7 +26,7 @@
             </li>
         </ul>
         <div class="clearfix frame-tabs-ref">
-            <div id="list-products">
+            <div id="list-products" {if $_COOKIE['wishlistTabs'] == "#list-products"}style="display: block;"{/if}>
                 <div class="frame-button-add-wish-list">
                     <div class="btn-cart">
                         <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0" data-effect-on="slideDown" data-effect-off="slideUp">
@@ -229,7 +229,7 @@
                     </div>
                 {/if}
             </div>
-            <div id="data-users">
+            <div id="data-users" {if $_COOKIE['wishlistTabs'] == "#data-users"}style="display: block;"{/if}>
                 <ul class="items items-wish-data left-wishlist-data">
                     <li class="clearfix">
                         <div class="frame-photo-title">

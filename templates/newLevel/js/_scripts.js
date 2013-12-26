@@ -30,7 +30,7 @@ function init() {
         ieBoxSize();
         ieBoxSize($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
     }
-    optionsDrop.before = function(el, drop, isajax, data, elSet) {
+    optionsDrop.before = function(el, drop, isajax) {
         if (drop.hasClass('drop-report')) {
             var dropRep = drop.find('[data-rel="pastehere"]');
             dropRep.html(_.template($('#reportappearance').html(), {
@@ -52,7 +52,7 @@ function init() {
         drop.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
         drop.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
     };
-    optionsDrop.after = function(el, drop, isajax, data, elSet) {
+    optionsDrop.after = function(el, drop, isajax) {
         drawIcons(drop.find(selIcons));
 
         drop.find("img.lazy:not(.load)").lazyload(lazyload);
@@ -90,6 +90,8 @@ function init() {
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $('[data-drop]').drop(optionsDrop);
+    $("[rel='useZoom: 'photoProduct'']").drop(optionsDrop);
+    
     ShopFront.CompareList.count();
     global.wishListCount();
     $('.tabs').tabs({
