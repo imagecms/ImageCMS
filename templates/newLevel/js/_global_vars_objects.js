@@ -80,6 +80,7 @@ var optionsDrop = {
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
+    contentHeader: null,
     animate: true,
     placeBeforeShow: 'center center',
     placeAfterClose: 'center center',

@@ -54,6 +54,13 @@
                         <td>{echo $model->getUserPhone()}</td>
                     </tr>
                 {/if}
+                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('addphone','order', $model->getId())}
+                {if $s_field.field_data !== ''}
+                    <tr>
+                        <th>{lang('Дополнительный телефон','newLevel')}:</th>
+                        <td>{echo $s_field.field_data}</td>
+                    </tr>
+                {/if}
                 <tr>
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
@@ -73,13 +80,14 @@
                     </td>
                 </tr>
                 <!-- End. Delivery Method name -->
-                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}{echo $s_field.field_data}
-                {if $s_field}
+                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
+                {if $s_field.field_data !== ''}
                     <tr>
                         <th>{lang('Город','newLevel')}:</th>
-                        <td>{echo $s_field}</td>
+                        <td>{echo $s_field.field_data}</td>
                     </tr>
                 {/if}
+                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
                 {if $model->getUserDeliverTo()}
                     <tr>
                         <th>{lang('Адрес','newLevel')}:</th>
@@ -378,19 +386,19 @@
                         </tbody>
                         <tfoot class="gen-info-price">
                             {if $model->getOriginPrice()}
-                            <tr>
-                                <td colspan="2">
-                                    <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
-                                </td>
-                                <td>
-                                    <span class="price-new">
-                                        <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
-                                            <span class="curr">{$CS}</span>
+                                <tr>
+                                    <td colspan="2">
+                                        <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
+                                    </td>
+                                    <td>
+                                        <span class="price-new">
+                                            <span>
+                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
+                                                <span class="curr">{$CS}</span>
+                                            </span>
                                         </span>
-                                    </span>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             {/if}
                             <tr>
                                 <td colspan="2">
