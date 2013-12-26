@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class exchange\classes\ExchangeBase | ImageCMS</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Brands.html">Brands</a>
+						</li>
+				<li><a href="namespace-Cart.html">Cart</a>
+						</li>
+				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
+						<ul>
+				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Category.html">Category</a>
+						</li>
+				<li><a href="namespace-cmsemail.html">cmsemail<span></span></a>
+						<ul>
+				<li><a href="namespace-cmsemail.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-CMSFactory.html">CMSFactory</a>
+						</li>
+				<li><a href="namespace-Compare.html">Compare</a>
+						</li>
+				<li class="active"><a href="namespace-exchange.html">exchange<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-exchange.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-ImportCSV.html">ImportCSV</a>
+						</li>
+				<li><a href="namespace-libraries.html">libraries</a>
+						</li>
+				<li><a href="namespace-MediaManager.html">MediaManager</a>
+						</li>
+				<li><a href="namespace-mobile.html">mobile<span></span></a>
+						<ul>
+				<li><a href="namespace-mobile.collection.html">collection</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-mod_discount.html">mod_discount<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_discount.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-mod_stats.html">mod_stats<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_stats.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-Orders.html">Orders</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Products.html">Products</a>
+						</li>
+				<li><a href="namespace-Profile.html">Profile</a>
+						</li>
+				<li><a href="namespace-Search.html">Search</a>
+						</li>
+				<li><a href="namespace-wishlist.html">wishlist<span></span></a>
+						<ul>
+				<li><a href="namespace-wishlist.classes.html">classes</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-exchange.classes.Categories.html">Categories</a></li>
+				<li><a href="class-exchange.classes.DataCollector.html">DataCollector</a></li>
+				<li class="active"><a href="class-exchange.classes.ExchangeBase.html">ExchangeBase</a></li>
+				<li><a href="class-exchange.classes.ExchangeDataLoad.html">ExchangeDataLoad</a></li>
+				<li><a href="class-exchange.classes.Prices.html">Prices</a></li>
+				<li><a href="class-exchange.classes.Products.html">Products</a></li>
+				<li><a href="class-exchange.classes.Properties.html">Properties</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-exchange.classes.html" title="Summary of exchange\classes"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+			</li>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ExchangeBase</h1>
+
+
+	<div class="description">
+	
+<p>Base class for import/export</p>
+
+<p>each class that extends ExchangeBase can request its properties (from db) and
+xml</p>
+
+	</div>
+
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-exchange.classes.Categories.html">exchange\classes\Categories</a>, 
+			<a href="class-exchange.classes.Prices.html">exchange\classes\Prices</a>, 
+			<a href="class-exchange.classes.Products.html">exchange\classes\Products</a>, 
+			<a href="class-exchange.classes.Properties.html">exchange\classes\Properties</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br />
+		
+		<b>Namespace:</b> <a href="namespace-exchange.html">exchange</a>\<a href="namespace-exchange.classes.html">classes</a><br />
+		
+
+				<b>Author:</b>
+				kolia<br />
+		<b>Located at</b> <a href="source-class-exchange.classes.ExchangeBase.html#5-152" title="Go to source code">application/modules/exchange/classes/ExchangeBase.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 private 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#49-54" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__clone" id="___clone">
+
+		<td class="attributes"><code>
+			 private 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___clone">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#56-58" title="Go to source code">__clone</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getInstance" id="_getInstance">
+
+		<td class="attributes"><code>
+			 public static
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getInstance">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#60-70" title="Go to source code">getInstance</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__get" id="___get">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___get">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#72-74" title="Go to source code">__get</a>( <span>mixed <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="insertBatch" id="_insertBatch">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_insertBatch">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#76-97" title="Go to source code">insertBatch</a>( <span>string <var>$tableName</var></span>, <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Alias for CI insert_batch</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Alias for CI insert_batch</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tableName</var></dt>
+					<dd><code>string</code><br>$tableName</dd>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="updateBatch" id="_updateBatch">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_updateBatch">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#99-125" title="Go to source code">updateBatch</a>( <span>string <var>$tableName</var></span>, <span>array <var>$data</var></span>, <span>string <var>$keyToComare</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Alias for CI update_batch</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Alias for CI update_batch</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tableName</var></dt>
+					<dd><code>string</code><br>$tableName</dd>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data</dd>
+					<dt><var>$keyToComare</var></dt>
+					<dd><code>string</code><br>$keyToComare</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getStats" id="_getStats">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getStats">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#127-133" title="Go to source code">getStats</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return statistic</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return statistic</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="import" id="_import">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_import">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#135-146" title="Go to source code">import</a>( <span><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code> <var>$importData</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Sets the data for import, starts import</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sets the data for import, starts import</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$importData</var></dt>
+					<dd><code><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code></code><br>$importData</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="import_" id="_import_">
+
+		<td class="attributes"><code>
+			abstract protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_import_">#</a>
+		<code><a href="source-class-exchange.classes.ExchangeBase.html#148-151" title="Go to source code">import_</a>( )</code>
+
+		<div class="description short">
+			
+<p>Runs the import process</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Runs the import process</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="instances" id="$instances">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-exchange.classes.ExchangeBase.html#17" title="Go to source code"><var>$instances</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$instances" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="db" id="$db">
+		<td class="attributes"><code>
+			protected  
+			type
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-exchange.classes.ExchangeBase.html#19-23" title="Go to source code"><var>$db</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$db" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="dataLoad" id="$dataLoad">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-exchange.classes.ExchangeDataLoad.html">exchange\classes\ExchangeDataLoad</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-exchange.classes.ExchangeBase.html#25-29" title="Go to source code"><var>$dataLoad</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$dataLoad" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="importData" id="$importData">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-exchange.classes.ExchangeBase.html#31-35" title="Go to source code"><var>$importData</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$importData" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="locale" id="$locale">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-exchange.classes.ExchangeBase.html#37-41" title="Go to source code"><var>$locale</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$locale" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Current locale</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Current locale</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="stats" id="$stats">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-exchange.classes.ExchangeBase.html#43-47" title="Go to source code"><var>$stats</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$stats" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Storing results about queries</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Storing results about queries</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
