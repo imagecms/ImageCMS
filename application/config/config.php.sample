@@ -411,6 +411,10 @@ $config['rewrite_short_tags'] = FALSE;
  */
 $config['proxy_ips'] = '';
 
+/**
+ * Use deprecated methods for cart
+ */
+$config['use_deprecated_cart_methods'] = FALSE;
 
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */
