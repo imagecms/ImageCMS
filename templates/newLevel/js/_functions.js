@@ -572,9 +572,9 @@ function initCarouselJscrollPaneCycle(el) {
     });
 }
 function hideDrop(drop, form, durationHideForm) {
-    var drop = $(drop);
-    var closedrop = setTimeout(function() {
-        drop.drop('close', drop);
+    var drop = $(drop),
+    closedrop = setTimeout(function() {
+        drop.drop('close');
     }, durationHideForm - 500/*time fadeout drop see on site*/)
     setTimeout(function() {
         drop.find(genObj.msgF).hide().remove();
@@ -583,10 +583,12 @@ function hideDrop(drop, form, durationHideForm) {
     }, durationHideForm)
 
     //    if close "esc" or click on body
-    $(document).off('drop.close').on('drop.close', function(e) {
+    $(document).off('closed.drop').on('closed.drop', function(e) {
         clearTimeout(closedrop);
-        if (e.el.is(drop)) {
-            e.el.find(genObj.msgF).hide().remove();
+        if (e.drop.is(drop)) {
+            console.log(e.drop.find(genObj.msgF).length)
+            e.drop.find(genObj.msgF).hide().remove();
+            console.log(e.drop.find(genObj.msgF).length)
             form.show();
         }
     })
