@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Cart | ImageCMS</title>
+	<title>Class Cart | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3162519436"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -502,9 +502,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -565,7 +562,7 @@ MY_Controller
 				&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
 				<b>Uses:</b>
 				<code><code><a href="class-ShopController.html">ShopController</a></code></code> <br />
-		<b>Located at</b> <a href="source-class-Cart.html#5-707" title="Go to source code">application/modules/shop/cart.php</a><br />
+		<b>Located at</b> application/modules/shop/cart.php<br />
 	</div>
 
 
@@ -583,7 +580,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Cart.html#19-35" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -614,7 +611,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_index">#</a>
-		<code><a href="source-class-Cart.html#37-86" title="Go to source code">index</a>( )</code>
+		<code>index( )</code>
 
 		<div class="description short">
 			
@@ -647,7 +644,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_view">#</a>
-		<code><a href="source-class-Cart.html#88-135" title="Go to source code">view</a>( <span>string <var>$orderSecretKey</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>view( <span>string <var>$orderSecretKey</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -687,7 +684,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_add">#</a>
-		<code><a href="source-class-Cart.html#137-151" title="Go to source code">add</a>( <span>string <var>$instance</var> = <span class="php-quote">'SProducts'</span></span> )</code>
+		<code>add( <span>string <var>$instance</var> = <span class="php-quote">'SProducts'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -731,7 +728,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-Cart.html#153-166" title="Go to source code">delete</a>( )</code>
+		<code>delete( )</code>
 
 		<div class="description short">
 			
@@ -767,83 +764,6 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="_makeOrder" id="__makeOrder">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__makeOrder">#</a>
-		<code><a href="source-class-Cart.html#168-384" title="Go to source code">_makeOrder</a>( )</code>
-
-		<div class="description short">
-			
-<p>Save ordered products to database</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Save ordered products to database</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="createProductsInfoTable_" id="_createProductsInfoTable_">
-
-		<td class="attributes"><code>
-			 private 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_createProductsInfoTable_">#</a>
-		<code><a href="source-class-Cart.html#386-434" title="Go to source code">createProductsInfoTable_</a>( <span>array <var>$productsInfo</var></span>, <span>mixed <var>$discount</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Creates the table with order info for cmsemail 'make_order' template</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Creates the table with order info for cmsemail 'make_order' template</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$productsInfo</var></dt>
-					<dd><code>array</code><br>$productsInfo</dd>
-					<dt><var>$discount</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>html table<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="createCode" id="_createCode">
 
 		<td class="attributes"><code>
@@ -855,7 +775,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createCode">#</a>
-		<code><a href="source-class-Cart.html#436-470" title="Go to source code">createCode</a>( <span>integer <var>$charsCount</var> = <span class="php-num">3</span></span>, <span>integer <var>$digitsCount</var> = <span class="php-num">7</span></span> )</code>
+		<code>createCode( <span>integer <var>$charsCount</var> = <span class="php-num">3</span></span>, <span>integer <var>$digitsCount</var> = <span class="php-num">7</span></span> )</code>
 
 		<div class="description short">
 			
@@ -888,39 +808,6 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="_validateUserInfo" id="__validateUserInfo">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__validateUserInfo">#</a>
-		<code><a href="source-class-Cart.html#472-494" title="Go to source code">_validateUserInfo</a>( <span>mixed <var>$order</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Validate user data.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Validate user data.</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="delivery_method_id_check" id="_delivery_method_id_check">
 
 		<td class="attributes"><code>
@@ -932,7 +819,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delivery_method_id_check">#</a>
-		<code><a href="source-class-Cart.html#496-507" title="Go to source code">delivery_method_id_check</a>( <span>mixed <var>$deliveryMethodId</var> = <span class="php-num">0</span></span> )</code>
+		<code>delivery_method_id_check( <span>mixed <var>$deliveryMethodId</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -961,152 +848,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_clear">#</a>
-		<code><a href="source-class-Cart.html#509-512" title="Go to source code">clear</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_redirectBack" id="__redirectBack">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__redirectBack">#</a>
-		<code><a href="source-class-Cart.html#514-517" title="Go to source code">_redirectBack</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="redirectToCart" id="_redirectToCart">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_redirectToCart">#</a>
-		<code><a href="source-class-Cart.html#519-521" title="Go to source code">redirectToCart</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_getUserProfile" id="__getUserProfile">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__getUserProfile">#</a>
-		<code><a href="source-class-Cart.html#523-553" title="Go to source code">_getUserProfile</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_createUser" id="__createUser">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__createUser">#</a>
-		<code><a href="source-class-Cart.html#555-576" title="Go to source code">_createUser</a>( <span>mixed <var>$email</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_isRequired" id="__isRequired">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__isRequired">#</a>
-		<code><a href="source-class-Cart.html#578-587" title="Go to source code">_isRequired</a>( )</code>
+		<code>clear( )</code>
 
 		<div class="description short">
 			
@@ -1135,81 +877,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_displayPopupConfirm">#</a>
-		<code><a href="source-class-Cart.html#589-596" title="Go to source code">displayPopupConfirm</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-				<h4>Deprecated</h4>
-				<div class="list">
-						since v4.4.5<br />
-				</div>
-
-
-
-
-				<h4>Updated</h4>
-				<div class="list">
-						15 Aug 2013<br />
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_email_check" id="__email_check">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__email_check">#</a>
-		<code><a href="source-class-Cart.html#598-604" title="Go to source code">_email_check</a>( <span>mixed <var>$email</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-				<h4>Deprecated</h4>
-				<div class="list">
-						since v4.4.5<br />
-				</div>
-
-
-
-
-				<h4>Updated</h4>
-				<div class="list">
-						15 Aug 2013<br />
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_username_check" id="__username_check">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__username_check">#</a>
-		<code><a href="source-class-Cart.html#606-612" title="Go to source code">_username_check</a>( <span>mixed <var>$username</var></span> )</code>
+		<code>displayPopupConfirm( )</code>
 
 		<div class="description short">
 			
@@ -1246,7 +914,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_notification_valid_date">#</a>
-		<code><a href="source-class-Cart.html#614-629" title="Go to source code">notification_valid_date</a>( <span>mixed <var>$str</var></span> )</code>
+		<code>notification_valid_date( <span>mixed <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1283,7 +951,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_product_check">#</a>
-		<code><a href="source-class-Cart.html#631-643" title="Go to source code">product_check</a>( <span>mixed <var>$id</var></span> )</code>
+		<code>product_check( <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1320,7 +988,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_variant_check">#</a>
-		<code><a href="source-class-Cart.html#645-657" title="Go to source code">variant_check</a>( <span>mixed <var>$id</var></span> )</code>
+		<code>variant_check( <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1357,7 +1025,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sendNotifyingRequest">#</a>
-		<code><a href="source-class-Cart.html#659-689" title="Go to source code">sendNotifyingRequest</a>( )</code>
+		<code>sendNotifyingRequest( )</code>
 
 		<div class="description short">
 			
@@ -1394,7 +1062,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPaymentsMethods">#</a>
-		<code><a href="source-class-Cart.html#691-705" title="Go to source code">getPaymentsMethods</a>( <span>mixed <var>$deliveryId</var></span> )</code>
+		<code>getPaymentsMethods( <span>mixed <var>$deliveryId</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1461,8 +1129,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Cart.html#15-16" title="Go to source code"><var>$maxRange</var></a>
-		</td>
+<var>$maxRange</var>		</td>
 		<td class="value"><code><span class="php-num">20</span></code></td>
 		<td class="description"><div>
 			<a href="#$maxRange" class="anchor">#</a>
@@ -1488,8 +1155,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Cart.html#17" title="Go to source code"><var>$validation_rules</var></a>
-		</td>
+<var>$validation_rules</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$validation_rules" class="anchor">#</a>
@@ -1507,20 +1173,11 @@ MY_Controller
 	</table>
 
 	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Cart.BaseCart.html#properties">Cart\BaseCart</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Cart.BaseCart.html#$errorMessages"><var>$errorMessages</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-ShopController.html#properties">ShopController</a></caption>
 	<tr>
 		<td><code>
 			<a href="class-ShopController.html#$currentLocale"><var>$currentLocale</var></a>, 
-			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>, 
-			<a href="class-ShopController.html#$template_path"><var>$template_path</var></a>
+			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>
 		</code></td>
 	</tr>
 	</table>
@@ -1532,7 +1189,7 @@ MY_Controller
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>
