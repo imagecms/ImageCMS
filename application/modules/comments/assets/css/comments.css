@@ -108,3 +108,4 @@
 #comment__icsi-css .productRate span {display: block;height: 100%;position: absolute;top: 0;left: 0;z-index: 2;background-position: left center;width: 0;cursor: pointer;}
 #comment__icsi-css .productRate.disabled, #comment__icsi-css .productRate.disabled div{cursor: default;}
 #comment__icsi-css .star-small div{cursor: default;}
+#comment__icsi-css [class*="btn"] > *{display: inline-block;backgroud-image: none;}
