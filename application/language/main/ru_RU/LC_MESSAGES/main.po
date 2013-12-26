@@ -1,9 +1,9 @@
 ﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: ImageCMS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-25 02:00+0200\n"
-"PO-Revision-Date: 2013-12-25 02:00+0200\n"
+"POT-Creation-Date: 2013-12-26 12:08+0200\n"
+"PO-Revision-Date: 2013-12-26 12:08+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -27,6 +27,25 @@ msgstr ""
 "X-Poedit-SearchPath-8: ../../../../../system/language/email_lang\n"
 "X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
 "X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
+
+#: ./application/libraries/BaseAdminController.php:19
+#: ./application/libraries/gettext_php/Gettext_extension.php:44
+#: ./application/libraries/gettext_php/Gettext_extension.php:49
+msgid "To improve performance set php_gettext.dll extension"
+msgstr "Для повышения эффективности установите расширение php_gettext.dll"
+
+#: ./application/libraries/BaseAdminController.php:19
+#: ./application/libraries/gettext_php/Gettext_extension.php:44
+#: ./application/libraries/gettext_php/Gettext_extension.php:49
+msgid "Advice"
+msgstr "Совет"
+
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:166
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:173
+#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:167
+msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
+msgstr "Хитрость продавца, по которому покупатель должен произвести оплату. Формат - письмо и 12 цифр."
 
 #: ../../../../../application/helpers/category_helper.php:86
 msgid "No category"
@@ -555,7 +574,7 @@ msgstr "Поле %s должно содержать корректный IP."
 
 #: ../../../../../system/language/form_validation/form_validation.php:15
 msgid "min_length"
-msgstr "Поле %s должно быть не менее %s символов  в длину."
+msgstr "Поле %s должно быть не менее %s символов в длину."
 
 #: ../../../../../system/language/form_validation/form_validation.php:16
 msgid "max_length"

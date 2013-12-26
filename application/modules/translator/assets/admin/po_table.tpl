@@ -98,7 +98,7 @@
 
 <div class="pathHolderClone span7" style="margin: 0px; display:none">
     {foreach $paths as $key => $path}
-        {if isset($path['base'])}
+        {if $path['base'] && is_array($path)}
             <div class="path" style="width: 515px">
                 <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px;">
                     {echo $key+1}.
