@@ -221,18 +221,11 @@
                         <!-- Start. Collect information about Variants, for future processing -->
                         {foreach $variants as $key => $pv}
                             {if $pv->getStock() > 0}
-                                
-                                <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                    <form method="POST" action="/shop/cart_new/add">
+                                <div class="frame-count-buy" {if $key != 0}style="display:none"{/if}>
+                                    <form method="POST" action="/shop/cart_new/addProductByVariantId/{echo $pv->getId()}">
                                         <div class="btn-buy">
-                                            <input type="hidden" name="id" value="{echo $pv->getId()}" />
-                                            <input type="hidden" name="instance" value="SProducts" />
                                             <input type="hidden" name="redirect" value="cart" />
-                                            <button
-                                                class="btnBuy infoBut"
-                                                type="submit"
-                                                value="buy"
-                                                >
+                                            <button class="btnBuy infoBut" type="submit">
                                                 <span class="icon_cleaner_buy"></span>
                                                 <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                             </button>
@@ -243,14 +236,7 @@
                             {else:}
                                 <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                     <span class="f-w_b f-s_12">Нет в наличии</span>
-                                    <button
-                                        class="infoBut d_l_1"
-                                        type="button"
-                                        data-drop=".drop-report"
-                                        data-source="/shop/ajax/getNotifyingRequest"
-
-                                        data-id="{echo $pv->getId()}"
-                                        >
+                                    <button class="infoBut d_l_1" type="button">
                                         <span class="icon-but"></span>
                                         <span class="text-el">{lang('Сообщите, когда появится','newLevel')}</span>
                                     </button>

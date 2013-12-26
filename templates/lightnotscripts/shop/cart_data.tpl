@@ -14,8 +14,13 @@
             <span class="js-no-empty no-empty" {if $count != 0}style="display: inline"{/if}>
                 <span class="helper"></span>
                 <span>
-                    <span class="t-d_n ref text-el">Корзина</span>
-                    <span class="text-el topCartCount">{echo $count}</span>
+                    {if $count}
+                        <span class="t-d_n ref text-el"><a href="{site_url('shop/cart_new')}">{lang('Корзина')}</a></span>
+                        <span class="text-el topCartCount">{echo $count}</span>
+                    {else:}
+                        <span class="t-d_n ref text-el">{lang('Корзина')}</span>
+                        <span class="text-el topCartCount"></span>
+                    {/if}
                 </span>
             </span>
         </span>
