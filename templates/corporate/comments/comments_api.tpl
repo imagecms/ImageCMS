@@ -9,7 +9,7 @@
         <ul class="frame-list-comment__icsi-css">
             {foreach $comments_arr as $key => $comment}
                 <input type="hidden" id="comment_item_id" name="comment_item_id" value="{$comment['id']}"/>
-                <li>
+                <li id="comment_{$comment['id']}">
                     <div class="author-data-comment__icsi-css">
                         <span class="author-comment__icsi-css">{$comment.user_name}</span>&nbsp;&nbsp;
                         {if $comment.rate != 0}
