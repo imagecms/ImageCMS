@@ -80,7 +80,6 @@
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
     </head>
     <body class="is{echo $agent[0]} not-js"> 
-        {widget('test')}
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
