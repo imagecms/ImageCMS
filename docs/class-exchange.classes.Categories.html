@@ -7,7 +7,7 @@
 	<title>Class exchange\classes\Categories | ImageCMS</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3162519436"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -144,9 +144,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -185,278 +182,13 @@
 
 				<b>Author:</b>
 				kolia<br />
-		<b>Located at</b> <a href="source-class-exchange.classes.Categories.html#5-240" title="Go to source code">application/modules/exchange/classes/Categories.php</a><br />
+		<b>Located at</b> application/modules/exchange/classes/Categories.php<br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="processCategories" id="_processCategories">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_processCategories">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#36-61" title="Go to source code">processCategories</a>( <span><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code> <var>$categories</var></span>, <span>string <var>$parent</var> = <span class="php-keyword1">NULL</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Creates one-dimention array with categories from XML-file (method is filling
-$categories, $new and $existing arrays of class instance)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Creates one-dimention array with categories from XML-file (method is filling
-$categories, $new and $existing arrays of class instance)</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$categories</var></dt>
-					<dd><code><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code></code><br>$categories</dd>
-					<dt><var>$parent</var></dt>
-					<dd><code>string</code><br>$parent (default null) external id of parent if there is</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="import_" id="_import_">
-
-		<td class="attributes"><code>
-			 protected 
-			boolean|array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_import_">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#63-94" title="Go to source code">import_</a>( )</code>
-
-		<div class="description short">
-			
-<p>Starting import of the categories</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Starting import of the categories</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean|array</code><br>FALSE|array(count of inserted, count of deleted)<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getPreparedData" id="_getPreparedData">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getPreparedData">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#96-115" title="Go to source code">getPreparedData</a>( <span>array <var>$categoriesExternalIds</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Prepare array for DB insert/update query (returns array redy to inserting in
-database)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Prepare array for DB insert/update query (returns array redy to inserting in
-database)</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$categoriesExternalIds</var></dt>
-					<dd><code>array</code><br>$categoriesExternalIds</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getPathsAndParents" id="_getPathsAndParents">
-
-		<td class="attributes"><code>
-			 protected 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getPathsAndParents">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#117-155" title="Go to source code">getPathsAndParents</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="geti18nData" id="_geti18nData">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_geti18nData">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#157-169" title="Go to source code">geti18nData</a>( <span>mixed <var>$categoriesExternalIds</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getParentIdDb" id="_getParentIdDb">
-
-		<td class="attributes"><code>
-			 protected 
-			integer|boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getParentIdDb">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#171-187" title="Go to source code">getParentIdDb</a>( <span>string <var>$externalId</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Returning DB id of category by external_id (helper)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Returning DB id of category by external_id (helper)</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$externalId</var></dt>
-					<dd><code>string</code><br>$externalId</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>integer|boolean</code><br>id (DB primary key) of category|FALSE<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isUrlFree" id="_isUrlFree">
-
-		<td class="attributes"><code>
-			 protected 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isUrlFree">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#189-201" title="Go to source code">isUrlFree</a>( <span>string <var>$url</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Checks if the new url of category is free (helper)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Checks if the new url of category is free (helper)</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$url</var></dt>
-					<dd><code>string</code><br>$url</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="categoryExists" id="_categoryExists">
 
 		<td class="attributes"><code>
@@ -468,7 +200,7 @@ database)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_categoryExists">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#203-215" title="Go to source code">categoryExists</a>( <span>string <var>$externalId</var></span> )</code>
+		<code>categoryExists( <span>string <var>$externalId</var></span> )</code>
 
 		<div class="description short">
 			
@@ -510,7 +242,7 @@ database)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_categoryExists2">#</a>
-		<code><a href="source-class-exchange.classes.Categories.html#217-237" title="Go to source code">categoryExists2</a>( <span>string <var>$externalId</var></span>, <span>boolean <var>$returnCategoryId</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+		<code>categoryExists2( <span>string <var>$externalId</var></span>, <span>boolean <var>$returnCategoryId</var> = <span class="php-keyword1">FALSE</span></span> )</code>
 
 		<div class="description short">
 			
@@ -552,9 +284,7 @@ database)</p>
 			<a href="class-exchange.classes.ExchangeBase.html#___get">__get()</a>, 
 			<a href="class-exchange.classes.ExchangeBase.html#_getInstance">getInstance()</a>, 
 			<a href="class-exchange.classes.ExchangeBase.html#_getStats">getStats()</a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#_import">import()</a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#_insertBatch">insertBatch()</a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#_updateBatch">updateBatch()</a>
+			<a href="class-exchange.classes.ExchangeBase.html#_import">import()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -569,115 +299,11 @@ database)</p>
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="categoriesXml" id="$categoriesXml">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Categories.html#13-17" title="Go to source code"><var>$categoriesXml</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$categoriesXml" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Parsed categories from XML to one-dimention array</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Parsed categories from XML to one-dimention array</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="new" id="$new">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Categories.html#19-23" title="Go to source code"><var>$new</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$new" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="existing" id="$existing">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Categories.html#25-29" title="Go to source code"><var>$existing</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$existing" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="externalIds" id="$externalIds">
-		<td class="attributes"><code>
-			protected  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Categories.html#31-34" title="Go to source code"><var>$externalIds</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$externalIds" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-exchange.classes.ExchangeBase.html#properties">exchange\classes\ExchangeBase</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-exchange.classes.ExchangeBase.html#$dataLoad"><var>$dataLoad</var></a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#$db"><var>$db</var></a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#$importData"><var>$importData</var></a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#$instances"><var>$instances</var></a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#$locale"><var>$locale</var></a>, 
 			<a href="class-exchange.classes.ExchangeBase.html#$stats"><var>$stats</var></a>
 		</code></td>
 	</tr>
@@ -685,6 +311,14 @@ database)</p>
 
 
 
+	<table class="summary inherited">
+	<caption>Magic properties inherited from <a href="class-exchange.classes.ExchangeBase.html#properties">exchange\classes\ExchangeBase</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-exchange.classes.ExchangeBase.html#m$db"><var>$db</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 </div>
