@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta name="robots" content="noindex" />
+
+	<title>File application/modules/shop/classes/ShopExportDataBase.php | ImageCMS</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Brands.html">Brands</a>
+						</li>
+				<li><a href="namespace-Cart.html">Cart</a>
+						</li>
+				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
+						<ul>
+				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Category.html">Category</a>
+						</li>
+				<li><a href="namespace-cmsemail.html">cmsemail<span></span></a>
+						<ul>
+				<li><a href="namespace-cmsemail.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-CMSFactory.html">CMSFactory</a>
+						</li>
+				<li><a href="namespace-Compare.html">Compare</a>
+						</li>
+				<li><a href="namespace-exchange.html">exchange<span></span></a>
+						<ul>
+				<li><a href="namespace-exchange.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-ImportCSV.html">ImportCSV</a>
+						</li>
+				<li><a href="namespace-libraries.html">libraries</a>
+						</li>
+				<li><a href="namespace-MediaManager.html">MediaManager</a>
+						</li>
+				<li><a href="namespace-mobile.html">mobile<span></span></a>
+						<ul>
+				<li><a href="namespace-mobile.collection.html">collection</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-mod_discount.html">mod_discount<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_discount.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-mod_stats.html">mod_stats<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_stats.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-Orders.html">Orders</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Products.html">Products</a>
+						</li>
+				<li><a href="namespace-Profile.html">Profile</a>
+						</li>
+				<li><a href="namespace-Search.html">Search</a>
+						</li>
+				<li><a href="namespace-wishlist.html">wishlist<span></span></a>
+						<ul>
+				<li><a href="namespace-wishlist.classes.html">classes</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Admin.html" class="invalid">Admin</a></li>
+				<li><a href="class-Admin_logs.html">Admin_logs</a></li>
+				<li><a href="class-Admin_search.html">Admin_search</a></li>
+				<li><a href="class-Ajax.html">Ajax</a></li>
+				<li><a href="class-Auth.html">Auth</a></li>
+				<li><a href="class-Authapi.html">Authapi</a></li>
+				<li><a href="class-Backup.html">Backup</a></li>
+				<li><a href="class-Banner_model.html">Banner_model</a></li>
+				<li><a href="class-Banners.html">Banners</a></li>
+				<li><a href="class-Base.html">Base</a></li>
+				<li><a href="class-BaseAdminController.html">BaseAdminController</a></li>
+				<li><a href="class-BasePaymentProcessor.html">BasePaymentProcessor</a></li>
+				<li><a href="class-Brand.html">Brand</a></li>
+				<li><a href="class-Cache.html">Cache</a></li>
+				<li><a href="class-Cache_all.html">Cache_all</a></li>
+				<li><a href="class-Cache_dane.html">Cache_dane</a></li>
+				<li><a href="class-Cache_html.html">Cache_html</a></li>
+				<li><a href="class-Cart.html">Cart</a></li>
+				<li><a href="class-Cart_api.html">Cart_api</a></li>
+				<li><a href="class-Cart_new.html">Cart_new</a></li>
+				<li><a href="class-Categories.html">Categories</a></li>
+				<li><a href="class-Category.html">Category</a></li>
+				<li><a href="class-Cfcm.html">Cfcm</a></li>
+				<li><a href="class-Cfcm_forms.html">Cfcm_forms</a></li>
+				<li><a href="class-CForm_Checkbox.html">CForm_Checkbox</a></li>
+				<li><a href="class-CForm_Checkgroup.html">CForm_Checkgroup</a></li>
+				<li><a href="class-CForm_Hidden.html">CForm_Hidden</a></li>
+				<li><a href="class-CForm_Html.html">CForm_Html</a></li>
+				<li><a href="class-CForm_Password.html">CForm_Password</a></li>
+				<li><a href="class-CForm_Radiogroup.html">CForm_Radiogroup</a></li>
+				<li><a href="class-CForm_Select.html">CForm_Select</a></li>
+				<li><a href="class-CForm_Text.html">CForm_Text</a></li>
+				<li><a href="class-CForm_Textarea.html">CForm_Textarea</a></li>
+				<li><a href="class-CI_Profiler.html">CI_Profiler</a></li>
+				<li><a href="class-Cms_admin.html">Cms_admin</a></li>
+				<li><a href="class-Cms_base.html" class="invalid">Cms_base</a></li>
+				<li><a href="class-Cms_hooks.html">Cms_hooks</a></li>
+				<li><a href="class-CmsCacheHelper.html">CmsCacheHelper</a></li>
+				<li><a href="class-CMSEmail.html">CMSEmail</a></li>
+				<li><a href="class-Cmsemail_model.html">Cmsemail_model</a></li>
+				<li><a href="class-CMSFactory.html">CMSFactory</a></li>
+				<li><a href="class-Comments.html">Comments</a></li>
+				<li><a href="class-Comments_Widgets.html">Comments_Widgets</a></li>
+				<li><a href="class-Commentsapi.html">Commentsapi</a></li>
+				<li><a href="class-Compare.html">Compare</a></li>
+				<li><a href="class-Compare_api.html">Compare_api</a></li>
+				<li><a href="class-Components.html">Components</a></li>
+				<li><a href="class-Console.html">Console</a></li>
+				<li><a href="class-Core.html">Core</a></li>
+				<li><a href="class-Core_Widgets.html">Core_Widgets</a></li>
+				<li><a href="class-CustomFieldsHelper.html">CustomFieldsHelper</a></li>
+				<li><a href="class-Dashboard.html">Dashboard</a></li>
+				<li><a href="class-Digital_products.html">Digital_products</a></li>
+				<li><a href="class-discount_api.html">discount_api</a></li>
+				<li><a href="class-Discount_model_admin.html">Discount_model_admin</a></li>
+				<li><a href="class-Discount_model_front.html">Discount_model_front</a></li>
+				<li><a href="class-Documentation.html">Documentation</a></li>
+				<li><a href="class-Documentation_model.html">Documentation_model</a></li>
+				<li><a href="class-DX_Auth.html">DX_Auth</a></li>
+				<li><a href="class-DX_Auth_Event.html">DX_Auth_Event</a></li>
+				<li><a href="class-Elfinder_lib.html">Elfinder_lib</a></li>
+				<li><a href="class-Exchange.html" class="invalid">Exchange</a></li>
+				<li><a href="class-facebook.html">facebook</a></li>
+				<li><a href="class-Feedback.html">Feedback</a></li>
+				<li><a href="class-Filter.html">Filter</a></li>
+				<li><a href="class-Forms.html">Forms</a></li>
+				<li><a href="class-Found_less_expensive.html">Found_less_expensive</a></li>
+				<li><a href="class-Found_less_expensive_model.html">Found_less_expensive_model</a></li>
+				<li><a href="class-Gallery.html">Gallery</a></li>
+				<li><a href="class-Gallery_m.html">Gallery_m</a></li>
+				<li><a href="class-Gallery_Widgets.html">Gallery_Widgets</a></li>
+				<li><a href="class-Gift.html">Gift</a></li>
+				<li><a href="class-Google.html">Google</a></li>
+				<li><a href="class-googleTranslate.html">googleTranslate</a></li>
+				<li><a href="class-Group_Mailer.html">Group_Mailer</a></li>
+				<li><a href="class-ImageBox.html">ImageBox</a></li>
+				<li><a href="class-Install.html" class="invalid">Install</a></li>
+				<li><a href="class-Language_Switch.html">Language_Switch</a></li>
+				<li><a href="class-Language_switch_Widgets.html">Language_switch_Widgets</a></li>
+				<li><a href="class-Languages.html">Languages</a></li>
+				<li><a href="class-Lib_admin.html">Lib_admin</a></li>
+				<li><a href="class-Lib_category.html">Lib_category</a></li>
+				<li><a href="class-Lib_csrf.html">Lib_csrf</a></li>
+				<li><a href="class-Lib_init.html">Lib_init</a></li>
+				<li><a href="class-Lib_seo.html">Lib_seo</a></li>
+				<li><a href="class-Lib_xml.html">Lib_xml</a></li>
+				<li><a href="class-Login.html">Login</a></li>
+				<li><a href="class-Login_Attempts.html">Login_Attempts</a></li>
+				<li><a href="class-Mabilis.html">Mabilis</a></li>
+				<li><a href="class-Mabilis_Compiler.html">Mabilis_Compiler</a></li>
+				<li><a href="class-Mabilis_Config.html">Mabilis_Config</a></li>
+				<li><a href="class-Mailer.html">Mailer</a></li>
+				<li><a href="class-MCAPI.html">MCAPI</a></li>
+				<li><a href="class-Mem_cache.html">Mem_cache</a></li>
+				<li><a href="class-Menu.html">Menu</a></li>
+				<li><a href="class-Menu_model.html">Menu_model</a></li>
+				<li><a href="class-Mobile.html">Mobile</a></li>
+				<li><a href="class-Mod_discount.html">Mod_discount</a></li>
+				<li><a href="class-Mod_search.html">Mod_search</a></li>
+				<li><a href="class-Mod_stats.html">Mod_stats</a></li>
+				<li><a href="class-Module_frame.html">Module_frame</a></li>
+				<li><a href="class-Module_frame_model.html" class="invalid">Module_frame_model</a></li>
+				<li><a href="class-MY_Form_validation.html">MY_Form_validation</a></li>
+				<li><a href="class-MY_Lang.html">MY_Lang</a></li>
+				<li><a href="class-MY_Pagination.html">MY_Pagination</a></li>
+				<li><a href="class-Native_session.html">Native_session</a></li>
+				<li><a href="class-Navigation.html">Navigation</a></li>
+				<li><a href="class-Navigation_Widgets.html">Navigation_Widgets</a></li>
+				<li><a href="class-New_level.html">New_level</a></li>
+				<li><a href="class-New_level_model.html">New_level_model</a></li>
+				<li><a href="class-Order.html">Order</a></li>
+				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
+				<li><a href="class-Pages.html">Pages</a></li>
+				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-PclZip.html">PclZip</a></li>
+				<li><a href="class-Permissions.html">Permissions</a></li>
+				<li><a href="class-Permitions.html">Permitions</a></li>
+				<li><a href="class-PHPExcel.html">PHPExcel</a></li>
+				<li><a href="class-Pricespy.html">Pricespy</a></li>
+				<li><a href="class-Pricespy_model.html">Pricespy_model</a></li>
+				<li><a href="class-Print_data.html">Print_data</a></li>
+				<li><a href="class-Product.html">Product</a></li>
+				<li><a href="class-Product_api.html">Product_api</a></li>
+				<li><a href="class-Profile.html">Profile</a></li>
+				<li><a href="class-Profileapi.html">Profileapi</a></li>
+				<li><a href="class-Rating_model.html">Rating_model</a></li>
+				<li><a href="class-Rbac.html">Rbac</a></li>
+				<li><a href="class-ReCaptchaResponse.html">ReCaptchaResponse</a></li>
+				<li><a href="class-Roles.html">Roles</a></li>
+				<li><a href="class-Rss.html">Rss</a></li>
+				<li><a href="class-SAdminSidebarRenderer.html">SAdminSidebarRenderer</a></li>
+				<li><a href="class-Sample_mail.html">Sample_mail</a></li>
+				<li><a href="class-Sample_mail_model.html">Sample_mail_model</a></li>
+				<li><a href="class-Sample_Module.html">Sample_Module</a></li>
+				<li><a href="class-SBannerHelper.html">SBannerHelper</a></li>
+				<li><a href="class-SBrandsHelper.html">SBrandsHelper</a></li>
+				<li><a href="class-SCart.html">SCart</a></li>
+				<li><a href="class-SCategoryTree.html">SCategoryTree</a></li>
+				<li><a href="class-SCurrencyHelper.html">SCurrencyHelper</a></li>
+				<li><a href="class-SDiscountsManager.html">SDiscountsManager</a></li>
+				<li><a href="class-Search.html" class="invalid">Search</a></li>
+				<li><a href="class-Sendsms.html">Sendsms</a></li>
+				<li><a href="class-Settings.html">Settings</a></li>
+				<li><a href="class-SFilter.html" class="invalid">SFilter</a></li>
+				<li><a href="class-Share.html">Share</a></li>
+				<li><a href="class-Shop.html">Shop</a></li>
+				<li><a href="class-Shop_news.html">Shop_news</a></li>
+				<li><a href="class-Shop_news_model.html">Shop_news_model</a></li>
+				<li><a href="class-Shop_widgets.html">Shop_widgets</a></li>
+				<li><a href="class-ShopAdminBanners.html">ShopAdminBanners</a></li>
+				<li><a href="class-ShopAdminBrands.html">ShopAdminBrands</a></li>
+				<li><a href="class-ShopAdminCallbacks.html">ShopAdminCallbacks</a></li>
+				<li><a href="class-ShopAdminCategories.html">ShopAdminCategories</a></li>
+				<li><a href="class-ShopAdminCharts.html">ShopAdminCharts</a></li>
+				<li><a href="class-ShopAdminComulativ.html">ShopAdminComulativ</a></li>
+				<li><a href="class-ShopAdminController.html">ShopAdminController</a></li>
+				<li><a href="class-ShopAdminCurrencies.html">ShopAdminCurrencies</a></li>
+				<li><a href="class-ShopAdminCustomfields.html">ShopAdminCustomfields</a></li>
+				<li><a href="class-ShopAdminDashboard.html">ShopAdminDashboard</a></li>
+				<li><a href="class-ShopAdminDeliverymethods.html">ShopAdminDeliverymethods</a></li>
+				<li><a href="class-ShopAdminDiscounts.html">ShopAdminDiscounts</a></li>
+				<li><a href="class-ShopAdminGifts.html">ShopAdminGifts</a></li>
+				<li><a href="class-ShopAdminKits.html">ShopAdminKits</a></li>
+				<li><a href="class-ShopAdminNotifications.html">ShopAdminNotifications</a></li>
+				<li><a href="class-ShopAdminNotificationstatuses.html">ShopAdminNotificationstatuses</a></li>
+				<li><a href="class-ShopAdminOrders.html">ShopAdminOrders</a></li>
+				<li><a href="class-ShopAdminOrderstatuses.html">ShopAdminOrderstatuses</a></li>
+				<li><a href="class-ShopAdminPaymentmethods.html">ShopAdminPaymentmethods</a></li>
+				<li><a href="class-ShopAdminProducts.html">ShopAdminProducts</a></li>
+				<li><a href="class-ShopAdminProperties.html">ShopAdminProperties</a></li>
+				<li><a href="class-ShopAdminSearch.html">ShopAdminSearch</a></li>
+				<li><a href="class-ShopAdminSettings.html">ShopAdminSettings</a></li>
+				<li><a href="class-ShopAdminSystem.html">ShopAdminSystem</a></li>
+				<li><a href="class-ShopAdminUsers.html">ShopAdminUsers</a></li>
+				<li><a href="class-ShopAdminWarehouses.html">ShopAdminWarehouses</a></li>
+				<li><a href="class-ShopBaseObject.html">ShopBaseObject</a></li>
+				<li><a href="class-ShopComponents.html">ShopComponents</a></li>
+				<li><a href="class-ShopController.html">ShopController</a></li>
+				<li><a href="class-ShopCore.html">ShopCore</a></li>
+				<li><a href="class-ShopExport.html">ShopExport</a></li>
+				<li class="active"><a href="class-ShopExportDataBase.html">ShopExportDataBase</a></li>
+				<li><a href="class-ShopImport.html">ShopImport</a></li>
+				<li><a href="class-Sitemap.html">Sitemap</a></li>
+				<li><a href="class-Smart_filter.html">Smart_filter</a></li>
+				<li><a href="class-SMemCached.html">SMemCached</a></li>
+				<li><a href="class-SMobileVersion.html">SMobileVersion</a></li>
+				<li><a href="class-Socauth.html">Socauth</a></li>
+				<li><a href="class-Socauth_model.html">Socauth_model</a></li>
+				<li><a href="class-Social_servises.html">Social_servises</a></li>
+				<li><a href="class-SOrdersModel.html">SOrdersModel</a></li>
+				<li><a href="class-SPagination.html">SPagination</a></li>
+				<li><a href="class-SPaymentSystems.html">SPaymentSystems</a></li>
+				<li><a href="class-SPropelLogger.html">SPropelLogger</a></li>
+				<li><a href="class-SPropertiesRenderer.html" class="invalid">SPropertiesRenderer</a></li>
+				<li><a href="class-SSettings.html">SSettings</a></li>
+				<li><a href="class-SStringHelper.html">SStringHelper</a></li>
+				<li><a href="class-Star_rating.html">Star_rating</a></li>
+				<li><a href="class-Stats_model.html">Stats_model</a></li>
+				<li><a href="class-Stats_model_categories.html">Stats_model_categories</a></li>
+				<li><a href="class-Stats_model_orders.html">Stats_model_orders</a></li>
+				<li><a href="class-Stats_model_products.html">Stats_model_products</a></li>
+				<li><a href="class-Stats_model_search.html">Stats_model_search</a></li>
+				<li><a href="class-Stats_model_urls.html">Stats_model_urls</a></li>
+				<li><a href="class-Stats_model_users.html">Stats_model_users</a></li>
+				<li><a href="class-STimeHelper.html">STimeHelper</a></li>
+				<li><a href="class-SWatermark.html">SWatermark</a></li>
+				<li><a href="class-SWishList.html" class="invalid">SWishList</a></li>
+				<li><a href="class-Sys_info.html">Sys_info</a></li>
+				<li><a href="class-Sys_update.html">Sys_update</a></li>
+				<li><a href="class-Sys_upgrade.html">Sys_upgrade</a></li>
+				<li><a href="class-Tags.html">Tags</a></li>
+				<li><a href="class-Tags_Widgets.html">Tags_Widgets</a></li>
+				<li><a href="class-Template.html">Template</a></li>
+				<li><a href="class-Template_editor.html">Template_editor</a></li>
+				<li><a href="class-Translator.html">Translator</a></li>
+				<li><a href="class-Trash.html">Trash</a></li>
+				<li><a href="class-Update.html">Update</a></li>
+				<li><a href="class-User_Autologin.html">User_Autologin</a></li>
+				<li><a href="class-User_manager.html">User_manager</a></li>
+				<li><a href="class-User_Profile.html">User_Profile</a></li>
+				<li><a href="class-User_Temp.html">User_Temp</a></li>
+				<li><a href="class-Users.html">Users</a></li>
+				<li><a href="class-vkapi.html">vkapi</a></li>
+				<li><a href="class-Widgets_manager.html">Widgets_manager</a></li>
+				<li><a href="class-Wish_list.html">Wish_list</a></li>
+				<li><a href="class-Wish_list_api.html">Wish_list_api</a></li>
+				<li><a href="class-Wishlist.html">Wishlist</a></li>
+				<li><a href="class-Wishlist_model.html">Wishlist_model</a></li>
+				<li><a href="class-WishlistApi.html">WishlistApi</a></li>
+				<li><a href="class-Yandex.html">Yandex</a></li>
+				<li><a href="class-Yandex_maps.html">Yandex_maps</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-CFormObject.html">CFormObject</a></li>
+			</ul>
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-_log.html" class="invalid">_log</a></li>
+				<li><a href="function-_recaptcha_aes_encrypt.html">_recaptcha_aes_encrypt</a></li>
+				<li><a href="function-_recaptcha_aes_pad.html">_recaptcha_aes_pad</a></li>
+				<li><a href="function-_recaptcha_http_post.html">_recaptcha_http_post</a></li>
+				<li><a href="function-_recaptcha_mailhide_email_parts.html">_recaptcha_mailhide_email_parts</a></li>
+				<li><a href="function-_recaptcha_mailhide_urlbase64.html">_recaptcha_mailhide_urlbase64</a></li>
+				<li><a href="function-_recaptcha_qsencode.html">_recaptcha_qsencode</a></li>
+				<li><a href="function-admin_or_redirect.html">admin_or_redirect</a></li>
+				<li><a href="function-ajax_div.html">ajax_div</a></li>
+				<li><a href="function-ajax_links.html">ajax_links</a></li>
+				<li><a href="function-ajax_redirect.html">ajax_redirect</a></li>
+				<li><a href="function-array_key_exists_recursive.html">array_key_exists_recursive</a></li>
+				<li><a href="function-beginCache.html">beginCache</a></li>
+				<li><a href="function-build_cats_tree.html">build_cats_tree</a></li>
+				<li><a href="function-build_cats_tree_ul_li.html">build_cats_tree_ul_li</a></li>
+				<li><a href="function-category_list.html">category_list</a></li>
+				<li><a href="function-category_pages.html">category_pages</a></li>
+				<li><a href="function-check_admin_redirect.html">check_admin_redirect</a></li>
+				<li><a href="function-check_perm.html">check_perm</a></li>
+				<li><a href="function-checkAjaxRequest.html">checkAjaxRequest</a></li>
+				<li><a href="function-count_albums.html">count_albums</a></li>
+				<li><a href="function-count_star.html">count_star</a></li>
+				<li><a href="function-countRating.html">countRating</a></li>
+				<li><a href="function-cp_check_perm.html">cp_check_perm</a></li>
+				<li><a href="function-create_captcha.html">create_captcha</a></li>
+				<li><a href="function-create_language_select.html">create_language_select</a></li>
+				<li><a href="function-currency_convert.html">currency_convert</a></li>
+				<li><a href="function-encode.html">encode</a></li>
+				<li><a href="function-endCache.html">endCache</a></li>
+				<li><a href="function-filterCategoryId.html">filterCategoryId</a></li>
+				<li><a href="function-form_csrf.html">form_csrf</a></li>
+				<li><a href="function-form_csrf_code.html">form_csrf_code</a></li>
+				<li><a href="function-func_counter.html">func_counter</a></li>
+				<li><a href="function-func_truncate.html">func_truncate</a></li>
+				<li><a href="function-gallery_latest_images.html">gallery_latest_images</a></li>
+				<li><a href="function-get_category_name.html">get_category_name</a></li>
+				<li><a href="function-get_currencies.html">get_currencies</a></li>
+				<li><a href="function-get_entity_mod.html">get_entity_mod</a></li>
+				<li><a href="function-get_lang_admin_folders.html">get_lang_admin_folders</a></li>
+				<li><a href="function-get_page.html">get_page</a></li>
+				<li><a href="function-get_permissions_array.html">get_permissions_array</a></li>
+				<li><a href="function-get_perms_groups.html">get_perms_groups</a></li>
+				<li><a href="function-get_product_category.html" class="invalid">get_product_category</a></li>
+				<li><a href="function-get_sub_categories.html">get_sub_categories</a></li>
+				<li><a href="function-getAmountInCart.html">getAmountInCart</a></li>
+				<li><a href="function-getCMSNumber.html">getCMSNumber</a></li>
+				<li><a href="function-getDefaultLanguage.html">getDefaultLanguage</a></li>
+				<li><a href="function-getLimiPrice.html">getLimiPrice</a></li>
+				<li><a href="function-getLimitAllPrice.html">getLimitAllPrice</a></li>
+				<li><a href="function-getProduct.html">getProduct</a></li>
+				<li><a href="function-getProductViewsCount.html">getProductViewsCount</a></li>
+				<li><a href="function-getPromoBlock.html">getPromoBlock</a></li>
+				<li><a href="function-getSimilarProduct.html">getSimilarProduct</a></li>
+				<li><a href="function-getVariant.html">getVariant</a></li>
+				<li><a href="function-getVariants.html">getVariants</a></li>
+				<li><a href="function-getWidgetTitle.html">getWidgetTitle</a></li>
+				<li><a href="function-href_nofollow.html">href_nofollow</a></li>
+				<li><a href="function-html_wraper.html">html_wraper</a></li>
+				<li><a href="function-imagebox_headers.html">imagebox_headers</a></li>
+				<li><a href="function-is_brand.html" class="invalid">is_brand</a></li>
+				<li><a href="function-is_cat.html" class="invalid">is_cat</a></li>
+				<li><a href="function-is_in_cart.html">is_in_cart</a></li>
+				<li><a href="function-is_in_wish.html">is_in_wish</a></li>
+				<li><a href="function-is_prod.html" class="invalid">is_prod</a></li>
+				<li><a href="function-is_prop.html" class="invalid">is_prop</a></li>
+				<li><a href="function-is_prop_data.html" class="invalid">is_prop_data</a></li>
+				<li><a href="function-is_prop_multiple.html" class="invalid">is_prop_multiple</a></li>
+				<li><a href="function-is_property_in_get.html">is_property_in_get</a></li>
+				<li><a href="function-is_true_array.html">is_true_array</a></li>
+				<li><a href="function-isAviableInStock.html">isAviableInStock</a></li>
+				<li><a href="function-jsCode.html">jsCode</a></li>
+				<li><a href="function-load_brand.html" class="invalid">load_brand</a></li>
+				<li><a href="function-load_cat.html" class="invalid">load_cat</a></li>
+				<li><a href="function-load_main_curr.html">load_main_curr</a></li>
+				<li><a href="function-load_menu.html">load_menu</a></li>
+				<li><a href="function-load_multiple_prop.html" class="invalid">load_multiple_prop</a></li>
+				<li><a href="function-load_product.html" class="invalid">load_product</a></li>
+				<li><a href="function-load_prop.html" class="invalid">load_prop</a></li>
+				<li><a href="function-load_prop_data.html" class="invalid">load_prop_data</a></li>
+				<li><a href="function-load_urls.html" class="invalid">load_urls</a></li>
+				<li><a href="function-media_url.html">media_url</a></li>
+				<li><a href="function-menu_inject.html">menu_inject</a></li>
+				<li><a href="function-mobile_site_address.html">mobile_site_address</a></li>
+				<li><a href="function-mobile_url.html">mobile_url</a></li>
+				<li><a href="function-money_format.html">money_format</a></li>
+				<li><a href="function-my_print_r.html">my_print_r</a></li>
+				<li><a href="function-page_tags.html">page_tags</a></li>
+				<li><a href="function-PclZipUtilCopyBlock.html">PclZipUtilCopyBlock</a></li>
+				<li><a href="function-PclZipUtilOptionText.html">PclZipUtilOptionText</a></li>
+				<li><a href="function-PclZipUtilPathInclusion.html">PclZipUtilPathInclusion</a></li>
+				<li><a href="function-PclZipUtilPathReduction.html">PclZipUtilPathReduction</a></li>
+				<li><a href="function-PclZipUtilRename.html">PclZipUtilRename</a></li>
+				<li><a href="function-PclZipUtilTranslateWinPath.html">PclZipUtilTranslateWinPath</a></li>
+				<li><a href="function-pjax.html">pjax</a></li>
+				<li><a href="function-productImageUrl.html">productImageUrl</a></li>
+				<li><a href="function-productInCart.html">productInCart</a></li>
+				<li><a href="function-productInCartI.html">productInCartI</a></li>
+				<li><a href="function-productMainImageUrl.html">productMainImageUrl</a></li>
+				<li><a href="function-productSmallImageUrl.html">productSmallImageUrl</a></li>
+				<li><a href="function-productThumbUrl.html">productThumbUrl</a></li>
+				<li><a href="function-promoLabel.html">promoLabel</a></li>
+				<li><a href="function-promoLabelBtn.html">promoLabelBtn</a></li>
+				<li><a href="function-recaptcha_check_answer.html">recaptcha_check_answer</a></li>
+				<li><a href="function-recaptcha_get_html.html">recaptcha_get_html</a></li>
+				<li><a href="function-recaptcha_get_signup_url.html">recaptcha_get_signup_url</a></li>
+				<li><a href="function-recaptcha_mailhide_html.html">recaptcha_mailhide_html</a></li>
+				<li><a href="function-recaptcha_mailhide_url.html">recaptcha_mailhide_url</a></li>
+				<li><a href="function-renderCategoryPath.html">renderCategoryPath</a></li>
+				<li><a href="function-renderCategoryPathNoSeo.html">renderCategoryPathNoSeo</a></li>
+				<li><a href="function-ru_date.html">ru_date</a></li>
+				<li><a href="function-searchResultsInCategories.html">searchResultsInCategories</a></li>
+				<li><a href="function-seo_nofollow_replace.html">seo_nofollow_replace</a></li>
+				<li><a href="function-setDefaultLanguage.html">setDefaultLanguage</a></li>
+				<li><a href="function-setDefaultLanguage1.html">setDefaultLanguage1</a></li>
+				<li><a href="function-shop_url.html">shop_url</a></li>
+				<li><a href="function-showMessage.html">showMessage</a></li>
+				<li><a href="function-siteinfo.html">siteinfo</a></li>
+				<li><a href="function-sub_category_list.html">sub_category_list</a></li>
+				<li><a href="function-tpl_assign.html">tpl_assign</a></li>
+				<li><a href="function-translit.html">translit</a></li>
+				<li><a href="function-translit_url.html">translit_url</a></li>
+				<li><a href="function-updateDiv.html">updateDiv</a></li>
+				<li><a href="function-var_dumps.html">var_dumps</a></li>
+				<li><a href="function-var_dumps_exit.html">var_dumps_exit</a></li>
+				<li><a href="function-whereami.html">whereami</a></li>
+				<li><a href="function-widget.html">widget</a></li>
+				<li><a href="function-widget_ajax.html">widget_ajax</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li>
+				<a href="class-ShopExportDataBase.html" title="Summary of ShopExportDataBase"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+			</li>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1">  1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2">  2: </a>
+</span><span id="3" class="l"><a class="l" href="#3">  3: </a><span class="php-comment">/**
+</span></span><span id="4" class="l"><a class="l" href="#4">  4: </a><span class="php-comment"> * Selecting products for export
+</span></span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-comment"> *
+</span></span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-comment"> * @author kolia
+</span></span><span id="7" class="l"><a class="l" href="#7">  7: </a><span class="php-comment"> */</span>
+</span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-keyword1">class</span> <a id="ShopExportDataBase" href="#ShopExportDataBase">ShopExportDataBase</a> {
+</span><span id="9" class="l"><a class="l" href="#9">  9: </a>
+</span><span id="10" class="l"><a class="l" href="#10"> 10: </a>    <span class="php-comment">// constructor params</span>
+</span><span id="11" class="l"><a class="l" href="#11"> 11: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$delimiter" href="#$delimiter">$delimiter</a></span> = <span class="php-quote">&quot;;&quot;</span>;
+</span><span id="12" class="l"><a class="l" href="#12"> 12: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$maxRowLength" href="#$maxRowLength">$maxRowLength</a></span> = <span class="php-num">10000</span>;
+</span><span id="13" class="l"><a class="l" href="#13"> 13: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$file" href="#$file">$file</a></span> = <span class="php-keyword1">null</span>;
+</span><span id="14" class="l"><a class="l" href="#14"> 14: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$currency" href="#$currency">$currency</a></span> = <span class="php-keyword1">null</span>;
+</span><span id="15" class="l"><a class="l" href="#15"> 15: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$language" href="#$language">$language</a></span> = <span class="php-quote">'ru'</span>;
+</span><span id="16" class="l"><a class="l" href="#16"> 16: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$attributes" href="#$attributes">$attributes</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="17" class="l"><a class="l" href="#17"> 17: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$attributesCF" href="#$attributesCF">$attributesCF</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="18" class="l"><a class="l" href="#18"> 18: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$enclosure" href="#$enclosure">$enclosure</a></span> = <span class="php-quote">'&quot;'</span>;
+</span><span id="19" class="l"><a class="l" href="#19"> 19: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$tree" href="#$tree">$tree</a></span> = <span class="php-keyword1">null</span>;
+</span><span id="20" class="l"><a class="l" href="#20"> 20: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$encoding" href="#$encoding">$encoding</a></span> = <span class="php-quote">'utf8'</span>;
+</span><span id="21" class="l"><a class="l" href="#21"> 21: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$selectedCats" href="#$selectedCats">$selectedCats</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="22" class="l"><a class="l" href="#22"> 22: </a>
+</span><span id="23" class="l"><a class="l" href="#23"> 23: </a>    <span class="php-comment">/**
+</span></span><span id="24" class="l"><a class="l" href="#24"> 24: </a><span class="php-comment">     * contains products properties
+</span></span><span id="25" class="l"><a class="l" href="#25"> 25: </a><span class="php-comment">     * @var type
+</span></span><span id="26" class="l"><a class="l" href="#26"> 26: </a><span class="php-comment">     */</span>
+</span><span id="27" class="l"><a class="l" href="#27"> 27: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$customFields" href="#$customFields">$customFields</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="28" class="l"><a class="l" href="#28"> 28: </a>
+</span><span id="29" class="l"><a class="l" href="#29"> 29: </a>    <span class="php-comment">/**
+</span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment">     * Product fields and properties together
+</span></span><span id="31" class="l"><a class="l" href="#31"> 31: </a><span class="php-comment">     * @var array
+</span></span><span id="32" class="l"><a class="l" href="#32"> 32: </a><span class="php-comment">     */</span>
+</span><span id="33" class="l"><a class="l" href="#33"> 33: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$completeFields" href="#$completeFields">$completeFields</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="34" class="l"><a class="l" href="#34"> 34: </a>
+</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>    <span class="php-comment">/**
+</span></span><span id="36" class="l"><a class="l" href="#36"> 36: </a><span class="php-comment">     * errors (if there are)
+</span></span><span id="37" class="l"><a class="l" href="#37"> 37: </a><span class="php-comment">     * @var array
+</span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">     */</span>
+</span><span id="39" class="l"><a class="l" href="#39"> 39: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$errors" href="#$errors">$errors</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="40" class="l"><a class="l" href="#40"> 40: </a>
+</span><span id="41" class="l"><a class="l" href="#41"> 41: </a>    <span class="php-comment">/**
+</span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment">     * DB object
+</span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment">     * @var Object
+</span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     */</span>
+</span><span id="45" class="l"><a class="l" href="#45"> 45: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$db" href="#$db">$db</a></span>;
+</span><span id="46" class="l"><a class="l" href="#46"> 46: </a>
+</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>    <span class="php-comment">/**
+</span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     * Two-dimensional array to store data about tables and their columns
+</span></span><span id="49" class="l"><a class="l" href="#49"> 49: </a><span class="php-comment">     * array(
+</span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment">     *      db_table =&gt; array(fields)
+</span></span><span id="51" class="l"><a class="l" href="#51"> 51: </a><span class="php-comment">     *      db_table =&gt; array(fields)
+</span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">     *      ...
+</span></span><span id="53" class="l"><a class="l" href="#53"> 53: </a><span class="php-comment">     * )
+</span></span><span id="54" class="l"><a class="l" href="#54"> 54: </a><span class="php-comment">     * @var array
+</span></span><span id="55" class="l"><a class="l" href="#55"> 55: </a><span class="php-comment">     */</span>
+</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$tablesFields" href="#$tablesFields">$tablesFields</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>
+</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>    <span class="php-comment">/**
+</span></span><span id="59" class="l"><a class="l" href="#59"> 59: </a><span class="php-comment">     * An array of tables that contain information about products (including sampling will take place in the fields)
+</span></span><span id="60" class="l"><a class="l" href="#60"> 60: </a><span class="php-comment">     * @var array
+</span></span><span id="61" class="l"><a class="l" href="#61"> 61: </a><span class="php-comment">     */</span>
+</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$productsDataTables" href="#$productsDataTables">$productsDataTables</a></span> = <span class="php-keyword1">array</span>(
+</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>        <span class="php-quote">'shop_product_variants'</span>,
+</span><span id="64" class="l"><a class="l" href="#64"> 64: </a>        <span class="php-quote">'shop_product_variants_i18n'</span>,
+</span><span id="65" class="l"><a class="l" href="#65"> 65: </a>        <span class="php-quote">'shop_products'</span>,
+</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>        <span class="php-quote">'shop_products_i18n'</span>,
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>        <span class="php-quote">'shop_category'</span>,
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>        <span class="php-quote">'shop_category_i18n'</span>,
+</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>        <span class="php-quote">'shop_product_properties'</span>,
+</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>        <span class="php-quote">'shop_product_properties_data'</span>,
+</span><span id="71" class="l"><a class="l" href="#71"> 71: </a>        <span class="php-quote">'shop_product_properties_i18n'</span>,
+</span><span id="72" class="l"><a class="l" href="#72"> 72: </a>        <span class="php-quote">'shop_brands'</span>,
+</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>        <span class="php-quote">'shop_brands_i18n'</span>,
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>        <span class="php-quote">'shop_product_images'</span>,
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>    );
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>    <span class="php-comment">/**
+</span></span><span id="78" class="l"><a class="l" href="#78"> 78: </a><span class="php-comment">     * Result in array
+</span></span><span id="79" class="l"><a class="l" href="#79"> 79: </a><span class="php-comment">     * @var array
+</span></span><span id="80" class="l"><a class="l" href="#80"> 80: </a><span class="php-comment">     */</span>
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$resultArray" href="#$resultArray">$resultArray</a></span> = <span class="php-keyword1">NULL</span>;
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>    <span class="php-comment">/**
+</span></span><span id="84" class="l"><a class="l" href="#84"> 84: </a><span class="php-comment">     * Result in string (csv)
+</span></span><span id="85" class="l"><a class="l" href="#85"> 85: </a><span class="php-comment">     * @var string
+</span></span><span id="86" class="l"><a class="l" href="#86"> 86: </a><span class="php-comment">     */</span>
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$resultString" href="#$resultString">$resultString</a></span> = <span class="php-keyword1">NULL</span>;
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>    <span class="php-comment">/**
+</span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-comment">     * If true then ignoring fields errors
+</span></span><span id="91" class="l"><a class="l" href="#91"> 91: </a><span class="php-comment">     * @var boolean
+</span></span><span id="92" class="l"><a class="l" href="#92"> 92: </a><span class="php-comment">     */</span>
+</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$skipErrors" href="#$skipErrors">$skipErrors</a></span> = <span class="php-keyword1">FALSE</span>;
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>    <span class="php-comment">/**
+</span></span><span id="96" class="l"><a class="l" href="#96"> 96: </a><span class="php-comment">     * Categories data from DB
+</span></span><span id="97" class="l"><a class="l" href="#97"> 97: </a><span class="php-comment">     * @var array
+</span></span><span id="98" class="l"><a class="l" href="#98"> 98: </a><span class="php-comment">     */</span>
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$categoriesData" href="#$categoriesData">$categoriesData</a></span> = <span class="php-keyword1">NULL</span>;
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>    <span class="php-comment">/**
+</span></span><span id="102" class="l"><a class="l" href="#102">102: </a><span class="php-comment">     * Categories full paths
+</span></span><span id="103" class="l"><a class="l" href="#103">103: </a><span class="php-comment">     * @var array
+</span></span><span id="104" class="l"><a class="l" href="#104">104: </a><span class="php-comment">     */</span>
+</span><span id="105" class="l"><a class="l" href="#105">105: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$categories" href="#$categories">$categories</a></span> = <span class="php-keyword1">NULL</span>;
+</span><span id="106" class="l"><a class="l" href="#106">106: </a>
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>    <span class="php-comment">/**
+</span></span><span id="108" class="l"><a class="l" href="#108">108: </a><span class="php-comment">     * @param array $settings export params
+</span></span><span id="109" class="l"><a class="l" href="#109">109: </a><span class="php-comment">     */</span>
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-keyword1">array</span> <span class="php-var">$settings</span> = <span class="php-keyword1">array</span>()) {
+</span><span id="111" class="l"><a class="l" href="#111">111: </a>        <span class="php-var">$ci</span> = &amp;get_instance();
+</span><span id="112" class="l"><a class="l" href="#112">112: </a>        <span class="php-var">$this</span>-&gt;db = <span class="php-var">$ci</span>-&gt;db;
+</span><span id="113" class="l"><a class="l" href="#113">113: </a>
+</span><span id="114" class="l"><a class="l" href="#114">114: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">sizeof</span>(<span class="php-var">$settings</span>) &gt; <span class="php-num">0</span>) {
+</span><span id="115" class="l"><a class="l" href="#115">115: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$settings</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>                <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;<span class="php-var">$key</span>))
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>                    <span class="php-var">$this</span>-&gt;<span class="php-var">$key</span> = <span class="php-var">$value</span>;
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>            }
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>        }
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>        <span class="php-comment">// getting attributes</span>
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;attributes) &gt; <span class="php-num">0</span>) {
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>            <span class="php-var">$this</span>-&gt;addError(<span class="php-quote">'Укажите колонки для экспорта.'</span>);
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>            <span class="php-var">$this</span>-&gt;customFields = <span class="php-var">$this</span>-&gt;getCustomFields();
+</span><span id="126" class="l"><a class="l" href="#126">126: </a>            <span class="php-var">$this</span>-&gt;completeFields = <span class="php-var">$this</span>-&gt;getCompleteFields();
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>        }
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>        <span class="php-comment">// getting tables and their fields</span>
+</span><span id="130" class="l"><a class="l" href="#130">130: </a>        <span class="php-var">$this</span>-&gt;getTablesFields(<span class="php-var">$this</span>-&gt;productsDataTables);
+</span><span id="131" class="l"><a class="l" href="#131">131: </a>
+</span><span id="132" class="l"><a class="l" href="#132">132: </a>        <span class="php-var">$this</span>-&gt;categoriesData = <span class="php-var">$this</span>-&gt;getCategoriesFromBase();
+</span><span id="133" class="l"><a class="l" href="#133">133: </a>
+</span><span id="134" class="l"><a class="l" href="#134">134: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">key_exists</span>(<span class="php-quote">'cat'</span>, <span class="php-var">$this</span>-&gt;attributes)) {
+</span><span id="135" class="l"><a class="l" href="#135">135: </a>            <span class="php-var">$this</span>-&gt;categories = <span class="php-var">$this</span>-&gt;getCategoriesPaths();
+</span><span id="136" class="l"><a class="l" href="#136">136: </a>        }
+</span><span id="137" class="l"><a class="l" href="#137">137: </a>
+</span><span id="138" class="l"><a class="l" href="#138">138: </a>        <span class="php-keyword2">ini_set</span>(<span class="php-quote">'max_execution_time'</span>, <span class="php-num">900</span>);
+</span><span id="139" class="l"><a class="l" href="#139">139: </a>        <span class="php-keyword2">set_time_limit</span>(<span class="php-num">900</span>);
+</span><span id="140" class="l"><a class="l" href="#140">140: </a>    }
+</span><span id="141" class="l"><a class="l" href="#141">141: </a>
+</span><span id="142" class="l"><a class="l" href="#142">142: </a>    <span class="php-comment">/**
+</span></span><span id="143" class="l"><a class="l" href="#143">143: </a><span class="php-comment">     * Saving csv-file
+</span></span><span id="144" class="l"><a class="l" href="#144">144: </a><span class="php-comment">     * @return string filename
+</span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     */</span>
+</span><span id="146" class="l"><a class="l" href="#146">146: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_saveToCsvFile" href="#_saveToCsvFile">saveToCsvFile</a>(<span class="php-var">$pathToFile</span>) {
+</span><span id="147" class="l"><a class="l" href="#147">147: </a>        <span class="php-var">$path</span> = <span class="php-var">$pathToFile</span> . <span class="php-quote">'products.csv'</span>;
+</span><span id="148" class="l"><a class="l" href="#148">148: </a>        <span class="php-var">$this</span>-&gt;getDataCsv();
+</span><span id="149" class="l"><a class="l" href="#149">149: </a>        <span class="php-var">$f</span> = <span class="php-keyword2">fopen</span>(<span class="php-var">$path</span>, <span class="php-quote">'w+'</span>);
+</span><span id="150" class="l"><a class="l" href="#150">150: </a>        <span class="php-var">$writeResult</span> = <span class="php-keyword2">fwrite</span>(<span class="php-var">$f</span>, <span class="php-var">$this</span>-&gt;resultString);
+</span><span id="151" class="l"><a class="l" href="#151">151: </a>        <span class="php-keyword2">fclose</span>(<span class="php-var">$f</span>);
+</span><span id="152" class="l"><a class="l" href="#152">152: </a>        <span class="php-keyword1">return</span> <span class="php-var">$writeResult</span> == <span class="php-keyword1">FALSE</span> ? <span class="php-keyword1">FALSE</span> : <span class="php-keyword2">basename</span>(<span class="php-var">$path</span>);
+</span><span id="153" class="l"><a class="l" href="#153">153: </a>    }
+</span><span id="154" class="l"><a class="l" href="#154">154: </a>
+</span><span id="155" class="l"><a class="l" href="#155">155: </a>    <span class="php-comment">/**
+</span></span><span id="156" class="l"><a class="l" href="#156">156: </a><span class="php-comment">     * Saving excel-file
+</span></span><span id="157" class="l"><a class="l" href="#157">157: </a><span class="php-comment">     * @param string $type format version (Excel2007|Excel5)
+</span></span><span id="158" class="l"><a class="l" href="#158">158: </a><span class="php-comment">     * @return string filename
+</span></span><span id="159" class="l"><a class="l" href="#159">159: </a><span class="php-comment">     */</span>
+</span><span id="160" class="l"><a class="l" href="#160">160: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_saveToExcelFile" href="#_saveToExcelFile">saveToExcelFile</a>(<span class="php-var">$pathToFile</span>, <span class="php-var">$type</span> = <span class="php-quote">&quot;Excel5&quot;</span>) {
+</span><span id="161" class="l"><a class="l" href="#161">161: </a>        <span class="php-keyword1">switch</span> (<span class="php-var">$type</span>) {
+</span><span id="162" class="l"><a class="l" href="#162">162: </a>            <span class="php-keyword1">case</span> <span class="php-quote">&quot;Excel5&quot;</span>:
+</span><span id="163" class="l"><a class="l" href="#163">163: </a>                <span class="php-var">$path</span> = <span class="php-var">$pathToFile</span> . <span class="php-quote">'products.xls'</span>;
+</span><span id="164" class="l"><a class="l" href="#164">164: </a>                <span class="php-keyword1">break</span>;
+</span><span id="165" class="l"><a class="l" href="#165">165: </a>            <span class="php-keyword1">case</span> <span class="php-quote">&quot;Excel2007&quot;</span>:
+</span><span id="166" class="l"><a class="l" href="#166">166: </a>                <span class="php-var">$path</span> = <span class="php-var">$pathToFile</span> . <span class="php-quote">'products.xlsx'</span>;
+</span><span id="167" class="l"><a class="l" href="#167">167: </a>                <span class="php-keyword1">break</span>;
+</span><span id="168" class="l"><a class="l" href="#168">168: </a>            <span class="php-keyword1">default</span>:
+</span><span id="169" class="l"><a class="l" href="#169">169: </a>                <span class="php-keyword1">return</span> <span class="php-keyword1">FALSE</span>;
+</span><span id="170" class="l"><a class="l" href="#170">170: </a>        }
+</span><span id="171" class="l"><a class="l" href="#171">171: </a>
+</span><span id="172" class="l"><a class="l" href="#172">172: </a>        <span class="php-var">$this</span>-&gt;getDataArray(); <span class="php-comment">// selecting data from DB (if not performed)</span>
+</span><span id="173" class="l"><a class="l" href="#173">173: </a>        <span class="php-var">$objPHPExcel</span> = <span class="php-keyword1">new</span> PHPExcel();
+</span><span id="174" class="l"><a class="l" href="#174">174: </a>
+</span><span id="175" class="l"><a class="l" href="#175">175: </a>        <span class="php-comment">// formation of headlines (from keys of first product data)</span>
+</span><span id="176" class="l"><a class="l" href="#176">176: </a>        <span class="php-var">$someProductData</span> = <span class="php-keyword2">current</span>(<span class="php-var">$this</span>-&gt;resultArray);
+</span><span id="177" class="l"><a class="l" href="#177">177: </a>        <span class="php-var">$headerArray</span> = <span class="php-keyword1">array</span>();
+</span><span id="178" class="l"><a class="l" href="#178">178: </a>        <span class="php-var">$columnNumber</span> = <span class="php-num">0</span>;
+</span><span id="179" class="l"><a class="l" href="#179">179: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$someProductData</span> <span class="php-keyword1">as</span> <span class="php-var">$field</span> =&gt; <span class="php-var">$junk</span>) {
+</span><span id="180" class="l"><a class="l" href="#180">180: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword1">FALSE</span> == <span class="php-var">$abbr</span> = <span class="php-var">$this</span>-&gt;getAbbreviation(<span class="php-var">$field</span>)) {
+</span><span id="181" class="l"><a class="l" href="#181">181: </a>                <span class="php-var">$this</span>-&gt;addError(<span class="php-quote">&quot;Error. Abbreviation not found.&quot;</span>);
+</span><span id="182" class="l"><a class="l" href="#182">182: </a>            }
+</span><span id="183" class="l"><a class="l" href="#183">183: </a>            <span class="php-var">$objPHPExcel</span>-&gt;getActiveSheet()-&gt;setCellValueByColumnAndRow(<span class="php-var">$columnNumber</span>++, <span class="php-num">1</span>, <span class="php-var">$abbr</span>);
+</span><span id="184" class="l"><a class="l" href="#184">184: </a>        }
+</span><span id="185" class="l"><a class="l" href="#185">185: </a>
+</span><span id="186" class="l"><a class="l" href="#186">186: </a>        <span class="php-var">$rowNumber</span> = <span class="php-num">2</span>;
+</span><span id="187" class="l"><a class="l" href="#187">187: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;resultArray <span class="php-keyword1">as</span> <span class="php-var">$productData</span>) {
+</span><span id="188" class="l"><a class="l" href="#188">188: </a>            <span class="php-var">$columnNumber</span> = <span class="php-num">0</span>;
+</span><span id="189" class="l"><a class="l" href="#189">189: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$productData</span> <span class="php-keyword1">as</span> <span class="php-var">$value</span>) {
+</span><span id="190" class="l"><a class="l" href="#190">190: </a>                <span class="php-var">$objPHPExcel</span>-&gt;getActiveSheet()-&gt;setCellValueByColumnAndRow(<span class="php-var">$columnNumber</span>++, <span class="php-var">$rowNumber</span>, <span class="php-var">$value</span>);
+</span><span id="191" class="l"><a class="l" href="#191">191: </a>            }
+</span><span id="192" class="l"><a class="l" href="#192">192: </a>            <span class="php-var">$rowNumber</span>++;
+</span><span id="193" class="l"><a class="l" href="#193">193: </a>        }
+</span><span id="194" class="l"><a class="l" href="#194">194: </a>        <span class="php-var">$objWriter</span> = PHPExcel_IOFactory::createWriter(<span class="php-var">$objPHPExcel</span>, <span class="php-var">$type</span>);
+</span><span id="195" class="l"><a class="l" href="#195">195: </a>        <span class="php-var">$objWriter</span>-&gt;save(<span class="php-var">$path</span>);
+</span><span id="196" class="l"><a class="l" href="#196">196: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">basename</span>(<span class="php-var">$path</span>);
+</span><span id="197" class="l"><a class="l" href="#197">197: </a>    }
+</span><span id="198" class="l"><a class="l" href="#198">198: </a>
+</span><span id="199" class="l"><a class="l" href="#199">199: </a>    <span class="php-comment">/**
+</span></span><span id="200" class="l"><a class="l" href="#200">200: </a><span class="php-comment">     * Getting data from DB
+</span></span><span id="201" class="l"><a class="l" href="#201">201: </a><span class="php-comment">     * (filing $this-&gt;resultArray)
+</span></span><span id="202" class="l"><a class="l" href="#202">202: </a><span class="php-comment">     */</span>
+</span><span id="203" class="l"><a class="l" href="#203">203: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getDataFromBase" href="#_getDataFromBase">getDataFromBase</a>() {
+</span><span id="204" class="l"><a class="l" href="#204">204: </a>        <span class="php-var">$query</span> = <span class="php-var">$this</span>-&gt;createQuery();
+</span><span id="205" class="l"><a class="l" href="#205">205: </a>        <span class="php-var">$result</span> = <span class="php-var">$this</span>-&gt;db-&gt;query(<span class="php-var">$query</span>);
+</span><span id="206" class="l"><a class="l" href="#206">206: </a>        <span class="php-var">$list</span> = <span class="php-keyword1">array</span>();
+</span><span id="207" class="l"><a class="l" href="#207">207: </a>
+</span><span id="208" class="l"><a class="l" href="#208">208: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$result</span>-&gt;result_array() <span class="php-keyword1">as</span> <span class="php-var">$row</span>) {
+</span><span id="209" class="l"><a class="l" href="#209">209: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;categories !== <span class="php-keyword1">NULL</span>) {
+</span><span id="210" class="l"><a class="l" href="#210">210: </a>                <span class="php-var">$row</span>[<span class="php-quote">'category_name'</span>] = <span class="php-var">$this</span>-&gt;categories[<span class="php-var">$row</span>[<span class="php-quote">'category_name'</span>]];
+</span><span id="211" class="l"><a class="l" href="#211">211: </a>            }
+</span><span id="212" class="l"><a class="l" href="#212">212: </a>            <span class="php-var">$list</span>[] = <span class="php-var">$row</span>;
+</span><span id="213" class="l"><a class="l" href="#213">213: </a>        }
+</span><span id="214" class="l"><a class="l" href="#214">214: </a>        <span class="php-var">$this</span>-&gt;resultArray = <span class="php-var">$list</span>;
+</span><span id="215" class="l"><a class="l" href="#215">215: </a>    }
+</span><span id="216" class="l"><a class="l" href="#216">216: </a>
+</span><span id="217" class="l"><a class="l" href="#217">217: </a>    <span class="php-comment">/**
+</span></span><span id="218" class="l"><a class="l" href="#218">218: </a><span class="php-comment">     * Getting products data
+</span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">     * @return array
+</span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">     */</span>
+</span><span id="221" class="l"><a class="l" href="#221">221: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getDataArray" href="#_getDataArray">getDataArray</a>() {
+</span><span id="222" class="l"><a class="l" href="#222">222: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;resultArray)) {
+</span><span id="223" class="l"><a class="l" href="#223">223: </a>            <span class="php-var">$this</span>-&gt;getDataFromBase();
+</span><span id="224" class="l"><a class="l" href="#224">224: </a>        }
+</span><span id="225" class="l"><a class="l" href="#225">225: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;resultArray;
+</span><span id="226" class="l"><a class="l" href="#226">226: </a>    }
+</span><span id="227" class="l"><a class="l" href="#227">227: </a>
+</span><span id="228" class="l"><a class="l" href="#228">228: </a>    <span class="php-comment">/**
+</span></span><span id="229" class="l"><a class="l" href="#229">229: </a><span class="php-comment">     * Creating csv text view
+</span></span><span id="230" class="l"><a class="l" href="#230">230: </a><span class="php-comment">     * @return string
+</span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">     */</span>
+</span><span id="232" class="l"><a class="l" href="#232">232: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getDataCsv" href="#_getDataCsv">getDataCsv</a>() {
+</span><span id="233" class="l"><a class="l" href="#233">233: </a>        <span class="php-var">$this</span>-&gt;getDataArray(); <span class="php-comment">// selecting data from DB (if not performed)</span>
+</span><span id="234" class="l"><a class="l" href="#234">234: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;resultString)) {
+</span><span id="235" class="l"><a class="l" href="#235">235: </a>            <span class="php-var">$this</span>-&gt;getDataFromBase();
+</span><span id="236" class="l"><a class="l" href="#236">236: </a>
+</span><span id="237" class="l"><a class="l" href="#237">237: </a>            <span class="php-var">$fileContents</span> = <span class="php-quote">&quot;&quot;</span>;
+</span><span id="238" class="l"><a class="l" href="#238">238: </a>
+</span><span id="239" class="l"><a class="l" href="#239">239: </a>            <span class="php-comment">// headers forming</span>
+</span><span id="240" class="l"><a class="l" href="#240">240: </a>            <span class="php-var">$someProductData</span> = <span class="php-keyword2">current</span>(<span class="php-var">$this</span>-&gt;resultArray);
+</span><span id="241" class="l"><a class="l" href="#241">241: </a>            <span class="php-var">$headerArray</span> = <span class="php-keyword1">array</span>();
+</span><span id="242" class="l"><a class="l" href="#242">242: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$someProductData</span> <span class="php-keyword1">as</span> <span class="php-var">$field</span> =&gt; <span class="php-var">$junk</span>) {
+</span><span id="243" class="l"><a class="l" href="#243">243: </a>                <span class="php-keyword1">if</span> (<span class="php-keyword1">FALSE</span> == <span class="php-var">$abbr</span> = <span class="php-var">$this</span>-&gt;getAbbreviation(<span class="php-var">$field</span>)) {
+</span><span id="244" class="l"><a class="l" href="#244">244: </a>                    <span class="php-var">$this</span>-&gt;addError(<span class="php-quote">&quot;Error. Abbreviation not found.&quot;</span>);
+</span><span id="245" class="l"><a class="l" href="#245">245: </a>                }
+</span><span id="246" class="l"><a class="l" href="#246">246: </a>                <span class="php-var">$headerArray</span>[] = <span class="php-var">$abbr</span>;
+</span><span id="247" class="l"><a class="l" href="#247">247: </a>            }
+</span><span id="248" class="l"><a class="l" href="#248">248: </a>            <span class="php-var">$fileContents</span> .= <span class="php-var">$this</span>-&gt;getCsvLine(<span class="php-var">$headerArray</span>);
+</span><span id="249" class="l"><a class="l" href="#249">249: </a>
+</span><span id="250" class="l"><a class="l" href="#250">250: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;resultArray <span class="php-keyword1">as</span> <span class="php-var">$row</span>) {
+</span><span id="251" class="l"><a class="l" href="#251">251: </a>                <span class="php-var">$fileContents</span> .= <span class="php-var">$this</span>-&gt;getCsvLine(<span class="php-var">$row</span>);
+</span><span id="252" class="l"><a class="l" href="#252">252: </a>            }
+</span><span id="253" class="l"><a class="l" href="#253">253: </a>            <span class="php-var">$this</span>-&gt;resultString = <span class="php-var">$fileContents</span>;
+</span><span id="254" class="l"><a class="l" href="#254">254: </a>        }
+</span><span id="255" class="l"><a class="l" href="#255">255: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;resultString;
+</span><span id="256" class="l"><a class="l" href="#256">256: </a>    }
+</span><span id="257" class="l"><a class="l" href="#257">257: </a>
+</span><span id="258" class="l"><a class="l" href="#258">258: </a>    <span class="php-comment">/**
+</span></span><span id="259" class="l"><a class="l" href="#259">259: </a><span class="php-comment">     * CSV line creating
+</span></span><span id="260" class="l"><a class="l" href="#260">260: </a><span class="php-comment">     * @param array $dataArray
+</span></span><span id="261" class="l"><a class="l" href="#261">261: </a><span class="php-comment">     * @return string data in quotes and separated by a comma
+</span></span><span id="262" class="l"><a class="l" href="#262">262: </a><span class="php-comment">     */</span>
+</span><span id="263" class="l"><a class="l" href="#263">263: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getCsvLine" href="#_getCsvLine">getCsvLine</a>(<span class="php-var">$dataArray</span>) {
+</span><span id="264" class="l"><a class="l" href="#264">264: </a>        <span class="php-var">$row</span> = <span class="php-quote">&quot;&quot;</span>;
+</span><span id="265" class="l"><a class="l" href="#265">265: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$dataArray</span> <span class="php-keyword1">as</span> <span class="php-var">$value</span>) {
+</span><span id="266" class="l"><a class="l" href="#266">266: </a>            <span class="php-var">$row</span> .= <span class="php-var">$this</span>-&gt;enclosure . <span class="php-keyword2">str_replace</span>(<span class="php-var">$this</span>-&gt;enclosure, <span class="php-var">$this</span>-&gt;enclosure . <span class="php-var">$this</span>-&gt;enclosure, <span class="php-var">$value</span>) . <span class="php-var">$this</span>-&gt;enclosure . <span class="php-var">$this</span>-&gt;delimiter;
+</span><span id="267" class="l"><a class="l" href="#267">267: </a>        }
+</span><span id="268" class="l"><a class="l" href="#268">268: </a>        <span class="php-keyword1">return</span> <span class="php-var">$row</span> . PHP_EOL;
+</span><span id="269" class="l"><a class="l" href="#269">269: </a>    }
+</span><span id="270" class="l"><a class="l" href="#270">270: </a>
+</span><span id="271" class="l"><a class="l" href="#271">271: </a>    <span class="php-comment">/**
+</span></span><span id="272" class="l"><a class="l" href="#272">272: </a><span class="php-comment">     * Creating SQL-query
+</span></span><span id="273" class="l"><a class="l" href="#273">273: </a><span class="php-comment">     * @return string SQL-query
+</span></span><span id="274" class="l"><a class="l" href="#274">274: </a><span class="php-comment">     */</span>
+</span><span id="275" class="l"><a class="l" href="#275">275: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_createQuery" href="#_createQuery">createQuery</a>() {
+</span><span id="276" class="l"><a class="l" href="#276">276: </a>        <span class="php-var">$fieldsArray</span> = <span class="php-keyword1">array</span>(); <span class="php-comment">// tables and fields</span>
+</span><span id="277" class="l"><a class="l" href="#277">277: </a>        <span class="php-var">$fields</span> = <span class="php-quote">&quot;&quot;</span>;
+</span><span id="278" class="l"><a class="l" href="#278">278: </a>        <span class="php-var">$joins</span> = <span class="php-quote">&quot;&quot;</span>;
+</span><span id="279" class="l"><a class="l" href="#279">279: </a>
+</span><span id="280" class="l"><a class="l" href="#280">280: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;completeFields <span class="php-keyword1">as</span> <span class="php-var">$field</span>) {
+</span><span id="281" class="l"><a class="l" href="#281">281: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">in_array</span>(<span class="php-keyword2">trim</span>(<span class="php-var">$field</span>), <span class="php-var">$this</span>-&gt;customFields)) {<span class="php-comment">// this is property of product</span>
+</span><span id="282" class="l"><a class="l" href="#282">282: </a>                <span class="php-comment">// mysql has no pivot, but max(if... construction helps :</span>
+</span><span id="283" class="l"><a class="l" href="#283">283: </a>                <span class="php-var">$fieldsArray</span>[] = <span class="php-var">$this</span>-&gt;getPropertyField(<span class="php-keyword2">trim</span>(<span class="php-var">$field</span>));
+</span><span id="284" class="l"><a class="l" href="#284">284: </a>            } <span class="php-keyword1">else</span> { <span class="php-comment">// this is field</span>
+</span><span id="285" class="l"><a class="l" href="#285">285: </a>                <span class="php-var">$fieldsArray</span>[] = <span class="php-var">$this</span>-&gt;getFullField(<span class="php-keyword2">trim</span>(<span class="php-var">$field</span>));
+</span><span id="286" class="l"><a class="l" href="#286">286: </a>            }
+</span><span id="287" class="l"><a class="l" href="#287">287: </a>        }
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>
+</span><span id="289" class="l"><a class="l" href="#289">289: </a>        <span class="php-comment">// fields in SELECT concatenation</span>
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$fieldsArray</span> <span class="php-keyword1">as</span> <span class="php-var">$field</span>) {
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$field</span> == <span class="php-keyword1">FALSE</span> &amp;&amp; <span class="php-var">$this</span>-&gt;skipErrors == <span class="php-keyword1">TRUE</span>) {
+</span><span id="292" class="l"><a class="l" href="#292">292: </a>                <span class="php-var">$this</span>-&gt;addError(<span class="php-quote">'Error while creating query. Field missing.'</span>);
+</span><span id="293" class="l"><a class="l" href="#293">293: </a>            }
+</span><span id="294" class="l"><a class="l" href="#294">294: </a>            <span class="php-var">$fields</span> .= <span class="php-var">$field</span> != <span class="php-keyword1">FALSE</span> ? <span class="php-quote">&quot; \n </span><span class="php-var">{$field}</span><span class="php-quote">, &quot;</span> : <span class="php-quote">&quot;&quot;</span>;
+</span><span id="295" class="l"><a class="l" href="#295">295: </a>        }
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>        <span class="php-comment">// last comma removing</span>
+</span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-var">$fields</span> = <span class="php-keyword2">substr</span>(<span class="php-var">$fields</span>, <span class="php-num">0</span>, <span class="php-keyword2">strlen</span>(<span class="php-var">$fields</span>) - <span class="php-num">2</span>);
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>
+</span><span id="299" class="l"><a class="l" href="#299">299: </a>
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>        <span class="php-comment">// if categories are selected adding condition to query</span>
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_array</span>(<span class="php-var">$this</span>-&gt;selectedCats) &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;selectedCats) &gt; <span class="php-num">0</span>) {
+</span><span id="302" class="l"><a class="l" href="#302">302: </a>            <span class="php-comment">// to avoid query error checking if category exists</span>
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>            <span class="php-keyword1">for</span> (<span class="php-var">$i</span> = <span class="php-num">0</span>; <span class="php-var">$i</span> &lt; <span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;selectedCats); <span class="php-var">$i</span>++) {
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>                <span class="php-keyword1">if</span> (!<span class="php-keyword2">key_exists</span>(<span class="php-var">$this</span>-&gt;selectedCats[<span class="php-var">$i</span>], <span class="php-var">$this</span>-&gt;categoriesData)) {
+</span><span id="305" class="l"><a class="l" href="#305">305: </a>                    <span class="php-keyword1">unset</span>(<span class="php-var">$this</span>-&gt;selectedCats[<span class="php-var">$i</span>]);
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>                }
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>            }
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>            <span class="php-var">$catIds</span> = <span class="php-keyword2">implode</span>(<span class="php-quote">&quot;,&quot;</span>, <span class="php-var">$this</span>-&gt;selectedCats);
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>            <span class="php-var">$selCatsCondition</span> = <span class="php-quote">&quot; AND `shop_products`.`category_id` IN (</span><span class="php-var">{$catIds}</span><span class="php-quote">) &quot;</span>;
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>            <span class="php-var">$selCatsCondition</span> = <span class="php-quote">&quot; &quot;</span>;
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>        }
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>        <span class="php-var">$query</span> = <span class="php-quote">&quot;
+</span></span><span id="316" class="l"><a class="l" href="#316">316: </a><span class="php-quote">            SELECT
+</span></span><span id="317" class="l"><a class="l" href="#317">317: </a><span class="php-quote">                </span><span class="php-var">{$fields}</span><span class="php-quote">
+</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-quote">            FROM
+</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-quote">                `shop_product_variants`
+</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-quote">            LEFT JOIN `shop_products` ON `shop_product_variants`.`product_id` = `shop_products`.`id`
+</span></span><span id="321" class="l"><a class="l" href="#321">321: </a><span class="php-quote">            LEFT JOIN `shop_product_variants_i18n` ON `shop_product_variants`.`id` = `shop_product_variants_i18n`.`id`
+</span></span><span id="322" class="l"><a class="l" href="#322">322: </a><span class="php-quote">            LEFT JOIN `shop_products_i18n` ON `shop_products_i18n`.`id` = `shop_products`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_products_i18n`.`locale`
+</span></span><span id="323" class="l"><a class="l" href="#323">323: </a><span class="php-quote">
+</span></span><span id="324" class="l"><a class="l" href="#324">324: </a><span class="php-quote">            LEFT JOIN `shop_category` ON `shop_products`.`category_id` = `shop_category`.`id`
+</span></span><span id="325" class="l"><a class="l" href="#325">325: </a><span class="php-quote">            LEFT JOIN `shop_category_i18n` ON `shop_category_i18n`.`id` = `shop_category`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_category_i18n`.`locale`
+</span></span><span id="326" class="l"><a class="l" href="#326">326: </a><span class="php-quote">
+</span></span><span id="327" class="l"><a class="l" href="#327">327: </a><span class="php-quote">            LEFT JOIN `shop_product_properties_data` ON `shop_product_properties_data`.`product_id` = `shop_product_variants`.`product_id`
+</span></span><span id="328" class="l"><a class="l" href="#328">328: </a><span class="php-quote">            LEFT JOIN `shop_product_properties` ON `shop_product_properties`.`id` = `shop_product_properties_data`.`property_id`
+</span></span><span id="329" class="l"><a class="l" href="#329">329: </a><span class="php-quote">            LEFT JOIN `shop_product_properties_i18n` ON `shop_product_properties_i18n`.`id` = `shop_product_properties`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_product_properties_i18n`.`locale`
+</span></span><span id="330" class="l"><a class="l" href="#330">330: </a><span class="php-quote">
+</span></span><span id="331" class="l"><a class="l" href="#331">331: </a><span class="php-quote">            LEFT JOIN `shop_brands` ON `shop_brands`.`id` = `shop_products`.`brand_id`
+</span></span><span id="332" class="l"><a class="l" href="#332">332: </a><span class="php-quote">            LEFT JOIN `shop_brands_i18n` ON `shop_brands_i18n`.`id` = `shop_brands`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_brands_i18n`.`locale`
+</span></span><span id="333" class="l"><a class="l" href="#333">333: </a><span class="php-quote">
+</span></span><span id="334" class="l"><a class="l" href="#334">334: </a><span class="php-quote">            LEFT JOIN `shop_currencies` ON `shop_currencies`.`id` = `shop_product_variants`.`currency`
+</span></span><span id="335" class="l"><a class="l" href="#335">335: </a><span class="php-quote">
+</span></span><span id="336" class="l"><a class="l" href="#336">336: </a><span class="php-quote">            LEFT JOIN `shop_product_images` ON `shop_product_variants`.`product_id` = `shop_product_images`.`product_id`
+</span></span><span id="337" class="l"><a class="l" href="#337">337: </a><span class="php-quote">
+</span></span><span id="338" class="l"><a class="l" href="#338">338: </a><span class="php-quote">            WHERE  1
+</span></span><span id="339" class="l"><a class="l" href="#339">339: </a><span class="php-quote">                AND `shop_product_variants_i18n`.`locale` = '</span><span class="php-var">{$this-&gt;language}</span><span class="php-quote">'
+</span></span><span id="340" class="l"><a class="l" href="#340">340: </a><span class="php-quote">                </span><span class="php-var">{$selCatsCondition}</span><span class="php-quote">
+</span></span><span id="341" class="l"><a class="l" href="#341">341: </a><span class="php-quote">            GROUP BY `shop_product_variants`.`id`
+</span></span><span id="342" class="l"><a class="l" href="#342">342: </a><span class="php-quote">            ORDER BY `shop_products`.`category_id`
+</span></span><span id="343" class="l"><a class="l" href="#343">343: </a><span class="php-quote">        &quot;</span>;
+</span><span id="344" class="l"><a class="l" href="#344">344: </a>
+</span><span id="345" class="l"><a class="l" href="#345">345: </a>        <span class="php-var">$f</span> = <span class="php-keyword2">fopen</span>(<span class="php-quote">'/var/www/export_query.txt'</span>, <span class="php-quote">'w+'</span>);
+</span><span id="346" class="l"><a class="l" href="#346">346: </a>        <span class="php-keyword2">fwrite</span>(<span class="php-var">$f</span>, <span class="php-keyword2">print_r</span>(<span class="php-var">$query</span>, <span class="php-keyword1">TRUE</span>));
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>        <span class="php-keyword2">fclose</span>(<span class="php-var">$f</span>);
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>        <span class="php-keyword1">return</span> <span class="php-var">$query</span>;
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>    }
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>    <span class="php-comment">/**
+</span></span><span id="353" class="l"><a class="l" href="#353">353: </a><span class="php-comment">     * Returns a field in a database table with him.
+</span></span><span id="354" class="l"><a class="l" href="#354">354: </a><span class="php-comment">     * (The field can be on the table is in the format `table`. `Field` - if there are field with the same name in a different tables).
+</span></span><span id="355" class="l"><a class="l" href="#355">355: </a><span class="php-comment">     * @param string $fieldName
+</span></span><span id="356" class="l"><a class="l" href="#356">356: </a><span class="php-comment">     * @return FALSE|string FALSE if error or field with it table
+</span></span><span id="357" class="l"><a class="l" href="#357">357: </a><span class="php-comment">     */</span>
+</span><span id="358" class="l"><a class="l" href="#358">358: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getFullField" href="#_getFullField">getFullField</a>(<span class="php-var">$fieldName</span>) {
+</span><span id="359" class="l"><a class="l" href="#359">359: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">preg_match</span>(<span class="php-quote">&quot;/^\`[0-9a-zA-Z\_]+\`\.\`[0-9a-zA-Z\_]+\`/i&quot;</span>, <span class="php-var">$fieldName</span>)) {
+</span><span id="360" class="l"><a class="l" href="#360">360: </a>            <span class="php-keyword1">return</span> <span class="php-var">$fieldName</span>;
+</span><span id="361" class="l"><a class="l" href="#361">361: </a>        } <span class="php-keyword1">elseif</span> (<span class="php-keyword2">preg_match</span>(<span class="php-quote">&quot;/^[0-9a-zA-Z\_]+</span><span class="php-var">$</span><span class="php-quote">/i&quot;</span>, <span class="php-var">$fieldName</span>)) {
+</span><span id="362" class="l"><a class="l" href="#362">362: </a>            <span class="php-comment">// тільки поле</span>
+</span><span id="363" class="l"><a class="l" href="#363">363: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;tablesFields <span class="php-keyword1">as</span> <span class="php-var">$table</span> =&gt; <span class="php-var">$fieldsArray</span>) {
+</span><span id="364" class="l"><a class="l" href="#364">364: </a>                <span class="php-keyword1">if</span> (<span class="php-keyword2">in_array</span>(<span class="php-keyword2">trim</span>(<span class="php-var">$fieldName</span>), <span class="php-var">$fieldsArray</span>)) {
+</span><span id="365" class="l"><a class="l" href="#365">365: </a>                    <span class="php-keyword1">return</span> <span class="php-quote">&quot;`</span><span class="php-var">{$table}</span><span class="php-quote">`.`</span><span class="php-var">{$fieldName}</span><span class="php-quote">`&quot;</span>;
+</span><span id="366" class="l"><a class="l" href="#366">366: </a>                }
+</span><span id="367" class="l"><a class="l" href="#367">367: </a>            }
+</span><span id="368" class="l"><a class="l" href="#368">368: </a>        }
+</span><span id="369" class="l"><a class="l" href="#369">369: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">FALSE</span>;
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>    }
+</span><span id="371" class="l"><a class="l" href="#371">371: </a>
+</span><span id="372" class="l"><a class="l" href="#372">372: </a>    <span class="php-comment">/**
+</span></span><span id="373" class="l"><a class="l" href="#373">373: </a><span class="php-comment">     * Returns product attribute like it is field (pivot)
+</span></span><span id="374" class="l"><a class="l" href="#374">374: </a><span class="php-comment">     * @param string $propertyName
+</span></span><span id="375" class="l"><a class="l" href="#375">375: </a><span class="php-comment">     * @return string
+</span></span><span id="376" class="l"><a class="l" href="#376">376: </a><span class="php-comment">     */</span>
+</span><span id="377" class="l"><a class="l" href="#377">377: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getPropertyField" href="#_getPropertyField">getPropertyField</a>(<span class="php-var">$propertyName</span>) {
+</span><span id="378" class="l"><a class="l" href="#378">378: </a>        <span class="php-keyword1">return</span> <span class="php-quote">&quot;GROUP_CONCAT(DISTINCT IF(`shop_product_properties_data`.`property_id` = &quot;</span> . <span class="php-keyword2">array_search</span>(<span class="php-var">$propertyName</span>, <span class="php-var">$this</span>-&gt;customFields) . <span class="php-quote">&quot;, `shop_product_properties_data`.`value`, NULL) SEPARATOR '|') AS `</span><span class="php-var">{$propertyName}</span><span class="php-quote">`&quot;</span>;
+</span><span id="379" class="l"><a class="l" href="#379">379: </a>    }
+</span><span id="380" class="l"><a class="l" href="#380">380: </a>
+</span><span id="381" class="l"><a class="l" href="#381">381: </a>    <span class="php-comment">/**
+</span></span><span id="382" class="l"><a class="l" href="#382">382: </a><span class="php-comment">     * Returns all product properties
+</span></span><span id="383" class="l"><a class="l" href="#383">383: </a><span class="php-comment">     * @return array
+</span></span><span id="384" class="l"><a class="l" href="#384">384: </a><span class="php-comment">     */</span>
+</span><span id="385" class="l"><a class="l" href="#385">385: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getCustomFields" href="#_getCustomFields">getCustomFields</a>() {
+</span><span id="386" class="l"><a class="l" href="#386">386: </a>        <span class="php-var">$result</span> = <span class="php-var">$this</span>-&gt;db-&gt;query(<span class="php-quote">&quot;SELECT `id`,`csv_name` FROM shop_product_properties&quot;</span>);
+</span><span id="387" class="l"><a class="l" href="#387">387: </a>        <span class="php-var">$customFields</span> = <span class="php-keyword1">array</span>();
+</span><span id="388" class="l"><a class="l" href="#388">388: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$result</span>-&gt;result() <span class="php-keyword1">as</span> <span class="php-var">$row</span>) {
+</span><span id="389" class="l"><a class="l" href="#389">389: </a>            <span class="php-var">$customFields</span>[<span class="php-var">$row</span>-&gt;id] = <span class="php-var">$row</span>-&gt;csv_name;
+</span><span id="390" class="l"><a class="l" href="#390">390: </a>        }
+</span><span id="391" class="l"><a class="l" href="#391">391: </a>        <span class="php-keyword1">return</span> <span class="php-var">$customFields</span>;
+</span><span id="392" class="l"><a class="l" href="#392">392: </a>    }
+</span><span id="393" class="l"><a class="l" href="#393">393: </a>
+</span><span id="394" class="l"><a class="l" href="#394">394: </a>    <span class="php-comment">/**
+</span></span><span id="395" class="l"><a class="l" href="#395">395: </a><span class="php-comment">     * Gets and merge fields and properties
+</span></span><span id="396" class="l"><a class="l" href="#396">396: </a><span class="php-comment">     * (via constructor arrive reduction)
+</span></span><span id="397" class="l"><a class="l" href="#397">397: </a><span class="php-comment">     * @return array
+</span></span><span id="398" class="l"><a class="l" href="#398">398: </a><span class="php-comment">     */</span>
+</span><span id="399" class="l"><a class="l" href="#399">399: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getCompleteFields" href="#_getCompleteFields">getCompleteFields</a>() {
+</span><span id="400" class="l"><a class="l" href="#400">400: </a>        <span class="php-var">$abbreviations</span> = <span class="php-var">$this</span>-&gt;getAbbreviation();
+</span><span id="401" class="l"><a class="l" href="#401">401: </a>        <span class="php-var">$completeFields</span> = <span class="php-keyword1">array</span>();
+</span><span id="402" class="l"><a class="l" href="#402">402: </a>        <span class="php-comment">// the parameters of the products that can be transmitted through the settings designer</span>
+</span><span id="403" class="l"><a class="l" href="#403">403: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">sizeof</span>(<span class="php-var">$this</span>-&gt;attributesCF) &gt; <span class="php-num">0</span>)
+</span><span id="404" class="l"><a class="l" href="#404">404: </a>            <span class="php-var">$attr</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$this</span>-&gt;attributes, <span class="php-var">$this</span>-&gt;attributesCF);
+</span><span id="405" class="l"><a class="l" href="#405">405: </a>
+</span><span id="406" class="l"><a class="l" href="#406">406: </a>        <span class="php-comment">//a reduction of the field names and field attributes</span>
+</span><span id="407" class="l"><a class="l" href="#407">407: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;attributes <span class="php-keyword1">as</span> <span class="php-var">$field</span> =&gt; <span class="php-var">$justNumber1</span>) {
+</span><span id="408" class="l"><a class="l" href="#408">408: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">key_exists</span>(<span class="php-var">$field</span>, <span class="php-var">$abbreviations</span>)) {
+</span><span id="409" class="l"><a class="l" href="#409">409: </a>                <span class="php-var">$completeFields</span>[] = <span class="php-var">$abbreviations</span>[<span class="php-var">$field</span>];
+</span><span id="410" class="l"><a class="l" href="#410">410: </a>            } <span class="php-keyword1">elseif</span> (<span class="php-keyword2">in_array</span>(<span class="php-var">$field</span>, <span class="php-var">$this</span>-&gt;customFields)) {
+</span><span id="411" class="l"><a class="l" href="#411">411: </a>                <span class="php-var">$completeFields</span>[] = <span class="php-var">$field</span>;
+</span><span id="412" class="l"><a class="l" href="#412">412: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="413" class="l"><a class="l" href="#413">413: </a>                <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;skipErrors == <span class="php-keyword1">FALSE</span>) {
+</span><span id="414" class="l"><a class="l" href="#414">414: </a>                    <span class="php-var">$this</span>-&gt;addError(<span class="php-quote">'Unknown column: '</span> . <span class="php-var">$field</span>);
+</span><span id="415" class="l"><a class="l" href="#415">415: </a>                }
+</span><span id="416" class="l"><a class="l" href="#416">416: </a>            }
+</span><span id="417" class="l"><a class="l" href="#417">417: </a>        }
+</span><span id="418" class="l"><a class="l" href="#418">418: </a>        <span class="php-keyword1">return</span> <span class="php-var">$completeFields</span>;
+</span><span id="419" class="l"><a class="l" href="#419">419: </a>    }
+</span><span id="420" class="l"><a class="l" href="#420">420: </a>
+</span><span id="421" class="l"><a class="l" href="#421">421: </a>    <span class="php-comment">/**
+</span></span><span id="422" class="l"><a class="l" href="#422">422: </a><span class="php-comment">     * Returns field abbreviation
+</span></span><span id="423" class="l"><a class="l" href="#423">423: </a><span class="php-comment">     * @param string $field (optional) if empty returns array of abbreviations
+</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     */</span>
+</span><span id="425" class="l"><a class="l" href="#425">425: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getAbbreviation" href="#_getAbbreviation">getAbbreviation</a>(<span class="php-var">$field</span> = <span class="php-keyword1">NULL</span>) {
+</span><span id="426" class="l"><a class="l" href="#426">426: </a>        <span class="php-var">$abbreviationsArray</span> = <span class="php-keyword1">array</span>(
+</span><span id="427" class="l"><a class="l" href="#427">427: </a>            <span class="php-quote">'name'</span> =&gt; <span class="php-quote">'`shop_products_i18n`.`name` as product_name'</span>, <span class="php-comment">//</span>
+</span><span id="428" class="l"><a class="l" href="#428">428: </a>            <span class="php-quote">'url'</span> =&gt; <span class="php-quote">'url'</span>, <span class="php-comment">//</span>
+</span><span id="429" class="l"><a class="l" href="#429">429: </a>            <span class="php-quote">'oldprc'</span> =&gt; <span class="php-quote">'old_price'</span>, <span class="php-comment">//</span>
+</span><span id="430" class="l"><a class="l" href="#430">430: </a>            <span class="php-quote">'prc'</span> =&gt; <span class="php-quote">'price_in_main'</span>, <span class="php-comment">//</span>
+</span><span id="431" class="l"><a class="l" href="#431">431: </a>            <span class="php-quote">'stk'</span> =&gt; <span class="php-quote">'stock'</span>, <span class="php-comment">//</span>
+</span><span id="432" class="l"><a class="l" href="#432">432: </a>            <span class="php-quote">'num'</span> =&gt; <span class="php-quote">'number'</span>, <span class="php-comment">//</span>
+</span><span id="433" class="l"><a class="l" href="#433">433: </a>            <span class="php-quote">'var'</span> =&gt; <span class="php-quote">'`shop_product_variants_i18n`.`name` as variant_name'</span>,
+</span><span id="434" class="l"><a class="l" href="#434">434: </a>            <span class="php-quote">'act'</span> =&gt; <span class="php-quote">'active'</span>, <span class="php-comment">//</span>
+</span><span id="435" class="l"><a class="l" href="#435">435: </a>            <span class="php-quote">'hit'</span> =&gt; <span class="php-quote">'hit'</span>, <span class="php-comment">//</span>
+</span><span id="436" class="l"><a class="l" href="#436">436: </a>            <span class="php-quote">'brd'</span> =&gt; <span class="php-quote">'`shop_brands_i18n`.`name` as brand_name'</span>, <span class="php-comment">//</span>
+</span><span id="437" class="l"><a class="l" href="#437">437: </a>            <span class="php-quote">'modim'</span> =&gt; <span class="php-quote">'mainModImage'</span>,
+</span><span id="438" class="l"><a class="l" href="#438">438: </a>            <span class="php-quote">'modis'</span> =&gt; <span class="php-quote">'smallModImage'</span>,
+</span><span id="439" class="l"><a class="l" href="#439">439: </a>            <span class="php-quote">'cat'</span> =&gt; <span class="php-quote">'`shop_category_i18n`.`name` as category_name'</span>,
+</span><span id="440" class="l"><a class="l" href="#440">440: </a>            <span class="php-quote">'relp'</span> =&gt; <span class="php-quote">'related_products'</span>,
+</span><span id="441" class="l"><a class="l" href="#441">441: </a>            <span class="php-quote">'vimg'</span> =&gt; <span class="php-quote">'mainImage'</span>,
+</span><span id="442" class="l"><a class="l" href="#442">442: </a>            <span class="php-quote">'cur'</span> =&gt; <span class="php-quote">'currency'</span>,
+</span><span id="443" class="l"><a class="l" href="#443">443: </a>            <span class="php-quote">'imgs'</span> =&gt; <span class="php-quote">'`shop_product_images`.`image_name` as additional_images'</span>,
+</span><span id="444" class="l"><a class="l" href="#444">444: </a>            <span class="php-quote">'shdesc'</span> =&gt; <span class="php-quote">'short_description'</span>,
+</span><span id="445" class="l"><a class="l" href="#445">445: </a>            <span class="php-quote">'desc'</span> =&gt; <span class="php-quote">'full_description'</span>,
+</span><span id="446" class="l"><a class="l" href="#446">446: </a>            <span class="php-quote">'mett'</span> =&gt; <span class="php-quote">'meta_title'</span>,
+</span><span id="447" class="l"><a class="l" href="#447">447: </a>            <span class="php-quote">'metd'</span> =&gt; <span class="php-quote">'meta_description'</span>,
+</span><span id="448" class="l"><a class="l" href="#448">448: </a>            <span class="php-quote">'metk'</span> =&gt; <span class="php-quote">'meta_keywords'</span>,
+</span><span id="449" class="l"><a class="l" href="#449">449: </a>            <span class="php-quote">'skip'</span> =&gt; <span class="php-quote">'skip'</span>,
+</span><span id="450" class="l"><a class="l" href="#450">450: </a>        );
+</span><span id="451" class="l"><a class="l" href="#451">451: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_null</span>(<span class="php-var">$field</span>)) {
+</span><span id="452" class="l"><a class="l" href="#452">452: </a>            <span class="php-keyword1">return</span> <span class="php-var">$abbreviationsArray</span>;
+</span><span id="453" class="l"><a class="l" href="#453">453: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="454" class="l"><a class="l" href="#454">454: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">in_array</span>(<span class="php-var">$field</span>, <span class="php-var">$this</span>-&gt;customFields)) { <span class="php-comment">// properties just returns</span>
+</span><span id="455" class="l"><a class="l" href="#455">455: </a>                <span class="php-keyword1">return</span> <span class="php-var">$field</span>;
+</span><span id="456" class="l"><a class="l" href="#456">456: </a>            }
+</span><span id="457" class="l"><a class="l" href="#457">457: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$abbreviationsArray</span> <span class="php-keyword1">as</span> <span class="php-var">$abbreviation</span> =&gt; <span class="php-var">$field_</span>) {
+</span><span id="458" class="l"><a class="l" href="#458">458: </a>                <span class="php-keyword1">if</span> (<span class="php-keyword2">strpos</span>(<span class="php-keyword2">trim</span>(<span class="php-var">$field_</span>), <span class="php-keyword2">trim</span>(<span class="php-var">$field</span>)) !== <span class="php-keyword1">FALSE</span>) {
+</span><span id="459" class="l"><a class="l" href="#459">459: </a>                    <span class="php-keyword1">return</span> <span class="php-var">$abbreviation</span>;
+</span><span id="460" class="l"><a class="l" href="#460">460: </a>                }
+</span><span id="461" class="l"><a class="l" href="#461">461: </a>            }
+</span><span id="462" class="l"><a class="l" href="#462">462: </a>        }
+</span><span id="463" class="l"><a class="l" href="#463">463: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">FALSE</span>; <span class="php-comment">//</span>
+</span><span id="464" class="l"><a class="l" href="#464">464: </a>    }
+</span><span id="465" class="l"><a class="l" href="#465">465: </a>
+</span><span id="466" class="l"><a class="l" href="#466">466: </a>    <span class="php-comment">/**
+</span></span><span id="467" class="l"><a class="l" href="#467">467: </a><span class="php-comment">     * Get categories data from DB
+</span></span><span id="468" class="l"><a class="l" href="#468">468: </a><span class="php-comment">     * @return array 
+</span></span><span id="469" class="l"><a class="l" href="#469">469: </a><span class="php-comment">     */</span>
+</span><span id="470" class="l"><a class="l" href="#470">470: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getCategoriesFromBase" href="#_getCategoriesFromBase">getCategoriesFromBase</a>() {
+</span><span id="471" class="l"><a class="l" href="#471">471: </a>        <span class="php-var">$query</span> = <span class="php-quote">&quot;
+</span></span><span id="472" class="l"><a class="l" href="#472">472: </a><span class="php-quote">            SELECT 
+</span></span><span id="473" class="l"><a class="l" href="#473">473: </a><span class="php-quote">                `shop_category`.`id`, 
+</span></span><span id="474" class="l"><a class="l" href="#474">474: </a><span class="php-quote">                `shop_category`.`parent_id`, 
+</span></span><span id="475" class="l"><a class="l" href="#475">475: </a><span class="php-quote">                `shop_category`.`full_path_ids`, 
+</span></span><span id="476" class="l"><a class="l" href="#476">476: </a><span class="php-quote">                `shop_category_i18n`.`name`
+</span></span><span id="477" class="l"><a class="l" href="#477">477: </a><span class="php-quote">            FROM 
+</span></span><span id="478" class="l"><a class="l" href="#478">478: </a><span class="php-quote">                `shop_category`
+</span></span><span id="479" class="l"><a class="l" href="#479">479: </a><span class="php-quote">            LEFT JOIN `shop_category_i18n` ON `shop_category_i18n`.`id` = `shop_category`.`id`
+</span></span><span id="480" class="l"><a class="l" href="#480">480: </a><span class="php-quote">            WHERE 
+</span></span><span id="481" class="l"><a class="l" href="#481">481: </a><span class="php-quote">                `shop_category_i18n`.`locale` = '</span><span class="php-var">{$this-&gt;language}</span><span class="php-quote">'
+</span></span><span id="482" class="l"><a class="l" href="#482">482: </a><span class="php-quote">        &quot;</span>;
+</span><span id="483" class="l"><a class="l" href="#483">483: </a>
+</span><span id="484" class="l"><a class="l" href="#484">484: </a>        <span class="php-var">$categoriesData</span> = <span class="php-keyword1">array</span>();
+</span><span id="485" class="l"><a class="l" href="#485">485: </a>        <span class="php-var">$result</span> = <span class="php-var">$this</span>-&gt;db-&gt;query(<span class="php-var">$query</span>);
+</span><span id="486" class="l"><a class="l" href="#486">486: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$result</span>-&gt;result_array() <span class="php-keyword1">as</span> <span class="php-var">$row</span>) {
+</span><span id="487" class="l"><a class="l" href="#487">487: </a>            <span class="php-var">$categoriesData</span>[<span class="php-var">$row</span>[<span class="php-quote">'id'</span>]] = <span class="php-keyword1">array</span>(
+</span><span id="488" class="l"><a class="l" href="#488">488: </a>                <span class="php-quote">'parent_id'</span> =&gt; <span class="php-var">$row</span>[<span class="php-quote">'parent_id'</span>],
+</span><span id="489" class="l"><a class="l" href="#489">489: </a>                <span class="php-quote">'name'</span> =&gt; <span class="php-var">$row</span>[<span class="php-quote">'name'</span>],
+</span><span id="490" class="l"><a class="l" href="#490">490: </a>                <span class="php-quote">'full_path_ids'</span> =&gt; <span class="php-keyword2">unserialize</span>(<span class="php-var">$row</span>[<span class="php-quote">'full_path_ids'</span>]),
+</span><span id="491" class="l"><a class="l" href="#491">491: </a>            );
+</span><span id="492" class="l"><a class="l" href="#492">492: </a>        }
+</span><span id="493" class="l"><a class="l" href="#493">493: </a>        <span class="php-keyword1">return</span> <span class="php-var">$categoriesData</span>;
+</span><span id="494" class="l"><a class="l" href="#494">494: </a>    }
+</span><span id="495" class="l"><a class="l" href="#495">495: </a>
+</span><span id="496" class="l"><a class="l" href="#496">496: </a>    <span class="php-comment">/**
+</span></span><span id="497" class="l"><a class="l" href="#497">497: </a><span class="php-comment">     * Gets categories pathes
+</span></span><span id="498" class="l"><a class="l" href="#498">498: </a><span class="php-comment">     */</span>
+</span><span id="499" class="l"><a class="l" href="#499">499: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getCategoriesPaths" href="#_getCategoriesPaths">getCategoriesPaths</a>() {
+</span><span id="500" class="l"><a class="l" href="#500">500: </a>        <span class="php-var">$categoriesPathes</span> = <span class="php-keyword1">array</span>();
+</span><span id="501" class="l"><a class="l" href="#501">501: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;categoriesData <span class="php-keyword1">as</span> <span class="php-var">$id</span> =&gt; <span class="php-var">$data</span>) {
+</span><span id="502" class="l"><a class="l" href="#502">502: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">is_array</span>(<span class="php-var">$data</span>[<span class="php-quote">'full_path_ids'</span>]) &amp; <span class="php-var">$data</span>[<span class="php-quote">'full_path_ids'</span>] !== <span class="php-keyword1">FALSE</span>) {
+</span><span id="503" class="l"><a class="l" href="#503">503: </a>                <span class="php-var">$pathNames</span> = <span class="php-keyword1">array</span>();
+</span><span id="504" class="l"><a class="l" href="#504">504: </a>                <span class="php-keyword1">foreach</span> (<span class="php-var">$data</span>[<span class="php-quote">'full_path_ids'</span>] <span class="php-keyword1">as</span> <span class="php-var">$parentId</span>) {
+</span><span id="505" class="l"><a class="l" href="#505">505: </a>                    <span class="php-var">$pathNames</span>[] = <span class="php-var">$this</span>-&gt;categoriesData[<span class="php-var">$parentId</span>][<span class="php-quote">'name'</span>];
+</span><span id="506" class="l"><a class="l" href="#506">506: </a>                }
+</span><span id="507" class="l"><a class="l" href="#507">507: </a>                <span class="php-var">$pathNames</span>[] = <span class="php-var">$data</span>[<span class="php-quote">'name'</span>];
+</span><span id="508" class="l"><a class="l" href="#508">508: </a>                <span class="php-var">$categoriesPathes</span>[<span class="php-var">$data</span>[<span class="php-quote">'name'</span>]] = <span class="php-keyword2">implode</span>(<span class="php-quote">&quot;/&quot;</span>, <span class="php-var">$pathNames</span>);
+</span><span id="509" class="l"><a class="l" href="#509">509: </a>            }
+</span><span id="510" class="l"><a class="l" href="#510">510: </a>        }
+</span><span id="511" class="l"><a class="l" href="#511">511: </a>        <span class="php-var">$this</span>-&gt;categories = <span class="php-var">$categoriesPathes</span>;
+</span><span id="512" class="l"><a class="l" href="#512">512: </a>        <span class="php-keyword1">return</span> <span class="php-var">$categoriesPathes</span>;
+</span><span id="513" class="l"><a class="l" href="#513">513: </a>    }
+</span><span id="514" class="l"><a class="l" href="#514">514: </a>
+</span><span id="515" class="l"><a class="l" href="#515">515: </a>    <span class="php-comment">/**
+</span></span><span id="516" class="l"><a class="l" href="#516">516: </a><span class="php-comment">     * Gets filds of tables
+</span></span><span id="517" class="l"><a class="l" href="#517">517: </a><span class="php-comment">     * @param array $tables
+</span></span><span id="518" class="l"><a class="l" href="#518">518: </a><span class="php-comment">     */</span>
+</span><span id="519" class="l"><a class="l" href="#519">519: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_getTablesFields" href="#_getTablesFields">getTablesFields</a>(<span class="php-var">$tables</span>) {
+</span><span id="520" class="l"><a class="l" href="#520">520: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword2">is_array</span>(<span class="php-var">$tables</span>))
+</span><span id="521" class="l"><a class="l" href="#521">521: </a>            <span class="php-keyword1">return</span>;
+</span><span id="522" class="l"><a class="l" href="#522">522: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$tables</span> <span class="php-keyword1">as</span> <span class="php-var">$table</span>) {
+</span><span id="523" class="l"><a class="l" href="#523">523: </a>            <span class="php-var">$query</span> = <span class="php-quote">&quot;DESCRIBE `</span><span class="php-var">{$table}</span><span class="php-quote">`&quot;</span>;
+</span><span id="524" class="l"><a class="l" href="#524">524: </a>            <span class="php-var">$result</span> = <span class="php-var">$this</span>-&gt;db-&gt;query(<span class="php-var">$query</span>);
+</span><span id="525" class="l"><a class="l" href="#525">525: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$result</span>-&gt;result() <span class="php-keyword1">as</span> <span class="php-var">$row</span>) {
+</span><span id="526" class="l"><a class="l" href="#526">526: </a>                <span class="php-var">$this</span>-&gt;tablesFields[<span class="php-var">$table</span>][] = <span class="php-var">$row</span>-&gt;Field;
+</span><span id="527" class="l"><a class="l" href="#527">527: </a>            }
+</span><span id="528" class="l"><a class="l" href="#528">528: </a>        }
+</span><span id="529" class="l"><a class="l" href="#529">529: </a>    }
+</span><span id="530" class="l"><a class="l" href="#530">530: </a>
+</span><span id="531" class="l"><a class="l" href="#531">531: </a>    <span class="php-comment">/**
+</span></span><span id="532" class="l"><a class="l" href="#532">532: </a><span class="php-comment">     * addError
+</span></span><span id="533" class="l"><a class="l" href="#533">533: </a><span class="php-comment">     *
+</span></span><span id="534" class="l"><a class="l" href="#534">534: </a><span class="php-comment">     * @param mixed $msg
+</span></span><span id="535" class="l"><a class="l" href="#535">535: </a><span class="php-comment">     * @access protected
+</span></span><span id="536" class="l"><a class="l" href="#536">536: </a><span class="php-comment">     * @return void
+</span></span><span id="537" class="l"><a class="l" href="#537">537: </a><span class="php-comment">     */</span>
+</span><span id="538" class="l"><a class="l" href="#538">538: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_addError" href="#_addError">addError</a>(<span class="php-var">$msg</span>) {
+</span><span id="539" class="l"><a class="l" href="#539">539: </a>        <span class="php-var">$this</span>-&gt;errors[] = <span class="php-var">$msg</span>;
+</span><span id="540" class="l"><a class="l" href="#540">540: </a>    }
+</span><span id="541" class="l"><a class="l" href="#541">541: </a>
+</span><span id="542" class="l"><a class="l" href="#542">542: </a>    <span class="php-comment">/**
+</span></span><span id="543" class="l"><a class="l" href="#543">543: </a><span class="php-comment">     * Check for errors
+</span></span><span id="544" class="l"><a class="l" href="#544">544: </a><span class="php-comment">     *
+</span></span><span id="545" class="l"><a class="l" href="#545">545: </a><span class="php-comment">     * @access public
+</span></span><span id="546" class="l"><a class="l" href="#546">546: </a><span class="php-comment">     * @return boolean
+</span></span><span id="547" class="l"><a class="l" href="#547">547: </a><span class="php-comment">     */</span>
+</span><span id="548" class="l"><a class="l" href="#548">548: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_hasErrors" href="#_hasErrors">hasErrors</a>() {
+</span><span id="549" class="l"><a class="l" href="#549">549: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;errors) &gt; <span class="php-num">0</span>) {
+</span><span id="550" class="l"><a class="l" href="#550">550: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">TRUE</span>;
+</span><span id="551" class="l"><a class="l" href="#551">551: </a>        }
+</span><span id="552" class="l"><a class="l" href="#552">552: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">FALSE</span>;
+</span><span id="553" class="l"><a class="l" href="#553">553: </a>    }
+</span><span id="554" class="l"><a class="l" href="#554">554: </a>
+</span><span id="555" class="l"><a class="l" href="#555">555: </a>    <span class="php-comment">/**
+</span></span><span id="556" class="l"><a class="l" href="#556">556: </a><span class="php-comment">     * Get errors array
+</span></span><span id="557" class="l"><a class="l" href="#557">557: </a><span class="php-comment">     *
+</span></span><span id="558" class="l"><a class="l" href="#558">558: </a><span class="php-comment">     * @access public
+</span></span><span id="559" class="l"><a class="l" href="#559">559: </a><span class="php-comment">     * @return array
+</span></span><span id="560" class="l"><a class="l" href="#560">560: </a><span class="php-comment">     */</span>
+</span><span id="561" class="l"><a class="l" href="#561">561: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getErrors" href="#_getErrors">getErrors</a>() {
+</span><span id="562" class="l"><a class="l" href="#562">562: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;errors;
+</span><span id="563" class="l"><a class="l" href="#563">563: </a>    }
+</span><span id="564" class="l"><a class="l" href="#564">564: </a>
+</span><span id="565" class="l"><a class="l" href="#565">565: </a>}
+</span><span id="566" class="l"><a class="l" href="#566">566: </a>
+</span><span id="567" class="l"><a class="l" href="#567">567: </a><span class="xlang">?&gt;</span>
+</span><span id="568" class="l"><a class="l" href="#568">568: </a></span></code></pre>
+
+	<div id="footer">
+		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

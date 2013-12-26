@@ -44,7 +44,7 @@ Product = {
                     'src': vMainImage,
                     'alt': vName
                 });
-                $('.left-product .items-thumbs > li').removeClass('active').filter(':eq(0)').addClass('active');
+                $('.leftProduct .items-thumbs > li').removeClass('active').filter(':eq(0)').addClass('active');
             }
             
             if (vOrigPrice !== '')
@@ -119,10 +119,10 @@ Product = {
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
         });
     },
-    beforeShowHref: function(el, drop, isajax, data, elSet) {
+    beforeShowHref: function(el, drop, isajax) {
         var arg = arguments,
         cycle = hrefOptions.cycle,
-        obj = $.extend({}, elSet, hrefOptions, el.closest(genObj.parentBtnBuy).find(genObj.infoBut).data()),
+        obj = $.extend({}, el.data(), hrefOptions, el.closest(genObj.parentBtnBuy).find(genObj.infoBut).data()),
         frame = $('#photo');
         frame.html(_.template($('#framePhotoProduct').html(), obj));
 
@@ -230,7 +230,7 @@ Product = {
     afterClosedPhoto: function(el, drop) {
         drop.find('.addingphoto').remove();
     },
-    onComplete: function(el, drop, isajax, data, elSet) {
+    onComplete: function(el, drop, isajax) {
         
         var carGal = drop.find('.content-carousel');
         drop.find('.drop-content-photo img').css('visibility', 'visible');
@@ -256,7 +256,7 @@ function initPhoto() {
                 mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
                 $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}');
             });
-            $('.left-product').off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
+            $('.leftProduct').off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
                 var cloudzoomlens = $('.cloud-zoom-lens');
                 if (cloudzoomlens.width() > $(genObj.photoProduct).width()) {
                     $(this).remove();
@@ -284,7 +284,7 @@ function initPhoto() {
         $(genObj.photoProduct).attr('href', href).find('img').attr('src', href);
     });
     if (productPhotoDrop && productPhotoCZoom) {
-        $('.left-product').on('click.mousetrap', '.mousetrap', function() {
+        $('.leftProduct').on('click.mousetrap', '.mousetrap', function() {
             var $this = $(this).prev();
             $(this).data($.extend({
                 'frame': $this.closest(genObj.parentBtnBuy),
