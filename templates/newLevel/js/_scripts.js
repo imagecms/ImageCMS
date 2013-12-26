@@ -37,7 +37,7 @@ function init() {
                 item: Shop.Cart.composeCartItem(el)
             }));
 
-            dropRep.append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
+            dropRep.append($('[data-clone="data-report"]').find(genObj.msgF).remove().end().clone(true).removeClass('d_n'));
             dropRep.find('input[name="ProductId"]').val(el.data('prodid'));
             return el;
         }
@@ -297,13 +297,13 @@ function init() {
         if (drop.data('durationOff') !== undefined)
             setTimeout(function() {
                 if ($.existsN(drop))
-                    $.drop('close')(drop);
+                    drop.drop('close');
             }, e.obj.durationHideForm - drop.data('durationOff') > 0 ? e.obj.durationHideForm - drop.data('durationOff') : e.obj.durationHideForm);
     });
     doc.on('autocomplete.before showActivity before_sync_cart before_add_to_compare discount.load_certificate', function(e) {
         $.fancybox.showActivity();
     });
-    doc.on('autocomplete.after after.drop drop.closed hideActivity sync_cart end_sync_cart compare_list_add compare_list_rm compare_list_sync count_changed cart_clear cart_rm discount.renderGiftInput discount.giftError discount.renderGiftSucces imageapi.success', function(e) {
+    doc.on('autocomplete.after after.drop closed.drop hideActivity sync_cart end_sync_cart compare_list_add compare_list_rm compare_list_sync count_changed cart_clear cart_rm discount.renderGiftInput discount.giftError discount.renderGiftSucces imageapi.success', function(e) {
         $.fancybox.hideActivity();
     });
 
