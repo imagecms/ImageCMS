@@ -1,10 +1,10 @@
 ﻿msgid ""
 msgstr ""
-"Project-Id-Version: ImageCms\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-27 01:33+0200\n"
-"PO-Revision-Date: 2013-12-27 01:33+0200\n"
-"Last-Translator: Marko <sheme4ko@mail.ru>\n"
+"POT-Creation-Date: 2013-12-27 04:07+0200\n"
+"PO-Revision-Date: 2013-12-27 04:07+0200\n"
+"Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,10 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./templates/administrator/js/scripts.js:1129
+msgid "Not supported file format"
+msgstr "Формат файла не поддерживается"
 
 #: ./application/modules/shop/admin/templates/currencies/list.tpl:61
 msgid "Additional currency"
@@ -7190,10 +7194,6 @@ msgstr "сайта"
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:182
 msgid "small image"
 msgstr "Миниатюра"
-
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:36
-msgid "status"
-msgstr "статус"
 
 #: ./templates/administrator/module_table.tpl:105
 #: ./templates/administrator/module_table.tpl:110
