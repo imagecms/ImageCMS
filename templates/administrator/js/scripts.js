@@ -1098,6 +1098,8 @@ function initAdminArea() {
                 }
             });
 
+        }else{
+            return false;
         }
     });
 
@@ -1126,6 +1128,7 @@ function initAdminArea() {
         img.onerror = function() {
             // image not found or change src like this as default image:
             img.src = base_url+'templates/administrator/images/select-picture.png';
+            showMessage(lang('Error'),lang('Not supported file format'));
             return;
         };
         $(this).closest('.control-group').find('.controls').html(img);
