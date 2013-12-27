@@ -1,11 +1,11 @@
-﻿msgid ""
+msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-27 04:07+0200\n"
-"PO-Revision-Date: 2013-12-27 04:07+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
+"PO-Revision-Date: 2013-12-27 17:52+0300\n"
+"Last-Translator: Marko <sheme4ko@mail.ru>\n"
+"Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,8 +14,6 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
@@ -392,8 +390,6 @@ msgid "Add a new topic"
 msgstr "Добавить новую тему"
 
 #: ./templates/administrator/cats_sidebar.tpl:3
-#: ./templates/administrator/cats_sidebar.tpl:3
-#: ./templates/administrator/cats_tree_css.tpl:7
 #: ./templates/administrator/cats_tree_css.tpl:7
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
@@ -408,8 +404,6 @@ msgid "Add a variant"
 msgstr "Добавить вариант"
 
 #: ./templates/administrator/cats_sidebar.tpl:4
-#: ./templates/administrator/cats_sidebar.tpl:4
-#: ./templates/administrator/cats_tree_css.tpl:8
 #: ./templates/administrator/cats_tree_css.tpl:8
 msgid "Add an article"
 msgstr "Добавить статью"

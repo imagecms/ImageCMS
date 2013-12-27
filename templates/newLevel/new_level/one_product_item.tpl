@@ -12,7 +12,7 @@
     {if is_array($p) && $p.id}
         {$p = getProduct($p.id)}
     {/if}
-    
+
 
     {$variants = $p->getProductVariants()}
     {$hasDiscounts = $p->hasDiscounts()}
