@@ -211,7 +211,7 @@
                                                 {/if}
                                                 {if $productVariant->getStock() > 0}
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                        <form method="POST" action="/shop/cart_new/addProductByVariantId/{echo $productVariant->getId()}">
+                                                        <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                             <div class="btn-buy btn-buy-p">
                                                                 <input type="hidden" name="redirect" value="cart" />
                                                                 <button class="btnBuy infoBut" type="submit">
@@ -421,7 +421,7 @@
                                                                 {/if}
                                                             </span>
                                                         </div>
-                                                        <form method="POST" action="/shop/cart_new/addKit/{echo $kitProducts->getId()}">
+                                                        <form method="POST" action="/shop/cart/addKit/{echo $kitProducts->getId()}">
                                                             <input type="hidden" name="redirect" value="cart" />
                                                             <div class="btn-buy">
                                                                 <button class="btnBuy" type="submit">
