@@ -1,1 +1,1 @@
-<ul class="footer_menu">{$wrapper}</ul>
+<ul >{$wrapper}</ul>

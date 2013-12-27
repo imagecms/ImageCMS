@@ -3,166 +3,103 @@
 # @var paymentMethods
 # @var deliveryMethod
 #}
-<div class="content">
-    <div class="center">
-        <h1>Личный кабинет</h1>
-        {if $CI->session->flashdata('makeOrder') === true}<div style="padding:10px;border: 1px #f5f5dc solid;">Спасибо за Ваш заказ.</div>{/if}
-        <table class="cleaner_table" cellspacing="0">
-            <caption>Заказ №{echo $model->getId()}</caption>
-            <colgroup>
-                <col span="1" width="120">
-                <col span="1" width="400">
-                <col span="1" width="165">
-                <col span="1" width="140">
-                <col span="1" width="160">
-            </colgroup>
-            <tbody>
-                {foreach $model->getSOrderProductss() as $item}
-                {$total = $total + $item->getQuantity() * $item->toCurrency()}
-                {$product = $item->getSProducts()}
-                {$variants = $item->getSProducts()->getProductVariants()}
-                {foreach $variants as $v}
-                    {if $v->getId() == $item->getVariantId()}
-                        {$variant = $v}
-                    {/if}
-                {/foreach}
-                {if $item->getKitId() > 0}
-                {if $item->getIsMain()}
-                <tr>
-                    <td>
-                        {if $product->getmainimage()}
-                        <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
-                             <img src="{productImageUrl($product->getSmallModimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}"/>
-                        </a>
-                        {/if}
-                    </td>
-                    <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> 
-                    </td>
-                    <td>{echo $item->toCurrency()} {$CS}</td>
-                    <td rowspan="{echo $kits[$item->getKitId()]['total']}">
-                        {echo $item->getQuantity()} шт.
-                    </td>
-                    <td rowspan="{echo $kits[$item->getKitId()]['total']}">{echo $item->getQuantity() * $kits[$item->getKitId()]['price']} {$CS}</td>
-                </tr>
-                {else:}
-                <tr>
-                    <td style="width:90px;padding:2px;">
-                        <div style="width:90px;height:90px;overflow:hidden;">
-                            {if $product->getMainImage()}
-                            <img src="{productImageUrl($product->getSmallModimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}"/>
-                            {/if}
-                        </div>
-                    </td>
-                    <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> 
-                    </td>
-                    </td>
-                    <td>{echo $item->toCurrency()} {$CS}</td>
-                </tr>
-                {/if}
-                {else:}
-                <tr>
-                    <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
-                            <img src="{if count($variants)>1}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($product->getSmallModimage())}{/if}" alt="{echo ShopCore::encode($product->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a> 
-                    </td>
-                    <td>
-                        <div class="price f-s_16 f_l">{echo $variant->getPrice()}
-                            <sub> {$CS}</sub>
-                            {if $NextCS != $CS}
-                            <span class="d_b">{echo ShopCore::app()->SCurrencyHelper->convert($variant->getPrice(), $NextCSId)} {$NextCS}</span>
-                            {/if}
-                        </div>
-                    </td>
-                    <td>
-                        <div class="count">
-                            {echo $item->getQuantity()} шт.
-                        </div>
-                    </td>
-                    <td>
-                        <div class="price f-s_18 f_l">{echo $item->getQuantity() * $item->toCurrency()} 
-                            <sub> {$CS}</sub>
-                            {if $NextCS != $CS}
-                            <span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span>
-                            {/if}
-                        </div>
-                    </td>
-                </tr>
-                {/if}
-                {/foreach}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6">
-                        <div class="foot_cleaner">
-                            <div class="f_r">
-                                <div class="price f-s_26 f_l" style="margin-top: 25px;">
-                                    {if $model->getgiftcertprice()>0}
-                                        {$total -= $model->getgiftcertprice()}
-                                    {/if}
-                                    {if $total >= $deliveryMethod->getFreeFrom()}
-                                    {echo $total} {$CS}
-                                    {else:}
-                                    {echo $total + $model->getDeliveryPrice()} {$CS}
-                                    {/if}</div>
-                            </div>
-                            <div class="f_l" style="width: 775px;">
-                                <ul class="info_curr_buy f_l" >
-                                    <li>
-                                        <span>Оплачен:</span>
-                                        <b>{if $model->getPaid() == true} Да{else: }Нет{/if}</b>
-                                    </li>
-                                    <li>
-                                        <span>Cтатус:</span>
-                                        <b>{echo SOrders::getStatusName('Id',$model->getStatus())} {if $model->getDeliveryMethod() > 0}</b>
-                                    </li>
-                                    {if $model->getGiftCertKey() != null}
-                                    <li>
-                                        <span>Сертификат: </span>
-                                        <b>(- {echo $model->getgiftCertPrice()} {$CS})</b>
-                                    </li>
-                                    {/if}
-                                    <li>
-                                        <span>Доставка:</span>
-                                        <b>{echo $model->getSDeliveryMethods()->getName()}{/if}</b>
-                                    </li>
-                                    {if $paymentMethods[0] != null && !$model->getPaid()}
-                                    <li><span>Оплата:</span>
-                                        <b>
-                                            <div class="sp"></div>
-                                            <ul>
-                                                {foreach $paymentMethods as $pm}
-                                                <li class="buyandpay">
-                                                    <label><b>{echo encode($pm->getName())}</b></label>
-                                                    <div>{echo $pm->getPaymentForm($model)} </div>
-                                                    {echo $pm->getDescription()}
+<div class="content_head">
+    <h1>Заказ №{echo $model->getId()}</h1>
+{if $CI->session->flashdata('makeOrder') === true}<h2>{lang('Спасибо за Ваш заказ','commerce_mobiles_new')}.</h2>{/if}
+</div>
+<table class="tableOrderData">
+    <!-- Start. Render Order number -->
+    <tr>
+        <th>{lang('Заказ','commerce_mobiles_new')} #:</th>
+        <td>{echo ShopCore::encode($model->getId())}</td>
+    </tr>
+    <!-- End. Render Order number -->
 
-                                                </li>
-                                                {/foreach}
-                                            </ul>
-                                        </b>
-                                    </li>
-                                    {/if}
-                                </ul>
-                                <div class="sum f_r">
-                                    Сумма:
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+    <!-- Start. Display Paid status -->
+    <tr>
+        <th>{lang('Оплачен','commerce_mobiles_new')}:</th>
+        <td>{if $model->getPaid() == true} {lang('Да','commerce_mobiles_new')}{else:}{lang('Нет','commerce_mobiles_new')}{/if}</td>
+    </tr>
+    <!-- End. Display Paid status -->
+
+    <!-- Start. Show Order status name -->
+    <tr>
+        <th>{lang('Статус','commerce_mobiles_new')}:</th>
+        <td>{echo SOrders::getStatusName('Id', $model->getStatus())}</td>
+    </tr>
+    <!-- End. Show Order status name -->
+
+    <!-- Start. Render certificate -->
+    {if $model->getGiftCertKey() != null}
+        <tr>
+            <th>{lang('Подарочний сертификат','commerce_mobiles_new')}: </th>
+            <td>-{echo $model->getGiftCertPrice()} {$CS}</td>
+        </tr>
+    {/if}
+    <!-- End. Render certificate -->
+
+    <!-- Start. Delivery Method name -->
+    {if $model->getDeliveryMethod() > 0}
+        <tr>
+            <th>{lang('Доставка','commerce_mobiles_new')}:</th>
+            <td>{echo $model->getSDeliveryMethods()->getName()}</td>
+        </tr>
+    {/if}
+    <!-- End. Delivery Method name -->
+
+    <!-- Start. Render payment button and payment description -->
+    {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0 && $paymentMethod != null}
+        <tr class="b_n">
+            <th></th>
+            <td>
+                {echo $paymentMethod->getPaymentForm($model)}
+                {if $paymentMethod->getDescription()}
+                    <div class="m-t_10" style="font-style: italic">{echo ShopCore::t($paymentMethod->getDescription())}</div>
+                {/if}
+            </td>
+        </tr>
+    {/if}
+    <!-- End. Render payment button and payment description -->
+
+</table>
+<ul class="catalog">
+    {foreach $model->getSOrderProductss() as $item}
+        {$total = $total + $item->getQuantity() * $item->toCurrency()}
+        {$product = $item->getSProducts()}
+        {$variants = $product->getProductVariants()}
+        {foreach $variants as $v}
+            {if $v->getId() == $item->variant_id}
+                {$variant = $v}
+            {/if}
+        {/foreach}
+        <li>
+            <div class="top_frame_tov">
+                <span class="figure">
+                    <a href="{mobile_url('product/' . $product->getUrl())}">
+                        <img src="{echo $variant->getMediumPhoto()}"/>
+                    </a>
+                </span>
+                <span class="descr">
+                    <a href="{mobile_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->getName())}</a>
+                    {if $variant->getName()}
+                        <span class="code_v">{lang('Вариант', 'commerce_mobiles_new')}: {echo $variant->getName()}</span>
+                    {/if}
+                    {if $variant->getNumber()}
+                        <span class="divider">/</span>
+                        <span class="code">{lang('Артикул', 'commerce_mobiles_new')}: {echo $variant->getNumber()}</span>
+                    {/if}
+                    <span class="d_b price">{echo $item->getPrice()} {$CS}</span>
+                    <span class="count">{echo $item->getQuantity()} шт.</span>
+                </span>
+            </div>
+        </li>
+    {/foreach}
+</ul>
+<div class="main_frame_inside">
+    <div class="gen_sum">
+        <span class="total_pay">{lang('Всего к оплате','commerce_mobiles_new')}:</span>
+        <span class="price">
+            {echo $total - $model->getDiscount() + $model->getDeliveryPrice()} {$CS}
+        </span>
     </div>
 </div>
-
-
-
-
-
-
