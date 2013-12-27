@@ -15,7 +15,7 @@ class Admin extends BaseAdminController {
         $this->load->language('wishlist');
         $this->load->helper('string_helper');
         $this->settings = $this->wishlist_model->getSettings();
-        
+
         $lang = new MY_Lang();
         $lang->load('wishlist');
     }
@@ -74,6 +74,7 @@ class Admin extends BaseAdminController {
                 ->setData('settings', $wishlist->settings)
                 ->setData('errors', $this->errors)
                 ->setData('upload_errors', $this->session->flashdata('upload_errors'))
+                ->setData('userId', $id)
                 ->renderAdmin('wishlist');
     }
 
@@ -140,9 +141,15 @@ class Admin extends BaseAdminController {
      */
     public function createWishList() {
         $wishlist = new \wishlist\classes\BaseWishlist();
-        $wishlist->createWishList();
-
-        redirect($_SERVER['HTTP_REFERER'] . "#lists");
+        $result = $wishlist->createWishList();
+        $response = array('status' => 0);
+        if (is_array($result)) {
+            $response['errors'] = $result;
+        } else {
+            $response['status'] = 1;
+            //redirect($_SERVER['HTTP_REFERER'] . "#lists");
+        }
+        echo json_encode($response);
     }
 
     /**
