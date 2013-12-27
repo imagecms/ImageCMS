@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class mod_discount\Discount_product | ImageCMS</title>
+	<title>Class mod_discount\Discount_product | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -140,9 +143,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -196,7 +196,7 @@ MY_Controller
 				DevImageCms<br />
 				<b>Uses:</b>
 				<code><code><a href="class-mod_discount.classes.BaseDiscount.html">mod_discount\classes\BaseDiscount</a></code></code> <br />
-		<b>Located at</b> <a href="source-class-mod_discount.Discount_product.html#8-100" title="Go to source code">application/modules/mod_discount/discount_product.php</a><br />
+		<b>Located at</b> application/modules/mod_discount/discount_product.php<br />
 	</div>
 
 
@@ -214,7 +214,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-mod_discount.Discount_product.html#21-37" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -261,7 +261,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get_product_discount_event">#</a>
-		<code><a href="source-class-mod_discount.Discount_product.html#39-76" title="Go to source code">get_product_discount_event</a>( <span>array <var>$product</var></span>, <span>mixed <var>$price</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>get_product_discount_event( <span>array <var>$product</var></span>, <span>mixed <var>$price</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -313,7 +313,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get_discount_one_product">#</a>
-		<code><a href="source-class-mod_discount.Discount_product.html#78-98" title="Go to source code">get_discount_one_product</a>( <span>array <var>$product</var></span> )</code>
+		<code>get_discount_one_product( <span>array <var>$product</var></span> )</code>
 
 		<div class="description short">
 			
@@ -385,20 +385,50 @@ MY_Controller
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="discount_for_product" id="$discount_for_product">
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-mod_discount.classes.BaseDiscount.html#properties">mod_discount\classes\BaseDiscount</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-mod_discount.classes.BaseDiscount.html#$ci"><var>$ci</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+	<table class="summary" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="discount_model" id="m$discount_model">
 		<td class="attributes"><code>
-			private  
-			mixed
+			public  
+			discount_model
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-mod_discount.Discount_product.html#19" title="Go to source code"><var>$discount_for_product</var></a>
-		</td>
-		<td class="value"><code></code></td>
+<var>$discount_model</var>		</td>
 		<td class="description"><div>
-			<a href="#$discount_for_product" class="anchor">#</a>
+			<a href="#m$discount_model" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="discount_model_front" id="m$discount_model_front">
+		<td class="attributes"><code>
+			public  
+			discount_model_front
+		</code></td>
+
+		<td class="name">
+<var>$discount_model_front</var>		</td>
+		<td class="description"><div>
+			<a href="#m$discount_model_front" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -412,30 +442,12 @@ MY_Controller
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-mod_discount.classes.BaseDiscount.html#properties">mod_discount\classes\BaseDiscount</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-mod_discount.classes.BaseDiscount.html#$amout_user"><var>$amout_user</var></a>, 
-			<a href="class-mod_discount.classes.BaseDiscount.html#$cart_data"><var>$cart_data</var></a>, 
-			<a href="class-mod_discount.classes.BaseDiscount.html#$ci"><var>$ci</var></a>, 
-			<a href="class-mod_discount.classes.BaseDiscount.html#$discount"><var>$discount</var></a>, 
-			<a href="class-mod_discount.classes.BaseDiscount.html#$discount_type"><var>$discount_type</var></a>, 
-			<a href="class-mod_discount.classes.BaseDiscount.html#$total_price"><var>$total_price</var></a>, 
-			<a href="class-mod_discount.classes.BaseDiscount.html#$user_group_id"><var>$user_group_id</var></a>, 
-			<a href="class-mod_discount.classes.BaseDiscount.html#$user_id"><var>$user_id</var></a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
 
 
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

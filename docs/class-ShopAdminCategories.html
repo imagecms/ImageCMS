@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class ShopAdminCategories | ImageCMS</title>
+	<title>Class ShopAdminCategories | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -562,7 +563,7 @@ MY_Controller
 				$id$<br />
 				<b>Uses:</b>
 				<code><code><a href="class-ShopController.html">ShopController</a></code></code> <br />
-		<b>Located at</b> <a href="source-class-ShopAdminCategories.html#3-538" title="Go to source code">application/modules/shop/admin/categories.php</a><br />
+		<b>Located at</b> application/modules/shop/admin/categories.php<br />
 	</div>
 
 
@@ -580,7 +581,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#23-32" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -611,7 +612,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_index">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#34-43" title="Go to source code">index</a>( <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>index( <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -640,7 +641,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_load_all_cat">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#45-48" title="Go to source code">load_all_cat</a>( )</code>
+		<code>load_all_cat( )</code>
 
 		<div class="description short">
 			
@@ -669,7 +670,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_load_count_prod">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#50-56" title="Go to source code">load_count_prod</a>( )</code>
+		<code>load_count_prod( )</code>
 
 		<div class="description short">
 			
@@ -698,7 +699,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ext_cat">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#79-95" title="Go to source code">ext_cat</a>( )</code>
+		<code>ext_cat( )</code>
 
 		<div class="description short">
 			
@@ -727,7 +728,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#97-167" title="Go to source code">create</a>( )</code>
+		<code>create( )</code>
 
 		<div class="description short">
 			
@@ -760,7 +761,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_edit">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#169-262" title="Go to source code">edit</a>( <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$locale</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>edit( <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$locale</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -772,35 +773,6 @@ MY_Controller
 			
 <p>Edit category</p>
 
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="updateUrls" id="_updateUrls">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_updateUrls">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#264-277" title="Go to source code">updateUrls</a>( <span>mixed <var>$models</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
 
 
 
@@ -822,7 +794,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#279-310" title="Go to source code">delete</a>( )</code>
+		<code>delete( )</code>
 
 		<div class="description short">
 			
@@ -834,64 +806,6 @@ MY_Controller
 			
 <p>Delete category</p>
 
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="printCategoryTree" id="_printCategoryTree">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_printCategoryTree">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#312-339" title="Go to source code">printCategoryTree</a>( <span>mixed <var>$ajax_tree</var> = <span class="php-keyword1">false</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="printCategory" id="_printCategory">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_printCategory">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#341-380" title="Go to source code">printCategory</a>( <span>mixed <var>$category</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
 
 
 
@@ -913,7 +827,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ajax_load_parent">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#382-389" title="Go to source code">ajax_load_parent</a>( )</code>
+		<code>ajax_load_parent( )</code>
 
 		<div class="description short">
 			
@@ -942,7 +856,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save_positions">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#391-413" title="Go to source code">save_positions</a>( )</code>
+		<code>save_positions( )</code>
 
 		<div class="description short">
 			
@@ -975,7 +889,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ajax_translit">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#415-422" title="Go to source code">ajax_translit</a>( )</code>
+		<code>ajax_translit( )</code>
 
 		<div class="description short">
 			
@@ -1008,7 +922,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_translate">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#424-475" title="Go to source code">translate</a>( <span>mixed <var>$id</var></span> )</code>
+		<code>translate( <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1037,7 +951,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_changeActive">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#477-486" title="Go to source code">changeActive</a>( )</code>
+		<code>changeActive( )</code>
 
 		<div class="description short">
 			
@@ -1066,7 +980,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create_tpl">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#488-504" title="Go to source code">create_tpl</a>( )</code>
+		<code>create_tpl( )</code>
 
 		<div class="description short">
 			
@@ -1095,7 +1009,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get_tpl_names">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#506-516" title="Go to source code">get_tpl_names</a>( <span>mixed <var>$directory</var></span> )</code>
+		<code>get_tpl_names( <span>mixed <var>$directory</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1124,7 +1038,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ajaxUpdateCategoryColumn">#</a>
-		<code><a href="source-class-ShopAdminCategories.html#518-536" title="Go to source code">ajaxUpdateCategoryColumn</a>( )</code>
+		<code>ajaxUpdateCategoryColumn( )</code>
 
 		<div class="description short">
 			
@@ -1176,8 +1090,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopAdminCategories.html#15" title="Go to source code"><var>$defaultLanguage</var></a>
-		</td>
+<var>$defaultLanguage</var>		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
 			<a href="#$defaultLanguage" class="anchor">#</a>
@@ -1199,8 +1112,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopAdminCategories.html#16" title="Go to source code"><var>$catProductsCounts</var></a>
-		</td>
+<var>$catProductsCounts</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$catProductsCounts" class="anchor">#</a>
@@ -1222,103 +1134,10 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopAdminCategories.html#17" title="Go to source code"><var>$tree</var></a>
-		</td>
+<var>$tree</var>		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
 			<a href="#$tree" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="templatePath" id="$templatePath">
-		<td class="attributes"><code>
-			private  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopAdminCategories.html#18" title="Go to source code"><var>$templatePath</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$templatePath" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="all_cat" id="$all_cat">
-		<td class="attributes"><code>
-			private  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopAdminCategories.html#19" title="Go to source code"><var>$all_cat</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$all_cat" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="ext_cat" id="$ext_cat">
-		<td class="attributes"><code>
-			private  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopAdminCategories.html#20" title="Go to source code"><var>$ext_cat</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$ext_cat" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="prod_count" id="$prod_count">
-		<td class="attributes"><code>
-			private  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopAdminCategories.html#21" title="Go to source code"><var>$prod_count</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$prod_count" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -1350,7 +1169,7 @@ MY_Controller
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

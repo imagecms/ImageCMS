@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class ShopImport | ImageCMS</title>
+	<title>Class ShopImport | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -527,7 +528,7 @@
 		
 		
 
-		<b>Located at</b> <a href="source-class-ShopImport.html#6-80" title="Go to source code">application/modules/shop/classes/ShopImport.php</a><br />
+		<b>Located at</b> application/modules/shop/classes/ShopImport.php<br />
 	</div>
 
 
@@ -545,7 +546,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ShopImport.html#26-44" title="Go to source code">__construct</a>( <span>mixed <var>$file</var></span>, <span>array <var>$settings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>__construct( <span>mixed <var>$file</var></span>, <span>array <var>$settings</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -574,7 +575,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addError">#</a>
-		<code><a href="source-class-ShopImport.html#46-55" title="Go to source code">addError</a>( <span>mixed <var>$msg</var></span> )</code>
+		<code>addError( <span>mixed <var>$msg</var></span> )</code>
 
 		<div class="description short">
 			
@@ -612,7 +613,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasErrors">#</a>
-		<code><a href="source-class-ShopImport.html#57-68" title="Go to source code">hasErrors</a>( )</code>
+		<code>hasErrors( )</code>
 
 		<div class="description short">
 			
@@ -649,7 +650,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getErrors">#</a>
-		<code><a href="source-class-ShopImport.html#70-78" title="Go to source code">getErrors</a>( )</code>
+		<code>getErrors( )</code>
 
 		<div class="description short">
 			
@@ -697,8 +698,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#8" title="Go to source code"><var>$delimiter</var></a>
-		</td>
+<var>$delimiter</var>		</td>
 		<td class="value"><code><span class="php-quote">&quot;;&quot;</span></code></td>
 		<td class="description"><div>
 			<a href="#$delimiter" class="anchor">#</a>
@@ -720,8 +720,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#9" title="Go to source code"><var>$imageSizes</var></a>
-		</td>
+<var>$imageSizes</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$imageSizes" class="anchor">#</a>
@@ -743,8 +742,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#10" title="Go to source code"><var>$maxRowLength</var></a>
-		</td>
+<var>$maxRowLength</var>		</td>
 		<td class="value"><code><span class="php-num">10000</span></code></td>
 		<td class="description"><div>
 			<a href="#$maxRowLength" class="anchor">#</a>
@@ -766,8 +764,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#11" title="Go to source code"><var>$enclosure</var></a>
-		</td>
+<var>$enclosure</var>		</td>
 		<td class="value"><code><span class="php-quote">'&quot;'</span></code></td>
 		<td class="description"><div>
 			<a href="#$enclosure" class="anchor">#</a>
@@ -789,8 +786,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#12" title="Go to source code"><var>$file</var></a>
-		</td>
+<var>$file</var>		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
 			<a href="#$file" class="anchor">#</a>
@@ -812,8 +808,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#13" title="Go to source code"><var>$currency</var></a>
-		</td>
+<var>$currency</var>		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
 			<a href="#$currency" class="anchor">#</a>
@@ -835,8 +830,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#14" title="Go to source code"><var>$encoding</var></a>
-		</td>
+<var>$encoding</var>		</td>
 		<td class="value"><code><span class="php-quote">'utf8'</span></code></td>
 		<td class="description"><div>
 			<a href="#$encoding" class="anchor">#</a>
@@ -858,8 +852,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#15" title="Go to source code"><var>$language</var></a>
-		</td>
+<var>$language</var>		</td>
 		<td class="value"><code><span class="php-quote">'ru'</span></code></td>
 		<td class="description"><div>
 			<a href="#$language" class="anchor">#</a>
@@ -881,8 +874,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#16" title="Go to source code"><var>$attributes</var></a>
-		</td>
+<var>$attributes</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$attributes" class="anchor">#</a>
@@ -904,8 +896,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#17" title="Go to source code"><var>$errors</var></a>
-		</td>
+<var>$errors</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$errors" class="anchor">#</a>
@@ -927,8 +918,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#18" title="Go to source code"><var>$categoryCache</var></a>
-		</td>
+<var>$categoryCache</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$categoryCache" class="anchor">#</a>
@@ -950,8 +940,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#19" title="Go to source code"><var>$subCategoryDelimiter</var></a>
-		</td>
+<var>$subCategoryDelimiter</var>		</td>
 		<td class="value"><code><span class="php-quote">'/'</span></code></td>
 		<td class="description"><div>
 			<a href="#$subCategoryDelimiter" class="anchor">#</a>
@@ -973,8 +962,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#20" title="Go to source code"><var>$subCategoryPattern</var></a>
-		</td>
+<var>$subCategoryPattern</var>		</td>
 		<td class="value"><code><span class="php-quote">'/\\REPLACE((?:[^\\\\\REPLACE]|\\\\.)*)/'</span></code></td>
 		<td class="description"><div>
 			<a href="#$subCategoryPattern" class="anchor">#</a>
@@ -996,8 +984,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#21" title="Go to source code"><var>$con</var></a>
-		</td>
+<var>$con</var>		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
 			<a href="#$con" class="anchor">#</a>
@@ -1019,8 +1006,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#22" title="Go to source code"><var>$imageSource</var></a>
-		</td>
+<var>$imageSource</var>		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
 			<a href="#$imageSource" class="anchor">#</a>
@@ -1042,8 +1028,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#23" title="Go to source code"><var>$imageOrigin</var></a>
-		</td>
+<var>$imageOrigin</var>		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
 			<a href="#$imageOrigin" class="anchor">#</a>
@@ -1065,8 +1050,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopImport.html#24" title="Go to source code"><var>$class_map</var></a>
-		</td>
+<var>$class_map</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'CategoryImport'</span>, <span class="php-quote">'ProductsImport'</span>, <span class="php-quote">'import_properties'</span>)</code></td>
 		<td class="description"><div>
 			<a href="#$class_map" class="anchor">#</a>
@@ -1091,7 +1075,7 @@
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

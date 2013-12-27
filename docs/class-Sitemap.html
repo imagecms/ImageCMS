@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Sitemap | ImageCMS</title>
+	<title>Class Sitemap | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -547,7 +548,7 @@ MY_Controller
 		
 		
 
-		<b>Located at</b> <a href="source-class-Sitemap.html#6-401" title="Go to source code">application/modules/sitemap/sitemap.php</a><br />
+		<b>Located at</b> application/modules/sitemap/sitemap.php<br />
 	</div>
 
 
@@ -565,7 +566,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Sitemap.html#28-40" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -594,7 +595,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_index">#</a>
-		<code><a href="source-class-Sitemap.html#42-47" title="Go to source code">index</a>( )</code>
+		<code>index( )</code>
 
 		<div class="description short">
 			
@@ -623,7 +624,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_adminAutoload">#</a>
-		<code><a href="source-class-Sitemap.html#49-62" title="Go to source code">adminAutoload</a>( )</code>
+		<code>adminAutoload( )</code>
 
 		<div class="description short">
 			
@@ -652,7 +653,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_initialize">#</a>
-		<code><a href="source-class-Sitemap.html#64-73" title="Go to source code">initialize</a>( <span>mixed <var>$settings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>initialize( <span>mixed <var>$settings</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -681,7 +682,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sitemap_ul">#</a>
-		<code><a href="source-class-Sitemap.html#75-107" title="Go to source code">sitemap_ul</a>( <span>mixed <var>$items</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>sitemap_ul( <span>mixed <var>$items</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -714,7 +715,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_build_xml_map">#</a>
-		<code><a href="source-class-Sitemap.html#109-116" title="Go to source code">build_xml_map</a>( )</code>
+		<code>build_xml_map( )</code>
 
 		<div class="description short">
 			
@@ -747,7 +748,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#__create_map">#</a>
-		<code><a href="source-class-Sitemap.html#118-240" title="Go to source code">_create_map</a>( )</code>
+		<code>_create_map( )</code>
 
 		<div class="description short">
 			
@@ -776,7 +777,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#__get_all_pages">#</a>
-		<code><a href="source-class-Sitemap.html#242-249" title="Go to source code">_get_all_pages</a>( )</code>
+		<code>_get_all_pages( )</code>
 
 		<div class="description short">
 			
@@ -805,7 +806,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#__cateogry_pages">#</a>
-		<code><a href="source-class-Sitemap.html#251-259" title="Go to source code">_cateogry_pages</a>( <span>mixed <var>$id</var> = <span class="php-num">0</span></span> )</code>
+		<code>_cateogry_pages( <span>mixed <var>$id</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -813,68 +814,6 @@ MY_Controller
 
 		<div class="description detailed hidden">
 			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="generate_xml" id="_generate_xml">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_generate_xml">#</a>
-		<code><a href="source-class-Sitemap.html#261-277" title="Go to source code">generate_xml</a>( <span>mixed <var>$items</var> = <span class="php-keyword1">array</span>()</span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_get_lang_prefix" id="__get_lang_prefix">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__get_lang_prefix">#</a>
-		<code><a href="source-class-Sitemap.html#279-288" title="Go to source code">_get_lang_prefix</a>( <span>mixed <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Get language prefix by lang id</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get language prefix by lang id</p>
-
 
 
 
@@ -896,7 +835,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_replace">#</a>
-		<code><a href="source-class-Sitemap.html#290-297" title="Go to source code">replace</a>( <span>mixed <var>$lines</var></span> )</code>
+		<code>replace( <span>mixed <var>$lines</var></span> )</code>
 
 		<div class="description short">
 			
@@ -925,7 +864,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_robotsCheck">#</a>
-		<code><a href="source-class-Sitemap.html#299-309" title="Go to source code">robotsCheck</a>( <span>mixed <var>$check</var></span> )</code>
+		<code>robotsCheck( <span>mixed <var>$check</var></span> )</code>
 
 		<div class="description short">
 			
@@ -954,7 +893,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ping_google">#</a>
-		<code><a href="source-class-Sitemap.html#311-355" title="Go to source code">ping_google</a>( )</code>
+		<code>ping_google( )</code>
 
 		<div class="description short">
 			
@@ -987,7 +926,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_gzip">#</a>
-		<code><a href="source-class-Sitemap.html#357-360" title="Go to source code">gzip</a>( )</code>
+		<code>gzip( )</code>
 
 		<div class="description short">
 			
@@ -1016,7 +955,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#__load_settings">#</a>
-		<code><a href="source-class-Sitemap.html#362-368" title="Go to source code">_load_settings</a>( )</code>
+		<code>_load_settings( )</code>
 
 		<div class="description short">
 			
@@ -1045,7 +984,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#__install">#</a>
-		<code><a href="source-class-Sitemap.html#370-383" title="Go to source code">_install</a>( )</code>
+		<code>_install( )</code>
 
 		<div class="description short">
 			
@@ -1074,7 +1013,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#__shop_category_pages">#</a>
-		<code><a href="source-class-Sitemap.html#385-389" title="Go to source code">_shop_category_pages</a>( )</code>
+		<code>_shop_category_pages( )</code>
 
 		<div class="description short">
 			
@@ -1103,7 +1042,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#__shop_brands_pages">#</a>
-		<code><a href="source-class-Sitemap.html#391-394" title="Go to source code">_shop_brands_pages</a>( )</code>
+		<code>_shop_brands_pages( )</code>
 
 		<div class="description short">
 			
@@ -1132,7 +1071,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#__shop_products_pages">#</a>
-		<code><a href="source-class-Sitemap.html#396-399" title="Go to source code">_shop_products_pages</a>( )</code>
+		<code>_shop_products_pages( )</code>
 
 		<div class="description short">
 			
@@ -1172,8 +1111,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#13" title="Go to source code"><var>$pages_priority</var></a>
-		</td>
+<var>$pages_priority</var>		</td>
 		<td class="value"><code><span class="php-quote">'0.6'</span></code></td>
 		<td class="description"><div>
 			<a href="#$pages_priority" class="anchor">#</a>
@@ -1195,8 +1133,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#14" title="Go to source code"><var>$cats_priority</var></a>
-		</td>
+<var>$cats_priority</var>		</td>
 		<td class="value"><code><span class="php-quote">'0.8'</span></code></td>
 		<td class="description"><div>
 			<a href="#$cats_priority" class="anchor">#</a>
@@ -1218,8 +1155,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#15" title="Go to source code"><var>$main_page_priority</var></a>
-		</td>
+<var>$main_page_priority</var>		</td>
 		<td class="value"><code><span class="php-quote">'1'</span></code></td>
 		<td class="description"><div>
 			<a href="#$main_page_priority" class="anchor">#</a>
@@ -1241,8 +1177,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#16" title="Go to source code"><var>$pages_changefreq</var></a>
-		</td>
+<var>$pages_changefreq</var>		</td>
 		<td class="value"><code><span class="php-quote">'daily'</span></code></td>
 		<td class="description"><div>
 			<a href="#$pages_changefreq" class="anchor">#</a>
@@ -1264,8 +1199,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#17" title="Go to source code"><var>$categories_changefreq</var></a>
-		</td>
+<var>$categories_changefreq</var>		</td>
 		<td class="value"><code><span class="php-quote">'weekly'</span></code></td>
 		<td class="description"><div>
 			<a href="#$categories_changefreq" class="anchor">#</a>
@@ -1287,8 +1221,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#18" title="Go to source code"><var>$main_page_changefreq</var></a>
-		</td>
+<var>$main_page_changefreq</var>		</td>
 		<td class="value"><code><span class="php-quote">'daily'</span></code></td>
 		<td class="description"><div>
 			<a href="#$main_page_changefreq" class="anchor">#</a>
@@ -1310,8 +1243,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#19" title="Go to source code"><var>$changefreq</var></a>
-		</td>
+<var>$changefreq</var>		</td>
 		<td class="value"><code><span class="php-quote">'daily'</span></code></td>
 		<td class="description"><div>
 			<a href="#$changefreq" class="anchor">#</a>
@@ -1333,8 +1265,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#20" title="Go to source code"><var>$gzip_level</var></a>
-		</td>
+<var>$gzip_level</var>		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
 			<a href="#$gzip_level" class="anchor">#</a>
@@ -1356,8 +1287,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#21" title="Go to source code"><var>$result</var></a>
-		</td>
+<var>$result</var>		</td>
 		<td class="value"><code><span class="php-quote">''</span></code></td>
 		<td class="description"><div>
 			<a href="#$result" class="anchor">#</a>
@@ -1379,8 +1309,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#22" title="Go to source code"><var>$langs</var></a>
-		</td>
+<var>$langs</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$langs" class="anchor">#</a>
@@ -1402,8 +1331,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#23" title="Go to source code"><var>$default_lang</var></a>
-		</td>
+<var>$default_lang</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$default_lang" class="anchor">#</a>
@@ -1425,8 +1353,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#24" title="Go to source code"><var>$sitemap_ttl</var></a>
-		</td>
+<var>$sitemap_ttl</var>		</td>
 		<td class="value"><code><span class="php-num">3600</span></code></td>
 		<td class="description"><div>
 			<a href="#$sitemap_ttl" class="anchor">#</a>
@@ -1448,8 +1375,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#25" title="Go to source code"><var>$sitemap_key</var></a>
-		</td>
+<var>$sitemap_key</var>		</td>
 		<td class="value"><code><span class="php-quote">'sitemap_'</span></code></td>
 		<td class="description"><div>
 			<a href="#$sitemap_key" class="anchor">#</a>
@@ -1471,8 +1397,7 @@ MY_Controller
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Sitemap.html#26" title="Go to source code"><var>$items</var></a>
-		</td>
+<var>$items</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
 			<a href="#$items" class="anchor">#</a>
@@ -1497,7 +1422,7 @@ MY_Controller
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

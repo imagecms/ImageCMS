@@ -1122,11 +1122,19 @@ function initAdminArea() {
         $(img).addClass('img-polaroid').css({
             width: '100px'
         });
+        
+        img.onerror = function() {
+            // image not found or change src like this as default image:
+            img.src = base_url+'templates/administrator/images/select-picture.png';
+            showMessage(lang('Error'),lang('Not supported file format'));
+            return;
+        };
         $(this).closest('.control-group').find('.controls').html(img);
         $this.parent().next().val($type_file).attr('data-rel', 'tooltip');
 
+
         isChanged = $(this).closest('td').find('.changeImage').val('1');
-        console.log(isChanged);
+//        console.log($(img));
 
     });
 

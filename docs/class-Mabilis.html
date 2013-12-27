@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Mabilis | ImageCMS</title>
+	<title>Class Mabilis | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -546,7 +547,7 @@ replace.</p>
 				&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
 				<b>Version:</b>
 				0.3 PHP5 ************************************************<br />
-		<b>Located at</b> <a href="source-class-Mabilis.html#3-125" title="Go to source code">application/libraries/mabilis/Mabilis.class.php</a><br />
+		<b>Located at</b> application/libraries/mabilis/Mabilis.class.php<br />
 	</div>
 
 
@@ -564,7 +565,7 @@ replace.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Mabilis.html#17-19" title="Go to source code">__construct</a>( <span>mixed <var>&amp; $config</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>__construct( <span>mixed <var>&amp; $config</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -593,7 +594,7 @@ replace.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_view">#</a>
-		<code><a href="source-class-Mabilis.html#21-86" title="Go to source code">view</a>( <span>mixed <var>$file</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$return</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+		<code>view( <span>mixed <var>$file</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$return</var> = <span class="php-keyword1">FALSE</span></span> )</code>
 
 		<div class="description short">
 			
@@ -626,7 +627,7 @@ replace.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_load_config">#</a>
-		<code><a href="source-class-Mabilis.html#88-101" title="Go to source code">load_config</a>( <span>mixed <var>$config</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>load_config( <span>mixed <var>$config</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -655,7 +656,7 @@ replace.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set_config_value">#</a>
-		<code><a href="source-class-Mabilis.html#103-105" title="Go to source code">set_config_value</a>( <span>mixed <var>$param</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code>set_config_value( <span>mixed <var>$param</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -684,7 +685,7 @@ replace.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get_config_value">#</a>
-		<code><a href="source-class-Mabilis.html#107-111" title="Go to source code">get_config_value</a>( <span>mixed <var>$param</var></span> )</code>
+		<code>get_config_value( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -713,7 +714,7 @@ replace.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_load_compiler">#</a>
-		<code><a href="source-class-Mabilis.html#113-123" title="Go to source code">load_compiler</a>( )</code>
+		<code>load_compiler( )</code>
 
 		<div class="description short">
 			
@@ -748,78 +749,6 @@ replace.</p>
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="compiler" id="$compiler">
-		<td class="attributes"><code>
-			private  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Mabilis.html#13" title="Go to source code"><var>$compiler</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$compiler" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="config" id="$config">
-		<td class="attributes"><code>
-			private  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Mabilis.html#14" title="Go to source code"><var>$config</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$config" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="arr" id="$arr">
-		<td class="attributes"><code>
-			private  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Mabilis.html#15" title="Go to source code"><var>$arr</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$arr" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
 
 
 
@@ -829,7 +758,7 @@ replace.</p>
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

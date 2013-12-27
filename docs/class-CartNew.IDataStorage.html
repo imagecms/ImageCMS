@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class CartNew\IDataStorage | ImageCMS</title>
+	<title>Class CartNew\IDataStorage | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li class="active"><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -144,9 +147,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -198,7 +198,7 @@ MY_Controller
 				2013 Siteimage<br />
 				<b>Author:</b>
 				&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-CartNew.IDataStorage.html#5-84" title="Go to source code">application/modules/shop/classes/CartNew/IDataStorage.php</a><br />
+		<b>Located at</b> application/modules/shop/classes/__CartNew/IDataStorage.php<br />
 	</div>
 
 
@@ -216,7 +216,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getData">#</a>
-		<code><a href="source-class-CartNew.IDataStorage.html#11-17" title="Go to source code">getData</a>( <span>integer <var>$instance</var></span>, <span>integer <var>$id</var></span> )</code>
+		<code>getData( <span>integer <var>$instance</var></span>, <span>integer <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -260,7 +260,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setData">#</a>
-		<code><a href="source-class-CartNew.IDataStorage.html#19-24" title="Go to source code">setData</a>( <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>setData( <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -302,7 +302,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-CartNew.IDataStorage.html#26-32" title="Go to source code">remove</a>( <span>integer <var>$instance</var></span>, <span>integer <var>$id</var></span> )</code>
+		<code>remove( <span>integer <var>$instance</var></span>, <span>integer <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -328,77 +328,6 @@ MY_Controller
 				<div class="list">
 					<code>boolean</code><br />
 				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="filterByParams" id="_filterByParams">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_filterByParams">#</a>
-		<code><a href="source-class-CartNew.IDataStorage.html#34-60" title="Go to source code">filterByParams</a>( <span>array <var>$data</var></span>, <span>integer <var>$type</var></span>, <span>integer <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
-					<dt><var>$type</var></dt>
-					<dd><code>integer</code><br>$type</dd>
-					<dt><var>$id</var></dt>
-					<dd><code>integer</code><br>$id</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="removeByParams" id="_removeByParams">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_removeByParams">#</a>
-		<code><a href="source-class-CartNew.IDataStorage.html#62-82" title="Go to source code">removeByParams</a>( <span>mixed <var>$data</var></span>, <span>mixed <var>$type</var></span>, <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
 
 
 
@@ -437,8 +366,7 @@ MY_Controller
 	<tr>
 		<td><code>
 			<a href="class-ShopController.html#$currentLocale"><var>$currentLocale</var></a>, 
-			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>, 
-			<a href="class-ShopController.html#$template_path"><var>$template_path</var></a>
+			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>
 		</code></td>
 	</tr>
 	</table>
@@ -450,7 +378,7 @@ MY_Controller
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

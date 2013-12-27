@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Order | ImageCMS</title>
+	<title>Class Order | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -533,7 +534,7 @@ MY_Controller
 		</dd>
 		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by" />
-			<a href="class-CartNew.BaseOrder.html"><span>CartNew\BaseOrder</span></a>
+			<a href="class-Cart.BaseOrder.html"><span>Cart\BaseOrder</span></a>
 			
 			
 			
@@ -565,7 +566,7 @@ MY_Controller
 				&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
 				<b>Uses:</b>
 				<code><code><a href="class-ShopController.html">ShopController</a></code></code> <br />
-		<b>Located at</b> <a href="source-class-Order.html#5-282" title="Go to source code">application/modules/shop/order.php</a><br />
+		<b>Located at</b> application/modules/shop/order.php<br />
 	</div>
 
 
@@ -583,7 +584,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Order.html#15-17" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -598,7 +599,7 @@ MY_Controller
 
 
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-CartNew.BaseOrder.html#___construct">CartNew\BaseOrder::__construct()</a></code></div>
+				<div class="list"><code><a href="class-Cart.BaseOrder.html#___construct">Cart\BaseOrder::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -614,7 +615,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_view">#</a>
-		<code><a href="source-class-Order.html#19-67" title="Go to source code">view</a>( <span>string <var>$orderSecretKey</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>view( <span>string <var>$orderSecretKey</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -652,7 +653,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_make_order">#</a>
-		<code><a href="source-class-Order.html#69-203" title="Go to source code">make_order</a>( )</code>
+		<code>make_order( )</code>
 
 		<div class="description short">
 			
@@ -667,48 +668,6 @@ MY_Controller
 
 
 
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_createUser" id="__createUser">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__createUser">#</a>
-		<code><a href="source-class-Order.html#205-229" title="Go to source code">_createUser</a>( <span>email <var>$email</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Create new user</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Create new user</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$email</var></dt>
-					<dd><code>email</code><br>$email</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
 
 
 
@@ -727,7 +686,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delivery_method_id_check">#</a>
-		<code><a href="source-class-Order.html#231-246" title="Go to source code">delivery_method_id_check</a>( <span>integer <var>$deliveryMethodId</var> = <span class="php-num">0</span></span> )</code>
+		<code>delivery_method_id_check( <span>integer <var>$deliveryMethodId</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -769,7 +728,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_test">#</a>
-		<code><a href="source-class-Order.html#248-250" title="Go to source code">test</a>( )</code>
+		<code>test( )</code>
 
 		<div class="description short">
 			
@@ -798,7 +757,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPaymentsMethods">#</a>
-		<code><a href="source-class-Order.html#252-280" title="Go to source code">getPaymentsMethods</a>( <span>integer <var>$deliveryId</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>getPaymentsMethods( <span>integer <var>$deliveryId</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -840,14 +799,14 @@ MY_Controller
 	</table>
 
 	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-CartNew.BaseOrder.html#methods">CartNew\BaseOrder</a></caption>
+	<caption>Methods inherited from <a href="class-Cart.BaseOrder.html#methods">Cart\BaseOrder</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-CartNew.BaseOrder.html#_create">create()</a>, 
-			<a href="class-CartNew.BaseOrder.html#_createCode">createCode()</a>, 
-			<a href="class-CartNew.BaseOrder.html#_createProducsInfoTable">createProducsInfoTable()</a>, 
-			<a href="class-CartNew.BaseOrder.html#_getDeliveryMethods">getDeliveryMethods()</a>, 
-			<a href="class-CartNew.BaseOrder.html#_saveOrdersHistory">saveOrdersHistory()</a>
+			<a href="class-Cart.BaseOrder.html#_create">create()</a>, 
+			<a href="class-Cart.BaseOrder.html#_createCode">createCode()</a>, 
+			<a href="class-Cart.BaseOrder.html#_createProducsInfoTable">createProducsInfoTable()</a>, 
+			<a href="class-Cart.BaseOrder.html#_getDeliveryMethods">getDeliveryMethods()</a>, 
+			<a href="class-Cart.BaseOrder.html#_saveOrdersHistory">saveOrdersHistory()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -879,8 +838,7 @@ MY_Controller
 	<tr>
 		<td><code>
 			<a href="class-ShopController.html#$currentLocale"><var>$currentLocale</var></a>, 
-			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>, 
-			<a href="class-ShopController.html#$template_path"><var>$template_path</var></a>
+			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>
 		</code></td>
 	</tr>
 	</table>
@@ -892,7 +850,7 @@ MY_Controller
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

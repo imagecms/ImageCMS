@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Cart\BaseCart | ImageCMS</title>
+	<title>Class Cart\BaseCart | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li class="active"><a href="namespace-Cart.html">Cart</a>
+				<li class="active"><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -93,8 +96,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Cart.Api.html">Api</a></li>
-				<li class="active"><a href="class-Cart.BaseCart.html">BaseCart</a></li>
+				<li><a href="class-Cart.Api.html" class="invalid">Api</a></li>
+				<li class="active"><a href="class-Cart.BaseCart.html" class="invalid">BaseCart</a></li>
+				<li><a href="class-Cart.BaseOrder.html">BaseOrder</a></li>
+				<li><a href="class-Cart.CartItem.html">CartItem</a></li>
+				<li><a href="class-Cart.DBStorage.html">DBStorage</a></li>
+				<li><a href="class-Cart.IDataStorage.html">IDataStorage</a></li>
+				<li><a href="class-Cart.SessionStorage.html">SessionStorage</a></li>
 			</ul>
 
 
@@ -139,275 +147,27 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
 <div id="content" class="class">
 	<h1>Class BaseCart</h1>
 
-
-	<div class="description">
-	
-<p>Shop Controller class file.</p>
-
-	</div>
-
-	<dl class="tree">
-		<dd style="padding-left:0px">
-MY_Controller
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by" />
-			<a href="class-ShopController.html"><span>ShopController</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:60px">
-			<img src="resources/inherit.png" alt="Extended by" />
-<b><span>Cart\BaseCart</span></b>			
-			
-			
-		</dd>
-	</dl>
-
-
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-Cart.html">Cart</a>, 
-			<a href="class-Cart.Api.html">Cart\Api</a>, 
-			<a href="class-Cart_api.html">Cart_api</a>
-	</div>
-
-
-
-
-
-
-	<div class="info">
-		
-		
-		<b>Namespace:</b> <a href="namespace-Cart.html">Cart</a><br />
-		
-
-				<b>Used by:</b>
-				<code><code><a href="class-Cart_api.html">Cart_api</a></code></code> <br />
-		<b>Located at</b> <a href="source-class-Cart.BaseCart.html#9-91" title="Go to source code">application/modules/shop/classes/Cart/BaseCart.php</a><br />
-	</div>
-
-
-
-	<table class="summary" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="api" id="_api">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_api">#</a>
-		<code><a href="source-class-Cart.BaseCart.html#11-14" title="Go to source code">api</a>( <span>mixed <var>$action</var></span>, <span>mixed <var>$value</var></span> )</code>
-
-		<div class="description short">
-			
+		<div class="invalid">
+			<p>
+				Documentation of this class could not be generated.
+			</p>
+			<p>
+				Class was originally declared in application/modules/shop/classes/Cart/BaseCart.php and is invalid because of:
+			</p>
+			<ul>
+				<li>Class was redeclared in application/modules/shop/classes/__Cart/BaseCart.php.</li>
+			</ul>
 		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="add" id="_add">
-
-		<td class="attributes"><code>
-			 public 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_add">#</a>
-		<code><a href="source-class-Cart.BaseCart.html#19-70" title="Go to source code">add</a>( <span>string <var>$instance</var> = <span class="php-quote">'SProducts'</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Add product to cart from GET data.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Add product to cart from GET data.</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$instance</var></dt>
-					<dd><code>string</code><br>$instance</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br />
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013 ImageMCMS<br />
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="delete" id="_delete">
-
-		<td class="attributes"><code>
-			 public 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-Cart.BaseCart.html#72-89" title="Go to source code">delete</a>( <span>integer <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Remove product from cart by ID.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Remove product from cart by ID.</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd><code>integer</code><br>$id</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br />
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013 ImageMCMS<br />
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-ShopController.html#methods">ShopController</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-ShopController.html#___construct">__construct()</a>, 
-			<a href="class-ShopController.html#_error404">error404()</a>, 
-			<a href="class-ShopController.html#_getShowUntranslated">getShowUntranslated()</a>, 
-			<a href="class-ShopController.html#_render">render()</a>, 
-			<a href="class-ShopController.html#_render_min">render_min()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="errorMessages" id="$errorMessages">
-		<td class="attributes"><code>
-			protected  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Cart.BaseCart.html#16-17" title="Go to source code"><var>$errorMessages</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">null</span></code></td>
-		<td class="description"><div>
-			<a href="#$errorMessages" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Errors messages</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Errors messages</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-ShopController.html#properties">ShopController</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-ShopController.html#$currentLocale"><var>$currentLocale</var></a>, 
-			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>, 
-			<a href="class-ShopController.html#$template_path"><var>$template_path</var></a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

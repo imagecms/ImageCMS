@@ -9,7 +9,7 @@
                     <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-danger {/if}btn btn-small notCorrect" style="margin-top: 30px"><i class="icon-lock"></i></button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-small" onclick="Translator.translateString($(this))" style="float: right; margin-left: 600px; margin-bottom: -30px"><i class="icon-globe"></i></button>
+                    <button type="button" class="btn btn-small" onclick="Translator.translateString($(this))" style="float: right; margin-right: 5px; margin-bottom: -30px"><i class="icon-globe"></i></button>
                     <textarea class="origin" style="margin-bottom: 0px" readonly="">{echo htmlspecialchars($origin,ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
                 </td>
                 <td  rowspan="2">
@@ -98,7 +98,7 @@
 
 <div class="pathHolderClone span7" style="margin: 0px; display:none">
     {foreach $paths as $key => $path}
-        {if is_array($path) && $path['base']}
+        {if $path['base'] && is_array($path)}
             <div class="path" style="width: 515px">
                 <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px;">
                     {echo $key+1}.

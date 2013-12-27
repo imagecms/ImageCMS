@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Cfcm | ImageCMS</title>
+	<title>Class Cfcm | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -547,7 +548,7 @@ MY_Controller
 		
 		
 
-		<b>Located at</b> <a href="source-class-Cfcm.html#4-277" title="Go to source code">application/modules/cfcm/cfcm.php</a><br />
+		<b>Located at</b> application/modules/cfcm/cfcm.php<br />
 	</div>
 
 
@@ -565,7 +566,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Cfcm.html#11-16" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -594,7 +595,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save_item_data">#</a>
-		<code><a href="source-class-Cfcm.html#18-59" title="Go to source code">save_item_data</a>( <span>mixed <var>$item_id</var></span>, <span>mixed <var>$type</var> = <span class="php-quote">'page'</span></span> )</code>
+		<code>save_item_data( <span>mixed <var>$item_id</var></span>, <span>mixed <var>$type</var> = <span class="php-quote">'page'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -623,7 +624,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get_group_fields">#</a>
-		<code><a href="source-class-Cfcm.html#61-111" title="Go to source code">get_group_fields</a>( <span>mixed <var>$group_id</var> = -<span class="php-num">1</span></span> )</code>
+		<code>get_group_fields( <span>mixed <var>$group_id</var> = -<span class="php-num">1</span></span> )</code>
 
 		<div class="description short">
 			
@@ -652,36 +653,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_connect_fields">#</a>
-		<code><a href="source-class-Cfcm.html#115-194" title="Go to source code">connect_fields</a>( <span>mixed <var>$item_data</var></span>, <span>mixed <var>$item_type</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="update_fields_data" id="_update_fields_data">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_update_fields_data">#</a>
-		<code><a href="source-class-Cfcm.html#197-237" title="Go to source code">update_fields_data</a>( <span>mixed <var>$item_id</var></span>, <span>mixed <var>$data</var></span>, <span>mixed <var>$type</var></span> )</code>
+		<code>connect_fields( <span>mixed <var>$item_data</var></span>, <span>mixed <var>$item_type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -710,7 +682,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get_field">#</a>
-		<code><a href="source-class-Cfcm.html#240-257" title="Go to source code">get_field</a>( <span>mixed <var>$name</var></span> )</code>
+		<code>get_field( <span>mixed <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -718,72 +690,6 @@ MY_Controller
 
 		<div class="description detailed hidden">
 			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="display_tpl" id="_display_tpl">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_display_tpl">#</a>
-		<code><a href="source-class-Cfcm.html#259-266" title="Go to source code">display_tpl</a>( <span>mixed <var>$file</var> = <span class="php-quote">''</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Display template file</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Display template file</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="fetch_tpl" id="_fetch_tpl">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_fetch_tpl">#</a>
-		<code><a href="source-class-Cfcm.html#268-275" title="Go to source code">fetch_tpl</a>( <span>mixed <var>$file</var> = <span class="php-quote">''</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Fetch template file</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Fetch template file</p>
-
 
 
 
@@ -816,7 +722,7 @@ MY_Controller
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class CartNew\DBStorage | ImageCMS</title>
+	<title>Class CartNew\DBStorage | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li class="active"><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -144,9 +147,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -205,50 +205,13 @@ MY_Controller
 				2013 Siteimage<br />
 				<b>Author:</b>
 				&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-CartNew.DBStorage.html#5-102" title="Go to source code">application/modules/shop/classes/CartNew/DBStorage.php</a><br />
+		<b>Located at</b> application/modules/shop/classes/__CartNew/DBStorage.php<br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="prepareCartData" id="_prepareCartData">
-
-		<td class="attributes"><code>
-			 private 
-			boolean|array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_prepareCartData">#</a>
-		<code><a href="source-class-CartNew.DBStorage.html#14-31" title="Go to source code">prepareCartData</a>( )</code>
-
-		<div class="description short">
-			
-<p>Prepare cart data</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Prepare cart data</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean|array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="getData" id="_getData">
 
 		<td class="attributes"><code>
@@ -260,7 +223,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getData">#</a>
-		<code><a href="source-class-CartNew.DBStorage.html#33-56" title="Go to source code">getData</a>( <span>integer <var>$type</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>getData( <span>integer <var>$type</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -304,7 +267,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setData">#</a>
-		<code><a href="source-class-CartNew.DBStorage.html#58-80" title="Go to source code">setData</a>( <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>setData( <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -346,7 +309,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-CartNew.DBStorage.html#82-100" title="Go to source code">remove</a>( <span>integer <var>$type</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>remove( <span>integer <var>$type</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -382,15 +345,6 @@ MY_Controller
 	</table>
 
 	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-CartNew.IDataStorage.html#methods">CartNew\IDataStorage</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-CartNew.IDataStorage.html#_filterByParams">filterByParams()</a>, 
-			<a href="class-CartNew.IDataStorage.html#_removeByParams">removeByParams()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
 	<caption>Methods inherited from <a href="class-ShopController.html#methods">ShopController</a></caption>
 	<tr>
 		<td><code>
@@ -413,40 +367,13 @@ MY_Controller
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="cart" id="$cart">
-		<td class="attributes"><code>
-			private  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-CartNew.DBStorage.html#12" title="Go to source code"><var>$cart</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$cart" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-ShopController.html#properties">ShopController</a></caption>
 	<tr>
 		<td><code>
 			<a href="class-ShopController.html#$currentLocale"><var>$currentLocale</var></a>, 
-			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>, 
-			<a href="class-ShopController.html#$template_path"><var>$template_path</var></a>
+			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>
 		</code></td>
 	</tr>
 	</table>
@@ -458,7 +385,7 @@ MY_Controller
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class cmsemail\email | ImageCMS</title>
+	<title>Class cmsemail\email | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -138,9 +141,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -195,7 +195,7 @@ MY_Controller
 		<b>Namespace:</b> <a href="namespace-cmsemail.html">cmsemail</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-cmsemail.email.html#7-35" title="Go to source code">application/modules/cmsemail/email.php</a><br />
+		<b>Located at</b> application/modules/cmsemail/email.php<br />
 	</div>
 
 
@@ -213,7 +213,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-cmsemail.email.html#15-17" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -233,35 +233,6 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="__clone" id="___clone">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___clone">#</a>
-		<code><a href="source-class-cmsemail.email.html#19-21" title="Go to source code">__clone</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="getInstance" id="_getInstance">
 
 		<td class="attributes"><code>
@@ -273,7 +244,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInstance">#</a>
-		<code><a href="source-class-cmsemail.email.html#23-32" title="Go to source code">getInstance</a>( )</code>
+		<code>getInstance( )</code>
 
 		<div class="description short">
 			
@@ -336,32 +307,6 @@ MY_Controller
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="_instance" id="$_instance">
-		<td class="attributes"><code>
-			protected static 
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-cmsemail.email.html#13" title="Go to source code"><var>$_instance</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$_instance" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-cmsemail.classes.ParentEmail.html#properties">cmsemail\classes\ParentEmail</a></caption>
@@ -369,28 +314,38 @@ MY_Controller
 		<td><code>
 			<a href="class-cmsemail.classes.ParentEmail.html#$accepted_params"><var>$accepted_params</var></a>, 
 			<a href="class-cmsemail.classes.ParentEmail.html#$data_model"><var>$data_model</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$errors"><var>$errors</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$from"><var>$from</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$from_email"><var>$from_email</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$mailpath"><var>$mailpath</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$message"><var>$message</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$port"><var>$port</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$protocol"><var>$protocol</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$send_to"><var>$send_to</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$theme"><var>$theme</var></a>, 
-			<a href="class-cmsemail.classes.ParentEmail.html#$type"><var>$type</var></a>
+			<a href="class-cmsemail.classes.ParentEmail.html#$errors"><var>$errors</var></a>
 		</code></td>
 	</tr>
 	</table>
 
 
 
+	<table class="summary inherited">
+	<caption>Magic properties inherited from <a href="class-cmsemail.classes.BaseEmail.html#properties">cmsemail\classes\BaseEmail</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-cmsemail.classes.BaseEmail.html#m$db"><var>$db</var></a>, 
+			<a href="class-cmsemail.classes.BaseEmail.html#m$dx_auth"><var>$dx_auth</var></a>, 
+			<a href="class-cmsemail.classes.BaseEmail.html#m$input"><var>$input</var></a>, 
+			<a href="class-cmsemail.classes.BaseEmail.html#m$uri"><var>$uri</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Magic properties inherited from <a href="class-cmsemail.classes.ParentEmail.html#properties">cmsemail\classes\ParentEmail</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-cmsemail.classes.ParentEmail.html#m$cmsemail_model"><var>$cmsemail_model</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>
