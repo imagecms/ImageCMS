@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Cache | ImageCMS</title>
+	<title>Class Cache | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -532,7 +533,7 @@
 		
 		
 
-		<b>Located at</b> <a href="source-class-Cache.html#6-434" title="Go to source code">application/libraries/cache.php</a><br />
+		<b>Located at</b> application/libraries/cache.php<br />
 	</div>
 
 
@@ -550,7 +551,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Cache.html#24-44" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -579,7 +580,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetch">#</a>
-		<code><a href="source-class-Cache.html#46-64" title="Go to source code">fetch</a>( <span>string <var>$key</var></span>, <span>mixed <var>$group</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+		<code>fetch( <span>string <var>$key</var></span>, <span>mixed <var>$group</var> = <span class="php-keyword1">FALSE</span></span> )</code>
 
 		<div class="description short">
 			
@@ -612,35 +613,6 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="_fetch" id="__fetch">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__fetch">#</a>
-		<code><a href="source-class-Cache.html#66-92" title="Go to source code">_fetch</a>( <span>mixed <var>$key</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="fetch_func" id="_fetch_func">
 
 		<td class="attributes"><code>
@@ -652,7 +624,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetch_func">#</a>
-		<code><a href="source-class-Cache.html#94-121" title="Go to source code">fetch_func</a>( <span>mixed <var>$object</var></span>, <span>mixed <var>$func</var></span>, <span>mixed <var>$args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>fetch_func( <span>mixed <var>$object</var></span>, <span>mixed <var>$func</var></span>, <span>mixed <var>$args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -685,7 +657,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_store">#</a>
-		<code><a href="source-class-Cache.html#123-157" title="Go to source code">store</a>( <span>string <var>$key</var></span>, <span>mixed <var>$data</var></span>, <span>integer <var>$ttl</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$group</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code>store( <span>string <var>$key</var></span>, <span>mixed <var>$data</var></span>, <span>integer <var>$ttl</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$group</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -733,7 +705,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set_group">#</a>
-		<code><a href="source-class-Cache.html#159-179" title="Go to source code">set_group</a>( <span>string <var>$group</var></span> )</code>
+		<code>set_group( <span>string <var>$group</var></span> )</code>
 
 		<div class="description short">
 			
@@ -771,7 +743,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set_default_group">#</a>
-		<code><a href="source-class-Cache.html#181-183" title="Go to source code">set_default_group</a>( )</code>
+		<code>set_default_group( )</code>
 
 		<div class="description short">
 			
@@ -800,7 +772,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_call">#</a>
-		<code><a href="source-class-Cache.html#185-215" title="Go to source code">call</a>( <span>mixed <var>$func</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$args</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$ttl</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code>call( <span>mixed <var>$func</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$args</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$ttl</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -837,7 +809,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Clean">#</a>
-		<code><a href="source-class-Cache.html#217-254" title="Go to source code">Clean</a>( )</code>
+		<code>Clean( )</code>
 
 		<div class="description short">
 			
@@ -866,7 +838,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-Cache.html#256-275" title="Go to source code">delete</a>( <span>string <var>$key</var></span>, <span>mixed <var>$group</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+		<code>delete( <span>string <var>$key</var></span>, <span>mixed <var>$group</var> = <span class="php-keyword1">FALSE</span></span> )</code>
 
 		<div class="description short">
 			
@@ -910,7 +882,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete_group">#</a>
-		<code><a href="source-class-Cache.html#277-289" title="Go to source code">delete_group</a>( <span>string <var>$group</var></span> )</code>
+		<code>delete_group( <span>string <var>$group</var></span> )</code>
 
 		<div class="description short">
 			
@@ -948,7 +920,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete_func">#</a>
-		<code><a href="source-class-Cache.html#291-304" title="Go to source code">delete_func</a>( <span>mixed <var>$object</var></span>, <span>mixed <var>$func</var></span>, <span>mixed <var>$args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>delete_func( <span>mixed <var>$object</var></span>, <span>mixed <var>$func</var></span>, <span>mixed <var>$args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -985,7 +957,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete_all">#</a>
-		<code><a href="source-class-Cache.html#306-355" title="Go to source code">delete_all</a>( )</code>
+		<code>delete_all( )</code>
 
 		<div class="description short">
 			
@@ -1022,7 +994,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_clearCacheFolder">#</a>
-		<code><a href="source-class-Cache.html#357-375" title="Go to source code">clearCacheFolder</a>( <span>mixed <var>$folder</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code>clearCacheFolder( <span>mixed <var>$folder</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1051,7 +1023,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cache_file">#</a>
-		<code><a href="source-class-Cache.html#377-404" title="Go to source code">cache_file</a>( )</code>
+		<code>cache_file( )</code>
 
 		<div class="description short">
 			
@@ -1080,36 +1052,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generatekey">#</a>
-		<code><a href="source-class-Cache.html#406-408" title="Go to source code">generatekey</a>( <span>mixed <var>$key</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="log_cache_error" id="_log_cache_error">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_log_cache_error">#</a>
-		<code><a href="source-class-Cache.html#410-432" title="Go to source code">log_cache_error</a>( <span>mixed <var>$msg</var></span> )</code>
+		<code>generatekey( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1149,8 +1092,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Cache.html#12" title="Go to source code"><var>$CI</var></a>
-		</td>
+<var>$CI</var>		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$CI" class="anchor">#</a>
@@ -1172,8 +1114,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Cache.html#13" title="Go to source code"><var>$get</var></a>
-		</td>
+<var>$get</var>		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
 			<a href="#$get" class="anchor">#</a>
@@ -1195,8 +1136,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Cache.html#14" title="Go to source code"><var>$set</var></a>
-		</td>
+<var>$set</var>		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
 			<a href="#$set" class="anchor">#</a>
@@ -1218,8 +1158,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Cache.html#15" title="Go to source code"><var>$disableCache</var></a>
-		</td>
+<var>$disableCache</var>		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
 			<a href="#$disableCache" class="anchor">#</a>
@@ -1241,8 +1180,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Cache.html#18-22" title="Go to source code"><var>$_Config</var></a>
-		</td>
+<var>$_Config</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'store'</span> =&gt; <span class="php-quote">'cache'</span>,
     <span class="php-quote">'auto_clean'</span> =&gt; <span class="php-num">500</span>, <span class="php-comment">//Random number to run _Clean();</span>
     <span class="php-quote">'auto_clean_life'</span> =&gt; <span class="php-num">3600</span>,
@@ -1271,7 +1209,7 @@
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

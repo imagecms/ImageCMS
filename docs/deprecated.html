@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Deprecated | ImageCMS</title>
+	<title>Deprecated | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -112,8 +115,16 @@
 				<li><a href="class-Cache_dane.html">Cache_dane</a></li>
 				<li><a href="class-Cache_html.html">Cache_html</a></li>
 				<li><a href="class-Cart.html">Cart</a></li>
-				<li><a href="class-Cart.Api.html">Cart\Api</a></li>
-				<li><a href="class-Cart.BaseCart.html">Cart\BaseCart</a></li>
+				<li><a href="class-Cart.Api.html" class="invalid">Cart\Api</a></li>
+				<li><a href="class-Cart.BaseCart.html" class="invalid">Cart\BaseCart</a></li>
+				<li><a href="class-Cart.BaseOrder.html">Cart\BaseOrder</a></li>
+				<li><a href="class-Cart.CartItem.html">Cart\CartItem</a></li>
+				<li><a href="class-Cart.DBStorage.html">Cart\DBStorage</a></li>
+				<li><a href="class-Cart.IDataStorage.html">Cart\IDataStorage</a></li>
+				<li><a href="class-Cart.ItemsTypes.IItemType.html">Cart\ItemsTypes\IItemType</a></li>
+				<li><a href="class-Cart.ItemsTypes.ItemKit.html">Cart\ItemsTypes\ItemKit</a></li>
+				<li><a href="class-Cart.ItemsTypes.ItemVariant.html">Cart\ItemsTypes\ItemVariant</a></li>
+				<li><a href="class-Cart.SessionStorage.html">Cart\SessionStorage</a></li>
 				<li><a href="class-Cart_api.html">Cart_api</a></li>
 				<li><a href="class-Cart_new.html">Cart_new</a></li>
 				<li><a href="class-CartNew.Api.html">CartNew\Api</a></li>
@@ -263,6 +274,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -401,10 +413,6 @@
 			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-Exception.html">Exception</a></li>
-			</ul>
 
 
 			<h3>Functions</h3>
@@ -573,9 +581,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -591,59 +596,45 @@
 	<caption>Methods summary</caption>
 	<tr>
 		<td class="name"><a href="class-Cart.html">Cart</a></td>
-		<td class="name"><code><a href="class-Cart.html#__email_check">_email_check()</a></code></td>
+		<td class="name"><code><a href="class-Cart.html#_add">add()</a></code></td>
 		<td>
-					since v4.4.5
+					4.5.2
 <!-- by Texy2! --><br />
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><a href="class-Cart.html">Cart</a></td>
-		<td class="name"><code><a href="class-Cart.html#__username_check">_username_check()</a></code></td>
+		<td class="name"><code><a href="class-Cart.html#_clear">clear()</a></code></td>
 		<td>
-					since v4.4.5<br />
+					4.5.2<br />
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><a href="class-Cart.html">Cart</a></td>
-		<td class="name"><code><a href="class-Cart.html#_displayPopupConfirm">displayPopupConfirm()</a></code></td>
+		<td class="name"><code><a href="class-Cart.html#_createCode">createCode()</a></code></td>
 		<td>
-					since v4.4.5<br />
+					4.5.2<br />
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><a href="class-Cart.html">Cart</a></td>
-		<td class="name"><code><a href="class-Cart.html#_getPaymentsMethods">getPaymentsMethods()</a></code></td>
+		<td class="name"><code><a href="class-Cart.html#_delete">delete()</a></code></td>
 		<td>
-					since v4.4.5<br />
+					4.5.2<br />
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><a href="class-Cart.html">Cart</a></td>
-		<td class="name"><code><a href="class-Cart.html#_notification_valid_date">notification_valid_date()</a></code></td>
+		<td class="name"><code><a href="class-Cart.html#_delivery_method_id_check">delivery_method_id_check()</a></code></td>
 		<td>
-					since v4.4.5<br />
+					4.5.2<br />
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><a href="class-Cart.html">Cart</a></td>
-		<td class="name"><code><a href="class-Cart.html#_product_check">product_check()</a></code></td>
+		<td class="name"><code><a href="class-Cart.html#_view">view()</a></code></td>
 		<td>
-					since v4.4.5<br />
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><a href="class-Cart.html">Cart</a></td>
-		<td class="name"><code><a href="class-Cart.html#_sendNotifyingRequest">sendNotifyingRequest()</a></code></td>
-		<td>
-					since v4.4.5<br />
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><a href="class-Cart.html">Cart</a></td>
-		<td class="name"><code><a href="class-Cart.html#_variant_check">variant_check()</a></code></td>
-		<td>
-					since v4.4.5<br />
+					4.5.2<br />
 		</td>
 	</tr>
 	<tr>
@@ -667,13 +658,6 @@
 					See campaignMembers() for a replacement<br />
 		</td>
 	</tr>
-	<tr>
-		<td class="name"><a href="class-Profile.BaseProfile.html">Profile\BaseProfile</a></td>
-		<td class="name"><code><a href="class-Profile.BaseProfile.html#__edit">_edit()</a></code></td>
-		<td>
-					since version 4.2<br />
-		</td>
-	</tr>
 	</table>
 
 
@@ -681,7 +665,7 @@
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

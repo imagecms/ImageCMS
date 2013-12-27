@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Login | ImageCMS</title>
+	<title>Class Login | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -552,7 +553,7 @@ MY_Controller
 		
 		
 
-		<b>Located at</b> <a href="source-class-Login.html#6-199" title="Go to source code">application/modules/admin/login.php</a><br />
+		<b>Located at</b> application/modules/admin/login.php<br />
 	</div>
 
 
@@ -570,7 +571,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Login.html#14-24" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -601,7 +602,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_index">#</a>
-		<code><a href="source-class-Login.html#26-41" title="Go to source code">index</a>( )</code>
+		<code>index( )</code>
 
 		<div class="description short">
 			
@@ -630,7 +631,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_do_login">#</a>
-		<code><a href="source-class-Login.html#43-90" title="Go to source code">do_login</a>( )</code>
+		<code>do_login( )</code>
 
 		<div class="description short">
 			
@@ -663,7 +664,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_check_permissions">#</a>
-		<code><a href="source-class-Login.html#92-106" title="Go to source code">check_permissions</a>( <span>string <var>$login</var></span> )</code>
+		<code>check_permissions( <span>string <var>$login</var></span> )</code>
 
 		<div class="description short">
 			
@@ -705,7 +706,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_forgot_password">#</a>
-		<code><a href="source-class-Login.html#108-130" title="Go to source code">forgot_password</a>( )</code>
+		<code>forgot_password( )</code>
 
 		<div class="description short">
 			
@@ -734,7 +735,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_update_captcha">#</a>
-		<code><a href="source-class-Login.html#132-135" title="Go to source code">update_captcha</a>( )</code>
+		<code>update_captcha( )</code>
 
 		<div class="description short">
 			
@@ -763,36 +764,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_captcha_check">#</a>
-		<code><a href="source-class-Login.html#138-152" title="Go to source code">captcha_check</a>( <span>mixed <var>$code</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="user_browser" id="_user_browser">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_user_browser">#</a>
-		<code><a href="source-class-Login.html#154-177" title="Go to source code">user_browser</a>( <span>mixed <var>$agent</var></span> )</code>
+		<code>captcha_check( <span>mixed <var>$code</var></span> )</code>
 
 		<div class="description short">
 			
@@ -821,7 +793,7 @@ MY_Controller
 
 		<td class="name"><div>
 		<a class="anchor" href="#_switch_admin_lang">#</a>
-		<code><a href="source-class-Login.html#179-197" title="Go to source code">switch_admin_lang</a>( <span>mixed <var>$lang</var></span> )</code>
+		<code>switch_admin_lang( <span>mixed <var>$lang</var></span> )</code>
 
 		<div class="description short">
 			
@@ -869,7 +841,7 @@ MY_Controller
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

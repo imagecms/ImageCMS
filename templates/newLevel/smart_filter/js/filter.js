@@ -15,7 +15,7 @@ var cleaverFilterObj = {
         init: function() {
             $(this).each(function() {
                 var $this = $(this),
-                settings = $.extend({
+                        settings = $.extend({
                     slider: $this.find('.slider'),
                     minCost: null,
                     maxCost: null,
@@ -23,16 +23,16 @@ var cleaverFilterObj = {
                     rightSlider: $this.find('.right-slider')
                 }, eval($this.data('rel')));
                 var slider = settings.slider,
-                minCost = $(settings.minCost),
-                maxCost = $(settings.maxCost),
-                left = settings.leftSlider,
-                right = settings.rightSlider,
-                defMin = settings.defMin,
-                defMax = settings.defMax,
-                curMin = settings.curMin,
-                curMax = settings.curMax,
-                lS = settings.lS,
-                rS = settings.rS;
+                        minCost = $(settings.minCost),
+                        maxCost = $(settings.maxCost),
+                        left = settings.leftSlider,
+                        right = settings.rightSlider,
+                        defMin = settings.defMin,
+                        defMax = settings.defMax,
+                        curMin = settings.curMin,
+                        curMax = settings.curMax,
+                        lS = settings.lS,
+                        rS = settings.rS;
                 if (!$.existsN(minCost)) {
                     minCost = $('<input type="text" class="minCost" data-mins="' + defMin + '" value="' + curMin + '" name="' + lS + '" />').appendTo($this.closest('form')).hide();
                 }
@@ -69,13 +69,13 @@ var cleaverFilterObj = {
                 });
                 minCost.change(function() {
                     var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    minS = minCost.data('mins');
+                            value2 = maxCost.val(),
+                            minS = minCost.data('mins');
                     if (parseInt(value1) > parseInt(value2)) {
                         value1 = value2;
                         minCost.val(minS);
                     }
-                    
+
                     if (parseInt(value1) < minS) {
                         minCost.val(minS);
                         value1 = minS;
@@ -84,8 +84,8 @@ var cleaverFilterObj = {
                 });
                 maxCost.change(function() {
                     var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    maxS = maxCost.data('maxs');
+                            value2 = maxCost.val(),
+                            maxS = maxCost.data('maxs');
                     if (value2 > defMax) {
                         value2 = defMax;
                         maxCost.val(defMax);
@@ -136,7 +136,7 @@ var cleaverFilterObj = {
                 methods.triggerBtnClick();
             });
             $('body').off('click.cleaver').on('click.cleaver', function(e) {
-                if ($(e.target).parents().is() || $(e.target).is($(this)) || $(e.target).parents().is(set.elPos) || $(e.target).is(set.elPos)){
+                if ($(e.target).parents().is() || $(e.target).is($(this)) || $(e.target).parents().is(set.elPos) || $(e.target).is(set.elPos)) {
                     e.stopPropagation();
                     return;
                 }
@@ -161,7 +161,7 @@ var cleaverFilterObj = {
         },
         paste: function(countTov, clas) {
             var elPos = this,
-            wrap = $(cleaverFilterObj.apply).hide();
+                    wrap = $(cleaverFilterObj.apply).hide();
 
             $(cleaverFilterObj.elCount).text(countTov);
             wrap.find(genObj.plurProd).html(pluralStr(countTov, text.plurProd));
@@ -178,7 +178,7 @@ var cleaverFilterObj = {
             }).removeClass().addClass('apply ' + clas + ' ' + cleaverFilterObj.addingClass);
             wrap[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function() {
                 $(document).trigger({
-                    'type': 'showCleaverFilter', 
+                    'type': 'showCleaverFilter',
                     'el': $(this)
                 });
             });
@@ -204,7 +204,7 @@ var Filter = {
     catalogForm: '#catalogForm',
     filtertype: function(el, totalProducts, otherClass) {
         var $this = el.closest(this.framechecks),
-        $thisRel = $this.data('rel');
+                $thisRel = $this.data('rel');
         if ($thisRel != undefined) {
             var arr = $thisRel.split(' ');
             $.map(arr, function(n, i) {
@@ -238,12 +238,12 @@ var Filter = {
 
             return false;
         });
-        if ($.exists(this.catalogForm+' .lineForm:visible')) {
+        if ($.exists(this.catalogForm + ' .lineForm:visible')) {
             cuSel($.extend({}, cuselOptions, {
-                changedEl: this.catalogForm+' .lineForm select'
+                changedEl: this.catalogForm + ' .lineForm select'
             }));
             if (ltie7)
-                ieBoxSize($(this.catalogForm+' .cuselText'));
+                ieBoxSize($(this.catalogForm + ' .cuselText'));
         }
         $(Filter.framechecks).nStCheck({
             wrapper: $(".frame-label:has(.niceCheck)"),
@@ -261,8 +261,8 @@ var Filter = {
                         var scrollabel = $thisframechecks.find('.jspScrollable');
                         if ($.existsN(scrollabel)) {
                             var scrollabelH = scrollabel.height(),
-                            posY = scrollabel.data('jsp').getContentPositionY(),
-                            addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
+                                    posY = scrollabel.data('jsp').getContentPositionY(),
+                                    addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
                             cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = scrollabel.data('jsp').getContentPositionY() + addH;
                         }
                         else {
@@ -280,11 +280,11 @@ var Filter = {
         });
         $(Filter.framechecks).each(function() {
             var $this = $(this),
-            $thisRel = $this.data('rel'),
-            filtersContent = $this.find('.filters-content');
+                    $thisRel = $this.data('rel'),
+                    filtersContent = $this.find('.filters-content');
             if ($thisRel != undefined) {
                 var arr = $thisRel.split(' '),
-                arrL = arr.length;
+                        arrL = arr.length;
                 $.map(arr, function(n, i) {
                     if (n == 'dropDown') {
                         $this.find('.title .text-el').addClass('d_l');
@@ -321,7 +321,7 @@ var Filter = {
                     filtersContent.show();
                     $this.find('.title').children().addClass('valuePD');
                 }
-                else{
+                else {
                     filtersContent.hide();
                     $this.find('.title').children().removeClass('valuePD');
                 }
@@ -331,14 +331,43 @@ var Filter = {
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
         
-        /*not hyper clever filter*/
+        var catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter'),
+        dataPre = $(this.catalogForm).serialize();
+        $.ajax({
+            type: 'get',
+            async : false,
+            url: catUrlPre,
+            data: dataPre,
+            success: function(dane) {
+                if (dane) {
+                    dane = JSON.parse(dane);
+                    $(dane).each(function(key,value){
+                        var id = value.property_id;
+                        $(value.possibleValues).each(function(k,v){
+                            if (v.count == 0){
+                                $('#p_'+id+'_'+v.id+' input').parent().nStCheck('checkUnChecked');
+                            }
+                        })
+                        
+                    })
+                    
+                           
+                }
+            }
+
+        });
+        
+        
+         /*not hyper clever filter*/
         //    $(this.catalogForm).submit();
         /*/not hyper clever filter*/
+        
+        
 
         /*hyper clever filter*/
         var $this = el,
-        data = $(this.catalogForm).serialize(),
-        catUrl = window.location.pathname.replace('shop/category', 'smart_filter/filter');
+                data = $(this.catalogForm).serialize(),
+                catUrl = window.location.pathname.replace('shop/category', 'smart_filter/filter');
         $.ajax({
             type: 'get',
             url: catUrl,
@@ -348,6 +377,7 @@ var Filter = {
                 $.fancybox.showActivity();
             },
             success: function(msg) {
+
                 var otherClass = '';
                 $(Filter.frameFilter).html(msg).children(preloader).hide();
                 Filter.afterAjaxInitializeFilter();
@@ -363,10 +393,11 @@ var Filter = {
                 else {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
+
             }
         });
         return false;
-    /*/hyper clever filter*/
+        /*/hyper clever filter*/
     }
 };
 $(document).on('scriptDefer', function() {

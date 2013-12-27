@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class OschadBankInvoiceSystem | ImageCMS</title>
+	<title>Class OschadBankInvoiceSystem | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li class="active"><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -502,9 +506,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -547,7 +548,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 		
 		
 
-		<b>Located at</b> <a href="source-class-OschadBankInvoiceSystem.html#3-352" title="Go to source code">application/modules/shop/classes/OschadBankInvoiceSystem.php</a><br />
+		<b>Located at</b> application/modules/shop/classes/OschadBankInvoiceSystem.php<br />
 	</div>
 
 
@@ -565,7 +566,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-OschadBankInvoiceSystem.html#11-15" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -585,39 +586,6 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="initPdfClass" id="_initPdfClass">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_initPdfClass">#</a>
-		<code><a href="source-class-OschadBankInvoiceSystem.html#17-32" title="Go to source code">initPdfClass</a>( )</code>
-
-		<div class="description short">
-			
-<p>Load pdf generating class and set main settings</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Load pdf generating class and set main settings</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="processPayment" id="_processPayment">
 
 		<td class="attributes"><code>
@@ -629,7 +597,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_processPayment">#</a>
-		<code><a href="source-class-OschadBankInvoiceSystem.html#34-72" title="Go to source code">processPayment</a>( )</code>
+		<code>processPayment( )</code>
 
 		<div class="description short">
 			
@@ -653,92 +621,6 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="drawMainData" id="_drawMainData">
-
-		<td class="attributes"><code>
-			 protected 
-			generated
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_drawMainData">#</a>
-		<code><a href="source-class-OschadBankInvoiceSystem.html#74-221" title="Go to source code">drawMainData</a>( <span>integer <var>$y</var> = <span class="php-num">10</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Draw invoice with user data.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Draw invoice with user data.</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$y</var></dt>
-					<dd><code>integer</code><br>$y</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>generated</code><br>document<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="drawTextB" id="_drawTextB">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_drawTextB">#</a>
-		<code><a href="source-class-OschadBankInvoiceSystem.html#223-236" title="Go to source code">drawTextB</a>( <span>mixed <var>$text</var></span>, <span>mixed <var>$x</var></span>, <span>mixed <var>$y</var></span>, <span>mixed <var>$width</var></span>, <span>mixed <var>$height</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Draw text</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Draw text</p>
-
-
-
-
-
-
-				<h4>Float</h4>
-				<div class="list">
-						$x<br />
-						$y<br />
-						$width<br />
-						$height<br />
-				</div>
-				<h4>String</h4>
-				<div class="list">
-						$text<br />
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="getForm" id="_getForm">
 
 		<td class="attributes"><code>
@@ -750,7 +632,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getForm">#</a>
-		<code><a href="source-class-OschadBankInvoiceSystem.html#238-258" title="Go to source code">getForm</a>( )</code>
+		<code>getForm( )</code>
 
 		<div class="description short">
 			
@@ -789,7 +671,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAdminForm">#</a>
-		<code><a href="source-class-OschadBankInvoiceSystem.html#260-315" title="Go to source code">getAdminForm</a>( )</code>
+		<code>getAdminForm( )</code>
 
 		<div class="description short">
 			
@@ -828,7 +710,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveSettings">#</a>
-		<code><a href="source-class-OschadBankInvoiceSystem.html#317-350" title="Go to source code">saveSettings</a>( <span>SPaymentMethods <var>$paymentMethod</var></span> )</code>
+		<code>saveSettings( <span>SPaymentMethods <var>$paymentMethod</var></span> )</code>
 
 		<div class="description short">
 			
@@ -881,55 +763,6 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="settigns" id="$settigns">
-		<td class="attributes"><code>
-			protected  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-OschadBankInvoiceSystem.html#8" title="Go to source code"><var>$settigns</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">null</span></code></td>
-		<td class="description"><div>
-			<a href="#$settigns" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="pdf" id="$pdf">
-		<td class="attributes"><code>
-			protected  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-OschadBankInvoiceSystem.html#9" title="Go to source code"><var>$pdf</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">null</span></code></td>
-		<td class="description"><div>
-			<a href="#$pdf" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-BasePaymentProcessor.html#properties">BasePaymentProcessor</a></caption>
@@ -948,7 +781,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a></p>
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>
