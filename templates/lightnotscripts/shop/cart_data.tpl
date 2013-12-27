@@ -15,7 +15,7 @@
                 <span class="helper"></span>
                 <span>
                     {if $count}
-                        <span class="t-d_n ref text-el"><a href="{site_url('shop/cart_new')}">{lang('Корзина')}</a></span>
+                        <span class="t-d_n ref text-el"><a href="{site_url('shop/cart')}">{lang('Корзина')}</a></span>
                         <span class="text-el topCartCount">{echo $count}</span>
                     {else:}
                         <span class="t-d_n ref text-el">{lang('Корзина')}</span>
