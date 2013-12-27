@@ -64,6 +64,7 @@ class Admin extends BaseAdminController {
     public function userWL($id) {
         $wishlist = new Wishlist();
         $this->session->set_userdata(array('admin_edit_user_id' => $id));
+        
         $wishlist->getUserWL($id, array('public', 'shared', 'private'));
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
@@ -72,6 +73,7 @@ class Admin extends BaseAdminController {
                 ->setData('user', $wishlist->dataModel['user'])
                 ->setData('settings', $wishlist->settings)
                 ->setData('errors', $this->errors)
+                ->setData('upload_errors', $this->session->flashdata('upload_errors'))
                 ->renderAdmin('wishlist');
     }
 
@@ -149,6 +151,10 @@ class Admin extends BaseAdminController {
     public function do_upload() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->do_upload();
+//        var_dumps_exit($wishlist->errors);
+        if($wishlist->errors){
+            $this->session->set_flashdata('upload_errors', $wishlist->errors);
+        }
         redirect($_SERVER['HTTP_REFERER']);
     }
 
