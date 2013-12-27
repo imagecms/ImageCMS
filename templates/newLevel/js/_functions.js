@@ -178,10 +178,13 @@ var ShopFront = {
                     $(document).trigger('hideActivity');
                 }
                 cartItem.count = inputVal;
-                if (inputVal != '')
+                if (inputVal != ''){
+                    var pos = input.getCursorPosition();
                     Shop.Cart.chCount(cartItem, function() {
-                        input.focus();
+                        input.setCursorPosition(pos, pos)
+                    //input.focus();
                     });
+                }
                 var pdTrs = $('[data-id =' + pd.closest('tr[data-id]').data('id') + ']')
                 pdTrs.each(function() {
                     pdTr = $(this);
