@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 
 /*colors style*/
@@ -264,8 +265,8 @@ td:last-child .frame-item-menu:hover{border-right-color: #fd7c06;}
 .frame-group-checks[data-rel*="dropDown"] .icon-arrow{border-width: 5px 7px;border-style: solid;border-color: transparent;border-left-color: #000;margin-right: -2px;background-image: none;float: left;top: 4px;display: block;}
 .frame-group-checks[data-rel*="dropDown"] .icon-arrow + .d_b{margin-left: 14px;}
 .frame-group-checks[data-rel*="dropDown"] .f-s_0:hover .icon-arrow{border-left-color: #fec4a4;}
-.frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD .icon-arrow{border-color: transparent;border-top-color: #0c9acb;border-width: 7px 5px;margin-right: 2px;position: relative;top: 5px;}
-.frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD:hover .icon-arrow{border-top-color: #51d2fe;}
+.frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD .icon-arrow{border-color: transparent;border-top-color: #fd7c06;border-width: 7px 5px;margin-right: 2px;position: relative;top: 5px;}
+.frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD:hover .icon-arrow{border-top-color: #fec4a4;}
 
 .apply{border: 1px solid #c9c9c9;background-color: #fff;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;-moz-box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);-webkit-box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);}
 .apply:before{border-style: solid;border-width: 5px 6px;border-color: transparent;border-right-color: #fff;}

@@ -277,7 +277,7 @@
                     <!--End. Payments method form -->
                 </div>
             </div>
-            <div class="left-product">
+            <div class="left-product leftProduct">
                 <!-- Start. Photo block-->
                 <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop">
                     <span class="photo-block">

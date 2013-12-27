@@ -190,7 +190,6 @@ class Languages extends BaseAdminController {
             foreach ($templates as $template) {
                 if (is_dir($templates_dir . '/' . $template) && $template != "." && $template != '..' && $template[0] != '.') {
                     if (!is_dir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang)) {
-                        var_dumps($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang);
                         mkdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang, 0777);
                         mkdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang . '/' . 'LC_MESSAGES', 0777);
                         file_put_contents($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang . '/' . 'LC_MESSAGES/' . $template . '.po', $template_content);
@@ -198,7 +197,7 @@ class Languages extends BaseAdminController {
                 }
             }
         }
-//
+        
         if (is_dir($main_dir)) {
             if (!is_dir($main_dir . '/' . $lang)) {
                 mkdir($main_dir . '/' . $lang, 0777);
@@ -206,6 +205,7 @@ class Languages extends BaseAdminController {
                 file_put_contents($main_dir . '/' . $lang . '/LC_MESSAGES/main.po', $main_content);
             }
         }
+        
         if (is_dir($modules_dir)) {
             $modules = scandir($modules_dir);
             foreach ($modules as $module) {

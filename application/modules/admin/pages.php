@@ -340,7 +340,6 @@ class Pages extends BaseAdminController {
         // Get page data
         $data = $this->db->get_where('content', array('id' => $page_id))->row_array();
 
-
         if ($data['lang_alias'] != 0)
             redirect('/admin/pages/edit/' . $data['lang_alias'] . '/' . $data['lang']);
 
@@ -456,11 +455,11 @@ class Pages extends BaseAdminController {
                 ($hook = get_hook('admin_page_create_empty_translation')) ? eval($hook) : NULL;
 
                 $new_p_id = $this->cms_admin->add_page($new_data);
-
+                
                 if ($new_p_id > 0) {
                     showMessage(lang("Language of the page", "admin") . '<b> ' . $cur_lang['lang_name'] . '. </b>' . lang("ID", 'admin') . ' <b>' . $new_p_id . '.</b>');
                     if ($this->pjaxRequest)
-                        pjax('/admin/pages/edit/' . $page_id . '/' . $lang);
+                        pjax('/admin/pages/edit/' . $new_p_id . '/' . $lang);
                     else
                         redirect('/admin/pages/edit/' . $page_id . '/' . $lang);
                     //exit;
