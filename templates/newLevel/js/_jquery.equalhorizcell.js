@@ -80,31 +80,31 @@
                         }
                         if (jScrollPane)
                             api = initNSS();
-                        function scrollNst(deltaY) {
-                            var $thisSL = $(this).scrollLeft();
-                            if (jScrollPane)
-                                $thisSL = api.getContentPositionX();
+                        function scrollNst(deltaY, $thisSL) {
                             if ($thisSL != scrollW && deltaY < 0) {
                                 if (jScrollPane)
                                     api.scrollToX($thisSL + w / frameScrollCL)
                                 else
                                     firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
-                                return false;
                             }
                             if ($thisSL > 0 && deltaY > 0) {
                                 if (jScrollPane)
                                     api.scrollToX($thisSL - w / frameScrollCL)
                                 else
                                     firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
-                                return false;
                             }
                         }
                         if ((mouseWhell || isTouch) && scrollW > 0) {
-                            firstScrl.add(secScrl).unbind('mousewheel').on('mousewheel', function(event, delta, deltaX, deltaY) {
-                                scrollNst(deltaY);
+                            firstScrl.add(secScrl).off('mousewheel').on('mousewheel', function(event, delta, deltaX, deltaY) {
+                                var $thisSL = $(this).scrollLeft();
+                                if (jScrollPane)
+                                    $thisSL = api.getContentPositionX();
+                                scrollNst(deltaY, $thisSL);
+                                if ($thisSL != scrollW && $thisSL > 0)
+                                    return false;
                             });
                             if (isTouch) {
-                                firstScrl.unbind('touchstart' + nS + ' touchmove' + nS + ' touchend' + nS + '');
+                                firstScrl.off('touchstart' + nS + ' touchmove' + nS + ' touchend' + nS + '');
                                 firstScrl.on('touchstart' + nS, function(e) {
                                     sP = e.originalEvent.touches[0];
                                     sP = sP.pageX;
@@ -133,7 +133,7 @@
                         else
                             firstScrl.add(secScrl).scrollLeft('0');
                         if (scrollW > 0)
-                            secScrl.unbind('scroll' + nS).on('scroll' + nS, function() {
+                            secScrl.off('scroll' + nS).on('scroll' + nS, function() {
                                 var $thisSL = $(this).scrollLeft();
                                 if (jScrollPane)
                                     $thisSL = api.getContentPositionX();
@@ -161,10 +161,10 @@
                         });
                     });
                     methods.hoverComprasion(left, right, elEven);
-                    onlyDif.unbind('click' + nS).on('click' + nS, function() {
+                    onlyDif.off('click' + nS).on('click' + nS, function() {
                         methods.onlyDifM(left, right, liLength, elEven);
                     });
-                    allParams.unbind('click' + nS).on('click' + nS, function() {
+                    allParams.off('click' + nS).on('click' + nS, function() {
                         methods.allParamsM(left, right, elEven);
                     });
                     onlyDif.parent('.' + aC).children().trigger('click' + nS);
