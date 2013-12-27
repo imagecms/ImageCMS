@@ -275,17 +275,22 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      * @return boolean
      */
     public function do_upload() {
+        
         if (parent::do_upload($this->input->post('userID'))) {
             if (!$this->upload->do_upload('file')) {
+                
                 $this->errors[] = $this->upload->display_errors();
+                
                 return FALSE;
             } else {
+                
                 $this->dataModel = array('upload_data' => (array)$this->upload);
                 $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
                 return TRUE;
             }
             return $this->dataModel[] = lang('Image uploaded', 'wishlist');
         } else {
+            
             return $this->errors[] = lang('Can not upload photo', 'wishlist');
         }
     }

@@ -40,7 +40,7 @@
 
             <header>
                 <section class="container">
-                     {if SHOP_INSTALLED}
+                    {if SHOP_INSTALLED}
                         <a href="{base_url('admin/components/run/shop/dashboard')}" class="logo pull-left pjax">
                         {else:}
                             <a href="/admin/dashboard" class="logo pull-left pjax">
@@ -108,62 +108,62 @@
 
             {if $CI->dx_auth->is_logged_in()}
                 <div class="frame_nav">
-                   {include('templates/administrator/inc/menus.php');}
+                    {include('templates/administrator/inc/menus.php');}
                     {if !SHOP_INSTALLED}
-                    <div class="container" id="baseAdminMenu">
-                        <nav class="navbar navbar-inverse">
+                        <div class="container" id="baseAdminMenu">
+                            <nav class="navbar navbar-inverse">
 
 
-                            
 
-                            <ul class="nav">
-                                {foreach $baseMenu as $li}
-                                    <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
-                                        {if $li.subMenu}
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                {foreach $li.subMenu as $sli}
-                                                    {if $sli.menusList}
-                                                        {if !$menus}
-                                                            {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
-                                                        {/if}
 
-                                                        <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Management","admin")}</a></li>
-                                                        <li class="divider"></li>
-                                                            {foreach $menus as $menu}
-                                                            <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
-                                                            {/foreach}
-                                                        {/if}
-                                                        {if $sli.modulesList}
-                                                            {if !$components}
-                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
+                                <ul class="nav">
+                                    {foreach $baseMenu as $li}
+                                        <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
+                                            {if $li.subMenu}
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
+                                                <ul class="dropdown-menu">
+                                                    {foreach $li.subMenu as $sli}
+                                                        {if $sli.menusList}
+                                                            {if !$menus}
+                                                                {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
                                                             {/if}
-                                                            {foreach $components as $component}
-                                                            <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
-                                                            {/foreach}
-                                                        {/if}
-                                                    <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)$sli.text ? $sli.text : $sli.text}</a>{else:}{echo (bool)$sli.text ? $sli.text : $sli.text}{/if}</li>
+
+                                                            <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Management","admin")}</a></li>
+                                                            <li class="divider"></li>
+                                                                {foreach $menus as $menu}
+                                                                <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
+                                                                {/foreach}
+                                                            {/if}
+                                                            {if $sli.modulesList}
+                                                                {if !$components}
+                                                                    {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
+                                                                {/if}
+                                                                {foreach $components as $component}
+                                                                <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
+                                                                {/foreach}
+                                                            {/if}
+                                                        <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)$sli.text ? $sli.text : $sli.text}</a>{else:}{echo (bool)$sli.text ? $sli.text : $sli.text}{/if}</li>
 
 
-                                                {/foreach}
-                                            </ul>
-                                        {else:}
-                                            <a href="{$li.link}" class="pjax">
-                                                <i class="{$li.icon}"></i>
-                                                <span>{$li.text}</span>
-                                            </a>
-                                        {/if}
-                                    </li>
-                                {/foreach}
-                            </ul>
+                                                    {/foreach}
+                                                </ul>
+                                            {else:}
+                                                <a href="{$li.link}" class="pjax">
+                                                    <i class="{$li.icon}"></i>
+                                                    <span>{$li.text}</span>
+                                                </a>
+                                            {/if}
+                                        </li>
+                                    {/foreach}
+                                </ul>
 
-                            {//if SHOP_INSTALLED}
-                               <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
-                            {///if}
-                            {$CI->lang->load($langDomain)}
-                        </nav>
-                    </div>
-                        {/if}
+                                {//if SHOP_INSTALLED}
+                                   <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
+                                {///if}
+                                {$CI->lang->load($langDomain)}
+                            </nav>
+                        </div>
+                    {/if}
                     {if SHOP_INSTALLED}
                         <div class="container" >
                             <nav class="navbar navbar-inverse">
@@ -187,8 +187,8 @@
                                                                 {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
                                                             {/if}
                                                             {foreach $components as $component}
-                                                                    <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
-                                                            {/foreach}
+                                                                <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
+                                                                {/foreach}
                                                             <li class="divider"></li>
                                                             <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
                                                             {/if}
@@ -247,7 +247,7 @@
         </footer>
         <div id="elfinder"></div>
         <div class="standart_form frame_rep_bug">
-            <form method="post" action="">
+            <form>
                 <label>
                     {lang('Your Name','admin')}:
                     <input type=text name="name"/>
@@ -258,24 +258,24 @@
                 </label>
                 <label>
                     {lang('Your remark', "admin")}:
-                    <textarea></textarea>
+                    <textarea name='text'></textarea>
                 </label>
                 <input type="submit" value="{lang("Send","admin")}" class="btn btn-info"/>
                 <input type="button" value="{lang("Cancel","admin")}" class="btn btn-info" style="float:right" name="cancel_button"/>
-                <input type="hidden" value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
+                <input type="hidden" name='ip' value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
             </form>
         </div>
         <script>
             {$settings = $CI->cms_admin->get_settings();}
-                                    var textEditor = '{$settings.text_editor}';
+            var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
-                                    var userLogined = true;
+                var userLogined = true;
             {else:}
-                                    var userLogined = false;
+                var userLogined = false;
             {/if}
 
-                                    var locale = '{echo $this->CI->config->item('language')}';
-                                    var base_url = "{site_url()}";
+            var locale = '{echo $this->CI->config->item('language')}';
+            var base_url = "{site_url()}";
         </script>
 
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -317,69 +317,69 @@
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
-                                    var isShop = true;
+                var isShop = true;
             {else:}
-                                    var isShop = false;
+                var isShop = false;
             {/if}
-                                    var lang_only_number = "{lang("numbers only","admin")}";
-                                    var show_tovar_text = "{lang("show","admin")}";
-                                    var hide_tovar_text = "{lang("don't show", 'admin')}";
+            var lang_only_number = "{lang("numbers only","admin")}";
+            var show_tovar_text = "{lang("show","admin")}";
+            var hide_tovar_text = "{lang("don't show", 'admin')}";
             {literal}
 
                 $(document).ready(function() {
 
-                    if (!isShop)
-                    {
-                        $('#shopAdminMenu').hide();
-                        //$('#topPanelNotifications').hide();
-                    }
-                    else
-                        $('#baseAdminMenu').hide();
+                if (!isShop)
+                {
+                $('#shopAdminMenu').hide();
+                //$('#topPanelNotifications').hide();
+                }
+                else
+                $('#baseAdminMenu').hide();
                 })
 
                 function number_tooltip_live() {
-                    $('.number input').each(function() {
-                        $(this).attr({
-                            'data-placement': 'top',
-                            'data-title': lang_only_number
-                        });
-                    })
-                    number_tooltip();
+                $('.number input').each(function() {
+                $(this).attr({
+                'data-placement': 'top',
+                'data-title': lang_only_number
+                });
+                })
+                number_tooltip();
                 }
                 function prod_on_off() {
-                    $('.prod-on_off').die('click').live('click', function() {
-                        var $this = $(this);
-                        if (!$this.hasClass('disabled')) {
-                            if ($this.hasClass('disable_tovar')) {
-                                $this.animate({
-                                    'left': '0'
-                                }, 200).removeClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', show_tovar_text)
-                                    $('.tooltip-inner').text(show_tovar_text);
-                                }
-                                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
-                            }
-                            else {
-                                $this.animate({
-                                    'left': '-28px'
-                                }, 200).addClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', hide_tovar_text)
-                                    $('.tooltip-inner').text(hide_tovar_text);
-                                }
-                                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
-                            }
-                        }
-                    });
+                $('.prod-on_off').die('click').live('click', function() {
+                var $this = $(this);
+                if (!$this.hasClass('disabled')) {
+                if ($this.hasClass('disable_tovar')) {
+                $this.animate({
+                'left': '0'
+                }, 200).removeClass('disable_tovar');
+                if ($this.parent().data('only-original-title') == undefined) {
+                $this.parent().attr('data-original-title', show_tovar_text)
+                $('.tooltip-inner').text(show_tovar_text);
+                }
+                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                if ($this.attr('data-page') != undefined)
+                $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
+                }
+                else {
+                $this.animate({
+                'left': '-28px'
+                }, 200).addClass('disable_tovar');
+                if ($this.parent().data('only-original-title') == undefined) {
+                $this.parent().attr('data-original-title', hide_tovar_text)
+                $('.tooltip-inner').text(hide_tovar_text);
+                }
+                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+                if ($this.attr('data-page') != undefined)
+                $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
+                }
+                }
+                });
                 }
                 $(window).load(function() {
-                    number_tooltip_live();
-                    prod_on_off();
+                number_tooltip_live();
+                prod_on_off();
                 })
                 base_url = '{/literal}{$BASE_URL}';
 

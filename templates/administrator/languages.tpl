@@ -55,30 +55,30 @@
                                 </thead>
                                 <tbody>
                                     {foreach $langs as $lang}                                  
-                                    <tr class="simple_tr">
-                                        <td class="t-a_c">
-                                            <span class="frame_label">
-                                                <span class="niceCheck b_n">
-                                                    <input type="checkbox" name="ids" value="{$lang.id}"/>
+                                        <tr class="simple_tr">
+                                            <td class="t-a_c">
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox" name="ids" value="{$lang.id}"/>
+                                                    </span>
                                                 </span>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <p>
-                                                <a href="{$BASE_URL}admin/languages/edit/{$lang.id}" 
-                                                   data-rel="tooltip" 
-                                                   data-title="{lang("Editing","admin")}"
-                                                   class="pjax"
-                                                   >
-                                                    {$lang.lang_name}
-                                                </a>
-                                            </p>
-                                        </td>
-                                        <td><p>{$lang.identif}</p></td>
-                                        <td><p>{$lang.template}</p></td>
-                                        <td><p><img src="{$lang.image}" width="16" height="16" /></p></td>
-                                        <td class="t-a_c"><button class="btn btn-small lan_def {if $lang.default == 1} btn-primary active {/if}" data-id="{$lang.id}"><i class="icon-star"></i></button></td>
-                                    </tr>
+                                            </td>
+                                            <td>
+                                                <p>
+                                                    <a href="{$BASE_URL}admin/languages/edit/{$lang.id}" 
+                                                       data-rel="tooltip" 
+                                                       data-title="{lang("Editing","admin")}"
+                                                       class="pjax"
+                                                       >
+                                                        {$lang.lang_name}
+                                                    </a>
+                                                </p>
+                                            </td>
+                                            <td><p>{$lang.identif}</p></td>
+                                            <td><p>{if $lang.default == 1}{echo $template_selected}{else:}{$lang.template}{/if}</p></td>
+                                            <td><p><img src="{$lang.image}" width="16" height="16" /></p></td>
+                                            <td class="t-a_c"><button class="btn btn-small lan_def {if $lang.default == 1} btn-primary active {/if}" data-id="{$lang.id}"><i class="icon-star"></i></button></td>
+                                        </tr>
                                     {/foreach}     
                                 </tbody>
                             </table>   

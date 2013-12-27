@@ -1,4 +1,6 @@
 <script>
+langs["Error"] = '<?php echo lang("Error", "admin")?>';
+langs["Not supported file format"] = '<?php echo lang("Not supported file format", "admin")?>';
 langs["This field is required"] = '<?php echo lang("This field is required", "admin")?>';
 langs["Please fix this field."] = '<?php echo lang("Please fix this field.", "admin")?>';
 langs["Enter a valid email address."] = '<?php echo lang("Enter a valid email address.", "admin")?>';
