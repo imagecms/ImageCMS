@@ -98,6 +98,9 @@
                                 <span class="title">{lang('Доставка:','newLevel')}</span>
                                 <div class="frame-form-field check-variant-delivery">
                                     <div class="frame-radio">
+                                        {if $isRequired['deliveryMethodId']}
+                                            <span class="must">*</span>
+                                        {/if}
                                         {foreach $deliveryMethods as $deliveryMethod}
                                             {$del_id = $deliveryMethod->getId()}
                                             {$price = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice())}
@@ -105,6 +108,7 @@
                                                 {$priceNextCS = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
                                             {/if}
                                             <div class="frame-label">
+
                                                 <span class="niceRadio b_n">
                                                     <input type="radio"
                                                            name="deliveryMethodId"
@@ -411,7 +415,7 @@
 </div>
 </div>
 <script type="text/javascript">
-    initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
+                                                        initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
 </script>
 
 

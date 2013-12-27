@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-06 09:29+0200\n"
-"PO-Revision-Date: 2013-12-06 09:29+0200\n"
+"POT-Creation-Date: 2013-12-26 12:46+0200\n"
+"PO-Revision-Date: 2013-12-26 12:46+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,14 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/cfcm/cfcm_forms.php:138
+msgid "Enable Tinymce editor"
+msgstr "Включить редактор Tinymce"
+
+#: ./application/modules/cfcm/admin.php:117
+msgid "Select another  name"
+msgstr "Выберите другое имя"
 
 #: ./application/modules/cfcm/templates/admin/index.tpl:47
 msgid "Without catagory"
@@ -255,10 +263,6 @@ msgstr "Укажите <b> Метка</ B> поле"
 #: ./application/modules/cfcm/admin.php:104
 msgid "Only Latin characters"
 msgstr "Только латинские буквы"
-
-#: admin.php:117
-msgid "Select another name"
-msgstr "Выберите другое имя"
 
 #: ./application/modules/cfcm/admin.php:138
 msgid "Field created"
