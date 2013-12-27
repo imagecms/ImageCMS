@@ -43,7 +43,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
     public function autoload() {
         if ($this->check_module_install()) {
             \CMSFactory\Events::create()->on('getVariantProduct')->setListener('get_discount_for_product');
-            \CMSFactory\Events::create()->on('MakeOrder')->setListener('make_order_with_discount');
+            \CMSFactory\Events::create()->onShopMakeOrder()->setListener('make_order_with_discount');
             \CMSFactory\Events::create()->on('Cart:Operation')->setListener('changeCart');
         }
     }
