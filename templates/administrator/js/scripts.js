@@ -1295,41 +1295,38 @@ $(document).ready(
             });
 
             $('#rep_bug').die('click').live('click', function() {
-                var overlay = $('.overlay');
-                overlay.css({
-                    'height': $(document).height(),
-                    'opacity': 0.5
-                });
+                $('.overlay').css({height: $(document).height(), 'opacity': 0.6});
+                $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
+                $('.overlay').fadeIn();
+                return false;
+            });
 
-                overlay.fadeIn(function() {
-                    $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
+            $('.overlay').die('click').live('click', function() {
+                $('.frame_rep_bug').fadeOut(function() {
+                    $('.overlay').fadeOut();
                 });
-                overlay.die('click').live('click', function() {
-                    $('.frame_rep_bug').fadeOut(function() {
-                        overlay.fadeOut();
-                    });
-                });
+            });
 
-                $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
-                    var overlay = $('.overlay');
-                    var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val() + '&name=' + $('.frame_rep_bug [name=name]').val() + '&email=' + $('.frame_rep_bug [name=email]').val();
-                    $.ajax({
-                        type: 'GET',
-                        url: '/admin/report_bug',
-                        data: url,
-                        success: function(data) {
-                            $('.frame_rep_bug').prepend(data);
+            $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
+                var formData = $(".frame_rep_bug form").serialize();
+                formData += '&hostname=' + location.hostname;
+                formData += '&pathname=' + location.pathname;
+                // deleting old errors
+                $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/report_bug',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(data) {
+                        $('.frame_rep_bug').prepend(data.message);
+                        if (parseInt(data.status) == 1) {
                             setTimeout(function() {
-                                overlay.trigger('click');
+                                $('.overlay').trigger('click');
+                                $(".frame_rep_bug form")[0].reset();
                             }, 2000);
                         }
-                    });
-                    return false;
-                });
-                overlay.die('click').live('click', function() {
-                    $('.frame_rep_bug').fadeOut(function() {
-                        overlay.fadeOut();
-                    });
+                    }
                 });
                 return false;
             });
@@ -1339,6 +1336,8 @@ $(document).ready(
                 overlay.trigger('click');
                 //$('.frame_rep_bug').hide('slow');
             });
+
+
             if ($.exists('#chart'))
                 brands();
             if ($.exists('#wrapper_gistogram'))
@@ -1908,13 +1907,13 @@ $(document).ready(function() {
                 }
             });
         });
-        
+
         $('input#monkey').on('change', function() {
             if ($(this).attr('checked')) {
                 $('.mailChimpSettings').show();
-            } 
+            }
         });
-        
+
         $('input#csv').on('change', function() {
             if ($(this).attr('checked')) {
                 $('.mailChimpSettings').hide();
