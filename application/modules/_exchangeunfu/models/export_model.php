@@ -22,7 +22,8 @@ class Export_model extends CI_Model {
     public function getProducts($products_ids = array()) {
 
         if (!empty($products_ids)) {
-            $query = $this->db->where_in('external_id', $products_ids)
+            $query = $this->db
+                    ->where_in('shop_products.external_id', $products_ids)
                     ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                     ->join('shop_product_variants', 'shop_products.id=shop_product_variants.product_id')
                     ->get('shop_products');
@@ -32,17 +33,28 @@ class Export_model extends CI_Model {
                     ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                     ->get('shop_products');
         }
-
         return $this->returnResults($query);
     }
 
-    public function getCategories() {
-        $query = $this->db->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
-                ->get('shop_category');
+    public function getCategories($cat_ids = FALSE) {
+        if ($cat_ids) {
+            $query = $this->db
+                    ->where_in('shop_category.id', (array) $cat_ids)
+                    ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
+                    ->get('shop_category');
+        } else {
+            $query = $this->db
+                    ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
+                    ->get('shop_category');
+        }
         return $this->returnResults($query);
     }
 
-    public function getUsers() {
+    public function getUsers($ids = FALSE) {
+        if ($ids) {
+            $this->db->where_in('id', (array) $ids);
+        }
+
         $query = $this->db
                 ->get('users');
         return $this->returnResults($query);

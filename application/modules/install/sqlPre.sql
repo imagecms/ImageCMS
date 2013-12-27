@@ -219,7 +219,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:55:"Интернет-магазин Сайт клиента";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:55:"Интернет-магазин Сайт клиента";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:500:"<h2>Интернет-магазин "Сайт клиента"</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Интернет-магазин "Сайт клиента"</p>\n<p>При возникновении любых вопросов, обращайтесь по телефонам:&nbsp;<br />+38 (044)227-95-72, +38 (050)578-17-40</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:4:"port";s:0:"";}', 7),
 (216, 'new_level', 'new_level', 1, 1, 1, 'a:3:{s:15:"propertiesTypes";a:2:{i:0;s:6:"scroll";i:2;s:8:"dropDown";}s:7:"columns";a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}s:5:"thema";s:18:"css/color_scheme_1";}', 4),
 (261, 'trash', 'trash', 0, 0, 0, NULL, 7),
-(204, 'mobile', 'mobile', 0, 0, 0, NULL, 6),
+(204, 'mobile', 'mobile', 1, 1, 0, NULL, 6),
 (264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 19),
 (265, 'star_rating', 'star_rating', 1, 0, 0, '{"main":"1"}', 26),
 (266, 'imagebox', 'imagebox', 0, 1, 0, NULL, 27);
