@@ -119,10 +119,10 @@ Product = {
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
         });
     },
-    beforeShowHref: function(el, drop, isajax, data, elSet) {
+    beforeShowHref: function(el, drop, isajax) {
         var arg = arguments,
         cycle = hrefOptions.cycle,
-        obj = $.extend({}, elSet, hrefOptions, el.closest(genObj.parentBtnBuy).find(genObj.infoBut).data()),
+        obj = $.extend({}, el.data(), hrefOptions, el.closest(genObj.parentBtnBuy).find(genObj.infoBut).data()),
         frame = $('#photo');
         frame.html(_.template($('#framePhotoProduct').html(), obj));
 
@@ -230,7 +230,7 @@ Product = {
     afterClosedPhoto: function(el, drop) {
         drop.find('.addingphoto').remove();
     },
-    onComplete: function(el, drop, isajax, data, elSet) {
+    onComplete: function(el, drop, isajax) {
         
         var carGal = drop.find('.content-carousel');
         drop.find('.drop-content-photo img').css('visibility', 'visible');

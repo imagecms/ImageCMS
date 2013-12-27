@@ -1,27 +1,27 @@
 #comment__icsi-css{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 12px;color: #333;margin:0px; padding:0px; border:0px;outline:none;line-height: 1.5;vertical-align: baseline;background-color: transparent;}
 #comment__icsi-css .title_h2__icsi-css{margin-bottom: 15px;font-size: 18px;font-weight: normal;margin-bottom: 4px;}
-.frame_tabs .frame-comments__icsi-css{margin: -15px -25px 0;}
-.frame-comments__icsi-css{background-color: #f6f6f6;border-bottom: 1px solid #e3e3e3;vertical-align: baseline;margin-bottom: 25px;}
-.frame-comments__icsi-css .inside-padd{padding: 24px 20px 15px;}
-.frame-list-comment__icsi-css{padding: 0;margin: 15px -25px 0;list-style-type: none;}
-.frame-list-comment__icsi-css .frame-drop-comment__icsi-css{padding: 25px 0;}
-.frame-drop-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
-.frame-list-comment__icsi-css > li{border-top: 1px solid #e8e8e8;padding: 25px 25px 25px;}
-.frame-list-comment__icsi-css > li:first-child{border-top: 0;margin-top: 0;padding-top: 0;}
-.frame-list-comment__icsi-css .frame-list-comment__icsi-css{margin: 0;}
-.frame-list-comment__icsi-css .frame-list-comment__icsi-css > li{border-top: 0;padding-bottom: 0;}
-.func-button-comment__icsi-css{padding-top: 10px;}
-.func-button-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
-.author-comment__icsi-css{color: #afb223;font-weight: bold;font-size: 14px;}
-.date-comment__icsi-css{color: #9b9b9b;}
-.icon-comment__icsi-css{background: url('/application/modules/comments/assets/images/icon-comment.png') no-repeat;display: inline-block;margin-right: 5px;width: 14px;height: 13px;top: 0;}
-.divider_l_dl__icsi-css{color: #c6c6c6;margin: 0 5px;}
-.frame-drop-comment__icsi-css{display: none;}
-.func-button-comment__icsi-css:after{visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
-.f_l__icsi-css{float: left;}
-.f_r__icsi-css{float: right;}
-.helper__icsi-css{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}
-.helper__icsi-css + *{vertical-align: middle;display: inline-block;word-break: break-word;}
+#comment__icsi-css .frame_tabs .frame-comments__icsi-css{margin: -15px -25px 0;}
+#comment__icsi-css .frame-comments__icsi-css{background-color: #f6f6f6;border-bottom: 1px solid #e3e3e3;vertical-align: baseline;margin-bottom: 25px;}
+#comment__icsi-css .frame-comments__icsi-css .inside-padd{padding: 24px 20px 15px;}
+#comment__icsi-css .frame-list-comment__icsi-css{padding: 0;margin: 15px -25px 0;list-style-type: none;}
+#comment__icsi-css .frame-list-comment__icsi-css .frame-drop-comment__icsi-css{padding: 25px 0;}
+#comment__icsi-css .frame-drop-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
+#comment__icsi-css .frame-list-comment__icsi-css > li{border-top: 1px solid #e8e8e8;padding: 25px 25px 25px;}
+#comment__icsi-css .frame-list-comment__icsi-css > li:first-child{border-top: 0;margin-top: 0;padding-top: 0;}
+#comment__icsi-css .frame-list-comment__icsi-css .frame-list-comment__icsi-css{margin: 0;}
+#comment__icsi-css .frame-list-comment__icsi-css .frame-list-comment__icsi-css > li{border-top: 0;padding-bottom: 0;}
+#comment__icsi-css .func-button-comment__icsi-css{padding-top: 10px;}
+#comment__icsi-css .func-button-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
+#comment__icsi-css .author-comment__icsi-css{color: #afb223;font-weight: bold;font-size: 14px;}
+#comment__icsi-css .date-comment__icsi-css{color: #9b9b9b;}
+#comment__icsi-css .icon-comment__icsi-css{background: url('/application/modules/comments/assets/images/icon-comment.png') no-repeat;display: inline-block;margin-right: 5px;width: 14px;height: 13px;top: 0;}
+#comment__icsi-css .divider_l_dl__icsi-css{color: #c6c6c6;margin: 0 5px;}
+#comment__icsi-css .frame-drop-comment__icsi-css{display: none;}
+#comment__icsi-css .func-button-comment__icsi-css:after{visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
+#comment__icsi-css .f_l__icsi-css{float: left;}
+#comment__icsi-css .f_r__icsi-css{float: right;}
+#comment__icsi-css .helper__icsi-css{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}
+#comment__icsi-css .helper__icsi-css + *{vertical-align: middle;display: inline-block;word-break: break-word;}
 
 #comment__icsi-css input[type="submit"]::-moz-focus-inner, #comment__icsi-css button::-moz-focus-inner{padding: 0; border: 0;}/* Firefox button bug */
 #comment__icsi-css button, #comment__icsi-css input[type="button"], #comment__icsi-css input[type="submit"]{cursor: pointer;-webkit-appearance: button;border: none;background-color: transparent;padding: 0;}
@@ -63,17 +63,17 @@
     background: linear-gradient(to bottom,  rgba(237,237,237,1) 0%,rgba(247,247,247,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-8 */
 }
-#comment__icsi-css .like__icsi-css, #comment__icsi-css .dis-like__icsi-css{background-image: none !important;border: none !important;}
-.like__icsi-css > button{border-bottom: 1px dotted #3a88cc !important;color: #3a88cc;}
-.dis-like__icsi-css > button{border-bottom: 1px dotted #f03f3f !important;color: #f03f3f;}
+#comment__icsi-css .like__icsi-css, #comment__icsi-css .dis-like__icsi-css{background: none !important;border: none !important;}
+#comment__icsi-css .like__icsi-css > button{border-bottom: 1px dotted #3a88cc !important;color: #3a88cc;background: none !important;}
+#comment__icsi-css .dis-like__icsi-css > button{border-bottom: 1px dotted #f03f3f !important;color: #f03f3f;background: none !important;}
 #comment__icsi-css .like__icsi-css > *, #comment__icsi-css .dis-like__icsi-css > *{padding: 0;}
-.form__icsi-css label, .form__icsi-css .frameLabel__icsi-css{margin-bottom: 12px;}
-.form__icsi-css .title__icsi-css{float: left;width: 128px;padding-right: 10px;margin-top: 6px;text-align: right;}
-.frame_form_field__icsi-css{position: relative;display: block;}
-.form__icsi-css .frame_form_field__icsi-css{margin-left: 138px;}
+#comment__icsi-css .form__icsi-css label, .form__icsi-css .frameLabel__icsi-css{margin-bottom: 12px;}
+#comment__icsi-css .form__icsi-css .title__icsi-css{float: left;width: 128px;padding-right: 10px;margin-top: 6px;text-align: right;}
+#comment__icsi-css .frame_form_field__icsi-css{position: relative;display: block;}
+#comment__icsi-css .form__icsi-css .frame_form_field__icsi-css{margin-left: 138px;}
 
-.like__icsi-css textarea, .like__icsi-css input{font-style: normal;font-size: 12px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
-.like__icsi-css textarea, .like__icsi-css input[type="text"]{height: 30px;border-color: #ababab;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);}
+#comment__icsi-css .like__icsi-css textarea, .like__icsi-css input{font-style: normal;font-size: 12px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+#comment__icsi-css .like__icsi-css textarea, .like__icsi-css input[type="text"]{height: 30px;border-color: #ababab;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);}
 
 #comment__icsi-css textarea, #comment__icsi-css input{font-style: normal;font-size: 12px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;background-color:#fff;}
 #comment__icsi-css textarea, #comment__icsi-css input[type="text"]{height: 30px;border-color: #ababab;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);}
@@ -108,3 +108,4 @@
 #comment__icsi-css .productRate span {display: block;height: 100%;position: absolute;top: 0;left: 0;z-index: 2;background-position: left center;width: 0;cursor: pointer;}
 #comment__icsi-css .productRate.disabled, #comment__icsi-css .productRate.disabled div{cursor: default;}
 #comment__icsi-css .star-small div{cursor: default;}
+#comment__icsi-css [class*="btn"] > *{display: inline-block;background-image: none !important;font-size: 12px;}

@@ -17,7 +17,7 @@ var optionCompare = {
         //        if carousel in compare
         if ($.existsN(el.find('.carousel-js-css:not(.iscarousel)')))
             el.find('.carousel-js-css:not(.iscarousel)').myCarousel(carousel);
-        wnd.scroll(); //for lazy
+        $(window).scroll(); //for lazy
     },
     compareChangeCategory: function() {
         if ($.exists(optionCompare.frameCompare)) {
@@ -34,15 +34,14 @@ var optionCompare = {
         arrowButtonSpeed: 250
     }
 };
-var doc = $(document);
-doc.on('sync_cart after_add_to_cart', function() {
+$(document).on('sync_cart after_add_to_cart', function() {
     $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
 });
-wnd.resize(function() {
+$(window).resize(function() {
     $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
 });
-doc.on('scriptDefer', function() {
-    doc.on('delete_compare', function(e) {
+$(document).on('scriptDefer', function() {
+    $(document).on('delete_compare', function(e) {
         var $this = e.el,
         $thisI = $this.parents('li'),
         $thisP = $this.parents('[data-equalhorizcell]').last(),
