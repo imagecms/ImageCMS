@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class ShopExportDataBase | ImageCMS</title>
+	<title>Class ShopExportDataBase | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3162519436"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -502,9 +502,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -534,7 +531,7 @@
 
 				<b>Author:</b>
 				kolia<br />
-		<b>Located at</b> <a href="source-class-ShopExportDataBase.html#3-565" title="Go to source code">application/modules/shop/classes/ShopExportDataBase.php</a><br />
+		<b>Located at</b> application/modules/shop/classes/ShopExportDataBase.php<br />
 	</div>
 
 
@@ -552,7 +549,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#107-140" title="Go to source code">__construct</a>( <span>array <var>$settings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>__construct( <span>array <var>$settings</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -586,7 +583,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveToCsvFile">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#142-153" title="Go to source code">saveToCsvFile</a>( <span>mixed <var>$pathToFile</var></span> )</code>
+		<code>saveToCsvFile( <span>mixed <var>$pathToFile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -623,7 +620,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveToExcelFile">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#155-197" title="Go to source code">saveToExcelFile</a>( <span>string <var>$pathToFile</var></span>, <span>mixed <var>$type</var> = <span class="php-quote">&quot;Excel5&quot;</span></span> )</code>
+		<code>saveToExcelFile( <span>string <var>$pathToFile</var></span>, <span>mixed <var>$type</var> = <span class="php-quote">&quot;Excel5&quot;</span></span> )</code>
 
 		<div class="description short">
 			
@@ -656,39 +653,6 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getDataFromBase" id="_getDataFromBase">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getDataFromBase">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#199-215" title="Go to source code">getDataFromBase</a>( )</code>
-
-		<div class="description short">
-			
-<p>Getting data from DB (filing $this-&gt;resultArray)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Getting data from DB (filing $this-&gt;resultArray)</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="getDataArray" id="_getDataArray">
 
 		<td class="attributes"><code>
@@ -700,7 +664,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDataArray">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#217-226" title="Go to source code">getDataArray</a>( )</code>
+		<code>getDataArray( )</code>
 
 		<div class="description short">
 			
@@ -737,7 +701,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDataCsv">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#228-256" title="Go to source code">getDataCsv</a>( )</code>
+		<code>getDataCsv( )</code>
 
 		<div class="description short">
 			
@@ -756,431 +720,6 @@
 				<div class="list">
 					<code>string</code><br />
 				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCsvLine" id="_getCsvLine">
-
-		<td class="attributes"><code>
-			 protected 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getCsvLine">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#258-269" title="Go to source code">getCsvLine</a>( <span>array <var>$dataArray</var></span> )</code>
-
-		<div class="description short">
-			
-<p>CSV line creating</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>CSV line creating</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$dataArray</var></dt>
-					<dd><code>array</code><br>$dataArray</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>data in quotes and separated by a comma<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="createQuery" id="_createQuery">
-
-		<td class="attributes"><code>
-			 protected 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_createQuery">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#271-350" title="Go to source code">createQuery</a>( )</code>
-
-		<div class="description short">
-			
-<p>Creating SQL-query</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Creating SQL-query</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>SQL-query<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getFullField" id="_getFullField">
-
-		<td class="attributes"><code>
-			 protected 
-			false|string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getFullField">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#352-370" title="Go to source code">getFullField</a>( <span>string <var>$fieldName</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Returns a field in a database table with him. (The field can be on the table
-is in the format <code>table</code>. <code>Field</code> - if there are field
-with the same name in a different tables).</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Returns a field in a database table with him. (The field can be on the table
-is in the format <code>table</code>. <code>Field</code> - if there are field
-with the same name in a different tables).</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$fieldName</var></dt>
-					<dd><code>string</code><br>$fieldName</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>false|string</code><br>FALSE if error or field with it table<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getPropertyField" id="_getPropertyField">
-
-		<td class="attributes"><code>
-			 protected 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getPropertyField">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#372-379" title="Go to source code">getPropertyField</a>( <span>string <var>$propertyName</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Returns product attribute like it is field (pivot)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Returns product attribute like it is field (pivot)</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$propertyName</var></dt>
-					<dd><code>string</code><br>$propertyName</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCustomFields" id="_getCustomFields">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getCustomFields">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#381-392" title="Go to source code">getCustomFields</a>( )</code>
-
-		<div class="description short">
-			
-<p>Returns all product properties</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Returns all product properties</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCompleteFields" id="_getCompleteFields">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getCompleteFields">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#394-419" title="Go to source code">getCompleteFields</a>( )</code>
-
-		<div class="description short">
-			
-<p>Gets and merge fields and properties (via constructor arrive reduction)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Gets and merge fields and properties (via constructor arrive reduction)</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAbbreviation" id="_getAbbreviation">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getAbbreviation">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#421-464" title="Go to source code">getAbbreviation</a>( <span>string <var>$field</var> = <span class="php-keyword1">NULL</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Returns field abbreviation</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Returns field abbreviation</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$field</var></dt>
-					<dd><code>string</code><br>$field (optional) if empty returns array of abbreviations</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCategoriesFromBase" id="_getCategoriesFromBase">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getCategoriesFromBase">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#466-494" title="Go to source code">getCategoriesFromBase</a>( )</code>
-
-		<div class="description short">
-			
-<p>Get categories data from DB</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get categories data from DB</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCategoriesPaths" id="_getCategoriesPaths">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getCategoriesPaths">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#496-513" title="Go to source code">getCategoriesPaths</a>( )</code>
-
-		<div class="description short">
-			
-<p>Gets categories pathes</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Gets categories pathes</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getTablesFields" id="_getTablesFields">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getTablesFields">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#515-529" title="Go to source code">getTablesFields</a>( <span>array <var>$tables</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Gets filds of tables</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Gets filds of tables</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$tables</var></dt>
-					<dd><code>array</code><br>$tables</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="addError" id="_addError">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_addError">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#531-540" title="Go to source code">addError</a>( <span>mixed <var>$msg</var></span> )</code>
-
-		<div class="description short">
-			
-<p>addError</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>addError</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$msg</var></dt>
-					<dd><code>mixed</code><br>$msg</dd>
-				</dl></div>
-
 
 
 
@@ -1199,7 +738,7 @@ with the same name in a different tables).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasErrors">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#542-553" title="Go to source code">hasErrors</a>( )</code>
+		<code>hasErrors( )</code>
 
 		<div class="description short">
 			
@@ -1236,7 +775,7 @@ with the same name in a different tables).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getErrors">#</a>
-		<code><a href="source-class-ShopExportDataBase.html#555-563" title="Go to source code">getErrors</a>( )</code>
+		<code>getErrors( )</code>
 
 		<div class="description short">
 			
@@ -1284,8 +823,7 @@ with the same name in a different tables).</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#11" title="Go to source code"><var>$delimiter</var></a>
-		</td>
+<var>$delimiter</var>		</td>
 		<td class="value"><code><span class="php-quote">&quot;;&quot;</span></code></td>
 		<td class="description"><div>
 			<a href="#$delimiter" class="anchor">#</a>
@@ -1307,8 +845,7 @@ with the same name in a different tables).</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#12" title="Go to source code"><var>$maxRowLength</var></a>
-		</td>
+<var>$maxRowLength</var>		</td>
 		<td class="value"><code><span class="php-num">10000</span></code></td>
 		<td class="description"><div>
 			<a href="#$maxRowLength" class="anchor">#</a>
@@ -1330,8 +867,7 @@ with the same name in a different tables).</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#13" title="Go to source code"><var>$file</var></a>
-		</td>
+<var>$file</var>		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
 			<a href="#$file" class="anchor">#</a>
@@ -1353,8 +889,7 @@ with the same name in a different tables).</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#14" title="Go to source code"><var>$currency</var></a>
-		</td>
+<var>$currency</var>		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
 			<a href="#$currency" class="anchor">#</a>
@@ -1376,103 +911,10 @@ with the same name in a different tables).</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#15" title="Go to source code"><var>$language</var></a>
-		</td>
+<var>$language</var>		</td>
 		<td class="value"><code><span class="php-quote">'ru'</span></code></td>
 		<td class="description"><div>
 			<a href="#$language" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="attributes" id="$attributes">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#16" title="Go to source code"><var>$attributes</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$attributes" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="attributesCF" id="$attributesCF">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#17" title="Go to source code"><var>$attributesCF</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$attributesCF" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="enclosure" id="$enclosure">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#18" title="Go to source code"><var>$enclosure</var></a>
-		</td>
-		<td class="value"><code><span class="php-quote">'&quot;'</span></code></td>
-		<td class="description"><div>
-			<a href="#$enclosure" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="tree" id="$tree">
-		<td class="attributes"><code>
-			protected  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#19" title="Go to source code"><var>$tree</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">null</span></code></td>
-		<td class="description"><div>
-			<a href="#$tree" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -1491,8 +933,7 @@ with the same name in a different tables).</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#20" title="Go to source code"><var>$encoding</var></a>
-		</td>
+<var>$encoding</var>		</td>
 		<td class="value"><code><span class="php-quote">'utf8'</span></code></td>
 		<td class="description"><div>
 			<a href="#$encoding" class="anchor">#</a>
@@ -1507,346 +948,6 @@ with the same name in a different tables).</p>
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="selectedCats" id="$selectedCats">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#21" title="Go to source code"><var>$selectedCats</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$selectedCats" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="customFields" id="$customFields">
-		<td class="attributes"><code>
-			protected  
-			type
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#23-27" title="Go to source code"><var>$customFields</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$customFields" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>contains products properties</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>contains products properties</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="completeFields" id="$completeFields">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#29-33" title="Go to source code"><var>$completeFields</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$completeFields" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Product fields and properties together</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Product fields and properties together</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="errors" id="$errors">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#35-39" title="Go to source code"><var>$errors</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$errors" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>errors (if there are)</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>errors (if there are)</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="db" id="$db">
-		<td class="attributes"><code>
-			protected  
-			Object
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#41-45" title="Go to source code"><var>$db</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$db" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>DB object</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>DB object</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="tablesFields" id="$tablesFields">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#47-56" title="Go to source code"><var>$tablesFields</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$tablesFields" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Two-dimensional array to store data about tables and their columns array(<br
-/>
-db_table =&gt; array(fields)<br />
-db_table =&gt; array(fields)<br />
-... )</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Two-dimensional array to store data about tables and their columns array(
-db_table =&gt; array(fields) db_table =&gt; array(fields) ... )</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="productsDataTables" id="$productsDataTables">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#58-75" title="Go to source code"><var>$productsDataTables</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>(
-    <span class="php-quote">'shop_product_variants'</span>,
-    <span class="php-quote">'shop_product_variants_i18n'</span>,
-    <span class="php-quote">'shop_products'</span>,
-    <span class="php-quote">'shop_products_i18n'</span>,
-    <span class="php-quote">'shop_category'</span>,
-    <span class="php-quote">'shop_category_i18n'</span>,
-    <span class="php-quote">'shop_product_properties'</span>,
-    <span class="php-quote">'shop_product_properties_data'</span>,
-    <span class="php-quote">'shop_product_properties_i18n'</span>,
-    <span class="php-quote">'shop_brands'</span>,
-    <span class="php-quote">'shop_brands_i18n'</span>,
-    <span class="php-quote">'shop_product_images'</span>,
-)</code></td>
-		<td class="description"><div>
-			<a href="#$productsDataTables" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>An array of tables that contain information about products (including
-sampling will take place in the fields)</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>An array of tables that contain information about products (including
-sampling will take place in the fields)</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="resultArray" id="$resultArray">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#77-81" title="Go to source code"><var>$resultArray</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$resultArray" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Result in array</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Result in array</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="resultString" id="$resultString">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#83-87" title="Go to source code"><var>$resultString</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$resultString" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Result in string (csv)</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Result in string (csv)</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="skipErrors" id="$skipErrors">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#89-93" title="Go to source code"><var>$skipErrors</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">FALSE</span></code></td>
-		<td class="description"><div>
-			<a href="#$skipErrors" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>If true then ignoring fields errors</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>If true then ignoring fields errors</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="categoriesData" id="$categoriesData">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#95-99" title="Go to source code"><var>$categoriesData</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$categoriesData" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Categories data from DB</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Categories data from DB</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="categories" id="$categories">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-ShopExportDataBase.html#101-105" title="Go to source code"><var>$categories</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$categories" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Categories full paths</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Categories full paths</p>
-
-
-			</div>
-		</div></td>
-	</tr>
 	</table>
 
 
@@ -1857,7 +958,7 @@ sampling will take place in the fields)</p>
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

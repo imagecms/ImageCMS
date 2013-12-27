@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class exchange\classes\Products | ImageCMS</title>
+	<title>Class exchange\classes\Products | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3162519436"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -144,9 +144,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -185,46 +182,13 @@
 
 				<b>Author:</b>
 				kolia<br />
-		<b>Located at</b> <a href="source-class-exchange.classes.Products.html#5-610" title="Go to source code">application/modules/exchange/classes/Products.php</a><br />
+		<b>Located at</b> application/modules/exchange/classes/Products.php<br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="import_" id="_import_">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_import_">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#63-75" title="Go to source code">import_</a>( )</code>
-
-		<div class="description short">
-			
-<p>Runs the import process</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Runs the import process</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="setTempDir" id="_setTempDir">
 
 		<td class="attributes"><code>
@@ -236,7 +200,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTempDir">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#77-84" title="Go to source code">setTempDir</a>( <span>string <var>$tempDir</var></span> )</code>
+		<code>setTempDir( <span>string <var>$tempDir</var></span> )</code>
 
 		<div class="description short">
 			
@@ -263,506 +227,6 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getCompareData" id="_getCompareData">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getCompareData">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#86-109" title="Go to source code">getCompareData</a>( <span>integer <var>$type</var> = <span class="php-keyword1">NULL</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Getting from base data of product for fast compare (external_ids,
-urls...)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Getting from base data of product for fast compare (external_ids,
-urls...)</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$type</var></dt>
-					<dd><code>integer</code><br>$type if empty = all, 1 - only external_ids, 2 - only urls, 3 - only properties</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUrls" id="_getUrls">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUrls">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#111-119" title="Go to source code">getUrls</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="processProducts1" id="_processProducts1">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_processProducts1">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#121-238" title="Go to source code">processProducts1</a>( )</code>
-
-		<div class="description short">
-			
-<p>Gather data for tables:<br />
-- <code>shop_products</code> (data will be ready)<br />
-- <code>shop_products_i18n</code> (after <code>shop_products</code>)<br />
-- <code>shop_product_variants</code> (after <code>shop_products</code>)<br />
-- <code>shop_product_variants_i18n</code> (after
-<code>shop_product_variants</code>)<br />
-- <code>shop_products_categories</code> (after <code>shop_products</code>)<br />
-- <code>shop_product_images</code> (after <code>shop_products</code>)</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Gather data for tables: - <code>shop_products</code> (data will be ready) -
-<code>shop_products_i18n</code> (after <code>shop_products</code>) -
-<code>shop_product_variants</code> (after <code>shop_products</code>) -
-<code>shop_product_variants_i18n</code> (after
-<code>shop_product_variants</code>) - <code>shop_products_categories</code>
-(after <code>shop_products</code>) - <code>shop_product_images</code> (after
-<code>shop_products</code>)</p>
-
-<p>P.S. For updating all data will be ready immediately, inserting need depends
-on the order</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="insert1" id="_insert1">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_insert1">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#240-268" title="Go to source code">insert1</a>( )</code>
-
-		<div class="description short">
-			
-<p>Inserting data into <code>shop_products</code></p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Inserting data into <code>shop_products</code></p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="processProducts23_Insert23" id="_processProducts23_Insert23">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_processProducts23_Insert23">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#270-359" title="Go to source code">processProducts23_Insert23</a>( )</code>
-
-		<div class="description short">
-			
-<p>Filling with product_id tables that need it, and inserting into other
-tables</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Filling with product_id tables that need it, and inserting into other
-tables</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="update" id="_update">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_update">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#361-383" title="Go to source code">update</a>( )</code>
-
-		<div class="description short">
-			
-<p>Update all</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Update all</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="updateFromCollector" id="_updateFromCollector">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_updateFromCollector">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#385-392" title="Go to source code">updateFromCollector</a>( <span>string <var>$tableName</var></span>, <span>string <var>$compareField</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Helper-method for updating</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Helper-method for updating</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$tableName</var></dt>
-					<dd><code>string</code><br>$tableName</dd>
-					<dt><var>$compareField</var></dt>
-					<dd><code>string</code><br>$compareField</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="pass1Helper_getProductData" id="_pass1Helper_getProductData">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_pass1Helper_getProductData">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#396-413" title="Go to source code">pass1Helper_getProductData</a>( <span><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code> <var>$product</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$product</var></dt>
-					<dd><code><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code></code><br>$product</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="pass1Helper_getVariantData" id="_pass1Helper_getVariantData">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_pass1Helper_getVariantData">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#415-432" title="Go to source code">pass1Helper_getVariantData</a>( <span><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code> <var>$product</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$product</var></dt>
-					<dd><code><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code></code><br>$product</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="pass1Helper_getCadegoryData" id="_pass1Helper_getCadegoryData">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_pass1Helper_getCadegoryData">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#434-449" title="Go to source code">pass1Helper_getCadegoryData</a>( <span><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code> <var>$product</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$product</var></dt>
-					<dd><code><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code></code><br>$product</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="pass1Helper_getImagesData" id="_pass1Helper_getImagesData">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_pass1Helper_getImagesData">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#451-490" title="Go to source code">pass1Helper_getImagesData</a>( <span><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code> <var>$product</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$product</var></dt>
-					<dd><code><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code></code><br>$product</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="pass1Helper_getPropertiesData" id="_pass1Helper_getPropertiesData">
-
-		<td class="attributes"><code>
-			 protected 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_pass1Helper_getPropertiesData">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#492-549" title="Go to source code">pass1Helper_getPropertiesData</a>( <span><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code> <var>$product</var></span>, <span>mixed <var>$categoryId</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Method-helper for simplify processProducts1 method</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$product</var></dt>
-					<dd><code><code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code></code><br>$product</dd>
-					<dt><var>$categoryId</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="run_resize" id="_run_resize">
-
-		<td class="attributes"><code>
-			 private 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_run_resize">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#552-556" title="Go to source code">run_resize</a>( <span>mixed <var>$run_resize</var> = <span class="php-keyword1">FALSE</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="setResize" id="_setResize">
 
 		<td class="attributes"><code>
@@ -774,7 +238,7 @@ tables</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setResize">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#558-561" title="Go to source code">setResize</a>( <span>mixed <var>$run_resize</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+		<code>setResize( <span>mixed <var>$run_resize</var> = <span class="php-keyword1">FALSE</span></span> )</code>
 
 		<div class="description short">
 			
@@ -785,73 +249,6 @@ tables</p>
 
 
 
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="addProductsToUpperCategories" id="_addProductsToUpperCategories">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_addProductsToUpperCategories">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#563-587" title="Go to source code">addProductsToUpperCategories</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isProductCategoriesRowNew" id="_isProductCategoriesRowNew">
-
-		<td class="attributes"><code>
-			 protected 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isProductCategoriesRowNew">#</a>
-		<code><a href="source-class-exchange.classes.Products.html#589-608" title="Go to source code">isProductCategoriesRowNew</a>( <span>array <var>$newRowData</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$newRowData</var></dt>
-					<dd><code>array</code><br>$newRowData</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br />
-				</div>
 
 
 
@@ -868,9 +265,7 @@ tables</p>
 			<a href="class-exchange.classes.ExchangeBase.html#___get">__get()</a>, 
 			<a href="class-exchange.classes.ExchangeBase.html#_getInstance">getInstance()</a>, 
 			<a href="class-exchange.classes.ExchangeBase.html#_getStats">getStats()</a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#_import">import()</a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#_insertBatch">insertBatch()</a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#_updateBatch">updateBatch()</a>
+			<a href="class-exchange.classes.ExchangeBase.html#_import">import()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -885,303 +280,11 @@ tables</p>
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="tempDir" id="$tempDir">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#11-15" title="Go to source code"><var>$tempDir</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$tempDir" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Path of folder where xml and images stored</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Path of folder where xml and images stored</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="insertCollector" id="$insertCollector">
-		<td class="attributes"><code>
-			protected  
-			<code><a href="class-exchange.classes.DataCollector.html">exchange\classes\DataCollector</a></code>
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#17-21" title="Go to source code"><var>$insertCollector</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$insertCollector" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="updateCollector" id="$updateCollector">
-		<td class="attributes"><code>
-			protected  
-			<code><a href="class-exchange.classes.DataCollector.html">exchange\classes\DataCollector</a></code>
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#23-27" title="Go to source code"><var>$updateCollector</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$updateCollector" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="imagesToDelete" id="$imagesToDelete">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#29-34" title="Go to source code"><var>$imagesToDelete</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$imagesToDelete" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>If product have images, then all his old images need to be deleted</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>If product have images, then all his old images need to be deleted</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="imagesToResize" id="$imagesToResize">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#36-39" title="Go to source code"><var>$imagesToResize</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$imagesToResize" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="imagesToResizeAdditional" id="$imagesToResizeAdditional">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#41-44" title="Go to source code"><var>$imagesToResizeAdditional</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$imagesToResizeAdditional" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="runResize" id="$runResize">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#45" title="Go to source code"><var>$runResize</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">FALSE</span></code></td>
-		<td class="description"><div>
-			<a href="#$runResize" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="productPropertiesCategories" id="$productPropertiesCategories">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#47-51" title="Go to source code"><var>$productPropertiesCategories</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$productPropertiesCategories" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="i18nExisting" id="$i18nExisting">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#53-57" title="Go to source code"><var>$i18nExisting</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$i18nExisting" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="compare_exIds" id="$compare_exIds">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#59" title="Go to source code"><var>$compare_exIds</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$compare_exIds" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="compare_urls" id="$compare_urls">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#60" title="Go to source code"><var>$compare_urls</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$compare_urls" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="compare_properties" id="$compare_properties">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-exchange.classes.Products.html#61" title="Go to source code"><var>$compare_properties</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$compare_properties" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-exchange.classes.ExchangeBase.html#properties">exchange\classes\ExchangeBase</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-exchange.classes.ExchangeBase.html#$dataLoad"><var>$dataLoad</var></a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#$db"><var>$db</var></a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#$importData"><var>$importData</var></a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#$instances"><var>$instances</var></a>, 
-			<a href="class-exchange.classes.ExchangeBase.html#$locale"><var>$locale</var></a>, 
 			<a href="class-exchange.classes.ExchangeBase.html#$stats"><var>$stats</var></a>
 		</code></td>
 	</tr>
@@ -1189,12 +292,20 @@ tables</p>
 
 
 
+	<table class="summary inherited">
+	<caption>Magic properties inherited from <a href="class-exchange.classes.ExchangeBase.html#properties">exchange\classes\ExchangeBase</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-exchange.classes.ExchangeBase.html#m$db"><var>$db</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

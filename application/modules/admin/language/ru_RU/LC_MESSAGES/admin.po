@@ -14,6 +14,8 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
@@ -121,7 +123,7 @@ msgstr "Ключ, чтобы просмотреть заказ"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:869
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:936
 msgid " Link to the order"
-msgstr "Сссилка на заказ"
+msgstr "Ссылка на заказ"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:623
 msgid " Name of the user who made a request "
@@ -300,6 +302,8 @@ msgid "Add a new topic"
 msgstr "Добавить новую тему"
 
 #: ./templates/administrator/cats_sidebar.tpl:3
+#: ./templates/administrator/cats_sidebar.tpl:3
+#: ./templates/administrator/cats_tree_css.tpl:7
 #: ./templates/administrator/cats_tree_css.tpl:7
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
@@ -314,6 +318,8 @@ msgid "Add a variant"
 msgstr "Добавить вариант"
 
 #: ./templates/administrator/cats_sidebar.tpl:4
+#: ./templates/administrator/cats_sidebar.tpl:4
+#: ./templates/administrator/cats_tree_css.tpl:8
 #: ./templates/administrator/cats_tree_css.tpl:8
 msgid "Add an article"
 msgstr "Добавить статью"
@@ -4145,7 +4151,6 @@ msgstr "Заказ успешно создан"
 msgid "Ordering information"
 msgstr "Информация для заказа"
 
-#: ./templates/administrator/main.tpl:88
 #: ./templates/administrator/shop_menu.tpl:8
 #: ./templates/administrator/shop_menu.tpl:10
 #: ./templates/administrator/inc/menus.php:154
