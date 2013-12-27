@@ -2,6 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+  function lang(value) {
+            if (langs[value]) {
+                return  langs[value];
+            } else {
+                return value;
+            }
+        }
+
+
 jQuery.extend(jQuery.validator.messages, {
     required: lang("This field is required"),
     remote: lang("Please fix this field."),
@@ -21,4 +30,6 @@ jQuery.extend(jQuery.validator.messages, {
     max: $.validator.format(lang("Please enter a value less than or equal to {0}.")),
     min: $.validator.format(lang("Please enter a value greater than or equal to {0}."))
 });
+
+
 
