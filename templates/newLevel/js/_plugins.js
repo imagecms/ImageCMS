@@ -1344,6 +1344,7 @@ function getCookie(c_name)
                             if (!$this.parent().hasClass('disabled')) {
                                 var $thisA = $this[attrOrdata[index]]('href'),
                                         $thisAOld = navTabsLi[index].filter('.' + aC).children()[attrOrdata[index]]('href'),
+                                        $thisAOld = $thisAOld == $thisA ? undefined : $thisAOld,
                                         $thisAO = $($thisA),
                                         $thisS = $this.data('source'),
                                         $thisData = $this.data('data'),
@@ -1433,9 +1434,10 @@ function getCookie(c_name)
                                             else if ($thisA !== $thisAOld) {
                                                 temp += $thisA;
                                             }
-                                            if (!(activeP.hasClass(aC) && toggle)) {
-                                                temp = temp.replace($thisA, '');
-                                            }
+                                            if (activeP != undefined)
+                                                if (!(activeP.hasClass(aC) && toggle)) {
+                                                    temp = temp.replace($thisA, '');
+                                                }
                                         }
                                         else {
                                             temp += $thisA;
@@ -1447,7 +1449,7 @@ function getCookie(c_name)
                                         k = false;
                                     }
                                     if ($thisDD && condStart)
-                                        $this.trigger('click.drop');
+                                        $this.trigger($this.attr('data-trigger'));
                                 }
                                 else if ($thiss.data('elchange') !== undefined) {
                                     refs[index].each(function() {
@@ -1481,8 +1483,6 @@ function getCookie(c_name)
                             if (!$.existsN(el.closest('[data-type="toggle"]'))) {
                                 if (el.attr('data-drop') === undefined && !el.parent().hasClass(aC))
                                     el.trigger('click.tabs');
-                                else
-                                    el.trigger(el.attr('data-trigger'));
                             }
                         }
                     });
@@ -1610,13 +1610,13 @@ function getCookie(c_name)
             galleries: [],
             message: {
                 success: function(text) {
-                    return '<div class = "msg js-msg"><div class = "success ' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                    return '<div class = "msg js-msg"><div class = "success"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
                 },
                 error: function(text) {
-                    return '<div class = "msg js-msg"><div class = "error ' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                    return '<div class = "msg js-msg"><div class = "error"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
                 },
                 info: function(text) {
-                    return '<div class = "msg js-msg"><div class = "info ' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                    return '<div class = "msg js-msg"><div class = "info"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
                 }
             },
             trigger: 'click',
@@ -1720,7 +1720,6 @@ function getCookie(c_name)
             var elSet = el.data(),
                     source = elSet.source || el.attr('href');
             if (elSet.drop != undefined) {
-
                 $.ajax({
                     type: "post",
                     data: elSet.data,
@@ -1816,7 +1815,7 @@ function getCookie(c_name)
                         else if (source || always || confirm) {
                             if (!confirm)
                                 _confirmF();
-                            else {
+                            else {//for cofirm
                                 methods._pasteDrop($.extend({}, methods.dP, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
                                 methods._show($('[data-drop="' + confirmSel + '"]').data({
                                     'elrun': $this
@@ -2129,19 +2128,22 @@ function getCookie(c_name)
                     var footer = drop.find($(dropFooter).add($(methods.dPP.dropFooter)));
                     if (typeof contentFooter != 'function')
                         footer.html(contentFooter);
-                    else contentFooter(footer, $this, drop);
+                    else
+                        contentFooter(footer, $this, drop);
                 }
                 if (contentHeader) {
                     var header = drop.find($(dropHeader).add($(methods.dPP.dropHeader)));
                     if (typeof contentHeader != 'function')
                         header.html(contentHeader);
-                    else contentHeader(header, $this, drop);
+                    else
+                        contentHeader(header, $this, drop);
                 }
                 if (contentContent) {
                     var content = drop.find($(dropContent).add($(methods.dPP.dropContent)));
                     if (typeof contentContent != 'function')
                         content.html(contentContent);
-                    else contentContent(content, $this, drop);
+                    else
+                        contentContent(content, $this, drop);
                 }
 
                 before($this, drop, isajax, data);

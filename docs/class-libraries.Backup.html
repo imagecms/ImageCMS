@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class libraries\Backup | ImageCMS</title>
+	<title>Class libraries\Backup | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1384529799"></script>
+	<script type="text/javascript" src="elementlist.js?3162519436"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -138,9 +138,6 @@
 			</li>
 		</ul>
 		<ul>
-			<li>
-				<a href="imagecms-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
-			</li>
 		</ul>
 	</div>
 
@@ -170,7 +167,7 @@
 
 				<b>Author:</b>
 				kolia<br />
-		<b>Located at</b> <a href="source-class-libraries.Backup.html#5-290" title="Go to source code">application/libraries/Backup.php</a><br />
+		<b>Located at</b> application/libraries/Backup.php<br />
 	</div>
 
 
@@ -188,7 +185,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-libraries.Backup.html#67-70" title="Go to source code">__construct</a>( )</code>
+		<code>__construct( )</code>
 
 		<div class="description short">
 			
@@ -217,7 +214,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-libraries.Backup.html#72-79" title="Go to source code">create</a>( )</code>
+		<code>create( )</code>
 
 		<div class="description short">
 			
@@ -250,7 +247,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSetting">#</a>
-		<code><a href="source-class-libraries.Backup.html#81-93" title="Go to source code">setSetting</a>( <span>string <var>$key</var></span>, <span>string|integer <var>$value</var></span> )</code>
+		<code>setSetting( <span>string <var>$key</var></span>, <span>string|integer <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -290,7 +287,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSetting">#</a>
-		<code><a href="source-class-libraries.Backup.html#95-119" title="Go to source code">getSetting</a>( <span>string <var>$key</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code>getSetting( <span>string <var>$key</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			
@@ -332,7 +329,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createBackup">#</a>
-		<code><a href="source-class-libraries.Backup.html#121-147" title="Go to source code">createBackup</a>( <span>string <var>$ext</var></span>, <span>string <var>$prefix</var> = <span class="php-keyword1">NULL</span></span>, <span>mixed <var>$fullName</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+		<code>createBackup( <span>string <var>$ext</var></span>, <span>string <var>$prefix</var> = <span class="php-keyword1">NULL</span></span>, <span>mixed <var>$fullName</var> = <span class="php-keyword1">FALSE</span></span> )</code>
 
 		<div class="description short">
 			
@@ -378,7 +375,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteOldFiles">#</a>
-		<code><a href="source-class-libraries.Backup.html#149-189" title="Go to source code">deleteOldFiles</a>( )</code>
+		<code>deleteOldFiles( )</code>
 
 		<div class="description short">
 			
@@ -411,7 +408,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOldestFileToDelete">#</a>
-		<code><a href="source-class-libraries.Backup.html#191-216" title="Go to source code">getOldestFileToDelete</a>( )</code>
+		<code>getOldestFileToDelete( )</code>
 
 		<div class="description short">
 			
@@ -444,7 +441,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_backupFiles">#</a>
-		<code><a href="source-class-libraries.Backup.html#218-258" title="Go to source code">backupFiles</a>( )</code>
+		<code>backupFiles( )</code>
 
 		<div class="description short">
 			
@@ -470,50 +467,6 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="checkFileName" id="_checkFileName">
-
-		<td class="attributes"><code>
-			 protected 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_checkFileName">#</a>
-		<code><a href="source-class-libraries.Backup.html#260-273" title="Go to source code">checkFileName</a>( <span>string <var>$fileName</var></span>, <span>boolean <var>$returnValue</var> = <span class="php-keyword1">FALSE</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Checking file name by pattern</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Checking file name by pattern</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$fileName</var></dt>
-					<dd><code>string</code><br>$fileName</dd>
-					<dt><var>$returnValue</var></dt>
-					<dd><code>boolean</code><br>$returnValue</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="deleteFile" id="_deleteFile">
 
 		<td class="attributes"><code>
@@ -525,7 +478,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteFile">#</a>
-		<code><a href="source-class-libraries.Backup.html#275-288" title="Go to source code">deleteFile</a>( <span>string <var>$file</var></span> )</code>
+		<code>deleteFile( <span>string <var>$file</var></span> )</code>
 
 		<div class="description short">
 			
@@ -571,151 +524,6 @@
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="instanse" id="$instanse">
-		<td class="attributes"><code>
-			protected static 
-			<code><a href="class-libraries.Backup.html">libraries\Backup</a></code>
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-libraries.Backup.html#14-18" title="Go to source code"><var>$instanse</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$instanse" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="directory" id="$directory">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-libraries.Backup.html#20-24" title="Go to source code"><var>$directory</var></a>
-		</td>
-		<td class="value"><code><span class="php-quote">'./application/backups'</span></code></td>
-		<td class="description"><div>
-			<a href="#$directory" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Backup directory</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Backup directory</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="ext" id="$ext">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-libraries.Backup.html#26-30" title="Go to source code"><var>$ext</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'sql'</span>, <span class="php-quote">'zip'</span>, <span class="php-quote">'gzip'</span>)</code></td>
-		<td class="description"><div>
-			<a href="#$ext" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Aviable extentions</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Aviable extentions</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="filePatterns" id="$filePatterns">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-libraries.Backup.html#32-53" title="Go to source code"><var>$filePatterns</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>(
-    <span class="php-comment">// для файлів із авт. підбором імені.</span>
-    <span class="php-quote">'/^[a-zA-Z]{1,10}_[0-9]{2}-[0-9]{2}-[0-9]{4}_[0-9]{2}.[0-9]{2}.[0-9]{2}.(zip|gzip|sql|txt)$/'</span> =&gt; <span class="php-keyword1">array</span>(
-        <span class="php-quote">'allowDelete'</span> =&gt; <span class="php-keyword1">TRUE</span>,
-        <span class="php-quote">'type'</span> =&gt; <span class="php-quote">&quot;default&quot;</span>
-    ),
-    <span class="php-comment">// для старіших бекапів із обновлення</span>
-    <span class="php-quote">'/^[0-9]{10}.(zip|gzip|sql|txt)$/'</span> =&gt; <span class="php-keyword1">array</span>(
-        <span class="php-quote">'allowDelete'</span> =&gt; <span class="php-keyword1">TRUE</span>,
-        <span class="php-quote">'type'</span> =&gt; <span class="php-quote">&quot;update&quot;</span>
-    ),
-    <span class="php-comment">// для новіших бекапів із обновлення</span>
-    <span class="php-quote">'/^backup.(zip|gzip|sql|txt)$/'</span> =&gt; <span class="php-keyword1">array</span>(
-        <span class="php-quote">'allowDelete'</span> =&gt; <span class="php-keyword1">FALSE</span>,
-        <span class="php-quote">'type'</span> =&gt; <span class="php-quote">&quot;update&quot;</span>
-    )
-)</code></td>
-		<td class="description"><div>
-			<a href="#$filePatterns" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Patterns for backup file names key - regex pattern, value - boolean (allow
-delete)</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Patterns for backup file names key - regex pattern, value - boolean (allow
-delete)</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="ci" id="$ci">
-		<td class="attributes"><code>
-			protected  
-			CodeIgniter
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-libraries.Backup.html#55-59" title="Go to source code"><var>$ci</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$ci" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
 	<tr data-order="error" id="$error">
 		<td class="attributes"><code>
 			public  
@@ -723,8 +531,7 @@ delete)</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-libraries.Backup.html#61-65" title="Go to source code"><var>$error</var></a>
-		</td>
+<var>$error</var>		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$error" class="anchor">#</a>
@@ -749,7 +556,7 @@ delete)</p>
 </div>
 
 	<div id="footer">
-		ImageCMS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

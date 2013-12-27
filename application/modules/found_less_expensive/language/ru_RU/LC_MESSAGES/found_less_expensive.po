@@ -160,4 +160,3 @@ msgstr "Статус изменился"
 #: ./application/modules/found_less_expensive/module_info.php:5
 msgid "Found less expensive module"
 msgstr "Модуль нашли дешевле"
-

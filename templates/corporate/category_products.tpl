@@ -10,6 +10,6 @@
             <div class="right">
                 {widget('product_all')}
             </div>
-        </div>  
+        </div>
     </div>    
 </div>
