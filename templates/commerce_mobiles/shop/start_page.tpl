@@ -1,9 +1,4 @@
-        <div class="baner">
-             {$banners = ShopCore::app()->SBannerHelper->getBanners(1)}
-             {foreach $banners as $banner}
-            <a href="" class="figure">
-                <img src="/uploads/shop/banners/{echo $banner['image']}"/>
-            </a>
-            {/foreach}
-        </div>
-        <ul class="main_menu">{echo ShopCore::app()->SCategoryTree->ulWithTitleMobile()}</ul>
+<!-- Show Banners in circle -->
+{$CI->load->module('banners')->render()}
+<!-- Show banners in circle -->
+{\Category\RenderMenu::create()->setConfig(array('url.shop.category'=>'/mobile/category/'))->load('category_menu')}

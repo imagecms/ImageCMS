@@ -331,7 +331,7 @@ var Filter = {
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
         
-        catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter');
+        var catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter'),
         dataPre = $(this.catalogForm).serialize();
         $.ajax({
             type: 'get',
@@ -342,12 +342,10 @@ var Filter = {
                 if (dane) {
                     dane = JSON.parse(dane);
                     $(dane).each(function(key,value){
-                        id = value.property_id;
+                        var id = value.property_id;
                         $(value.possibleValues).each(function(k,v){
-                            id2 = v.id;
                             if (v.count == 0){
-                                elm = $('#p_'+id+'_'+id2+' input');
-                                elm.removeAttr('checked');
+                                $('#p_'+id+'_'+v.id+' input').parent().nStCheck('checkUnChecked');
                             }
                         })
                         
