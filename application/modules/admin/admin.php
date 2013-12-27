@@ -184,31 +184,43 @@ class Admin extends MY_Controller {
     }
 
     public function report_bug() {
-        $message = '';
-        $this->load->library('email');
+        $this->load->library('Form_validation');
+        /** @var CI_Form_validation $val */
+        $val = $this->form_validation;
+        $val->set_rules('name', lang('Your Name', 'admin'), 'trim|required|xss_clean');
+        $val->set_rules('email', lang('Your Email', 'admin'), 'trim|required|xss_clean|valid_email');
+        $val->set_rules('text', lang('Your remark', "admin"), 'trim|required|xss_clean');
 
-        $config['charset'] = 'utf-8';
-        $config['mailtype'] = 'html';
-        $config['wordwrap'] = TRUE;
-        $this->email->initialize($config);
+        $response = array('status' => 0, 'message' => '');
+        if ($val->run()) {
+            $message = '';
+            $this->load->library('email');
 
-        /* pack message */
-        $message .= lang("Site address", "admin") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page", "admin") . ': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name", "admin") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message", "admin") . ': ' . trim(strip_tags($_GET['text']));
-        $text = trim($_GET['text']);
-        if (!empty($text)) {
-            /* send message */
+            $config['charset'] = 'utf-8';
+            $config['mailtype'] = 'html';
+            $config['wordwrap'] = TRUE;
+            $this->email->initialize($config);
+
+            /* pack message */
+            $message .= lang("Site address", "admin") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page", "admin") . ': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name", "admin") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message", "admin") . ': ' . trim(strip_tags($_GET['text']));
+            $text = trim($val->set_value('text'));
+
             $this->email->from('bugs@imagecms.net', 'Admin Robot');
             $this->email->to('report@imagecms.net');
             $this->email->bcc('dev@imagecms.net');
             $this->email->subject('Admin report from "' . trim(strip_tags($_GET['hostname'])) . '"');
             $this->email->message(stripslashes($message));
             if (!$this->email->send()) {
-                echo '<div class="alert alert-error">' . lang('An error occurred while sending a message', 'admin') . '</div>';
-                exit;
+                $response['message'] = '<div class="alert alert-error">' . lang('An error occurred while sending a message', 'admin') . '</div>';
+            } else {
+                $response['message'] = '<div class="alert alert-success">' . lang('Your message has been sent', 'admin') . '</div>';
+                $response['status'] = 1;
             }
-            echo '<div class="alert alert-success">' . lang('Your message has been sent', 'admin') . '</div>';
-        } else
-            echo '<div class="alert alert-error">' . lang('Comment is a required field', 'admin') . '</div>';
+        } else {
+            $response['message'] = '<div class="alert alert-error">' . $val->error_string() . '</div>';
+        }
+
+        echo json_encode($response);
     }
 
 }
