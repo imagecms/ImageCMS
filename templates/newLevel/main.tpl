@@ -76,11 +76,10 @@
             <script src="{$THEME}js/localStorageJSON.js"></script>
         <![endif]-->
 
-        <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
-        <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
+        <link rel="icon" href="/{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
+        <link rel="shortcut icon" href="/{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
     </head>
     <body class="is{echo $agent[0]} not-js"> 
-        {widget('test')}
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
@@ -102,7 +101,7 @@
         </footer>
         {include_tpl('user_toolbar')}
 
-        {/*}delete before upload to server{ */}
+        {/*}Start. delete before upload to server{ */}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -123,8 +122,8 @@
                 })
             </script>
         {/literal}
-        {/*}//delete before upload to server{ */}
-        
+        {/*}End. delete before upload to server{ */}
+
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*}
         <script type="text/javascript">

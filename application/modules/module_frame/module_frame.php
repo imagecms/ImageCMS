@@ -15,36 +15,7 @@ class Module_frame extends MY_Controller {
     }
 
     public function index() {
-        $test = \CartNew\BaseCart::getInstance();
-        $data['instance'] = 'SProducts';
-        $data['id'] = '893';
-        $data['quantity'] = 1;
-        $data1['instance'] = 'SProducts';
-        $data1['id'] = '8937';
-        $data1['quantity'] = 1; 
-
-        var_dump('removeAll', $test->removeAll(), '-------------');
-        var_dump('addItem', $test->addItem($data), '-------------');
-        var_dump('addItem', $test->addItem($data1), '-------------');
-        var_dump('addItem', $test->setItemPrice($data, 21), '-------------');
-        var_dump('getItems', $test->setQuantity($data, 1000), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
-//        var_dump('addItem', $test->addItem($data), '-------------');
         
-        var_dump('getItems', $test->getItems(), '-------------');
-
-//        $test->removeAll();
     }
 
     public function autoload() {

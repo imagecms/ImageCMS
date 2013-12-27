@@ -1,2 +1,3 @@
-<script> langs['Already in tracking'] = "{lang('Already in tracking', 'pricespy')}";
- </script>
+<script>
+langs["Already in tracking"] = '<?php echo lang("Already in tracking", "pricespy")?>';
+</script>
