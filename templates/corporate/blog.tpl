@@ -39,6 +39,7 @@
                                 </li>
                             {/foreach}
                         </ul>
+                        {$pagination}
                     </div>
                 </div>
                 <div class="right">
@@ -72,9 +73,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="pagination">
-            {$pagination}
         </div>
     </div>
 </div>

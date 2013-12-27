@@ -365,6 +365,7 @@ class Commentsapi extends Comments {
                     'parent' => $this->input->post('comment_parent')
                 );
                 $this->db->insert('comments', $comment_data);
+                $this->_recount_comments($item_id, $comment_data['module']);
                 \CMSFactory\Events::create()->registerEvent(array('commentId' => $this->db->insert_id()));
                 $this->validation_errors = '';
 
@@ -383,6 +384,22 @@ class Commentsapi extends Comments {
                 );
             }
         }
+    }
+
+    private function _recount_comments($page_id, $module) {
+        if ($module != 'core') {
+            return FALSE;
+        }
+
+        $this->db->where('item_id', $page_id);
+        $this->db->where('status', 0);
+        $this->db->where('module', 'core');
+        $this->db->from('comments');
+        $total = $this->db->count_all_results();
+
+        $this->db->limit(1);
+        $this->db->where('id', $page_id);
+        $this->db->update('content', array('comments_count' => $total));
     }
 
     /**

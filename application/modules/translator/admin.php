@@ -785,6 +785,7 @@ class Admin extends BaseAdminController {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPTё_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_ENCODING, "");
         curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
         if ($refer != "") {
             curl_setopt($ch, CURLOPT_REFERER, $refer);
@@ -796,6 +797,7 @@ class Admin extends BaseAdminController {
     }
 
     public function translateWord($to, $text = "", $return = FALSE) {
+        
         $settings = $this->getSettings();
         $from = $settings['originsLang'] ? $settings['originsLang'] : 'en';
         $apiKey = $settings['YandexApiKey'] ? $settings['YandexApiKey'] : '';
@@ -804,7 +806,7 @@ class Admin extends BaseAdminController {
         } else {
             $text = '&text=' . str_replace(' ', '%20', $this->input->post('word'));
         }
-
+        
         if ($return) {
             return $this->open_https_url('https://translate.yandex.net/api/v1.5/tr.json/translate?key=' . $apiKey . $text . '&lang=' . $from . '-' . $to . '&format=plain');
         } else {
@@ -888,10 +890,10 @@ class Admin extends BaseAdminController {
                         $content = @file($main . $file);
                         $implode_content = implode(' ', $content);
                         $lang_exist = FALSE;
-                        foreach ($this->parse_regexpr as $regexpr){
+                        foreach ($this->parse_regexpr as $regexpr) {
                             $lang_exist = $lang_exist || preg_match('/' . $regexpr . '/', $implode_content);
                         }
-                        
+
                         if ($lang_exist) {
                             foreach ($content as $line_number => $line) {
                                 foreach ($this->parse_regexpr as $regexpr) {
