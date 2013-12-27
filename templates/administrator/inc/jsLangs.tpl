@@ -2,6 +2,7 @@
 langs["This field is required"] = '<?php echo lang("This field is required", "admin")?>';
 langs["Please fix this field."] = '<?php echo lang("Please fix this field.", "admin")?>';
 langs["Enter a valid email address."] = '<?php echo lang("Enter a valid email address.", "admin")?>';
+//langs["Enter a valid email address."] = '<?php echo lang("Enter a valid email address.")?>';
 langs["Please enter a valid URL."] = '<?php echo lang("Please enter a valid URL.", "admin")?>';
 langs["Please enter a valid date."] = '<?php echo lang("Please enter a valid date.", "admin")?>';
 langs["Please enter a valid date (ISO)."] = '<?php echo lang("Please enter a valid date (ISO).", "admin")?>';
