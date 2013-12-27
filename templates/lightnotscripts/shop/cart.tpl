@@ -247,7 +247,7 @@
 
                                                 </div>
                                                 {echo 'Кількість - '.$item->quantity}
-                                                <a href="{site_url('shop/cart_new/removeProductByVariantId/'.$item->id)}">Видалити</a>
+                                                <a href="{site_url('shop/cart/removeProductByVariantId/'.$item->id)}">Видалити</a>
                                             </td>
                                         </tr>
                                     {else:}
@@ -304,7 +304,7 @@
                                                     </li>
                                                 </ul>
                                                 {echo 'Кількість - '.$item->quantity}
-                                                <a href="{site_url('shop/cart_new/removeKit/'.$item->id)}">Видалити</a>
+                                                <a href="{site_url('shop/cart/removeKit/'.$item->id)}">Видалити</a>
                                             </td>
                                         </tr>
                                         <!-- End. Shop kit -->
