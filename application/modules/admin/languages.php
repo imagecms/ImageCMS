@@ -17,6 +17,8 @@ class Languages extends BaseAdminController {
     }
 
     function index() {
+        $settings = $this->cms_admin->get_settings();
+        $this->template->assign('template_selected', $settings['site_template']);
         $langs = $this->cms_admin->get_langs();
         $this->template->assign('langs', $langs);
         $this->template->show('languages', FALSE);
@@ -135,7 +137,7 @@ class Languages extends BaseAdminController {
                         if (strstr($line, 'X-Poedit-SearchPath')) {
                             $content .= $line;
                         }
-                        if(!$line){
+                        if (!$line) {
                             break;
                         }
                     }
@@ -197,7 +199,7 @@ class Languages extends BaseAdminController {
                 }
             }
         }
-        
+
         if (is_dir($main_dir)) {
             if (!is_dir($main_dir . '/' . $lang)) {
                 mkdir($main_dir . '/' . $lang, 0777);
@@ -205,7 +207,7 @@ class Languages extends BaseAdminController {
                 file_put_contents($main_dir . '/' . $lang . '/LC_MESSAGES/main.po', $main_content);
             }
         }
-        
+
         if (is_dir($modules_dir)) {
             $modules = scandir($modules_dir);
             foreach ($modules as $module) {
@@ -388,23 +390,30 @@ class Languages extends BaseAdminController {
      * @access private
      * @return array
      */
-    private function _get_templates() {
-        $new_arr = array();
-
+    function _get_templates() {
+        $new_arr_shop = array();
         if ($handle = opendir(TEMPLATES_PATH)) {
             while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && $file != 'administrator') {
+                if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
                     if (!is_file(TEMPLATES_PATH . $file)) {
+                        if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
+                            $new_arr_shop[$file] = $file;
+                        }
+
                         $new_arr[$file] = $file;
                     }
                 }
             }
-
             closedir($handle);
         } else {
             return FALSE;
         }
-        return $new_arr;
+
+        if (SHOP_INSTALLED) {
+            return $new_arr_shop;
+        } else {
+            return $new_arr;
+        }
     }
 
 }
