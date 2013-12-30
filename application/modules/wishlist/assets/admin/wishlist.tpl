@@ -50,8 +50,8 @@
                                                 {if $upload_errors}
                                                     <div class="alert alert-danger">
                                                         {foreach  $upload_errors as $error}
-                                                            <a class="alert-link">{echo $error}</a>
-                                                            <br><br>
+                                                            <p class="alert-link">{echo $error}</p>
+                                                            <br>
                                                         {/foreach}
                                                     </div>
                                                 {/if}
