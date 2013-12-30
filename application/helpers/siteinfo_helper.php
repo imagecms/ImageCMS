@@ -10,82 +10,166 @@ if (!defined('BASEPATH'))
 if (!function_exists('siteinfo')) {
 
     /**
-     * <p>Get information about site </p>
-     * <p>Predefined values are:</p>
-     * <ul>
-     *     <li> siteinfo_compatyname, </li>
-     *     <li> siteinfo_address,</li>
-     *     <li> siteinfo_mainphone,</li>
-     *     <li> siteinfo_contacts,</li>
-     *     <li> siteinfo_logo,</li>
-     *     <li> siteinfo_favicon,</li>
-     * </ul>
-     * <p>If you want to return contact, then set 
-     * parameter type of contact from admin panel - settings - siteinfo</p>
+     * Get information about site 
      *
      * @param string $name - name of siteinfo param
+     *    - siteinfo_compatyname 
+     *    - siteinfo_address
+     *    - siteinfo_mainphone
+     *    - siteinfo_contacts
+     *    - siteinfo_logo
+     *    - siteinfo_favicon
+     *    - siteinfo_logo_path
+     *    - siteinfo_favicon_path
+     *    - siteinfo_logo_url (equal to siteinfo_logo)
+     *    - siteinfo_favicon_url (equal to siteinfo_favicon)
+     *    - "or some contact name"
+     *  (you can use each without 'siteinfo_' prefix)
      */
     function siteinfo($name = NULL) {
-
-        // simple check just in case
-        if (is_array($name) || is_object($name) || is_bool($name)) {
-            return '';
+        // for shorter notation...
+        if (0 !== strpos($name, 'siteinfo_')) {
+            $name = 'siteinfo_' . $name;
         }
 
-        $ci = &get_instance();
-        // getting data from DB
-        $result = $ci->db->select('siteinfo')->get('settings');
+        switch ($name) {
+            case 'siteinfo_logo';
+            case 'siteinfo_logo_url';
+                return getFaviconLogoUrl('siteinfo_logo');
 
-        if ($result)
-            $result1 = $result->row_array();
-        else
-            return '';
+            case 'siteinfo_favicon';
+            case 'siteinfo_favicon_url';
+                return getFaviconLogoUrl('siteinfo_favicon');
 
-        $siteinfo = unserialize($result1['siteinfo']);
+            case 'siteinfo_logo_path';
+            case 'siteinfo_favicon_path';
+                $name_ = str_replace("_path", '', $name);
+                $file = getSiteInfo($name_);
+                $templateName = getActiveTemplateName();
+                return getFaviconLogoPath($templateName) . $file[$templateName];
 
-        // another simple check just in case
-        if (!is_array($siteinfo)) {
-            return '';
+            default:
+                return getSiteInfo($name);
         }
-
-        // if key exists value will be returned
-        if (FALSE !== $val = array_key_exists_recursive($name, $siteinfo, TRUE)) {
-
-            return $val;
-        } else {
-
-            // logo and favicon depends from template...
-            $CI = &get_instance();
-
-            $settings = $CI->cms_base->get_settings();
-            $tplName = $settings['site_template'];
-
-            switch ($name) {
-                case 'siteinfo_favicon_url':
-                    if (key_exists($tplName, $siteinfo['siteinfo_favicon'])) {
-                        return $siteinfo['siteinfo_favicon'][$tplName]['path'];
-                    } else {
-                        // trying to return frequently favicon location
-                        $fLoc = "templates/{$tplName}/images/favicon.ico";
-                        if (file_exists($fLoc)) {
-                            return $fLoc;
-                        }
-                    }
-                case 'siteinfo_logo_url':
-                    if (key_exists($tplName, $siteinfo['siteinfo_logo'])) {
-                        return $siteinfo['siteinfo_logo'][$tplName]['path'];
-                    } else {
-                        // trying to return frequently favicon location
-                        $fLoc = "templates/{$tplName}/images/logo.png";
-                        if (file_exists($fLoc)) {
-                            return $fLoc;
-                        }
-                    }
-            }
-        }
-        return '';
     }
 
+    if (!function_exists('getSiteInfo')) {
+
+        function getSiteInfo($name = NULL) {
+
+            // simple check just in case
+            if (!is_string($name)) {
+                return '';
+            }
+
+            $ci = &get_instance();
+            // getting data from DB
+            $result = $ci->db->select('siteinfo')->get('settings');
+
+            if ($result)
+                $result1 = $result->row_array();
+            else
+                return '';
+
+            $siteinfo = @unserialize($result1['siteinfo']);
+
+            // another simple check
+            if (!is_array($siteinfo)) {
+                return '';
+            }
+
+            // if key exists value will be returned
+            if (key_exists($name, $siteinfo)) {
+
+                return $siteinfo[$name];
+            }
+            return '';
+        }
+
+    }
+
+    if (!function_exists('getFaviconLogoPath')) {
+
+        /**
+         * Returns path to images folder
+         * (depends from active template, and its type)
+         * @param string $templateName 
+         * @return string|boolean Description
+         */
+        function getFaviconLogoPath($templateName = NULL) {
+            if ($templateName == NULL) {
+                $templateName = getActiveTemplateName();
+            }
+            // looking for any color scheme (by folder existing)
+            $cssPath = TEMPLATES_PATH . $templateName . DIRECTORY_SEPARATOR . "css" . DIRECTORY_SEPARATOR;
+            $cssPath = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $cssPath);
+
+            $cssDir = dir($cssPath);
+            $colorSchemes = array();
+            while (false !== ($item = $cssDir->read())) {
+                if ($item == '.' || $item == '..') {
+                    continue;
+                }
+                if (is_dir($cssPath . DIRECTORY_SEPARATOR . $item)) {
+                    if (0 === strpos($item, 'color_scheme_')) {
+                        $colorSchemes[] = $item;
+                    }
+                }
+            }
+            if (count($colorSchemes) > 0) { // newLevel-type template
+                $ci = &get_instance();
+                $colorScheme_ = $ci->load->module('new_level')->getColorScheme();
+                $colorScheme = array_pop(explode('/', $colorScheme_));
+                if (!in_array($colorScheme, $colorSchemes)) {
+                    return FALSE;
+                }
+                $imagesPath = $cssPath . $colorScheme . DIRECTORY_SEPARATOR;
+            } else { // old-school template type
+                $imagesPath = TEMPLATES_PATH . $templateName . DIRECTORY_SEPARATOR . "images" . DIRECTORY_SEPARATOR;
+            }
+            // enshure that path is correct formed to current OS
+            return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $imagesPath);
+        }
+
+    }
+
+    if (!function_exists('getFaviconLogoUrl')) {
+
+        /**
+         * Returning full url with image
+         * @param string siteinfo_logo|siteinfo_favicon $logoOrFavicon
+         * @return string
+         */
+        function getFaviconLogoUrl($logoOrFavicon) {
+            $templateName = getActiveTemplateName();
+            $path = getFaviconLogoPath($templateName);
+
+            $fileData = getSiteInfo($logoOrFavicon);
+            if (!key_exists($templateName, $fileData) || empty($fileData)) {
+                return '';
+            }
+
+            $path = str_replace(PUBPATH, '', $path);
+            $path .= $fileData[$templateName];
+            $path = trim($path, DIRECTORY_SEPARATOR);
+            return '/' . str_replace(DIRECTORY_SEPARATOR, '/', $path);
+        }
+
+    }
+
+    if (!function_exists('getActiveTemplateName')) {
+
+        /**
+         * Returns current active template
+         * @return string
+         */
+        function getActiveTemplateName() {
+            $CI = &get_instance();
+            $settings = $CI->cms_base->get_settings();
+            return $settings['site_template'];
+        }
+
+    }
 }
 
 /* End of siteinfo.php */
