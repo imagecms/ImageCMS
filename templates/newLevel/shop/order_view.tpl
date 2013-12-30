@@ -129,7 +129,6 @@
                 <!-- End. Delivery Method price -->
 
                 <!-- Start. Render payment button and payment description -->
-                {var_dump($model);exit;}
                 <tr>
                     <th>{lang('Способ оплаты','newLevel')}:</th>
                     <td>
