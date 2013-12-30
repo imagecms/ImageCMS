@@ -1618,70 +1618,16 @@ function getCookie(c_name)
         dPP: {
             dropContent: '.drop-content-default',
             dropHeader: '.drop-header-default',
-            dropFooter: '.drop-footer-default'
-        },
-        dP: {
-            galleries: [],
-            message: {
-                success: function(text) {
-                    return '<div class = "msg js-msg"><div class = "success"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
-                },
-                error: function(text) {
-                    return '<div class = "msg js-msg"><div class = "error"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
-                },
-                info: function(text) {
-                    return '<div class = "msg js-msg"><div class = "info"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
-                }
-            },
-            trigger: 'click',
-            exit: '[data-closed = "closed-js"]',
-            effectOn: 'fadeIn',
-            effectOff: 'fadeOut',
-            durationOn: 200,
-            durationOff: 100,
-            place: 'center',
+            dropFooter: '.drop-footer-default',
             contentHeader: null,
             contentFooter: null,
-            contentContent: null,
-            placement: 'top, left',
-            modal: false,
-            confirm: false,
-            confirmSel: '#confirm',
-            overlayOpacity: '0',
-            overlayColor: '#fff',
-            always: false,
-            animate: false,
-            timeclosemodal: 2000,
-            position: true,
-            placeBeforeShow: 'center center',
-            placeAfterClose: 'center center',
-            moreOne: false,
-            delayAfter: 0,
-            closeClick: false,
-            closeEsc: false,
-            droppable: false,
-            before: function() {
-            },
-            after: function() {
-            },
-            close: function() {
-            },
-            closed: function() {
-            },
-            changeSource: function() {
-            },
-            start: undefined,
-            drop: '.drop-default',
-            pattern: '<div class="drop drop-style"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placeImg" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
-            next: '.drop-next',
-            prev: '.drop-prev',
-            cycle: false
+            contentContent: null
         },
         init: function(options) {
-            $.extend(methods.dP, $.extend({}, methods.dPP, options));
+            $.extend($.drop.dP, $.extend({}, methods.dPP, options));
             this.filter(':not(.isDrop)').each(function() {
                 var el = $(this),
-                trigger = (el.data('trigger') || methods.dP.trigger).toString();
+                trigger = (el.data('trigger') || $.drop.dP.trigger).toString();
                 methods._modalTrigger();
 
                 var rel = this.rel;
@@ -1689,9 +1635,9 @@ function getCookie(c_name)
                     rel = rel.replace(/[^a-zA-Z0-9]+/ig, '');
                     var source = el.data('source') || this.href;
                     if (source !== undefined) {
-                        if (typeof methods.dP.galleries[rel] === 'undefined')
-                            methods.dP.galleries[rel] = [];
-                        methods.dP.galleries[rel].push(source);
+                        if (typeof $.drop.dP.galleries[rel] === 'undefined')
+                            $.drop.dP.galleries[rel] = [];
+                        $.drop.dP.galleries[rel].push(source);
                     }
                 }
 
@@ -1705,9 +1651,9 @@ function getCookie(c_name)
                 });
             });
 
-            for (i in methods.dP.galleries)
-                if (methods.dP.galleries[i].length <= 1) {
-                    delete methods.dP.galleries[i];
+            for (i in $.drop.dP.galleries)
+                if ($.drop.dP.galleries[i].length <= 1) {
+                    delete $.drop.dP.galleries[i];
                 }
             return $(this);
         },
@@ -1725,9 +1671,9 @@ function getCookie(c_name)
         _modalTrigger: function() {
             $(document).off('successJson.' + nS).on('successJson.' + nS, function(e) {
                 if (e.datas.answer === "success")
-                    e.el.find(optionsDrop.modalPlace).empty().append(methods.dP.message.success(e.datas.data));
+                    e.el.find(optionsDrop.modalPlace).empty().append($.drop.dP.message.success(e.datas.data));
                 else
-                    e.el.find(optionsDrop.modalPlace).empty().append(methods.dP.message.error(e.datas.data));
+                    e.el.find(optionsDrop.modalPlace).empty().append($.drop.dP.message.error(e.datas.data));
             });
         },
         get: function(el, modal, e) {
@@ -1750,7 +1696,7 @@ function getCookie(c_name)
                         if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
                             methods._modalTrigger();
                             var drop = $(elSet.drop);
-                            methods._pasteDrop($.extend({}, methods.dP, elSet), drop);
+                            methods._pasteDrop($.extend({}, $.drop.dP, elSet), drop);
                             $(document).trigger({
                                 type: 'successJson.' + nS,
                                 el: drop,
@@ -1758,7 +1704,7 @@ function getCookie(c_name)
                             });
                         }
                         else {
-                            methods._pasteDrop($.extend({}, methods.dP, elSet), data);
+                            methods._pasteDrop($.extend({}, $.drop.dP, elSet), data);
                             var drop = $(elSet.drop);
                             $(document).trigger({
                                 type: 'successHtml.' + nS,
@@ -1766,18 +1712,18 @@ function getCookie(c_name)
                                 datas: data
                             });
                         }
-                        methods.init.call(drop.find('[data-drop]:not(.isDrop)'), $.extend({}, methods.dP));
+                        methods.init.call(drop.find('[data-drop]:not(.isDrop)'), $.extend({}, $.drop.dP));
                         methods._show(el, e, true, data);
                     }
                 });
             }
             else {
-                $('.' + methods.dP.curDefault).remove();
-                methods.dP.curDefault = (methods.dP.drop + (new Date()).getTime()).toString().replace('.', '');
+                $('.' + $.drop.dP.curDefault).remove();
+                $.drop.dP.curDefault = ($.drop.dP.drop + (new Date()).getTime()).toString().replace('.', '');
                 var rel = '';
                 if (el.get(0).rel != undefined)
                     rel = el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, '');
-                var drop = methods._pasteDrop($.extend({}, methods.dP, elSet), methods.dP.pattern, methods.dP.drop.replace('.', '') + ' ' + methods.dP.curDefault, rel);
+                var drop = methods._pasteDrop($.extend({}, $.drop.dP, elSet), $.drop.dP.pattern, $.drop.dP.drop.replace('.', '') + ' ' + $.drop.dP.curDefault, rel);
                 if (source.match(/jpg|gif|png|bmp|jpeg/))
                     $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
                         drop.find('.placeImg').append($(this))
@@ -1795,8 +1741,8 @@ function getCookie(c_name)
             if ($this == undefined)
                 $this = this;
 
-            var moreOne = methods.dP.moreOne,
-            confirmSel = methods.dP.confirmSel;
+            var moreOne = $.drop.dP.moreOne,
+            confirmSel = $.drop.dP.confirmSel;
             methods.closeModal();
             function _confirmF() {
                 if (!$.existsN(drop) || modal || always) {
@@ -1808,7 +1754,7 @@ function getCookie(c_name)
             var elSet = $this.data(),
             source = elSet.source || $this.attr('href'),
             drop = $(elSet.drop),
-            start = elSet.start !== undefined ? elSet.start : methods.dP.start;
+            start = elSet.start !== undefined ? elSet.start : $.drop.dP.start;
             if (!$this.parent().hasClass(aC)) {
                 if (!(elSet.moreOne || moreOne) && start === undefined) {
                     if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
@@ -1818,9 +1764,9 @@ function getCookie(c_name)
                 }
 
                 if (!$this.is(':disabled')) {
-                    var modal = elSet.modal || methods.dP.modal,
-                    confirm = elSet.confirm || methods.dP.confirm,
-                    always = elSet.always || methods.dP.always;
+                    var modal = elSet.modal || $.drop.dP.modal,
+                    confirm = elSet.confirm || $.drop.dP.confirm,
+                    always = elSet.always || $.drop.dP.always;
                     if (start !== undefined) {
                         var res = eval(start)($this, drop);
                         if (!res)
@@ -1828,17 +1774,17 @@ function getCookie(c_name)
                     }
                     if (start === undefined || (start !== undefined && res)) {
                         if ($.existsN(drop) && !modal && !always && !confirm) {
-                            methods._pasteDrop($.extend({}, methods.dP, elSet), drop);
+                            methods._pasteDrop($.extend({}, $.drop.dP, elSet), drop);
                             methods._show($this, e, false);
                         }
                         else if (source || always || confirm) {
                             if (!confirm)
                                 _confirmF();
                             else {//for cofirm
-                                methods._pasteDrop($.extend({}, methods.dP, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
+                                methods._pasteDrop($.extend({}, $.drop.dP, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
                                 methods._show($('[data-drop="' + confirmSel + '"]').data({
                                     'elrun': $this
-                                }), e, methods.dP, false);
+                                }), e, $.drop.dP, false);
                                 $('[data-button-confirm]').focus().on('click.' + nS, function() {
                                     if (elSet.after)
                                         $(confirmSel).data('elClosed', elSet.after)
@@ -1850,7 +1796,7 @@ function getCookie(c_name)
                             }
                         }
                         else {//for front validations
-                            methods._pasteDrop($.extend({}, methods.dP, elSet), drop);
+                            methods._pasteDrop($.extend({}, $.drop.dP, elSet), drop);
                             methods._show($this, e, false);
                         }
                     }
@@ -1982,7 +1928,7 @@ function getCookie(c_name)
             if (e === undefined)
                 e = window.event;
             isajax = !isajax ? false : true;
-            var set = methods.dP,
+            var set = $.drop.dP,
             elSet = $this.data(),
             trigger = elSet.trigger || set.trigger,
             place = elSet.place || set.place,
@@ -2026,12 +1972,12 @@ function getCookie(c_name)
             elClose = elSet.close,
             closed = set.closed,
             elClosed = elSet.closed,
-            selSource = elSet.drop || methods.dP.drop,
+            selSource = elSet.drop || $.drop.dP.drop,
             drop = $(selSource);
             $this.attr({
                 'data-drop': $this.data('drop')
             }).parent().addClass(aC);
-            methods.dP.durationOff = $thisDOff;
+            $.drop.dP.durationOff = $thisDOff;
             drop.data({
                 'trigger': trigger,
                 'effectOn': $thisEOn,
@@ -2085,7 +2031,7 @@ function getCookie(c_name)
                 var tempF = arguments.callee;
                 if ($this.get(0).rel != '' && $this.get(0).rel !== undefined) {
                     var rel = $this.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, ''),
-                    relA = methods.dP.galleries[rel],
+                    relA = $.drop.dP.galleries[rel],
                     drop = $('[data-elrun][data-rel="' + rel + '"]');
                     if (relA !== undefined) {
                         var relL = relA.length,
@@ -2241,7 +2187,7 @@ function getCookie(c_name)
                 drop.addClass(place);
                 function _forCenterTop() {
                     if (forCenter) {
-                        forCenter.css('top', methods.dP.wST);
+                        forCenter.css('top', $.drop.dP.wST);
                     }
                 }
                 function _show() {
@@ -2283,7 +2229,7 @@ function getCookie(c_name)
                         drop.addClass(aC);
 
                         if (!confirm && modal)
-                            methods.dP.closeDropTime = setTimeout(function() {
+                            $.drop.dP.closeDropTime = setTimeout(function() {
                                 methods.close(drop);
                             }, timeclosemodal);
                         methods.limitSize(drop);
@@ -2305,7 +2251,7 @@ function getCookie(c_name)
                             methods.droppable(drop);
                     });
                 }
-                methods.dP.wST = wnd.scrollTop();
+                $.drop.dP.wST = wnd.scrollTop();
                 if (forCenter) {
                     forCenter.fadeIn($thisD);
                 }
@@ -2367,7 +2313,7 @@ function getCookie(c_name)
         close: function(sel, datas, el) {
             if (sel === undefined)
                 sel = this;
-            clearTimeout(methods.dP.closeDropTime);
+            clearTimeout($.drop.dP.closeDropTime);
             $('[data-button-confirm]').off('click.' + nS);
             var cond = sel === undefined || !sel,
             drop = cond ? $('[data-elrun].' + aC) : sel;
@@ -2376,7 +2322,7 @@ function getCookie(c_name)
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this),
-                    data = Object.keys(drop.data()) != 0 ? drop.data() : methods.dP,
+                    data = Object.keys(drop.data()) != 0 ? drop.data() : $.drop.dP,
                     condOverlay = (data.overlayOpacity !== undefined ? data.overlayOpacity.toString() : data.overlayOpacity) !== '0';
                     if (data.modal || sel || condOverlay || data.place === 'noinherit') {
                         $thisB = data.elrun;
@@ -2556,9 +2502,9 @@ function getCookie(c_name)
             return drop;
         },
         scrollEmulate: function() {
-            var dur = methods.dP.durationOn;
+            var dur = $.drop.dP.durationOn;
             try {
-                clearInterval(methods.dP.scrollemulatetimeout);
+                clearInterval($.drop.dP.scrollemulatetimeout);
             } catch (err) {
             }
             setTimeout(function() {
@@ -2579,14 +2525,14 @@ function getCookie(c_name)
             }, dur);
         },
         scrollEmulateRemove: function() {
-            var dur = methods.dP.durationOff;
-            methods.dP.scrollemulatetimeout = setTimeout(function() {
+            var dur = $.drop.dP.durationOff;
+            $.drop.dP.scrollemulatetimeout = setTimeout(function() {
                 body.removeClass('isScroll').css({
                     'overflow': '',
                     'margin-right': ''
                 });
                 ;
-                wnd.scrollTop(methods.dP.wST);
+                wnd.scrollTop($.drop.dP.wST);
                 $('.scrollEmulation').remove();
                 if (isTouch)
                     $('.for-center').off('touchmove.' + nS);
@@ -2647,9 +2593,69 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.drop');
         }
     };
-    $.drop = function(m) {
-        return methods[m];
-    };
+    $.dropInit = function(m){
+        if (m)
+            return methods[m];
+        
+        this.dP = {
+            galleries: [],
+            message: {
+                success: function(text) {
+                    return '<div class = "msg js-msg"><div class = "success"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                },
+                error: function(text) {
+                    return '<div class = "msg js-msg"><div class = "error"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                },
+                info: function(text) {
+                    return '<div class = "msg js-msg"><div class = "info"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                }
+            },
+            trigger: 'click',
+            exit: '[data-closed = "closed-js"]',
+            effectOn: 'fadeIn',
+            effectOff: 'fadeOut',
+            durationOn: 200,
+            durationOff: 100,
+            place: 'center',
+            placement: 'top, left',
+            modal: false,
+            confirm: false,
+            confirmSel: '#confirm',
+            overlayOpacity: '0',
+            overlayColor: '#fff',
+            always: false,
+            animate: false,
+            timeclosemodal: 2000,
+            position: true,
+            placeBeforeShow: 'center center',
+            placeAfterClose: 'center center',
+            moreOne: false,
+            delayAfter: 0,
+            closeClick: false,
+            closeEsc: false,
+            droppable: false,
+            before: function() {
+            },
+            after: function() {
+            },
+            close: function() {
+            },
+            closed: function() {
+            },
+            changeSource: function() {
+            },
+            start: undefined,
+            drop: '.drop-default',
+            pattern: '<div class="drop drop-style"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placeImg" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
+            next: '.drop-next',
+            prev: '.drop-prev',
+            cycle: false
+        },
+        this.setParameters = function(options){
+            $.extend($.drop.dP, options);
+        };
+    }
+    $.drop = new $.dropInit();
 })(jQuery);
 /*/plugin drop end*/
 /*plugin plusminus*/
