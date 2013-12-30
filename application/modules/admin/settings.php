@@ -268,83 +268,42 @@ class Settings extends BaseAdminController {
      * @return array siteinfo data
      */
     protected function processSiteInfo() {
+        $this->activeTemplateName = getActiveTemplateName();
 
         // getting all parameters with keys
         $siteinfo = array();
         foreach ($_POST as $key => $value) {
-            if (FALSE !== strpos($key, "siteinfo")) {
+            if (0 === strpos($key, "siteinfo_")) {
                 $siteinfo[$key] = $value;
                 unset($_POST[$key]);
             }
         }
 
-        // remap contacts
-        $contacts = array();
+        // remap additional fields
+        $additional = array();
         $countKeys = count($siteinfo['siteinfo_contactkey']);
         $countValues = count($siteinfo['siteinfo_contactvalue']);
 
         if ($countKeys == $countValues & $countValues > 0) {
             for ($i = 0; $i < $countKeys; $i++) {
                 if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i]))
-                    $contacts[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+                    $additional[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
             }
         }
 
         unset($siteinfo['siteinfo_contactkey']);
         unset($siteinfo['siteinfo_contactvalue']);
-        $siteinfo['contacts'] = $contacts;
+        $siteinfo['contacts'] = $additional;
 
-        $tplName = $this->getImagesPath(TRUE);
-        $tplPath = $this->getImagesPath();
+        $this->imagesPath = getFaviconLogoPath();
 
-        $config['upload_path'] = $tplPath;
+        $config['upload_path'] = $this->imagesPath;
         $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
         $this->load->library('upload', $config);
 
-        // upload logo if present
-        $logo = siteinfo('siteinfo_logo');
-        $siteinfo['siteinfo_logo'] = is_array($logo) ? $logo : array();
-        if (isset($_FILES['siteinfo_logo'])) {
-            if (!$this->upload->do_upload('siteinfo_logo')) {
-                echo $this->upload->display_errors('', '');
-            } else {
-                $uploadData1 = $this->upload->data();
-                $siteinfo['siteinfo_logo'][$tplName] = array(
-                    'url' => site_url() . $tplPath . $uploadData1['file_name'],
-                    'path' => $tplPath . $uploadData1['file_name']
-                );
-            }
-        } else {
-            // if delete image
-            if ($_POST['si_delete_logo'] == 1) {
-                if (is_array($siteinfo['siteinfo_logo']))
-                    if (isset($siteinfo['siteinfo_logo'][$tplName]))
-                        unset($siteinfo['siteinfo_logo'][$tplName]);
-            }
-        }
-
-        // upload favicon if present
-        $favicon = siteinfo('siteinfo_favicon');
-        $siteinfo['siteinfo_favicon'] = is_array($favicon) ? $favicon : array();
-
-        if (isset($_FILES['siteinfo_favicon'])) {
-            if (!$this->upload->do_upload('siteinfo_favicon')) {
-                //$faviconError = $this->upload->display_errors('', '');
-            } else {
-                $uploadData2 = $this->upload->data();
-                $siteinfo['siteinfo_favicon'][$tplName] = array(
-                    'url' => site_url() . $tplPath . $uploadData2['file_name'],
-                    'path' => $tplPath . $uploadData2['file_name']
-                );
-            }
-        } else {
-            // if delete image
-            if ($_POST['si_delete_favicon'] == 1) {
-                if (is_array($siteinfo['siteinfo_favicon']))
-                    if (isset($siteinfo['siteinfo_favicon'][$tplName]))
-                        unset($siteinfo['siteinfo_favicon'][$tplName]);
-            }
-        }
+        // upload or delete (or do nothing) favicon and logo
+        $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
+        $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
 
         // saving admin's email in application/config/auth.php
         $authFullPath = "./application/config/auth.php";
@@ -356,32 +315,40 @@ class Settings extends BaseAdminController {
             $this->load->helper('file');
             write_file($authFullPath, $newAuthContents);
         }
+
         // returning beautiful array =)
         return $siteinfo;
     }
 
     /**
-     * Returns path for current images path
-     * (depends from acteve template)
-     * @param boolean $returnOnlyName if TRUE then only template name will be returned
+     * 
+     * @param type $paramName
+     * @param type $siteinfo
      */
-    protected function getImagesPath($returnOnlyName = FALSE) {
-        $CI = &get_instance();
-        $settings = $this->cms_base->get_settings();
-        if ($returnOnlyName == TRUE) {
-            return $settings['site_template'];
-        }
-        $tplPath = 'templates/' . $settings['site_template'] . '/';
-        switch ($settings['site_template']) {
-            case 'newLevel':
-                $colorScheme = $CI->load->module('new_level')->getColorScheme();
-                return $tplPath . $colorScheme . '/';
-            case 'commerce4x':
-                return $tplPath . 'images/';
-            case 'corporate':
-                return $tplPath . 'images/';
-            default:
-                return '';
+    protected function processLogoOrFavicon($paramName, &$siteinfo) {
+        // setting old value
+        $oldValue = getSiteInfo($paramName);
+        $siteinfo[$paramName] = !empty($oldValue) ? $oldValue : '';
+        if (isset($_FILES[$paramName])) {
+            // deleting files if such exist and param $this->siteInfoDeleteFiles is set to TRUE
+            if ($this->siteInfoDeleteFiles == TRUE) {
+                $isFile = $this->imagesPath . $_FILES[$paramName]['name'];
+                if (file_exists($isFile)) {
+                    unlink($isFile);
+                }
+            }
+            if (!$this->upload->do_upload($paramName)) {
+                echo $this->upload->display_errors('', '');
+            } else {
+                $uploadData = $this->upload->data();
+                $siteinfo[$paramName][$this->activeTemplateName] = $uploadData['file_name'];
+            }
+        } else {
+            // if delete image
+            if ($_POST[$paramName] == 1) {
+                if (isset($siteinfo[$paramName][$this->activeTemplateName]))
+                    unset($siteinfo[$paramName][$this->activeTemplateName]);
+            }
         }
     }
 
