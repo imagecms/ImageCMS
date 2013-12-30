@@ -129,10 +129,11 @@
                 <!-- End. Delivery Method price -->
 
                 <!-- Start. Render payment button and payment description -->
+                {var_dump($model);exit;}
                 <tr>
                     <th>{lang('Способ оплаты','newLevel')}:</th>
                     <td>
-                        {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
+                        {if $model->getTotalPriceWithGift() > 0}
                             {if $paymentMethod->getName()}
                                 {echo ShopCore::t($paymentMethod->getName())}
                             {/if}
