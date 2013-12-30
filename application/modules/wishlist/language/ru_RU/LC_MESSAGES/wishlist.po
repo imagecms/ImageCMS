@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-14 12:44+0400\n"
-"PO-Revision-Date: 2013-12-14 12:44+0400\n"
+"POT-Creation-Date: 2013-12-30 03:07+0200\n"
+"PO-Revision-Date: 2013-12-30 03:07+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,18 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:561
+msgid "max size"
+msgstr "максимальный размер"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:563
+msgid "max width"
+msgstr "максимальная ширина"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:565
+msgid "max height"
+msgstr "максимальная высота"
 
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:152
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:80
