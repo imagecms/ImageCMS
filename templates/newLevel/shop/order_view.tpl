@@ -153,14 +153,16 @@
                 <!--                End. Order status-->
                 <tr>
                     <td></td>
-                    <td>
-                        <div class="frame-payment">
-                            {$locale = \MY_Controller::getCurrentLocale();}
-                            {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
-                            {/*echo $notif->message*/}
-                            {echo $paymentMethod->getPaymentForm($model)}
-                        </div>
-                    </td>
+                    {if $model->getPaid() != true}
+                        <td>
+                            <div class="frame-payment">
+                                {$locale = \MY_Controller::getCurrentLocale();}
+                                {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
+                                {/*echo $notif->message*/}
+                                {echo $paymentMethod->getPaymentForm($model)}
+                            </div>
+                        </td>
+                    {/if}
                 </tr>
                 <!-- End. Render payment button and payment description -->
             </table>
