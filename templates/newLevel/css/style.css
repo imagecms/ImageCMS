@@ -15,7 +15,7 @@ a img{border: none;}
 img{height: auto;max-width: 100%;vertical-align: middle;border: 0;width: auto\9;-ms-interpolation-mode: bicubic;}
 figure{line-height: 0;font-size: 0;}
 blockquote, q {quotes: none;}
-hr{border:0;width: 100%;display: block;}
+hr{border:0;width: 100%;display: block;margin: 0;}
 /*/reset*/
 
 /*scaffolding*/
