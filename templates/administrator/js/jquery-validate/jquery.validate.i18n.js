@@ -2,14 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-  function lang(value) {
-            if (langs[value]) {
-                return  langs[value];
-            } else {
-                return value;
-            }
-        }
-
 
 jQuery.extend(jQuery.validator.messages, {
     required: lang("This field is required"),

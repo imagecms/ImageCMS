@@ -45,9 +45,8 @@ class Commentsapi extends Comments {
         $this->module = $this->getModule($url);
         $item_id = $this->parsUrl($url);
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
-        var_dump($this->module);
+
         $comments = $this->base->get($item_id, 0, $this->module, 99999);
-        var_dump($comments);
 
         // Read comments template
         // Set page id for comments form
