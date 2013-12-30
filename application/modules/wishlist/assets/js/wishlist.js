@@ -205,7 +205,7 @@ $('.APItester').live('click', function() {
 
 
 
-$("#createWishList").die('click').click(function() {
+$("#createWishList").unbind().bind('click', function() {
     var data = $("form#wishlistForm").serialize();
     $.post('/admin/components/cp/wishlist/createWishList', data, function(response) {
         $("#notifies").empty();
