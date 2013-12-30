@@ -286,8 +286,10 @@ class Settings extends BaseAdminController {
 
         if ($countKeys == $countValues & $countValues > 0) {
             for ($i = 0; $i < $countKeys; $i++) {
-                if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i]))
+                if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i])) {
                     $additional[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+                    $siteinfo["siteinfo_" . $siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+                }
             }
         }
 
@@ -299,6 +301,7 @@ class Settings extends BaseAdminController {
 
         $config['upload_path'] = $this->imagesPath;
         $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
+        $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
 
         // upload or delete (or do nothing) favicon and logo

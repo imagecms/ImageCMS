@@ -480,7 +480,7 @@
                                                                         <button type="button" class="btn btn-small remove_btn">
                                                                             <i class="icon-trash"></i>
                                                                         </button>
-                                                                        <img class="img-polaroid" src="/{$logo}" alt="{lang('Click to select the image', 'admin')}" />
+                                                                        <img class="img-polaroid" src="{$logo}" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {else:}
                                                                         <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {/if}
@@ -499,7 +499,7 @@
                                                                         <button type="button" class="btn btn-small remove_btn">
                                                                             <i class="icon-trash"></i>
                                                                         </button>
-                                                                        <img class="img-polaroid" src="/{$favicon}" alt="{lang('Click to select the image', 'admin')}" />
+                                                                        <img class="img-polaroid" src="{$favicon}" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {else:}
                                                                         <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {/if}
