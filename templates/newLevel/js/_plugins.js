@@ -1668,6 +1668,8 @@ function getCookie(c_name)
             },
             closed: function() {
             },
+            changeSource: function() {
+            },
             start: undefined,
             drop: '.drop-default',
             pattern: '<div class="drop drop-style"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placeImg" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
@@ -1676,7 +1678,7 @@ function getCookie(c_name)
             cycle: false
         },
         init: function(options) {
-            $.extend(methods.dP, $.extend(methods.dPP, options));
+            $.extend(methods.dP, $.extend({}, methods.dPP, options));
             this.filter(':not(.isDrop)').each(function() {
                 var el = $(this),
                 trigger = (el.data('trigger') || methods.dP.trigger).toString();
@@ -1772,7 +1774,10 @@ function getCookie(c_name)
             else {
                 $('.' + methods.dP.curDefault).remove();
                 methods.dP.curDefault = (methods.dP.drop + (new Date()).getTime()).toString().replace('.', '');
-                var drop = methods._pasteDrop($.extend({}, methods.dP, elSet), methods.dP.pattern, methods.dP.drop.replace('.', '') + ' ' + methods.dP.curDefault, el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, ''));
+                var rel = '';
+                if (el.get(0).rel != undefined)
+                    rel = el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, '');
+                var drop = methods._pasteDrop($.extend({}, methods.dP, elSet), methods.dP.pattern, methods.dP.drop.replace('.', '') + ' ' + methods.dP.curDefault, rel);
                 if (source.match(/jpg|gif|png|bmp|jpeg/))
                     $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
                         drop.find('.placeImg').append($(this))
@@ -1861,12 +1866,12 @@ function getCookie(c_name)
                 addClass = '';
             if (set.place !== 'inherit') {
                 function _for_center(rel) {
-                    body.append('<div class="for-center" rel="' + rel + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
+                    body.append('<div class="for-center" data-rel="' + rel + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
                 }
                 if (set.place === 'noinherit')
                     drop = $(drop).appendTo(body);
                 else {
-                    var sel = '[rel="' + set.drop + '"].for-center';
+                    var sel = '[data-rel="' + set.drop + '"].for-center';
                     if (typeof drop !== 'string') {
                         if (!$.existsN(drop.parent('.for-center'))) {
                             if (drop.data('forCenter') === undefined) {
@@ -1885,7 +1890,7 @@ function getCookie(c_name)
                     }
                 }
             }
-            return drop.addClass(addClass).attr('rel', rel);
+            return drop.addClass(addClass).attr('data-rel', rel);
         },
         closeModal: function() {
             $('[data-elrun]:visible').each(function() {
@@ -1902,8 +1907,10 @@ function getCookie(c_name)
 
             if (drop.data('dropContent')) {
                 var el = drop.find($(drop.data('dropContent')).add($(methods.dPP.dropContent))).filter(':first');
-
-
+                
+                if (el.data('jsp') != undefined)
+                    el.data('jsp').destroy()
+    
                 if ($.existsN(el)) {
                     var docH = $(document).height(),
                     forCenter = drop.data('forCenter'),
@@ -2009,6 +2016,8 @@ function getCookie(c_name)
             contentContent = elSet.contentContent || set.contentContent,
             contentFooter = elSet.contentFooter || set.contentFooter,
             start = elSet.start,
+            changeSource = set.changeSource,
+            elChangeSource = elSet.changeSource,
             elBefore = elSet.before,
             elAfter = elSet.after,
             before = set.before,
@@ -2042,6 +2051,8 @@ function getCookie(c_name)
                 'start': start,
                 'before': before,
                 'after': after,
+                'changeSource': changeSource,
+                'elChangeSource': elChangeSource,
                 'elBefore': elBefore,
                 'elAfter': elAfter,
                 'close': close,
@@ -2074,10 +2085,11 @@ function getCookie(c_name)
                 var tempF = arguments.callee;
                 if ($this.get(0).rel != '' && $this.get(0).rel !== undefined) {
                     var rel = $this.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, ''),
-                    relA = methods.dP.galleries[rel];
+                    relA = methods.dP.galleries[rel],
+                    drop = $('[data-elrun][data-rel="' + rel + '"]');
                     if (relA !== undefined) {
-                        var relL = relA.length;
-                        var relP = $.inArray(source, relA);
+                        var relL = relA.length,
+                        relP = $.inArray(source != undefined ? source : drop.find('.placeImg img').attr('src'), relA);
                         $(prev).add($(next)).hide();
                         if (relP == 0)
                             $(next).show();
@@ -2086,10 +2098,9 @@ function getCookie(c_name)
                         if ((relP > 0 && relP < relL - 1) || cycle)
                             $(prev).add($(next)).show();
                     }
-
-                    $(prev).add($(next)).attr('rel', rel).off('click.' + nS).on('click.' + nS, function() {
-                        var $this = $(this).attr('disabled', 'disabled'),
-                        relCur = relP + ($this.is(prev) ? -1 : 1);
+                    $(prev).add($(next)).attr('data-rel', rel).off('click.' + nS).on('click.' + nS, function() {
+                        var $thisB = $(this).attr('disabled', 'disabled'),
+                        relCur = relP + ($thisB.is(prev) ? -1 : 1);
                         if (cycle) {
                             if (relCur >= relL)
                                 relCur = 0;
@@ -2097,16 +2108,39 @@ function getCookie(c_name)
                                 relCur = relL - 1;
                         }
                         source = relA[relCur];
-                        $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
-                            var drop = $('[data-elrun][rel="' + $this.attr('rel') + '"]');
-                            drop.find('.placeImg').empty().append($(this))
-                            tempF(source);
-                            $this.removeAttr('disabled');
-                            methods.limitSize(drop);
-                            methods.heightContent(drop);
-                            if (place != 'inherit')
-                                methods[place](drop, true);
-                        });
+                        if (source.match(/jpg|gif|png|bmp|jpeg/))
+                            $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
+                                drop.find('.placeImg').empty().append($(this))
+                                $thisB.removeAttr('disabled');
+                                tempF();
+                                (function(){
+                                    var tempF2 = arguments.callee;
+                                    methods.limitSize(drop);
+                                    methods.heightContent(drop);
+                                    if (place != 'inherit')
+                                        methods[place](drop, true);
+                                    $(this).off('load.' + nS).on('load.' + nS, function(){
+                                        tempF2();
+                                        methods.changeSource($(this), $this, drop);
+                                        if (elChangeSource !== undefined)
+                                            eval(elChangeSource)($(this), $this, drop);
+                                        $(document).trigger({
+                                            'type': 'changeSource.' + nS,
+                                            'el': $this,
+                                            'drop': drop,
+                                            'img': $(this)
+                                        });
+                                    });
+                                })();
+                            });
+                        else
+                            drop.find('.placeImg').load(source, function(data) {
+                                methods.limitSize(drop);
+                                methods.heightContent(drop);
+                                if (place != 'inherit')
+                                    methods[place](drop, true);
+                            })
+                        
                     });
                 }
             })(source)
@@ -2115,10 +2149,10 @@ function getCookie(c_name)
             condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
 
             if (condOverlay) {
-                if (!$.exists('[rel="' + selSource + '"].overlayDrop')) {
-                    body.append('<div class="overlayDrop" rel="' + selSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
+                if (!$.exists('[data-rel="' + selSource + '"].overlayDrop')) {
+                    body.append('<div class="overlayDrop" data-rel="' + selSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
                 }
-                drop.data('dropOver', $('[rel="' + selSource + '"].overlayDrop'));
+                drop.data('dropOver', $('[data-rel="' + selSource + '"].overlayDrop'));
 
                 drop.data('dropOver').css({
                     'background-color': overlayColor,
@@ -2168,7 +2202,7 @@ function getCookie(c_name)
                     'el': $this,
                     'drop': drop,
                     'isajax': isajax,
-                    'datas': data,
+                    'datas': data
                 });
                 methods.heightContent(drop);
                 if (modal) {
@@ -2195,7 +2229,7 @@ function getCookie(c_name)
                     if (closeClick)
                         drop.data('dropOver').add(forCenter).off('click.' + nS).on('click.' + nS, function(e) {
                             if ($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center')) {
-                                methods.close($($(e.target).attr('rel')));
+                                methods.close($($(e.target).attr('data-rel')));
                             }
                         });
                     if (isTouch)
