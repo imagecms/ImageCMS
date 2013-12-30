@@ -45,7 +45,9 @@ class Commentsapi extends Comments {
         $this->module = $this->getModule($url);
         $item_id = $this->parsUrl($url);
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
+        var_dump($this->module);
         $comments = $this->base->get($item_id, 0, $this->module, 99999);
+        var_dump($comments);
 
         // Read comments template
         // Set page id for comments form
@@ -96,7 +98,6 @@ class Commentsapi extends Comments {
         }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
-
         return array(
             'comments' => $comments,
             'commentsCount' => $commentsCount[$item_id],
@@ -238,6 +239,8 @@ class Commentsapi extends Comments {
     }
 
     public function getModule($url) {
+        $url = '/' . $url;
+
         if (strstr($url, '/shop/'))
             return 'shop';
 
@@ -490,8 +493,7 @@ class Commentsapi extends Comments {
                 return FALSE;
             else
                 return TRUE;
-        }
-        else
+        } else
             return TRUE;
     }
 
@@ -594,4 +596,3 @@ class Commentsapi extends Comments {
     }
 
 }
-

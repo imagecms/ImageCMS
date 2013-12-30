@@ -56,38 +56,38 @@ var Shop = {
                 url += '/ShopKit';
             }
             $.get(url, data,
-                    function(data) {
-                        if (JSON.parse(data).success) {
-                            var currentItem = _this.load(cartItem.storageId());
-                            if (currentItem)
-                                currentItem.count += cartItem.count;
-                            else
-                                currentItem = cartItem;
-                            _this.save(currentItem);
+                function(data) {
+                    if (JSON.parse(data).success) {
+                        var currentItem = _this.load(cartItem.storageId());
+                        if (currentItem)
+                            currentItem.count += cartItem.count;
+                        else
+                            currentItem = cartItem;
+                        _this.save(currentItem);
 
-                            Shop.Cart.lastAdd.id = currentItem.id;
-                            Shop.Cart.lastAdd.vId = currentItem.vId;
+                        Shop.Cart.lastAdd.id = currentItem.id;
+                        Shop.Cart.lastAdd.vId = currentItem.vId;
 
+                        $(document).trigger({
+                            type: 'after_add_to_cart',
+                            cartItem: _.clone(currentItem),
+                            show: show
+                        });
+
+                        if (addEvent != undefined) {
                             $(document).trigger({
-                                type: 'after_add_to_cart',
+                                type: addEvent,
                                 cartItem: _.clone(currentItem),
                                 show: show
                             });
-
-                            if (addEvent != undefined) {
-                                $(document).trigger({
-                                    type: addEvent,
-                                    cartItem: _.clone(currentItem),
-                                    show: show
-                                });
-                            }
-                            returnMsg("=== added to Cart. call after_add_to_cart===");
                         }
-                        else {
-                            $(document).trigger('hideActivity');
-                            returnMsg("=== Error. added to Cart ===");
-                        }
-                    });
+                        returnMsg("=== added to Cart. call after_add_to_cart===");
+                    }
+                    else {
+                        $(document).trigger('hideActivity');
+                        returnMsg("=== Error. added to Cart ===");
+                    }
+                });
             return this;
         },
         chCount: function(cartItem, f) {
@@ -135,7 +135,7 @@ var Shop = {
             this.totalPriceOrigin = 0;
             for (var i = 0; i < items.length; i++) {
                 var item = items[i],
-                        itemC = item.count == '' ? 0 : item.count;
+                itemC = item.count == '' ? 0 : item.count;
                 if (item.origprice != '')
                     this.totalPriceOrigin += item.origprice * itemC;
                 else
@@ -201,22 +201,22 @@ var Shop = {
         },
         clear: function() {
             $.getJSON(siteUrl + 'shop/cart_api/clear',
-                    function(data) {
-                        if (data.success) {
-                            var items = Shop.Cart.getAllItems();
-                            for (var i = 0; i < items.length; i++)
-                                localStorage.removeItem(items[i].storageId());
-                            delete items;
-                            $(document).trigger({
-                                type: 'cart_clear'
-                            });
-                            returnMsg("=== clear Cart. call cart_clear ===");
-                        }
-                        else {
-                            $(document).trigger('hideActivity');
-                            returnMsg("=== Error. clear Cart ===");
-                        }
-                    });
+                function(data) {
+                    if (data.success) {
+                        var items = Shop.Cart.getAllItems();
+                        for (var i = 0; i < items.length; i++)
+                            localStorage.removeItem(items[i].storageId());
+                        delete items;
+                        $(document).trigger({
+                            type: 'cart_clear'
+                        });
+                        returnMsg("=== clear Cart. call cart_clear ===");
+                    }
+                    else {
+                        $(document).trigger('hideActivity');
+                        returnMsg("=== Error. clear Cart ===");
+                    }
+                });
             return this;
         },
         load: function(key) {
@@ -354,6 +354,7 @@ var Shop = {
             cartItem.vname = $context.data('vname');
             cartItem.url = $context.data('url');
             cartItem.img = $context.data('img');
+            cartItem.colorname = $context.data('color-name');
             cartItem.prodstatus = $context.data('prodstatus');
             return cartItem;
         }
@@ -523,7 +524,7 @@ var ImageCMSApi = {
 
                     if (typeof DS.callback == 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
-                    else
+                    else if(obj.status === true)
                         setTimeout((function() {
                             form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
@@ -539,13 +540,14 @@ var ImageCMSApi = {
                             location.href = obj.redirect;
                     }, DS.durationHideForm);
 
-                    if (obj.status == true) {
+                    if ($.trim(obj.msg) !== '' && obj.validations === undefined) {
                         if (DS.hideForm)
                             form.hide();
+                        var type = obj.status === true ? 'success' : 'error';
                         if (DS.messagePlace == 'ahead')
-                            $(message.success(obj.msg)).prependTo(form.parent());
+                            $(message[type](obj.msg)).prependTo(form.parent());
                         if (DS.messagePlace == 'behind')
-                            $(message.success(obj.msg)).appendTo(form.parent());
+                            $(message[type](obj.msg)).appendTo(form.parent());
                         $(document).trigger({
                             'type': 'imageapi.pastemsg',
                             'el': form.parent()
@@ -559,9 +561,9 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                                form = $this.closest('form'),
-                                $thisТ = $this.attr('name'),
-                                elMsg = form.find('[for=' + $thisТ + ']');
+                        form = $this.closest('form'),
+                        $thisТ = $this.attr('name'),
+                        elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.hide();
