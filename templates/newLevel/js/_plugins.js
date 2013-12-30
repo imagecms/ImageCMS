@@ -2140,23 +2140,23 @@ function getCookie(c_name)
             else {
                 if (contentFooter) {
                     var footer = drop.find($(dropFooter).add($(methods.dPP.dropFooter)));
-                    if (typeof contentFooter != 'function')
-                        footer.html(contentFooter);
-                    else
+                    if (typeof contentFooter == 'string' || typeof contentFooter == 'object')
+                        footer.empty().append(contentFooter);
+                    else if (typeof contentFooter == 'function')
                         contentFooter(footer, $this, drop);
                 }
                 if (contentHeader) {
                     var header = drop.find($(dropHeader).add($(methods.dPP.dropHeader)));
-                    if (typeof contentHeader != 'function')
-                        header.html(contentHeader);
-                    else
+                    if (typeof contentHeader == 'string' || typeof contentHeader == 'object')
+                        header.empty().append(contentHeader);
+                    else if (typeof contentHeader == 'function')
                         contentHeader(header, $this, drop);
                 }
                 if (contentContent) {
                     var content = drop.find($(dropContent).add($(methods.dPP.dropContent)));
-                    if (typeof contentContent != 'function')
-                        content.html(contentContent);
-                    else
+                    if (typeof contentContent == 'string' || typeof contentContent == 'object')
+                        content.empty().append(contentContent);
+                    else if (typeof contentContent == 'function')
                         contentContent(content, $this, drop);
                 }
 

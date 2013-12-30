@@ -47,6 +47,14 @@
                                         </label>
                                         <div class="form-horizontal">
                                             <div class="control-group">
+                                                {if $upload_errors}
+                                                    <div class="alert alert-danger">
+                                                        {foreach  $upload_errors as $error}
+                                                            <a class="alert-link">{echo $error}</a>
+                                                            <br><br>
+                                                        {/foreach}
+                                                    </div>
+                                                {/if}
                                                 <div class="controls">
                                                     <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}"
                                                          class="img-polaroid"

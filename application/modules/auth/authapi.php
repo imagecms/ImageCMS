@@ -361,7 +361,9 @@ class Authapi extends MY_Controller {
     public function banned() {
         echo json_encode(array(
             'msg' => lang('Your account has been blocked.', 'auth') . $this->ban_reason,
-            'status' => true,
+            'status' => false,
+            'refresh' => false,
+            'redirect' => false
         ));
     }
 

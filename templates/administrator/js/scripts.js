@@ -1098,6 +1098,8 @@ function initAdminArea() {
                 }
             });
 
+        }else{
+            return false;
         }
     });
 
