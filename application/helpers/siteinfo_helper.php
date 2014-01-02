@@ -75,9 +75,15 @@ if (!function_exists('siteinfo')) {
 
             // if key exists value will be returned
             if (key_exists($name, $siteinfo)) {
-
                 return $siteinfo[$name];
             }
+
+            $name = str_replace('siteinfo_', '', $name);
+            if (key_exists($name, $siteinfo['contacts'])) {
+                return $siteinfo['contacts'][$name];
+            }
+
+
             return '';
         }
 
