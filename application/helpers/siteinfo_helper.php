@@ -22,69 +22,90 @@ if (!function_exists('siteinfo')) {
      *    - "or some contact name"
      */
     function siteinfo($name = NULL) {
-
-        // simple check just in case
-        if (is_array($name) || is_object($name) || is_bool($name)) {
-            return '';
+        // for shorter notation...
+        if (0 !== strpos($name, 'siteinfo_')) {
+            $name = 'siteinfo_' . $name;
         }
 
-        $ci = &get_instance();
-        // getting data from DB
-        $result = $ci->db->select('siteinfo')->get('settings');
+        switch ($name) {
+            case 'siteinfo_logo';
+            case 'siteinfo_logo_url';
+                return getFaviconLogoUrl('siteinfo_logo');
 
-        if ($result)
-            $result1 = $result->row_array();
-        else
-            return '';
+            case 'siteinfo_favicon';
+            case 'siteinfo_favicon_url';
+                return getFaviconLogoUrl('siteinfo_favicon');
 
-        $siteinfo = unserialize($result1['siteinfo']);
+            case 'siteinfo_logo_path';
+            case 'siteinfo_favicon_path';
+                $name_ = str_replace("_path", '', $name);
+                $file = getSiteInfo($name_);
+                $templateName = getActiveTemplateName();
+                return getFaviconLogoPath($templateName) . $file[$templateName];
 
-        // another simple check
-        if (!is_array($siteinfo)) {
-            return '';
+            default:
+                return getSiteInfo($name);
         }
+    }
 
-        // if key exists value will be returned
-        if (FALSE !== $val = array_key_exists_recursive($name, $siteinfo, TRUE)) {
-            return $val;
-        } else {
-            // logo and favicon depends from template...
-            $settings = $ci->cms_base->get_settings();
-            $tplName = $settings['site_template'];
-            if ($name == 'siteinfo_favicon' || $name == 'siteinfo_logo') {
-                $fileName = $name == 'siteinfo_favicon' ? 'favicon.ico' : 'logo.png';
-                if (key_exists($tplName, $siteinfo[$name])) {
-                    $path = $siteinfo[$name][$tplName];
-                } else {
-                    // trying to return frequently favicon location
-                    $fLoc = "templates/{$tplName}/images/{$fileName}";
-                    if (file_exists($fLoc)) {
-                        return $fLoc;
-                    }
-                }
+    if (!function_exists('getSiteInfo')) {
+
+        function getSiteInfo($name = NULL) {
+
+            // simple check just in case
+            if (!is_string($name)) {
+                return '';
             }
+
+            $ci = &get_instance();
+            // getting data from DB
+            $result = $ci->db->select('siteinfo')->get('settings');
+
+            if ($result)
+                $result1 = $result->row_array();
+            else
+                return '';
+
+            $siteinfo = @unserialize($result1['siteinfo']);
+
+            // another simple check
+            if (!is_array($siteinfo)) {
+                return '';
+            }
+
+            // if key exists value will be returned
+            if (key_exists($name, $siteinfo)) {
+
+                return $siteinfo[$name];
+            }
+            return '';
         }
-        return '';
+
     }
 
     if (!function_exists('getFaviconLogoPath')) {
 
         /**
-         * Returns path for current images path
+         * Returns path to images folder
          * (depends from active template, and its type)
+         * @param string $templateName 
          * @return string|boolean Description
          */
-        function getFaviconLogoPath() {
-            $templateName = getActiveTemplateName();
+        function getFaviconLogoPath($templateName = NULL) {
+            if ($templateName == NULL) {
+                $templateName = getActiveTemplateName();
+            }
             // looking for any color scheme (by folder existing)
-            $path = "./templates/{$templateName}/css/";
-            $cssDir = dir($path);
+            $cssPath = TEMPLATES_PATH . $templateName . DIRECTORY_SEPARATOR . "css" . DIRECTORY_SEPARATOR;
+            $cssPath = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $cssPath);
+
+            $cssDir = dir($cssPath);
             $colorSchemes = array();
             while (false !== ($item = $cssDir->read())) {
                 if ($item == '.' || $item == '..') {
                     continue;
                 }
-                if (is_dir($path . DIRECTORY_SEPARATOR . $item)) {
+                if (is_dir($cssPath . DIRECTORY_SEPARATOR . $item)) {
                     if (0 === strpos($item, 'color_scheme_')) {
                         $colorSchemes[] = $item;
                     }
@@ -97,11 +118,36 @@ if (!function_exists('siteinfo')) {
                 if (!in_array($colorScheme, $colorSchemes)) {
                     return FALSE;
                 }
-                $imagesPath = "./templates/{$templateName}/css/{$colorScheme}/";
+                $imagesPath = $cssPath . $colorScheme . DIRECTORY_SEPARATOR;
             } else { // old-school template type
-                $imagesPath = "./templates/{$templateName}/images/";
+                $imagesPath = TEMPLATES_PATH . $templateName . DIRECTORY_SEPARATOR . "images" . DIRECTORY_SEPARATOR;
             }
-            return $imagesPath;
+            // enshure that path is correct formed to current OS
+            return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $imagesPath);
+        }
+
+    }
+
+    if (!function_exists('getFaviconLogoUrl')) {
+
+        /**
+         * Returning full url with image
+         * @param string siteinfo_logo|siteinfo_favicon $logoOrFavicon
+         * @return string
+         */
+        function getFaviconLogoUrl($logoOrFavicon) {
+            $templateName = getActiveTemplateName();
+            $path = getFaviconLogoPath($templateName);
+
+            $fileData = getSiteInfo($logoOrFavicon);
+            if (!key_exists($templateName, $fileData) || empty($fileData)) {
+                return '';
+            }
+
+            $path = str_replace(PUBPATH, '', $path);
+            $path .= $fileData[$templateName];
+            $path = trim($path, DIRECTORY_SEPARATOR);
+            return '/' . str_replace(DIRECTORY_SEPARATOR, '/', $path);
         }
 
     }

@@ -105,13 +105,6 @@ class Search extends MY_Controller {
 
                 $config['page_query_string'] = FALSE;
 
-                $config['next_link'] = lang('Forward', 'search') . '→';
-                $config['prev_link'] = '←' . lang('Beginning', 'search');
-                $config['cur_tag_open'] = '<a class="active">';
-                $config['cur_tag_close'] = '</a>';
-
-                $config['last_link'] = lang('Back', 'search');
-
                 $this->pagination->num_links = 6;
                 $this->pagination->initialize($config);
                 $this->template->assign('pagination', $this->pagination->create_links());

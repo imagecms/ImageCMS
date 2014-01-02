@@ -558,11 +558,11 @@ class ParentWishlist extends \MY_Controller {
         list($width, $height, $type, $attr) = getimagesize($_FILES["file"]['tmp_name']);
 
         if ($this->settings['maxImageSize'] < $_FILES["file"]['size'])
-            $this->errors[] = lang('Maximum image size is exceeded', 'wishlist');
+            $this->errors[] = lang('Maximum image size is exceeded', 'wishlist') . ' (' . lang('max size', 'wishlist') .' '.  $this->settings['maxImageSize'] . ')';
         if ($this->settings['maxImageWidth'] < $width)
-            $this->errors[] = lang('Maximum width of the image is exceeded', 'wishlist');
+            $this->errors[] = lang('Maximum width of the image is exceeded', 'wishlist') . ' (' . lang('max width', 'wishlist') . ' ' .  $this->settings['maxImageWidth'] . 'px)';
         if ($this->settings['maxImageHeight'] < $height)
-            $this->errors[] = lang('Max image height exceeded', 'wishlist');
+            $this->errors[] = lang('Max image height exceeded', 'wishlist')  . ' (' . lang('max height', 'wishlist') . ' '.  $this->settings['maxImageHeight'] . 'px)';
         if (!in_array($_FILES["file"]['type'], $allowedFileFormats))
             $this->errors[] = lang('Invalid file format', 'wishlist');
         if ($this->errors)

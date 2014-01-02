@@ -157,8 +157,8 @@ class Authapi extends MY_Controller {
                 $json['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : false;
                 $json['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : false;
 
-                $user_Prof = SUserProfileQuery::create()->findPk($last_user['id_user']);
-                $user_Prof->save();
+//                $user_Prof = SUserProfileQuery::create()->findPk($last_user['id_user']);
+//                $user_Prof->save();
 
                 echo json_encode($json);
             } else {
@@ -361,7 +361,9 @@ class Authapi extends MY_Controller {
     public function banned() {
         echo json_encode(array(
             'msg' => lang('Your account has been blocked.', 'auth') . $this->ban_reason,
-            'status' => true,
+            'status' => false,
+            'refresh' => false,
+            'redirect' => false
         ));
     }
 
