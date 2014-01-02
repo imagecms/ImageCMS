@@ -748,8 +748,7 @@
 {literal}
     <script type="text/javascript">
         var
-                productPhotoDrop = true,
-                productPhotoCZoom = true;
+                productPhotoDrop = true;
     </script>
 {/literal}
 <!-- End. JS vars-->
