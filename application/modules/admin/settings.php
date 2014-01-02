@@ -279,26 +279,30 @@ class Settings extends BaseAdminController {
             }
         }
 
-// remap contacts
-        $contacts = array();
+        // remap additional fields
+        $additional = array();
         $countKeys = count($siteinfo['siteinfo_contactkey']);
         $countValues = count($siteinfo['siteinfo_contactvalue']);
 
         if ($countKeys == $countValues & $countValues > 0) {
             for ($i = 0; $i < $countKeys; $i++) {
-                if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i]))
-                    $contacts[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+                if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i])) {
+                    $additional[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+                    $siteinfo["siteinfo_" . $siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+                }
             }
         }
 
         unset($siteinfo['siteinfo_contactkey']);
         unset($siteinfo['siteinfo_contactvalue']);
-        $siteinfo['contacts'] = $contacts;
-        
-        $imagesPath = getFaviconLogoPath();
-        
-        $config['upload_path'] = $imagesPath;
+
+        $siteinfo['contacts'] = $additional;
+
+        $this->imagesPath = getFaviconLogoPath();
+
+        $config['upload_path'] = $this->imagesPath;
         $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
+        $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
 
         // upload or delete (or do nothing) favicon and logo
@@ -315,11 +319,6 @@ class Settings extends BaseAdminController {
             $this->load->helper('file');
             write_file($authFullPath, $newAuthContents);
         }
-
-        echo '<pre>';
-        print_r($siteinfo);
-        echo '</pre>';
-        exit();
         // returning beautiful array =)
         return $siteinfo;
     }
@@ -331,9 +330,17 @@ class Settings extends BaseAdminController {
      */
     protected function processLogoOrFavicon($paramName, &$siteinfo) {
         // setting old value
-        $oldValue = siteinfo($paramName);
+
+        $oldValue = getSiteInfo($paramName);
         $siteinfo[$paramName] = !empty($oldValue) ? $oldValue : '';
         if (isset($_FILES[$paramName])) {
+            // deleting files if such exist and param $this->siteInfoDeleteFiles is set to TRUE
+            if ($this->siteInfoDeleteFiles == TRUE) {
+                $isFile = $this->imagesPath . $_FILES[$paramName]['name'];
+                if (file_exists($isFile)) {
+                    unlink($isFile);
+                }
+            }
             if (!$this->upload->do_upload($paramName)) {
                 echo $this->upload->display_errors('', '');
             } else {
