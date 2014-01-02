@@ -1,4 +1,4 @@
-AddDefaultCharset UTF-8
+﻿AddDefaultCharset UTF-8
 
 Options +FollowSymLinks
 Options -Indexes
