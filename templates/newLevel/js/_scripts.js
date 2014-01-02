@@ -88,8 +88,12 @@ function init() {
     };
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
-    $('[data-drop]').drop(optionsDrop);
-    
+    $.drop.setParameters(optionsDrop);
+    $('[data-drop]').drop();
+    $('.cloud-zoom-gallery').drop({
+        'cycle': true
+    });
+        
     ShopFront.CompareList.count();
     global.wishListCount();
     $('.tabs').tabs({
