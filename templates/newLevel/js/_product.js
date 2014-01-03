@@ -100,7 +100,7 @@ Product = {
         });
         if (c !== undefined)
             c();
-        $.drop('center')(drop);
+        $.drop.method('center')(drop);
     },
     changePhoto: function(arg, fancyFrameInPH, href) {
         hrefOptions.curHref = href;
@@ -114,9 +114,9 @@ Product = {
 
             var carGal = drop.find('.content-carousel');
 
-            $.drop('limitSize')(drop);
+            $.drop.method('limitSize')(drop);
             Product.resizePhoto(drop, function() {
-                $.drop('center')(drop);
+                $.drop.method('center')(drop);
             });
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
         });
