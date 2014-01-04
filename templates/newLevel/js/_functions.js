@@ -244,7 +244,7 @@ var ShopFront = {
             $(genObj.addSumBask).each(function() {
                 $(this).html(addSumBask.toFixed(pricePrecision));
             })
-            $(genObj.tinyBask).find(genObj.plurProd).each(function() {
+            $(genObj.tinyBask).add(genObj.popupCart).find(genObj.plurProd).each(function() {
                 $(this).html(pluralStr(length, text.plurProd));
             });
         },

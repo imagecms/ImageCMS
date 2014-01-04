@@ -2766,7 +2766,7 @@ function getCookie(c_name)
                                     input.val(input.data('min') || 1);
                                 else
                                     input.val(inputVal + step);
-                                if (inputVal + step === input.data('max'))
+                                if (inputVal + step === input.data('max') && checkProdStock)
                                     $thisNext.attr('disabled', 'disabled');
                                 if (checkProdStock)
                                     input.maxminValue(e);
@@ -2788,7 +2788,7 @@ function getCookie(c_name)
                                     input.val(input.data('min') || 1);
                                 else if (inputVal > parseFloat(input.data('min') || 1)) {
                                     input.val(inputVal - step);
-                                    if (inputVal - step === input.data('min'))
+                                    if (inputVal - step === input.data('min') && checkProdStock)
                                         $thisPrev.attr('disabled', 'disabled');
                                 }
 
