@@ -139,9 +139,13 @@ class discount extends classes\BaseDiscount {
     public function get_user_discount() {
 
         $discount_user = array();
-        foreach ($this->discount_type['user'] as $user_disc)
-            if ($user_disc['user_id'] == $this->user_id)
+        foreach ($this->discount_type['user'] as $key => $user_disc) {
+            if ($user_disc['user_id'] == $this->user_id) {
                 $discount_user[] = $user_disc;
+            } else {
+                unset($this->discount_type['user'][$key]);
+            }
+        }
 
         if (count($discount_user) > 0)
             return $this->get_max_discount($discount_user, $this->total_price);
