@@ -900,7 +900,7 @@ $(document).ready(function() {
 
     function modalBodyMsg(msg) {
         $(".more_button_paragraph").remove();
-        if (typeof(msg) == 'string') {
+        if (typeof (msg) == 'string') {
             $("#image_search_result").append('<p class="more_button_paragraph">' + msg + '</p>');
             return;
         }
@@ -972,7 +972,7 @@ $(document).ready(function() {
      * @returns {@exp;@call;$@call;text}
      */
     function errorOnSave(msg) {
-        if (typeof(msg) != 'string') {
+        if (typeof (msg) != 'string') {
             return;
         }
         $('#save_image').popover({
@@ -1084,8 +1084,32 @@ $(document).ready(function() {
         $('#addPictures').trigger('click');
     });
 
+
+    /** Check is GD lib is installed **/
+    function checkGDIsInstalled() {
+        var result=false;
+        $.ajax({
+            async: false,
+            url: "/admin/components/run/shop/settings/checkGDLib/",
+            type: "post",
+            success: function(response) {
+                responseArray = $.parseJSON(response);
+                if (responseArray.status === true) {
+                    result = true;
+                }
+            }
+        });
+        return result;
+    }
+
     /** Resize all */
     $('#resizeAll').live('click', function() {
+
+        /** Check gd lib **/
+        if (!checkGDIsInstalled()) {
+            showMessage(lang('Error'), lang('PHP GD library is not installed'), 'r')
+            return;
+        }
 
         window.onbeforeunload = (function() {
             return langs.waitForResizeEnding + '!';
@@ -1155,6 +1179,7 @@ $(document).ready(function() {
             }
         });
 
+
         /* Additional images */
         if ($('#useAdditionalImages').attr('checked') == 'checked') {
             $.ajax({
@@ -1221,7 +1246,19 @@ $(document).ready(function() {
 
     });
 
+
+    /**
+     * Resize by id
+     */
     $('#resizeById').live('click', function() {
+
+        console.log(checkGDIsInstalled());
+        /** Check gd lib **/
+        if (!checkGDIsInstalled()) {
+            showMessage(lang('Error'), lang('PHP GD library is not installed'), 'r')
+            return;
+        }
+
         id = $('#product_variant_name').val();
 //        console.log(id);
         $('#loading').fadeIn(100);
@@ -1234,6 +1271,7 @@ $(document).ready(function() {
             }
         });
     });
+
 
     $('[name="checkPrices"]').live('click', function() {
         $.ajax({
@@ -1529,7 +1567,7 @@ $(document).ready(function() {
     /* --------------------- end of Backup -------------------------*/
 
 
-   
+
 
 
 });

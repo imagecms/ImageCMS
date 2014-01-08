@@ -99,9 +99,9 @@
             </div>
             
         </div>
-        {if $paginator > ''}
+        {if $pagination > ''}
         <div class="clearfix">
-            {$paginator}
+            {$pagination}
         </div>
         {/if}
     </section>

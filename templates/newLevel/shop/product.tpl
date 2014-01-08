@@ -362,7 +362,7 @@
     </div>
     <!-- End. benefits block-->
     <!-- Start. Kit-->
-    {if $model->getShopKits() && $model->getShopKits()->count() > 0 && $CI->dx_auth->is_logged_in()}
+    {if $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in())->count() > 0}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
                 <div class="frame-title">
@@ -371,7 +371,7 @@
                 <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">
                         <ul class="items-complect items">
-                            {foreach $model->getShopKits() as $key => $kitProducts}
+                            {foreach $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) as $key => $kitProducts}
                                 <li class="globalFrameProduct">
                                     <ul class="items items-bask row-kits rowKits">
                                         <!-- main product -->
@@ -748,7 +748,8 @@
 {literal}
     <script type="text/javascript">
         var
-                productPhotoDrop = true;
+                productPhotoDrop = true,
+                productPhotoCZoom = true;
     </script>
 {/literal}
 <!-- End. JS vars-->

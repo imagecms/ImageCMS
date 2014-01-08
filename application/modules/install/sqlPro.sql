@@ -1942,6 +1942,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
   `product_id` int(11) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `position` smallint(6) NOT NULL,
+  `only_for_logged` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_kit_FI_1` (`product_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
@@ -1950,12 +1951,14 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
 -- Дамп даних таблиці `shop_kit`
 --
 
-INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
-(8, 185, 1, 0),
-(9, 96, 1, 0),
-(10, 71, 1, 0),
-(11, 190, 1, 0),
-(12, 190, 1, 0);
+INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`, `only_for_logged`) VALUES
+(8, 185, 1, 0, 1),
+(9, 96, 1, 0, 0),
+(10, 71, 1, 0, 0),
+(11, 190, 1, 0, 0),
+(12, 190, 1, 0, 1),
+(13, 71, 1, 1, 1);
+
 
 -- --------------------------------------------------------
 
