@@ -9961,7 +9961,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
-(3, 'latest_news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"2";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', 'Последние новости', '', 1291632457),
+(3, 'latest_news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"2";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"69";}s:7:"display";s:6:"recent";}', 'Последние новости', '', 1291632457),
 (4, 'recent_product_comments', 'module', 'comments', 'recent_product_comments', 'a:2:{s:14:"comments_count";s:1:"5";s:13:"symbols_count";s:1:"0";}', 'Последние комментарии продукта', '', 1308300371),
 (5, 'tags', 'module', 'tags', 'tags_cloud', '', 'Теги', '', 1312362714),
 (6, 'path', 'module', 'navigation', 'widget_navigation', '', 'Виджет навигации', '', 1328631622),
