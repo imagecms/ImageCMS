@@ -112,10 +112,6 @@
                     {if !SHOP_INSTALLED}
                         <div class="container" id="baseAdminMenu">
                             <nav class="navbar navbar-inverse">
-
-
-
-
                                 <ul class="nav">
                                     {foreach $baseMenu as $li}
                                         <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
@@ -142,7 +138,20 @@
                                                                 <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
                                                                 {/foreach}
                                                             {/if}
-                                                        <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)$sli.text ? $sli.text : $sli.text}</a>{else:}{echo (bool)$sli.text ? $sli.text : $sli.text}{/if}</li>
+
+                                                        <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
+                                                            {if $sli.link || $sli.id}
+                                                                <a 
+                                                                    {if $sli.link} href="{site_url($sli.link)}" {/if}
+                                                                    {if $sli.id} id="{$sli.id}" {/if}
+                                                                    {if $sli.pjax !== FALSE} class="pjax" {/if}
+                                                                    >
+                                                                    {echo (bool)$sli.text?lang($sli.text):$sli.text}
+                                                                </a>
+                                                            {else:}
+                                                                {echo (bool)$sli.text ? $sli.text : $sli.text}
+                                                            {/if}
+                                                        </li>
 
 
                                                     {/foreach}
@@ -179,7 +188,7 @@
                                                                 <a 
                                                                 {if $sli.link} href="{site_url($sli.link)}" {/if}
                                                             {if $sli.id} id="{$sli.id}" {/if}
-                                                            class="pjax">
+                                                            {if $sli.pjax !== FALSE} class="pjax" {/if}>
                                                             {echo (bool)$sli.text?lang($sli.text):$sli.text}
                                                         </a>
                                                     {else:}
@@ -274,9 +283,9 @@
     {$settings = $CI->cms_admin->get_settings();}
     var textEditor = '{$settings.text_editor}';
     {if $CI->dx_auth->is_logged_in()}
-    var userLogined = true;
+        var userLogined = true;
     {else:}
-    var userLogined = false;
+        var userLogined = false;
     {/if}
 
     var locale = '{echo $this->CI->config->item('language')}';
@@ -322,9 +331,9 @@
 
 <script>
     {if $CI->uri->segment('4') == 'shop'}
-    var isShop = true;
+        var isShop = true;
     {else:}
-    var isShop = false;
+        var isShop = false;
     {/if}
     var lang_only_number = "{lang("numbers only","admin")}";
     var show_tovar_text = "{lang("show","admin")}";
@@ -333,58 +342,58 @@
 
         $(document).ready(function() {
 
-            if (!isShop)
-            {
-                $('#shopAdminMenu').hide();
-                //$('#topPanelNotifications').hide();
-            }
-            else
-                $('#baseAdminMenu').hide();
+        if (!isShop)
+        {
+        $('#shopAdminMenu').hide();
+        //$('#topPanelNotifications').hide();
+        }
+        else
+        $('#baseAdminMenu').hide();
         })
 
         function number_tooltip_live() {
-            $('.number input').each(function() {
-                $(this).attr({
-                    'data-placement': 'top',
-                    'data-title': lang_only_number
-                });
-            })
-            number_tooltip();
+        $('.number input').each(function() {
+        $(this).attr({
+        'data-placement': 'top',
+        'data-title': lang_only_number
+        });
+        })
+        number_tooltip();
         }
         function prod_on_off() {
-            $('.prod-on_off').die('click').live('click', function() {
-                var $this = $(this);
-                if (!$this.hasClass('disabled')) {
-                    if ($this.hasClass('disable_tovar')) {
-                        $this.animate({
-                            'left': '0'
-                        }, 200).removeClass('disable_tovar');
-                        if ($this.parent().data('only-original-title') == undefined) {
-                            $this.parent().attr('data-original-title', show_tovar_text)
-                            $('.tooltip-inner').text(show_tovar_text);
-                        }
-                        $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
-                        if ($this.attr('data-page') != undefined)
-                            $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
-                    }
-                    else {
-                        $this.animate({
-                            'left': '-28px'
-                        }, 200).addClass('disable_tovar');
-                        if ($this.parent().data('only-original-title') == undefined) {
-                            $this.parent().attr('data-original-title', hide_tovar_text)
-                            $('.tooltip-inner').text(hide_tovar_text);
-                        }
-                        $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
-                        if ($this.attr('data-page') != undefined)
-                            $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
-                    }
-                }
-            });
+        $('.prod-on_off').die('click').live('click', function() {
+        var $this = $(this);
+        if (!$this.hasClass('disabled')) {
+        if ($this.hasClass('disable_tovar')) {
+        $this.animate({
+        'left': '0'
+        }, 200).removeClass('disable_tovar');
+        if ($this.parent().data('only-original-title') == undefined) {
+        $this.parent().attr('data-original-title', show_tovar_text)
+        $('.tooltip-inner').text(show_tovar_text);
+        }
+        $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+        if ($this.attr('data-page') != undefined)
+        $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
+        }
+        else {
+        $this.animate({
+        'left': '-28px'
+        }, 200).addClass('disable_tovar');
+        if ($this.parent().data('only-original-title') == undefined) {
+        $this.parent().attr('data-original-title', hide_tovar_text)
+        $('.tooltip-inner').text(hide_tovar_text);
+        }
+        $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+        if ($this.attr('data-page') != undefined)
+        $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
+        }
+        }
+        });
         }
         $(window).load(function() {
-            number_tooltip_live();
-            prod_on_off();
+        number_tooltip_live();
+        prod_on_off();
         })
         base_url = '{/literal}{$BASE_URL}';
 
