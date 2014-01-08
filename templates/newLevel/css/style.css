@@ -1229,3 +1229,4 @@ img.cloned{max-width: none;max-height: none;}
 
 .active.btn-toggle-gift{display: none;}
 .frame-bask-order .frame-title{padding: 10px 15px 6px;}
+#staticPage{display: block;position: static;}
