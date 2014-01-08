@@ -165,6 +165,11 @@ class ParentEmail extends \MY_Controller {
             $this->send_to = $send_to;
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['user_message'], $variables);
+
+            $f = fopen('/var/www/order_status.txt', 'w+');
+            fwrite($f, $this->message);
+            fclose($f);
+
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('User message doesnt send', 'cmsemail');
             } else {
