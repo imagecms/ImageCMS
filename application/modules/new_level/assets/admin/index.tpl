@@ -96,10 +96,10 @@
                                                                         <div class="controls ">
                                                                             <select  id="ajaxSaveShopCategories_{echo $column}" data-id='ajaxSaveShopCategories_{echo $column}' class="ColumnsSelect" name="Categories[]" multiple="multiple" style="height:400px !important;">
                                                                                 {foreach $categories as $category}
-                                                                                    {if in_array($category->getId(), $columnCategories[$column])}
-                                                                                        <option selected {if $category->getLevel() == 0}style="font-weight: bold;"{/if} {if in_array($category->getId(),$currentCategories)} selected {/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}</option>
+                                                                                    {if in_array($category.id, $columnCategories[$column])}
+                                                                                        <option selected {if count($category.full_path_ids) == 0}style="font-weight: bold;"{/if} {if in_array($category.id,$currentCategories)} selected {/if} value="{echo $category.id}">{str_repeat('-',count($category.full_path_ids))} {echo ShopCore::encode($category.name)}</option>
                                                                                     {else:}
-                                                                                        <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} {if in_array($category->getId(),$currentCategories)} selected {/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}</option>
+                                                                                        <option {if count($category.full_path_ids) == 0}style="font-weight: bold;"{/if} {if in_array($category.id,$currentCategories)} selected {/if} value="{echo $category.id}">{str_repeat('-',count($category.full_path_ids))} {echo ShopCore::encode($category.name)}</option>
                                                                                     {/if}
                                                                                 {/foreach}
                                                                             </select>
