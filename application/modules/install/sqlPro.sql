@@ -9886,13 +9886,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `users_I_1` (`key`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
---
--- Дамп даних таблиці `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
-(48, 1, 'ad@min.com', '$6$lD8Qy.F9AnHF$oZhZHQITIjCx7M6pDKdTZHR/JTPer0r2SS1iDSPiFXTdOKA4cdTwCypfcC0Dzg4FdV36YaAdBQR/g89dfi1hD/', 'ad@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1388407432, NULL, '', NULL, NULL, 'aaTgx', 0.00, NULL, '');
-
 -- --------------------------------------------------------
 
 --
