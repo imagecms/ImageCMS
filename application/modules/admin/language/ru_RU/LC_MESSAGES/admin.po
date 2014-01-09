@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 03:12+0400\n"
-"PO-Revision-Date: 2013-12-26 03:12+0400\n"
+"POT-Creation-Date: 2014-01-09 07:37+0400\n"
+"PO-Revision-Date: 2014-01-09 07:37+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -21,31 +21,148 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
-#: ./application/modules/shop/admin/products.php:1099
-msgid "Deleted complete"
-msgstr "Удаление выполнено"
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:115
+msgid "Get"
+msgstr "Получить"
+
+#: ./application/modules/admin/login.php:120
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr "Пожалуйста, проверьте свою электронную почту для получения инструкций о том, как активировать новый пароль."
+
+#: ./application/modules/shop/admin/notifications.php:206
+msgid "User is notified by E-mail"
+msgstr "Пользователь получил уведомление по электронной почте"
+
+#: ./templates/administrator/inc/menus.php:140
+#: ./templates/administrator/inc/menus.php:416
+msgid "Clear cache"
+msgstr "Очистить кеш"
+
+#: ./templates/administrator/js/admin_base_i.js:1110
+#: ./templates/administrator/js/admin_base_i.js:1258
+msgid "PHP GD library is not installed"
+msgstr ""
+
+#: ./application/modules/shop/admin/settings.php:485
+msgid "PHP GD library is not installed on your web server"
+msgstr ""
+
+#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:100
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:83
+msgid "Only for logged users"
+msgstr ""
+
+#: ./templates/administrator/js/scripts.js:1129
+msgid "Not supported file format"
+msgstr "Формат файла не поддерживается"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:61
+msgid "Additional currency"
+msgstr "Дополнительная валюта"
+
+#: ./application/modules/shop/admin/currencies.php:244
+msgid "Conversion completed. Now the currency may be removed"
+msgstr "Преобразование завершено. Сейчас валюта может быть удалена"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:45
+msgid "Create currency"
+msgstr "Создать валюту"
+
+#: ./templates/administrator/shop_menu.tpl:59
+msgid "Currency"
+msgstr "Валюта"
+
+#: ./application/modules/shop/admin/templates/currencies/create.tpl:5
+msgid "Currency create"
+msgstr "Создание валюты"
+
+#: ./application/modules/shop/admin/currencies.php:50
+msgid "Currency created"
+msgstr "Валюта создана"
+
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:5
+msgid "Currency edit"
+msgstr "Редактирование валют"
+
+#: ./application/modules/shop/admin/templates/paymentmethods/list.tpl:51
+msgid "Currency name"
+msgstr "Название валюты"
+
+#: ./application/modules/shop/admin/currencies.php:74
+#: ./application/modules/shop/admin/currencies.php:110
+msgid "Currency not found"
+msgstr "Валюта не найдена"
+
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:51
+#: ./application/modules/shop/admin/templates/currencies/create.tpl:51
+msgid "Currency rate"
+msgstr "Курс валюты"
+
+#: ./application/modules/shop/admin/currencies.php:231
+msgid "Currency successfully removed"
+msgstr "Валюта успешно удалена"
+
+#: ./application/modules/shop/admin/templates/paymentmethods/list.tpl:52
+msgid "Currency symbol"
+msgstr "Обозначение валюты"
+
+#: ./application/modules/shop/admin/currencies.php:211
+msgid "Error. Currency used by other objects. Check the payment methods"
+msgstr "Ошибка. Валюту, используют другие объекты. Проверьте способы оплаты"
+
+#: ./application/modules/shop/admin/currencies.php:222
+msgid "Error. The currency used in the products. Check the currency options products"
+msgstr "Ошибка. Валюта, используется в товарах. Проверьте настройки валюты товаров"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:82
+msgid "Make currency default "
+msgstr "Сделать валютой по умолчанию"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:5
+msgid "Remove currency"
+msgstr "Удалить валюту"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:32
+msgid "Remove currency?"
+msgstr "Удалить валюту?"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:8
+msgid "Remove the selected currency?"
+msgstr "Удалить выбранную валюту?"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:22
+msgid "The currency is in use in the products. Recalculate?"
+msgstr "Валюта используется в товарах. Пересчитать?"
+
+#: ./application/modules/shop/admin/currencies.php:193
+msgid "Unable to remove the main currency"
+msgstr "Невозможно удалить главную валюту"
+
+#: ./application/modules/shop/admin/templates/system/import.tpl:130
+msgid "Will be recalculated prices of products in accordance to the default currency"
+msgstr "Будут пересчитаны цены на продукцию в соответствии с валютой по умолчанию"
 
 #: ./application/modules/shop/admin/templates/users/edit.tpl:65
+#: ./application/modules/shop/admin/users.php:382
 msgid "New password"
-msgstr ""
+msgstr "Новый пароль"
 
 #: ./application/modules/shop/admin/templates/users/edit.tpl:71
 msgid "Password confirm"
-msgstr ""
-
-#: ./application/modules/shop/admin/users.php:382
-msgid "amt_password"
-msgstr ""
+msgstr "Подтверждение пароля"
 
 #: ./application/modules/shop/admin/users.php:383
-msgid "amt_new_pass_confirm"
-msgstr ""
+msgid "New password confirm"
+msgstr "Подтверждение нового пароль"
+
+#: ./application/modules/shop/admin/products.php:1099
+msgid "Deleted complete"
+msgstr "Удаление выполнено"
 
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:424
 msgid "Status history"
 msgstr "История статусов"
 
-#: ./templates/administrator/main.tpl:97
 #: ./templates/administrator/main.tpl:97
 #: ./templates/administrator/dashboard.tpl:153
 msgid "Latest/recent comments"
@@ -306,8 +423,6 @@ msgid "Add a new topic"
 msgstr "Добавить новую тему"
 
 #: ./templates/administrator/cats_sidebar.tpl:3
-#: ./templates/administrator/cats_sidebar.tpl:3
-#: ./templates/administrator/cats_tree_css.tpl:7
 #: ./templates/administrator/cats_tree_css.tpl:7
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
@@ -322,8 +437,6 @@ msgid "Add a variant"
 msgstr "Добавить вариант"
 
 #: ./templates/administrator/cats_sidebar.tpl:4
-#: ./templates/administrator/cats_sidebar.tpl:4
-#: ./templates/administrator/cats_tree_css.tpl:8
 #: ./templates/administrator/cats_tree_css.tpl:8
 msgid "Add an article"
 msgstr "Добавить статью"
@@ -351,10 +464,6 @@ msgstr "Добавленные продукты"
 #: ./application/modules/shop/admin/templates/products/create.tpl:157
 msgid "Additional categories"
 msgstr "Дополнительные категории"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:61
-msgid "Additional currency"
-msgstr "Дополнительная валюта"
 
 #: ./application/modules/shop/admin/templates/products/edit.tpl:28
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:500
@@ -871,8 +980,6 @@ msgid "Cancel"
 msgstr "Отменить"
 
 #: ./application/modules/shop/admin/templates/users/list.tpl:33
-#: ./application/modules/shop/admin/templates/users/list.tpl:33
-#: ./application/modules/shop/admin/templates/notifications/list.tpl:40
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:40
 #: ./application/modules/shop/admin/templates/search/list.tpl:49
 #: ./application/modules/shop/admin/templates/orders/list.tpl:26
@@ -1012,7 +1119,6 @@ msgstr "Сертификат с этим ключом уже существуе�
 msgid "Change"
 msgstr "Изменить"
 
-#: ./templates/administrator/cats_tree_css.tpl:6
 #: ./templates/administrator/cats_tree_css.tpl:6
 msgid "Change category data"
 msgstr "Изменить данные категории"
@@ -1233,10 +1339,6 @@ msgstr "Запятая"
 msgid "Comment"
 msgstr "Комментарий"
 
-#: ./application/modules/admin/admin.php:211
-msgid "Comment is a required field"
-msgstr "Поле комментарий обязательное"
-
 #: ./templates/administrator/category_edit.tpl:212
 #: ./templates/administrator/create_cat.tpl:192
 msgid "Comment pages by default "
@@ -1315,10 +1417,6 @@ msgstr "Страницы"
 #: ./templates/administrator/sys_update.tpl:67
 msgid "Control sum"
 msgstr "Контрольная сумма"
-
-#: ./application/modules/shop/admin/currencies.php:244
-msgid "Conversion completed. Now the currency may be removed"
-msgstr "Преобразование завершено. Сейчас валюта может быть удалена"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:46
 msgid "Conversion error"
@@ -1467,10 +1565,6 @@ msgstr "Создать категорию"
 msgid "Create copy"
 msgstr "Создайте копию"
 
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:45
-msgid "Create currency"
-msgstr "Создать валюту"
-
 #: ./application/modules/shop/admin/templates/gifts/index.tpl:30
 msgid "Create gift certificate"
 msgstr "Создать подарочный сертификат"
@@ -1602,44 +1696,6 @@ msgstr "Валюты"
 #: ./application/modules/shop/admin/templates/currencies/list.tpl:40
 msgid "Currencies list"
 msgstr "Список валют"
-
-#: ./templates/administrator/shop_menu.tpl:59
-msgid "Currency"
-msgstr "Валюты"
-
-#: ./application/modules/shop/admin/templates/currencies/create.tpl:5
-msgid "Currency create"
-msgstr "Создание валюты"
-
-#: ./application/modules/shop/admin/currencies.php:50
-msgid "Currency created"
-msgstr "Валюта создана"
-
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:5
-msgid "Currency edit"
-msgstr "Редактирование валют"
-
-#: ./application/modules/shop/admin/templates/paymentmethods/list.tpl:51
-msgid "Currency name"
-msgstr "Название валюты"
-
-#: ./application/modules/shop/admin/currencies.php:74
-#: ./application/modules/shop/admin/currencies.php:110
-msgid "Currency not found"
-msgstr "Валюта не найдена"
-
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:51
-#: ./application/modules/shop/admin/templates/currencies/create.tpl:51
-msgid "Currency rate"
-msgstr "Курс валюты"
-
-#: ./application/modules/shop/admin/currencies.php:231
-msgid "Currency successfully removed"
-msgstr "Валюта успешно удалена"
-
-#: ./application/modules/shop/admin/templates/paymentmethods/list.tpl:52
-msgid "Currency symbol"
-msgstr "Обозначение валюты"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:89
 msgid "Current certificate (amount):"
@@ -2495,14 +2551,6 @@ msgstr ""
 msgid "Error removing options"
 msgstr "Ошибка удалении опций"
 
-#: ./application/modules/shop/admin/currencies.php:211
-msgid "Error. Currency used by other objects. Check the payment methods"
-msgstr "Ошибка. Валюту, используют другие объекты. Проверьте способы оплаты"
-
-#: ./application/modules/shop/admin/currencies.php:222
-msgid "Error. The currency used in the products. Check the currency options products"
-msgstr "Ошибка. Валюта, используется в товарах. Проверьте настройки валюты товаров"
-
 #: ./application/modules/admin/pages.php:631
 msgid "Error: Generic page can not be deleted."
 msgstr "Ошибка: Общая страница не может быть удалена."
@@ -2868,10 +2916,6 @@ msgstr "Общие настройки"
 msgid "Generate"
 msgstr "Сгенерировать"
 
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:115
-msgid "Get"
-msgstr "Получить"
-
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:282
 msgid "Gift Certificate"
 msgstr "Подарочный сертификат"
@@ -3191,7 +3235,6 @@ msgid "Install"
 msgstr "Установка"
 
 #: ./templates/administrator/module_table.tpl:38
-#: ./templates/administrator/module_table.tpl:38
 msgid "Install modules"
 msgstr "Установить модули"
 
@@ -3501,10 +3544,6 @@ msgstr "Главный шаблон"
 #: ./templates/administrator/sys_upgrade.tpl:10
 msgid "Make a database backup copy before updating "
 msgstr "Сделайте резервную копию базы данных перед обновлением"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:82
-msgid "Make currency default "
-msgstr "Сделать валютой по умолчанию"
 
 #: ./application/modules/shop/admin/templates/currencies/list.tpl:78
 msgid "Make main"
@@ -4159,8 +4198,6 @@ msgstr "Заказ успешно создан"
 msgid "Ordering information"
 msgstr "Информация для заказа"
 
-#: ./templates/administrator/main.tpl:88
-#: ./templates/administrator/main.tpl:88
 #: ./templates/administrator/shop_menu.tpl:8
 #: ./templates/administrator/shop_menu.tpl:10
 #: ./templates/administrator/inc/menus.php:154
@@ -4434,10 +4471,6 @@ msgstr "Шт."
 #: ./templates/administrator/inc/javascriptVars.tpl:23
 msgid "Please"
 msgstr "Пожалуйста"
-
-#: ./application/modules/admin/login.php:120
-msgid "Please check your email for instructions on how to activate the new password."
-msgstr "Пожалуйста, проверьте свою электронную почту для получения инструкций о том, как активировать новый пароль."
 
 #: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:9
 msgid "Please enter a valid URL."
@@ -5005,14 +5038,6 @@ msgstr "Удалить бренды?"
 msgid "Remove callback"
 msgstr "Удалить колбек"
 
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:5
-msgid "Remove currency"
-msgstr "Удалить валюту"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:32
-msgid "Remove currency?"
-msgstr "Удалить валюту?"
-
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:5
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:17
 msgid "Remove fields"
@@ -5086,10 +5111,6 @@ msgstr "Удалить скидку?"
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:18
 msgid "Remove the field?"
 msgstr "Удалите поле?"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:8
-msgid "Remove the selected currency?"
-msgstr "Удалить выбранную валюту?"
 
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:8
 msgid "Remove the selected field?"
@@ -6007,10 +6028,6 @@ msgstr "Код должен быть в формате ua-54545845"
 msgid "The creation of a new language"
 msgstr "Создание нового языка"
 
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:22
-msgid "The currency is in use in the products. Recalculate?"
-msgstr "Валюта используется в товарах. Пересчитать?"
-
 #: ./application/modules/shop/admin/templates/system/import.tpl:104
 msgid "The data of your database will be stored in the folder"
 msgstr "Данные вашей базы данных будут храниться в папке"
@@ -6375,10 +6392,6 @@ msgstr "Не удается удалить статус по умолчанию"
 msgid "Unable to remove the base status"
 msgstr "Не удалось удалить основной статус"
 
-#: ./application/modules/shop/admin/currencies.php:193
-msgid "Unable to remove the main currency"
-msgstr "Невозможно удалить главную валюту"
-
 #: ./templates/administrator/dashboard.tpl:37
 msgid "Uncategorized"
 msgstr "Без категории"
@@ -6482,10 +6495,6 @@ msgstr "Пользователь уже был уведомлен по элек�
 #: ./application/modules/shop/admin/orders.php:1102
 msgid "User is not selected"
 msgstr "Пользователь не выбран"
-
-#: ./application/modules/shop/admin/notifications.php:206
-msgid "User is notified by E-mail"
-msgstr "Пользователь получыл уведомление по электронной почте"
 
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:71
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:96
@@ -6740,10 +6749,6 @@ msgstr "Ширина"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:214
 msgid "Width, px"
 msgstr "Ширина, px"
-
-#: ./application/modules/shop/admin/templates/system/import.tpl:130
-msgid "Will be recalculated prices of products in accordance to the default currency"
-msgstr "Будут пересчитаны цены на продукцию в соответствии с валютой по умолчанию"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:517
 msgid "Wish List"
@@ -7200,10 +7205,6 @@ msgstr "сайта"
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:182
 msgid "small image"
 msgstr "Миниатюра"
-
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:36
-msgid "status"
-msgstr "статус"
 
 #: ./templates/administrator/module_table.tpl:105
 #: ./templates/administrator/module_table.tpl:110

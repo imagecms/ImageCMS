@@ -1,11 +1,11 @@
-﻿msgid ""
+msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-25 02:00+0200\n"
-"PO-Revision-Date: 2013-12-25 02:00+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
+"POT-Creation-Date: 2013-12-27 12:47+0200\n"
+"PO-Revision-Date: 2013-12-27 13:19+0300\n"
+"Last-Translator: Marko <sheme4ko@mail.ru>\n"
+"Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,8 +14,6 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: ../../../../../application/core\n"
 "X-Poedit-SearchPath-2: ../../../../../application/errors\n"
@@ -27,6 +25,94 @@ msgstr ""
 "X-Poedit-SearchPath-8: ../../../../../system/language/email_lang\n"
 "X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
 "X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
+"X-Poedit-SearchPath-11: ../../../../../templates/administrator/js/jquery-validate\n"
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:8
+msgid "Enter a valid email address."
+msgstr "Введите действительный адрес электронной почты."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:6
+msgid "This field is required"
+msgstr "Это поле обязательно для заполнения"
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:7
+msgid "Please fix this field."
+msgstr "Пожалуйста, исправьте это поле."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:9
+msgid "Please enter a valid URL."
+msgstr "Пожалуйста, введите правильный URL."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:10
+msgid "Please enter a valid date."
+msgstr "Пожалуйста, введите правильную дату."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:11
+msgid "Please enter a valid date (ISO)."
+msgstr "Пожалуйста, введите правильную дату (ISO)."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:12
+msgid "Please enter a valid number."
+msgstr "Пожалуйста, введите правильный номер."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:13
+msgid "Please enter only digits."
+msgstr "Пожалуйста, вводите только цифры."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:14
+msgid "Please enter a valid credit card number."
+msgstr "Пожалуйста, введите правильный номер кредитной карты."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:15
+msgid "Please enter the same value again."
+msgstr "Пожалуйста, введите то же значение еще раз."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:16
+msgid "Please enter a value with a valid extension."
+msgstr "Пожалуйста, введите значение с правильным расширением."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:17
+msgid "Please enter no more than {0} characters."
+msgstr "Пожалуйста, введите не больше {0} символов."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:18
+msgid "Please enter at least {0} characters."
+msgstr "Пожалуйста, введите крайней мере, {0} символов."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:19
+msgid "Please enter a value between {0} and {1} characters long."
+msgstr "Пожалуйста, введите значение от {0} до {1} символов."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:20
+msgid "Please enter a value between {0} and {1}."
+msgstr "Пожалуйста, введите значение от {0} до {1}."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:21
+msgid "Please enter a value less than or equal to {0}."
+msgstr "Пожалуйста, введите значение меньше или равное {0}."
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:22
+msgid "Please enter a value greater than or equal to {0}."
+msgstr "Пожалуйста, введите значение, большее или равное {0}."
+
+#: ./application/libraries/BaseAdminController.php:19
+#: ./application/libraries/gettext_php/Gettext_extension.php:44
+#: ./application/libraries/gettext_php/Gettext_extension.php:49
+msgid "To improve performance set php_gettext.dll extension"
+msgstr "Для повышения эффективности установите расширение php_gettext.dll"
+
+#: ./application/libraries/BaseAdminController.php:19
+#: ./application/libraries/gettext_php/Gettext_extension.php:44
+#: ./application/libraries/gettext_php/Gettext_extension.php:49
+msgid "Advice"
+msgstr "Совет"
+
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:166
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:173
+#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:167
+msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
+msgstr "Хитрость продавца, по которому покупатель должен произвести оплату. Формат - письмо и 12 цифр."
 
 #: ../../../../../application/helpers/category_helper.php:86
 msgid "No category"
@@ -555,7 +641,7 @@ msgstr "Поле %s должно содержать корректный IP."
 
 #: ../../../../../system/language/form_validation/form_validation.php:15
 msgid "min_length"
-msgstr "Поле %s должно быть не менее %s символов  в длину."
+msgstr "Поле %s должно быть не менее %s символов в длину."
 
 #: ../../../../../system/language/form_validation/form_validation.php:16
 msgid "max_length"
@@ -575,7 +661,7 @@ msgstr "Поле %s может содержать только алфавитн�
 
 #: ../../../../../system/language/form_validation/form_validation.php:20
 msgid "alpha_dash"
-msgstr ""
+msgstr "alpha_dash"
 
 #: ../../../../../system/language/form_validation/form_validation.php:21
 msgid "numeric"
@@ -636,11 +722,11 @@ msgstr "Не удается найти переменную UserFile."
 
 #: ../../../../../system/language/upload/upload_validation.php:10
 msgid "upload_file_exceeds_limit"
-msgstr ""
+msgstr "upload_file_exceeds_limit"
 
 #: ../../../../../system/language/upload/upload_validation.php:11
 msgid "upload_file_exceeds_form_limit"
-msgstr ""
+msgstr "upload_file_exceeds_form_limit"
 
 #: ../../../../../system/language/upload/upload_validation.php:12
 msgid "upload_file_partial"
@@ -648,7 +734,7 @@ msgstr "Файл был загружен только частично."
 
 #: ../../../../../system/language/upload/upload_validation.php:13
 msgid "upload_no_temp_directory"
-msgstr ""
+msgstr "upload_no_temp_directory"
 
 #: ../../../../../system/language/upload/upload_validation.php:14
 #, fuzzy
@@ -657,7 +743,7 @@ msgstr "Не верний тип файла, который вы пытаете�
 
 #: ../../../../../system/language/upload/upload_validation.php:15
 msgid "upload_stopped_by_extension"
-msgstr ""
+msgstr "upload_stopped_by_extension"
 
 #: ../../../../../system/language/upload/upload_validation.php:16
 #, fuzzy
@@ -676,7 +762,7 @@ msgstr "Не верний тип файла, который вы пытаете�
 
 #: ../../../../../system/language/upload/upload_validation.php:20
 msgid "upload_destination_error"
-msgstr ""
+msgstr "upload_destination_error"
 
 #: ../../../../../system/language/upload/upload_validation.php:21
 #, fuzzy
@@ -695,7 +781,7 @@ msgstr "Не верний тип файла, который вы пытаете�
 
 #: ../../../../../system/language/upload/upload_validation.php:24
 msgid "upload_not_writable"
-msgstr ""
+msgstr "upload_not_writable"
 
 #: ../../../../../system/libraries/Pagination.php:74
 msgid "First"
@@ -707,5 +793,5 @@ msgstr "Конец"
 
 #: ../../../../../system/libraries/Migration.php:223
 msgid "migration_none_found"
-msgstr ""
+msgstr "migration_none_found"
 

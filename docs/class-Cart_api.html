@@ -7,7 +7,7 @@
 	<title>Class Cart_api | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?3162519436"></script>
+	<script type="text/javascript" src="elementlist.js?3394235379"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,8 +23,11 @@
 			<ul>
 				<li><a href="namespace-Brands.html">Brands</a>
 						</li>
-				<li><a href="namespace-Cart.html">Cart</a>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
 						</li>
+							</ul></li>
 				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
 						<ul>
 				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
@@ -207,6 +210,7 @@
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
 				<li><a href="class-Parce_opencart.html">Parce_opencart</a></li>
+				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -517,25 +521,12 @@
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-MY_Controller
+			<a href="class-Cart.BaseCart.html"><span class="invalid">Cart\BaseCart</span></a>
+			
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by" />
-			<a href="class-ShopController.html"><span>ShopController</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:60px">
-			<img src="resources/inherit.png" alt="Extended by" />
-			<a href="class-Cart.BaseCart.html"><span>Cart\BaseCart</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:90px">
 			<img src="resources/inherit.png" alt="Extended by" />
 <b><span>Cart_api</span></b>			
 			
@@ -565,7 +556,7 @@ MY_Controller
 				<b>Uses:</b>
 				<code><code><a href="class-ShopController.html">ShopController</a></code></code> <br />
 				<b>Uses:</b>
-				<code><code><a href="class-Cart.BaseCart.html">Cart\BaseCart</a></code></code> <br />
+				<code><code><a href="class-Cart.BaseCart.html" class="invalid">Cart\BaseCart</a></code></code> <br />
 		<b>Located at</b> application/modules/shop/cart_api.php<br />
 	</div>
 
@@ -598,8 +589,6 @@ MY_Controller
 
 
 
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-ShopController.html#___construct">ShopController::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -687,8 +676,6 @@ MY_Controller
 						&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
 				</div>
 
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Cart.BaseCart.html#_add">Cart\BaseCart::add()</a></code></div>
 
 		</div>
 		</div></td>
@@ -739,8 +726,6 @@ MY_Controller
 						&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
 				</div>
 
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Cart.BaseCart.html#_delete">Cart\BaseCart::delete()</a></code></div>
 
 		</div>
 		</div></td>
@@ -1006,25 +991,6 @@ MY_Controller
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Cart.BaseCart.html#methods">Cart\BaseCart</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Cart.BaseCart.html#_api">api()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-ShopController.html#methods">ShopController</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-ShopController.html#_error404">error404()</a>, 
-			<a href="class-ShopController.html#_getShowUntranslated">getShowUntranslated()</a>, 
-			<a href="class-ShopController.html#_render">render()</a>, 
-			<a href="class-ShopController.html#_render_min">render_min()</a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -1037,15 +1003,6 @@ MY_Controller
 
 
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-ShopController.html#properties">ShopController</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-ShopController.html#$currentLocale"><var>$currentLocale</var></a>, 
-			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

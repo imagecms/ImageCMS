@@ -45,6 +45,7 @@ class Commentsapi extends Comments {
         $this->module = $this->getModule($url);
         $item_id = $this->parsUrl($url);
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
+
         $comments = $this->base->get($item_id, 0, $this->module, 99999);
 
         // Read comments template
@@ -96,7 +97,6 @@ class Commentsapi extends Comments {
         }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
-
         return array(
             'comments' => $comments,
             'commentsCount' => $commentsCount[$item_id],
@@ -238,6 +238,8 @@ class Commentsapi extends Comments {
     }
 
     public function getModule($url) {
+        $url = '/' . $url;
+
         if (strstr($url, '/shop/'))
             return 'shop';
 
@@ -365,6 +367,7 @@ class Commentsapi extends Comments {
                     'parent' => $this->input->post('comment_parent')
                 );
                 $this->db->insert('comments', $comment_data);
+                $this->_recount_comments($item_id, $comment_data['module']);
                 \CMSFactory\Events::create()->registerEvent(array('commentId' => $this->db->insert_id()));
                 $this->validation_errors = '';
 
@@ -383,6 +386,22 @@ class Commentsapi extends Comments {
                 );
             }
         }
+    }
+
+    private function _recount_comments($page_id, $module) {
+        if ($module != 'core') {
+            return FALSE;
+        }
+
+        $this->db->where('item_id', $page_id);
+        $this->db->where('status', 0);
+        $this->db->where('module', 'core');
+        $this->db->from('comments');
+        $total = $this->db->count_all_results();
+
+        $this->db->limit(1);
+        $this->db->where('id', $page_id);
+        $this->db->update('content', array('comments_count' => $total));
     }
 
     /**
@@ -473,8 +492,7 @@ class Commentsapi extends Comments {
                 return FALSE;
             else
                 return TRUE;
-        }
-        else
+        } else
             return TRUE;
     }
 
@@ -577,4 +595,3 @@ class Commentsapi extends Comments {
     }
 
 }
-

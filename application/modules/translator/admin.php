@@ -29,6 +29,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('translator');
     }
 
     /**
@@ -785,6 +787,7 @@ class Admin extends BaseAdminController {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPTё_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_ENCODING, "");
         curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
         if ($refer != "") {
             curl_setopt($ch, CURLOPT_REFERER, $refer);
@@ -796,6 +799,7 @@ class Admin extends BaseAdminController {
     }
 
     public function translateWord($to, $text = "", $return = FALSE) {
+
         $settings = $this->getSettings();
         $from = $settings['originsLang'] ? $settings['originsLang'] : 'en';
         $apiKey = $settings['YandexApiKey'] ? $settings['YandexApiKey'] : '';
@@ -814,45 +818,16 @@ class Admin extends BaseAdminController {
 
     public function translate() {
         $po_array = (array) json_decode($this->input->post('po_array'));
-        $lang = $this->input->post('lang');
+        $result = (array) json_decode($this->input->post('results'));
         $withEmptyTranslation = $this->input->post('withEmptyTranslation');
         if ($po_array) {
-            $values = array();
-            $counter = 0;
-            foreach ($po_array as $origin => $value) {
-                if ($origin) {
-                    if (strlen($values[$counter] . '&text=' . str_replace(' ', '%20', $origin)) < 9999) {
-                        $values[$counter] .= '&text=' . str_replace(' ', '%20', $origin);
-                    } else {
-                        $counter += 1;
-                        $values[$counter] .= '&text=' . str_replace(' ', '%20', $origin);
-                    }
-                }
-            }
-
-            $translations = array();
-            foreach ($values as $to_translate) {
-                $translations[] = json_decode($this->translateWord($lang[0], $to_translate, TRUE));
-            }
-
-            $anwerCodes = array();
-            $result = array();
-            foreach ($translations as $trans) {
-                foreach ($trans->text as $respons) {
-                    if ($respons) {
-                        $result[] = $respons;
-                    }
-                }
-                $anwerCodes[] = $trans->code;
-            }
 
             $counter = 0;
             foreach ($po_array as $origin => $value) {
 
                 if ($origin) {
                     $po_array[$origin] = (array) $po_array[$origin];
-
-                    if ($withEmptyTranslation) {
+                    if ($withEmptyTranslation != 'false') {
                         if (!strlen($po_array[$origin]['translation'])) {
                             $po_array[$origin]['text'] = $result[$counter];
                         } else {
@@ -864,13 +839,13 @@ class Admin extends BaseAdminController {
                     $counter+=1;
                 }
             }
+
             return json_encode(array(
                 'data' => \CMSFactory\assetManager::create()
                         ->setData('po_array', $po_array)
                         ->setData('page', 1)
                         ->setData('rows_count', ceil(count($po_array) / 11))
-                        ->fetchAdminTemplate('po_table', FALSE),
-                'answers' => $anwerCodes
+                        ->fetchAdminTemplate('po_table', FALSE)
             ));
         }
     }
@@ -888,10 +863,10 @@ class Admin extends BaseAdminController {
                         $content = @file($main . $file);
                         $implode_content = implode(' ', $content);
                         $lang_exist = FALSE;
-                        foreach ($this->parse_regexpr as $regexpr){
+                        foreach ($this->parse_regexpr as $regexpr) {
                             $lang_exist = $lang_exist || preg_match('/' . $regexpr . '/', $implode_content);
                         }
-                        
+
                         if ($lang_exist) {
                             foreach ($content as $line_number => $line) {
                                 foreach ($this->parse_regexpr as $regexpr) {

@@ -957,18 +957,64 @@ var Translator = {
 
         this.init();
         $('#loading').fadeIn(100);
+        var po_array = this.getPoArray();
+
+        var values = [];
+        var counter = 0;
+        for (var origin in po_array) {
+            if (origin) {
+                var nextTmp =values[counter] + '&text=' + encodeURIComponent(origin);
+                if (nextTmp.length < 9999) {
+                    if (!values[counter]) {
+                        values[counter] = '';
+                    }
+                    values[counter] += '&text=' + encodeURIComponent(origin);
+                } else {
+                    counter += 1;
+                    values[counter] += '&text=' + encodeURIComponent(origin);
+                }
+            }
+        }
+
+        var translations = [];
+        for (var value in values) {
+            var text = values[value].replace("undefined","");;
+            var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + originLang + '-' + lang + '&format=plain';
+            $.ajax({
+                crossDomain: true,
+                async: false,
+                url: url,
+                success: function(Answer) {
+                    if (Answer) {
+                        translations[value] = Answer;
+                    }
+                }
+            });
+        }
+
+        var answers = [];
+        var result = [];
+        for (var trans in translations) {
+            var translationsTexts = translations[trans].text;
+            for (var translated in translationsTexts) {
+                if (translationsTexts[translated]) {
+                    result.push(translationsTexts[translated]);
+                }
+            }
+            answers.push(translations[trans].code);
+        }
+
         $.ajax({
             type: 'POST',
             data: {
-                po_array: JSON.stringify(this.getPoArray()),
-                lang: lang,
-                withEmptyTranslation: withEmptyTranslation
+                po_array: JSON.stringify(po_array),
+                withEmptyTranslation: withEmptyTranslation,
+                results: JSON.stringify(result)
             },
             url: this.getUrl('translate'),
             success: function(response) {
                 if (response) {
                     var data = JSON.parse(response);
-                    var answers = data['answers'];
                     var maxCode = Math.max.apply(Math, answers);
                     Translator.getAnswerCodeMessage(maxCode);
                     if (maxCode == '200') {
@@ -1003,14 +1049,14 @@ var Translator = {
 
         translationTR.find('.translationTEMP').val(translation);
         translationTR.find('.translationCancel').show();
+
+
+        var text = '&text=' + encodeURI(word);
+        var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + originLang + '-' + language + '&format=plain';
         $.ajax({
             type: 'POST',
-            data: {
-                word: word
-            },
-            url: '/admin/components/init_window/translator/translateWord/' + language,
+            url: url,
             success: function(Answer) {
-                Answer = JSON.parse(Answer);
                 if (Answer.code == '200') {
                     translationTR.find('.translation').val(Answer.text[0]);
                     Translator.statisticRecount();
@@ -1215,13 +1261,13 @@ var Pagination = {
     movePrev: function() {
         var activeNum = $('ul.pagination li.active').data('number');
         console.log(activeNum)
-        if(activeNum > 1){
-            if($('ul.pagination li')[activeNum-1]){
-                console.log($($('ul.pagination li')[activeNum-1]))
-                $($('ul.pagination li')[activeNum-1]).click();
+        if (activeNum > 1) {
+            if ($('ul.pagination li')[activeNum - 1]) {
+                console.log($($('ul.pagination li')[activeNum - 1]))
+                $($('ul.pagination li')[activeNum - 1]).click();
             }
         }
-        
+
         return false;
     },
     moveNext: function() {

@@ -9,7 +9,7 @@
 class Smart_filter extends \Category\BaseCategory {
 
     public function __construct() {
-        if ($this->uri->segments[2] == 'category' || $this->uri->segments[2] == 'filter') {
+        if ($this->uri->segments[2] == 'category' || $this->uri->segments[2] == 'filter' || $this->uri->segments[2] == 'pre_filter') {
             parent::__construct();
             $lang = new MY_Lang();
             $lang->load('smart_filter');
@@ -61,6 +61,13 @@ class Smart_filter extends \Category\BaseCategory {
             'curMax' => $curMax,
             'curMin' => $curMin
         ));
+    }
+    
+    
+    public function pre_filter(){
+        $property = $this->data['propertiesInCat'];
+        
+        echo json_encode($property);
     }
 
 //    public function ()

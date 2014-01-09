@@ -72,9 +72,9 @@
             frameGenSumDiscount: '#frameGenSumDiscount', //фрейм общей суммы без скидки
 
             tinyBask: '.tinyBask',
-            err: 'mError',
-            scs: 'mSuccess',
-            info: 'mInfo',
+            err: 'error',
+            scs: 'success',
+            info: 'info',
             prefV: ".js-variant-",
             selVariant: '.js-variant',
             blockEmpty: '.js-empty',
