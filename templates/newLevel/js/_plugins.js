@@ -1337,7 +1337,6 @@ function getCookie(c_name)
                     tabsDiv[index] = tempO;
                     tabsId[index] = tempO2;
                     regRefs[index] = tempRefs;
-                    console.log(1)
                     refs[index].off('click.tabs').on('click.tabs', function(e) {
                         wST = wnd.scrollTop();
                         var $this = $(this),
@@ -1577,7 +1576,6 @@ function getCookie(c_name)
                             });
                         }
                         else {
-                            console.log(2)
                             $('[' + attrOrdataNew + '=' + n + ']').trigger({
                                 'type': 'click.tabs',
                                 'start': true
@@ -2140,7 +2138,6 @@ function getCookie(c_name)
                             }
                             else {
                                 if ($.exists(source)) {
-                                    console.log(drop.find('.placePaste'))
                                     if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
                                         $.drop.dP.galleriesContent[rel][source] = $(source).html();
                                     drop.find('.placePaste').html($.drop.dP.galleriesContent[rel][source])
