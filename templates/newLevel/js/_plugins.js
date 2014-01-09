@@ -1855,7 +1855,7 @@ function getCookie(c_name)
             var dropV = drop.is(':visible'),
             wndH = wnd.height();
             if (drop.data('dropContent')) {
-                var el = drop.find($(drop.data('dropContent')).add($($.drop.dPP.dropContent))).filter(':first');
+                var el = drop.find($(drop.data('dropContent')).add($($.drop.dPP.dropContent))).filter(':first').css('height', '');
                 if (el.data('jsp') != undefined)
                     el.data('jsp').destroy()
 
@@ -1923,6 +1923,7 @@ function getCookie(c_name)
             }
         },
         _pasteContent: function($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter) {
+            console.log(dropHeader)
             if (contentFooter) {
                 var footer = drop.find($(dropFooter).add($($.drop.dPP.dropFooter)));
                 if (typeof contentFooter == 'string' || typeof contentFooter == 'object')
