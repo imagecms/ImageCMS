@@ -1,7 +1,0 @@
-FTP:
-login: template1
-password: zXWqBqrK
-
-database
-login: template1
-password: KcK7hxLi

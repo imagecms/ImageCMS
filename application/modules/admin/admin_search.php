@@ -24,6 +24,10 @@ class Admin_search extends BaseAdminController {
     public function index($hash = '', $offset = 0) {
         $this->load->module('search');
         $this->load->helper('category');
+        
+        /** Check is first page (Temp) **/
+        if ($offset == 'offset')
+            $offset = 0;
 
         $data = trim($this->input->get('q'));
         $data = strip_tags($data);
@@ -83,12 +87,14 @@ class Admin_search extends BaseAdminController {
                 $config['base_url'] = site_url('admin/admin_search/index/' . $result['hash'] . '/');
                 $config['total_rows'] = $result['total_rows'];
                 $config['per_page'] = $this->search->row_count;
+                $config['suffix'] = '?' . http_build_query($_GET, '', "&");
                 $config['uri_segment'] = 5;
-                $config['first_link'] = lang('First link','admin');
-                $config['last_link'] = lang('Last link','admin');
 
-                $config['cur_tag_open'] = '<span class="active">';
-                $config['cur_tag_close'] = '</span>';
+                $config['first_link'] = lang('First link', 'admin');
+                $config['last_link'] = lang('Last link', 'admin');
+
+                $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
+                $config['cur_tag_close'] = '</span></li>';
 
                 $this->pagination->num_links = 5;
                 $this->pagination->initialize($config);
@@ -104,31 +110,6 @@ class Admin_search extends BaseAdminController {
                 $this->template->assign('categories', $cats);
             }
 
-            //search for users
-//                        $config = array(
-//				'table'        => 'users',
-//				'order_by'     => array('username' => 'ASC'),
-//				'hash_prefix'  => 'admin',
-//				'search_title' => $searchText,
-//			);
-//
-//			$this->search->init($config);
-//
-//			$where = array(
-//                                        array(
-//							'username'  =>  $searchText,
-//							'operator'  => 'LIKE',
-//							'backticks' => 'both',
-//						),
-//					array(
-//							'email'     => $searchText,
-//							'operator'  => 'OR_LIKE',
-//							'backticks' => 'both',
-//						),
-//			);
-//
-//                        $usersResult = $this->search->execute($where, 0);
-
             $usersResult = $this->db->where('id =', $searchText)
                     ->or_where("username LIKE '%$searchText%'")
                     ->or_where("email LIKE '%$searchText%'")
@@ -142,8 +123,6 @@ class Admin_search extends BaseAdminController {
         if ($result['search_title'] == NULL) {
             $result['search_title'] = $searchText;
         }
-
-
 
         $this->template->assign('search_title', $result['search_title']);
 
@@ -205,8 +184,8 @@ class Admin_search extends BaseAdminController {
         $config['total_rows'] = $this->_filter_pages($ids, $search_data, TRUE);
         $config['per_page'] = $this->items_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
-        $config['first_link'] = lang('First link','admin');
-        $config['last_link'] = lang('Last link','admin');
+        $config['first_link'] = lang('First link', 'admin');
+        $config['last_link'] = lang('Last link', 'admin');
 
         $config['cur_tag_open'] = '<span class="active">';
         $config['cur_tag_close'] = '</span>';
@@ -321,8 +300,7 @@ class Admin_search extends BaseAdminController {
             }
 
             echo json_encode(array_values(array_unique($tokens)));
-        }
-        else
+        } else
             redirect('/admin');
     }
 
