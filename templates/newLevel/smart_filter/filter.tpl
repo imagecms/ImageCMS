@@ -1,6 +1,5 @@
 <div class="preloader wo-i"></div>
 {include_tpl('filter_opt')}
-<input type="text" id="amount" value="40" />
 <div id="slider-range"></div>
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
