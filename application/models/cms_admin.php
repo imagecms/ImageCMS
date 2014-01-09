@@ -24,7 +24,6 @@ class Cms_admin extends CI_Model {
         $data['position'] = 0;
         $data['updated'] = 0;
         $data['showed'] = 0;
-        $data['lang_alias'] = 0;
         $this->db->insert('content', $data);
 
         return $this->db->insert_id();
