@@ -9886,13 +9886,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `users_I_1` (`key`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
---
--- Дамп даних таблиці `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
-(48, 1, 'ad@min.com', '$6$lD8Qy.F9AnHF$oZhZHQITIjCx7M6pDKdTZHR/JTPer0r2SS1iDSPiFXTdOKA4cdTwCypfcC0Dzg4FdV36YaAdBQR/g89dfi1hD/', 'ad@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1388407432, NULL, '', NULL, NULL, 'aaTgx', 0.00, NULL, '');
-
 -- --------------------------------------------------------
 
 --
@@ -9961,7 +9954,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
-(3, 'latest_news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"2";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', 'Последние новости', '', 1291632457),
+(3, 'latest_news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"2";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"69";}s:7:"display";s:6:"recent";}', 'Последние новости', '', 1291632457),
 (4, 'recent_product_comments', 'module', 'comments', 'recent_product_comments', 'a:2:{s:14:"comments_count";s:1:"5";s:13:"symbols_count";s:1:"0";}', 'Последние комментарии продукта', '', 1308300371),
 (5, 'tags', 'module', 'tags', 'tags_cloud', '', 'Теги', '', 1312362714),
 (6, 'path', 'module', 'navigation', 'widget_navigation', '', 'Виджет навигации', '', 1328631622),
@@ -10000,6 +9993,14 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (16, 'ru', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>'),
 (17, 'ru', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>'),
 (20, 'ru', '<h1>Интернет-магазин</h1>\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\n<h2>Заголовок второго уровня</h2>\n<h3>Заголовок третьего уровня</h3>\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\n<h3>Заголовок третьего уровня</h3>\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\n<ul>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ul>\n<h4>Заголовок четвертого уровня</h4>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\n<table>\n<tbody>\n<tr>\n<td>название</td>\n<td>размер</td>\n<td>цена</td>\n</tr>\n<tr>\n<td>длинна трубы</td>\n<td>10 метров</td>\n<td>145 уе</td>\n</tr>\n<tr>\n<td>ширина трубы</td>\n<td>2 метра</td>\n<td>134 уе</td>\n</tr>\n</tbody>\n</table>\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\n<ol>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ol>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>');
+
+UPDATE 
+    `mod_email_paterns_i18n` 
+SET `variables` = 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";s:9:"$comment$";s:38:"Комментарий к заказу";}' 
+WHERE 
+    id = 2 AND 
+    locale = 'ru'
+LIMIT 1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

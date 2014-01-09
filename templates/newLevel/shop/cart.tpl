@@ -165,9 +165,9 @@
                                             {foreach $paymentMethods as $paymentMethod}
                                                 <label>
                                                     <option
+                                                        {$pay_id = $paymentMethod->getId()}
                                                         {if $counter} checked="checked"
                                                             {$counter = false}
-                                                            {$pay_id = $paymentMethod->getId()}
                                                         {/if}
                                                         value="{echo $pay_id}"
                                                         />

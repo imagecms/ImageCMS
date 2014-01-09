@@ -63,6 +63,7 @@ $(document).ready(function() {
                 $('.filesCount').text(obj.filesCount);
             }
         });
+        $(this).parent().parent().siblings('a').trigger('click');
     });
 
 
