@@ -51,7 +51,7 @@ class Discount_model_front extends CI_Model {
 
 
         $price_prod = $this->db->query("select price from shop_product_variants where id = '$id'")->row();
-        return $price_prod->price;
+        return number_format($price_prod->price, ShopCore::app()->SSettings->pricePrecision,'.', '');
     }
 
     public function get_total_price($data) {
