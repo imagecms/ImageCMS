@@ -90,7 +90,7 @@ class Stats_model_categories extends CI_Model {
             $categories = \ShopCore::app()->SCategoryTree->getTree();
             $firstCategoryId = false;
             foreach ($categories as $category) {
-                $firstCategoryId = $category->getId();
+                $firstCategoryId = $category['id'];
                 break;
             }
             return $firstCategoryId;

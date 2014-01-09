@@ -41,6 +41,13 @@ class Language_switch_Widgets extends MY_Controller {
 
 
         $languages = $this->db->get('languages')->result_array();
+        foreach ($languages as $key => $lang) {
+            if ($lang['identif'] == MY_Controller::getCurrentLocale()) {
+                $languages[$key]['current'] = 1;
+            } else {
+                $languages[$key]['current'] = 0;
+            }
+        }
         return $this->template->fetch('widgets/' . $widget['name'], array('languages' => $languages, 'current_address' => $current_address));
     }
 

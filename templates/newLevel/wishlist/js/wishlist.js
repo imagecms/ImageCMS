@@ -55,8 +55,8 @@ var WishListFront = {
                 el: drop
             });
             drop.find('[type="submit"]').parent().removeClass('active');
+            name.focus();
         }
-        ;
         var name = $('[name="wishListName"]:last'),
         drop = name.closest('[data-elrun]');
 
@@ -64,7 +64,6 @@ var WishListFront = {
             removeErr();
             name.after(message.error(text.error.enterName));
             $(document).trigger('hideActivity');
-            name.focus();
             $(document).trigger({
                 'type': 'imageapi.pastemsg',
                 el: drop
@@ -75,11 +74,12 @@ var WishListFront = {
             $('[data-link]').unbind('change').change(function() {
                 removeErr();
             });
+            name.focus();
             return false;
-
         }
         else {
             removeErr();
+            name.unbind('keypress');
             return true;
         }
     },
