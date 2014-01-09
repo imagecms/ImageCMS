@@ -222,7 +222,7 @@
                         {foreach $variants as $key => $pv}
                             {if $pv->getStock() > 0}
                                 <div class="frame-count-buy" {if $key != 0}style="display:none"{/if}>
-                                    <form method="POST" action="/shop/cart_new/addProductByVariantId/{echo $pv->getId()}">
+                                    <form method="POST" action="/shop/cart/addProductByVariantId/{echo $pv->getId()}">
                                         <div class="btn-buy">
                                             <input type="hidden" name="redirect" value="cart" />
                                             <button class="btnBuy infoBut" type="submit">

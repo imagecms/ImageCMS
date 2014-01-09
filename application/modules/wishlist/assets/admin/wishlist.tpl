@@ -47,6 +47,14 @@
                                         </label>
                                         <div class="form-horizontal">
                                             <div class="control-group">
+                                                {if $upload_errors}
+                                                    <div class="alert alert-danger">
+                                                        {foreach  $upload_errors as $error}
+                                                            <p class="alert-link">{echo $error}</p>
+                                                            <br>
+                                                        {/foreach}
+                                                    </div>
+                                                {/if}
                                                 <div class="controls">
                                                     <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}"
                                                          class="img-polaroid"
@@ -78,6 +86,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
 
                                         <form method="POST" action="/admin/components/cp/wishlist/userUpdate">
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
@@ -203,10 +212,15 @@
                             <tr>
                                 <td colspan="6">
                                     <div class="inside_padd">
-                                        <form method="POST" action="/admin/components/cp/wishlist/createWishList">
+
+                                        <div id="notifies" >
+                                            <!-- class="alert alert-error" -->
+                                        </div>
+
+                                        <form id="wishlistForm">
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
-                                                 <div class="control-group">
+                                                <div class="control-group">
                                                     <label class="control-label" for="banner_type">{lang('Type', 'wishlist')}:</label>
                                                     <div class="controls">
                                                         <select name="wlTypes">
@@ -230,10 +244,11 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" value="{lang('Create list', 'wishlist')}" class="btn btn-small btn-success"/>
+                                                        <input id="createWishList" type="submit" value="{lang('Create list', 'wishlist')}" class="btn btn-small btn-success"/>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <input type="hidden" value="{$userId}" name="userId">
                                             {form_csrf()}
                                         </form>
                                     </div>

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class Stat{
 	private $gateway=NULL;
 

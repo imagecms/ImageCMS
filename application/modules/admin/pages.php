@@ -335,8 +335,6 @@ class Pages extends BaseAdminController {
             exit;
         }
 
-        $def_lang = $this->cms_admin->get_default_lang();
-
         // Get page data
         $data = $this->db->get_where('content', array('id' => $page_id))->row_array();
 
@@ -374,7 +372,7 @@ class Pages extends BaseAdminController {
             $page_roles = unserialize($page_roles['data']);
 
             // Set roles
-            $locale = $this->cms_admin->get_default_lang();
+            $locale = $def_lang;
             $locale = $locale['identif'];
 
             $g_query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id WHERE `locale`='" . $locale . "'");
@@ -436,7 +434,7 @@ class Pages extends BaseAdminController {
 
             if ($cur_lang != FALSE) { // lang exists
                 $defpage = $this->cms_admin->get_page($page_id);
-
+//                var_dump($defpage);exit;
                 $new_data = array(
                     'author' => $this->dx_auth->get_username(),
                     'comments_status' => $defpage['comments_status'],
@@ -459,7 +457,7 @@ class Pages extends BaseAdminController {
                 if ($new_p_id > 0) {
                     showMessage(lang("Language of the page", "admin") . '<b> ' . $cur_lang['lang_name'] . '. </b>' . lang("ID", 'admin') . ' <b>' . $new_p_id . '.</b>');
                     if ($this->pjaxRequest)
-                        pjax('/admin/pages/edit/' . $new_p_id . '/' . $lang);
+                        pjax('/admin/pages/edit/' . $page_id . '/' . $lang);
                     else
                         redirect('/admin/pages/edit/' . $page_id . '/' . $lang);
                     //exit;

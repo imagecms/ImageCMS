@@ -28,21 +28,19 @@
             <div class="header-left-content-header">
                 <!--                Start. contacts block-->
                 <div class="phones-header">
-                    <span class="f-s_0">
+                    <div class="f-s_0 d_i-b">
                         <span class="icon_phone_header"></span>
                         <span class="phone">
                             <span class="phone-number">{echo siteinfo('siteinfo_mainphone')}</span>
 
                         </span>
-                    </span>
-                    <ul class="tabs">
-                        <li class="btn-order-call">
-                            <a href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
-                                <span class="icon_order_call"></span>
-                                <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
-                            </a>
-                        </li>
-                    </ul>
+                    </div>
+                    <div class="btn-order-call">
+                        <a href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}" rel="a">
+                            <span class="icon_order_call"></span>
+                            <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
+                        </a>
+                    </div>
                 </div>
                 <a href="skype:{echo siteinfo('Skype')}" class="f-s_0">
                     <span class="icon_skype"></span>
@@ -83,8 +81,8 @@
     {literal}
         <script>
             $(document).on('scriptDefer', function() {
-                var input = $('#inputString');
-                input.setCursorPosition(input.val().length);
+            var input = $('#inputString');
+            input.setCursorPosition(input.val().length);
             });
         </script>
     {/literal}

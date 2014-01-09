@@ -132,7 +132,7 @@
                 <tr>
                     <th>{lang('Способ оплаты','newLevel')}:</th>
                     <td>
-                        {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
+                        {if $model->getTotalPriceWithGift() > 0}
                             {if $paymentMethod->getName()}
                                 {echo ShopCore::t($paymentMethod->getName())}
                             {/if}
@@ -153,14 +153,16 @@
                 <!--                End. Order status-->
                 <tr>
                     <td></td>
-                    <td>
-                        <div class="frame-payment">
-                            {$locale = \MY_Controller::getCurrentLocale();}
-                            {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
-                            {/*echo $notif->message*/}
-                            {echo $paymentMethod->getPaymentForm($model)}
-                        </div>
-                    </td>
+                    {if $model->getPaid() != true}
+                        <td>
+                            <div class="frame-payment">
+                                {$locale = \MY_Controller::getCurrentLocale();}
+                                {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
+                                {/*echo $notif->message*/}
+                                {echo $paymentMethod->getPaymentForm($model)}
+                            </div>
+                        </td>
+                    {/if}
                 </tr>
                 <!-- End. Render payment button and payment description -->
             </table>

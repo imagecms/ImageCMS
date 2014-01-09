@@ -7,7 +7,7 @@
         <div class="text-right">
             <h1>{echo encode($category.name)}</h1>
             {if $pages == NULL}
-                {lang('Категорія на стадії розробки', 'newLevel')}
+                {lang('Категория на стадии разработки', 'newLevel')}
             {else:}
                 <ul class="items items-text-category">
                     {foreach $pages as $p}

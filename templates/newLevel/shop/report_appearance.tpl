@@ -11,7 +11,7 @@
     <div class="drop-footer"></div>
 </div>
 <div class="d_n" data-clone="data-report">
-    <form method="post" action="" class="data-report" onsubmit="ImageCMSApi.formAction('{site_url("/shop/ajax/getApiNotifyingRequest")}', '.data-report', {literal}{durationHideForm: 10000, drop: '.drop-report', callback: function(msg, status, form, DS) {
+    <form method="post" action="" class="data-report" onsubmit="ImageCMSApi.formAction('{site_url("/shop/ajax/getApiNotifyingRequest")}', this, {literal}{durationHideForm: 10000, drop: '.drop-report', callback: function(msg, status, form, DS) {
                     if (status) {
                         $(DS.drop).find('.items > li').children().remove();
                         hideDrop(DS.drop, form, DS.durationHideForm);

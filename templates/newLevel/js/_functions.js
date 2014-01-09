@@ -178,10 +178,13 @@ var ShopFront = {
                     $(document).trigger('hideActivity');
                 }
                 cartItem.count = inputVal;
-                if (inputVal != '')
+                if (inputVal != ''){
+                    var pos = input.getCursorPosition();
                     Shop.Cart.chCount(cartItem, function() {
-                        input.focus();
+                        input.setCursorPosition(pos, pos)
+                    //input.focus();
                     });
+                }
                 var pdTrs = $('[data-id =' + pd.closest('tr[data-id]').data('id') + ']')
                 pdTrs.each(function() {
                     pdTr = $(this);
@@ -241,7 +244,7 @@ var ShopFront = {
             $(genObj.addSumBask).each(function() {
                 $(this).html(addSumBask.toFixed(pricePrecision));
             })
-            $(genObj.tinyBask).find(genObj.plurProd).each(function() {
+            $(genObj.tinyBask).add(genObj.popupCart).find(genObj.plurProd).each(function() {
                 $(this).html(pluralStr(length, text.plurProd));
             });
         },
@@ -586,9 +589,7 @@ function hideDrop(drop, form, durationHideForm) {
     $(document).off('closed.drop').on('closed.drop', function(e) {
         clearTimeout(closedrop);
         if (e.drop.is(drop)) {
-            console.log(e.drop.find(genObj.msgF).length)
             e.drop.find(genObj.msgF).hide().remove();
-            console.log(e.drop.find(genObj.msgF).length)
             form.show();
         }
     })

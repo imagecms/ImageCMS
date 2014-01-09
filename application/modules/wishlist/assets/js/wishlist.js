@@ -1,8 +1,8 @@
 $(function() {
-    if($( "#datepicker" ).length){
-        $( "#datepicker" ).datepicker();
+    if ($("#datepicker").length) {
+        $("#datepicker").datepicker();
     }
- });
+});
 
 function addToWL(varId) {
     var checkedList = $('#wishCart input[type=radio]:checked');
@@ -180,22 +180,68 @@ $('.newWishList').live('click', function() {
     }
 });
 //---------------------TEST API-------------------------------//
-$('.APItester').live('click', function (){
+$('.APItester').live('click', function() {
     $.ajax({
-         type: 'POST',
-         dataType: 'text',
-         data: {
-             userID: 47
-         },
-         url: 'wishlist/wishlistApi/show/49/9',
-         success: function(data) {
-              console.log(data);
-             if(typeof data != Object){
-                 $('.testAPI').replaceWith('<div style="border: 2px solid;">' + data + '</div>');
-             }else{
-                 $('.testAPI').text(JSON.stringify(data));
-                 console.log(data);
-             }            
-         }
-     });
+        type: 'POST',
+        dataType: 'text',
+        data: {
+            userID: 47
+        },
+        url: 'wishlist/wishlistApi/show/49/9',
+        success: function(data) {
+            console.log(data);
+            if (typeof data != Object) {
+                $('.testAPI').replaceWith('<div style="border: 2px solid;">' + data + '</div>');
+            } else {
+                $('.testAPI').text(JSON.stringify(data));
+                console.log(data);
+            }
+        }
+    });
+});
+
+
+// create wishlist ajax
+
+
+
+$("#createWishList").unbind().bind('click', function() {
+    var data = $("form#wishlistForm").serialize();
+    $.post('/admin/components/cp/wishlist/createWishList', data, function(response) {
+        $("#notifies").empty();
+        var notifContainer = document.getElementById('notifies');
+        var status = parseInt(response.status);
+        if (status == 1) {
+            var infoDiv = document.createElement('div');
+            infoDiv.className = 'alert alert-success';
+            var text = document.createTextNode('Создано')
+            infoDiv.appendChild(text);
+            notifContainer.appendChild(infoDiv);
+
+            setTimeout(function() {
+                $("a[href='#lists']").trigger('click');
+                location.reload();
+            }, 2500);
+            return;
+        }
+
+        var errorsDiv = document.createElement('div');
+        errorsDiv.className = 'alert alert-error';
+        var p = [];
+        var text = [];
+        var i = 0;
+        if (typeof(response.errors) != 'undefined') {
+            for (var key in response.errors) {
+                p[i] = document.createElement('p');
+                text[i] = document.createTextNode(response.errors[key]);
+                p[i].appendChild(text[i]);
+                errorsDiv.appendChild(p[i]);
+                i++;
+            }
+            notifContainer.appendChild(errorsDiv);
+        }
+
+
+    }, 'json');
+    return false;
 });

@@ -15,7 +15,7 @@ class Admin extends BaseAdminController {
         $this->load->language('wishlist');
         $this->load->helper('string_helper');
         $this->settings = $this->wishlist_model->getSettings();
-        
+
         $lang = new MY_Lang();
         $lang->load('wishlist');
     }
@@ -64,6 +64,7 @@ class Admin extends BaseAdminController {
     public function userWL($id) {
         $wishlist = new Wishlist();
         $this->session->set_userdata(array('admin_edit_user_id' => $id));
+        
         $wishlist->getUserWL($id, array('public', 'shared', 'private'));
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
@@ -72,6 +73,8 @@ class Admin extends BaseAdminController {
                 ->setData('user', $wishlist->dataModel['user'])
                 ->setData('settings', $wishlist->settings)
                 ->setData('errors', $this->errors)
+                ->setData('upload_errors', $this->session->flashdata('upload_errors'))
+                ->setData('userId', $id)
                 ->renderAdmin('wishlist');
     }
 
@@ -138,9 +141,15 @@ class Admin extends BaseAdminController {
      */
     public function createWishList() {
         $wishlist = new \wishlist\classes\BaseWishlist();
-        $wishlist->createWishList();
-
-        redirect($_SERVER['HTTP_REFERER'] . "#lists");
+        $result = $wishlist->createWishList();
+        $response = array('status' => 0);
+        if (is_array($result)) {
+            $response['errors'] = $result;
+        } else {
+            $response['status'] = 1;
+            //redirect($_SERVER['HTTP_REFERER'] . "#lists");
+        }
+        echo json_encode($response);
     }
 
     /**
@@ -149,6 +158,10 @@ class Admin extends BaseAdminController {
     public function do_upload() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->do_upload();
+//        var_dumps_exit($wishlist->errors);
+        if($wishlist->errors){
+            $this->session->set_flashdata('upload_errors', $wishlist->errors);
+        }
         redirect($_SERVER['HTTP_REFERER']);
     }
 
