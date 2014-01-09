@@ -113,10 +113,6 @@ class Admin extends BaseAdminController {
 
                 $lid = $this->banner_model->add_banner($data);
 
-                /** Reupdate banner info for each lang */
-                foreach ($lan = $this->db->get('languages')->result_array() as $lan)
-                    if ($lan['identif'] != $this->def_locale)
-                        $this->banner_model->add_empty_banner($lid, $lan['identif']);
 
                 /** Show successful message and redirect */
                 pjax('/admin/components/init_window/banners');
