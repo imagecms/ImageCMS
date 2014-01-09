@@ -1693,6 +1693,13 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
+--
+-- Дамп даних таблиці `shop_callbacks_themes`
+--
+
+INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
+(1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1707,6 +1714,14 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_callbacks_themes_i18n_I_1` (`text`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `shop_callbacks_themes_i18n`
+--
+
+INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
+(1, 'ru', 'Первая тема'),
+(1, 'ua', 'Перша тема');
 
 -- --------------------------------------------------------
 
