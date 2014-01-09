@@ -48,24 +48,25 @@ $(document).ready(function() {
         })
 
 
-    $('.clearCashe').live('click', function() {
-        $this = $(this);
+
+    $("#clearAllCache").on("click", function() {
         $.ajax({
             type: 'post',
             dataType: 'json',
-            data: 'param=' + $this.attr('data-param'),
-            url: $this.data('target'),
+            data: {param: 'all'},
+            url: '/admin/delete_cache',
             success: function(obj) {
-                //console.log(obj.color);
                 if (obj.result == true)
                     showMessage(obj.message, '', obj.color);
                 else
                     showMessage(obj.message, '', obj.color);
-                //console.log(obj.fileCount);
                 $('.filesCount').text(obj.filesCount);
             }
         });
-    })
+        $(this).parent().parent().siblings('a').trigger('click');
+    });
+
+
 
     $('.saveButton').live('click', function() {
         var idMenu = $(this).attr('idMenu');
