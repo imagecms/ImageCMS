@@ -12,7 +12,7 @@
 {$Comments = $CI->load->module('comments')->init($model)}
 {$NextCSIdCond = $NextCS != null}
 {$variants = $model->getProductVariants()}
-{$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
+{$sizeAddImg = sizeof($productImages = $model->getSProductAdditionalImages())}
 {$hasDiscounts = $model->hasDiscounts()}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
@@ -549,13 +549,13 @@
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
-            {/if}
-            {if $fullDescription = $model->getFullDescription()}
+                {/if}
+                {if $fullDescription = $model->getFullDescription()}
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
-            {/if}
-            {if $accessories}
+                {/if}
+                {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
-            {/if}
+                {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
@@ -688,7 +688,7 @@
 <!-- End. Similar Products-->
 
 <!-- Start. News-->
-    {widget('latest_news')}
+{widget('latest_news')}
 <!-- End. News-->
 
 <!-- Start. Photo Popup Frame-->
@@ -697,45 +697,45 @@
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-            <div class="title"><%- obj.title %></div>
-            <div class="horizontal-carousel">
-                <div class="frame-fancy-gallery frame-thumbs">
-                    <div class="fancy-gallery carousel-js-css">
-                        <div class="content-carousel">
-                            <ul class="items-thumbs items">
-                                <%= obj.frame.find(obj.galleryContent).html() %>
-                            </ul>
-                        </div>
-                        <div class="group-button-carousel">
-                            <button type="button" class="prev arrow">
-                                <span class="icon_arrow_p"></span>
-                            </button>
-                            <button type="button" class="next arrow">
-                                <span class="icon_arrow_n"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="title"><%- obj.title %></div>
+        <div class="horizontal-carousel">
+        <div class="frame-fancy-gallery frame-thumbs">
+        <div class="fancy-gallery carousel-js-css">
+        <div class="content-carousel">
+        <ul class="items-thumbs items">
+        <%= obj.frame.find(obj.galleryContent).html() %>
+        </ul>
+        </div>
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
         <div class="drop-content-photo">
-            <div class="inside-padd">
-                <span class="helper"></span>
-                <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-            </div>
-            <div class="horizontal-carousel">
-                <div class="group-button-carousel">
-                    <button type="button" class="prev arrow">
-                        <span class="icon_arrow_p"></span>
-                    </button>
-                    <button type="button" class="next arrow">
-                        <span class="icon_arrow_n"></span>
-                    </button>
-                </div>
-            </div>
+        <div class="inside-padd">
+        <span class="helper"></span>
+        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+        </div>
+        <div class="horizontal-carousel">
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
         </div>
         <div class="drop-footer">
-            <%= obj.frame.find(obj.footerContent).html()%>
+        <%= obj.frame.find(obj.footerContent).html()%>
         </div>
     {/literal}
 </script>
@@ -748,8 +748,8 @@
 {literal}
     <script type="text/javascript">
         var
-                productPhotoDrop = true,
-                productPhotoCZoom = true;
+        productPhotoDrop = true,
+        productPhotoCZoom = true;
     </script>
 {/literal}
 <!-- End. JS vars-->
