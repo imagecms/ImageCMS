@@ -277,6 +277,7 @@ class Widgets_manager extends BaseAdminController {
                     'data' => $this->input->post('html_code'),
                 );
                 $this->db->where('id', $id);
+                $this->db->where('locale', $locale);
                 $this->db->update('widget_i18n', $data);
             } else {
                 $data = array(
