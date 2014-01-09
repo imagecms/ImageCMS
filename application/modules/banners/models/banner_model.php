@@ -66,7 +66,7 @@ class Banner_model extends CI_Model {
 
     public function get_all_banner($locale){
 
-        $query = $this->db->query("select *, mod_banner.id as id from mod_banner left join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id and locale = '". $locale ."' ORDER BY `mod_banner`.`position`");
+        $query = $this->db->query("select *, mod_banner.id as id from mod_banner join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id and locale = '". $locale ."' ORDER BY `mod_banner`.`position`");
         if($query){
             $query = $query->result_array();
         }
@@ -82,7 +82,6 @@ class Banner_model extends CI_Model {
         
         if (count($banner) == 0){
             $locale = MY_Controller::defaultLocale();
-            var_dump($locale);
             return $this->get_one_banner($id, $locale);
             //$banner = $this->db->query("select * from mod_banner where mod_banner.id = '$id'")->result_array();
         }
