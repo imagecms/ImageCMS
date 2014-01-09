@@ -90,12 +90,6 @@ function init() {
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $.drop.setParameters(optionsDrop);
     $('[data-drop]').drop();
-    $('.cloud-zoom-gallery').drop({
-        'cycle': true,
-        'contentHeader': function(header, el, drop) {
-            header.html('<span>asdfasdf</span>')
-        }
-    });
 
     ShopFront.CompareList.count();
     global.wishListCount();
