@@ -128,16 +128,16 @@ class Authapi extends MY_Controller {
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
             $val = $this->form_validation;
             // Set form validation rules
-            $val->set_rules('email', lang("Email"), 'trim|required|xss_clean|valid_email|callback_email_check');
-            $val->set_rules('username', lang("Name"), 'trim|xss_clean');
-            $val->set_rules('password', lang("Password"), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
-            $val->set_rules('confirm_password', lang("Repeat Password"), 'trim|required|xss_clean');
+            $val->set_rules('email', lang("Email", 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check');
+            $val->set_rules('username', lang("Name", 'auth'), 'trim|xss_clean');
+            $val->set_rules('password', lang("Password", 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
+            $val->set_rules('confirm_password', lang("Repeat Password", 'auth'), 'trim|required|xss_clean');
 
             if ($this->dx_auth->captcha_registration) {
                 if ($this->dx_auth->use_recaptcha)
-                    $val->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|xss_clean|required|callback_captcha_check');
+                    $val->set_rules('recaptcha_response_field', lang("Code protection",'auth'), 'trim|xss_clean|required|callback_captcha_check');
                 else
-                    $val->set_rules('captcha', lang("Code protection"), 'trim|xss_clean|required|callback_captcha_check');
+                    $val->set_rules('captcha', lang("Code protection",'auth'), 'trim|xss_clean|required|callback_captcha_check');
             }
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
@@ -146,9 +146,9 @@ class Authapi extends MY_Controller {
             if ($val->run($this) AND $last_user = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', $key, '')) {
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
-                    $data['auth_message'] = lang("You have successfully registered. Please check your email to activate your account.");
+                    $data['auth_message'] = lang("You have successfully registered. Please check your email to activate your account.",'auth');
                 } else {
-                    $data['auth_message'] = lang("You have successfully registered. ") . anchor(site_url($this->dx_auth->login_uri), lang("Login"));
+                    $data['auth_message'] = lang("You have successfully registered. ",'auth') . anchor(site_url($this->dx_auth->login_uri), lang("Login",'auth'));
                 }
                 //create json array for ajax request
                 $json = array();
@@ -211,7 +211,7 @@ class Authapi extends MY_Controller {
     public function forgot_password() {
         $val = $this->form_validation;
         // Set form validation rules
-        $val->set_rules('email', lang("Email"), 'trim|required|xss_clean|valid_email|callback_email_check_for_login');
+        $val->set_rules('email', lang("Email",'auth'), 'trim|required|xss_clean|valid_email|callback_email_check_for_login');
         // Validate rules and call forgot password function
         if ($val->run($this) AND $this->dx_auth->forgot_password($val->set_value('email'))) {
             echo json_encode(array(
@@ -248,7 +248,7 @@ class Authapi extends MY_Controller {
         if ($this->dx_auth->is_logged_in()) {
             if ($this->dx_auth->reset_password($email, $key)) {
                 echo json_encode(array(
-                    'msg' => lang("You have successfully zeroed my password. ") . anchor(site_url($this->dx_auth->login_uri), lang("Login Here")),
+                    'msg' => lang("You have successfully zeroed my password. ",'auth') . anchor(site_url($this->dx_auth->login_uri), lang("Login Here",'auth')),
                     'status' => true,
                 ));
             } else {
