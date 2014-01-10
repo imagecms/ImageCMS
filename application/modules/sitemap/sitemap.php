@@ -395,7 +395,7 @@ class Sitemap extends MY_Controller {
 
     public function _shop_products_pages() {
         $this->db->select('url, updated, created');
-        return $this->db->get('shop_products')->result_array();
+        return $this->db->where('active', 1)->get('shop_products')->result_array();
     }
 
 }
