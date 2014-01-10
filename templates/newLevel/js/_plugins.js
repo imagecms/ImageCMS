@@ -1292,6 +1292,7 @@ function getCookie(c_name)
 /*plugin tabs*/
 (function($) {
     var methods = {
+        index: 0,
         init: function(options) {
             var $this = this;
             if ($.existsN($this)) {
@@ -1313,8 +1314,9 @@ function getCookie(c_name)
                 k = true,
                 refs = [],
                 attrOrdata = [];
-                $this.each(function(index) {
-                    var $thiss = $(this),
+                $this.each(function() {
+                    var index = methods.index;
+                    $thiss = $(this),
                     data = $thiss.data(),
                     effectOn = settings.effectOn || data.effectOn,
                     effectOff = settings.effectOff || data.effectOff,
@@ -1326,6 +1328,7 @@ function getCookie(c_name)
                     var tempO = $([]),
                     tempO2 = $([]),
                     tempRefs = [];
+                    methods.index += 1;
                     refs[index].each(function(ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
                         if (tHref.indexOf('#') !== -1) {
