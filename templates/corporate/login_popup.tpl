@@ -1,7 +1,7 @@
 <div class="drop drop-enter drop-style">
     <div class="icon-times-drop" data-closed="closed-js"></div>
     <div class="drop-header">
-        <div class="title">Вход в магазин</div>
+        <div class="title">Вход</div>
     </div>
     <div class="drop-content">
         <div class="inside-padd">

@@ -44,7 +44,7 @@ INSERT INTO `answer_notifications` (`id`, `locale`, `name`, `message`) VALUES
 (2, 'ua', 'callback', '<h1>Дякуємо</h1>\n<div>В короткий час наші менеджери звяжуться з Вами</div>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>'),
 (3, 'ua', 'order', '<h1>Дякуємо</h1>\n<div>В короткий час наші менеджери звяжуться з Вами</div>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>'),
 (4, 'ru', 'incoming', '<h1>Спасибо</h1>\r\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>'),
-(5, 'ru', 'callback', '<h1>Спасибо</h1>\r\n<div>В ближайіваівашее время наши менеджеры свяжутся с Вами</div>'),
+(5, 'ru', 'callback', '<h1>Спасибо</h1>\r\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>'),
 (6, 'ru', 'order', '<h1>Спасибо</h1>\r\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>');
 
 -- --------------------------------------------------------
@@ -1693,6 +1693,13 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
+--
+-- Дамп даних таблиці `shop_callbacks_themes`
+--
+
+INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
+(1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1707,6 +1714,14 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_callbacks_themes_i18n_I_1` (`text`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `shop_callbacks_themes_i18n`
+--
+
+INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
+(1, 'ru', 'Первая тема'),
+(1, 'ua', 'Перша тема');
 
 -- --------------------------------------------------------
 
