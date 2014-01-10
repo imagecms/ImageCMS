@@ -7,7 +7,7 @@
 	<title>Class Cart_api | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?3394235379"></script>
+	<script type="text/javascript" src="elementlist.js?3945239888"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -26,11 +26,6 @@
 				<li><a href="namespace-Cart.html">Cart<span></span></a>
 						<ul>
 				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
-						</li>
-							</ul></li>
-				<li><a href="namespace-CartNew.html">CartNew<span></span></a>
-						<ul>
-				<li><a href="namespace-CartNew.ItemsTypes.html">ItemsTypes</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-Category.html">Category</a>
@@ -72,8 +67,6 @@
 							</ul></li>
 				<li class="active"><a href="namespace-None.html">None</a>
 						</li>
-				<li><a href="namespace-Orders.html">Orders</a>
-						</li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 				<li><a href="namespace-Products.html">Products</a>
@@ -100,6 +93,7 @@
 				<li><a href="class-Admin_logs.html">Admin_logs</a></li>
 				<li><a href="class-Admin_search.html">Admin_search</a></li>
 				<li><a href="class-Ajax.html">Ajax</a></li>
+				<li><a href="class-ArrayAccessBase.html">ArrayAccessBase</a></li>
 				<li><a href="class-Auth.html">Auth</a></li>
 				<li><a href="class-Authapi.html">Authapi</a></li>
 				<li><a href="class-Backup.html">Backup</a></li>
@@ -118,6 +112,7 @@
 				<li><a href="class-Cart_new.html">Cart_new</a></li>
 				<li><a href="class-Categories.html">Categories</a></li>
 				<li><a href="class-Category.html">Category</a></li>
+				<li><a href="class-CategoryItem.html">CategoryItem</a></li>
 				<li><a href="class-Cfcm.html">Cfcm</a></li>
 				<li><a href="class-Cfcm_forms.html">Cfcm_forms</a></li>
 				<li><a href="class-CForm_Checkbox.html">CForm_Checkbox</a></li>
@@ -240,7 +235,7 @@
 				<li><a href="class-Search.html" class="invalid">Search</a></li>
 				<li><a href="class-Sendsms.html">Sendsms</a></li>
 				<li><a href="class-Settings.html">Settings</a></li>
-				<li><a href="class-SFilter.html" class="invalid">SFilter</a></li>
+				<li><a href="class-SFilter.html">SFilter</a></li>
 				<li><a href="class-Share.html">Share</a></li>
 				<li><a href="class-Shop.html">Shop</a></li>
 				<li><a href="class-Shop_news.html">Shop_news</a></li>
@@ -384,15 +379,19 @@
 				<li><a href="function-get_perms_groups.html">get_perms_groups</a></li>
 				<li><a href="function-get_product_category.html" class="invalid">get_product_category</a></li>
 				<li><a href="function-get_sub_categories.html">get_sub_categories</a></li>
+				<li><a href="function-getActiveTemplateName.html">getActiveTemplateName</a></li>
 				<li><a href="function-getAmountInCart.html">getAmountInCart</a></li>
 				<li><a href="function-getCMSNumber.html">getCMSNumber</a></li>
 				<li><a href="function-getDefaultLanguage.html">getDefaultLanguage</a></li>
+				<li><a href="function-getFaviconLogoPath.html">getFaviconLogoPath</a></li>
+				<li><a href="function-getFaviconLogoUrl.html">getFaviconLogoUrl</a></li>
 				<li><a href="function-getLimiPrice.html">getLimiPrice</a></li>
 				<li><a href="function-getLimitAllPrice.html">getLimitAllPrice</a></li>
 				<li><a href="function-getProduct.html">getProduct</a></li>
 				<li><a href="function-getProductViewsCount.html">getProductViewsCount</a></li>
 				<li><a href="function-getPromoBlock.html">getPromoBlock</a></li>
 				<li><a href="function-getSimilarProduct.html">getSimilarProduct</a></li>
+				<li><a href="function-getSiteInfo.html">getSiteInfo</a></li>
 				<li><a href="function-getVariant.html">getVariant</a></li>
 				<li><a href="function-getVariants.html">getVariants</a></li>
 				<li><a href="function-getWidgetTitle.html">getWidgetTitle</a></li>
@@ -521,12 +520,25 @@
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-			<a href="class-Cart.BaseCart.html"><span class="invalid">Cart\BaseCart</span></a>
-			
+MY_Controller
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-ShopController.html"><span>ShopController</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Cart.BaseCart.html"><span>Cart\BaseCart</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
 			<img src="resources/inherit.png" alt="Extended by" />
 <b><span>Cart_api</span></b>			
 			
@@ -556,7 +568,7 @@
 				<b>Uses:</b>
 				<code><code><a href="class-ShopController.html">ShopController</a></code></code> <br />
 				<b>Uses:</b>
-				<code><code><a href="class-Cart.BaseCart.html" class="invalid">Cart\BaseCart</a></code></code> <br />
+				<code><code><a href="class-Cart.BaseCart.html">Cart\BaseCart</a></code></code> <br />
 		<b>Located at</b> application/modules/shop/cart_api.php<br />
 	</div>
 
@@ -579,16 +591,22 @@
 
 		<div class="description short">
 			
+<p>__construct</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>__construct</p>
 
 
 
 
 
 
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Cart.BaseCart.html#___construct">Cart\BaseCart::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -676,6 +694,8 @@
 						&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
 				</div>
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Cart.BaseCart.html#_add">Cart\BaseCart::add()</a></code></div>
 
 		</div>
 		</div></td>
@@ -726,6 +746,8 @@
 						&lt;<a href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br />
 				</div>
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Cart.BaseCart.html#_delete">Cart\BaseCart::delete()</a></code></div>
 
 		</div>
 		</div></td>
@@ -991,6 +1013,38 @@
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Cart.BaseCart.html#methods">Cart\BaseCart</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Cart.BaseCart.html#_addItem">addItem()</a>, 
+			<a href="class-Cart.BaseCart.html#_getInstance">getInstance()</a>, 
+			<a href="class-Cart.BaseCart.html#_getItem">getItem()</a>, 
+			<a href="class-Cart.BaseCart.html#_getItems">getItems()</a>, 
+			<a href="class-Cart.BaseCart.html#_getOriginTotalPrice">getOriginTotalPrice()</a>, 
+			<a href="class-Cart.BaseCart.html#_getTotalItems">getTotalItems()</a>, 
+			<a href="class-Cart.BaseCart.html#_getTotalPrice">getTotalPrice()</a>, 
+			<a href="class-Cart.BaseCart.html#_recountOriginTotalPrice">recountOriginTotalPrice()</a>, 
+			<a href="class-Cart.BaseCart.html#_recountTotalPrice">recountTotalPrice()</a>, 
+			<a href="class-Cart.BaseCart.html#_removeAll">removeAll()</a>, 
+			<a href="class-Cart.BaseCart.html#_removeItem">removeItem()</a>, 
+			<a href="class-Cart.BaseCart.html#_setItemPrice">setItemPrice()</a>, 
+			<a href="class-Cart.BaseCart.html#_setQuantity">setQuantity()</a>, 
+			<a href="class-Cart.BaseCart.html#_setTotalPrice">setTotalPrice()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-ShopController.html#methods">ShopController</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-ShopController.html#_error404">error404()</a>, 
+			<a href="class-ShopController.html#_getShowUntranslated">getShowUntranslated()</a>, 
+			<a href="class-ShopController.html#_render">render()</a>, 
+			<a href="class-ShopController.html#_render_min">render_min()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -1003,6 +1057,15 @@
 
 
 
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-ShopController.html#properties">ShopController</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-ShopController.html#$currentLocale"><var>$currentLocale</var></a>, 
+			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
