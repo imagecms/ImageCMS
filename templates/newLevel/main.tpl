@@ -106,6 +106,7 @@
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
+        <script type="text/javascript" src="{$THEME}js/drop_extend_methods.js"></script>
         <script type="text/javascript" src="{$THEME}js/_shop.js"></script>
         <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
