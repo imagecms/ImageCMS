@@ -16,6 +16,7 @@ class Cms_admin extends CI_Model {
     /**
      * Add page into content table
      *
+     * @param array $data
      * @return integer
      */
     function add_page($data) {
