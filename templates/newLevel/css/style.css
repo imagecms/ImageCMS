@@ -1130,7 +1130,7 @@ footer .container{padding-top: 21px;}
 footer [class^="box"]{overflow: hidden;float: left;width: 23%;}
 footer .box-1{width: 17%;}
 footer .box-2{width: 29%;}
-footer [class^="box"] > .inside-padd{padding: 0 17px 20px 42px;min-height: 195px;margin-bottom: 10px;}
+footer [class^="box"] > .inside-padd{padding: 0 17px 20px 42px;min-height: 207px;margin-bottom: 10px;}
 footer .box-4{width: 31%;margin-top: -21px;}
 footer .box-1 > .inside-padd{padding-left: 1px;}
 footer .box-2 > .inside-padd{padding-right: 18px;}
