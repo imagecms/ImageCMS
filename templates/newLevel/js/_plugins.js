@@ -1318,10 +1318,10 @@ function getCookie(c_name)
                     var index = methods.index;
                     $thiss = $(this),
                     data = $thiss.data(),
-                    effectOn = settings.effectOn || data.effectOn,
-                    effectOff = settings.effectOff || data.effectOff,
-                    durationOn = parseInt(settings.durationOn || data.durationOn),
-                    durationOff = parseInt(settings.durationOff || data.durationOff);
+                    effectOn = data.effectOn || settings.effectOn,
+                    effectOff = data.effectOff || settings.effectOff,
+                    durationOn = parseInt(data.durationOn || settings.durationOn),
+                    durationOff = parseInt(data.durationOff || settings.durationOff);
                     navTabsLi[index] = $thiss.children();
                     refs[index] = navTabsLi[index].children(':first-child');
                     attrOrdata[index] = refs[index].attr('href') !== undefined ? 'attr' : 'data';
