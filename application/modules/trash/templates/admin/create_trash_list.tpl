@@ -34,8 +34,26 @@
                     <i class="icon-info-sign"></i>
                 </span>
                 <div class="d_n">
-                    {lang('Old URL','trash')} {lang('New URL','trash')} {lang('Redirect type','trash')} <br>
-                    /product/tovar             /shop/product/tovar       301
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>{lang('Old URL', 'trash')}</th>
+                                <th>{lang('New URL','trash')}</th>
+                                <th>{lang('Redirect type','trash')}</th>
+                            </tr>    
+                        </thead>
+                        <tbody>
+                            <td>
+                                /product/tovar 
+                            </td>
+                            <td>
+                                /shop/product/tovar
+                            </td>
+                            <td>
+                                301 
+                            </td>
+                        </tbody>
+                    </table>                           
                 </div>
                 {lang('Example', 'trash')}
             </span>
