@@ -9,6 +9,9 @@
  */
 class Trash extends MY_Controller {
 
+    /**
+     * Construct.
+     */
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
@@ -16,10 +19,20 @@ class Trash extends MY_Controller {
         $this->load->module('core');
     }
 
+    /**
+     * Index method.
+     * 
+     * @return void 
+     */
     public function index() {
         $this->core->error_404();
     }
 
+    /**
+     * AdminAutoload method.
+     * 
+     * @return void 
+     */
     public static function adminAutoload() {
         parent::adminAutoload();
         \CMSFactory\Events::create()->onShopProductDelete()->setListener('addProductWhenDelete');
@@ -28,6 +41,11 @@ class Trash extends MY_Controller {
         \CMSFactory\Events::create()->onShopCategoryDelete()->setListener('addProductsWhenCatDelete');
     }
 
+    /**
+     * Autoload method.
+     * 
+     * @return void 
+     */
     public function autoload() {
         $row = $this->db->get_where('trash', array('trash_url' => $this->uri->uri_string()))->row();
         if ($row != null) {
@@ -36,6 +54,12 @@ class Trash extends MY_Controller {
         }
     }
 
+    /**
+     *  
+     * @param array $arg
+     * 
+     * @return void 
+     */
     public static function addProductsWhenCatDelete($arg) {
         
     }
