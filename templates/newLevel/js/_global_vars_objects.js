@@ -89,7 +89,10 @@ var optionsDrop = {
     moreOne: false,
     closeClick: true,
     closeEsc: true,
-    position: 'absolute'
+    position: 'absolute',
+    scroll: true,
+    limitSize: true,
+    limitContentSize: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',

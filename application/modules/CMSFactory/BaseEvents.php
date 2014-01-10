@@ -234,6 +234,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onShopProductAjaxChangeActive() {
+        $this->key = 'ShopAdminProducts:ajaxChangeActive';
+        return $this;
+    }
+
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
@@ -384,7 +389,7 @@ abstract class BaseEvents {
         $this->key = 'Cart:MakeOrder';
         return $this;
     }
-    
+
     final public function onCartInit() {
         $this->key = 'Cart:Init';
         return $this;
