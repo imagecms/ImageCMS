@@ -242,7 +242,7 @@ var Comments = {
             });
         });
     },
-    renderPosts: function(el, data) {
+    renderPosts: function(el, data, visible) {
         var dataSend = "";
         if (data != undefined) {
             dataSend = data;
@@ -275,6 +275,10 @@ var Comments = {
                         $('#cc').html('');
                         $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), text.plurComments));
                     }
+                    if (visible == 1){
+                        $(el).find('label.succ').removeClass('d_n');
+                        setTimeout(function(){$(el).find('label.succ').addClass('d_n');}, 3000);
+                    }
                     $(document).trigger({
                         'type': 'rendercomment.after', 
                         'el': el
@@ -304,8 +308,8 @@ var Comments = {
                         $(this).val('');
                     });
                     $('.comment_plus').val('');
-                    $('.comment_minus').val('');
-                    Comments.renderPosts($(el).closest('.forComments'), data);
+                    $('.comment_minus').val('');                    
+                    Comments.renderPosts($(el).closest('.forComments'), data, 1);                    
                 }
                 else {
                     var form = $(el).closest('form');
