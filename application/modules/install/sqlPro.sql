@@ -1798,19 +1798,20 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `enabled` tinyint(1) DEFAULT NULL,
   `is_price_in_percent` tinyint(1) NOT NULL,
   `position` int(11) DEFAULT NULL,
+  `delivery_sum_specified` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_delivery_methods_I_2` (`enabled`),
   KEY `shop_delivery_methods_I_1` (`enabled`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=63 ;
 
 --
 -- Дамп даних таблиці `shop_delivery_methods`
 --
 
-INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`, `position`) VALUES
-(7, 0.00, 0.00, 1, 0, NULL),
-(5, 56.00, 0.00, 1, 0, NULL),
-(6, 355.00, 0.00, 1, 0, NULL);
+INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`, `position`, `delivery_sum_specified`) VALUES
+(7, 0.00, 100000000.00, 1, 0, NULL, 0),
+(5, 80.00, 100000000.00, 1, 0, NULL, 0),
+(6, 50.00, 100000000.00, 1, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1825,6 +1826,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
   `name` varchar(500) NOT NULL,
   `description` text,
   `pricedescription` text,
+  `delivery_sum_specified_message` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_delivery_methods_i18n_I_1` (`name`(333))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1833,11 +1835,11 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
 -- Дамп даних таблиці `shop_delivery_methods_i18n`
 --
 
-INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`) VALUES
-(7, 'ru', 'Самовывоз', ' ', ' '),
-(5, 'ru', 'Курьером', '<p>Только по Киеву и Москве</p>  ', ' '),
-(6, 'ru', 'АвтоМир', '<p>Доставка по всему миру</p>  ', ' '),
-(7, 'ua', 'Самовивезення', '', NULL);
+INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`, `delivery_sum_specified_message`) VALUES
+(7, 'ru', 'Самовывоз в Киеве', '<p>г. Киев, ул. Тестовая 12/34</p>', '', NULL),
+(5, 'ru', 'Адресная доставка курьером', '', '', NULL),
+(6, 'ru', 'Нова Пошта', '<p>Доставка по Украине</p>', '', ''),
+(7, 'ua', 'Самовивезення', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -9885,13 +9887,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   KEY `users_I_1` (`key`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
-
---
--- Дамп даних таблиці `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
-(48, 1, 'ad@min.com', '$6$lD8Qy.F9AnHF$oZhZHQITIjCx7M6pDKdTZHR/JTPer0r2SS1iDSPiFXTdOKA4cdTwCypfcC0Dzg4FdV36YaAdBQR/g89dfi1hD/', 'ad@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1388407432, NULL, '', NULL, NULL, 'aaTgx', 0.00, NULL, '');
 
 -- --------------------------------------------------------
 

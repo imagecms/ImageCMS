@@ -9,6 +9,9 @@
  */
 class Trash extends MY_Controller {
 
+    /**
+     * Construct.
+     */
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
@@ -16,17 +19,33 @@ class Trash extends MY_Controller {
         $this->load->module('core');
     }
 
+    /**
+     * Index method.
+     * 
+     * @return void 
+     */
     public function index() {
         $this->core->error_404();
     }
 
+    /**
+     * AdminAutoload method.
+     * 
+     * @return void 
+     */
     public static function adminAutoload() {
         parent::adminAutoload();
         \CMSFactory\Events::create()->onShopProductDelete()->setListener('addProductWhenDelete');
         \CMSFactory\Events::create()->onShopProductCreate()->setListener('delProductWhenCreate');
+        \CMSFactory\Events::create()->onShopProductAjaxChangeActive()->setListener('addProductWhenAjaxChangeActive');
         \CMSFactory\Events::create()->onShopCategoryDelete()->setListener('addProductsWhenCatDelete');
     }
 
+    /**
+     * Autoload method.
+     * 
+     * @return void 
+     */
     public function autoload() {
         $row = $this->db->get_where('trash', array('trash_url' => $this->uri->uri_string()))->row();
         if ($row != null) {
@@ -35,6 +54,12 @@ class Trash extends MY_Controller {
         }
     }
 
+    /**
+     *  
+     * @param array $arg
+     * 
+     * @return void 
+     */
     public static function addProductsWhenCatDelete($arg) {
         
     }
@@ -43,6 +68,25 @@ class Trash extends MY_Controller {
         $model = $arg['model'];
         $ci = &get_instance();
         $ci->db->where('trash_url', 'shop/product/' . $model->url)->delete('trash');
+    }
+
+    public static function addProductWhenAjaxChangeActive($arg) {
+        /* @var $model SProducts */
+        $model = $arg['model'];
+        /* @var $ci MY_Controller */
+        $ci = &get_instance();
+        if ($model->getActive()) {
+            $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
+        } else {
+            $array = array(
+                'trash_id' => $model->getCategoryId(),
+                'trash_url' => 'shop/product/' . $model->getUrl(),
+                'trash_redirect_type' => 'category',
+                'trash_type' => '301',
+                'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
+            );
+            $ci->db->insert('trash', $array);
+        }
     }
 
     public static function addProductWhenDelete($arg) {
