@@ -566,11 +566,12 @@ var ImageCMSApi = {
                         elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
-                            elMsg.hide();
+                            elMsg.remove();
                             $(document).trigger({
                                 'type': 'imageapi.hidemsg',
                                 'el': form
-                            })
+                            });
+                            $this.focus();
                         }
                     });
                 }
@@ -603,14 +604,15 @@ var ImageCMSApi = {
                     var input = sel.find('[name=' + key + ']');
                     input.addClass(DS.err);
                     input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, sel));
-                    var finput = sel.find(':input.' + DS.err + ':first');
-                    finput.setCursorPosition(finput.val().length);
                 }
-                if (i == Object.keys(validations).length)
+                if (i == Object.keys(validations).length){
                     $(document).trigger({
                         'type': 'imageapi.pastemsg',
                         'el': sel.parent()
                     })
+                    var finput = sel.find(':input.' + DS.err + ':first');
+                    finput.setCursorPosition(finput.val().length);
+                }
                 i++;
             }
         } else {

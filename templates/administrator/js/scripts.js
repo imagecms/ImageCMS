@@ -269,6 +269,7 @@ function dis_un_dis() {
 }
 
 function init_2() {
+    $('[data-toggle="ttip"]').tooltip();
     $('.products_table').find('span.prod-on_off').add($('[data-page="tovar"]')).off('click').on('click', function() {
         var page_id = $(this).attr('data-id');
         $.ajax({
@@ -279,6 +280,22 @@ function init_2() {
         });
     });
     // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
+
+    /** Show/Hide Price to be confirmed message input in delivery methods edit and create ***/
+    $('#deliverySumSpecifiedSpan').bind('click', function() {
+        var spanBlock = $(this);
+        var checkBox = spanBlock.find('#deliverySumSpecifiedInput');
+        var controlBlock = spanBlock.closest('#deliveryPriceDisableBlock');
+        var deliverySumSpecifiedMessageBlock = $('#deliverySumSpecifiedMessageSpan');
+
+        if (checkBox.prop('checked') !== true) {
+            controlBlock.find('input:text').prop('disabled', 'disabled');
+            deliverySumSpecifiedMessageBlock.show();
+        } else {
+            controlBlock.find('input:text').removeAttr('disabled');
+            deliverySumSpecifiedMessageBlock.hide();
+        }
+    });
 
     if ($.exists('.buy_prod, .popover_ref')) {
         //alert('init2');
@@ -782,17 +799,17 @@ function number_tooltip() {
 }
 function getScrollTop() {
     var scrOfY = 0;
-    if (typeof(window.pageYOffset) == "number") {
+    if (typeof (window.pageYOffset) == "number") {
         //Netscape compliant
         scrOfY = window.pageYOffset;
     } else if (document.body
             && (document.body.scrollLeft
-            || document.body.scrollTop)) {
+                    || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
             && (document.documentElement.scrollLeft
-            || document.documentElement.scrollTop)) {
+                    || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -1098,7 +1115,7 @@ function initAdminArea() {
                 }
             });
 
-        }else{
+        } else {
             return false;
         }
     });
@@ -1124,11 +1141,11 @@ function initAdminArea() {
         $(img).addClass('img-polaroid').css({
             width: '100px'
         });
-        
+
         img.onerror = function() {
             // image not found or change src like this as default image:
-            img.src = base_url+'templates/administrator/images/select-picture.png';
-            showMessage(lang('Error'),lang('Not supported file format'));
+            img.src = base_url + 'templates/administrator/images/select-picture.png';
+            showMessage(lang('Error'), lang('Not supported file format'));
             return;
         };
         $(this).closest('.control-group').find('.controls').html(img);
@@ -1163,8 +1180,8 @@ function initAdminArea() {
 
     })
             .on('pjax:end', function() {
-        $('#loading').fadeOut(300);
-    });
+                $('#loading').fadeOut(300);
+            });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
