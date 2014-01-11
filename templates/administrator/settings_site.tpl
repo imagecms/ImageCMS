@@ -393,28 +393,37 @@
                                                     <div class="row-fluid">
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_companytype">{lang('Company type', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_companytype'"></i></label>
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_companytype'" for="siteinfo_companytype">
+                                                                {lang('Company type', 'admin')} 
+                                                                <i class="icon-info-sign"></i>
+                                                            </label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_companytype" name="siteinfo_companytype">{$siteinfo_companytype}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_address">{lang('Address', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_address'"></i></label>
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_address'" for="siteinfo_address">{lang('Address', 'admin')} 
+                                                                <i class="icon-info-sign"></i>
+                                                            </label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_address" name="siteinfo_address">{$siteinfo_address}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_mainphone">{lang('Main phone', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_mainphone'"></i></label>
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_mainphone'" for="siteinfo_mainphone">{lang('Main phone', 'admin')} 
+                                                                <i class="icon-info-sign"></i>
+                                                            </label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_mainphone" name="siteinfo_mainphone">{$siteinfo_mainphone}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_adminemail">{lang('Admin email', 'admin')}<i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_adminemail'"></i></label>
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_adminemail'" for="siteinfo_adminemail">{lang('Admin email', 'admin')}
+                                                                <i class="icon-info-sign"></i>
+                                                            </label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_adminemail" name="siteinfo_adminemail">{$siteinfo_adminemail}</textarea>
                                                             </div>
@@ -422,7 +431,9 @@
 
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label" for="">{lang('Contacts', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} {lang('that you entered as a contact type', 'admin')}"></i></label>  
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} {lang('that you entered as a contact type', 'admin')}" for="">{lang('Contacts', 'admin')} 
+                                                                <i class="icon-info-sign"></i>
+                                                            </label>  
                                                             <div class="controls">
                                                                 <table id="siteinfo_contacts_table">
                                                                     {if count($contacts) > 0}
@@ -469,7 +480,10 @@
 
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label">{lang('Logo', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_logo'"></i></label>
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_logo'">
+                                                                {lang('Logo', 'admin')} 
+                                                                <i class="icon-info-sign"></i>
+                                                            </label>
                                                             <input type="file" id="siteinfo_logo" name="siteinfo_logo" data-url="file">
                                                             <input type="hidden" id="si_delete_logo" class="si_delete_image" name="si_delete_logo" value="0">
 
@@ -488,7 +502,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label">Favicon <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_favicon'"></i></label>
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_favicon'">Favicon 
+                                                                <i class="icon-info-sign"></i>
+                                                            </label>
                                                             <input type="file" id="siteinfo_favicon" name="siteinfo_favicon" data-url="file">
                                                             <input type="hidden" id="si_delete_favicon" class="si_delete_image" name="si_delete_favicon" value="0">
 
@@ -513,7 +529,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-
                         </div> <!-- Інформація про сайт - Завершення -->
                     </div>
                 </form> 
