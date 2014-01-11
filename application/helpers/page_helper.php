@@ -1,81 +1,77 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
-if ( ! function_exists('get_page'))
-{
-	// Get page by id
-	function get_page($id)
-	{
-            
-            $lang_id = get_main_lang('id');
-            $lang_identif = get_main_lang('identif');
-		$ci =& get_instance();
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
-		$ci->db->limit(1);
-		$ci->db->select('content.*');
-		$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+if (!function_exists('get_page')) {
 
-                if ($lang_identif == $ci->uri->segment(1)){
-                    $ci->db->where('lang_alias', $id);
-                    $ci->db->where('lang', $lang_id);
-                }
-                else
-                    $ci->db->where('id', $id);
-		$query = $ci->db->get('content');
+    // Get page by id
+    function get_page($id) {
 
-		if ($query->num_rows() == 1)
-		{
-			return $query->row_array();
-		}
+        $lang_id = get_main_lang('id');
+        $lang_identif = get_main_lang('identif');
+        $ci = & get_instance();
 
-		return FALSE;
-	}
+        $ci->db->limit(1);
+        $ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author', FALSE);
+
+        if ($lang_identif == $ci->uri->segment(1)) {
+            $ci->db->where('lang_alias', $id);
+            $ci->db->where('lang', $lang_id);
+        } else
+            $ci->db->where('id', $id);
+        $query = $ci->db->get('content');
+
+        if ($query->num_rows() == 1) {
+            return $query->row_array();
+        }
+
+        return FALSE;
+    }
+
 }
 
-if ( ! function_exists('category_pages'))
-{
-	// Get pages by category
-	function category_pages($category, $limit = 0)
-	{
-		$ci =& get_instance();
+if (!function_exists('category_pages')) {
 
-		$category = $ci->lib_category->get_category($category);
-		$category['fetch_pages'] = unserialize($category['fetch_pages']);
+    // Get pages by category
+    function category_pages($category, $limit = 0) {
+        $ci = & get_instance();
 
-		$ci->db->where('post_status', 'publish');
-		$ci->db->where('publish_date <=', time());
-		$ci->db->where('lang', $ci->config->item('cur_lang'));
+        $category = $ci->lib_category->get_category($category);
+        $category['fetch_pages'] = unserialize($category['fetch_pages']);
 
-		if (count($category['fetch_pages']) > 0)
-		{
-			$category['fetch_pages'][] = $category['id'];
-			$ci->db->where_in('category', $category['fetch_pages']);
-		}
-		else
-		{
-			$ci->db->where('category', $category['id']);
-		}
+        $ci->db->where('post_status', 'publish');
+        $ci->db->where('publish_date <=', time());
+        $ci->db->where('lang', $ci->config->item('cur_lang'));
 
-		$ci->db->select('content.*');
-		$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
-		$ci->db->order_by($category['order_by'], $category['sort_order']);
+        if (count($category['fetch_pages']) > 0) {
+            $category['fetch_pages'][] = $category['id'];
+            $ci->db->where_in('category', $category['fetch_pages']);
+        } else {
+            $ci->db->where('category', $category['id']);
+        }
 
-		if ($limit > 0)
-		{
-			$ci->db->limit($limit);
-		}
+        $ci->db->select('content.*');
+        $ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
+        $ci->db->order_by($category['order_by'], $category['sort_order']);
 
-		$query = $ci->db->get('content');
+        if ($limit > 0) {
+            $ci->db->limit($limit);
+        }
 
-		return $query->result_array();
-	}
+        $query = $ci->db->get('content');
+
+        return $query->result_array();
+    }
+
 }
 
-if (!function_exists('encode'))
-{
-	function encode($string)
-	{
-		if(!is_string($string))
-			$string = (string) $string;
-		return htmlspecialchars($string, ENT_QUOTES, 'utf-8');
-	}
+if (!function_exists('encode')) {
+
+    function encode($string) {
+        if (!is_string($string))
+            $string = (string) $string;
+        return htmlspecialchars($string, ENT_QUOTES, 'utf-8');
+    }
+
 }
