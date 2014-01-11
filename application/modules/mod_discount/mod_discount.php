@@ -46,6 +46,20 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
             \CMSFactory\Events::create()->onShopMakeOrder()->setListener('make_order_with_discount');
             \CMSFactory\Events::create()->on('Cart:Operation')->setListener('changeCart');
         }
+
+
+        /** apply Gift */
+        if ($_POST['gift']) {
+            
+                $gift = $this->input->post('gift');
+                //echo __DIR__;
+                require_once __DIR__ . '/gift.php';
+                $obkGift = new \Gift();
+                if ($_POST['gift_ord'])
+                    $obkGift->get_gift_certificate_new($gift, null,true);
+                else
+                    $obkGift->get_gift_certificate_new($gift);
+        }
     }
 
     /**
