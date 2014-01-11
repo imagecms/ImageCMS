@@ -27,15 +27,15 @@ Product = {
             var productId = parseInt($(this).attr('value')),
                     liBlock = $(this).closest(genObj.parentBtnBuy),
                     btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut),
-                    vId = btnInfo.attr('data-id'),
-                    vName = btnInfo.attr('data-vname'),
-                    vNumber = btnInfo.attr('data-number'),
-                    vPrice = btnInfo.attr('data-price'),
-                    vAddPrice = btnInfo.attr('data-addPrice'),
-                    vOrigPrice = btnInfo.attr('data-origPrice'),
-                    vLargeImage = btnInfo.attr('data-largeImage'),
-                    vMainImage = btnInfo.attr('data-mainImage'),
-                    vStock = btnInfo.attr('data-maxcount');
+                    vId = btnInfo.data('id'),
+                    vName = btnInfo.data('vname'),
+                    vNumber = btnInfo.data('number'),
+                    vPrice = btnInfo.data('price'),
+                    vAddPrice = btnInfo.data('addPrice'),
+                    vOrigPrice = btnInfo.data('origPrice'),
+                    vLargeImage = btnInfo.data('largeImage'),
+                    vMainImage = btnInfo.data('mainImage'),
+                    vStock = btnInfo.data('maxcount');
 
             if (vMainImage.search(/nophoto/) === -1) {
                 $(genObj.photoProduct).add($(genObj.mainThumb)).attr('href', vLargeImage);

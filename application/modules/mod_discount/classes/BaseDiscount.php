@@ -96,6 +96,7 @@ class BaseDiscount extends \MY_Controller {
     public function get_cart_data() {
 
         $this->cart_data = \ShopCore::app()->SCart->getData();
+        //var_dump($this->cart_data);
         return $this->cart_data;
     }
      /**
@@ -108,7 +109,7 @@ class BaseDiscount extends \MY_Controller {
      */
     public function get_cart_data_new() {
 
-        $cart = \CartNew\BaseCart::getInstance();
+        $cart = \Cart\BaseCart::getInstance();
         $cart = $cart->getItems();
         $this->cart_data = $cart['data'];
         return $this->cart_data;
@@ -157,7 +158,7 @@ class BaseDiscount extends \MY_Controller {
      */
     public function get_total_price_new($data = null) {
 
-        $cart = \CartNew\BaseCart::getInstance();
+        $cart = \Cart\BaseCart::getInstance();
         $this->total_price = $cart->getOriginTotalPrice();
         return $this->total_price;
     }
