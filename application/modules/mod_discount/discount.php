@@ -17,8 +17,7 @@ if (!defined('BASEPATH'))
 class discount extends classes\BaseDiscount {
 
     public $result_discount;
-    
-    private $new_cart = false;
+
 
     /**
      * __construct base object loaded
@@ -48,13 +47,13 @@ class discount extends classes\BaseDiscount {
 
         $this->get_user_group_id();
         
-        if (!$this->new_cart)
+        if ($this->config->item('use_deprecated_cart_methods'))
             $this->get_cart_data(); //--
         else
             $this->get_cart_data_new(); // new Cart
 
         if ($this->cart_data){
-            if (!$this->new_cart)
+            if ($this->config->item('use_deprecated_cart_methods'))
                 $this->get_total_price(); //--
             else
                 $this->get_total_price_new(); // new Cart
@@ -104,7 +103,7 @@ class discount extends classes\BaseDiscount {
 
         $discount_value_no_product = $this->get_discount_value($discount_max, $totalPrice);
         
-        if (!$this->new_cart)
+        if ($this->config->item('use_deprecated_cart_methods'))
             $discount_product_value = $this->get_discount_products(); //--
         else
             $discount_product_value = $this->get_discount_products_new(); // new Cart
