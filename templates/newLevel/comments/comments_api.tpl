@@ -18,7 +18,7 @@
                         <form method="post">
                             {if !$is_logged_in}
                                 {if $use_moderation}
-                                    <label>
+                                    <label class="d_n succ">
                                         <span class="frame-form-field">
                                             <div class="msg">
                                                 <div class="success">
@@ -223,7 +223,7 @@
                                 <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
-                        <label>
+                        <label class="d_n succ">
                             <span class="frame-form-field">
                                 <div class="msg">
                                     <div class="success">

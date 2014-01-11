@@ -44,7 +44,7 @@ INSERT INTO `answer_notifications` (`id`, `locale`, `name`, `message`) VALUES
 (2, 'ua', 'callback', '<h1>Дякуємо</h1>\n<div>В короткий час наші менеджери звяжуться з Вами</div>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>'),
 (3, 'ua', 'order', '<h1>Дякуємо</h1>\n<div>В короткий час наші менеджери звяжуться з Вами</div>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>'),
 (4, 'ru', 'incoming', '<h1>Спасибо</h1>\r\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>'),
-(5, 'ru', 'callback', '<h1>Спасибо</h1>\r\n<div>В ближайіваівашее время наши менеджеры свяжутся с Вами</div>'),
+(5, 'ru', 'callback', '<h1>Спасибо</h1>\r\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>'),
 (6, 'ru', 'order', '<h1>Спасибо</h1>\r\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>');
 
 -- --------------------------------------------------------
@@ -1693,6 +1693,13 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
+--
+-- Дамп даних таблиці `shop_callbacks_themes`
+--
+
+INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
+(1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1707,6 +1714,14 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_callbacks_themes_i18n_I_1` (`text`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `shop_callbacks_themes_i18n`
+--
+
+INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
+(1, 'ru', 'Первая тема'),
+(1, 'ua', 'Перша тема');
 
 -- --------------------------------------------------------
 
@@ -1901,19 +1916,21 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `enabled` tinyint(1) DEFAULT NULL,
   `is_price_in_percent` tinyint(1) NOT NULL,
   `position` int(11) DEFAULT NULL,
+  `delivery_sum_specified` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_delivery_methods_I_2` (`enabled`),
   KEY `shop_delivery_methods_I_1` (`enabled`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=63 ;
 
 --
 -- Дамп даних таблиці `shop_delivery_methods`
 --
 
-INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`, `position`) VALUES
-(7, 0.00, 100000000.00, 1, 0, NULL),
-(5, 80.00, 100000000.00, 1, 0, NULL),
-(6, 50.00, 100000000.00, 1, 0, NULL);
+INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`, `position`, `delivery_sum_specified`) VALUES
+(7, 0.00, 100000000.00, 1, 0, NULL, 0),
+(5, 80.00, 100000000.00, 1, 0, NULL, 0),
+(6, 50.00, 100000000.00, 1, 0, NULL, 0);
+
 
 -- --------------------------------------------------------
 
@@ -1928,6 +1945,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
   `name` varchar(500) NOT NULL,
   `description` text,
   `pricedescription` text,
+  `delivery_sum_specified_message` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_delivery_methods_i18n_I_1` (`name`(333))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1936,11 +1954,11 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
 -- Дамп даних таблиці `shop_delivery_methods_i18n`
 --
 
-INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`) VALUES
-(7, 'ru', 'Самовывоз в Киеве', '<p>г. Киев, ул. Тестовая 12/34</p>', ''),
-(5, 'ru', 'Адресная доставка курьером', '', ''),
-(6, 'ru', 'Нова Пошта', '<p>Доставка по Украине</p>', ''),
-(7, 'ua', 'Самовивезення', '', NULL);
+INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`, `delivery_sum_specified_message`) VALUES
+(7, 'ru', 'Самовывоз в Киеве', '<p>г. Киев, ул. Тестовая 12/34</p>', '', NULL),
+(5, 'ru', 'Адресная доставка курьером', '', '', NULL),
+(6, 'ru', 'Нова Пошта', '<p>Доставка по Украине</p>', '', ''),
+(7, 'ua', 'Самовивезення', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
