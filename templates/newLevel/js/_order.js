@@ -3,22 +3,6 @@ if (selectDeliv)
 else
     var methodDeliv = '[name = "deliveryMethodId"]';
 var Order = {
-    renderOrderDetails: function(a) {
-        $(genObj.orderDetails).html(_.template($(genObj.orderDetailsTemplate).html(), {
-            cart: Shop.Cart
-        }));
-        $(document).trigger({
-            'type': 'renderorder.after',
-            'el': $(genObj.orderDetails)
-        })
-        ShopFront.Cart.initShopPage(false);
-        Order.recountCartPage('renderOrderDetails');
-
-        if (a === 'start' && Discount)
-            Discount.renderGift(Shop.Cart.gift);
-        if (a !== 'start')
-            DiscountFront.getDiscount('renderOrderDetails');
-    },
     changeDeliveryMethod: function(id) {
         $(genObj.pM).next().show();
         $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
@@ -78,18 +62,7 @@ var Order = {
         }
     },
     recountCartPage: function(a) {
-        Shop.Cart.totalRecount();
-        var ca = "";
-        if (selectDeliv)
-            ca = $(genObj.frameDelivery).find('span.cuselActive');
-        else
-            ca = $(methodDeliv).filter(':checked');
-        Shop.Cart.shipping = parseFloat(ca.data('price'));
-        Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
-
-        Order.hideInfoDiscount();
-        if (a !== 'renderOrderDetails')
-            DiscountFront.getDiscount('recountCartPage');
+        
     },
     hideInfoDiscount: function() {
         $(genObj.discount).empty().next(preloader).show();
@@ -201,21 +174,6 @@ $(document).on('scriptDefer', function() {
             elCheckWrap: '.niceRadio'
                     //,classRemove: 'b_n'//if not standart
         });
-
-    $(document).on('sync_cart', function() {
-        Order.renderOrderDetails();
-    });
-    $(document).on('count_changed', function() {
-        Order.recountCartPage('count_changed');
-    });
-    $(document).on('cart_rm', function(data) {
-        Order.recountCartPage('cart_rm')
-    });
-    $(document).on('discount.display', function(e) {
-        Order.displayInfoDiscount(e.tpl);
-    });
-
-    Order.renderOrderDetails('start');
 });
 function initOrderTrEv() {
     $(document).on('discount.renderGiftInput', function(e) {

@@ -154,52 +154,24 @@ function init() {
         catalogForm.find('input[name=user_per_page]').val($(this).val());
         catalogForm.submit();
     });
-    doc.on('render_popup_cart', function() {
-        DiscountFront.getDiscount('render_popup_cart');
-    });
 
-    doc.on('sync_cart', function() {
-        ShopFront.Cart.process();
-        ShopFront.Cart.processBtnBuyCount();
-        ShopFront.Cart.initShopPage(false);
-    });
 
     $('#bask_block').on('click.toTiny', genObj.tinyBask + '.' + genObj.isAvail, function() {
         ShopFront.Cart.togglePopup();
     });
+    doc.on('sync_cart', function() {
+    });
+    doc.on('render_popup_cart', function() {
+    });
     doc.on('cart_clear', function() {
-        ShopFront.Cart.initShopPage(false);
-        ShopFront.Cart.countSum();
-        ShopFront.Cart.process();
-        ShopFront.Cart.processBtnBuyCount();
     });
     doc.on('count_changed', function(e) {
-        if (!orderDetails)
-            DiscountFront.getDiscount('count_changed');
-        ShopFront.Cart.processBtnBuyCount(body);
     });
-    doc.on('beforeDisplayDiscount', function(e) {
-        ShopFront.Cart.countSum();
-        ShopFront.Cart.process();
-    });
-
     doc.on('after_add_to_cart', function(e) {
-        ShopFront.Cart.initShopPage(e.show);
-        //ShopFront.Cart.initShopPage(false, e.cartItem); //for animate img to tinybask
-        ShopFront.Cart.processBtnBuyCount();
-        DiscountFront.getDiscount('after_add_to_cart');
+        
     });
     doc.on('cart_rm', function(data) {
-        if (!data.cartItem.kitId)
-            $('[data-id="popupProduct_' + data.cartItem.id + '_' + data.cartItem.vId + '"]').remove();
-        else
-            $('[data-id="popupKit_' + data.cartItem.kitId + '"]').remove();
-        ShopFront.Cart.processBtnBuyCount();
-        dropBaskResize();
-        if (Shop.Cart.length() > 0 && !orderDetails)
-            DiscountFront.getDiscount('cart_rm');
-        else
-            ShopFront.Cart.process();
+        
     });
     $(genObj.parentBtnBuy).on('click.toCompare', '.' + genObj.toCompare, function() {
         var id = $(this).data('prodid');
@@ -354,12 +326,6 @@ function init() {
             global.processWish();
             ShopFront.CompareList.count();
             global.wishListCount();
-
-            if (orderDetails)
-                Order.renderOrderDetails();
-
-            ShopFront.Cart.countSum();
-            ShopFront.Cart.process();
         });
     var genTimeout = "";
     wnd.resize(function() {
