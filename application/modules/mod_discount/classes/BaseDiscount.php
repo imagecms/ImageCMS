@@ -96,6 +96,7 @@ class BaseDiscount extends \MY_Controller {
     public function get_cart_data() {
 
         $this->cart_data = \ShopCore::app()->SCart->getData();
+        //var_dump($this->cart_data);
         return $this->cart_data;
     }
      /**
