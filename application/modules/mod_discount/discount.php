@@ -223,8 +223,8 @@ class discount extends classes\BaseDiscount {
      */
     public function get_discount_products_new() {
         foreach ($this->cart_data as $item) {
-            if ($item->instance == 'SProducts') {
-                $price_origin = $item->originPrice; // new Cart
+            if ($item->instance == 'SProducts') {              
+                $price_origin = number_format($item->originPrice, \ShopCore::app()->SSettings->pricePrecision,'.', ''); // new Cart
                 if (abs($price_origin - $item->price) > 1)
                     $discount_value += ($price_origin - $item->price) * $item->quantity;
             }
