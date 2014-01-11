@@ -2,13 +2,24 @@
 <ruleset name="ImageCMS">
     <description>The ImageCMS coding standard builds.</description>
 
-    <exclude-pattern>*/Tests/*</exclude-pattern>
-    <exclude-pattern>*/Oven/*</exclude-pattern>
-    <exclude-pattern>*/data/*</exclude-pattern>
-    <exclude-pattern>*/jquery.js</exclude-pattern>
-    <exclude-pattern>*/jquery.*.js</exclude-pattern>
-    <exclude-pattern>*/viper/*</exclude-pattern>
-    <exclude-pattern>DALConf.inc</exclude-pattern>
+<!--    <exclude-pattern>*/application/*</exclude-pattern>
+    <exclude-pattern>*\application\*</exclude-pattern> -->
+    <exclude-pattern>*/codesniffer/*</exclude-pattern>
+    <exclude-pattern>*\codesniffer\*</exclude-pattern>
+    <exclude-pattern>*/docs/*</exclude-pattern>
+    <exclude-pattern>*\docs\*</exclude-pattern>
+    <exclude-pattern>*/js/*</exclude-pattern>
+    <exclude-pattern>*\js\*</exclude-pattern>
+    <exclude-pattern>*/system/*</exclude-pattern>
+    <exclude-pattern>*\system\*</exclude-pattern>
+    <exclude-pattern>*/templates/*</exclude-pattern>
+    <exclude-pattern>*\templates\*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*\tests\*</exclude-pattern>
+    <exclude-pattern>*/uploads/*</exclude-pattern>
+    <exclude-pattern>*\uploads\*</exclude-pattern>
+    <exclude-pattern>*/uploads_site/*</exclude-pattern>
+    <exclude-pattern>*\uploads_site\*</exclude-pattern>
     
     <rule ref="ImageCMS.NamingConventions.CamelCapsFunctionName"/>
     <rule ref="ImageCMS.NamingConventions.UpperCaseConstantName"/>
