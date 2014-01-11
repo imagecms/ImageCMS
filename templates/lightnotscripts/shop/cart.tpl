@@ -35,6 +35,10 @@
 
             <div class="left-cart">
                 <form method="post" action="{$BASE_URL}shop/order/make_order" class="clearfix">
+                    {if $gift_key}
+                    <input type="hidden" name="gift" value="{echo $gift_key}"/>
+                                        <input type="hidden" name="gift_ord" value="1"/>
+                                        {/if}
                     <div class="horizontal-form order-form big-title">
                         <!-- Start. Errors block -->
                         {if $errors}
@@ -371,7 +375,7 @@
                                         <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
                                     </td>
                                     <td colspan="2" class="t-a_r">
-                                        <input type="hidden" name="gift" value="{echo $gift_key}"/>
+                                        
                                         <div class="text-discount current-discount">
                                             <span class="curDiscount">{echo $gift_key} - {echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
                                             <span class="curr">{$CS}</span>
