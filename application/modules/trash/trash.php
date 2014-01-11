@@ -55,12 +55,13 @@ class Trash extends MY_Controller {
     }
 
     /**
+     * AddProductsWhenCatDelete - adding redirects on category deleting.
      *  
      * @param array $arg
      * 
      * @return void 
      */
-    public static function addProductsWhenCatDelete($arg) {
+    public static function addProductsWhenCatDelete(array $arg) {
         
     }
 
