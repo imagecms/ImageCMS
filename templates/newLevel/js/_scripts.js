@@ -16,7 +16,6 @@ function init() {
     ShopFront.Cart.processBtnBuyCount();
     ShopFront.Cart.initShopPage(false);
     ShopFront.Cart.changeVariant();
-    DiscountFront.getDiscount('start');
     global.processWish();
     ShopFront.CompareList.process();
 
@@ -46,7 +45,7 @@ function init() {
 
         try {
             var fAS = $('.frame-already-show'),
-                    zInd = parseFloat(fAS.data('dropOver').css('z-index'));
+                    zInd = parseFloat(fAS.data('drp').dropOver.css('z-index'));
             fAS.prev().css('z-index', zInd + 3).closest('.frame-user-toolbar').css('z-index', zInd + 1);
         } catch (err) {
         }
@@ -216,7 +215,6 @@ function init() {
     });
     doc.on('discount.display', function(e) {
         Shop.Cart.discount = e.discount;
-        DiscountFront.displayDiscount(Shop.Cart.discount);
     });
     /*/sample of events shop/*/
 

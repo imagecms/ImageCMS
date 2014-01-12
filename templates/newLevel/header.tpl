@@ -36,7 +36,7 @@
                         </span>
                     </div>
                     <div class="btn-order-call">
-                        <a href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}" rel="a">
+                        <a href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}">
                             <span class="icon_order_call"></span>
                             <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
                         </a>
