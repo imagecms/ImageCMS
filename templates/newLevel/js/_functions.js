@@ -3,20 +3,21 @@
 var ShopFront = {
     Cart: {
         processBtnBuyCount: function(el) {
+            el = el == undefined ? body : el;
             el.find(genObj.numberC).has(genObj.iPr).each(function() {
-                var $this = $(this),
-                key = $this.data('prodid') + '_' + $this.data('varid');
-                if (keys.indexOf(key) != -1) {
-                    var input = $this.find('input');
-                    $this.find('button').attr('disabled', 'disabled');
-                    input.val(JSON.parse(localStorage.getItem('cartItem_' + key)).count).attr('readonly', 'readonly').attr('disabled', 'disabled');
-                }
-                else {
-                    var input = $this.find('input');
-                    $this.find('button').removeAttr('disabled');
-                    input.removeAttr('readonly disabled').val('1');
-                    $this.closest(genObj.frameCount).next().children().attr('data-count', '1')
-                }
+                var $this = $(this);
+                
+//                if (true) {
+//                    var input = $this.find('input');
+//                    $this.find('button').attr('disabled', 'disabled');
+//                    input.val().attr('readonly', 'readonly').attr('disabled', 'disabled');
+//                }
+//                else {
+//                    var input = $this.find('input');
+//                    $this.find('button').removeAttr('disabled');
+//                    input.removeAttr('readonly disabled').val('1');
+//                    $this.closest(genObj.frameCount).next().children().attr('data-count', '1')
+//                }
             })
             $(document).trigger({
                 'type': 'processPageEnd'
@@ -140,7 +141,7 @@ var ShopFront = {
         },
         count: function() {
             var count = Shop.CompareList.all().length,
-            btn = $(genObj.tinyCompareList).find('[data-href]').off('click.drop').off('click.tocompare');
+            btn = $(genObj.tinyCompareList).find('[data-href]').drop('destroy').off('click.tocompare');
             
             if (count > 0){
                 $(genObj.tinyCompareList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
@@ -163,74 +164,6 @@ var ShopFront = {
     }
 
 };
-var DiscountFront = {
-    getDiscount: function(a) {
-        //            if (!$.exists('#countDisc'))
-        //                body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
-        //            $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
-        //            console.log(a)
-        var k = true;
-        if (!orderDetails)
-            k = false;
-        $(document).trigger('showActivity');
-        $(document).trigger({
-            'type': 'beforeDisplayDiscount'
-        });
-        $.ajax({
-            type: 'GET',
-            url: '/shop/cart_api/get_kit_discount',
-            success: function(data) {
-                var kitDiscount = parseFloat(data);
-                Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : parseFloat(kitDiscount);
-
-                if (!Discount)
-                    DiscountFront.displayDiscount(null);
-
-                if (k && !Discount) {
-                    Order.displayInfoDiscount('');
-                    Order.renderGiftInput('');
-                }
-
-                if (!discountInPopup && !k)
-                    return false;
-                else if (Discount) {
-                    Discount.getDiscount(k);
-                }
-            }
-        });
-    },
-    displayDiscount: function(obj) {
-        Shop.Cart.totalRecount();
-        Shop.Cart.discountProduct = 0;
-        var tempdisc = false;
-        if (obj != null)
-            tempdisc = (parseFloat(obj.sum_discount_product) != 0 && obj.sum_discount_product != null) ? parseFloat(obj.sum_discount_product) : false;
-        var discC = tempdisc || Shop.Cart.kitDiscount != 0;
-        if (discC) {
-            if (tempdisc)
-                Shop.Cart.discountProduct += tempdisc;
-            Shop.Cart.discountProduct += Shop.Cart.kitDiscount;
-
-            $(genObj.curDiscount).each(function() {
-                $(this).html(Shop.Cart.discountProduct.toFixed(pricePrecision));
-            });
-            $(genObj.genSumDiscount).each(function() {
-                $(this).html(Shop.Cart.totalPriceOrigin.toFixed(pricePrecision));
-            });
-            $(genObj.frameDiscount).show();
-        }
-        else {
-            $(genObj.frameDiscount).hide();
-        }
-
-        ShopFront.Cart.countSum();
-        $(document).trigger('hideActivity');
-        $(document).trigger({
-            'type': 'displayDiscount',
-            'obj': obj
-        });
-    }
-}
 var global = {
     processWish: function() {
         var wishlist = wishList.all();
@@ -251,7 +184,7 @@ var global = {
     },
     wishListCount: function() {
         var count = wishList.all().length,
-        btn = $(genObj.tinyWishList).find('[data-href]').off('click.drop').off('click.towish');
+        btn = $(genObj.tinyWishList).find('[data-href]').drop('destroy').off('click.towish');
         
         if (count > 0) {
             $(genObj.tinyWishList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
@@ -309,7 +242,7 @@ function pluralStr(i, str) {
 }
 function serializeForm(el) {
     var $this = $(el);
-    return $this.data('data', $this.closest('form').serialize());
+    return $this.data('datas', $this.closest('form').serialize());
 }
 if (!$.isFunction($.fancybox)) {
     var loadingTimer, loadingFrame = 1;
