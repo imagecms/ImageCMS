@@ -164,6 +164,9 @@
     };
 })(jQuery);
 var Comments = {
+    toComment: function(el, drop){
+        wnd.scrollTop(drop.offset().top - 20);
+    },
     initComments: function () {
         $(".star-big").starRating({
             width: 26,
@@ -277,7 +280,9 @@ var Comments = {
                     }
                     if (visible == 1){
                         $(el).find('label.succ').removeClass('d_n');
-                        setTimeout(function(){$(el).find('label.succ').addClass('d_n');}, 3000);
+                        setTimeout(function(){
+                            $(el).find('label.succ').addClass('d_n');
+                        }, 3000);
                     }
                     $(document).trigger({
                         'type': 'rendercomment.after', 
