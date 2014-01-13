@@ -118,7 +118,7 @@ a:focus, a:active {color: #51d2ff;}
 .btn-wish > button:hover path, .btn-compare > button:hover path, .btn-wish > button:focus path, .btn-compare > button:focus path{fill: #51d2ff;}
 .btn-wish-in path, .btn-comp-in path{fill: #699200;}
 .btn-already-show.active > button path{fill: #0c9acb;}
-.btn-bask.pointer > button:hover path, .btn-bask.pointer:active path{fill: #fff;}
+.btn-bask.pointer > a:hover path, .btn-bask.pointer:active path{fill: #fff;}
 .btn-bask.pointer path{fill: #0c9acb;}
 /*/fill*/
 
@@ -604,7 +604,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 
 .btn-bask .empty .text-el{color: #999;}
 .btn-bask{height: 43px;width: 100%;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
-.btn-bask > button{width: 100%;}
+.btn-bask > button, .btn-bask > a{width: 100%;}
 .btn-bask:before{content: "";height: 42px;position: absolute;left: 58px;top: 1px;border-width: 0 1px;border-style: solid;border-left-color: #e4dfda;border-right-color: #fff;}
 .btn-bask .text-el{color: #0c9acb;font-weight: bold;font-size: 14px;}
 .btn-bask .divider{font-size: 10px;margin: 0 6px;}
@@ -730,7 +730,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
     box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(208, 208, 208, 0.6);
 }
 .btn-bask .divider.text-el{color: #999;}
-.btn-bask.pointer > button:hover{
+.btn-bask.pointer > button:hover, .btn-bask.pointer > a:hover{
     -moz-box-shadow: 0 1px 2px rgba(208, 208, 208, 0.6);
     -webkit-box-shadow: 0 1px 2px rgba(208, 208, 208, 0.6);
     box-shadow: 0 1px 2px rgba(208, 208, 208, 0.6);
@@ -748,9 +748,9 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
     -webkit-box-shadow: inset 0 1px 3px #0a82b1, 0 2px #fff;
     box-shadow: inset 0 1px 3px #0a82b1, 0 2px #fff;
 }
-.btn-bask.pointer > button:hover .divider{color: #d8d3ce;}
-.btn-bask.pointer > button:hover:before{border-left-color: #1386af;border-right-color: #57b9db;}
-.btn-bask.pointer > button:hover .text-el{color: #fff;}
+.btn-bask.pointer > button:hover .divider, .btn-bask.pointer > a:hover .divider{color: #d8d3ce;}
+.btn-bask.pointer > button:hover:before, .btn-bask.pointer > a:hover:before{border-left-color: #1386af;border-right-color: #57b9db;}
+.btn-bask.pointer > button:hover .text-el, .btn-bask.pointer > a:hover .text-el{color: #fff;}
 
 .btn-buy{
     border: 1px solid #0e9dcd;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-moz-box-shadow: inset 0 1px 0 #5bcfff, 0 2px 3px #bbb;-webkit-box-shadow: inset 0 1px 0 #5bcfff, 0 2px 3px #bbb;box-shadow: inset 0 1px 0 #5bcfff, 0 2px 3px #bbb;

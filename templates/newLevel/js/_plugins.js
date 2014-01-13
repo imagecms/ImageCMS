@@ -1662,7 +1662,7 @@ function getCookie(c_name)
                 e = window.event;
             if (datas !== undefined && $this === undefined) {
                 if (!$.exists($.drop.dP.modalBtnDrop)) {
-                    $this = $('<button>').attr('data-drop', $.drop.dP.modalBtnDrop).appendTo(body).data({'drop': $.drop.dP.modalBtnDrop, 'modal': true});
+                    $this = $('<button>').attr('data-drop', $.drop.dP.modalBtnDrop).appendTo(body).hide().data({'drop': $.drop.dP.modalBtnDrop, 'modal': true});
                     methods._pasteDrop($.extend({}, $.drop.dP, opt, $this.data()), $.drop.dP.patternNotif);
                 }
                 else
@@ -1815,7 +1815,7 @@ function getCookie(c_name)
                                         eval(data.elClosed)($thisB, $this, datas);
                                     if (isTouch)
                                         data.dropOver.off('touchmove.' + $.drop.nS);
-                                    $(document).trigger({
+                                    $this.add($(document)).trigger({
                                         type: 'closed.' + $.drop.nS,
                                         el: $thisB,
                                         drop: $this,
@@ -1827,7 +1827,7 @@ function getCookie(c_name)
                                     }
                                 });
                             }
-                            $(document).trigger({
+                            drop.add($(document)).trigger({
                                 type: 'close.' + $.drop.nS,
                                 el: $thisB,
                                 drop: drop,
@@ -2065,7 +2065,6 @@ function getCookie(c_name)
                     placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
                     placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
                     moreOne = elSet.moreOne || set.moreOne,
-                    delayAfter = elSet.delayAfter || set.delayAfter,
                     closeClick = elSet.closeClick || set.closeClick,
                     closeEsc = elSet.closeEsc || set.closeEsc,
                     droppable = elSet.droppable || set.droppable,
@@ -2138,7 +2137,6 @@ function getCookie(c_name)
                     'confirm': confirm,
                     'timeclosemodal': timeclosemodal,
                     'moreOne': moreOne,
-                    'delayAfter': delayAfter,
                     'closeClick': closeClick,
                     'closeEsc': closeEsc,
                     'droppable': droppable,
@@ -2201,7 +2199,7 @@ function getCookie(c_name)
                             changeSource(data, $this, drop);
                             if (elChangeSource !== undefined)
                                 eval(elChangeSource)(data, $this, drop);
-                            $(document).trigger({
+                            drop.add($(document)).trigger({
                                 'type': 'changeSource.' + $.drop.nS,
                                 'el': $this,
                                 'drop': drop,
@@ -2298,7 +2296,7 @@ function getCookie(c_name)
                 before($this, drop, isajax, data, set);
                 if (elBefore !== undefined)
                     eval(elBefore)($this, drop, isajax, data, set);
-                $(document).trigger({
+                drop.add($(document)).trigger({
                     'type': 'before.' + $.drop.nS,
                     'el': $this,
                     'drop': drop,
@@ -2409,7 +2407,7 @@ function getCookie(c_name)
                             eval(cB)($this, drop, isajax, data, set);
                         }
                         after($this, drop, isajax, data, set);
-                        $(document).trigger({
+                        drop.add($(document)).trigger({
                             'type': 'after.' + $.drop.nS,
                             'el': $this,
                             'drop': drop,
@@ -2543,7 +2541,6 @@ function getCookie(c_name)
             placeBeforeShow: 'center center',
             placeAfterClose: 'center center',
             moreOne: false,
-            delayAfter: 0,
             closeClick: false,
             closeEsc: false,
             droppable: false,
