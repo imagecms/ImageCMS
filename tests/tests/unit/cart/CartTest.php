@@ -1,6 +1,8 @@
 <?php
-
+//namespace Cart;
 require_once realpath(dirname(__FILE__) . '/../../..') . '/enviroment.php';
+
+require_once BASEPATH . '../application/modules/shop/cart.php';
 
 doLogin();
 
@@ -15,12 +17,13 @@ class CartTest extends PHPUnit_Framework_TestCase
     protected $object;
 
     /**
-     * Sets up the fixture, for example, opens a network connection.
+     * Sets up the fixture, for example, op_getUserProfileens a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
     {
-        $this->object = new \Cart;
+        $this->object = new Cart();
+        
     }
 
     /**
@@ -37,6 +40,11 @@ class CartTest extends PHPUnit_Framework_TestCase
      */
     public function testIndex()
     {
+//        $this->ass
+//        $this->object->tplName = 'cart.tpl';
+//        $result = $this->object->index();
+//        var_dumps('');
+//        var_dumps($result);
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
           'This test has not been implemented yet.'
@@ -49,10 +57,18 @@ class CartTest extends PHPUnit_Framework_TestCase
      */
     public function testAddProductByVariantId()
     {
+        try {
+            $this->object->addProductByVariantId(994);
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
+
+        
+        
         // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+//        $this->markTestIncomplete(
+//          'This test has not been implemented yet.'
+//        );
     }
 
     /**
