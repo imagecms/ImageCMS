@@ -492,29 +492,16 @@
                                                     {/if}
                                                 </span>
                                             </div>
-                                            <div class="btn-buy">
-                                                <button class="btnBuy" type="button"
-                                                        data-prodid="{echo implode(',', $kitProducts->getProductIdCart())}"
-                                                        data-price="{echo $kitProducts->getTotalPrice()}"
-                                                        data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
-                                                        data-addprice="{if $NextCSIdCond}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
-                                                        data-addprices="{if $NextCSIdCond}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
-                                                        data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
-                                                        data-origprice='{echo $kitProducts->getTotalPriceOld()}'
-                                                        data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
-                                                        data-kit="true"
-                                                        data-kitId="{echo $kitProducts->getId()}"
-                                                        data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
-                                                        data-url='{echo json_encode($kitProducts->getUrls())}'
-                                                        data-img='{echo json_encode($kitProducts->getImgs())}'
-                                                        data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
-                                                        data-count='1'
-                                                        data-prodstatus='{json_encode($kitProducts->getKitStatus())}'
-                                                        >
-                                                    <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                    <span class="text-el">{lang('Купить')}</span>
-                                                </button>
-                                            </div>
+                                            <form method="POST" action="/shop/cart/addKit/{echo $kitProducts->getId()}">
+                                                <input type="hidden" name="redirect" value="cart" />
+                                                <div class="btn-buy">
+                                                    <button class="btnBuy" type="submit">
+                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                        <span class="text-el">{lang('Купить')}</span>
+                                                    </button>
+                                                </div>
+                                                {form_csrf()}
+                                            </form>
                                         </div>
                                     </div>
                                     <!-- /total -->
