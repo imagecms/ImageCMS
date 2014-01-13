@@ -36,9 +36,9 @@
             <div class="left-cart">
                 <form method="post" action="{$BASE_URL}shop/order/make_order" class="clearfix">
                     {if $gift_key}
-                    <input type="hidden" name="gift" value="{echo $gift_key}"/>
-                                        <input type="hidden" name="gift_ord" value="1"/>
-                                        {/if}
+                        <input type="hidden" name="gift" value="{echo $gift_key}"/>
+                        <input type="hidden" name="gift_ord" value="1"/>
+                    {/if}
                     <div class="horizontal-form order-form big-title">
                         <!-- Start. Errors block -->
                         {if $errors}
@@ -210,9 +210,6 @@
                         </colgroup>
                         <tbody>
                             {foreach $items as $item}
-
-
-
                                 <!-- Start. For single product -->
                                 {if  $item->instance == 'SProducts'}
                                     <tr class="items items-bask cart-product">
@@ -371,7 +368,7 @@
                                         <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
                                     </td>
                                     <td colspan="2" class="t-a_r">
-                                        
+
                                         <div class="text-discount current-discount">
                                             <span class="curDiscount">{echo $gift_key} - {echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
                                             <span class="curr">{$CS}</span>
@@ -426,19 +423,19 @@
                                             {/if}
                                         </span>
                                     </span>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- End. Show cart -->
 </div>
 </div>
 <script type="text/javascript">
-                                                        initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
+    initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
 </script>
 
 
