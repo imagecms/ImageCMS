@@ -53,21 +53,46 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
         $result = (boolean) $this->object->getData();
         $this->assertFalse($result);
 
+        $result = (boolean) $this->object->getData('SProducts', 82);
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData('ShopKit', 16);
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData(1, 82);
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData(2, 16);
+        $this->assertFalse($result);
+
         $data1 = array(
             'instance' => 'SProducts',
-            'id' => 211,
+            'id' => 82,
         );
-//        $data2 = array(
-//            'instance' => 'ShopKit',
-//            'id' => 16,
-//            'quantity' => 5,
-//        );
+
         $this->object->setData($data1);
-//        $this->object->setData($data2);
+//        var_dump($this->object->getData());
         
-        $result = (boolean) $this->object->getData();
+        $result = (boolean) $this->object->getData('SProducts', 82);
         $this->assertTrue($result);
-        
+
+        $result = (boolean) $this->object->getData(1, 82);
+        $this->assertTrue($result);
+
+        $data2 = array(
+            'instance' => 'ShopKit',
+            'id' => 16,
+            'quantity' => 5,
+        );
+
+        $this->object->setData($data2);
+
+        $result = (boolean) $this->object->getData('ShopKit', 16);
+        $this->assertTrue($result);
+
+        $result = (boolean) $this->object->getData(2, 16);
+        $this->assertTrue($result);
+
 //        $result = (boolean)$this->object->getData($term1, $term2);
 //        $this->assertEquals($param, $result);
     }
