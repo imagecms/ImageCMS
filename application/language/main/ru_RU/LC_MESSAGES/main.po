@@ -2,9 +2,9 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-13 11:56+0200\n"
-"PO-Revision-Date: 2014-01-13 11:56+0200\n"
-"Last-Translator: Marko <sheme4ko@mail.ru>\n"
+"POT-Creation-Date: 2014-01-13 12:45+0200\n"
+"PO-Revision-Date: 2014-01-13 12:45+0200\n"
+"Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -667,7 +667,7 @@ msgstr "Поле %s может содержать только алфавитн�
 
 #: ../../../../../system/language/form_validation/form_validation.php:20
 msgid "alpha_dash"
-msgstr "alpha_dash"
+msgstr "Поле %s должно содержать только латинские буквы, цифры, а также знаки дефис и подчеркивание."
 
 #: ../../../../../system/language/form_validation/form_validation.php:21
 msgid "numeric"

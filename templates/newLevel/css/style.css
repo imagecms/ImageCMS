@@ -436,7 +436,7 @@ input.input-search{height: 33px;}
 .item-product .frame-prices{display: inline-block;vertical-align: middle;padding-bottom: 0;margin: 7px 18px 15px 0;}
 .item-product .frame-prices .price-discount, #photo .frame-prices .price-discount{display: block;}
 .item-product .frame-prices-buy{padding: 16px 15px 20px 25px;}
-.item-product .frame-count-buy > .frame-count, #photo .drop-footer .frame-count{display: inline-block;vertical-align: middle;}
+.item-product .frame-count, #photo .drop-footer .frame-count{display: inline-block;vertical-align: middle;}
 .item-product .frame-count, #photo .drop-footer .frame-count{margin-right: 10px;}
 #photo .drop-footer{text-align: center;padding: 12px 20px 24px;}
 #photo .drop-footer .frame-prices-buy .price-discount{display: block;}
