@@ -120,10 +120,6 @@ $baseMenu = array(
                 'text' => lang('Languages', 'admin'),
             ),
             array(
-                'link' => '/admin/cache_all',
-                'text' => lang('Cache', 'admin'),
-            ),
-            array(
                 'divider' => true
             ),
             array(
@@ -137,6 +133,11 @@ $baseMenu = array(
             array(
                 'link' => '/admin/rbac/roleList',
                 'text' => lang('Roles list', 'admin'),
+            ),
+            array(
+                'id' => 'clearAllCache',
+                'pjax' => FALSE,
+                'text' => lang('Clear cache', 'admin'),
             ),
         )
     )
@@ -268,7 +269,7 @@ $shopMenu = array(
                 'header' => true,
                 'text' => lang('Categories', 'admin'),
             ),
-             array(
+            array(
                 'link' => '/admin/categories/create_form',
                 'text' => lang('Create new', 'admin'),
             ),
@@ -381,10 +382,6 @@ $shopMenu = array(
                 'text' => lang('Languages', 'admin'),
             ),
             array(
-                'link' => '/admin/cache_all',
-                'text' => lang('Cache', 'admin'),
-            ),
-            array(
                 'divider' => true
             ),
             array(
@@ -399,7 +396,7 @@ $shopMenu = array(
                 'link' => '/admin/rbac/roleList',
                 'text' => lang('Roles list', 'admin'),
             ),
-             array(
+            array(
                 'divider' => true
             ),
             array(
@@ -409,6 +406,14 @@ $shopMenu = array(
             array(
                 'link' => '/admin/sys_info',
                 'text' => lang('System information', 'admin'),
+            ),
+            array(
+                'divider' => true
+            ),
+            array(
+                'id' => 'clearAllCache',
+                'pjax' => FALSE,
+                'text' => lang('Clear cache', 'admin'),
             ),
         )
     )

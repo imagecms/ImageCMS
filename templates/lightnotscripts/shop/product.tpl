@@ -281,7 +281,7 @@
                         <!--Start .Share-->
                         <dl class="social-product">
                             <dd class="social-like">
-                                {echo $CI->load->module('share')->_make_like_buttons()}
+                                {//echo $CI->load->module('share')->_make_like_buttons()}
                             </dd>
                         </dl>
                         <!-- End. Share -->

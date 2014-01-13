@@ -19,12 +19,7 @@ if (!function_exists('siteinfo')) {
      *    - siteinfo_contacts
      *    - siteinfo_logo
      *    - siteinfo_favicon
-     *    - siteinfo_logo_path
-     *    - siteinfo_favicon_path
-     *    - siteinfo_logo_url (equal to siteinfo_logo)
-     *    - siteinfo_favicon_url (equal to siteinfo_favicon)
      *    - "or some contact name"
-     *  (you can use each without 'siteinfo_' prefix)
      */
     function siteinfo($name = NULL) {
         // for shorter notation...
@@ -80,9 +75,15 @@ if (!function_exists('siteinfo')) {
 
             // if key exists value will be returned
             if (key_exists($name, $siteinfo)) {
-
                 return $siteinfo[$name];
             }
+
+            $name = str_replace('siteinfo_', '', $name);
+            if (key_exists($name, $siteinfo['contacts'])) {
+                return $siteinfo['contacts'][$name];
+            }
+
+
             return '';
         }
 
