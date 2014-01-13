@@ -4,7 +4,7 @@
         .cart .noCart{display: none;}
     </style>
 {/literal}
-<div id="popupCart" class="drop drop-bask drop-style">
+<div id="popupCart" class="drop-style">
     <div class="frame-bask frameBask">
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         {if $count > 0}
@@ -20,7 +20,9 @@
                                     <!-- for single product -->
                                     {if $item->instance === "SProducts"}
                                         <tr data-id="{echo $item->getId()}" class="items items-bask cart-product">
-                                            <td class="frame-remove-bask-btn"><a type="button" class="icon_times_cart" data-drop href="{site_url('shop/cart/api/removeProductByVariantId/'.$item->getId())}"></a></td>
+                                            <td class="frame-remove-bask-btn">
+                                                <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove('{site_url("shop/cart/api/removeProductByVariantId/".$item->getId())}')"></button>
+                                            </td>
                                             <td class="frame-items">
                                                 <a href="{echo shop_url('product/'.$item->getSProducts()->getUrl())}" title="{echo $item->getName()}" class="frame-photo-title">
                                                     <span class="photo-block">
@@ -207,7 +209,7 @@
                                             <span class="price-add">
                                                 <span>
                                                     <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice, $NextCSId)}</span>
-                                                    <span class="curr-add">{$NextCSId}</span>
+                                                    <span class="curr-add">{$NextCS}</span>
                                                 </span>
                                             </span>
                                         {/if}
