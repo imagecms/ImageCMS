@@ -21,7 +21,7 @@ class BaseCartTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-       // $this->object = \Cart\BaseCart::getInstance();
+        $this->object = \Cart\BaseCart::getInstance();
     }
 
     /**
@@ -31,17 +31,32 @@ class BaseCartTest extends \PHPUnit_Framework_TestCase {
     protected function tearDown() {
         
     }
-
+    
     /**
-     * @covers Cart\BaseCart::getInstance
-     * @todo   Implement testGetInstance().
+     * @covers Cart\BaseCart::addItem
+     * @todo   Implement testAddItem().
      */
-    public function testGetInstance() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testAddItem() {
+        
+       $result = $this->object->addItem(array('instance' => 'SProducts', 'id' => 13381, 'quantity' => 1)); 
+       $this->assertArrayHasKey('errors', $result);
+       /*
+       $result = $this->object->addItem(array('instance' => 'SProducts', 'id' => 892, 'quantity' => 2));
+       $this->assertTrue($result['success']);
+       
+       $result = $this->object->addItem(array('instance' => 'ShopKit', 'id' => 1, 'quantity' => 2));
+       $this->assertTrue($result['success']);
+       
+       $result = $this->object->addItem(array('instance' => 'ShopKit', 'id' => 1, 'quantity' => 1));
+       $this->assertTrue($result['success']);
+       
+       $result = $this->object->addItem(array('instance' => 'SProducts', 'id' => 892, 'quantity' => 4));
+        
+        */
+       
+       
     }
+    
 
     /**
      * @covers Cart\BaseCart::setQuantity
@@ -59,17 +74,6 @@ class BaseCartTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testSetItemPrice().
      */
     public function testSetItemPrice() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Cart\BaseCart::addItem
-     * @todo   Implement testAddItem().
-     */
-    public function testAddItem() {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
                 'This test has not been implemented yet.'
@@ -180,17 +184,6 @@ class BaseCartTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRecountOriginTotalPrice().
      */
     public function testRecountOriginTotalPrice() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Cart\BaseCart::add
-     * @todo   Implement testAdd().
-     */
-    public function testAdd() {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
                 'This test has not been implemented yet.'
