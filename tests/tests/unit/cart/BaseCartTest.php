@@ -40,11 +40,11 @@ class BaseCartTest extends \PHPUnit_Framework_TestCase {
        
        $result = $this->object->addItem(array('instance' => 'SProducts', 'id' => 13381, 'quantity' => 10)); 
        $this->assertTrue($result['success']);
-       //$this->assertArrayHasKey('errors', $result); 
+       $this->assertArrayHasKey('errors', $result); 
         
        $result = $this->object->addItem(array('instance' => 'SProducts', 'id' => 13381, 'quantity' => 1)); 
        $this->assertTrue($result['success']);
-       //$this->assertArrayHasKey('errors', $result);
+       $this->assertArrayHasKey('errors', $result);
        
        
        $result = $this->object->addItem(array('instance' => 'ShopKit', 'id' => 1, 'quantity' => 1));
