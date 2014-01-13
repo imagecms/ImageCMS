@@ -17,8 +17,7 @@ if (!defined('BASEPATH'))
 class discount extends classes\BaseDiscount {
 
     public $result_discount;
-    
-    private $new_cart = false;
+
 
     /**
      * __construct base object loaded
@@ -48,13 +47,13 @@ class discount extends classes\BaseDiscount {
 
         $this->get_user_group_id();
         
-        if (!$this->new_cart)
+        if ($this->config->item('use_deprecated_cart_methods'))
             $this->get_cart_data(); //--
         else
             $this->get_cart_data_new(); // new Cart
 
         if ($this->cart_data){
-            if (!$this->new_cart)
+            if ($this->config->item('use_deprecated_cart_methods'))
                 $this->get_total_price(); //--
             else
                 $this->get_total_price_new(); // new Cart
@@ -104,7 +103,7 @@ class discount extends classes\BaseDiscount {
 
         $discount_value_no_product = $this->get_discount_value($discount_max, $totalPrice);
         
-        if (!$this->new_cart)
+        if ($this->config->item('use_deprecated_cart_methods'))
             $discount_product_value = $this->get_discount_products(); //--
         else
             $discount_product_value = $this->get_discount_products_new(); // new Cart
@@ -139,9 +138,13 @@ class discount extends classes\BaseDiscount {
     public function get_user_discount() {
 
         $discount_user = array();
-        foreach ($this->discount_type['user'] as $user_disc)
-            if ($user_disc['user_id'] == $this->user_id)
+        foreach ($this->discount_type['user'] as $key => $user_disc) {
+            if ($user_disc['user_id'] == $this->user_id) {
                 $discount_user[] = $user_disc;
+            } else {
+                unset($this->discount_type['user'][$key]);
+            }
+        }
 
         if (count($discount_user) > 0)
             return $this->get_max_discount($discount_user, $this->total_price);
@@ -220,8 +223,8 @@ class discount extends classes\BaseDiscount {
      */
     public function get_discount_products_new() {
         foreach ($this->cart_data as $item) {
-            if ($item->instance == 'SProducts') {
-                $price_origin = $item->originPrice; // new Cart
+            if ($item->instance == 'SProducts') {              
+                $price_origin = number_format($item->originPrice, \ShopCore::app()->SSettings->pricePrecision,'.', ''); // new Cart
                 if (abs($price_origin - $item->price) > 1)
                     $discount_value += ($price_origin - $item->price) * $item->quantity;
             }

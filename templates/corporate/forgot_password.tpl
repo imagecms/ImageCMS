@@ -23,7 +23,7 @@
                             }}{/literal});
                         return false;">
                     <label>
-                        <span class="title">{lang('Почта','corporate')}</span>
+                        <span class="title">{lang('E-mail','corporate')}</span>
                         <span class="frame-form-field">
                             <input type="text" size="30" name="email"/>
                         </span>

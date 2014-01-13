@@ -28,7 +28,7 @@ class Settings extends BaseAdminController {
 
     function index() {
         $this->cms_admin->get_langs();
-        //cp_check_perm('cp_site_settings');
+//cp_check_perm('cp_site_settings');
 
         $settings = $this->cms_admin->get_settings();
 
@@ -42,7 +42,7 @@ class Settings extends BaseAdminController {
         $this->template->assign('templates', $this->_get_templates());
         $this->template->assign('template_selected', $settings['site_template']);
 
-        #Tiny MCE themes in lib_editor
+#Tiny MCE themes in lib_editor
 //        $themes_arr = array(
 //            'simple' => lang('Simple','admin'),
 //            'advanced' => lang('Extended','admin'),
@@ -80,13 +80,13 @@ class Settings extends BaseAdminController {
 
         ($hook = get_hook('admin_show_settings_tpl')) ? eval($hook) : NULL;
 
-        // Load modules list
+// Load modules list
         $this->template->assign('modules', $this->db->get('components')->result_array());
 
         $this->template->show('settings_site', FALSE);
     }
 
-    //++++++++++++++
+//++++++++++++++
     public function translate_meta() {
 
         $this->load->library('form_validation');
@@ -183,7 +183,7 @@ class Settings extends BaseAdminController {
      * @access public
      */
     function save() {
-        //cp_check_perm('cp_site_settings');
+//cp_check_perm('cp_site_settings');
         switch ($this->input->post('main_type')) {
             case 'category':
                 $data = array(
@@ -270,7 +270,7 @@ class Settings extends BaseAdminController {
     protected function processSiteInfo() {
         $this->activeTemplateName = getActiveTemplateName();
 
-        // getting all parameters with keys
+// getting all parameters with keys
         $siteinfo = array();
         foreach ($_POST as $key => $value) {
             if (0 === strpos($key, "siteinfo_")) {
@@ -295,6 +295,7 @@ class Settings extends BaseAdminController {
 
         unset($siteinfo['siteinfo_contactkey']);
         unset($siteinfo['siteinfo_contactvalue']);
+
         $siteinfo['contacts'] = $additional;
 
         $this->imagesPath = getFaviconLogoPath();
@@ -318,7 +319,6 @@ class Settings extends BaseAdminController {
             $this->load->helper('file');
             write_file($authFullPath, $newAuthContents);
         }
-
         // returning beautiful array =)
         return $siteinfo;
     }
@@ -330,6 +330,7 @@ class Settings extends BaseAdminController {
      */
     protected function processLogoOrFavicon($paramName, &$siteinfo) {
         // setting old value
+
         $oldValue = getSiteInfo($paramName);
         $siteinfo[$paramName] = !empty($oldValue) ? $oldValue : '';
         if (isset($_FILES[$paramName])) {

@@ -106,7 +106,8 @@ class Feedback extends MY_Controller {
             }
         }
 
-        $this->display_tpl('feedback');
+        CMSFactory\assetManager::create()
+                ->render('feedback');
     }
 
     // Send e-mail

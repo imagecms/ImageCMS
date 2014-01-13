@@ -12,6 +12,7 @@
 /application/modules/shop
 /application/modules/mobile/
 /application/modules/exchange/
+.tmp_staging
 /tests/tests/_log/*
 /tests/application/*
 Thumbs.db
