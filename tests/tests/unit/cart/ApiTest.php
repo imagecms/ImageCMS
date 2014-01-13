@@ -22,6 +22,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
     protected $successAnswer;
     protected $errorAddProductByVarId;
     protected $successKitDiscount;
+    protected $errorAddKitById;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -32,6 +33,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
         $this->errorCallMethodResult = json_encode(array('success' => false, 'errors' => true, 'message' => 'Method not found.'));
         $this->successAnswer = json_encode(array('success' => true, 'errors' => false));
         $this->errorAddProductByVarId = json_encode(array('success' => false, 'errors' => true, 'message' => 'You have not specified item id.'));
+        $this->errorAddKitById = json_encode(array('success' => false, 'errors' => true, 'message' => 'You have not specified item id.'));
         $this->successKitDiscount = json_encode(array('success' => true, 'errors' => false, 'data' => 0.00));
 
         $this->ci = & get_instance();
@@ -178,6 +180,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      */
     public function testRemoveKit() {
         $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeKit($this->kitId));
+        $this->assertJsonStringEqualsJsonString($this->errorAddKitById, $this->object->removeKit());
     }
 
     /**
@@ -185,7 +188,8 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRemoveProductByVariantId().
      */
     public function testRemoveProductByVariantId() {
-       
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeProductByVariantId($this->productVarId));
+        $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->removeProductByVariantId());
     }
 
     /**
@@ -193,10 +197,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRemoveAll().
      */
     public function testRemoveAll() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeAll());
     }
 
     /**
@@ -204,10 +205,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetTotalItemsCount().
      */
     public function testGetTotalItemsCount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        var_dumps($this->object->getTotalItemsCount());
     }
 
     /**
