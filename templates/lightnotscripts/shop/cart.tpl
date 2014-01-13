@@ -219,11 +219,9 @@
                                                     <span class="helper"></span>
                                                     <img src="{echo $item->getSmallPhoto()}" alt="">
                                                 </span>
-                                                {if !$item->getName()}
-                                                    <span class="title">{echo $item->getSProducts()->getName()}</span>
-                                                {else:}
-                                                    <span class="title">{echo $item->getName()}</span>
-                                                {/if}
+                                                
+                                                    <span class="title">{echo $item->getSProducts()->getName()} {if $item->getName()}{echo $item->getName()}{/if}</span>
+                                                
                                             </a>
                                             <div class="description">
                                                 {if $item->getSProducts()->getNumber()}
@@ -265,18 +263,16 @@
                                             <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
                                             <ul class="items items-bask">
                                                 <li>
-                                                    {foreach $item->items as $kitItem}
+                                                    {foreach $item->items as $k => $kitItem}
                                                         <div class="frame-kit">
                                                             <a class="frame-photo-title" href="{echo shop_url('product/'.$kitItem->getSProducts()->getUrl())}">
                                                                 <span class="photo-block">
                                                                     <span class="helper"></span>
                                                                     <img src="{echo $kitItem->getSmallPhoto()}">
                                                                 </span>
-                                                                {if !$kitItem->getName()}
-                                                                    <span class="title">{echo $kitItem->getSProducts()->getName()}</span>
-                                                                {else:}
-                                                                    <span class="title">{echo $kitItem->getName()}</span>
-                                                                {/if}
+                                                                
+                                                                    <span class="title">{echo $kitItem->getSProducts()->getName()} {if $kitItem->getName()}{echo $kitItem->getName()}{/if}</span>
+                                                                
                                                             </a>
                                                             <div class="description">
                                                                 {if $kitItem->getSProducts()->getNumber()}
@@ -304,7 +300,7 @@
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                            {if !next($item->items)}
+                                                            {if $item->items[$k+1]}
                                                                 <div class="next-kit">+</div>
                                                             {/if}
                                                         </div>
