@@ -50,9 +50,9 @@
                                         <div class="frame-form-field check-public">
                                             <div class="lineForm">
                                                 <select name="wlTypes" id="wlTypes">
-                                                    <option value="shared">Shared</option>
-                                                    <option value="public">Public</option>
-                                                    <option value="private">Private</option>
+                                                    <option value="shared">{lang('Коллективный')}</option>
+                                                    <option value="public">{lang('Публичный')}</option>
+                                                    <option value="private">{lang('Приватный')}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -161,7 +161,15 @@
                                             </div>
                                             <div class="f_l">
                                                 <b>{lang('Доступность:','newLevel')}</b>
-                                                <span class="s_t">{echo $wishlist[0][access]}</span>
+                                                {if $wishlist[0][access] == 'private'}
+                                                    <span class="s_t">{lang('Приватный')}</span>
+                                                {/if}
+                                                {if $wishlist[0][access] == 'public'}
+                                                    <span class="s_t">{lang('Публичный')}</span>
+                                                {/if}
+                                                {if $wishlist[0][access] == 'shared'}
+                                                    <span class="s_t">{lang('Коллективный')}</span>
+                                                {/if}
                                             </div>
                                         </div>
                                         <div>
@@ -169,7 +177,7 @@
                                                 <div class="btn-form btn-send-wishlist">
                                                     <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
                                                         <span class="icon_mail"></span>
-                                                        <span class="text-el">Поделится з другом</span>
+                                                        <span class="text-el">{lang('Поделится з другом')}</span>
                                                     </button>
                                                 </div>
                                             {/if}

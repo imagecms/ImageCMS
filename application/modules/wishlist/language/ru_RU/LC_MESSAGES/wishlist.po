@@ -1,9 +1,9 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-30 03:07+0200\n"
-"PO-Revision-Date: 2013-12-30 03:07+0200\n"
+"POT-Creation-Date: 2014-01-13 12:00+0200\n"
+"PO-Revision-Date: 2014-01-13 12:00+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,12 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:213
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:52
+#: ./application/modules/wishlist/assets/wishlist.tpl:47
+msgid "shared"
+msgstr "коллективный"
 
 #: ./application/modules/wishlist/classes/ParentWishlist.php:561
 msgid "max size"
@@ -139,12 +145,6 @@ msgstr "Удалить картинку"
 #: ./application/modules/wishlist/assets/wishlist.tpl:44
 msgid "Lists types"
 msgstr "Типы списков"
-
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:213
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:52
-#: ./application/modules/wishlist/assets/wishlist.tpl:47
-msgid "shared"
-msgstr "поделенный"
 
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:214
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:54
