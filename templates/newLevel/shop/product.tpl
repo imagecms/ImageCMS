@@ -142,7 +142,6 @@
                                             {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                         {/if}
                                         {if $productVariant->getStock() > 0}
-                                            {//var_dump(getAmountInCart('SProduct', $productVariant->getId()))}
                                             <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                     <div class="frame-count frameCount">
@@ -162,13 +161,35 @@
                                                             <input type="text" name="quantity" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
                                                         </div>
                                                     </div>
-                                                    <div class="btn-buy btn-buy-p">
+                                                    {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
+                                                    <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
                                                         <button 
-                                                            type="submit"
+                                                            type="button"
+                                                            data-drop="#popupCart"
+                                                            data-source="{shop_url('cart/api/renderCart')}"
+                                                            data-always="true"
 
+                                                            class="btnBuy infoBut"
+
+                                                            data-id="{echo $productVariant->getId()}"
+                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
+                                                            data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-price="{echo $productVariant->toCurrency()}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
+                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
+                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-maxcount="{echo $productVariant->getstock()}"
+                                                            >
+                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                            <span class="text-el">{lang('В корзине', 'newLevel')}</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
+                                                        <button 
                                                             type="button"
                                                             onclick="serializeForm(this)"
-                                                            data-source="/shop/cart/api/addProductByVariantId/{echo $productVariant->getId()}"
+                                                            data-source="{shop_url('cart/api/addProductByVariantId/'.$productVariant->getId())}"
                                                             data-drop=""
 
                                                             class="btnBuy infoBut"
@@ -184,7 +205,7 @@
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                            <span class="text-el">{lang('Купить')}</span>
+                                                            <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                                         </button>
                                                     </div>
                                                     {form_csrf()}

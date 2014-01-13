@@ -16,7 +16,7 @@
     </div>
 {else:}
     <div class="btn-bask pointer">
-        <a data-drop="#popupCart" id="showCart" data-source="{shop_url('cart/api/renderCart')}" data-always="true">
+        <button type="button" id="showCart" data-source="{shop_url('cart/api/renderCart')}" data-always="true">
             <span class="frame-icon">
                 <span class="icon_cleaner"></span>
             </span>
@@ -33,6 +33,6 @@
                     </span>
                 </span>
             </span>
-        </a>
+        </button>
     </div>
 {/if}

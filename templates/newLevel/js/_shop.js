@@ -14,10 +14,16 @@ if (!Array.indexOf) {
 var Shop = {
     Cart: {
         add: function(){
-            
         },
-        remove: function(){
-            
+        remove: function(url){
+            $.get(url, function(data){
+                data = JSON.parse(data);
+                if (data.success)
+                    $(document).trigger({
+                        type: 'cartRemove',
+                        data: data
+                    })
+            })
         }
     },
     CompareList: {
