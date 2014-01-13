@@ -132,7 +132,21 @@
                                         <b>{$wishlist[0][title]}</b>
                                     </h4>
                                     <h5>{lang('List type', 'wishlist')}:
-                                        <i>{echo $wishlist[0][access]}</i>
+                                        {if $wishlist['0']['access'] == 'shared'}
+                                            <i>
+                                                {lang('shared', 'wishlist')}
+                                            </i>
+                                        {/if}
+                                        {if $wishlist['0']['access'] == 'private'}
+                                            <i>
+                                                {lang('private', 'wishlist')}
+                                            </i>
+                                        {/if}
+                                        {if $wishlist['0']['access'] == 'public'}
+                                            <i>
+                                                {lang('public', 'wishlist')}
+                                            </i>
+                                        {/if}
                                     </h5>
                                     <h5 style="margin-right: 10px;">{lang('Description', 'wishlist')}:
                                         <br>
