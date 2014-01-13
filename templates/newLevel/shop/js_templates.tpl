@@ -1,5 +1,3 @@
-<button type="button" data-drop="#popupCart" id="showCart" style="display: none;"></button>
-
 {#
 /**
 * @file Render autocomplete results

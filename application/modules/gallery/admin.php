@@ -284,7 +284,7 @@ class Admin extends BaseAdminController {
      */
     public function update_album($id, $locale) {
         $this->form_validation->set_rules('name', lang("Name", 'gallery'), 'required');
-       // var_dump($_POST['tpl_file']);
+        // var_dump($_POST['tpl_file']);
         if (!preg_match('/[a-z]/', $_POST['tpl_file']) && !empty($_POST['tpl_file'])) {
             showMessage('wrong tpl name', '', 'r');
             exit();
@@ -315,8 +315,7 @@ class Admin extends BaseAdminController {
         if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_albums_i18n')->num_rows()) {
             $this->db->where('id', $id)->where('locale', $locale);
             $this->db->update('gallery_albums_i18n', $data_locale);
-        }
-        else
+        } else
             $this->db->insert('gallery_albums_i18n', $data_locale);
 
         $album = $this->gallery_m->get_album($id);
@@ -697,8 +696,7 @@ class Admin extends BaseAdminController {
             if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_category_i18n')->num_rows()) {
                 $this->db->where('id', $id)->where('locale', $locale);
                 $this->db->update('gallery_category_i18n', $data_locale);
-            }
-            else
+            } else
                 $this->db->insert('gallery_category_i18n', $data_locale);
 
 
@@ -807,10 +805,11 @@ class Admin extends BaseAdminController {
                     $this->resize_and_thumb($data[$i]['upload_data']);
                     $this->add_image($album_id, $data[$i]['upload_data']);
                 }
+                $buf = $this->conf['upload_path'];
                 $this->conf = $temp_conf;
+                $this->conf['upload_path'] = $buf;
                 $i++;
             }
-
 
             if (isset($data['error'])) {
                 showMessage($data['error'], '', 'r');
@@ -878,8 +877,7 @@ class Admin extends BaseAdminController {
                     foreach ($album_data['images'] as $image) {
                         array_push($album_images, $image['full_name']);
                     }
-                }
-                else
+                } else
                     $album_data = array();
                 //$this->load->library('image_lib');
 

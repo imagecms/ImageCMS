@@ -83,7 +83,6 @@ var optionsDrop = {
     placeBeforeShow: 'center center',
     placeAfterClose: 'center center',
     timeclosemodal: 2000,
-    delayAfter: -500,
     modalPlace: '.notification',
     moreOne: false,
     closeClick: true,
