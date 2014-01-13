@@ -7,17 +7,17 @@ var ShopFront = {
             el.find(genObj.numberC).has(genObj.iPr).each(function() {
                 var $this = $(this);
                 
-//                if (true) {
-//                    var input = $this.find('input');
-//                    $this.find('button').attr('disabled', 'disabled');
-//                    input.val().attr('readonly', 'readonly').attr('disabled', 'disabled');
-//                }
-//                else {
-//                    var input = $this.find('input');
-//                    $this.find('button').removeAttr('disabled');
-//                    input.removeAttr('readonly disabled').val('1');
-//                    $this.closest(genObj.frameCount).next().children().attr('data-count', '1')
-//                }
+            //                if (true) {
+            //                    var input = $this.find('input');
+            //                    $this.find('button').attr('disabled', 'disabled');
+            //                    input.val().attr('readonly', 'readonly').attr('disabled', 'disabled');
+            //                }
+            //                else {
+            //                    var input = $this.find('input');
+            //                    $this.find('button').removeAttr('disabled');
+            //                    input.removeAttr('readonly disabled').val('1');
+            //                    $this.closest(genObj.frameCount).next().children().attr('data-count', '1')
+            //                }
             })
             $(document).trigger({
                 'type': 'processPageEnd'
@@ -351,7 +351,7 @@ function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop),
     closedrop = setTimeout(function() {
         drop.drop('close');
-    }, durationHideForm - 500/*time fadeout drop see on site*/)
+    }, durationHideForm - drop.data('drp').durationOff);
     setTimeout(function() {
         drop.find(genObj.msgF).hide().remove();
         form.show();
@@ -359,12 +359,11 @@ function hideDrop(drop, form, durationHideForm) {
     }, durationHideForm)
 
     //    if close "esc" or click on body
-    $(document).off('closed.drop').on('closed.drop', function(e) {
+    drop.off('closed.'+$.drop.nS).on('closed.'+$.drop.nS, function(e) {
         clearTimeout(closedrop);
-        if (e.drop.is(drop)) {
-            e.drop.find(genObj.msgF).hide().remove();
-            form.show();
-        }
+        
+        e.drop.find(genObj.msgF).hide().remove();
+        form.show();
     })
 }
 function showHidePart(el, absolute, time, btnPlace) {
