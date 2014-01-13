@@ -319,7 +319,7 @@ class Cache {
                 if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/") {
                     $cache_sub_dir = $cache_store_dir . $file . "/";
                     if (is_dir($cache_sub_dir) and ($sub_dir_handle = opendir($cache_sub_dir))) {
-                        while (false !== ($fileT = readdir($sub_dir_handle))) {
+                        while (FALSE !== ($fileT = readdir($sub_dir_handle))) {
 
                             if ($fileT != "." && $fileT != ".." && $fileT != "/") {
 
