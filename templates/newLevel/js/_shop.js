@@ -11,11 +11,6 @@ if (!Array.indexOf) {
         return -1;
     }
 }
-var returnMsg = function(msg) {
-    if (window.console) {
-        console.log(msg);
-    }
-};
 var Shop = {
     Cart: {
         add: function(){

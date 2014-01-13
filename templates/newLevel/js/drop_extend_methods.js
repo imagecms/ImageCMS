@@ -2,7 +2,7 @@ $.dropInit.prototype.extendDrop = function() {
     var methods = {
         droppable: function(drop) {
             if (drop === undefined)
-                drop = this;
+                drop = this.self ? this.self : this;
             drop.each(function() {
                 var drop = $(this);
                 drop.off('mousedown.' + $.drop.nS).on('mousedown.' + $.drop.nS, function(e) {
@@ -43,7 +43,7 @@ $.dropInit.prototype.extendDrop = function() {
         },
         noinherit: function(drop, start) {
             if (drop === undefined)
-                drop = this;
+                drop = this.self ? this.self : this;
             drop.each(function() {
                 var drop = $(this);
                 if (!drop.data('drp').droppableIn) {
@@ -96,7 +96,7 @@ $.dropInit.prototype.extendDrop = function() {
         },
         heightContent: function(drop) {
             if (drop === undefined)
-                drop = this;
+                drop = this.self ? this.self : this;
             drop.each(function() {
                 var drop = $(this);
                 if (drop.data('drp').limitContentSize) {
@@ -175,7 +175,7 @@ $.dropInit.prototype.extendDrop = function() {
         },
         limitSize: function(drop) {
             if (drop === undefined)
-                drop = this;
+                drop = this.self ? this.self : this;
             drop.each(function() {
                 var drop = $(this);
                 if (drop.data('drp').limitSize) {
