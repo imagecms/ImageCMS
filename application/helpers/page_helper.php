@@ -10,6 +10,8 @@ if (!function_exists('get_page')) {
 
         $lang_id = get_main_lang('id');
         $lang_identif = get_main_lang('identif');
+
+        /* @var $ci MY_Controller */
         $ci = & get_instance();
 
         $ci->db->limit(1);
