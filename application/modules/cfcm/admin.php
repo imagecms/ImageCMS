@@ -143,15 +143,15 @@ class Admin extends BaseAdminController {
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
             }
-        }
+        } else {
+            $this->template->add_array(array(
+                'form' => $form,
+            ));
 
-        $this->template->add_array(array(
-            'form' => $form,
-        ));
-
-        //$this->display_tpl('top_navigation');
+            //$this->display_tpl('top_navigation');
 //         $this->display_tpl('_form');
-        $this->render('_form');
+            $this->render('_form');
+        }
     }
 
     public function edit_field_data_type($field_name) {
@@ -269,18 +269,15 @@ class Admin extends BaseAdminController {
 //                else
 //                    pjax( $_SERVER['HTTP_REFERER']);
 //                exit;
-            }else{
+            }else {
                 $this->template->add_array(array(
-                'form' => $form,
-            ));
+                    'form' => $form,
+                ));
 
 //             $this->display_tpl('_form');
-            $this->render('_form');
+                $this->render('_form');
             }
-
-            
-        }
-        else
+        } else
             echo lang("Field has not been found", 'cfcm');
     }
 

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-09 12:09+0200\n"
-"PO-Revision-Date: 2014-01-09 12:09+0200\n"
+"POT-Creation-Date: 2014-01-13 12:11+0200\n"
+"PO-Revision-Date: 2014-01-13 12:11+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,25 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/newLevel/wishlist/wishlist.tpl:172
+msgid "Поделится з другом"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlistEdit.tpl:17
+#: ./templates/newLevel/wishlist/wishlist.tpl:53
+msgid "Коллективный"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlistEdit.tpl:18
+#: ./templates/newLevel/wishlist/wishlist.tpl:55
+msgid "Приватный"
+msgstr ""
+
+#: ./templates/newLevel/wishlist/wishlistEdit.tpl:19
+#: ./templates/newLevel/wishlist/wishlist.tpl:54
+msgid "Публичный"
+msgstr ""
 
 #: ./templates/newLevel/404.tpl:10
 msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться  поиском по сайту либо перейти на"
@@ -40,10 +59,6 @@ msgstr ""
 
 #: ./templates/newLevel/widgets/ViewedProducts.tpl:27
 msgid "Нет просмотренных товаров"
-msgstr ""
-
-#: ./templates/newLevel/shop/order_view.tpl:25
-msgid "Спасибо, ваш заказ принят!Наши менеджеры свяжутся с вами."
 msgstr ""
 
 #: ./templates/newLevel/shop/order_view.tpl:48
