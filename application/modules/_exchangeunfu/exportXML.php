@@ -340,7 +340,8 @@ class ExportXML {
                         "\t\t<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\r\n" .
                         "\t\t<IDWebЗаказПокупателя>" . $order['id'] . "</IDWebЗаказПокупателя>\r\n" .
                         "\t\t<IDКонтрагент>" . $users[$order['user_id']] . "</IDКонтрагент>\r\n" .
-                        "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n";
+                        "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n" .
+                        "\t\t<Комментарий>" . $order['user_comment'] . "</Комментарий>\r\n";
             }
 
             /** convert paid value */
@@ -371,7 +372,8 @@ class ExportXML {
                     "\t\t<ПризнакПередоплаты>" . $order['paid'] . "</ПризнакПередоплаты>\r\n" .
                     "\t\t<ПризнакВыполнения>" . $order['status'] . "</ПризнакВыполнения>\r\n" .
                     "\t\t<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\r\n" .
-                    "\t\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n";
+                    "\t\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n" .
+                    "\t\t<Комментарий>" . $order['user_comment'] . "</Комментарий>\r\n";
 
             /** order products export data */
             foreach ($order['order_products'] as $order_product) {

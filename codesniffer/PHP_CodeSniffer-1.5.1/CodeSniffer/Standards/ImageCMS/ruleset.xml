@@ -21,7 +21,7 @@
     <exclude-pattern>*/uploads_site/*</exclude-pattern>
     <exclude-pattern>*\uploads_site\*</exclude-pattern>
     
-    <rule ref="ImageCMS.NamingConventions.CamelCapsFunctionName"/>
+<!--     <rule ref="ImageCMS.NamingConventions.CamelCapsFunctionName"/>  -->
     <rule ref="ImageCMS.NamingConventions.UpperCaseConstantName"/>
     <rule ref="ImageCMS.Commenting.FunctionComment"/>
 

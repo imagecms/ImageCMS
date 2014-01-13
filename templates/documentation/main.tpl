@@ -17,8 +17,8 @@
             <script src="{$THEME}js/html5shiv.js"></script>
             <script src="{$THEME}js/respond.min.js"></script>
             <![endif]-->
-        <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
-        <link rel="SHORTCUT ICON" href="favicon.ico" />
+        <link rel="icon" type="image/vnd.microsoft.icon" href="/templates/documentation/images/favicon.png" />
+        <link rel="SHORTCUT ICON" href="/templates/documentation/images/favicon.png" />
 
         <link media="screen" rel="stylesheet" href="{$THEME}js/highlight/styles/googlecode.css"/>
         <script type="text/javascript" src="{$THEME}js/highlight/highlight.pack.js"></script>
