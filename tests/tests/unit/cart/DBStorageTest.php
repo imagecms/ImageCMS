@@ -1,6 +1,7 @@
 <?php
 
 namespace Cart;
+
 require_once realpath(dirname(__FILE__) . '/../../..') . '/enviroment.php';
 doLogin();
 
@@ -20,6 +21,7 @@ class DBStorageTest extends \PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = new DBStorage;
+        $this->object->setData(NULL);
     }
 
     /**
@@ -35,10 +37,54 @@ class DBStorageTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetData().
      */
     public function testGetData() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+
+        $result = (boolean) $this->object->getData();
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData('SProducts', 82);
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData('ShopKit', 16);
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData(1, 82);
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData(2, 16);
+        $this->assertFalse($result);
+
+        /** Sproduct array * */
+        $data["SProducts_71_82"] = array(
+            'instance' => 'SProducts',
+            'id' => 82,
+            'quantity' => 5
         );
+
+        /** Save to storage * */
+        $this->object->setData($data);
+
+        $result = (boolean) $this->object->getData('SProducts', 82);
+        $this->assertTrue($result);
+
+        $result = (boolean) $this->object->getData(1, 82);
+        $this->assertTrue($result);
+
+        /** ShopKit array * */
+        $data['ShopKit_16'] = array(
+            'instance' => 'ShopKit',
+            'id' => 16,
+            'quantity' => 5
+        );
+
+        /** Save to storage * */
+        $this->object->setData($data);
+
+
+        $result = (boolean) $this->object->getData('ShopKit', 16);
+        $this->assertTrue($result);
+
+        $result = (boolean) $this->object->getData(2, 16);
+        $this->assertTrue($result);
     }
 
     /**
@@ -46,10 +92,33 @@ class DBStorageTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testSetData().
      */
     public function testSetData() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        $this->object->setData(NULL);
+
+        /** Sproduct array * */
+        $data["SProducts_71_82"] = array(
+            'instance' => 'SProducts',
+            'id' => 82,
+            'quantity' => 5
         );
+
+        /** Save to storage * */
+        $result = $this->object->setData($data);
+        $this->assertTrue($result);
+
+        /** ShopKit array * */
+        $data['ShopKit_16'] = array(
+            'instance' => 'ShopKit',
+            'id' => 16,
+            'quantity' => 5
+        );
+
+        /** Save to storage * */
+        $result = $this->object->setData($data);
+        $this->assertTrue($result);
+
+        /** Save to storage * */
+        $result = $this->object->setData(NULL);
+        $this->assertTrue($result);
     }
 
     /**
@@ -57,10 +126,37 @@ class DBStorageTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRemove().
      */
     public function testRemove() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        /** Sproduct array * */
+        $data["SProducts_71_82"] = array(
+            'instance' => 'SProducts',
+            'id' => 82,
+            'quantity' => 5
         );
+        /** ShopKit array * */
+        $data['ShopKit_16'] = array(
+            'instance' => 'ShopKit',
+            'id' => 16,
+            'quantity' => 5
+        );
+
+        /** Save to storage * */
+        $this->object->setData($data);
+
+
+        $result = $this->object->remove('SProducts', 82);
+        $this->assertTrue($result);
+        
+        $result = $this->object->remove(1);
+        $this->assertFalse($result);
+
+        $result = $this->object->remove('ShopKit', 16);
+        $this->assertTrue($result);
+
+        $result = $this->object->remove(2);
+        $this->assertFalse($result);
+
+        $result = $this->object->remove();
+        $this->assertFalse($result);
     }
 
 }
