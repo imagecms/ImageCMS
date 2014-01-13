@@ -165,6 +165,12 @@
                                                     <div class="btn-buy btn-buy-p">
                                                         <button 
                                                             type="submit"
+
+                                                            type="button"
+                                                            onclick="serializeForm(this)"
+                                                            data-source="/shop/cart/api/addProductByVariantId/{echo $productVariant->getId()}"
+                                                            data-drop=""
+
                                                             class="btnBuy infoBut"
 
                                                             data-id="{echo $productVariant->getId()}"
@@ -181,7 +187,6 @@
                                                             <span class="text-el">{lang('Купить')}</span>
                                                         </button>
                                                     </div>
-                                                    <input type="hidden" name="redirect" value="cart" />
                                                     {form_csrf()}
                                                 </form>
                                             </div>
@@ -617,12 +622,10 @@
                 {/if}
                 <div class="inside-padd">
                     <!--Start. Comments block-->
+                    {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                     <div class="frame-form-comment">
-                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                         <div class="forComments">
-                            {if intval($c['commentsCount']) > 0}
-                                {echo $c['comments']}
-                            {/if}
+                            {echo $c['comments']}
                         </div>
                         <!--End. Comments block-->
                     </div>
