@@ -235,15 +235,6 @@ function init() {
         });
     });
 
-    var dropContentTimeout = "";
-    wnd.on('resize.dropContent', function() {
-        clearTimeout(dropContentTimeout);
-        setTimeout(function() {
-            $('[data-elrun]:visible').each(function() {
-                $(this).drop('heightContent');
-            });
-        }, 300);
-    });
     try {
         $('a.fancybox, [rel="group"]').fancybox();
     } catch (e) {
