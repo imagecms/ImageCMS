@@ -18,6 +18,10 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
     protected $errorCallMethodResult;
     protected $ci;
     protected $productVarId;
+    protected $kitId;
+    protected $successAnswer;
+    protected $errorAddProductByVarId;
+    protected $successKitDiscount;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -26,10 +30,21 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
     protected function setUp() {
         $this->object = new \Cart\Api;
         $this->errorCallMethodResult = json_encode(array('success' => false, 'errors' => true, 'message' => 'Method not found.'));
-        
+        $this->successAnswer = json_encode(array('success' => true, 'errors' => false));
+        $this->errorAddProductByVarId = json_encode(array('success' => false, 'errors' => true, 'message' => 'You have not specified item id.'));
+        $this->successKitDiscount = json_encode(array('success' => true, 'errors' => false, 'data' => 0.00));
+
         $this->ci = & get_instance();
         $product = $this->ci->db->limit(1)->get('shop_product_variants')->row_array();
         $this->productVarId = $product['id'];
+
+        $kit = $this->ci->db->limit(1)->get('shop_kit');
+        if ($kit) {
+            $kit = $kit->row_array();
+            $this->kitId = $kit['id'];
+        } else {
+            $kit = 0;
+        }
     }
 
     /**
@@ -70,9 +85,8 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testAddProductByVariantId().
      */
     public function testAddProductByVariantId() {
-//        $_GET['quantity'] = 3;
-
-        var_dumps($this->object->addProductByVariantId($this->productVarId));
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->addProductByVariantId($this->productVarId));
+        $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->addProductByVariantId());
     }
 
     /**
@@ -80,10 +94,12 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testAddKit().
      */
     public function testAddKit() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        if ($this->kitId) {
+            $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->addKit($this->kitId));
+            $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->addKit());
+        } else {
+            $this->markTestSkipped();
+        }
     }
 
     /**
@@ -91,7 +107,21 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testSync().
      */
     public function testSync() {
-        var_dumps($this->object->sync());
+        $result = (array) json_decode($this->object->sync());
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue($result['data'] instanceof \stdClass);
+        $this->assertGreaterThanOrEqual(1, count($result['data']->items));
+    }
+
+    /**
+     * @covers Cart\Api::getAmountInCart
+     * @todo   Implement testGetAmountInCart().
+     */
+    public function testGetAmountInCart() {
+        $this->assertGreaterThanOrEqual(1, $this->object->getAmountInCart('SProducts', $this->productVarId));
+        $this->assertEquals(0, $this->object->getAmountInCart());
+        $this->assertEquals(0, $this->object->getAmountInCart('SProducts', 99999));
     }
 
     /**
@@ -99,10 +129,8 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRenderCart().
      */
     public function testRenderCart() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->expectOutputRegex('/id="popupCart"/');
+        $this->object->renderCart();
     }
 
     /**
@@ -110,10 +138,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGet_kit_discount().
      */
     public function testGet_kit_discount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertJsonStringEqualsJsonString($this->successKitDiscount, $this->object->get_kit_discount());
     }
 
     /**
@@ -121,10 +146,14 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetProductByVariantId().
      */
     public function testGetProductByVariantId() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = (array) json_decode($this->object->getProductByVariantId($this->productVarId));
+
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue($result['data'] instanceof \stdClass);
+        $this->assertGreaterThanOrEqual(1, count($result['data']));
+        $this->assertEquals('SProducts', $result['data']->instance);
+        $this->assertEquals($this->productVarId, $result['data']->id);
     }
 
     /**
@@ -132,10 +161,15 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetKit().
      */
     public function testGetKit() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = (array) json_decode($this->object->getKit($this->kitId));
+
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue($result['data'] instanceof \stdClass);
+        $this->assertGreaterThanOrEqual(1, count($result['data']));
+        $this->assertEquals('ShopKit', $result['data']->instance);
+        $this->assertEquals($this->kitId, $result['data']->id);
+        
     }
 
     /**
@@ -143,10 +177,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRemoveKit().
      */
     public function testRemoveKit() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeKit($this->kitId));
     }
 
     /**
@@ -154,10 +185,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRemoveProductByVariantId().
      */
     public function testRemoveProductByVariantId() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+       
     }
 
     /**
