@@ -1,6 +1,6 @@
 {$count = $CI->load->module('wishlist')->getUserWishListItemsCount($CI->dx_auth->get_user_id())}
 <div class="wish-list-btn tinyWishList">
-    <button data-href="{site_url('wishlist')}" data-drop=".drop-info-wishlist" data-place="inherit" data-overlay-opacity="0" data-inherit-close="true">
+    <button data-href="{site_url('wishlist')}" data-drop=".drop-info-wishlist" data-place="inherit" data-overlay-opacity="0">
         <span class="icon_wish_list"></span>
         <span class="text-wish-list">
             <span class="js-empty empty" {if $count == 0}style="display: inline"{/if}>
