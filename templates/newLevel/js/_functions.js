@@ -2,23 +2,18 @@
 //variants
 var ShopFront = {
     Cart: {
-        processBtnBuyCount: function(el) {
-            el = el == undefined ? body : el;
-            el.find(genObj.numberC).has(genObj.iPr).each(function() {
-                var $this = $(this);
-                
-            //                if (true) {
-            //                    var input = $this.find('input');
-            //                    $this.find('button').attr('disabled', 'disabled');
-            //                    input.val().attr('readonly', 'readonly').attr('disabled', 'disabled');
-            //                }
-            //                else {
-            //                    var input = $this.find('input');
-            //                    $this.find('button').removeAttr('disabled');
-            //                    input.removeAttr('readonly disabled').val('1');
-            //                    $this.closest(genObj.frameCount).next().children().attr('data-count', '1')
-            //                }
-            })
+        processBtnBuyCount: function(id, add) {
+            var el = $(genObj.btnBuy).filter('[data-id="' + id + '"]').removeAttr('disabled');
+            el.each(function() {
+                var el = $(this);
+                if (add)
+                    el.parent(genObj.btnToCart).addClass('d_n').end().parent(genObj.btnInCart).removeClass('d_n').closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart);
+                else
+                    el.parent(genObj.btnToCart).removeClass('d_n').end().parent(genObj.btnInCart).addClass('d_n').closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart);
+            });
+
+            decorElemntItemProduct(el.closest(genObj.parentBtnBuy));
+
             $(document).trigger({
                 'type': 'processPageEnd'
             });
@@ -28,16 +23,16 @@ var ShopFront = {
             /*Variants in Category*/
             el.find(genObj.parentBtnBuy).find(genObj.changeVariantCategory).on('change', function() {
                 var productId = parseInt($(this).attr('value')),
-                liBlock = $(this).closest(genObj.parentBtnBuy),
-                btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
-                vMediumImage = btnInfo.data('mediumImage'),
-                vId = btnInfo.data('id'),
-                vName = btnInfo.data('vname'),
-                vPrice = btnInfo.data('price'),
-                vOrigPrice = btnInfo.data('origPrice'),
-                vAddPrice = btnInfo.data('addPrice'),
-                vNumber = btnInfo.data('number'),
-                vStock = btnInfo.data('maxcount');
+                        liBlock = $(this).closest(genObj.parentBtnBuy),
+                        btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
+                        vMediumImage = btnInfo.data('mediumImage'),
+                        vId = btnInfo.data('id'),
+                        vName = btnInfo.data('vname'),
+                        vPrice = btnInfo.data('price'),
+                        vOrigPrice = btnInfo.data('origPrice'),
+                        vAddPrice = btnInfo.data('addPrice'),
+                        vNumber = btnInfo.data('number'),
+                        vStock = btnInfo.data('maxcount');
 
                 if (vMediumImage.search(/nophoto/) == -1)
                     liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
@@ -52,7 +47,7 @@ var ShopFront = {
                 ShopFront.Cart.existsVnames(vName, liBlock);
                 ShopFront.Cart.condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId).find(genObj.infoBut));
             });
-        /*/Variants in Category*/
+            /*/Variants in Category*/
         },
         changeCount: function(el) {
             el = el == undefined ? body : el;
@@ -76,25 +71,18 @@ var ShopFront = {
             el.find("img.lazy").lazyload(lazyload);
             wnd.scroll(); //for lazyload
             drawIcons(el.find(selIcons));
-            ShopFront.Cart.processBtnBuyCount(el);
             el.find('[data-drop]').drop(optionsDrop);
         },
-        initShopPage: function(showWindow, item) {
-            $(genObj.frameBasks).find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
+        initShopPage: function(el) {
+            el.find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
                 after: function(e, el, input) {
-                    
+
                 }
             }));
-            testNumber($(genObj.frameBasks + ' input'));
-            $(genObj.frameBasks + ' input').off('maxminValue').on('maxminValue', function(e) {
+            testNumber($(el + ' input'));
+            $(el + ' input').off('maxminValue').on('maxminValue', function(e) {
                 chCountInCart($(this).prev('div'), e.res, $(this));
             })
-        },
-        rm: function(context, isKit) {
-            
-        },
-        togglePopup: function() {
-            
         },
         existsVnumber: function(vNumber, liBlock) {
             if ($.trim(vNumber) != '') {
@@ -141,15 +129,15 @@ var ShopFront = {
         },
         count: function() {
             var count = Shop.CompareList.all().length,
-            btn = $(genObj.tinyCompareList).find('[data-href]').drop('destroy').off('click.tocompare');
-            
-            if (count > 0){
+                    btn = $(genObj.tinyCompareList).find('[data-href]').drop('destroy').off('click.tocompare');
+
+            if (count > 0) {
                 $(genObj.tinyCompareList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
-                btn.on('click.tocompare', function(){
+                btn.on('click.tocompare', function() {
                     location.href = $(this).data('href');
                 });
             }
-            else{
+            else {
                 $(genObj.tinyCompareList).removeClass(genObj.isAvail).find(genObj.blockNoEmpty).hide().end().find(genObj.blockEmpty).show();
                 btn.drop();
             }
@@ -169,7 +157,7 @@ var global = {
         var wishlist = wishList.all();
         $(genObj.btnWish).each(function() {
             var $this = $(this),
-            $thisP = $this.parent();
+                    $thisP = $this.parent();
             if (wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')) !== -1) {
                 $this.addClass(genObj.wishIn);
                 $this.find('.' + genObj.toWishlist).hide();
@@ -184,11 +172,11 @@ var global = {
     },
     wishListCount: function() {
         var count = wishList.all().length,
-        btn = $(genObj.tinyWishList).find('[data-href]').drop('destroy').off('click.towish');
-        
+                btn = $(genObj.tinyWishList).find('[data-href]').drop('destroy').off('click.towish');
+
         if (count > 0) {
             $(genObj.tinyWishList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
-            btn.on('click.towish', function(){
+            btn.on('click.towish', function() {
                 location.href = $(this).data('href');
             });
         }
@@ -257,7 +245,7 @@ if (!$.isFunction($.fancybox)) {
         loadingFrame = (loadingFrame + 1) % 12;
     };
     $.fancybox = function() {
-        };
+    };
     $.fancybox.showActivity = function() {
         clearInterval(loadingTimer);
         loading.show();
@@ -286,8 +274,8 @@ function banerResize(el) {
 }
 function removePreloaderBaner(el) {
     var img = el.find('img[data-original]'),
-    imgL = img.length,
-    i = 0;
+            imgL = img.length,
+            i = 0;
     img.each(function() {
         var $this = $(this);
         $this.attr('src', $this.attr('data-original')).load(function() {
@@ -306,8 +294,8 @@ function initCarouselJscrollPaneCycle(el) {
     if ($.exists(selScrollPane)) {
         el.find(selScrollPane).each(function() {
             var $this = $(this),
-            api = $this.jScrollPane(scrollPane),
-            api = api.data('jsp');
+                    api = $this.jScrollPane(scrollPane),
+                    api = api.data('jsp');
             $this.on('mousewheel', function(e, b, c, delta) {
                 if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
                 {
@@ -325,9 +313,9 @@ function initCarouselJscrollPaneCycle(el) {
     }
     el.find('.cycleFrame').each(function() {
         var $this = $(this),
-        cycle = $this.find('.cycle'),
-        next = $this.find('.next'),
-        prev = $this.find('.prev');
+                cycle = $this.find('.cycle'),
+                next = $this.find('.next'),
+                prev = $this.find('.prev');
 
         if (cycle.find('li').length > 1) {
             cycle.cycle($.extend({}, optionsCycle, {
@@ -349,9 +337,9 @@ function initCarouselJscrollPaneCycle(el) {
 }
 function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop),
-    closedrop = setTimeout(function() {
-        drop.drop('close');
-    }, durationHideForm - drop.data('drp').durationOff);
+            closedrop = setTimeout(function() {
+                drop.drop('close');
+            }, durationHideForm - drop.data('drp').durationOff);
     setTimeout(function() {
         drop.find(genObj.msgF).hide().remove();
         form.show();
@@ -359,9 +347,9 @@ function hideDrop(drop, form, durationHideForm) {
     }, durationHideForm)
 
     //    if close "esc" or click on body
-    drop.off('closed.'+$.drop.nS).on('closed.'+$.drop.nS, function(e) {
+    drop.off('closed.' + $.drop.nS).on('closed.' + $.drop.nS, function(e) {
         clearTimeout(closedrop);
-        
+
         e.drop.find(genObj.msgF).hide().remove();
         form.show();
     })
@@ -373,9 +361,9 @@ function showHidePart(el, absolute, time, btnPlace) {
         btnPlace = 'next';
     el.each(function() {
         var $this = $(this),
-        $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
-        $item = $this.children(),
-        sumHeight = 0;
+                $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
+                $item = $this.children(),
+                sumHeight = 0;
         $this.addClass('showHidePart').data('maxHeight', $thisH);
         $this.find('*').css('max-height', 'none');
         $item.each(function() {
@@ -388,7 +376,7 @@ function showHidePart(el, absolute, time, btnPlace) {
                 'height': $thisH
             });
             var btn = $this[btnPlace](),
-            textEl = btn.find(genObj.textEl);
+                    textEl = btn.find(genObj.textEl);
             btn.addClass('d_i-b hidePart');
             if (!btn.is('[data-trigger]')) {
                 textEl.html(textEl.data('show'))
@@ -397,7 +385,7 @@ function showHidePart(el, absolute, time, btnPlace) {
                     if ($thisB.data("show") == "no" || $thisB.data("show") == undefined) {
                         $thisB.addClass('showPart').removeClass('hidePart');
                         var textEl = $thisB.find(genObj.textEl),
-                        sHH = 0;
+                                sHH = 0;
                         $this.parents('li').children(':not(.wrapper-h)').each(function() {
                             sHH += $(this).height();
                         });
@@ -434,7 +422,7 @@ function showHidePart(el, absolute, time, btnPlace) {
                     }
                     else {
                         var $thisB = $(this).removeClass('showPart').addClass('hidePart'),
-                        textEl = $thisB.find(genObj.textEl);
+                                textEl = $thisB.find(genObj.textEl);
                         $thisB.parent().nextAll('.wrapper-h').animate({
                             'height': $this.data('heightDecor')
                         }, time, function() {
@@ -501,9 +489,9 @@ function decorElemntItemProduct(el) {
             clearTimeout(curFuncTime);
             el.each(function() {
                 var $thisLi = $(this),
-                sumH = 0,
-                sumW = 0,
-                decEl = $thisLi.find('.decor-element').css({
+                        sumH = 0,
+                        sumW = 0,
+                        decEl = $thisLi.find('.decor-element').css({
                     'height': '100%',
                     'width': '100%',
                     'position': 'absolute',
@@ -513,10 +501,10 @@ function decorElemntItemProduct(el) {
                     'top': 0
                 }),
                 decElH = decEl.height(),
-                decElW = decEl.width(),
-                noVisT = $thisLi.find('.no-vis-table'),
-                noVisTL = noVisT.length,
-                $thisS = $thisLi.data('pos').match(/top|bottom|left|right/)[0];
+                        decElW = decEl.width(),
+                        noVisT = $thisLi.find('.no-vis-table'),
+                        noVisTL = noVisT.length,
+                        $thisS = $thisLi.data('pos').match(/top|bottom|left|right/)[0];
                 $thisLi.css('overflow', 'hidden');
                 noVisT.each(function() {
                     var $this = $(this);
@@ -607,15 +595,15 @@ function decorElemntItemProduct(el) {
 function drawIcons(selIcons) {
     selIcons.each(function() {
         var $this = $(this),
-        $thisW = $this.width(),
-        $thisH = $this.height(),
-        $thisT = parseInt($this.css('margin-top')),
-        $thisL = parseInt($this.css('margin-left')),
-        className = $this.attr('class').match(/(icon_)/).input.split(' ')[0];
+                $thisW = $this.width(),
+                $thisH = $this.height(),
+                $thisT = parseInt($this.css('margin-top')),
+                $thisL = parseInt($this.css('margin-left')),
+                className = $this.attr('class').match(/(icon_)/).input.split(' ')[0];
         if (!$.existsN($this.children('svg'))) {
             if (icons[className] != undefined) {
                 var paper = Raphael($this[0], $thisW, $thisH),
-                s = paper.path(icons[className]).attr({
+                        s = paper.path(icons[className]).attr({
                     fill: $this.css('color'),
                     stroke: "none"
                 });
@@ -636,7 +624,7 @@ function itemUserToolbar() {
     this.show = function(itemsUT, btn, hideSet, btnUp) {
         btn.on('click.UT', function() {
             var $this = $(this),
-            dataRel = $this.data('rel');
+                    dataRel = $this.data('rel');
             setCookie('condUserToolbar', dataRel, 0, '/')
             if (dataRel == 0) {
                 $this.removeClass('activeUT').hide().next().show().addClass('activeUT');
@@ -657,18 +645,18 @@ function itemUserToolbar() {
         })
         return itemsUT;
     },
-    this.resize = function(itemsUT, btnUp) {
-        var btnW = btnUp.outerWidth(true),
-        bodyW = body.width(),
-        itemsUT = $(itemsUT),
-        itemsUTCW = itemsUT.children().width();
-        if ((bodyW - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
-            btnUp.fadeIn();
-        else
-            btnUp.fadeOut();
-        itemsUT.css('width', bodyW)
-        return itemsUT;
-    }
+            this.resize = function(itemsUT, btnUp) {
+                var btnW = btnUp.outerWidth(true),
+                        bodyW = body.width(),
+                        itemsUT = $(itemsUT),
+                        itemsUTCW = itemsUT.children().width();
+                if ((bodyW - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
+                    btnUp.fadeIn();
+                else
+                    btnUp.fadeOut();
+                itemsUT.css('width', bodyW)
+                return itemsUT;
+            }
 }
 function reinitializeScrollPane(el) {
     if ($.exists(selScrollPane)) {
@@ -709,7 +697,7 @@ function ieBoxSize(els) {
 }
 function cuselInit(el, sel) {
     var el = el == undefined ? body : el,
-    sel = sel == undefined ? cuselOptions.changedEl : sel;
+            sel = sel == undefined ? cuselOptions.changedEl : sel;
     if ($.existsN(el.find(cuselOptions.changedEl)) && $.isFunction(window.cuSel)) {
         cuSel($.extend({}, cuselOptions, {
             changedEl: sel
@@ -720,7 +708,7 @@ function cuselInit(el, sel) {
 }
 function testNumber(el) {
     var el = el == undefined ? body : el;
-           
+
     el.find(genObj.numberC + ' input').on('testNumber', function(e) {
         if (e.res)
             $(this).tooltip('remove');
