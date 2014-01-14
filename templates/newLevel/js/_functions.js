@@ -2,8 +2,11 @@
 //variants
 var ShopFront = {
     Cart: {
-        processBtnBuyCount: function(id, add) {
+        processBtnBuyCount: function(id, add, kit) {
             var el = $(genObj.btnBuy).filter('[data-id="' + id + '"]').removeAttr('disabled');
+            if (kit)
+                el = el.filter(genObj.btnBuyKit);
+
             el.each(function() {
                 var el = $(this);
                 if (add){

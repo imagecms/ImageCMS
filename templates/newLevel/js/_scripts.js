@@ -177,13 +177,13 @@ function init() {
         if (e.datas.success)
             $(genObj.showCart).drop('open');
         
-        ShopFront.Cart.processBtnBuyCount(e.id, true);
+        ShopFront.Cart.processBtnBuyCount(e.id, true, e.kit);
     });
     doc.on('remove.Cart', function(e) {
         if (e.datas.success)
             $(genObj.popupCart).drop('get', $(genObj.showCart));
         
-        ShopFront.Cart.processBtnBuyCount(e.id, false);
+        ShopFront.Cart.processBtnBuyCount(e.id, false, e.kit);
     });
     doc.on('add.Cart remove.Cart', function(e) {
         Shop.Cart.getTiny();

@@ -32,6 +32,7 @@
             btnBask: '.btnBask',
             tinyBask: '#tinyBask',
                         
+            btnBuyKit: '.btnBuyKit',
             btnBuy: '.btnBuy',
             btnToCart: '.btn-buy',
             btnInCart: '.btn-cart',
