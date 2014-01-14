@@ -14,7 +14,6 @@ if (!Array.indexOf) {
 var Shop = {
     Cart: {
         add: function(obj, id, url, kit) {
-            var self = this;
             $(document).trigger({
                 type: 'beforeAdd.Cart',
                 id: id,
@@ -36,7 +35,6 @@ var Shop = {
             });
         },
         remove: function(id, url, kit) {
-            var self = this;
             $(document).trigger({
                 type: 'beforeRemove.Cart',
                 id: id,
@@ -51,8 +49,27 @@ var Shop = {
                 });
             });
         },
+        changeCount: function(count, kit, id){
+            $(document).trigger({
+                type: 'beforeChange.Cart',
+                count: count,
+                kit: kit,
+                id: id
+            });
+            var method = 'setQuantityProductByVariantId';
+            if (kit)
+                method = 'setQuantityKitById';
+            $.getJSON(siteUrl + 'shop/cart/api/'+method, function(data) {
+                $(document).trigger({
+                    type: 'сhange.Cart',
+                    datas: data,
+                    count: count,
+                    kit: kit,
+                    id: id
+                });
+            });
+        },
         getTiny: function(tpl) {
-            var self = this;
             tpl = tpl ? tpl : 'cart_data';
             $.get(siteUrl + 'shop/cart/api/renderCart/' + tpl, function(data) {
                 $(document).trigger({

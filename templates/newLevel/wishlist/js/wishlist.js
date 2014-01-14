@@ -6,9 +6,9 @@ jQuery(function($) {
             nextText: 'След&#x3e;',
             currentText: 'Сегодня',
             monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-                'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
             monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
-                'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
             dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
             dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
             dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
@@ -29,6 +29,7 @@ var WishListFront = {
     genPriceProdsWL: '.genPriceProdsWL',
     frameWL: '[data-rel="list-item"]',
     frameBuy: '.frame-buy-all-products',
+    btnRemoveItem: '.btnRemoveItem',
     deleteImage: function(el) {
         el.parent().remove();
         var img = $('#wishlistphoto img');
@@ -58,7 +59,7 @@ var WishListFront = {
             name.focus();
         }
         var name = $('[name="wishListName"]:last'),
-                drop = name.closest('[data-elrun]');
+        drop = name.closest('[data-elrun]');
 
         if (name.val() == "" && drop.find('[data-link]').is(':checked')) {
             removeErr();
@@ -93,10 +94,7 @@ var WishListFront = {
     addToWL: function(el, elS, isajax, data) {
         if (data) {
             if (data.answer == 'success') {
-                var btnWish = $('[data-varid="' + el.data('vid') + '"]').find(genObj.btnWish),
-                        id = btnWish.parent().data('id'),
-                        varid = btnWish.parent().data('varid');
-                wishList.add(id, varid);
+                wishList.add(el.data('id'));
                 global.processWish();
                 global.wishListCount();
             }
@@ -106,12 +104,10 @@ var WishListFront = {
         if (data) {
             if (data.answer == 'success') {
                 var li = el.closest(genObj.parentBtnBuy),
-                        infoBut = li.find(genObj.infoBut),
-                        id = infoBut.data('id'),
-                        varid = infoBut.data('varid');
+                id = el.data('id');
                 li.remove();
                 WishListFront.processWishPage();
-                wishList.rm(id, varid);
+                wishList.rm(id);
                 global.processWish();
                 global.wishListCount();
             }
@@ -121,12 +117,9 @@ var WishListFront = {
         if (data) {
             if (data.answer == 'success') {
                 var frame = el.closest(WishListFront.frameWL),
-                        li = frame.find(genObj.parentBtnBuy);
+                li = frame.find(genObj.parentBtnBuy);
                 li.each(function() {
-                    var infoBut = $(this).find(genObj.infoBut),
-                            id = infoBut.data('id'),
-                            varid = infoBut.data('varid');
-                    wishList.rm(id, varid);
+                    wishList.rm($(this).find(WishListFront.btnRemoveItem).data('id'));
                 });
                 frame.remove();
                 global.processWish();
@@ -153,11 +146,11 @@ var WishListFront = {
     processWishPage: function() {
         $(WishListFront.frameWL).each(function() {
             var $this = $(this),
-                    btnBuyLC = 0,
-                    tempC = 0,
-                    tempP = 0,
-                    genSum = 0,
-                    btnBuyI = $this.find(genObj.btnBuy);
+            btnBuyLC = 0,
+            tempC = 0,
+            tempP = 0,
+            genSum = 0,
+            btnBuyI = $this.find(genObj.btnBuy);
             btnBuyI.each(function() {
                 tempC = parseFloat($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
                 if (isNaN(tempC))
@@ -167,9 +160,9 @@ var WishListFront = {
                 genSum += tempP * tempC;
             });
             var btnBuyL = btnBuyI.length,
-                    btnCartL = $this.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).length,
-                    btnBuy = $this.find(WishListFront.btnBuy),
-                    genPrice = $this.find(WishListFront.genPriceProdsWL);
+            btnCartL = $this.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).length,
+            btnBuy = $this.find(WishListFront.btnBuy),
+            genPrice = $this.find(WishListFront.genPriceProdsWL);
             $this.find(WishListFront.countProdsWL).text(btnBuyLC);
             $this.find(genObj.plurProd).text(pluralStr(btnBuyLC, text.plurProd));
             genPrice.text(genSum.toFixed(pricePrecision));
@@ -192,17 +185,17 @@ var WishListFront = {
     }
 };
 var wishList = {
-    add: function(id, varid) {
+    add: function(id) {
         var items = wishList.all(),
-                key = id + '_' + varid;
+        key = id.toString();
         if (items.indexOf(key) === -1) {
             items.push(key);
             localStorage.setItem('wishList', JSON.stringify(items));
         }
     },
-    rm: function(id, varid) {
+    rm: function(id) {
         var items = wishList.all(),
-                key = id + '_' + varid;
+        key = id.toString();
         if (items.indexOf(key) != -1) {
             items = _.without(items, key);
             localStorage.setItem('wishList', JSON.stringify(items));
@@ -231,8 +224,8 @@ $(document).on('scriptDefer', function() {
     var wishPhoto = $('#wishlistphoto');
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var file = this.files[0],
-                img = document.createElement("img"),
-                reader = new FileReader();
+        img = document.createElement("img"),
+        reader = new FileReader();
         reader.onloadend = function() {
             img.src = reader.result;
         };
@@ -240,16 +233,13 @@ $(document).on('scriptDefer', function() {
         wishPhoto.html($(img));
         $(img).load(function() {
             if ($(this).actual('width') > wishPhoto.data('widht') || $(this).actual('height') > wishPhoto.data('height')) {
-                $(document).trigger({
-                    type: 'successJson.drop',
-                    el: $('#notification'),
+                $('[data-drop="#notification"].trigger').data({
+                    'timeclosemodal': 3000, 
                     datas: {
                         'answer': true,
                         'data': text.error.fewsize(wishPhoto.data('width') + '&times' + wishPhoto.data('height'))
                     }
-                });
-                $('[data-drop="#notification"].trigger').data('timeclosemodal', 3000).drop('open');
-                $('[data-drop="#notification"].trigger').removeData('timeclosemodal');
+                }).drop('open').removeData('timeclosemodal');
                 wishPhoto.empty();
                 $(this).val('');
                 $('[data-wishlist="do_upload"]').attr('disabled', 'disabled').parent().addClass('disabled');
@@ -262,7 +252,7 @@ $(document).on('scriptDefer', function() {
     WishListFront.processWishPage();
     $(WishListFront.btnBuy).click(function() {
         var $this = $(this),
-                btns = $this.closest(WishListFront.frameWL).find('.' + genObj.btnBuyCss + ' ' + genObj.btnBuy);
+        btns = $this.closest(WishListFront.frameWL).find('.' + genObj.btnBuyCss + ' ' + genObj.btnBuy);
         if ($.existsN(btns)) {
             $.fancybox.showActivity();
             btns.each(function() {
@@ -287,23 +277,17 @@ $(document).on('scriptDefer', function() {
     $(document).on('processPageEnd change_count_product', function(e) {
         WishListFront.processWishPage();
     });
-    $('body').on('click.inWish', '.' + genObj.inWishlist, function() {
+    $('body').on('click.inWish', genObj.inWishlist, function() {
         document.location.href = '/wishlist';
     });
     if (!isLogin) {
-        $('.' + genObj.toWishlist).on('click.toWish', function(e) {
-            $(document).trigger({
-                type: 'successJson.drop',
-                el: $('#notification'),
-                datas: {
-                    'answer': true,
-                    'data': text.error.notLogin
-                }
-            });
+        $(genObj.toWishlist).data('datas', {
+            'answer': true,
+            'data': text.error.notLogin
         });
     }
     else {
-        $('.' + genObj.toWishlist).data({
+        $(genObj.toWishlist).data({
             'always': true,
             'data': {
                 "ignoreWrap": true

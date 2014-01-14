@@ -246,7 +246,7 @@
                         {if $opi_wishlist}
                             <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
-                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if}>
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                             {/foreach}

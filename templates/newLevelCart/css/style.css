@@ -342,7 +342,7 @@ input.input-search{height: 33px;}
 .items-catalog .price-discount + .current-prices{margin-bottom: 10px;}
 .items-catalog .funcs-buttons{margin-bottom: 10px;}
 .items-catalog .funcs-buttons > .variant{margin-bottom: 12px;}
-.items-catalog .frame-count{margin-bottom: 5px;}
+.items-catalog .frame-count, .items-catalog .btn-buy{margin-bottom: 5px;}
 .short-desc{padding-bottom: 20px;word-break: break-word;word-wrap: break-word;}
 .short-desc p{margin-bottom: 0;}
 .short-desc p + p{margin-top: 15px;}

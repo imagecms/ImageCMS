@@ -37,7 +37,7 @@ $.exists = function(selector) {
 $.existsN = function(nabir) {
     return (nabir.length > 0);
 };
-$.getChar = function(e) {
+getChar = function(e) {
     if (e.which == null) {  // IE
         if (e.keyCode < 32)
             return null;

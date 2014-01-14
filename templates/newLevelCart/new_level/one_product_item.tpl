@@ -168,7 +168,7 @@
                             <form method="POST" action="/shop/cart/addProductByVariantId/{echo $pv->getId()}">
                                 {if !$opi_widget && !$opi_defaultItem}
                                     <div class="frame-count frameCount">
-                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}">
                                             <div class="frame-change-count frameChangeCount">
                                                 <div class="btn-plus">
                                                     <button type="button"{if $inCart} disabled="disabled"{/if}>
@@ -181,11 +181,11 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}"{if $inCart} disabled="disabled"{/if}>
+                                            <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}"{if $inCart} disabled="disabled"{/if}>
                                         </div>
                                     </div>
                                 {/if}
-                                <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                     <button 
                                         type="button"
                                         data-id="{echo $pv->getId()}"
@@ -206,12 +206,12 @@
 
                                         data-id="{echo $pv->getId()}"
                                         data-name="{echo ShopCore::encode($p->getName())}"
-                                        data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
-                                        data-number="{echo trim($pv->getNumber())}"
+                                        data-vname="{echo ShopCore::encode($pv->getName())}"
+                                        data-number="{echo $pv->getNumber()}"
                                         data-price="{echo $pv->toCurrency()}"
                                         data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                         data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                        data-mediumImage="
+                                        data-medium-image="
                                         {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
                                             {echo $p->firstVariant->getMediumPhoto()}
                                         {else:}
@@ -243,12 +243,12 @@
 
                                 data-id="{echo $pv->getId()}"
                                 data-name="{echo ShopCore::encode($p->getName())}"
-                                data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
-                                data-number="{echo trim($pv->getNumber())}"
+                                data-vname="{echo ShopCore::encode($pv->getName())}"
+                                data-number="{echo $pv->getNumber()}"
                                 data-price="{echo $pv->toCurrency()}"
                                 data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                 data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                data-mediumImage="
+                                data-medium-image="
                                 {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
                                     {echo $p->firstVariant->getMediumPhoto()}
                                 {else:}
@@ -278,7 +278,7 @@
                         {if $opi_wishlist}
                             <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
-                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if}>
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                             {/foreach}
@@ -289,7 +289,7 @@
                                 <!-- Start. Compare List button -->
                                 <div class="btn-compare">
                                     <button class="toCompare"
-                                            data-prodid="{echo $p->getId()}"
+                                            data-id="{echo $p->getId()}"
                                             type="button"
                                             data-title="{lang('В список сравнений','newLevel')}"
                                             data-firtitle="{lang('В список сравнений','newLevel')}"

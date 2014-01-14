@@ -92,7 +92,8 @@ var optionsDrop = {
     position: 'absolute',
     scroll: true,
     limitSize: true,
-    limitContentSize: true
+    limitContentSize: true,
+    scrollContent: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',

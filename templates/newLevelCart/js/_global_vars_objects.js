@@ -189,3 +189,6 @@ var optionsPlusminus = {
 $.maxminValue.settings = {
     addCond: checkProdStock
 }
+var optionPopupBask = {
+    pattern: '<div class="drop-bask drop drop-default drop-style" id="popupCart"><div class="placePaste p_r"></div></div>'
+}
