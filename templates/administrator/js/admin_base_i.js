@@ -1455,7 +1455,8 @@ $(document).ready(function() {
     }
 
     // for deleting contact rows
-    $("#site_info_tab").delegate("#siteinfo_contacts_table .si_remove_contact_row", "click", function() {
+    $("#siteinfo_contacts_table .si_remove_contact_row").die('click').live("click", function() {
+        //$("#site_info_tab").delegate("#siteinfo_contacts_table .si_remove_contact_row", "click", function() {
         var countOfRows = $("#site_info_tab #siteinfo_contacts_table tr").size();
         if (countOfRows > 1) {
             $(this).parents(".siteinfo_contact_row").remove();
@@ -1498,7 +1499,8 @@ $(document).ready(function() {
     });
 
     // delete image buttons
-    $("#site_info_tab").delegate('.remove_btn', "click", function() {
+    $(".remove_btn").die('change').live("click", function() {
+        //$("#site_info_tab").delegate('.remove_btn', "click", function() {
         // setting hidden input value to 1 delete for delete image on saving
         $(this).parents(".control-group").find("input.si_delete_image").val("1");
         // display some message about deleting
@@ -1508,15 +1510,17 @@ $(document).ready(function() {
 
     });
     // the delete button appears only on image hover
-    $("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
+    $(".siteinfo_image_container").die('change').live("mouseover", function() {
+        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
         $(this).find(".remove_btn").show();
     });
-    $("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
+    $(".siteinfo_image_container").die('change').live("mouseout", function() {
+        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
         $(this).find(".remove_btn").hide();
     });
 
-
-    $("#siteinfo_locale").die('change').change(function() {
+    $("#siteinfo_locale").die('change').live("change", function() {
+        //$("#site_info_tab").delegate('#siteinfo_locale', 'change', function() {
         var locale = $(this).val();
         $.post('/admin/settings/getSiteInfoDataJson', {locale: locale}, function(params) {
             $('#siteinfo_companytype').val(params.siteinfo_companytype);

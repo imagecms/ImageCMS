@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 12:54+0200\n"
-"PO-Revision-Date: 2013-12-26 12:54+0200\n"
+"POT-Creation-Date: 2014-01-14 12:24+0200\n"
+"PO-Revision-Date: 2014-01-14 12:24+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -21,6 +21,12 @@ msgstr ""
 #: ./application/modules/comments/templates/recent_product_comments.tpl:1
 msgid "Recent reviews"
 msgstr "Последние отзывы"
+
+#: ./application/modules/comments/commentsapi.php:173
+#: ./application/modules/comments/commentsapi.php:544
+#: ./application/modules/comments/commentsapi.php:548
+msgid "reviews"
+msgstr "комментариев"
 
 #: ./application/modules/comments/templates/comments_list.tpl:5
 #: ./application/modules/comments/module_info.php:4
@@ -352,12 +358,6 @@ msgstr "комментарии"
 #: ./application/modules/comments/commentsapi.php:547
 msgid "review"
 msgstr "просмотр"
-
-#: ./application/modules/comments/commentsapi.php:173
-#: ./application/modules/comments/commentsapi.php:544
-#: ./application/modules/comments/commentsapi.php:548
-msgid "reviews"
-msgstr "простмотров"
 
 #: ./application/modules/comments/commentsapi.php:175
 msgid "Leave a comment"
