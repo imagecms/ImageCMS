@@ -91,7 +91,8 @@ var optionsDrop = {
     scroll: true,
     limitSize: true,
     confirmBtnDrop: '#confirm',
-    limitContentSize: true
+    limitContentSize: true,
+    scrollContent: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
