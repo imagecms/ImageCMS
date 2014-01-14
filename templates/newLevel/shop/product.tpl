@@ -165,9 +165,8 @@
                                                     <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
                                                         <button 
                                                             type="button"
-                                                            data-drop="#popupCart"
-                                                            data-source="{shop_url('cart/api/renderCart')}"
-                                                            data-always="true"
+                                                            
+                                                            data-trigger="#showCart"
 
                                                             class="btnBuy infoBut"
 
@@ -179,6 +178,7 @@
                                                             data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -188,10 +188,8 @@
                                                     <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
                                                         <button 
                                                             type="button"
-                                                            onclick="serializeForm(this)"
-                                                            data-source="{shop_url('cart/api/addProductByVariantId/'.$productVariant->getId())}"
-                                                            data-drop=""
-
+                                                            
+                                                            onclick='Shop.Cart.add("{echo $productVariant->getId()}", "{shop_url('cart/api/addProductByVariantId/'.$productVariant->getId())}")'
                                                             class="btnBuy infoBut"
 
                                                             data-id="{echo $productVariant->getId()}"
@@ -202,6 +200,7 @@
                                                             data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
