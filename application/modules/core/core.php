@@ -433,7 +433,7 @@ class Core extends MY_Controller {
 
         if (!empty($_GET))
             $this->template->registerCanonical(site_url());
-        
+
         $this->template->assign('content', $this->template->read($page_tpl));
 
         $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);
@@ -576,7 +576,17 @@ class Core extends MY_Controller {
 
         ($hook = get_hook('core_dispcat_set_meta')) ? eval($hook) : NULL;
 
-        $this->set_meta_tags($category['title'], $category['keywords'], $category['description']);
+        // adding page number for pages with pagination (from second page)
+        $curPage = $this->pagination->cur_page;
+        if ($curPage > 1) {
+            $titile = $category['title'] . ' - ' . $curPage;
+            $description = $category['keywords'] . ' - ' . $curPage;
+
+            $this->set_meta_tags($titile, $category['keywords'], $description);
+        } else {
+            $this->set_meta_tags($category['title'], $category['keywords'], $category['description']);
+        }
+
 
         ($hook = get_hook('core_dispcat_set_content')) ? eval($hook) : NULL;
         $this->template->assign('content', $content);
@@ -942,7 +952,7 @@ class Core extends MY_Controller {
                 $description = '';
             if ($this->settings['create_keywords'] == 'empty')
                 $keywords = '';
-            
+
             $this->template->add_array(array(
                 'site_title' => $title,
                 'site_description' => strip_tags($description),
