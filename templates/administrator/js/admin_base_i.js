@@ -1519,28 +1519,42 @@ $(document).ready(function() {
         $(this).find(".remove_btn").hide();
     });
 
+    var siteInfoLocalesDataCache = {};
     $("#siteinfo_locale").die('change').live("change", function() {
         //$("#site_info_tab").delegate('#siteinfo_locale', 'change', function() {
         var locale = $(this).val();
-        $.post('/admin/settings/getSiteInfoDataJson', {locale: locale}, function(params) {
-            $('#siteinfo_companytype').val(params.siteinfo_companytype);
-            $('#siteinfo_address').val(params.siteinfo_address);
-            $('#siteinfo_mainphone').val(params.siteinfo_mainphone);
-            $('#siteinfo_adminemail').val(params.siteinfo_adminemail);
+        if (typeof siteInfoLocalesDataCache[locale] != 'undefined') {
+            changeSiteInfoLocaleParams(siteInfoLocalesDataCache[locale]);
+        } else {
+            $.post('/admin/settings/getSiteInfoDataJson', {locale: locale}, changeSiteInfoLocaleParams, "json");
+        }
 
-            $('.si_remove_contact_row').trigger('click'); // deleting all contacts rows
+    });
 
-            var i = 0;
-            for (var k in params.contacts) {
-                if (i > 0) {
-                    addSiteInfoContactRow();
-                }
-                $("#siteinfo_contacts_table tr:last-child .siteinfo_contactkey").val(k);
-                $("#siteinfo_contacts_table tr:last-child .siteinfo_contactvalue").val(params.contacts[k]);
-                i++;
+
+    function changeSiteInfoLocaleParams(params) {
+        $('#siteinfo_companytype').val(params.siteinfo_companytype);
+        $('#siteinfo_address').val(params.siteinfo_address);
+        $('#siteinfo_mainphone').val(params.siteinfo_mainphone);
+        $('#siteinfo_adminemail').val(params.siteinfo_adminemail);
+
+        $('.si_remove_contact_row').trigger('click'); // deleting all contacts rows
+
+        var i = 0;
+        for (var k in params.contacts) {
+            if (i > 0) {
+                addSiteInfoContactRow();
             }
+            $("#siteinfo_contacts_table tr:last-child .siteinfo_contactkey").val(k);
+            $("#siteinfo_contacts_table tr:last-child .siteinfo_contactvalue").val(params.contacts[k]);
+            i++;
+        }
+        siteInfoLocalesDataCache[params.locale] = params;
+    }
 
-        }, "json");
+    $('button.formSubmit').die('click').live('click', function() {
+        delete(siteInfoLocalesDataCache);
+        siteInfoLocalesDataCache = {};
     });
 
 

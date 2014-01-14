@@ -356,7 +356,7 @@ class Settings extends BaseAdminController {
     public function getSiteInfoDataJson() {
         $this->load->library('SiteInfo', $_POST['locale']);
         $data = $this->siteinfo->getSiteInfoData(TRUE);
-        echo json_encode($data);
+        echo json_encode(array_merge($data, array('locale' => $_POST['locale'])));
     }
 
     /**
