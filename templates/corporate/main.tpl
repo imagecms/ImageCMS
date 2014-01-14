@@ -22,7 +22,7 @@
         <link rel="SHORTCUT ICON" href="favicon.ico" />
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
-    <body>
+    <body>        
         <div class="main-body">
             <div class="fon-header">
                 <header>
@@ -36,44 +36,44 @@
                     </div>
                     <div class="content-header">
                         <div class="container">
-                            {if $CI->core->core_data['data_type'] == 'main'}
-                                <span class="logo f_l">
-                                    <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
-                                </span>
-                            {else:}
-                                <a href="{site_url()}" class="logo f_l">
-                                    <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
-                                </a>
-                            {/if}
-                            <div class="content-cleaner-search f_r">
-                                {widget('header')}
+                                {if $CI->core->core_data['data_type'] == 'main'}
+                                    <span class="logo f_l">
+                                        <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                                    </span>
+                                {else:}
+                                    <a href="{site_url()}" class="logo f_l">
+                                        <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                                    </a>
+                                {/if}
+                                <div class="content-cleaner-search f_r">
+                                    {widget('header')}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </header>
-                {load_menu('main_menu')}
-                {if $CI->core->core_data['data_type'] == 'main'}
-                    <!-- Start. Show banner on home page. -->
-                    {include_tpl('homebanner')}
-                    <!-- End. Show banner on home page. -->
-                {/if}
-            </div>
-            {$content}
-            <div class="h-footer"></div>
+                    </header>
+                    {load_menu('main_menu')}
+                    {if $CI->core->core_data['data_type'] == 'main'}
+                        <!-- Start. Show banner on home page. -->
+                        {include_tpl('homebanner')}
+                        <!-- End. Show banner on home page. -->
+                    {/if}
+                </div>
+                {$content}
+                <div class="h-footer"></div>
         </div>
         <footer>
             <div class="content-footer">
-                <div class="container">
-                    <div class="copy-right f_l">
-                        {widget('footer')}
-                    </div>    
-                    <nav class="box-1 f_r nav-footer">
-                        {load_menu('bottom_menu')}
-                    </nav>    
-                </div>
-            </div>
-        </footer>
-        <script type="text/javascript" src="{$THEME}js/jquery.pluginssiteimage.js"></script>
-        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
-    </body>
-</html>
+                        <div class="container">
+                        <div class="copy-right f_l">
+                            {widget('footer')}
+                        </div>    
+                        <nav class="box-1 f_r nav-footer">
+                                {load_menu('bottom_menu')}
+                            </nav>    
+                        </div>
+                    </div>
+                </footer>
+                <script type="text/javascript" src="{$THEME}js/jquery.pluginssiteimage.js"></script>
+                <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+            </body>
+        </html>

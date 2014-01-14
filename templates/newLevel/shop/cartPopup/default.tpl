@@ -177,10 +177,10 @@
             <div class="header-frame-foot">
                 <div class="inside-padd">
                     <div class="clearfix">
-                        {if $discount_val}
+                        {if $cartOriginPrice - $cartPrice > 0}
                             <span class="frame-discount">
                                 <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
-                                <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
+                                <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice - $cartPrice)}</span> <span class="curr">{$CS}</span></span>
                             </span>
                         {/if}
                         <div class="btn-form f_l isCart">
@@ -191,7 +191,7 @@
                         <span class="s-t">{lang('Всего','newLevel')}:</span>
                         <span class="frame-cur-sum-price">
                             <span class="frame-prices f-s_0">
-                                {if $discount_val}
+                                {if $cartOriginPrice - $cartPrice > 0}
                                     <span class="price-discount">
                                         <span class="frame-discount">
                                             <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
