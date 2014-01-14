@@ -13,11 +13,12 @@ if (!Array.indexOf) {
 }
 var Shop = {
     Cart: {
-        add: function(obj, id, url) {
+        add: function(obj, id, url, kit) {
             var self = this;
             $(document).trigger({
                 type: 'beforeAdd.Cart',
-                id: id
+                id: id,
+                kit: kit
             });
             
             $.ajax({
@@ -28,119 +29,122 @@ var Shop = {
                     $(document).trigger({
                         type: 'add.Cart',
                         datas: JSON.parse(data),
-                        id: id
+                        id: id,
+                        kit: kit
                     });
                 }
             });
-    },
-    remove: function(id, url) {
-        var self = this;
-        $(document).trigger({
-            type: 'beforeRemove.Cart',
-            id: id
-        });
-        $.getJSON(url, function(data) {
+        },
+        remove: function(id, url, kit) {
+            var self = this;
             $(document).trigger({
-                type: 'remove.Cart',
-                datas: data,
-                id: id
+                type: 'beforeRemove.Cart',
+                id: id,
+                kit: kit
             });
-        });
-    },
-    getTiny: function(tpl) {
-        var self = this;
-        tpl = tpl ? tpl : 'cart_data';
-        $.get(siteUrl + 'shop/cart/api/renderCart/' + tpl, function(data) {
-            $(document).trigger({
-                type: 'getTiny.Cart',
-                datas: data
+            $.getJSON(url, function(data) {
+                $(document).trigger({
+                    type: 'remove.Cart',
+                    datas: data,
+                    id: id,
+                    kit: kit
+                });
             });
-        });
-    },
-    composeCartItem: function($context) {
-        var cartItem = {},
-        data = $context.data();
-        for (var i in data)
-            cartItem[i] = data[i]
-        return cartItem;
-    }
-},
-CompareList: {
-    items: [],
-    all: function() {
-        return JSON.parse(localStorage.getItem('compareList')) ? _.compact(JSON.parse(localStorage.getItem('compareList'))) : [];
-    },
-    add: function(key) {
-        this.items = this.all();
-        $(document).trigger({
-            type: 'before_add_to_compare'
-        });
-        if (this.items.indexOf(key) === -1) {
-            $.get(siteUrl + 'shop/compare_api/add/' + key, function(data) {
-                try {
-                    var dataObj = JSON.parse(data);
-                    dataObj.id = key;
-                    if (dataObj.success == true) {
-                        Shop.CompareList.items.push(key);
-                        localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
-                        $(document).trigger({
-                            type: 'compare_list_add',
-                            dataObj: dataObj
-                        });
-                    }
-                    returnMsg("=== add Compare Item. call compare_list_add ===");
-                } catch (e) {
-                    returnMsg("=== Error. add Compare ===");
-                    $(document).trigger('hideActivity');
-                }
+        },
+        getTiny: function(tpl) {
+            var self = this;
+            tpl = tpl ? tpl : 'cart_data';
+            $.get(siteUrl + 'shop/cart/api/renderCart/' + tpl, function(data) {
+                $(document).trigger({
+                    type: 'getTiny.Cart',
+                    datas: data
+                });
             });
+        },
+        composeCartItem: function($context) {
+            var cartItem = {},
+            data = $context.data();
+            for (var i in data)
+                cartItem[i] = data[i]
+            return cartItem;
         }
     },
-    rm: function(key, el) {
-        this.items = this.all();
-        if (this.items.indexOf(key) !== -1) {
-            this.items = _.without(this.items, key);
+    CompareList: {
+        items: [],
+        all: function() {
+            return JSON.parse(localStorage.getItem('compareList')) ? _.compact(JSON.parse(localStorage.getItem('compareList'))) : [];
+        },
+        add: function(key) {
             this.items = this.all();
-            $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
-                try {
-                    var dataObj = JSON.parse(data);
-                    dataObj.id = key;
-                    if (dataObj.success == true) {
-                        Shop.CompareList.items = _.without(Shop.CompareList.items, key);
-                        localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
-                        $(document).trigger({
-                            type: 'compare_list_rm',
-                            dataObj: dataObj
-                        });
-                    }
-                    returnMsg("=== remove Compare Item. call compare_list_rm ===");
-                } catch (e) {
-                    returnMsg("=== Error. remove Compare Item ===");
-                    $(document).trigger('hideActivity');
-                }
+            $(document).trigger({
+                type: 'before_add_to_compare'
             });
-        }
-        $(document).trigger({
-            type: 'delete_compare',
-            el: $(el)
-        });
-    },
-    sync: function() {
-        $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
-            if (typeof data == 'object' || typeof data == 'Array') {
-                localStorage.setItem('compareList', JSON.stringify(data));
+            if (this.items.indexOf(key) === -1) {
+                $.get(siteUrl + 'shop/compare_api/add/' + key, function(data) {
+                    try {
+                        var dataObj = JSON.parse(data);
+                        dataObj.id = key;
+                        if (dataObj.success == true) {
+                            Shop.CompareList.items.push(key);
+                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                            $(document).trigger({
+                                type: 'compare_list_add',
+                                dataObj: dataObj
+                            });
+                        }
+                        returnMsg("=== add Compare Item. call compare_list_add ===");
+                    } catch (e) {
+                        returnMsg("=== Error. add Compare ===");
+                        $(document).trigger('hideActivity');
+                    }
+                });
             }
-            else if (data === false) {
-                localStorage.removeItem('compareList');
+        },
+        rm: function(key, el) {
+            this.items = this.all();
+            if (this.items.indexOf(key) !== -1) {
+                this.items = _.without(this.items, key);
+                this.items = this.all();
+                $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
+                    try {
+                        var dataObj = JSON.parse(data);
+                        dataObj.id = key;
+                        if (dataObj.success == true) {
+                            Shop.CompareList.items = _.without(Shop.CompareList.items, key);
+                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                            $(document).trigger({
+                                type: 'compare_list_rm',
+                                dataObj: dataObj
+                            });
+                        }
+                        returnMsg("=== remove Compare Item. call compare_list_rm ===");
+                    } catch (e) {
+                        returnMsg("=== Error. remove Compare Item ===");
+                        $(document).trigger('hideActivity');
+                    }
+                });
             }
             $(document).trigger({
-                type: 'compare_list_sync',
-                dataObj: data
+                type: 'delete_compare',
+                el: $(el)
             });
-            returnMsg("=== Compare sync. call compare_list_sync ===");
-        });
+        },
+        sync: function() {
+            $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
+                if (typeof data == 'object' || typeof data == 'Array') {
+                    localStorage.setItem('compareList', JSON.stringify(data));
+                }
+                else if (data === false) {
+                    localStorage.removeItem('compareList');
+                }
+                $(document).trigger({
+                    type: 'compare_list_sync',
+                    dataObj: data
+                });
+                returnMsg("=== Compare sync. call compare_list_sync ===");
+            });
+        }
     }
-}
 };
 if (typeof (wishList) != 'object')
     var wishList = {

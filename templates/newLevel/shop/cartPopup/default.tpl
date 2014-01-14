@@ -83,7 +83,7 @@
                                                         {if $NextCSId}
                                                             <span class="price-add">
                                                                 <span>
-                                                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice * $item->quantity, $NextCSId)}</span>
+                                                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
                                                                     <span class="curr">{$NextCS}</span>
                                                                 </span>
                                                             </span>
@@ -96,7 +96,7 @@
                                 {else:}
                                     <tr class="row-kits" data-id="{echo $item->getId()}">
                                         <td class="frame-remove-bask-btn">
-                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove('{$item->getId()}', '{site_url("shop/cart/api/removeKit/".$item->getId())}')"></button></button>
+                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove('{echo $item->getId()}', '{site_url("shop/cart/api/removeKit/".$item->getId())}', true)"></button></button>
                                         </td>
                                         <td class="frame-items frame-items-kit">
                                             <ul class="items items-bask">
@@ -147,10 +147,10 @@
                                         <td class="frame-cur-sum-price">
                                             <span class="title">{lang('Сумма','newLevel')}: </span>
                                             <div class="frame-prices f-s_0">
-                                                {if ShopCore::app()->SCurrencyHelper->convert($kitItem->originPrice) != ShopCore::app()->SCurrencyHelper->convert($kitItem->price)}
+                                                {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                                     <span class="price-discount">
                                                         <span>
-                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($kitItem->originPrice * $kitItem)}</span>
+                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice * $item->quantity)}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
@@ -158,10 +158,18 @@
                                                 <span class="current-prices f-s_0">
                                                     <span class="price-new">
                                                         <span>
-                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($kitItem->price)}</span>
+                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price)}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
+                                                    {if $NextCSId}
+                                                        <span class="price-add">
+                                                            <span>
+                                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
+                                                                <span class="curr">{$NextCS}</span>
+                                                            </span>
+                                                        </span>
+                                                    {/if}
                                                 </span>
                                             </div>
                                         </td>

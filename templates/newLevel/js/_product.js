@@ -26,7 +26,7 @@ Product = {
         el.find(genObj.parentBtnBuy).find(genObj.changeVariantProduct).on('change', function() {
             var productId = parseInt($(this).attr('value')),
                     liBlock = $(this).closest(genObj.parentBtnBuy),
-                    btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut),
+                    btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut).first(),
                     vId = btnInfo.data('id'),
                     vName = btnInfo.data('vname'),
                     vNumber = btnInfo.data('number'),
@@ -37,6 +37,7 @@ Product = {
                     vMainImage = btnInfo.data('mainImage'),
                     vStock = btnInfo.data('maxcount');
 
+            console.log(btnInfo)
             if (vMainImage.search(/nophoto/) === -1) {
                 $(genObj.photoProduct).add($(genObj.mainThumb)).attr('href', vLargeImage);
 
