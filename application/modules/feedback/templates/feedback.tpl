@@ -45,7 +45,7 @@
                                 <div class="comment_form_info">
                                     {if $captcha_type =='captcha'}
                                         <div class="textbox captcha" style="margin-top: 15px;">
-                                            <label for="captcha"><b>{lang('Protection code', 'feedback')}</b></label>
+                                            <label for="captcha"><b>{lang('Protection code', 'feedback')}111</b></label>
                                             <br>
                                             {$cap_image}
                                             <br><br>
