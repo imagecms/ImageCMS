@@ -12,12 +12,12 @@ $.dropInit.prototype.extendDrop = function() {
                             body.off('selectstart.' + $.drop.nS + ' mousemove.' + $.drop.nS + ' mouseup.' + $.drop.nS);
                         });
                         var $this = $(this).css('cursor', 'move'),
-                                left = e.pageX - $this.offset().left,
-                                top = e.pageY - $this.offset().top,
-                                w = $this.outerWidth(),
-                                h = $this.outerHeight(),
-                                wndW = wnd.width(),
-                                wndH = wnd.height();
+                        left = e.pageX - $this.offset().left,
+                        top = e.pageY - $this.offset().top,
+                        w = $this.outerWidth(),
+                        h = $this.outerHeight(),
+                        wndW = wnd.width(),
+                        wndH = wnd.height();
                         body.on('selectstart.' + $.drop.nS, function(e) {
                             e.preventDefault();
                         });
@@ -25,7 +25,7 @@ $.dropInit.prototype.extendDrop = function() {
                         body.on('mousemove.' + $.drop.nS, function(e) {
                             drop.data('drp').droppableIn = true;
                             var l = e.pageX - left,
-                                    t = e.pageY - top;
+                            t = e.pageY - top;
                             l = l < 0 ? 0 : l;
                             t = t < 0 ? 0 : t;
                             var addW = condH ? 17 : 0;
@@ -49,14 +49,14 @@ $.dropInit.prototype.extendDrop = function() {
                 if (!drop.data('drp').droppableIn) {
                     start = start === undefined ? true : false;
                     var method = drop.data('drp').animate && start ? 'animate' : 'css',
-                            placement = drop.data('drp').placement,
-                            $this = drop.data('drp').elrun,
-                            dataSourceH = 0,
-                            dataSourceW = 0,
-                            $thisW = $this.width(),
-                            $thisH = $this.height(),
-                            $thisT = 0,
-                            $thisL = 0;
+                    placement = drop.data('drp').placement,
+                    $this = drop.data('drp').elrun,
+                    dataSourceH = 0,
+                    dataSourceW = 0,
+                    $thisW = $this.width(),
+                    $thisH = $this.height(),
+                    $thisT = 0,
+                    $thisL = 0;
                     if (typeof placement == 'object') {
                         var tempObj = {};
                         for (var key in placement) {
@@ -101,7 +101,7 @@ $.dropInit.prototype.extendDrop = function() {
                 var drop = $(this);
                 if (drop.data('drp').limitContentSize) {
                     var dropV = drop.is(':visible'),
-                            wndH = wnd.height();
+                    wndH = wnd.height();
                     if (drop.data('drp').dropContent) {
                         var el = drop.find($(drop.data('drp').dropContent).add($($.drop.dPP.dropContent))).filter(':first').css('height', '');
                         if (el.data('jsp') != undefined)
@@ -109,8 +109,8 @@ $.dropInit.prototype.extendDrop = function() {
 
                         if ($.existsN(el)) {
                             var docH = $(document).height(),
-                                    forCenter = drop.data('drp').forCenter,
-                                    refer = drop.data('drp').elrun;
+                            forCenter = drop.data('drp').forCenter,
+                            refer = drop.data('drp').elrun;
                             if (!dropV) {
                                 drop.show();
                                 if (forCenter)
@@ -118,19 +118,21 @@ $.dropInit.prototype.extendDrop = function() {
                             }
 
                             var api = false,
-                                    elC = el.css('overflow', '');
-                            try {
-                                el.jScrollPane(scrollPane);
-                                elC = el.find('.jspPane');
-                                api = el.data('jsp');
-                            } catch (err) {
-                                elC.css('overflow', 'auto');
+                            elC = el.css('overflow', '');
+                            if (drop.data('drp').scrollContent){
+                                try {
+                                    el.jScrollPane(scrollPane);
+                                    elC = el.find('.jspPane');
+                                    api = el.data('jsp');
+                                } catch (err) {
+                                    elC.css('overflow', 'auto');
+                                }
                             }
                             var elCH = elC.outerHeight(),
-                                    footerHeader = drop.find($(drop.data('drp').dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drop.data('drp').dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
+                            footerHeader = drop.find($(drop.data('drp').dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drop.data('drp').dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
                             if (drop.data('drp').place == 'noinherit') {
                                 var mayHeight = 0,
-                                        placement = drop.data('drp').placement;
+                                placement = drop.data('drp').placement;
                                 if (typeof placement == 'object') {
                                     if (placement.top != undefined)
                                         mayHeight = docH - placement.top - footerHeader - (drop.outerHeight() - drop.height());
@@ -186,10 +188,10 @@ $.dropInit.prototype.extendDrop = function() {
                     drop.find('.placePaste img').css('max-height', 'none');
                     if (drop.data('drp').place === 'center') {
                         var wndW = wnd.width(),
-                                wndH = wnd.height();
+                        wndH = wnd.height();
                         var dropV = drop.is(':visible'),
-                                w = dropV ? drop.width() : drop.actual('width'),
-                                h = dropV ? drop.height() : drop.actual('height');
+                        w = dropV ? drop.width() : drop.actual('width'),
+                        h = dropV ? drop.height() : drop.actual('height');
                         if (w > wndW)
                             drop.css('width', wndW - 40);
                         if (h > wndH)
