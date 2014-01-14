@@ -142,30 +142,30 @@
                                             {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                         {/if}
                                         {if $productVariant->getStock() > 0}
+                                            {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
                                             <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                     <div class="frame-count frameCount">
                                                         <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}">
                                                             <div class="frame-change-count frameChangeCount">
                                                                 <div class="btn-plus">
-                                                                    <button type="button">
+                                                                    <button type="button" {if $inCart}disabled="disabled"{/if}>
                                                                         <span class="icon-plus"></span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="btn-minus">
-                                                                    <button type="button">
+                                                                    <button type="button" {if $inCart}disabled="disabled"{/if}>
                                                                         <span class="icon-minus"></span>
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                            <input type="text" name="quantity" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
+                                                            <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
                                                         </div>
                                                     </div>
-                                                    {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
                                                     <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
                                                         <button 
                                                             type="button"
-                                                            
+
                                                             data-trigger="#showCart"
 
                                                             class="btnBuy infoBut"
@@ -188,8 +188,8 @@
                                                     <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
                                                         <button 
                                                             type="button"
-                                                            
-                                                            onclick='Shop.Cart.add("{echo $productVariant->getId()}", "{shop_url('cart/api/addProductByVariantId/'.$productVariant->getId())}")'
+
+                                                            onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $productVariant->getId()}", "{shop_url('cart/api/addProductByVariantId/'.$productVariant->getId())}")'
                                                             class="btnBuy infoBut"
 
                                                             data-id="{echo $productVariant->getId()}"
@@ -588,7 +588,7 @@
             <div id="view">
                 {if $dl_properties}
                     <div class="inside-padd">
-                        <h2>{lang('Свойства','newLevel')}</h2>
+                        <span class="title-h2">{lang('Свойства','newLevel')}</span>
                         <div class="characteristic">
                             <div class="product-charac patch-product-view">
                                 {echo $dl_properties}
@@ -725,7 +725,7 @@
                 </div>
             </div>
         </div>
-        <div class="drop-content-photo">
+        <div class="drop-content">
             <div class="inside-padd">
                 <span class="helper"></span>
                 <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
@@ -742,7 +742,9 @@
             </div>
         </div>
         <div class="drop-footer">
-            <%= obj.frame.find(obj.footerContent).html()%>
+            <div class="inside-padd">
+                <%= obj.frame.find(obj.footerContent).html()%>
+            </div>
         </div>
     {/literal}
 </script>

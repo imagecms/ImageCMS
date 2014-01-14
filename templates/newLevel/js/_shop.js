@@ -13,128 +13,134 @@ if (!Array.indexOf) {
 }
 var Shop = {
     Cart: {
-        add: function(id, url) {
+        add: function(obj, id, url) {
             var self = this;
             $(document).trigger({
                 type: 'beforeAdd.Cart',
                 id: id
             });
-            $.get(url, function(data) {
-                $(document).trigger({
-                    type: 'add.Cart',
-                    datas: JSON.parse(data),
-                    id: id
-                });
+            
+            $.ajax({
+                type: 'get',
+                url: url,
+                data: obj,
+                success: function(data) {
+                    $(document).trigger({
+                        type: 'add.Cart',
+                        datas: JSON.parse(data),
+                        id: id
+                    });
+                }
             });
-        },
-        remove: function(id, url) {
-            var self = this;
+    },
+    remove: function(id, url) {
+        var self = this;
+        $(document).trigger({
+            type: 'beforeRemove.Cart',
+            id: id
+        });
+        $.getJSON(url, function(data) {
             $(document).trigger({
-                type: 'beforeRemove.Cart',
+                type: 'remove.Cart',
+                datas: data,
                 id: id
             });
-            $.get(url, function(data) {
-                $(document).trigger({
-                    type: 'remove.Cart',
-                    datas: JSON.parse(data),
-                    id: id
-                });
+        });
+    },
+    getTiny: function(tpl) {
+        var self = this;
+        tpl = tpl ? tpl : 'cart_data';
+        $.get(siteUrl + 'shop/cart/api/renderCart/' + tpl, function(data) {
+            $(document).trigger({
+                type: 'getTiny.Cart',
+                datas: data
             });
-        },
-        getTiny: function(tpl) {
-            var self = this;
-            tpl = tpl ? tpl : 'cart_data';
-            $.get(siteUrl + 'shop/cart/api/renderCart/' + tpl, function(data) {
-                $(document).trigger({
-                    type: 'getTiny.Cart',
-                    datas: data
-                });
+        });
+    },
+    composeCartItem: function($context) {
+        var cartItem = {},
+        data = $context.data();
+        for (var i in data)
+            cartItem[i] = data[i]
+        return cartItem;
+    }
+},
+CompareList: {
+    items: [],
+    all: function() {
+        return JSON.parse(localStorage.getItem('compareList')) ? _.compact(JSON.parse(localStorage.getItem('compareList'))) : [];
+    },
+    add: function(key) {
+        this.items = this.all();
+        $(document).trigger({
+            type: 'before_add_to_compare'
+        });
+        if (this.items.indexOf(key) === -1) {
+            $.get(siteUrl + 'shop/compare_api/add/' + key, function(data) {
+                try {
+                    var dataObj = JSON.parse(data);
+                    dataObj.id = key;
+                    if (dataObj.success == true) {
+                        Shop.CompareList.items.push(key);
+                        localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                        $(document).trigger({
+                            type: 'compare_list_add',
+                            dataObj: dataObj
+                        });
+                    }
+                    returnMsg("=== add Compare Item. call compare_list_add ===");
+                } catch (e) {
+                    returnMsg("=== Error. add Compare ===");
+                    $(document).trigger('hideActivity');
+                }
             });
-        },
-        composeCartItem: function($context) {
-            var cartItem = {},
-                    data = $context.data();
-            for (var i in data)
-                cartItem[i] = data[i]
-            return cartItem;
         }
     },
-    CompareList: {
-        items: [],
-        all: function() {
-            return JSON.parse(localStorage.getItem('compareList')) ? _.compact(JSON.parse(localStorage.getItem('compareList'))) : [];
-        },
-        add: function(key) {
+    rm: function(key, el) {
+        this.items = this.all();
+        if (this.items.indexOf(key) !== -1) {
+            this.items = _.without(this.items, key);
             this.items = this.all();
-            $(document).trigger({
-                type: 'before_add_to_compare'
-            });
-            if (this.items.indexOf(key) === -1) {
-                $.get(siteUrl + 'shop/compare_api/add/' + key, function(data) {
-                    try {
-                        var dataObj = JSON.parse(data);
-                        dataObj.id = key;
-                        if (dataObj.success == true) {
-                            Shop.CompareList.items.push(key);
-                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
-                            $(document).trigger({
-                                type: 'compare_list_add',
-                                dataObj: dataObj
-                            });
-                        }
-                        returnMsg("=== add Compare Item. call compare_list_add ===");
-                    } catch (e) {
-                        returnMsg("=== Error. add Compare ===");
-                        $(document).trigger('hideActivity');
+            $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
+                try {
+                    var dataObj = JSON.parse(data);
+                    dataObj.id = key;
+                    if (dataObj.success == true) {
+                        Shop.CompareList.items = _.without(Shop.CompareList.items, key);
+                        localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                        $(document).trigger({
+                            type: 'compare_list_rm',
+                            dataObj: dataObj
+                        });
                     }
-                });
-            }
-        },
-        rm: function(key, el) {
-            this.items = this.all();
-            if (this.items.indexOf(key) !== -1) {
-                this.items = _.without(this.items, key);
-                this.items = this.all();
-                $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
-                    try {
-                        var dataObj = JSON.parse(data);
-                        dataObj.id = key;
-                        if (dataObj.success == true) {
-                            Shop.CompareList.items = _.without(Shop.CompareList.items, key);
-                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
-                            $(document).trigger({
-                                type: 'compare_list_rm',
-                                dataObj: dataObj
-                            });
-                        }
-                        returnMsg("=== remove Compare Item. call compare_list_rm ===");
-                    } catch (e) {
-                        returnMsg("=== Error. remove Compare Item ===");
-                        $(document).trigger('hideActivity');
-                    }
-                });
-            }
-            $(document).trigger({
-                type: 'delete_compare',
-                el: $(el)
-            });
-        },
-        sync: function() {
-            $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
-                if (typeof data == 'object' || typeof data == 'Array') {
-                    localStorage.setItem('compareList', JSON.stringify(data));
+                    returnMsg("=== remove Compare Item. call compare_list_rm ===");
+                } catch (e) {
+                    returnMsg("=== Error. remove Compare Item ===");
+                    $(document).trigger('hideActivity');
                 }
-                else if (data === false) {
-                    localStorage.removeItem('compareList');
-                }
-                $(document).trigger({
-                    type: 'compare_list_sync',
-                    dataObj: data
-                });
-                returnMsg("=== Compare sync. call compare_list_sync ===");
             });
         }
+        $(document).trigger({
+            type: 'delete_compare',
+            el: $(el)
+        });
+    },
+    sync: function() {
+        $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
+            if (typeof data == 'object' || typeof data == 'Array') {
+                localStorage.setItem('compareList', JSON.stringify(data));
+            }
+            else if (data === false) {
+                localStorage.removeItem('compareList');
+            }
+            $(document).trigger({
+                type: 'compare_list_sync',
+                dataObj: data
+            });
+            returnMsg("=== Compare sync. call compare_list_sync ===");
+        });
     }
+}
 };
 if (typeof (wishList) != 'object')
     var wishList = {
@@ -157,32 +163,32 @@ if (typeof (wishList) != 'object')
         }
     }
 /**
- * AuthApi ajax client
- * Makes simple request to api controllers and get return data in json
- * 
- * @author Avgustus
- * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
- * 
- * Get JSON object with fields list:
- *      'status'    -   true/false - if the operation was successful,
- *      'msg'       -   info message about result,
- *      'refresh'   -   true/false - if true refreshes the page,
- *      'redirect'  -   url - redirects to needed url
- *    
- * List of api methods:
- *      Auth.php:
- *          '/auth/authapi/login',
- *          '/auth/authapi/logout',
- *          '/auth/authapi/register',
- *          '/auth/authapi/forgot_password',
- *          '/auth/authapi/reset_password',
- *          '/auth/authapi/change_password',
- *          '/auth/authapi/cancel_account',
- *          '/auth/authapi/banned',
- *          '/shop/ajax/getApiNotifyingRequest',
- *          '/shop/callbackApi'
- * 
- **/
+     * AuthApi ajax client
+     * Makes simple request to api controllers and get return data in json
+     * 
+     * @author Avgustus
+     * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
+     * 
+     * Get JSON object with fields list:
+     *      'status'    -   true/false - if the operation was successful,
+     *      'msg'       -   info message about result,
+     *      'refresh'   -   true/false - if true refreshes the page,
+     *      'redirect'  -   url - redirects to needed url
+     *    
+     * List of api methods:
+     *      Auth.php:
+     *          '/auth/authapi/login',
+     *          '/auth/authapi/logout',
+     *          '/auth/authapi/register',
+     *          '/auth/authapi/forgot_password',
+     *          '/auth/authapi/reset_password',
+     *          '/auth/authapi/change_password',
+     *          '/auth/authapi/cancel_account',
+     *          '/auth/authapi/banned',
+     *          '/shop/ajax/getApiNotifyingRequest',
+     *          '/shop/callbackApi'
+     * 
+     **/
 
 var ImageCMSApi = {
     defSet: function() {
@@ -261,9 +267,9 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                                form = $this.closest('form'),
-                                $thisТ = $this.attr('name'),
-                                elMsg = form.find('[for=' + $thisТ + ']');
+                        form = $this.closest('form'),
+                        $thisТ = $this.attr('name'),
+                        elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.remove();
@@ -291,10 +297,10 @@ var ImageCMSApi = {
         return queryString;
     },
     /**
-     * for displaying validation messages 
-     * in the form, which needs validation, for each validate input
-     * 
-     * */
+         * for displaying validation messages 
+         * in the form, which needs validation, for each validate input
+         * 
+         * */
     sendValidations: function(validations, selector, DS) {
         var sel = $(selector);
         if (typeof validations === 'object') {
@@ -320,9 +326,9 @@ var ImageCMSApi = {
         }
     },
     /**
-     * add captcha block if needed
-     * @param {type} captcha_image
-     */
+         * add captcha block if needed
+         * @param {type} captcha_image
+         */
     addCaptcha: function(cI, DS) {
         DS.captchaBlock.html(DS.captcha(cI));
         return false;
