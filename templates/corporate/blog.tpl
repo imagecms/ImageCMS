@@ -16,7 +16,7 @@
                         <ul class="items items-blog items-row">
                             {foreach $pages as $page}
                                 <li>
-                                    <h2><a href="{site_url($page.full_url)}">{$page.title}</a></h2>  
+                                    <span class="title-h2"><a href="{site_url($page.full_url)}">{$page.title}</a></span>  
                                     <span class="post-pub-info">
                                         {date('d-m-Y', $page.publish_date)} | 
                                         Раздел: <a href="{site_url($page.cat_url)}">{get_category_name($page.category)}</a>
