@@ -2100,6 +2100,7 @@ function getCookie(c_name)
                     scroll = elSet.scroll || set.scroll,
                     limitSize = elSet.limitSize || set.limitSize,
                     limitContentSize = elSet.limitContentSize || set.limitContentSize,
+                    scrollContent = elSet.scrollContent || set.scrollContent,
                     inheritClose = elSet.inheritClose || set.inheritClose,
                     dropContent = elSet.dropContent || set.dropContent,
                     dropHeader = elSet.dropHeader || set.dropHeader,
@@ -2176,6 +2177,7 @@ function getCookie(c_name)
                     'scroll': scroll,
                     'limitSize': limitSize,
                     'limitContentSize': limitContentSize,
+                    'scrollContent': scrollContent,
                     'inheritClose': inheritClose,
                     'methods': $.extend({
                         'self': drop,
@@ -2597,6 +2599,7 @@ function getCookie(c_name)
             scroll: false,
             limitSize: false,
             limitContentSize: false,
+            scrollContent: false,
             inheritClose: false
         };
         this.setParameters = function(options) {

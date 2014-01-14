@@ -897,6 +897,8 @@ function initAdminArea() {
         }
     }
 
+
+
     console.log('initialising of administration area started');
     var startExecTime = Date.now();
 

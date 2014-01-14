@@ -2,8 +2,8 @@ var productPhotoCZoom = window.productPhotoCZoom !== undefined,
         productPhotoDrop = window.productPhotoDrop !== undefined;
 
 var hrefOptions = {
-    next: '#photo .drop-content-photo .next',
-    prev: '#photo .drop-content-photo .prev',
+    next: '#photo .drop-content .next',
+    prev: '#photo .drop-content .prev',
     gallery: '#photo .frame-fancy-gallery',
     cycle: false,
     //    'frame' and other in extend optionsPhoto and this object
@@ -74,13 +74,9 @@ Product = {
         return true;
     },
     resizePhoto: function(drop, s, c) {
-        var fancyFrame = drop.find('.drop-content-photo'),
-                img = fancyFrame.find('img'),
-                dropV = drop.is(':visible') ? true : false,
-                dropH = dropV ? drop.height() : drop.actual('height'),
-                hNotC = 0;
+        var fancyFrame = drop.find('.drop-content'),
+                img = fancyFrame.find('img');
 
-        fancyFrame.css('height', '');
         img.css({
             'width': img.actual('width'),
             'height': img.actual('height')
@@ -88,12 +84,6 @@ Product = {
 
         if (s !== undefined)
             s();
-        drop.find(drop.data('dropHeader')).add(drop.find(drop.data('dropFooter'))).each(function() {
-            hNotC += dropV ? $(this).outerHeight() : $(this).actual('outerHeight');
-        });
-        fancyFrame.css({
-            'height': dropH - hNotC - 20
-        });
         img.css({
             'width': '',
             'height': ''
@@ -108,7 +98,7 @@ Product = {
         fancyFrameInPH.parent().addClass('p_r');
         fancyFrameInPH.after('<div class="preloader"></div>');
         $('<img src="' + href + '">').load(function() {
-            drop.find('.drop-content-photo').find('img').remove();
+            drop.find('.drop-content').find('img').remove();
             fancyFrameInPH.nextAll('.preloader').remove();
             fancyFrameInPH.after($(this).css('visibility', 'visible').hide().fadeIn());
 
@@ -130,7 +120,7 @@ Product = {
 
         var next = $(hrefOptions.next),
                 prev = $(hrefOptions.prev),
-                content = drop.find('.drop-content-photo'),
+                content = drop.find('.drop-content'),
                 img = content.find('img');
         hrefOptions.curHref = img.attr('src');
 
@@ -233,9 +223,8 @@ Product = {
         drop.find('.addingphoto').remove();
     },
     onComplete: function(el, drop, isajax) {
-
         var carGal = drop.find('.content-carousel');
-        drop.find('.drop-content-photo img').css('visibility', 'visible');
+        drop.find('.drop-content img').css('visibility', 'visible');
 
         Product.resizePhoto(drop, function() {
             carGal.parent().myCarousel($.extend({}, carousel, {
@@ -292,7 +281,7 @@ function initPhoto() {
                 'frame': $this.closest(genObj.parentBtnBuy),
                 'mainPhoto': $this.attr('href'),
                 'title': $this.attr('title')
-            }, optionsPhoto)).drop(optionsDrop).trigger('click.drop');
+            }, optionsPhoto)).drop({scrollContent: false}).trigger('click.drop');
         });
     }
 }

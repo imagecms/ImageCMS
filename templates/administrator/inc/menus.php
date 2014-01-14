@@ -135,6 +135,9 @@ $baseMenu = array(
                 'text' => lang('Roles list', 'admin'),
             ),
             array(
+                'divider' => true
+            ),
+            array(
                 'id' => 'clearAllCache',
                 'pjax' => FALSE,
                 'text' => lang('Clear cache', 'admin'),

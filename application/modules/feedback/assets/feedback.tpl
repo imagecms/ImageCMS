@@ -46,9 +46,7 @@
                                     {if $captcha_type =='captcha'}
                                         <div class="textbox captcha" style="margin-top: 15px;">
                                             <label for="captcha"><b>{lang('Protection code', 'feedback')}</b></label>
-                                            <br>
-                                            {$cap_image}
-                                            <br><br>
+                                            <div>{$cap_image}</div>
                                             <input type="text" name="captcha" style="width: 150px" id="recaptcha_response_field" value="" placeholder="{lang('Enter protection code', 'feedback')}"/>
                                         </div>
                                     {/if}
