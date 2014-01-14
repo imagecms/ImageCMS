@@ -2,9 +2,9 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-11 12:10+0200\n"
-"PO-Revision-Date: 2014-01-11 12:10+0200\n"
-"Last-Translator: Marko <sheme4ko@mail.ru>\n"
+"POT-Creation-Date: 2014-01-13 12:45+0200\n"
+"PO-Revision-Date: 2014-01-13 12:45+0200\n"
+"Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,17 @@ msgstr ""
 "X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
 "X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
 "X-Poedit-SearchPath-11: ../../../../../templates/administrator/js/jquery-validate\n"
+
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:166
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:173
+#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:167
+msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
+msgstr "Кошелек продавца, на который покупатель должен произвести оплату. Формат - буква и 12 цифр."
+
+#: ./system/language/form_validation/form_validation.php:31
+msgid "User profile successfully changed"
+msgstr "Профиль пользователя успешно изменен"
 
 #: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:8
 msgid "Enter a valid email address."
@@ -108,13 +119,6 @@ msgstr "Для повышения эффективности установит�
 #: ./application/libraries/gettext_php/Gettext_extension.php:49
 msgid "Advice"
 msgstr "Совет"
-
-#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
-#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:166
-#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:173
-#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:167
-msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
-msgstr "Хитрость продавца, по которому покупатель должен произвести оплату. Формат - письмо и 12 цифр."
 
 #: ../../../../../application/helpers/category_helper.php:86
 msgid "No category"
@@ -663,7 +667,7 @@ msgstr "Поле %s может содержать только алфавитн�
 
 #: ../../../../../system/language/form_validation/form_validation.php:20
 msgid "alpha_dash"
-msgstr "alpha_dash"
+msgstr "Поле %s должно содержать только латинские буквы, цифры, а также знаки дефис и подчеркивание."
 
 #: ../../../../../system/language/form_validation/form_validation.php:21
 msgid "numeric"
