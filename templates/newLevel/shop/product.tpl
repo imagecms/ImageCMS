@@ -588,7 +588,7 @@
             <div id="view">
                 {if $dl_properties}
                     <div class="inside-padd">
-                        <h2>{lang('Свойства','newLevel')}</h2>
+                        <span class="title-h2">{lang('Свойства','newLevel')}</span>
                         <div class="characteristic">
                             <div class="product-charac patch-product-view">
                                 {echo $dl_properties}
