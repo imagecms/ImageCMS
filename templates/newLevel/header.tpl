@@ -54,7 +54,7 @@
             </div>
             <div class="frame-search-cleaner">
                 <!--                Start. Include cart data template-->
-                <div id="bask_block" class="frame-cleaner">
+                <div id="tinyBask" class="frame-cleaner">
                     {include_shop_tpl('cartPopup/cart_data')}
                 </div>
                 <!--                    End. Include cart data template-->
