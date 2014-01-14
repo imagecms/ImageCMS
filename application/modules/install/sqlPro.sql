@@ -1042,7 +1042,6 @@ CREATE TABLE IF NOT EXISTS `mod_discount_user` (
 --
 
 INSERT INTO `mod_discount_user` (`id`, `user_id`, `discount_id`) VALUES
-(1, 48, 1),
 (2, 1, 1);
 
 -- --------------------------------------------------------
