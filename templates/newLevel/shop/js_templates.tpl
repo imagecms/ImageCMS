@@ -1,12 +1,5 @@
-{#
-/**
-* @file Render autocomplete results
-* @partof main.tpl
-* @updated 25 February 2013;
-* Variables
-*   items : (object javascript) Contain found products
-*/
-#}
+<button type="button" id="showCart" data-source="{shop_url('cart/api/renderCart')}" data-always="true"></button>
+
 {literal}
     <script type="text/template" id="searchResultsTemplate">
         <div class="inside-padd">

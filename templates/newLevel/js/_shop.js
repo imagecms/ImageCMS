@@ -13,11 +13,50 @@ if (!Array.indexOf) {
 }
 var Shop = {
     Cart: {
-        add: function(){
-            
+        add: function(id, url) {
+            var self = this;
+            $(document).trigger({
+                type: 'beforeAdd.Cart',
+                id: id
+            });
+            $.get(url, function(data) {
+                $(document).trigger({
+                    type: 'add.Cart',
+                    datas: JSON.parse(data),
+                    id: id
+                });
+            });
         },
-        remove: function(){
-            
+        remove: function(id, url) {
+            var self = this;
+            $(document).trigger({
+                type: 'beforeRemove.Cart',
+                id: id
+            });
+            $.get(url, function(data) {
+                $(document).trigger({
+                    type: 'remove.Cart',
+                    datas: JSON.parse(data),
+                    id: id
+                });
+            });
+        },
+        getTiny: function(tpl) {
+            var self = this;
+            tpl = tpl ? tpl : 'cart_data';
+            $.get(siteUrl + 'shop/cart/api/renderCart/' + tpl, function(data) {
+                $(document).trigger({
+                    type: 'getTiny.Cart',
+                    datas: data
+                });
+            });
+        },
+        composeCartItem: function($context) {
+            var cartItem = {},
+                    data = $context.data();
+            for (var i in data)
+                cartItem[i] = data[i]
+            return cartItem;
         }
     },
     CompareList: {
@@ -185,7 +224,7 @@ var ImageCMSApi = {
 
                     if (typeof DS.callback == 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
-                    else if(obj.status === true)
+                    else if (obj.status === true)
                         setTimeout((function() {
                             form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
@@ -222,9 +261,9 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                        form = $this.closest('form'),
-                        $thisТ = $this.attr('name'),
-                        elMsg = form.find('[for=' + $thisТ + ']');
+                                form = $this.closest('form'),
+                                $thisТ = $this.attr('name'),
+                                elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.remove();
@@ -266,7 +305,7 @@ var ImageCMSApi = {
                     input.addClass(DS.err);
                     input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, sel));
                 }
-                if (i == Object.keys(validations).length){
+                if (i == Object.keys(validations).length) {
                     $(document).trigger({
                         'type': 'imageapi.pastemsg',
                         'el': sel.parent()

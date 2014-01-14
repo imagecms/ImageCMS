@@ -20,6 +20,7 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = new SessionStorage;
+        $this->object->setData(NULL);
     }
 
     /**
@@ -90,6 +91,9 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testSetData().
      */
     public function testSetData() {
+        
+        $this->object->setData(NULL);
+        
         /** Sproduct array * */
         $data["SProducts_71_82"] = array(
             'instance' => 'SProducts',
