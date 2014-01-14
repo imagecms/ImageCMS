@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-09 07:37+0400\n"
-"PO-Revision-Date: 2014-01-09 07:37+0400\n"
+"POT-Creation-Date: 2014-01-14 10:45+0200\n"
+"PO-Revision-Date: 2014-01-14 10:45+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,18 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./templates/administrator/settings_site.tpl:397
+msgid "For language"
+msgstr "Для языка"
+
+#: ./application/modules/shop/admin/templates/deliverymethods/edit.tpl:104
+msgid "Price to be confirmed"
+msgstr ""
+
+#: ./application/modules/shop/admin/templates/deliverymethods/edit.tpl:111
+msgid "Price to be confirmed message"
+msgstr ""
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:115
 msgid "Get"

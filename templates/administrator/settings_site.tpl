@@ -394,6 +394,19 @@
 
                                                         <div class="control-group">
                                                             <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_companytype'" for="siteinfo_companytype">
+                                                                {lang('For language', 'admin')} 
+                                                            </label>
+                                                            <div class="controls">
+                                                                <select name="siteinfo_locale" id="siteinfo_locale">
+                                                                    {foreach $langs as $lan}
+                                                                        <option value="{echo $lan['identif']}" {if $lan['default']} selected="selected" {/if} >{echo $lan['lang_name']}</option>
+                                                                    {/foreach}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="control-group">
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_companytype'" for="siteinfo_companytype">
                                                                 {lang('Company type', 'admin')} 
                                                                 <i class="icon-info-sign"></i>
                                                             </label>
