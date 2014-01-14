@@ -57,7 +57,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
 
@@ -141,7 +141,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
                                         <td class="frame-cur-sum-price">

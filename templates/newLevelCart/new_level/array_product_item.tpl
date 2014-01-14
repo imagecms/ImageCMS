@@ -53,7 +53,7 @@
                 {if $p.stock > 0}
                     <div class="frame-count-buy js-variant-{echo $p.variant_id} js-variant">
                         <div class="frame-count frameCount">
-                            <div class="number js-number" data-title="{lang('количество на складе', 'newLevel')} {echo $p.stock}" data-prodid="{echo $p.id}" data-varid="{echo $p.variant_id}">
+                            <div class="number js-number" data-title="{lang('количество на складе', 'newLevel')} {echo $p.stock}">
                                 <div class="frame-change-count frameChangeCount">
                                     <div class="btn-plus">
                                         <button type="button">
@@ -66,7 +66,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('только цифры', 'newLevel')}" data-min="1" data-max="{echo $p.stock}">
+                                <input type="text" value="1" class="plusMinus plus-minus" data-title="{lang('только цифры', 'newLevel')}" data-min="1" data-max="{echo $p.stock}">
                             </div>
                         </div>
                         <div class="btn-buy">
@@ -76,7 +76,6 @@
                                 type="button"
                                 data-id="{echo $p.id}"
                                 data-prodid="{echo $p.id}"
-                                data-varid="{echo $p.variant_id}"
                                 data-price="{echo $p.price}"
                                 data-addPrice="{if $NextCS != null}{echo ShopCore::app()->SCurrencyHelper->convert($p.price, $NextCSId)}{/if}"
                                 data-count="1"
@@ -103,7 +102,6 @@
 
                             data-id="{echo $p.id}"
                             data-prodid="{echo $p.id}"
-                            data-varid="{echo $p.variant_id}"
                             data-price="{echo $p.price}"
                             data-addPrice="{if $NextCS != null}{echo ShopCore::app()->SCurrencyHelper->convert($p.price, $NextCSId)}{/if}"
                             data-name="{echo ShopCore::encode($p.name)}"
@@ -130,6 +128,9 @@
                 <div class="btn-remove-item-wl">
                     <button
                         type="button"
+                        data-id="{echo $p.variant_id}"
+                        class="btnRemoveItem"
+                        
                         data-type="json"
                         data-modal="true"
 

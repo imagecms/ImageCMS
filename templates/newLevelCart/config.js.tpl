@@ -11,7 +11,6 @@
 <script type="text/javascript">
     {literal}
         var genObj = {
-            iPr: '.iPr',
             popupCart: '#popupCart',
             frameDelivery: '#frameDelivery',
             pM: '.paymentMethod',
@@ -24,8 +23,8 @@
             tinyWishList: '.tinyWishList',
             countTinyWishList: '.wishListCount',
             btnWish: '.btnWish',
-            toWishlist: 'toWishlist',
-            inWishlist: 'inWishlist',
+            toWishlist: '.toWishlist',
+            inWishlist: '.inWishlist',
             plurProd: '.plurProd',
             shipping: '#shipping',
             showCart: '#showCart',

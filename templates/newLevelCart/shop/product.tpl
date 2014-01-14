@@ -147,7 +147,7 @@
                                             <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                     <div class="frame-count frameCount">
-                                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}">
+                                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}">
                                                             <div class="frame-change-count frameChangeCount">
                                                                 <div class="btn-plus">
                                                                     <button type="button" {if $inCart}disabled="disabled"{/if}>
@@ -160,7 +160,7 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                            <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
+                                                            <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
                                                         </div>
                                                     </div>
                                                     <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
@@ -183,13 +183,18 @@
                                                             class="btnBuy infoBut"
 
                                                             data-id="{echo $productVariant->getId()}"
-                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
-                                                            data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-vname="{echo ShopCore::encode($productVariant->getName())}"
+                                                            data-number="{echo $productVariant->getNumber()}"
                                                             data-price="{echo $productVariant->toCurrency()}"
                                                             data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
-                                                            data-mainImage="
+                                                            data-large-image="
+                                                            {if preg_match('/nophoto/', $productVariant->getlargePhoto()) > 0}
+                                                                {echo $model->firstVariant->getlargePhoto()}
+                                                            {else:}
+                                                                {echo $productVariant->getlargePhoto()}
+                                                            {/if}"
+                                                            data-main-image="
                                                             {if preg_match('/nophoto/', $productVariant->getMainPhoto()) > 0}
                                                                 {echo $model->firstVariant->getMainPhoto()}
                                                             {else:}
@@ -222,14 +227,19 @@
                                                             data-source="/shop/ajax/getNotifyingRequest"
 
                                                             data-id="{echo $productVariant->getId()}"
-                                                            data-name="{echo trim(ShopCore::encode($model->getName()))}"
-                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
-                                                            data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-name="{echo ShopCore::encode($model->getName())}"
+                                                            data-vname="{echo ShopCore::encode($productVariant->getName())}"
+                                                            data-number="{echo $productVariant->getNumber()}"
                                                             data-price="{echo $productVariant->toCurrency()}"
                                                             data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
-                                                            data-mainImage="
+                                                            data-large-image="
+                                                            {if preg_match('/nophoto/', $productVariant->getlargePhoto()) > 0}
+                                                                {echo $model->firstVariant->getlargePhoto()}
+                                                            {else:}
+                                                                {echo $productVariant->getlargePhoto()}
+                                                            {/if}"
+                                                            data-main-image="
                                                             {if preg_match('/nophoto/', $productVariant->getMainPhoto()) > 0}
                                                                 {echo $model->firstVariant->getMainPhoto()}
                                                             {else:}
@@ -258,14 +268,14 @@
                             <!-- Start. Wish List & Compare List buttons -->
                             <div class="frame-wish-compare-list f-s_0">
                                 {foreach $variants as $key => $pv}
-                                    <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $model->getId()}" data-varid="{echo $pv->getId()}">
+                                    <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
                                         {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                     </div>
                                 {/foreach}
                                 <div class="frame-btn-compare">
-                                    <div class="btn-compare" data-prodid="{echo $model->getId()}">
+                                    <div class="btn-compare">
                                         <button class="toCompare"
-                                                data-prodid="{echo $model->getId()}"
+                                                data-id="{echo $model->getId()}"
                                                 type="button"
                                                 data-title="{lang('К сравнению','newLevel')}"
                                                 data-firtitle="{lang('К сравнению','newLevel')}"

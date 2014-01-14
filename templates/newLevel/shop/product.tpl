@@ -142,7 +142,7 @@
                                             {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                         {/if}
                                         {if $productVariant->getStock() > 0}
-                                            <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                                            <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}">
                                                 <div class="frame-count frameCount">
                                                     <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}">
                                                         <div class="frame-change-count frameChangeCount">

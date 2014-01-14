@@ -389,17 +389,16 @@ var global = {
     processWish: function() {
         var wishlist = wishList.all();
         $(genObj.btnWish).each(function() {
-            var $this = $(this),
-            $thisP = $this.parent();
-            if (wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')) !== -1) {
+            var $this = $(this);
+            if (wishlist.indexOf($this.data('id')) !== -1) {
                 $this.addClass(genObj.wishIn);
-                $this.find('.' + genObj.toWishlist).hide();
-                $this.find('.' + genObj.inWishlist).show();
+                $this.find(genObj.toWishlist).hide();
+                $this.find(genObj.inWishlist).show();
             }
             else {
                 $this.removeClass(genObj.wishIn);
-                $this.find('.' + genObj.toWishlist).show();
-                $this.find('.' + genObj.inWishlist).hide();
+                $this.find(genObj.toWishlist).show();
+                $this.find(genObj.inWishlist).hide();
             }
         });
     },

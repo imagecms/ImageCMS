@@ -38,17 +38,16 @@ var ShopFront = {
                 var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy),
                 btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
-                vMediumImage = btnInfo.data('mediumImage'),
+                vMediumImage = $.trim(btnInfo.data('mediumImage')),
                 vId = btnInfo.data('id'),
-                vName = btnInfo.data('vname'),
+                vName = $.trim(btnInfo.data('vname')),
+                vNumber = $.trim(btnInfo.data('number')),
                 vPrice = btnInfo.data('price'),
                 vOrigPrice = btnInfo.data('origPrice'),
                 vAddPrice = btnInfo.data('addPrice'),
-                vNumber = btnInfo.data('number'),
                 vStock = btnInfo.data('maxcount');
 
-                if (vMediumImage.search(/nophoto/) == -1)
-                    liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
+                liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
 
                 liBlock.find(genObj.selVariant).hide();
                 liBlock.find(genObj.prefV + vId).show();
@@ -62,39 +61,31 @@ var ShopFront = {
             });
         /*/Variants in Category*/
         },
-        changeCount: function(el) {
-            el = el == undefined ? body : el;
-            el.find(genObj.plusMinus).filter(genObj.iPr).off('maxminValue').on('maxminValue', function(e) {
-                var $this = $(this);
-
-                var condTooltip = checkProdStock && e.res;
-                if (condTooltip)
-                    $this.closest(genObj.numberC).tooltip();
-            });
-            el.find(genObj.plusMinus).filter(genObj.iPr).plusminus($.extend({}, optionsPlusminus, {
+        changeCount: function(inputs) {
+            inputs.plusminus($.extend({}, optionsPlusminus, {
                 after: function(e, el, input) {
                     if (checkProdStock && input.val() == input.data('max'))
                         el.closest(genObj.numberC).tooltip();
-
-                    input.closest(genObj.frameCount).next().children().attr('data-count', input.val())
                 }
             }));
+            inputs.off('maxminValue').on('maxminValue', function(e) {
+                if (checkProdStock && e.res)
+                    $(this).closest(genObj.numberC).tooltip();
+            });
         },
-        pasteItems: function(el) {
-            el.find("img.lazy").lazyload(lazyload);
-            wnd.scroll(); //for lazyload
-            drawIcons(el.find(selIcons));
-            el.find('[data-drop]').drop(optionsDrop);
-        },
-        initShopPage: function(el) {
-            el.find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
+        baskChangeCount: function(inputs) {
+            inputs.plusminus($.extend({}, optionsPlusminus, {
                 after: function(e, el, input) {
-
+                    if (checkProdStock && input.val() == input.data('max'))
+                        el.closest(genObj.numberC).tooltip();
+                    else
+                        Shop.Cart.changeCount(input.val(), false, input.data('id'));
                 }
             }));
-            testNumber($(el + ' input'));
-            $(el + ' input').off('maxminValue').on('maxminValue', function(e) {
-                chCountInCart($(this).prev('div'), e.res, $(this));
+            testNumber(inputs);
+            inputs.off('maxminValue').on('maxminValue', function(e) {
+                if (checkProdStock && e.res)
+                    $(this).closest(genObj.numberC).tooltip();
             })
         },
         existsVnumber: function(vNumber, liBlock) {
@@ -121,6 +112,12 @@ var ShopFront = {
                 liBlock.addClass(genObj.inCart)
             else
                 liBlock.addClass(genObj.toCart)
+        },
+        pasteItems: function(el) {
+            el.find("img.lazy").lazyload(lazyload);
+            wnd.scroll(); //for lazyload
+            drawIcons(el.find(selIcons));
+            el.find('[data-drop]').drop(optionsDrop);
         }
     },
     CompareList: {
@@ -128,13 +125,13 @@ var ShopFront = {
             //comparelist checking
             var comparelist = Shop.CompareList.all();
             $('.' + genObj.toCompare).each(function() {
-                if (comparelist.indexOf($(this).data('prodid')) !== -1) {
+                if (comparelist.indexOf($(this).data('id')) !== -1) {
                     var $this = $(this);
                     $this.removeClass(genObj.toCompare).addClass(genObj.inCompare).parent().addClass(genObj.compareIn).end().attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
                 }
             });
             $('.' + genObj.inCompare).each(function() {
-                if (comparelist.indexOf($(this).data('prodid')) === -1) {
+                if (comparelist.indexOf($(this).data('id')) === -1) {
                     var $this = $(this);
                     $this.addClass(genObj.toCompare).removeClass(genObj.inCompare).parent().removeClass(genObj.compareIn).end().attr('data-title', $this.attr('data-firtitle')).find(genObj.textEl).text($this.attr('data-firtitle'));
                 }
@@ -169,17 +166,16 @@ var global = {
     processWish: function() {
         var wishlist = wishList.all();
         $(genObj.btnWish).each(function() {
-            var $this = $(this),
-            $thisP = $this.parent();
-            if (wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')) !== -1) {
+            var $this = $(this);
+            if (wishlist.indexOf($this.data('id')) !== -1) {
                 $this.addClass(genObj.wishIn);
-                $this.find('.' + genObj.toWishlist).hide();
-                $this.find('.' + genObj.inWishlist).show();
+                $this.find(genObj.toWishlist).hide();
+                $this.find(genObj.inWishlist).show();
             }
             else {
                 $this.removeClass(genObj.wishIn);
-                $this.find('.' + genObj.toWishlist).show();
-                $this.find('.' + genObj.inWishlist).hide();
+                $this.find(genObj.toWishlist).show();
+                $this.find(genObj.inWishlist).hide();
             }
         });
     },
@@ -720,9 +716,7 @@ function cuselInit(el, sel) {
     }
 }
 function testNumber(el) {
-    var el = el == undefined ? body : el;
-
-    el.find(genObj.numberC + ' input').on('testNumber', function(e) {
+    el.on('testNumber', function(e) {
         if (e.res)
             $(this).tooltip('remove');
         else {
