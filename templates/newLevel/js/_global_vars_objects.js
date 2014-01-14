@@ -76,6 +76,7 @@ var optionsDrop = {
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
     durationOff: 200,
+    modalPlace: '.notification',
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
@@ -83,16 +84,15 @@ var optionsDrop = {
     placeBeforeShow: 'center center',
     placeAfterClose: 'center center',
     timeclosemodal: 2000,
-    modalPlace: '.notification',
+    delayAfter: -500,
+    confirmSel: '#confirm',
     moreOne: false,
     closeClick: true,
     closeEsc: true,
     position: 'absolute',
     scroll: true,
     limitSize: true,
-    confirmBtnDrop: '#confirm',
-    limitContentSize: true,
-    scrollContent: true
+    limitContentSize: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',

@@ -13,8 +13,15 @@
         var genObj = {
             iPr: '.iPr',
             popupCart: '#popupCart',
+            pageCart: '.pageCart',
             frameDelivery: '#frameDelivery',
             pM: '.paymentMethod',
+            trCartKit: '.rowKits',
+            frameCount: '.frameCount',
+            countOrCompl: '.countOrCompl',
+            priceOrder: '.priceOrder',
+            priceAddOrder: '.priceAddOrder',
+            priceOrigOrder: '.priceOrigOrder',
             parentBtnBuy: '.globalFrameProduct',
             loginButton: '#loginButton',
             tinyCompareList: '.tinyCompareList',
@@ -27,15 +34,20 @@
             toWishlist: 'toWishlist',
             inWishlist: 'inWishlist',
             plurProd: '.plurProd',
+            countBask: '.topCartCount',
+            sumBask: '.topCartTotalPrice',
+            addSumBask: '.topCartTotalAddPrice',
+            frameGift: "#frameGift",
+            gift: '#gift',
             shipping: '#shipping',
+            finalAmountAdd: '#finalAmountAdd',
+            finalAmount: '#finalAmount',
+            totalPrice: '#totalPrice',
             showCart: '#showCart',
-            btnBask: '.btnBask',
-            tinyBask: '#tinyBask',
-                        
-            btnBuyKit: '.btnBuyKit',
-            btnBuy: '.btnBuy',
-            btnToCart: '.btn-buy',
-            btnInCart: '.btn-cart',
+            certPrice: '#giftCertPrice',
+            certFrame: '#giftCertSpan',
+            orderDetails: '#orderDetails',
+            orderDetailsTemplate: '#orderDetailsTemplate',
             priceVariant: '.priceVariant',
             priceOrigVariant: '.priceOrigVariant',
             priceAddPrice: '.addCurrPrice',
@@ -45,11 +57,21 @@
             imgVC: '.vImg',
             imgVP: '.vImgPr',
             infoBut: '.infoBut',
-            frameCount: '.frameCount',
+            btnBuy: '.btnBuy',
             frameChangeCount: '.frameChangeCount',
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
+            frameBasks: '.frameBask',
+            
+            genSumDiscount: '.genSumDiscount', //сумма скидки
+            curDiscount: '.curDiscount', //сумма товаров без скидки
+            frameDiscount: '.frameDiscount', //фрейм продуктовой скидки
 
+            discount: '#discount', //общяя скидка на оформлении
+            frameGenDiscount: '#frameGenDiscount', //фрейм общей скидки на оформлении
+            frameGenSumDiscount: '#frameGenSumDiscount', //фрейм общей суммы без скидки
+
+            tinyBask: '.tinyBask',
             err: 'error',
             scs: 'success',
             info: 'info',
@@ -66,6 +88,8 @@
             inCart: 'in-cart',
             toCart: 'to-cart',
             notAvail: 'not-avail',
+            btnBuyCss: 'btn-buy',
+            btnCartCss: 'btn-cart',
             textEl: '.text-el',
             changeVariantCategory: '[id ^= сVariantSwitcher_]',
             changeVariantProduct: '#variantSwitcher'
@@ -77,26 +101,25 @@
         {$cnt_comp = 0}
     {/if}
         var curr = '{$CS}',
-        nextCs = '{echo $NextCS}',
-        nextCsCond = nextCs == '' ? false : true;
+                nextCs = '{echo $NextCS}',
+                nextCsCond = nextCs == '' ? false : true;
         Discount = false,
-        discountInPopup = true,
-        pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
-        checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
-        inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
-        inServerCompare = parseInt("{$cnt_comp}"),
-        inServerWishList = parseInt("{$countWL}"),
-        countViewProd = parseInt("{$countSh}"),
-        theme = "{$THEME}",
-        siteUrl = "{echo site_url()}",
-        colorScheme = "{$colorScheme}",
-        isLogin = "{$is_logged_in}" == '1' ? true : false,
-        selectDeliv = false,
-        selectPayment = true,
-        selIcons = '[class*=icon_]',
-        preloader = '.preloader',
-        typePage = "{$CI->core->core_data['data_type']}",
-        selScrollPane = '.frame-scroll-pane .content-carousel';
+                discountInPopup = true,
+                pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
+                checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
+                inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
+                inServerCompare = parseInt("{$cnt_comp}"),
+                inServerWishList = parseInt("{$countWL}"),
+                countViewProd = parseInt("{$countSh}"),
+                theme = "{$THEME}",
+                siteUrl = "{echo site_url()}",
+                colorScheme = "{$colorScheme}",
+                isLogin = "{$is_logged_in}" == '1' ? true : false,
+                selectDeliv = false,
+                selectPayment = true,
+                selIcons = '[class*=icon_]',
+                preloader = '.preloader',
+                selScrollPane = '.frame-scroll-pane .content-carousel';
 
     {literal}
         text = {
