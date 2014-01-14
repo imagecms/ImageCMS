@@ -240,16 +240,10 @@ $(document).on('scriptDefer', function() {
         wishPhoto.html($(img));
         $(img).load(function() {
             if ($(this).actual('width') > wishPhoto.data('widht') || $(this).actual('height') > wishPhoto.data('height')) {
-                $(document).trigger({
-                    type: 'successJson.drop',
-                    el: $('#notification'),
-                    datas: {
+                $('[data-drop="#notification"].trigger').data({'timeclosemodal': 3000, datas: {
                         'answer': true,
                         'data': text.error.fewsize(wishPhoto.data('width') + '&times' + wishPhoto.data('height'))
-                    }
-                });
-                $('[data-drop="#notification"].trigger').data('timeclosemodal', 3000).drop('open');
-                $('[data-drop="#notification"].trigger').removeData('timeclosemodal');
+                    }}).drop('open').removeData('timeclosemodal');
                 wishPhoto.empty();
                 $(this).val('');
                 $('[data-wishlist="do_upload"]').attr('disabled', 'disabled').parent().addClass('disabled');
@@ -291,15 +285,9 @@ $(document).on('scriptDefer', function() {
         document.location.href = '/wishlist';
     });
     if (!isLogin) {
-        $('.' + genObj.toWishlist).on('click.toWish', function(e) {
-            $(document).trigger({
-                type: 'successJson.drop',
-                el: $('#notification'),
-                datas: {
-                    'answer': true,
-                    'data': text.error.notLogin
-                }
-            });
+        $('.' + genObj.toWishlist).data('datas', {
+            'answer': true,
+            'data': text.error.notLogin
         });
     }
     else {
