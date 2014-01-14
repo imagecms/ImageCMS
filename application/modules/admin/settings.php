@@ -42,17 +42,6 @@ class Settings extends BaseAdminController {
         $this->template->assign('templates', $this->_get_templates());
         $this->template->assign('template_selected', $settings['site_template']);
 
-#Tiny MCE themes in lib_editor
-//        $themes_arr = array(
-//            'simple' => lang('Simple','admin'),
-//            'advanced' => lang('Extended','admin'),
-//            'full' => lang('Full','admin')
-//        );
-//
-//        ($hook = get_hook('admin_set_editor_theme')) ? eval($hook) : NULL;
-//        $this->template->assign('editor_themes', $themes_arr);
-//        $this->template->assign('theme_selected', $settings['editor_theme']);
-
         $this->template->assign('work_values', array('yes' => lang("Yes", "admin"), 'no' => lang("No", "admin")));
         $this->template->assign('site_offline', $settings['site_offline']);
 

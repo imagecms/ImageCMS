@@ -1626,7 +1626,7 @@ function getCookie(c_name)
                     }
                 }
 
-                el.addClass('isDrop');
+                el.addClass('isDrop').data('drp', options);
                 el.attr('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
                     $.drop.dP.wST = wnd.scrollTop();
                     if ($(this).hasClass('isDrop')) {
@@ -1662,7 +1662,10 @@ function getCookie(c_name)
                 e = window.event;
             if (datas !== undefined && $this === undefined) {
                 if (!$.exists($.drop.dP.modalBtnDrop)) {
-                    $this = $('<button>').attr('data-drop', $.drop.dP.modalBtnDrop).appendTo(body).hide().data({'drop': $.drop.dP.modalBtnDrop, 'modal': true});
+                    $this = $('<button>').attr('data-drop', $.drop.dP.modalBtnDrop).appendTo(body).hide().data({
+                        'drop': $.drop.dP.modalBtnDrop,
+                        'modal': true
+                    });
                     methods._pasteDrop($.extend({}, $.drop.dP, opt, $this.data()), $.drop.dP.patternNotif);
                 }
                 else
@@ -1685,7 +1688,7 @@ function getCookie(c_name)
                         if (datas !== undefined)
                             methods._pasteModal($this, datas, opt, undefined);
                         else
-                            methods._get($this, modal, opt, e);
+                            methods.get($this, opt, e, modal);
                     }
                 }
 
@@ -1719,7 +1722,11 @@ function getCookie(c_name)
                                     $(methods._checkProp(elSet, opt, 'confirmActionBtn')).focus().off('click.' + $.drop.nS).on('click.' + $.drop.nS, function() {
                                         if (elSet.after) {
                                             var drp = $(confirmBtnDrop).data('drp');
-                                            $(confirmBtnDrop).data({'drp': $.extend(drp, {'elClosed': elSet.after})})
+                                            $(confirmBtnDrop).data({
+                                                'drp': $.extend(drp, {
+                                                    'elClosed': elSet.after
+                                                })
+                                            })
                                         }
                                         methods.close($(confirmBtnDrop));
                                         $this.data('confirm', false);
@@ -1918,11 +1925,15 @@ function getCookie(c_name)
             });
             methods._show(el, undefined, false, set, data);
         },
-        _get: function(el, e, set, modal) {
-            if (el == undefined)
+        get: function(el, set, e, modal) {
+            if (set == undefined) {
+                if (el != undefined)
+                    set = el.data('drp');
+                else
+                    set = {};
+            }
+            if (el === undefined)
                 el = this;
-            if (set == undefined)
-                set = $.drop.dP;
             var elSet = el.data(),
                     source = elSet.source || el.attr('href');
             var rel = '';
@@ -1966,8 +1977,12 @@ function getCookie(c_name)
             }
             else {
                 $('.' + $.drop.dP.curDefault).remove();
-                $.drop.dP.curDefault = (methods._checkProp(elSet, set, 'drop') + (new Date()).getTime()).toString().replace('.', '');
-                var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), methods._checkProp(elSet, set, 'drop').replace('.', '') + ' ' + $.drop.dP.curDefault, rel);
+                $.drop.dP.curDefault = 'drop-default' + (new Date()).getTime();
+                var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
+
+                $(document).trigger({
+                    'type': 'showActivity'
+                });
                 if (source.match(/jpg|gif|png|bmp|jpeg/))
                     $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
                         drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).append($(this))
@@ -2000,7 +2015,11 @@ function getCookie(c_name)
                         }
                         var forCenter = $(sel);
                         drop.appendTo(forCenter);
-                        drop = $(set.drop).data({'drp': {'forCenter': forCenter}});
+                        drop = $(set.drop).data({
+                            'drp': {
+                                'forCenter': forCenter
+                            }
+                        });
                     }
                     else {
                         if (!$.exists(sel)) {
@@ -2008,7 +2027,11 @@ function getCookie(c_name)
                         }
                         var forCenter = $(sel);
                         $(drop).appendTo(forCenter);
-                        drop = $(set.drop).data({'drp': {'forCenter': forCenter}});
+                        drop = $(set.drop).data({
+                            'drp': {
+                                'forCenter': forCenter
+                            }
+                        });
                     }
                     forCenter.css('height', function() {
                         return set.scroll ? '100%' : $(document).height();
@@ -2104,7 +2127,8 @@ function getCookie(c_name)
             var drp = drop.data('drp');
             if (!drp)
                 drp = {};
-            drop.data({'drp': $.extend(drp, {
+            drop.data({
+                'drp': $.extend(drp, {
                     'trigger': trigger,
                     'effectOn': $thisEOn,
                     'position': position,
@@ -2153,8 +2177,12 @@ function getCookie(c_name)
                     'limitSize': limitSize,
                     'limitContentSize': limitContentSize,
                     'inheritClose': inheritClose,
-                    'methods': $.extend({'self': drop, 'elrun': $this}, $.drop.methods())
-                })});
+                    'methods': $.extend({
+                        'self': drop,
+                        'elrun': $this
+                    }, $.drop.methods())
+                })
+            });
             drop.attr('data-elrun', selSource).off('click.' + $.drop.nS, set.exit).on('click.' + $.drop.nS, set.exit, function() {
                 methods.close($(this).closest('[data-elrun]'));
             });
@@ -2556,7 +2584,7 @@ function getCookie(c_name)
             },
             start: undefined,
             drop: '.drop-default',
-            pattern: '<div class="drop drop-style"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placePaste" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
+            pattern: '<div class="drop drop-style drop-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placePaste" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
             modalBtnDrop: '#drop-notification-default',
             patternNotif: '<div class="drop drop-style" id="drop-notification-default"><div class="drop-header-default"></div><div class="drop-content-default"><div class="inside-padd drop-notification-default"></div></div><div class="drop-footer-default"></div></div>',
             confirmBtnDrop: '#drop-confirm-default',
