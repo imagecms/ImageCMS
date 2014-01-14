@@ -36,9 +36,9 @@
             <div class="left-cart">
                 <form method="post" action="{$BASE_URL}shop/order/make_order" class="clearfix">
                     {if $gift_key}
-                    <input type="hidden" name="gift" value="{echo $gift_key}"/>
-                                        <input type="hidden" name="gift_ord" value="1"/>
-                                        {/if}
+                        <input type="hidden" name="gift" value="{echo $gift_key}"/>
+                        <input type="hidden" name="gift_ord" value="1"/>
+                    {/if}
                     <div class="horizontal-form order-form big-title">
                         <!-- Start. Errors block -->
                         {if $errors}
@@ -210,9 +210,6 @@
                         </colgroup>
                         <tbody>
                             {foreach $items as $item}
-
-
-
                                 <!-- Start. For single product -->
                                 {if  $item->instance == 'SProducts'}
                                     <tr class="items items-bask cart-product">
@@ -222,11 +219,9 @@
                                                     <span class="helper"></span>
                                                     <img src="{echo $item->getSmallPhoto()}" alt="">
                                                 </span>
-                                                {if !$item->getName()}
-                                                    <span class="title">{echo $item->getSProducts()->getName()}</span>
-                                                {else:}
-                                                    <span class="title">{echo $item->getName()}</span>
-                                                {/if}
+                                                
+                                                    <span class="title">{echo $item->getSProducts()->getName()} {if $item->getName()}{echo $item->getName()}{/if}</span>
+                                                
                                             </a>
                                             <div class="description">
                                                 {if $item->getSProducts()->getNumber()}
@@ -268,18 +263,16 @@
                                             <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
                                             <ul class="items items-bask">
                                                 <li>
-                                                    {foreach $item->items as $kitItem}
+                                                    {foreach $item->items as $k => $kitItem}
                                                         <div class="frame-kit">
                                                             <a class="frame-photo-title" href="{echo shop_url('product/'.$kitItem->getSProducts()->getUrl())}">
                                                                 <span class="photo-block">
                                                                     <span class="helper"></span>
                                                                     <img src="{echo $kitItem->getSmallPhoto()}">
                                                                 </span>
-                                                                {if !$kitItem->getName()}
-                                                                    <span class="title">{echo $kitItem->getSProducts()->getName()}</span>
-                                                                {else:}
-                                                                    <span class="title">{echo $kitItem->getName()}</span>
-                                                                {/if}
+                                                                
+                                                                    <span class="title">{echo $kitItem->getSProducts()->getName()} {if $kitItem->getName()}{echo $kitItem->getName()}{/if}</span>
+                                                                
                                                             </a>
                                                             <div class="description">
                                                                 {if $kitItem->getSProducts()->getNumber()}
@@ -307,7 +300,7 @@
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                            {if !next($item->items)}
+                                                            {if $item->items[$k+1]}
                                                                 <div class="next-kit">+</div>
                                                             {/if}
                                                         </div>
@@ -362,7 +355,7 @@
                                     </td>
                                     <td class="t-a_r">
                                         <div class="text-discount current-discount">
-                                            <span class="curDiscount">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
+                                            <span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
                                             <span class="curr">{$CS}</span>
                                         </div>
 
@@ -375,7 +368,7 @@
                                         <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
                                     </td>
                                     <td colspan="2" class="t-a_r">
-                                        
+
                                         <div class="text-discount current-discount">
                                             <span class="curDiscount">{echo $gift_key} - {echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
                                             <span class="curr">{$CS}</span>
@@ -430,19 +423,19 @@
                                             {/if}
                                         </span>
                                     </span>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- End. Show cart -->
 </div>
 </div>
 <script type="text/javascript">
-                                                        initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
+    initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', '_order'], 'initOrderTrEv', 'initOrder');
 </script>
 
 

@@ -414,3 +414,4 @@ class Settings extends BaseAdminController {
 }
 
 /* End of settings.php */
+

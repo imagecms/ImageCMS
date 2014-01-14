@@ -5,89 +5,7 @@
     </button>
 {/if}
 <div class="comments" id="comments">
-    {if $can_comment == 0 OR $is_logged_in}
-        <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if !$visibleMainForm || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0">Оставить свой отзыв</button>{/if}</div>
-        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm || $visibleMainForm == NULL}style="display: block;"{/if}>
-            <div class="frame-comments layout-highlight">
-                <div class="title-default title-comment">
-                    <div class="title">{lang('Оставить комментарий','newLevel')}</div>
-                </div>
-                <!-- Start of new comment fild -->
-                <div class="form-comment main-form-comments">
-                    <div class="inside-padd">
-                        <form method="post">
-                            {if !$is_logged_in}
-                                {if $use_moderation}
-                                    <label class="d_n succ">
-                                        <span class="frame-form-field">
-                                            <div class="msg">
-                                                <div class="success">
-                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
-                                                </div>
-                                            </div>
-                                        </span>
-                                    </label>
-                                {/if}
-                                <label style="width: 45%;float: left;">
-                                    <span class="title">{lang('Ваше имя','newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
-                                    </span>
-                                </label>
-                                <label style="width: 45%;margin-left: 10%;float: left;">
-                                    <span class="title">{lang('Ваш email:', 'newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
-                                    </span>
-                                </label>
-                            {/if}
-                            <label>
-                                <span class="title">{lang('Текст комментария:')}</span>
-                                <span class="frame-form-field">
-                                    <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
-                                </span>
-                            </label>
-                            <!-- Start star reiting -->
-                            <div class="frame-label">
-                                <span class="title f_l t-a_l">{lang('Ваша оценка:', 'newLevel')}</span>
-                                <div class="frame-form-field">
-                                    <div class="star">
-                                        <div class="productRate star-big clicktemprate">
-                                            <div class="for_comment" style="width: 0%"></div>
-                                            <input class="ratec" name="ratec" type="hidden" value=""/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End star reiting -->
-                            {if $use_captcha}
-                                <div class="frame-label m-b_10">
-                                    <span class="title">{lang('Код защиты')}:</span>
-                                    <div class="clearfix">
-                                        <div class="m-b_10 m-t_5 f_l">
-                                            {$cap_image}
-                                        </div>
-                                        <div class="frame-form-field o_h">
-                                            <input type="text" name="captcha" id="captcha" class="m-t_5"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            {/if}
-
-                            <div class="frame-label">
-                                <span class="frame-form-field">
-                                    <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
-                                    </div>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- End of new comment fild -->
-                </div>
-            </div>
-        </div>
-    {/if}
+    <div class="title-comment">{if $comments_arr}{lang('Отзывы покупателей', 'newLevel')}{/if} {if !$visibleMainForm || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">Оставить свой отзыв</button>{/if}</div>
     {if $comments_arr}
         <div class="frame-list-comments">
             <ul class="sub-1 product-comment patch-product-view">
@@ -194,6 +112,88 @@
                 <span class="icon_arrow"></span>
                 <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
             </button>
+        </div>
+    {/if}
+    {if $can_comment == 0 OR $is_logged_in}
+        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
+            <div class="frame-comments layout-highlight">
+                <div class="title-default title-comment">
+                    <div class="title">{lang('Оставить комментарий','newLevel')}</div>
+                </div>
+                <!-- Start of new comment fild -->
+                <div class="form-comment main-form-comments">
+                    <div class="inside-padd">
+                        <form method="post">
+                            {if !$is_logged_in}
+                                {if $use_moderation}
+                                    <label class="d_n succ">
+                                        <span class="frame-form-field">
+                                            <div class="msg">
+                                                <div class="success">
+                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </label>
+                                {/if}
+                                <label style="width: 45%;float: left;">
+                                    <span class="title">{lang('Ваше имя','newLevel')}</span>
+                                    <span class="frame-form-field">
+                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
+                                    </span>
+                                </label>
+                                <label style="width: 45%;margin-left: 10%;float: left;">
+                                    <span class="title">{lang('Ваш email:', 'newLevel')}</span>
+                                    <span class="frame-form-field">
+                                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                                    </span>
+                                </label>
+                            {/if}
+                            <label>
+                                <span class="title">{lang('Текст комментария:')}</span>
+                                <span class="frame-form-field">
+                                    <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
+                                </span>
+                            </label>
+                            <!-- Start star reiting -->
+                            <div class="frame-label">
+                                <span class="title f_l t-a_l">{lang('Ваша оценка:', 'newLevel')}</span>
+                                <div class="frame-form-field">
+                                    <div class="star">
+                                        <div class="productRate star-big clicktemprate">
+                                            <div class="for_comment" style="width: 0%"></div>
+                                            <input class="ratec" name="ratec" type="hidden" value=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End star reiting -->
+                            {if $use_captcha}
+                                <div class="frame-label m-b_10">
+                                    <span class="title">{lang('Код защиты')}:</span>
+                                    <div class="clearfix">
+                                        <div class="m-b_10 m-t_5 f_l">
+                                            {$cap_image}
+                                        </div>
+                                        <div class="frame-form-field o_h">
+                                            <input type="text" name="captcha" id="captcha" class="m-t_5"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            {/if}
+
+                            <div class="frame-label">
+                                <span class="frame-form-field">
+                                    <div class="btn-form">
+                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
+                                    </div>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End of new comment fild -->
+                </div>
+            </div>
         </div>
     {/if}
 
