@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-14 12:53+0400\n"
-"PO-Revision-Date: 2014-01-14 12:53+0400\n"
+"POT-Creation-Date: 2014-01-14 11:06+0200\n"
+"PO-Revision-Date: 2014-01-14 11:06+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -21,9 +21,21 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
-#: ./application/modules/shop/admin/templates/users/edit.tpl:6
-msgid "User editing"
-msgstr "Редактирование пользователя"
+#: ./application/modules/admin/settings.php:58
+msgid "Simple"
+msgstr ""
+
+#: ./application/modules/admin/settings.php:59
+msgid "Extended"
+msgstr ""
+
+#: ./application/modules/admin/settings.php:60
+msgid "Full"
+msgstr ""
+
+#: ./templates/administrator/settings_site.tpl:397
+msgid "For language"
+msgstr "Для языка"
 
 #: ./application/modules/shop/admin/templates/deliverymethods/edit.tpl:104
 msgid "Price to be confirmed"
