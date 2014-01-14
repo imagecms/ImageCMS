@@ -269,7 +269,11 @@ function dis_un_dis() {
 }
 
 function init_2() {
-    $('[data-toggle="ttip"]').tooltip();
+    try {
+        $('[data-toggle="ttip"]').tooltip();
+    } catch (e) {
+    }
+
     $('.products_table').find('span.prod-on_off').add($('[data-page="tovar"]')).off('click').on('click', function() {
         var page_id = $(this).attr('data-id');
         $.ajax({
