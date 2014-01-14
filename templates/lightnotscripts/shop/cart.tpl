@@ -355,7 +355,7 @@
                                     </td>
                                     <td class="t-a_r">
                                         <div class="text-discount current-discount">
-                                            <span class="curDiscount">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
+                                            <span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
                                             <span class="curr">{$CS}</span>
                                         </div>
 

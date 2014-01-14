@@ -33,7 +33,7 @@ require_once $system_path . '../tests/Output' . EXT;
 require_once $system_path . '../tests/Utf8' . EXT;
 require_once BASEPATH . 'core/CodeIgniter' . EXT;
 
-function doLogin($login = 'andriyleshko@gmail.com', $password = 'fylhsq1') {
+function doLogin($login = 'ad@min.com', $password = 'admin') {
     global $userId;
     $CI = &get_instance();
     $CI->dx_auth->login($login, $password);

@@ -12,24 +12,109 @@ doLogin();
 class ApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
-     * @var Api
+     * Cart Api object
+     * @var object 
      */
     protected $object;
-    protected $errorCallMethodResult;
+
+    /**
+     * CodeIgniter object
+     * @var object 
+     */
     protected $ci;
+
+    /**
+     * Error json of __call() method
+     * @var json
+     */
+    protected $errorCallMethodResult;
+
+    /**
+     * Product variant id(first product from db)
+     * @var int
+     */
     protected $productVarId;
+
+    /**
+     * Kit id(first kit from db)
+     * @var int
+     */
+    protected $kitId;
+
+    /**
+     * Success methods answer
+     * @var json
+     */
+    protected $successAnswer;
+
+    /**
+     * Error message from addProductByVariantId() method
+     * @var json
+     */
+    protected $errorAddProductByVarId;
+
+    /**
+     * Success message of get_kit_discount() method
+     * @var json 
+     */
+    protected $successKitDiscount;
+
+    /**
+     * Error message of addKitById() method
+     * @var json 
+     */
+    protected $errorAddKitById;
+
+    /**
+     * Message with zerro items count
+     * @var json 
+     */
+    protected $zeroCountItemsAnswer;
+
+    /**
+     * Message with two items count
+     * @var json 
+     */
+    protected $twoCountItemsAnswer;
+
+    /**
+     * Message with not valid price
+     * @var json 
+     */
+    protected $notValidPriceAnswer;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp() {
+        /** Getting cart Api object */
         $this->object = new \Cart\Api;
+
+        /** Setting expected methods answers */
         $this->errorCallMethodResult = json_encode(array('success' => false, 'errors' => true, 'message' => 'Method not found.'));
-        
+        $this->successAnswer = json_encode(array('success' => true, 'errors' => false));
+        $this->errorAddProductByVarId = json_encode(array('success' => false, 'errors' => true, 'message' => 'You have not specified item id.'));
+        $this->errorAddKitById = json_encode(array('success' => false, 'errors' => true, 'message' => 'You have not specified item id.'));
+        $this->successKitDiscount = json_encode(array('success' => true, 'errors' => false, 'data' => 0.00));
+        $this->zeroCountItemsAnswer = json_encode(array('success' => true, 'errors' => false, 'data' => 0));
+        $this->twoCountItemsAnswer = json_encode(array('success' => true, 'errors' => false, 'data' => 2));
+        $this->notValidPriceAnswer = json_encode(array('success' => false, 'errors' => true, 'message' => 'Not valid price value.'));
+
         $this->ci = & get_instance();
+
+        /** Get first product variant id from db */
         $product = $this->ci->db->limit(1)->get('shop_product_variants')->row_array();
         $this->productVarId = $product['id'];
+
+        /** Get first kit id from db */
+        $kit = $this->ci->db->limit(1)->get('shop_kit');
+        if ($kit) {
+            $kit = $kit->row_array();
+            $this->kitId = $kit['id'];
+        } else {
+            $kit = 0;
+        }
     }
 
     /**
@@ -42,24 +127,25 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers Cart\Api::create
-     * @todo   Implement testCreate().
      */
     public function testCreate() {
+        /** Check correct type of object */
         $this->assertTrue($this->object->create() instanceof \Cart\Api);
     }
 
     /**
      * @covers Cart\Api::__call
-     * @todo   Implement test__call().
      */
     public function test__call() {
+        /** Check answer when method exists in cart Api class */
         $this->assertEquals(NULL, $this->object->__call('create'));
+
+        /** Check answer when method not exists in cart Api class */
         $this->assertJsonStringEqualsJsonString($this->errorCallMethodResult, $this->object->__call('notExistingMethod'));
     }
 
     /**
      * @covers Cart\Api::index
-     * @todo   Implement testIndex().
      */
     public function testIndex() {
         // working        
@@ -67,86 +153,116 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers Cart\Api::addProductByVariantId
-     * @todo   Implement testAddProductByVariantId().
      */
     public function testAddProductByVariantId() {
-//        $_GET['quantity'] = 3;
+        /*         * Check success product adding */
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->addProductByVariantId($this->productVarId));
 
-        var_dumps($this->object->addProductByVariantId($this->productVarId));
+        /*         * Check wrong product adding(without id) */
+        $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->addProductByVariantId());
     }
 
     /**
      * @covers Cart\Api::addKit
-     * @todo   Implement testAddKit().
      */
     public function testAddKit() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        if ($this->kitId) {
+            /*             * Check success kit adding */
+            $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->addKit($this->kitId));
+
+            /*             * Check wrong kit adding(without id) */
+            $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->addKit());
+        } else {
+            $this->markTestSkipped();
+        }
     }
 
     /**
      * @covers Cart\Api::sync
-     * @todo   Implement testSync().
      */
     public function testSync() {
-        var_dumps($this->object->sync());
+        $result = (array) json_decode($this->object->sync());
+
+        /** Check if sync() is success */
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue($result['data'] instanceof \stdClass);
+
+        /** Check count of items in sync response */
+        $this->assertGreaterThanOrEqual(1, count($result['data']->items));
+    }
+
+    /**
+     * @covers Cart\Api::getAmountInCart
+     */
+    public function testGetAmountInCart() {
+        /** Check answer when product id is correct */
+        $this->assertEquals(1, $this->object->getAmountInCart('SProducts', $this->productVarId));
+
+        /** Check answer when method is without parameters */
+        $this->assertEquals(0, $this->object->getAmountInCart());
+
+        /** Check answer when product id is wrong */
+        $this->assertEquals(0, $this->object->getAmountInCart('SProducts', 99999));
     }
 
     /**
      * @covers Cart\Api::renderCart
-     * @todo   Implement testRenderCart().
      */
     public function testRenderCart() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+
+        /** Check output on render popup cart tpl */
+        $this->expectOutputRegex('/id="popupCart"/');
+        $this->object->renderCart();
     }
 
     /**
      * @covers Cart\Api::get_kit_discount
-     * @todo   Implement testGet_kit_discount().
      */
     public function testGet_kit_discount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        /** Check on success answer*/
+        $this->assertJsonStringEqualsJsonString($this->successKitDiscount, $this->object->get_kit_discount());
     }
 
     /**
      * @covers Cart\Api::getProductByVariantId
-     * @todo   Implement testGetProductByVariantId().
      */
     public function testGetProductByVariantId() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = (array) json_decode($this->object->getProductByVariantId($this->productVarId));
+
+        /** Check on success answer*/
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue($result['data'] instanceof \stdClass);
+        
+        /** Check correct count of method answer */
+        $this->assertEquals(1, count($result['data']));
+        
+        /** Check if returned instance is SProducts*/
+        $this->assertEquals('SProducts', $result['data']->instance);
+        $this->assertEquals($this->productVarId, $result['data']->id);
     }
 
     /**
      * @covers Cart\Api::getKit
-     * @todo   Implement testGetKit().
      */
     public function testGetKit() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = (array) json_decode($this->object->getKit($this->kitId));
+
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue($result['data'] instanceof \stdClass);
+        $this->assertGreaterThanOrEqual(1, count($result['data']));
+        $this->assertEquals('ShopKit', $result['data']->instance);
+        $this->assertEquals($this->kitId, $result['data']->id);
     }
 
     /**
      * @covers Cart\Api::removeKit
-     * @todo   Implement testRemoveKit().
      */
     public function testRemoveKit() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeKit($this->kitId));
+        $this->assertJsonStringEqualsJsonString($this->errorAddKitById, $this->object->removeKit());
     }
 
     /**
@@ -154,76 +270,76 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRemoveProductByVariantId().
      */
     public function testRemoveProductByVariantId() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeProductByVariantId($this->productVarId));
+        $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->removeProductByVariantId());
     }
 
     /**
      * @covers Cart\Api::removeAll
-     * @todo   Implement testRemoveAll().
      */
     public function testRemoveAll() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeAll());
     }
 
     /**
      * @covers Cart\Api::getTotalItemsCount
-     * @todo   Implement testGetTotalItemsCount().
      */
     public function testGetTotalItemsCount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertJsonStringEqualsJsonString($this->zeroCountItemsAnswer, $this->object->getTotalItemsCount());
+
+        $this->object->addProductByVariantId($this->productVarId);
+        $this->object->addKit($this->kitId);
+
+        $this->assertJsonStringEqualsJsonString($this->twoCountItemsAnswer, $this->object->getTotalItemsCount());
     }
 
     /**
      * @covers Cart\Api::getPrice
-     * @todo   Implement testGetPrice().
      */
     public function testGetPrice() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = (array) json_decode($this->object->getPrice());
+
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue(is_numeric($result['data']));
     }
 
     /**
      * @covers Cart\Api::getOriginPrice
-     * @todo   Implement testGetOriginPrice().
      */
     public function testGetOriginPrice() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = (array) json_decode($this->object->getOriginPrice());
+
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue(is_numeric($result['data']));
     }
 
     /**
      * @covers Cart\Api::setTotalPrice
-     * @todo   Implement testSetTotalPrice().
      */
     public function testSetTotalPrice() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->setTotalPrice(1000));
+
+        $result = (array) json_decode($this->object->getPrice());
+
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertTrue(is_numeric($result['data']));
+        $this->assertEquals(1000, $result['data']);
+
+        $this->assertJsonStringEqualsJsonString($this->notValidPriceAnswer, $this->object->setTotalPrice());
     }
 
     /**
      * @covers Cart\Api::getData
-     * @todo   Implement testGetData().
      */
     public function testGetData() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = (array) json_decode($this->object->getData());
+
+        $this->assertTrue($result['success']);
+        $this->assertFalse($result['errors']);
+        $this->assertCount(2, $result['data']);
     }
 
 }

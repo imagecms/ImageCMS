@@ -142,7 +142,6 @@
                                             {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                         {/if}
                                         {if $productVariant->getStock() > 0}
-                                            {//var_dump(getAmountInCart('SProduct', $productVariant->getId()))}
                                             <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                     <div class="frame-count frameCount">
@@ -162,9 +161,13 @@
                                                             <input type="text" name="quantity" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
                                                         </div>
                                                     </div>
-                                                    <div class="btn-buy btn-buy-p">
+                                                    {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
+                                                    <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
                                                         <button 
-                                                            type="submit"
+                                                            type="button"
+                                                            
+                                                            data-trigger="#showCart"
+
                                                             class="btnBuy infoBut"
 
                                                             data-id="{echo $productVariant->getId()}"
@@ -175,13 +178,35 @@
                                                             data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                            <span class="text-el">{lang('Купить')}</span>
+                                                            <span class="text-el">{lang('В корзине', 'newLevel')}</span>
                                                         </button>
                                                     </div>
-                                                    <input type="hidden" name="redirect" value="cart" />
+                                                    <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
+                                                        <button 
+                                                            type="button"
+                                                            
+                                                            onclick='Shop.Cart.add("{echo $productVariant->getId()}", "{shop_url('cart/api/addProductByVariantId/'.$productVariant->getId())}")'
+                                                            class="btnBuy infoBut"
+
+                                                            data-id="{echo $productVariant->getId()}"
+                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
+                                                            data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-price="{echo $productVariant->toCurrency()}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
+                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
+                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-img="{echo $productVariant->getSmallPhoto()}"
+                                                            data-maxcount="{echo $productVariant->getstock()}"
+                                                            >
+                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                            <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                                        </button>
+                                                    </div>
                                                     {form_csrf()}
                                                 </form>
                                             </div>
@@ -617,12 +642,10 @@
                 {/if}
                 <div class="inside-padd">
                     <!--Start. Comments block-->
+                    {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                     <div class="frame-form-comment">
-                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                         <div class="forComments">
-                            {if intval($c['commentsCount']) > 0}
-                                {echo $c['comments']}
-                            {/if}
+                            {echo $c['comments']}
                         </div>
                         <!--End. Comments block-->
                     </div>

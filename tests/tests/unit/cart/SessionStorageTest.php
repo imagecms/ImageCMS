@@ -20,21 +20,8 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = new SessionStorage;
+        $this->object->setData(NULL);
     }
-
-//    private function _prepareData() {
-//        $data1 = array(
-//            'instance' => 'SProducts',
-//            'id' => 211,
-//        );
-//        $data2 = array(
-//            'instance' => 'ShopKit',
-//            'id' => 16,
-//            'quantity' => 5,
-//        );
-//        $this->object->setData($data1);
-//        $this->object->setData($data2);
-//    }
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -48,42 +35,55 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
      * @covers Cart\SessionStorage::getData
      * @todo   Implement testGetData().
      */
-//     * @dataProvider getDataByTermParametrs
     public function testGetData() {
+
         $result = (boolean) $this->object->getData();
         $this->assertFalse($result);
 
-        $data1 = array(
-            'instance' => 'SProducts',
-            'id' => 211,
-        );
-//        $data2 = array(
-//            'instance' => 'ShopKit',
-//            'id' => 16,
-//            'quantity' => 5,
-//        );
-        $this->object->setData($data1);
-//        $this->object->setData($data2);
-        
-        $result = (boolean) $this->object->getData();
-        $this->assertTrue($result);
-        
-//        $result = (boolean)$this->object->getData($term1, $term2);
-//        $this->assertEquals($param, $result);
-    }
+        $result = (boolean) $this->object->getData('SProducts', 82);
+        $this->assertFalse($result);
 
-    public function getDataByTermParametrs() {
-        return array(
-            array(null, null, false),
-            array('SProducts', null, true),
-            array(2, null, true),
-//            array('SProducts'),
-//            array('ShopKit'),
-//            array(1,1),
-//            array(1,80),
-//            array(2,2),
-//            array(2,80),
+        $result = (boolean) $this->object->getData('ShopKit', 16);
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData(1, 82);
+        $this->assertFalse($result);
+
+        $result = (boolean) $this->object->getData(2, 16);
+        $this->assertFalse($result);
+
+        /** Sproduct array * */
+        $data["SProducts_71_82"] = array(
+            'instance' => 'SProducts',
+            'id' => 82,
+            'quantity' => 5
         );
+
+        /** Save to storage * */
+        $this->object->setData($data);
+
+        $result = (boolean) $this->object->getData('SProducts', 82);
+        $this->assertTrue($result);
+
+        $result = (boolean) $this->object->getData(1, 82);
+        $this->assertTrue($result);
+
+        /** ShopKit array * */
+        $data['ShopKit_16'] = array(
+            'instance' => 'ShopKit',
+            'id' => 16,
+            'quantity' => 5
+        );
+
+        /** Save to storage * */
+        $this->object->setData($data);
+
+
+        $result = (boolean) $this->object->getData('ShopKit', 16);
+        $this->assertTrue($result);
+
+        $result = (boolean) $this->object->getData(2, 16);
+        $this->assertTrue($result);
     }
 
     /**
@@ -91,10 +91,34 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testSetData().
      */
     public function testSetData() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        
+        $this->object->setData(NULL);
+        
+        /** Sproduct array * */
+        $data["SProducts_71_82"] = array(
+            'instance' => 'SProducts',
+            'id' => 82,
+            'quantity' => 5
         );
+
+        /** Save to storage * */
+        $result = $this->object->setData($data);
+        $this->assertTrue($result);
+
+        /** ShopKit array * */
+        $data['ShopKit_16'] = array(
+            'instance' => 'ShopKit',
+            'id' => 16,
+            'quantity' => 5
+        );
+
+        /** Save to storage * */
+        $result = $this->object->setData($data);
+        $this->assertTrue($result);
+
+        /** Save to storage * */
+        $result = $this->object->setData(NULL);
+        $this->assertTrue($result);
     }
 
     /**
@@ -102,10 +126,39 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRemove().
      */
     public function testRemove() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+
+        /** Sproduct array * */
+        $data["SProducts_71_82"] = array(
+            'instance' => 'SProducts',
+            'id' => 82,
+            'quantity' => 5
         );
+        /** ShopKit array * */
+        $data['ShopKit_16'] = array(
+            'instance' => 'ShopKit',
+            'id' => 16,
+            'quantity' => 5
+        );
+
+        /** Save to storage * */
+        $this->object->setData($data);
+
+
+        $result = $this->object->remove('SProducts', 82);
+        $this->assertTrue($result);
+
+        $result = $this->object->remove(1);
+        $this->assertTrue($result);
+
+
+        $result = $this->object->remove('ShopKit', 16);
+        $this->assertTrue($result);
+
+        $result = $this->object->remove(2);
+        $this->assertTrue($result);
+
+        $result = $this->object->remove();
+        $this->assertTrue($result);
     }
 
     /**
@@ -113,10 +166,35 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testExportToDB().
      */
     public function testExportToDB() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        
+        /** Save to storage * */
+        $this->object->setData(NULL);
+        
+        /** Sproduct array * */
+        $data["SProducts_71_82"] = array(
+            'instance' => 'SProducts',
+            'id' => 82,
+            'quantity' => 5
         );
+        /** ShopKit array * */
+        $data['ShopKit_16'] = array(
+            'instance' => 'ShopKit',
+            'id' => 16,
+            'quantity' => 5
+        );
+
+        /** Save to storage * */
+        $this->object->setData($data);
+        
+        /** Login **/
+        doLogin();
+        
+        /** Clear database storage **/ 
+        $dbStorage = new \Cart\DBStorage();
+        $dbStorage->setData(NULL);
+        
+        $result = (boolean) $this->object->exportToDB();
+        $this->assertTrue($result);
     }
 
 }
