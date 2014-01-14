@@ -30,6 +30,7 @@ class Feedback extends MY_Controller {
         );
         $lang = new MY_Lang();
         $lang->load('feedback');
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
     }
 
     public function autoload() {
