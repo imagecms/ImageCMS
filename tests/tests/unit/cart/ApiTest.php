@@ -155,10 +155,10 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @covers Cart\Api::addProductByVariantId
      */
     public function testAddProductByVariantId() {
-        /*         * Check success product adding */
+        /** Check success product adding */
         $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->addProductByVariantId($this->productVarId));
 
-        /*         * Check wrong product adding(without id) */
+        /** Check wrong product adding(without id) */
         $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->addProductByVariantId());
     }
 
@@ -167,10 +167,10 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      */
     public function testAddKit() {
         if ($this->kitId) {
-            /*             * Check success kit adding */
+            /** Check success kit adding */
             $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->addKit($this->kitId));
 
-            /*             * Check wrong kit adding(without id) */
+            /** Check wrong kit adding(without id) */
             $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->addKit());
         } else {
             $this->markTestSkipped();
@@ -220,7 +220,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @covers Cart\Api::get_kit_discount
      */
     public function testGet_kit_discount() {
-        /** Check on success answer*/
+        /** Check on success answer */
         $this->assertJsonStringEqualsJsonString($this->successKitDiscount, $this->object->get_kit_discount());
     }
 
@@ -230,16 +230,18 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
     public function testGetProductByVariantId() {
         $result = (array) json_decode($this->object->getProductByVariantId($this->productVarId));
 
-        /** Check on success answer*/
+        /** Check on success answer */
         $this->assertTrue($result['success']);
         $this->assertFalse($result['errors']);
         $this->assertTrue($result['data'] instanceof \stdClass);
-        
+
         /** Check correct count of method answer */
         $this->assertEquals(1, count($result['data']));
-        
-        /** Check if returned instance is SProducts*/
+
+        /** Check if returned instance is SProducts */
         $this->assertEquals('SProducts', $result['data']->instance);
+
+        /** Check if received correct item */
         $this->assertEquals($this->productVarId, $result['data']->id);
     }
 
@@ -249,11 +251,18 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
     public function testGetKit() {
         $result = (array) json_decode($this->object->getKit($this->kitId));
 
+        /** Check on success answer */
         $this->assertTrue($result['success']);
         $this->assertFalse($result['errors']);
         $this->assertTrue($result['data'] instanceof \stdClass);
-        $this->assertGreaterThanOrEqual(1, count($result['data']));
+
+        /** Check correct count of method answer */
+        $this->assertEquals(1, count($result['data']));
+
+        /** Check if returned instance is SProducts */
         $this->assertEquals('ShopKit', $result['data']->instance);
+
+        /** Check if received correct item */
         $this->assertEquals($this->kitId, $result['data']->id);
     }
 
@@ -261,7 +270,10 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @covers Cart\Api::removeKit
      */
     public function testRemoveKit() {
+        /** Check success answer */
         $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeKit($this->kitId));
+
+        /** Check error answer */
         $this->assertJsonStringEqualsJsonString($this->errorAddKitById, $this->object->removeKit());
     }
 
@@ -270,7 +282,10 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRemoveProductByVariantId().
      */
     public function testRemoveProductByVariantId() {
+        /** Check success answer */
         $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeProductByVariantId($this->productVarId));
+
+        /** Check error answer */
         $this->assertJsonStringEqualsJsonString($this->errorAddProductByVarId, $this->object->removeProductByVariantId());
     }
 
@@ -278,6 +293,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @covers Cart\Api::removeAll
      */
     public function testRemoveAll() {
+        /** Check success answer */
         $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->removeAll());
     }
 
@@ -299,6 +315,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
     public function testGetPrice() {
         $result = (array) json_decode($this->object->getPrice());
 
+        /** Check success answer */
         $this->assertTrue($result['success']);
         $this->assertFalse($result['errors']);
         $this->assertTrue(is_numeric($result['data']));
@@ -310,6 +327,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
     public function testGetOriginPrice() {
         $result = (array) json_decode($this->object->getOriginPrice());
 
+        /** Check success answer */
         $this->assertTrue($result['success']);
         $this->assertFalse($result['errors']);
         $this->assertTrue(is_numeric($result['data']));
@@ -319,15 +337,20 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
      * @covers Cart\Api::setTotalPrice
      */
     public function testSetTotalPrice() {
+        /** Check success answer */
         $this->assertJsonStringEqualsJsonString($this->successAnswer, $this->object->setTotalPrice(1000));
 
         $result = (array) json_decode($this->object->getPrice());
 
+        /** Check success answer */
         $this->assertTrue($result['success']);
         $this->assertFalse($result['errors']);
+
+        /** Check error answer */
         $this->assertTrue(is_numeric($result['data']));
         $this->assertEquals(1000, $result['data']);
 
+        /** Check error answer */
         $this->assertJsonStringEqualsJsonString($this->notValidPriceAnswer, $this->object->setTotalPrice());
     }
 
@@ -337,9 +360,11 @@ class ApiTest extends \PHPUnit_Framework_TestCase {
     public function testGetData() {
         $result = (array) json_decode($this->object->getData());
 
+        /** Check success answer */
         $this->assertTrue($result['success']);
         $this->assertFalse($result['errors']);
         $this->assertCount(2, $result['data']);
+        $this->object->removeAll();
     }
 
 }
