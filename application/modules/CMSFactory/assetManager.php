@@ -164,6 +164,12 @@ class assetManager {
         if (\CI_Controller::get_instance()->input->post('template')) {
             $tpl = \CI_Controller::get_instance()->input->post('template');
         }
+        if (\CI_Controller::get_instance()->input->get('ignoreWrap')) {
+            $ignoreWrap = TRUE;
+        }
+        if (\CI_Controller::get_instance()->input->get('template')) {
+            $tpl = \CI_Controller::get_instance()->input->get('template');
+        }
 
         try {
 
@@ -201,6 +207,12 @@ class assetManager {
         }
         if (\CI_Controller::get_instance()->input->post('template')) {
             $tpl = \CI_Controller::get_instance()->input->post('template');
+        }
+        if (\CI_Controller::get_instance()->input->get('ignoreWrap')) {
+            $ignoreWrap = TRUE;
+        }
+        if (\CI_Controller::get_instance()->input->get('template')) {
+            $tpl = \CI_Controller::get_instance()->input->get('template');
         }
 
         try {
