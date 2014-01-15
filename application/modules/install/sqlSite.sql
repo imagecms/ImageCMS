@@ -172,7 +172,6 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL, 11),
 (95, 'filter', 'filter', 1, 1, 0, NULL, 30),
 (96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 17),
-(121, 'shop', 'shop', 1, 0, 0, NULL, 17),
 (135, 'sample_mail', 'sample_mail', 0, 0, 0, NULL, 21),
 (137, 'mailer', 'mailer', 1, 0, 0, NULL, 22),
 (153, 'share', 'share', 1, 0, 1, 'a:10:{s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:4:"none";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:7:"3901548";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 9),
