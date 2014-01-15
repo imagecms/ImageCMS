@@ -147,6 +147,11 @@ class SiteInfo {
             //if (key_exists($name, $this->siteinfo) & in_array($name, $this->nonLocaleKeys)) {
             if (key_exists($name, $this->siteinfo)) {
                 return $this->siteinfo[$name];
+            } elseif (isset($this->siteinfo['contacts'])) {
+                $nameTemp = str_replace('siteinfo_', '', $name);
+                if (key_exists($nameTemp, $this->siteinfo['contacts'])) {
+                    return $this->siteinfo['contacts'][$nameTemp];
+                }
             }
             if (key_exists($this->locale, $this->siteinfo)) {
                 $siteinfo = $this->siteinfo[$this->locale];
