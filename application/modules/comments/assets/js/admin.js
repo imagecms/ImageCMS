@@ -18,7 +18,8 @@ function expand_Children(parent_id, curElement)
 {
     $(curElement).next().css('display', 'inline-block');
     $(curElement).css('display', 'none');
-    $(curElement).next().next().text('Скрить ответы');
+    
+    $(curElement).next().next().text(lang('Hide answers'));
     var items = $('.comment_child_' + parent_id).css('display', 'table-row');
 }
 
@@ -26,6 +27,6 @@ function hide_Children(parent_id, curElement)
 {
     $(curElement).prev().css('display', 'inline-block');
     $(curElement).css('display', 'none');
-    $(curElement).next().text('Смотреть ответы');
+    $(curElement).next().text(lang('Show answers'));
     var items = $('.comment_child_' + parent_id).css('display', 'none');
 }
