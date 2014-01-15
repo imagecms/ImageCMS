@@ -36,7 +36,7 @@
                 <h1 class="d_i">{lang('Заказ №','newLevel')}:<span class="number-order">{echo $model->getId()}</span></h1>
             </div>
         </div>
-
+        {$total = $model->getTotalPrice()}
         <!-- Start. Displays a information block about Order -->
         <div class="left-order">
             <!--                Start. User info block-->
@@ -112,6 +112,21 @@
                     <th>{lang('Дата заказа','newLevel')}:</th>
                     <td>{date('d.m.Y, H:i:s.',$model->getDateCreated())} </td>
                 </tr>
+                <!-- Start. Render certificate -->
+                {$giftCond = $model->getGiftCertKey() != null}
+                {if $giftCond}
+                    {$giftPrice = (float)$model->getGiftCertPrice()}
+                    {$total -= $giftPrice}
+                {else:}
+                    {$giftPrice = 0}
+                {/if}
+                <!-- End. Render certificate -->
+
+                <!-- Start. Delivery Method price -->
+                {if (int)$model->getDeliveryPrice() > 0}
+                    {$total = $total + $model->getDeliveryPrice()}
+                {/if}
+                <!-- End. Delivery Method price -->
 
                 <!-- Start. Render payment button and payment description -->
                 <tr>

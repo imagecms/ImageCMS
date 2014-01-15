@@ -2,31 +2,70 @@
 //variants
 var ShopFront = {
     Cart: {
-        processBtnBuyCount: function(id, add, kit) {
-            var el = $(genObj.btnBuy).filter('[data-id="' + id + '"]').removeAttr('disabled');
-            if (kit)
-                el = el.filter(genObj.btnBuyKit);
+        process: function() {
+            if (Shop.Cart.length() == 0) {
+                $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockNoEmpty).removeClass('d_b').addClass('d_n');
+                $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockEmpty).removeClass('d_n').addClass('d_b');
 
-            el.each(function() {
-                var el = $(this);
-                if (add){
-                    el.parent(genObj.btnToCart).addClass('d_n');
-                    el.parent(genObj.btnInCart).removeClass('d_n');
-                    el.closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart)
-                    .find(genObj.frameCount)
-                    .find(':input').attr('disabled', 'disabled');
-                }
-                else{
-                    el.parent(genObj.btnToCart).removeClass('d_n');
-                    el.parent(genObj.btnInCart).addClass('d_n');
-                    el.closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart)
-                    .find(genObj.frameCount)
-                    .find(':input').removeAttr('disabled', 'disabled');
-                }
+                $(genObj.tinyBask).removeClass(genObj.isAvail);
+                $(genObj.tinyBask).find(genObj.blockEmpty).show();
+                $(genObj.tinyBask).find(genObj.blockNoEmpty).hide();
+            }
+            else {
+                $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockNoEmpty).removeClass('d_n').addClass('d_b');
+                $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockEmpty).removeClass('d_b').addClass('d_n');
+
+                $(genObj.tinyBask).addClass(genObj.isAvail);
+                $(genObj.tinyBask).find(genObj.blockEmpty).hide();
+                $(genObj.tinyBask).find(genObj.blockNoEmpty).show();
+            }
+        },
+        processBtnBuyCount: function(el) {
+            //update page content
+            //update products count
+            el = el == undefined ? body : el;
+            var keys = [];
+            _.each(Shop.Cart.getAllItems(), function(item) {
+                keys.push(item.id + '_' + item.vId);
             });
+            //update all product buttons
 
-            decorElemntItemProduct(el.closest(genObj.parentBtnBuy));
-
+            el.find(genObj.btnBuy).each(function() {
+                var $this = $(this),
+                key = $this.data('prodid') + '_' + $this.data('varid');
+                if (keys.indexOf(key) == -1) {
+                    $this.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).children().removeAttr('disabled').find(genObj.textEl).html(text.toCart)
+                    decorElemntItemProduct($this.closest(genObj.parentBtnBuy));
+                    $this.unbind('click.buy').bind('click.buy', function(e) {
+                        $(document).trigger('showActivity');
+                        var cartItem = Shop.Cart.composeCartItem($(this));
+                        Shop.Cart.add(cartItem, e.button == undefined ? false : true);
+                    }).closest(genObj.parentBtnBuy).removeClass(genObj.inCart).addClass(genObj.toCart);
+                }
+                else {
+                    $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(text.inCart);
+                    decorElemntItemProduct($this.closest(genObj.parentBtnBuy));
+                    $this.unbind('click.buy').bind('click.buy', function(e) {
+                        $(document).trigger('showActivity');
+                        ShopFront.Cart.initShopPage(true);
+                    }).closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart);
+                }
+            }).removeAttr('disabled');
+            el.find(genObj.numberC).has(genObj.iPr).each(function() {
+                var $this = $(this),
+                key = $this.data('prodid') + '_' + $this.data('varid');
+                if (keys.indexOf(key) != -1) {
+                    var input = $this.find('input');
+                    $this.find('button').attr('disabled', 'disabled');
+                    input.val(JSON.parse(localStorage.getItem('cartItem_' + key)).count).attr('readonly', 'readonly').attr('disabled', 'disabled');
+                }
+                else {
+                    var input = $this.find('input');
+                    $this.find('button').removeAttr('disabled');
+                    input.removeAttr('readonly disabled').val('1');
+                    $this.closest(genObj.frameCount).next().children().attr('data-count', '1')
+                }
+            })
             $(document).trigger({
                 'type': 'processPageEnd'
             });
@@ -38,14 +77,14 @@ var ShopFront = {
                 var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy),
                 btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
-                vMediumImage = btnInfo.data('mediumImage'),
-                vId = btnInfo.data('id'),
-                vName = btnInfo.data('vname'),
-                vPrice = btnInfo.data('price'),
-                vOrigPrice = btnInfo.data('origPrice'),
-                vAddPrice = btnInfo.data('addPrice'),
-                vNumber = btnInfo.data('number'),
-                vStock = btnInfo.data('maxcount');
+                vMediumImage = btnInfo.attr('data-mediumImage'),
+                vId = btnInfo.attr('data-id'),
+                vName = btnInfo.attr('data-vname'),
+                vPrice = btnInfo.attr('data-price'),
+                vOrigPrice = btnInfo.attr('data-origPrice'),
+                vAddPrice = btnInfo.attr('data-addPrice'),
+                vNumber = btnInfo.attr('data-number'),
+                vStock = btnInfo.attr('data-maxcount');
 
                 if (vMediumImage.search(/nophoto/) == -1)
                     liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
@@ -70,6 +109,13 @@ var ShopFront = {
                 var condTooltip = checkProdStock && e.res;
                 if (condTooltip)
                     $this.closest(genObj.numberC).tooltip();
+
+                $this.closest(genObj.frameCount).next().children().attr('data-count', $this.val())
+
+                $(document).trigger({//for wishlist
+                    'type': 'change_count_product',
+                    'el': $this
+                });
             });
             el.find(genObj.plusMinus).filter(genObj.iPr).plusminus($.extend({}, optionsPlusminus, {
                 after: function(e, el, input) {
@@ -77,6 +123,11 @@ var ShopFront = {
                         el.closest(genObj.numberC).tooltip();
 
                     input.closest(genObj.frameCount).next().children().attr('data-count', input.val())
+
+                    $(document).trigger({//for wishlist
+                        'type': 'change_count_product',
+                        'el': input
+                    });
                 }
             }));
         },
@@ -84,18 +135,118 @@ var ShopFront = {
             el.find("img.lazy").lazyload(lazyload);
             wnd.scroll(); //for lazyload
             drawIcons(el.find(selIcons));
+            ShopFront.Cart.processBtnBuyCount(el);
             el.find('[data-drop]').drop(optionsDrop);
         },
-        initShopPage: function(el) {
-            el.find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
-                after: function(e, el, input) {
+        initShopPage: function(showWindow, item) {
+            $(genObj.popupCart).html(Shop.Cart.renderPopupCart());
 
+            if ($(genObj.popupCart).is(':visible'))
+                dropBaskResize();
+            if (showWindow || $(genObj.popupCart).is(':visible'))
+                $(document).trigger({
+                    type: 'render_popup_cart',
+                    el: $(genObj.popupCart)
+                });
+            $(genObj.frameBasks).find(genObj.plusMinus).plusminus($.extend({}, optionsPlusminus, {
+                after: function(e, el, input) {
+                    chCountInCart(el.closest(genObj.frameChangeCount), true, input);
                 }
             }));
-            testNumber($(el + ' input'));
-            $(el + ' input').off('maxminValue').on('maxminValue', function(e) {
+            function chCountInCart($this, btn, input) {
+                var pd = $this,
+                cartItem = new Shop.Cart.cartItem({
+                    id: pd.data('prodid'),
+                    vId: pd.data('varid'),
+                    price: pd.data('price'),
+                    addprice: pd.data('addprice'),
+                    origprice: pd.data('origprice'),
+                    kit: pd.data('kit')
+                });
+                if (input == undefined)
+                    input = pd.closest(genObj.frameCount).find('input');
+                var inputVal = input.val(),
+                condTooltip = '';
+                if (!btn)
+                    condTooltip = btn;
+                else
+                    condTooltip = checkProdStock && inputVal >= input.data('max')
+
+                if (condTooltip) {
+                    pd.closest(genObj.numberC).tooltip();
+                    inputVal = input.data('max');
+                    $(document).trigger('hideActivity');
+                }
+                cartItem.count = inputVal;
+                if (inputVal != ''){
+                    var pos = input.getCursorPosition();
+                    Shop.Cart.chCount(cartItem, function() {
+                        input.setCursorPosition(pos, pos)
+                    //input.focus();
+                    });
+                }
+                var pdTrs = $('[data-id =' + pd.closest('tr[data-id]').data('id') + ']')
+                pdTrs.each(function() {
+                    pdTr = $(this);
+                    var word = cartItem.kit ? text.kits : text.pcs;
+                    if ($.existsN(pdTr.closest(genObj.orderDetails)))
+                        word = cartItem.kit ? pluralStr(inputVal, text.plurKits) : pluralStr(inputVal, text.plurProd);
+                    pdTr.find(genObj.priceOrder).html((cartItem.count * cartItem.price).toFixed(pricePrecision));
+                    pdTr.find(genObj.priceAddOrder).html((cartItem.count * cartItem.addprice).toFixed(pricePrecision));
+                    pdTr.find(genObj.priceOrigOrder).html((cartItem.count * cartItem.origprice).toFixed(pricePrecision));
+                    pdTr.find(genObj.plusMinus).val(cartItem.count).text(cartItem.count);
+                    pdTr.find(genObj.countOrCompl).html(word);
+                })
+            }
+            testNumber($(genObj.frameBasks));
+            $(genObj.frameBasks + ' input').off('maxminValue').on('maxminValue', function(e) {
                 chCountInCart($(this).prev('div'), e.res, $(this));
             })
+            if (showWindow) {
+                ShopFront.Cart.togglePopup();
+            }
+        },
+        rm: function(context, isKit) {
+            $(document).trigger('showActivity');
+            if (typeof isKit != 'undefined' && isKit == true)
+                var tr = $(context).closest(genObj.trCartKit);
+            else
+                var tr = $(context).closest('tr');
+            var cartItem = new Object();
+            cartItem.id = tr.data('prodid');
+            cartItem.vId = tr.data('varid');
+            cartItem.kitId = tr.data('kitid');
+            Shop.Cart.rm(cartItem).totalRecount();
+        },
+        togglePopup: function() {
+            $(document).trigger('showActivity');
+            $(genObj.showCart).trigger({
+                type: 'click'
+            });
+            return false;
+        },
+        countSum: function() {
+            Shop.Cart.totalRecount();
+            var length = Shop.Cart.length();
+
+            $(genObj.countBask).each(function() {
+                $(this).html(length);
+            });
+            var sumBask = parseFloat(Shop.Cart.totalPrice),
+            addSumBask = parseFloat(Shop.Cart.totalAddPrice);
+            Shop.Cart.koefCurr = addSumBask / sumBask;
+            $(genObj.sumBask).each(function() {
+                var temp = 0;
+                if (Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) == Shop.Cart.totalPrice.toFixed(pricePrecision))
+                    temp = Shop.Cart.discountProduct;
+                $(this).html((sumBask - temp).toFixed(pricePrecision));
+            });
+            $(genObj.addSumBask).each(function() {
+                $(this).html(addSumBask.toFixed(pricePrecision));
+            })
+            $(genObj.tinyBask).add(genObj.popupCart).find(genObj.plurProd).each(function() {
+                $(this).html(pluralStr(length, text.plurProd));
+            });
         },
         existsVnumber: function(vNumber, liBlock) {
             if ($.trim(vNumber) != '') {
@@ -165,21 +316,89 @@ var ShopFront = {
     }
 
 };
+var DiscountFront = {
+    getDiscount: function(a) {
+        //            if (!$.exists('#countDisc'))
+        //                body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+        //            $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
+        //            console.log(a)
+        var k = true;
+        if (!orderDetails)
+            k = false;
+        $(document).trigger('showActivity');
+        $(document).trigger({
+            'type': 'beforeDisplayDiscount'
+        });
+        $.ajax({
+            type: 'GET',
+            url: '/shop/cart_api/get_kit_discount',
+            success: function(data) {
+                var kitDiscount = parseFloat(data);
+                Shop.Cart.kitDiscount = isNaN(kitDiscount) ? 0 : parseFloat(kitDiscount);
+
+                if (!Discount)
+                    DiscountFront.displayDiscount(null);
+
+                if (k && !Discount) {
+                    Order.displayInfoDiscount('');
+                    Order.renderGiftInput('');
+                }
+
+                if (!discountInPopup && !k)
+                    return false;
+                else if (Discount) {
+                    Discount.getDiscount(k);
+                }
+            }
+        });
+    },
+    displayDiscount: function(obj) {
+        Shop.Cart.totalRecount();
+        Shop.Cart.discountProduct = 0;
+        var tempdisc = false;
+        if (obj != null)
+            tempdisc = (parseFloat(obj.sum_discount_product) != 0 && obj.sum_discount_product != null) ? parseFloat(obj.sum_discount_product) : false;
+        var discC = tempdisc || Shop.Cart.kitDiscount != 0;
+        if (discC) {
+            if (tempdisc)
+                Shop.Cart.discountProduct += tempdisc;
+            Shop.Cart.discountProduct += Shop.Cart.kitDiscount;
+
+            $(genObj.curDiscount).each(function() {
+                $(this).html(Shop.Cart.discountProduct.toFixed(pricePrecision));
+            });
+            $(genObj.genSumDiscount).each(function() {
+                $(this).html(Shop.Cart.totalPriceOrigin.toFixed(pricePrecision));
+            });
+            $(genObj.frameDiscount).show();
+        }
+        else {
+            $(genObj.frameDiscount).hide();
+        }
+
+        ShopFront.Cart.countSum();
+        ShopFront.Cart.process();
+        $(document).trigger('hideActivity');
+        $(document).trigger({
+            'type': 'displayDiscount',
+            'obj': obj
+        });
+    }
+}
 var global = {
     processWish: function() {
         var wishlist = wishList.all();
         $(genObj.btnWish).each(function() {
-            var $this = $(this),
-            $thisP = $this.parent();
-            if (wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')) !== -1) {
+            var $this = $(this);
+            if (wishlist.indexOf($this.data('id')) !== -1) {
                 $this.addClass(genObj.wishIn);
-                $this.find('.' + genObj.toWishlist).hide();
-                $this.find('.' + genObj.inWishlist).show();
+                $this.find(genObj.toWishlist).hide();
+                $this.find(genObj.inWishlist).show();
             }
             else {
                 $this.removeClass(genObj.wishIn);
-                $this.find('.' + genObj.toWishlist).show();
-                $this.find('.' + genObj.inWishlist).hide();
+                $this.find(genObj.toWishlist).show();
+                $this.find(genObj.inWishlist).hide();
             }
         });
     },
@@ -210,6 +429,12 @@ var global = {
         {
             if (Shop.CompareList.all().length != inServerCompare)
                 Shop.CompareList.sync();
+        }
+
+        if (inServerCart != NaN)
+        {
+            if (Shop.Cart.length() != inServerCart)
+                Shop.Cart.sync();
         }
         if (inServerWishList != NaN)
         {
@@ -721,7 +946,7 @@ function cuselInit(el, sel) {
 }
 function testNumber(el) {
     var el = el == undefined ? body : el;
-
+           
     el.find(genObj.numberC + ' input').on('testNumber', function(e) {
         if (e.res)
             $(this).tooltip('remove');
