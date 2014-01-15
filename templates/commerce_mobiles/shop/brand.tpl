@@ -23,11 +23,11 @@
                     <span class="title">{echo ShopCore::encode($product->name)}</span>
                     {if $product->firstVariant->name}
                         <span class="divider">/</span>
-                        <span class="code_v">{lang('Вариант','commerce_mobiles_new')}: {echo $product->firstVariant->name}</span>
+                        <span class="code_v">{lang('Вариант','commerce_mobiles')}: {echo $product->firstVariant->name}</span>
                     {/if}
                     {if $product->firstVariant->getNumber()}
                         <span class="divider">/</span>
-                        <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $product->firstVariant->getNumber()}</span>
+                        <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $product->firstVariant->getNumber()}</span>
                     {/if}
                     <span class="d_b price">{echo $product->firstVariant->toCurrency()} {$CS}</span>
                 </span>

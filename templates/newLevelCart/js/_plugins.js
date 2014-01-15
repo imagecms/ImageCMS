@@ -2318,7 +2318,6 @@ function getCookie(c_name)
                         methods._checkMethod(function() {
                             methods.heightContent(drop)
                         })
-
                         var cB = elAfter;
                         if (cB !== undefined) {
                             eval(cB)($this, drop, isajax, data, set);
@@ -2572,10 +2571,10 @@ function getCookie(c_name)
                                     input.val(input.data('min') || 1);
                                 else
                                     input.val(inputVal + step);
-                                if (inputVal + step === input.data('max') && checkProdStock)
+                                if (inputVal + step === input.data('max') && checkProdStock){
                                     $thisNext.attr('disabled', 'disabled');
-                                if (checkProdStock)
                                     input.maxminValue(e);
+                                }
                                 settings.after(e, el, input);
                             }
                         }
