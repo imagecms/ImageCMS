@@ -13,7 +13,8 @@
         var genObj = {
             popupCart: '#popupCart',
             frameDelivery: '#frameDelivery',
-            pM: '.paymentMethod',
+            framePaymentMethod: '#framePaymentMethod',
+            pM: '#paymentMethod',
             parentBtnBuy: '.globalFrameProduct',
             loginButton: '#loginButton',
             tinyCompareList: '.tinyCompareList',
