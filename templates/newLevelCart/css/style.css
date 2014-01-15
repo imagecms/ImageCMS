@@ -768,7 +768,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .check-variant-product .lineForm{width: 190px;}
 .check-variant-delivery .lineForm, .check-variant-payment .lineForm{width: 100%;}
 .check-variant-payment .preloader{display: none;z-index: 2;}
-.paymentMethod{position: relative;z-index: 1;}
+.frame-payment-method{position: relative;z-index: 1;}
 .check-variant-product {margin-bottom: 19px;}
 .check-variant-product .title{display: inline;vertical-align: middle;}
 .frame-count-onpage .lineForm{width: 78px;}
