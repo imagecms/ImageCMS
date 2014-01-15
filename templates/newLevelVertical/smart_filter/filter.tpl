@@ -1,11 +1,12 @@
 <div class="preloader wo-i"></div>
 {include_tpl('filter_opt')}
+<div id="slider-range"></div>
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
             <div class="title">Цена</div>
             <div class="slider-cont">
-                <noscript>Джаваскрипт не включен</noscript>
+                <noscript>{lang('Джаваскрипт не включен', 'newLevel')}</noscript>
                 {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}
                 <div class="slider" id="slider1">
                     <a href="#" class="ui-slider-handle left-slider"></a>
@@ -16,10 +17,10 @@
                 <div class="t-a_j">
                     {/*may been delete*/}
                     <label>
-                        <input type="text" class="minCost" data-title="только цифры" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
+                        <input type="text" class="minCost" data-title="{lang('только цифры', 'newLevel')}" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
                     </label>
                     <label>
-                        <input type="text" class="maxCost" data-title="только цифры" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
+                        <input type="text" class="maxCost" data-title="{lang('только цифры', 'newLevel')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
                     </label>
                     <div class="btn-def">
                         <input type="submit" value="ОК"/>
@@ -114,7 +115,7 @@
                             </div>
                         {else:}
                             <div class="lineForm">
-                                <select name="p[{echo $prop->property_id}][]" id="p{echo $prop->property_id}" onchange="changeSelectFilter(this)">
+                                <select name="p[{echo $prop->property_id}][]" id="p{echo $prop->property_id}" onchange="Filter.changeSelectFilter(this)">
                                     <option id="none"  value=''>--{lang('Не выбрано', 'newLevel')}--</option>
                                     {foreach $prop->possibleValues as $item}
                                         {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}

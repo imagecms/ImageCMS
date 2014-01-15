@@ -1,6 +1,5 @@
 <div class="groups-form" >
     <label for="giftcert" class="label-gift-cert">
-        <span class="title">{lang('Промо код:','newLevel')}</span>
         <span class="frame-form-field p_r">
             <div class="btn-def f_r">
                 <button type="button" id="giftButton">

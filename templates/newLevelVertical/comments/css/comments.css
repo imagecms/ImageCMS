@@ -1,54 +1,64 @@
 /*comments*/
-.comment__icsi-css .main-form-comments__icsi-css{margin-bottom: 20px;}
-.comment__icsi-css{margin-bottom: 35px !important;}
-.comment__icsi-css .main-form-comments .title__icsi-css{float: none;width: auto;font-weight: bold;}
-.comment__icsi-css .title__icsi-css{font-weight: bold;}
-.comment__icsi-css .main-form-comments .frame_form_field__icsi-css{margin-left: 0;}
-.comment__icsi-css .author-comment__icsi-css{color: #000;font-size:12px;}
-.comment__icsi-css .date-comment__icsi-css{color: #999;font-weight: bold;}
-.frame-list-comment__icsi-css > .sub-1{margin-bottom: 10px;margin: 0;padding-bottom: 32px;}
-.frame-list-comment__icsi-css > .sub-1 > li > .frame-comment__icsi-css{padding: 10px 15px 1px;background-color: #f4eee9;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;}
-.frame-comment__icsi-css p{margin-bottom: 9px;}
-.comment__icsi-css .frame-list-comment__icsi-css.sub-2{float: none;width: auto;padding-left: 33px;max-height: 100px;overflow: hidden;}
+.comments:after, .comments .func-button-comment:after{visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
+.comments{margin-bottom: 35px !important;}
+.comments .title-comment{font-weight: bold;}
+.comments .main-form-comments .frame-form-field{margin-left: 0;}
+.frame-autor-comment{display: block;}
+.comments .author-comment{color: #000;font-size:12px;font-weight: bold;}
+.comments .date-comment{color: #999;}
+.comments .frame-list-comments > .sub-1{margin: 0;}
+.comments .frame-comment-sub1 .frame-comment{}
+.comments .frame-comment-sub1{margin-left: 122px;margin-right: 260px;}
+.comments .frame-comment p{margin-bottom: 9px;}
+.comments .frame-list-comments.sub-2{float: none;width: auto;max-height: 201px;overflow: hidden;}
+.comments .btn-all-comments{margin-left: 0;margin-top: 5px;}
 
-.comment__icsi-css .btn__icsi-css > *, .comment__icsi-css input.btn__icsi-css{padding: 0 !important;}
-.comment__icsi-css .frame-list-comment__icsi-css .btn__icsi-css{background-image: none !important;border: none !important;}
-.comment__icsi-css .frame-list-comment__icsi-css .btn__icsi-css.active{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
-.comment__icsi-css .icon-comment__icsi-css{background-image: none;width: 0;height: 0;margin-right: 0!important;}
-.comment__icsi-css .frame-list-comment__icsi-css li{border-top: 0;padding: 0;}
-.comment__icsi-css .frame-list-comment__icsi-css > .sub-1 > li{margin-top: 29px;}
-.frame-list-comment__icsi-css.sub-2 + .s-all-comments{margin-left: 33px;}
-.comment__icsi-css .frame-list-comment__icsi-css.sub-2 > li{border-bottom: 1px solid #eae5e1;}
-.comment__icsi-css .funcs-buttons-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 1px;}
-.comment__icsi-css .like__icsi-css > button span span, .comment__icsi-css .dis-like__icsi-css > button span span{font-weight: normal;}
-.comment__icsi-css .author-data-comment__icsi-css{margin-bottom: 3px;}
-.s-all-comments{margin-top: 7px;}
+.comments .btn > *, .comments input.btn{padding: 0 !important;}
+.comments .frame-list-comments .btn{background-image: none !important;border: none !important;}
+.comments .frame-list-comments .btn.active{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
+.comments .icon_comment{background-image: none;width: 0;height: 0;margin-right: 0!important;overflow: hidden;}
+.comments .frame-list-comments li{border-top: 0;padding: 0;}
+.comments .frame-list-comments > .sub-1 > li{margin-top: 29px;border-top: 1px solid #eae5e1;padding-top: 25px;}
+.comments .frame-list-comments > .sub-1 > li:first-child{border-top: 0;padding-top: 0;margin-top: 0;}
+.comments .frame-list-comments.sub-2 + .s-all-comments{margin-left: 33px;}
+.comments .frame-list-comments.sub-2 > li{background-color: #efedea;margin-top: 29px;position: relative;}
+.comments .frame-list-comments.sub-2 > li:before{content: "";border-width: 10px;border-style: solid;border-color: transparent;border-left-color: #efedea;top: -10px;left: 120px;position: absolute;}
+.comments .global-frame-comment-sub2{padding: 11px 27px 5px;}
+.comments .funcs-buttons-comment + .frame-list-comments{padding-top: 1px;}
+.comments .like > button span span, .comments .dis-like > button span span{font-weight: normal;}
+.comments .author-data-comment-sub1 {margin-bottom: 3px;float: left;width: 122px;}
+.comments .s-all-comments{margin-top: 7px;}
 
-.comment__icsi-css .frame-comments__icsi-css{border-bottom: 1px solid #d8d2cb;background-color: #faf8f6;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 2px 4px #ece9e6;-webkit-box-shadow: 0 2px 4px #ece9e6;box-shadow: 0 2px 4px #ece9e6;}
-.comment__icsi-css .btn-form input{padding: 0 33px !important;}
-.comment__icsi-css .frame-drop-comment__icsi-css{padding-bottom: 0;display: none;width: 98%;margin: auto;}
+.comments .frame-comments{border-bottom: 1px solid #d8d2cb;background-color: #faf8f6;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 2px 4px #ece9e6;-webkit-box-shadow: 0 2px 4px #ece9e6;box-shadow: 0 2px 4px #ece9e6;}
+.comments .frame-comments:before{top: -2px;}
+.comments .frame-comments .inside-padd{padding: 0 20px 15px;}
+.comments .btn-form input{padding: 0 33px !important;}
+.comments .frame-drop-comment{padding-bottom: 0;display: none;width: auto;margin: 0 3px;}
 
-.frame-list-comment__icsi-css .frame-drop-comment__icsi-css{padding: 25px 0;}
-.frame-drop-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
-.comment__icsi-css .title_h2__icsi-css{margin-bottom: 20px;font-size: 18px;font-weight: normal;}
-.f_l__icsi-css{float: left;}
-.f_r__icsi-css{float: right;}
-.frame-comments__icsi-css .inside-padd{padding: 0 20px 15px;}
-.comment__icsi-css label{display: block;}
-.form__icsi-css label, .form__icsi-css .frameLabel__icsi-css{margin-bottom: 12px;}
-.form__icsi-css .title__icsi-css{float: left;width: 128px;padding-right: 10px;margin-top: 6px;text-align: right;}
-.frame_form_field__icsi-css{position: relative;display: block;}
-.comment__icsi-css textarea{height: 134px; padding-top: 5px}
-.comment__icsi-css .btn__icsi-css{display: inline-block;cursor: pointer;color: #555;text-decoration: none;position: relative;}
-.comment__icsi-css .btn__icsi-css > *, .comment__icsi-css input.btn__icsi-css{padding: 5px 15px 5px;}
-.comment__icsi-css .btn__icsi-css.active{cursor: default;}
-.comment__icsi-css .btn__icsi-css.active{color: #979797;}
-.func-button-comment__icsi-css{padding-top: 10px;}
-.comment__icsi-css .like__icsi-css > button, .comment__icsi-css .dis-like__icsi-css > button{font-weight: bold;border-bottom: 0;}
-.comment__icsi-css .like__icsi-css > button{color: #059a17;margin: 0 8px;}
-.dis-like__icsi-css > button{color: #f03f3f;}
-.form__icsi-css .frame_form_field__icsi-css{margin-left: 138px;}
-.func-button-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
-.mark-pr{margin-bottom: 4px;}
-.mark-pr > .star-small{position: relative;top: 2px;}
+.comments .frame-list-comments .frame-drop-comment{padding: 25px 0 0;}
+.comments .frame-list-comments{padding-bottom: 35px;}
+.comments .title-comment{margin-bottom: 20px;font-size: 18px;font-weight: normal;}
+.comments label{display: block;}
+.comments label, .comments .frame-label{margin-bottom: 12px;display: block;}
+.comments label .title, .comments .frame-label .title{float: left;width: 128px;padding-right: 10px;margin-top: 6px;text-align: right;}
+.comments .main-form-comments .title{float: none;width: auto;font-weight: bold;}
+.comments .frame-form-field{position: relative;display: block;}
+.comments textarea{height: 134px; padding-top: 5px}
+.comments .btn{display: inline-block;cursor: pointer;color: #555;text-decoration: none;position: relative;}
+.comments .btn > *, .comments input.btn{padding: 5px 15px 5px;}
+.comments .btn.active{cursor: default;}
+.comments .btn.active{color: #979797;}
+.comments .like{margin-right: 10px;}
+.comments .like > button, .comments .dis-like > button{font-weight: bold;border-bottom: 0;}
+.comments .frame-form-field{margin-left: 138px;}
+.comments .mark-pr{margin-bottom: 4px;}
+.comments .mark-pr .title{font-weight: bold;}
+.comments .mark-pr > .star-small{position: relative;top: 2px;}
+.author-data-comment-sub2{margin-bottom: 5px;}
+
+.comments .frame-mark{float: right;width: 207px;}
+.comments .comments-main-form{max-width: 650px;}
+.comments .comments-main-form.noComments{float: none;}
+.forComments{position: relative;}
+#comment .preloader{top: 15px;}
 /*/comments*/
