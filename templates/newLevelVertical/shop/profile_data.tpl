@@ -104,7 +104,7 @@
                     {/if}
                     {if  $discount['comulativ']}
                         <li class="inside-padd">
-                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="bottom left" data-overlay-opacity= "0">{lang('Посмотреть таблицу скидок','newLevel')}</button>
+                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlay-opacity= "0">{lang('Посмотреть таблицу скидок','newLevel')}</button>
                         </li>
                     {/if}
                 </ul>
@@ -138,7 +138,6 @@
                         {/foreach}
                     </tbody>
                 </table>
-
             </div>
         </div>
         <div class="drop-footer"></div>

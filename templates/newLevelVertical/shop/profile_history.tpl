@@ -3,7 +3,7 @@
         <div class="msg layout-highlight layout-highlight-msg">
             <div class="info">
                 <span class="icon_info"></span>
-                <span class="text-el">{lang('Вы ище не совершали покупки','newLevel')}</span>
+                <span class="text-el">{lang('Вы еще не совершали покупки','newLevel')}</span>
             </div>
         </div>
     {else:}
@@ -36,7 +36,7 @@
                         </td>
                         </span>
                         <td>{echo $order->getSOrderStatuses()->getName()}</td>
-                        <td>{if $order->getPaid()} {lang('Оплачиваемый','newLevel')} {else:} {lang('Не оплачен','newLevel')}{/if}</td>
+                        <td>{if $order->getPaid()} {lang('Оплачен','newLevel')} {else:} {lang('Не оплачен','newLevel')}{/if}</td>
                     </tr>
                 {/foreach}
             </tbody>
