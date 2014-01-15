@@ -37,32 +37,53 @@ $.exists = function(selector) {
 $.existsN = function(nabir) {
     return (nabir.length > 0);
 };
-$.testNumber = function(e) {
-    if (!e)
-        var e = window.event;
-    var key = e.keyCode;
-    if (key === null || key === 0 || key === 8 || key === 13 || key === 9 || key === 46 || key === 37 || key === 39)
-        return true;
-    if ((key >= 48 && key <= 57) || (key >= 96 && key <= 105)) {
-        return true;
+getChar = function(e) {
+    if (e.which == null) {  // IE
+        if (e.keyCode < 32)
+            return null;
+        return String.fromCharCode(e.keyCode)
     }
-    else
-        return false;
+
+    if (e.which != 0 && e.charCode != 0) { // non IE
+        if (e.which < 32)
+            return null;
+        return String.fromCharCode(e.which);
+    }
+
+    return null;
+}
+returnMsg = function(msg) {
+    if (window.console) {
+        console.log(msg);
+    }
 };
-$.onlyNumber = function(el) {
-    body.on('keydown', el, function(e) {
-        if (!$.testNumber(e)) {
-            $(this).tooltip();
-            return false;
+$.fn.testNumber = function(add) {
+    $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
+        $this = $(this);
+        if (e.ctrlKey || e.altKey || e.metaKey)
+            return;
+        var chr = getChar(e);
+        if (chr == null)
+            return;
+        if (!isNaN(parseFloat(chr)) || $.inArray(chr, add) != -1) {
+            $this.trigger({
+                type: 'testNumber',
+                'res': true
+            });
+            return true;
         }
         else {
-            $(this).tooltip('remove');
+            $this.trigger({
+                type: 'testNumber',
+                'res': false
+            });
+            return false;
         }
     });
 };
 $.fn.pricetext = function(e, rank) {
-    var $this = $(this),
-            rank = rank !== undefined ? rank : true;
+    var $this = $(this);
+    rank = rank !== undefined ? rank : true;
     $(document).trigger({
         type: 'textanimatechange',
         el: $this,
@@ -83,6 +104,39 @@ $.fn.setCursorPosition = function(pos) {
     });
     return this;
 };
+$.fn.getCursorPosition = function() {
+    var el = $(this).get(0),
+            pos = 0;
+    if ('selectionStart' in el) {
+        pos = el.selectionStart;
+    } else if ('selection' in document) {
+        el.focus();
+        var Sel = document.selection.createRange();
+        var SelLength = document.selection.createRange().text.length;
+        Sel.moveStart('character', -el.value.length);
+        pos = Sel.text.length - SelLength;
+    }
+    return pos;
+};
+/*plugin actual*/
+(function($) {
+    $.fn.actual = function() {
+        if (arguments.length && typeof arguments[0] === 'string') {
+            var dim = arguments[0],
+                    clone = this.clone().addClass(сC);
+            if (arguments[1] === undefined)
+                clone.css({
+                    position: 'absolute',
+                    top: '-9999px'
+                }).show().appendTo(body).find('*:not([style*="display:none"])').show();
+            var dimS = clone[dim]();
+            clone.remove();
+            return dimS;
+        }
+        return undefined;
+    };
+})(jQuery);
+/*/plugin actual end*/
 $(document).on('textanimatechange', function(e) {
     var $this = e.el,
             nv = e.nvalue,
@@ -146,7 +200,7 @@ function getCookie(c_name)
     }
     return c_value;
 }
-/*plugin nstCehck*/
+/*plugin nstCheck*/
 (function($) {
     $.existsN = function(nabir) {
         return (nabir.length > 0);
@@ -174,7 +228,6 @@ function getCookie(c_name)
                                 after = settings.after,
                                 trigger = settings.trigger,
                                 resetChecked = settings.resetChecked;
-
                         frameChecks.find(elCheckWrap).removeClass(dC + ' ' + aC + ' ' + fC);
                         //init event click on wrapper change state
                         frameChecks.find(wrapper).removeClass(dC + ' ' + aC + ' ' + fC).off('click.' + nS).on('click.' + nS, function(e) {
@@ -193,7 +246,6 @@ function getCookie(c_name)
                             }
                             e.preventDefault();
                         });
-
                         //init event reset
                         frameChecks.closest('form').each(function() {
                             var $this = $(this);
@@ -214,7 +266,6 @@ function getCookie(c_name)
                                 });
                             }
                         });
-
                         //init events input
                         wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
                             e.stopPropagation();
@@ -236,12 +287,10 @@ function getCookie(c_name)
                         }).off('change.' + nS).on('change.' + nS, function(e) {
                             e.preventDefault()
                         });
-
                         //init states of checkboxes
                         frameChecks.find(elCheckWrap).each(function() {
                             var $this = $(this).removeClass(classRemove).addClass(nS),
                                     input = $this.find('input');
-
                             methods._changeCheckStart($this);
                             if (input.is(':focus'))
                                 input.trigger('focus.' + nS);
@@ -334,7 +383,7 @@ function getCookie(c_name)
         return methods[m];
     };
 })(jQuery);
-/*plugin nstCehck end*/
+/*plugin nstCheck end*/
 /*plugin nstRadio*/
 (function($) {
     var methods = {
@@ -869,7 +918,6 @@ function getCookie(c_name)
                                 durationOn: 0,
                                 durationOff: 0,
                                 durationOnS: 0,
-                                durationOffS: 0,
                                 animatesub3: false,
                                 dropWidth: null,
                                 sub2Frame: null,
@@ -893,7 +941,6 @@ function getCookie(c_name)
                             effOn = settings.effectOn,
                             effOff = settings.effectOff,
                             effOnS = settings.effectOnS,
-                            effOffS = settings.effectOffS,
                             countColumn = settings.countColumn,
                             columnPart = settings.columnPart,
                             columnPart2 = settings.columnPart2,
@@ -908,7 +955,6 @@ function getCookie(c_name)
                             durationOn = settings.durationOn,
                             durationOff = settings.durationOff,
                             durationOnS = settings.durationOnS,
-                            durationOffS = settings.durationOffS,
                             animatesub3 = settings.animatesub3,
                             evLF = settings.evLF,
                             evLS = settings.evLS,
@@ -1251,14 +1297,15 @@ function getCookie(c_name)
 /*plugin tabs*/
 (function($) {
     var methods = {
+        index: 0,
         init: function(options) {
             var $this = this;
             if ($.existsN($this)) {
                 var settings = $.extend({
                     effectOn: 'show',
                     effectOff: 'hide',
-                    durationOn: 0,
-                    durationOff: 0,
+                    durationOn: '0',
+                    durationOff: '0',
                     before: function() {
                     },
                     after: function() {
@@ -1272,18 +1319,21 @@ function getCookie(c_name)
                         k = true,
                         refs = [],
                         attrOrdata = [];
-                $this.each(function(index) {
-                    var $thiss = $(this),
-                            effectOn = settings.effectOn,
-                            effectOff = settings.effectOff,
-                            durationOn = settings.durationOn,
-                            durationOff = settings.durationOff;
+                $this.each(function() {
+                    var index = methods.index,
+                            $thiss = $(this),
+                            data = $thiss.data(),
+                            effectOn = data.effectOn || settings.effectOn,
+                            effectOff = data.effectOff || settings.effectOff,
+                            durationOn = parseInt(data.durationOn || settings.durationOn),
+                            durationOff = parseInt(data.durationOff || settings.durationOff);
                     navTabsLi[index] = $thiss.children();
                     refs[index] = navTabsLi[index].children(':first-child');
                     attrOrdata[index] = refs[index].attr('href') !== undefined ? 'attr' : 'data';
                     var tempO = $([]),
                             tempO2 = $([]),
                             tempRefs = [];
+                    methods.index += 1;
                     refs[index].each(function(ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
                         if (tHref.indexOf('#') !== -1) {
@@ -1297,8 +1347,8 @@ function getCookie(c_name)
                     regRefs[index] = tempRefs;
                     refs[index].off('click.tabs').on('click.tabs', function(e) {
                         wST = wnd.scrollTop();
-                        var $this = $(this);
-                        var resB = settings.before($this);
+                        var $this = $(this),
+                                resB = settings.before($this);
                         if (resB === undefined || resB === true) {
                             if ($this.is('a'))
                                 e.preventDefault();
@@ -1308,110 +1358,111 @@ function getCookie(c_name)
                             if (!$this.parent().hasClass('disabled')) {
                                 var $thisA = $this[attrOrdata[index]]('href'),
                                         $thisAOld = navTabsLi[index].filter('.' + aC).children()[attrOrdata[index]]('href'),
+                                        $thisAOld = $thisAOld == $thisA ? undefined : $thisAOld,
                                         $thisAO = $($thisA),
-                                        $thisS = $this.data('source'),
+                                        $thisS = $this.data('source') || $this.attr('href'),
                                         $thisData = $this.data('data'),
-                                        $thisSel = $this.data('selector'),
-                                        $thisDD = $this.data('drop') !== undefined;
+                                        $thisSel = $this.data('selector');
                                 function tabsDivT() {
                                     var showBlock = $thisAO.add($('[data-id=' + $thisA + ']')),
-                                            addDiv = toggle ? $([]) : showBlock;
+                                            addDiv = toggle ? ($thisAO.is(':visible') && !condStart ? $([]) : showBlock) : showBlock;
+                                    if ($thisA.indexOf('#') !== -1 && !$thisAO.is(':visible')) {
+                                        showBlock[effectOn](durationOn, function() {
+                                            settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
+                                        }).addClass(aC);
+                                    }
+                                    else if ($thisA.indexOf('#') === -1)
+                                        settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
                                     tabsDiv[index].add(tabsId[index]).not(addDiv)[effectOff](durationOff).removeClass(aC);
-                                    if (!($thisAO.is(':visible') && toggle))
-                                        if (!$thisAO.is(':visible'))
-                                            showBlock[effectOn](durationOn, function() {
-                                                settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
-                                            }).addClass(aC);
                                 }
-                                if (!$thisDD) {
-                                    var activeP = $this.parent();
-                                    navTabsLi[index].not(activeP).removeClass(aC);
-                                    if (activeP.hasClass(aC) && toggle)
-                                        activeP.removeClass(aC);
-                                    else
-                                        activeP.addClass(aC);
-                                    if (!condStart && $thisS !== undefined)
-                                        tabsDivT();
-                                    if ($thisS !== undefined && !$thisAO.hasClass('visited')) {
-                                        $thisAO.addClass('visited');
-                                        $(document).trigger({
-                                            'type': 'tabs.beforeload',
-                                            "els": tabsDiv[index],
-                                            "el": $thisAO
-                                        });
-                                        if ($thisData !== undefined)
-                                            $.ajax({
-                                                type: 'post',
-                                                url: $thisS,
-                                                data: $thisData,
-                                                success: function(data) {
-                                                    tabsDivT();
-                                                    $thisAO.find($thisSel).html(data);
-                                                    $(document).trigger({
-                                                        'type': 'tabs.afterload',
-                                                        "els": tabsDiv[index],
-                                                        "el": $thisAO
-                                                    });
-                                                }
-                                            });
-                                        else
-                                            $thisAO.load($thisS, function() {
+                                var activeP = $this.parent();
+                                navTabsLi[index].not(activeP).removeClass(aC);
+                                if (activeP.hasClass(aC) && toggle)
+                                    activeP.removeClass(aC);
+                                else
+                                    activeP.addClass(aC);
+                                if (!condStart && $thisS !== undefined)
+                                    tabsDivT();
+                                if ($thisS !== undefined && !$thisAO.hasClass('visited')) {
+                                    $thisAO.addClass('visited');
+                                    $(document).trigger({
+                                        'type': 'tabs.beforeload',
+                                        "els": tabsDiv[index],
+                                        "el": $thisAO
+                                    });
+                                    if ($thisData !== undefined)
+                                        $.ajax({
+                                            type: 'post',
+                                            url: $thisS,
+                                            data: $thisData,
+                                            success: function(data) {
+                                                tabsDivT();
+                                                $thisAO.find($thisSel).html(data);
                                                 $(document).trigger({
                                                     'type': 'tabs.afterload',
                                                     "els": tabsDiv[index],
                                                     "el": $thisAO
                                                 });
-                                                tabsDivT();
+                                            }
+                                        });
+                                    else
+                                        $thisAO.load($thisS, function() {
+                                            $(document).trigger({
+                                                'type': 'tabs.afterload',
+                                                "els": tabsDiv[index],
+                                                "el": $thisAO
                                             });
-                                    }
-                                    else {
-                                        tabsDivT();
-                                    }
+                                            tabsDivT();
+                                        });
+                                }
+                                else {
+                                    tabsDivT();
+                                }
 
-                                    if (e.scroll)
-                                        wnd.scrollTop($this.offset().top);
-                                    $(document).trigger({
-                                        'type': 'tabs.showtabs',
-                                        'el': $thisAO
+                                if (e.scroll)
+                                    wnd.scrollTop($this.offset().top);
+                                $(document).trigger({
+                                    'type': 'tabs.showtabs',
+                                    'el': $thisAO
+                                });
+                                if (cookie) {
+                                    setCookie($thiss.data('cookie') === undefined ? 'cookie' + index : $thiss.data('cookie'), $this.data('href'), 0, '/');
+                                }
+                                var wLH = window.location.hash,
+                                        i = 0;
+                                _.map(regRefs[index], function(n, j) {
+                                    _.map(methods.hashs[0], function(m, j) {
+                                        if (m == n)
+                                            i++;
                                     });
-                                    if (cookie) {
-                                        setCookie($thiss.data('cookie') === undefined ? 'cookie' + index : $thiss.data('cookie'), $this.data('href'), 0, '/');
-                                    }
-                                }
-                                var wLH = window.location.hash;
-                                try {
-                                    var reg = wLH.match($thisAOld)[0];
-                                } catch (err) {
-                                    var reg = null;
-                                }
-                                if ((!cookie && attrOrdata[index] !== 'data') || (($.inArray($thisA, regRefs[index]) > -1 && reg !== null))) {
+                                });
+                                if (attrOrdata[index] !== 'data' || i > 0 || cookie) {
                                     if (!condStart) {
-                                        var reg = $thisAOld !== undefined,
-                                                temp = wLH;
-                                        if (reg) {
-                                            if (wLH.indexOf($thisA) === -1) {
-                                                temp = temp.replace($thisAOld, $thisA);
+                                        var temp = wLH;
+                                        if (!toggle) {
+                                            if ($thisAOld !== undefined) {
+                                                if (wLH.indexOf($thisAOld) !== -1) {
+                                                    temp = temp.replace($thisAOld, $thisA);
+                                                }
+                                                else if ($thisA !== $thisAOld && wLH.indexOf($thisA) === -1) {
+                                                    temp += $thisA;
+                                                }
                                             }
-                                            else if ($thisA !== $thisAOld) {
+                                            else if (wLH.indexOf($thisA) === -1) {
                                                 temp += $thisA;
-                                            }
-                                            if (!(activeP.hasClass(aC) && toggle)) {
-                                                temp = temp.replace($thisA, '');
                                             }
                                         }
                                         else {
-                                            temp += $thisA;
+                                            temp = temp.replace($thisAOld, $thisA);
                                         }
                                         window.location.hash = temp;
                                     }
-                                    else if (!$thisDD && k) {
+                                    else if (k) {
                                         window.location.hash = _.uniq(methods.hashs[0]).join('');
                                         k = false;
                                     }
-                                    if ($thisDD && condStart)
-                                        $this.trigger('click.drop');
                                 }
-                                else if ($thiss.data('elchange') !== undefined) {
+                                if ($thiss.data('elchange') !== undefined) {
                                     refs[index].each(function() {
                                         var $thisDH = $(this).data('href');
                                         if ($thisDH === $thisA)
@@ -1427,7 +1478,7 @@ function getCookie(c_name)
                     if (thisL - 1 === index)
                         methods.location(regRefs, refs);
                 });
-                wnd.on('hashchange', function(e) {
+                wnd.off('hashchange.tabs').on('hashchange.tabs', function(e) {
                     function scrollTop(wST) {
                         if (e.scroll || e.scroll === undefined)
                             wnd.scrollTop(wST);
@@ -1438,11 +1489,13 @@ function getCookie(c_name)
                         scrollTop(wST - 100);
                     scrollTop(wST);
                     _.map(location.hash.split('#'), function(i, n) {
-                        //                        if (i !== '') {
-                        //                            var el = $('[data-href="#' + i + '"], [href="#' + i + '"]');
-                        //                            if (el.data('drop') === undefined)
-                        //                                el.trigger('click.tabs');
-                        //                        }
+                        if (i !== '') {
+                            var el = $('[data-href="#' + i + '"], [href="#' + i + '"]');
+                            if (!$.existsN(el.closest('[data-type="toggle"]'))) {
+                                if (!el.parent().hasClass(aC))
+                                    el.trigger('click.tabs');
+                            }
+                        }
                     });
                     return false;
                 });
@@ -1459,7 +1512,7 @@ function getCookie(c_name)
                 _.map(refs, function(n, i) {
                     var $this = n.first(),
                             attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
-                    if ($this.data('drop') === undefined && attrOrdataL !== 'data') {
+                    if (attrOrdataL !== 'data') {
                         hashs1[i] = $this[attrOrdataL]('href');
                         i++;
                     }
@@ -1524,7 +1577,6 @@ function getCookie(c_name)
                     $.map(hashs2, function(n, i) {
                         var attrOrdataNew = "";
                         $('[href=' + n + ']').length === 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
-
                         if ($.inArray(n, hashs[0]) == -1 && $.existsN($('[' + attrOrdataNew + '=' + n + ']').parent().siblings('.' + aC))) {
                             $('[' + attrOrdataNew + '=' + n + ']').parent().siblings('.' + aC).children().trigger({
                                 'type': 'click.tabs',
@@ -1555,619 +1607,182 @@ function getCookie(c_name)
     };
 })(jQuery);
 /*/plugin tabs end*/
-/*plugin actual*/
-(function($) {
-    $.fn.actual = function() {
-        if (arguments.length && typeof arguments[0] === 'string') {
-            var dim = arguments[0],
-                    clone = this.clone().addClass(сC);
-            if (arguments[1] === undefined)
-                clone.css({
-                    position: 'absolute',
-                    top: '-9999px'
-                }).show().appendTo(body).find('*:not([style*="display:none"])').show();
-            var dimS = clone[dim]();
-            clone.remove();
-            return dimS;
-        }
-        return undefined;
-    };
-})(jQuery);
-/*/plugin actual end*/
 /*plugin drop*/
 (function($) {
     var methods = {
-        defaultParams: {
-            trigger: 'click',
-            exit: '[data-closed = "closed-js"]',
-            effon: 'fadeIn',
-            effoff: 'fadeOut',
-            durationOn: 200,
-            durationOff: 100,
-            place: 'center',
-            dropContent: null,
-            dropHeader: null,
-            dropFooter: null,
-            placement: 'top, left',
-            modal: false,
-            confirm: false,
-            confirmSel: '#confirm',
-            overlayOpacity: '0',
-            overlayColor: '#fff',
-            always: false,
-            animate: false,
-            timeclosemodal: 2000,
-            position: true,
-            placeBeforeShow: 'center center',
-            placeAfterClose: 'center center',
-            moreOne: false,
-            delayAfter: 0,
-            closeClick: false,
-            closeEsc: false,
-            droppable: false,
-            before: function() {
-            },
-            after: function() {
-            },
-            close: function() {
-            },
-            closed: function() {
-            },
-            start: undefined
-        },
         init: function(options) {
-            var settings = $.extend(methods.defaultParams, options);
-            this.add($('[data-drop]')).each(function() {
+            this.filter(':not(.isDrop)').each(function() {
                 var el = $(this),
-                        trigger = (settings.trigger || el.data('trigger')).toString();
+                        trigger = (methods._checkProp(el.data(), options, 'trigger')).toString();
+                methods._modalTrigger($.extend({}, options, el.data()));
+                var rel = this.rel;
+                if (rel !== undefined && rel !== '') {
+                    rel = rel.replace(/[^a-zA-Z0-9]+/ig, '');
+                    var source = el.data('source') || el.attr('href');
+                    if (source !== undefined) {
+                        if (typeof $.drop.dP.galleries[rel] === 'undefined')
+                            $.drop.dP.galleries[rel] = [];
+                        $.drop.dP.galleries[rel].push(source);
+                    }
+                }
 
-                el.off(trigger + '.drop').on(trigger + '.drop', function(e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    methods.open($(this), e, settings)
+                el.addClass('isDrop').data('drp', options);
+                el.attr('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
+                    $.drop.dP.wST = wnd.scrollTop();
+                    if ($(this).hasClass('isDrop')) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        methods.open(undefined, $(this), options, e)
+                    }
                 });
+                if (window.location.hash.indexOf(el.attr('href')) != -1)
+                    methods.open(undefined, el, options, undefined)
             });
+            for (i in $.drop.dP.galleries)
+                if ($.drop.dP.galleries[i].length <= 1) {
+                    delete $.drop.dP.galleries[i];
+                }
             return $(this);
         },
-        get: function(el, modal, e) {
+        destroy: function(el, trigger) {
             if (el == undefined)
-                el = this;
-            var elSet = el.data(),
-                    drop = $(elSet.drop);
-            $.ajax({
-                type: "post",
-                data: elSet.data,
-                url: elSet.source,
-                beforeSend: function() {
-                    $(document).trigger({
-                        'type': 'showActivity'
-                    });
-                },
-                dataType: elSet.type ? elSet.type : 'html',
-                success: function(data) {
-                    if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
-                        $(document).trigger({
-                            type: 'drop.successJson',
-                            el: drop,
-                            datas: data
-                        });
-                        methods._pasteDrop($.extend({}, methods.defaultParams, elSet), drop);
-                    }
-                    else {
-                        $(document).trigger({
-                            type: 'drop.successHtml',
-                            el: drop,
-                            datas: data
-                        });
-                        methods._pasteDrop($.extend({}, methods.defaultParams, elSet), data);
-                    }
-                    methods.init.call(drop.find('[data-drop]'), $.extend({}, methods.defaultParams));
-                    methods._show(el, e, methods.defaultParams, true, data);
-                }
+                el = this.elrun ? this.elrun : this;
+            el.each(function() {
+                var el = $(this);
+                if (trigger == undefined)
+                    trigger = el.attr('trigger');
+                el.removeAttr('trigger').removeData('trigger').removeClass('isDrop').off(trigger + '.' + $.drop.nS);
+                var drop = $(el.attr('data-drop'));
+                drop.removeData('drp');
             });
+            return el;
         },
-        open: function($this, e, settings) {
-            if (e == undefined)
-                e = window.event;
-            if (settings == undefined)
-                settings = methods.defaultParams;
-            if ($this == undefined)
-                $this = this;
-
-            var moreOne = settings.moreOne,
-                    confirmSel = settings.confirmSel;
-            methods.closeModal();
-            function _confirmF() {
-                if (!$.existsN(drop) || modal || always) {
-                    if (!modal)
-                        drop.remove();
-                    methods.get($this, modal, e);
-                }
-            }
-            var elSet = $this.data(),
-                    drop = $(elSet.drop),
-                    start = elSet.start !== undefined ? elSet.start : settings.start;
-            if (!$this.parent().hasClass(aC)) {
-                if (!(elSet.moreOne || moreOne) && start === undefined) {
-                    if ($.existsN($this.closest('[data-elrun]')) && !elSet.modal)
-                        methods.close($this.closest('[data-elrun]'));
-                    if ($.existsN($('[data-elrun].center:visible, [data-elrun].noinherit:visible')))
-                        methods.close($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
-                }
-
-                if (!$this.is(':disabled')) {
-                    var modal = elSet.modal || settings.modal,
-                            confirm = elSet.confirm || settings.confirm,
-                            always = elSet.always || settings.always;
-                    if (start !== undefined) {
-                        var res = eval(start)($this, drop);
-                        if (!res)
-                            return false;
-                    }
-                    if (start === undefined || (start !== undefined && res)) {
-                        if ($.existsN(drop) && !modal && !always && !confirm) {
-                            methods._pasteDrop($.extend({}, settings, elSet), drop);
-                            methods._show($this, e, methods.defaultParams, false);
-                        }
-                        else if (elSet.source || always || confirm) {
-                            if (!confirm)
-                                _confirmF();
-                            else {
-                                methods._pasteDrop($.extend({}, settings, $('[data-drop="' + confirmSel + '"]').data()), $(confirmSel));
-                                methods._show($('[data-drop="' + confirmSel + '"]').data({
-                                    'elrun': $this
-                                }), e, methods.defaultParams, false);
-                                $('[data-button-confirm]').focus().on('click.drop', function() {
-                                    if (elSet.after)
-                                        $(confirmSel).data('elClosed', elSet.after)
-                                    methods.close($(confirmSel));
-                                    $this.data('confirm', false);
-                                    if (elSet.source)
-                                        _confirmF();
-                                });
-                            }
-                        }
-                        else {//for front validations
-                            methods._pasteDrop($.extend({}, settings, elSet), drop);
-                            methods._show($this, e, methods.defaultParams, false);
-                        }
-                    }
-                }
-            }
-            else
-                methods.close($($this.data('drop')));
-
-            return $this;
-        },
-        _pasteDrop: function(set, drop) {
-            if (set.place !== 'inherit') {
-                function _for_center(rel) {
-                    body.append('<div class="for-center" rel="' + rel + '" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;dispaly:none;overflow: hidden;"></div>');
-                }
-                if (set.place === 'noinherit')
-                    body.append(drop);
-                else {
-                    var sel = '[rel="' + set.drop + '"].for-center';
-                    if (typeof drop !== 'string') {
-                        if (!$.existsN(drop.parent('.for-center'))) {
-                            if (drop.data('forCenter') === undefined) {
-                                _for_center(set.drop);
-                                drop.data('forCenter', $(sel));
-                            }
-                            drop.data('forCenter').append(drop);
-                        }
-                    }
-                    else {
-                        if (!$.exists(sel)) {
-                            _for_center(set.drop);
-                        }
-                        var forCenter = $(sel).append(drop);
-                        $(set.drop).data('forCenter', forCenter);
-                    }
-                }
-            }
-        },
-        closeModal: function() {
-            $('[data-elrun]:visible').each(function() {
-                if ($(this).data('modal'))
-                    methods.close($(this));
-            });
-        },
-        heightContent: function(drop) {
-            if (drop === undefined)
-                drop = this;
-
-            var dropV = drop.is(':visible'),
-                    wndH = wnd.height();
-
-            if (drop.data('dropContent')) {
-                var el = drop.find(drop.data('dropContent')).filter(':first');
-
-
-                if ($.existsN(el)) {
-                    var docH = $(document).height(),
-                            forCenter = drop.data('forCenter'),
-                            refer = drop.data('elrun');
-                    if (!dropV) {
-                        drop.show();
-                        if (forCenter)
-                            forCenter.show();
-                    }
-
-                    var api = false,
-                            elC = el.css('overflow', '');
-                    try {
-                        el.jScrollPane(scrollPane);
-                        elC = el.find('.jspPane');
-                        api = el.data('jsp');
-                    } catch (err) {
-                        elC.css('overflow', 'auto');
-                    }
-                    var elCH = elC.outerHeight(),
-                            footerHeader = drop.find(drop.data('dropHeader')).outerHeight(true) + drop.find(drop.data('dropFooter')).outerHeight(true);
-
-                    if (drop.data('place') == 'noinherit') {
-                        var mayHeight = 0,
-                                placement = drop.data('placement');
-
-                        if (typeof placement == 'object') {
-                            if (placement.top != undefined)
-                                mayHeight = docH - placement.top - footerHeader - (drop.outerHeight() - drop.height());
-                            if (placement.bottom != undefined)
-                                mayHeight = placement.bottom - footerHeader;
-                        }
-                        else {
-                            if (placement.search(/top/) >= 0) {
-                                mayHeight = docH - refer.offset().top - footerHeader - refer.outerHeight() - (drop.outerHeight() - drop.height());
-                            }
-                            if (placement.search(/bottom/) >= 0) {
-                                mayHeight = refer.offset().top - footerHeader - refer.outerHeight();
-                            }
-                        }
-                        if (mayHeight > elCH)
-                            el.css('height', elCH);
-                        else
-                            el.css('height', mayHeight);
-                        if (el.outerHeight() === elCH && api)
-                            api.destroy();
-                    }
-                    else {
-                        if (elCH + footerHeader > wndH)
-                            el.css('height', wndH - footerHeader - 40);
-                        else
-                            el.css('height', elCH);
-                    }
-                    if (api)
-                        api.reinitialise();
-                    if (drop.data('place') === 'center')
-                        drop.drop('center');
-                    if (!dropV) {
-                        drop.hide();
-                        if (forCenter)
-                            forCenter.hide();
-                    }
-                }
-            }
-        },
-        _show: function($this, e, set, isajax, data) {
-            if ($this === undefined)
-                $this = this;
+        open: function(datas, $this, opt, e) {
             if (e === undefined)
                 e = window.event;
-            var set = !set ? methods.defaultParams : set,
-                    isajax = !isajax ? false : true,
-                    elSet = $this.data(),
-                    trigger = elSet.trigger || set.trigger,
-                    place = elSet.place || set.place,
-                    placement = elSet.placement || set.placement,
-                    $thisEOff = elSet.effectOff || set.effoff,
-                    $thisD = elSet.durationOn !== undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
-                    $thisDOff = elSet.durationOff !== undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
-                    $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
-                    $thisEOn = elSet.effectOn || set.effon,
-                    overlayColor = elSet.overlayColor || set.overlayColor,
-                    overlayOpacity = elSet.overlayOpacity !== undefined ? elSet.overlayOpacity.toString() : elSet.overlayOpacity || set.overlayOpacity,
-                    modal = elSet.modal || set.modal,
-                    timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
-                    confirm = elSet.confirm || set.confirm,
-                    dropContent = elSet.dropContent || set.dropContent,
-                    dropHeader = elSet.dropHeader || set.dropHeader,
-                    dropFooter = elSet.dropFooter || set.dropFooter,
-                    position = elSet.position !== undefined ? elSet.position : set.position,
-                    placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
-                    placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
-                    moreOne = elSet.moreOne || set.moreOne,
-                    delayAfter = elSet.delayAfter || set.delayAfter,
-                    closeClick = elSet.closeClick || set.closeClick,
-                    closeEsc = elSet.closeEsc || set.closeEsc,
-                    droppable = elSet.droppable || set.droppable,
-                    start = elSet.start,
-                    elBefore = elSet.before,
-                    elAfter = elSet.after,
-                    before = set.before,
-                    after = set.after,
-                    close = set.close,
-                    elClose = elSet.close,
-                    closed = set.closed,
-                    elClosed = elSet.closed,
-                    selSource = elSet.drop,
-                    drop = $(selSource);
-            $this.attr('data-drop', $this.data('drop')).parent().addClass(aC);
-            methods.defaultParams.durationOff = $thisDOff;
-            drop.data({
-                'trigger': trigger,
-                'effectOn': $thisEOn,
-                'position': position,
-                'placeBeforeShow': placeBeforeShow,
-                'placeAfterClose': placeAfterClose,
-                'effectOff': $thisEOff,
-                'elrun': elSet.elrun || $this,
-                'place': place,
-                'placement': placement,
-                'durationOn': $thisD,
-                'durationOff': $thisDOff,
-                'dropContent': dropContent,
-                'dropHeader': dropHeader,
-                'dropFooter': dropFooter,
-                'animate': $thisA,
-                'start': start,
-                'before': before,
-                'after': after,
-                'elBefore': elBefore,
-                'elAfter': elAfter,
-                'close': close,
-                'elClose': elClose,
-                'closed': closed,
-                'elClosed': elClosed,
-                'overlayOpacity': overlayOpacity,
-                'overlayColor': overlayColor,
-                'modal': modal,
-                'confirm': confirm,
-                'timeclosemodal': timeclosemodal,
-                'moreOne': moreOne,
-                'delayAfter': delayAfter,
-                'closeClick': closeClick,
-                'closeEsc': closeEsc,
-                'droppable': droppable,
-                'droppableIn': false
-            }).attr('data-elrun', selSource);
-            drop.off('click.drop', set.exit).on('click.drop', set.exit, function() {
-                methods.close($(this).closest('[data-elrun]'));
-            });
-
-            var overlays = $('.overlayDrop').css('z-index', 1103),
-                    condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
-
-            if (condOverlay) {
-                if (!$.exists('[rel="' + selSource + '"].overlayDrop')) {
-                    body.append('<div class="overlayDrop" rel="' + selSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
-                }
-                drop.data('dropOver', $('[rel="' + selSource + '"].overlayDrop'));
-
-                drop.data('dropOver').css({
-                    'background-color': overlayColor,
-                    'opacity': overlayOpacity,
-                    'z-index': overlays.length + 1103
-                });
-            }
-            $('.for-center').css('z-index', 1104);
-            var forCenter = drop.data('forCenter');
-            if (forCenter) {
-                forCenter.css('z-index', overlays.length + 1104);
-            }
-            else
-                drop.css('z-index', 1105);
-
-            if (drop.hasClass(aC)) {
-                methods.close(drop);
-            }
-            else {
-                before($this, drop, isajax, data, elSet);
-                if (elBefore !== undefined)
-                    eval(elBefore)($this, drop, isajax, data, elSet);
-                $(document).trigger({
-                    'type': 'drop.before',
-                    'el': $this,
-                    'drop': drop,
-                    'isajax': isajax,
-                    'datas': data,
-                    'elSet': elSet
-                });
-                methods.heightContent(drop);
-                if (modal) {
-                    var objJ = $([]);
-                    $('[data-elrun]:visible').each(function() {
-                        if (($(this).data('overlayOpacity') !== '0'))
-                            objJ = objJ.add($(this));
+            if (datas !== undefined && $this === undefined) {
+                if (!$.exists($.drop.dP.modalBtnDrop)) {
+                    $this = $('<button>').attr('data-drop', $.drop.dP.modalBtnDrop).appendTo(body).hide().data({
+                        'drop': $.drop.dP.modalBtnDrop,
+                        'modal': true
                     });
-                    if ($.existsN(objJ))
-                        methods.close(objJ);
+                    methods._pasteDrop($.extend({}, $.drop.dP, opt, $this.data()), $.drop.dP.patternNotif);
                 }
-
-                var dropTimeout = '';
-                wnd.off('resize.drop').on('resize.drop', function() {
-                    clearTimeout(dropTimeout);
-                    dropTimeout = setTimeout(function() {
-                        if (place !== 'inherit')
-                            methods[place](drop);
-                    }, 300);
-                });
-                if (condOverlay) {
-                    drop.data('dropOver').fadeIn($thisD / 2);
-                    if (closeClick)
-                        drop.data('dropOver').add(forCenter).off('click.drop').on('click.drop', function(e) {
-                            if ($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center')) {
-                                methods.close($($(e.target).attr('rel')));
-                            }
-                        });
-                    if (isTouch)
-                        drop.data('dropOver').on('touchmove.drop', function(e) {
-                            return false;
-                        });
-                }
-
-                drop.addClass(place);
-                function _forCenterTop() {
-                    if (forCenter) {
-                        forCenter.css('top', methods.defaultParams.wST);
+                else
+                    $this = $('[data-drop="' + $.drop.dP.modalBtnDrop + '"]');
+            }
+            else if ($this === undefined)
+                $this = this.elrun ? this.elrun : this;
+            $this.each(function() {
+                var $this = $(this),
+                        elSet = $this.data(),
+                        moreOne = methods._checkProp(elSet, opt, 'moreOne'),
+                        confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
+                        source = methods._checkProp(elSet, opt, 'source') || $this.attr('href'),
+                        drop = $(elSet.drop),
+                        start = methods._checkProp(elSet, opt, 'start', true);
+                function _confirmF() {
+                    if (!$.existsN(drop) || modal || always) {
+                        if (!modal)
+                            drop.remove();
+                        if (datas !== undefined)
+                            methods._pasteModal($this, datas, opt, undefined);
+                        else
+                            methods.get($this, opt, e, modal);
                     }
                 }
-                function _show() {
-                    if (place !== 'inherit') {
-                        function _pos() {
-                            drop.css({
-                                'top': -drop.actual('outerHeight'),
-                                'left': -drop.actual('outerWidth')
-                            });
-                            var $thisPMT = placeBeforeShow.toLowerCase().split(' ');
-                            if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
-                                drop.css('top', wnd.height());
-                            if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
-                                drop.css('left', wnd.width());
-                            if ($thisPMT[0] === 'center' && $thisPMT[1] === 'center') {
-                                if (place != 'inherit')
-                                    methods[place](drop, true);
-                            }
-                            if ($thisPMT[0] === 'inherit')
-                                drop.css({
-                                    'left': $this.offset().left + wnd.scrollLeft(),
-                                    'top': $this.offset().top + wnd.scrollTop()
-                                });
+
+                if (!$this.parent().hasClass(aC)) {
+                    if (!moreOne && start === undefined) {
+                        methods._closeMoreOne($this);
+                    }
+
+                    if (!$this.is(':disabled')) {
+                        var modal = methods._checkProp(elSet, opt, 'modal'),
+                                confirm = methods._checkProp(elSet, opt, 'confirm'),
+                                always = methods._checkProp(elSet, opt, 'always');
+                        if (start !== undefined) {
+                            var res = eval(start)($this, drop);
+                            if (!res)
+                                return false;
                         }
-                        var tempPl = typeof placement;
-
-                        if (tempPl == 'object')
-                            if (placement.top != undefined && placement.left != undefined)
-                                _pos()
-                        if (tempPl == 'string')
-                            _pos();
-                    }
-
-                    if (place != 'inherit')
-                        methods[place](drop);
-
-                    drop[$thisEOn]($thisD, function(e) {
-                        var drop = $(this);
-                        drop.addClass(aC);
-                        if (!confirm && modal)
-                            methods.defaultParams.closeDropTime = setTimeout(function() {
-                                methods.close(drop);
-                            }, timeclosemodal);
-                        methods.limitSize(drop);
-                        var cB = elAfter;
-                        if (cB !== undefined) {
-                            eval(cB)($this, drop, isajax, data, elSet);
+                        if (start === undefined || (start !== undefined && res)) {
+                            if ($.existsN(drop) && !modal && !always && !confirm) {
+                                methods._pasteDrop($.extend({}, $.drop.dP, opt, elSet), drop);
+                                methods._show($this, e, false, opt, false);
+                            }
+                            else if (source || always || confirm || datas != undefined) {
+                                if (!confirm)
+                                    _confirmF();
+                                else {//for cofirm
+                                    methods._pasteDrop($.extend({}, $.drop.dP, opt, $('[data-drop="' + confirmBtnDrop + '"]').data()), $(confirmBtnDrop));
+                                    methods._show($('[data-drop="' + confirmBtnDrop + '"]').data({
+                                        'elrun': $this
+                                    }), e, false, opt, false);
+                                    $(methods._checkProp(elSet, opt, 'confirmActionBtn')).focus().off('click.' + $.drop.nS).on('click.' + $.drop.nS, function() {
+                                        if (elSet.after) {
+                                            var drp = $(confirmBtnDrop).data('drp');
+                                            $(confirmBtnDrop).data({
+                                                'drp': $.extend(drp, {
+                                                    'elClosed': elSet.after
+                                                })
+                                            })
+                                        }
+                                        methods.close($(confirmBtnDrop));
+                                        $this.data('confirm', false);
+                                        if (source)
+                                            _confirmF();
+                                    });
+                                }
+                            }
+                            else {//for validations
+                                methods._pasteModal($this, $this.data('datas'), opt, undefined);
+                            }
                         }
-                        after($this, drop, isajax, data, elSet);
-                        $(document).trigger({
-                            'type': 'drop.after',
-                            'el': $this,
-                            'drop': drop,
-                            'isajax': isajax,
-                            'datas': data,
-                            'elSet': elSet
-                        });
-                        if (droppable && place != 'inherit')
-                            methods.droppable(drop);
-                    });
-                }
-                methods.defaultParams.wST = wnd.scrollTop();
-                if (forCenter) {
-                    forCenter.fadeIn($thisD);
-                }
-
-                _forCenterTop();
-                if (condOverlay) {
-                    if ($(document).height() - wnd.height() > 0) {
-                        methods.scrollEmulate();
                     }
                 }
-                methods.positionType(drop);
-                _show();
-            }
-            body.off('click.drop').off('keydown.drop').on('click.drop', function(e) {
-                if (closeClick)
-                    if (!$.existsN($(e.target).closest('[data-elrun]')) && !($(e.target).is(drop.data('dropOver')) || $(e.target).is('.for-center'))) {
-                        methods.close(false);
-                    }
-                    else
-                        return true;
+                else
+                    methods.close($($this.data('drop')), '', $this);
             });
-            if (closeEsc)
-                body.off('keydown.drop').on('keydown.drop', function(e) {
-                    if (!e)
-                        var e = window.event;
-                    key = e.keyCode;
-                    if (key === 27) {
-                        methods.close(false);
-                    }
-                });
+            return $this;
         },
-        limitSize: function(drop) {
-            if (drop === undefined)
-                drop = this;
-            drop.css({
-                'width': '',
-                'height': ''
-            });
-            if (drop.data('place') === 'center') {
-                var wndW = wnd.width(),
-                        wndH = wnd.height();
-                var dropV = drop.is(':visible'),
-                        w = dropV ? drop.width() : drop.actual('width'),
-                        h = dropV ? drop.height() : drop.actual('height');
-                if (w > wndW)
-                    drop.css('width', wndW - 40);
-                if (h > wndH)
-                    drop.css('height', wndH - 40);
-            }
-        },
-        positionType: function(drop) {
-            var data = drop.data();
-            if (data.place !== 'inherit') {
-                drop.css({
-                    'position': data.position
-                });
-            }
-        },
-        close: function(sel, datas) {
+        close: function(sel, datas, el) {
             if (sel === undefined)
-                sel = this;
-            clearTimeout(methods.defaultParams.closeDropTime);
-            $('[data-button-confirm]').off('click.drop');
+                sel = this.self ? this.self : this;
+            clearTimeout($.drop.dP.closeDropTime);
             var cond = sel === undefined || !sel,
                     drop = cond ? $('[data-elrun].' + aC) : sel;
             if (!cond)
-                body.off('click.drop keydown.drop keydown.drop')
+                body.off('click.' + $.drop.nS + ' keydown.' + $.drop.nS);
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this),
-                            data = drop.data(),
+                            data = Object.keys(drop.data('drp')).length != 0 ? drop.data('drp') : $.drop.dP,
                             condOverlay = (data.overlayOpacity !== undefined ? data.overlayOpacity.toString() : data.overlayOpacity) !== '0';
-                    if (data.modal || sel || condOverlay || data.place === 'noinherit') {
-                        $thisB = data.elrun;
+                    if (data.modal || sel || condOverlay || data.place === 'noinherit' || data.inheritClose) {
+                        var $thisB = data.elrun;
+                        if (el)
+                            $thisB = el;
                         if ($thisB !== undefined) {
                             var $thisEOff = data.effectOff,
                                     durOff = data.durationOff;
-                            methods.scrollEmulateRemove();
+                            if (data.scroll) {
+                                methods._checkMethod(function() {
+                                    methods.scroll.remove()
+                                })
+                            }
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
                                 var $thisHref = $thisB.attr('href');
                                 if ($thisHref !== undefined) {
-                                    var $thisHrefL = $thisHref.length,
-                                            wLH = location.hash,
-                                            wLHL = wLH.length;
-                                    try {
-                                        var indH = wLH.match($thisHref + '(?![a-z])').index;
-                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL);
-                                    } catch (err) {
-                                    }
+                                    var wLH = location.hash;
+                                    location.hash = wLH.replace($thisHref, '');
                                 }
 
                                 drop.removeClass(aC);
-                                var method = data.animate ? 'animate' : 'css';
-                                var $thisPMT = data.placeAfterClose.toLowerCase().split(' ');
-                                var l = 0, t = 0;
+                                var method = data.animate ? 'animate' : 'css',
+                                        $thisPMT = data.placeAfterClose.toLowerCase().split(' '),
+                                        l = 0, t = 0;
                                 if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
                                     t = wnd.height();
                                 if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
@@ -2206,21 +1821,21 @@ function getCookie(c_name)
                                     if (data.elClosed !== undefined)
                                         eval(data.elClosed)($thisB, $this, datas);
                                     if (isTouch)
-                                        data.dropOver.off('touchmove.drop');
-                                    $(document).trigger({
-                                        type: 'drop.closed',
+                                        data.dropOver.off('touchmove.' + $.drop.nS);
+                                    $this.add($(document)).trigger({
+                                        type: 'closed.' + $.drop.nS,
                                         el: $thisB,
                                         drop: $this,
                                         datas: datas
                                     });
-                                    var dC = $this.find($this.data('dropContent')).data('jsp');
+                                    var dC = $this.find($($this.data('drp').dropContent).add($($.drop.dPP.dropContent))).data('jsp');
                                     if (dC !== undefined) {
                                         dC.destroy();
                                     }
                                 });
                             }
-                            $(document).trigger({
-                                type: 'drop.close',
+                            drop.add($(document)).trigger({
+                                type: 'close.' + $.drop.nS,
                                 el: $thisB,
                                 drop: drop,
                                 datas: datas
@@ -2240,177 +1855,772 @@ function getCookie(c_name)
                             }
                             else
                                 _hide();
-                            wnd.off('resize.drop');
+                            wnd.off('resize.' + $.drop.nS);
                         }
                     }
                 });
             }
+            return sel;
         },
         center: function(drop, start) {
             if (drop === undefined)
-                drop = this;
-            if (!drop.data('droppableIn')) {
-                start = start === undefined ? true : false;
-                var method = drop.data('animate') && start ? 'animate' : 'css',
-                        dropV = drop.is(':visible'),
-                        w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
-                        h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
-                drop[method]({
-                    'top': (body.height() - h) / 2,
-                    'left': (body.width() - w) / 2
-                }, {
-                    duration: drop.data('durationOn'),
-                    queue: false
-                });
-
-            }
-            return drop;
-        },
-        noinherit: function(drop, start) {
-            if (drop === undefined)
-                drop = this;
-            if (!drop.data('droppableIn')) {
-                start = start === undefined ? true : false;
-                var method = drop.data('animate') && start ? 'animate' : 'css',
-                        placement = drop.data('placement'),
-                        $this = drop.data('elrun'),
-                        dataSourceH = 0,
-                        dataSourceW = 0,
-                        $thisW = $this.width(),
-                        $thisH = $this.height(),
-                        $thisT = 0,
-                        $thisL = 0;
-                if (typeof placement == 'object') {
-                    var tempObj = {};
-                    for (var key in placement) {
-                        tempObj[key] = placement[key];
-                    }
-                    drop[method](tempObj, {
-                        duration: drop.data('durationOn'),
-                        queue: false
-                    });
-                }
-                else {
-                    var $thisPMT = placement.toLowerCase().split(' ');
-                    if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
-                        dataSourceH = -drop.actual('height') - $thisH;
-                    if ($thisPMT[0] === 'top' || $thisPMT[1] === 'top')
-                        dataSourceH = $thisH;
-                    if ($thisPMT[0] === 'left' || $thisPMT[1] === 'left')
-                        dataSourceW = 0;
-                    if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
-                        dataSourceW = -drop.actual('width') + $thisW;
-                    $thisT = $this.offset().top + dataSourceH;
-                    $thisL = $this.offset().left + dataSourceW;
-                    if ($thisL < 0)
-                        $thisL = 0;
-
+                drop = this.self ? this.self : this;
+            drop.each(function() {
+                var drop = $(this);
+                if (!drop.data('drp').droppableIn) {
+                    start = start === undefined ? true : false;
+                    var method = drop.data('drp').animate && start ? 'animate' : 'css',
+                            dropV = drop.is(':visible'),
+                            w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
+                            h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
                     drop[method]({
-                        'bottom': 'auto',
-                        'top': $thisT,
-                        'left': $thisL
+                        'top': (body.height() - h) / 2 + (!drop.data('drp').scroll ? wnd.scrollTop() : 0),
+                        'left': (body.width() - w) / 2 + (!drop.data('drp').scroll ? wnd.scrollLeft() : 0)
                     }, {
-                        duration: drop.data('durationOn'),
+                        duration: drop.data('drp').durationOn,
                         queue: false
                     });
-                }
-            }
-            return drop;
-        },
-        scrollEmulate: function() {
-            var dur = methods.defaultParams.durationOn;
-            try {
-                clearInterval(methods.defaultParams.scrollemulatetimeout);
-            } catch (err) {
-            }
-            setTimeout(function() {
-                if (!isTouch) {
-                    body.addClass('isScroll').css({
-                        'overflow': 'hidden',
-                        'margin-right': 17
-                    });
-                    body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
-                }
-                if (isTouch)
-                    $('.for-center').on('touchmove.drop', function(e) {
-                        return false;
-                    });
-                $(document).trigger({
-                    'type': 'drop.scrollEmulate'
-                });
-            }, dur);
-        },
-        scrollEmulateRemove: function() {
-            var dur = methods.defaultParams.durationOff;
-            methods.defaultParams.scrollemulatetimeout = setTimeout(function() {
-                body.removeClass('isScroll').css({
-                    'overflow': '',
-                    'margin-right': ''
-                });
-                ;
-                wnd.scrollTop(methods.defaultParams.wST);
-                $('.scrollEmulation').remove();
-                if (isTouch)
-                    $('.for-center').off('touchmove.drop');
-                $(document).trigger({
-                    'type': 'drop.scrollEmulateRemove'
-                });
-            }, dur);
-        },
-        droppable: function(drop) {
-            if (drop === undefined)
-                drop = this;
-
-            drop.off('mousedown.drop').on('mousedown.drop', function(e) {
-                if (!$(e.target).is(':input')) {
-                    body.on('mouseup.drop', function(e) {
-                        drop.css('cursor', 'default');
-                        body.off('selectstart.drop mousemove.drop mouseup.drop');
-                    });
-                    var $this = $(this).css('cursor', 'move'),
-                            left = e.pageX - $this.offset().left,
-                            top = e.pageY - $this.offset().top,
-                            w = $this.outerWidth(),
-                            h = $this.outerHeight(),
-                            wndW = wnd.width(),
-                            wndH = wnd.height();
-
-                    body.on('selectstart.drop', function(e) {
-                        e.preventDefault();
-                    });
-
-                    var condH = $(document).height() > wnd.height() && drop.data('place') == 'center';
-
-                    body.on('mousemove.drop', function(e) {
-                        drop.data('droppableIn', true);
-                        var l = e.pageX - left,
-                                t = e.pageY - top;
-                        l = l < 0 ? 0 : l;
-                        t = t < 0 ? 0 : t;
-                        var addW = condH ? 17 : 0;
-                        l = l + w + addW < wndW ? l : wndW - w - addW;
-                        t = t + h < wndH ? t : wndH - h;
-                        $this.css({
-                            'left': l,
-                            'top': t
-                        })
-                    })
                 }
             });
+            return drop;
+        },
+        _checkProp: function(elSet, opt, prop, step) {
+            var optP = undefined;
+            try {
+                optP = opt[prop];
+            } catch (err) {
+            }
+            if (step) {
+                var tempP = $.drop.dP[prop] !== undefined ? $.drop.dP[prop] : optP;
+                return tempP !== undefined ? tempP : elSet[prop];
+            }
+            else
+                return elSet[prop] || optP || $.drop.dP[prop];
+        },
+        _closeMoreOne: function($this) {
+            if ($.existsN($this.closest('[data-elrun]')) && !$this.data('modal'))
+                methods.close($this.closest('[data-elrun]'));
+            if ($.exists('[data-elrun].center:visible, [data-elrun].noinherit:visible'))
+                methods.close($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
+        },
+        _modalTrigger: function(opt) {
+            $(document).off('successJson.' + $.drop.nS).on('successJson.' + $.drop.nS, function(e) {
+                if (e.datas) {
+                    if (e.datas.answer === "success")
+                        e.el.find(opt.modalPlace || $.drop.dP.modalPlace + ',' + $.drop.dPP.modalPlace).empty().append((opt.message || $.drop.dP.message).success(e.datas.data));
+                    else
+                        e.el.find(opt.modalPlace || $.drop.dP.modalPlace + ',' + $.drop.dPP.modalPlace).empty().append((opt.message || $.drop.dP.message).error(e.datas.data));
+                }
+            });
+        },
+        _pasteModal: function(el, data, set, rel) {
+            var elSet = el.data(),
+                    drop = $(elSet.drop);
+            methods._modalTrigger($.extend({}, set, elSet));
+            methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), drop, undefined, rel);
+            $(document).trigger({
+                type: 'successJson.' + $.drop.nS,
+                el: drop,
+                datas: data
+            });
+            methods._show(el, undefined, false, set, data);
+        },
+        get: function(el, set, e, modal) {
+            if (set == undefined) {
+                if (el != undefined)
+                    set = el.data('drp');
+                else
+                    set = {};
+            }
+            if (el === undefined)
+                el = this;
+            var elSet = el.data(),
+                    source = elSet.source || el.attr('href');
+            var rel = '';
+            if (el.get(0).rel != undefined)
+                rel = el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, '');
+            if (typeof $.drop.dP.galleriesContent[rel] === 'undefined')
+                $.drop.dP.galleriesContent[rel] = [];
+            if (elSet.drop != undefined) {
+                $.ajax({
+                    type: "post",
+                    data: elSet.datas,
+                    url: source,
+                    beforeSend: function() {
+                        if (!methods._checkProp(elSet, set, 'moreOne'))
+                            methods._closeMoreOne(el);
+                        $(document).trigger({
+                            'type': 'showActivity'
+                        });
+                    },
+                    dataType: elSet.type ? elSet.type : 'html',
+                    success: function(data) {
+                        if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
+                            $.drop.dP.galleriesContent[rel][source] = data;
+                        if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
+                            methods._pasteModal(el, data, set, rel);
+                        }
+                        else {
+                            methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), data, undefined, rel);
+                            var drop = $(elSet.drop);
+                            $(document).trigger({
+                                type: 'successHtml.' + $.drop.nS,
+                                el: drop,
+                                datas: data
+                            });
+                            methods._show(el, e, true, set, data);
+                        }
+                        if (drop)
+                            methods.init.call(drop.find('[data-drop]:not(.isDrop)'), $.extend({}, $.drop.dP));
+                    }
+                });
+            }
+            else {
+                $.drop.dP.curOld = $('.' + $.drop.dP.curDefault);
+                $.drop.dP.curDefault = 'drop-default' + (new Date()).getTime();
+                var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
+
+                $(document).trigger({
+                    'type': 'showActivity'
+                });
+                if (source.match(/jpg|gif|png|bmp|jpeg/))
+                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
+                        $.drop.dP.curOld.remove();
+                        drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).append($(this))
+                        methods._show(el, e, true, set, data);
+                    })
+                else
+                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).load(source, function(data) {
+                        $.drop.dP.curOld.remove();
+                        if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
+                            $.drop.dP.galleriesContent[rel][source] = data;
+                        methods._show(el, e, true, set, data);
+                    })
+            }
+        },
+        _pasteDrop: function(set, drop, addClass, rel) {
+            if (addClass === undefined)
+                addClass = '';
+            if (rel === undefined)
+                rel = '';
+            if (set.place !== 'inherit') {
+                function _for_center(rel) {
+                    body.append('<div class="for-center" data-rel="' + rel + '" style="left: 0;top:0;width: 100%;dispaly:none;overflow: hidden;position: absolute;"></div>');
+                }
+                if (set.place === 'noinherit')
+                    drop = $(drop).appendTo(body);
+                else {
+                    var sel = '[data-rel="' + set.drop + '"].for-center';
+                    if (typeof drop !== 'string') {
+                        if (!$.existsN(drop.parent('.for-center'))) {
+                            _for_center(set.drop);
+                        }
+                        var forCenter = $(sel);
+                        drop.appendTo(forCenter);
+                        drop = $(set.drop).data({
+                            'drp': {
+                                'forCenter': forCenter
+                            }
+                        });
+                    }
+                    else {
+                        if (!$.exists(sel)) {
+                            _for_center(set.drop);
+                        }
+                        var forCenter = $(sel);
+                        $(drop).appendTo(forCenter);
+                        drop = $(set.drop).data({
+                            'drp': {
+                                'forCenter': forCenter
+                            }
+                        });
+                    }
+                    forCenter.css('height', function() {
+                        return set.scroll ? '100%' : $(document).height();
+                    });
+                }
+            }
+            return drop.addClass(addClass).attr('data-rel', rel);
+        },
+        _pasteContent: function($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter) {
+            if (contentFooter) {
+                var footer = drop.find($(dropFooter).add($($.drop.dPP.dropFooter)));
+                if (typeof contentFooter == 'string' || typeof contentFooter == 'object')
+                    footer.empty().append(contentFooter);
+                else if (typeof contentFooter == 'function')
+                    contentFooter(footer, $this, drop);
+            }
+            if (contentHeader) {
+                var header = drop.find($(dropHeader).add($($.drop.dPP.dropHeader)));
+                if (typeof contentHeader == 'string' || typeof contentHeader == 'object')
+                    header.empty().append(contentHeader);
+                else if (typeof contentHeader == 'function')
+                    contentHeader(header, $this, drop);
+            }
+            if (contentContent) {
+                var content = drop.find($(dropContent).add($($.drop.dPP.dropContent)));
+                if (typeof contentContent == 'string' || typeof contentContent == 'object')
+                    content.empty().append(contentContent);
+                else if (typeof contentContent == 'function')
+                    contentContent(content, $this, drop);
+            }
+        },
+        _show: function($this, e, isajax, set, data) {
+            if ($this === undefined)
+                $this = this;
+            if (e === undefined)
+                e = window.event;
+            set = $.extend({}, $.drop.dP, set);
+            isajax = !isajax ? false : true;
+            var elSet = $this.data(),
+                    $thisD = elSet.durationOn !== undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
+                    $thisDOff = elSet.durationOff !== undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
+                    overlayOpacity = elSet.overlayOpacity !== undefined ? elSet.overlayOpacity.toString() : elSet.overlayOpacity || set.overlayOpacity,
+                    $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
+                    trigger = elSet.trigger || set.trigger,
+                    place = elSet.place || set.place,
+                    placement = elSet.placement || set.placement,
+                    $thisEOff = elSet.effectOff || set.effectOff,
+                    $thisEOn = elSet.effectOn || set.effectOn,
+                    overlayColor = elSet.overlayColor || set.overlayColor,
+                    modal = elSet.modal || set.modal,
+                    timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
+                    confirm = elSet.confirm || set.confirm,
+                    position = elSet.position || set.position,
+                    placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
+                    placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
+                    moreOne = elSet.moreOne || set.moreOne,
+                    closeClick = elSet.closeClick || set.closeClick,
+                    closeEsc = elSet.closeEsc || set.closeEsc,
+                    droppable = elSet.droppable || set.droppable,
+                    next = elSet.next || set.next,
+                    prev = elSet.prev || set.prev,
+                    cycle = elSet.cycle || set.cycle,
+                    source = elSet.source || set.source || $this.attr('href'),
+                    selSource = elSet.drop || set.drop,
+                    tab = elSet.tab || set.tab,
+                    scroll = elSet.scroll || set.scroll,
+                    limitSize = elSet.limitSize || set.limitSize,
+                    limitContentSize = elSet.limitContentSize || set.limitContentSize,
+                    scrollContent = elSet.scrollContent || set.scrollContent,
+                    inheritClose = elSet.inheritClose || set.inheritClose,
+                    dropContent = elSet.dropContent || set.dropContent,
+                    dropHeader = elSet.dropHeader || set.dropHeader,
+                    dropFooter = elSet.dropFooter || set.dropFooter,
+                    contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
+                    contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
+                    contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false),
+                    start = elSet.start,
+                    changeSource = set.changeSource,
+                    elChangeSource = elSet.changeSource,
+                    elBefore = elSet.before,
+                    elAfter = elSet.after,
+                    before = set.before,
+                    after = set.after,
+                    close = set.close,
+                    elClose = elSet.close,
+                    closed = set.closed,
+                    elClosed = elSet.closed,
+                    drop = $(selSource);
+            $this.attr({
+                'data-drop': $this.data('drop')
+            }).parent().addClass(aC);
+            $.drop.dP.durationOff = $thisDOff;
+            $.drop.dP.durationOn = $thisD;
+            var drp = drop.data('drp');
+            if (!drp)
+                drp = {};
+            drop.data({
+                'drp': $.extend(drp, {
+                    'trigger': trigger,
+                    'effectOn': $thisEOn,
+                    'position': position,
+                    'placeBeforeShow': placeBeforeShow,
+                    'placeAfterClose': placeAfterClose,
+                    'effectOff': $thisEOff,
+                    'elrun': $this,
+                    'place': place,
+                    'placement': placement,
+                    'durationOn': $thisD,
+                    'durationOff': $thisDOff,
+                    'dropContent': dropContent,
+                    'dropHeader': dropHeader,
+                    'dropFooter': dropFooter,
+                    'animate': $thisA,
+                    'start': start,
+                    'before': before,
+                    'after': after,
+                    'changeSource': changeSource,
+                    'elChangeSource': elChangeSource,
+                    'elBefore': elBefore,
+                    'elAfter': elAfter,
+                    'close': close,
+                    'elClose': elClose,
+                    'closed': closed,
+                    'elClosed': elClosed,
+                    'overlayOpacity': overlayOpacity,
+                    'overlayColor': overlayColor,
+                    'modal': modal,
+                    'confirm': confirm,
+                    'timeclosemodal': timeclosemodal,
+                    'moreOne': moreOne,
+                    'closeClick': closeClick,
+                    'closeEsc': closeEsc,
+                    'droppable': droppable,
+                    'source': source,
+                    'prev': prev,
+                    'next': next,
+                    'cycle': cycle,
+                    'droppableIn': false,
+                    'contentHeader': contentHeader,
+                    'contentContent': contentContent,
+                    'contentFooter': contentFooter,
+                    'tab': tab,
+                    'scroll': scroll,
+                    'limitSize': limitSize,
+                    'limitContentSize': limitContentSize,
+                    'scrollContent': scrollContent,
+                    'inheritClose': inheritClose,
+                    'methods': $.extend({
+                        'self': drop,
+                        'elrun': $this
+                    }, $.drop.methods())
+                })
+            });
+            drop.attr('data-elrun', selSource).off('click.' + $.drop.nS, set.exit).on('click.' + $.drop.nS, set.exit, function() {
+                methods.close($(this).closest('[data-elrun]'));
+            });
+            (function(source) {
+                var tempF = arguments.callee,
+                        relO = $this.get(0).rel;
+                if (relO != '' && relO !== undefined) {
+                    var rel = relO.replace(/[^a-zA-Z0-9]+/ig, ''),
+                            relA = $.drop.dP.galleries[rel],
+                            drop = $('[data-elrun][data-rel="' + rel + '"]');
+                    if (relA !== undefined) {
+                        var relL = relA.length,
+                                relP = $.inArray(source != undefined ? source : drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).find('img').attr('src'), relA);
+                        $(prev).add($(next)).hide();
+                        if (relP == 0)
+                            $(next).show();
+                        if (relP == relL - 1)
+                            $(prev).show();
+                        if ((relP > 0 && relP < relL - 1) || cycle)
+                            $(prev).add($(next)).show();
+                    }
+                    $(prev).add($(next)).attr('data-rel', rel).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function() {
+                        var $thisB = $(this).attr('disabled', 'disabled'),
+                                relCur = relP + ($thisB.is(prev) ? -1 : 1);
+                        if (cycle) {
+                            if (relCur >= relL)
+                                relCur = 0;
+                            if (relCur < 0)
+                                relCur = relL - 1;
+                        }
+                        source = relA[relCur];
+                        var $this = $('[data-source="' + relA[relCur] + '"][rel], [href="' + relA[relCur] + '"][rel]').filter(':first'),
+                                elSet = $this.data();
+                        function _changeSource(data) {
+                            var dropContent = elSet.dropContent || set.dropContent,
+                                    dropHeader = elSet.dropHeader || set.dropHeader,
+                                    dropFooter = elSet.dropFooter || set.dropFooter,
+                                    contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
+                                    contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
+                                    contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false);
+                            methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
+                            changeSource(data, $this, drop);
+                            if (elChangeSource !== undefined)
+                                eval(elChangeSource)(data, $this, drop);
+                            drop.add($(document)).trigger({
+                                'type': 'changeSource.' + $.drop.nS,
+                                'el': $this,
+                                'drop': drop,
+                                'datas': data
+                            });
+                        }
+                        if (source.match(/jpg|gif|png|bmp|jpeg/))
+                            $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
+                                drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).empty().append($(this))
+                                $thisB.removeAttr('disabled');
+                                tempF();
+                                (function(data) {
+                                    var tempF2 = arguments.callee;
+                                    _changeSource(data);
+                                    methods._checkMethod(function() {
+                                        methods.limitSize(drop)
+                                    })
+                                    methods._checkMethod(function() {
+                                        methods.heightContent(drop)
+                                    })
+                                    if (place != 'inherit')
+                                        methods._checkMethod(function() {
+                                            methods[place](drop, true)
+                                        })
+                                    $(this).off('load.' + $.drop.nS).on('load.' + $.drop.nS, function() {
+                                        tempF2($(this));
+                                    });
+                                })($(this));
+                            });
+                        else {
+                            function _tempF3(data) {
+                                $thisB.removeAttr('disabled');
+                                tempF(source);
+                                _changeSource(data);
+                                methods._checkMethod(function() {
+                                    methods.heightContent(drop)
+                                })
+                                methods._checkMethod(function() {
+                                    methods.limitSize(drop)
+                                })
+                                if (place != 'inherit')
+                                    methods._checkMethod(function() {
+                                        methods[place](drop, true)
+                                    })
+                            }
+
+                            if (typeof $.drop.dP.galleriesContent[rel][source] !== 'undefined' && !(elSet.always || set.always)) {
+                                drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html($.drop.dP.galleriesContent[rel][source])
+                                _tempF3($.drop.dP.galleriesContent[rel][source]);
+                            }
+                            else {
+                                if ($.exists(source)) {
+                                    if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
+                                        $.drop.dP.galleriesContent[rel][source] = $(source).html();
+                                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html($.drop.dP.galleriesContent[rel][source])
+                                }
+                                else
+                                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).load(source, function(data) {
+                                        if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
+                                            $.drop.dP.galleriesContent[rel][source] = data;
+                                        _tempF3(data);
+                                    });
+                            }
+                        }
+                    });
+                }
+            })(source)
+
+            var overlays = $('.overlayDrop').css('z-index', 1103),
+                    condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
+            if (condOverlay) {
+                if (!$.exists('[data-rel="' + selSource + '"].overlayDrop')) {
+                    body.append('<div class="overlayDrop" data-rel="' + selSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
+                }
+                drop.data('drp').dropOver = $('[data-rel="' + selSource + '"].overlayDrop');
+                drop.data('drp').dropOver.css({
+                    'background-color': overlayColor,
+                    'opacity': overlayOpacity,
+                    'z-index': overlays.length + 1103
+                });
+            }
+            $('.for-center').css('z-index', 1104);
+            var forCenter = drop.data('drp').forCenter;
+            if (forCenter) {
+                forCenter.css('z-index', overlays.length + 1104);
+            }
+            else
+                drop.css('z-index', 1105);
+            if (drop.hasClass(aC)) {
+                methods.close(drop);
+            }
+            else {
+                methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
+                before($this, drop, isajax, data, set);
+                if (elBefore !== undefined)
+                    eval(elBefore)($this, drop, isajax, data, set);
+                drop.add($(document)).trigger({
+                    'type': 'before.' + $.drop.nS,
+                    'el': $this,
+                    'drop': drop,
+                    'isajax': isajax,
+                    'datas': data,
+                    'settings': set
+                });
+                methods._checkMethod(function() {
+                    methods.heightContent(drop)
+                })
+                var dropTimeout = '';
+                wnd.off('resize.' + $.drop.nS).on('resize.' + $.drop.nS, function() {
+                    clearTimeout(dropTimeout);
+                    dropTimeout = setTimeout(function() {
+                        methods._checkMethod(function() {
+                            methods.limitSize(drop)
+                        });
+                        methods._checkMethod(function() {
+                            methods.heightContent(drop)
+                        });
+                        if (place !== 'inherit')
+                            methods._checkMethod(function() {
+                                methods[place](drop)
+                            });
+                    }, 300);
+                });
+                if (condOverlay) {
+                    drop.data('drp').dropOver.fadeIn($thisD / 2);
+                    if (closeClick)
+                        drop.data('drp').dropOver.add(forCenter).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                            if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.for-center')) {
+                                methods.close($($(e.target).attr('data-rel')));
+                            }
+                        });
+                    if (isTouch)
+                        drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
+                            return false;
+                        });
+                }
+                drop.addClass(place);
+                function _forCenterTop() {
+                    if (forCenter) {
+                        forCenter.css('top', function() {
+                            return scroll ? wnd.scrollTop() : 0;
+                        });
+                    }
+                }
+                function _show() {
+                    if (place !== 'inherit') {
+                        function _pos() {
+                            drop.css({
+                                'top': -drop.actual('outerHeight'),
+                                'left': -drop.actual('outerWidth')
+                            });
+                            var $thisPMT = placeBeforeShow.toLowerCase().split(' ');
+                            if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
+                                drop.css('top', wnd.height());
+                            if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
+                                drop.css('left', wnd.width());
+                            if ($thisPMT[0] === 'center' && $thisPMT[1] === 'center') {
+                                if (place != 'inherit')
+                                    methods._checkMethod(function() {
+                                        methods[place](drop, true)
+                                    })
+                            }
+                            if ($thisPMT[0] === 'inherit')
+                                drop.css({
+                                    'left': $this.offset().left + wnd.scrollLeft(),
+                                    'top': $this.offset().top + wnd.scrollTop()
+                                });
+                        }
+                        var tempPl = typeof placement;
+                        if (tempPl == 'object')
+                            if (placement.top != undefined && placement.left != undefined)
+                                _pos()
+                        if (tempPl == 'string')
+                            _pos();
+                    }
+
+                    if (place != 'inherit')
+                        methods._checkMethod(function() {
+                            methods[place](drop)
+                        })
+
+                    var href = $this.attr('href');
+                    if (href !== undefined) {
+                        var wlh = window.location.hash;
+                        if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
+                            window.location.hash = wlh + href;
+                    }
+                    drop[$thisEOn]($thisD, function(e) {
+                        var drop = $(this);
+                        drop.addClass(aC);
+                        if (!confirm && modal && timeclosemodal)
+                            $.drop.dP.closeDropTime = setTimeout(function() {
+                                methods.close(drop);
+                            }, timeclosemodal);
+                        methods._checkMethod(function() {
+                            methods.limitSize(drop)
+                        })
+                        if (place != 'inherit')
+                            methods._checkMethod(function() {
+                                methods[place](drop)
+                            })
+
+                        var cB = elAfter;
+                        if (cB !== undefined) {
+                            eval(cB)($this, drop, isajax, data, set);
+                        }
+                        after($this, drop, isajax, data, set);
+                        drop.add($(document)).trigger({
+                            'type': 'after.' + $.drop.nS,
+                            'el': $this,
+                            'drop': drop,
+                            'isajax': isajax,
+                            'datas': data,
+                            'settings': set
+                        });
+                        if (droppable && place != 'inherit')
+                            methods._checkMethod(function() {
+                                methods.droppable(drop)
+                            })
+                        if (place == 'center' && !scroll) {
+                            wnd.off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function(e) {
+                                methods.center(drop);
+                            });
+                        }
+                    });
+                }
+                if (forCenter) {
+                    forCenter.fadeIn($thisD);
+                }
+
+                _forCenterTop();
+                if (condOverlay && scroll) {
+                    methods._checkMethod(function() {
+                        methods.scroll.create()
+                    })
+                }
+                methods._positionType(drop);
+                _show();
+            }
+            body.off('click.' + $.drop.nS).off('keydown.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                if (closeClick)
+                    if (!$.existsN($(e.target).closest('[data-elrun]')) && !($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.for-center'))) {
+                        methods.close(false);
+                    }
+                    else
+                        return true;
+            });
+            if (closeEsc)
+                body.off('keydown.' + $.drop.nS).on('keydown.' + $.drop.nS, function(e) {
+                    if (!e)
+                        var e = window.event;
+                    key = e.keyCode;
+                    if (key === 27) {
+                        methods.close(false);
+                    }
+                });
+        },
+        _checkMethod: function(f) {
+            try {
+                f()
+            } catch (e) {
+                var method = f.toString().match(/\.\S*\(/);
+                returnMsg('need connect ' + method[0].substring(1, method[0].length - 1) + ' method')
+            }
+        },
+        _positionType: function(drop) {
+            var data = drop.data('drp');
+            if (data.place !== 'inherit') {
+                drop.css({
+                    'position': data.position
+                });
+            }
         }
     };
     $.fn.drop = function(method) {
         if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+            if (!/_/.test(method))
+                return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' + method + ' does not exist on $.drop');
         }
     };
-    $.drop = function(m) {
-        return methods[m];
-    };
+    $.dropInit = function(m) {
+        this.nS = 'drop';
+        this.method = function(m) {
+            if (!/_/.test(m))
+                return methods[m];
+        };
+        this.methods = function() {
+            var newM = {};
+            for (var i in methods) {
+                if (!/_/.test(i))
+                    newM[i] = methods[i];
+            }
+            return newM;
+        };
+        this.dPP = {
+            dropContent: '.drop-content-default',
+            dropHeader: '.drop-header-default',
+            dropFooter: '.drop-footer-default',
+            placePaste: '.placePaste',
+            modalPlace: '.drop-notification-default'
+        };
+        this.dP = {
+            contentHeader: null,
+            contentFooter: null,
+            contentContent: null,
+            galleries: [],
+            galleriesContent: [],
+            message: {
+                success: function(text) {
+                    return '<div class = "msg js-msg"><div class = "success"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                },
+                error: function(text) {
+                    return '<div class = "msg js-msg"><div class = "error"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                },
+                info: function(text) {
+                    return '<div class = "msg js-msg"><div class = "info"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+                }
+            },
+            trigger: 'click',
+            exit: '[data-closed = "closed-js"]',
+            effectOn: 'fadeIn',
+            effectOff: 'fadeOut',
+            durationOn: 200,
+            durationOff: 100,
+            place: 'center',
+            placement: 'top, left',
+            modal: false,
+            confirm: false,
+            overlayOpacity: '0',
+            overlayColor: '#fff',
+            always: false,
+            animate: false,
+            timeclosemodal: 2000,
+            position: true,
+            placeBeforeShow: 'center center',
+            placeAfterClose: 'center center',
+            moreOne: false,
+            closeClick: false,
+            closeEsc: false,
+            droppable: false,
+            before: function() {
+            },
+            after: function() {
+            },
+            close: function() {
+            },
+            closed: function() {
+            },
+            changeSource: function() {
+            },
+            start: undefined,
+            drop: '.drop-default',
+            pattern: '<div class="drop drop-style drop-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placePaste" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
+            modalBtnDrop: '#drop-notification-default',
+            patternNotif: '<div class="drop drop-style" id="drop-notification-default"><div class="drop-header-default"></div><div class="drop-content-default"><div class="inside-padd drop-notification-default"></div></div><div class="drop-footer-default"></div></div>',
+            confirmBtnDrop: '#drop-confirm-default',
+            confirmActionBtn: '[data-button-confirm]',
+            patternConfirm: '<div class="drop drop-style" id="drop-confirm-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><div class="inside-padd"><div class="drop-btn-confrim"><button type="button" data-button-confirm data-modal="true"><span class="text-el">confirm</span></button></div><div class="drop-btn-cancel"><button type="button" data-closed="closed-js"><span class="text-el">cancel</span></button></div></div></div><div class="drop-footer-default"></div></div>',
+            next: '.drop-next',
+            prev: '.drop-prev',
+            cycle: false,
+            tab: false,
+            scroll: false,
+            limitSize: false,
+            limitContentSize: false,
+            scrollContent: false,
+            inheritClose: false
+        };
+        this.setParameters = function(options) {
+            $.extend($.drop.dP, options);
+        };
+        this.setMethods = function(ms) {
+            $.extend(methods, ms);
+        };
+    }
+    $.drop = new $.dropInit();
+    wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
+        wnd.scrollTop($.drop.dP.wST);
+        return false;
+    });
+    wnd.off('scroll.init' + $.drop.nS).on('scroll.init' + $.drop.nS, function(e) {
+        var wST = wnd.scrollTop();
+        if (e.isTrigger == undefined && wST != 0)//wST != 0 for change hash when occurs jump to target element
+            $.drop.dP.wST = wST;
+    })
 })(jQuery);
 /*/plugin drop end*/
 /*plugin plusminus*/
@@ -2420,7 +2630,6 @@ function getCookie(c_name)
             var settings = $.extend({
                 prev: 'prev',
                 next: 'next',
-                ajax: false,
                 step: 1,
                 checkProdStock: false,
                 after: function() {
@@ -2433,7 +2642,6 @@ function getCookie(c_name)
                     var $this = $(this),
                             prev = settings.prev.split('.'),
                             next = settings.next.split('.'),
-                            ajax = settings.ajax,
                             checkProdStock = settings.checkProdStock,
                             step = settings.step,
                             $thisPrev = $this,
@@ -2473,15 +2681,7 @@ function getCookie(c_name)
                                     input.val(input.data('min') || 1);
                                 else
                                     input.val(inputVal + step);
-                                if (ajax && !checkProdStock)
-                                    $(document).trigger({
-                                        'type': 'showActivity'
-                                    });
-                                if (ajax && inputVal + step <= input.data('max') && checkProdStock)
-                                    $(document).trigger({
-                                        'type': 'showActivity'
-                                    });
-                                if (ajax && inputVal + step === input.data('max'))
+                                if (inputVal + step === input.data('max') && checkProdStock)
                                     $thisNext.attr('disabled', 'disabled');
                                 if (checkProdStock)
                                     input.maxminValue(e);
@@ -2502,13 +2702,8 @@ function getCookie(c_name)
                                 if (isNaN(inputVal))
                                     input.val(input.data('min') || 1);
                                 else if (inputVal > parseFloat(input.data('min') || 1)) {
-                                    if (ajax) {
-                                        $(document).trigger({
-                                            'type': 'showActivity'
-                                        });
-                                    }
                                     input.val(inputVal - step);
-                                    if (ajax && inputVal - step === input.data('min'))
+                                    if (inputVal - step === input.data('min') && checkProdStock)
                                         $thisPrev.attr('disabled', 'disabled');
                                 }
 
@@ -2569,12 +2764,16 @@ function getCookie(c_name)
     $.maxminValue = function(m) {
         return methods[m];
     };
-    body.off('keyup.max', '[data-max]').on('keyup.max', '[data-max]', function(e) {
-        $(this).trigger({
-            'type': 'maxminValue',
-            'event': e
-        });
-        $(this).maxminValue(e);
+    body.off('keypress.max', '[data-max]').on('keypress.max', '[data-max]', function(e) {
+        var el = $(this);
+        setTimeout(function() {
+            var res = el.maxminValue(e);
+            el.trigger({
+                'type': 'maxminValue',
+                'event': e,
+                'res': res
+            });
+        }, 0);
     });
     body.off('blur.max', '[data-max]').on('blur.max', '[data-max]', function(e) {
         var $this = $(this);
@@ -2594,6 +2793,34 @@ function getCookie(c_name)
         if ($this.val() === "" && keyChar === 0) {
             $this.val($min);
             return false;
+        }
+    });
+    body.off('keyup', '[data-min]').on('keyup', '[data-min]', function(e) {
+        var $this = $(this),
+                $min = $this.attr('data-min');
+        if ($this.val() === "0") {
+            $this.val($min);
+            $this.trigger({
+                'type': 'maxminValue',
+                'event': e
+            });
+            return false;
+        }
+        else {
+            if (e.which != null) {  // IE
+                if (e.keyCode == 46 || e.keyCode == 8)
+                    $this.trigger({
+                        'type': 'maxminValue',
+                        'event': e
+                    });
+            }
+            else if (e.which != 0 && e.charCode != 0) { // non IE
+                if (e.keyCode == 46 || e.keyCode == 8)
+                    $this.trigger({
+                        'type': 'maxminValue',
+                        'event': e
+                    });
+            }
         }
     });
 })(jQuery);
@@ -2618,8 +2845,7 @@ function getCookie(c_name)
                             after: function() {
                             }
                         }, options);
-                var
-                        item = settings.item,
+                var item = settings.item,
                         prev = settings.prev,
                         next = settings.next,
                         content = settings.content,

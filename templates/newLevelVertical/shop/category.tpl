@@ -61,7 +61,7 @@
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
                         <div class="title-default">
-                            <div class="title-h3 title">Категории:</div>
+                            <div class="title-h3 title">{lang('Категории', 'newLevel')}:</div>
                         </div>
                     </div>
                     <div class="inside-padd">
@@ -93,8 +93,6 @@
     </div>
 {/if}
 <!--Start. Popular products -->
-<div class="horizontal-carousel">
-    {widget('popular_products_cartogory_h')}
-</div>
+{widget('popular_products_cartogory_h')}
 <!--End. Popular products -->
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

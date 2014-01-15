@@ -76,7 +76,7 @@
                         </thead>
                         <tbody>
                             {foreach $comments as $item}
-                                {if count($item.child) == 0}
+                                {if !$children[$item.id]}
                                     <tr data-id="{$item.id}" data-tree>
                                         <td class="t-a_c">
                                             <span class="frame_label">
@@ -91,7 +91,7 @@
                                             <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
                                                 <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>
-                                               
+
                                                 <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">{lang('Save', 'comments')}</span>
                                                 &nbsp;&nbsp;
                                                 <span class="js ref comment_update_cancel" data-cid="{$item.id}">{lang('Cancel', 'comments')}</span>
@@ -111,10 +111,10 @@
                                                 <div class="patch_disabled"></div>
                                                 <div class="star">
                                                     {for $i=0; $i<5; $i++}
-                                                    <a href="#">
-                                                        <i class="icon-star{if $i>=(int)$item.rate}-empty{/if}">
-                                                        </i>
-                                                    </a>
+                                                        <a href="#">
+                                                            <i class="icon-star{if $i>=(int)$item.rate}-empty{/if}">
+                                                            </i>
+                                                        </a>
                                                     {/for}
                                                 </div>
                                                 <a href="#">
@@ -184,14 +184,14 @@
                                                         <td>{$item.id}</td>
                                                         <td>
                                                             <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
-                                                            <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
+                                                            <span class="text_comment parent_comment_{$item.id}" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
                                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
                                                                 <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>                                                                
                                                                 <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">
                                                                     {lang('Save', 'comments')}
                                                                 </span>
                                                                 <span class="js ref comment_update_cancel" data-cid="{$item.id}">
-                                                                   {lang('Cancel', 'comments')}
+                                                                    {lang('Cancel', 'comments')}
                                                                 </span>
                                                                 {if $item.status == 1}
                                                                     <a href="#" class="to_approved" data-id="{$item.id}">{lang('In approve', 'comments')}</a>
@@ -210,10 +210,10 @@
                                                                 <div class="patch_disabled"></div>
                                                                 <div class="star">
                                                                     {for $i=0; $i<5; $i++}
-                                                                    <a href="#">
-                                                                        <i class="icon-star{if $i>=(int)$item.rate}-empty{/if}">
-                                                                        </i>
-                                                                    </a>
+                                                                        <a href="#">
+                                                                            <i class="icon-star{if $i>=(int)$item.rate}-empty{/if}">
+                                                                            </i>
+                                                                        </a>
                                                                     {/for}
                                                                 </div>
                                                                 <a href="#">
@@ -267,8 +267,23 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    {foreach $item.child as $ic}
-                                                                        <tr data-id={$ic.id} class="comments">
+
+                                                                    {$counter = 0;}
+                                                                    {$newComments = 0;}
+                                                                    {foreach  $children[$item.id] as $ic}
+                                                                        {$newComments += $ic.status;}
+                                                                        {if $counter == 0}
+                                                                            <tr style="border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-right: 1px solid #ddd;">
+                                                                                <td colspan="8" style="padding-left: 130px!important;{if $newComments}background-color: #FFFFC9!important;{/if}">
+                                                                                    <img onclick="expand_Children({$item.id}, $(this))" src="http://ofcite.loc/templates/administrator/images/tree/plus.gif" style="cursor: pointer;">
+                                                                                    <img onclick="hide_Children({$item.id}, $(this))" src="http://ofcite.loc/templates/administrator/images/tree/minus.gif" style="cursor: pointer; display: none">
+                                                                                    <a onclick="expand_hide_Children($(this), {$item.id})">
+                                                                                        Смотреть ответы
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        {/if}
+                                                                        <tr data-id="{$ic.id}" class="comments comment_child_{$item.id}" style="display: none;">
                                                                             <td class="t-a_c">
                                                                                 <span class="frame_label">
                                                                                     <span class="niceCheck b_n">
@@ -301,8 +316,8 @@
                                                                                 <div class="patch_disabled"></div>
                                                                                 <div class="star">
                                                                                     {for $i=0; $i<5; $i++}
-                                                                                    <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
-                                                                                    {/for}
+                                                                                        <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
+                                                                                        {/for}
                                                                                 </div>
                                                                                 <a href="#">
                                                                                     <i class="icon-thumbs-up"></i>
@@ -340,6 +355,7 @@
                                                                             {/if}
                                                                         </td>
                                                                     </tr>
+                                                                    {$counter++}
                                                                 {/foreach}
                                                             </tbody>
                                                         </table>

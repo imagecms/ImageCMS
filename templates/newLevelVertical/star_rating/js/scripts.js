@@ -45,7 +45,7 @@ $(document).on('scriptDefer', function() {
 
                                 if(modOffsetX > 0) rating+=1;
 		
-                                jQuery(this).find("span").eq(0).css("width",rating*width+"px");
+                                jQuery(this).find("span").eq(0).css("width",rating*width);
 
                             });
 
