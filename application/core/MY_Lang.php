@@ -60,7 +60,7 @@ class MY_Lang extends MX_Lang {
     public function getDBFrontLanguages() {
         if (!isset($this->ci))
             $this->ci = & get_instance();
-        
+
         $languages = $this->ci->db->select('lang_name, identif, locale')->get('languages');
         if ($languages) {
             return $languages->result_array();
@@ -83,6 +83,11 @@ class MY_Lang extends MX_Lang {
             $this->ci = & get_instance();
 
         if (!strstr($_SERVER['REQUEST_URI'], 'install')) {
+            if (is_null($this->ci->db)) {
+                $error = & load_class('Exceptions', 'core');
+                echo $error->show_error('Data Base Error', 'Uknown database', 'error_db');
+                exit;
+            }
             $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
             if ($sett->lang_sel) {
                 $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
@@ -146,7 +151,7 @@ class MY_Lang extends MX_Lang {
             }
         }
 //        $lang = 'ru_RU';
-        
+
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->addDomain('application/language/main/', 'main', $lang);
