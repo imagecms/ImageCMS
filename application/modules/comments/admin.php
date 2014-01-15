@@ -126,6 +126,8 @@ class Admin extends BaseAdminController {
 
         if (is_array($comments))
             $comments = $this->proccess_child_comments($comments);
+        
+//        var_dumps_exit($comments);
 
         $all_comments = count($this->db->get('comments')->result_array());
         $this->render('comments_list', array(
