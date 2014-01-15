@@ -79,13 +79,15 @@ var ShopFront = {
                     if (checkProdStock && input.val() == input.data('max'))
                         el.closest(genObj.numberC).tooltip();
                     else
-                        Shop.Cart.changeCount(input.val(), input.data('id'), false);
+                        Shop.Cart.changeCount(input.val(), input.data('id'), input.data('kit'));
                 }
             }));
             testNumber(inputs);
             inputs.off('maxminValue').on('maxminValue', function(e) {
+                var $this = $(this);
                 if (checkProdStock && e.res)
-                    $(this).closest(genObj.numberC).tooltip();
+                    $this.closest(genObj.numberC).tooltip();
+                
             })
         },
         existsVnumber: function(vNumber, liBlock) {
