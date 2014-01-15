@@ -1230,4 +1230,4 @@ img.cloned{max-width: none;max-height: none;}
 #staticPage{display: block;position: static;}
 
 .isCart{display:none;}
-.frame-discount {display: none;}
+.frame-discount, [class*="price-"] > .frame-discount{display: none;}
