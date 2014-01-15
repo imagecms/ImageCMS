@@ -20,7 +20,7 @@
                                 {if $item->instance === "SProducts"}
                                     <tr data-id="{echo $item->getId()}" class="items items-bask cart-product">
                                         <td class="frame-remove-bask-btn">
-                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove('{echo $item->getId()}', '{site_url("shop/cart/api/removeProductByVariantId/".$item->getId())}')"></button>
+                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()})"></button>
                                         </td>
                                         <td class="frame-items">
                                             <a href="{echo shop_url('product/'.$item->getSProducts()->getUrl())}" title="{echo $item->getName()}" class="frame-photo-title">
@@ -57,7 +57,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
 
@@ -96,7 +96,7 @@
                                 {else:}
                                     <tr class="row-kits" data-id="{echo $item->getId()}">
                                         <td class="frame-remove-bask-btn">
-                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove('{echo $item->getId()}', '{site_url("shop/cart/api/removeKit/".$item->getId())}', true)"></button></button>
+                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()}, true)"></button></button>
                                         </td>
                                         <td class="frame-items frame-items-kit">
                                             <ul class="items items-bask">
@@ -141,7 +141,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
                                         <td class="frame-cur-sum-price">
