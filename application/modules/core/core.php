@@ -910,23 +910,28 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_set_meta_tags')) ? eval($hook) : NULL;
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(array(
-                'site_title' => empty($title) ? $this->settings['site_title'] : $title,
-                'site_description' => empty($description) ? $this->settings['site_description'] : $description,
-                'site_keywords' => empty($keywords) ? $this->settings['site_keywords'] : $keywords
+                'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
+                'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
+                'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
             ));
         } else {
-            if (($page_number > 1) && ($page_number != ''))
+            if (($page_number > 1) && ($page_number != '')) {
                 $title = $page_number . ' - ' . $title;
+            }
 
-            if ($description != '')
-                if ($page_number != '')
+            if ($description != '') {
+                if ($page_number != '') {
                     $description = "$page_number - $description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
-                else
+                } else {
                     $description = "$description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
+                }
+            }
 
-            if ($this->settings['add_site_name_to_cat'])
-                if ($category != '')
+            if ($this->settings['add_site_name_to_cat']) {
+                if ($category != '') {
                     $title .= ' - ' . $category;
+                }
+            }
 
             if ($this->core_data['data_type'] == 'page' AND $this->page_content['category'] != 0 AND $this->settings['add_site_name_to_cat']) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->cat_content['name'];
