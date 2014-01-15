@@ -46,6 +46,7 @@ var Order = {
         });
     },
     displayOrderSum: function(obj) {
+        
         var discount = Shop.Cart.discount,
                 kitDiscount = parseFloat(Shop.Cart.kitDiscount),
                 finalAmount = Shop.Cart.getFinalAmount();
@@ -65,8 +66,15 @@ var Order = {
         $(genObj.totalPrice).html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
         $(genObj.finalAmount).html(parseFloat(finalAmount).toFixed(pricePrecision));
         $(genObj.finalAmountAdd).html((Shop.Cart.koefCurr * finalAmount).toFixed(pricePrecision));
+        
+        var ca = "";
+        if (selectDeliv)
+            ca = $(genObj.frameDelivery).find('span.cuselActive');
+        else
+            ca = $(methodDeliv).filter(':checked');
+        Shop.Cart.shipping = parseFloat(ca.data('price'));
+        Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
         $(genObj.shipping).html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
-
 
         $(genObj.frameGenSumDiscount).hide();
         $(genObj.genSumDiscount).hide();
@@ -79,14 +87,7 @@ var Order = {
     },
     recountCartPage: function(a) {
         Shop.Cart.totalRecount();
-        var ca = "";
-        if (selectDeliv)
-            ca = $(genObj.frameDelivery).find('span.cuselActive');
-        else
-            ca = $(methodDeliv).filter(':checked');
-        Shop.Cart.shipping = parseFloat(ca.data('price'));
-        Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
-
+        
         Order.hideInfoDiscount();
         if (a !== 'renderOrderDetails')
             DiscountFront.getDiscount('recountCartPage');
