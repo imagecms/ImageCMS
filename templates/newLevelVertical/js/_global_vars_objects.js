@@ -70,41 +70,6 @@ var optionsCycle = {
         return '<a href="#"></a>';
     }
 };
-var optionCompare = {
-    frameCompare: '.frame-tabs-compare > div',
-    left: '.left-compare li',
-    right: '.items-compare > li',
-    elEven: 'li',
-    frameScroll: '.items-compare',
-    mouseWhell: true,
-    scrollNSP: true, //show scroll
-    jScrollPane: true,
-    scrollNSPT: '.items-catalog',
-    onlyDif: $('[data-href="#only-dif"]'),
-    allParams: $('[data-href="#all-params"]'),
-    hoverParent: '.compare-characteristic',
-    after: function(el) {
-        $('.comprasion-head').css('height', el.find(optionCompare.scrollNSPT).height())
-        //        if carousel in compare
-        if ($.existsN(el.find('.carousel-js-css:not(.iscarousel)')))
-            el.find('.carousel-js-css:not(.iscarousel)').myCarousel(carousel);
-        wnd.scroll(); //for lazy
-    },
-    compareChangeCategory: function() {
-        if ($.exists(optionCompare.frameCompare)) {
-            $(optionCompare.frameCompare).equalHorizCell(optionCompare);
-            if (optionCompare.onlyDif.parent().hasClass('active'))
-                optionCompare.onlyDif.click();
-            else
-                optionCompare.allParams.click();
-        }
-    },
-    scrollPane: {
-        animateScroll: true,
-        showArrows: true,
-        arrowButtonSpeed: 250
-    }
-};
 var optionsDrop = {
     overlayColor: '#000',
     overlayOpacity: '0.6',
@@ -124,7 +89,11 @@ var optionsDrop = {
     moreOne: false,
     closeClick: true,
     closeEsc: true,
-    position: 'absolute'
+    position: 'absolute',
+    scroll: true,
+    limitSize: true,
+    limitContentSize: true,
+    scrollContent: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -156,20 +125,6 @@ var imageCmsApiDefaults = {
     }
 // callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide 
 // any other
-};
-var cleaverFilterObj = {
-    elClosed: '.icon_times_apply',
-    elCount: '#apply-count',
-    effectIn: 'fadeIn',
-    effectOff: 'fadeOut',
-    duration: '300',
-    location: 'left', //if vertical has be left
-    addingClass: 'left',//if vertical has be left
-    elPos: '.frame-group-checks .frame-label',
-    dropDownEff: 'slideToggle',
-    dropDownEffDur: '400',
-    currentPosScroll: [],
-    dropDownArr: []
 };
 var icons = {
     icon_enter: "M18.386,16.009l0.009-0.006l-0.58-0.912c1.654-2.226,1.876-5.319,0.3-7.8c-2.043-3.213-6.303-4.161-9.516-2.118c-3.212,2.042-4.163,6.302-2.12,9.517c1.528,2.402,4.3,3.537,6.944,3.102l0.424,0.669l0.206,0.045l0.779-0.447l-0.305,1.377l2.483,0.552l-0.296,1.325l1.903,0.424l-0.68,3.06l1.406,0.313l-0.424,1.906l4.135,0.918l0.758-3.392L18.386,16.009z M10.996,8.944c-0.685,0.436-1.593,0.233-2.029-0.452C8.532,7.807,8.733,6.898,9.418,6.463s1.594-0.233,2.028,0.452C11.883,7.6,11.68,8.509,10.996,8.944z",
@@ -204,7 +159,9 @@ var icons = {
     icon_success: "M2.379,14.729 5.208,11.899 12.958,19.648 25.877,6.733 28.707,9.561 12.958,25.308z",
     icon_error: "M26.711,14.086L16.914,4.29c-0.778-0.778-2.051-0.778-2.829,0L4.29,14.086c-0.778,0.778-0.778,2.05,0,2.829l9.796,9.796c0.778,0.777,2.051,0.777,2.829,0l9.797-9.797C27.488,16.136,27.488,14.864,26.711,14.086zM14.702,8.981c0.22-0.238,0.501-0.357,0.844-0.357s0.624,0.118,0.844,0.353c0.221,0.235,0.33,0.531,0.33,0.885c0,0.306-0.101,1.333-0.303,3.082c-0.201,1.749-0.379,3.439-0.531,5.072H15.17c-0.135-1.633-0.301-3.323-0.5-5.072c-0.198-1.749-0.298-2.776-0.298-3.082C14.372,9.513,14.482,9.22,14.702,8.981zM16.431,21.799c-0.247,0.241-0.542,0.362-0.885,0.362s-0.638-0.121-0.885-0.362c-0.248-0.241-0.372-0.533-0.372-0.876s0.124-0.638,0.372-0.885c0.247-0.248,0.542-0.372,0.885-0.372s0.638,0.124,0.885,0.372c0.248,0.247,0.372,0.542,0.372,0.885S16.679,21.558,16.431,21.799z",
     icon_edit: "M25.31,2.872l-3.384-2.127c-0.854-0.536-1.979-0.278-2.517,0.576l-1.334,2.123l6.474,4.066l1.335-2.122C26.42,4.533,26.164,3.407,25.31,2.872zM6.555,21.786l6.474,4.066L23.581,9.054l-6.477-4.067L6.555,21.786zM5.566,26.952l-0.143,3.819l3.379-1.787l3.14-1.658l-6.246-3.925L5.566,26.952z",
-    icon_remove: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z"
+    icon_remove: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z",
+    icon_arrow_down: "M23.963,20.834L17.5,9.64c-0.825-1.429-2.175-1.429-3,0L8.037,20.834c-0.825,1.429-0.15,2.598,1.5,2.598h12.926C24.113,23.432,24.788,22.263,23.963,20.834z",
+    icon_ask: "M26.711,14.086L16.914,4.29c-0.778-0.778-2.051-0.778-2.829,0L4.29,14.086c-0.778,0.778-0.778,2.05,0,2.829l9.796,9.796c0.778,0.777,2.051,0.777,2.829,0l9.797-9.797C27.488,16.136,27.488,14.864,26.711,14.086zM16.431,21.799c-0.248,0.241-0.543,0.362-0.885,0.362c-0.343,0-0.638-0.121-0.886-0.362c-0.247-0.241-0.371-0.533-0.371-0.876s0.124-0.638,0.371-0.885c0.248-0.248,0.543-0.372,0.886-0.372c0.342,0,0.637,0.124,0.885,0.372c0.248,0.247,0.371,0.542,0.371,0.885S16.679,21.558,16.431,21.799zM18.911,15.198c-0.721,0.716-1.712,1.147-2.972,1.294v2.027h-0.844v-3.476c0.386-0.03,0.768-0.093,1.146-0.188c0.38-0.095,0.719-0.25,1.019-0.464c0.312-0.227,0.555-0.5,0.729-0.822c0.174-0.322,0.261-0.77,0.261-1.346c0-0.918-0.194-1.623-0.582-2.113c-0.389-0.49-0.956-0.735-1.701-0.735c-0.281,0-0.527,0.042-0.738,0.124s-0.366,0.16-0.464,0.234c0.031,0.146,0.072,0.357,0.124,0.633c0.052,0.275,0.078,0.486,0.078,0.633c0,0.226-0.098,0.433-0.294,0.619c-0.195,0.187-0.479,0.28-0.853,0.28c-0.33,0-0.565-0.113-0.706-0.339s-0.211-0.489-0.211-0.789c0-0.244,0.067-0.484,0.201-0.72c0.135-0.235,0.346-0.463,0.633-0.684c0.245-0.195,0.577-0.364,0.995-0.504c0.419-0.141,0.854-0.211,1.308-0.211c0.647,0,1.223,0.103,1.724,0.308c0.502,0.205,0.914,0.479,1.238,0.822c0.337,0.355,0.586,0.755,0.748,1.198c0.162,0.444,0.243,0.926,0.243,1.446C19.994,13.558,19.633,14.482,18.911,15.198z"
 };
 var cuselOptions = {
     changedEl: ".lineForm:visible select",

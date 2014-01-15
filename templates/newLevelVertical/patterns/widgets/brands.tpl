@@ -2,7 +2,7 @@
     <div class="horizontal-carousel">
         <div class="big-container frame-brands">
             <div class="items-carousel">
-                {/*carousel-js-css*/}
+                {/*frame-scroll-pane || carousel-js-css || ' '*/}
                 <div class="frame-title container">
                     <div class="title">
                         <span class="text-el">{$title}</span>

@@ -12,7 +12,7 @@
 {$Comments = $CI->load->module('comments')->init($model)}
 {$NextCSIdCond = $NextCS != null}
 {$variants = $model->getProductVariants()}
-{$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
+{$sizeAddImg = sizeof($productImages = $model->getSProductAdditionalImages())}
 {$hasDiscounts = $model->hasDiscounts()}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
@@ -24,7 +24,7 @@
             <div class="f-s_0 title-product">
                 <!-- Start. Name product -->
                 <div class="frame-title">
-                    <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
+                    <h1 class="d_i title">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
                 <!-- End. Name product -->
                 <!-- Start. article & variant name & brand name -->
@@ -174,7 +174,7 @@
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
                                                             data-url="{echo shop_url('product/'.$model->getUrl())}"
-                                                            data-img="{echo $productVariant->getSmallPhoto()}"
+                                                            data-img="{if preg_match('/nophoto/', $productVariant->getSmallPhoto()) > 0}{echo $model->firstVariant->getSmallPhoto()}{else:}{echo $productVariant->getSmallPhoto()}{/if}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
@@ -207,7 +207,7 @@
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
-                                                            data-img="{echo $productVariant->getSmallPhoto()}"
+                                                            data-img="{if preg_match('/nophoto/', $productVariant->getSmallPhoto()) > 0}{echo $model->firstVariant->getSmallPhoto()}{else:}{echo $productVariant->getSmallPhoto()}{/if}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             class="infoBut">
@@ -277,9 +277,9 @@
                     <!--End. Payments method form -->
                 </div>
             </div>
-            <div class="left-product">
+            <div class="left-product leftProduct">
                 <!-- Start. Photo block-->
-                <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="initDrop">
+                <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop">
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vImgPr"/>
@@ -362,16 +362,16 @@
     </div>
     <!-- End. benefits block-->
     <!-- Start. Kit-->
-    {if $model->getShopKits() && $model->getShopKits()->count() > 0 && $CI->dx_auth->is_logged_in()}
+    {if count($model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in())) > 0}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
-                <div class="title-complect">
+                <div class="frame-title">
                     <div class="title">{lang('Специальное предложение! Купить, установить и получить скидку на аксессуары!','newLevel')}</div>
                 </div>
                 <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">
                         <ul class="items-complect items">
-                            {foreach $model->getShopKits() as $key => $kitProducts}
+                            {foreach $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) as $key => $kitProducts}
                                 <li class="globalFrameProduct">
                                     <ul class="items items-bask row-kits rowKits">
                                         <!-- main product -->
@@ -549,17 +549,17 @@
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
-            {/if}
-            {if $fullDescription = $model->getFullDescription()}
+                {/if}
+                {if $fullDescription = $model->getFullDescription()}
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
-            {/if}
-            {if $accessories}
+                {/if}
+                {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
-            {/if}
+                {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
-                    <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'))">
+                    <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'), {literal}{'visibleMainForm': '1'}{/literal})">
                         <span class="icon_comment-tab"></span>
                         <span class="text-el">
                             <span id="cc">
@@ -579,7 +579,7 @@
             <div id="view">
                 {if $dl_properties}
                     <div class="inside-padd">
-                        <h2>{lang('Свойства','newLevel')}</h2>
+                        <div class="title-h2">{lang('Свойства','newLevel')}</div>
                         <div class="characteristic">
                             <div class="product-charac patch-product-view">
                                 {echo $dl_properties}
@@ -611,21 +611,11 @@
 
                 {/if}
 
-                <div class="inside-padd">
-                    <!--Start. Comments block-->
-                    <div class="frame-form-comment">
-                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                        <div class="for_comments">
-                            {echo $c['comments']}
-                        </div>
-                        <!--End. Comments block-->
-                    </div>
-                </div>
                 {if $accessories}
                     <div class="accessories">
                         <div class="title-default">
                             <div class="title">
-                                <h2 class="d_i">{lang('Аксессуары','newLevel')} {echo $model->getName()}</h2>
+                                <h2 class="d_i">{lang('С этим товаром покупают','newLevel')}</h2>
                                 {if count($accessories) > 4}
                                     <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
                                         <span class="icon_arrow"></span>
@@ -641,6 +631,16 @@
                         </div>
                     </div>
                 {/if}
+                <div class="inside-padd">
+                    <!--Start. Comments block-->
+                    <div class="frame-form-comment">
+                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
+                        <div class="forComments">
+                            {echo $c['comments']}
+                        </div>
+                        <!--End. Comments block-->
+                    </div>
+                </div>
             </div>
             <!--             Start. Characteristic-->
             <div id="first">
@@ -661,7 +661,7 @@
                 </div>
             </div>
             <div id="comment">
-                <div class="inside-padd for_comments">
+                <div class="inside-padd forComments">
                     <div class="preloader"></div>
                 </div>
             </div>
@@ -669,7 +669,7 @@
             {if $accessories}
                 <div id="fourth" class="accessories">
                     <div class="inside-padd">
-                        <div class="title-h2">{lang('Аксессуары','newLevel')} {echo $model->getName()}</div>
+                        <h2 class="m-b_30">{lang('С этим товаром покупают','newLevel')}</h2>
                         <ul class="items items-default">
                             <div class="preloader"></div>
                         </ul>
@@ -682,9 +682,7 @@
     </div>
 </div>
 <!-- Start. Similar Products-->
-<div class="horizontal-carousel">
-    {widget('similar')}
-</div>
+{widget('similar')}
 <!-- End. Similar Products-->
 
 <!-- Start. Photo Popup Frame-->
@@ -693,45 +691,47 @@
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-            <div class="title"><%- obj.title %></div>
-            <div class="horizontal-carousel">
-                <div class="frame-fancy-gallery frame-thumbs">
-                    <div class="fancy-gallery carousel-js-css">
-                        <div class="content-carousel">
-                            <ul class="items-thumbs items">
-                                <%= obj.frame.find(obj.galleryContent).html() %>
-                            </ul>
-                        </div>
-                        <div class="group-button-carousel">
-                            <button type="button" class="prev arrow">
-                                <span class="icon_arrow_p"></span>
-                            </button>
-                            <button type="button" class="next arrow">
-                                <span class="icon_arrow_n"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="title"><%- obj.title %></div>
+        <div class="horizontal-carousel">
+        <div class="frame-fancy-gallery frame-thumbs">
+        <div class="fancy-gallery carousel-js-css">
+        <div class="content-carousel">
+        <ul class="items-thumbs items">
+        <%= obj.frame.find(obj.galleryContent).html() %>
+        </ul>
         </div>
-        <div class="drop-content-photo">
-            <div class="inside-padd">
-                <span class="helper"></span>
-                <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-            </div>
-            <div class="horizontal-carousel">
-                <div class="group-button-carousel">
-                    <button type="button" class="prev arrow">
-                        <span class="icon_arrow_p"></span>
-                    </button>
-                    <button type="button" class="next arrow">
-                        <span class="icon_arrow_n"></span>
-                    </button>
-                </div>
-            </div>
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="drop-content">
+        <div class="inside-padd">
+        <span class="helper"></span>
+        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+        </div>
+        <div class="horizontal-carousel">
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
         </div>
         <div class="drop-footer">
-            <%= obj.frame.find(obj.footerContent).html()%>
+        <div class="inside-padd">
+        <%= obj.frame.find(obj.footerContent).html()%>
+        </div>
         </div>
     {/literal}
 </script>
