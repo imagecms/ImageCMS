@@ -12,7 +12,7 @@
         {else:}
             data-drop="#notification"
             data-modal="true"
-            data-timeclosemodal="30000"
+            data-timeclosemodal="3000"
         {/if}
         {if !$condBtn}
             style="display: none;"

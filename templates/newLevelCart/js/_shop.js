@@ -16,14 +16,14 @@ var Shop = {
         add: function(obj, id, kit) {
             var method = kit ? 'removeKit' : 'addProductByVariantId';
             $(document).trigger({
-                type: 'beforeAdd.Cart',
-                id: id,
-                kit: kit
+                'type': 'beforeAdd.Cart',
+                'id': id,
+                'kit': kit
             });
             $.ajax({
-                type: 'get',
-                url: siteUrl + 'shop/cart/api/' + method + '/' + id,
-                data: obj,
+                'type': 'get',
+                'url': siteUrl + 'shop/cart/api/' + method + '/' + id,
+                'data': obj,
                 success: function(data) {
                     $(document).trigger({
                         type: 'add.Cart',
@@ -37,49 +37,56 @@ var Shop = {
         remove: function(id, kit) {
             var method = kit ? 'removeKit' : 'removeProductByVariantId';
             $(document).trigger({
-                type: 'beforeRemove.Cart',
-                id: id,
-                kit: kit
+                'type': 'beforeRemove.Cart',
+                'id': id,
+                'kit': kit
             });
             $.getJSON(siteUrl + 'shop/cart/api/' + method + '/' + +id, function(data) {
                 $(document).trigger({
-                    type: 'remove.Cart',
-                    datas: data,
-                    id: id,
-                    kit: kit
+                    'type': 'remove.Cart',
+                    'datas': data,
+                    'id': id,
+                    'kit': kit
                 });
             });
         },
         changeCount: function(count, id, kit) {
             var method = kit ? 'setQuantityKitById' : 'setQuantityProductByVariantId';
             $(document).trigger({
-                type: 'beforeChange.Cart',
-                count: count,
-                kit: kit,
-                id: id
+                'type': 'beforeChange.Cart',
+                'count': count,
+                'kit': kit,
+                'id': id
             });
-            $.getJSON(siteUrl + 'shop/cart/api/' + method, function(data) {
-                $(document).trigger({
-                    type: 'сhange.Cart',
-                    datas: data,
-                    count: count,
-                    kit: kit,
-                    id: id
-                });
+            $.ajax({
+                'type': 'get',
+                'url': siteUrl + 'shop/cart/api/' + method,
+                'data': {
+                    'quantity': count
+                },
+                success: function(data) {
+                    $(document).trigger({
+                        'type': 'сhange.Cart',
+                        'datas': JSON.parse(data),
+                        'count': count,
+                        'kit': kit,
+                        'id': id
+                    });
+                }
             });
         },
         getTiny: function(tpl) {
             tpl = tpl ? tpl : 'cart_data';
             $.get(siteUrl + 'shop/cart/api/renderCart/' + tpl, function(data) {
                 $(document).trigger({
-                    type: 'getTiny.Cart',
-                    datas: data
+                    'type': 'getTiny.Cart',
+                    'datas': data
                 });
             });
         },
         composeCartItem: function($context) {
             var cartItem = {},
-                    data = $context.data();
+            data = $context.data();
             for (var i in data)
                 cartItem[i] = data[i]
             return cartItem;
@@ -183,32 +190,32 @@ if (typeof (wishList) != 'object')
         }
     }
 /**
- * AuthApi ajax client
- * Makes simple request to api controllers and get return data in json
- * 
- * @author Avgustus
- * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
- * 
- * Get JSON object with fields list:
- *      'status'    -   true/false - if the operation was successful,
- *      'msg'       -   info message about result,
- *      'refresh'   -   true/false - if true refreshes the page,
- *      'redirect'  -   url - redirects to needed url
- *    
- * List of api methods:
- *      Auth.php:
- *          '/auth/authapi/login',
- *          '/auth/authapi/logout',
- *          '/auth/authapi/register',
- *          '/auth/authapi/forgot_password',
- *          '/auth/authapi/reset_password',
- *          '/auth/authapi/change_password',
- *          '/auth/authapi/cancel_account',
- *          '/auth/authapi/banned',
- *          '/shop/ajax/getApiNotifyingRequest',
- *          '/shop/callbackApi'
- * 
- **/
+     * AuthApi ajax client
+     * Makes simple request to api controllers and get return data in json
+     * 
+     * @author Avgustus
+     * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
+     * 
+     * Get JSON object with fields list:
+     *      'status'    -   true/false - if the operation was successful,
+     *      'msg'       -   info message about result,
+     *      'refresh'   -   true/false - if true refreshes the page,
+     *      'redirect'  -   url - redirects to needed url
+     *    
+     * List of api methods:
+     *      Auth.php:
+     *          '/auth/authapi/login',
+     *          '/auth/authapi/logout',
+     *          '/auth/authapi/register',
+     *          '/auth/authapi/forgot_password',
+     *          '/auth/authapi/reset_password',
+     *          '/auth/authapi/change_password',
+     *          '/auth/authapi/cancel_account',
+     *          '/auth/authapi/banned',
+     *          '/shop/ajax/getApiNotifyingRequest',
+     *          '/shop/callbackApi'
+     * 
+     **/
 
 var ImageCMSApi = {
     defSet: function() {
@@ -287,9 +294,9 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                                form = $this.closest('form'),
-                                $thisТ = $this.attr('name'),
-                                elMsg = form.find('[for=' + $thisТ + ']');
+                        form = $this.closest('form'),
+                        $thisТ = $this.attr('name'),
+                        elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.remove();
@@ -317,10 +324,10 @@ var ImageCMSApi = {
         return queryString;
     },
     /**
-     * for displaying validation messages 
-     * in the form, which needs validation, for each validate input
-     * 
-     * */
+         * for displaying validation messages 
+         * in the form, which needs validation, for each validate input
+         * 
+         * */
     sendValidations: function(validations, selector, DS) {
         var sel = $(selector);
         if (typeof validations === 'object') {
@@ -346,9 +353,9 @@ var ImageCMSApi = {
         }
     },
     /**
-     * add captcha block if needed
-     * @param {type} captcha_image
-     */
+         * add captcha block if needed
+         * @param {type} captcha_image
+         */
     addCaptcha: function(cI, DS) {
         DS.captchaBlock.html(DS.captcha(cI));
         return false;
