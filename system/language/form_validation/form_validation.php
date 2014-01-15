@@ -28,7 +28,9 @@ lang('is_natural_no_zero');	//= "The %s field must contain a number greater than
 lang('decimal');			//= "The %s field must contain a decimal number.";
 lang('less_than');			//= "The %s field must contain a number less than %s.";
 lang('greater_than');		//= "The %s field must contain a number greater than %s.";
-lang('User profile successfully changed');		//
+lang('User profile successfully changed');
+lang('Cart');
+lang('Order view');
 
 
 
