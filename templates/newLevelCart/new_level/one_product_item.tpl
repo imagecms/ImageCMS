@@ -201,7 +201,7 @@
                                     <button
                                         type="button"
 
-                                        onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $pv->getId()}", "{shop_url('cart/api/addProductByVariantId/'.$pv->getId())}")'
+                                        onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $pv->getId()}")'
                                         class="btnBuy infoBut"
 
                                         data-id="{echo $pv->getId()}"

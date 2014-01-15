@@ -198,7 +198,7 @@ var ShopFront = {
                     pdTr.find(genObj.countOrCompl).html(word);
                 })
             }
-            testNumber($(genObj.frameBasks + ' input'));
+            testNumber($(genObj.frameBasks));
             $(genObj.frameBasks + ' input').off('maxminValue').on('maxminValue', function(e) {
                 chCountInCart($(this).prev('div'), e.res, $(this));
             })

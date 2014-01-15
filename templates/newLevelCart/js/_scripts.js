@@ -87,8 +87,9 @@ function init() {
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $.drop.setParameters(optionsDrop);
-    $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize');
+    $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries');
     $('[data-drop]').drop();
+    $('.cloud-zoom-gallery').drop({scrollContent: false});
     $(genObj.showCart).add($(genObj.btnBask)).drop(optionPopupBask);
 
 

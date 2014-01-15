@@ -1320,8 +1320,8 @@ function getCookie(c_name)
                         refs = [],
                         attrOrdata = [];
                 $this.each(function() {
-                    var index = methods.index;
-                    $thiss = $(this),
+                    var index = methods.index,
+                            $thiss = $(this),
                             data = $thiss.data(),
                             effectOn = data.effectOn || settings.effectOn,
                             effectOff = data.effectOff || settings.effectOff,

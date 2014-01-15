@@ -179,7 +179,7 @@
                                                         <button 
                                                             type="button"
 
-                                                            onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $productVariant->getId()}", "{shop_url('cart/api/addProductByVariantId/'.$productVariant->getId())}")'
+                                                            onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $productVariant->getId()}")'
                                                             class="btnBuy infoBut"
 
                                                             data-id="{echo $productVariant->getId()}"
@@ -557,7 +557,7 @@
                                                         type="button"
                                                         data-id="{echo $kitProducts->getId()}"
 
-                                                        onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $kitProducts->getId()}", "{shop_url('cart/api/addKit/'.$kitProducts->getId())}", true)'
+                                                        onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $kitProducts->getId()}", true)'
                                                         class="btnBuy infoBut btnBuyKit"
                                                         >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -796,8 +796,9 @@
 {literal}
     <script type="text/javascript">
         var
-        productPhotoDrop = true,
-        productPhotoCZoom = true;
+        productPhotoDrop = true;
+        //,
+        //productPhotoCZoom = true;
     </script>
 {/literal}
 <!-- End. JS vars-->
