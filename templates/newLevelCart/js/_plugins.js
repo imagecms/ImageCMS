@@ -1635,7 +1635,7 @@ function getCookie(c_name)
                         methods.open(undefined, $(this), options, e)
                     }
                 });
-                if (window.location.hash.indexOf(el.attr('href')) != -1)
+                if (window.location.hash.indexOf(el.attr('href') || el.data('href')) != -1)
                     methods.open(undefined, el, options, undefined)
             });
             for (i in $.drop.dP.galleries)
@@ -1685,7 +1685,7 @@ function getCookie(c_name)
                     if (!$.existsN(drop) || modal || always) {
                         if (!modal)
                             drop.remove();
-                        if (datas !== undefined)
+                        if (datas !== undefined && modal)
                             methods._pasteModal($this, datas, opt, undefined);
                         else
                             methods.get($this, opt, e, modal);
@@ -1773,7 +1773,7 @@ function getCookie(c_name)
                             }
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
-                                var $thisHref = $thisB.attr('href');
+                                var $thisHref = $thisB.attr('href') || $thisB.data('href');
                                 if ($thisHref !== undefined) {
                                     var wLH = location.hash;
                                     location.hash = wLH.replace($thisHref, '');
@@ -1813,7 +1813,8 @@ function getCookie(c_name)
                                         'left': '',
                                         'bottom': '',
                                         'right': '',
-                                        'position': ''
+                                        'position': '',
+                                        'overflow': ''
                                     });
                                     $this.removeClass(data.place);
                                     if (data.closed !== undefined)
@@ -1978,7 +1979,6 @@ function getCookie(c_name)
             else {
                 $.drop.dP.curOld = $('.' + $.drop.dP.curDefault);
                 $.drop.dP.curDefault = 'drop-default' + (new Date()).getTime();
-                var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
 
                 $(document).trigger({
                     'type': 'showActivity'
@@ -1987,15 +1987,31 @@ function getCookie(c_name)
                     $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
                         $.drop.dP.curOld.remove();
                         drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).append($(this))
+                        methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
                         methods._show(el, e, true, set, data);
                     })
                 else
-                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).load(source, function(data) {
-                        $.drop.dP.curOld.remove();
-                        if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
-                            $.drop.dP.galleriesContent[rel][source] = data;
-                        methods._show(el, e, true, set, data);
-                    })
+                    $.ajax({
+                        type: "post",
+                        url: source,
+                        dataType: 'html',
+                        success: function(data) {
+                            var rmObj = $($.drop.dP.curOld),
+                            drp = rmObj.data('drp');
+                            if (drp){
+                                if (drp.forCenter)
+                                    rmObj = rmObj.add(drp.forCenter);
+                                if (drp.dropOver)
+                                    rmObj = rmObj.add(drp.dropOver);
+                            }   
+                            rmObj.remove();
+                            if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
+                                $.drop.dP.galleriesContent[rel][source] = data;
+                            var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
+                            drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html(data);
+                            methods._show(el, e, true, set, data);
+                        }
+                    });
             }
         },
         _pasteDrop: function(set, drop, addClass, rel) {
@@ -2070,10 +2086,12 @@ function getCookie(c_name)
                 $this = this;
             if (e === undefined)
                 e = window.event;
-            set = $.extend({}, $.drop.dP, set);
+            var elSet = $this.data();
+            console.log(elSet.drp)
+            set = $.extend({}, $.drop.dP, set ? set : elSet.drp);
             isajax = !isajax ? false : true;
-            var elSet = $this.data(),
-            $thisD = elSet.durationOn !== undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
+            
+            var $thisD = elSet.durationOn !== undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
             $thisDOff = elSet.durationOff !== undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
             overlayOpacity = elSet.overlayOpacity !== undefined ? elSet.overlayOpacity.toString() : elSet.overlayOpacity || set.overlayOpacity,
             $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
@@ -2123,6 +2141,7 @@ function getCookie(c_name)
             closed = set.closed,
             elClosed = elSet.closed,
             drop = $(selSource);
+            
             $this.attr({
                 'data-drop': $this.data('drop')
             }).parent().addClass(aC);
@@ -2298,13 +2317,16 @@ function getCookie(c_name)
                         methods._checkMethod(function() {
                             methods[place](drop)
                         })
-                    var href = $this.attr('href');
+                    var href = $this.attr('href') || $this.data('href');
                     if (href !== undefined) {
                         var wlh = window.location.hash;
                         if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
                             window.location.hash = wlh + href;
                     }
-                    drop[$thisEOn]($thisD, function(e) {
+                    methods._checkMethod(function() {
+                        methods.limitSize(drop)
+                    });
+                    drop.css('overflow', 'hidden')[$thisEOn]($thisD, function(e) {
                         var drop = $(this);
                         drop.addClass(aC);
                         if (!confirm && modal && timeclosemodal)
@@ -2312,9 +2334,6 @@ function getCookie(c_name)
                                 methods.close(drop);
                             }, timeclosemodal);
                         
-                        methods._checkMethod(function() {
-                            methods.limitSize(drop)
-                        });
                         methods._checkMethod(function() {
                             methods.heightContent(drop)
                         })
@@ -2501,7 +2520,20 @@ function getCookie(c_name)
             $.extend(methods, ms);
         };
     }
+    
+    var id = (new Date()).getTime().toString(),
+    el = $('<div/>', {
+        id: 'scrollDrop'+id
+    }).appendTo(body).css({
+        'height': 400, 
+        'width': 400, 
+        'overflow': 'scroll'
+    }).wrap($('<div style="width:0;height:0;overflow:hidden;"></div>'));
+    $.dropInit.prototype.widthScroll = el.width() - el.get(0).clientWidth;
+    el.parent().remove();
+    
     $.drop = new $.dropInit();
+    
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
         wnd.scrollTop($.drop.dP.wST);
         return false;
@@ -2525,18 +2557,23 @@ function getCookie(c_name)
                 after: function() {
                 },
                 before: function() {
+                },
+                hover: function() {
                 }
             }, options);
             if (this.length > 0) {
                 return this.each(function() {
                     var $this = $(this),
+                    $thisVal = $this.val(),
                     prev = settings.prev.split('.'),
                     next = settings.next.split('.'),
                     checkProdStock = settings.checkProdStock,
                     step = settings.step,
                     $thisPrev = $this,
                     $thisNext = $this,
-                    regS = '', regM = '';
+                    regS = '', regM = '',
+                    max = $this.data('max'),
+                    min = $this.data('min');
                     $.each(prev, function(i, v) {
                         var regS = v.match(/\(.*\)/);
                         if (regS !== null) {
@@ -2557,6 +2594,18 @@ function getCookie(c_name)
                             regM = v;
                         $thisNext = $thisNext[regM](regS);
                     });
+
+                    if ($thisVal >= max){
+                        $this.val(max);
+                        $thisNext.attr('disabled', 'disabled');
+                    }
+                    if ($thisVal <= min){
+                        $this.val(min);
+                        $thisPrev.attr('disabled', 'disabled');
+                    }
+                    $thisNext.add($thisPrev).off('hover').hover(function(e){
+                        settings.hover(e, $(this), $this, $(this).is($thisNext) ? 'next' : 'prev');
+                    })
                     $thisNext.off('click.pM').on('click.pM', function(e) {
                         var el = $(this);
                         $thisPrev.removeAttr('disabled', 'disabled');
@@ -2566,16 +2615,15 @@ function getCookie(c_name)
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
-                                settings.before(e, el, input);
+                                settings.before(e, el, input, 'next');
                                 if (isNaN(inputVal))
-                                    input.val(input.data('min') || 1);
+                                    input.val(min || 1);
                                 else
                                     input.val(inputVal + step);
-                                if (inputVal + step === input.data('max') && checkProdStock){
+                                if (inputVal + step === max && checkProdStock){
                                     $thisNext.attr('disabled', 'disabled');
-                                    input.maxminValue(e);
                                 }
-                                settings.after(e, el, input);
+                                settings.after(e, el, input, 'next');
                             }
                         }
                     });
@@ -2588,16 +2636,16 @@ function getCookie(c_name)
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
-                                settings.before(e, el, input);
+                                settings.before(e, el, input, 'prev');
                                 if (isNaN(inputVal))
-                                    input.val(input.data('min') || 1);
-                                else if (inputVal > parseFloat(input.data('min') || 1)) {
+                                    input.val(min || 1);
+                                else if (inputVal > parseFloat(min || 1)) {
                                     input.val(inputVal - step);
-                                    if (inputVal - step === input.data('min') && checkProdStock)
+                                    if (inputVal - step === min && checkProdStock)
                                         $thisPrev.attr('disabled', 'disabled');
                                 }
 
-                                settings.after(e, el, input);
+                                settings.after(e, el, input, 'prev');
                             }
                         }
                     });
@@ -2664,16 +2712,6 @@ function getCookie(c_name)
                 'res': res
             });
         }, 0);
-    });
-    body.off('blur.max', '[data-max]').on('blur.max', '[data-max]', function(e) {
-        var $this = $(this);
-        if ($this.val() === '')
-            $this.val($this.data('min'));
-        $this.trigger({
-            'type': 'maxminValue',
-            'event': e
-        });
-        $(this).maxminValue(e);
     });
     body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
         var key = e.keyCode,
