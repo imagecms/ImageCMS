@@ -85,7 +85,7 @@ class MY_Lang extends MX_Lang {
         if (!strstr($_SERVER['REQUEST_URI'], 'install')) {
             if (is_null($this->ci->db)) {
                 $error = & load_class('Exceptions', 'core');
-                echo $error->show_error('Data Base Error', 'Uknown database', 'error_db');
+                echo $error->show_error('DB Error', 'Unable to connect to the database', 'error_db');
                 exit;
             }
             $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
