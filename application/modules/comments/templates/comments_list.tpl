@@ -1,3 +1,7 @@
+<script>
+langs["Hide answers"] = '<?php echo lang("Hide answers", "comments")?>';
+langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
+</script>
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
@@ -278,7 +282,7 @@
                                                                                     <img onclick="expand_Children({$item.id}, $(this))" src="http://ofcite.loc/templates/administrator/images/tree/plus.gif" style="cursor: pointer;">
                                                                                     <img onclick="hide_Children({$item.id}, $(this))" src="http://ofcite.loc/templates/administrator/images/tree/minus.gif" style="cursor: pointer; display: none">
                                                                                     <a onclick="expand_hide_Children($(this), {$item.id})">
-                                                                                        Смотреть ответы
+                                                                                        {lang('Show answers', 'comments')}
                                                                                     </a>
                                                                                 </td>
                                                                             </tr>

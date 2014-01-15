@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-14 12:24+0200\n"
-"PO-Revision-Date: 2014-01-14 12:24+0200\n"
+"POT-Creation-Date: 2014-01-15 03:59+0200\n"
+"PO-Revision-Date: 2014-01-15 03:59+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,19 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/comments/templates/comments_list.tpl:281
+#: ./application/modules/comments/assets/js/admin.js:29
+msgid "Show answers"
+msgstr "Показать ответы"
+
+#: ./application/modules/comments/comments.php:241
+msgid "log in, please."
+msgstr "Войдите, пожалуйста."
+
+#: ./application/modules/comments/assets/js/admin.js:21
+msgid "Hide answers"
+msgstr "Скрыть ответы"
 
 #: ./application/modules/comments/templates/recent_product_comments.tpl:1
 msgid "Recent reviews"
@@ -246,8 +259,8 @@ msgstr "Ограничение комментирования"
 
 # �
 #: ./application/modules/comments/templates/settings.tpl:38
-msgid "Comment frequency restriction  per minute . O - check off"
-msgstr "Ограничение частоты  комментирования в минутах. 0 - Отключить проверку"
+msgid "Comment frequency restriction per minute . O - check off"
+msgstr "Ограничение частоты комментирования в минутах. 0 - Отключить проверку"
 
 #: ./application/modules/comments/templates/settings.tpl:48
 msgid "Forbid comments for unregistered users"
@@ -364,7 +377,7 @@ msgid "Leave a comment"
 msgstr "Оставить коментарий"
 
 #: ./application/modules/comments/commentsapi.php:275
-msgid "Time for new  comment has not yet come"
+msgid "Time for new comment has not yet come"
 msgstr "Время для новых комментариев еще не пришло"
 
 #: ./application/modules/comments/admin.php:106
@@ -399,15 +412,9 @@ msgstr "Комментарий(ии) удален"
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
-# �
-#: comments.php:241
-#, fuzzy
-msgid "Only authorized users can leave comments. <a href=\"%s\" class=\"loginAjax\"> log in </ a>, please."
-msgstr "Только авторизованные пользователи могут оставлять комментарии. <A HREF ="
-
 #: ./application/modules/comments/comments.php:250
 msgid "Commenting on recording is prohibited."
-msgstr "Комментирования  запрещено."
+msgstr "Комментирования запрещено."
 
 #: ./application/modules/comments/comments.php:261
 #, fuzzy
