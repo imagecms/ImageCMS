@@ -130,6 +130,9 @@
                 <div class="btn-remove-item-wl">
                     <button
                         type="button"
+                        data-id="{echo $p.variant_id}"
+                        class="btnRemoveItem"
+                        
                         data-type="json"
                         data-modal="true"
 

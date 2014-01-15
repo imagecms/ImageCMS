@@ -36,6 +36,7 @@ class Search extends MY_Controller {
         $lang = new MY_Lang();
         $lang->load('search');
         //$this->output->enable_profiler(TRUE);
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
     }
 
     // Search pages
@@ -81,7 +82,7 @@ class Search extends MY_Controller {
             /** Data for categories in search * */
             $dataForFoundInCategories = $this->countSearchResults($where);
             $dataForFoundInCategories = $dataForFoundInCategories->result_array();
-           
+
             if ($hash == '') {
                 $result = $this->execute($where, $offset);
             } else {
@@ -356,8 +357,8 @@ class Search extends MY_Controller {
             return $data;
         }
     }
-    
-    private function countSearchResults($where){
+
+    private function countSearchResults($where) {
         // begin query
         if (count($where) > 0) {
             foreach ($where as $params) {
@@ -394,9 +395,8 @@ class Search extends MY_Controller {
                 }
             }
         }
-        
+
         return $res->get($this->table);
-      
     }
 
     // Generate search hash
@@ -431,19 +431,18 @@ class Search extends MY_Controller {
         $categoriesInSearchResults = null;
         $tree = null;
         $categories = array();
-        
+
         if ($foundInCategories != null) {
             $this->load->library('lib_category');
             foreach ($foundInCategories as $key => $value) {
-                if (array_key_exists($value['category'], $categories)){
-                    $categories[$value['category']]['count']++;
-                }else{
+                if (array_key_exists($value['category'], $categories)) {
+                    $categories[$value['category']]['count'] ++;
+                } else {
                     $value['count'] = 1;
                     $categories[$value['category']] = $value;
                 }
-                
             }
-      
+
             $categoriesInSearchResults = $this->prepareCategoriesForSearchResults($categories);
             $tree = $this->lib_category->build();
             $categoriesInfo = $this->lib_category->unsorted();
@@ -456,9 +455,9 @@ class Search extends MY_Controller {
                 'items' => $pages,
                 'categoriesInSearchResults' => $categoriesInSearchResults,
                 'tree' => $tree,
-                'countAll' =>  count($foundInCategories),
+                'countAll' => count($foundInCategories),
                 'categoriesInfo' => $categoriesInfo
-                ));
+            ));
         }
 
         $this->template->show($this->search_tpl);
@@ -475,7 +474,7 @@ class Search extends MY_Controller {
         foreach ($categoriesAll as $key => $value) {
             /** Count of found pages in category * */
             if (array_key_exists($key, $foundInCategories)) {
-                  $categoriesArray[$key] = $foundInCategories[$key]['count'];
+                $categoriesArray[$key] = $foundInCategories[$key]['count'];
             }
             /** For fetched pages * */
             $mainCategory = $key;

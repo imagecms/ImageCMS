@@ -10,6 +10,12 @@ if (!defined('BASEPATH'))
 class Settings extends BaseAdminController {
 
     /**
+     * If TRUE then data will be save for each locale separately
+     * @var boolean
+     */
+    protected $siteInfoLocales = FALSE;
+
+    /**
      * Upload path for images (logo and favicon)
      * @var string
      */
@@ -27,13 +33,18 @@ class Settings extends BaseAdminController {
     }
 
     function index() {
+
         $this->cms_admin->get_langs();
-//cp_check_perm('cp_site_settings');
+        //cp_check_perm('cp_site_settings');
 
         $settings = $this->cms_admin->get_settings();
-
-        $siteinfo = unserialize($settings['siteinfo']);
         unset($settings['siteinfo']);
+
+        $locale = $this->db->select('identif')->where('default', 1)->get('languages')->row_array();
+        $this->load->library('SiteInfo', $locale['identif']);
+
+        $siteinfo = $siteinfo = $this->siteinfo->getSiteInfoData(TRUE);
+
         if (is_array($siteinfo)) {
             $this->template->add_array($siteinfo);
         }
@@ -206,7 +217,12 @@ class Settings extends BaseAdminController {
                 break;
         }
 
-        $siteinfo = $this->processSiteInfo();
+
+        $siData = $this->processSiteInfo();
+
+        $this->siteinfo->setSiteInfoData($siData);
+        $this->siteinfo->normalizeData();
+        $siData = $this->siteinfo->getSiteInfoData();
 
         $data_m = array(
             'create_keywords' => $this->input->post('create_keywords'),
@@ -226,7 +242,7 @@ class Settings extends BaseAdminController {
             'yandex_metric' => $this->input->post('yandex_metric'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
-            'siteinfo' => serialize($siteinfo)
+            'siteinfo' => serialize($siData)
         );
 
         /** Save template path for shop * */
@@ -257,9 +273,13 @@ class Settings extends BaseAdminController {
      * @return array siteinfo data
      */
     protected function processSiteInfo() {
-        $this->activeTemplateName = getActiveTemplateName();
 
-// getting all parameters with keys
+        $this->load->library('SiteInfo', $_POST['siteinfo_locale']);
+        unset($_POST['siteinfo_locale']);
+
+        $this->activeTemplateName = $this->siteinfo->getActiveTemplateName();
+
+        // getting all parameters with keys
         $siteinfo = array();
         foreach ($_POST as $key => $value) {
             if (0 === strpos($key, "siteinfo_")) {
@@ -272,7 +292,6 @@ class Settings extends BaseAdminController {
         $additional = array();
         $countKeys = count($siteinfo['siteinfo_contactkey']);
         $countValues = count($siteinfo['siteinfo_contactvalue']);
-
         if ($countKeys == $countValues & $countValues > 0) {
             for ($i = 0; $i < $countKeys; $i++) {
                 if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i])) {
@@ -287,7 +306,7 @@ class Settings extends BaseAdminController {
 
         $siteinfo['contacts'] = $additional;
 
-        $this->imagesPath = getFaviconLogoPath();
+        $this->imagesPath = $this->siteinfo->getFaviconLogoPath();
 
         $config['upload_path'] = $this->imagesPath;
         $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
@@ -295,8 +314,19 @@ class Settings extends BaseAdminController {
         $this->load->library('upload', $config);
 
         // upload or delete (or do nothing) favicon and logo
-        $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
-        $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
+        if ($_POST['si_delete_favicon'] == 1) {
+            if (isset($siteinfo['siteinfo_favicon'][$this->activeTemplateName]))
+                unset($siteinfo['siteinfo_favicon'][$this->activeTemplateName]);
+        } else {
+            $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
+        }
+
+        if ($_POST['si_delete_logo'] == 1) {
+            if (isset($siteinfo['siteinfo_logo'][$this->activeTemplateName]))
+                unset($siteinfo['siteinfo_logo'][$this->activeTemplateName]);
+        } else {
+            $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
+        }
 
         // saving admin's email in application/config/auth.php
         $authFullPath = "./application/config/auth.php";
@@ -312,6 +342,12 @@ class Settings extends BaseAdminController {
         return $siteinfo;
     }
 
+    public function getSiteInfoDataJson() {
+        $this->load->library('SiteInfo', $_POST['locale']);
+        $data = $this->siteinfo->getSiteInfoData(TRUE);
+        echo json_encode(array_merge($data, array('locale' => $_POST['locale'])));
+    }
+
     /**
      * 
      * @param type $paramName
@@ -320,7 +356,7 @@ class Settings extends BaseAdminController {
     protected function processLogoOrFavicon($paramName, &$siteinfo) {
         // setting old value
 
-        $oldValue = getSiteInfo($paramName);
+        $oldValue = $this->siteinfo->getSiteInfo($paramName);
         $siteinfo[$paramName] = !empty($oldValue) ? $oldValue : '';
         if (isset($_FILES[$paramName])) {
             // deleting files if such exist and param $this->siteInfoDeleteFiles is set to TRUE
@@ -335,12 +371,6 @@ class Settings extends BaseAdminController {
             } else {
                 $uploadData = $this->upload->data();
                 $siteinfo[$paramName][$this->activeTemplateName] = $uploadData['file_name'];
-            }
-        } else {
-            // if delete image
-            if ($_POST[$paramName] == 1) {
-                if (isset($siteinfo[$paramName][$this->activeTemplateName]))
-                    unset($siteinfo[$paramName][$this->activeTemplateName]);
             }
         }
     }
@@ -373,3 +403,4 @@ class Settings extends BaseAdminController {
 }
 
 /* End of settings.php */
+

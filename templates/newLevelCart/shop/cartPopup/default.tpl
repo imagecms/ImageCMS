@@ -20,7 +20,7 @@
                                 {if $item->instance === "SProducts"}
                                     <tr data-id="{echo $item->getId()}" class="items items-bask cart-product">
                                         <td class="frame-remove-bask-btn">
-                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove('{echo $item->getId()}', '{site_url("shop/cart/api/removeProductByVariantId/".$item->getId())}')"></button>
+                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()})"></button>
                                         </td>
                                         <td class="frame-items">
                                             <a href="{echo shop_url('product/'.$item->getSProducts()->getUrl())}" title="{echo $item->getName()}" class="frame-photo-title">
@@ -57,7 +57,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
 
@@ -83,7 +83,7 @@
                                                         {if $NextCSId}
                                                             <span class="price-add">
                                                                 <span>
-                                                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice * $item->quantity, $NextCSId)}</span>
+                                                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
                                                                     <span class="curr">{$NextCS}</span>
                                                                 </span>
                                                             </span>
@@ -96,7 +96,7 @@
                                 {else:}
                                     <tr class="row-kits" data-id="{echo $item->getId()}">
                                         <td class="frame-remove-bask-btn">
-                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove('{$item->getId()}', '{site_url("shop/cart/api/removeKit/".$item->getId())}')"></button></button>
+                                            <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()}, true)"></button></button>
                                         </td>
                                         <td class="frame-items frame-items-kit">
                                             <ul class="items items-bask">
@@ -141,16 +141,16 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                                <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
                                         <td class="frame-cur-sum-price">
                                             <span class="title">{lang('Сумма','newLevel')}: </span>
                                             <div class="frame-prices f-s_0">
-                                                {if ShopCore::app()->SCurrencyHelper->convert($kitItem->originPrice) != ShopCore::app()->SCurrencyHelper->convert($kitItem->price)}
+                                                {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                                     <span class="price-discount">
                                                         <span>
-                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($kitItem->originPrice * $kitItem)}</span>
+                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice * $item->quantity)}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
@@ -158,10 +158,18 @@
                                                 <span class="current-prices f-s_0">
                                                     <span class="price-new">
                                                         <span>
-                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($kitItem->price)}</span>
+                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price)}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
+                                                    {if $NextCSId}
+                                                        <span class="price-add">
+                                                            <span>
+                                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
+                                                                <span class="curr">{$NextCS}</span>
+                                                            </span>
+                                                        </span>
+                                                    {/if}
                                                 </span>
                                             </div>
                                         </td>
@@ -177,10 +185,10 @@
             <div class="header-frame-foot">
                 <div class="inside-padd">
                     <div class="clearfix">
-                        {if $discount_val}
+                        {if $cartOriginPrice - $cartPrice > 0}
                             <span class="frame-discount">
                                 <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
-                                <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
+                                <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice - $cartPrice)}</span> <span class="curr">{$CS}</span></span>
                             </span>
                         {/if}
                         <div class="btn-form f_l isCart">
@@ -191,7 +199,7 @@
                         <span class="s-t">{lang('Всего','newLevel')}:</span>
                         <span class="frame-cur-sum-price">
                             <span class="frame-prices f-s_0">
-                                {if $discount_val}
+                                {if $cartOriginPrice - $cartPrice > 0}
                                     <span class="price-discount">
                                         <span class="frame-discount">
                                             <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>

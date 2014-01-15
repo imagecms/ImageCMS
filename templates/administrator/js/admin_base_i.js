@@ -1087,7 +1087,7 @@ $(document).ready(function() {
 
     /** Check is GD lib is installed **/
     function checkGDIsInstalled() {
-        var result=false;
+        var result = false;
         $.ajax({
             async: false,
             url: "/admin/components/run/shop/settings/checkGDLib/",
@@ -1438,7 +1438,9 @@ $(document).ready(function() {
     /* ----------------------- Siteinfo ---------------------------*/
 
     // for adding contacts rows in Admin panel - system - site config - site info
-    $("#siteinfo_addcontact").die('click').live("click", function() {
+    $("#siteinfo_addcontact").die('click').live("click", addSiteInfoContactRow);
+
+    function addSiteInfoContactRow() {
         var trs = $("#siteinfo_contacts_table tr").clone();
         var firstTr = trs[0];
         $(firstTr)
@@ -1450,10 +1452,11 @@ $(document).ready(function() {
             trigger: 'hover',
             placement: 'top'
         });
-    });
+    }
 
     // for deleting contact rows
-    $("#site_info_tab").delegate("#siteinfo_contacts_table .si_remove_contact_row", "click", function() {
+    $("#siteinfo_contacts_table .si_remove_contact_row").die('click').live("click", function() {
+        //$("#site_info_tab").delegate("#siteinfo_contacts_table .si_remove_contact_row", "click", function() {
         var countOfRows = $("#site_info_tab #siteinfo_contacts_table tr").size();
         if (countOfRows > 1) {
             $(this).parents(".siteinfo_contact_row").remove();
@@ -1496,7 +1499,8 @@ $(document).ready(function() {
     });
 
     // delete image buttons
-    $("#site_info_tab").delegate('.remove_btn', "click", function() {
+    $(".remove_btn").die('change').live("click", function() {
+        //$("#site_info_tab").delegate('.remove_btn', "click", function() {
         // setting hidden input value to 1 delete for delete image on saving
         $(this).parents(".control-group").find("input.si_delete_image").val("1");
         // display some message about deleting
@@ -1506,14 +1510,52 @@ $(document).ready(function() {
 
     });
     // the delete button appears only on image hover
-    $("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
+    $(".siteinfo_image_container").die('change').live("mouseover", function() {
+        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
         $(this).find(".remove_btn").show();
     });
-    $("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
+    $(".siteinfo_image_container").die('change').live("mouseout", function() {
+        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
         $(this).find(".remove_btn").hide();
     });
 
+    var siteInfoLocalesDataCache = {};
+    $("#siteinfo_locale").die('change').live("change", function() {
+        //$("#site_info_tab").delegate('#siteinfo_locale', 'change', function() {
+        var locale = $(this).val();
+        if (typeof siteInfoLocalesDataCache[locale] != 'undefined') {
+            changeSiteInfoLocaleParams(siteInfoLocalesDataCache[locale]);
+        } else {
+            $.post('/admin/settings/getSiteInfoDataJson', {locale: locale}, changeSiteInfoLocaleParams, "json");
+        }
 
+    });
+
+
+    function changeSiteInfoLocaleParams(params) {
+        $('#siteinfo_companytype').val(params.siteinfo_companytype);
+        $('#siteinfo_address').val(params.siteinfo_address);
+        $('#siteinfo_mainphone').val(params.siteinfo_mainphone);
+        $('#siteinfo_adminemail').val(params.siteinfo_adminemail);
+
+        $('.si_remove_contact_row').trigger('click'); // deleting all contacts rows
+
+        var i = 0;
+        for (var k in params.contacts) {
+            if (i > 0) {
+                addSiteInfoContactRow();
+            }
+            $("#siteinfo_contacts_table tr:last-child .siteinfo_contactkey").val(k);
+            $("#siteinfo_contacts_table tr:last-child .siteinfo_contactvalue").val(params.contacts[k]);
+            i++;
+        }
+        siteInfoLocalesDataCache[params.locale] = params;
+    }
+
+    $('button.formSubmit').die('click').live('click', function() {
+        delete(siteInfoLocalesDataCache);
+        siteInfoLocalesDataCache = {};
+    });
 
 
     /* --------------------- end of Siteinfo -------------------------*/

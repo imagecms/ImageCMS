@@ -95,7 +95,7 @@ class Discount_order extends classes\BaseDiscount {
             $discount = $discobj->init($cart)->get_result_discount(1);           
             
             if ($discount['result_sum_discount']){                
-                $cart->setTotalPrice($cart->getOriginTotalPrice() - $discount['result_sum_discount'] );
+                $cart->setTotalPrice($cart->getOriginTotalPrice() - $discount['result_sum_discount'] - $cart->getDiscountKits());
                 $cart->discount_info = $discount;
                 $this->updatediskapply($discount['max_discount']['key']);
                 
