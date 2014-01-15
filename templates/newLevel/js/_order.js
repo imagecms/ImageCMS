@@ -23,7 +23,7 @@ var Order = {
         $(genObj.pM).next().show();
         $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
             var data = JSON.parse(dataStr),
-                    replaceStr = '';
+            replaceStr = '';
             if (selectPayment)
                 replaceStr = _.template($('#orderPaymentSelect').html(), {
                     data: data
@@ -41,19 +41,27 @@ var Order = {
                 $(genObj.pM).nStRadio({
                     wrapper: $(".frame-radio > .frame-label"),
                     elCheckWrap: '.niceRadio'
-                            //,classRemove: 'b_n'//if not standart
+                //,classRemove: 'b_n'//if not standart
                 });
         });
     },
     displayOrderSum: function(obj) {
+        var ca = "";
+        if (selectDeliv)
+            ca = $(genObj.frameDelivery).find('span.cuselActive');
+        else
+            ca = $(methodDeliv).filter(':checked');
+        Shop.Cart.shipping = parseFloat(ca.data('price'));
+        Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
+        $(genObj.shipping).html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
         
         var discount = Shop.Cart.discount,
-                kitDiscount = parseFloat(Shop.Cart.kitDiscount),
-                finalAmount = Shop.Cart.getFinalAmount();
+        kitDiscount = parseFloat(Shop.Cart.kitDiscount),
+        finalAmount = Shop.Cart.getFinalAmount();
 
         if (Shop.Cart.koefCurr == undefined) {
             var sumBask = parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision),
-                    addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
+            addSumBask = parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision);
             Shop.Cart.koefCurr = addSumBask / sumBask;
         }
 
@@ -67,15 +75,6 @@ var Order = {
         $(genObj.finalAmount).html(parseFloat(finalAmount).toFixed(pricePrecision));
         $(genObj.finalAmountAdd).html((Shop.Cart.koefCurr * finalAmount).toFixed(pricePrecision));
         
-        var ca = "";
-        if (selectDeliv)
-            ca = $(genObj.frameDelivery).find('span.cuselActive');
-        else
-            ca = $(methodDeliv).filter(':checked');
-        Shop.Cart.shipping = parseFloat(ca.data('price'));
-        Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
-        $(genObj.shipping).html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
-
         $(genObj.frameGenSumDiscount).hide();
         $(genObj.genSumDiscount).hide();
         $(genObj.totalPrice).hide();
@@ -200,7 +199,7 @@ $(document).on('scriptDefer', function() {
         $(genObj.pM).nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
             elCheckWrap: '.niceRadio'
-                    //,classRemove: 'b_n'//if not standart
+        //,classRemove: 'b_n'//if not standart
         });
 
     $(document).on('sync_cart', function() {
