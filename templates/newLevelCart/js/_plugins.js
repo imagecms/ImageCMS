@@ -2233,17 +2233,13 @@ function getCookie(c_name)
                     'datas': data,
                     'settings': set
                 });
-                methods._checkMethod(function() {
-                    methods.heightContent(drop)
-                })
                 wnd.off('resize.' + $.drop.nS).on('resize.' + $.drop.nS, function() {
+                    methods._checkMethod(function() {
+                        methods.limitSize(drop)
+                    });
                     methods._checkMethod(function() {
                         methods.heightContent(drop)
                     });
-                    if (place !== 'inherit')
-                        methods._checkMethod(function() {
-                            methods[place](drop)
-                        });
                 });
                 if (condOverlay) {
                     drop.data('drp').dropOver.fadeIn($thisD / 2);
@@ -2302,7 +2298,6 @@ function getCookie(c_name)
                         methods._checkMethod(function() {
                             methods[place](drop)
                         })
-
                     var href = $this.attr('href');
                     if (href !== undefined) {
                         var wlh = window.location.hash;
@@ -2316,13 +2311,13 @@ function getCookie(c_name)
                             $.drop.dP.closeDropTime = setTimeout(function() {
                                 methods.close(drop);
                             }, timeclosemodal);
+                        
                         methods._checkMethod(function() {
                             methods.limitSize(drop)
+                        });
+                        methods._checkMethod(function() {
+                            methods.heightContent(drop)
                         })
-                        if (place != 'inherit')
-                            methods._checkMethod(function() {
-                                methods[place](drop)
-                            })
 
                         var cB = elAfter;
                         if (cB !== undefined) {

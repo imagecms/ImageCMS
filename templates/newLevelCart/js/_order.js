@@ -3,26 +3,14 @@ if (selectDeliv)
 else
     var methodDeliv = '[name = "deliveryMethodId"]';
 var Order = {
-    changeDeliveryMethod: function(id) {
+    changeDeliveryMethod: function(id, tpl) {
         $(genObj.pM).next().show();
-        $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
-            var data = JSON.parse(dataStr),
-            replaceStr = '';
+        $.get('/shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
+            $(genObj.framePaymentMethod).html(data).next().hide();
             if (selectPayment)
-                replaceStr = _.template($('#orderPaymentSelect').html(), {
-                    data: data
-                });
-            else {
-                replaceStr = _.template($('#orderPaymentRadio').html(), {
-                    data: data
-                });
-            }
-            $(genObj.pM).html(replaceStr);
-            $(genObj.pM).next().hide();
-            if (selectPayment)
-                cuselInit($(genObj.pM), '#paymentMethod');
+                cuselInit($(genObj.framePaymentMethod), $(genObj.pM));
             else
-                $(genObj.pM).nStRadio({
+                $(genObj.framePaymentMethod).nStRadio({
                     wrapper: $(".frame-radio > .frame-label"),
                     elCheckWrap: '.niceRadio'
                 //,classRemove: 'b_n'//if not standart
@@ -51,16 +39,16 @@ $(document).on('scriptDefer', function() {
     else {
         $(".check-variant-delivery").nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
-            elCheckWrap: '.niceRadio',
-            //classRemove: 'b_n', //if not standart
+            elCheckWrap: '.niceRadio'
+            //,classRemove: 'b_n', //if not standart
+            ,
             before: function(el) {
                 $(document).trigger('showActivity');
                 $('[name="' + $(el).find('input').attr('name') + '"]').attr('disabled', 'disabled');
             },
             after: function(el, start) {
                 if (!start) {
-                    var activeVal = el.find('input').val();
-                    Order.changeDeliveryMethod(activeVal);
+                    Order.changeDeliveryMethod(el.find('input').val());
                     $('[name="' + $(el).find('input').attr('name') + '"]').removeAttr('disabled')
                 }
             }
@@ -68,7 +56,7 @@ $(document).on('scriptDefer', function() {
     }
 
     if (selectPayment)
-        cuselInit($(genObj.pM), '#paymentMethod');
+        cuselInit($(genObj.frameDelivery), '#paymentMethod');
 
     else
         $(genObj.pM).nStRadio({

@@ -702,7 +702,7 @@ function ieBoxSize(els) {
 function cuselInit(el, sel) {
     el = el == undefined ? body : el;
     sel = sel == undefined ? cuselOptions.changedEl : sel;
-    if ($.existsN(el.find(cuselOptions.changedEl)) && $.isFunction(window.cuSel)) {
+    if ($.existsN(el.find(sel)) && $.isFunction(window.cuSel)) {
         cuSel($.extend({}, cuselOptions, {
             changedEl: sel
         }));
