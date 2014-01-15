@@ -59,9 +59,7 @@ return aP==aa&&aO==I}).bind("touchend.jsp",function(aO){s=false}).bind("click.js
 
 //_plugins.js
 
-
 //_shop.js
-
 
 //_global_vars_objects.js
 
