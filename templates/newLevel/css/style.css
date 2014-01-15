@@ -59,6 +59,9 @@ article, .container, .special-proposition > .frame-title{max-width: 980px;}
 
 .left-cart{float: left;width: 45%;}
 .right-cart{float: right;width: 52%;}
+.vertical-layout .left-cart, .vertical-layout .right-cart{float: none;}
+.vertical-layout .left-cart{width: 80%;margin-bottom: 40px;}
+.vertical-layout .right-cart{width: 80%;}
 
 .left-order{float: left;width: 45%;}
 .right-order{float: right;width: 52%;}

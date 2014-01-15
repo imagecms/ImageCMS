@@ -30,6 +30,8 @@
 				<td style="padding:10px"><textarea rows="2" cols="30" name="com" style="width:200px; border: 1px inset #555;">{$inv_desc}</textarea></td>
 			</tr>
 		</table>
-		<p style="text-align:center;"><input type="submit" value="{lang('Выставить счёт за покупку','newLevel')}" style=" padding:10px 0;border:none; background:url(https://ishop.qiwi.ru/img/button/superBtBlue.jpg) no-repeat 0 50%; color:#fff; width:300px;"/></p>
+		<div class="btn-cart btn-cart-p">
+                    <input type="submit" value="{lang('Выставить счёт за покупку','newLevel')}" style=" padding:10px 0;border:none; background:url(https://ishop.qiwi.ru/img/button/superBtBlue.jpg) no-repeat 0 50%; color:#fff; width:300px;"/>
+                </div>
 	</form>
 </div>
