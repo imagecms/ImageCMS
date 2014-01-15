@@ -58,7 +58,6 @@
                     <!-- End. Show banner on home page. -->
                 {/if}
             </div>
-            {var_dump($CI->core->core_data['data_type')}
             {$content}
             <div class="h-footer"></div>
         </div>

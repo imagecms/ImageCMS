@@ -130,6 +130,9 @@
                 <div class="btn-remove-item-wl">
                     <button
                         type="button"
+                        data-id="{echo $p.variant_id}"
+                        class="btnRemoveItem"
+                        
                         data-type="json"
                         data-modal="true"
 
@@ -137,7 +140,7 @@
                         data-effect-on="fadeIn"
                         data-effect-off="fadeOut"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
-                        data-after="removeItem"
+                        data-after="WishListFront.removeItem"
                         ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
                 </div>
                 <div class="btn-move-item-wl">

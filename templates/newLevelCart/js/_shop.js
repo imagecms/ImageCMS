@@ -60,7 +60,7 @@ var Shop = {
             });
             $.ajax({
                 'type': 'get',
-                'url': siteUrl + 'shop/cart/api/' + method,
+                'url': siteUrl + 'shop/cart/api/' + method+ '/' + id,
                 'data': {
                     'quantity': count
                 },
