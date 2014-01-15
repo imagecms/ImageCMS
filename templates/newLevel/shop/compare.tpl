@@ -176,5 +176,5 @@
     </div>
 </div>
 <script type="text/javascript">
-    initDownloadScripts(['_jquery.equalhorizcell', 'cusel-min-2.5', '_compare'], '', '');
+    initDownloadScripts(['jquery.equalhorizcell', 'cusel-min-2.5', 'compare'], '', '');
 </script>

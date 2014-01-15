@@ -10,6 +10,7 @@
 {foreach $products as $key => $p}
 
     {if is_array($p) && $p.id}
+        {$pArray = $p;}
         {$p = getProduct($p.id)}
     {/if}
 
