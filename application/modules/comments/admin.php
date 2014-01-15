@@ -61,7 +61,8 @@ class Admin extends BaseAdminController {
                 break;
         }
 
-        $comments = $this->comments->all($this->per_page, $off_set);
+//        $comments = $this->comments->all($this->per_page, $off_set);
+        $comments = $this->comments->all(0, 0, $status_all);
 
         if ($comments == FALSE AND $off_set > $this->per_page - 1) {
             redirect('admin/components/cp/comments/index/status/' . $segs['status']);
@@ -89,6 +90,24 @@ class Admin extends BaseAdminController {
 
             $this->db->from('comments');
             $total = $this->db->count_all_results();
+
+
+
+
+            if (is_array($comments))
+                $children = $this->proccess_child_comments($comments);
+
+            if (is_array($comments))
+                $children = $this->proccess_child_comments($comments);
+
+            foreach ($comments as $key => $comment) {
+                if ($comment['parent'] != 0 && $status_all != 1 && $status_all != 2) {
+                    unset($comments[$key]);
+                }
+            }
+
+            $total = count($comments);
+
 
             if ($total > $this->per_page) {
                 $this->load->library('Pagination');
@@ -124,42 +143,39 @@ class Admin extends BaseAdminController {
 
         $this->load->helper('string');
 
-        if (is_array($comments))
-            $comments = $this->proccess_child_comments($comments);
 
-        $all_comments = count($this->db->get('comments')->result_array());
+        if ($comments) {
+            $comments = array_splice($comments, (int) $off_set, (int) $this->per_page);
+        } else {
+            $comments = array();
+        }
+
+//        $all_comments = count($this->db->get('comments')->result_array());
+        \CMSFactory\assetManager::create()->registerScript('admin');
         $this->render('comments_list', array(
             'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
             'comments' => $comments,
             'status' => $status,
+            'children' => $children,
             'total_waiting' => $this->comments->count_by_status(1),
             'total_spam' => $this->comments->count_by_status(2),
             'total_app' => $this->comments->count_by_status(0),
-            'all_comm_show' => $all_comments,
+            'all_comm_show' => $total,
         ));
     }
 
     public function proccess_child_comments($comments = array()) {
+        $children = array();
         $i = 0;
         foreach ($comments as $comment) {
             if ($comment['parent'] != 0) {
-                //$comments[$comment['parent']]['child'][] = $comment;
                 $children[$comment['parent']][] = $comment;
                 unset($comments[$i]);
             }
             $i++;
         }
-        $i = 0;
-        if (count($children) > 0) {
-            foreach ($comments as $ck => $cv) {
-                foreach ($children as $k => $v) {
-                    if ($cv['id'] == $k) {
-                        $comments[$ck]['child'] = $v;
-                    }
-                }
-            }
-        }
-        return $comments;
+
+        return $children;
     }
 
     public function render($viewName, array $data = array(), $return = false) {

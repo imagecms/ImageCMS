@@ -9,10 +9,10 @@
         <div class="inside-padd">
             <div class="horizontal-form">
                 <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('{site_url("/auth/authapi/forgot_password")}', '#forgot_password_form', {literal}{drop: '.drop-forgot', callback: function(msg, status, form, DS) {
-                    if (status) {
-                        hideDrop(DS.drop, form, DS.durationHideForm);
-                    }
-                }}{/literal});
+                                if (status) {
+                                    hideDrop(DS.drop, form, DS.durationHideForm);
+                                }
+                            }}{/literal});
                         return false;">
                     <div class="horizontal-form">
                         <label>

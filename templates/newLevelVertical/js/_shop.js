@@ -11,6 +11,11 @@ if (!Array.indexOf) {
         return -1;
     }
 }
+var returnMsg = function(msg) {
+    if (window.console) {
+        console.log(msg);
+    }
+};
 var Shop = {
     //var Cart = new Object();
     currentItem: {},
@@ -32,7 +37,7 @@ var Shop = {
             vId: null
         },
         add: function(cartItem, show, addEvent) {
-            var obj = this;
+            var _this = this;
             $(document).trigger({
                 type: 'before_add_to_cart',
                 cartItem: _.clone(cartItem)
@@ -51,13 +56,14 @@ var Shop = {
                 url += '/ShopKit';
             }
             $.get(url, data,
-                    function() {
-                        var currentItem = obj.load(cartItem.storageId());
+                function(data) {
+                    if (JSON.parse(data).success) {
+                        var currentItem = _this.load(cartItem.storageId());
                         if (currentItem)
                             currentItem.count += cartItem.count;
                         else
                             currentItem = cartItem;
-                        obj.save(currentItem);
+                        _this.save(currentItem);
 
                         Shop.Cart.lastAdd.id = currentItem.id;
                         Shop.Cart.lastAdd.vId = currentItem.vId;
@@ -75,13 +81,19 @@ var Shop = {
                                 show: show
                             });
                         }
-                    });
+                        returnMsg("=== added to Cart. call after_add_to_cart===");
+                    }
+                    else {
+                        $(document).trigger('hideActivity');
+                        returnMsg("=== Error. added to Cart ===");
+                    }
+                });
             return this;
         },
         chCount: function(cartItem, f) {
             Shop.Cart.currentItem = this.load(cartItem.storageId());
             if (Shop.Cart.currentItem) {
-                if (Shop.Cart.currentItem.count != cartItem.count) {
+                if (Shop.Cart.currentItem.count != cartItem.count && cartItem.count != 0) {
                     Shop.Cart.currentItem.count = cartItem.count;
                     Shop.currentCallbackFn = f;
                     if (cartItem.kit)
@@ -92,16 +104,24 @@ var Shop = {
                         recount: 1
                     };
                     postData[postName] = cartItem.count;
+                    $(document).trigger('showActivity');
                     $.post(siteUrl + 'shop/cart_api/recount', postData, function(data) {
                         var dataObj = JSON.parse(data);
-                        if (dataObj.hasOwnProperty('count'))
-                            Shop.Cart.currentItem.count = dataObj.count;
-                        Shop.Cart.save(Shop.Cart.currentItem);
-                        (Shop.currentCallbackFn());
-                        $(document).trigger({
-                            type: 'count_changed',
-                            cartItem: _.clone(cartItem)
-                        });
+                        if (dataObj.success) {
+                            if (_.has(dataObj, 'count'))
+                                Shop.Cart.currentItem.count = dataObj.count;
+                            Shop.Cart.save(Shop.Cart.currentItem);
+                            (Shop.currentCallbackFn());
+                            $(document).trigger({
+                                type: 'count_changed',
+                                cartItem: _.clone(cartItem)
+                            });
+                            returnMsg("=== recount Cart Item. call count_changed ===");
+                        }
+                        else {
+                            $(document).trigger('hideActivity');
+                            returnMsg("=== Error. recount Cart Item ===");
+                        }
                     });
                 }
             }
@@ -115,7 +135,7 @@ var Shop = {
             this.totalPriceOrigin = 0;
             for (var i = 0; i < items.length; i++) {
                 var item = items[i],
-                        itemC = item.count == '' ? 0 : item.count;
+                itemC = item.count == '' ? 0 : item.count;
                 if (item.origprice != '')
                     this.totalPriceOrigin += item.origprice * itemC;
                 else
@@ -160,22 +180,29 @@ var Shop = {
         },
         /*work with storage*/
         rm: function(cartItem) {
+            var key = 'SProducts_' + cartItem.id + '_' + cartItem.vId;
             if (cartItem.kitId)
-                var key = 'ShopKit_' + cartItem.kitId;
-            else
-                var key = 'SProducts_' + cartItem.id + '_' + cartItem.vId;
-            $.getJSON(siteUrl + 'shop/cart_api/delete/' + key, function() {
-                localStorage.removeItem('cartItem_' + cartItem.id + '_' + cartItem.vId);
-                $(document).trigger({
-                    type: 'cart_rm',
-                    cartItem: cartItem
-                });
+                key = 'ShopKit_' + cartItem.kitId;
+            $.getJSON(siteUrl + 'shop/cart_api/delete/' + key, function(data) {
+                if (data.success) {
+                    localStorage.removeItem('cartItem_' + cartItem.id + '_' + cartItem.vId);
+                    $(document).trigger({
+                        type: 'cart_rm',
+                        cartItem: cartItem
+                    });
+                    returnMsg("=== remove Cart Item. call cart_rm ===");
+                }
+                else {
+                    $(document).trigger('hideActivity');
+                    returnMsg("=== Error. remove Cart Item ===");
+                }
             });
             return this;
         },
         clear: function() {
             $.getJSON(siteUrl + 'shop/cart_api/clear',
-                    function() {
+                function(data) {
+                    if (data.success) {
                         var items = Shop.Cart.getAllItems();
                         for (var i = 0; i < items.length; i++)
                             localStorage.removeItem(items[i].storageId());
@@ -183,7 +210,13 @@ var Shop = {
                         $(document).trigger({
                             type: 'cart_clear'
                         });
-                    });
+                        returnMsg("=== clear Cart. call cart_clear ===");
+                    }
+                    else {
+                        $(document).trigger('hideActivity');
+                        returnMsg("=== Error. clear Cart ===");
+                    }
+                });
             return this;
         },
         load: function(key) {
@@ -252,11 +285,14 @@ var Shop = {
                     $(document).trigger({
                         type: 'sync_cart'
                     });
+                    returnMsg("=== sync Cart. call sync_cart ===");
                 }
+                else
+                    returnMsg("=== Error. sync Cart ===");
                 $(document).trigger({
                     type: 'end_sync_cart'
                 });
-                if (data == false)
+                if (data === false)
                     Shop.Cart.clear();
             });
             return this;
@@ -318,6 +354,7 @@ var Shop = {
             cartItem.vname = $context.data('vname');
             cartItem.url = $context.data('url');
             cartItem.img = $context.data('img');
+            cartItem.colorname = $context.data('color-name');
             cartItem.prodstatus = $context.data('prodstatus');
             return cartItem;
         }
@@ -335,7 +372,7 @@ var Shop = {
             if (this.items.indexOf(key) === -1) {
                 $.get(siteUrl + 'shop/compare_api/add/' + key, function(data) {
                     try {
-                        dataObj = JSON.parse(data);
+                        var dataObj = JSON.parse(data);
                         dataObj.id = key;
                         if (dataObj.success == true) {
                             Shop.CompareList.items.push(key);
@@ -345,7 +382,10 @@ var Shop = {
                                 dataObj: dataObj
                             });
                         }
+                        returnMsg("=== add Compare Item. call compare_list_add ===");
                     } catch (e) {
+                        returnMsg("=== Error. add Compare ===");
+                        $(document).trigger('hideActivity');
                     }
                 });
             }
@@ -357,7 +397,7 @@ var Shop = {
                 this.items = this.all();
                 $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
                     try {
-                        dataObj = JSON.parse(data);
+                        var dataObj = JSON.parse(data);
                         dataObj.id = key;
                         if (dataObj.success == true) {
                             Shop.CompareList.items = _.without(Shop.CompareList.items, key);
@@ -367,7 +407,10 @@ var Shop = {
                                 dataObj: dataObj
                             });
                         }
+                        returnMsg("=== remove Compare Item. call compare_list_rm ===");
                     } catch (e) {
+                        returnMsg("=== Error. remove Compare Item ===");
+                        $(document).trigger('hideActivity');
                     }
                 });
             }
@@ -388,6 +431,7 @@ var Shop = {
                     type: 'compare_list_sync',
                     dataObj: data
                 });
+                returnMsg("=== Compare sync. call compare_list_sync ===");
             });
         }
     }
@@ -408,6 +452,7 @@ if (typeof (wishList) != 'object')
                     'type': 'wish_list_sync',
                     dataObj: data
                 });
+                returnMsg("=== WishList sync. call wish_list_sync ===");
             })
         }
     }
@@ -443,11 +488,6 @@ var ImageCMSApi = {
     defSet: function() {
         return imageCmsApiDefaults;
     },
-    returnMsg: function(msg) {
-        if (window.console) {
-            console.log(msg);
-        }
-    },
     formAction: function(url, selector, obj) {
         //collect data from form
         var DS = $.extend($.extend({}, this.defSet()), obj)
@@ -463,7 +503,7 @@ var ImageCMSApi = {
             url: url,
             dataType: "json",
             beforeSend: function() {
-                ImageCMSApi.returnMsg("=== Sending api request to " + url + "... ===");
+                returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
                 $(document).trigger({
@@ -472,8 +512,8 @@ var ImageCMSApi = {
                 });
                 if (obj !== null) {
                     var form = $(selector);
-                    ImageCMSApi.returnMsg("[status]:" + obj.status);
-                    ImageCMSApi.returnMsg("[message]: " + obj.msg);
+                    returnMsg("[status]:" + obj.status);
+                    returnMsg("[message]: " + obj.msg);
 
                     if (((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != '')))
                         $(document).trigger({
@@ -484,7 +524,7 @@ var ImageCMSApi = {
 
                     if (typeof DS.callback == 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
-                    else
+                    else if(obj.status === true)
                         setTimeout((function() {
                             form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
@@ -500,13 +540,14 @@ var ImageCMSApi = {
                             location.href = obj.redirect;
                     }, DS.durationHideForm);
 
-                    if (obj.status == true) {
+                    if ($.trim(obj.msg) !== '' && obj.validations === undefined) {
                         if (DS.hideForm)
                             form.hide();
+                        var type = obj.status === true ? 'success' : 'error';
                         if (DS.messagePlace == 'ahead')
-                            $(message.success(obj.msg)).prependTo(form.parent());
+                            $(message[type](obj.msg)).prependTo(form.parent());
                         if (DS.messagePlace == 'behind')
-                            $(message.success(obj.msg)).appendTo(form.parent());
+                            $(message[type](obj.msg)).appendTo(form.parent());
                         $(document).trigger({
                             'type': 'imageapi.pastemsg',
                             'el': form.parent()
@@ -520,25 +561,26 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                                form = $this.closest('form'),
-                                $thisТ = $this.attr('name'),
-                                elMsg = form.find('[for=' + $thisТ + ']');
+                        form = $this.closest('form'),
+                        $thisТ = $this.attr('name'),
+                        elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
-                            elMsg.hide();
+                            elMsg.remove();
                             $(document).trigger({
                                 'type': 'imageapi.hidemsg',
                                 'el': form
-                            })
+                            });
+                            $this.focus();
                         }
                     });
                 }
                 return this;
             }
         }).done(function() {
-            ImageCMSApi.returnMsg("=== Api request success!!! ===");
+            returnMsg("=== Api request success!!! ===");
         }).fail(function() {
-            ImageCMSApi.returnMsg("=== Api request breake with error!!! ===");
+            returnMsg("=== Api request breake with error!!! ===");
         });
         return;
     },
@@ -562,14 +604,15 @@ var ImageCMSApi = {
                     var input = sel.find('[name=' + key + ']');
                     input.addClass(DS.err);
                     input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, sel));
-                    var finput = sel.find(':input.' + DS.err + ':first');
-                    finput.setCursorPosition(finput.val().length);
                 }
-                if (i == Object.keys(validations).length)
+                if (i == Object.keys(validations).length){
                     $(document).trigger({
                         'type': 'imageapi.pastemsg',
                         'el': sel.parent()
                     })
+                    var finput = sel.find(':input.' + DS.err + ':first');
+                    finput.setCursorPosition(finput.val().length);
+                }
                 i++;
             }
         } else {

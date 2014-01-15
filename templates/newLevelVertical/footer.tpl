@@ -4,7 +4,7 @@
         <div class="box-1">
             <div class="inside-padd">
                 <div class="main-title">{lang('Сайт','newLevel')}</div>
-                <ul>
+                <ul class="nav nav-vertical">
                     {load_menu('top_menu')}
                 </ul>
             </div>
@@ -12,7 +12,9 @@
         <div class="box-2">
             <div class="inside-padd">
                 <div class="main-title">{lang('Продукция','newLevel')}</div>
-                {\Category\RenderMenu::create()->setConfig(array('cache'=>FALSE))->load('footer_category_menu')}
+                <ul class="footer-category-menu nav nav-vertical">
+                    {\Category\RenderMenu::create()->setConfig(array('cache'=>FALSE))->load('footer_category_menu')}
+                </ul>
             </div>
         </div>
         <!--End. Load menu in footer-->
@@ -21,7 +23,7 @@
         <div class="box-3">
             <div class="inside-padd">
                 <div class="main-title">{lang('Пользователь','newLevel')}</div>
-                <ul>
+                <ul class="nav nav-vertical">
                     {if $is_logged_in}
                         <li>
                             <button type="button" onclick="location = '{site_url('auth/logout')}'" title="{lang('Выход','newLevel')}">{lang('Выход','newLevel')}</button>
@@ -44,8 +46,8 @@
                         {$count = count($compare);}
                         {if $count > 0}
                             <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="{lang('Список сравнений','newLevel')}">{lang('Список сравнений','newLevel')}</button></li>
-                            {/if}
                         {/if}
+                    {/if}
                     <li><button type="button" data-trigger="[data-drop='#ordercall']" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
                 </ul>
             </div>
