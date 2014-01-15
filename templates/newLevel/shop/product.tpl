@@ -579,7 +579,7 @@
             <div id="view">
                 {if $dl_properties}
                     <div class="inside-padd">
-                        <h2>{lang('Свойства','newLevel')}</h2>
+                        <div class="title-h2">{lang('Свойства','newLevel')}</div>
                         <div class="characteristic">
                             <div class="product-charac patch-product-view">
                                 {echo $dl_properties}
@@ -755,5 +755,5 @@
 <!-- End. JS vars-->
 
 <script type="text/javascript">
-    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', '_product'], 'initPhotoTrEv', 'initPhotoTrEv');
+    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>
