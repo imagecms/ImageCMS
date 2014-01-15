@@ -468,7 +468,7 @@ function pluralStr(i, str) {
 }
 function serializeForm(el) {
     var $this = $(el);
-    return $this.data('data', $this.closest('form').serialize());
+    return $this.data('datas', $this.closest('form').serialize());
 }
 if (!$.isFunction($.fancybox)) {
     var loadingTimer, loadingFrame = 1;
