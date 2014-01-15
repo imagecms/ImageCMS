@@ -28,7 +28,7 @@ class Comments extends MY_Controller {
         $this->load->helper('cookie');
         $CI = &get_instance();
         $obj = new MY_Lang();
-        $obj->load('comments'); 
+        $obj->load('comments');
     }
 
     /**
@@ -238,7 +238,7 @@ class Comments extends MY_Controller {
         // Check access only for registered users
         if ($this->can_comment === 1 AND $this->dx_auth->is_logged_in() == FALSE) {
             ($hook = get_hook('comments_login_for_comments')) ? eval($hook) : NULL;
-            $this->core->error(lang('Only authorized users can leave comments. <a href="%s" class="loginAjax"> log in </ a>, please.', 'comments'));
+            $this->core->error(lang('Only authorized users can leave comments.', 'comments') . '<a href="%s" class="loginAjax"> ' . lang('log in, please.', 'comments') . '</ a>');
         }
 
         $item_id = $this->input->post('comment_item_id');
