@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
-(1, 'user_manager', 'user_manager', 0, 0, 1, NULL, 20),
+(1, 'user_manager', 'user_manager', 0, 0, 0, NULL, 20),
 (2, 'auth', 'auth', 1, 0, 0, NULL, 28),
 (4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 10),
 (7, 'navigation', 'navigation', 0, 0, 0, NULL, 29),
@@ -219,7 +219,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (261, 'trash', 'trash', 0, 1, 1, NULL, 6),
 (264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 23),
 (265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 13),
-(267, 'translator', 'translator', 1, 1, 0, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 0),
+(267, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 0),
 (268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 19);
 
 -- --------------------------------------------------------
