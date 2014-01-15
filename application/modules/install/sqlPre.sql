@@ -215,17 +215,17 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (216, 'new_level', 'new_level', 1, 1, 1, 'a:3:{s:15:"propertiesTypes";a:2:{i:0;s:6:"scroll";i:2;s:8:"dropDown";}s:7:"columns";a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}s:5:"thema";s:18:"css/color_scheme_1";}', 7),
 (181, 'shop_news', 'shop_news', 1, 1, 0, NULL, 24),
 (179, 'categories_settings', 'categories_settings', 1, 1, 0, NULL, 7),
-(183, 'wishlist', 'wishlist', 1, 1, 1, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', 3),
-(185, 'exchange', 'exchange', 1, 0, 1, 'a:13:{s:3:"zip";s:2:"no";s:8:"filesize";s:7:"2048000";s:7:"validIP";s:9:"127.0.0.1";s:5:"login";s:10:"ad@min.com";s:8:"password";s:5:"admin";s:11:"usepassword";s:2:"on";s:12:"userstatuses";N;s:10:"autoresize";N;s:5:"debug";N;s:5:"email";s:0:"";s:5:"brand";s:0:"";s:18:"userstatuses_after";s:1:"1";s:6:"backup";s:1:"1";}', 4),
+(183, 'wishlist', 'wishlist', 1, 1, 1, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', 4),
+(185, 'exchange', 'exchange', 1, 0, 1, 'a:13:{s:3:"zip";s:2:"no";s:8:"filesize";s:7:"2048000";s:7:"validIP";s:9:"127.0.0.1";s:5:"login";s:10:"ad@min.com";s:8:"password";s:5:"admin";s:11:"usepassword";s:2:"on";s:12:"userstatuses";N;s:10:"autoresize";N;s:5:"debug";N;s:5:"email";s:0:"";s:5:"brand";s:0:"";s:18:"userstatuses_after";s:1:"1";s:6:"backup";s:1:"1";}', 5),
 (188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:41:"Интернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Интернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:472:"<h2>Интернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Интернет-магазин "ImageShop"</p>\n<p>При возникновении любых вопросов, обращайтесь по телефонам:&nbsp;<br />+38 (044)227-95-72, +38 (050)578-17-40</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:4:"port";s:0:"";}', 4),
-(191, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, 2),
-(253, 'smart_filter', 'smart_filter', 1, 1, 0, NULL, 24),
-(204, 'mobile', 'mobile', 1, 1, 1, 'a:5:{s:15:"MobileVersionON";s:1:"1";s:17:"MobileVersionSite";s:21:"demoshop.imagecms.net";s:20:"MobileVersionAddress";s:23:"m.demoshop.imagecms.net";s:18:"mobileTemplatePath";s:37:"./templates/commerce_mobiles/shop";s:6:"action";s:0:"";}', 5),
-(261, 'trash', 'trash', 0, 1, 1, NULL, 8),
-(264, 'language_switch', 'language_switch', 0, 0, 1, NULL, 21),
-(265, 'star_rating', 'star_rating', 1, 0, 1, NULL, 12),
-(267, 'translator', 'translator', 1, 1, 0, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', NULL),
-(268, 'imagebox', 'imagebox', 0, 1, 0, NULL, NULL);
+(191, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, 3),
+(253, 'smart_filter', 'smart_filter', 1, 1, 0, NULL, 26),
+(204, 'mobile', 'mobile', 1, 1, 1, 'a:5:{s:15:"MobileVersionON";s:1:"1";s:17:"MobileVersionSite";s:21:"demoshop.imagecms.net";s:20:"MobileVersionAddress";s:23:"m.demoshop.imagecms.net";s:18:"mobileTemplatePath";s:37:"./templates/commerce_mobiles/shop";s:6:"action";s:0:"";}', 8),
+(261, 'trash', 'trash', 0, 1, 1, NULL, 6),
+(264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 23),
+(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 13),
+(267, 'translator', 'translator', 1, 1, 0, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 0),
+(268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 19);
 
 -- --------------------------------------------------------
 
