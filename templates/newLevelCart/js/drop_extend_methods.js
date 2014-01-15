@@ -28,7 +28,7 @@ $.dropInit.prototype.extendDrop = function() {
                             t = e.pageY - top;
                             l = l < 0 ? 0 : l;
                             t = t < 0 ? 0 : t;
-                            var addW = condH ? 17 : 0;
+                            var addW = condH ? screen.width-wnd.width() : 0;
                             l = l + w + addW < wndW ? l : wndW - w - addW;
                             t = t + h < wndH ? t : wndH - h;
                             $this.css({
@@ -101,7 +101,16 @@ $.dropInit.prototype.extendDrop = function() {
                 var drop = $(this);
                 if (drop.data('drp').limitContentSize) {
                     var dropV = drop.is(':visible'),
-                    wndH = wnd.height();
+                    forCenter = drop.data('drp').forCenter,
+                    docH = $(document).height();
+                    
+                    if (!dropV) {
+                        drop.show();
+                        if (forCenter)
+                            forCenter.show();
+                    }
+                    var dropH = drop.outerHeight();
+                    
                     if (drop.data('drp').dropContent) {
                         var el = drop.find($(drop.data('drp').dropContent).add($($.drop.dPP.dropContent))).filter(':first');
                                                 
@@ -114,17 +123,9 @@ $.dropInit.prototype.extendDrop = function() {
                         })
 
                         if ($.existsN(el)) {
-                            var docH = $(document).height(),
-                            forCenter = drop.data('drp').forCenter,
-                            refer = drop.data('drp').elrun;
-                            if (!dropV) {
-                                drop.show();
-                                if (forCenter)
-                                    forCenter.show();
-                            }
-                            var elCH = el.outerHeight();
+                            var refer = drop.data('drp').elrun;
                             
-                            var api = false,
+                            var elCH = el.outerHeight(),
                             footerHeader = drop.find($(drop.data('drp').dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drop.data('drp').dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
                             
                             if (drop.data('drp').place == 'noinherit') {
@@ -150,12 +151,11 @@ $.dropInit.prototype.extendDrop = function() {
                                     el.css('height', mayHeight);
                             }
                             else {
-                                if (elCH + footerHeader > wndH)
-                                    el.css('height', wndH - footerHeader - 40);
+                                if (elCH + footerHeader > dropH)
+                                    el.css('height', dropH - footerHeader);
                                 else
                                     el.css('height', elCH);
                             }
-                                                        
                             if (drop.data('drp').scrollContent) {
                                 try {
                                     el.jScrollPane(scrollPane);
@@ -189,7 +189,8 @@ $.dropInit.prototype.extendDrop = function() {
                     });
                     if (drop.data('drp').place === 'center') {
                         var wndW = wnd.width(),
-                        wndH = wnd.height();
+                        wndH = drop.data('drp').scroll ? wnd.height() : $(document).height();
+                        
                         var dropV = drop.is(':visible'),
                         w = dropV ? drop.width() : drop.actual('width'),
                         h = dropV ? drop.height() : drop.actual('height');
@@ -211,11 +212,12 @@ $.dropInit.prototype.extendDrop = function() {
                 }
                 setTimeout(function() {
                     if (!isTouch) {
+                        var pr = screen.width-wnd.width();
                         body.addClass('isScroll').css({
                             'overflow': 'hidden',
-                            'margin-right': 17
+                            'margin-right': pr
                         });
-                        body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
+                        body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: '+pr+'px;overflow-y: scroll;z-index:10000;"></div>');
                     }
                     if (isTouch)
                         $('.for-center').on('touchmove.' + $.drop.nS, function(e) {
