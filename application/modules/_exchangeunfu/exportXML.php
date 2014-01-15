@@ -53,11 +53,12 @@ class ExportXML {
     }
 
     /** export */
-    public function export($partner_id = null, $send_cat = 1, $send_prod = 1, $send_users = 1) {
+    public function export($partner_id = null, $send_cat = 1, $send_prod = 1, $send_users = 1,$full = FALSE) {
         $users = FALSE;
         //load db data
-        $this->orders = $this->ci->export_model->getOrders($partner_id);
-        if ($partner_id) {
+        $this->orders = $this->ci->export_model->getOrders($partner_id,$full);
+
+        if ($partner_id and $this->orders) {
             foreach ($this->orders as $order) {
                 $users[] = $order['user_id'];
                 $orders_ids[] = $order['id'];

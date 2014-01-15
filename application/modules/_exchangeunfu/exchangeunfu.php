@@ -860,13 +860,17 @@ class Exchangeunfu extends MY_Controller {
     public function getDefaultRegionExternalId() {
 
         if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
+            $region = $this->db->limit(1)->select(array('external_id'))->where('id', $_COOKIE['region'])->get('mod_exchangeunfu_partners')->result_array();
 
-            $region = $this->db
+     if(count($region) > 0)             
+            return $region[0]['external_id'];
+        else {
+             $region = $this->db
                             ->limit(1)
                             ->select(array('external_id'))
-                            ->where('id', $_COOKIE['region'])
                             ->get('mod_exchangeunfu_partners')->result_array();
             return $region[0]['external_id'];
+        }
         } else {
             $region = $this->db
                             ->limit(1)
@@ -1018,7 +1022,11 @@ class Exchangeunfu extends MY_Controller {
                             ->set('send_prod', 0)
                             ->update('mod_exchangeunfu_partners');
 
-                    $this->export->export($parter['external_id'], $parter['send_cat'], $parter['send_prod'], $parter['send_users']);
+                    if ($this->input->get('full') != 'full') {
+                        $this->export->export($parter['external_id'], $parter['send_cat'], $parter['send_prod'], $parter['send_users']);
+                    } else {
+                        $this->export->export($parter['external_id'], 1, 1, 1, true);
+                    }
                 }
             } else {
                 $this->export->export();
