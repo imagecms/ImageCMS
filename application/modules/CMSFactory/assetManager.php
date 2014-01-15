@@ -158,8 +158,12 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function renderAdmin($tpl, $ignoreWrap = FALSE, $fetchJsTpl = TRUE) {
-        if (\CI_Controller::get_instance()->input->post('ignoreWrap'))
+        if (\CI_Controller::get_instance()->input->post('ignoreWrap')) {
             $ignoreWrap = TRUE;
+        }
+        if (\CI_Controller::get_instance()->input->post('template')) {
+            $tpl = \CI_Controller::get_instance()->input->post('template');
+        }
 
         try {
 
@@ -192,8 +196,12 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function render($tpl, $ignoreWrap = FALSE, $fetchJsTpl = TRUE) {
-        if (\CI_Controller::get_instance()->input->post('ignoreWrap'))
+        if (\CI_Controller::get_instance()->input->post('ignoreWrap')) {
             $ignoreWrap = TRUE;
+        }
+        if (\CI_Controller::get_instance()->input->post('template')) {
+            $tpl = \CI_Controller::get_instance()->input->post('template');
+        }
 
         try {
 
