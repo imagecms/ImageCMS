@@ -12,7 +12,7 @@
     {if is_array($p) && $p.id}
         {$p = getProduct($p.id)}
     {/if}
-    
+
 
     {$variants = $p->getProductVariants()}
     {$hasDiscounts = $p->hasDiscounts()}
@@ -178,6 +178,7 @@
                                         <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
                                     </div>
                                 </div>
+
                             {/if}
                             <div class="btn-buy">
                                 <button
@@ -197,7 +198,7 @@
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-number="{echo trim($pv->getNumber())}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
-                                    data-img="{echo $pv->getSmallPhoto()}"
+                                    data-img="{if preg_match('/nophoto/', $pv->getSmallPhoto()) > 0}{echo $p->firstVariant->getSmallPhoto()}{else:}{echo $pv->getSmallPhoto()}{/if}"
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
                                     data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
@@ -246,7 +247,7 @@
                         {if $opi_wishlist}
                             <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
-                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if}>
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                             {/foreach}

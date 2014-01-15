@@ -6,5 +6,7 @@
     <input type="hidden" name="LMI_RESULT_URL" value="{$RESULT_URL}">
     <input type="hidden" name="LMI_SUCCESS_URL" value="{$SUCCESS_URL}">
     <input type="hidden" name="LMI_FAIL_URL" value="{$FAIL_URL}">
-    {$PAYBUTTON}
+    <div class="btn-cart btn-cart-p">
+        {$PAYBUTTON}
+    </div>
 </form>

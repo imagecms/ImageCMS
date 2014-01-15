@@ -3,6 +3,7 @@
         <section class="special-proposition frame-view-products">
             <div class="big-container">
                 <div class="carousel-js-css items-carousel">
+                    {/*frame-scroll-pane || carousel-js-css || ' '*/}
                     <div class="content-carousel container">
                         <ul class="items items-catalog items-h-carousel">
                             {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true))}
@@ -23,7 +24,7 @@
 {else:}
     <div class="inside-padd">
         <div class="msg f-s_0">
-            <div class="info"><span class="icon_info"></span><span class="text-el">{lang('No viewed products','newLevel')}</span></div>
+            <div class="info"><span class="icon_info"></span><span class="text-el">{lang('Нет просмотренных товаров','newLevel')}</span></div>
         </div>
     </div>
 {/if}

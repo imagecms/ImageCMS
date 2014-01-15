@@ -13,23 +13,23 @@
                 </div>
             {/foreach}
         {/if}
-        <ul class="tabs tabs-wishlist">
-            <li>
+        <ul class="tabs tabs-wishlist" data-cookie="wishlistTabs">
+            <li {if $_COOKIE['wishlistTabs'] == "#list-products"}class="active"{/if}>
                 <button type="button" data-href="#list-products">
                     <span class="text-el d_l_1">{lang('Список товаров','newLevel')}</span>
                 </button>
             </li>
-            <li>
+            <li {if $_COOKIE['wishlistTabs'] == "#data-users"}class="active"{/if}>
                 <button type="button" data-href="#data-users">
                     <span class="text-el d_l_1">{lang('Дополнительные данные','newLevel')}</span>
                 </button>
             </li>
         </ul>
         <div class="clearfix frame-tabs-ref">
-            <div id="list-products">
+            <div id="list-products" {if $_COOKIE['wishlistTabs'] == "#list-products"}style="display: block;"{/if}>
                 <div class="frame-button-add-wish-list">
                     <div class="btn-cart">
-                        <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0">
+                        <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0" data-effect-on="slideDown" data-effect-off="slideUp">
                             <span class="icon_add_wish"></span>
                             <span class="text-el">{lang('Создать новый список','newLevel')}</span>
                         </button>
@@ -50,9 +50,9 @@
                                         <div class="frame-form-field check-public">
                                             <div class="lineForm">
                                                 <select name="wlTypes" id="wlTypes">
-                                                    <option value="shared">Shared</option>
-                                                    <option value="public">Public</option>
-                                                    <option value="private">Private</option>
+                                                    <option value="shared">{lang('Коллективный')}</option>
+                                                    <option value="public">{lang('Публичный')}</option>
+                                                    <option value="private">{lang('Приватный')}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -74,7 +74,6 @@
                                         <div class="frame-form-field">
                                             <div class="btn-def">
                                                 <button
-                                                    class="btn"
                                                     type="submit"
                                                     data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
                                                     data-type="json"
@@ -85,7 +84,7 @@
                                                     data-drop="#notification"
                                                     data-effect-on="fadeIn"
                                                     data-effect-off="fadeOut"
-                                                    data-after="createWishList"
+                                                    data-after="WishListFront.createWishList"
                                                     >
                                                     <span class="text-el">{lang('Создать новый список','newLevel')}</span>
                                                 </button>
@@ -149,7 +148,7 @@
                                                         data-modal="true"
 
                                                         data-drop="#notification"
-                                                        data-after="removeWL"
+                                                        data-after="WishListFront.removeWL"
                                                         data-confirm="true"
 
                                                         data-effect-on="fadeIn"
@@ -162,7 +161,15 @@
                                             </div>
                                             <div class="f_l">
                                                 <b>{lang('Доступность:','newLevel')}</b>
-                                                <span class="s_t">{echo $wishlist[0][access]}</span>
+                                                {if $wishlist[0][access] == 'private'}
+                                                    <span class="s_t">{lang('Приватный')}</span>
+                                                {/if}
+                                                {if $wishlist[0][access] == 'public'}
+                                                    <span class="s_t">{lang('Публичный')}</span>
+                                                {/if}
+                                                {if $wishlist[0][access] == 'shared'}
+                                                    <span class="s_t">{lang('Коллективный')}</span>
+                                                {/if}
                                             </div>
                                         </div>
                                         <div>
@@ -170,7 +177,7 @@
                                                 <div class="btn-form btn-send-wishlist">
                                                     <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
                                                         <span class="icon_mail"></span>
-                                                        <span class="text-el">Поделится з другом</span>
+                                                        <span class="text-el">{lang('Поделится з другом')}</span>
                                                     </button>
                                                 </div>
                                             {/if}
@@ -230,7 +237,7 @@
                     </div>
                 {/if}
             </div>
-            <div id="data-users">
+            <div id="data-users" {if $_COOKIE['wishlistTabs'] == "#data-users"}style="display: block;"{/if}>
                 <ul class="items items-wish-data left-wishlist-data">
                     <li class="clearfix">
                         <div class="frame-photo-title">
@@ -262,7 +269,7 @@
 
                                                     data-drop="#notification"
                                                     data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
-                                                    data-after="deleteImage"
+                                                    data-after="WishListFront.deleteImage"
                                                     data-wishlist="delete_img"
 
                                                     data-effect-on="fadeIn"
@@ -326,7 +333,7 @@
 
                                             data-drop="#notification"
                                             onclick="serializeForm(this)"
-                                            data-after="changeDataWishlist"
+                                            data-after="WishListFront.changeDataWishlist"
                                             >
                                             <span class="text-el">{lang('Сохранить','newLevel')}</span>
                                         </button>
