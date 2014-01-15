@@ -287,7 +287,6 @@ class Components extends BaseAdminController {
 
             $this->lib_admin->log(lang("Changed the module settings", "admin") . " " . $com['name']);
 
-            //showMessage(lang('Settings are saved','admin'));
         } else {
             // Error, module not found
         }

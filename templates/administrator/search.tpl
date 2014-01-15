@@ -38,7 +38,7 @@
                     <tr data-id="{$page.id}">
                         <td><span>{$page.id}</span></td>
                         <td class="share_alt">
-                            <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small"  data-rel="tooltip" data-placement="top" data-original-title="{lang("goto site","admin")}"><i class="icon-share-alt"></i></a>
+                            <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small"  data-rel="tooltip" data-placement="top" data-original-title="{lang("Go to site","admin")}"><i class="icon-share-alt"></i></a>
                             <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax">{$page.title}</a>
                         </td>
                         <td><span>{truncate($page.url, 40, '...')}</span></td>
