@@ -143,72 +143,48 @@
                                         {/if}
                                         {if $productVariant->getStock() > 0}
                                             <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
-                                                    <div class="frame-count frameCount">
-                                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}">
-                                                            <div class="frame-change-count frameChangeCount">
-                                                                <div class="btn-plus">
-                                                                    <button type="button">
-                                                                        <span class="icon-plus"></span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="btn-minus">
-                                                                    <button type="button">
-                                                                        <span class="icon-minus"></span>
-                                                                    </button>
-                                                                </div>
+                                                <div class="frame-count frameCount">
+                                                    <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}">
+                                                        <div class="frame-change-count frameChangeCount">
+                                                            <div class="btn-plus">
+                                                                <button type="button">
+                                                                    <span class="icon-plus"></span>
+                                                                </button>
                                                             </div>
-                                                            <input type="text" name="quantity" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
+                                                            <div class="btn-minus">
+                                                                <button type="button">
+                                                                    <span class="icon-minus"></span>
+                                                                </button>
+                                                            </div>
                                                         </div>
+                                                        <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}">
                                                     </div>
-                                                    {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
-                                                    <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
-                                                        <button 
+                                                </div>
+                                                <div class="btn-buy btn-buy-p">
+                                                    <button class="btnBuy infoBut"
+                                                            disabled="disabled"
                                                             type="button"
-                                                            
-                                                            data-trigger="#showCart"
-
-                                                            class="btnBuy infoBut"
-
                                                             data-id="{echo $productVariant->getId()}"
-                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
-                                                            data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-prodid="{echo $model->getId()}"
+                                                            data-varid="{echo $productVariant->getId()}"
                                                             data-price="{echo $productVariant->toCurrency()}"
-                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
-                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
-                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
-                                                            data-img="{echo $productVariant->getSmallPhoto()}"
-                                                            data-maxcount="{echo $productVariant->getstock()}"
-                                                            >
-                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                            <span class="text-el">{lang('В корзине', 'newLevel')}</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
-                                                        <button 
-                                                            type="button"
-                                                            
-                                                            onclick='Shop.Cart.add("{echo $productVariant->getId()}", "{shop_url('cart/api/addProductByVariantId/'.$productVariant->getId())}")'
-                                                            class="btnBuy infoBut"
-
-                                                            data-id="{echo $productVariant->getId()}"
+                                                            data-count="1"
+                                                            data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
-                                                            data-number="{echo trim($productVariant->getNumber())}"
-                                                            data-price="{echo $productVariant->toCurrency()}"
-                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
-                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
-                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
-                                                            data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
+                                                            data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-url="{echo shop_url('product/'.$model->getUrl())}"
+                                                            data-img="{if preg_match('/nophoto/', $productVariant->getSmallPhoto()) > 0}{echo $model->firstVariant->getSmallPhoto()}{else:}{echo $productVariant->getSmallPhoto()}{/if}"
+                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
+                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
+                                                            data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
                                                             >
-                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                            <span class="text-el">{lang('Купить', 'newLevel')}</span>
-                                                        </button>
-                                                    </div>
-                                                    {form_csrf()}
-                                                </form>
+                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                        <span class="text-el">{lang('Купить')}</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         {else:}
                                             <div class="d_i-b v-a_m">
@@ -220,18 +196,20 @@
                                                             data-drop=".drop-report"
                                                             data-source="/shop/ajax/getNotifyingRequest"
 
-                                                            data-url="{echo shop_url('product/'.$model->getUrl())}"
-                                                            data-img="{if preg_match('/nophoto/', $productVariant->getSmallPhoto()) > 0}{echo $model->firstVariant->getSmallPhoto()}{else:}{echo $productVariant->getSmallPhoto()}{/if}"
                                                             data-id="{echo $productVariant->getId()}"
-                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
-                                                            data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-prodid="{echo $model->getId()}"
+                                                            data-varid="{echo $productVariant->getId()}"
+                                                            data-url="{echo shop_url('product/'.$model->getUrl())}"
                                                             data-price="{echo $productVariant->toCurrency()}"
-                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
-                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
+                                                            data-name="{echo ShopCore::encode($model->getName())}"
+                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
-
+                                                            data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-img="{if preg_match('/nophoto/', $productVariant->getSmallPhoto()) > 0}{echo $model->firstVariant->getSmallPhoto()}{else:}{echo $productVariant->getSmallPhoto()}{/if}"
+                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             class="infoBut">
                                                             <span class="icon-but"></span>
                                                             <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
@@ -517,16 +495,29 @@
                                                     {/if}
                                                 </span>
                                             </div>
-                                            <form method="POST" action="/shop/cart/addKit/{echo $kitProducts->getId()}">
-                                                <input type="hidden" name="redirect" value="cart" />
-                                                <div class="btn-buy">
-                                                    <button class="btnBuy" type="submit">
-                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                        <span class="text-el">{lang('Купить')}</span>
-                                                    </button>
-                                                </div>
-                                                {form_csrf()}
-                                            </form>
+                                            <div class="btn-buy">
+                                                <button class="btnBuy" type="button"
+                                                        data-prodid="{echo implode(',', $kitProducts->getProductIdCart())}"
+                                                        data-price="{echo $kitProducts->getTotalPrice()}"
+                                                        data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
+                                                        data-addprice="{if $NextCSIdCond}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
+                                                        data-addprices="{if $NextCSIdCond}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
+                                                        data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
+                                                        data-origprice='{echo $kitProducts->getTotalPriceOld()}'
+                                                        data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
+                                                        data-kit="true"
+                                                        data-kitId="{echo $kitProducts->getId()}"
+                                                        data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
+                                                        data-url='{echo json_encode($kitProducts->getUrls())}'
+                                                        data-img='{echo json_encode($kitProducts->getImgs())}'
+                                                        data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
+                                                        data-count='1'
+                                                        data-prodstatus='{json_encode($kitProducts->getKitStatus())}'
+                                                        >
+                                                    <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                    <span class="text-el">{lang('Купить')}</span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- /total -->
@@ -558,13 +549,13 @@
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
-            {/if}
-            {if $fullDescription = $model->getFullDescription()}
+                {/if}
+                {if $fullDescription = $model->getFullDescription()}
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
-            {/if}
-            {if $accessories}
+                {/if}
+                {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
-            {/if}
+                {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
@@ -642,8 +633,8 @@
                 {/if}
                 <div class="inside-padd">
                     <!--Start. Comments block-->
-                    {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                     <div class="frame-form-comment">
+                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                         <div class="forComments">
                             {echo $c['comments']}
                         </div>
@@ -704,45 +695,47 @@
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-            <div class="title"><%- obj.title %></div>
-            <div class="horizontal-carousel">
-                <div class="frame-fancy-gallery frame-thumbs">
-                    <div class="fancy-gallery carousel-js-css">
-                        <div class="content-carousel">
-                            <ul class="items-thumbs items">
-                                <%= obj.frame.find(obj.galleryContent).html() %>
-                            </ul>
-                        </div>
-                        <div class="group-button-carousel">
-                            <button type="button" class="prev arrow">
-                                <span class="icon_arrow_p"></span>
-                            </button>
-                            <button type="button" class="next arrow">
-                                <span class="icon_arrow_n"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="title"><%- obj.title %></div>
+        <div class="horizontal-carousel">
+        <div class="frame-fancy-gallery frame-thumbs">
+        <div class="fancy-gallery carousel-js-css">
+        <div class="content-carousel">
+        <ul class="items-thumbs items">
+        <%= obj.frame.find(obj.galleryContent).html() %>
+        </ul>
         </div>
-        <div class="drop-content-photo">
-            <div class="inside-padd">
-                <span class="helper"></span>
-                <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-            </div>
-            <div class="horizontal-carousel">
-                <div class="group-button-carousel">
-                    <button type="button" class="prev arrow">
-                        <span class="icon_arrow_p"></span>
-                    </button>
-                    <button type="button" class="next arrow">
-                        <span class="icon_arrow_n"></span>
-                    </button>
-                </div>
-            </div>
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="drop-content">
+        <div class="inside-padd">
+        <span class="helper"></span>
+        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+        </div>
+        <div class="horizontal-carousel">
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
         </div>
         <div class="drop-footer">
-            <%= obj.frame.find(obj.footerContent).html()%>
+        <div class="inside-padd">
+        <%= obj.frame.find(obj.footerContent).html()%>
+        </div>
         </div>
     {/literal}
 </script>
@@ -755,8 +748,8 @@
 {literal}
     <script type="text/javascript">
         var
-        productPhotoDrop = true,
-        productPhotoCZoom = true;
+                productPhotoDrop = true,
+                productPhotoCZoom = true;
     </script>
 {/literal}
 <!-- End. JS vars-->

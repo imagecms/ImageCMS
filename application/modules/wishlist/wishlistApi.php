@@ -297,7 +297,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
             $wish_lists = $this->wishlist_model->getUserWishListsByID($user_id);
             $str = '[';
             foreach ($wish_lists as $key => $value) {
-                $str .= '"' . $value['product_id'] . '_' . $value['variant_id'] . '",';
+                $str .= '"' . $value['variant_id'] . '",';
             }
             echo rtrim($str, ',') . ']';
         }

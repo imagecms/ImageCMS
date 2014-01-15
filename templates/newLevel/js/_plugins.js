@@ -37,7 +37,7 @@ $.exists = function(selector) {
 $.existsN = function(nabir) {
     return (nabir.length > 0);
 };
-$.getChar = function(e) {
+getChar = function(e) {
     if (e.which == null) {  // IE
         if (e.keyCode < 32)
             return null;
@@ -1320,8 +1320,8 @@ function getCookie(c_name)
                         refs = [],
                         attrOrdata = [];
                 $this.each(function() {
-                    var index = methods.index;
-                    $thiss = $(this),
+                    var index = methods.index,
+                            $thiss = $(this),
                             data = $thiss.data(),
                             effectOn = data.effectOn || settings.effectOn,
                             effectOff = data.effectOff || settings.effectOff,
@@ -1976,7 +1976,7 @@ function getCookie(c_name)
                 });
             }
             else {
-                $('.' + $.drop.dP.curDefault).remove();
+                $.drop.dP.curOld = $('.' + $.drop.dP.curDefault);
                 $.drop.dP.curDefault = 'drop-default' + (new Date()).getTime();
                 var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
 
@@ -1985,11 +1985,13 @@ function getCookie(c_name)
                 });
                 if (source.match(/jpg|gif|png|bmp|jpeg/))
                     $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
+                        $.drop.dP.curOld.remove();
                         drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).append($(this))
                         methods._show(el, e, true, set, data);
                     })
                 else
                     drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).load(source, function(data) {
+                        $.drop.dP.curOld.remove();
                         if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
                             $.drop.dP.galleriesContent[rel][source] = data;
                         methods._show(el, e, true, set, data);
@@ -2100,6 +2102,7 @@ function getCookie(c_name)
                     scroll = elSet.scroll || set.scroll,
                     limitSize = elSet.limitSize || set.limitSize,
                     limitContentSize = elSet.limitContentSize || set.limitContentSize,
+                    scrollContent = elSet.scrollContent || set.scrollContent,
                     inheritClose = elSet.inheritClose || set.inheritClose,
                     dropContent = elSet.dropContent || set.dropContent,
                     dropHeader = elSet.dropHeader || set.dropHeader,
@@ -2176,6 +2179,7 @@ function getCookie(c_name)
                     'scroll': scroll,
                     'limitSize': limitSize,
                     'limitContentSize': limitContentSize,
+                    'scrollContent': scrollContent,
                     'inheritClose': inheritClose,
                     'methods': $.extend({
                         'self': drop,
@@ -2597,6 +2601,7 @@ function getCookie(c_name)
             scroll: false,
             limitSize: false,
             limitContentSize: false,
+            scrollContent: false,
             inheritClose: false
         };
         this.setParameters = function(options) {
