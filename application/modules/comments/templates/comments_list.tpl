@@ -31,7 +31,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
         <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang("All comments", 'comments')}
             {if $all_comm_show}
                 <span style="top:-13px;" class="badge badge-important">
-                    {$all_comm_show}
+                    {($total_waiting + $total_app + $total_spam)}
                 </span>
             {/if}
         </a>
