@@ -20,11 +20,11 @@
                             <span class="descr">
                                 <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
                                 {if $item.variantName}
-                                    <span class="code_v">{lang('Вариант', 'commerce_mobiles_new')}: {echo $item.variantName}</span>
+                                    <span class="code_v">{lang('Вариант', 'commerce_mobiles')}: {echo $item.variantName}</span>
                                 {/if}
                                 {if $variant->getNumber()}
                                     <span class="divider">/</span>
-                                    <span class="code">{lang('Артикул', 'commerce_mobiles_new')}: {echo $variant->getNumber()}</span>
+                                    <span class="code">{lang('Артикул', 'commerce_mobiles')}: {echo $variant->getNumber()}</span>
                                 {/if}
                                 <span class="d_b price">{echo $item.price} {$CS}</span>
                             </span>
