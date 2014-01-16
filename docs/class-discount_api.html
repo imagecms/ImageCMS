@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
 
 	<title>Class discount_api | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?3945239888"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+	<script type="text/javascript" src="elementlist.js?2660862840"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
 
@@ -83,7 +83,7 @@
 			</ul>
 		</div>
 
-		<hr />
+		<hr>
 
 
 		<div id="elements">
@@ -274,6 +274,7 @@
 				<li><a href="class-ShopExport.html">ShopExport</a></li>
 				<li><a href="class-ShopExportDataBase.html">ShopExportDataBase</a></li>
 				<li><a href="class-ShopImport.html">ShopImport</a></li>
+				<li><a href="class-SiteInfo.html">SiteInfo</a></li>
 				<li><a href="class-Sitemap.html">Sitemap</a></li>
 				<li><a href="class-Smart_filter.html">Smart_filter</a></li>
 				<li><a href="class-SMemCached.html">SMemCached</a></li>
@@ -379,19 +380,16 @@
 				<li><a href="function-get_perms_groups.html">get_perms_groups</a></li>
 				<li><a href="function-get_product_category.html" class="invalid">get_product_category</a></li>
 				<li><a href="function-get_sub_categories.html">get_sub_categories</a></li>
-				<li><a href="function-getActiveTemplateName.html">getActiveTemplateName</a></li>
 				<li><a href="function-getAmountInCart.html">getAmountInCart</a></li>
+				<li><a href="function-getCartItems.html">getCartItems</a></li>
 				<li><a href="function-getCMSNumber.html">getCMSNumber</a></li>
 				<li><a href="function-getDefaultLanguage.html">getDefaultLanguage</a></li>
-				<li><a href="function-getFaviconLogoPath.html">getFaviconLogoPath</a></li>
-				<li><a href="function-getFaviconLogoUrl.html">getFaviconLogoUrl</a></li>
 				<li><a href="function-getLimiPrice.html">getLimiPrice</a></li>
 				<li><a href="function-getLimitAllPrice.html">getLimitAllPrice</a></li>
 				<li><a href="function-getProduct.html">getProduct</a></li>
 				<li><a href="function-getProductViewsCount.html">getProductViewsCount</a></li>
 				<li><a href="function-getPromoBlock.html">getPromoBlock</a></li>
 				<li><a href="function-getSimilarProduct.html">getSimilarProduct</a></li>
-				<li><a href="function-getSiteInfo.html">getSiteInfo</a></li>
 				<li><a href="function-getVariant.html">getVariant</a></li>
 				<li><a href="function-getVariants.html">getVariants</a></li>
 				<li><a href="function-getWidgetTitle.html">getWidgetTitle</a></li>
@@ -409,6 +407,7 @@
 				<li><a href="function-is_property_in_get.html">is_property_in_get</a></li>
 				<li><a href="function-is_true_array.html">is_true_array</a></li>
 				<li><a href="function-isAviableInStock.html">isAviableInStock</a></li>
+				<li><a href="function-isExistsItems.html">isExistsItems</a></li>
 				<li><a href="function-jsCode.html">jsCode</a></li>
 				<li><a href="function-load_brand.html" class="invalid">load_brand</a></li>
 				<li><a href="function-load_cat.html" class="invalid">load_cat</a></li>
@@ -476,10 +475,10 @@
 <div id="right">
 <div id="rightInner">
 	<form id="search">
-		<input type="hidden" name="cx" value="" />
-		<input type="hidden" name="ie" value="UTF-8" />
-		<input type="text" name="q" class="text" />
-		<input type="submit" value="Search" />
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
 	</form>
 
 	<div id="navigation">
@@ -525,21 +524,21 @@ MY_Controller
 			
 		</dd>
 		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by" />
+			<img src="resources/inherit.png" alt="Extended by">
 			<a href="class-mod_discount.classes.BaseDiscount.html"><span>mod_discount\classes\BaseDiscount</span></a>
 			
 			
 			
 		</dd>
 		<dd style="padding-left:60px">
-			<img src="resources/inherit.png" alt="Extended by" />
+			<img src="resources/inherit.png" alt="Extended by">
 			<a href="class-mod_discount.discount.html"><span>mod_discount\discount</span></a>
 			
 			
 			
 		</dd>
 		<dd style="padding-left:90px">
-			<img src="resources/inherit.png" alt="Extended by" />
+			<img src="resources/inherit.png" alt="Extended by">
 <b><span>discount_api</span></b>			
 			
 			
@@ -557,15 +556,15 @@ MY_Controller
 		
 		
 		
-		<b>Package:</b> ImageCMSModule<br />
+		<b>Package:</b> ImageCMSModule<br>
 
 				<b>Copyright:</b>
-				(c) 2013, ImageCMS<br />
+				(c) 2013, ImageCMS<br>
 				<b>Author:</b>
-				DevImageCms<br />
+				DevImageCms<br>
 				<b>Uses:</b>
-				<code><code><a href="class-mod_discount.classes.BaseDiscount.html">mod_discount\classes\BaseDiscount</a></code></code> <br />
-		<b>Located at</b> application/modules/mod_discount/discount_api.php<br />
+				<code><code><a href="class-mod_discount.classes.BaseDiscount.html">mod_discount\classes\BaseDiscount</a></code></code> <br>
+		<b>Located at</b> application/modules/mod_discount/discount_api.php<br>
 	</div>
 
 
@@ -600,17 +599,17 @@ MY_Controller
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>---</code><br />
+					<code>---</code><br>
 				</div>
 
 
 				<h4>Copyright</h4>
 				<div class="list">
-						(c) 2013, ImageCMS<br />
+						(c) 2013, ImageCMS<br>
 				</div>
 				<h4>Author</h4>
 				<div class="list">
-						DevImageCms<br />
+						DevImageCms<br>
 				</div>
 
 				<h4>Overrides</h4>
@@ -652,17 +651,17 @@ MY_Controller
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>---</code><br />
+					<code>---</code><br>
 				</div>
 
 
 				<h4>Copyright</h4>
 				<div class="list">
-						(c) 2013, ImageCMS<br />
+						(c) 2013, ImageCMS<br>
 				</div>
 				<h4>Author</h4>
 				<div class="list">
-						DevImageCms<br />
+						DevImageCms<br>
 				</div>
 
 
@@ -697,17 +696,17 @@ MY_Controller
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>---</code><br />
+					<code>---</code><br>
 				</div>
 
 
 				<h4>Copyright</h4>
 				<div class="list">
-						(c) 2013, ImageCMS<br />
+						(c) 2013, ImageCMS<br>
 				</div>
 				<h4>Author</h4>
 				<div class="list">
-						DevImageCms<br />
+						DevImageCms<br>
 				</div>
 
 
@@ -751,17 +750,17 @@ MY_Controller
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br />
+					<code>array</code><br>
 				</div>
 
 
 				<h4>Copyright</h4>
 				<div class="list">
-						(c) 2013, ImageCMS<br />
+						(c) 2013, ImageCMS<br>
 				</div>
 				<h4>Author</h4>
 				<div class="list">
-						DevImageCms<br />
+						DevImageCms<br>
 				</div>
 
 
@@ -803,17 +802,17 @@ MY_Controller
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br />
+					<code>array</code><br>
 				</div>
 
 
 				<h4>Copyright</h4>
 				<div class="list">
-						(c) 2013, ImageCMS<br />
+						(c) 2013, ImageCMS<br>
 				</div>
 				<h4>Author</h4>
 				<div class="list">
-						DevImageCms<br />
+						DevImageCms<br>
 				</div>
 
 
@@ -853,17 +852,17 @@ MY_Controller
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br />
+					<code>array</code><br>
 				</div>
 
 
 				<h4>Copyright</h4>
 				<div class="list">
-						(c) 2013, ImageCMS<br />
+						(c) 2013, ImageCMS<br>
 				</div>
 				<h4>Author</h4>
 				<div class="list">
-						DevImageCms<br />
+						DevImageCms<br>
 				</div>
 
 
@@ -903,17 +902,17 @@ MY_Controller
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br />
+					<code>boolean</code><br>
 				</div>
 
 
 				<h4>Copyright</h4>
 				<div class="list">
-						(c) 2013, ImageCMS<br />
+						(c) 2013, ImageCMS<br>
 				</div>
 				<h4>Author</h4>
 				<div class="list">
-						DevImageCms<br />
+						DevImageCms<br>
 				</div>
 
 
@@ -948,17 +947,17 @@ MY_Controller
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br />
+					<code>array</code><br>
 				</div>
 
 
 				<h4>Copyright</h4>
 				<div class="list">
-						(c) 2013, ImageCMS<br />
+						(c) 2013, ImageCMS<br>
 				</div>
 				<h4>Author</h4>
 				<div class="list">
-						DevImageCms<br />
+						DevImageCms<br>
 				</div>
 
 
