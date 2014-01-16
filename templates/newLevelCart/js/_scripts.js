@@ -1,4 +1,4 @@
-function init() {
+;function init() {
     var doc = $(document);
 
     body.removeClass('not-js');
@@ -286,7 +286,7 @@ function init() {
                     drop.drop('close');
             }, e.obj.durationHideForm - drop.data('drp').durationOff > 0 ? e.obj.durationHideForm - drop.data('drp').durationOff : e.obj.durationHideForm);
     });
-    doc.on('autocomplete.before showActivity before_add_to_compare discount.load_certificate', function(e) {
+    doc.on('autocomplete.before showActivity before_add_to_compare discount.load_certificate beforeAdd.Cart beforeRemove.Cart beforeChange.Cart', function(e) {
         $.fancybox.showActivity();
     });
     doc.on('autocomplete.after after.drop closed.drop hideActivity compare_list_add compare_list_rm compare_list_sync imageapi.success', function(e) {
