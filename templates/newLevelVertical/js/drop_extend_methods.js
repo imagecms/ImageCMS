@@ -28,7 +28,7 @@ $.dropInit.prototype.extendDrop = function() {
                             t = e.pageY - top;
                             l = l < 0 ? 0 : l;
                             t = t < 0 ? 0 : t;
-                            var addW = condH ? screen.width-wnd.width() : 0;
+                            var addW = condH ? $.drop.widthScroll : 0;
                             l = l + w + addW < wndW ? l : wndW - w - addW;
                             t = t + h < wndH ? t : wndH - h;
                             $this.css({
@@ -211,12 +211,11 @@ $.dropInit.prototype.extendDrop = function() {
                 }
                 setTimeout(function() {
                     if (!isTouch) {
-                        var rp = screen.width-wnd.width();
                         body.addClass('isScroll').css({
                             'overflow': 'hidden',
-                            'margin-right': rp
+                            'margin-right': $.drop.widthScroll
                         });
-                        body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: '+rp+'px;overflow-y: scroll;z-index:10000;"></div>');
+                        body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: '+$.drop.widthScroll+'px;overflow-y: scroll;z-index:10000;"></div>');
                     }
                     if (isTouch)
                         $('.for-center').on('touchmove.' + $.drop.nS, function(e) {
