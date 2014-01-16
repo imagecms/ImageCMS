@@ -26,6 +26,9 @@
         {else:}
             {$lang = ''} 
         {/if}
+        {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
+            <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+        {/if}
         <script type="text/javascript">
             var locale = "{echo $lang}";
         </script>
@@ -48,7 +51,7 @@
                                     if (cL == scriptsL)
                                         if (callback) {
                                             eval(callback)();
-                                            setTimeout(function() {
+                                            setTimeout(function(){
                                                 $(document).trigger({'type': customEvent});
                                             }, 0);
                                         }
@@ -111,26 +114,26 @@
             </style>
         {/literal}
     </head>
-    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}"> 
+    <body class="is{echo $agent[0]} not-js"> 
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <!-- Start. shop-->
         <div class="imagecms-top-fixed-header">
             <div class="container">
-                <a href="http://www.imagecms.net" class="imagecms-logo">
+                <a href="http://www.imagecms.net" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'imagecms main']);" class="imagecms-logo">
                     <img src="{$THEME}/logo.png"/>
                 </a>
                 <div class="imagecms-buy-license">
-                    <a href="http://www.imagecms.net/shop/prices">
+                    <a href="http://www.imagecms.net/shop/prices" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
                         <span class="imagecms-text-el">Купить лицензицю</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" class="imagecms-ref">Обзор продукта</a>
+                        <a href="http://www.imagecms.net" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">Обзор продукта</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref">преимущества</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">преимущества</a>
                     </li>
                     <li>
                         <div>
@@ -168,8 +171,9 @@
             {include_tpl('footer')}
         </footer>
         {include_tpl('user_toolbar')}
-
+        
         {/*}Start. delete before upload to server{ */}
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -183,22 +187,23 @@
 
         {literal}
             <script type="text/javascript">
-                $(window).load(function() {
+                $(window).load(function(){
                     init();
-                    setTimeout(function() {
+                    setTimeout(function(){
                         $(document).trigger({type: 'scriptDefer'})
                     }, 0)
                 })
             </script>
         {/literal}
+        { */}
         {/*}End. delete before upload to server{ */}
 
-        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
-        {/*}
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts of development -->...<!-- scripts of development end -->) into united_scripts file{ */}
+        
         <script type="text/javascript">
-            {initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');}
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        { */}
+        
         {include_shop_tpl('js_templates')}
     </body>
 </html>
