@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
 
 	<title>Class Cart\Api | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?3945239888"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+	<script type="text/javascript" src="elementlist.js?2660862840"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
 
@@ -83,7 +83,7 @@
 			</ul>
 		</div>
 
-		<hr />
+		<hr>
 
 
 		<div id="elements">
@@ -111,10 +111,10 @@
 <div id="right">
 <div id="rightInner">
 	<form id="search">
-		<input type="hidden" name="cx" value="" />
-		<input type="hidden" name="ie" value="UTF-8" />
-		<input type="text" name="q" class="text" />
-		<input type="submit" value="Search" />
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
 	</form>
 
 	<div id="navigation">
@@ -159,12 +159,12 @@
 	<div class="info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-Cart.html">Cart</a><br />
+		<b>Namespace:</b> <a href="namespace-Cart.html">Cart</a><br>
 		
 
 				<b>Author</b>
-				<br />
-		<b>Located at</b> application/modules/shop/classes/Cart/Api.php<br />
+				<br>
+		<b>Located at</b> application/modules/shop/classes/Cart/Api.php<br>
 	</div>
 
 
@@ -228,7 +228,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-Cart.Api.html">Cart\Api</a></code></code><br />
+					<code><code><a href="class-Cart.Api.html">Cart\Api</a></code></code><br>
 				</div>
 
 
@@ -268,7 +268,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>type</code><br />
+					<code>type</code><br>
 				</div>
 
 
@@ -332,47 +332,49 @@
 
 				<h4>Todo</h4>
 				<div class="list">
-						Check getItems from Base Class<br />
+						Check getItems from Base Class<br>
 				</div>
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="renderCart" id="_renderCart">
+	<tr data-order="getAmountInCart" id="_getAmountInCart">
 
 		<td class="attributes"><code>
 			 public 
-			html
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_renderCart">#</a>
-		<code>renderCart( <span>string <var>$tpl</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_getAmountInCart">#</a>
+		<code>getAmountInCart( <span>string <var>$instance</var></span>, <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Render cart Popup</p>
+<p>Get quantity cart items</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Render cart Popup</p>
+<p>Get quantity cart items</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$tpl</var></dt>
-					<dd><code>string</code><br>$tpl</dd>
+					<dt><var>$instance</var></dt>
+					<dd><code>string</code><br>$instance, int $id</dd>
+					<dt><var>$id</var></dt>
+					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>html</code><br />
+					<code>integer</code><br>
 				</div>
 
 
@@ -405,11 +407,136 @@
 <p>Get kit discount</p>
 
 
+				<h4>Deprecated</h4>
+				<div class="list">
+						since version 4.5.2 use getKitDiscount<br>
+				</div>
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getKitDiscount" id="_getKitDiscount">
+
+		<td class="attributes"><code>
+			 public 
+			json
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getKitDiscount">#</a>
+		<code>getKitDiscount( )</code>
+
+		<div class="description short">
+			
+<p>Get kit discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get kit discount</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>json</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setQuantityProductByVariantId" id="_setQuantityProductByVariantId">
+
+		<td class="attributes"><code>
+			 public 
+			json
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setQuantityProductByVariantId">#</a>
+		<code>setQuantityProductByVariantId( <span>integer <var>$vId</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set quantity for product by variant id</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set quantity for product by variant id</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$vId</var></dt>
+					<dd><code>integer</code><br>$vId</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>json</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setQuantityKitById" id="_setQuantityKitById">
+
+		<td class="attributes"><code>
+			 public 
+			json
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setQuantityKitById">#</a>
+		<code>setQuantityKitById( <span>integer <var>$kitId</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set quantity for kit by id</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set quantity for kit by id</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$kitId</var></dt>
+					<dd><code>integer</code><br>$vId</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>json</code><br>
 				</div>
 
 
@@ -451,7 +578,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -493,7 +620,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -535,7 +662,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -577,7 +704,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -619,7 +746,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -661,7 +788,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -698,7 +825,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -735,7 +862,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -772,7 +899,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -809,7 +936,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -851,7 +978,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -888,7 +1015,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>json</code><br />
+					<code>json</code><br>
 				</div>
 
 
@@ -960,6 +1087,28 @@
 				
 <p>Hold success data from parent class methods</p>
 
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ci" id="$ci">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+<var>$ci</var>		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$ci" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
 
 			</div>
 		</div></td>
