@@ -28,7 +28,7 @@ $.dropInit.prototype.extendDrop = function() {
                             t = e.pageY - top;
                             l = l < 0 ? 0 : l;
                             t = t < 0 ? 0 : t;
-                            var addW = condH ? screen.width-wnd.width() : 0;
+                            var addW = condH ? $.drop.widthScroll : 0;
                             l = l + w + addW < wndW ? l : wndW - w - addW;
                             t = t + h < wndH ? t : wndH - h;
                             $this.css({
@@ -109,23 +109,34 @@ $.dropInit.prototype.extendDrop = function() {
                         if (forCenter)
                             forCenter.show();
                     }
-                    var dropH = drop.outerHeight();
+                    var dropH = drop.height();
                     
                     if (drop.data('drp').dropContent) {
                         var el = drop.find($(drop.data('drp').dropContent).add($($.drop.dPP.dropContent))).filter(':first');
-                                                
-                        if (el.data('jsp'))
-                            el.data('jsp').destroy()
-                        
+                                  
                         el.css({
                             'height': '', 
                             'overflow': ''
                         })
-
+                                  
+                        if (el.data('jsp'))
+                            el.data('jsp').destroy()
+                        
                         if ($.existsN(el)) {
                             var refer = drop.data('drp').elrun;
                             
-                            var elCH = el.outerHeight(),
+                            var api = false,
+                            elJP = el.css('overflow', '');
+                            if (drop.data('drp').scrollContent) {
+                                try {
+                                    el.jScrollPane(scrollPane);
+                                    elJP = el.find('.jspPane');
+                                    api = el.data('jsp');
+                                } catch (err) {
+                                    el.css('overflow', 'auto');
+                                }
+                            }
+                            var elCH = elJP.outerHeight(),
                             footerHeader = drop.find($(drop.data('drp').dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drop.data('drp').dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
                             
                             if (drop.data('drp').place == 'noinherit') {
@@ -149,6 +160,8 @@ $.dropInit.prototype.extendDrop = function() {
                                     el.css('height', elCH);
                                 else
                                     el.css('height', mayHeight);
+                                if (el.outerHeight() === elCH && api)
+                                    api.destroy();
                             }
                             else {
                                 if (elCH + footerHeader > dropH)
@@ -156,13 +169,9 @@ $.dropInit.prototype.extendDrop = function() {
                                 else
                                     el.css('height', elCH);
                             }
-                            if (drop.data('drp').scrollContent) {
-                                try {
-                                    el.jScrollPane(scrollPane);
-                                } catch (err) {
-                                    el.css('overflow', 'auto');
-                                }
-                            }
+                            
+                            if (api)
+                                api.reinitialise();
 
                             if (drop.data('drp').place === 'center')
                                 drop.drop('center');
@@ -177,17 +186,17 @@ $.dropInit.prototype.extendDrop = function() {
             });
             return drop;
         },
-        limitSize: function(drop) {
+        limitSize: function(drop, resize) {
             if (drop === undefined)
                 drop = this.self ? this.self : this;
             drop.each(function() {
                 var drop = $(this);
                 if (drop.data('drp').limitSize) {
-                    drop.css({
-                        'width': '',
-                        'height': ''
-                    });
                     if (drop.data('drp').place === 'center') {
+                        drop.css({
+                            'width': '',
+                            'height': ''
+                        });
                         var wndW = wnd.width(),
                         wndH = drop.data('drp').scroll ? wnd.height() : $(document).height();
                         
@@ -212,12 +221,11 @@ $.dropInit.prototype.extendDrop = function() {
                 }
                 setTimeout(function() {
                     if (!isTouch) {
-                        var pr = screen.width-wnd.width();
                         body.addClass('isScroll').css({
                             'overflow': 'hidden',
-                            'margin-right': pr
+                            'margin-right': $.drop.widthScroll
                         });
-                        body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: '+pr+'px;overflow-y: scroll;z-index:10000;"></div>');
+                        body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: '+$.drop.widthScroll+'px;overflow-y: scroll;z-index:10000;"></div>');
                     }
                     if (isTouch)
                         $('.for-center').on('touchmove.' + $.drop.nS, function(e) {
