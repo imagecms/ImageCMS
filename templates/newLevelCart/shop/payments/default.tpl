@@ -9,11 +9,9 @@
                             checked="checked"
                             {$counter = false}
                         {/if}
-                        
-                        value="{echo $paymentMethod.payment_method_id}"
-                        />
-                    {var_dump($paymentMethod)}
-                    {echo $paymentMethod->getName()}
+                        value="{echo $paymentMethod->getId()}"
+                        >
+                        {echo $paymentMethod->getName()}
                     </option>
                 </label>
             {/foreach}

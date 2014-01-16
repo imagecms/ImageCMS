@@ -1,6 +1,8 @@
+{$cart = \Cart\BaseCart::getInstance()->recountOriginTotalPrice()->recountTotalPrice()}
+{$count = $cart->getTotalItems()}
+{$price = $cart->getTotalPrice()}
+{$priceOrigin = $cart->getOriginTotalPrice()}
 
-{$count = $count ? $count : ShopCore::app()->SCart->totalItems()}
-{$cartPrice = $cartPrice ? $cartPrice : ShopCore::app()->SCart->totalPrice()}
 {if $count == 0}
     <div class="btn-bask">
         <button>
@@ -29,7 +31,7 @@
                     <span class="text-el plurProd">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
                     <span class="divider text-el">&#8226;</span>
                     <span class="d_i-b">
-                        <span class="text-el">{echo $cartPrice}</span>
+                        <span class="text-el">{echo $price}</span>
                         <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>
                     </span>
                 </span>
