@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=269 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=270 ;
 
 --
 -- Дамп даних таблиці `components`
@@ -220,7 +220,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 23),
 (265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 12),
 (267, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
-(268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18);
+(268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
+(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
