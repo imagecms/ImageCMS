@@ -28,5 +28,6 @@
                 </div>
             </div>
         </div>
+        {widget('latest_news', TRUE)}
     </div>
 </div>
