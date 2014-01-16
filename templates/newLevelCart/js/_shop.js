@@ -26,10 +26,11 @@ var Shop = {
                 'data': obj,
                 success: function(data) {
                     $(document).trigger({
-                        type: 'add.Cart',
-                        datas: JSON.parse(data),
-                        id: id,
-                        kit: kit
+                        'type': 'add.Cart',
+                        'datas': JSON.parse(data),
+                        'id': id,
+                        'kit': kit,
+                        'obj': obj
                     });
                 }
             });
@@ -75,11 +76,39 @@ var Shop = {
                 }
             });
         },
+        getPayment: function(id, obj, tpl){
+            tpl = tpl ? tpl : '';
+            $(document).trigger({
+                'type': 'beforeGetPayment.Cart',
+                'id': id,
+                'obj': obj,
+                'datas': tpl
+            });
+            $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
+                $(document).trigger({
+                    'type': 'afterGetPayment.Cart',
+                    'id': id,
+                    'obj': obj,
+                    'datas': data
+                });                
+            });
+        },
+        shipping: {
+            freeFrom: 0,
+            price: 0,
+            sumSpec: 0,
+            sumSpecMes: ""
+        },
         getTiny: function(tpl) {
             tpl = tpl ? tpl : 'cart_data';
-            $.get(siteUrl + 'shop/cart/api/renderCart/' + tpl, function(data) {
+            $(document).trigger({
+                'type': 'beforeGetTiny.Cart',
+                'tpl': tpl
+            });
+            $.get(siteUrl + 'shop/cart/renderCart/' + tpl, function(data) {
                 $(document).trigger({
                     'type': 'getTiny.Cart',
+                    'tpl': tpl,
                     'datas': data
                 });
             });
@@ -190,32 +219,32 @@ if (typeof (wishList) != 'object')
         }
     }
 /**
-     * AuthApi ajax client
-     * Makes simple request to api controllers and get return data in json
-     * 
-     * @author Avgustus
-     * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
-     * 
-     * Get JSON object with fields list:
-     *      'status'    -   true/false - if the operation was successful,
-     *      'msg'       -   info message about result,
-     *      'refresh'   -   true/false - if true refreshes the page,
-     *      'redirect'  -   url - redirects to needed url
-     *    
-     * List of api methods:
-     *      Auth.php:
-     *          '/auth/authapi/login',
-     *          '/auth/authapi/logout',
-     *          '/auth/authapi/register',
-     *          '/auth/authapi/forgot_password',
-     *          '/auth/authapi/reset_password',
-     *          '/auth/authapi/change_password',
-     *          '/auth/authapi/cancel_account',
-     *          '/auth/authapi/banned',
-     *          '/shop/ajax/getApiNotifyingRequest',
-     *          '/shop/callbackApi'
-     * 
-     **/
+ * AuthApi ajax client
+ * Makes simple request to api controllers and get return data in json
+ * 
+ * @author Avgustus
+ * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
+ * 
+ * Get JSON object with fields list:
+ *      'status'    -   true/false - if the operation was successful,
+ *      'msg'       -   info message about result,
+ *      'refresh'   -   true/false - if true refreshes the page,
+ *      'redirect'  -   url - redirects to needed url
+ *    
+ * List of api methods:
+ *      Auth.php:
+ *          '/auth/authapi/login',
+ *          '/auth/authapi/logout',
+ *          '/auth/authapi/register',
+ *          '/auth/authapi/forgot_password',
+ *          '/auth/authapi/reset_password',
+ *          '/auth/authapi/change_password',
+ *          '/auth/authapi/cancel_account',
+ *          '/auth/authapi/banned',
+ *          '/shop/ajax/getApiNotifyingRequest',
+ *          '/shop/callbackApi'
+ * 
+ **/
 
 var ImageCMSApi = {
     defSet: function() {
@@ -324,10 +353,10 @@ var ImageCMSApi = {
         return queryString;
     },
     /**
-         * for displaying validation messages 
-         * in the form, which needs validation, for each validate input
-         * 
-         * */
+     * for displaying validation messages 
+     * in the form, which needs validation, for each validate input
+     * 
+     * */
     sendValidations: function(validations, selector, DS) {
         var sel = $(selector);
         if (typeof validations === 'object') {
@@ -353,9 +382,9 @@ var ImageCMSApi = {
         }
     },
     /**
-         * add captcha block if needed
-         * @param {type} captcha_image
-         */
+     * add captcha block if needed
+     * @param {type} captcha_image
+     */
     addCaptcha: function(cI, DS) {
         DS.captchaBlock.html(DS.captcha(cI));
         return false;
