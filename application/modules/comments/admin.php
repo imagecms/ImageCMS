@@ -80,22 +80,16 @@ class Admin extends BaseAdminController {
                     $comments[$i]['page_url'] = site_url($query['cat_url'] . $query['url']);
                 }
             }
-
-            if ($status_all == 'all') {
-                $this->db->where('status', '0');
-                $this->db->or_where('status', '1');
-            } else {
-                $this->db->where('status', $status_all);
-            }
-
-            $this->db->from('comments');
-            $total = $this->db->count_all_results();
-
-
-
-
-            if (is_array($comments))
-                $children = $this->proccess_child_comments($comments);
+//
+//            if ($status_all == 'all') {
+//                $this->db->where('status', '0');
+//                $this->db->or_where('status', '1');
+//            } else {
+//                $this->db->where('status', $status_all);
+//            }
+//
+//            $this->db->from('comments');
+//            $total = $this->db->count_all_results();
 
             if (is_array($comments))
                 $children = $this->proccess_child_comments($comments);

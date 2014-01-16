@@ -1,4 +1,7 @@
-{$count = ShopCore::app()->SCart->totalItems()}
+{$cart = \Cart\BaseCart::getInstance()->recountOriginTotalPrice()->recountTotalPrice()}
+{$count = $cart->getTotalItems()}
+{$price = $cart->getTotalPrice()}
+{$priceOrigin = $cart->getOriginTotalPrice()}
 <div class="btn-bask tiny-bask tinyBask{if $topCartCount != 0} pointer{/if}">
     <button>
         <span class="frame-icon">

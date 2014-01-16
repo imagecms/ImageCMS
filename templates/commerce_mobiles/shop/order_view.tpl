@@ -5,26 +5,26 @@
 #}
 <div class="content_head">
     <h1>Заказ №{echo $model->getId()}</h1>
-{if $CI->session->flashdata('makeOrder') === true}<h2>{lang('Спасибо за Ваш заказ','commerce_mobiles_new')}.</h2>{/if}
+{if $CI->session->flashdata('makeOrder') === true}<h2>{lang('Спасибо за Ваш заказ','commerce_mobiles')}.</h2>{/if}
 </div>
 <table class="tableOrderData">
     <!-- Start. Render Order number -->
     <tr>
-        <th>{lang('Заказ','commerce_mobiles_new')} #:</th>
+        <th>{lang('Заказ','commerce_mobiles')} #:</th>
         <td>{echo ShopCore::encode($model->getId())}</td>
     </tr>
     <!-- End. Render Order number -->
 
     <!-- Start. Display Paid status -->
     <tr>
-        <th>{lang('Оплачен','commerce_mobiles_new')}:</th>
-        <td>{if $model->getPaid() == true} {lang('Да','commerce_mobiles_new')}{else:}{lang('Нет','commerce_mobiles_new')}{/if}</td>
+        <th>{lang('Оплачен','commerce_mobiles')}:</th>
+        <td>{if $model->getPaid() == true} {lang('Да','commerce_mobiles')}{else:}{lang('Нет','commerce_mobiles')}{/if}</td>
     </tr>
     <!-- End. Display Paid status -->
 
     <!-- Start. Show Order status name -->
     <tr>
-        <th>{lang('Статус','commerce_mobiles_new')}:</th>
+        <th>{lang('Статус','commerce_mobiles')}:</th>
         <td>{echo SOrders::getStatusName('Id', $model->getStatus())}</td>
     </tr>
     <!-- End. Show Order status name -->
@@ -32,7 +32,7 @@
     <!-- Start. Render certificate -->
     {if $model->getGiftCertKey() != null}
         <tr>
-            <th>{lang('Подарочний сертификат','commerce_mobiles_new')}: </th>
+            <th>{lang('Подарочний сертификат','commerce_mobiles')}: </th>
             <td>-{echo $model->getGiftCertPrice()} {$CS}</td>
         </tr>
     {/if}
@@ -41,7 +41,7 @@
     <!-- Start. Delivery Method name -->
     {if $model->getDeliveryMethod() > 0}
         <tr>
-            <th>{lang('Доставка','commerce_mobiles_new')}:</th>
+            <th>{lang('Доставка','commerce_mobiles')}:</th>
             <td>{echo $model->getSDeliveryMethods()->getName()}</td>
         </tr>
     {/if}
@@ -82,11 +82,11 @@
                 <span class="descr">
                     <a href="{mobile_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->getName())}</a>
                     {if $variant->getName()}
-                        <span class="code_v">{lang('Вариант', 'commerce_mobiles_new')}: {echo $variant->getName()}</span>
+                        <span class="code_v">{lang('Вариант', 'commerce_mobiles')}: {echo $variant->getName()}</span>
                     {/if}
                     {if $variant->getNumber()}
                         <span class="divider">/</span>
-                        <span class="code">{lang('Артикул', 'commerce_mobiles_new')}: {echo $variant->getNumber()}</span>
+                        <span class="code">{lang('Артикул', 'commerce_mobiles')}: {echo $variant->getNumber()}</span>
                     {/if}
                     <span class="d_b price">{echo $item->getPrice()} {$CS}</span>
                     <span class="count">{echo $item->getQuantity()} шт.</span>
@@ -97,7 +97,7 @@
 </ul>
 <div class="main_frame_inside">
     <div class="gen_sum">
-        <span class="total_pay">{lang('Всего к оплате','commerce_mobiles_new')}:</span>
+        <span class="total_pay">{lang('Всего к оплате','commerce_mobiles')}:</span>
         <span class="price">
             {echo $total - $model->getDiscount() + $model->getDeliveryPrice()} {$CS}
         </span>
