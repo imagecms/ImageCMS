@@ -1,7 +1,7 @@
 {if count($items) > 0}
     <form method="post" action="{site_url(uri_string())}" id="cartForm">
         <div class="content_head">
-            <div class="title_h1">{lang('Ваш заказ','commerce_mobiles_new')}</div>
+            <div class="title_h1">{lang('Ваш заказ','commerce_mobiles')}</div>
         </div>
         <ul class="catalog">
             {foreach $items as $key=>$item}
@@ -20,11 +20,11 @@
                             <span class="descr">
                                 <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
                                 {if $item.variantName}
-                                    <span class="code_v">{lang('Варіант','commerce_mobiles_new')}: {echo $item.variantName}</span>
+                                    <span class="code_v">{lang('Варіант','commerce_mobiles')}: {echo $item.variantName}</span>
                                 {/if}
                                 {if $variant->getNumber()}
                                     <span class="divider">/</span>
-                                    <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $variant->getNumber()}</span>
+                                    <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $variant->getNumber()}</span>
                                 {/if}
                                 <input name="products[{$key}]" type="hidden" value="{$item.quantity}"/>
                                 <span class="d_b price">{$summary = $variant->getPrice() * $item.quantity}{echo $summary} {$CS}</span>
@@ -82,19 +82,19 @@
                 <label><span class="red d_b">{validation_errors()}</span></label>
                 {/if}
             <label>
-                {lang('Имя','commerce_mobiles_new')}:<span class="must">*</span>
+                {lang('Имя','commerce_mobiles')}:<span class="must">*</span>
                 <input type="text" name="userInfo[fullName]" value="{$profile.name}" />
             </label>
             <label>
-                {lang('Е-mail','commerce_mobiles_new')}:<span class="must">*</span>
+                {lang('Е-mail','commerce_mobiles')}:<span class="must">*</span>
                 <input type="text" name="userInfo[email]" value="{$profile.email}"/>
             </label>
             <label>
-                {lang('Телефон','commerce_mobiles_new')}:
+                {lang('Телефон','commerce_mobiles')}:
                 <input type="text" name="userInfo[phone]" value="{$profile.phone}" />
             </label>
             <label>
-                {lang('Способ доставки','commerce_mobiles_new')}
+                {lang('Способ доставки','commerce_mobiles')}
                 <select id="method_deliv" name="deliveryMethodId">
                     {foreach $deliveryMethods as $deliveryMethod}
                         {$del_id = $deliveryMethod->getId()}
@@ -118,7 +118,7 @@
 
             {if count($paymentMethods)}
                 <label>
-                    {lang('Способ оплаты','commerce_mobiles_new')}
+                    {lang('Способ оплаты','commerce_mobiles')}
                     {foreach $deliveryMethods as $dm}
                         <select id="paymentMethod{echo $dm->getId()}">
                             {$counter = true}

@@ -14,7 +14,7 @@ if (!Array.indexOf) {
 var Shop = {
     Cart: {
         add: function(obj, id, kit) {
-            var method = kit ? 'removeKit' : 'addProductByVariantId';
+            var method = kit ? 'addKit' : 'addProductByVariantId';
             $(document).trigger({
                 'type': 'beforeAdd.Cart',
                 'id': id,

@@ -36,10 +36,10 @@
                         </span>
                     </div>
                     <div class="btn-order-call">
-                        <a href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}">
+                        <button data-href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}">
                             <span class="icon_order_call"></span>
                             <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <a href="skype:{echo siteinfo('Skype')}" class="f-s_0">
