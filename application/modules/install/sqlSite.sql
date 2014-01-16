@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=269 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=270 ;
 
 --
 -- Дамп даних таблиці `components`
@@ -181,7 +181,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 23),
 (265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 12),
 (267, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
-(268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18);
+(268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
+(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -824,7 +825,6 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
 (1, 1, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";N;}'),
 (2, 1, 59, 'category', '', '', 0, 'Блог', 0, 8, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(3, 1, 0, 'module', '', '', 0, 'Контакты', 9, 6, NULL, 'a:3:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";s:7:"newpage";N;}'),
 (4, 1, 0, 'module', '', '', 0, 'Галерея', 0, 5, NULL, 'a:2:{s:8:"mod_name";s:7:"gallery";s:6:"method";s:0:"";}'),
 (8, 1, 63, 'page', '', '', 0, 'О компании', 0, 2, NULL, NULL),
 (9, 1, 55, 'category', '', '', 0, 'Продукция', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
@@ -839,7 +839,6 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 (19, 1, 66, 'page', '', '', 0, 'Космические роботы', 9, 3, NULL, NULL),
 (20, 1, 67, 'page', '', '', 0, 'Кухонные роботы', 9, 4, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
 (21, 1, 68, 'page', '', '', 0, 'Рабочие роботы', 9, 5, NULL, NULL),
-(25, 4, 63, 'page', '', 'a:1:{i:0;s:1:"0";}', 0, 'О компании', 0, 1, NULL, NULL),
 (26, 4, 0, 'module', '', '', 0, 'Обратная связь', 0, 5, NULL, 'a:2:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";}'),
 (27, 4, 57, 'category', '', '', 0, 'Новости', 0, 2, NULL, NULL),
 (28, 4, 58, 'category', '', '', 0, 'Вакансии', 0, 3, NULL, NULL),

@@ -61,24 +61,24 @@
         <!-- Start. corporate-->
         <div class="imagecms-top-fixed-header">
             <div class="container">
-                <a href="http://www.imagecms.net/" class="imagecms-logo">
+                <a href="http://www.imagecms.net/" onclick="_gaq.push(['_trackEvent', 'demo-front', 'imagecms main']);" class="imagecms-logo">
                     <img src="{$THEME}/logo.png"/>
                 </a>
                 <div class="imagecms-buy-license">
-                    <a href="http://www.imagecms.net/download/corporate">
+                    <a href="http://www.imagecms.net/download/corporate" onclick="_gaq.push(['_trackEvent', 'demo-front', '/download/corporate']);">
                         <span class="imagecms-text-el">Скачать бесплатно</span>
                         <img src="{$THEME}/icon_download.png" class="imagecms-ico-donwload"/>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net/free-cms-corporate" class="imagecms-ref">Обзор продукта</a>
+                        <a href="http://www.imagecms.net/free-cms-corporate" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/free-cms-corporate']);">Обзор продукта</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" class="imagecms-ref">Базовые возможности</a>
+                        <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/blog" class="imagecms-ref">Блог</a>
+                        <a href="http://www.imagecms.net/blog" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/blog']);">Блог</a>
                     </li>
                 </ul>
             </div>

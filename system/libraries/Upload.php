@@ -389,7 +389,7 @@ class CI_Upload {
 
             return FALSE;
         }
-
+                
         // Set the uploaded data as class variables
         $this->file_temp = $_FILES[$field]['tmp_name'];
         $this->file_size = $_FILES[$field]['size'];
@@ -398,7 +398,7 @@ class CI_Upload {
         if ($this->detect_mime !== FALSE) {
             $this->_file_mime_type($_FILES[$field]);
         }
-
+        
 
         $this->file_type = preg_replace('/^(.+?);.*$/', '\\1', $this->file_type);
         $this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
@@ -780,11 +780,19 @@ class CI_Upload {
             return FALSE;
         }
 
+
+
+
         $ext = strtolower(ltrim($this->file_ext, '.'));
+
+
+
 
         if (!in_array($ext, $this->allowed_types)) {
             return FALSE;
         }
+
+
 
         // Images get some additional checks
         $image_types = array('gif', 'jpg', 'jpeg', 'png', 'jpe');
@@ -797,9 +805,9 @@ class CI_Upload {
             return TRUE;
         }
 
-
-
         $mime = $this->mimes_types($ext);
+
+
 
 
         if (is_array($mime) && in_array($this->file_type, $mime, TRUE)) {
@@ -1011,7 +1019,7 @@ class CI_Upload {
 
         foreach ($msg as $val) {
             $msg = ($CI->lang->line($val) === FALSE) ? $val : $CI->lang->line($val);
-
+            
             $this->error_msg[] = $msg;
             log_message('error', $msg);
         }
