@@ -783,7 +783,6 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
 (1, 1, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";N;}'),
 (2, 1, 59, 'category', '', '', 0, 'Блог', 0, 17, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(3, 1, 0, 'module', '', '', 0, 'Контакты', 9, 9, NULL, 'a:3:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";s:7:"newpage";N;}'),
 (4, 1, 0, 'module', '', '', 0, 'Галерея', 0, 14, NULL, 'a:2:{s:8:"mod_name";s:7:"gallery";s:6:"method";s:0:"";}'),
 (8, 1, 63, 'page', '', '', 0, 'О компании', 0, 2, NULL, NULL),
 (9, 1, 55, 'category', '', '', 0, 'Продукция', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
