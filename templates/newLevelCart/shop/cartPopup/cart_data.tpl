@@ -1,3 +1,4 @@
+
 {$count = $count ? $count : ShopCore::app()->SCart->totalItems()}
 {$cartPrice = $cartPrice ? $cartPrice : ShopCore::app()->SCart->totalPrice()}
 {if $count == 0}

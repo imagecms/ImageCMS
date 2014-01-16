@@ -4,6 +4,7 @@ else
     var methodDeliv = '[name = "deliveryMethodId"]';
 var Order = {
     changeDeliveryMethod: function(id, tpl) {
+        tpl = tpl ? tpl : '';
         $(genObj.pM).next().show();
         $.get('/shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
             $(genObj.framePaymentMethod).html(data).next().hide();
@@ -56,7 +57,7 @@ $(document).on('scriptDefer', function() {
     }
 
     if (selectPayment)
-        cuselInit($(genObj.frameDelivery), '#paymentMethod');
+        cuselInit($(genObj.framePaymentMethod), $(genObj.pM));
 
     else
         $(genObj.pM).nStRadio({

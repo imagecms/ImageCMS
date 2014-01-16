@@ -16,19 +16,19 @@
                 </span>
                 {if $model->firstVariant->getName()}
                     <span class="divider">/</span>
-                    <span class="code_v">{lang('Вариант','commerce_mobiles_new')}: {echo $model->firstVariant->getName()}</span>
+                    <span class="code_v">{lang('Вариант','commerce_mobiles')}: {echo $model->firstVariant->getName()}</span>
                 {/if}
                 {if $model->firstVariant->number}
                     <span class="divider">/</span>
-                    <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $model->firstVariant->number}</span>
+                    <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $model->firstVariant->number}</span>
                 {/if}
                 <span class="d_b price">{echo $model->firstVariant->toCurrency()} {$CS}</span>
                 <div class="but_buy">
-                    <form method="POST" name="orderForm" action="{shop_url('cart/add')}">
+                    <form method="GET" name="orderForm" action="{shop_url('cart/add')}">
                         <a href="{shop_url('cart')}" onclick="$(this).closest('form').submit();
                                 return false;">
                             <span class="helper"></span>
-                            <span class="v-a_m">{lang('Купить','commerce_mobiles_new')}</span>
+                            <span class="v-a_m">{lang('Купить','commerce_mobiles')}</span>
                         </a>
                         <input type="hidden" name="productId" value="{echo $model->getId()}" />
                         <input type="hidden" name="variantId" value="{echo $model->firstVariant->getId()}" />
@@ -46,7 +46,7 @@
         <span class="helper"></span>
         <span class="v-a_m">
             <span class="check_other_variant icon"></span>
-            <span class="title">{lang('Другие варианты товара','commerce_mobiles_new')}</span>
+            <span class="title">{lang('Другие варианты товара','commerce_mobiles')}</span>
         </span>
     </div>
 {/if}
@@ -62,11 +62,11 @@
                         </span>
                         {if $p->getName()}
                             <span class="divider">/</span>
-                            <span class="code_v">{lang('Вариант','commerce_mobiles_new')}: {echo $p->getName()}</span>
+                            <span class="code_v">{lang('Вариант','commerce_mobiles')}: {echo $p->getName()}</span>
                         {/if}
                         {if $p->number}
                             <span class="divider">/</span>
-                            <span class="code">{lang('Артикул','commerce_mobiles_new')}: {echo $p->number}</span>
+                            <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $p->number}</span>
                         {/if}
                         <span class="d_b price">{echo $p->toCurrency()} {$CS}</span>
                         <div class="but_buy">
@@ -74,7 +74,7 @@
                                 <a href="{shop_url('cart')}" onclick="$(this).closest('form').submit();
                                 return false;">
                                     <span class="helper"></span>
-                                    <span class="v-a_m">{lang('Купить','commerce_mobiles_new')}</span>
+                                    <span class="v-a_m">{lang('Купить','commerce_mobiles')}</span>
                                 </a>
                                 <input type="hidden" name="productId" value="{echo $model->getId()}" />
                                 <input type="hidden" name="variantId" value="{echo $p->getId()}" />
@@ -91,7 +91,7 @@
 </ul>
 <div class="text tovar_description">
     {if $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
-        <h2>{lang('Свойства','commerce_mobiles_new')}</h2>
+        <h2>{lang('Свойства','commerce_mobiles')}</h2>
         <dl>
             {foreach $props as $property_key => $property_val}
                 <dt>{$property_val['Name']}:</dt>
@@ -103,7 +103,7 @@
     {/if}
     <br>
     {if $model->getFullDescription()}
-        <h2>{lang('Описание','commerce_mobiles_new')}</h2>
+        <h2>{lang('Описание','commerce_mobiles')}</h2>
         {echo $model->getFullDescription()}
     {/if}
 </div>

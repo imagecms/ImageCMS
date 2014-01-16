@@ -27,7 +27,7 @@
             </div>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).on('scriptDefer', function() {
-                    Shop.Cart.clear();
+                Shop.Cart.clear();
                 }){/literal}
             </script>
         {/if}
@@ -55,7 +55,7 @@
                     </tr>
                 {/if}
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('addphone','order', $model->getId())}
-                {if $s_field.field_data !== ''}
+                {if $s_field.field_data != null}
                     <tr>
                         <th>{lang('Дополнительный телефон','newLevel')}:</th>
                         <td>{echo $s_field.field_data}</td>
@@ -81,7 +81,7 @@
                 </tr>
                 <!-- End. Delivery Method name -->
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
-                {if $s_field.field_data !== ''}
+                {if $s_field.field_data != null}
                     <tr>
                         <th>{lang('Город','newLevel')}:</th>
                         <td>{echo $s_field.field_data}</td>
@@ -129,6 +129,7 @@
                 <!-- End. Delivery Method price -->
 
                 <!-- Start. Render payment button and payment description -->
+                {if $paymentMethod}
                 <tr>
                     <th>{lang('Способ оплаты','newLevel')}:</th>
                     <td>
@@ -139,6 +140,7 @@
                         {/if}
                     </td>
                 </tr>
+                {/if}
                 <!--                Start. Order status-->
                 <tr>
                     <th>{lang('Статус оплаты','newLevel')}:</th>
@@ -159,7 +161,9 @@
                                 {$locale = \MY_Controller::getCurrentLocale();}
                                 {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
                                 {/*echo $notif->message*/}
-                                {echo $paymentMethod->getPaymentForm($model)}
+                                {if $paymentMethod}
+                                    {echo $paymentMethod->getPaymentForm($model)}
+                                {/if}
                             </div>
                         </td>
                     {/if}
@@ -199,290 +203,290 @@
                                                 </a>
                                                 <div class="description">
                                                     <span class="frame-variant-name-code">
-                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name frameVariantName">{lang("Вариант",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
-                                                {if trim(ShopCore::encode($Variant->getNumber()) != '')}<span class="frame-variant-code frameVariantCode">{lang("Артикул",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($Variant->getNumber())}</span></span>{/if}
-                                            </span>
-                                            {/*}
-                                            <span class="frame-prices">
-                                                <span class="current-prices f-s_0">
-                                                    <span class="price-new">
+                                                        {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name frameVariantName">{lang("Вариант",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
+                                                        {if trim(ShopCore::encode($Variant->getNumber()) != '')}<span class="frame-variant-code frameVariantCode">{lang("Артикул",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($Variant->getNumber())}</span></span>{/if}
+                                                    </span>
+                                                    {/*}
+                                                    <span class="frame-prices">
+                                                        <span class="current-prices f-s_0">
+                                                            <span class="price-new">
+                                                                <span>
+                                                                    <span class="price">{echo $orderProduct->getPrice()}</span>
+                                                                    <span class="curr">{$CS}</span>
+                                                                </span>
+                                                            </span>
+                                                            {if $NextCSIdCond}
+                                                                <span class="price-add">
+                                                                    <span>
+                                                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)}</span>
+                                                                        <span class="curr-add">{$NextCS}</span>
+                                                                    </span>
+                                                                </span>
+                                                            {/if}
+                                                        </span>
+                                                    </span>
+                                                    { */}
+                                            </td>
+                                            <td>
+                                                <div class="gen-sum-row">
+                                                    <span class="s-t d_b">{lang('Кол-во','newLevel')}:</span>
+                                                    <span class="count">{echo $orderProduct->getQuantity()}</span>
+                                                    <span class="s-t">{lang('шт','newLevel')}.</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="s-t d_b">{lang('Сумма','newLevel')}:</span>
+                                                <span class="frame-prices">
+                                                    <span class="current-prices f-s_0">
+                                                        <span class="price-new">
+                                                            <span>
+                                                                <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
+                                                                <span class="curr">{$CS}</span>
+                                                            </span>
+                                                        </span>
+                                                        {/*}
+                                                        {if $NextCSIdCond}    
+                                                            <span class="price-add">
+                                                                <span>
+                                                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
+                                                                    <span class="curr-add">{$NextCS}</span>
+                                                                </span>
+                                                            </span>
+                                                        {/if}
+                                                        { */}
+                                                    </span>
+                                                </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                    <!-- end for single product -->
+                                    <!-- Start. Render Ordered kit products  -->
+                                    {$sumKit = 0}
+                                    {foreach $model->getOrderKits() as $orderProduct}
+                                        <tr class="row-kits rowKits items-order row">
+                                            <td class="frame-items frame-items-kit">
+                                                <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
+                                                <ul class="items items-bask">
+                                                    <li>
+                                                        <div class="frame-kit main-product">
+                                                            <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="frame-photo-title">
+                                                                <span class="photo-block">
+                                                                    <span class="helper"></span>
+                                                                    <img src="{echo $orderProduct->getKit()->getMainProduct()->firstVariant->getSmallPhoto()}" 
+                                                                         alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
+                                                                </span>
+                                                                <span class="title">{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}</span>
+                                                            </a>
+                                                            <div class="description">
+                                                                {/*}
+                                                                <div class="frame-prices">
+                                                                    <span class="current-prices">
+                                                                        <span class="price-new">
+                                                                            <span>
+                                                                                <span class="price">{echo $orderProduct->getKit()->getMainProductPrice()}</span>
+                                                                                <span class="curr">{$CS}</span>
+                                                                            </span>
+                                                                        </span>
+                                                                        {if $NextCSIdCond}
+                                                                            <span class="price-add">
+                                                                                <span>
+                                                                                    <span class="price">{echo $orderProduct->getKit()->getMainProductPrice($NextCSId)}</span>
+                                                                                    <span class="curr">{$NextCS}</span>
+                                                                                </span>
+                                                                            </span>
+                                                                        {/if}
+                                                                    </span>
+                                                                </div>
+                                                                { */}
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </li>
+                                                    {foreach $orderProduct->getKit()->getShopKitProducts() as $key => $kitProducts}
+                                                        <li>
+                                                            <div class="next-kit">+</div>
+                                                            <div class="frame-kit">
+                                                                <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="frame-photo-title">
+                                                                    <span class="photo-block">
+                                                                        <span class="helper"></span>
+                                                                        <img src="{echo $kitProducts->getSProducts()->firstVariant->getSmallPhoto()}" 
+                                                                             alt="{echo ShopCore::encode($kitProducts->getSProducts()->getName())}"/>
+                                                                    </span>
+                                                                    <span class="title">{echo ShopCore::encode($kitProducts->getSProducts()->getName())}</span>
+                                                                </a>
+                                                                <div class="description">
+                                                                    {/*}
+                                                                    <div class="frame-prices">
+                                                                        {if $kitProducts->getDiscount()}
+                                                                            <span class="price-discount">
+                                                                                <span>
+                                                                                    <span class="price priceOrigVariant">{echo $kitProducts->getKitProductPrice()}</span>
+                                                                                    <span class="curr">{$CS}</span>
+                                                                                </span>
+                                                                            </span>
+                                                                        {/if}
+                                                                        <span class="current-prices">
+                                                                            <span class="price-new">
+                                                                                <span>
+                                                                                    <span class="price">{echo $kitProducts->getKitNewPrice()}</span>
+                                                                                    <span class="curr">{$CS}</span>
+                                                                                </span>
+                                                                            </span>
+                                                                            {if $NextCSIdCond}    
+                                                                                <span class="price-add">
+                                                                                    <span>
+                                                                                        <span class="price">{echo $kitProducts->getKitNewPrice($NextCSId)}</span>
+                                                                                        <span class="curr">{$NextCS}</span>
+                                                                                    </span>
+                                                                                </span>
+                                                                            {/if}
+                                                                        </span>
+                                                                    </div>
+                                                                    { */}
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    {/foreach}
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <div class="gen-sum-row">
+                                                    <span class="s-t d_b">{lang('Кол-во','newLevel')}:</span>
+                                                    <span class="count">{echo $orderProduct->getQuantity()}</span>
+                                                    <span class="s-t">{lang('шт','newLevel')}.</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="s-t">{lang('Сумма','newLevel')}:</span>
+                                                <span class="frame-prices">
+                                                    <span class="price-discount">
                                                         <span>
-                                                            <span class="price">{echo $orderProduct->getPrice()}</span>
+                                                            <span class="price">{echo $orderProduct->getKit()->getTotalPriceOld()}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
-                                                    {if $NextCSIdCond}
-                                                        <span class="price-add">
+                                                    <span class="current-prices f-s_0">
+                                                        <span class="price-new">
                                                             <span>
-                                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)}</span>
-                                                                <span class="curr-add">{$NextCS}</span>
+                                                                <span class="price">{echo $orderProduct->getKit()->getTotalPrice()}</span>
+                                                                <span class="curr">{$CS}</span>
                                                             </span>
                                                         </span>
-                                                    {/if}
+                                                        {/*}
+                                                        {if $NextCSIdCond}
+                                                            <span class="price-add">
+                                                                <span>
+                                                                    <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)}</span>
+                                                                    <span class="curr-add">{$NextCS}</span>
+                                                                </span>
+                                                            </span>
+                                                        {/if}
+                                                        { */}
+                                                    </span>
+                                                    {$sumKit += $orderProduct->getKit()->getTotalPrice() - $orderProduct->getKit()->getTotalPriceOld()}
                                                 </span>
-                                            </span>
-                                            { */}
-                                    </td>
-                                    <td>
-                                        <div class="gen-sum-row">
-                                            <span class="s-t d_b">{lang('Кол-во','newLevel')}:</span>
-                                            <span class="count">{echo $orderProduct->getQuantity()}</span>
-                                            <span class="s-t">{lang('шт','newLevel')}.</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="s-t d_b">{lang('Сумма','newLevel')}:</span>
-                                        <span class="frame-prices">
-                                            <span class="current-prices f-s_0">
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                                <tfoot class="gen-info-price">
+                                    {if $model->getOriginPrice()}
+                                        <tr>
+                                            <td colspan="2">
+                                                <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
+                                            </td>
+                                            <td>
                                                 <span class="price-new">
                                                     <span>
-                                                        <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
+                                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
-                                                {/*}
-                                                {if $NextCSIdCond}    
-                                                    <span class="price-add">
-                                                        <span>
-                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
-                                                            <span class="curr-add">{$NextCS}</span>
-                                                        </span>
-                                                    </span>
-                                                {/if}
-                                                { */}
-                                            </span>
-                                        </span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            {/foreach}
-                            <!-- end for single product -->
-                            <!-- Start. Render Ordered kit products  -->
-                            {$sumKit = 0}
-                            {foreach $model->getOrderKits() as $orderProduct}
-                                <tr class="row-kits rowKits items-order row">
-                                    <td class="frame-items frame-items-kit">
-                                        <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
-                                        <ul class="items items-bask">
-                                            <li>
-                                                <div class="frame-kit main-product">
-                                                    <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="frame-photo-title">
-                                                        <span class="photo-block">
-                                                            <span class="helper"></span>
-                                                            <img src="{echo $orderProduct->getKit()->getMainProduct()->firstVariant->getSmallPhoto()}" 
-                                                                 alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
-                                                        </span>
-                                                        <span class="title">{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}</span>
-                                                    </a>
-                                                    <div class="description">
-                                                        {/*}
-                                                        <div class="frame-prices">
-                                                            <span class="current-prices">
-                                                                <span class="price-new">
-                                                                    <span>
-                                                                        <span class="price">{echo $orderProduct->getKit()->getMainProductPrice()}</span>
-                                                                        <span class="curr">{$CS}</span>
-                                                                    </span>
-                                                                </span>
-                                                                {if $NextCSIdCond}
-                                                                    <span class="price-add">
-                                                                        <span>
-                                                                            <span class="price">{echo $orderProduct->getKit()->getMainProductPrice($NextCSId)}</span>
-                                                                            <span class="curr">{$NextCS}</span>
-                                                                        </span>
-                                                                    </span>
-                                                                {/if}
-                                                            </span>
-                                                        </div>
-                                                        { */}
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </li>
-                                            {foreach $orderProduct->getKit()->getShopKitProducts() as $key => $kitProducts}
-                                                <li>
-                                                    <div class="next-kit">+</div>
-                                                    <div class="frame-kit">
-                                                        <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="frame-photo-title">
-                                                            <span class="photo-block">
-                                                                <span class="helper"></span>
-                                                                <img src="{echo $kitProducts->getSProducts()->firstVariant->getSmallPhoto()}" 
-                                                                     alt="{echo ShopCore::encode($kitProducts->getSProducts()->getName())}"/>
-                                                            </span>
-                                                            <span class="title">{echo ShopCore::encode($kitProducts->getSProducts()->getName())}</span>
-                                                        </a>
-                                                        <div class="description">
-                                                            {/*}
-                                                            <div class="frame-prices">
-                                                                {if $kitProducts->getDiscount()}
-                                                                    <span class="price-discount">
-                                                                        <span>
-                                                                            <span class="price priceOrigVariant">{echo $kitProducts->getKitProductPrice()}</span>
-                                                                            <span class="curr">{$CS}</span>
-                                                                        </span>
-                                                                    </span>
-                                                                {/if}
-                                                                <span class="current-prices">
-                                                                    <span class="price-new">
-                                                                        <span>
-                                                                            <span class="price">{echo $kitProducts->getKitNewPrice()}</span>
-                                                                            <span class="curr">{$CS}</span>
-                                                                        </span>
-                                                                    </span>
-                                                                    {if $NextCSIdCond}    
-                                                                        <span class="price-add">
-                                                                            <span>
-                                                                                <span class="price">{echo $kitProducts->getKitNewPrice($NextCSId)}</span>
-                                                                                <span class="curr">{$NextCS}</span>
-                                                                            </span>
-                                                                        </span>
-                                                                    {/if}
-                                                                </span>
-                                                            </div>
-                                                            { */}
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            {/foreach}
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="gen-sum-row">
-                                            <span class="s-t d_b">{lang('Кол-во','newLevel')}:</span>
-                                            <span class="count">{echo $orderProduct->getQuantity()}</span>
-                                            <span class="s-t">{lang('шт','newLevel')}.</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="s-t">{lang('Сумма','newLevel')}:</span>
-                                        <span class="frame-prices">
-                                            <span class="price-discount">
+                                            </td>
+                                        </tr>
+                                    {/if}
+                                    <tr>
+                                        <td colspan="2">
+                                            <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
+                                        </td>
+                                        <td>
+                                            <span class="price-item">
                                                 <span>
-                                                    <span class="price">{echo $orderProduct->getKit()->getTotalPriceOld()}</span>
+                                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
                                                     <span class="curr">{$CS}</span>
                                                 </span>
                                             </span>
-                                            <span class="current-prices f-s_0">
-                                                <span class="price-new">
+                                        </td>
+                                    </tr>
+
+                                    {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
+                                    {if $discount || $sumKit != 0}
+                                        <tr>
+                                            <td colspan="2">
+                                                <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
+                                            </td>
+                                            <td>
+                                                <span class="price-item">
                                                     <span>
-                                                        <span class="price">{echo $orderProduct->getKit()->getTotalPrice()}</span>
+                                                        <span class="text-discount current-discount">{echo $discount + $sumKit} <span class="curr">{$CS}</span></span>
+                                                    </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    {/if}
+                                    {if $model->getGiftCertPrice() > 0}
+                                        <tr>
+                                            <td colspan="2">
+                                                <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
+                                            </td>
+                                            <td>
+                                                <span class="price-item">
+                                                    <span class="text-discount">
+                                                        <span class="price">- {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
-                                                {/*}
-                                                {if $NextCSIdCond}
-                                                    <span class="price-add">
-                                                        <span>
-                                                            <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)}</span>
-                                                            <span class="curr-add">{$NextCS}</span>
-                                                        </span>
-                                                    </span>
-                                                {/if}
-                                                { */}
-                                            </span>
-                                            {$sumKit += $orderProduct->getKit()->getTotalPrice() - $orderProduct->getKit()->getTotalPriceOld()}
-                                        </span>
-                                    </td>
-                                </tr>
-                            {/foreach}
-                        </tbody>
-                        <tfoot class="gen-info-price">
-                            {if $model->getOriginPrice()}
-                                <tr>
-                                    <td colspan="2">
-                                        <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
-                                    </td>
-                                    <td>
+                                            </td>
+                                        </tr>
+                                    {/if}
+                                </tfoot>
+
+                                <!-- End. Render Ordered kit products  -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-foot">
+                    <div class="header-frame-foot">
+                        <div class="inside-padd">
+                            <!-- Start. Price block-->
+                            <div class="gen-sum-order clearfix">
+                                <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                                <span class="frame-prices f-s_0 f_r">
+                                    <span class="current-prices f-s_0">
                                         <span class="price-new">
                                             <span>
-                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
+                                                <span class="price">{echo $model->gettotalprice() + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
                                                 <span class="curr">{$CS}</span>
                                             </span>
                                         </span>
-                                    </td>
-                                </tr>
-                            {/if}
-                            <tr>
-                                <td colspan="2">
-                                    <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
-                                </td>
-                                <td>
-                                    <span class="price-item">
-                                        <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
-                                            <span class="curr">{$CS}</span>
-                                        </span>
-                                    </span>
-                                </td>
-                            </tr>
-
-                            {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
-                            {if $discount || $sumKit != 0}
-                                <tr>
-                                    <td colspan="2">
-                                        <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
-                                    </td>
-                                    <td>
-                                        <span class="price-item">
-                                            <span>
-                                                <span class="text-discount current-discount">{echo $discount + $sumKit} <span class="curr">{$CS}</span></span>
+                                        {if $NextCSIdCond}     
+                                            <span class="price-add">
+                                                <span>
+                                                    (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId) + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice(),$NextCSId)}</span>                                            <span class="curr-add">{$NextCS}</span>)
+                                                </span>
                                             </span>
-                                        </span>
-                                    </td>
-                                </tr>
-                            {/if}
-                            {if $model->getGiftCertPrice() > 0}
-                                <tr>
-                                    <td colspan="2">
-                                        <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
-                                    </td>
-                                    <td>
-                                        <span class="price-item">
-                                            <span class="text-discount">
-                                                <span class="price">- {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
-                                                <span class="curr">{$CS}</span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                </tr>
-                            {/if}
-                        </tfoot>
-
-                        <!-- End. Render Ordered kit products  -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="frame-foot">
-            <div class="header-frame-foot">
-                <div class="inside-padd">
-                    <!-- Start. Price block-->
-                    <div class="gen-sum-order clearfix">
-                        <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
-                        <span class="frame-prices f-s_0 f_r">
-                            <span class="current-prices f-s_0">
-                                <span class="price-new">
-                                    <span>
-                                        <span class="price">{echo $model->gettotalprice() + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
-                                        <span class="curr">{$CS}</span>
+                                        {/if}
                                     </span>
                                 </span>
-                                {if $NextCSIdCond}     
-                                    <span class="price-add">
-                                        <span>
-                                            (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId) + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice(),$NextCSId)}</span>                                            <span class="curr-add">{$NextCS}</span>)
-                                        </span>
-                                    </span>
-                                {/if}
-                            </span>
-                        </span>
+                            </div>
+                            <!-- End. Price block-->
+                        </div>
                     </div>
-                    <!-- End. Price block-->
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>

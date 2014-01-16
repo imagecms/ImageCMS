@@ -4,7 +4,8 @@
         <div class="frame-label">
             <span class="niceRadio b_n">
                 <input type="radio"
-                       {if $counter} checked="checked"
+                       {if $counter}
+                           checked="checked"
                            {$counter = false}
                        {/if}
                        value="{echo $paymentMethod->getId()}"
