@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 12:25+0200\n"
-"PO-Revision-Date: 2014-01-15 12:25+0200\n"
+"POT-Creation-Date: 2014-01-16 03:25+0200\n"
+"PO-Revision-Date: 2014-01-16 03:25+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,18 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/system.php:271
+msgid "File cannot be uploaded, because file with such extention can not have those mime-type. Mime: "
+msgstr "Файл не может быть загружен! Файл с таким расширением <br /> не может иметь такой мийм-тип. Текущий тип: "
+
+#: ./application/modules/shop/admin/system.php:271
+msgid "File cannot be uploaded, because file with such extention <br /> can not have those mime-type. Mime: "
+msgstr "Файл не может быть загружен! Файл с таким расширением <br /> не может иметь такой мийм-тип. Текущий тип: "
+
+#: ./application/modules/shop/admin/system.php:261
+msgid "System error - uknown extention"
+msgstr "Системная ошибка - неверное расширение"
 
 #: ./application/modules/shop/admin/system.php:262
 msgid "The file {$filename} is not writable"
@@ -68,10 +80,6 @@ msgstr "Добавить в меню"
 #: ./templates/administrator/shop_menu.tpl:49
 msgid "Regular discounts"
 msgstr "Регулярные скидки"
-
-#: ./application/modules/admin/components.php:290
-msgid "Settings are saved"
-msgstr "Настройки сохраняются"
 
 #: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:100
 #: ./application/modules/shop/admin/templates/kits/kit_create.tpl:83
