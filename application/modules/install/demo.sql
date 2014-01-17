@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.3deb1kc2~raring0
+-- version 4.0.6
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Лип 24 2013 р., 20:13
--- Версія сервера: 5.5.31-0ubuntu0.13.04.1
--- Версія PHP: 5.4.16-1~ppa1~raring
+-- Час створення: Січ 17 2014 р., 11:11
+-- Версія сервера: 5.5.35-log
+-- Версія PHP: 5.2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -15,6 +15,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+
+--
+-- База даних: `imagecms_demo`
+--
 
 -- --------------------------------------------------------
 
@@ -883,6 +887,7 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 --
 -- Структура таблиці `mod_sample_settings`
 --
+
 DROP TABLE IF EXISTS `mod_sample_settings`;
 CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -899,6 +904,7 @@ INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
 (1, 'mailTo', 'admin@site.com'),
 (2, 'useEmailNotification', 'TRUE'),
 (3, 'key', 'UUUsssTTTeee');
+
 -- --------------------------------------------------------
 
 --
@@ -1075,7 +1081,7 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
-(1, 3, 'site', 'site', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
+(1, 3, 'Corporate Demo Imagecms', 'Demo', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
 
 -- --------------------------------------------------------
 
@@ -2134,7 +2140,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 --
 -- Дамп даних таблиці `users`
@@ -2189,6 +2195,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
 ('30df947aef7a96d843520de63d029ef2', 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', '2012-12-06 14:20:58'),
 ('59600cf5ee313f6975283ba33587c305', 49, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36', '127.0.0.1', '2013-07-24 17:12:04');
+
 -- --------------------------------------------------------
 
 --
@@ -2246,7 +2253,7 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (22, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:4:"1000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1377793048),
 (14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084),
 (15, 'benefits', 'html', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>', '', '', 'benefits', '', 1377781343),
-(16, 'footer', 'html', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/" target="_blank">Powered by ImageCMS</a></p>', '', '', 'Текст в футере', '', 1377785231),
+(16, 'footer', 'html', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/free-cms-corporate">Бесплатная CMS</a></p>', '', '', 'Текст в футере', '', 1377785231),
 (17, 'header', 'html', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>', '', '', 'Текст в хедере', '', 1377785307),
 (21, 'works_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:4:"1000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1377792797);
 
@@ -2272,17 +2279,8 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (10, 'ru', '<address>\n<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>\n</address>'),
 (15, 'ru', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
-(16, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/" target="_blank">Powered by ImageCMS</a></p>'),
+(16, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/free-cms-corporate">Бесплатная CMS</a></p>'),
 (17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>');
-
-
-UPDATE 
-    `mod_email_paterns_i18n` 
-SET `variables` = 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";s:9:"$comment$";s:38:"Комментарий к заказу";}' 
-WHERE 
-    id = 2 AND 
-    locale = 'ru'
-LIMIT 1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
