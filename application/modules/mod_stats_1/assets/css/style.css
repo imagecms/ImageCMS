@@ -1,0 +1,47 @@
+.firstLevelMenu {font-weight:bold;}
+.nav-tabs>li>a {padding-top: 2px;padding-bottom: 2px;line-height: 20px;}
+.nav-tabs.nav-stacked>div>li>a{border: 1px solid #ddd; display: block;}
+.nav-tabs.nav-stacked>div>li>a:hover {z-index: 2;border-color: #ddd;}
+.linkChart.active{color: red;}
+.m_l_10 {margin-left: 10px !important;}
+.m_t_-10{margin-top: -10px !important;}
+.m-l_0{margin-left: 0 !important;}
+.m-t_5{margin-top: 5px !important;}
+.m-t_25{margin-top: 25px !important;}
+.m-l_40{margin-left: 40px !important;}
+
+.settingTitle{
+    font-weight:bold;
+    display: block;padding: 3px;
+    padding-left: 10px;
+    background: #f1f1f1; /* Old browsers */
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.settingsContainer{
+    border: 1px solid #ddd; display: block;
+    padding: 3px 3px 3px 10px;
+}
+.fixedTableWithLeftScroll{
+    overflow-y: auto; height: 500px;
+}
+
+
+/* Інформація про користувачів */
+#user_information table thead th {
+    vertical-align: middle;
+    text-align: center;
+}
+#user_information table thead th {width: 10%;}
+#user_information table thead th:nth-child(5) {width: 28%;}
+#user_information table thead th:nth-child(6) {width: 12%;}
+
+
+.mod_stats_no_online {
+    text-align: center;
+    color: #696969;
+}

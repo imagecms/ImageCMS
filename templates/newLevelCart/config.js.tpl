@@ -45,7 +45,6 @@
             editCart: '.editCart',
             btnBask: '.btnBask',
             tinyBask: '#tinyBask',
-                        
             btnBuyKit: '.btnBuyKit',
             btnBuy: '.btnBuy',
             btnToCart: '.btn-buy',
@@ -62,7 +61,6 @@
             frameCount: '.frameCount',
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
-
             err: 'error',
             scs: 'success',
             info: 'info',
@@ -95,34 +93,34 @@
         nextCs = '{echo $NextCS}',
         nextCsCond = nextCs == '' ? false : true;
         pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
-        checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
-        inServerCompare = parseInt("{$cnt_comp}"),
-        inServerWishList = parseInt("{$countWL}"),
-        countViewProd = parseInt("{$countSh}"),
-        theme = "{$THEME}",
-        siteUrl = "{echo site_url()}",
-        colorScheme = "{$colorScheme}",
-        isLogin = "{$is_logged_in}" == '1' ? true : false,
-        selectDeliv = false,
-        selectPayment = true,
-        selIcons = '[class*=icon_]',
-        preloader = '.preloader',
-        typePage = "{$CI->core->core_data['data_type']}",
-        selScrollPane = '.frame-scroll-pane .content-carousel';
+                checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
+                inServerCompare = parseInt("{$cnt_comp}"),
+                inServerWishList = parseInt("{$countWL}"),
+                countViewProd = parseInt("{$countSh}"),
+                theme = "{$THEME}",
+                siteUrl = "{echo site_url()}",
+                colorScheme = "{$colorScheme}",
+                isLogin = "{$is_logged_in}" == '1' ? true : false,
+                selectDeliv = false,
+                selectPayment = true,
+                selIcons = '[class*=icon_]',
+                preloader = '.preloader',
+                typePage = "{$CI->core->core_data['data_type']}",
+                selScrollPane = '.frame-scroll-pane .content-carousel';
 
     {literal}
         text = {
             search: function(text) {
                 return '{/literal}{lang("Введите боллее", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("символов", "newLevel")}'{literal};
-                        },
-                        error: {
-                            notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", "newLevel")}'{literal},
-                                        fewsize: function(text) {
-                                            return '{/literal}{lang("Выберете размер меньше или равно", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("пикселей", "newLevel")}'{literal};
-                                                        },
-                                                        enterName: '{/literal}{lang("Введите название", "newLevel")}'{literal}
-                                                                }
-                                                            }
+            },
+            error: {
+                notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", "newLevel")}'{literal},
+                fewsize: function(text) {
+                    return '{/literal}{lang("Выберете размер меньше или равно", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("пикселей", "newLevel")}'{literal};
+                },
+                enterName: '{/literal}{lang("Введите название", "newLevel")}'{literal}
+            }
+        }
     {/literal}
         text.inCart = '{lang('В корзине','newLevel')}';
         text.pc = '{lang('шт','newLevel')}.';
@@ -136,3 +134,7 @@
         text.plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'];
         text.plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
 </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6862bd3ae4805a1fce02192de0c3cf1d108d0ab4
