@@ -112,7 +112,7 @@
     });
 
     $('#suggestions').autocomplete({
-        minValue: 3,
+        minValue: 2,
         blockEnter: false
     });
     drawIcons($(selIcons));
@@ -185,7 +185,7 @@
     });
     doc.on('remove.Cart сhange.Cart', function(e) {
         if (e.datas.success)
-            $(genObj.popupCart).drop('get', $(genObj.showCart));
+            $(genObj.showCart).drop('get');
         
         ShopFront.Cart.processBtnBuyCount(e.id, false, e.kit);
     });

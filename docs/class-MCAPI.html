@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
 
 	<title>Class MCAPI | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?3945239888"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+	<script type="text/javascript" src="elementlist.js?2660862840"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
 
@@ -83,7 +83,7 @@
 			</ul>
 		</div>
 
-		<hr />
+		<hr>
 
 
 		<div id="elements">
@@ -274,6 +274,7 @@
 				<li><a href="class-ShopExport.html">ShopExport</a></li>
 				<li><a href="class-ShopExportDataBase.html">ShopExportDataBase</a></li>
 				<li><a href="class-ShopImport.html">ShopImport</a></li>
+				<li><a href="class-SiteInfo.html">SiteInfo</a></li>
 				<li><a href="class-Sitemap.html">Sitemap</a></li>
 				<li><a href="class-Smart_filter.html">Smart_filter</a></li>
 				<li><a href="class-SMemCached.html">SMemCached</a></li>
@@ -379,19 +380,16 @@
 				<li><a href="function-get_perms_groups.html">get_perms_groups</a></li>
 				<li><a href="function-get_product_category.html" class="invalid">get_product_category</a></li>
 				<li><a href="function-get_sub_categories.html">get_sub_categories</a></li>
-				<li><a href="function-getActiveTemplateName.html">getActiveTemplateName</a></li>
 				<li><a href="function-getAmountInCart.html">getAmountInCart</a></li>
+				<li><a href="function-getCartItems.html">getCartItems</a></li>
 				<li><a href="function-getCMSNumber.html">getCMSNumber</a></li>
 				<li><a href="function-getDefaultLanguage.html">getDefaultLanguage</a></li>
-				<li><a href="function-getFaviconLogoPath.html">getFaviconLogoPath</a></li>
-				<li><a href="function-getFaviconLogoUrl.html">getFaviconLogoUrl</a></li>
 				<li><a href="function-getLimiPrice.html">getLimiPrice</a></li>
 				<li><a href="function-getLimitAllPrice.html">getLimitAllPrice</a></li>
 				<li><a href="function-getProduct.html">getProduct</a></li>
 				<li><a href="function-getProductViewsCount.html">getProductViewsCount</a></li>
 				<li><a href="function-getPromoBlock.html">getPromoBlock</a></li>
 				<li><a href="function-getSimilarProduct.html">getSimilarProduct</a></li>
-				<li><a href="function-getSiteInfo.html">getSiteInfo</a></li>
 				<li><a href="function-getVariant.html">getVariant</a></li>
 				<li><a href="function-getVariants.html">getVariants</a></li>
 				<li><a href="function-getWidgetTitle.html">getWidgetTitle</a></li>
@@ -409,6 +407,7 @@
 				<li><a href="function-is_property_in_get.html">is_property_in_get</a></li>
 				<li><a href="function-is_true_array.html">is_true_array</a></li>
 				<li><a href="function-isAviableInStock.html">isAviableInStock</a></li>
+				<li><a href="function-isExistsItems.html">isExistsItems</a></li>
 				<li><a href="function-jsCode.html">jsCode</a></li>
 				<li><a href="function-load_brand.html" class="invalid">load_brand</a></li>
 				<li><a href="function-load_cat.html" class="invalid">load_cat</a></li>
@@ -476,10 +475,10 @@
 <div id="right">
 <div id="rightInner">
 	<form id="search">
-		<input type="hidden" name="cx" value="" />
-		<input type="hidden" name="ie" value="UTF-8" />
-		<input type="text" name="q" class="text" />
-		<input type="submit" value="Search" />
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
 	</form>
 
 	<div id="navigation">
@@ -527,7 +526,7 @@
 		
 		
 
-		<b>Located at</b> application/libraries/MCAPI.php<br />
+		<b>Located at</b> application/libraries/MCAPI.php<br>
 	</div>
 
 
@@ -692,18 +691,18 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true on success<br />
+					<code>boolean</code><br>true on success<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignUnschedule.php<br />
-						xml-rpc_campaignUnschedule.php<br />
+						mcapi_campaignUnschedule.php<br>
+						xml-rpc_campaignUnschedule.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -751,18 +750,18 @@ campaigns, the time for Group A - in YYYY-MM-DD HH:II:SS format in
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true on success<br />
+					<code>boolean</code><br>true on success<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignSchedule.php<br />
-						xml-rpc_campaignSchedule.php<br />
+						mcapi_campaignSchedule.php<br>
+						xml-rpc_campaignSchedule.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -802,13 +801,13 @@ campaigns, the time for Group A - in YYYY-MM-DD HH:II:SS format in
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true on success<br />
+					<code>boolean</code><br>true on success<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -848,13 +847,13 @@ campaigns, the time for Group A - in YYYY-MM-DD HH:II:SS format in
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true on success<br />
+					<code>boolean</code><br>true on success<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -896,18 +895,18 @@ them.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true on success<br />
+					<code>boolean</code><br>true on success<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignSendNow.php<br />
-						xml-rpc_campaignSendNow.php<br />
+						mcapi_campaignSendNow.php<br>
+						xml-rpc_campaignSendNow.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -952,18 +951,18 @@ send just that format</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true on success<br />
+					<code>boolean</code><br>true on success<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignSendTest.php<br />
-						xml-rpc_campaignSendTest.php<br />
+						mcapi_campaignSendTest.php<br>
+						xml-rpc_campaignSendTest.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -1085,18 +1084,18 @@ Op(erations): &lt;strong&gt;eq&lt;/strong&gt; (=) /
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>total The total number of subscribers matching your segmentation options<br />
+					<code>integer</code><br>total The total number of subscribers matching your segmentation options<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignSegmentTest.php<br />
-						xml-rpc_campaignSegmentTest.php<br />
+						mcapi_campaignSegmentTest.php<br>
+						xml-rpc_campaignSegmentTest.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -1234,20 +1233,20 @@ sort of, this is required if the event is "date" or "annual"</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>the ID for the created campaign<br />
+					<code>string</code><br>the ID for the created campaign<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignCreate.php<br />
-						xml-rpc_campaignCreate.php<br />
-						xml-rpc_campaignCreateABSplit.php<br />
-						xml-rpc_campaignCreateRss.php<br />
+						mcapi_campaignCreate.php<br>
+						xml-rpc_campaignCreate.php<br>
+						xml-rpc_campaignCreateABSplit.php<br>
+						xml-rpc_campaignCreateRss.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -1313,20 +1312,20 @@ them.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the update succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the update succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignUpdate.php<br />
-						mcapi_campaignUpdateAB.php<br />
-						xml-rpc_campaignUpdate.php<br />
-						xml-rpc_campaignUpdateAB.php<br />
+						mcapi_campaignUpdate.php<br>
+						mcapi_campaignUpdateAB.php<br>
+						xml-rpc_campaignUpdate.php<br>
+						xml-rpc_campaignUpdateAB.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -1366,17 +1365,17 @@ them.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>the id of the replicated Campaign created, otherwise an error will be thrown<br />
+					<code>string</code><br>the id of the replicated Campaign created, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignReplicate.php<br />
+						mcapi_campaignReplicate.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -1416,17 +1415,17 @@ them.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the delete succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the delete succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignDelete.php<br />
+						mcapi_campaignDelete.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -1498,18 +1497,18 @@ with each call, defaults to 25 (max=1000)</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>an array containing a count of all matching campaigns and the specific ones for
-the current page (see Returned Fields for description)<br />
+the current page (see Returned Fields for description)<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaigns.php<br />
-						xml-rpc_campaigns.php<br />
+						mcapi_campaigns.php<br>
+						xml-rpc_campaigns.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of campaigns matching the filters passed in<br />
+						int total the total number of campaigns matching the filters passed in<br>
 						array data the data for each campaign being returned string id Campaign Id (used
 for all other campaign functions) int web_id The Campaign id used in our web
 app, allows you to create a link directly to it string list_id The List used for
@@ -1542,11 +1541,11 @@ representing whether or not they were enabled string segment_text a string
 marked-up with HTML explaining the segment used for the campaign in plain
 English array segment_opts the segment used for the campaign - can be passed to
 campaignSegmentTest() or campaignCreate() array type_opts the type-specific
-options for the campaign - can be passed to campaignCreate()<br />
+options for the campaign - can be passed to campaignCreate()<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -1588,35 +1587,35 @@ bounces, clicks, etc.)</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>struct of the statistics for this campaign<br />
+					<code>array</code><br>struct of the statistics for this campaign<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignStats.php<br />
-						xml-rpc_campaignStats.php<br />
+						mcapi_campaignStats.php<br>
+						xml-rpc_campaignStats.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
 						int syntax_errors Number of email addresses in campaign that had syntactical
-errors.<br />
-						int hard_bounces Number of email addresses in campaign that hard bounced.<br />
-						int soft_bounces Number of email addresses in campaign that soft bounced.<br />
-						int unsubscribes Number of email addresses in campaign that unsubscribed.<br />
+errors.<br>
+						int hard_bounces Number of email addresses in campaign that hard bounced.<br>
+						int soft_bounces Number of email addresses in campaign that soft bounced.<br>
+						int unsubscribes Number of email addresses in campaign that unsubscribed.<br>
 						int abuse_reports Number of email addresses in campaign that reported campaign
-for abuse.<br />
-						int forwards Number of times email was forwarded to a friend.<br />
-						int forwards_opens Number of times a forwarded email was opened.<br />
-						int opens Number of times the campaign was opened.<br />
-						date last_open Date of the last time the email was opened.<br />
-						int unique_opens Number of people who opened the campaign.<br />
-						int clicks Number of times a link in the campaign was clicked.<br />
-						int unique_clicks Number of unique recipient/click pairs for the campaign.<br />
-						date last_click Date of the last time a link in the email was clicked.<br />
+for abuse.<br>
+						int forwards Number of times email was forwarded to a friend.<br>
+						int forwards_opens Number of times a forwarded email was opened.<br>
+						int opens Number of times the campaign was opened.<br>
+						date last_open Date of the last time the email was opened.<br>
+						int unique_opens Number of people who opened the campaign.<br>
+						int clicks Number of times a link in the campaign was clicked.<br>
+						int unique_clicks Number of unique recipient/click pairs for the campaign.<br>
+						date last_click Date of the last time a link in the email was clicked.<br>
 						int users_who_clicked Number of unique recipients who clicked on a link in the
-campaign.<br />
-						int emails_sent Number of email addresses campaign was sent to.<br />
+campaign.<br>
+						int emails_sent Number of email addresses campaign was sent to.<br>
 						array absplit If this was an absplit campaign, stats for the A and B groups will
 be returned int bounces_a bounces for the A group int bounces_b bounces for the
 B group int forwards_a forwards for the A group int forwards_b forwards for the
@@ -1624,7 +1623,7 @@ B group int abuse_reports_a abuse reports for the A group int abuse_reports_b
 abuse reports for the B group int unsubs_a unsubs for the A group int unsubs_b
 unsubs for the B group int recipients_click_a clicks for the A group int
 recipients_click_b clicks for the B group int forwards_opens_a opened forwards
-for the A group int forwards_opens_b opened forwards for the A group<br />
+for the A group int forwards_opens_b opened forwards for the A group<br>
 						array timewarp If this campaign was a Timewarp campaign, an array of stats from
 each timezone for it, with the GMT offset as they key. Each timezone will
 contain: int opens opens for this timezone string last_open the date/time of the
@@ -1633,11 +1632,11 @@ int clicks the total clicks for this timezone string last_click the date/time of
 the last click for this timezone int unique_opens the unique clicks for this
 timezone int bounces the total bounces for this timezone int total the total
 number of members sent to in this timezone int sent the total number of members
-delivered to in this timezone<br />
+delivered to in this timezone<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -1679,23 +1678,23 @@ campaign</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>urls will be keys and contain their associated statistics:<br />
+					<code>struct</code><br>urls will be keys and contain their associated statistics:<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignClickStats.php<br />
-						xml-rpc_campaignClickStats.php<br />
+						mcapi_campaignClickStats.php<br>
+						xml-rpc_campaignClickStats.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int clicks Number of times the specific link was clicked<br />
-						int unique Number of unique people who clicked on the specific link<br />
+						int clicks Number of times the specific link was clicked<br>
+						int unique Number of unique people who clicked on the specific link<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -1740,34 +1739,34 @@ campaigns())</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>domains email domains and their associated stats<br />
+					<code>array</code><br>domains email domains and their associated stats<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignEmailDomainPerformance.php<br />
+						mcapi_campaignEmailDomainPerformance.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						string domain Domain name or special "Other" to roll-up stats past 5 domains<br />
+						string domain Domain name or special "Other" to roll-up stats past 5 domains<br>
 						int total_sent Total Email across all domains - this will be the same in every
-row<br />
-						int emails Number of emails sent to this domain<br />
-						int bounces Number of bounces<br />
-						int opens Number of opens<br />
-						int clicks Number of clicks<br />
-						int unsubs Number of unsubs<br />
-						int delivered Number of deliveries<br />
-						int emails_pct Percentage of emails that went to this domain (whole number)<br />
-						int bounces_pct Percentage of bounces from this domain (whole number)<br />
-						int opens_pct Percentage of opens from this domain (whole number)<br />
-						int clicks_pct Percentage of clicks from this domain (whole number)<br />
-						int unsubs_pct Percentage of unsubs from this domain (whole number)<br />
+row<br>
+						int emails Number of emails sent to this domain<br>
+						int bounces Number of bounces<br>
+						int opens Number of opens<br>
+						int clicks Number of clicks<br>
+						int unsubs Number of unsubs<br>
+						int delivered Number of deliveries<br>
+						int emails_pct Percentage of emails that went to this domain (whole number)<br>
+						int bounces_pct Percentage of bounces from this domain (whole number)<br>
+						int opens_pct Percentage of opens from this domain (whole number)<br>
+						int clicks_pct Percentage of clicks from this domain (whole number)<br>
+						int unsubs_pct Percentage of unsubs from this domain (whole number)<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -1818,22 +1817,22 @@ to 1000, upper limit set at 15000</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>a total of all matching emails and the specific emails for this page<br />
+					<code>array</code><br>a total of all matching emails and the specific emails for this page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of members for the campaign and status<br />
+						int total the total number of members for the campaign and status<br>
 						array data the full campaign member records string email the email address sent
 to string status the status of the send - one of 'sent', 'hard', 'soft' string
 absplit_group if this was an absplit campaign, one of 'a','b', or 'winner'
 string tz_group if this was an timewarp campaign the timezone GMT offset the
-member was included in<br />
+member was included in<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -1868,7 +1867,7 @@ Bounces for a given campaign</p>
 
 				<h4>Deprecated</h4>
 				<div class="list">
-						See campaignMembers() for a replacement<br />
+						See campaignMembers() for a replacement<br>
 				</div>
 
 				<h4>Parameters</h4>
@@ -1885,19 +1884,19 @@ to 1000, upper limit set at 15000</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>a total of all hard bounced emails and the specific emails for this page<br />
+					<code>array</code><br>a total of all hard bounced emails and the specific emails for this page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of hard bounces for the campaign<br />
+						int total the total number of hard bounces for the campaign<br>
 						array data the full email addresses that bounced string email the email address
-that bounced<br />
+that bounced<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -1932,7 +1931,7 @@ Bounces for a given campaign</p>
 
 				<h4>Deprecated</h4>
 				<div class="list">
-						See campaignMembers() for a replacement<br />
+						See campaignMembers() for a replacement<br>
 				</div>
 
 				<h4>Parameters</h4>
@@ -1949,19 +1948,19 @@ to 1000, upper limit set at 15000</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>a total of all soft bounced emails and the specific emails for this page<br />
+					<code>array</code><br>a total of all soft bounced emails and the specific emails for this page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of soft bounces for the campaign<br />
+						int total the total number of soft bounces for the campaign<br>
 						array data the full email addresses that bounced string email the email address
-that bounced<br />
+that bounced<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2008,23 +2007,23 @@ to 1000, upper limit set at 15000</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>email addresses that unsubscribed from this campaign along with reasons, if
-given<br />
-					<code>array</code><br>a total of all unsubscribed emails and the specific emails for this page<br />
+given<br>
+					<code>array</code><br>a total of all unsubscribed emails and the specific emails for this page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of unsubscribes for the campaign<br />
+						int total the total number of unsubscribes for the campaign<br>
 						array data the full email addresses that unsubscribed string email the email
 address that unsubscribed string reason For unsubscribes only - the reason
 collected for the unsubscribe. If populated, one of
 'NORMAL','NOSIGNUP','INAPPROPRIATE','SPAM','OTHER' string reason_text For
-unsubscribes only - if the reason is OTHER, the text entered.<br />
+unsubscribes only - if the reason is OTHER, the text entered.<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2074,24 +2073,24 @@ format in &lt;strong&gt;GMT&lt;/strong&gt;</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>reports the abuse reports for this campaign<br />
+					<code>array</code><br>reports the abuse reports for this campaign<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignAbuseReports.php<br />
+						mcapi_campaignAbuseReports.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						string date date/time the abuse report was received and processed<br />
-						string email the email address that reported abuse<br />
+						string date date/time the abuse report was received and processed<br>
+						string email the email address that reported abuse<br>
 						string type an internal type generally specifying the orginating mail provider -
-may not be useful outside of filling report views<br />
+may not be useful outside of filling report views<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2135,22 +2134,22 @@ pages. Note: some messages will contain HTML - clean tags as necessary</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>advice on the campaign's performance<br />
+					<code>array</code><br>advice on the campaign's performance<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignAdvice.php<br />
+						mcapi_campaignAdvice.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						msg the advice message<br />
-						type the "type" of the message. one of: negative, positive, or neutral<br />
+						msg the advice message<br>
+						type the "type" of the message. one of: negative, positive, or neutral<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2192,31 +2191,31 @@ requires Google Analytics Add-on to be installed and configured.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>analytics we've collected for the passed campaign.<br />
+					<code>array</code><br>analytics we've collected for the passed campaign.<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignAnalytics.php<br />
+						mcapi_campaignAnalytics.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int visits number of visits<br />
-						int pages number of page views<br />
-						int new_visits new visits recorded<br />
-						int bounces vistors who "bounced" from your site<br />
-						double time_on_site the total time visitors spent on your sites<br />
-						int goal_conversions number of goals converted<br />
-						double goal_value value of conversion in dollars<br />
-						double revenue revenue generated by campaign<br />
-						int transactions number of transactions tracked<br />
-						int ecomm_conversions number Ecommerce transactions tracked<br />
-						array goals an array containing goal names and number of conversions<br />
+						int visits number of visits<br>
+						int pages number of page views<br>
+						int new_visits new visits recorded<br>
+						int bounces vistors who "bounced" from your site<br>
+						double time_on_site the total time visitors spent on your sites<br>
+						int goal_conversions number of goals converted<br>
+						double goal_value value of conversion in dollars<br>
+						double revenue revenue generated by campaign<br>
+						int transactions number of transactions tracked<br>
+						int ecomm_conversions number Ecommerce transactions tracked<br>
+						array goals an array containing goal names and number of conversions<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2258,21 +2257,21 @@ are not returned.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>countries an array of countries where opens occurred<br />
+					<code>array</code><br>countries an array of countries where opens occurred<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string code The ISO3166 2 digit country code<br />
-						string name A version of the country name, if we have it<br />
-						int opens The total number of opens that occurred in the country<br />
+						string code The ISO3166 2 digit country code<br>
+						string name A version of the country name, if we have it<br>
+						int opens The total number of opens that occurred in the country<br>
 						bool region_detail Whether or not a subsequent call to
-campaignGeoOpensByCountry() will return anything<br />
+campaignGeoOpensByCountry() will return anything<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2316,21 +2315,21 @@ address are not returned.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>regions an array of regions within the provided country where opens occurred.<br />
+					<code>array</code><br>regions an array of regions within the provided country where opens occurred.<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
 						string code An internal code for the region. When this is blank, it indicates we
-know the country, but not the region<br />
+know the country, but not the region<br>
 						string name The name of the region, if we have one. For blank "code" values,
-this will be "Rest of Country"<br />
-						int opens The total number of opens that occurred in the country<br />
+this will be "Rest of Country"<br>
+						int opens The total number of opens that occurred in the country<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2371,7 +2370,7 @@ this will be "Rest of Country"<br />
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>stats an array containing tweets, retweets, clicks, and referrer related to
-using the campaign's eepurl<br />
+using the campaign's eepurl<br>
 				</div>
 
 
@@ -2383,20 +2382,20 @@ date and time of the last tweet seen int retweets Total number of retweets seen
 string first_retweet date and time of the first retweet seen string last_retweet
 date and time of the last retweet seen array statuses an array of statuses
 recorded inclduing the status, screen_name, status_id, and datetime fields plus
-an is_retweet flag<br />
+an is_retweet flag<br>
 						array clicks stats related to click-throughs on the eepurl int clicks Total
 number of clicks seen string first_click date and time of the first click seen
 string last_click date and time of the first click seen array locations an array
-of geographic locations including country, region, and total clicks<br />
+of geographic locations including country, region, and total clicks<br>
 						array referrers an array of arrays, each containing string referrer the
 referrer, truncated to 100 bytes int clicks Total number of clicks seen from
 this referrer string first_click date and time of the first click seen from this
 referrer string last_click date and time of the first click seen from this
-referrer<br />
+referrer<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2441,19 +2440,19 @@ for.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>the full bounce message for this email+campaign along with some extra data.<br />
+					<code>array</code><br>the full bounce message for this email+campaign along with some extra data.<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string date date/time the bounce was received and processed<br />
-						string email the email address that bounced<br />
-						string message the entire bounce message received<br />
+						string date date/time the bounce was received and processed<br>
+						string email the email address that bounced<br>
+						string message the entire bounce message received<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2508,24 +2507,24 @@ to 25, upper limit set at 50</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>bounces the full bounce messages for this campaign<br />
+					<code>array</code><br>bounces the full bounce messages for this campaign<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignBounceMessages.php<br />
+						mcapi_campaignBounceMessages.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int total that total number of bounce messages for the campaign<br />
+						int total that total number of bounce messages for the campaign<br>
 						array data an array containing the data for this page string date date/time the
 bounce was received and processed string email the email address that bounced
-string message the entire bounce message received<br />
+string message the entire bounce message received<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2574,13 +2573,13 @@ format in &lt;strong&gt;GMT&lt;/strong&gt;</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>the total matching orders and the specific orders for the requested page<br />
+					<code>array</code><br>the total matching orders and the specific orders for the requested page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total matching orders<br />
+						int total the total matching orders<br>
 						array data the actual data for each order being returned string store_id the
 store id generated by the plugin used to uniquely identify a store string
 store_name the store name collected by the plugin - often the domain name string
@@ -2590,11 +2589,11 @@ double order_total the order total double tax_total the total tax for the order
 (if collected) double ship_total the shipping total for the order (if collected)
 string order_date the date the order was tracked - from the store if possible,
 otherwise the GMT time we recieved it array lines containing detail of the order
-- product, category, quantity, item cost<br />
+- product, category, quantity, item cost<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Stats<br />
+						Campaign Stats<br>
 				</div>
 
 
@@ -2657,22 +2656,22 @@ href="http://vip-reports.net/css/vip.css">http://vip-reports.net/css/vip.css</a>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>Struct containing details for the shared report<br />
+					<code>struct</code><br>Struct containing details for the shared report<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string title The Title of the Campaign being shared<br />
-						string url The URL to the shared report<br />
+						string title The Title of the Campaign being shared<br>
+						string url The URL to the shared report<br>
 						string secure_url The URL to the shared report, including the password (good for
-loading in an IFRAME). For non-secure reports, this will not be returned<br />
+loading in an IFRAME). For non-secure reports, this will not be returned<br>
 						string password If secured, the password for the report, otherwise this field
-will not be returned<br />
+will not be returned<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -2717,18 +2716,18 @@ the Raw version (false), defaults to true</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>Struct containing all content for the campaign (see Returned Fields for details<br />
+					<code>struct</code><br>Struct containing all content for the campaign (see Returned Fields for details<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string html The HTML content used for the campgain with merge tags intact<br />
-						string text The Text content used for the campgain with merge tags intact<br />
+						string html The HTML content used for the campgain with merge tags intact<br>
+						string text The Text content used for the campgain with merge tags intact<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -2774,13 +2773,13 @@ allow editing template sections in your applicaton.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>array containing all content section for the campaign -<br />
+					<code>array</code><br>array containing all content section for the campaign -<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -2831,20 +2830,20 @@ to 1000, upper limit set at 15000</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>array containing the total records matched and the specific records for this
-page<br />
+page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of records matched<br />
+						int total the total number of records matched<br>
 						array data the actual opens data, including: string email Email address that
 opened the campaign int open_count Total number of times the campaign was opened
-by this email address<br />
+by this email address<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Report Data<br />
+						Campaign Report Data<br>
 				</div>
 
 
@@ -2891,19 +2890,19 @@ to 1000, upper limit set at 15000</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>array containing the total records matched and the specific records for this
-page<br />
+page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of records matched<br />
+						int total the total number of records matched<br>
 						array data the email addresses that did not open the campaign string email Email
-address that opened the campaign<br />
+address that opened the campaign<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Report Data<br />
+						Campaign Report Data<br>
 				</div>
 
 
@@ -2954,20 +2953,20 @@ to 1000, upper limit set at 15000</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>array containing the total records matched and the specific records for this
-page<br />
+page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of records matched<br />
+						int total the total number of records matched<br>
 						array data the email addresses that did not open the campaign string email Email
 address that opened the campaign int clicks Total number of times the URL was
-clicked on by this email address<br />
+clicked on by this email address<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Report Data<br />
+						Campaign Report Data<br>
 				</div>
 
 
@@ -3014,21 +3013,21 @@ single element (will not work with XML-RPC).</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>an array with the keys listed in Returned Fields below<br />
+					<code>array</code><br>an array with the keys listed in Returned Fields below<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int success the number of email address records found<br />
-						int error the number of email address records which could not be found<br />
+						int success the number of email address records found<br>
+						int error the number of email address records which could not be found<br>
 						array data arrays containing the actions (opens and clicks) that the email took,
 with timestamps string action The action taken (open or click) string timestamp
-Time the action occurred string url For clicks, the URL that was clicked<br />
+Time the action occurred string url For clicks, the URL that was clicked<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Report Data<br />
+						Campaign Report Data<br>
 				</div>
 
 
@@ -3079,24 +3078,24 @@ to 100, upper limit set at 1000</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>Array containing a total record count and data including the actions (opens and
-clicks) for each email, with timestamps<br />
+clicks) for each email, with timestamps<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_campaignEmailStatsAIMAll.php<br />
+						mcapi_campaignEmailStatsAIMAll.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of records<br />
+						int total the total number of records<br>
 						array data each record with their details: string action The action taken (open
 or click) string timestamp Time the action occurred string url For clicks, the
-URL that was clicked<br />
+URL that was clicked<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Report Data<br />
+						Campaign Report Data<br>
 				</div>
 
 
@@ -3166,13 +3165,13 @@ the cost of a single item (ie, not the extended cost of the line)
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the data is saved, otherwise an error is thrown.<br />
+					<code>boolean</code><br>true if the data is saved, otherwise an error is thrown.<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Campaign Related<br />
+						Campaign Related<br>
 				</div>
 
 
@@ -3230,18 +3229,18 @@ call, defaults to 25 (max=100)</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>an array with keys listed in Returned Fields below<br />
+					<code>array</code><br>an array with keys listed in Returned Fields below<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_lists.php<br />
-						xml-rpc_lists.php<br />
+						mcapi_lists.php<br>
+						xml-rpc_lists.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of lists which matched the provided filters<br />
+						int total the total number of lists which matched the provided filters<br>
 						array data the lists which matched the provided filters, including the following
 for string id The list id for this list. This will be used for all other list
 management functions. int web_id The list id used in our web app, allows you to
@@ -3274,11 +3273,11 @@ for the list to keep it growing (empty value if we haven't calculated this yet)
 int open_rate the average open rate per campaign for the list (empty value if we
 haven't calculated this yet) int click_rate the average click rate per campaign
 for the list (empty value if we haven't calculated this yet) array modules Any
-list specific modules installed for this list (example is SocialPro)<br />
+list specific modules installed for this list (example is SocialPro)<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3320,34 +3319,34 @@ required setting</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>list of merge tags for the list<br />
+					<code>array</code><br>list of merge tags for the list<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listMergeVars.php<br />
+						xml-rpc_listMergeVars.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						string name Name of the merge field<br />
-						bool req Denotes whether the field is required (true) or not (false)<br />
+						string name Name of the merge field<br>
+						bool req Denotes whether the field is required (true) or not (false)<br>
 						string field_type The "data type" of this merge var. One of: email, text,
-number, radio, dropdown, date, address, phone, url, imageurl<br />
-						bool public Whether or not this field is visible to list subscribers<br />
+number, radio, dropdown, date, address, phone, url, imageurl<br>
+						bool public Whether or not this field is visible to list subscribers<br>
 						bool show Whether the list owner has this field displayed on their list
-dashboard<br />
-						string order The order the list owner has set this field to display in<br />
-						string default The default value the list owner has set for this field<br />
-						string size The width of the field to be used<br />
+dashboard<br>
+						string order The order the list owner has set this field to display in<br>
+						string default The default value the list owner has set for this field<br>
+						string size The width of the field to be used<br>
 						string tag The merge tag that's used for forms and listSubscribe() and
-listUpdateMember()<br />
+listUpdateMember()<br>
 						array choices For radio and dropdown field types, an array of the options
-available<br />
+available<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3403,17 +3402,17 @@ fields</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listMergeVarAdd.php<br />
+						xml-rpc_listMergeVarAdd.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3460,13 +3459,13 @@ options</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3512,17 +3511,17 @@ may seem a bit slower than calls you typically make.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listMergeVarDel.php<br />
+						xml-rpc_listMergeVarDel.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3564,25 +3563,25 @@ form information, and included groups for each</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>list of interest groups for the list<br />
+					<code>struct</code><br>list of interest groups for the list<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listInterestGroupings.php<br />
+						xml-rpc_listInterestGroupings.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						string id The id for the Grouping<br />
-						string name Name for the Interest groups<br />
-						string form_field Gives the type of interest group: checkbox,radio,select<br />
+						string id The id for the Grouping<br>
+						string name Name for the Interest groups<br>
+						string form_field Gives the type of interest group: checkbox,radio,select<br>
 						array groups Array of the grouping options including the "bit" value, "name",
-"display_order", and number of "subscribers" with the option selected.<br />
+"display_order", and number of "subscribers" with the option selected.<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3632,17 +3631,17 @@ used.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listInterestGroupAdd.php<br />
+						xml-rpc_listInterestGroupAdd.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3690,17 +3689,17 @@ used.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listInterestGroupDel.php<br />
+						xml-rpc_listInterestGroupDel.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3748,13 +3747,13 @@ used.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3806,17 +3805,17 @@ and the names must be unique within a grouping. If the number takes you over the
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>the new grouping id if the request succeeds, otherwise an error will be thrown<br />
+					<code>integer</code><br>the new grouping id if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listInterestGroupingAdd.php<br />
+						xml-rpc_listInterestGroupingAdd.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3862,17 +3861,17 @@ and "checkboxes" grouping types can be converted between each other.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listInterestGroupingUpdate.php<br />
+						xml-rpc_listInterestGroupingUpdate.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3916,17 +3915,17 @@ members</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the request succeeds, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_listInterestGroupingDel.php<br />
+						xml-rpc_listInterestGroupingDel.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -3966,19 +3965,19 @@ members</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>list of webhooks<br />
+					<code>array</code><br>list of webhooks<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string url the URL for this Webhook<br />
-						array actions the possible actions and whether they are enabled<br />
-						array sources the possible sources and whether they are enabled<br />
+						string url the URL for this Webhook<br>
+						array actions the possible actions and whether they are enabled<br>
+						array sources the possible sources and whether they are enabled<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4033,13 +4032,13 @@ actions that happen via API calls, defaults to false</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the call succeeds, otherwise an exception will be thrown<br />
+					<code>boolean</code><br>true if the call succeeds, otherwise an exception will be thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4081,13 +4080,13 @@ actions that happen via API calls, defaults to false</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the call succeeds, otherwise an exception will be thrown<br />
+					<code>boolean</code><br>true if the call succeeds, otherwise an exception will be thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4127,23 +4126,23 @@ actions that happen via API calls, defaults to false</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>an array of parameters for each static segment<br />
+					<code>array</code><br>an array of parameters for each static segment<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int id the id of the segment<br />
-						string name the name for the segment<br />
-						int member_count the total number of members currently in a segment<br />
-						date created_date the date/time the segment was created<br />
-						date last_update the date/time the segment was last updated (add or del)<br />
+						int id the id of the segment<br>
+						string name the name for the segment<br>
+						int member_count the total number of members currently in a segment<br>
+						date created_date the date/time the segment was created<br>
+						date last_update the date/time the segment was last updated (add or del)<br>
 						date last_reset the date/time the segment was last reset (ie had all members
-cleared from it)<br />
+cleared from it)<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4202,13 +4201,13 @@ longer will throw an error</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>the id of the new segment, otherwise an error will be thrown.<br />
+					<code>integer</code><br>the id of the new segment, otherwise an error will be thrown.<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4252,13 +4251,13 @@ from the static segment. Note: does not actually affect list member data</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if it worked, otherwise an error is thrown.<br />
+					<code>boolean</code><br>true if it worked, otherwise an error is thrown.<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4302,13 +4301,13 @@ affiliations with the segment</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if it worked, otherwise an error is thrown.<br />
+					<code>boolean</code><br>true if it worked, otherwise an error is thrown.<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4359,20 +4358,20 @@ subscribe them to the list!</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>an array with the results of the operation<br />
+					<code>array</code><br>an array with the results of the operation<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
 						int success the total number of successful updates (will include members already
-in the segment)<br />
+in the segment)<br>
 						array errors the email address, an error code, and a message explaining why they
-couldn't be added<br />
+couldn't be added<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4423,19 +4422,19 @@ unsubscribe them from the list!</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>an array with the results of the operation<br />
+					<code>array</code><br>an array with the results of the operation<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int success the total number of succesful removals<br />
+						int success the total number of succesful removals<br>
 						array errors the email address, an error code, and a message explaining why they
-couldn't be removed<br />
+couldn't be removed<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4545,19 +4544,19 @@ is true, this has no effect. defaults to false.</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>boolean</code><br>true on success, false on failure. When using MCAPI.class.php, the value can be
-tested and error messages pulled from the MCAPI object (see below)<br />
+tested and error messages pulled from the MCAPI object (see below)<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listSubscribe.php<br />
-						json_listSubscribe.php<br />
-						xml-rpc_listSubscribe.php<br />
+						mcapi_listSubscribe.php<br>
+						json_listSubscribe.php<br>
+						xml-rpc_listSubscribe.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4610,18 +4609,18 @@ defined in the list email notification settings, defaults to true</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>boolean</code><br>true on success, false on failure. When using MCAPI.class.php, the value can be
-tested and error messages pulled from the MCAPI object (see below)<br />
+tested and error messages pulled from the MCAPI object (see below)<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listUnsubscribe.php<br />
-						xml-rpc_listUnsubscribe.php<br />
+						mcapi_listUnsubscribe.php<br>
+						xml-rpc_listUnsubscribe.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4681,17 +4680,17 @@ interest groups (optional, defaults to true)</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>boolean</code><br>true on success, false on failure. When using MCAPI.class.php, the value can be
-tested and error messages pulled from the MCAPI object<br />
+tested and error messages pulled from the MCAPI object<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listUpdateMember.php<br />
+						mcapi_listUpdateMember.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4755,27 +4754,27 @@ interest groups (optional, defaults to true)</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>Array of result counts and any errors that occurred<br />
+					<code>struct</code><br>Array of result counts and any errors that occurred<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listBatchSubscribe.php<br />
-						xml-rpc_listBatchSubscribe.php<br />
+						mcapi_listBatchSubscribe.php<br>
+						xml-rpc_listBatchSubscribe.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int add_count Number of email addresses that were succesfully added<br />
-						int update_count Number of email addresses that were succesfully updated<br />
-						int error_count Number of email addresses that failed during addition/updating<br />
+						int add_count Number of email addresses that were succesfully added<br>
+						int update_count Number of email addresses that were succesfully updated<br>
+						int error_count Number of email addresses that failed during addition/updating<br>
 						array errors Array of error arrays, each containing: string code the error code
 string message the full error message string email the email address being
-processed<br />
+processed<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4826,24 +4825,24 @@ defined in the list email notification settings, defaults to false</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>Array of result counts and any errors that occurred<br />
+					<code>struct</code><br>Array of result counts and any errors that occurred<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listBatchUnsubscribe.php<br />
+						mcapi_listBatchUnsubscribe.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int success_count Number of email addresses that were succesfully added/updated<br />
-						int error_count Number of email addresses that failed during addition/updating<br />
+						int success_count Number of email addresses that were succesfully added/updated<br>
+						int error_count Number of email addresses that failed during addition/updating<br>
 						array errors Array of error structs. Each error struct will contain "code",
-"message", and "email"<br />
+"message", and "email"<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4902,27 +4901,27 @@ to 100, upper limit set at 15000</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>Array of a the total records match and matching list member data for this page
-(see Returned Fields for details)<br />
+(see Returned Fields for details)<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listMembers.php<br />
+						mcapi_listMembers.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total matching records<br />
+						int total the total matching records<br>
 						array data the data for each member, including: string email Member email
 address date timestamp timestamp of their associated status date (subscribed,
 unsubscribed, cleaned, or updated) in GMT string reason For unsubscribes only -
 the reason collected for the unsubscribe. If populated, one of
 'NORMAL','NOSIGNUP','INAPPROPRIATE','SPAM','OTHER' string reason_text For
-unsubscribes only - if the reason is OTHER, the text entered.<br />
+unsubscribes only - if the reason is OTHER, the text entered.<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -4968,19 +4967,19 @@ array with a single element (will not work with XML-RPC).</dd>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>array of list members with their info in an array (see Returned Fields for
-details)<br />
+details)<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listMemberInfo.php<br />
-						xml-rpc_listMemberInfo.php<br />
+						mcapi_listMemberInfo.php<br>
+						xml-rpc_listMemberInfo.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int success the number of subscribers successfully found on the list<br />
-						int errors the number of subscribers who were not found on the list<br />
+						int success the number of subscribers successfully found on the list<br>
+						int errors the number of subscribers who were not found on the list<br>
 						array data an array of arrays where each one has member info: string id The
 unique id for this email address on an account string email The email address
 associated with this record string email_type The type of emails this customer
@@ -5004,11 +5003,11 @@ was changed. If the record is old enough, this may be blank. int web_id The
 Member id used in our web app, allows you to create a link directly to it array
 clients the various clients we've tracked the address as using - each included
 array includes client 'name' and 'icon_url' array static_segments the 'id',
-'name', and date 'added' for any static segment this member is in<br />
+'name', and date 'added' for any static segment this member is in<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -5053,29 +5052,29 @@ the "id"(s) for the member returned from listMembers, Webhooks, and Campaigns.</
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>array of data and success/error counts<br />
+					<code>array</code><br>array of data and success/error counts<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listMemberInfo.php<br />
-						xml-rpc_listMemberInfo.php<br />
+						mcapi_listMemberInfo.php<br>
+						xml-rpc_listMemberInfo.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int success the number of subscribers successfully found on the list<br />
-						int errors the number of subscribers who were not found on the list<br />
+						int success the number of subscribers successfully found on the list<br>
+						int errors the number of subscribers who were not found on the list<br>
 						array data an array of arrays where each activity record has: string action The
 action name, one of: open, click, bounce, unsub, abuse, sent string timestamp
 The date/time of the action string url For click actions, the url clicked,
 otherwise this is empty string bounce_type For bounce actions, the bounce type,
 otherwise this is empty string campaign_id The campaign id the action was
-related to, if it exists - otherwise empty (ie, direct unsub from list)<br />
+related to, if it exists - otherwise empty (ie, direct unsub from list)<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -5124,26 +5123,26 @@ format in &lt;strong&gt;GMT&lt;/strong&gt;</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>the total of all reports and the specific reports reports this page<br />
+					<code>array</code><br>the total of all reports and the specific reports reports this page<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listAbuseReports.php<br />
+						mcapi_listAbuseReports.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total number of matching abuse reports<br />
+						int total the total number of matching abuse reports<br>
 						array data the actual data for each reports, including: string date date/time
 the abuse report was received and processed string email the email address that
 reported abuse string campaign_id the unique id for the campaign that report was
 made against string type an internal type generally specifying the orginating
-mail provider - may not be useful outside of filling report views<br />
+mail provider - may not be useful outside of filling report views<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -5183,24 +5182,24 @@ mail provider - may not be useful outside of filling report views<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>array of months and growth<br />
+					<code>array</code><br>array of months and growth<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_listGrowthHistory.php<br />
+						mcapi_listGrowthHistory.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						string month The Year and Month in question using YYYY-MM format<br />
-						int existing number of existing subscribers to start the month<br />
-						int imports number of subscribers imported during the month<br />
-						int optins number of subscribers who opted-in during the month<br />
+						string month The Year and Month in question using YYYY-MM format<br>
+						int existing number of existing subscribers to start the month<br>
+						int imports number of subscribers imported during the month<br>
+						int optins number of subscribers who opted-in during the month<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -5242,29 +5241,29 @@ stats for a given list</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>array of array of daily values, each containing:<br />
+					<code>array</code><br>array of array of daily values, each containing:<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string day The day in YYYY-MM-DD<br />
-						int emails_sent number of emails sent to the list<br />
-						int unique_opens number of unique opens for the list<br />
-						int recipient_clicks number of clicks for the list<br />
-						int hard_bounce number of hard bounces for the list<br />
-						int soft_bounce number of soft bounces for the list<br />
-						int abuse_reports number of abuse reports for the list<br />
-						int subs number of double optin subscribes for the list<br />
-						int unsubs number of manual unsubscribes for the list<br />
+						string day The day in YYYY-MM-DD<br>
+						int emails_sent number of emails sent to the list<br>
+						int unique_opens number of unique opens for the list<br>
+						int recipient_clicks number of clicks for the list<br>
+						int hard_bounce number of hard bounces for the list<br>
+						int soft_bounce number of soft bounces for the list<br>
+						int abuse_reports number of abuse reports for the list<br>
+						int subs number of double optin subscribes for the list<br>
+						int unsubs number of manual unsubscribes for the list<br>
 						int other_adds number of non-double optin subscribes for the list (manual, API,
-or import)<br />
+or import)<br>
 						int other_removes number of non-manual unsubscribes for the list (deletions,
-empties, soft-bounce removals)<br />
+empties, soft-bounce removals)<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -5306,20 +5305,20 @@ tagged to based on geocoding their IP address</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>array of locations<br />
+					<code>array</code><br>array of locations<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string country the country name<br />
-						string cc the 2 digit country code<br />
-						double percent the percent of subscribers in the country<br />
-						double total the total number of subscribers in the country<br />
+						string country the country name<br>
+						string cc the 2 digit country code<br>
+						double percent the percent of subscribers in the country<br>
+						double total the total number of subscribers in the country<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -5365,7 +5364,7 @@ target="_blank">user-agent-string.info</a></p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>the desktop and mobile user agents in use on the list<br />
+					<code>array</code><br>the desktop and mobile user agents in use on the list<br>
 				</div>
 
 
@@ -5374,15 +5373,15 @@ target="_blank">user-agent-string.info</a></p>
 						array desktop desktop user agents and percentages double penetration the percent
 of desktop clients in use array clients a record containing the 'client', an
 'icon' image url, the 'percent' using the client, and the total 'members'
-represented<br />
+represented<br>
 						array mobile mobile user agents and percentages double penetration the percent
 of mobile clients in use array clients a record containing the 'client', an
 'icon' image url, the 'percent' using the client, and the total 'members'
-represented<br />
+represented<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						List Related<br />
+						List Related<br>
 				</div>
 
 
@@ -5436,30 +5435,30 @@ false.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>An array of structs, one for each template (see Returned Fields for details)<br />
+					<code>array</code><br>An array of structs, one for each template (see Returned Fields for details)<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_templates.php<br />
-						xml-rpc_templates.php<br />
+						mcapi_templates.php<br>
+						xml-rpc_templates.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						int id Id of the template<br />
-						string name Name of the template<br />
+						int id Id of the template<br>
+						string name Name of the template<br>
 						string layout Layout of the template - "basic", "left_column", "right_column",
-or "postcard"<br />
+or "postcard"<br>
 						string preview_image If we've generated it, the url of the preview image for the
 template. We do out best to keep these up to date, but Preview image urls are
-not guaranteed to be available<br />
-						string date_created The date/time the template was created<br />
-						bool edit_source Whether or not you are able to edit the source of a template.<br />
+not guaranteed to be available<br>
+						string date_created The date/time the template was created<br>
+						bool edit_source Whether or not you are able to edit the source of a template.<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Template Related<br />
+						Template Related<br>
 				</div>
 
 
@@ -5501,23 +5500,23 @@ not guaranteed to be available<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>an array of info to be used when editing<br />
+					<code>array</code><br>an array of info to be used when editing<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
 						array default_content the default content broken down into the named editable
-sections for the template<br />
-						array sections the valid editable section names<br />
+sections for the template<br>
+						array sections the valid editable section names<br>
 						string source the full source of the template as if you exported it via our
-template editor<br />
+template editor<br>
 						string preview similar to the source, but the rendered version of the source
-from our popup preview<br />
+from our popup preview<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Template Related<br />
+						Template Related<br>
 				</div>
 
 
@@ -5564,18 +5563,18 @@ target="_blank">template language</a>.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>the new template id, otherwise an error is thrown.<br />
+					<code>integer</code><br>the new template id, otherwise an error is thrown.<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_create_template.php<br />
-						xml-rpc_create_template.php<br />
+						mcapi_create_template.php<br>
+						xml-rpc_create_template.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Template Related<br />
+						Template Related<br>
 				</div>
 
 
@@ -5625,13 +5624,13 @@ target="_blank">template language</a>.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the template was updated, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the template was updated, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Template Related<br />
+						Template Related<br>
 				</div>
 
 
@@ -5671,13 +5670,13 @@ target="_blank">template language</a>.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the template was deleted, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the template was deleted, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Template Related<br />
+						Template Related<br>
 				</div>
 
 
@@ -5717,13 +5716,13 @@ target="_blank">template language</a>.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the template was deleted, otherwise an error will be thrown<br />
+					<code>boolean</code><br>true if the template was deleted, otherwise an error will be thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Template Related<br />
+						Template Related<br>
 				</div>
 
 
@@ -5762,44 +5761,44 @@ like Credit Card numbers is available.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>containing the details for the account tied to this API Key<br />
+					<code>array</code><br>containing the details for the account tied to this API Key<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string username The Account username<br />
-						string user_id The Account user unique id (for building some links)<br />
+						string username The Account username<br>
+						string user_id The Account user unique id (for building some links)<br>
 						bool is_trial Whether the Account is in Trial mode (can only send campaigns to
-less than 100 emails)<br />
-						string timezone The timezone for the Account - default is "US/Eastern"<br />
-						string plan_type Plan Type - "monthly", "payasyougo", or "free"<br />
+less than 100 emails)<br>
+						string timezone The timezone for the Account - default is "US/Eastern"<br>
+						string plan_type Plan Type - "monthly", "payasyougo", or "free"<br>
 						int plan_low &lt;em&gt;only for Monthly plans&lt;/em&gt; - the lower tier for
-list size<br />
+list size<br>
 						int plan_high &lt;em&gt;only for Monthly plans&lt;/em&gt; - the upper tier for
-list size<br />
+list size<br>
 						string plan_start_date &lt;em&gt;only for Monthly plans&lt;/em&gt; - the start
-date for a monthly plan<br />
+date for a monthly plan<br>
 						int emails_left &lt;em&gt;only for Free and Pay-as-you-go plans&lt;/em&gt;
-emails credits left for the account<br />
+emails credits left for the account<br>
 						bool pending_monthly Whether the account is finishing Pay As You Go credits
-before switching to a Monthly plan<br />
-						string first_payment date of first payment<br />
-						string last_payment date of most recent payment<br />
+before switching to a Monthly plan<br>
+						string first_payment date of first payment<br>
+						string last_payment date of most recent payment<br>
 						int times_logged_in total number of times the account has been logged into via
-the web<br />
-						string last_login date/time of last login via the web<br />
-						string affiliate_link Monkey Rewards link for our Affiliate program<br />
+the web<br>
+						string last_login date/time of last login via the web<br>
+						string affiliate_link Monkey Rewards link for our Affiliate program<br>
 						array contact Contact details for the account string fname First Name string
 lname Last Name string email Email Address string company Company Name string
 address1 Address Line 1 string address2 Address Line 2 string city City string
 state State or Province string zip Zip or Postal Code string country Country
-name string url Website URL string phone Phone number string fax Fax number<br />
+name string url Website URL string phone Phone number string fax Fax number<br>
 						array modules Addons installed in the account string name The module name string
-added The date the module was added<br />
+added The date the module was added<br>
 						array orders Order details for the account int order_id The order id string type
 The order type - either "monthly" or "credits" double amount The order amount
-string date The order date double credits_used The total credits used<br />
+string date The order date double credits_used The total credits used<br>
 						array rewards Rewards details for the account including credits &amp;
 inspections earned, number of referals, referal details, and rewards used int
 referrals_this_month the total number of referrals this month string notify_on
@@ -5809,11 +5808,11 @@ credits earned "this_month", "total_earned", and "remaining" array inspections
 Inbox Inspections earned "this_month", "total_earned", and "remaining" array
 referrals All referrals, including "name", "email", "signup_date", and "type"
 array applied Applied rewards, including "value", "date", "order_id", and
-"order_desc"<br />
+"order_desc"<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Helper<br />
+						Helper<br>
 				</div>
 
 
@@ -5865,17 +5864,17 @@ valid &amp; public URL to pull from, "cid" expects a valid Campaign Id, and
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>the content pass in converted to text.<br />
+					<code>string</code><br>the content pass in converted to text.<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_generateText.php<br />
+						xml-rpc_generateText.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Helper<br />
+						Helper<br>
 				</div>
 
 
@@ -5920,17 +5919,17 @@ the returned document. Defaults to false.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>Your HTML content with all CSS inlined, just like if we sent it.<br />
+					<code>string</code><br>Your HTML content with all CSS inlined, just like if we sent it.<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_inlineCss.php<br />
+						xml-rpc_inlineCss.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Helper<br />
+						Helper<br>
 				</div>
 
 
@@ -5971,26 +5970,26 @@ the returned document. Defaults to false.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>Array of folder structs (see Returned Fields for details)<br />
+					<code>array</code><br>Array of folder structs (see Returned Fields for details)<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_folders.php<br />
-						xml-rpc_folders.php<br />
+						mcapi_folders.php<br>
+						xml-rpc_folders.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
 						int folder_id Folder Id for the given folder, this can be used in the
-campaigns() function to filter on.<br />
-						string name Name of the given folder<br />
-						string date_created The date/time the folder was created<br />
-						string type The type of the folders being returned, just to make sure you know.<br />
+campaigns() function to filter on.<br>
+						string name Name of the given folder<br>
+						string date_created The date/time the folder was created<br>
+						string type The type of the folders being returned, just to make sure you know.<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Folder Related<br />
+						Folder Related<br>
 				</div>
 
 
@@ -6033,18 +6032,18 @@ campaigns() function to filter on.<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>integer</code><br>the folder_id of the newly created folder.<br />
+					<code>integer</code><br>the folder_id of the newly created folder.<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_folderAdd.php<br />
-						xml-rpc_folderAdd.php<br />
+						mcapi_folderAdd.php<br>
+						xml-rpc_folderAdd.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Folder Related<br />
+						Folder Related<br>
 				</div>
 
 
@@ -6089,13 +6088,13 @@ campaigns() function to filter on.<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the update worked, otherwise an exception is thrown<br />
+					<code>boolean</code><br>true if the update worked, otherwise an exception is thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Folder Related<br />
+						Folder Related<br>
 				</div>
 
 
@@ -6140,13 +6139,13 @@ campaigns in the folder appear unfiled, they are not removed.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the delete worked, otherwise an exception is thrown<br />
+					<code>boolean</code><br>true if the delete worked, otherwise an exception is thrown<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Folder Related<br />
+						Folder Related<br>
 				</div>
 
 
@@ -6193,13 +6192,13 @@ format in &lt;strong&gt;GMT&lt;/strong&gt;</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>the total matching orders and the specific orders for the requested page<br />
+					<code>array</code><br>the total matching orders and the specific orders for the requested page<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						int total the total matching orders<br />
+						int total the total matching orders<br>
 						array data the actual data for each order being returned string store_id the
 store id generated by the plugin used to uniquely identify a store string
 store_name the store name collected by the plugin - often the domain name string
@@ -6209,11 +6208,11 @@ double order_total the order total double tax_total the total tax for the order
 (if collected) double ship_total the shipping total for the order (if collected)
 string order_date the date the order was tracked - from the store if possible,
 otherwise the GMT time we recieved it array lines containing detail of the order
-- product, category, quantity, item cost<br />
+- product, category, quantity, item cost<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Ecommerce<br />
+						Ecommerce<br>
 				</div>
 
 
@@ -6290,13 +6289,13 @@ line) &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if the data is saved, otherwise an error is thrown.<br />
+					<code>boolean</code><br>true if the data is saved, otherwise an error is thrown.<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Ecommerce<br />
+						Ecommerce<br>
 				</div>
 
 
@@ -6342,13 +6341,13 @@ provide</a> or by 3rd part system developers.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if an order is deleted, otherwise an error is thrown.<br />
+					<code>boolean</code><br>true if an order is deleted, otherwise an error is thrown.<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Ecommerce<br />
+						Ecommerce<br>
 				</div>
 
 
@@ -6389,13 +6388,13 @@ listMemberInfo, Webhooks, and Campaigns</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>An array of list_ids the member is subscribed to.<br />
+					<code>array</code><br>An array of list_ids the member is subscribed to.<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Helper<br />
+						Helper<br>
 				</div>
 
 
@@ -6436,13 +6435,13 @@ listMemberInfo, Webhooks, and Campaigns</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>An array of campaign_ids the member received<br />
+					<code>array</code><br>An array of campaign_ids the member received<br>
 				</div>
 
 
 				<h4>Section</h4>
 				<div class="list">
-						Helper<br />
+						Helper<br>
 				</div>
 
 
@@ -6477,25 +6476,25 @@ listMemberInfo, Webhooks, and Campaigns</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>An array of chatter messages and properties<br />
+					<code>array</code><br>An array of chatter messages and properties<br>
 				</div>
 
 
 				<h4>Returnf</h4>
 				<div class="list">
-						string message The chatter message<br />
+						string message The chatter message<br>
 						string type The type of the message - one of lists:new-subscriber,
 lists:unsubscribes, lists:profile-updates, campaigns:facebook-likes,
 campaigns:facebook-comments, campaigns:forward-to-friend, lists:imports, or
-campaigns:inbox-inspections<br />
-						string url a url into the web app that the message could link to<br />
-						string list_id the list_id a message relates to, if applicable<br />
-						string campaign_id the list_id a message relates to, if applicable<br />
-						string update_time The date/time the message was last updated<br />
+campaigns:inbox-inspections<br>
+						string url a url into the web app that the message could link to<br>
+						string list_id the list_id a message relates to, if applicable<br>
+						string campaign_id the list_id a message relates to, if applicable<br>
+						string update_time The date/time the message was last updated<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Helper<br />
+						Helper<br>
 				</div>
 
 
@@ -6539,24 +6538,24 @@ campaigns:inbox-inspections<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>an array of API keys including:<br />
+					<code>array</code><br>an array of API keys including:<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_apikeyAdd.php<br />
-						mcapi_apikeyAdd.php<br />
+						xml-rpc_apikeyAdd.php<br>
+						mcapi_apikeyAdd.php<br>
 				</div>
 				<h4>Returnf</h4>
 				<div class="list">
-						string apikey The api key that can be used<br />
-						string created_at The date the key was created<br />
-						string expired_at The date the key was expired<br />
+						string apikey The api key that can be used<br>
+						string created_at The date the key was created<br>
+						string expired_at The date the key was expired<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Security Related<br />
+						Security Related<br>
 				</div>
 
 
@@ -6600,17 +6599,17 @@ it.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>a new API Key that can be immediately used.<br />
+					<code>string</code><br>a new API Key that can be immediately used.<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_apikeyAdd.php<br />
+						xml-rpc_apikeyAdd.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Security Related<br />
+						Security Related<br>
 				</div>
 
 
@@ -6664,18 +6663,18 @@ Consider yourself warned...</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>boolean</code><br>true if it worked, otherwise an error is thrown.<br />
+					<code>boolean</code><br>true if it worked, otherwise an error is thrown.<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						mcapi_apikeyExpire.php<br />
-						xml-rpc_apikeyExpire.php<br />
+						mcapi_apikeyExpire.php<br>
+						xml-rpc_apikeyExpire.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Security Related<br />
+						Security Related<br>
 				</div>
 
 
@@ -6719,17 +6718,17 @@ on.</p>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>string</code><br>returns "Everything's Chimpy!" if everything is chimpy, otherwise returns an
-error message<br />
+error message<br>
 				</div>
 
 
 				<h4>Example</h4>
 				<div class="list">
-						xml-rpc_ping.php<br />
+						xml-rpc_ping.php<br>
 				</div>
 				<h4>Section</h4>
 				<div class="list">
-						Helper<br />
+						Helper<br>
 				</div>
 
 
@@ -6764,7 +6763,7 @@ error message<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>the result of the call<br />
+					<code>mixed</code><br>the result of the call<br>
 				</div>
 
 
