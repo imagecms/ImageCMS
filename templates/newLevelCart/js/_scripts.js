@@ -111,7 +111,7 @@
     });
 
     $('#suggestions').autocomplete({
-        minValue: 3,
+        minValue: 2,
         blockEnter: false
     });
     drawIcons($(selIcons));
