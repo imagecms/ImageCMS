@@ -31,7 +31,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
         <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang("All comments", 'comments')}
             {if $all_comm_show}
                 <span style="top:-13px;" class="badge badge-important">
-                    {$all_comm_show}
+                    {($total_waiting + $total_app + $total_spam)}
                 </span>
             {/if}
         </a>
@@ -279,8 +279,8 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                         {if $counter == 0}
                                                                             <tr style="border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-right: 1px solid #ddd;">
                                                                                 <td colspan="8" style="padding-left: 130px!important;{if $newComments}background-color: #FFFFC9!important;{/if}">
-                                                                                    <img onclick="expand_Children({$item.id}, $(this))" src="http://ofcite.loc/templates/administrator/images/tree/plus.gif" style="cursor: pointer;">
-                                                                                    <img onclick="hide_Children({$item.id}, $(this))" src="http://ofcite.loc/templates/administrator/images/tree/minus.gif" style="cursor: pointer; display: none">
+                                                                                    <img onclick="expand_Children({$item.id}, $(this))" src="/templates/administrator/images/tree/plus.gif" style="cursor: pointer;">
+                                                                                    <img onclick="hide_Children({$item.id}, $(this))" src="/templates/administrator/images/tree/minus.gif" style="cursor: pointer; display: none">
                                                                                     <a onclick="expand_hide_Children($(this), {$item.id})">
                                                                                         {lang('Show answers', 'comments')}
                                                                                     </a>

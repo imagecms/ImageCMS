@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
 
-	<title>Function getActiveTemplateName | ImageCMS Docs</title>
+	<title>Class SiteInfo | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?3945239888"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+	<script type="text/javascript" src="elementlist.js?2660862840"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
 
@@ -83,7 +83,7 @@
 			</ul>
 		</div>
 
-		<hr />
+		<hr>
 
 
 		<div id="elements">
@@ -274,6 +274,7 @@
 				<li><a href="class-ShopExport.html">ShopExport</a></li>
 				<li><a href="class-ShopExportDataBase.html">ShopExportDataBase</a></li>
 				<li><a href="class-ShopImport.html">ShopImport</a></li>
+				<li class="active"><a href="class-SiteInfo.html">SiteInfo</a></li>
 				<li><a href="class-Sitemap.html">Sitemap</a></li>
 				<li><a href="class-Smart_filter.html">Smart_filter</a></li>
 				<li><a href="class-SMemCached.html">SMemCached</a></li>
@@ -379,19 +380,16 @@
 				<li><a href="function-get_perms_groups.html">get_perms_groups</a></li>
 				<li><a href="function-get_product_category.html" class="invalid">get_product_category</a></li>
 				<li><a href="function-get_sub_categories.html">get_sub_categories</a></li>
-				<li class="active"><a href="function-getActiveTemplateName.html">getActiveTemplateName</a></li>
 				<li><a href="function-getAmountInCart.html">getAmountInCart</a></li>
+				<li><a href="function-getCartItems.html">getCartItems</a></li>
 				<li><a href="function-getCMSNumber.html">getCMSNumber</a></li>
 				<li><a href="function-getDefaultLanguage.html">getDefaultLanguage</a></li>
-				<li><a href="function-getFaviconLogoPath.html">getFaviconLogoPath</a></li>
-				<li><a href="function-getFaviconLogoUrl.html">getFaviconLogoUrl</a></li>
 				<li><a href="function-getLimiPrice.html">getLimiPrice</a></li>
 				<li><a href="function-getLimitAllPrice.html">getLimitAllPrice</a></li>
 				<li><a href="function-getProduct.html">getProduct</a></li>
 				<li><a href="function-getProductViewsCount.html">getProductViewsCount</a></li>
 				<li><a href="function-getPromoBlock.html">getPromoBlock</a></li>
 				<li><a href="function-getSimilarProduct.html">getSimilarProduct</a></li>
-				<li><a href="function-getSiteInfo.html">getSiteInfo</a></li>
 				<li><a href="function-getVariant.html">getVariant</a></li>
 				<li><a href="function-getVariants.html">getVariants</a></li>
 				<li><a href="function-getWidgetTitle.html">getWidgetTitle</a></li>
@@ -409,6 +407,7 @@
 				<li><a href="function-is_property_in_get.html">is_property_in_get</a></li>
 				<li><a href="function-is_true_array.html">is_true_array</a></li>
 				<li><a href="function-isAviableInStock.html">isAviableInStock</a></li>
+				<li><a href="function-isExistsItems.html">isExistsItems</a></li>
 				<li><a href="function-jsCode.html">jsCode</a></li>
 				<li><a href="function-load_brand.html" class="invalid">load_brand</a></li>
 				<li><a href="function-load_cat.html" class="invalid">load_cat</a></li>
@@ -476,10 +475,10 @@
 <div id="right">
 <div id="rightInner">
 	<form id="search">
-		<input type="hidden" name="cx" value="" />
-		<input type="hidden" name="ie" value="UTF-8" />
-		<input type="text" name="q" class="text" />
-		<input type="submit" value="Search" />
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
 	</form>
 
 	<div id="navigation">
@@ -491,7 +490,7 @@
 				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
 			</li>
 			<li class="active">
-<span>Function</span>			</li>
+<span>Class</span>			</li>
 		</ul>
 		<ul>
 			<li>
@@ -508,35 +507,456 @@
 		</ul>
 	</div>
 
-<div id="content" class="function">
-	<h1>Function getActiveTemplateName</h1>
+<div id="content" class="class">
+	<h1>Class SiteInfo</h1>
 
 
-	<div class="description">
-	
-<p>Returns current active template</p>
 
-	</div>
+
+
+
+
+
+
+
 
 	<div class="info">
 		
 		
-		<b>Located at</b> application/helpers/siteinfo_helper.php<br />
+		
+		
+
+				<b>Author:</b>
+				kolia<br>
+		<b>Located at</b> application/libraries/SiteInfo.php<br>
 	</div>
 
 
 
-	<table class="summary" id="returns">
-	<caption>Return value summary</caption>
-	<tr>
-		<td class="name"><code>
-			string
-		</code></td>
-		<td>
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
 			
+			
+			</code>
 		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( <span>mixed <var>$locale</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSiteInfoData" id="_setSiteInfoData">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSiteInfoData">#</a>
+		<code>setSiteInfoData( <span>array <var>$siteinfo</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Sets all params in one array (mostly on saving)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sets all params in one array (mostly on saving)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$siteinfo</var></dt>
+					<dd><code>array</code><br>$siteinfo</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSiteInfoData" id="_getSiteInfoData">
+
+		<td class="attributes"><code>
+			 public 
+			type
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSiteInfoData">#</a>
+		<code>getSiteInfoData( <span>boolean <var>$byLocale</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns all params in one array (for serialize)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns all params in one array (for serialize)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$byLocale</var></dt>
+					<dd><code>boolean</code><br>$byLocale</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>type</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSiteInfo" id="_getSiteInfo">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSiteInfo">#</a>
+		<code>getSiteInfo( <span>string <var>$name</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns siteinfo item by param</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns siteinfo item by param</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name name of param</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFaviconLogoPath" id="_getFaviconLogoPath">
+
+		<td class="attributes"><code>
+			 public 
+			string|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFaviconLogoPath">#</a>
+		<code>getFaviconLogoPath( )</code>
+
+		<div class="description short">
+			
+<p>Returns path to images folder Depends from active template, and its type -
+for example newLevel template has different structure than commerce4x.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns path to images folder Depends from active template, and its type -
+for example newLevel template has different structure than commerce4x.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|boolean</code><br>Description<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFaviconLogoUrl" id="_getFaviconLogoUrl">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFaviconLogoUrl">#</a>
+		<code>getFaviconLogoUrl( <span>string <var>$logoOrFavicon</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returning full url with image</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returning full url with image</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$logoOrFavicon</var></dt>
+					<dd><code>string</code><br>siteinfo_logo|siteinfo_favicon $logoOrFavicon</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getActiveTemplateName" id="_getActiveTemplateName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getActiveTemplateName">#</a>
+		<code>getActiveTemplateName( )</code>
+
+		<div class="description short">
+			
+<p>Returns current active template</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns current active template</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="normalizeData" id="_normalizeData">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_normalizeData">#</a>
+		<code>normalizeData( )</code>
+
+		<div class="description short">
+			
+<p>Changing array structure relatively to that locales are use or not</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Changing array structure relatively to that locales are use or not</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
 	</tr>
 	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="ci" id="$ci">
+		<td class="attributes"><code>
+			public  
+			type
+		</code></td>
+
+		<td class="name">
+<var>$ci</var>		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$ci" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>CI instance</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>CI instance</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="useLocales" id="$useLocales">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+<var>$useLocales</var>		</td>
+		<td class="value"><code><span class="php-keyword1">TRUE</span></code></td>
+		<td class="description"><div>
+			<a href="#$useLocales" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>If TRUE then setting will be saved and getted for each locale</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>If TRUE then setting will be saved and getted for each locale</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="locale" id="$locale">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$locale</var>		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$locale" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Current locale</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Current locale</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="locales" id="$locales">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$locales</var>		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$locales" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
 
 
 </div>

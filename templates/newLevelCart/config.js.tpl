@@ -20,6 +20,7 @@
             popupCart: '#popupCart',
             frameDelivery: '#frameDelivery',
             framePaymentMethod: '#framePaymentMethod',
+            dM: '[name = "deliveryMethodId"]',
             pM: '#paymentMethod',
             parentBtnBuy: '.globalFrameProduct',
             loginButton: '#loginButton',
@@ -81,8 +82,9 @@
         {$cnt_comp = 0}
     {/if}
         var curr = '{$CS}',
-                nextCs = '{echo $NextCS}',
-                nextCsCond = nextCs == '' ? false : true;
+        cartItemsIdJson = {echo json_encode($arrCartId)},
+        nextCs = '{echo $NextCS}',
+        nextCsCond = nextCs == '' ? false : true;
         pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
                 checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
                 inServerCompare = parseInt("{$cnt_comp}"),
@@ -126,4 +128,3 @@
         text.plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
 </script>
 
-[1,1,1,1,1,1,1]
