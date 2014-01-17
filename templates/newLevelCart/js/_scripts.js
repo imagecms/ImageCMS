@@ -89,7 +89,6 @@
     $.drop.setParameters(optionsDrop);
     $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries');
     $('[data-drop]').drop();
-    $('.cloud-zoom-gallery').drop({scrollContent: false});
     $(genObj.showCart).add($(genObj.btnBask)).drop(optionPopupBask);
 
 

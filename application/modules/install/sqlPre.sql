@@ -5231,6 +5231,7 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 (49, 'module', 'Menu', NULL),
 (50, 'module', 'Rss', NULL),
 (51, 'module', 'Sample_mail', NULL),
+(52, 'module', 'Sample_module', NULL),
 (53, 'module', 'Share', NULL),
 (54, 'module', 'Sitemap', NULL),
 (55, 'module', 'Social_servises', NULL),
@@ -6363,7 +6364,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`),
   KEY `shop_rbac_roles_privileges_FK_2` (`privilege_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=614 ;
 
 --
 -- Дамп даних таблиці `shop_rbac_roles_privileges`
@@ -6826,7 +6827,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (479, 1, 479),
 (480, 1, 480),
 (482, 1, 482),
-(483, 1, 483);
+(483, 1, 483),
+(612, 1, 424),
+(613, 1, 425);
 
 -- --------------------------------------------------------
 
