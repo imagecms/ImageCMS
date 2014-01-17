@@ -881,6 +881,27 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `mod_sample_settings`
+--
+DROP TABLE IF EXISTS `mod_sample_settings`;
+CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `mod_sample_settings`
+--
+
+INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
+(1, 'mailTo', 'admin@site.com'),
+(2, 'useEmailNotification', 'TRUE'),
+(3, 'key', 'UUUsssTTTeee');
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `permissions`
 --
 
