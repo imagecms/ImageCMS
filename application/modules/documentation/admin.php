@@ -215,7 +215,6 @@ class Admin extends BaseAdminController {
                 'last_tag_close' => '</li>',
             );
 
-
             $this->pagination->num_links = 5;
             $this->pagination->initialize($paginationConfig);
             // End pagination
