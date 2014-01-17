@@ -1125,6 +1125,7 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 (49, 'module', 'Menu', NULL),
 (50, 'module', 'Rss', NULL),
 (51, 'module', 'Sample_mail', NULL),
+(52, 'module', 'Sample_module', NULL),
 (53, 'module', 'Share', NULL),
 (54, 'module', 'Sitemap', NULL),
 (55, 'module', 'Social_servises', NULL),
@@ -1174,6 +1175,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 (49, 'Управление меню', 'ru'),
 (50, 'Управление модулем RSS', 'ru'),
 (51, 'Управление шаблонами писем', 'ru'),
+(52, 'Шаблон модуля', 'ru'),
 (53, 'Управление модулем кнопок соцсетей', 'ru'),
 (54, 'Управление модулем карта сайта', 'ru'),
 (55, 'Управление модулем интеграции с соцсетями', 'ru'),
@@ -1384,6 +1386,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (420, 'sample_mail::edit', 51),
 (422, 'sample_mail::index', 51),
 (423, 'sample_mail::delete', 51),
+(424, 'sample_module::__construct', 52),
+(425, 'sample_module::index', 52),
 (426, 'share::__construct', 53),
 (427, 'share::index', 53),
 (428, 'share::update_settings', 53),
@@ -1621,6 +1625,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (420, 'Редактирование шаблона письма', 'Доступ к редактированию шаблона письма', 'ru'),
 (422, 'Список шаблонов писем', 'Доступ к списку шаблонов писем', 'ru'),
 (423, 'Удаление шаблона письма', 'Доступ к удалению шаблона письма', 'ru'),
+(424, 'sample_module::__construct', '', 'ru'),
+(425, 'sample_module::index', '', 'ru'),
 (426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (427, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (428, 'Обновление настроек модуля кнопок соцсетей', 'Доступ к обновлению настроек модуля кнопок соцсетей', 'ru'),
@@ -1716,7 +1722,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `privilege_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=614 ;
 
 --
 -- Дамп даних таблиці `shop_rbac_roles_privileges`
@@ -1973,7 +1979,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (607, 3, 215),
 (608, 3, 216),
 (610, 3, 218),
-(611, 3, 219);
+(611, 3, 219),
+(612, 1, 424),
+(613, 1, 425);
 
 -- --------------------------------------------------------
 
