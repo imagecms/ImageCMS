@@ -38,7 +38,7 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .selected .photo-block, a:hover .photo-block, a:focus .photo-block{border-color: #51d2ff;}
 .not-avail .curr, .not-avail .price, .not-avail a, .not-avail .text-el, .not-avail .title{color: #999 !important;border-bottom-color: #999 !important;}
 .not-avail .product-status .text-el{color: #eee !important;}
-.next-kit, .gen-sum-kit, .countOrCompl, .frame-cur-sum-price .title, .s-t, .count, .code{color: #999;}
+.next-kit, .gen-sum-kit, .count-or-compl, .frame-cur-sum-price .title, .s-t, .count, .code{color: #999;}
 .text-discount{color: #ff7e00;}
 
 .list-style-1 li{position: relative;padding-left: 22px;}
@@ -1356,7 +1356,6 @@ footer .box-4{overflow: visible;}
 .status-pay{padding: 4px 8px;}
 .paid{background-color: #c9d99a;}
 .not-paid{background-color: #d6d6d6;}
-.frame-variant-code{display: none !important;}
 .table-info-order hr{border: 0;border-top: 1px solid #999;}
 
 /*for delete*/

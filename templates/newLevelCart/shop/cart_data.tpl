@@ -19,7 +19,7 @@
     </div>
 {else:}
     <div class="btn-bask pointer">
-        <button type="button" data-source="{shop_url('cart/api/renderCart')}" data-always="true" class="btnBask">
+        <button type="button" class="btnBask">
             <span class="frame-icon">
                 <span class="icon_cleaner"></span>
             </span>

@@ -13,6 +13,14 @@ if (!Array.indexOf) {
 }
 var Shop = {
     Cart: {
+        totalPrice: 0,
+        totalPriceAdd: 0,
+        shipping: {
+            freeFrom: 0,
+            price: 0,
+            sumSpec: 0,
+            sumSpecMes: ""
+        },
         add: function(obj, id, kit) {
             var method = kit ? 'addKit' : 'addProductByVariantId';
             $(document).trigger({
@@ -93,24 +101,22 @@ var Shop = {
                 });                
             });
         },
-        shipping: {
-            freeFrom: 0,
-            price: 0,
-            sumSpec: 0,
-            sumSpecMes: ""
-        },
-        getTiny: function(tpl) {
-            tpl = tpl ? tpl : 'cart_data';
+        getPopup: function(obj) {
             $(document).trigger({
-                'type': 'beforeGetTiny.Cart',
-                'tpl': tpl
+                'type': 'beforeGetPopup.Cart',
+                'obj': obj
             });
-            $.get(siteUrl + 'shop/cart/renderCart/' + tpl, function(data) {
-                $(document).trigger({
-                    'type': 'getTiny.Cart',
-                    'tpl': tpl,
-                    'datas': data
-                });
+            $.ajax({
+                'type': 'get',
+                'url': siteUrl + 'shop/cart',
+                'data': obj,
+                success: function(data) {
+                    $(document).trigger({
+                        'type': 'getPopup.Cart',
+                        'obj': obj,
+                        'datas': data
+                    });
+                }
             });
         },
         composeCartItem: function($context) {

@@ -54,7 +54,7 @@
                     <div class="frame-count-buy js-variant-{echo $p.variant_id} js-variant">
                         <div class="frame-count frameCount">
                             <div class="number js-number" data-title="{lang('количество на складе', 'newLevel')} {echo $p.stock}">
-                                <div class="frame-change-count frameChangeCount">
+                                <div class="frame-change-count">
                                     <div class="btn-plus">
                                         <button type="button">
                                             <span class="icon-plus"></span>
