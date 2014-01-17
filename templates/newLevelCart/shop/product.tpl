@@ -148,7 +148,7 @@
                                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                     <div class="frame-count frameCount">
                                                         <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}">
-                                                            <div class="frame-change-count frameChangeCount">
+                                                            <div class="frame-change-count">
                                                                 <div class="btn-plus">
                                                                     <button type="button" {if $inCart}disabled="disabled"{/if}>
                                                                         <span class="icon-plus"></span>
@@ -168,7 +168,6 @@
                                                             type="button"
                                                             data-id="{echo $productVariant->getId()}"
 
-                                                            data-trigger="#showCart"
                                                             class="btnBuy"
                                                             >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -545,7 +544,6 @@
                                                         type="button"
                                                         data-id="{echo $kitProducts->getId()}"
 
-                                                        data-trigger="#showCart"
                                                         class="btnBuy infoBut btnBuyKit"
                                                         >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>

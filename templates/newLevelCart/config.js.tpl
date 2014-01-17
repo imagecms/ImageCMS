@@ -17,7 +17,6 @@
 <script type="text/javascript">
     {literal}
         var genObj = {
-            popupCart: '#popupCart',
             frameDelivery: '#frameDelivery',
             framePaymentMethod: '#framePaymentMethod',
             dM: '[name = "deliveryMethodId"]',
@@ -34,8 +33,16 @@
             toWishlist: '.toWishlist',
             inWishlist: '.inWishlist',
             plurProd: '.plurProd',
-            shipping: '#shipping',
-            showCart: '#showCart',
+            finalAmount: '#finalAmount',
+            finalAmountAdd: '#finalAmountAdd',
+            priceDelivery: '#priceDelivery',
+            noPriceDelivery: '#noPriceDelivery',
+            frameDeliverySum: '#frameDeliverySum',
+            deliveryPirce: '#deliveryPirce',
+            deliveryPriceSumNextCS: '#deliveryPriceSumNextCS',
+            popupCart: '#popupCart',
+            showCartPopup: '#showCartPopup',
+            editCart: '.editCart',
             btnBask: '.btnBask',
             tinyBask: '#tinyBask',
                         
@@ -53,7 +60,6 @@
             imgVP: '.vImgPr',
             infoBut: '.infoBut',
             frameCount: '.frameCount',
-            frameChangeCount: '.frameChangeCount',
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
 
@@ -75,7 +81,8 @@
             notAvail: 'not-avail',
             textEl: '.text-el',
             changeVariantCategory: '[id ^= сVariantSwitcher_]',
-            changeVariantProduct: '#variantSwitcher'
+            changeVariantProduct: '#variantSwitcher',
+            orderDetails: '#orderDetails'
         };
     {/literal}
     {if $comp = $CI->session->userdata('shopForCompare')}

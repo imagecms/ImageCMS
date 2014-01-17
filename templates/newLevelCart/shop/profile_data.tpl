@@ -120,8 +120,6 @@
         </div>
         <div class="drop-content">
             <div class="inside-padd characteristic">
-                
-                    
                     <br/>
                     asdf
                     <br/>

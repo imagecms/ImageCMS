@@ -122,7 +122,6 @@ $.dropInit.prototype.extendDrop = function() {
                                   
                         if (el.data('jsp'))
                             el.data('jsp').destroy()
-                        
                         if ($.existsN(el)) {
                             var refer = drp.elrun;
                             
@@ -158,7 +157,6 @@ $.dropInit.prototype.extendDrop = function() {
                                         mayHeight = refer.offset().top - footerHeader - refer.outerHeight();
                                     }
                                 }
-                                console.log(mayHeight)
                                 if (mayHeight > elCH)
                                     el.css('height', elCH);
                                 else
@@ -166,7 +164,7 @@ $.dropInit.prototype.extendDrop = function() {
                             }
                             else {
                                 if (elCH + footerHeader > dropH)
-                                    el.css('height', drop.height() - footerHeader);
+                                    el.css('height', dropH - footerHeader);
                                 else
                                     el.css('height', elCH);
                             }
@@ -199,12 +197,15 @@ $.dropInit.prototype.extendDrop = function() {
                         wndH = drop.data('drp').scroll ? wnd.height() : $(document).height();
                         
                         var dropV = drop.is(':visible'),
-                        w = dropV ? drop.width() : drop.actual('outerWidth'),
-                        h = dropV ? drop.height() : drop.actual('outerHeight');
+                        w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
+                        h = dropV ? drop.outerHeight() : drop.actual('outerHeight'),
+                        ws = dropV ? drop.width() : drop.actual('width'),
+                        hs = dropV ? drop.height() : drop.actual('height');
+
                         if (w > wndW)
-                            drop.css('width', wndW - 40);
+                            drop.css('width', wndW-w+ws);
                         if (h > wndH)
-                            drop.css('height', wndH - 40);
+                            drop.css('height', wndH-h+hs);
                     }
                 }
             });
@@ -254,18 +255,17 @@ $.dropInit.prototype.extendDrop = function() {
         },
         galleries: function($this, set, methods) {
             var elSet = $this.data(),
-            source = elSet.source || set.source || $this.attr('href'),
-            next = elSet.next || set.next,
-            prev = elSet.prev || set.prev,
-            cycle = elSet.cycle || set.cycle,
-            elChangeSource = elSet.changeSource,
-            place = elSet.place || set.place,
-            changeSource = set.changeSource;
-
-            var tempF = arguments.callee,
             relO = $this.get(0).rel;
             if (relO != '' && relO !== undefined) {
-                var rel = relO.replace(/[^a-zA-Z0-9]+/ig, ''),
+                var tempF = arguments.callee,
+                source = elSet.source || set.source || $this.attr('href'),
+                next = elSet.next || set.next,
+                prev = elSet.prev || set.prev,
+                cycle = elSet.cycle || set.cycle,
+                elChangeSource = elSet.changeSource,
+                place = elSet.place || set.place,
+                changeSource = set.changeSource,
+                rel = relO.replace(/[^a-zA-Z0-9]+/ig, ''),
                 relA = $.drop.dP.galleries[rel],
                 drop = $('[data-elrun][data-rel="' + rel + '"]');
 
