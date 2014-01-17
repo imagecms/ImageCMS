@@ -47,8 +47,7 @@ $.dropInit.prototype.extendDrop = function() {
             drop.each(function() {
                 var drop = $(this);
                 if (!drop.data('drp').droppableIn) {
-                    start = start === undefined ? true : false;
-                    var method = drop.data('drp').animate && start ? 'animate' : 'css',
+                    var method = drop.data('drp').animate && !start ? 'animate' : 'css',
                     placement = drop.data('drp').placement,
                     $this = drop.data('drp').elrun,
                     dataSourceH = 0,
@@ -98,10 +97,12 @@ $.dropInit.prototype.extendDrop = function() {
             if (drop === undefined)
                 drop = this.self ? this.self : this;
             drop.each(function() {
-                var drop = $(this);
-                if (drop.data('drp').limitContentSize) {
+                var drop = $(this),
+                drp = drop.data('drp');
+                
+                if (drp.limitContentSize) {
                     var dropV = drop.is(':visible'),
-                    forCenter = drop.data('drp').forCenter,
+                    forCenter = drp.forCenter,
                     docH = $(document).height();
                     
                     if (!dropV) {
@@ -109,10 +110,10 @@ $.dropInit.prototype.extendDrop = function() {
                         if (forCenter)
                             forCenter.show();
                     }
-                    var dropH = drop.height();
+                    var dropH = drop.outerHeight();
                     
-                    if (drop.data('drp').dropContent) {
-                        var el = drop.find($(drop.data('drp').dropContent).add($($.drop.dPP.dropContent))).filter(':first');
+                    if (drp.dropContent) {
+                        var el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':first');
                                   
                         el.css({
                             'height': '', 
@@ -123,11 +124,12 @@ $.dropInit.prototype.extendDrop = function() {
                             el.data('jsp').destroy()
                         
                         if ($.existsN(el)) {
-                            var refer = drop.data('drp').elrun;
+                            var refer = drp.elrun;
                             
                             var api = false,
                             elJP = el.css('overflow', '');
-                            if (drop.data('drp').scrollContent) {
+
+                            if (drp.scrollContent) {
                                 try {
                                     el.jScrollPane(scrollPane);
                                     elJP = el.find('.jspPane');
@@ -137,44 +139,40 @@ $.dropInit.prototype.extendDrop = function() {
                                 }
                             }
                             var elCH = elJP.outerHeight(),
-                            footerHeader = drop.find($(drop.data('drp').dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drop.data('drp').dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
+                            footerHeader = drop.find($(drp.dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drp.dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
                             
-                            if (drop.data('drp').place == 'noinherit') {
+                            if (drp.place == 'noinherit') {
                                 var mayHeight = 0,
-                                placement = drop.data('drp').placement;
+                                placement = drp.placement;
                                 if (typeof placement == 'object') {
                                     if (placement.top != undefined)
-                                        mayHeight = docH - placement.top - footerHeader - (drop.outerHeight() - drop.height());
+                                        mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - placement.top - footerHeader - (drop.outerHeight() - drop.height());
                                     if (placement.bottom != undefined)
                                         mayHeight = placement.bottom - footerHeader;
                                 }
                                 else {
                                     if (placement.search(/top/) >= 0) {
-                                        mayHeight = docH - refer.offset().top - footerHeader - refer.outerHeight() - (drop.outerHeight() - drop.height());
+                                        mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - refer.offset().top - footerHeader - refer.outerHeight() - (drop.outerHeight() - drop.height());
                                     }
                                     if (placement.search(/bottom/) >= 0) {
                                         mayHeight = refer.offset().top - footerHeader - refer.outerHeight();
                                     }
                                 }
+                                console.log(mayHeight)
                                 if (mayHeight > elCH)
                                     el.css('height', elCH);
                                 else
                                     el.css('height', mayHeight);
-                                if (el.outerHeight() === elCH && api)
-                                    api.destroy();
                             }
                             else {
                                 if (elCH + footerHeader > dropH)
-                                    el.css('height', dropH - footerHeader);
+                                    el.css('height', drop.height() - footerHeader);
                                 else
                                     el.css('height', elCH);
                             }
                             
                             if (api)
                                 api.reinitialise();
-
-                            if (drop.data('drp').place === 'center')
-                                drop.drop('center');
                             if (!dropV) {
                                 drop.hide();
                                 if (forCenter)
@@ -186,7 +184,7 @@ $.dropInit.prototype.extendDrop = function() {
             });
             return drop;
         },
-        limitSize: function(drop, resize) {
+        limitSize: function(drop) {
             if (drop === undefined)
                 drop = this.self ? this.self : this;
             drop.each(function() {
@@ -201,8 +199,8 @@ $.dropInit.prototype.extendDrop = function() {
                         wndH = drop.data('drp').scroll ? wnd.height() : $(document).height();
                         
                         var dropV = drop.is(':visible'),
-                        w = dropV ? drop.width() : drop.actual('width'),
-                        h = dropV ? drop.height() : drop.actual('height');
+                        w = dropV ? drop.width() : drop.actual('outerWidth'),
+                        h = dropV ? drop.height() : drop.actual('outerHeight');
                         if (w > wndW)
                             drop.css('width', wndW - 40);
                         if (h > wndH)

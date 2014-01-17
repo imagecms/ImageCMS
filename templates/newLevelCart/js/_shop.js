@@ -276,8 +276,8 @@ var ImageCMSApi = {
                     var form = $(selector);
                     returnMsg("[status]:" + obj.status);
                     returnMsg("[message]: " + obj.msg);
-
-                    if (((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != '')))
+                    var cond = ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''));
+                    if (cond)
                         $(document).trigger({
                             'type': 'imageapi.before_refresh_reload',
                             'el': form,
@@ -286,7 +286,7 @@ var ImageCMSApi = {
 
                     if (typeof DS.callback == 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
-                    else if (obj.status === true)
+                    else if (obj.status === true && !cond)
                         setTimeout((function() {
                             form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
