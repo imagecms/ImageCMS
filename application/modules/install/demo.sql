@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.3deb1kc2~raring0
+-- version 4.0.6
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Лип 24 2013 р., 20:13
--- Версія сервера: 5.5.31-0ubuntu0.13.04.1
--- Версія PHP: 5.4.16-1~ppa1~raring
+-- Час створення: Січ 17 2014 р., 11:11
+-- Версія сервера: 5.5.35-log
+-- Версія PHP: 5.2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -15,6 +15,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+
+--
+-- База даних: `imagecms_demo`
+--
 
 -- --------------------------------------------------------
 
@@ -881,6 +885,29 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `mod_sample_settings`
+--
+
+DROP TABLE IF EXISTS `mod_sample_settings`;
+CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `mod_sample_settings`
+--
+
+INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
+(1, 'mailTo', 'admin@site.com'),
+(2, 'useEmailNotification', 'TRUE'),
+(3, 'key', 'UUUsssTTTeee');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `permissions`
 --
 
@@ -1030,7 +1057,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'corporate', 'no', '', 'page', 69, '56', 'user_manager', '', '', 'russian_lang', '', '', NULL, '', 'yes', 'tinymce', 'a:7:{s:20:"siteinfo_compatytype";s:0:"";s:16:"siteinfo_address";s:0:"";s:18:"siteinfo_mainphone";s:18:"+8 (090) 500-50-50";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:13:"siteinfo_logo";s:0:"";s:16:"siteinfo_favicon";s:0:"";s:8:"contacts";a:3:{s:5:"Email";s:17:"Info@imagecms.net";s:5:"Skype";s:8:"ImageCMS";s:7:"Тел.";s:38:"+8 (090) 500-50-50, +8 (100) 500-50-50";}}', 'a:3:{i:0;b:0;s:10:"newVersion";s:102:"a:4:{s:2:"id";s:2:"21";s:8:"build_id";s:7:"451.564";s:4:"time";s:10:"1382095392";s:4:"size";i:580186;}";s:9:"checkTime";i:1382342119;}', NULL);
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'corporate', 'no', '', 'page', 63, '56', 'user_manager', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:9:{s:20:"siteinfo_companytype";s:54:"© Интернет-магазин «Imageshop», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:14:"siteinfo_Email";s:20:"partner@imagecms.net";s:14:"siteinfo_Skype";s:8:"imagecms";s:8:"contacts";a:2:{s:5:"Email";s:20:"partner@imagecms.net";s:5:"Skype";s:8:"imagecms";}s:16:"siteinfo_favicon";a:2:{s:8:"newLevel";s:11:"favicon.ico";s:9:"corporate";s:11:"favicon.png";}s:13:"siteinfo_logo";a:2:{s:8:"newLevel";s:8:"logo.png";s:9:"corporate";s:8:"logo.png";}}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1054,7 +1081,7 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
-(1, 3, 'site', 'site', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
+(1, 3, 'Corporate Demo Imagecms', 'Demo', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
 
 -- --------------------------------------------------------
 
@@ -1125,6 +1152,7 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 (49, 'module', 'Menu', NULL),
 (50, 'module', 'Rss', NULL),
 (51, 'module', 'Sample_mail', NULL),
+(52, 'module', 'Sample_module', NULL),
 (53, 'module', 'Share', NULL),
 (54, 'module', 'Sitemap', NULL),
 (55, 'module', 'Social_servises', NULL),
@@ -1174,6 +1202,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 (49, 'Управление меню', 'ru'),
 (50, 'Управление модулем RSS', 'ru'),
 (51, 'Управление шаблонами писем', 'ru'),
+(52, 'Шаблон модуля', 'ru'),
 (53, 'Управление модулем кнопок соцсетей', 'ru'),
 (54, 'Управление модулем карта сайта', 'ru'),
 (55, 'Управление модулем интеграции с соцсетями', 'ru'),
@@ -1384,6 +1413,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (420, 'sample_mail::edit', 51),
 (422, 'sample_mail::index', 51),
 (423, 'sample_mail::delete', 51),
+(424, 'sample_module::__construct', 52),
+(425, 'sample_module::index', 52),
 (426, 'share::__construct', 53),
 (427, 'share::index', 53),
 (428, 'share::update_settings', 53),
@@ -1621,6 +1652,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (420, 'Редактирование шаблона письма', 'Доступ к редактированию шаблона письма', 'ru'),
 (422, 'Список шаблонов писем', 'Доступ к списку шаблонов писем', 'ru'),
 (423, 'Удаление шаблона письма', 'Доступ к удалению шаблона письма', 'ru'),
+(424, 'sample_module::__construct', '', 'ru'),
+(425, 'sample_module::index', '', 'ru'),
 (426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (427, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (428, 'Обновление настроек модуля кнопок соцсетей', 'Доступ к обновлению настроек модуля кнопок соцсетей', 'ru'),
@@ -1716,7 +1749,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `privilege_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=614 ;
 
 --
 -- Дамп даних таблиці `shop_rbac_roles_privileges`
@@ -1973,7 +2006,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (607, 3, 215),
 (608, 3, 216),
 (610, 3, 218),
-(611, 3, 219);
+(611, 3, 219),
+(612, 1, 424),
+(613, 1, 425);
 
 -- --------------------------------------------------------
 
@@ -2105,7 +2140,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 --
 -- Дамп даних таблиці `users`
@@ -2160,6 +2195,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
 ('30df947aef7a96d843520de63d029ef2', 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', '2012-12-06 14:20:58'),
 ('59600cf5ee313f6975283ba33587c305', 49, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36', '127.0.0.1', '2013-07-24 17:12:04');
+
 -- --------------------------------------------------------
 
 --
@@ -2217,7 +2253,7 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (22, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:4:"1000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1377793048),
 (14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084),
 (15, 'benefits', 'html', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>', '', '', 'benefits', '', 1377781343),
-(16, 'footer', 'html', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/" target="_blank">Powered by ImageCMS</a></p>', '', '', 'Текст в футере', '', 1377785231),
+(16, 'footer', 'html', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/free-cms-corporate">Бесплатная CMS</a></p>', '', '', 'Текст в футере', '', 1377785231),
 (17, 'header', 'html', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>', '', '', 'Текст в хедере', '', 1377785307),
 (21, 'works_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:4:"1000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1377792797);
 
@@ -2243,17 +2279,8 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (10, 'ru', '<address>\n<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>\n</address>'),
 (15, 'ru', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
-(16, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/" target="_blank">Powered by ImageCMS</a></p>'),
+(16, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/free-cms-corporate">Бесплатная CMS</a></p>'),
 (17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>');
-
-
-UPDATE 
-    `mod_email_paterns_i18n` 
-SET `variables` = 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";s:9:"$comment$";s:38:"Комментарий к заказу";}' 
-WHERE 
-    id = 2 AND 
-    locale = 'ru'
-LIMIT 1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

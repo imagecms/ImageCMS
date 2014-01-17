@@ -143,7 +143,7 @@
                                 <div class="frameLabel__icsi-css">
                                     <span class="title__icsi-css">&nbsp;</span>
                                     <span class="frame_form_field__icsi-css">
-                                        <input class="pts" type="submit" value="{lang('Задать вопрос', 'comments')}" class="btn__icsi-css" onclick="post(this)"/>
+                                        <input class="pts" type="submit" value="{lang('Задать вопрос', 'comments')}" class="btn__icsi-css" onclick="post(this); _gaq.push(['_trackEvent', '{echo $CI->uri->uri_string()}', '100 символів з Вопрос', 'Задать вопрос']);"/>
                                     </span>
                                 </div>
                             </form>
