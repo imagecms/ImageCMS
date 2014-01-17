@@ -1242,7 +1242,27 @@ INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name
 (5, 22, 0, 'a:1:{i:0;s:8:"dropDown";}'),
 (6, 21, 0, 'a:1:{i:0;s:6:"scroll";}'),
 (7, 24, 0, 'a:2:{i:0;s:8:"dropDown";i:1;s:6:"scroll";}');
+-- --------------------------------------------------------
 
+--
+-- Структура таблиці `mod_sample_settings`
+--
+DROP TABLE IF EXISTS `mod_sample_settings`;
+CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `mod_sample_settings`
+--
+
+INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
+(1, 'mailTo', 'admin@site.com'),
+(2, 'useEmailNotification', 'TRUE'),
+(3, 'key', 'UUUsssTTTeee');
 -- --------------------------------------------------------
 
 --

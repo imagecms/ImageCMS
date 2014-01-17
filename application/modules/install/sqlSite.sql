@@ -921,7 +921,27 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 (4, 'ru', 'Создание пользователя', '<p><span>Успешно пройдена реєстрация $user_name$&nbsp;</span></p>\n<p>Ваши данние:<br /><span>Пароль: $user_password$</span><br /><span>Адрес: &nbsp;$user_address$</span><br /><span>Email: $user_email$</span><br /><span>Телефон: $user_phone$</span></p>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
 (5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
 (6, 'ru', 'Смена пароля', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}');
+-- --------------------------------------------------------
 
+--
+-- Структура таблиці `mod_sample_settings`
+--
+DROP TABLE IF EXISTS `mod_sample_settings`;
+CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `mod_sample_settings`
+--
+
+INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
+(1, 'mailTo', 'admin@site.com'),
+(2, 'useEmailNotification', 'TRUE'),
+(3, 'key', 'UUUsssTTTeee');
 -- --------------------------------------------------------
 
 --
@@ -2316,7 +2336,7 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (10, 'ru', '<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>'),
 (15, 'ru', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
 (17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>'),
-(18, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/" target="_blank">Powered by ImageCMS</a></p>');
+(18, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/free-cms-corporate">Бесплатная CMS</a></p>');
 
 UPDATE 
     `mod_email_paterns_i18n` 
