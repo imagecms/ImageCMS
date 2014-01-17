@@ -1013,8 +1013,6 @@ class Admin extends BaseAdminController {
             write_file($file['file_path'] . $prev_img_name, $file_data);
         }
 
-//wtf
-//echo $this->conf['upload_path'];
         // Create thumb file
         $config = array();
         $thumb_name = $this->conf['upload_path'] . '/' . $this->conf['thumbs_folder'] . '/' . $file['raw_name'] . $this->conf['thumb_marker'] . $file['file_ext'];

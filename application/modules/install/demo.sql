@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.3deb1kc2~raring0
+-- version 4.0.6
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Лип 24 2013 р., 20:13
--- Версія сервера: 5.5.31-0ubuntu0.13.04.1
--- Версія PHP: 5.4.16-1~ppa1~raring
+-- Час створення: Січ 17 2014 р., 11:11
+-- Версія сервера: 5.5.35-log
+-- Версія PHP: 5.2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -15,6 +15,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+
+--
+-- База даних: `imagecms_demo`
+--
 
 -- --------------------------------------------------------
 
@@ -145,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=189 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=270 ;
 
 --
 -- Дамп даних таблиці `components`
@@ -169,7 +173,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (96, 'cfcm', 'cfcm', 0, 0, 0, NULL, NULL),
 (123, 'share', 'share', 0, 0, 0, NULL, NULL),
 (129, 'star_rating', 'star_rating', 1, 0, 0, '{"main":"1","page":"1","category":"1","product":"1","shop_category":"1","brand":"1"}', NULL),
-(188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
+(188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2),
+(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -782,7 +787,6 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
 (1, 1, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";N;}'),
 (2, 1, 59, 'category', '', '', 0, 'Блог', 0, 17, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(3, 1, 0, 'module', '', '', 0, 'Контакты', 9, 9, NULL, 'a:3:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";s:7:"newpage";N;}'),
 (4, 1, 0, 'module', '', '', 0, 'Галерея', 0, 14, NULL, 'a:2:{s:8:"mod_name";s:7:"gallery";s:6:"method";s:0:"";}'),
 (8, 1, 63, 'page', '', '', 0, 'О компании', 0, 2, NULL, NULL),
 (9, 1, 55, 'category', '', '', 0, 'Продукция', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
@@ -797,7 +801,6 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 (19, 1, 66, 'page', '', '', 0, 'Космические роботы', 9, 6, NULL, NULL),
 (20, 1, 67, 'page', '', '', 0, 'Кухонные роботы', 9, 7, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
 (21, 1, 68, 'page', '', '', 0, 'Рабочие роботы', 9, 8, NULL, NULL),
-(25, 4, 63, 'page', '', '', 0, 'О компании', 0, 5, NULL, 'a:2:{s:4:"page";N;s:7:"newpage";i:0;}'),
 (26, 4, 0, 'module', '', '', 0, 'Обратная связь', 0, 8, NULL, 'a:2:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";}'),
 (27, 4, 57, 'category', '', '', 0, 'Новости', 0, 2, NULL, NULL),
 (28, 4, 58, 'category', '', '', 0, 'Вакансии', 0, 3, NULL, NULL),
@@ -878,6 +881,29 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 (4, 'ru', 'Создание пользователя', '<p><span>Успешно пройдена реєстрация $user_name$&nbsp;</span></p>\n<p>Ваши данние:<br /><span>Пароль: $user_password$</span><br /><span>Адрес: &nbsp;$user_address$</span><br /><span>Email: $user_email$</span><br /><span>Телефон: $user_phone$</span></p>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
 (5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссылка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудников службы продаж";}'),
 (6, 'ru', 'Смена пароля', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_sample_settings`
+--
+
+DROP TABLE IF EXISTS `mod_sample_settings`;
+CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `mod_sample_settings`
+--
+
+INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
+(1, 'mailTo', 'admin@site.com'),
+(2, 'useEmailNotification', 'TRUE'),
+(3, 'key', 'UUUsssTTTeee');
 
 -- --------------------------------------------------------
 
@@ -1031,7 +1057,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'corporate', 'no', '', 'page', 69, '56', 'user_manager', '', '', 'russian_lang', '', '', NULL, '', 'yes', 'tinymce', 'a:7:{s:20:"siteinfo_compatytype";s:0:"";s:16:"siteinfo_address";s:0:"";s:18:"siteinfo_mainphone";s:18:"+8 (090) 500-50-50";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:13:"siteinfo_logo";s:0:"";s:16:"siteinfo_favicon";s:0:"";s:8:"contacts";a:3:{s:5:"Email";s:17:"Info@imagecms.net";s:5:"Skype";s:8:"ImageCMS";s:7:"Тел.";s:38:"+8 (090) 500-50-50, +8 (100) 500-50-50";}}', 'a:3:{i:0;b:0;s:10:"newVersion";s:102:"a:4:{s:2:"id";s:2:"21";s:8:"build_id";s:7:"451.564";s:4:"time";s:10:"1382095392";s:4:"size";i:580186;}";s:9:"checkTime";i:1382342119;}', NULL);
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'corporate', 'no', '', 'page', 63, '56', 'user_manager', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:9:{s:20:"siteinfo_companytype";s:54:"© Интернет-магазин «Imageshop», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:14:"siteinfo_Email";s:20:"partner@imagecms.net";s:14:"siteinfo_Skype";s:8:"imagecms";s:8:"contacts";a:2:{s:5:"Email";s:20:"partner@imagecms.net";s:5:"Skype";s:8:"imagecms";}s:16:"siteinfo_favicon";a:2:{s:8:"newLevel";s:11:"favicon.ico";s:9:"corporate";s:11:"favicon.png";}s:13:"siteinfo_logo";a:2:{s:8:"newLevel";s:8:"logo.png";s:9:"corporate";s:8:"logo.png";}}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1055,7 +1081,7 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
-(1, 3, 'site', 'site', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
+(1, 3, 'Corporate Demo Imagecms', 'Demo', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
 
 -- --------------------------------------------------------
 
@@ -1126,6 +1152,7 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 (49, 'module', 'Menu', NULL),
 (50, 'module', 'Rss', NULL),
 (51, 'module', 'Sample_mail', NULL),
+(52, 'module', 'Sample_module', NULL),
 (53, 'module', 'Share', NULL),
 (54, 'module', 'Sitemap', NULL),
 (55, 'module', 'Social_servises', NULL),
@@ -1175,6 +1202,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 (49, 'Управление меню', 'ru'),
 (50, 'Управление модулем RSS', 'ru'),
 (51, 'Управление шаблонами писем', 'ru'),
+(52, 'Шаблон модуля', 'ru'),
 (53, 'Управление модулем кнопок соцсетей', 'ru'),
 (54, 'Управление модулем карта сайта', 'ru'),
 (55, 'Управление модулем интеграции с соцсетями', 'ru'),
@@ -1385,6 +1413,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (420, 'sample_mail::edit', 51),
 (422, 'sample_mail::index', 51),
 (423, 'sample_mail::delete', 51),
+(424, 'sample_module::__construct', 52),
+(425, 'sample_module::index', 52),
 (426, 'share::__construct', 53),
 (427, 'share::index', 53),
 (428, 'share::update_settings', 53),
@@ -1622,6 +1652,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (420, 'Редактирование шаблона письма', 'Доступ к редактированию шаблона письма', 'ru'),
 (422, 'Список шаблонов писем', 'Доступ к списку шаблонов писем', 'ru'),
 (423, 'Удаление шаблона письма', 'Доступ к удалению шаблона письма', 'ru'),
+(424, 'sample_module::__construct', '', 'ru'),
+(425, 'sample_module::index', '', 'ru'),
 (426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (427, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (428, 'Обновление настроек модуля кнопок соцсетей', 'Доступ к обновлению настроек модуля кнопок соцсетей', 'ru'),
@@ -1717,7 +1749,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `privilege_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=614 ;
 
 --
 -- Дамп даних таблиці `shop_rbac_roles_privileges`
@@ -1974,7 +2006,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (607, 3, 215),
 (608, 3, 216),
 (610, 3, 218),
-(611, 3, 219);
+(611, 3, 219),
+(612, 1, 424),
+(613, 1, 425);
 
 -- --------------------------------------------------------
 
@@ -2106,7 +2140,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 --
 -- Дамп даних таблиці `users`
@@ -2161,6 +2195,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
 ('30df947aef7a96d843520de63d029ef2', 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', '2012-12-06 14:20:58'),
 ('59600cf5ee313f6975283ba33587c305', 49, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36', '127.0.0.1', '2013-07-24 17:12:04');
+
 -- --------------------------------------------------------
 
 --
@@ -2218,7 +2253,7 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (22, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:4:"1000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1377793048),
 (14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084),
 (15, 'benefits', 'html', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>', '', '', 'benefits', '', 1377781343),
-(16, 'footer', 'html', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/" target="_blank">Powered by ImageCMS</a></p>', '', '', 'Текст в футере', '', 1377785231),
+(16, 'footer', 'html', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/free-cms-corporate">Бесплатная CMS</a></p>', '', '', 'Текст в футере', '', 1377785231),
 (17, 'header', 'html', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>', '', '', 'Текст в хедере', '', 1377785307),
 (21, 'works_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:4:"1000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1377792797);
 
@@ -2244,17 +2279,8 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (10, 'ru', '<address>\n<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>\n</address>'),
 (15, 'ru', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
-(16, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/" target="_blank">Powered by ImageCMS</a></p>'),
+(16, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/free-cms-corporate">Бесплатная CMS</a></p>'),
 (17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>');
-
-
-UPDATE 
-    `mod_email_paterns_i18n` 
-SET `variables` = 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";s:9:"$comment$";s:38:"Комментарий к заказу";}' 
-WHERE 
-    id = 2 AND 
-    locale = 'ru'
-LIMIT 1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

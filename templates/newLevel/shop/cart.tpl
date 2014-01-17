@@ -54,7 +54,7 @@
                                 <div class="frame-form-field">
                                     {if trim(ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()) != ''}
                                         <span class="f_r l-h_35">
-                                            <button type="button" class="d_l_1" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">Еще один номер</button>
+                                            <button type="button" class="d_l_1" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">{lang('Еще один номер','newLevel')}</button>
                                         </span>
                                     {/if}
                                     <div class="d_b o_h maskPhoneFrame">
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     <div class="frame-label">
-                        <span class="title">Адрес доставки:</span>
+                        <span class="title">{lang('Адрес доставки:','newLevel')}</span>
                         <span class="frame-form-field">
                             {if $isRequired['userInfo[deliverTo]']}
                                 <span class="must">*</span>
@@ -148,7 +148,7 @@
                     {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
                     <div class="frame-label">
                         <div class="frame-form-field">
-                            <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">Добавить комментарий к заказу</button>
+                            <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">{lang('Добавить комментарий к заказу','newLevel')}</button>
                             <div class="hidden-comment drop">
                                 <textarea name="userInfo[commentText]" ></textarea>
                             </div>
