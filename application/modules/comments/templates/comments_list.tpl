@@ -279,8 +279,8 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                         {if $counter == 0}
                                                                             <tr style="border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-right: 1px solid #ddd;">
                                                                                 <td colspan="8" style="padding-left: 130px!important;{if $newComments}background-color: #FFFFC9!important;{/if}">
-                                                                                    <img onclick="expand_Children({$item.id}, $(this))" src="http://ofcite.loc/templates/administrator/images/tree/plus.gif" style="cursor: pointer;">
-                                                                                    <img onclick="hide_Children({$item.id}, $(this))" src="http://ofcite.loc/templates/administrator/images/tree/minus.gif" style="cursor: pointer; display: none">
+                                                                                    <img onclick="expand_Children({$item.id}, $(this))" src="/templates/administrator/images/tree/plus.gif" style="cursor: pointer;">
+                                                                                    <img onclick="hide_Children({$item.id}, $(this))" src="/templates/administrator/images/tree/minus.gif" style="cursor: pointer; display: none">
                                                                                     <a onclick="expand_hide_Children($(this), {$item.id})">
                                                                                         {lang('Show answers', 'comments')}
                                                                                     </a>
