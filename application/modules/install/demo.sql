@@ -1030,7 +1030,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'corporate', 'no', '', 'page', 69, '56', 'user_manager', '', '', 'russian_lang', '', '', NULL, '', 'yes', 'tinymce', 'a:7:{s:20:"siteinfo_compatytype";s:0:"";s:16:"siteinfo_address";s:0:"";s:18:"siteinfo_mainphone";s:18:"+8 (090) 500-50-50";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:13:"siteinfo_logo";s:0:"";s:16:"siteinfo_favicon";s:0:"";s:8:"contacts";a:3:{s:5:"Email";s:17:"Info@imagecms.net";s:5:"Skype";s:8:"ImageCMS";s:7:"Тел.";s:38:"+8 (090) 500-50-50, +8 (100) 500-50-50";}}', 'a:3:{i:0;b:0;s:10:"newVersion";s:102:"a:4:{s:2:"id";s:2:"21";s:8:"build_id";s:7:"451.564";s:4:"time";s:10:"1382095392";s:4:"size";i:580186;}";s:9:"checkTime";i:1382342119;}', NULL);
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'corporate', 'no', '', 'page', 63, '56', 'user_manager', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:9:{s:20:"siteinfo_companytype";s:54:"© Интернет-магазин «Imageshop», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:14:"siteinfo_Email";s:20:"partner@imagecms.net";s:14:"siteinfo_Skype";s:8:"imagecms";s:8:"contacts";a:2:{s:5:"Email";s:20:"partner@imagecms.net";s:5:"Skype";s:8:"imagecms";}s:16:"siteinfo_favicon";a:2:{s:8:"newLevel";s:11:"favicon.ico";s:9:"corporate";s:11:"favicon.png";}s:13:"siteinfo_logo";a:2:{s:8:"newLevel";s:8:"logo.png";s:9:"corporate";s:8:"logo.png";}}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1125,6 +1125,7 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 (49, 'module', 'Menu', NULL),
 (50, 'module', 'Rss', NULL),
 (51, 'module', 'Sample_mail', NULL),
+(52, 'module', 'Sample_module', NULL),
 (53, 'module', 'Share', NULL),
 (54, 'module', 'Sitemap', NULL),
 (55, 'module', 'Social_servises', NULL),
@@ -1174,6 +1175,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 (49, 'Управление меню', 'ru'),
 (50, 'Управление модулем RSS', 'ru'),
 (51, 'Управление шаблонами писем', 'ru'),
+(52, 'Шаблон модуля', 'ru'),
 (53, 'Управление модулем кнопок соцсетей', 'ru'),
 (54, 'Управление модулем карта сайта', 'ru'),
 (55, 'Управление модулем интеграции с соцсетями', 'ru'),
@@ -1384,6 +1386,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (420, 'sample_mail::edit', 51),
 (422, 'sample_mail::index', 51),
 (423, 'sample_mail::delete', 51),
+(424, 'sample_module::__construct', 52),
+(425, 'sample_module::index', 52),
 (426, 'share::__construct', 53),
 (427, 'share::index', 53),
 (428, 'share::update_settings', 53),
@@ -1621,6 +1625,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (420, 'Редактирование шаблона письма', 'Доступ к редактированию шаблона письма', 'ru'),
 (422, 'Список шаблонов писем', 'Доступ к списку шаблонов писем', 'ru'),
 (423, 'Удаление шаблона письма', 'Доступ к удалению шаблона письма', 'ru'),
+(424, 'sample_module::__construct', '', 'ru'),
+(425, 'sample_module::index', '', 'ru'),
 (426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (427, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (428, 'Обновление настроек модуля кнопок соцсетей', 'Доступ к обновлению настроек модуля кнопок соцсетей', 'ru'),
@@ -1716,7 +1722,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `privilege_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=614 ;
 
 --
 -- Дамп даних таблиці `shop_rbac_roles_privileges`
@@ -1973,7 +1979,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (607, 3, 215),
 (608, 3, 216),
 (610, 3, 218),
-(611, 3, 219);
+(611, 3, 219),
+(612, 1, 424),
+(613, 1, 425);
 
 -- --------------------------------------------------------
 
