@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=189 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=270 ;
 
 --
 -- Дамп даних таблиці `components`
@@ -169,7 +169,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (96, 'cfcm', 'cfcm', 0, 0, 0, NULL, NULL),
 (123, 'share', 'share', 0, 0, 0, NULL, NULL),
 (129, 'star_rating', 'star_rating', 1, 0, 0, '{"main":"1","page":"1","category":"1","product":"1","shop_category":"1","brand":"1"}', NULL),
-(188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
+(188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2),
+(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -782,7 +783,6 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
 (1, 1, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";N;}'),
 (2, 1, 59, 'category', '', '', 0, 'Блог', 0, 17, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(3, 1, 0, 'module', '', '', 0, 'Контакты', 9, 9, NULL, 'a:3:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";s:7:"newpage";N;}'),
 (4, 1, 0, 'module', '', '', 0, 'Галерея', 0, 14, NULL, 'a:2:{s:8:"mod_name";s:7:"gallery";s:6:"method";s:0:"";}'),
 (8, 1, 63, 'page', '', '', 0, 'О компании', 0, 2, NULL, NULL),
 (9, 1, 55, 'category', '', '', 0, 'Продукция', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
@@ -797,7 +797,6 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 (19, 1, 66, 'page', '', '', 0, 'Космические роботы', 9, 6, NULL, NULL),
 (20, 1, 67, 'page', '', '', 0, 'Кухонные роботы', 9, 7, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
 (21, 1, 68, 'page', '', '', 0, 'Рабочие роботы', 9, 8, NULL, NULL),
-(25, 4, 63, 'page', '', '', 0, 'О компании', 0, 5, NULL, 'a:2:{s:4:"page";N;s:7:"newpage";i:0;}'),
 (26, 4, 0, 'module', '', '', 0, 'Обратная связь', 0, 8, NULL, 'a:2:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";}'),
 (27, 4, 57, 'category', '', '', 0, 'Новости', 0, 2, NULL, NULL),
 (28, 4, 58, 'category', '', '', 0, 'Вакансии', 0, 3, NULL, NULL),

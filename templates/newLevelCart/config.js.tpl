@@ -7,6 +7,12 @@
     {$is_logged_in = 0}
     {$countWL = 0}
 {/if}
+{$cart = \Cart\BaseCart::getInstance()->getItems()}
+{if count($cart['data']) > 0}
+    {foreach $cart['data'] as $item}
+        {$arrCartId[] = $item->id}
+    {/foreach}
+{/if}
 {$countSh = getProductViewsCount()}
 <script type="text/javascript">
     {literal}
@@ -14,6 +20,7 @@
             popupCart: '#popupCart',
             frameDelivery: '#frameDelivery',
             framePaymentMethod: '#framePaymentMethod',
+            dM: '[name = "deliveryMethodId"]',
             pM: '#paymentMethod',
             parentBtnBuy: '.globalFrameProduct',
             loginButton: '#loginButton',
@@ -77,6 +84,7 @@
         {$cnt_comp = 0}
     {/if}
         var curr = '{$CS}',
+        cartItemsIdJson = {echo json_encode($arrCartId)},
         nextCs = '{echo $NextCS}',
         nextCsCond = nextCs == '' ? false : true;
         pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),

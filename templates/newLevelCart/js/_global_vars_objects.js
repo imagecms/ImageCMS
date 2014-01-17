@@ -80,7 +80,6 @@ var optionsDrop = {
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
     animate: true,
-    droppable: true,
     timeclosemodal: 2000,
     modalPlace: '.notification',
     moreOne: false,

@@ -253,7 +253,7 @@
                 <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
             </div>
             <div class="span4 t-a_r">
-                <div class="muted">Copyright © ImageCMS 2013</div>
+                <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
                 <a href="http://docs.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
             </div>
         </div>

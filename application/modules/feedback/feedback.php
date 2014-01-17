@@ -66,6 +66,8 @@ class Feedback extends MY_Controller {
 
         $this->template->add_array($tpl_data);
 
+
+
         if (count($_POST) > 0) {
             $this->form_validation->set_rules('name', lang('Name', 'feedback'), 'trim|required|min_length[3]|max_length[' . $this->username_max_len . ']|xss_clean');
             $this->form_validation->set_rules('email', lang('E-Mail', 'feedback'), 'trim|required|valid_email|xss_clean');
@@ -95,7 +97,8 @@ class Feedback extends MY_Controller {
                         $errors .= "<div style=\"color:red\">{$name} - {$error_}</div>";
                     }
                 }
-                $this->template->assign('form_errors', $errors);
+                //$this->template->assign('form_errors', $errors);
+                CMSFactory\assetManager::create()->appendData('form_errors', $errors);
             } else { // form is validate
                 $this->message = strip_tags(nl2br(
                                 lang('Theme', 'feedback') . ' : ' . $this->input->post('theme') .
@@ -107,8 +110,7 @@ class Feedback extends MY_Controller {
             }
         }
 
-        CMSFactory\assetManager::create()
-                ->render('feedback');
+        CMSFactory\assetManager::create()->render('feedback');
     }
 
     // Send e-mail
@@ -127,7 +129,7 @@ class Feedback extends MY_Controller {
 
         $this->email->send();
 
-        $this->template->assign('message_sent', TRUE);
+        CMSFactory\assetManager::create()->appendData('message_sent', TRUE);
     }
 
     private function load_settings() {
@@ -144,14 +146,6 @@ class Feedback extends MY_Controller {
         if ($settings['email']) {
             $this->admin_mail = $settings['email'];
         }
-    }
-
-    /**
-     * Display template file
-     */
-    private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
-        $this->template->show('file:' . $file);
     }
 
 }
