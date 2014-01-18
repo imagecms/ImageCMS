@@ -25,7 +25,8 @@ $.expr[':'].regex = function(elem, index, match) {
 String.prototype.trimMiddle = function()
 {
     var r = /\s\s+/g;
-    return $.trim(this).replace(r, ' ');
+    return ($.trim(this).replace(r, ' ').replace(/\f,\r,\n/, ' '));
+
 };
 String.prototype.pasteSAcomm = function() {
     var r = /\s,/g;
@@ -423,9 +424,14 @@ function getCookie(c_name)
                                     methods.changeRadio($(this).find(elCheckWrap), after, false);
                                 }
                             });
-                            input.off('mousedown.' + nS).off('click.' + nS).off('change.' + nS).off('click.' + nS).on('click.' + nS + ' click.' + nS + ' change.' + nS, function(e) {
+                            input.off('click.' + nS).off('change.' + nS).on('click.' + nS + ' change.' + nS, function(e) {
                                 e.preventDefault();
                                 e.stopPropagation();
+                            });
+                            input.off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                $(this).closest(wrapper).trigger('click.' + nS);
                             });
                         });
                     }
@@ -2594,11 +2600,11 @@ function getCookie(c_name)
                         $thisNext = $thisNext[regM](regS);
                     });
 
-                    if ($thisVal >= max) {
+                    if ($thisVal >= max && checkProdStock) {
                         $this.val(max);
                         $thisNext.attr('disabled', 'disabled');
                     }
-                    if ($thisVal <= min) {
+                    if ($thisVal <= min && checkProdStock) {
                         $this.val(min);
                         $thisPrev.attr('disabled', 'disabled');
                     }

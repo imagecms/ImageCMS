@@ -310,7 +310,6 @@ input.input-search{height: 33px;}
 /*items*/
 .frame-variant-name-code{margin-bottom: 5px;display: block;}
 .frame-variant-code, .frame-variant-name{}
-.items-catalog .frame-variant-name, .items-catalog .frame-variant-code, .item-product .frame-variant-name{display: none !important;}
 .items-catalog .frame-item-brand{display: block;}
 .item-product .frame-variant-code{margin-right: 7px;}
 .code + .code{margin-left: 10px;}
