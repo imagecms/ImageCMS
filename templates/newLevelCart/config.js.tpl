@@ -134,7 +134,3 @@
         text.plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'];
         text.plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
 </script>
-<<<<<<< HEAD
-=======
-
->>>>>>> 6862bd3ae4805a1fce02192de0c3cf1d108d0ab4
