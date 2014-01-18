@@ -101,18 +101,18 @@ var Shop = {
                 });                
             });
         },
-        getPopup: function(obj) {
+        getTpl: function(obj) {
             $(document).trigger({
-                'type': 'beforeGetPopup.Cart',
+                'type': 'beforeGetTpl.Cart',
                 'obj': obj
             });
             $.ajax({
-                'type': 'get',
+                'type': 'post',
                 'url': siteUrl + 'shop/cart',
                 'data': obj,
                 success: function(data) {
                     $(document).trigger({
-                        'type': 'getPopup.Cart',
+                        'type': 'getTpl.Cart',
                         'obj': obj,
                         'datas': data
                     });

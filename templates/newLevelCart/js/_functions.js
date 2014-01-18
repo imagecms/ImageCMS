@@ -115,7 +115,7 @@ var ShopFront = {
             el.find("img.lazy").lazyload(lazyload);
             wnd.scroll(); //for lazyload
             drawIcons(el.find(selIcons));
-            el.find('[data-drop]').drop(optionsDrop);
+            el.find('[data-drop]').drop();
         }
     },
     CompareList: {
