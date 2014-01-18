@@ -135,6 +135,7 @@ function initOrderTrEv() {
     $(document).on('getTpl.Cart', function(e) {
         if (e.obj.template == 'cart_order') {
             $(genObj.orderDetails).empty().append(e.datas);
+            $(genObj.orderDetails).find('[data-drop]').drop();
             Order.giftSubmit();
 
             Order.getTotalPrice();
