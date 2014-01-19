@@ -370,12 +370,12 @@ $.dropInit.prototype.extendDrop = function() {
                 });
             }
         }
-    }
+    };
     var newMethods = {};
     for (var i = 0, length = arguments.length; i < length; i++) {
         if (arguments[i] in addmethods) {
             newMethods[arguments[i]] = addmethods[arguments[i]];
         }
     }
-    $.drop.setMethods(newMethods);
-}
+    this.setMethods(newMethods);
+};

@@ -25,7 +25,7 @@ $.expr[':'].regex = function(elem, index, match) {
 String.prototype.trimMiddle = function()
 {
     var r = /\s\s+/g;
-    return ($.trim(this).replace(r, ' ').replace(/\f,\r,\n/, ' '));
+    return $.trim(this).replace(r, ' ');
 
 };
 String.prototype.pasteSAcomm = function() {
@@ -1993,7 +1993,7 @@ function getCookie(c_name)
                                 datas: data
                             });
                             methods._show(el, e, true, set, data);
-                            drop.find('[data-drop]:not(.isDrop)').drop();
+                            methods.init(drop.find('[data-drop]:not(.isDrop)'));
                         }
                     }
                 });
@@ -2531,10 +2531,7 @@ function getCookie(c_name)
         };
     }
 
-    var id = (new Date()).getTime().toString(),
-            el = $('<div/>', {
-                id: 'scrollDrop' + id
-            }).appendTo(body).css({
+    var el = $('<div/>').appendTo(body).css({
         'height': 400,
         'width': 400,
         'overflow': 'scroll'

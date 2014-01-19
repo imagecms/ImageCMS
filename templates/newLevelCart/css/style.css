@@ -91,7 +91,7 @@ body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
 body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el{font-size: 13px;}
-input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background: none;border: none;}
+input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background-color: transparent;border: none;}
 input[type="button"], input[type="submit"], input[type="reset"], button{text-align: center;}
 label, input[type="button"], input[type="submit"], input[type="reset"], button{padding: 0;cursor: pointer;}
 [class*="btn"] > button, [class*="btn"] > a, .buti > button, .buti > a{cursor: pointer;display: inline-block;font-size: 0 !important;}
