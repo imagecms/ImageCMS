@@ -218,7 +218,6 @@
                     if (tempText == liH[index])
                         k++;
                     tempText = liH[index];
-                    console.log(tempText)
                 });
                 if (k == tempNabir.length - 1 && k != 0)
                     genObjC = genObjC.add(left.eq(j)).add(tempNabir);
