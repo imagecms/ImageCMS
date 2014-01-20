@@ -55,7 +55,7 @@
         </li>
         <div class="submenu" style="display: none;">
             <li>
-                <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/categories" class="linkChart">&nbsp;&nbsp;&nbsp;
+                <a href="{site_url('admin/components/cp/mod_stats/products/categories')}" class="linkChart">&nbsp;&nbsp;&nbsp;
                     <span class="simple_tree">↳</span>{lang('Categories', 'mod_stats')}     
                 </a>
             </li>

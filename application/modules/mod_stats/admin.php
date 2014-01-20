@@ -24,11 +24,13 @@ class Admin extends \BaseAdminController {
     public $defaultAction = 'orders/amount';
 
     public function __construct() {
+        parent::__construct();
         $this->assetManager = \CMSFactory\assetManager::create()
-                ->registerScript('scripts')
+                ->registerScript('functions')
                 ->registerScript('d3.v3')
                 ->registerScript('nv.d3')
                 ->registerStyle('nv.d3')
+                ->registerScript('scripts')
                 ->registerStyle('styles');
         include __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'ControllerBase' . EXT;
     }
@@ -47,6 +49,7 @@ class Admin extends \BaseAdminController {
     }
 
     public function products() {
+        
         $this->runControllerAction(__FUNCTION__, func_get_args());
     }
 
