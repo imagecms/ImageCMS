@@ -6,7 +6,6 @@ var
         ieV = $.browser.version,
         ltie7 = ie && (ieV <= 7),
         ltie8 = ie && (ieV <= 8),
-        orderDetails = $.exists('#orderDetails'),
         checkProdStock = checkProdStock == "" ? false : true,
         hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 
@@ -186,7 +185,4 @@ var optionsPlusminus = {
 }
 $.maxminValue.settings = {
     addCond: checkProdStock
-}
-var optionPopupBask = {
-    pattern: '<div class="drop-bask drop drop-default drop-style" id="popupCart"><div class="placePaste p_r"></div></div>'
 }
