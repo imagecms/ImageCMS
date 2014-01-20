@@ -25,6 +25,8 @@ class Admin extends \BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper("url");
+
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
                 ->registerScript('d3.v3')
@@ -33,6 +35,13 @@ class Admin extends \BaseAdminController {
                 ->registerScript('scripts')
                 ->registerStyle('styles');
         include __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'ControllerBase' . EXT;
+        // for saving date params between pages crossing
+        if (!empty($_SERVER['QUERY_STRING'])) {
+            $this->assetManager->setData('queryString', '?' . $_SERVER['QUERY_STRING']);
+        }
+        // passing to template array with menu structure
+        $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
+        $this->assetManager->setData('leftMenu', $leftMenu);
     }
 
     public function index() {

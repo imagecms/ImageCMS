@@ -8,8 +8,8 @@ $(document).ready(function() {
         }
     });
 
-
-
+    // open first menu section
+    $("ul.left-menu-ul li:first-child a").trigger('click');
 
 
 
