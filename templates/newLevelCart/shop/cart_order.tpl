@@ -221,6 +221,7 @@
                     <div class="clearfix">
                         <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
                         <div class="frame-gift f_r">
+                            
                             {if $gift_error}
                                 <div class="msg">
                                     <div class="error">
@@ -238,7 +239,7 @@
                             <div id="gift" class="{if !$gift_error}drop{/if} o_h">
                                 <div class="btn-def f_r">
                                     <button type="button" id="giftButton">
-                                        <span class="text-el">Применить</span>
+                                        <span class="text-el">{lang('Применить', 'newLevel')}</span>
                                     </button>
                                 </div>
                                 <div class="o_h">
