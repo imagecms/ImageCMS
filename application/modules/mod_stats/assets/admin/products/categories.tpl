@@ -17,9 +17,9 @@
             <!--<div id="chartContainer" class="span12" style="margin-left: 0 !important;">-->
             
             <svg class="mypiechart pieChartStats" data-from="products/getCategoriesData"></svg>
-            <svg class="mypiechart pieChartStats" data-from="products/getCategoriesData"></svg>
+            <svg class="mypiechart barChartStats" data-from="products/getCategoriesData"></svg>
             <!--</div>-->
         </div>
     </div>
-    {var_dump($data)}
+    
 </section>

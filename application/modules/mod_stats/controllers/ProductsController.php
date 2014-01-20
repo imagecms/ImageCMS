@@ -4,7 +4,6 @@
  * 
  *
  * @author 
- * @param products_model $products_model
  */
 class ProductsController extends ControllerBase {
 
@@ -15,13 +14,14 @@ class ProductsController extends ControllerBase {
     }
 
     public function categories() {
-
+        
         $this->assetManager
                 ->setData('data', 123)
                 ->renderAdmin('products/categories');
     }
 
     public function getCategoriesData() {
+//        var_dumps_exit($_SERVER['HTTP_REFERER']);
         $brands = $this->controller->products_model->getBrandsCountsData();
 
         // data for pie diagram
