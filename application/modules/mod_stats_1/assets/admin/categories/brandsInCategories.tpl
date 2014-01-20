@@ -2,12 +2,12 @@
     <select id="selectCategoryId">
         {foreach $data as $category}
             <option 
-                {if $category->getLevel() == 0}style="font-weight: bold;"{/if} 
-                value="{echo $category->getId()}" 
-                {if $_COOKIE['cat_id_for_stats'] == $category->getId()}selected=selected{/if}
-                >
-                    {str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}
-            </option>
+            {if $category->getLevel() == 0}style="font-weight: bold;"{/if} 
+            value="{echo $category->getId()}" 
+        {if $_COOKIE['cat_id_for_stats'] == $category->getId()}selected=selected{/if}
+        >
+        {str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}
+    </option>
 {/foreach}
 </select>
 </div>

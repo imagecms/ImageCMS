@@ -154,15 +154,17 @@
         {/foreach}   
     </tbody>
     <tfoot class="gen-info-price">
-        <tr>
-            <td colspan="2">
-                <span class="s-t">{lang('Начальная стоимость товаров','newLevel')}:</span>
-            </td>
-            <td class="w-s_n-w">
-                <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
-                <span class="curr"> {$CS}</span>
-            </td>
-        </tr>
+        {if $discount_val}
+            <tr>
+                <td colspan="2">
+                    <span class="s-t">{lang('Начальная стоимость товаров','newLevel')}:</span>
+                </td>
+                <td class="w-s_n-w">
+                    <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
+                    <span class="curr"> {$CS}</span>
+                </td>
+            </tr>
+        {/if}
         <tr>
             <td colspan="2">
                 <span class="s-t">{lang('Cтоимость товаров','newLevel')}:</span>

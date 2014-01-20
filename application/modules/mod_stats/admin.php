@@ -9,8 +9,28 @@
  */
 class Admin extends \BaseAdminController {
 
+    /**
+     * Asset manager is building path of clients scripts by trace,
+     * so we need to get instance here, and pass it to controllers
+     * @var \CMSFactory\assetManager 
+     */
+    public $assetManager;
+
+    /**
+     * For index action
+     * In format controller/action
+     * @var string
+     */
+    public $defaultAction = 'orders/amount';
+
+    public function __construct() {
+        $this->assetManager = \CMSFactory\assetManager::create();
+        include __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'ControllerBase' . EXT;
+    }
+
     public function index() {
-        echo "index";
+        $ca = explode('/', $this->defaultAction);
+        $this->runControllerAction($ca[0], array($ca[1]));
     }
 
     public function orders() {

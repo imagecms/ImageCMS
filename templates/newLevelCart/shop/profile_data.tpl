@@ -120,77 +120,24 @@
         </div>
         <div class="drop-content">
             <div class="inside-padd characteristic">
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    asdf
-                    <br/>
-                    
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>{lang('Размер скидки','newLevel')}</th>
+                            <th>{lang('От','newLevel')}</th>
+                            <th>{lang('До','newLevel')}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach $discount['comulativ'] as $disc}
+                            <tr>
+                                <td class="text-discount">{echo $disc['value']}{if $disc['type_value'] == 1}%{else:}{$CS}{/if}</td>
+                                <td>{echo $disc['begin_value']} {$CS}</td>
+                                <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}{lang('Бесконечно','newLevel')}{/if}</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="drop-footer"></div>

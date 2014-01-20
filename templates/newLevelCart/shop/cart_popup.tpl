@@ -1,8 +1,9 @@
 <div class="frame-bask frameBask p_r">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {if count($items) > 0}
+        
         <div class="drop-header">
-            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo count($items)}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> <span>{lang('Сумма','newLevel')}</span> <span class="add-info"><span class="topCartTotalPrice">{echo $cartPrice}</span></span> <span class="curr">{$CS}</span></div>
+            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $cart->getTotalItems()}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> <span>{lang('Сумма','newLevel')}</span> <span class="add-info"><span class="topCartTotalPrice">{echo $cartPrice}</span></span> <span class="curr">{$CS}</span></div>
         </div>
         <div class="drop-content">
             <div class="frame-bask-main">
@@ -197,7 +198,7 @@
                                 <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
                             </span>
                         {/if}
-                        {if $CI->core->core_data['data_type'] == 'cart'}
+                        {if $typePage == 'cart'}
                             <div class="btn-form f_l">
                                 <button type="button" data-closed="closed-js">
                                     <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к оформлению','newLevel')}</span>
@@ -207,9 +208,9 @@
                         <span class="s-t">{lang('Всего','newLevel')}:</span>
                         <span class="frame-cur-sum-price">
                             <span class="frame-prices f-s_0">
-                                {if $cartOriginPrice - $cartPrice > 0}
+                                {if $discount_val}
                                     <span class="price-discount">
-                                        <span class="frame-discount">
+                                        <span>
                                             <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
                                             <span class="curr">{$CS}</span>
                                         </span>
@@ -235,7 +236,7 @@
                         </span>
                     </div>
                 </div>
-                {if $CI->core->core_data['data_type'] != 'cart'}
+                {if $typePage != 'cart'}
                     <div class="content-frame-foot">
                         <div class="clearfix inside-padd">
                             <div class="btn-form f_l">
@@ -264,7 +265,7 @@
                 <div class="msg f-s_0">
                     <div class="success"><span class="icon_info"></span><span class="text-el">{lang('Вы удалили все элементы из корзины','newLevel')}</span></div>
                 </div>
-                {if $CI->core->core_data['data_type'] != 'cart'}
+                {if $typePage != 'cart'}
                     <div class="btn-form">
                         <button type="button" data-closed="closed-js">
                             <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>

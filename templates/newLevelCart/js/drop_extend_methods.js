@@ -12,12 +12,12 @@ $.dropInit.prototype.extendDrop = function() {
                             body.off('selectstart.' + $.drop.nS + ' mousemove.' + $.drop.nS + ' mouseup.' + $.drop.nS);
                         });
                         var $this = $(this).css('cursor', 'move'),
-                        left = e.pageX - $this.offset().left,
-                        top = e.pageY - $this.offset().top,
-                        w = $this.outerWidth(),
-                        h = $this.outerHeight(),
-                        wndW = wnd.width(),
-                        wndH = wnd.height();
+                                left = e.pageX - $this.offset().left,
+                                top = e.pageY - $this.offset().top,
+                                w = $this.outerWidth(),
+                                h = $this.outerHeight(),
+                                wndW = wnd.width(),
+                                wndH = wnd.height();
                         body.on('selectstart.' + $.drop.nS, function(e) {
                             e.preventDefault();
                         });
@@ -25,7 +25,7 @@ $.dropInit.prototype.extendDrop = function() {
                         body.on('mousemove.' + $.drop.nS, function(e) {
                             drop.data('drp').droppableIn = true;
                             var l = e.pageX - left,
-                            t = e.pageY - top;
+                                    t = e.pageY - top;
                             l = l < 0 ? 0 : l;
                             t = t < 0 ? 0 : t;
                             var addW = condH ? $.drop.widthScroll : 0;
@@ -48,14 +48,14 @@ $.dropInit.prototype.extendDrop = function() {
                 var drop = $(this);
                 if (!drop.data('drp').droppableIn) {
                     var method = drop.data('drp').animate && !start ? 'animate' : 'css',
-                    placement = drop.data('drp').placement,
-                    $this = drop.data('drp').elrun,
-                    dataSourceH = 0,
-                    dataSourceW = 0,
-                    $thisW = $this.width(),
-                    $thisH = $this.height(),
-                    $thisT = 0,
-                    $thisL = 0;
+                            placement = drop.data('drp').placement,
+                            $this = drop.data('drp').elrun,
+                            dataSourceH = 0,
+                            dataSourceW = 0,
+                            $thisW = $this.width(),
+                            $thisH = $this.height(),
+                            $thisT = 0,
+                            $thisL = 0;
                     if (typeof placement == 'object') {
                         var tempObj = {};
                         for (var key in placement) {
@@ -98,35 +98,35 @@ $.dropInit.prototype.extendDrop = function() {
                 drop = this.self ? this.self : this;
             drop.each(function() {
                 var drop = $(this),
-                drp = drop.data('drp');
-                
+                        drp = drop.data('drp');
+
                 if (drp.limitContentSize) {
                     var dropV = drop.is(':visible'),
-                    forCenter = drp.forCenter,
-                    docH = $(document).height();
-                    
+                            forCenter = drp.forCenter,
+                            docH = $(document).height();
+
                     if (!dropV) {
                         drop.show();
                         if (forCenter)
                             forCenter.show();
                     }
                     var dropH = drop.outerHeight();
-                    
+
                     if (drp.dropContent) {
                         var el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':first');
-                                  
+
                         el.css({
-                            'height': '', 
+                            'height': '',
                             'overflow': ''
                         })
-                                  
+
                         if (el.data('jsp'))
                             el.data('jsp').destroy()
                         if ($.existsN(el)) {
                             var refer = drp.elrun;
-                            
+
                             var api = false,
-                            elJP = el.css('overflow', '');
+                                    elJP = el.css('overflow', '');
 
                             if (drp.scrollContent) {
                                 try {
@@ -138,11 +138,11 @@ $.dropInit.prototype.extendDrop = function() {
                                 }
                             }
                             var elCH = elJP.outerHeight(),
-                            footerHeader = drop.find($(drp.dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drp.dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
-                            
+                                    footerHeader = drop.find($(drp.dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drp.dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
+
                             if (drp.place == 'noinherit') {
                                 var mayHeight = 0,
-                                placement = drp.placement;
+                                        placement = drp.placement;
                                 if (typeof placement == 'object') {
                                     if (placement.top != undefined)
                                         mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - placement.top - footerHeader - (drop.outerHeight() - drop.height());
@@ -168,15 +168,15 @@ $.dropInit.prototype.extendDrop = function() {
                                 else
                                     el.css('height', elCH);
                             }
-                            
+
                             if (api)
                                 api.reinitialise();
-                            if (!dropV) {
-                                drop.hide();
-                                if (forCenter)
-                                    forCenter.hide();
-                            }
                         }
+                    }
+                    if (!dropV) {
+                        drop.hide();
+                        if (forCenter)
+                            forCenter.hide();
                     }
                 }
             });
@@ -194,18 +194,18 @@ $.dropInit.prototype.extendDrop = function() {
                             'height': ''
                         });
                         var wndW = wnd.width(),
-                        wndH = drop.data('drp').scroll ? wnd.height() : $(document).height();
-                        
+                                wndH = drop.data('drp').scroll ? wnd.height() : $(document).height();
+
                         var dropV = drop.is(':visible'),
-                        w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
-                        h = dropV ? drop.outerHeight() : drop.actual('outerHeight'),
-                        ws = dropV ? drop.width() : drop.actual('width'),
-                        hs = dropV ? drop.height() : drop.actual('height');
+                                w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
+                                h = dropV ? drop.outerHeight() : drop.actual('outerHeight'),
+                                ws = dropV ? drop.width() : drop.actual('width'),
+                                hs = dropV ? drop.height() : drop.actual('height');
 
                         if (w > wndW)
-                            drop.css('width', wndW-w+ws);
+                            drop.css('width', wndW - w + ws);
                         if (h > wndH)
-                            drop.css('height', wndH-h+hs);
+                            drop.css('height', wndH - h + hs);
                     }
                 }
             });
@@ -224,7 +224,7 @@ $.dropInit.prototype.extendDrop = function() {
                             'overflow': 'hidden',
                             'margin-right': $.drop.widthScroll
                         });
-                        body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: '+$.drop.widthScroll+'px;overflow-y: scroll;z-index:10000;"></div>');
+                        body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"></div>');
                     }
                     if (isTouch)
                         $('.for-center').on('touchmove.' + $.drop.nS, function(e) {
@@ -255,23 +255,23 @@ $.dropInit.prototype.extendDrop = function() {
         },
         galleries: function($this, set, methods) {
             var elSet = $this.data(),
-            relO = $this.get(0).rel;
+                    relO = $this.get(0).rel;
             if (relO != '' && relO !== undefined) {
                 var tempF = arguments.callee,
-                source = elSet.source || set.source || $this.attr('href'),
-                next = elSet.next || set.next,
-                prev = elSet.prev || set.prev,
-                cycle = elSet.cycle || set.cycle,
-                elChangeSource = elSet.changeSource,
-                place = elSet.place || set.place,
-                changeSource = set.changeSource,
-                rel = relO.replace(/[^a-zA-Z0-9]+/ig, ''),
-                relA = $.drop.dP.galleries[rel],
-                drop = $('[data-elrun][data-rel="' + rel + '"]');
+                        source = elSet.source || set.source || $this.attr('href'),
+                        next = elSet.next || set.next,
+                        prev = elSet.prev || set.prev,
+                        cycle = elSet.cycle || set.cycle,
+                        elChangeSource = elSet.changeSource,
+                        place = elSet.place || set.place,
+                        changeSource = set.changeSource,
+                        rel = relO.replace(/[^a-zA-Z0-9]+/ig, ''),
+                        relA = $.drop.dP.galleries[rel],
+                        drop = $('[data-elrun][data-rel="' + rel + '"]');
 
                 if (relA !== undefined) {
                     var relL = relA.length,
-                    relP = $.inArray(source != undefined ? source : drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).find('img').attr('src'), relA);
+                            relP = $.inArray(source != undefined ? source : drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).find('img').attr('src'), relA);
                     $(prev).add($(next)).hide();
                     if (relP == 0)
                         $(next).show();
@@ -282,7 +282,7 @@ $.dropInit.prototype.extendDrop = function() {
                 }
                 $(prev).add($(next)).attr('data-rel', rel).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function() {
                     var $thisB = $(this).attr('disabled', 'disabled'),
-                    relCur = relP + ($thisB.is(prev) ? -1 : 1);
+                            relCur = relP + ($thisB.is(prev) ? -1 : 1);
                     if (cycle) {
                         if (relCur >= relL)
                             relCur = 0;
@@ -291,14 +291,14 @@ $.dropInit.prototype.extendDrop = function() {
                     }
                     source = relA[relCur];
                     var $this = $('[data-source="' + relA[relCur] + '"][rel], [href="' + relA[relCur] + '"][rel]').filter(':last'),
-                    elSet = $this.data();
+                            elSet = $this.data();
                     function _changeSource(data) {
                         var dropContent = elSet.dropContent || set.dropContent,
-                        dropHeader = elSet.dropHeader || set.dropHeader,
-                        dropFooter = elSet.dropFooter || set.dropFooter,
-                        contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
-                        contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
-                        contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false);
+                                dropHeader = elSet.dropHeader || set.dropHeader,
+                                dropFooter = elSet.dropFooter || set.dropFooter,
+                                contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
+                                contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
+                                contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false);
                         methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
                         changeSource(data, $this, drop);
                         if (elChangeSource !== undefined)
@@ -370,12 +370,12 @@ $.dropInit.prototype.extendDrop = function() {
                 });
             }
         }
-    }
+    };
     var newMethods = {};
     for (var i = 0, length = arguments.length; i < length; i++) {
         if (arguments[i] in addmethods) {
             newMethods[arguments[i]] = addmethods[arguments[i]];
         }
     }
-    $.drop.setMethods(newMethods);
-}
+    this.setMethods(newMethods);
+};

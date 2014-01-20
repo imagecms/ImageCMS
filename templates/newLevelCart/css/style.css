@@ -91,7 +91,7 @@ body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
 body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el{font-size: 13px;}
-input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background: none;border: none;}
+input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background-color: transparent;border: none;}
 input[type="button"], input[type="submit"], input[type="reset"], button{text-align: center;}
 label, input[type="button"], input[type="submit"], input[type="reset"], button{padding: 0;cursor: pointer;}
 [class*="btn"] > button, [class*="btn"] > a, .buti > button, .buti > a{cursor: pointer;display: inline-block;font-size: 0 !important;}
@@ -310,7 +310,6 @@ input.input-search{height: 33px;}
 /*items*/
 .frame-variant-name-code{margin-bottom: 5px;display: block;}
 .frame-variant-code, .frame-variant-name{}
-.items-catalog .frame-variant-name, .items-catalog .frame-variant-code, .item-product .frame-variant-name{display: none !important;}
 .items-catalog .frame-item-brand{display: block;}
 .item-product .frame-variant-code{margin-right: 7px;}
 .code + .code{margin-left: 10px;}
@@ -978,6 +977,8 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .table-order, .table-order table{table-layout: auto;}
 .frame-foot .table-order{table-layout: fixed;}
 .drop-bask .drop-header{text-align: left;}
+.drop-bask .cart-product .frame-items{width: 500px;}
+.drop-bask .frame-discount{margin-right: 20px;}
 .frame-remove-bask-btn{padding-left: 0 !important;width: 38px;text-align: center;vertical-align: middle !important;}
 .frame-kits-gen-sum{text-align: center;}
 .row-kits .frame-count, .row-kits .frame-cur-sum-price{vertical-align: top;}
