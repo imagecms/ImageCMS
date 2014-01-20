@@ -26,11 +26,13 @@ class Admin extends \BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->helper("url");
+
         $this->assetManager = \CMSFactory\assetManager::create()
-                ->registerScript('scripts')
+                ->registerScript('functions')
                 ->registerScript('d3.v3')
                 ->registerScript('nv.d3')
                 ->registerStyle('nv.d3')
+                ->registerScript('scripts')
                 ->registerStyle('styles');
         include __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'ControllerBase' . EXT;
         // for saving date params between pages crossing
@@ -56,6 +58,7 @@ class Admin extends \BaseAdminController {
     }
 
     public function products() {
+        
         $this->runControllerAction(__FUNCTION__, func_get_args());
     }
 
