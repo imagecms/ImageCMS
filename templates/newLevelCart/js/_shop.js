@@ -114,7 +114,7 @@ var Shop = {
             });
             $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
                 $(document).trigger({
-                    'type': 'afterGetPayment.Cart',
+                    'type': 'getPayment.Cart',
                     'id': id,
                     'obj': obj,
                     'datas': data
