@@ -150,6 +150,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <div class="clearfix span9">
             <div class="btn-group  m-t_20 pull-left">
                 <a class="btn btn-small intervalButton" data-group="day">{lang('day','mod_stats')}</a>
