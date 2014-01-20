@@ -1,4 +1,5 @@
-<button type="button" id="showCart" data-source="{shop_url('cart/api/renderCart')}" data-always="true"></button>
+<button type="button" id="showCartPopup" data-drop="#popupCart"></button>
+<div class="drop-bask drop drop-style" id="popupCart"></div>
 
 {literal}
     <script type="text/template" id="searchResultsTemplate">

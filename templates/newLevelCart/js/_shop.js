@@ -13,6 +13,15 @@ if (!Array.indexOf) {
 }
 var Shop = {
     Cart: {
+        baseUrl: siteUrl + 'shop/cart/api/',
+        totalPrice: 0,
+        totalPriceAdd: 0,
+        shipping: {
+            freeFrom: 0,
+            price: 0,
+            sumSpec: 0,
+            sumSpecMes: ""
+        },
         add: function(obj, id, kit) {
             var method = kit ? 'addKit' : 'addProductByVariantId';
             $(document).trigger({
@@ -22,7 +31,7 @@ var Shop = {
             });
             $.ajax({
                 'type': 'get',
-                'url': siteUrl + 'shop/cart/api/' + method + '/' + id,
+                'url': this.baseUrl + method + '/' + id,
                 'data': obj,
                 success: function(data) {
                     $(document).trigger({
@@ -34,6 +43,7 @@ var Shop = {
                     });
                 }
             });
+            return this;
         },
         remove: function(id, kit) {
             var method = kit ? 'removeKit' : 'removeProductByVariantId';
@@ -42,7 +52,7 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            $.getJSON(siteUrl + 'shop/cart/api/' + method + '/' + +id, function(data) {
+            $.getJSON(this.baseUrl + method + '/' + id, function(data) {
                 $(document).trigger({
                     'type': 'remove.Cart',
                     'datas': data,
@@ -50,6 +60,23 @@ var Shop = {
                     'kit': kit
                 });
             });
+            return this;
+        },
+        getAmount: function(kit, id) {
+            $(document).trigger({
+                'type': 'beforeGetAmount.Cart',
+                'kit': kit,
+                'id': id
+            });
+            $.getJSON(this.baseUrl + 'getAmountInCart/' + kit ? 'ShopKit' : 'SProducts' + '/' + id, function(data) {
+                $(document).trigger({
+                    'type': 'getAmount.Cart',
+                    'kit': kit,
+                    'id': id,
+                    'datas': data
+                });
+            });
+            return this;
         },
         changeCount: function(count, id, kit) {
             var method = kit ? 'setQuantityKitById' : 'setQuantityProductByVariantId';
@@ -61,7 +88,7 @@ var Shop = {
             });
             $.ajax({
                 'type': 'get',
-                'url': siteUrl + 'shop/cart/api/' + method+ '/' + id,
+                'url': this.baseUrl + method + '/' + id,
                 'data': {
                     'quantity': count
                 },
@@ -75,8 +102,9 @@ var Shop = {
                     });
                 }
             });
+            return this;
         },
-        getPayment: function(id, obj, tpl){
+        getPayment: function(id, obj, tpl) {
             tpl = tpl ? tpl : '';
             $(document).trigger({
                 'type': 'beforeGetPayment.Cart',
@@ -90,32 +118,34 @@ var Shop = {
                     'id': id,
                     'obj': obj,
                     'datas': data
-                });                
-            });
-        },
-        shipping: {
-            freeFrom: 0,
-            price: 0,
-            sumSpec: 0,
-            sumSpecMes: ""
-        },
-        getTiny: function(tpl) {
-            tpl = tpl ? tpl : 'cart_data';
-            $(document).trigger({
-                'type': 'beforeGetTiny.Cart',
-                'tpl': tpl
-            });
-            $.get(siteUrl + 'shop/cart/renderCart/' + tpl, function(data) {
-                $(document).trigger({
-                    'type': 'getTiny.Cart',
-                    'tpl': tpl,
-                    'datas': data
                 });
             });
+            return this;
+        },
+        getTpl: function(obj, objF) {
+            $(document).trigger({
+                'type': 'beforeGetTpl.Cart',
+                'obj': obj,
+                'objF': objF
+            });
+            $.ajax({
+                'type': 'get',
+                'url': siteUrl + 'shop/cart',
+                'data': obj,
+                success: function(data) {
+                    $(document).trigger({
+                        'type': 'getTpl.Cart',
+                        'obj': obj,
+                        'objF': objF,
+                        'datas': data
+                    });
+                }
+            });
+            return this;
         },
         composeCartItem: function($context) {
             var cartItem = {},
-            data = $context.data();
+                    data = $context.data();
             for (var i in data)
                 cartItem[i] = data[i]
             return cartItem;
@@ -323,9 +353,9 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                        form = $this.closest('form'),
-                        $thisТ = $this.attr('name'),
-                        elMsg = form.find('[for=' + $thisТ + ']');
+                                form = $this.closest('form'),
+                                $thisТ = $this.attr('name'),
+                                elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.remove();
