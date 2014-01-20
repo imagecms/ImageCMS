@@ -24,6 +24,20 @@ abstract class ControllerBase {
         $this->assetManager = $controller->assetManager;
     }
 
+    /**
+     * Hepler function for controller-distributed views rendering
+     * @param string $tpl name of template of controller
+     * @param array $data data for template
+     */
+    public function renderAdmin($tpl, array $data = array()) {
+        foreach ($data as $key => $value) {
+            $this->assetManager->appendData($key, $value);
+        }
+        $className = strtolower(get_class($this));
+        $folderName = str_replace('controller', '', $className);
+        $this->assetManager->render('admin/' . $folderName . '/' . $tpl);
+    }
+
 }
 
 ?>
