@@ -11,7 +11,7 @@
 
     {if is_array($p) && $p.id}
         {$pArray = $p;}
-        {$p = getProduct($p.id)}
+        {$p = getProduct($p.variant_id)}
     {/if}
 
 
