@@ -34,7 +34,7 @@ var optionCompare = {
         arrowButtonSpeed: 250
     }
 };
-$(document).on('sync_cart after_add_to_cart', function() {
+$(document).on('remove.Cart add.Cart', function() {
     $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
 });
 $(window).resize(function() {

@@ -26,7 +26,7 @@
             <tr>
                 <td id="productInfoTableValueName"></td>
                 <td id="productInfoTableValueCountOfPurchasses"></td>
-<!--               <td id="productInfoTableValueCommentsCount"></td>-->
+                <!--               <td id="productInfoTableValueCommentsCount"></td>-->
                 <td id="productInfoTableValueRating"></td>
             </tr>
         </tbody>
