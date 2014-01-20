@@ -16,7 +16,8 @@
             {include_tpl('../time_and_filter_block')}
             <!--<div id="chartContainer" class="span12" style="margin-left: 0 !important;">-->
             
-            <svg id="pieChartStats" class="mypiechart" data-from="orders/amount"></svg>
+            <svg class="mypiechart pieChartStats" data-from="products/getCategoriesData"></svg>
+            <svg class="mypiechart pieChartStats" data-from="products/getCategoriesData"></svg>
             <!--</div>-->
         </div>
     </div>

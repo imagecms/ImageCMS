@@ -24,13 +24,24 @@ class Admin extends \BaseAdminController {
     public $defaultAction = 'orders/amount';
 
     public function __construct() {
+        parent::__construct();
+        $this->load->helper("url");
+
         $this->assetManager = \CMSFactory\assetManager::create()
-                ->registerScript('scripts')
+                ->registerScript('functions')
                 ->registerScript('d3.v3')
                 ->registerScript('nv.d3')
                 ->registerStyle('nv.d3')
+                ->registerScript('scripts')
                 ->registerStyle('styles');
         include __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'ControllerBase' . EXT;
+        // for saving date params between pages crossing
+        if (!empty($_SERVER['QUERY_STRING'])) {
+            $this->assetManager->setData('queryString', '?' . $_SERVER['QUERY_STRING']);
+        }
+        // passing to template array with menu structure
+        $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
+        $this->assetManager->setData('leftMenu', $leftMenu);
     }
 
     public function index() {
@@ -47,6 +58,7 @@ class Admin extends \BaseAdminController {
     }
 
     public function products() {
+        
         $this->runControllerAction(__FUNCTION__, func_get_args());
     }
 
