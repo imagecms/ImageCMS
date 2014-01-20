@@ -12,48 +12,46 @@ $(document).ready(function() {
     $("ul.left-menu-ul li:first-child a").trigger('click');
 
 
-    /** Remove!!!!! **/
-    function myData() {
-        var series1 = [];
-        for (var i = 1; i < 100; i++) {
-            series1.push({
-                x: i, y: 100 / i
-            });
-        }
 
-        return [
-            {
-                key: "Series #1",
-                values: series1,
-                color: "#0000ff"
-            }
-        ];
+
+
+    /**
+     * Find and draw Pie Chart
+     */
+    var pieChartBlocks = $('.pieChartStats');
+    if (pieChartBlocks.length) {
+        pieChartBlocks.each(function(index, el) {
+            nv.addGraph(function() {
+                var width = 800,
+                        height = 700;
+
+                var chart = nv.models.pieChart()
+                        .x(function(d) {
+                            return d.key
+                        })
+                        .y(function(d) {
+                            return d.y
+                        })
+                        .color(d3.scale.category10().range())
+                        .width(width)
+                        .height(height);
+                
+                d3.select(el)
+                        .datum(ChartData.getPieData($(el).data('from')))
+                        .transition().duration(1200)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .call(chart);
+
+                chart.dispatch.on('stateChange', function(e) {
+                    nv.log('New State:', JSON.stringify(e));
+                });
+
+                return chart;
+            });
+        })
     }
 
-    nv.addGraph(function() {
-        var chart = nv.models.lineChart();
-
-        chart.xAxis
-                .axisLabel("X-axis Label");
-
-        chart.yAxis
-                .axisLabel("Y-axis Label")
-                .tickFormat(d3.format("d"))
-                ;
-
-        d3.select("svg")
-                .datum(myData())
-                .transition().duration(500).call(chart);
-
-        nv.utils.windowResize(
-                function() {
-                    chart.update();
-                }
-        );
-
-        return chart;
-    });
-    /** ***/
 
 
 

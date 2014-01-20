@@ -167,7 +167,7 @@
                         {$inCart = getAmountInCart('SProducts', $pv->getId())}
                         <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                             <form method="POST" action="/shop/cart/addProductByVariantId/{echo $pv->getId()}">
-                                {if !$opi_widget && !$opi_defaultItem}
+                                {if !$opi_defaultItem}
                                     <div class="frame-count frameCount">
                                         <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}">
                                             <div class="frame-change-count">
