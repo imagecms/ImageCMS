@@ -160,7 +160,11 @@ function init() {
     });
     _.map(cartItemsIdJson, function(n, i) {
         ShopFront.Cart.processBtnBuyCount(n, 'add', false);
+        Shop.Cart.getAmount(false, n);
     });
+    doc.on('getAmount.Cart', function(e) {
+        ShopFront.Cart.processBtnBuyCount(e.id, 'change', false, e.datas);
+    });    
 
     doc.on('beforeGetTpl.Cart', function(e) {
         if (e.obj.template == 'cart_popup' && !$(genObj.popupCart).is(':visible'))
@@ -202,7 +206,7 @@ function init() {
         }, {
             show: true,
             type: e.type
-            });
+        });
     });
 
     doc.on('beforeAdd.Cart', function(e) {
@@ -213,6 +217,7 @@ function init() {
     });
     doc.on('сhange.Cart', function(e) {
         global.baskInput = '#inputChange' + e.id;
+        ShopFront.Cart.processBtnBuyCount(e.id, 'change', e.kit, e.count);
     });
     doc.on('add.Cart', function(e) {
         ShopFront.Cart.processBtnBuyCount(e.id, 'add', e.kit);
@@ -223,7 +228,7 @@ function init() {
         }, {
             show: true,
             type: e.type
-            });
+        });
         Shop.Cart.getTpl({
             ignoreWrap: '1',
             template: 'cart_data'
