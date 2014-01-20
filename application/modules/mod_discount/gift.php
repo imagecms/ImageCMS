@@ -102,15 +102,18 @@ class Gift extends \mod_discount\classes\BaseDiscount {
                 $cart->gift_value = $value;
                 $cart->recountOriginTotalPrice();
                 $cart->recountTotalPrice();
+                $aplyGift = true;
                 if ($order)
                     $this->updatediskapply($disc['key'], 'gift');
 
                 break;
             }
-        if (!$aplyGift){
+
+        if (!$aplyGift)
             $cart->gift_error = TRUE;
             
-        }
+        
+
     }
 
     /**

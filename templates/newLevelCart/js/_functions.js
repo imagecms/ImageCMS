@@ -2,26 +2,32 @@
 //variants
 var ShopFront = {
     Cart: {
-        processBtnBuyCount: function(id, add, kit) {
+        processBtnBuyCount: function(id, status, kit, count) {
             var el = $(genObj.btnBuy).filter('[data-id="' + id + '"]').removeAttr('disabled');
             if (kit)
                 el = el.filter(genObj.btnBuyKit);
 
             el.each(function() {
                 var el = $(this);
-                if (add) {
+                if (status == 'add') {
                     el.parent(genObj.btnToCart).addClass('d_n');
                     el.parent(genObj.btnInCart).removeClass('d_n');
                     el.closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart)
                     .find(genObj.frameCount)
                     .find(':input').attr('disabled', 'disabled');
                 }
-                else {
+                if (status == 'remove') {
                     el.parent(genObj.btnToCart).removeClass('d_n');
                     el.parent(genObj.btnInCart).addClass('d_n');
                     el.closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart)
                     .find(genObj.frameCount)
-                    .find(':input').removeAttr('disabled', 'disabled');
+                    .find(':input').removeAttr('disabled', 'disabled')
+                    .end().find(genObj.plusMinus).attr('value', function(){
+                        return $(this).data('min');
+                    });
+                }
+                if (status == 'change') {
+                    el.closest(genObj.parentBtnBuy).find(genObj.frameCount).find('input').attr('value', count);
                 }
             });
 
@@ -58,6 +64,8 @@ var ShopFront = {
                 ShopFront.Cart.existsVnumber(vNumber, liBlock);
                 ShopFront.Cart.existsVnames(vName, liBlock);
                 ShopFront.Cart.condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId).find(genObj.infoBut));
+                
+                decorElemntItemProduct(liBlock);
             });
         /*/Variants in Category*/
         },
@@ -115,7 +123,7 @@ var ShopFront = {
             el.find("img.lazy").lazyload(lazyload);
             wnd.scroll(); //for lazyload
             drawIcons(el.find(selIcons));
-            el.find('[data-drop]').drop(optionsDrop);
+            el.find('[data-drop]').drop();
         }
     },
     CompareList: {

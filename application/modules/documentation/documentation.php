@@ -38,13 +38,29 @@ class Documentation extends \MY_Controller {
 //        $this->recent_forum();
 
         $top_menu = array(
-            'begin-work' => 'Начало работы',
-            'manage' => 'Администрирование',
-            'step-by-step' => 'Пошаговые инструкции',
-            'templates' => 'Работа с шаблонами',
-            'developers' => 'Разработчикам',            
+            'begin-work' => array('Начало работы'),
+            'manage' => array('Администрирование'),
+            'step-by-step' => array('Пошаговые инструкции'),
+            'templates' => array('Работа с шаблонами'),
+            'developers' => array('Разработчикам'),
         );
-        
+
+//        $top_menu = array(
+//            'begin-work' => 'Начало работы',
+//            'manage' => 'Администрирование',
+//            'step-by-step' => 'Пошаговые инструкции',
+//            'templates' => 'Работа с шаблонами',
+//            'developers' => 'Разработчикам',
+//        );
+
+        $categories = $this->db->select('menu_cat, url')->order_by('position', 'DESC')->get('category')->result_array();
+        foreach ($categories as $category) {
+            if ($top_menu[$category['menu_cat']]) {
+                $top_menu[$category['menu_cat']]['category_url'] = $category['url'];
+            }
+        }
+
+//        var_dump($top_menu);
         \CMSFactory\assetManager::create()
                 ->setData('hasCRUDAccess', $this->hasCRUDAccess())
                 ->setData('top_menu', $top_menu);
