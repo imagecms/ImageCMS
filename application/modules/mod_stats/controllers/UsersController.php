@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Description of Users
+ * 
  *
- * @author kolia
+ * @author 
  */
-class UsersController {
-    //put your code here
+class UsersController extends ControllerBase {
+    
 }
 
 ?>
