@@ -4,9 +4,9 @@
 {$opi_codeArticle = $opi_codeArticle != false && $opi_codeArticle != NULL}
 {$opi_defaultItem = $opi_defaultItem != false && $opi_defaultItem != NULL}
 {$opi_vertical = $opi_vertical != false && $opi_vertical != NULL}
+{$opi_wishListPage = $opi_wishListPage != false && $opi_wishListPage != NULL}
 
 {$condlimit = $opi_limit != false && $opi_limit != NULL}
-
 {foreach $products as $key => $p}
 
     {if is_array($p) && $p.id}
@@ -44,7 +44,7 @@
         <!-- End. Photo & Name product -->
         <div class="description">
             <!-- Start. article & variant name & brand name -->
-            {if $codeArticle}
+            {if $opi_codeArticle}
                 <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
                     <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevel')}:
@@ -91,27 +91,27 @@
             {/if}
             <!-- Start. Prices-->
             <div class="frame-prices f-s_0">
-                <!-- Start. Check for discount-->
                 {$oldoprice = $p->getOldPrice() && $p->getOldPrice() != 0 && $p->getOldPrice() > $p->firstVariant->toCurrency()}
                 {if $hasDiscounts}
+                    <!-- Start. Check for discount-->
                     <span class="price-discount">
                         <span>
                             <span class="price priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>
+                    <!-- End. Check for discount-->
                 {/if}
-                <!-- End. Check for discount-->
-                <!-- Start. Check old price-->
                 {if $oldoprice && !$hasDiscounts}
+                    <!-- Start. Check old price-->
                     <span class="price-discount">
                         <span>
                             <span class="price priceOrigVariant">{echo intval($p->getOldPrice())}</span>
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>
+                    <!-- End. Check old price-->
                 {/if}
-                <!-- End. Check old price-->
                 <!-- Start. Product price-->
                 {if $p->firstVariant->toCurrency() > 0}
                     <span class="current-prices f-s_0">
@@ -135,7 +135,7 @@
             </div>
             <!-- End. Prices-->
             <!-- Start. Check variant-->
-            {if !$opi_widget && !$opi_defaultItem && !$opi_compare}
+            {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
                 {if count($variants) > 1}
                     <div class="check-variant-catalog">
                         <div class="lineForm">
@@ -170,7 +170,7 @@
                                 {if !$opi_widget && !$opi_defaultItem}
                                     <div class="frame-count frameCount">
                                         <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}">
-                                            <div class="frame-change-count frameChangeCount">
+                                            <div class="frame-change-count">
                                                 <div class="btn-plus">
                                                     <button type="button"{if $inCart} disabled="disabled"{/if}>
                                                         <span class="icon-plus"></span>
@@ -191,7 +191,6 @@
                                         type="button"
                                         data-id="{echo $pv->getId()}"
 
-                                        data-trigger="#showCart"
                                         class="btnBuy"
                                         >
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -210,8 +209,8 @@
                                         data-vname="{echo ShopCore::encode($pv->getName())}"
                                         data-number="{echo $pv->getNumber()}"
                                         data-price="{echo $pv->toCurrency()}"
-                                        data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                        data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                        data-add-price="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                        data-orig-price="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-medium-image="
                                         {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
                                             {echo $p->firstVariant->getMediumPhoto()}
@@ -247,8 +246,8 @@
                                 data-vname="{echo ShopCore::encode($pv->getName())}"
                                 data-number="{echo $pv->getNumber()}"
                                 data-price="{echo $pv->toCurrency()}"
-                                data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                data-origPrice="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                data-add-price="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                data-orig-price="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                 data-medium-image="
                                 {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
                                     {echo $p->firstVariant->getMediumPhoto()}
@@ -308,7 +307,7 @@
                 </div>
             {/if}
             <!-- End. Collect information about Variants, for future processing -->
-            {if !$opi_widget && !$opi_compare && !$opi_defaultItem}
+            {if !$opi_widget && !$opi_compare && !$opi_defaultItem && !$opi_wishListPage}
                 <div class="frame-without-top">
                     <div class="no-vis-table">
                         <!--Start. Description-->
@@ -331,6 +330,46 @@
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
         <!-- End. Remove buttons if compare-->
+
+        <!-- Start. For wishlist page-->
+        {if $opi_wishListPage}
+            {$p = $pArray}
+            {if trim($p[comment]) != ''}
+                <p>
+                    {$p[comment]}
+                </p>
+            {/if}
+            {if !$opi_otherlist}
+                <div class="funcs-buttons-WL-item">
+                    <div class="btn-remove-item-wl">
+                        <button
+                            type="button"
+                            data-id="{echo $p.variant_id}"
+                            class="btnRemoveItem"
+
+                            data-type="json"
+                            data-modal="true"
+
+                            data-drop="#notification"
+                            data-effect-on="fadeIn"
+                            data-effect-off="fadeOut"
+                            data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
+                            data-after="WishListFront.removeItem"
+                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
+                    </div>
+                    <div class="btn-move-item-wl">
+                        <button
+                            type="button"
+                            data-drop="#wishListPopup"
+                            data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
+                            data-always="true"
+                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevel')}</span>
+                        </button>
+                    </div>
+                </div>
+            {/if}
+        {/if}
+        <!-- End. For wishlist page-->
 
         <div class="decor-element"></div>
     </li>

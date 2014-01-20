@@ -90,6 +90,7 @@ class Gift extends \mod_discount\classes\BaseDiscount {
     public function get_gift_certificate_new($key = null, $totalPrice = null, $order = null) {
         if ($totalPrice === null)
             $totalPrice = $this->get_total_price_new();
+        $aplyGift = false;
         if (null === $key)
             $key = strip_tags(trim($_GET['key']));
         foreach ($this->discount_type['all_order'] as $disc)
@@ -100,11 +101,17 @@ class Gift extends \mod_discount\classes\BaseDiscount {
                 $cart->gift_value = $value;
                 $cart->recountOriginTotalPrice();
                 $cart->recountTotalPrice();
+                $aplyGift = true;
                 if ($order)
                     $this->updatediskapply($disc['key'], 'gift');
 
                 break;
             }
+       if (!$aplyGift){
+           $cart = \Cart\BaseCart::getInstance();
+           $cart->gift_error = true;
+       }
+           
     }
 
     /**
