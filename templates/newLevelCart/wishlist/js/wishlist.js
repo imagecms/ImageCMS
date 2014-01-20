@@ -24,12 +24,8 @@ jQuery(function($) {
     }
 });
 var WishListFront = {
-    btnBuy: '.btnBuyWishList',
-    countProdsWL: '.countProdsWL',
-    genPriceProdsWL: '.genPriceProdsWL',
-    frameWL: '[data-rel="list-item"]',
-    frameBuy: '.frame-buy-all-products',
     btnRemoveItem: '.btnRemoveItem',
+    frameWL: '[data-rel="list-item"]',
     deleteImage: function(el) {
         el.parent().remove();
         var img = $('#wishlistphoto img');
@@ -106,7 +102,6 @@ var WishListFront = {
                 var li = el.closest(genObj.parentBtnBuy),
                 id = el.data('id');
                 li.remove();
-                WishListFront.processWishPage();
                 wishList.rm(id);
                 global.processWish();
                 global.wishListCount();
@@ -126,62 +121,6 @@ var WishListFront = {
                 global.wishListCount();
             }
         }
-    },
-    changeBtnBuyWL: function(btnBuy, cond) {
-        var textEL = btnBuy.find(genObj.textEl);
-        if (cond == 'show') {
-            btnBuy.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss);
-            textEL.text(textEL.data('cart'));
-        }
-        else {
-            btnBuy.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss);
-            if (cond == 'notall') {
-                textEL.text(textEL.data('buyOther'));
-            }
-            else {
-                textEL.text(textEL.data('buy'));
-            }
-        }
-    },
-    processWishPage: function() {
-        $(WishListFront.frameWL).each(function() {
-            var $this = $(this),
-            btnBuyLC = 0,
-            tempC = 0,
-            tempP = 0,
-            genSum = 0,
-            btnBuyI = $this.find(genObj.btnBuy);
-            btnBuyI.each(function() {
-                tempC = parseFloat($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
-                if (isNaN(tempC))
-                    return false;
-                btnBuyLC += tempC;
-                tempP = parseFloat($(this).data('price'));
-                genSum += tempP * tempC;
-            });
-            var btnBuyL = btnBuyI.length,
-            btnCartL = $this.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).length,
-            btnBuy = $this.find(WishListFront.btnBuy),
-            genPrice = $this.find(WishListFront.genPriceProdsWL);
-            $this.find(WishListFront.countProdsWL).text(btnBuyLC);
-            $this.find(genObj.plurProd).text(pluralStr(btnBuyLC, text.plurProd));
-            genPrice.text(genSum.toFixed(pricePrecision));
-            if (btnBuyLC == 0) {
-                $this.find(WishListFront.frameBuy).hide();
-            }
-            else {
-                $this.find(WishListFront.frameBuy).show();
-                if (btnBuyL == btnCartL) {
-                    WishListFront.changeBtnBuyWL(btnBuy, 'show');
-                }
-                else if (btnCartL > 0) {
-                    WishListFront.changeBtnBuyWL(btnBuy, 'notall');
-                }
-                else {
-                    WishListFront.changeBtnBuyWL(btnBuy, 'all');
-                }
-            }
-        });
     }
 };
 var wishList = {
@@ -248,34 +187,6 @@ $(document).on('scriptDefer', function() {
                 $('[data-wishlist="do_upload"]').removeAttr('disabled').parent().removeClass('disabled');
             }
         });
-    });
-    WishListFront.processWishPage();
-    $(WishListFront.btnBuy).click(function() {
-        var $this = $(this),
-        btns = $this.closest(WishListFront.frameWL).find('.' + genObj.btnBuyCss + ' ' + genObj.btnBuy);
-        if ($.existsN(btns)) {
-            $.fancybox.showActivity();
-            btns.each(function() {
-                Shop.Cart.add(Shop.Cart.composeCartItem($(this)), false, 'after_add_to_cart_WL');
-            });
-            var i = 0;
-            $(document).on('after_add_to_cart_WL', function(e) {
-                i++;
-                if (i == btns.length) {
-                    ShopFront.Cart.togglePopup();
-                    $(this).off('after_add_to_cart_WL')
-                }
-            });
-        }
-        else {
-            ShopFront.Cart.togglePopup();
-        }
-    });
-    $(document).on('after_add_to_cart', function(e) {
-        WishListFront.processWishPage();
-    });
-    $(document).on('processPageEnd change_count_product', function(e) {
-        WishListFront.processWishPage();
     });
     $('body').on('click.inWish', genObj.inWishlist, function() {
         document.location.href = '/wishlist';

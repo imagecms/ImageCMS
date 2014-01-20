@@ -1,4 +1,4 @@
-<div class="drop-sendemail drop drop-style">
+<div class="drop-sendemail drop drop-style" id="sendMail">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">

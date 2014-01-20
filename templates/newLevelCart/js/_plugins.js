@@ -26,6 +26,7 @@ String.prototype.trimMiddle = function()
 {
     var r = /\s\s+/g;
     return $.trim(this).replace(r, ' ');
+
 };
 String.prototype.pasteSAcomm = function() {
     var r = /\s,/g;
@@ -202,9 +203,6 @@ function getCookie(c_name)
 }
 /*plugin nstCheck*/
 (function($) {
-    $.existsN = function(nabir) {
-        return (nabir.length > 0);
-    };
     var nS = "nstcheck",
             methods = {
                 init: function(options) {
@@ -254,7 +252,7 @@ function getCookie(c_name)
                                     methods.checkAllReset($this.find(elCheckWrap).filter('.' + aC));
                                 });
                             else {
-                                checked = $([]);
+                                var checked = $([]);
                                 $this.find('input:checked').each(function() {
                                     checked = checked.add($(this).closest(elCheckWrap));
                                 });
@@ -386,118 +384,126 @@ function getCookie(c_name)
 /*plugin nstCheck end*/
 /*plugin nstRadio*/
 (function($) {
-    var methods = {
-        init: function(options) {
-            var optionsRadio = $.extend({
-                wrapper: $(".frame-label:has(.niceRadio)"),
-                elCheckWrap: '.niceRadio',
-                classRemove: null,
-                before: function() {
-                },
-                after: function() {
-                }
-            }, options),
-                    settings = optionsRadio;
-            var $this = this;
-            if ($.existsN($this)) {
-                $this.each(function() {
-                    var $this = $(this),
-                            after = settings.after,
-                            before = settings.before,
-                            classRemove = settings.classRemove,
-                            wrapper = settings.wrapper,
-                            elCheckWrap = settings.elCheckWrap,
-                            input = $this.find(elCheckWrap).find('input');
-                    $this.find(elCheckWrap).each(function() {
-                        methods.changeRadioStart($(this), classRemove, after, true);
-                    });
-                    input.each(function() {
-                        var input = $(this);
-                        $(input.data('link')).focus(function(e) {
-                            if (e.which === 0)
-                                methods.radioCheck(input.parent(), after, false);
-                        });
-                    });
-                    $this.find(wrapper).off('click.radio').on('click.radio', function(e) {
-                        if (!$(this).find('input').is(':disabled')) {
-                            before($(this));
-                            methods.changeRadio($(this).find(elCheckWrap), after, false);
+    var nS = "nstradio",
+            methods = {
+                init: function(options) {
+                    var optionsRadio = $.extend({
+                        wrapper: $(".frame-label:has(.niceRadio)"),
+                        elCheckWrap: '.niceRadio',
+                        classRemove: null,
+                        before: function() {
+                        },
+                        after: function() {
                         }
+                    }, options),
+                            settings = optionsRadio;
+                    var $this = this;
+                    if ($.existsN($this)) {
+                        $this.each(function() {
+                            var $this = $(this),
+                                    after = settings.after,
+                                    before = settings.before,
+                                    classRemove = settings.classRemove,
+                                    wrapper = settings.wrapper,
+                                    elCheckWrap = settings.elCheckWrap,
+                                    input = $this.find(elCheckWrap).find('input');
+                            $this.find(elCheckWrap).each(function() {
+                                methods.changeRadioStart($(this), classRemove, after, true);
+                            });
+                            input.each(function() {
+                                var input = $(this);
+                                $(input.data('link')).focus(function(e) {
+                                    if (e.which === 0)
+                                        methods.radioCheck(input.parent(), after, false);
+                                });
+                            });
+                            $this.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
+                                var input = $(this).find('input');
+                                if (!input.is(':disabled') && !input.is(':checked')) {
+                                    before($(this));
+                                    methods.changeRadio($(this).find(elCheckWrap), after, false);
+                                }
+                            });
+                            input.off('click.' + nS).off('change.' + nS).on('click.' + nS + ' change.' + nS, function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                            });
+                            input.off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                $(this).closest(wrapper).trigger('click.' + nS);
+                            });
+                        });
+                    }
+                },
+                changeRadioStart: function(el, classRemove, after, start)
+                {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    if (input.is(":checked")) {
+                        methods.radioCheck(el, after, start);
+                    }
+                    if (input.is(":disabled")) {
+                        methods.radioDisabled(el);
+                    }
+                    el.removeClass(classRemove);
+                    return false;
+                },
+                changeRadio: function(el, after, start)
+                {
+                    if (el === undefined)
+                        el = this;
+                    methods.radioCheck(el, after, start);
+                },
+                radioCheck: function(el, after, start) {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    el.addClass(aC).removeClass(dC);
+                    el.parent().addClass(aC).removeClass(dC);
+                    input.attr("checked", true);
+                    $(input.data('link')).focus();
+                    input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
+                        methods.radioUnCheck($(this).parent());
                     });
-                    input.on('mousedown change', function(e) {
-                        return false;
+                    after(el, start);
+                    $(document).trigger({
+                        'type': 'nStRadio.RC',
+                        'el': el,
+                        'input': input
                     });
-                });
-            }
-        },
-        changeRadioStart: function(el, classRemove, after, start)
-        {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            if (input.is(":checked")) {
-                methods.radioCheck(el, after, start);
-            }
-            if (input.is(":disabled")) {
-                methods.radioDisabled(el);
-            }
-            el.removeClass(classRemove);
-            return false;
-        },
-        changeRadio: function(el, after, start)
-        {
-            if (el === undefined)
-                el = this;
-            methods.radioCheck(el, after, start);
-        },
-        radioCheck: function(el, after, start) {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            el.addClass(aC).removeClass(dC);
-            el.parent().addClass(aC).removeClass(dC);
-            input.attr("checked", true);
-            $(input.data('link')).focus();
-            input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
-                methods.radioUnCheck($(this).parent());
-            });
-            after(el, start);
-            $(document).trigger({
-                'type': 'nStRadio.RC',
-                'el': el,
-                'input': input
-            });
-        },
-        radioUnCheck: function(el) {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            el.removeClass(aC);
-            el.parent().removeClass(aC);
-            input.attr("checked", false);
-            $(document).trigger({
-                'type': 'nStRadio.RUC',
-                'el': el,
-                'input': input
-            });
-        },
-        radioDisabled: function(el) {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            input.attr('disabled', 'disabled');
-            el.removeClass(aC).addClass(dC);
-            el.parent().removeClass(aC).addClass(dC);
-        },
-        radioUnDisabled: function(el) {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            input.removeAttr('disabled');
-            el.removeClass(aC + ' ' + dC);
-            el.parent().removeClass(aC + ' ' + dC);
-        }
-    };
+                },
+                radioUnCheck: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    el.removeClass(aC);
+                    el.parent().removeClass(aC);
+                    input.attr("checked", false);
+                    $(document).trigger({
+                        'type': 'nStRadio.RUC',
+                        'el': el,
+                        'input': input
+                    });
+                },
+                radioDisabled: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    input.attr('disabled', 'disabled');
+                    el.removeClass(aC).addClass(dC);
+                    el.parent().removeClass(aC).addClass(dC);
+                },
+                radioUnDisabled: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    input.removeAttr('disabled');
+                    el.removeClass(aC + ' ' + dC);
+                    el.parent().removeClass(aC + ' ' + dC);
+                }
+            };
     $.fn.nStRadio = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -1420,7 +1426,7 @@ function getCookie(c_name)
                                 }
 
                                 if (e.scroll)
-                                    wnd.scrollTop($this.offset().top);
+                                    $('html, body').scrollTop($this.offset().top);
                                 $(document).trigger({
                                     'type': 'tabs.showtabs',
                                     'el': $thisAO
@@ -1481,7 +1487,7 @@ function getCookie(c_name)
                 wnd.off('hashchange.tabs').on('hashchange.tabs', function(e) {
                     function scrollTop(wST) {
                         if (e.scroll || e.scroll === undefined)
-                            wnd.scrollTop(wST);
+                            $('html, body').scrollTop(wST);
                         wST = wnd.scrollTop();
                     }
                     //chrome bug
@@ -1614,31 +1620,35 @@ function getCookie(c_name)
             this.filter(':not(.isDrop)').each(function() {
                 var el = $(this),
                         trigger = (methods._checkProp(el.data(), options, 'trigger')).toString();
-                methods._modalTrigger($.extend({}, options, el.data()));
-                var rel = this.rel;
-                if (rel !== undefined && rel !== '') {
-                    rel = rel.replace(/[^a-zA-Z0-9]+/ig, '');
-                    var source = el.data('source') || el.attr('href');
-                    if (source !== undefined) {
-                        if (typeof $.drop.dP.galleries[rel] === 'undefined')
-                            $.drop.dP.galleries[rel] = [];
-                        $.drop.dP.galleries[rel].push(source);
+                if (el.parent().hasClass(aC))
+                    methods.close($(el.attr('data-drop')))
+                else {
+                    methods._modalTrigger($.extend({}, options, el.data()));
+                    var rel = this.rel;
+                    if (rel !== undefined && rel !== '') {
+                        rel = rel.replace(/[^a-zA-Z0-9]+/ig, '');
+                        var source = el.data('source') || el.attr('href');
+                        if (source !== undefined) {
+                            if (typeof $.drop.dP.galleries[rel] === 'undefined')
+                                $.drop.dP.galleries[rel] = [];
+                            $.drop.dP.galleries[rel].push(source);
+                        }
                     }
-                }
 
-                el.addClass('isDrop').data({
-                    'drp': options
-                });
-                el.attr('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
-                    $.drop.dP.wST = wnd.scrollTop();
-                    if ($(this).hasClass('isDrop')) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        methods.open(undefined, $(this), options, e)
-                    }
-                });
-                if (window.location.hash.indexOf(el.attr('href') || el.data('href')) != -1)
-                    methods.open(undefined, el, options, undefined)
+                    el.addClass('isDrop').data({
+                        'drp': options
+                    });
+                    el.attr('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
+                        $.drop.dP.wST = wnd.scrollTop();
+                        if ($(this).hasClass('isDrop')) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            methods.open(undefined, $(this), options, e)
+                        }
+                    });
+                    if (window.location.hash.indexOf(el.attr('href') || el.data('href')) != -1)
+                        methods.open(undefined, el, options, undefined)
+                }
             });
             for (i in $.drop.dP.galleries)
                 if ($.drop.dP.galleries[i].length <= 1) {
@@ -1751,13 +1761,12 @@ function getCookie(c_name)
             if (sel === undefined)
                 sel = this.self ? this.self : this;
             clearTimeout($.drop.dP.closeDropTime);
-            var drop = sel ? $('[data-elrun].' + aC) : sel;
-            if (!sel)
-                body.off('click.' + $.drop.nS + ' keydown.' + $.drop.nS);
-            if ($.existsN(drop)) {
+            var drop = sel ? sel : $('[data-elrun].' + aC);
+
+            if ($.existsN(drop) && drop.data('drp')) {
                 drop.each(function() {
                     var drop = $(this),
-                            set = Object.keys(drop.data('drp')).length != 0 ? drop.data('drp') : $.drop.dP,
+                            set = drop.data('drp'),
                             condOverlay = (set.overlayOpacity !== undefined ? set.overlayOpacity.toString() : set.overlayOpacity) !== '0';
                     if (set.modal || sel || condOverlay || set.place === 'noinherit' || set.inheritClose) {
                         var $thisB = set.elrun;
@@ -1825,7 +1834,7 @@ function getCookie(c_name)
 
                                 if (set.forCenter)
                                     set.forCenter.stop(true, false).fadeOut(durOff);
-                                drop[$thisEOff](durOff, function() {
+                                drop.css('overflow', '')[$thisEOff](durOff, function() {
                                     if (set.dropOver)
                                         set.dropOver.fadeOut(durOff);
                                     var $this = $(this).css({
@@ -1984,8 +1993,8 @@ function getCookie(c_name)
                                 datas: data
                             });
                             methods._show(el, e, true, set, data);
+                            methods.init.call(drop.find('[data-drop]:not(.isDrop)'));
                         }
-                        methods.init.call(drop.find('[data-drop]:not(.isDrop)'));
                     }
                 });
             }
@@ -2244,163 +2253,148 @@ function getCookie(c_name)
             else
                 drop.css('z-index', 1105);
 
-            if (drop.hasClass(aC)) {
-                methods.close(drop);
+            methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
+            before($this, drop, isajax, data, set);
+            if (elBefore !== undefined)
+                eval(elBefore)($this, drop, isajax, data, set);
+            drop.add($(document)).trigger({
+                'type': 'before.' + $.drop.nS,
+                'el': $this,
+                'drop': drop,
+                'isajax': isajax,
+                'datas': data,
+                'settings': set
+            });
+            wnd.off('resize.' + $.drop.nS).on('resize.' + $.drop.nS, function() {
+                methods._checkMethod(function() {
+                    methods.limitSize(drop)
+                });
+                methods._checkMethod(function() {
+                    methods.heightContent(drop)
+                });
+                if (place !== 'inherit')
+                    methods[place](drop)
+            });
+            if (condOverlay) {
+                drop.data('drp').dropOver.stop().fadeIn($thisD / 2);
+                if (closeClick)
+                    drop.data('drp').dropOver.add(forCenter).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                        if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.for-center')) {
+                            methods.close($($(e.target).attr('data-rel')));
+                        }
+                    });
+                if (isTouch)
+                    drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
+                        return false;
+                    });
             }
-            else {
-                methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
-                before($this, drop, isajax, data, set);
-                if (elBefore !== undefined)
-                    eval(elBefore)($this, drop, isajax, data, set);
+            drop.addClass(place);
+
+            methods._positionType(drop);
+            methods._checkMethod(function() {
+                methods.limitSize(drop)
+            });
+            methods._checkMethod(function() {
+                methods.heightContent(drop);
+            })
+
+            if (forCenter) {
+                forCenter.fadeIn($thisD);
+            }
+            if (forCenter) {
+                forCenter.css('top', function() {
+                    return scroll ? wnd.scrollTop() : 0;
+                });
+            }
+            if (condOverlay && scroll) {
+                methods._checkMethod(function() {
+                    methods.scroll.create()
+                })
+            }
+
+            if (place !== 'inherit') {
+                var t = -drop.actual('outerHeight'),
+                        l = -drop.actual('outerWidth');
+
+                var pmt = placeBeforeShow.toLowerCase().split(' ');
+                if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
+                    t = wnd.height() + wnd.scrollTop();
+                if (pmt[0] === 'right' || pmt[1] === 'right')
+                    l = wnd.width() + wnd.scrollLeft();
+                if (pmt[0] === 'center' || pmt[1] === 'center') {
+                    if (pmt[1] === 'left')
+                        l = -drop.actual('outerWidth');
+                    if (pmt[1] === 'right')
+                        l = wnd.width() + wnd.scrollLeft();
+                    if (pmt[0] === 'top')
+                        t = -drop.actual('outerHeight');
+                    if (pmt[0] === 'bottom')
+                        t = wnd.height() + wnd.scrollTop();
+                }
+                drop.css({
+                    'left': l,
+                    'top': t
+                });
+                if (pmt[0] === 'center' && pmt[1] === 'center')
+                    methods._checkMethod(function() {
+                        methods[place](drop, true)
+                    })
+                if (pmt[0] === 'inherit')
+                    drop.css({
+                        'left': $this.offset().left + wnd.scrollLeft(),
+                        'top': $this.offset().top + wnd.scrollTop()
+                    });
+            }
+
+            var href = $this.attr('href') || $this.data('href');
+            if (href !== undefined) {
+                var wlh = window.location.hash;
+                if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
+                    window.location.hash = wlh + href;
+            }
+
+            drop[$thisEOn]($thisD, function(e) {
+                var drop = $(this).css('overflow', 'hidden');
+                drop.addClass(aC);
+                if (!confirm && modal && timeclosemodal)
+                    $.drop.dP.closeDropTime = setTimeout(function() {
+                        methods.close(drop);
+                    }, timeclosemodal);
+
+                var cB = elAfter;
+                if (cB !== undefined) {
+                    eval(cB)($this, drop, isajax, data, set);
+                }
+                after($this, drop, isajax, data, set);
                 drop.add($(document)).trigger({
-                    'type': 'before.' + $.drop.nS,
+                    'type': 'after.' + $.drop.nS,
                     'el': $this,
                     'drop': drop,
                     'isajax': isajax,
                     'datas': data,
                     'settings': set
                 });
-                wnd.off('resize.' + $.drop.nS).on('resize.' + $.drop.nS, function() {
+                if (droppable && place != 'inherit')
                     methods._checkMethod(function() {
-                        methods.limitSize(drop)
-                    });
-                    methods._checkMethod(function() {
-                        methods.heightContent(drop)
-                    });
-                    if (place !== 'inherit')
-                        methods[place](drop)
-                });
-                if (condOverlay) {
-                    drop.data('drp').dropOver.stop().fadeIn($thisD / 2);
-                    if (closeClick)
-                        drop.data('drp').dropOver.add(forCenter).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
-                            if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.for-center')) {
-                                methods.close($($(e.target).attr('data-rel')));
-                            }
-                        });
-                    if (isTouch)
-                        drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
-                            return false;
-                        });
-                }
-                drop.addClass(place);
-
-                methods._checkMethod(function() {
-                    methods.heightContent(drop)
-                })
-                if (place !== 'inherit')
-                    methods[place](drop);
-
-                if (forCenter) {
-                    forCenter.fadeIn($thisD);
-                }
-                if (forCenter) {
-                    forCenter.css('top', function() {
-                        return scroll ? wnd.scrollTop() : 0;
-                    });
-                }
-
-                if (condOverlay && scroll) {
-                    methods._checkMethod(function() {
-                        methods.scroll.create()
+                        methods.droppable(drop)
                     })
-                }
-                methods._positionType(drop);
-
-                if (place !== 'inherit') {
-                    function _pos() {
-                        var t = -drop.actual('outerHeight'),
-                                l = -drop.actual('outerWidth');
-
-                        var pmt = placeBeforeShow.toLowerCase().split(' ');
-                        if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
-                            t = wnd.height() + wnd.scrollTop();
-                        if (pmt[0] === 'right' || pmt[1] === 'right')
-                            l = wnd.width() + wnd.scrollLeft();
-                        if (pmt[0] === 'center' || pmt[1] === 'center') {
-                            if (pmt[1] === 'left')
-                                l = -drop.actual('outerWidth');
-                            if (pmt[1] === 'right')
-                                l = wnd.width() + wnd.scrollLeft();
-                            if (pmt[0] === 'top')
-                                t = -drop.actual('outerHeight');
-                            if (pmt[0] === 'bottom')
-                                t = wnd.height() + wnd.scrollTop();
-                        }
-                        drop.css({
-                            'left': l,
-                            'top': t
-                        });
-                        if (pmt[0] === 'center' && pmt[1] === 'center')
-                            methods._checkMethod(function() {
-                                methods[place](drop, true)
-                            })
-                        if (pmt[0] === 'inherit')
-                            drop.css({
-                                'left': $this.offset().left + wnd.scrollLeft(),
-                                'top': $this.offset().top + wnd.scrollTop()
-                            });
-                    }
-                    if (typeof placement == 'object')
-                        if (placement.top != undefined && placement.left != undefined)
-                            _pos()
-                    if (typeof placement == 'string')
-                        _pos();
-                }
-
-                var href = $this.attr('href') || $this.data('href');
-                if (href !== undefined) {
-                    var wlh = window.location.hash;
-                    if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
-                        window.location.hash = wlh + href;
-                }
-
-                methods._checkMethod(function() {
-                    methods.limitSize(drop)
-                });
-
-                drop.css('overflow', 'hidden')[$thisEOn]($thisD, function(e) {
-                    var drop = $(this);
-                    drop.addClass(aC);
-                    if (!confirm && modal && timeclosemodal)
-                        $.drop.dP.closeDropTime = setTimeout(function() {
-                            methods.close(drop);
-                        }, timeclosemodal);
-
-                    var cB = elAfter;
-                    if (cB !== undefined) {
-                        eval(cB)($this, drop, isajax, data, set);
-                    }
-                    after($this, drop, isajax, data, set);
-                    drop.add($(document)).trigger({
-                        'type': 'after.' + $.drop.nS,
-                        'el': $this,
-                        'drop': drop,
-                        'isajax': isajax,
-                        'datas': data,
-                        'settings': set
+                if (place == 'center' && !scroll) {
+                    wnd.off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function(e) {
+                        methods.center(drop);
                     });
-                    if (droppable && place != 'inherit')
-                        methods._checkMethod(function() {
-                            methods.droppable(drop)
-                        })
-                    if (place == 'center' && !scroll) {
-                        wnd.off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function(e) {
-                            methods.center(drop);
-                        });
-                    }
-                });
-            }
-            body.off('click.' + $.drop.nS).off('keydown.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                }
+            });
+            var ev = (selSource ? selSource : '').replace(/[^a-zA-Z0-9]+/ig, '');
+            body.off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
                 if (closeClick)
-                    if (!$.existsN($(e.target).closest('[data-elrun]')) && !($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.for-center'))) {
+                    if (!$.existsN($(e.target).closest('[data-elrun]')) && !($(e.target).is('.overlayDrop') || $(e.target).is('.for-center'))) {
                         methods.close(false);
                     }
                     else
                         return true;
             });
             if (closeEsc)
-                body.off('keydown.' + $.drop.nS).on('keydown.' + $.drop.nS, function(e) {
+                body.off('keydown.' + $.drop.nS + ev).on('keydown.' + $.drop.nS + ev, function(e) {
                     if (!e)
                         var e = window.event;
                     key = e.keyCode;
@@ -2537,10 +2531,7 @@ function getCookie(c_name)
         };
     }
 
-    var id = (new Date()).getTime().toString(),
-            el = $('<div/>', {
-                id: 'scrollDrop' + id
-            }).appendTo(body).css({
+    var el = $('<div/>').appendTo(body).css({
         'height': 400,
         'width': 400,
         'overflow': 'scroll'
@@ -2554,11 +2545,6 @@ function getCookie(c_name)
         wnd.scrollTop($.drop.dP.wST);
         return false;
     });
-    wnd.off('scroll.init' + $.drop.nS).on('scroll.init' + $.drop.nS, function(e) {
-        var wST = wnd.scrollTop();
-        if (e.isTrigger == undefined)//wST != 0 for change hash when occurs jump to target element
-            $.drop.dP.wST = wST;
-    })
 })(jQuery);
 /*/plugin drop end*/
 /*plugin plusminus*/
@@ -2611,11 +2597,11 @@ function getCookie(c_name)
                         $thisNext = $thisNext[regM](regS);
                     });
 
-                    if ($thisVal >= max) {
+                    if ($thisVal >= max && checkProdStock) {
                         $this.val(max);
                         $thisNext.attr('disabled', 'disabled');
                     }
-                    if ($thisVal <= min) {
+                    if ($thisVal <= min && checkProdStock) {
                         $this.val(min);
                         $thisPrev.attr('disabled', 'disabled');
                     }
@@ -2637,7 +2623,7 @@ function getCookie(c_name)
                                 else
                                     input.val(inputVal + step);
                                 if (inputVal + step === max && checkProdStock) {
-                                    $thisNext.attr('disabled', 'disabled');
+                                    el.attr('disabled', 'disabled');
                                 }
                                 settings.after(e, el, input, 'next');
                             }
@@ -2658,7 +2644,7 @@ function getCookie(c_name)
                                 else if (inputVal > parseFloat(min || 1)) {
                                     input.val(inputVal - step);
                                     if (inputVal - step === min && checkProdStock)
-                                        $thisPrev.attr('disabled', 'disabled');
+                                        el.attr('disabled', 'disabled');
                                 }
 
                                 settings.after(e, el, input, 'prev');
