@@ -15,7 +15,7 @@ class Module_frame extends MY_Controller {
     }
 
     public function index() {
-        
+        $this->load->model('../modules/shop/models/cms_shop_admin');        
     }
 
     public function autoload() {
