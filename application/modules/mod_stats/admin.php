@@ -25,7 +25,10 @@ class Admin extends \BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper("url");
+        $interfacesDir = __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR;
+        include $interfacesDir . 'ControllerBase' . EXT;
+        include $interfacesDir . 'DynamicDiagramInterface' . EXT;
+        include $interfacesDir . 'StaticDiagramInterface' . EXT;
 
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
@@ -34,7 +37,7 @@ class Admin extends \BaseAdminController {
                 ->registerStyle('nv.d3')
                 ->registerScript('scripts')
                 ->registerStyle('styles');
-        include __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'ControllerBase' . EXT;
+
         // for saving date params between pages crossing
         if (!empty($_SERVER['QUERY_STRING'])) {
             $this->assetManager->setData('queryString', '?' . $_SERVER['QUERY_STRING']);
@@ -58,7 +61,6 @@ class Admin extends \BaseAdminController {
     }
 
     public function products() {
-        
         $this->runControllerAction(__FUNCTION__, func_get_args());
     }
 

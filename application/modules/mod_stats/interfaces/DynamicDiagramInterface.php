@@ -27,7 +27,7 @@ interface DynamicDiagramInterface {
     /**
      * @return array
      */
-    public function getData();
+    public function getDynamicData();
 }
 
 ?>
