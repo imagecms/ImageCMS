@@ -153,7 +153,6 @@ $(document).ready(function() {
 
                 chart.yAxis
                         .tickFormat(d3.format(',.1%'));
-
                 d3.select(el)
                         .datum(ChartData.getData($(el).data('from')))
                         .transition().duration(500)
