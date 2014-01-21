@@ -85,7 +85,7 @@ $(document).on('scriptDefer', function() {
                     ignoreWrap: '1',
                     template: 'cart_order',
                     gift: $('[name="gift"]').val(),
-                    deliveryId: $('[name="deliveryMethodId"]').val()
+                    deliveryId: $('[name="deliveryMethodId"]:checked').val()
                 });
                 if (!start) {
                     var input = $(el).find('input');
