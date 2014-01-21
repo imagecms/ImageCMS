@@ -41,6 +41,7 @@ class ExportXML {
     private $categories_export;
     private $product_export;
     private $export;
+    private $invoice;
 
     public function __construct() {
         $this->ci = &get_instance();
@@ -53,10 +54,10 @@ class ExportXML {
     }
 
     /** export */
-    public function export($partner_id = null, $send_cat = 1, $send_prod = 1, $send_users = 1,$full = FALSE) {
+    public function export($partner_id = null, $send_cat = 1, $send_prod = 1, $send_users = 1, $full = FALSE) {
         $users = FALSE;
         //load db data
-        $this->orders = $this->ci->export_model->getOrders($partner_id,$full);
+        $this->orders = $this->ci->export_model->getOrders($partner_id, $full);
 
         if ($partner_id and $this->orders) {
             foreach ($this->orders as $order) {
@@ -93,6 +94,7 @@ class ExportXML {
         $this->categories = $this->ci->export_model->getCategories($cat_ids);
         $this->prices = $this->ci->export_model->getPrices($partner_id);
         $this->productivity = $this->ci->export_model->getProductivity($partner_id);
+        $this->invoice = $this->ci->export_model->getProductivity($partner_id);
 
 //        if ($partner_id) {
         /** export partners */
@@ -150,6 +152,10 @@ class ExportXML {
         if ($this->categories && $send_cat) {
             $this->exportCategories();
         }
+        /** export invoice */
+        if ($this->invoice) {
+            $this->exportInvoice();
+        }
 
         /** export products */
 //            if ($this->products) {
@@ -160,6 +166,49 @@ class ExportXML {
         /** wrao export  */
         $this->exportWrap();
         exit();
+    }
+
+    /**
+     * export invoice
+     * <СписокРасходныеНакладные>
+     * 	<ID>e0e7b70f-61be-11e3-ae49-d067e5501078</ID>
+     * 	<IDWeb/>
+     * 	<Номер>РКФР-000001</Номер>
+     * 	<Дата>2013-12-10T19:17:02</Дата>
+     * 	<IDОрганизация>c788c266-5d16-11e3-98cd-d067e5501078</IDОрганизация>
+     * 	<IDWebОрганизация>15</IDWebОрганизация>
+     * 	<IDЗаказПокупателя>e0e7b70c-61be-11e3-ae49-d067e5501078</IDЗаказПокупателя>
+     * 	<IDWebЗаказПокупателя>91</IDWebЗаказПокупателя>
+     * 	<IDКонтрагент>9958777a-5cfd-11e3-98cd-d067e5501078</IDКонтрагент>
+     * 	<IDWebКонтрагент>48</IDWebКонтрагент>
+     * 	<Скидка>0</Скидка>
+     * 	<Строки>
+     * 		<IDДокумента>e0e7b70f-61be-11e3-ae49-d067e5501078</IDДокумента>
+     * 		<IDДокументаWeb/>
+     * 		<IDНоменклатура>d3e4bb84-578d-11e3-970d-d067e5501078</IDНоменклатура>
+     * 		<IDWebНоменклатура>1172</IDWebНоменклатура>
+     * 		<Количество>1</Количество>
+     * 		<Цена>10</Цена>
+     * 		<Скидка>0</Скидка>
+     * 		<Сумма>10</Сумма>
+     * 	</Строки>
+     * </СписокРасходныеНакладные>
+     */
+    public function exportInvoice() {
+        foreach ($this->invoice as $invoice) {
+//            $this->users_export .=
+//                    "\t<СписокКонтрагентов>\r\n" .
+//                    "\t\t<ID>" . $user['external_id'] . "</ID>\r\n" .
+//                    "\t\t<IDWeb>" . $user['id'] . "</IDWeb>\r\n" .
+//                    "\t\t<Код>" . $user['code'] . "</Код>\r\n" .
+//                    "\t\t<Наименование>" . htmlspecialchars($user['username']) . "</Наименование>\r\n" .
+//                    "\t\t<Логин></Логин>\r\n" .
+//                    "\t\t<Пароль></Пароль>\r\n" .
+//                    "\t\t<Емейл>" . $user['email'] . "</Емейл>\r\n" .
+//                    "\t\t<Телефон>" . $user['phone'] . "</Телефон>\r\n" .
+//                    "\t\t<Адрес>" . $user['address'] . "</Адрес>\r\n" .
+//                    "\t</СписокКонтрагентов>\r\n";
+        }
     }
 
     /**

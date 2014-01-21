@@ -28,13 +28,7 @@ var Order = {
         if (selectDeliv) {
             cuselInit($(genObj.frameDelivery), $(genObj.dM));
             $(genObj.dM).on('change.methoddeliv', function() {
-                Shop.Cart.getTpl({
-                    ignoreWrap: '1',
-                    template: 'cart_order',
-                    gift: $(genObj.gift).val(),
-                    deliveryMethodId: $(this).val()
-                });
-                Shop.Cart.getPayment($(this).val(), 'radio');
+                Shop.Cart.getPayment($(this).val(), '');
             });
         }
         else {
@@ -52,7 +46,7 @@ var Order = {
                             gift: $(genObj.gift).val(),
                             deliveryMethodId: input.val()
                         });
-                        Shop.Cart.getPayment(input.val(), 'radio');
+                        Shop.Cart.getPayment(input.val(), '');
                     }
                 }
             });
