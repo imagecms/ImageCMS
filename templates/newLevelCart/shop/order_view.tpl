@@ -238,7 +238,6 @@
                             {/foreach}
                             <!-- end for single product -->
                             <!-- Start. Render Ordered kit products  -->
-                            {$sumKit = 0}
                             {foreach $model->getOrderKits() as $orderProduct}
                                 <tr class="row-kits rowKits items-order row">
                                     <td class="frame-items frame-items-kit">
@@ -360,7 +359,6 @@
                                                 {/if}
                                                 { */}
                                             </span>
-                                            {$sumKit += $orderProduct->getKit()->getTotalPrice() - $orderProduct->getKit()->getTotalPriceOld()}
                                         </span>
                                     </td>
                                 </tr>
@@ -368,7 +366,7 @@
                         </tbody>
                         <tfoot class="gen-info-price">
                             {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
-                            
+
                             {if $discount}
                                 <tr>
                                     <td colspan="2">
@@ -384,21 +382,19 @@
                                     </td>
                                 </tr>
                             {/if}
-                            {if $model->gettotalprice()}
-                                <tr>
-                                    <td colspan="2">
-                                        <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
-                                    </td>
-                                    <td>
-                                        <span class="price-new">
-                                            <span>
-                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->gettotalprice())}</span>
-                                                <span class="curr">{$CS}</span>
-                                            </span>
+                            <tr>
+                                <td colspan="2">
+                                    <span class="s-t">{lang('Cтоимость товаров','newLevel')}</span>
+                                </td>
+                                <td>
+                                    <span class="price-new">
+                                        <span>
+                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->gettotalprice())}</span>
+                                            <span class="curr">{$CS}</span>
                                         </span>
-                                    </td>
-                                </tr>
-                            {/if}
+                                    </span>
+                                </td>
+                            </tr>
                             <tr>
                                 <td colspan="2">
                                     <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
@@ -412,7 +408,6 @@
                                     </span>
                                 </td>
                             </tr>
-
                             {if $discount}
                                 <tr>
                                     <td colspan="2">
