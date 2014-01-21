@@ -137,7 +137,7 @@ var Shop = {
                 'objF': objF
             });
             $.ajax({
-                'type': 'get',
+                'type': 'post',
                 'url': siteUrl + 'shop/cart',
                 'data': obj,
                 success: function(data) {
