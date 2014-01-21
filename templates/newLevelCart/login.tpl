@@ -2,7 +2,7 @@
     <div class="container">
         <div class="f-s_0 title-login without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{lang('Вход','newLevel')}</h1>
+                <h1 class="title">{lang('Вход','newLevel')}</h1>
             </div>
         </div>
         <div class="horizontal-form frame-register">

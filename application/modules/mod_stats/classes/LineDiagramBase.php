@@ -62,6 +62,10 @@ class LineDiagramBase {
             return '';
         }
     }
+    
+    public function setParams() {
+        
+    }
 
     /**
      * Returns params for query
