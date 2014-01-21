@@ -207,7 +207,6 @@
                 </td>
             </tr>
         {/if}
-        {var_dump($gift_error)}
         {if $gift_val}
             <tr>
                 <td>
