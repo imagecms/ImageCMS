@@ -97,7 +97,7 @@
         colorScheme = "{$colorScheme}",
         isLogin = "{$is_logged_in}" === '1' ? true : false,
         selectDeliv = false,
-        selectPayment = false,
+        selectPayment = true,
         selIcons = '[class*=icon_]',
         preloader = '.preloader',
         typePage = "{$CI->core->core_data['data_type']}",
