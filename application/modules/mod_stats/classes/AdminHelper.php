@@ -62,6 +62,15 @@ class AdminHelper extends \MY_Controller {
     }
     
     /**
+     * Get setting by value
+     * @param string $settingName
+     * @return string|boolean
+     */
+    public function getSetting($settingName) {
+        return $this->stats_model->getSettingByName($settingName);
+    }
+    
+    /**
      * Autocomlete products
      * @return jsone
      */

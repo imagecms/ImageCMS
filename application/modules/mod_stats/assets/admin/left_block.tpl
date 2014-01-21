@@ -4,11 +4,13 @@
             <li>
                 <a class="firstLevelMenu">{$firstLevel.name}</a> 
             </li>
-            <div class="submenu" style="display: none;">
+            <div class="submenu" {if !strpos($_SERVER['REQUEST_URI'], implode("/", array($firstLevel.controller,'')))} style="display: none;"{/if}>
                 {foreach $firstLevel.items as $secondLevel}
                     <li>
                         <a href="{site_url('admin/components/cp/mod_stats/')}/{$secondLevel.controller}/{$secondLevel.action}{$queryString}" 
-                           class="linkChart"
+                           class="linkChart 
+                           {if strpos($_SERVER['REQUEST_URI'], implode("/", array($secondLevel.controller,$secondLevel.action)))} active{/if}"
+                           
                            >&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">-</span> {$secondLevel.name}   
                         </a>
