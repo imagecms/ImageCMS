@@ -10,9 +10,10 @@ $(document).ready(function() {
     });
 
     /** Save search results setting value */
-    $('section.mod_stats #saveSearchResultsSpan').bind('click', function() {
+    $('section.mod_stats .shortSettingsSpan').bind('click', function() {
         var spanBlock = $(this);
-        var checkBox = spanBlock.find('#saveSearchResultsCheckbox');
+        var checkBox = spanBlock.find('.shortSettingsCheckbox');
+        var shortSettingsName = checkBox.data('sname');
         var newValue; // new value for saving to database
 
         // Get new property
@@ -21,7 +22,7 @@ $(document).ready(function() {
         } else {
             newValue = 1;
         }
-        StatsSettingsAndParams.setModStatsSetting('save_search_results', newValue);
+        StatsSettingsAndParams.setModStatsSetting(shortSettingsName, newValue);
     });
 
     /** Set time interval for day, week, month, year */
@@ -84,7 +85,7 @@ $(document).ready(function() {
                         .height(height);
 
                 d3.select(el)
-                        .datum(ChartData.getStaticData($(el).data('from')))
+                        .datum(ChartData.getData($(el).data('from')))
                         .transition().duration(1200)
                         .attr('width', width)
                         .attr('height', height)
@@ -104,6 +105,8 @@ $(document).ready(function() {
     if (barChartBlocks.length) {
         barChartBlocks.each(function(index, el) {
             nv.addGraph(function() {
+                var width = 800,
+                        height = 600;
                 var chart = nv.models.discreteBarChart()
                         .x(function(d) {
                             return d.label
@@ -116,8 +119,10 @@ $(document).ready(function() {
                         .showValues(true)
 
                 d3.select(el)
-                        .datum(convertDataForPieToBarChart(ChartData.getStaticData($(el).data('from'))))
+                        .datum(convertDataForPieToBarChart(ChartData.getData($(el).data('from'))))
                         .transition().duration(500)
+                        .attr('width', width)
+                        .attr('height', height)
                         .call(chart);
 
                 nv.utils.windowResize(chart.update);
@@ -132,84 +137,33 @@ $(document).ready(function() {
     if (lineWithFocusChartBlocks.length) {
         lineWithFocusChartBlocks.each(function(index, el) {
             nv.addGraph(function() {
-                var chart = nv.models.lineWithFocusChart();
-                var orderDate = new Date();
-                var day;
-                var month;
-                var year;
-                chart.xAxis.tickFormat(function(d) {
-                    orderDate = new Date(d * 1000);
-                    day = orderDate.getDate();
-                    month = orderDate.getMonth() + 1;
-                    year = orderDate.getFullYear();
-                    return day + '/' + month + '/' + year;
-                });
-                chart.x2Axis.tickFormat(function(d) {
-                    orderDate = new Date(d * 1000);
-                    day = orderDate.getDate();
-                    month = orderDate.getMonth() + 1;
-                    year = orderDate.getFullYear();
-                    return day + '/' + month + '/' + year;
-                });
+                var chart = nv.models.cumulativeLineChart()
+                        .x(function(d) {
+                            return d[0]
+                        })
+                        .y(function(d) {
+                            return d[1] / 100
+                        }) //adjusting, 100% is 1.00, not 100 as it is in the data
+                        .color(d3.scale.category10().range());
+
+                chart.xAxis
+                        .tickFormat(function(d) {
+                            return d3.time.format('%x')(new Date(d))
+                        });
+
                 chart.yAxis
-                        .tickFormat(d3.format(',.2f'));
-                chart.y2Axis
-                        .tickFormat(d3.format(',.2f'));
-                chart.transitionDuration(500);
+                        .tickFormat(d3.format(',.1%'));
                 d3.select(el)
-                        .datum(testData())
+                        .datum(ChartData.getData($(el).data('from')))
+                        .transition().duration(500)
                         .call(chart);
+
                 nv.utils.windowResize(chart.update);
+
                 return chart;
             });
         });
     }
-    function testData() {
-        return stream_layers(3, 128, .1).map(function(data, i) {
-            return {
-                key: 'Stream' + i,
-                values: data
-            };
-        });
-    }
-    /* Inspired by Lee Byron's test data generator. */
-    function stream_layers(n, m, o) {
-        if (arguments.length < 3)
-            o = 0;
-        function bump(a) {
-            var x = 1 / (.1 + Math.random()),
-                    y = 2 * Math.random() - .5,
-                    z = 10 / (.1 + Math.random());
-            for (var i = 0; i < m; i++) {
-                var w = (i / m - y) * z;
-                a[i] += x * Math.exp(-w * w);
-            }
-        }
-        return d3.range(n).map(function() {
-            var a = [], i;
-            for (i = 0; i < m; i++)
-                a[i] = o + o * Math.random();
-            for (i = 0; i < 5; i++)
-                bump(a);
-            return a.map(stream_index);
-        });
-    }
-
-    /* Another layer generator using gamma distributions. */
-    function stream_waves(n, m) {
-        return d3.range(n).map(function(i) {
-            return d3.range(m).map(function(j) {
-                var x = 20 * j / m - i / 3;
-                return 2 * x * Math.exp(-.5 * x);
-            }).map(stream_index);
-        });
-    }
-
-    function stream_index(d, i) {
-        return {x: i, y: Math.max(0, d)};
-    }
-
-
     /** ************************************************ */
 
 
@@ -244,6 +198,52 @@ $(document).ready(function() {
         chartDataForReturn.push(tmpData);
         return chartDataForReturn;
     }
+
+//    function testData() {
+//        return stream_layers(3, 128, .1).map(function(data, i) {
+//            return {
+//                key: 'Stream' + i,
+//                values: data
+//            };
+//        });
+//    }
+//    /* Inspired by Lee Byron's test data generator. */
+//    function stream_layers(n, m, o) {
+//        if (arguments.length < 3)
+//            o = 0;
+//        function bump(a) {
+//            var x = 1 / (.1 + Math.random()),
+//                    y = 2 * Math.random() - .5,
+//                    z = 10 / (.1 + Math.random());
+//            for (var i = 0; i < m; i++) {
+//                var w = (i / m - y) * z;
+//                a[i] += x * Math.exp(-w * w);
+//            }
+//        }
+//        return d3.range(n).map(function() {
+//            var a = [], i;
+//            for (i = 0; i < m; i++)
+//                a[i] = o + o * Math.random();
+//            for (i = 0; i < 5; i++)
+//                bump(a);
+//            return a.map(stream_index);
+//        });
+//    }
+//
+//    /* Another layer generator using gamma distributions. */
+//    function stream_waves(n, m) {
+//        return d3.range(n).map(function(i) {
+//            return d3.range(m).map(function(j) {
+//                var x = 20 * j / m - i / 3;
+//                return 2 * x * Math.exp(-.5 * x);
+//            }).map(stream_index);
+//        });
+//    }
+//
+//    function stream_index(d, i) {
+//        return {x: i, y: Math.max(0, d)};
+//    }
+
     /***********************/
 
 

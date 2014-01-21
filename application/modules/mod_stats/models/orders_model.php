@@ -27,7 +27,7 @@ class Orders_model extends CI_Model {
         if (isset($params['dateFrom']) || isset($params['dateTo'])) {
             $dateFrom = isset($params['dateFrom']) ? $params['dateFrom'] : '2005-01-01';
             $dateTo = isset($params['dateTo']) ? $params['dateTo'] : date('Y-m-d');
-            "AND FROM_UNIXTIME(`shop_orders`.`date_created`) BETWEEN {$dateFrom} 00:00:00 AND {$dateTo} 00:00:00";
+            $betweenCondition = "AND FROM_UNIXTIME(`date_created`) BETWEEN '{$dateFrom} 00:00:00' AND '{$dateTo} 23:59:59'";
         }
 
         return array($paidCondition, $betweenCondition);
@@ -36,7 +36,13 @@ class Orders_model extends CI_Model {
     /**
      * 
      * @param array $params
-     * @return boolean
+     * @return boolean|array
+     * arrays with fields:
+     *  - orders_count
+     *  - price_sum
+     *  - products_count
+     *  - quantity
+     *  - delivered
      */
     public function getOrdersInfo(array $params = array()) {
         list($paidCondition, $betweenCondition) = $this->prepareConditions($params);
@@ -77,6 +83,7 @@ class Orders_model extends CI_Model {
             GROUP BY `date`
             ORDER BY FROM_UNIXTIME(`date_created`)
         ";
+
 
         $result = $this->db->query($query);
         if ($result === FALSE) {
