@@ -22,7 +22,7 @@
         {if $CI->session->flashdata('makeOrder') === true}
             <div class="f-s_0 without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Спасибо, ваш заказ принят!<br/>Наши менеджеры свяжутся с вами.','newLevel')}</h1>
+                    <h1 class="title">{lang('Спасибо, ваш заказ принят!<br/>Наши менеджеры свяжутся с вами.','newLevel')}</h1>
                 </div>
             </div>
             <!-- Clear Cart locale Storage -->
@@ -33,7 +33,7 @@
         {/if}
         <div class="f-s_0 title-order-view without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{lang('Заказ №','newLevel')}:<span class="number-order">{echo $model->getId()}</span></h1>
+                <h1 class="title">{lang('Заказ №','newLevel')}:<span class="number-order">{echo $model->getId()}</span></h1>
             </div>
         </div>
 

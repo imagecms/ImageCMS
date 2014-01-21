@@ -3,7 +3,7 @@
     <div class="container">
         <div class="f-s_0 title-profile without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{echo encode($profile->getName())}, {lang('Добро пожаловать!','newLevel')}</h1>
+                <h1 class="title">{echo encode($profile->getName())}, {lang('Добро пожаловать!','newLevel')}</h1>
             </div>
         </div>
         <div class="left-personal f-s_0">
