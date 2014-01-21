@@ -11,15 +11,15 @@
                                     <input id="quantityOfWordsStatsSearch" class="input-small required f_l" 
                                            value="{if $_COOKIE['words_quantity_search_stats'] != null}{echo $_COOKIE['words_quantity_search_stats']}{else:}0{/if}" 
                                            style="display: block; " type="text" name="value" maxlength="1"/>
-                                    
+
                                     <span class="frame_label no_connection m-r_15 m-l_40 m-t_10">
                                         <span class="" style="background-position: -46px 0px;">
                                             <input type="checkbox" id="useLocaleCheckbox" {if $_COOKIE['use_locale_search_stats'] == 'true'} checked="checked" {/if}/>
                                         </span> 
                                         {lang('Consider the current language', 'mod_stats')}
                                     </span>
-                                    
-                                
+
+
                                 </div>
                             </div>
                             <div class="control-group">

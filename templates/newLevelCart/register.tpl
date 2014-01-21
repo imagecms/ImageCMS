@@ -2,7 +2,7 @@
     <div class="container">
         <div class="f-s_0 title-register without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{lang('Регистрация','newLevel')}</h1>
+                <h1 class="title">{lang('Регистрация','newLevel')}</h1>
             </div>
         </div>
         <div class="frame-register">

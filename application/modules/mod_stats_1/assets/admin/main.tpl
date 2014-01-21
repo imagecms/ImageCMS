@@ -144,12 +144,13 @@
                         <span class="niceCheck"  style="background-position: -46px -17px;">
                             <input type="checkbox" {if $savePageUrls == '1'}checked="checked" {/if} id="saveUrlDataCheckbox">
                         </span>
-                        {lang('save page URLs','mod_stats')}
-                    </span-->
+                    {lang('save page URLs','mod_stats')}
+                </span-->
 
                 </div>
             </div>
         </div>
+    </div>
         <div class="clearfix span9">
             <div class="btn-group  m-t_20 pull-left">
                 <a class="btn btn-small intervalButton" data-group="day">{lang('day','mod_stats')}</a>

@@ -11,8 +11,8 @@ class Mod_stats extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('stats_model');
-        $lang = new MY_Lang();
-        $lang->load('mod_stats');
+//        $lang = new MY_Lang();
+//        $lang->load('mod_stats');
     }
 
     public function index() {
@@ -21,9 +21,9 @@ class Mod_stats extends MY_Controller {
 
     public function autoload() {
         /** Check setting 'save_search_result' * */
-        if ($this->stats_model->getSettingByName('save_search_results') == '1') {
-            \CMSFactory\Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
-        }
+//        if ($this->stats_model->getSettingByName('save_search_results') == '1') {
+//            \CMSFactory\Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
+//        }
 //        if ($this->stats_model->getSettingByName('save_page_urls') == '1') {
 //            $this->savePageUrl($this->input->server('HTTP_REFERER'));
 //        }

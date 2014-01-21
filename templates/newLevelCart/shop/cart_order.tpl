@@ -1,3 +1,10 @@
+<script type="text/javascript">
+    totalItemsBask = {echo $totalItems}
+</script>
+{if $gift_key}
+    <input type="hidden" name="gift" value="{echo $gift_key}"/>
+    <input type="hidden" name="gift_ord" value="1"/>
+{/if}
 <table class="table-order table-order-view">
     <tbody>
         {foreach $items as $item}
@@ -174,21 +181,33 @@
                 <span class="curr">{$CS}</span>
             </td>
         </tr>
-        <tr>
-            <td colspan="2">
-                <span class="s-t">{lang('Доставка','newLevel')}:</span>
-            </td>
-            <td class="w-s_n-w" id="frameDeliverySum">
-                <span id="priceDelivery">
-                    <span class="price f-w_b" id="deliveryPirce">0</span>
-                    <span class="curr">{$CS}</span>
-                    (<span class="price f-w_b" id="deliveryPriceSumNextCS">0</span>
-                    <span class="curr-add">{$NextCS}</span>)
-                </span>
-                <span id="noPriceDelivery"></span>
-            </td>
-        </tr>
+        {if $deliveryMethod}
+            <tr>
+                <td colspan="2">
+                    <span class="s-t">{lang('Доставка','newLevel')}:</span>
+                </td>
+                <td class="w-s_n-w">
+                    {if !$deliveryMethod->getDeliverySumSpecified()}
+                        {$priceDel = $deliveryMethod->getPrice()}
+                        {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
+                        {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
 
+                        {if $cartPrice < $priceDelFreeFrom}
+                            {$cartPrice += $priceDel}
+                            <span class="price f-w_b">{echo $priceDel}</span>
+                            <span class="curr">{$CS}</span>
+                            (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                            <span class="curr-add">{$NextCS}</span>)
+                            <span class="not-delivery-price"></span>
+                        {else:}
+                            <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
+                        {/if}
+                    {else:}
+                        <span class="text-el s-t">{echo $deliveryMethod->getDeliverySumSpecifiedMessage()}</span>
+                    {/if}
+                </td>
+            </tr>
+        {/if}
         {if $discount_val}
             <tr>
                 <td colspan="2">
@@ -221,6 +240,7 @@
                     <div class="clearfix">
                         <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
                         <div class="frame-gift f_r">
+
                             {if $gift_error}
                                 <div class="msg">
                                     <div class="error">
@@ -238,7 +258,7 @@
                             <div id="gift" class="{if !$gift_error}drop{/if} o_h">
                                 <div class="btn-def f_r">
                                     <button type="button" id="giftButton">
-                                        <span class="text-el">Применить</span>
+                                        <span class="text-el">{lang('Применить', 'newLevel')}</span>
                                     </button>
                                 </div>
                                 <div class="o_h">
