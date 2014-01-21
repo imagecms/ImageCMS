@@ -23,7 +23,7 @@ var Order = {
         if (Shop.Cart.shipping) {
             if (Shop.Cart.shipping.sumSpec != '1') {
                 var price = Shop.Cart.shipping.price,
-                priceAdd = Shop.Cart.shipping.priceAdd;
+                        priceAdd = Shop.Cart.shipping.priceAdd;
 
                 if (Shop.Cart.shipping.freeFrom <= Shop.Cart.totalPrice) {
                     price = 0;
@@ -46,7 +46,7 @@ var Order = {
         if (Shop.Cart.shipping) {
             if (Shop.Cart.shipping.sumSpec != '1') {
                 var price = Shop.Cart.shipping.price,
-                priceAdd = Shop.Cart.shipping.priceAdd;
+                        priceAdd = Shop.Cart.shipping.priceAdd;
 
                 if (Shop.Cart.shipping.freeFrom <= Shop.Cart.totalPrice) {
                     price = 0;
@@ -75,8 +75,8 @@ $(document).on('scriptDefer', function() {
         $(genObj.frameDelivery).nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
             elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n', //if not standart
-            ,
+                    //,classRemove: 'b_n', //if not standart
+                    ,
             before: function(el) {
                 $(document).trigger('showActivity');
             },
@@ -109,7 +109,7 @@ $(document).on('scriptDefer', function() {
         $(genObj.pM).nStRadio({
             wrapper: $(".frame-radio > .frame-label"),
             elCheckWrap: '.niceRadio'
-        //,classRemove: 'b_n'//if not standart
+                    //,classRemove: 'b_n'//if not standart
         });
 
     $(document).on('beforeGetPayment.Cart', function(e) {
@@ -128,7 +128,7 @@ $(document).on('scriptDefer', function() {
             $(genObj.framePaymentMethod).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                        //,classRemove: 'b_n'//if not standart
             });
         }
 
@@ -146,8 +146,8 @@ function initOrderTrEv() {
             Order.getTotalPrice();
             Order.setDelivery();
             Order.setTotalPrice();
-            
-            if (!$.exists('.cart-product, .row-kits')){
+
+            if (!$.exists('.cart-product, .row-kits')) {
                 $('.pageCart').find(genObj.blockEmpty).show().end().find(genObj.blockNoEmpty).hide();
             }
         }
