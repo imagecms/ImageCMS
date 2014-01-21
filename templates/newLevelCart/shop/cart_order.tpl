@@ -1,3 +1,7 @@
+{if $gift_key}
+    <input type="hidden" name="gift" value="{echo $gift_key}"/>
+    <input type="hidden" name="gift_ord" value="1"/>
+{/if}
 <table class="table-order table-order-view">
     <tbody>
         {foreach $items as $item}
@@ -204,6 +208,7 @@
                 </td>
             </tr>
         {/if}
+        {var_dump($gift_error)}
         {if $gift_val}
             <tr>
                 <td>
@@ -222,7 +227,7 @@
                     <div class="clearfix">
                         <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
                         <div class="frame-gift f_r">
-                            
+
                             {if $gift_error}
                                 <div class="msg">
                                     <div class="error">

@@ -212,6 +212,7 @@
                                 <button type="button" class="d_l_1 editCart">{lang('Редактировать', 'newLevel')}</button>
                             </div>
                         </div>
+
                         <div id="orderDetails" class="p_r">
                             {include_tpl('cart_order')}
                         </div><!--End. orderdetails-->

@@ -88,6 +88,12 @@ $(document).on('scriptDefer', function() {
                     deliveryId: $('[name="deliveryMethodId"]:checked').val()
                 });
                 if (!start) {
+                    Shop.Cart.getTpl({
+                        ignoreWrap: '1',
+                        template: 'cart_order',
+                        gift: $('[name="gift"]').val(),
+                        deliveryId: $('[name="deliveryMethodId"]').val()
+                    });
                     var input = $(el).find('input');
                     Shop.Cart.getPayment(input.val(), input.data(), '');
                 }
