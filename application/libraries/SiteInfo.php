@@ -221,8 +221,8 @@ class SiteInfo {
     public function getFaviconLogoUrl($logoOrFavicon) {
         $path = $this->getFaviconLogoPath($this->templateName);
 
+        
         $fileData = $this->getSiteInfo($logoOrFavicon);
-
 
         if (!key_exists($this->templateName, $fileData) || empty($fileData)) {
             return '';
