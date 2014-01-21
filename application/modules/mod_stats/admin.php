@@ -26,10 +26,8 @@ class Admin extends \BaseAdminController {
     public function __construct() {
         parent::__construct();
 
-        $this->load('interfaces/ControllerBase' . EXT);
-        $this->load('interfaces/DynamicDiagramBase' . EXT);
-        $this->load('interfaces/StaticDiagramBase' . EXT);
-
+        $this->load('classes/ControllerBase' . EXT);
+      
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
                 ->registerScript('d3.v3')

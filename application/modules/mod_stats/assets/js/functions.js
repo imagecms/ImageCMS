@@ -6,7 +6,7 @@ var ChartData = new Object();
  * @param {string} link
  * @returns {array|Object.getPieData.returnResult}
  */
-ChartData.getPieData = function(link) {
+ChartData.getStaticData = function(link) {
     var returnResult = false;
     var getString = window.location.search;
     $.ajax({
