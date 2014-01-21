@@ -80,6 +80,7 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2bbce6', endColorstr='#1097d6',GradientType=0 ); /* IE6-9 */
 }
 .items-user-toolbar .btn-toggle-toolbar button{background-color: #0b92c1;}
+.frame-user-toolbar.active .items-user-toolbar .btn-toggle-toolbar button{background-color: transparent;}
 .items-user-toolbar button.show.activeUT{border-top: 1px solid #fff;-moz-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);-webkit-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);box-shadow: 0 -2px 5px rgba(0,0,0,0.3);}
 .drop-info{background-color: #fff;-moz-border-radius: 2px 2px 0 0;-webkit-border-radius: 2px 2px 0 0;border-radius: 2px 2px 0 0;-moz-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);-webkit-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);box-shadow: 0 -2px 5px rgba(0,0,0,0.3);}
 .text-wish-list, .text-compare-list, .text-view-list{color: #fff;}
