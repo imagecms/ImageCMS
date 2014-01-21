@@ -21,6 +21,8 @@
         framePaymentMethod: '#framePaymentMethod',
         dM: '[name = "deliveryMethodId"]',
         pM: '#paymentMethod',
+        gift: '[name="gift"]',
+        giftButton: '#giftButton',
         parentBtnBuy: '.globalFrameProduct',
         loginButton: '#loginButton',
         tinyCompareList: '.tinyCompareList',
@@ -33,13 +35,6 @@
         toWishlist: '.toWishlist',
         inWishlist: '.inWishlist',
         plurProd: '.plurProd',
-        finalAmount: '#finalAmount',
-        finalAmountAdd: '#finalAmountAdd',
-        priceDelivery: '#priceDelivery',
-        noPriceDelivery: '#noPriceDelivery',
-        frameDeliverySum: '#frameDeliverySum',
-        deliveryPirce: '#deliveryPirce',
-        deliveryPriceSumNextCS: '#deliveryPriceSumNextCS',
         popupCart: '#popupCart',
         showCartPopup: '#showCartPopup',
         editCart: '.editCart',
@@ -88,25 +83,25 @@
     {else:}
         {$cnt_comp = 0}
     {/if}
-    var curr = '{$CS}',
-    cartItemsIdJson = {echo json_encode($arrCartId)},
-    nextCs = '{echo $NextCS}',
-    nextCsCond = nextCs == '' ? false : true,
-    pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
-    checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
-    inServerCompare = parseInt("{$cnt_comp}"),
-    inServerWishList = parseInt("{$countWL}"),
-    countViewProd = parseInt("{$countSh}"),
-    theme = "{$THEME}",
-    siteUrl = "{echo site_url()}",
-    colorScheme = "{$colorScheme}",
-    isLogin = "{$is_logged_in}" === '1' ? true : false,
-    selectDeliv = false,
-    selectPayment = true,
-    selIcons = '[class*=icon_]',
-    preloader = '.preloader',
-    typePage = "{$CI->core->core_data['data_type']}",
-    selScrollPane = '.frame-scroll-pane .content-carousel';
+        var curr = '{$CS}',
+        cartItemsProductsId = {echo json_encode($arrCartId)},
+        nextCs = '{echo $NextCS}',
+        nextCsCond = nextCs == '' ? false : true,
+        pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
+        checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
+        inServerCompare = parseInt("{$cnt_comp}"),
+        inServerWishList = parseInt("{$countWL}"),
+        countViewProd = parseInt("{$countSh}"),
+        theme = "{$THEME}",
+        siteUrl = "{echo site_url()}",
+        colorScheme = "{$colorScheme}",
+        isLogin = "{$is_logged_in}" === '1' ? true : false,
+        selectDeliv = false,
+        selectPayment = false,
+        selIcons = '[class*=icon_]',
+        preloader = '.preloader',
+        typePage = "{$CI->core->core_data['data_type']}",
+        selScrollPane = '.frame-scroll-pane .content-carousel';
 
     {literal}
         text = {

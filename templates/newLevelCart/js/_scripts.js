@@ -158,7 +158,7 @@ function init() {
     $('.special-proposition').find(genObj.btnBuy).each(function() {
         ShopFront.Cart.processBtnBuyCount($(this).data('id'), 'remove', false);
     });
-    _.map(cartItemsIdJson, function(n, i) {
+    _.map(cartItemsProductsId, function(n, i) {
         ShopFront.Cart.processBtnBuyCount(n, 'add', false);
         Shop.Cart.getAmount(false, n);
     });
@@ -307,7 +307,7 @@ function init() {
         e.el.find('.special-proposition').find(genObj.btnBuy).each(function() {
             ShopFront.Cart.processBtnBuyCount($(this).data('id'), 'remove', false);
         });
-        _.map(cartItemsIdJson, function(n, i) {
+        _.map(cartItemsProductsId, function(n, i) {
             ShopFront.Cart.processBtnBuyCount(n, 'add', false);
         })
 

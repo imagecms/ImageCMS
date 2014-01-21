@@ -112,19 +112,17 @@ var Shop = {
             });
             return this;
         },
-        getPayment: function(id, obj, tpl) {
+        getPayment: function(id, tpl) {
             tpl = tpl ? tpl : '';
             $(document).trigger({
                 'type': 'beforeGetPayment.Cart',
                 'id': id,
-                'obj': obj,
                 'datas': tpl
             });
             $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
                 $(document).trigger({
                     'type': 'getPayment.Cart',
                     'id': id,
-                    'obj': obj,
                     'datas': data
                 });
             });
