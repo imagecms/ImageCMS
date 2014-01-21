@@ -7,7 +7,7 @@
     {$is_logged_in = 0}
     {$countWL = 0}
 {/if}
-{$cart = \Cart\BaseCart::getInstance()->getItems()}
+{$cart = \Cart\BaseCart::getInstance()->getItems('SProducts')}
 {if count($cart['data']) > 0}
     {foreach $cart['data'] as $item}
         {$arrCartId[] = $item->id}
