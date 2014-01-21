@@ -18,6 +18,7 @@
             
             <svg class="mypiechart pieChartStats" data-from="products/getCategoriesData"></svg>
             <svg class="mypiechart barChartStats" data-from="products/getCategoriesData"></svg>
+            <svg class="mypiechart lineWithFocusChartStats" data-from="products/getCategoriesData"></svg>
             <!--</div>-->
         </div>
     </div>
