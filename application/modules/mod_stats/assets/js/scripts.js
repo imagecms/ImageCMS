@@ -8,52 +8,105 @@ $(document).ready(function() {
         }
     });
 
+    // open first menu section
+    $("ul.left-menu-ul li:first-child a").trigger('click');
 
+    /**
+     * Find and draw Pie Chart
+     */
+    var pieChartBlocks = $('.pieChartStats');
+    if (pieChartBlocks.length) {
+        pieChartBlocks.each(function(index, el) {
+            nv.addGraph(function() {
+                var width = 800,
+                        height = 700;
 
+                var chart = nv.models.pieChart()
+                        .x(function(d) {
+                            return d.key
+                        })
+                        .y(function(d) {
+                            return d.y
+                        })
+                        .color(d3.scale.category10().range())
+                        .width(width)
+                        .height(height);
 
+                d3.select(el)
+                        .datum(ChartData.getPieData($(el).data('from')))
+                        .transition().duration(1200)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .call(chart);
 
-    /** Remove!!!!! **/
-    function myData() {
-        var series1 = [];
-        for (var i = 1; i < 100; i++) {
-            series1.push({
-                x: i, y: 100 / i
+                chart.dispatch.on('stateChange', function(e) {
+                    nv.log('New State:', JSON.stringify(e));
+                });
+
+                return chart;
             });
-        }
-
-        return [
-            {
-                key: "Series #1",
-                values: series1,
-                color: "#0000ff"
-            }
-        ];
+        });
     }
 
-    nv.addGraph(function() {
-        var chart = nv.models.lineChart();
+    /**
+     * Find and draw Bar Chart
+     */
+    var barChartBlocks = $('.barChartStats');
+    if (barChartBlocks.length) {
+        barChartBlocks.each(function(index, el) {
+            nv.addGraph(function() {
+                var chart = nv.models.discreteBarChart()
+                        .x(function(d) {
+                            return d.label
+                        })
+                        .y(function(d) {
+                            return d.value
+                        })
+                        .staggerLabels(true)
+                        .tooltips(false)
+                        .showValues(true)
 
-        chart.xAxis
-                .axisLabel("X-axis Label");
+                d3.select(el)
+                        .datum(convertDataForPieToBarChart(ChartData.getPieData($(el).data('from'))))
+                        .transition().duration(500)
+                        .call(chart);
 
-        chart.yAxis
-                .axisLabel("Y-axis Label")
-                .tickFormat(d3.format("d"))
-                ;
+                nv.utils.windowResize(chart.update);
 
-        d3.select("svg")
-                .datum(myData())
-                .transition().duration(500).call(chart);
+                return chart;
+            });
+        });
+    }
 
-        nv.utils.windowResize(
-                function() {
-                    chart.update();
-                }
-        );
 
-        return chart;
-    });
-    /** ***/
+
+
+
+
+
+
+    /*** REMOVE!!!!!!!!!!!!!! **/
+    function convertDataForPieToBarChart(data) {
+        var inputData = data;
+        var chartDataForReturn = [];
+        var tmpData = {};
+        tmpData.values = [];
+        if (inputData === undefined) {
+            return 'false';
+        }
+
+        $.each(inputData, function(index, value) {
+            var stepObj = {};
+            stepObj.label = value.key;
+            stepObj.value = value.y;
+            tmpData.values.push(stepObj);
+        });
+        tmpData.key = 'Bar data';
+        chartDataForReturn.push(tmpData);
+        return chartDataForReturn;
+    }
+    /***********************/
+
 
 
 

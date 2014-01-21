@@ -3,7 +3,7 @@
     <div class="container">
         <div class="f-s_0 title-cart without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{lang('Список желаний','newLevel')}</h1>
+                <h1 class="title">{lang('Список желаний','newLevel')}</h1>
             </div>
         </div>
         {if $errors}

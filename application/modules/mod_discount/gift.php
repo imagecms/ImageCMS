@@ -88,15 +88,16 @@ class Gift extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_gift_certificate_new($key = null, $totalPrice = null, $order = null) {
+        $cart = \Cart\BaseCart::getInstance();  
+        $aplyGift = false;
         if ($totalPrice === null)
             $totalPrice = $this->get_total_price_new();
-        $aplyGift = false;
         if (null === $key)
             $key = strip_tags(trim($_GET['key']));
         foreach ($this->discount_type['all_order'] as $disc)
             if ($disc['key'] == $key and $disc['is_gift']) {
                 $value = $this->get_discount_value($disc, $totalPrice);
-                $cart = \Cart\BaseCart::getInstance();                
+                              
                 $cart->gift_info = $disc['key'];
                 $cart->gift_value = $value;
                 $cart->recountOriginTotalPrice();
@@ -107,11 +108,12 @@ class Gift extends \mod_discount\classes\BaseDiscount {
 
                 break;
             }
-       if (!$aplyGift){
-           $cart = \Cart\BaseCart::getInstance();
-           $cart->gift_error = true;
-       }
-           
+
+        if (!$aplyGift)
+            $cart->gift_error = TRUE;
+            
+        
+
     }
 
     /**

@@ -6,7 +6,10 @@
  */
 interface StaticDiagramInterface {
 
-    public function getData();
+    /**
+     * @return array
+     */
+    public function getStaticData();
 }
 
 ?>
