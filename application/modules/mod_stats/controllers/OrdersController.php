@@ -32,6 +32,10 @@ class OrdersController extends ControllerBase {
 
         $this->controller->load('classes/DynamicChartData.php');
         $dynamicChartData = new DynamicChartData;
+//        echo '<pre>';
+//        print_r($dynamicChartData->processData($result));
+//        echo '</pre>';
+//        exit;
         echo json_encode($dynamicChartData->processData($result));
     }
 

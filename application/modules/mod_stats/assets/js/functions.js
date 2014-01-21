@@ -6,7 +6,8 @@ var ChartData = new Object();
  * @param {string} link
  * @returns {array|Object.getPieData.returnResult}
  */
-ChartData.getPieData = function(link) {
+ChartData.getData = function(link) {
+    $('#fixPage').fadeIn(100);
     var returnResult = false;
     var getString = window.location.search;
     $.ajax({
@@ -21,6 +22,7 @@ ChartData.getPieData = function(link) {
                     return 'error parsing jsone';
                 }
             }
+            $('#fixPage').fadeOut(100);
         }
     });
     return returnResult;
