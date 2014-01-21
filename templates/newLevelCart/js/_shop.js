@@ -14,13 +14,8 @@ if (!Array.indexOf) {
 var Shop = {
     Cart: {
         baseUrl: siteUrl + 'shop/cart/api/',
-        totalPrice: 0,
-        totalPriceAdd: 0,
-        shipping: {
-            freeFrom: 0,
-            price: 0,
-            sumSpec: 0,
-            sumSpecMes: ""
+        xhr: {
+            
         },
         add: function(obj, id, kit) {
             var method = kit ? 'addKit' : 'addProductByVariantId';
@@ -29,7 +24,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            $.ajax({
+            if (Shop.Cart.xhr['add'+id])
+                Shop.Cart.xhr['add'+id].abort();
+            Shop.Cart.xhr['add'+id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': obj,
@@ -52,7 +49,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            $.getJSON(this.baseUrl + method + '/' + id, function(data) {
+            if (Shop.Cart.xhr['remove'+id])
+                Shop.Cart.xhr['remove'+id].abort();
+            Shop.Cart.xhr['remove'+id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
                 $(document).trigger({
                     'type': 'remove.Cart',
                     'datas': data,
@@ -68,7 +67,9 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            $.ajax({
+            if (Shop.Cart.xhr['amount'+id])
+                Shop.Cart.xhr['amount'+id].abort();
+            Shop.Cart.xhr['amount'+id] = $.ajax({
                 'type': 'post',
                 'url': this.baseUrl + 'getAmountInCart',
                 'data': {
@@ -94,7 +95,9 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            $.ajax({
+            if (Shop.Cart.xhr['count'+id])
+                Shop.Cart.xhr['count'+id].abort();
+            Shop.Cart.xhr['count'+id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': {
@@ -119,7 +122,9 @@ var Shop = {
                 'id': id,
                 'datas': tpl
             });
-            $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
+            if (Shop.Cart.xhr['payment'])
+                Shop.Cart.xhr['payment'].abort();
+            Shop.Cart.xhr['payment'] = $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
                 $(document).trigger({
                     'type': 'getPayment.Cart',
                     'id': id,
@@ -134,7 +139,9 @@ var Shop = {
                 'obj': obj,
                 'objF': objF
             });
-            $.ajax({
+            if (Shop.Cart.xhr[obj.template])
+                Shop.Cart.xhr[obj.template].abort();
+            Shop.Cart.xhr[obj.template] = $.ajax({
                 'type': 'post',
                 'url': siteUrl + 'shop/cart',
                 'data': obj,
@@ -242,18 +249,18 @@ if (typeof (wishList) != 'object')
             } catch (err) {
                 return [];
             }
-    },
-    sync: function() {
-        $.get('/wishlist/wishlistApi/sync', function(data) {
-            localStorage.setItem('wishList', data);
-            $(document).trigger({
-                'type': 'wish_list_sync',
-                dataObj: data
-            });
-            returnMsg("=== WishList sync. call wish_list_sync ===");
-        })
+        },
+        sync: function() {
+            $.get('/wishlist/wishlistApi/sync', function(data) {
+                localStorage.setItem('wishList', data);
+                $(document).trigger({
+                    'type': 'wish_list_sync',
+                    dataObj: data
+                });
+                returnMsg("=== WishList sync. call wish_list_sync ===");
+            })
+        }
     }
-}
 /**
  * AuthApi ajax client
  * Makes simple request to api controllers and get return data in json
@@ -327,9 +334,9 @@ var ImageCMSApi = {
                             form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
                             });
-                        if (DS.hideForm)
-                            form.show();
-                    }), DS.durationHideForm);
+                            if (DS.hideForm)
+                                form.show();
+                        }), DS.durationHideForm);
 
                     setTimeout(function() {
                         if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))

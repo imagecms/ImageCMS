@@ -204,14 +204,12 @@
                                             { */}
                                     </td>
                                     <td>
-                                        <div class="gen-sum-row">
-                                            <span class="s-t d_b">{lang('Кол-во','newLevel')}:</span>
-                                            <span class="count">{echo $orderProduct->getQuantity()}</span>
-                                            <span class="s-t">{lang('шт','newLevel')}.</span>
-                                        </div>
+                                        <div class="count-or-compl">{lang('Кол-во','newLevel')}:</div>
+                                        <span class="plus-minus">{echo $orderProduct->getQuantity()}</span>
+                                        <span class="text-el">{lang('шт','newLevel')}.</span>
                                     </td>
-                                    <td>
-                                        <span class="s-t d_b">{lang('Сумма','newLevel')}:</span>
+                                    <td class="frame-cur-sum-price">
+                                        <span class="title">{lang('Сумма','newLevel')}:</span>
                                         <span class="frame-prices">
                                             <span class="current-prices f-s_0">
                                                 <span class="price-new">
@@ -326,14 +324,12 @@
                                         </ul>
                                     </td>
                                     <td>
-                                        <div class="gen-sum-row">
-                                            <span class="s-t d_b">{lang('Кол-во','newLevel')}:</span>
-                                            <span class="count">{echo $orderProduct->getQuantity()}</span>
-                                            <span class="s-t">{lang('шт','newLevel')}.</span>
-                                        </div>
+                                        <div class="count-or-compl">{lang('Кол-во','newLevel')}:</div>
+                                        <span class="plus-minus">{echo $orderProduct->getQuantity()}</span>
+                                        <span class="text-el">{lang('шт','newLevel')}.</span>
                                     </td>
-                                    <td>
-                                        <span class="s-t">{lang('Сумма','newLevel')}:</span>
+                                    <td class="frame-cur-sum-price">
+                                        <span class="title">{lang('Сумма','newLevel')}:</span>
                                         <span class="frame-prices">
                                             <span class="price-discount">
                                                 <span>
@@ -365,6 +361,7 @@
                             {/foreach}
                         </tbody>
                         <tfoot class="gen-info-price">
+                            {$cartPrice = $model->gettotalprice()}
                             {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
 
                             {if $discount}
@@ -372,7 +369,7 @@
                                     <td colspan="2">
                                         <span class="s-t">{lang('Начальная стоимость товаров','newLevel')}</span>
                                     </td>
-                                    <td>
+                                    <td class="frame-cur-sum-price">
                                         <span class="price-new">
                                             <span>
                                                 <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
@@ -386,7 +383,7 @@
                                 <td colspan="2">
                                     <span class="s-t">{lang('Cтоимость товаров','newLevel')}</span>
                                 </td>
-                                <td>
+                                <td class="frame-cur-sum-price">
                                     <span class="price-new">
                                         <span>
                                             <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->gettotalprice())}</span>
@@ -395,19 +392,34 @@
                                     </span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
-                                </td>
-                                <td>
-                                    <span class="price-item">
-                                        <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
-                                            <span class="curr">{$CS}</span>
-                                        </span>
-                                    </span>
-                                </td>
-                            </tr>
+                            {$deliveryMethod = $model->getSDeliveryMethods()}
+                            {if $deliveryMethod}
+                                <tr>
+                                    <td colspan="2">
+                                        <span class="s-t">{lang('Доставка','newLevel')}:</span>
+                                    </td>
+                                    <td class="w-s_n-w">
+                                        {if !$deliveryMethod->getDeliverySumSpecified()}
+                                            {$priceDel = $deliveryMethod->getPrice()}
+                                            {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
+                                            {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
+
+                                            {if $cartPrice < $priceDelFreeFrom}
+                                                {$cartPrice += $priceDel}
+                                                <span class="price f-w_b">{echo $priceDel}</span>
+                                                <span class="curr">{$CS}</span>
+                                                (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                                <span class="curr-add">{$NextCS}</span>)
+                                                <span class="not-delivery-price"></span>
+                                            {else:}
+                                                <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
+                                            {/if}
+                                        {else:}
+                                            <span class="text-el s-t">{echo $deliveryMethod->getDeliverySumSpecifiedMessage()}</span>
+                                        {/if}
+                                    </td>
+                                </tr>
+                            {/if}
                             {if $discount}
                                 <tr>
                                     <td colspan="2">
@@ -416,7 +428,10 @@
                                     <td>
                                         <span class="price-item">
                                             <span>
-                                                <span class="text-discount current-discount">{echo $discount} <span class="curr">{$CS}</span></span>
+                                                <span class="text-discount current-discount">
+                                                    <span class="price f-w_b">{echo $discount}</span>
+                                                    <span class="curr">{$CS}</span>
+                                                </span>
                                             </span>
                                         </span>
                                     </td>
@@ -455,14 +470,15 @@
                             <span class="current-prices f-s_0">
                                 <span class="price-new">
                                     <span>
-                                        <span class="price">{echo $model->gettotalprice() + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
+                                        <span class="price">{echo $cartPrice}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>
                                 {if $NextCSIdCond}     
                                     <span class="price-add">
                                         <span>
-                                            (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId) + ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice(),$NextCSId)}</span>                                            <span class="curr-add">{$NextCS}</span>)
+                                            (<span class="price" id="totalPriceAdd">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice,$NextCSId)}</span>
+                                            <span class="curr-add">{$NextCS}</span>)
                                         </span>
                                     </span>
                                 {/if}
