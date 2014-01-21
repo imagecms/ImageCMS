@@ -140,7 +140,7 @@ var Order = {
                 }
             });
             e.preventDefault();
-        })
+        });
         $('#giftInput').keydown(function(e) {
             if (e.keyCode == 13) {
                 $('#giftButton').trigger('click')

@@ -45,7 +45,7 @@ function init() {
 
         try {
             var fAS = $('.frame-already-show'),
-                    zInd = parseFloat(fAS.data('drp').dropOver.css('z-index'));
+            zInd = parseFloat(fAS.data('drp').dropOver.css('z-index'));
             fAS.prev().css('z-index', zInd + 3).closest('.frame-user-toolbar').css('z-index', zInd + 1);
         } catch (err) {
         }
@@ -60,7 +60,7 @@ function init() {
             drop.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-                        //,classRemove: 'b_n'//if not standart
+            //,classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(drop.find('[onsubmit*="ImageCMSApi"]')) || drop.is('#sendMail')) {
@@ -118,7 +118,7 @@ function init() {
     showHidePart($('.patch-product-view'));
     showHidePart($('.frame-list-comments.sub-2'));
     var userTool = new itemUserToolbar(),
-            btnToUp = $('.btn-to-up');
+    btnToUp = $('.btn-to-up');
     btnToUp.click(function() {
         $("html, body").animate({
             scrollTop: "0"
@@ -158,9 +158,13 @@ function init() {
     $('.special-proposition').find(genObj.btnBuy).each(function() {
         ShopFront.Cart.processBtnBuyCount($(this).data('id'), 'remove', false);
     });
-    _.map(cartItemsIdJson, function(n, i) {
+    _.map(cartItemsProductsId, function(n, i) {
         ShopFront.Cart.processBtnBuyCount(n, 'add', false);
+        Shop.Cart.getAmount(false, n);
     });
+    doc.on('getAmount.Cart', function(e) {
+        ShopFront.Cart.processBtnBuyCount(e.id, 'change', false, e.datas);
+    });    
 
     doc.on('beforeGetTpl.Cart', function(e) {
         if (e.obj.template == 'cart_popup' && !$(genObj.popupCart).is(':visible'))
@@ -168,27 +172,27 @@ function init() {
     });
     doc.on('getTpl.Cart', function(e) {
         var popup = $(genObj.popupCart),
-                tinyBask = $(genObj.tinyBask);
+        tinyBask = $(genObj.tinyBask);
 
         if (e.obj.template === 'cart_popup') {
             popup.empty().html(e.datas);
-            ShopFront.Cart.baskChangeCount(popup.find(genObj.plusMinus));
-            drawIcons(popup.find(selIcons));
-
-            if ($.exists(global.baskInput)) {
-                var input = $(global.baskInput);
-                input.setCursorPosition(input.val().length);
-                global.baskInput = null;
-            }
+            
             if (popup.is(':visible')) {
                 popup.drop('limitSize');
                 popup.drop('heightContent');
                 popup.drop('center');
             }
-
-            if (e.objF.show) {
-                drawIcons(popup.find(selIcons));
+            
+            if (e.objF.show)
                 $(genObj.showCartPopup).drop('open');
+            
+            drawIcons(popup.find(selIcons));
+            ShopFront.Cart.baskChangeCount(popup.find(genObj.plusMinus));
+
+            if ($.exists(global.baskInput)) {
+                var input = $(global.baskInput);
+                input.setCursorPosition(input.val().length);
+                global.baskInput = null;
             }
         }
         if (e.obj.template === 'cart_data') {
@@ -200,8 +204,10 @@ function init() {
         Shop.Cart.getTpl({
             ignoreWrap: '1',
             template: 'cart_popup'
-        }, {show: true,
-            type: e.type});
+        }, {
+            show: true,
+            type: e.type
+        });
     });
 
     doc.on('beforeAdd.Cart', function(e) {
@@ -212,6 +218,7 @@ function init() {
     });
     doc.on('сhange.Cart', function(e) {
         global.baskInput = '#inputChange' + e.id;
+        ShopFront.Cart.processBtnBuyCount(e.id, 'change', e.kit, e.count);
     });
     doc.on('add.Cart', function(e) {
         ShopFront.Cart.processBtnBuyCount(e.id, 'add', e.kit);
@@ -221,7 +228,8 @@ function init() {
             template: 'cart_popup'
         }, {
             show: true,
-            type: e.type});
+            type: e.type
+        });
         Shop.Cart.getTpl({
             ignoreWrap: '1',
             template: 'cart_data'
@@ -260,7 +268,7 @@ function init() {
     });
     $(genObj.parentBtnBuy).on('click.inCompare', '.' + genObj.inCompare, function() {
         var pN = window.location.pathname,
-                tab;
+        tab;
 
         if (/category|product/.test(pN)) {
             if (pN.indexOf('category') !== -1)
@@ -300,7 +308,7 @@ function init() {
         e.el.find('.special-proposition').find(genObj.btnBuy).each(function() {
             ShopFront.Cart.processBtnBuyCount($(this).data('id'), 'remove', false);
         });
-        _.map(cartItemsIdJson, function(n, i) {
+        _.map(cartItemsProductsId, function(n, i) {
             ShopFront.Cart.processBtnBuyCount(n, 'add', false);
         })
 

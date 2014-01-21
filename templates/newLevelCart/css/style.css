@@ -24,7 +24,7 @@ hr{border:0;width: 100%;display: block;margin: 0;}
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section{display: block;}
 .main-body{min-height: 100%;margin: 0 auto;overflow: hidden;}
 
-article, .container, .special-proposition > .frame-title{margin: 0 auto;clear: both;}
+article, .container, .special-proposition .title-proposition-h{margin: 0 auto;clear: both;}
 .big-container{margin: 0 auto;}
 .main-body > .content{position: relative;z-index: 1;}
 .main-body > .vertical-layout .content{position: relative;z-index: 1;}
@@ -33,7 +33,7 @@ article, .container, .special-proposition > .frame-title{margin: 0 auto;clear: b
 /*/base scaffolding*/
 
 body, .overlayDrop{min-width: 960px;}
-article, .container, .special-proposition > .frame-title{max-width: 980px;}
+article, .container, .special-proposition .title-proposition-h{max-width: 980px;}
 .container{padding: 0 10px;}
 .big-container{max-width: 1125px;}
 
@@ -113,6 +113,9 @@ a{cursor: pointer;}
 
 .preloader{min-height: 35px;width: 100%;}
 .baner .preloader, .p_r .preloader, .frame-tabs-ref .preloader{position: absolute;left: 0;top: 0;height: 100%;z-index: 10000;}
+
+[class*="title-"] .frame-title{display: inline;font-size: 0;margin-right: 5px;}
+.frame-title .title{display: inline;}
 /*/base settings*/
 
 /*base icons*/
@@ -306,7 +309,6 @@ input.input-search{height: 33px;}
 .drop-search .msg{padding: 10px 25px 15px;margin-bottom: 0;}
 /*/header*/
 
-[class*="title-"] .frame-title{font-size: 0;display: inline;margin-right: 5px;}
 /*items*/
 .frame-variant-name-code{margin-bottom: 5px;display: block;}
 .frame-variant-code, .frame-variant-name{}
@@ -369,7 +371,7 @@ input.input-search{height: 33px;}
 .items-news a{display: block;margin-bottom: 6px;}
 .items-news .date{display: block;margin-bottom: 2px;}
 .frame-news{padding-top: 6px;}
-.frame-news .frame-title{margin-bottom: 13px;}
+.frame-news .title-news{margin-bottom: 13px;}
 .frame-news .frame-title .title{margin-right: 7px;}
 
 .items-search-autocomplete > li{width: 100%;}
@@ -511,16 +513,15 @@ input.input-search{height: 33px;}
 
 .items-catalog > li{position:relative;width: 215px;margin: 0 0 54px 42px;}
 .carousel-js-css .items-h-carousel > li{margin: 0 44px 0 0;}
-.items-h-carousel > li{width: 212px !important;}
+.items-h-carousel > li{width: 212px !important;margin-bottom: 30px;}
 .vertical-layout .items-h-carousel > li{width: 210px !important;}
 
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin-left: 44px;margin-right: 0;margin-bottom: 0;}
 
 .special-proposition{margin-bottom: 40px;}
 .vertical-carousel .special-proposition{margin-bottom: 0;}
-.special-proposition > .frame-title{margin-bottom: 24px;overflow: hidden;}
-.vertical-layout .horizontal-carousel .special-proposition > .frame-title{padding-top: 13px;}
-.vertical-carousel .special-proposition > .frame-title{margin-bottom: 0;}
+.special-proposition .title-proposition-h{margin-bottom: 24px;overflow: hidden;}
+.vertical-carousel .special-proposition > .title-proposition-h{margin-bottom: 0;}
 .frame-view-products{padding: 35px 0 43px;}
 
 .items-v-carousel{margin-left: 0;}
@@ -536,8 +537,8 @@ input.input-search{height: 33px;}
 
 .frame-brands{margin-bottom: 36px;}
 .frame-brands .content-carousel{margin: 0 10px 0 15px;padding: 2px 0;}
-.frame-brands .frame-title{position: relative;z-index: 3;}
-.frame-brands .frame-title > .title{position: absolute;top: -14px;left: 13px;}
+.frame-brands .title-brand-w{position: relative;z-index: 3;}
+.frame-brands .frame-title{position: absolute;top: -14px;left: 17px;}
 
 .frame-baner{position: relative;overflow: hidden;}
 .frame-baner-start_page{padding: 15px 0 35px;}
@@ -769,7 +770,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .check-variant-delivery .lineForm, .check-variant-payment .lineForm{width: 100%;}
 .check-variant-delivery .niceRadio{top: 3px;}
 .check-variant-payment .preloader{display: none;z-index: 2;}
-.frame-payment-method{position: relative;z-index: 1;}
+.frame-payment{min-height: 36px;}
 .check-variant-product {margin-bottom: 19px;}
 .check-variant-product .title{display: inline;vertical-align: middle;}
 .frame-count-onpage .lineForm{width: 78px;}
@@ -968,12 +969,14 @@ li.clear-pag-item{margin: 0 14px 4px;}
 td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right: 10px;}
 .frame-cur-sum-price .frame-prices{padding-bottom: 0;}
 .frame-cur-sum-price .price-new{margin-bottom: 5px;}
-.count-or-compl{display: block;margin-bottom: 3px;}
 .frame-variant-code{display: none !important;}
+.count-or-compl{display: block;margin-bottom: 3px;}
+.frame-cur-sum-price .title{display: block;margin-bottom: 3px;}
 
 /*drop-bask*/
 .drop-bask{max-width: 854px;width: 90%;}
 .drop-bask .drop-content .inside-padd{padding: 0;}
+.drop-bask .drop-content.is-empty .inside-padd{padding: 24px 43px 24px 24px;}
 .table-order, .table-order table{table-layout: auto;}
 .frame-foot .table-order{table-layout: fixed;}
 .drop-bask .drop-header{text-align: left;}
@@ -984,7 +987,6 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .row-kits .frame-count, .row-kits .frame-cur-sum-price{vertical-align: top;}
 .row-kits .frame-items{width: 555px;}
 .drop-bask .row-kits .count-or-compl{display: block;}
-.frame-cur-sum-price .title{display: block;margin-bottom: 5px;}
 .table-order > tbody > tr > td{padding-top: 20px;padding-bottom: 20px;vertical-align: top;}
 .table-order .frame-items{padding-left: 20px;}
 .table-order > tbody > tr > td.frame-cur-sum-price {padding-left: 10px;padding-right: 10px;}
@@ -1022,17 +1024,16 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .right-order{margin-bottom: 30px;}
 .number-order{margin-left: 7px;}
 .items-order .description > .frame-prices{padding-bottom: 2px;padding-top: 0;display: block;}
-.items-order td{padding-left: 20px;}
-.frame-items-kit .gen-sum-row{text-align: center;margin: 5px 0 15px;}
-.frame-items-kit .gen-sum-row img{margin-bottom: 20px;}
+.items-order td{padding-left: 10px;}
 .right-order .header-frame-foot > .inside-padd{padding-left: 30px;}
 .frame-payment{margin-bottom: 13px;}
 .table-info-order{margin-bottom: 35px;}
 .table-info-order td, .table-info-order th{padding: 3px 0;}
+.table-info-order td{padding-left: 5px;}
 .table-info-order hr{margin: 17px 0;}
 .gen-info-price td{padding: 15px 20px;border-top: 1px solid #eae5e1;vertical-align: middle;}
 .gen-info-price .price-new{margin-right: 0;}
-.frame-bask-order .table-order td{text-align: right;padding-right: 15px;}
+.frame-bask-order .table-order td{text-align: right;padding-right: 10px;}
 .frame-bask-order .frame-cur-sum-price [class*="price-"]{margin-right: 0;display: block;line-height: 1;}
 .frame-bask-order .table-order td:first-child{text-align: left;}
 /*/order-view*/
