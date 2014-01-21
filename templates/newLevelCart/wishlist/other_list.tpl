@@ -29,7 +29,7 @@
             <div class="right-wishlist">
                 <div class="f-s_0 without-crumbs-side">
                     <div class="frame-title">
-                        <h1 class="d_i">{$wishlist[0][title]}</h1>
+                        <h1 class="title">{$wishlist[0][title]}</h1>
                     </div>
                 </div>
                 <div class="text">
@@ -53,7 +53,7 @@
         {else:}
             <div class="f-s_0 without-crumbs-side">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Список желаний','newLevel')}</h1>
+                    <h1 class="title">{lang('Список желаний','newLevel')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">

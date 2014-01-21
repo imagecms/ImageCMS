@@ -43,8 +43,9 @@ class Admin extends \BaseAdminController {
             $this->assetManager->setData('queryString', '?' . $_SERVER['QUERY_STRING']);
         }
         // passing to template array with menu structure
-        $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
+        $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
         $this->assetManager->setData('leftMenu', $leftMenu);
+        $this->assetManager->setData('saveSearchResults', \mod_stats\classes\AdminHelper::create()->getSetting('save_search_results'));
     }
 
     public function index() {
@@ -69,6 +70,10 @@ class Admin extends \BaseAdminController {
     }
 
     public function search() {
+        $this->runControllerAction(__FUNCTION__, func_get_args());
+    }
+
+    public function adminAdd() {
         $this->runControllerAction(__FUNCTION__, func_get_args());
     }
 
