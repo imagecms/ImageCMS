@@ -82,6 +82,12 @@ $(document).on('scriptDefer', function() {
             },
             after: function(el, start) {
                 if (!start) {
+                    Shop.Cart.getTpl({
+                        ignoreWrap: '1',
+                        template: 'cart_order',
+                        gift: $('[name="gift"]').val(),
+                        deliveryMethodId: $('[name="deliveryMethodId"]:checked').val()
+                    });
                     var input = $(el).find('input');
                     Shop.Cart.getPayment(input.val(), input.data(), '');
                 }

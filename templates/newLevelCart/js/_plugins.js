@@ -1993,7 +1993,7 @@ function getCookie(c_name)
                                 datas: data
                             });
                             methods._show(el, e, true, set, data);
-                            methods.init(drop.find('[data-drop]:not(.isDrop)'));
+                            methods.init.call(drop.find('[data-drop]:not(.isDrop)'));
                         }
                     }
                 });
@@ -2623,7 +2623,7 @@ function getCookie(c_name)
                                 else
                                     input.val(inputVal + step);
                                 if (inputVal + step === max && checkProdStock) {
-                                    $thisNext.attr('disabled', 'disabled');
+                                    el.attr('disabled', 'disabled');
                                 }
                                 settings.after(e, el, input, 'next');
                             }
@@ -2644,7 +2644,7 @@ function getCookie(c_name)
                                 else if (inputVal > parseFloat(min || 1)) {
                                     input.val(inputVal - step);
                                     if (inputVal - step === min && checkProdStock)
-                                        $thisPrev.attr('disabled', 'disabled');
+                                        el.attr('disabled', 'disabled');
                                 }
 
                                 settings.after(e, el, input, 'prev');

@@ -25,7 +25,7 @@
             <div class="f-s_0 title-product">
                 <!-- Start. Name product -->
                 <div class="frame-title">
-                    <h1 class="d_i title">{echo  ShopCore::encode($model->getName())}</h1>
+                    <h1 class="title">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
                 <!-- End. Name product -->
                 <!-- Start. article & variant name & brand name -->

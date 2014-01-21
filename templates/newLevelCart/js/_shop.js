@@ -68,13 +68,21 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            $.getJSON(this.baseUrl + 'getAmountInCart/' + kit ? 'ShopKit' : 'SProducts' + '/' + id, function(data) {
-                $(document).trigger({
-                    'type': 'getAmount.Cart',
-                    'kit': kit,
+            $.ajax({
+                'type': 'post',
+                'url': this.baseUrl + 'getAmountInCart',
+                'data': {
                     'id': id,
-                    'datas': data
-                });
+                    'instance': kit ? 'ShopKit' : 'SProducts'
+                },
+                success: function(data){
+                    $(document).trigger({
+                        'type': 'getAmount.Cart',
+                        'kit': kit,
+                        'id': id,
+                        'datas': data
+                    });
+                }
             });
             return this;
         },
@@ -129,7 +137,7 @@ var Shop = {
                 'objF': objF
             });
             $.ajax({
-                'type': 'get',
+                'type': 'post',
                 'url': siteUrl + 'shop/cart',
                 'data': obj,
                 success: function(data) {
@@ -145,7 +153,7 @@ var Shop = {
         },
         composeCartItem: function($context) {
             var cartItem = {},
-                    data = $context.data();
+            data = $context.data();
             for (var i in data)
                 cartItem[i] = data[i]
             return cartItem;
@@ -236,18 +244,18 @@ if (typeof (wishList) != 'object')
             } catch (err) {
                 return [];
             }
-        },
-        sync: function() {
-            $.get('/wishlist/wishlistApi/sync', function(data) {
-                localStorage.setItem('wishList', data);
-                $(document).trigger({
-                    'type': 'wish_list_sync',
-                    dataObj: data
-                });
-                returnMsg("=== WishList sync. call wish_list_sync ===");
-            })
-        }
+    },
+    sync: function() {
+        $.get('/wishlist/wishlistApi/sync', function(data) {
+            localStorage.setItem('wishList', data);
+            $(document).trigger({
+                'type': 'wish_list_sync',
+                dataObj: data
+            });
+            returnMsg("=== WishList sync. call wish_list_sync ===");
+        })
     }
+}
 /**
  * AuthApi ajax client
  * Makes simple request to api controllers and get return data in json
@@ -321,9 +329,9 @@ var ImageCMSApi = {
                             form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
                             });
-                            if (DS.hideForm)
-                                form.show();
-                        }), DS.durationHideForm);
+                        if (DS.hideForm)
+                            form.show();
+                    }), DS.durationHideForm);
 
                     setTimeout(function() {
                         if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
@@ -353,9 +361,9 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                                form = $this.closest('form'),
-                                $thisТ = $this.attr('name'),
-                                elMsg = form.find('[for=' + $thisТ + ']');
+                        form = $this.closest('form'),
+                        $thisТ = $this.attr('name'),
+                        elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.remove();
