@@ -182,8 +182,8 @@
             <td colspan="2">
                 <span class="s-t">{lang('Доставка','newLevel')}:</span>
             </td>
-            {var_dump($currentDeliveryMethod->getName())}
             <td class="w-s_n-w" id="frameDeliverySum">
+                {var_dump($deliveryMethod)}
                 <span id="priceDelivery">
                     <span class="price f-w_b" id="deliveryPirce">0</span>
                     <span class="curr">{$CS}</span>
@@ -208,7 +208,6 @@
                 </td>
             </tr>
         {/if}
-        {var_dump($gift_error)}
         {if $gift_val}
             <tr>
                 <td>
