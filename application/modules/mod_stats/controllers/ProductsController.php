@@ -21,6 +21,7 @@ class ProductsController extends ControllerBase {
     }
 
     public function getCategoriesData() {
+       
         $brands = $this->controller->products_model->getBrandsCountsData();
 
         // data for pie diagram

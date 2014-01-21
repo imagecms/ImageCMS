@@ -27,8 +27,6 @@ class Admin extends \BaseAdminController {
         parent::__construct();
 
         $this->load('classes/ControllerBase' . EXT);
-        
-
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
                 ->registerScript('d3.v3')
@@ -45,6 +43,7 @@ class Admin extends \BaseAdminController {
         $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
         $this->assetManager->setData('leftMenu', $leftMenu);
         $this->assetManager->setData('saveSearchResults', \mod_stats\classes\AdminHelper::create()->getSetting('save_search_results'));
+        $this->assetManager->setData('saveUsersAttendance', \mod_stats\classes\AdminHelper::create()->getSetting('save_users_attendance'));
     }
 
     public function index() {
