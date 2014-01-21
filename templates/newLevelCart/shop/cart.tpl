@@ -27,7 +27,7 @@
                         {/if}
                     </div>
                 </div>
-                <form method="post" action="{$BASE_URL}shop/cart" class="clearfix">
+                <form method="post" action="{$BASE_URL}shop/order/make_order" class="clearfix">
                     <div class="left-cart">
                         <div class="horizontal-form order-form big-title">
                             {if $errors}
@@ -176,8 +176,6 @@
                     </div><!--End. orderdetails-->
                 </div>
             </div>
-            <input type="hidden" name="makeOrder" value="1">
-            <input type="hidden" name="checkCert" value="0">
             {form_csrf()}
             </form>
         </div>

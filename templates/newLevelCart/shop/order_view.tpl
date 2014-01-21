@@ -369,7 +369,7 @@
                         <tfoot class="gen-info-price">
                             {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
                             
-                            {if $discount || $sumKit != 0}
+                            {if $discount}
                                 <tr>
                                     <td colspan="2">
                                         <span class="s-t">{lang('Начальная стоимость товаров','newLevel')}</span>
@@ -384,7 +384,7 @@
                                     </td>
                                 </tr>
                             {/if}
-                            {if $model->getOriginPrice()}
+                            {if $model->gettotalprice()}
                                 <tr>
                                     <td colspan="2">
                                         <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
@@ -392,7 +392,7 @@
                                     <td>
                                         <span class="price-new">
                                             <span>
-                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
+                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->gettotalprice())}</span>
                                                 <span class="curr">{$CS}</span>
                                             </span>
                                         </span>
@@ -413,7 +413,7 @@
                                 </td>
                             </tr>
 
-                            {if $discount || $sumKit != 0}
+                            {if $discount}
                                 <tr>
                                     <td colspan="2">
                                         <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
@@ -421,7 +421,7 @@
                                     <td>
                                         <span class="price-item">
                                             <span>
-                                                <span class="text-discount current-discount">{echo $discount + $sumKit} <span class="curr">{$CS}</span></span>
+                                                <span class="text-discount current-discount">{echo $discount} <span class="curr">{$CS}</span></span>
                                             </span>
                                         </span>
                                     </td>
