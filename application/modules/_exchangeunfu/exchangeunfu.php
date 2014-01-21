@@ -862,15 +862,15 @@ class Exchangeunfu extends MY_Controller {
         if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
             $region = $this->db->limit(1)->select(array('external_id'))->where('id', $_COOKIE['region'])->get('mod_exchangeunfu_partners')->result_array();
 
-     if(count($region) > 0)             
-            return $region[0]['external_id'];
-        else {
-             $region = $this->db
-                            ->limit(1)
-                            ->select(array('external_id'))
-                            ->get('mod_exchangeunfu_partners')->result_array();
-            return $region[0]['external_id'];
-        }
+            if (count($region) > 0)
+                return $region[0]['external_id'];
+            else {
+                $region = $this->db
+                                ->limit(1)
+                                ->select(array('external_id'))
+                                ->get('mod_exchangeunfu_partners')->result_array();
+                return $region[0]['external_id'];
+            }
         } else {
             $region = $this->db
                             ->limit(1)
@@ -1011,28 +1011,20 @@ class Exchangeunfu extends MY_Controller {
         if ($this->check_perm() === true) {
             $this->export = new \exchangeunfu\exportXML();
             if ($this->input->get('partner')) {
-                $parter = $this->db->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
-                if ($parter) {
-                    $parter = $parter->row_array();
-
-                    $this->db
-                            ->where('external_id', $parter['external_id'])
-                            ->set('send_cat', 0)
-                            ->set('send_users', 0)
-                            ->set('send_prod', 0)
-                            ->update('mod_exchangeunfu_partners');
+                $partner = $this->db->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
+                if ($partner) {
+                    $partner = $partner->row_array();
 
                     if ($this->input->get('full') != 'full') {
-                        $this->export->export($parter['external_id'], $parter['send_cat'], $parter['send_prod'], $parter['send_users']);
+                        $this->export->export($partner['external_id'], $partner['send_cat'], $partner['send_prod'], $partner['send_users']);
                     } else {
-                        $this->export->export($parter['external_id'], 1, 1, 1, true);
+                        $this->export->export($partner['external_id'], 1, 1, 1, true);
                     }
                 }
             } else {
                 $this->export->export();
             }
         }
-
 
         exit();
     }
@@ -1041,12 +1033,32 @@ class Exchangeunfu extends MY_Controller {
      * runs when orders from site succesfully uploaded to 1c server
      * and sets some status for imported orders "waiting" for example
      */
-    private function command_sale_success() {
+     private function command_sale_success() {
         if ($this->check_perm() === true) {
-            $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
+            if ($this->input->get('partner')) {
+                $partner = $this->db->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
+                if ($partner) {
+                    $partner = $partner->row_array();
+                    $this->db
+                            ->where('external_id', $partner['external_id'])
+                            ->set('send_cat', 0)
+                            ->set('send_users', 0)
+                            ->set('send_prod', 0)
+                            ->update('mod_exchangeunfu_partners');
+                    
+                    $model = $this->db
+                            ->where('partner_internal_id', $partner['id'])
+                            ->where_in('status', $this->config['userstatuses'])
+                            ->get('shop_orders')
+                            ->result_array();
+                }
+            }
+
             foreach ($model as $order) {
-                $order->SetStatus($this->config['userstatuses_after']);
-                $order->save();
+                $this->db
+                        ->where('id',$order['id'])
+                        ->set('status',$this->config['userstatuses_after'])
+                        ->update('shop_orders');
             }
             echo "success";
         }
