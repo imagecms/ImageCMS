@@ -3,7 +3,7 @@
         <div class="js-empty empty {if count($items) == 0}d_b{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Оформление заказа','newLevel')}</h1>
+                    <h1 class="title">{lang('Оформление заказа','newLevel')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
@@ -17,7 +17,7 @@
             <div class="js-no-empty no-empty">
                 <div class="f-s_0 title-cart without-crumbs">
                     <div class="frame-title">
-                        <h1 class="d_i">{lang('Оформление заказа','newLevel')}</h1>
+                        <h1 class="title">{lang('Оформление заказа','newLevel')}</h1>
                         {if !$is_logged_in}
                             <span class="old-buyer">
                                 <button type="button" data-trigger="#loginButton">

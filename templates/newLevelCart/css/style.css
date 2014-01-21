@@ -24,7 +24,7 @@ hr{border:0;width: 100%;display: block;margin: 0;}
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section{display: block;}
 .main-body{min-height: 100%;margin: 0 auto;overflow: hidden;}
 
-article, .container, .special-proposition > .frame-title{margin: 0 auto;clear: both;}
+article, .container, .special-proposition .title-proposition-h{margin: 0 auto;clear: both;}
 .big-container{margin: 0 auto;}
 .main-body > .content{position: relative;z-index: 1;}
 .main-body > .vertical-layout .content{position: relative;z-index: 1;}
@@ -33,7 +33,7 @@ article, .container, .special-proposition > .frame-title{margin: 0 auto;clear: b
 /*/base scaffolding*/
 
 body, .overlayDrop{min-width: 960px;}
-article, .container, .special-proposition > .frame-title{max-width: 980px;}
+article, .container, .special-proposition .title-proposition-h{max-width: 980px;}
 .container{padding: 0 10px;}
 .big-container{max-width: 1125px;}
 
@@ -113,6 +113,9 @@ a{cursor: pointer;}
 
 .preloader{min-height: 35px;width: 100%;}
 .baner .preloader, .p_r .preloader, .frame-tabs-ref .preloader{position: absolute;left: 0;top: 0;height: 100%;z-index: 10000;}
+
+[class*="title-"] .frame-title{display: inline;font-size: 0;margin-right: 5px;}
+.frame-title .title{display: inline;}
 /*/base settings*/
 
 /*base icons*/
@@ -306,7 +309,6 @@ input.input-search{height: 33px;}
 .drop-search .msg{padding: 10px 25px 15px;margin-bottom: 0;}
 /*/header*/
 
-[class*="title-"] .frame-title{font-size: 0;display: inline;margin-right: 5px;}
 /*items*/
 .frame-variant-name-code{margin-bottom: 5px;display: block;}
 .frame-variant-code, .frame-variant-name{}
@@ -369,7 +371,7 @@ input.input-search{height: 33px;}
 .items-news a{display: block;margin-bottom: 6px;}
 .items-news .date{display: block;margin-bottom: 2px;}
 .frame-news{padding-top: 6px;}
-.frame-news .frame-title{margin-bottom: 13px;}
+.frame-news .title-news{margin-bottom: 13px;}
 .frame-news .frame-title .title{margin-right: 7px;}
 
 .items-search-autocomplete > li{width: 100%;}
@@ -511,16 +513,15 @@ input.input-search{height: 33px;}
 
 .items-catalog > li{position:relative;width: 215px;margin: 0 0 54px 42px;}
 .carousel-js-css .items-h-carousel > li{margin: 0 44px 0 0;}
-.items-h-carousel > li{width: 212px !important;}
+.items-h-carousel > li{width: 212px !important;margin-bottom: 30px;}
 .vertical-layout .items-h-carousel > li{width: 210px !important;}
 
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin-left: 44px;margin-right: 0;margin-bottom: 0;}
 
 .special-proposition{margin-bottom: 40px;}
 .vertical-carousel .special-proposition{margin-bottom: 0;}
-.special-proposition > .frame-title{margin-bottom: 24px;overflow: hidden;}
-.vertical-layout .horizontal-carousel .special-proposition > .frame-title{padding-top: 13px;}
-.vertical-carousel .special-proposition > .frame-title{margin-bottom: 0;}
+.special-proposition .title-proposition-h{margin-bottom: 24px;overflow: hidden;}
+.vertical-carousel .special-proposition > .title-proposition-h{margin-bottom: 0;}
 .frame-view-products{padding: 35px 0 43px;}
 
 .items-v-carousel{margin-left: 0;}
@@ -536,8 +537,8 @@ input.input-search{height: 33px;}
 
 .frame-brands{margin-bottom: 36px;}
 .frame-brands .content-carousel{margin: 0 10px 0 15px;padding: 2px 0;}
-.frame-brands .frame-title{position: relative;z-index: 3;}
-.frame-brands .frame-title > .title{position: absolute;top: -14px;left: 13px;}
+.frame-brands .title-brand-w{position: relative;z-index: 3;}
+.frame-brands .frame-title{position: absolute;top: -14px;left: 17px;}
 
 .frame-baner{position: relative;overflow: hidden;}
 .frame-baner-start_page{padding: 15px 0 35px;}
