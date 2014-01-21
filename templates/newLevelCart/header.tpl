@@ -17,11 +17,11 @@
         <!--        Logo-->
         {if  $CI->uri->uri_string() == ''}
             <span class="logo">
-                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="{var_dump(siteinfo('siteinfo_logo_url'))}"/>
             </span>
         {else:}
             <a href="{site_url('')}" class="logo">
-                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="{var_dump(siteinfo('siteinfo_logo_url'))}"/>
             </a>
         {/if}
         <div class="left-content-header">
@@ -55,7 +55,7 @@
             <div class="frame-search-cleaner">
                 <!--                Start. Include cart data template-->
                 <div id="tinyBask" class="frame-cleaner">
-                    {include_shop_tpl('cartPopup/cart_data')}
+                    {include_shop_tpl('cart_data')}
                 </div>
                 <!--                    End. Include cart data template-->
                 <!--                Start. Show search form-->

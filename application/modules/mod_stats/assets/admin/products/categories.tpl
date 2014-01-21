@@ -1,47 +1,25 @@
-<div>
-    <a id="selectCategoryHideShow">
-        {lang('Select categories', 'mod_stats')}
-    </a>
-    <div id="categoriesMultiSelectBlock" style="display: none;">
-        <div class="control-group">
-            <div class="controls" >
-                <select multiple="multiple" id="selectCategoriesIds" style="height: 150px !important;">
-                    {foreach $data['categoryTree'] as $category}
-                        {$selected=""}
-                        {if in_array($category->getId(), $productCategories) && $category->getId() != $model->getCategoryId()}
-                            {$selected="selected='selected'"}
-                        {/if}
-                        <option {if $category->getLevel() == 0}
-                            style="font-weight: bold;"{/if} 
-                            {$selected} 
-                            value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}
-                        </option>
-                    {/foreach}
-                </select>
+<section class="mini-layout mod_stats">
+    <div class="frame_title clearfix">
+        <div class="pull-left">
+            <span class="help-inline"></span>
+            <span class="title">{lang('Stats', 'mod_stats')}</span>
+        </div>
+        <div class="pull-right">
+            <div class="d-i_b">
+                <a href="" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
             </div>
         </div>
-        <div class="span2" style="float: right;"> 
-            <a class="btn btn-small" id="withSelectedCategoriesDrawChartButton">
-                <i class="icon-share-alt">
-                </i>
-                {lang('Show','mod_stats')}
-            </a>
+    </div>
+    <div class="row-fluid">
+        {include_tpl('../left_block')}
+        <div class="clearfix span9">
+            {include_tpl('../time_and_filter_block')}
+            <!--<div id="chartContainer" class="span12" style="margin-left: 0 !important;">-->
+            
+            <svg class="mypiechart pieChartStats" data-from="products/getCategoriesData"></svg>
+            <svg class="mypiechart barChartStats" data-from="products/getCategoriesData"></svg>
+            <!--</div>-->
         </div>
-        <br/>
-        <hr/>
     </div>
-</div>
-<div class="m-t_20">
-    <div class="d-i_b">
-        <select id="selectChartType">
-            <option value="pieChart">{lang('pie', 'mod_stats')}</option>
-            <option value="barChart">{lang('bar', 'mod_stats')}</option>
-        </select>
-    </div>
-    <div id="pieChart" class="hideChart">
-        <svg style="height: 500px;"></svg>
-    </div>
-    <div id="barChart" class="hideChart span12" style="display: none;">
-        <svg style="height: 500px; width: 800px;"></svg>
-    </div>
-</div>
+    
+</section>

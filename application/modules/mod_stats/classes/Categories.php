@@ -22,7 +22,6 @@ class Categories extends \MY_Controller {
      * @return Categories
      */
     public static function create() {
-
         (null !== self::$_instanse) OR self::$_instanse = new self();
         return self::$_instanse;
     }

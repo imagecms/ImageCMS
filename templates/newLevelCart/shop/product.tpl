@@ -25,7 +25,7 @@
             <div class="f-s_0 title-product">
                 <!-- Start. Name product -->
                 <div class="frame-title">
-                    <h1 class="d_i title">{echo  ShopCore::encode($model->getName())}</h1>
+                    <h1 class="title">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
                 <!-- End. Name product -->
                 <!-- Start. article & variant name & brand name -->
@@ -148,7 +148,7 @@
                                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                     <div class="frame-count frameCount">
                                                         <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}">
-                                                            <div class="frame-change-count frameChangeCount">
+                                                            <div class="frame-change-count">
                                                                 <div class="btn-plus">
                                                                     <button type="button" {if $inCart}disabled="disabled"{/if}>
                                                                         <span class="icon-plus"></span>
@@ -168,7 +168,6 @@
                                                             type="button"
                                                             data-id="{echo $productVariant->getId()}"
 
-                                                            data-trigger="#showCart"
                                                             class="btnBuy"
                                                             >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -186,8 +185,8 @@
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-number="{echo $productVariant->getNumber()}"
                                                             data-price="{echo $productVariant->toCurrency()}"
-                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
-                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-add-price="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
+                                                            data-orig-price="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
                                                             data-large-image="
                                                             {if preg_match('/nophoto/', $productVariant->getlargePhoto()) > 0}
                                                                 {echo $model->firstVariant->getlargePhoto()}
@@ -231,8 +230,8 @@
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-number="{echo $productVariant->getNumber()}"
                                                             data-price="{echo $productVariant->toCurrency()}"
-                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
-                                                            data-origPrice="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-add-price="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
+                                                            data-orig-price="{if $hasDiscounts}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
                                                             data-large-image="
                                                             {if preg_match('/nophoto/', $productVariant->getlargePhoto()) > 0}
                                                                 {echo $model->firstVariant->getlargePhoto()}
@@ -545,7 +544,6 @@
                                                         type="button"
                                                         data-id="{echo $kitProducts->getId()}"
 
-                                                        data-trigger="#showCart"
                                                         class="btnBuy infoBut btnBuyKit"
                                                         >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -738,7 +736,7 @@
 <!-- End. News-->
 
 <!-- Start. Photo Popup Frame-->
-<div class="drop drop-style" id="photo"></div>
+<div class="drop drop-style globalFrameProduct" id="photo"></div>
 <script type="text/template" id="framePhotoProduct">
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
