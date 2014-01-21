@@ -6,7 +6,8 @@
  * @author 
  */
 class UsersController extends ControllerBase {
-    
+
+   
 }
 
 ?>

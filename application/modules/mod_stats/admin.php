@@ -25,11 +25,9 @@ class Admin extends \BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-        $interfacesDir = __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR;
-        include $interfacesDir . 'ControllerBase' . EXT;
-        include $interfacesDir . 'DynamicDiagramInterface' . EXT;
-        include $interfacesDir . 'StaticDiagramInterface' . EXT;
 
+        $this->load('classes/ControllerBase' . EXT);
+      
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
                 ->registerScript('d3.v3')
@@ -43,8 +41,10 @@ class Admin extends \BaseAdminController {
             $this->assetManager->setData('queryString', '?' . $_SERVER['QUERY_STRING']);
         }
         // passing to template array with menu structure
-        $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
+        $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
         $this->assetManager->setData('leftMenu', $leftMenu);
+        $this->assetManager->setData('saveSearchResults', \mod_stats\classes\AdminHelper::create()->getSetting('save_search_results'));
+        $this->assetManager->setData('saveUsersAttendance', \mod_stats\classes\AdminHelper::create()->getSetting('save_users_attendance'));
     }
 
     public function index() {
@@ -72,6 +72,10 @@ class Admin extends \BaseAdminController {
         $this->runControllerAction(__FUNCTION__, func_get_args());
     }
 
+    public function adminAdd() {
+        $this->runControllerAction(__FUNCTION__, func_get_args());
+    }
+
     /**
      * Helper function for spliting controllers
      * @param string $callerFunctionName
@@ -83,6 +87,15 @@ class Admin extends \BaseAdminController {
         $action = array_shift($arguments);
         include __DIR__ . DIRECTORY_SEPARATOR . 'controllers' . DIRECTORY_SEPARATOR . $controllerName . EXT;
         return call_user_func_array(array(new $controllerName($this), $action), $arguments);
+    }
+
+    /**
+     * Include file (relatively to module dir)
+     * @param string $filePath
+     */
+    public function load($filePath) {
+        $filePath = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
+        $this->load->file(__DIR__ . DIRECTORY_SEPARATOR . $filePath);
     }
 
 }

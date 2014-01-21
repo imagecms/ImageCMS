@@ -22,7 +22,19 @@ class OrdersController extends ControllerBase {
     }
 
     public function info() {
-        
+        // $this->controller->load('interfaces/DynamicDiagramBase.php');
+        $this->controller->load('traits/DateIntervalTrait.php');
+
+        $this->controller->load->model('orders_model');
+
+        $someResult = $this->controller->orders_model->getOrdersInfo();
+
+        echo '<pre>';
+        print_r($someResult);
+        echo '</pre>';
+        exit;
     }
 
 }
+
+
