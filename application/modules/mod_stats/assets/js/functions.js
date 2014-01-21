@@ -9,7 +9,6 @@ var ChartData = new Object();
 ChartData.getPieData = function(link) {
     var returnResult = false;
     var getString = window.location.search;
-    
     $.ajax({
         async: false,
         type: 'get',
