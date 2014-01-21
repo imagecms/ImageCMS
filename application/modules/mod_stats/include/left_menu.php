@@ -3,6 +3,7 @@
 return array(
     array(
         'name' => lang('Orders', 'mod_stats'),
+        'controller' => 'orders',
         'items' => array(
             array(
                 'name' => lang('Count', 'mod_stats'),
@@ -23,6 +24,7 @@ return array(
     ),
     array(
         'name' => lang('Users', 'mod_stats'),
+        'controller' => 'users',
         'items' => array(
             array(
                 'name' => lang('Online', 'mod_stats'),
@@ -48,6 +50,7 @@ return array(
     ),
     array(
         'name' => lang('Products', 'mod_stats'),
+        'controller' => 'products',
         'items' => array(
             array(
                 'name' => lang('Categories', 'mod_stats'),
@@ -68,6 +71,7 @@ return array(
     ),
     array(
         'name' => lang('Product\'s categories', 'mod_stats'),
+        'controller' => 'categories',
         'items' => array(
             array(
                 'name' => lang('Most visited', 'mod_stats'),
@@ -83,6 +87,7 @@ return array(
     ),
     array(
         'name' => lang('Search', 'mod_stats'),
+        'controller' => 'search',
         'items' => array(
             array(
                 'name' => lang('Searched keywords', 'mod_stats'),
