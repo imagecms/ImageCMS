@@ -1,3 +1,6 @@
+<script>
+    var currency = '{$CS}'
+</script>
 <div class="btn-group  m-t_20 pull-left">
     <a class="btn btn-small intervalButton" data-group="day">{lang('Last day','mod_stats')}</a>
     <a class="btn btn-small intervalButton" data-group="month">{lang('Last month','mod_stats')}</a>

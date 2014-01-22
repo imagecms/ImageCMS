@@ -103,6 +103,20 @@ class Stats_model extends CI_Model {
             return false;
     }
 
+    
+    /**
+     * Get main currency symbol
+     * @return boolean
+     */
+    public function getMainCurrencySymbol() {
+        $query = $this->db->select('symbol')->where('main', 1)->get('shop_currencies')->row_array();
+
+        if ($query)
+            return $query['symbol'];
+        else
+            return false;
+    }
+    
     /**
      * Install module and update settings
      */

@@ -152,16 +152,18 @@ $(document).ready(function() {
                         .showMaxMin(false)
                         .tickFormat(function(d) {
                             var dx = data[0].values[d] && data[0].values[d][0] || 0;
-                            return d3.time.format('%x')(new Date(dx))
+                            if (dx !== 0)
+                                return d3.time.format('%d/%m/%Y')(new Date(dx))
                         });
 
                 chart.y1Axis
-                        .tickFormat(d3.format(',f'));
-
-                chart.y2Axis
                         .tickFormat(function(d) {
-                            return '$' + d3.format(',f')(d)
+                            return d3.format(',f')(d) + currency 
                         });
+
+                
+                chart.y2Axis
+                        .tickFormat(d3.format(',f'));
 
                 chart.bars.forceY([0]);
 
