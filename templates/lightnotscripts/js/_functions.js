@@ -134,44 +134,35 @@ var ShopFront = {
             $('.' + genObj.toCompare).each(function() {
                 if (comparelist.indexOf($(this).data('id')) !== -1) {
                     var $this = $(this);
-                    console.log($this.
-                        removeClass(genObj.toCompare).
-                        addClass(genObj.inCompare).
-                        
-                        parent().
-                        addClass(genObj.compareIn).
-                        
-                        end().
-                        data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip())
                     $this.
-                        removeClass(genObj.toCompare).
-                        addClass(genObj.inCompare).
+                    removeClass(genObj.toCompare).
+                    addClass(genObj.inCompare).
                         
-                        parent().
-                        addClass(genObj.compareIn).
+                    parent().
+                    addClass(genObj.compareIn).
                         
-                        end().
-                        data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip().
+                    end().
+                    data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip().
                         
-                        find(genObj.textEl).
-                        text($this.attr('data-sectitle'));
+                    find(genObj.textEl).
+                    text($this.attr('data-sectitle'));
                 }
             });
             $('.' + genObj.inCompare).each(function() {
                 if (comparelist.indexOf($(this).data('id')) === -1) {
                     var $this = $(this);
                     $this.
-                        addClass(genObj.toCompare).
-                        removeClass(genObj.inCompare).
+                    addClass(genObj.toCompare).
+                    removeClass(genObj.inCompare).
                         
-                        parent().
-                        removeClass(genObj.compareIn).
+                    parent().
+                    removeClass(genObj.compareIn).
                         
-                        end().
-                        data('title', $this.attr('data-firtitle')).tooltip('remove').tooltip().
+                    end().
+                    data('title', $this.attr('data-firtitle')).tooltip('remove').tooltip().
                         
-                        find(genObj.textEl).
-                        text($this.attr('data-firtitle'));
+                    find(genObj.textEl).
+                    text($this.attr('data-firtitle'));
                 }
             });
         },

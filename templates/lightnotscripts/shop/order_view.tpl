@@ -115,10 +115,8 @@
                     <tr>
                         <th>{lang('Способ оплаты','newLevel')}:</th>
                         <td>
-                            {if $model->getTotalPriceWithGift() > 0}
-                                {if $paymentMethod->getName()}
-                                    {echo ShopCore::t($paymentMethod->getName())}
-                                {/if}
+                            {if $paymentMethod->getName()}
+                                {echo ShopCore::t($paymentMethod->getName())}
                             {/if}
                         </td>
                     </tr>
@@ -135,19 +133,17 @@
                     </td>
                 </tr>
                 <!--                End. Order status-->
-                {if $paymentMethod}
+                {if $paymentMethod && $model->getPaid() != true}
                     <tr>
                         <td></td>
-                        {if $model->getPaid() != true}
-                            <td>
-                                <div class="frame-payment">
-                                    {$locale = \MY_Controller::getCurrentLocale();}
-                                    {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
-                                    {/*echo $notif->message*/}
-                                    {echo $paymentMethod->getPaymentForm($model)}
-                                </div>
-                            </td>
-                        {/if}
+                        <td>
+                            <div class="frame-payment">
+                                {$locale = \MY_Controller::getCurrentLocale();}
+                                {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
+                                {/*echo $notif->message*/}
+                                {echo $paymentMethod->getPaymentForm($model)}
+                            </div>
+                        </td>
                     </tr>
                 {/if}
                 <!-- End. Render payment button and payment description -->
