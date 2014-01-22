@@ -928,7 +928,6 @@ li.clear-pag-item{margin: 0 14px 4px;}
 /*/product*/
 
 /*bask*/
-.frame-discount, [class*="price-"] .frame-discount, .frame-gen-discount{display: none;}
 .current-discount{margin-right: 25px;}
 
 td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right: 10px;}

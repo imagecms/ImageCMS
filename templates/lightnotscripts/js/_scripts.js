@@ -72,7 +72,7 @@ function init() {
             carouselInDrop.addClass('visited');
             carouselInDrop.myCarousel(carousel);
         }
-        cuselInit(drop, '.drop:visible .lineForm select');
+        cuselInit(drop, '.lineForm select');
     };
     optionsDrop.close = function(el, drop, data) {
     };
