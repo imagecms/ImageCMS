@@ -13,7 +13,7 @@ class ChartDataRemap {
             unset($row['unix_date']);
             unset($row['date']);
             foreach ($row as $field => $value) {
-                $newStructure1[$field][] = array($date, $value);
+                $newStructure1[$field][] = array((int) $date, (int) $value);
             }
         }
 
