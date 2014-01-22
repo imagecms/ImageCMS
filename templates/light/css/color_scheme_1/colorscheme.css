@@ -762,7 +762,7 @@ input.input-search{border: 0;-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.2);-we
 .frame-bask-order{background-color: #fff !important;border: 4px solid #dedede;}
 .frame-bask-order .frame-foot:before{content: "";position: absolute;width: 110%;height: 3px;left: -5%;top: -3px;}
 .table-order > tbody > tr > td{border-top: 1px solid #eae5e1;}
-.table-order th{padding: 10px 0 10px 15px;color: #b1b1b1;border-bottom: 1px solid #dedede;font-weight: normal;text-align: center;}
+.table-order th{padding: 10px 10px 10px 0;color: #b1b1b1;border-bottom: 1px solid #dedede;font-weight: normal;text-align: center;}
 .table-order th:first-child{text-align: left;padding-left: 26px;}
 .frame-bask-order .frame-foot{background-color: #f7f7f7;border-top: 1px solid #eae5e1;-moz-border-radius: 0 0 4px 4px;-webkit-border-radius: 0 0 4px 4px;border-radius: 0 0 4px 4px;}
 .frame-bask-order .frame-foot:before{-moz-box-shadow: 0 1px 1px #f0ece8;-webkit-box-shadow: 0 1px 1px #f0ece8;box-shadow: 0 1px 1px #f0ece8;}
