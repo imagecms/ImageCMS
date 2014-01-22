@@ -1,4 +1,4 @@
-<button type="button" id="showCartPopup" data-drop="#popupCart"></button>
+<button type="button" id="showCartPopup" data-drop="#popupCart" style="display: none;"></button>
 <div class="drop-bask drop drop-style" id="popupCart"></div>
 
 {literal}

@@ -129,7 +129,7 @@
         {/*} Start. uncoment before development { */}
         {/*}
         <script type="text/javascript">
-            {initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');}
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
         { */}
         {/*} End. uncoment before development { */}

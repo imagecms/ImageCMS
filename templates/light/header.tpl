@@ -45,14 +45,12 @@
                             <span class="phone-number">{echo siteinfo('siteinfo_mainphone')}</span>
                         </span>
                     </span>
-                    <ul class="tabs">
-                        <li class="btn-order-call">
-                            <a href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
-                                <span class="icon_order_call"></span>
-                                <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="btn-order-call">
+                        <button data-tab="true" data-href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
+                            <span class="icon_order_call"></span>
+                            <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="head-work">
                     <span class="c_b">Работаем:</span> <span class="s-t">Пн–Пт 09:00–20:00,<br/>Сб 09:00–17:00, Вс выходной</span>

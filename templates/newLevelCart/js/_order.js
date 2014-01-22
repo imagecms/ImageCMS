@@ -84,9 +84,6 @@ $(document).on('scriptDefer', function() {
 
         $(document).trigger('hideActivity');
     });
-});
-function initOrderTrEv() {
-    Order.initGift();
     $(document).on('getTpl.Cart', function(e) {
         if (e.obj.template == 'cart_order') {
             $(genObj.orderDetails).empty().append(e.datas);
@@ -99,5 +96,8 @@ function initOrderTrEv() {
             }
         }
     });
+});
+function initOrderTrEv() {
+    Order.initGift();
     $(".maskPhoneFrame input").mask("+9 (9999) 999-99-99");
 }
