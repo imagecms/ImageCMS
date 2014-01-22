@@ -163,72 +163,67 @@
     <tfoot class="gen-info-price">
         {if $discount_val}
             <tr>
-                <td colspan="2">
-                    <span class="s-t">{lang('Начальная стоимость товаров','newLevel')}:</span>
-                </td>
-                <td class="w-s_n-w">
-                    <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
-                    <span class="curr"> {$CS}</span>
+                <td colspan="3">
+                    <span class="s-t f_l">{lang('Начальная стоимость товаров','newLevel')}:</span>
+                    <div class="f_r">                
+                        <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
+                        <span class="curr"> {$CS}</span>
+                    </div>
                 </td>
             </tr>
         {/if}
         <tr>
-            <td colspan="2">
-                <span class="s-t">{lang('Cтоимость товаров','newLevel')}:</span>
-            </td>
-            <td class="w-s_n-w">
-                <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span>
-                <span class="curr">{$CS}</span>
+            <td colspan="3">
+                <span class="s-t f_l">{lang('Cтоимость товаров','newLevel')}:</span>
+                <div class="f_r">
+                    <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span>
+                    <span class="curr">{$CS}</span>
+                </div>
             </td>
         </tr>
         {if $deliveryMethod}
             <tr>
-                <td colspan="2">
-                    <span class="s-t">{lang('Доставка','newLevel')}:</span>
-                </td>
-                <td class="w-s_n-w">
-                    {if !$deliveryMethod->getDeliverySumSpecified()}
-                        {$priceDel = $deliveryMethod->getPrice()}
-                        {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
-                        {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
+                <td colspan="3">
+                    <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
+                    <div class="f_r">
+                        {if !$deliveryMethod->getDeliverySumSpecified()}
+                            {$priceDel = $deliveryMethod->getPrice()}
+                            {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
+                            {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
 
-                        {if $cartPrice < $priceDelFreeFrom}
-                            {$cartPrice += $priceDel}
-                            <span class="price f-w_b">{echo $priceDel}</span>
-                            <span class="curr">{$CS}</span>
-                            (<span class="price f-w_b">{echo $priceDelAdd}</span>
-                            <span class="curr-add">{$NextCS}</span>)
-                            <span class="not-delivery-price"></span>
+                            {if $cartPrice < $priceDelFreeFrom}
+                                {$cartPrice += $priceDel}
+                                <span class="price f-w_b">{echo $priceDel}</span>
+                                <span class="curr">{$CS}</span>
+                                (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                <span class="curr-add">{$NextCS}</span>)
+                                <span class="not-delivery-price"></span>
+                            {else:}
+                                <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
+                            {/if}
                         {else:}
-                            <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
+                            <span class="text-el s-t">{echo $deliveryMethod->getDeliverySumSpecifiedMessage()}</span>
                         {/if}
-                    {else:}
-                        <span class="text-el s-t">{echo $deliveryMethod->getDeliverySumSpecifiedMessage()}</span>
-                    {/if}
+                    </div>
                 </td>
             </tr>
         {/if}
         {if $discount_val}
             <tr>
-                <td colspan="2">
-                    <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
-                </td>
-                <td class="w-s_n-w">
-                    <div class="text-discount current-discount">
+                <td colspan="3">
+                    <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>
+                    <div class="text-discount current-discount f_r">
                         <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
                         <span class="curr">{$CS}</span>
                     </div>
-
                 </td>
             </tr>
         {/if}
         {if $gift_val}
             <tr>
-                <td>
-                    <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
-                </td>
-                <td colspan="2">
-                    <div class="text-discount">
+                <td colspan="3">
+                    <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
+                    <div class="text-discount f_r">
                         <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
                         <span class="curr">{$CS}</span>
                     </div>
@@ -240,7 +235,6 @@
                     <div class="clearfix">
                         <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
                         <div class="frame-gift f_r">
-
                             {if $gift_error}
                                 <div class="msg">
                                     <div class="error">

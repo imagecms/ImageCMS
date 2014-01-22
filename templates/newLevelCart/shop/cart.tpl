@@ -160,7 +160,7 @@
                                     <span class="title">&nbsp;</span>
                                     <span class="frame-form-field">
                                         <div class="btn-cart btn-cart-p">
-                                            <input type="submit" class="btn btn_cart" value="{lang('Подтвердить заказ','newLevel')}"/>
+                                            <input type="submit" value="{lang('Подтвердить заказ','newLevel')}" id="submitOrder"/>
                                         </div>
                                     </span>
                                 </div>

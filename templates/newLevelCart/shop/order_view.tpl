@@ -202,6 +202,7 @@
                                                 </span>
                                             </span>
                                             { */}
+                                        </div>
                                     </td>
                                     <td>
                                         <div class="count-or-compl">{lang('Кол-во','newLevel')}:</div>
@@ -366,67 +367,65 @@
 
                             {if $discount}
                                 <tr>
-                                    <td colspan="2">
-                                        <span class="s-t">{lang('Начальная стоимость товаров','newLevel')}</span>
-                                    </td>
-                                    <td class="frame-cur-sum-price">
-                                        <span class="price-new">
-                                            <span>
-                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
-                                                <span class="curr">{$CS}</span>
+                                    <td colspan="3">
+                                        <span class="s-t f_l">{lang('Начальная стоимость товаров','newLevel')}</span>
+                                        <div class="frame-cur-sum-price f_r">
+                                            <span class="price-new">
+                                                <span>
+                                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
+                                                    <span class="curr">{$CS}</span>
+                                                </span>
                                             </span>
-                                        </span>
+                                        </div>
                                     </td>
                                 </tr>
                             {/if}
                             <tr>
-                                <td colspan="2">
-                                    <span class="s-t">{lang('Cтоимость товаров','newLevel')}</span>
-                                </td>
-                                <td class="frame-cur-sum-price">
-                                    <span class="price-new">
-                                        <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->gettotalprice())}</span>
-                                            <span class="curr">{$CS}</span>
+                                <td colspan="3">
+                                    <span class="s-t f_l">{lang('Cтоимость товаров','newLevel')}</span>
+                                    <div class="frame-cur-sum-price f_r">
+                                        <span class="price-new">
+                                            <span>
+                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->gettotalprice())}</span>
+                                                <span class="curr">{$CS}</span>
+                                            </span>
                                         </span>
-                                    </span>
+                                    </div>
                                 </td>
                             </tr>
                             {$deliveryMethod = $model->getSDeliveryMethods()}
                             {if $deliveryMethod}
                                 <tr>
-                                    <td colspan="2">
-                                        <span class="s-t">{lang('Доставка','newLevel')}:</span>
-                                    </td>
-                                    <td class="w-s_n-w">
-                                        {if !$deliveryMethod->getDeliverySumSpecified()}
-                                            {$priceDel = $deliveryMethod->getPrice()}
-                                            {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
-                                            {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
+                                    <td colspan="3">
+                                        <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
+                                        <div class="f_r">
+                                            {if !$deliveryMethod->getDeliverySumSpecified()}
+                                                {$priceDel = $deliveryMethod->getPrice()}
+                                                {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
+                                                {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
 
-                                            {if $cartPrice < $priceDelFreeFrom}
-                                                {$cartPrice += $priceDel}
-                                                <span class="price f-w_b">{echo $priceDel}</span>
-                                                <span class="curr">{$CS}</span>
-                                                (<span class="price f-w_b">{echo $priceDelAdd}</span>
-                                                <span class="curr-add">{$NextCS}</span>)
-                                                <span class="not-delivery-price"></span>
+                                                {if $cartPrice < $priceDelFreeFrom}
+                                                    {$cartPrice += $priceDel}
+                                                    <span class="price f-w_b">{echo $priceDel}</span>
+                                                    <span class="curr">{$CS}</span>
+                                                    (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                                    <span class="curr-add">{$NextCS}</span>)
+                                                    <span class="not-delivery-price"></span>
+                                                {else:}
+                                                    <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
+                                                {/if}
                                             {else:}
-                                                <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
+                                                <span class="text-el s-t">{echo $deliveryMethod->getDeliverySumSpecifiedMessage()}</span>
                                             {/if}
-                                        {else:}
-                                            <span class="text-el s-t">{echo $deliveryMethod->getDeliverySumSpecifiedMessage()}</span>
-                                        {/if}
+                                        </div>
                                     </td>
                                 </tr>
                             {/if}
                             {if $discount}
                                 <tr>
-                                    <td colspan="2">
-                                        <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
-                                    </td>
-                                    <td>
-                                        <span class="price-item">
+                                    <td colspan="3">
+                                        <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>
+                                        <span class="price-item f_r">
                                             <span>
                                                 <span class="text-discount current-discount">
                                                     <span class="price f-w_b">{echo $discount}</span>
@@ -439,11 +438,9 @@
                             {/if}
                             {if $model->getGiftCertPrice() > 0}
                                 <tr>
-                                    <td colspan="2">
+                                    <td colspan="3">
                                         <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
-                                    </td>
-                                    <td>
-                                        <span class="price-item">
+                                        <span class="price-item f_r">
                                             <span class="text-discount">
                                                 <span class="price">- {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
                                                 <span class="curr">{$CS}</span>

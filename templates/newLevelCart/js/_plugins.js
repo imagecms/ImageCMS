@@ -1633,7 +1633,7 @@ function getCookie(c_name)
                     }
                 }
 
-                el.addClass('isDrop').data({
+                el.data({
                     'drp': options
                 });
 
@@ -1669,7 +1669,7 @@ function getCookie(c_name)
                 var el = $(this);
                 if (trigger == undefined)
                     trigger = el.attr('trigger');
-                el.removeAttr('trigger').removeData('trigger').removeData('drp').removeClass('isDrop').off(trigger + '.' + $.drop.nS);
+                el.removeAttr('trigger').removeData('trigger').removeData('drp').off(trigger + '.' + $.drop.nS);
                 var drop = $(el.attr('data-drop'));
                 drop.removeData('drp');
             });
@@ -2014,7 +2014,7 @@ function getCookie(c_name)
                     var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
                     drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html(data);
                     methods._show(el, e, true, set, data);
-                    methods.init.call(drop.find('[data-drop]:not(.isDrop)'), $.extend({}, $.drop.dP));
+                    methods.init.call(drop.find('[data-drop]'));
                 }
 
                 $(document).trigger({
