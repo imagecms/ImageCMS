@@ -14,8 +14,6 @@
         {include_tpl('../left_block')}
         <div class="clearfix span9">
             {include_tpl('../time_and_filter_block')}
-            <!--<div id="chartContainer" class="span12" style="margin-left: 0 !important;">-->
-            
             <svg class="linePlusBarChartStats" data-from="orders/amount_chart" style="height: 600px; width: 800px;"></svg>
             <!--</div>-->
         </div>
