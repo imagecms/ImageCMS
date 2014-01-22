@@ -50,7 +50,7 @@
                     </tr>
                 {/if}
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('addphone','order', $model->getId())}
-                {if $s_field.field_data !== ''}
+                {if $s_field.field_data && $s_field.field_data !== ''}
                     <tr>
                         <th>{lang('Дополнительный телефон','newLevel')}:</th>
                         <td>{echo $s_field.field_data}</td>
@@ -78,13 +78,12 @@
                 {/if}
                 <!-- End. Delivery Method name -->
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
-                {if $s_field.field_data !== ''}
+                {if $s_field.field_data && $s_field.field_data !== ''}
                     <tr>
                         <th>{lang('Город','newLevel')}:</th>
                         <td>{echo $s_field.field_data}</td>
                     </tr>
                 {/if}
-                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
                 {if $model->getUserDeliverTo()}
                     <tr>
                         <th>{lang('Адрес','newLevel')}:</th>
