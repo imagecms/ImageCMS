@@ -112,13 +112,13 @@
                                                                     <span class="helper"></span>
                                                                     <img src="{echo $kitItem->getSmallPhoto()}">
                                                                 </span>
-                                                                <span class="title">{echo $kitItem->getSProducts()->getName()} {if $kitItem->getName()}{echo $kitItem->getName()}{/if}</span>
+                                                                <span class="title">{echo $kitItem->getSProducts()->getName()}</span>
                                                             </a>
                                                             <div class="description">
-                                                                {if $item->getName() && $item->getName() != $item->getSProducts()->getName()}
+                                                                {if $item->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
                                                                     <span class="frame-variant-name">
                                                                         <span class="text-el">{lang('Вариант','newLevel')}</span>
-                                                                        <span class="code">({echo $item->getName()})</span>
+                                                                        <span class="code">({echo $kitItem->getName()})</span>
                                                                     </span>
                                                                 {/if}
                                                                 {if $kitItem->getSProducts()->getNumber()}
@@ -200,13 +200,11 @@
                                 <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
                             </span>
                         {/if}
-                        {if $typePage == 'cart'}
-                            <div class="btn-form f_l">
-                                <button type="button" data-closed="closed-js">
-                                    <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к оформлению','newLevel')}</span>
-                                </button>
-                            </div>
-                        {/if}
+                        <div class="btn-form f_l isCart">
+                            <button type="button" data-closed="closed-js">
+                                <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к оформлению','newLevel')}</span>
+                            </button>
+                        </div>
                         <span class="s-t">{lang('Всего','newLevel')}:</span>
                         <span class="frame-cur-sum-price">
                             <span class="frame-prices f-s_0">
@@ -238,24 +236,22 @@
                         </span>
                     </div>
                 </div>
-                {if $typePage != 'cart'}
-                    <div class="content-frame-foot">
-                        <div class="clearfix inside-padd">
-                            <div class="btn-form f_l">
-                                <button type="button" data-closed="closed-js">
+                <div class="content-frame-foot notCart">
+                    <div class="clearfix inside-padd">
+                        <div class="btn-form f_l">
+                            <button type="button" data-closed="closed-js">
 
-                                    <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
-                                </button>
-                            </div>
-                            <div class="btn-cart btn-cart-p f_r">
-                                <a href="/shop/cart">
-                                    <span class="icon_cart_p"></span>
-                                    <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
-                                </a>
-                            </div>
+                                <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
+                            </button>
+                        </div>
+                        <div class="btn-cart btn-cart-p f_r">
+                            <a href="/shop/cart">
+                                <span class="icon_cart_p"></span>
+                                <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
+                            </a>
                         </div>
                     </div>
-                {/if}
+                </div>
             </div>
         </div>
     {else:}
@@ -267,13 +263,11 @@
                 <div class="msg f-s_0">
                     <div class="success"><span class="icon_info"></span><span class="text-el">{lang('Вы удалили все элементы из корзины','newLevel')}</span></div>
                 </div>
-                {if $typePage != 'cart'}
-                    <div class="btn-form">
-                        <button type="button" data-closed="closed-js">
-                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
-                        </button>
-                    </div>
-                {/if}
+                <div class="btn-form notCart">
+                    <button type="button" data-closed="closed-js">
+                        <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
+                    </button>
+                </div>
             </div>
         </div>
     {/if}
