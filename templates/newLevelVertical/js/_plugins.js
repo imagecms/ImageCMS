@@ -2609,19 +2609,6 @@ function getCookie(c_name)
         };
         this.setMethods = function(ms) {
             $.extend(methods, ms);
-        };
-        this.widthScroll = function(){
-            var id = (new Date()).getTime().toString(),
-            el = $('<div/>', {
-                id: 'scrollDrop'+id
-            }).appendTo(body).css({
-                'height': 400, 
-                'width': 400, 
-                'overflow': 'scroll'
-            }).wrap($('<div style="width:0;height:0;overflow:hidden;"></div>'));
-            var w = el.width() - el.get(0).clientWidth;
-            el.parent().remove();
-            return w;
         }
     }
     
@@ -2637,11 +2624,6 @@ function getCookie(c_name)
     el.parent().remove();
     
     $.drop = new $.dropInit();
-    
-    var id = (new Date()).getTime();
-    body.append('<div style="overflow: scroll;" id="scrollDrop'+id+'"></div>').append('<div id="drop'+id+'"></div>');
-    $.drop.dP.widthScroll = $('drop'+id).width() - $('scrollDrop'+id).width();
-    $('drop'+id).add($('scrollDrop'+id)).remove();
     
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
         wnd.scrollTop($.drop.dP.wST);
