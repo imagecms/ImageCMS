@@ -66,10 +66,12 @@ var Order = {
 $(document).on('scriptDefer', function() {
     Order.initOrder();
     $(document).on('beforeGetPayment.Cart', function(e) {
+        $(genObj.submitOrder).attr('disabled', 'disabled');
         $(genObj.framePaymentMethod).next().show();
     });
     $(document).on('getPayment.Cart', function(e) {
         $(genObj.framePaymentMethod).html(e.datas).next().hide();
+        $(genObj.submitOrder).removeAttr('disabled');
         if (selectPayment)
             cuselInit($(genObj.framePaymentMethod), $(genObj.pM));
         else {

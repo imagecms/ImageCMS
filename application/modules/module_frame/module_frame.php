@@ -5,6 +5,7 @@
 /**
  * Image CMS
  * Module Frame
+ * @property Cms_shop_admin $cms_shop_admin 
  */
 class Module_frame extends MY_Controller {
 
@@ -15,7 +16,8 @@ class Module_frame extends MY_Controller {
     }
 
     public function index() {
-        $this->load->model('../modules/shop/models/cms_shop_admin');        
+        $this->load->model('../modules/shop/models/cms_shop_admin');
+        $this->cms_shop_admin->
     }
 
     public function autoload() {
