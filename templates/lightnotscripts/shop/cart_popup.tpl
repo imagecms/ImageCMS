@@ -43,20 +43,7 @@
                                             </div>
                                         </td>
                                         <td class="frame-count frameCount">
-                                            <span class="count-or-compl">{lang('Количество', 'newLevel')}:</span>
                                             <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
-                                                <div class="frame-change-count" data-id="{echo $item->getId()}">
-                                                    <div class="btn-plus">
-                                                        <button type="button">
-                                                            <span class="icon-plus"></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="btn-minus">
-                                                        <button type="button">
-                                                            <span class="icon-minus"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
                                                 <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
@@ -134,20 +121,7 @@
                                             </ul>
                                         </td>
                                         <td class="frame-count">
-                                            <span class="count-or-compl">{lang('Количество', 'newLevel')}:</span>
                                             <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
-                                                <div class="frame-change-count" data-id="{echo $item->getId()}">
-                                                    <div class="btn-plus">
-                                                        <button type="button">
-                                                            <span class="icon-plus"></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="btn-minus">
-                                                        <button type="button">
-                                                            <span class="icon-minus"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
                                                 <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-kit="1" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
