@@ -2609,11 +2609,11 @@ function getCookie(c_name)
                         $thisNext = $thisNext[regM](regS);
                     });
 
-                    if ($thisVal >= max && checkProdStock) {
+                    if (max != '' && $thisVal >= max && checkProdStock) {
                         $this.val(max);
                         $thisNext.attr('disabled', 'disabled');
                     }
-                    if ($thisVal <= min && checkProdStock) {
+                    if (min != '' && $thisVal <= min && checkProdStock) {
                         $this.val(min);
                         $thisPrev.attr('disabled', 'disabled');
                     }

@@ -13,10 +13,9 @@ class ChartDataRemap {
             unset($row['unix_date']);
             unset($row['date']);
             foreach ($row as $field => $value) {
-                $newStructure1[$field][] = array((int) $date, (int) $value);
+                $newStructure1[$field][] = array((float) ($date * 1000), (int) $value);
             }
         }
-
         return $newStructure1;
     }
 

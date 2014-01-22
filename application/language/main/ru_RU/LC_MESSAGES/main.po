@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 05:00+0200\n"
-"PO-Revision-Date: 2014-01-15 05:00+0200\n"
+"POT-Creation-Date: 2014-01-22 02:14+0200\n"
+"PO-Revision-Date: 2014-01-22 02:14+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -29,6 +29,71 @@ msgstr ""
 "X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
 "X-Poedit-SearchPath-11: ../../../../../templates/administrator/js/jquery-validate\n"
 
+#: ./system/language/upload/upload_validation.php:10
+msgid "upload_file_exceeds_limit"
+msgstr "Размер загружаемого файла превышает максимально допустимый размер в конфигурационном файле PHP."
+
+#: ./system/language/upload/upload_validation.php:11
+msgid "upload_file_exceeds_form_limit"
+msgstr "Загруженный файл превышает максимальный размер, разрешенный формой запроса."
+
+#: ./system/language/upload/upload_validation.php:13
+msgid "upload_no_temp_directory"
+msgstr "Временная папка отсутствует."
+
+#: ./system/language/upload/upload_validation.php:15
+msgid "upload_stopped_by_extension"
+msgstr "Загрузка файлов был остановлен по расширению."
+
+#: ./system/language/upload/upload_validation.php:20
+msgid "upload_destination_error"
+msgstr "Возникла проблема при попытке переместить загруженный файл в конечный пункт назначения."
+
+#: ./system/language/upload/upload_validation.php:24
+msgid "upload_not_writable"
+msgstr "Папка назначения загрузки не доступна для записи."
+
+#: ./system/language/upload/upload_validation.php:14
+msgid "upload_unable_to_write_file"
+msgstr "Файл не может быть записан на диск."
+
+#: ./system/language/upload/upload_validation.php:16
+msgid "upload_no_file_selected"
+msgstr "Вы не выбрали файл для загрузки."
+
+#: ./system/language/upload/upload_validation.php:18
+msgid "upload_invalid_filesize"
+msgstr "Файл, который вы пытаетесь загрузить больше, чем это допускается."
+
+#: ./system/language/upload/upload_validation.php:19
+msgid "upload_invalid_dimensions"
+msgstr "Изображение, которое вы пытаетесь загрузить превышает максимальную высоту или ширину."
+
+#: ./system/language/upload/upload_validation.php:21
+msgid "upload_no_filepath"
+msgstr "Не верный путь загрузки файла."
+
+#: ./system/language/upload/upload_validation.php:22
+msgid "upload_no_file_types"
+msgstr "Вы не указали разрешенные типы файлов."
+
+#: ./system/language/upload/upload_validation.php:23
+msgid "upload_bad_filename"
+msgstr "Имя файла, который Вы представили уже существует на сервере."
+
+#: ./system/language/upload/upload_validation.php:7
+#: ./system/language/upload/upload_validation.php:17
+msgid "upload_invalid_filetype"
+msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+
+#: ./system/language/upload/upload_validation.php:9
+msgid "upload_userfile_not_set"
+msgstr "Не удается найти переменную UserFile."
+
+#: ./system/language/upload/upload_validation.php:12
+msgid "upload_file_partial"
+msgstr "Файл был загружен только частично."
+
 #: ./system/language/form_validation/form_validation.php:33
 msgid "Order view"
 msgstr "Просмотр заказа"
@@ -40,34 +105,6 @@ msgstr "Корзина"
 #: ./application/libraries/DX_Auth.php:1153
 msgid "auth incorrect password"
 msgstr "Пароль Мерчанта"
-
-#: ./system/language/upload/upload_validation.php:14
-msgid "upload_unable_to_write_file"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
-
-#: ./system/language/upload/upload_validation.php:16
-msgid "upload_no_file_selected"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
-
-#: ./system/language/upload/upload_validation.php:18
-msgid "upload_invalid_filesize"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
-
-#: ./system/language/upload/upload_validation.php:19
-msgid "upload_invalid_dimensions"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
-
-#: ./system/language/upload/upload_validation.php:21
-msgid "upload_no_filepath"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
-
-#: ./system/language/upload/upload_validation.php:22
-msgid "upload_no_file_types"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
-
-#: ./system/language/upload/upload_validation.php:23
-msgid "upload_bad_filename"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
 
 #: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:174
 msgid "Secret Key:"
@@ -759,43 +796,6 @@ msgstr "Поле %s должно содержать число, большее, 
 #: ./system/language/email_lang/email_lang.php:22
 msgid "email_sent"
 msgstr "Ваше сообщение успешно отправлено"
-
-#: ./system/language/upload/upload_validation.php:7
-#: ./system/language/upload/upload_validation.php:17
-msgid "upload_invalid_filetype"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
-
-#: ./system/language/upload/upload_validation.php:9
-msgid "upload_userfile_not_set"
-msgstr "Не удается найти переменную UserFile."
-
-#: ./system/language/upload/upload_validation.php:10
-msgid "upload_file_exceeds_limit"
-msgstr "upload_file_exceeds_limit"
-
-#: ./system/language/upload/upload_validation.php:11
-msgid "upload_file_exceeds_form_limit"
-msgstr "upload_file_exceeds_form_limit"
-
-#: ./system/language/upload/upload_validation.php:12
-msgid "upload_file_partial"
-msgstr "Файл был загружен только частично."
-
-#: ./system/language/upload/upload_validation.php:13
-msgid "upload_no_temp_directory"
-msgstr "upload_no_temp_directory"
-
-#: ./system/language/upload/upload_validation.php:15
-msgid "upload_stopped_by_extension"
-msgstr "upload_stopped_by_extension"
-
-#: ./system/language/upload/upload_validation.php:20
-msgid "upload_destination_error"
-msgstr "upload_destination_error"
-
-#: ./system/language/upload/upload_validation.php:24
-msgid "upload_not_writable"
-msgstr "upload_not_writable"
 
 #: ./system/libraries/Pagination.php:74
 msgid "First"
