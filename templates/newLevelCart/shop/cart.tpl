@@ -155,7 +155,7 @@
                                     <div class="frame-label">
                                         <span class="title">{lang('Оплата','newLevel')}:</span>
                                         <div class="frame-form-field" style="padding-top: 6px;">
-                                            <div class="help-block">{lang('Выберете доставку', 'newLevel')}</div>
+                                            <div class="help-block">{lang('Выберите доставку', 'newLevel')}</div>
                                         </div>
                                     </div>
                                 </div>

@@ -21,9 +21,9 @@
 <div class="frame-inside page-product">
     <div class="container">
         {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
-        <div class="clearfix item-product globalFrameProduct{if $model->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}">
+        <div class="clearfix item-product">
             <div class="frame-left-product">
-                <div class="clearfix">
+                <div class="clearfix globalFrameProduct{if $model->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}">
                     <div class="left-product">
                         <!-- Start. Photo block-->
                         <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop">
