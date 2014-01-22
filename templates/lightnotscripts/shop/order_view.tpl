@@ -60,20 +60,22 @@
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
                 </tr>
-                <tr>
-                    <td colspan="2">
-                        <hr/>
-                    </td>
-                </tr>
-                <!-- Start. Delivery Method name -->
-                <tr>
-                    <th>{lang('Способ доставки','newLevel')}:</th>
-                    <td>
-                        {if $model->getDeliveryMethod() > 0}
-                            {echo $model->getSDeliveryMethods()->getName()}
-                        {/if}
-                    </td>
-                </tr>
+                {if $model->getDeliveryMethod()}
+                    <tr>
+                        <td colspan="2">
+                            <hr/>
+                        </td>
+                    </tr>
+                    <!-- Start. Delivery Method name -->
+                    <tr>
+                        <th>{lang('Способ доставки','newLevel')}:</th>
+                        <td>
+                            {if $model->getDeliveryMethod() > 0}
+                                {echo $model->getSDeliveryMethods()->getName()}
+                            {/if}
+                        </td>
+                    </tr>
+                {/if}
                 <!-- End. Delivery Method name -->
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
                 {if $s_field.field_data !== ''}
@@ -109,16 +111,18 @@
                 </tr>
 
                 <!-- Start. Render payment button and payment description -->
-                <tr>
-                    <th>{lang('Способ оплаты','newLevel')}:</th>
-                    <td>
-                        {if $model->getTotalPriceWithGift() > 0}
-                            {if $paymentMethod->getName()}
-                                {echo ShopCore::t($paymentMethod->getName())}
+                {if $paymentMethod}
+                    <tr>
+                        <th>{lang('Способ оплаты','newLevel')}:</th>
+                        <td>
+                            {if $model->getTotalPriceWithGift() > 0}
+                                {if $paymentMethod->getName()}
+                                    {echo ShopCore::t($paymentMethod->getName())}
+                                {/if}
                             {/if}
-                        {/if}
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                {/if}
                 <!--                Start. Order status-->
                 <tr>
                     <th>{lang('Статус оплаты','newLevel')}:</th>
@@ -131,19 +135,21 @@
                     </td>
                 </tr>
                 <!--                End. Order status-->
-                <tr>
-                    <td></td>
-                    {if $model->getPaid() != true}
-                        <td>
-                            <div class="frame-payment">
-                                {$locale = \MY_Controller::getCurrentLocale();}
-                                {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
-                                {/*echo $notif->message*/}
-                                {echo $paymentMethod->getPaymentForm($model)}
-                            </div>
-                        </td>
-                    {/if}
-                </tr>
+                {if $paymentMethod}
+                    <tr>
+                        <td></td>
+                        {if $model->getPaid() != true}
+                            <td>
+                                <div class="frame-payment">
+                                    {$locale = \MY_Controller::getCurrentLocale();}
+                                    {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
+                                    {/*echo $notif->message*/}
+                                    {echo $paymentMethod->getPaymentForm($model)}
+                                </div>
+                            </td>
+                        {/if}
+                    </tr>
+                {/if}
                 <!-- End. Render payment button and payment description -->
             </table>
         </div>
