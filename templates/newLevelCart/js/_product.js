@@ -222,6 +222,8 @@ Product = {
     onComplete: function(el, drop, isajax) {
         var carGal = drop.find('.content-carousel');
         drop.find('.drop-content img').css('visibility', 'visible');
+        
+        ShopFront.Cart.changeCount(drop.find(genObj.plusMinus));
 
         Product.resizePhoto(drop, function() {
             carGal.parent().myCarousel($.extend({}, carousel, {
