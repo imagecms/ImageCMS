@@ -134,13 +134,35 @@ var ShopFront = {
             $('.' + genObj.toCompare).each(function() {
                 if (comparelist.indexOf($(this).data('id')) !== -1) {
                     var $this = $(this);
-                    $this.removeClass(genObj.toCompare).addClass(genObj.inCompare).parent().addClass(genObj.compareIn).end().attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+                    $this.
+                        removeClass(genObj.toCompare).
+                        addClass(genObj.inCompare).
+                        
+                        parent().
+                        addClass(genObj.compareIn).
+                        
+                        end().
+                        data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip().
+                        
+                        find(genObj.textEl).
+                        text($this.attr('data-sectitle'));
                 }
             });
             $('.' + genObj.inCompare).each(function() {
                 if (comparelist.indexOf($(this).data('id')) === -1) {
                     var $this = $(this);
-                    $this.addClass(genObj.toCompare).removeClass(genObj.inCompare).parent().removeClass(genObj.compareIn).end().attr('data-title', $this.attr('data-firtitle')).find(genObj.textEl).text($this.attr('data-firtitle'));
+                    $this.
+                        addClass(genObj.toCompare).
+                        removeClass(genObj.inCompare).
+                        
+                        parent().
+                        removeClass(genObj.compareIn).
+                        
+                        end().
+                        data('title', $this.attr('data-firtitle')).tooltip('remove').tooltip().
+                        
+                        find(genObj.textEl).
+                        text($this.attr('data-firtitle'));
                 }
             });
         },

@@ -60,6 +60,7 @@
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
                 </tr>
+                {if $model->getDeliveryMethod()}
                 <tr>
                     <td colspan="2">
                         <hr/>
@@ -74,6 +75,7 @@
                         {/if}
                     </td>
                 </tr>
+                {/if}
                 <!-- End. Delivery Method name -->
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
                 {if $s_field.field_data !== ''}
@@ -109,6 +111,7 @@
                 </tr>
 
                 <!-- Start. Render payment button and payment description -->
+                {if $paymentMethod}
                 <tr>
                     <th>{lang('Способ оплаты','newLevel')}:</th>
                     <td>
@@ -119,6 +122,7 @@
                         {/if}
                     </td>
                 </tr>
+                {/if}
                 <!--                Start. Order status-->
                 <tr>
                     <th>{lang('Статус оплаты','newLevel')}:</th>
@@ -131,6 +135,7 @@
                     </td>
                 </tr>
                 <!--                End. Order status-->
+                {if $paymentMethod}
                 <tr>
                     <td></td>
                     {if $model->getPaid() != true}
@@ -144,6 +149,7 @@
                         </td>
                     {/if}
                 </tr>
+                {/if}
                 <!-- End. Render payment button and payment description -->
             </table>
         </div>
