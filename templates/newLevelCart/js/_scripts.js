@@ -138,7 +138,7 @@ function init() {
     initCarouselJscrollPaneCycle(body);
 
     reinitializeScrollPane(body);
-    testNumber($('.items-catalog, .item-product').find(genObj.plusMinus));
+    
     $("img.lazy").lazyload(lazyload);
     wnd.scroll(); //for lazy load start initialize
     /*/call front plugins and functions*/
@@ -177,17 +177,18 @@ function init() {
         if (e.obj.template === 'cart_popup') {
             popup.empty().html(e.datas);
             
+            if (popup.is(':visible')) {
+                popup.drop('limitSize');
+                popup.drop('heightContent');
+                popup.drop('center');
+            }
+            
             if (e.objF.show)
                 $(genObj.showCartPopup).drop('open');
             
             drawIcons(popup.find(selIcons));
             ShopFront.Cart.baskChangeCount(popup.find(genObj.plusMinus));
 
-            if (popup.is(':visible')) {
-                popup.drop('limitSize');
-                popup.drop('heightContent');
-                popup.drop('center');
-            }
             if ($.exists(global.baskInput)) {
                 var input = $(global.baskInput);
                 input.setCursorPosition(input.val().length);

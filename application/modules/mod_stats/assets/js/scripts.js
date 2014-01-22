@@ -137,34 +137,29 @@ $(document).ready(function() {
     if (lineWithFocusChartBlocks.length) {
         lineWithFocusChartBlocks.each(function(index, el) {
             nv.addGraph(function() {
-                var chart = nv.models.lineWithFocusChart();
-                var orderDate = new Date();
-                var day;
-                var month;
-                var year;
-                chart.xAxis.tickFormat(function(d) {
-                    orderDate = new Date(d * 1000);
-                    day = orderDate.getDate();
-                    month = orderDate.getMonth() + 1;
-                    year = orderDate.getFullYear();
-                    return day + '/' + month + '/' + year;
-                });
-                chart.x2Axis.tickFormat(function(d) {
-                    orderDate = new Date(d * 1000);
-                    day = orderDate.getDate();
-                    month = orderDate.getMonth() + 1;
-                    year = orderDate.getFullYear();
-                    return day + '/' + month + '/' + year;
-                });
+                var chart = nv.models.cumulativeLineChart()
+                        .x(function(d) {
+                            return d[0]
+                        })
+                        .y(function(d) {
+                            return d[1] / 100
+                        }) //adjusting, 100% is 1.00, not 100 as it is in the data
+                        .color(d3.scale.category10().range());
+
+                chart.xAxis
+                        .tickFormat(function(d) {
+                            return d3.time.format('%x')(new Date(d))
+                        });
+
                 chart.yAxis
-                        .tickFormat(d3.format(',.2f'));
-                chart.y2Axis
-                        .tickFormat(d3.format(',.2f'));
-                chart.transitionDuration(500);
+                        .tickFormat(d3.format(',.1%'));
                 d3.select(el)
                         .datum(ChartData.getData($(el).data('from')))
+                        .transition().duration(500)
                         .call(chart);
+
                 nv.utils.windowResize(chart.update);
+
                 return chart;
             });
         });

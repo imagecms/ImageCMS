@@ -27,7 +27,6 @@ class Admin extends \BaseAdminController {
         parent::__construct();
 
         $this->load('classes/ControllerBase' . EXT);
-      
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
                 ->registerScript('d3.v3')
