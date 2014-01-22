@@ -10,13 +10,14 @@ if (!defined('BASEPATH'))
  * @uses \MY_Controller
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
+ * @property stats_model $stats_model
  * @package ImageCMSModule
  */
 class AdminHelper extends \MY_Controller {
 
     protected static $_instance;
 
-     /**
+    /**
      * __construct base object loaded
      * @access public
      * @author DevImageCms
@@ -30,7 +31,6 @@ class AdminHelper extends \MY_Controller {
         $this->load->model('stats_model');
         $lang = new \MY_Lang();
         $lang->load('mod_stats');
-        
     }
 
     /**
@@ -41,7 +41,7 @@ class AdminHelper extends \MY_Controller {
         (null !== self::$_instance) OR self::$_instance = new self();
         return self::$_instance;
     }
-  
+
     /**
      * Ajax update setting by value and setting name
      */
@@ -49,7 +49,7 @@ class AdminHelper extends \MY_Controller {
         /** Get data from post * */
         $settingName = $this->input->get('setting');
         $settingValue = $this->input->get('value');
-        
+
         /** Set setting value * */
         $result = $this->stats_model->updateSettingByNameAndValue($settingName, $settingValue);
 
@@ -60,7 +60,7 @@ class AdminHelper extends \MY_Controller {
             echo 'false';
         }
     }
-    
+
     /**
      * Get setting by value
      * @param string $settingName
@@ -70,6 +70,14 @@ class AdminHelper extends \MY_Controller {
         return $this->stats_model->getSettingByName($settingName);
     }
     
+    /**
+     * Get main currency symbol
+     * @return string
+     */
+    public function getCurrencySymbol() {
+        return $this->stats_model->getMainCurrencySymbol();
+    }
+
     /**
      * Autocomlete products
      * @return jsone
@@ -92,4 +100,5 @@ class AdminHelper extends \MY_Controller {
         }
         echo '';
     }
+
 }
