@@ -97,7 +97,7 @@
                                             <span class="title">{echo $kitItem->getSProducts()->getName()}</span>
                                         </a>
                                         <div class="description">
-                                            {if $kitItem->getName() && $kitItem->getName() != $item->getSProducts()->getName()}
+                                            {if $kitItem->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
                                                 <span class="frame-variant-name">
                                                     <span class="text-el">{lang('Вариант','newLevel')}</span>
                                                     <span class="code">({echo $kitItem->getName()})</span>

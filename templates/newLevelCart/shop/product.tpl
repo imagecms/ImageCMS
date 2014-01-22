@@ -38,14 +38,16 @@
                             {/if}
                         </span>
                     </span>
-                    <span class="frame-variant-name frameVariantName" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
-                        {lang('Вариант','newLevel')}:
-                        <span class="code js-code">
-                            {if $model->firstVariant->getName()}
-                                {trim($model->firstVariant->getName())}
-                            {/if}
+                    {if count($variants) > 1}
+                        <span class="frame-variant-name frameVariantName" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
+                            {lang('Вариант','newLevel')}:
+                            <span class="code js-code">
+                                {if $model->firstVariant->getName()}
+                                    {trim($model->firstVariant->getName())}
+                                {/if}
+                            </span>
                         </span>
-                    </span>
+                    {/if}
                     {if $model->getBrand() != null}
                         {$brand = $model->getBrand()->getName()}
                         {$hasBrand = trim($brand) != ''}
@@ -595,13 +597,13 @@
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
-            {/if}
-            {if $fullDescription = $model->getFullDescription()}
+                {/if}
+                {if $fullDescription = $model->getFullDescription()}
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
-            {/if}
-            {if $accessories}
+                {/if}
+                {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
-            {/if}
+                {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
@@ -741,47 +743,47 @@
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-            <div class="title"><%- obj.title %></div>
-            <div class="horizontal-carousel">
-                <div class="frame-fancy-gallery frame-thumbs">
-                    <div class="fancy-gallery carousel-js-css">
-                        <div class="content-carousel">
-                            <ul class="items-thumbs items">
-                                <%= obj.frame.find(obj.galleryContent).html() %>
-                            </ul>
-                        </div>
-                        <div class="group-button-carousel">
-                            <button type="button" class="prev arrow">
-                                <span class="icon_arrow_p"></span>
-                            </button>
-                            <button type="button" class="next arrow">
-                                <span class="icon_arrow_n"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="title"><%- obj.title %></div>
+        <div class="horizontal-carousel">
+        <div class="frame-fancy-gallery frame-thumbs">
+        <div class="fancy-gallery carousel-js-css">
+        <div class="content-carousel">
+        <ul class="items-thumbs items">
+        <%= obj.frame.find(obj.galleryContent).html() %>
+        </ul>
+        </div>
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
         <div class="drop-content">
-            <div class="inside-padd">
-                <span class="helper"></span>
-                <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-            </div>
-            <div class="horizontal-carousel">
-                <div class="group-button-carousel">
-                    <button type="button" class="prev arrow">
-                        <span class="icon_arrow_p"></span>
-                    </button>
-                    <button type="button" class="next arrow">
-                        <span class="icon_arrow_n"></span>
-                    </button>
-                </div>
-            </div>
+        <div class="inside-padd">
+        <span class="helper"></span>
+        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+        </div>
+        <div class="horizontal-carousel">
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
         </div>
         <div class="drop-footer">
-            <div class="inside-padd">
-                <%= obj.frame.find(obj.footerContent).html()%>
-            </div>
+        <div class="inside-padd">
+        <%= obj.frame.find(obj.footerContent).html()%>
+        </div>
         </div>
     {/literal}
 </script>
@@ -794,8 +796,8 @@
 {literal}
     <script type="text/javascript">
         var
-        productPhotoDrop = true,
-        productPhotoCZoom = true;
+                productPhotoDrop = true,
+                productPhotoCZoom = true;
     </script>
 {/literal}
 <!-- End. JS vars-->
