@@ -51,6 +51,7 @@ class Orders_model extends CI_Model {
 
         $query = "
             SELECT
+                `dtable`.`date_created` as `unix_date`,
                 DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $this->getDatePattern($interval) . "') as `date`,
                 COUNT(`dtable`.`id`) as `orders_count`,
                 SUM(`dtable`.`origin_price`) as `price_sum`,
