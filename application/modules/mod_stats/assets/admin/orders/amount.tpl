@@ -16,7 +16,7 @@
             {include_tpl('../time_and_filter_block')}
             <!--<div id="chartContainer" class="span12" style="margin-left: 0 !important;">-->
             
-            <svg class="lineWithFocusChartStats" data-from="orders/amount_chart" style="height: 600px;"></svg>
+            <svg class="linePlusBarChartStats" data-from="orders/amount_chart" style="height: 600px; width: 800px;"></svg>
             <!--</div>-->
         </div>
     </div>
