@@ -45,7 +45,7 @@
             </li>
         {/if}
     </ul>
-    <div id="bask_block" class="frame-cleaner">
+    <div id="tinyBask" class="frame-cleaner">
         {include_tpl('cart_data')}
     </div>
 </div>
