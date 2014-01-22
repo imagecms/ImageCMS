@@ -11,10 +11,14 @@
 
     {if is_array($p) && $p.id}
         {$pArray = $p;}
-        {$p = getProduct($p.variant_id)}
+        {$variants = array()}
+        {$p = getProduct($p.id)}
+        {$p->firstVariant = getVariant($pArray.id,$pArray.variant_id)}
+        {$variants[] = $p->firstVariant}
+    {else:}
+        {$variants = $p->getProductVariants()}
     {/if}
-
-    {$variants = $p->getProductVariants()}
+    
     {$hasDiscounts = $p->hasDiscounts()}
 
     {if $key >= $opi_limit && $condlimit}

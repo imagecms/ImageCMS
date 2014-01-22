@@ -79,8 +79,8 @@
 .tabs-wishlist{margin-bottom: 18px;}
 .tabs-wishlist > li{margin-bottom: 3px;}
 .tabs-wishlist > li > button{padding: 3px 15px 5px;text-align: left;position: relative;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;}
-.tabs-wishlist > .active > button{background-color: #0c99ca;}
-.tabs-wishlist > .active > button:after{content: "";position: absolute;left: 50%;top: 100%;margin-left: -7px;border-width: 6px 7px;border-style: solid;border-color: transparent;border-top-color: #0c99ca;}
+.tabs-wishlist > .active > button{background-color: #fd7c08;}
+.tabs-wishlist > .active > button:after{content: "";position: absolute;left: 50%;top: 100%;margin-left: -7px;border-width: 6px 7px;border-style: solid;border-color: transparent;border-top-color: #fd7c08;}
 .tabs-wishlist > .active .text-el{color: #fff;border: 0;}
 
 .page-wishlist-one-WL{padding-bottom: 0;overflow: hidden;}

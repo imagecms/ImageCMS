@@ -723,134 +723,133 @@ function getCookie(c_name)
 /*plugin tooltip*/
 (function($) {
     var nS = 'tooltip',
-            sel = '.tooltip',
-            methods = {
-                setDefault: function() {
-                    return {
-                        otherClass: false,
-                        effect: '',
-                        textEl: '.text-el',
-                        placement: 'top',
-                        offsetX: 10,
-                        offsetY: 10,
-                        tooltip: false,
-                        sel: '.tooltip',
-                        durationOn: 300,
-                        durationOff: 200
-                    };
-                },
-                init: function(options, e) {
-                    var sel = '.tooltip',
-                            settings = $.extend(methods.setDefault(), {
-                                title: this.attr('data-title')
-                            }, options),
-                            $this = this,
-                            elSet = $this.data(),
-                            title = elSet.title || settings.title,
-                            otherClass = elSet.otherClass || settings.otherClass,
-                            effect = elSet.effect || settings.effect,
-                            textEl = elSet.textEl || settings.textEl,
-                            placement = elSet.placement || settings.placement,
-                            offsetX = elSet.offsetX || settings.offsetX,
-                            offsetY = elSet.offsetY || settings.offsetY,
-                            durationOn = elSet.durationOn || settings.durationOn,
-                            durationOff = elSet.durationOff || settings.durationOff,
-                            sel = elSet.tooltip || sel,
-                            tooltip = $(sel).not('.' + сC);
-                    if (effect !== 'always')
-                        $this.data({
-                            'title': title,
-                            'otherClass': otherClass,
-                            'effect': effect,
-                            'textEl': textEl,
-                            'placement': placement,
-                            'offsetX': offsetX,
-                            'offsetY': offsetY,
-                            'tooltip': sel,
-                            'durationOn': durationOn,
-                            'durationOff': durationOff
-                        });
-                    else
-                        $this.data({
-                            'title': ''
-                        });
-                    textEl = $this.find(textEl);
-                    if (textEl.is(':visible') && $.existsN(textEl))
-                        return false;
-                    tooltip.html(title);
-                    if (otherClass) {
-                        if (!$.exists('.' + otherClass))
-                            tooltip = tooltip.addClass(otherClass).appendTo(body);
-                        else
-                            tooltip = $('.' + otherClass);
-                    }
+    sel = '.tooltip',
+    methods = {
+        def: {
+            otherClass: false,
+            effect: '',
+            textEl: '.text-el',
+            placement: 'top',
+            offsetX: 10,
+            offsetY: 10,
+            tooltip: false,
+            sel: '.tooltip',
+            durationOn: 300,
+            durationOff: 200
+        },
+        init: function(options, e) {
+            var sel = '.tooltip',
+            settings = $.extend(methods.def, options),
+            $this = this,                           
+            elSet = $this.data(),
+            title = elSet.title || settings.title,
+            otherClass = elSet.otherClass || settings.otherClass,
+            effect = elSet.effect || settings.effect,
+            textEl = elSet.textEl || settings.textEl,
+            placement = elSet.placement || settings.placement,
+            offsetX = elSet.offsetX || settings.offsetX,
+            offsetY = elSet.offsetY || settings.offsetY,
+            durationOn = elSet.durationOn || settings.durationOn,
+            durationOff = elSet.durationOff || settings.durationOff,
+            sel = elSet.tooltip || sel,
+            tooltip = $(sel).not('.' + сC);
+            if (effect !== 'always')
+                $this.data({
+                    'title': title,
+                    'otherClass': otherClass,
+                    'effect': effect,
+                    'textEl': textEl,
+                    'placement': placement,
+                    'offsetX': offsetX,
+                    'offsetY': offsetY,
+                    'tooltip': sel,
+                    'durationOn': durationOn,
+                    'durationOff': durationOff
+                });
+            else
+                $this.data({
+                    'title': ''
+                });
+            textEl = $this.find(textEl);
+            if (textEl.is(':visible') && $.existsN(textEl))
+                return $this;
+            tooltip.html(title);
+            if (otherClass) {
+                if (!$.exists('.' + otherClass))
+                    tooltip = tooltip.addClass(otherClass).appendTo(body);
+                else
+                    tooltip = $('.' + otherClass);
+            }
 
-                    if (effect === 'mouse')
-                        this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
-                            tooltip.css({
-                                'left': methods.left($(this), tooltip, placement, e.pageX, effect, offsetX),
-                                'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY)
-                            });
-                        });
-                    tooltip.removeClass('top bottom right left').addClass(placement);
+            if (effect === 'mouse')
+                this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
                     tooltip.css({
-                        'left': methods.left(this, tooltip, placement, this.offset().left, effect, offsetX),
-                        'top': methods.top(this, tooltip, placement, this.offset().top, effect, offsetY)
-                    }).fadeIn(durationOn, function() {
-                        $(document).trigger({
-                            'type': 'tooltip.show',
-                            'el': $(this).css('opacity', 1)
-                        });
+                        'left': methods.left($(this), tooltip, placement, e.pageX, effect, offsetX),
+                        'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY)
                     });
-                    $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
-                        var el = $(this);
-                        if (effect !== 'always')
-                            el.tooltip('remove', e);
-                    });
-                    $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
-                        $(this).tooltip('remove', e);
-                    });
-                },
-                left: function(el, tooltip, placement, left, eff, offset) {
-                    if (placement === 'left')
-                        return Math.ceil(left - (eff === 'mouse' ? offset : tooltip.actual('outerWidth')));
-                    if (placement === 'right')
-                        return Math.ceil(left + (eff === 'mouse' ? offset : el.outerWidth()));
-                    else
-                        return Math.ceil(left - (eff === 'mouse' ? offset : (tooltip.actual('outerWidth') - el.outerWidth()) / 2));
-                },
-                top: function(el, tooltip, placement, top, eff, offset) {
-                    if (placement === 'top')
-                        return Math.ceil(top - (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
-                    if (placement === 'bottom')
-                        return Math.ceil(top + (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
-                    else {
-                        return Math.ceil(top - (eff === 'mouse' ? offset : (tooltip.actual('outerHeight') - el.outerHeight()) / 2));
-                    }
-                },
-                remove: function(e) {
-                    var $this = this;
-                    if ($this.length !== 0 && $this['data'] !== undefined) {
-                        var data = $this.data(),
-                                selA = $([]);
-                        if (data.otherClass)
-                            selA = $(data.otherClass);
-                        if (data.tooltip !== '.tooltip')
-                            selA = selA.add($(data.tooltip));
-                        var durOff = $this.data('durationOff');
-                        if ($.existsN(selA))
-                            sel = selA;
-                    }
-                    else
-                        durOff = methods.setDefault().durationOff;
-                    $(sel).stop().fadeOut(durOff, function() {
-                        $(document).trigger({
-                            'type': 'tooltip.hide',
-                            'el': $(this)
-                        });
-                    });
-                }
-            };
+                });
+            tooltip.removeClass('top bottom right left').addClass(placement);
+            tooltip.css({
+                'left': methods.left(this, tooltip, placement, this.offset().left, effect, offsetX),
+                'top': methods.top(this, tooltip, placement, this.offset().top, effect, offsetY)
+            }).fadeIn(durationOn, function() {
+                $(document).trigger({
+                    'type': 'tooltip.show',
+                    'el': $(this).css('opacity', 1)
+                });
+            });
+            $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
+                var el = $(this);
+                if (effect !== 'always')
+                    el.tooltip('remove', e);
+            });
+            $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
+                $(this).tooltip('remove', e);
+            });
+            
+            return $this;
+        },
+        left: function(el, tooltip, placement, left, eff, offset) {
+            if (placement === 'left')
+                return Math.ceil(left - (eff === 'mouse' ? offset : tooltip.actual('outerWidth')));
+            if (placement === 'right')
+                return Math.ceil(left + (eff === 'mouse' ? offset : el.outerWidth()));
+            else
+                return Math.ceil(left - (eff === 'mouse' ? offset : (tooltip.actual('outerWidth') - el.outerWidth()) / 2));
+        },
+        top: function(el, tooltip, placement, top, eff, offset) {
+            if (placement === 'top')
+                return Math.ceil(top - (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
+            if (placement === 'bottom')
+                return Math.ceil(top + (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
+            else {
+                return Math.ceil(top - (eff === 'mouse' ? offset : (tooltip.actual('outerHeight') - el.outerHeight()) / 2));
+            }
+        },
+        remove: function(e) {
+            var $this = this;
+            if ($this.length !== 0 && $this['data'] !== undefined) {
+                var data = $this.data(),
+                selA = $([]);
+                if (data.otherClass)
+                    selA = $(data.otherClass);
+                if (data.tooltip !== '.tooltip')
+                    selA = selA.add($(data.tooltip));
+                var durOff = $this.data('durationOff');
+                if ($.existsN(selA))
+                    sel = selA;
+            }
+            else
+                durOff = methods.def.durationOff;
+            $(sel).stop().fadeOut(durOff, function() {
+                $(document).trigger({
+                    'type': 'tooltip.hide',
+                    'el': $(this)
+                });
+            });
+            return $this;
+        }
+    };
     $.fn.tooltip = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
