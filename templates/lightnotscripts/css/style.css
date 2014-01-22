@@ -888,7 +888,7 @@ li.clear-pag-item{margin: 0 14px 4px;}
 /*product*/
 .frame-complect{margin-bottom: 40px;}
 .frame-complect .content-carousel{margin: 0 auto;}
-.items-complect > li{width: 576px!important;padding: 0 10px 0 30px;}
+.items-complect > li{width: 576px!important;padding: 10px 10px 10px 30px;}
 .items-complect [class*="items"]{max-width: 416px;}
 .complects-carousel{padding: 40px 113px 35px;}
 .vertical-layout .complects-carousel .prev{left: 5px;}
@@ -994,7 +994,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .frame-items-kit .gen-sum-row{text-align: center;margin: 5px 0 15px;}
 .frame-items-kit .gen-sum-row img{margin-bottom: 20px;}
 .right-order .header-frame-foot > .inside-padd{padding-left: 30px;}
-.frame-payment{margin-bottom: 13px;}
+.frame-payment{margin-bottom: 13px;min-height: 28px;}
 .table-info-order{margin-bottom: 35px;}
 .table-info-order td, .table-info-order th{padding: 3px 0;}
 .table-info-order hr{margin: 17px 0;}
@@ -1196,5 +1196,9 @@ img.cloned{max-width: none;max-height: none;}
 .frame-bask-order .frame-title > .f_r{height: 41px;line-height: 41px;padding-left: 28px;}
 .title-menu-category{margin-bottom: 10px;}
 
-.drop-profile{margin-top: 29px !important;margin-left: -20px;}
+.drop-profile{margin-top: 29px !important;margin-left: -20px;overflow: visible !important;}
 .drop-profile .drop-content .inside-padd{padding: 0 5px 0 8px;}
+
+.isCart{display:none;}
+.cart .isCart{display: block}
+.cart .notCart{display: none;}
