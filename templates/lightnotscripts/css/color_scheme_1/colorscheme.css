@@ -67,7 +67,7 @@ body{color: #333;}
 .icon_success{display: none;}
 .icon_error{display: none;}
 .icon_error + .text-el{overflow: hidden;}
-.icon_edit{width: 9px;height: 14px;}
+.icon_edit{display: none;}
 .icon_remove{display: none;}
 .icon_view{width: 18px;height: 12px;background-position: -420px 0;margin-right: 7px;top: 1px;}
 .icon_arrow_p2{display: none;}
