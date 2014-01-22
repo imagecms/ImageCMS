@@ -5,12 +5,19 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {if $totalItems > 0}
         <div class="drop-header">
-            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> <span>{lang('Сумма','newLevel')}</span> <span class="add-info"><span class="topCartTotalPrice">{echo $cartPrice}</span></span> <span class="curr">{$CS}</span></div>
+            <div class="title bask">{lang('Мой заказ','newLevel')}</div>
         </div>
         <div class="drop-content">
             <div class="frame-bask-main">
                 <div class="inside-padd">
                     <table class="table-order">
+                        <thead>
+                            <tr>
+                                <th colspan="2">{lang('Товар', 'newLevel')}</th>
+                                <th>{lang('Кол-во', 'newLevel')}</th>
+                                <th>{lang('Cумма', 'newLevel')}</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {foreach $items as $item}
                                 <!-- for single product -->
@@ -43,25 +50,11 @@
                                             </div>
                                         </td>
                                         <td class="frame-count frameCount">
-                                            <span class="count-or-compl">{lang('Количество', 'newLevel')}:</span>
                                             <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
-                                                <div class="frame-change-count" data-id="{echo $item->getId()}">
-                                                    <div class="btn-plus">
-                                                        <button type="button">
-                                                            <span class="icon-plus"></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="btn-minus">
-                                                        <button type="button">
-                                                            <span class="icon-minus"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
                                                 <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
                                         <td class="frame-cur-sum-price">
-                                            <span class="title">{lang('Сумма','newLevel')}: </span>
                                             <div class="frame-cur-sum-price">
                                                 <div class="frame-prices f-s_0">
                                                     {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
@@ -134,25 +127,11 @@
                                             </ul>
                                         </td>
                                         <td class="frame-count">
-                                            <span class="count-or-compl">{lang('Количество', 'newLevel')}:</span>
                                             <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
-                                                <div class="frame-change-count" data-id="{echo $item->getId()}">
-                                                    <div class="btn-plus">
-                                                        <button type="button">
-                                                            <span class="icon-plus"></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="btn-minus">
-                                                        <button type="button">
-                                                            <span class="icon-minus"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
                                                 <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-kit="1" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                             </div>
                                         </td>
                                         <td class="frame-cur-sum-price">
-                                            <span class="title">{lang('Сумма','newLevel')}: </span>
                                             <div class="frame-prices f-s_0">
                                                 {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                                     <span class="price-discount">
