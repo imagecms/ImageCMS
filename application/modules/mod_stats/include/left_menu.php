@@ -10,11 +10,11 @@ return array(
                 'controller' => 'orders',
                 'action' => 'amount',
             ),
-            array(
-                'name' => lang('Price', 'mod_stats'),
-                'controller' => 'orders',
-                'action' => 'price',
-            ),
+//            array(
+//                'name' => lang('Price', 'mod_stats'),
+//                'controller' => 'orders',
+//                'action' => 'price',
+//            ),
             array(
                 'name' => lang('Information', 'mod_stats'),
                 'controller' => 'orders',

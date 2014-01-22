@@ -11,18 +11,24 @@ class OrdersController extends ControllerBase {
         parent::__construct($some);
     }
 
+    /**
+     * 
+     */
     public function amount() {
         $this->renderAdmin('amount');
     }
 
+    /**
+     * 
+     */
     public function amount_chart() {
         //$dateFrom = isset($_GET['dateFrom']) ? $_GET['dateFrom'] : date("Y-m-d", time() - 60 * 60 * 24 * 365);
         $this->controller->load('traits/DateIntervalTrait.php');
         $this->controller->load->model('orders_model');
         $result = $this->controller->orders_model->getOrdersInfo(array(
-            'dateFrom' => isset($_GET['dateFrom']) ? $_GET['dateFrom'] : '2005-05-05',
-            'dateTo' => isset($_GET['dateTo']) ? $_GET['dateTo'] : date("Y-m-d"),
-            'interval' => isset($_GET['interval']) ? $_GET['interval'] : 'day',
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
         ));
 
         $this->controller->load('classes/ChartDataRemap.php');
@@ -51,25 +57,18 @@ class OrdersController extends ControllerBase {
         echo json_encode($finalStruct);
     }
 
-    public function price() {
-        $this->renderAdmin('price', array('data' => 123));
-    }
-
+    /**
+     * 
+     */
     public function info() {
         $this->controller->load('traits/DateIntervalTrait.php');
         $this->controller->load->model('orders_model');
-        $someResult = $this->controller->orders_model->getOrdersInfo(array('paid' => 0, 'dateFrom' => '2005-12-21', 'dateTo' => '2014-01-21', 'interval' => 1));
-
-        $this->controller->load('classes/DynamicChartData.php');
-
-
-        $dcd = new DynamicChartData;
-        $someRes2 = $dcd->processData($someResult);
-
-        echo '<pre>';
-        print_r($someRes2);
-        echo '</pre>';
-        exit;
+        $result = $this->controller->orders_model->getOrdersInfo(array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+        ));
+        $this->renderAdmin('info', array('data' => $result));
     }
 
 }
