@@ -17,6 +17,7 @@
 <script type="text/javascript">
     {literal}
         var genObj = {
+        submitOrder: '#submitOrder',
         frameDelivery: '#frameDelivery',
         framePaymentMethod: '#framePaymentMethod',
         dM: '[name = "deliveryMethodId"]',

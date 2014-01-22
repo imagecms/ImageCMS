@@ -54,14 +54,16 @@
                             {/if}
                         </span>
                     </span>
-                    {$hasVariant = $p->firstVariant->getName() == ''}
-                    <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}:
-                        <span class="code js-code">
-                            {if !$hasVariant}
-                                {trim($p->firstVariant->getName())}
-                            {/if}
+                    {if count($variants) > 1}
+                        {$hasVariant = $p->firstVariant->getName() == ''}
+                        <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}:
+                            <span class="code js-code">
+                                {if !$hasVariant}
+                                    {trim($p->firstVariant->getName())}
+                                {/if}
+                            </span>
                         </span>
-                    </span>
+                    {/if}
                     {if $brand = $p->getBrand()}
                         {$brand = $brand->getName()}
                         {$hasBrand = trim($brand) != ''}
@@ -326,7 +328,7 @@
             {/if}
         </div>
         <!-- Start. Remove buttons if compare-->
-        {if $opi_compare && !$opi_widget}
+        {if $opi_compare && !$opi_widget && !$opi_wishListPage}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
         <!-- End. Remove buttons if compare-->
