@@ -24,9 +24,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            if (Shop.Cart.xhr['add'+id])
-                Shop.Cart.xhr['add'+id].abort();
-            Shop.Cart.xhr['add'+id] = $.ajax({
+            if (this.xhr['add'+id])
+                this.xhr['add'+id].abort();
+            this.xhr['add'+id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': obj,
@@ -49,9 +49,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            if (Shop.Cart.xhr['remove'+id])
-                Shop.Cart.xhr['remove'+id].abort();
-            Shop.Cart.xhr['remove'+id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
+            if (this.xhr['remove'+id])
+                this.xhr['remove'+id].abort();
+            this.xhr['remove'+id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
                 $(document).trigger({
                     'type': 'remove.Cart',
                     'datas': data,
@@ -67,9 +67,9 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            if (Shop.Cart.xhr['amount'+id])
-                Shop.Cart.xhr['amount'+id].abort();
-            Shop.Cart.xhr['amount'+id] = $.ajax({
+            if (this.xhr['amount'+id])
+                this.xhr['amount'+id].abort();
+            this.xhr['amount'+id] = $.ajax({
                 'type': 'post',
                 'url': this.baseUrl + 'getAmountInCart',
                 'data': {
@@ -95,9 +95,9 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            if (Shop.Cart.xhr['count'+id])
-                Shop.Cart.xhr['count'+id].abort();
-            Shop.Cart.xhr['count'+id] = $.ajax({
+            if (this.xhr['count'+id])
+                this.xhr['count'+id].abort();
+            this.xhr['count'+id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': {
@@ -122,9 +122,9 @@ var Shop = {
                 'id': id,
                 'datas': tpl
             });
-            if (Shop.Cart.xhr['payment'])
-                Shop.Cart.xhr['payment'].abort();
-            Shop.Cart.xhr['payment'] = $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
+            if (this.xhr['payment'])
+                this.xhr['payment'].abort();
+            this.xhr['payment'] = $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
                 $(document).trigger({
                     'type': 'getPayment.Cart',
                     'id': id,
@@ -139,9 +139,9 @@ var Shop = {
                 'obj': obj,
                 'objF': objF
             });
-            if (Shop.Cart.xhr[obj.template])
-                Shop.Cart.xhr[obj.template].abort();
-            Shop.Cart.xhr[obj.template] = $.ajax({
+            if (this.xhr[obj.template])
+                this.xhr[obj.template].abort();
+            this.xhr[obj.template] = $.ajax({
                 'type': 'post',
                 'url': siteUrl + 'shop/cart',
                 'data': obj,
@@ -180,8 +180,8 @@ var Shop = {
                         var dataObj = JSON.parse(data);
                         dataObj.id = key;
                         if (dataObj.success == true) {
-                            Shop.CompareList.items.push(key);
-                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                            this.items.push(key);
+                            localStorage.setItem('compareList', JSON.stringify(this.items));
                             $(document).trigger({
                                 type: 'compare_list_add',
                                 dataObj: dataObj
@@ -205,8 +205,8 @@ var Shop = {
                         var dataObj = JSON.parse(data);
                         dataObj.id = key;
                         if (dataObj.success == true) {
-                            Shop.CompareList.items = _.without(Shop.CompareList.items, key);
-                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                            this.items = _.without(this.items, key);
+                            localStorage.setItem('compareList', JSON.stringify(this.items));
                             $(document).trigger({
                                 type: 'compare_list_rm',
                                 dataObj: dataObj

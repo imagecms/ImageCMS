@@ -1503,7 +1503,7 @@ function getCookie(c_name)
                             }
                         }
                     });
-                    return false;
+                    e.preventDefault();
                 });
             }
             return $this;
@@ -1617,38 +1617,44 @@ function getCookie(c_name)
 (function($) {
     var methods = {
         init: function(options) {
-            this.filter(':not(.isDrop)').each(function() {
+            this.drop('destroy').each(function() {
                 var el = $(this),
                         trigger = (methods._checkProp(el.data(), options, 'trigger')).toString();
-                if (el.parent().hasClass(aC))
-                    methods.close($(el.attr('data-drop')))
-                else {
-                    methods._modalTrigger($.extend({}, options, el.data()));
-                    var rel = this.rel;
-                    if (rel !== undefined && rel !== '') {
-                        rel = rel.replace(/[^a-zA-Z0-9]+/ig, '');
-                        var source = el.data('source') || el.attr('href');
-                        if (source !== undefined) {
-                            if (typeof $.drop.dP.galleries[rel] === 'undefined')
-                                $.drop.dP.galleries[rel] = [];
-                            $.drop.dP.galleries[rel].push(source);
-                        }
-                    }
 
-                    el.addClass('isDrop').data({
-                        'drp': options
-                    });
-                    el.attr('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
-                        $.drop.dP.wST = wnd.scrollTop();
-                        if ($(this).hasClass('isDrop')) {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            methods.open(undefined, $(this), options, e)
-                        }
-                    });
-                    if (window.location.hash.indexOf(el.attr('href') || el.data('href')) != -1)
-                        methods.open(undefined, el, options, undefined)
+                methods._modalTrigger($.extend({}, options, el.data()));
+                var rel = this.rel;
+                if (rel !== undefined && rel !== '') {
+                    rel = rel.replace(/[^a-zA-Z0-9]+/ig, '');
+                    var source = el.data('source') || el.attr('href');
+                    if (source !== undefined) {
+                        if (typeof $.drop.dP.galleries[rel] === 'undefined')
+                            $.drop.dP.galleries[rel] = [];
+                        $.drop.dP.galleries[rel].push(source);
+                    }
                 }
+
+                el.addClass('isDrop').data({
+                    'drp': options
+                });
+
+                var href = el.attr('href') || el.data('href');
+                if (href) {
+                    if (window.location.hash.indexOf(href) != -1 && !$.inArray(href, $.drop.dP.hrefs))
+                        methods.open(undefined, el, options, undefined)
+                    $.drop.dP.hrefs.push(href);
+                }
+
+                el.attr('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
+                    $.drop.dP.wST = wnd.scrollTop();
+                    if (el.parent().hasClass(aC))
+                        methods.close($(el.attr('data-drop')))
+                    else {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        methods.open(undefined, $(this), options, e)
+                    }
+                });
+
             });
             for (i in $.drop.dP.galleries)
                 if ($.drop.dP.galleries[i].length <= 1) {
@@ -1663,7 +1669,7 @@ function getCookie(c_name)
                 var el = $(this);
                 if (trigger == undefined)
                     trigger = el.attr('trigger');
-                el.removeAttr('trigger').removeData('trigger').removeClass('isDrop').off(trigger + '.' + $.drop.nS);
+                el.removeAttr('trigger').removeData('trigger').removeData('drp').removeClass('isDrop').off(trigger + '.' + $.drop.nS);
                 var drop = $(el.attr('data-drop'));
                 drop.removeData('drp');
             });
@@ -1993,7 +1999,6 @@ function getCookie(c_name)
                                 datas: data
                             });
                             methods._show(el, e, true, set, data);
-                            methods.init.call(drop.find('[data-drop]:not(.isDrop)'));
                         }
                     }
                 });
@@ -2016,7 +2021,7 @@ function getCookie(c_name)
                     'type': 'showActivity'
                 });
                 if (source.match(/jpg|gif|png|bmp|jpeg/))
-                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
+                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function() {
                         _update($(this));
                     })
                 else
@@ -2250,8 +2255,7 @@ function getCookie(c_name)
             if (forCenter) {
                 forCenter.css('z-index', overlays.length + 1104);
             }
-            else
-                drop.css('z-index', 1105);
+            drop.css('z-index', 1105);
 
             methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
             before($this, drop, isajax, data, set);
@@ -2352,9 +2356,13 @@ function getCookie(c_name)
                 if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
                     window.location.hash = wlh + href;
             }
-
+            if (place !== 'inherit')
+                methods._checkMethod(function() {
+                    methods[place](drop)
+                })
             drop[$thisEOn]($thisD, function(e) {
                 var drop = $(this).css('overflow', 'hidden');
+                methods.init.call(drop.find('[data-drop]'));
                 drop.addClass(aC);
                 if (!confirm && modal && timeclosemodal)
                     $.drop.dP.closeDropTime = setTimeout(function() {
@@ -2461,6 +2469,7 @@ function getCookie(c_name)
             contentHeader: null,
             contentFooter: null,
             contentContent: null,
+            hrefs: [],
             galleries: [],
             message: {
                 success: function(text) {
@@ -2542,8 +2551,11 @@ function getCookie(c_name)
     $.drop = new $.dropInit();
 
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
-        wnd.scrollTop($.drop.dP.wST);
-        return false;
+        setTimeout(function() {
+            $('html, body').scrollTop($.drop.dP.wST);
+        }, 0)
+
+        e.preventDefault();
     });
 })(jQuery);
 /*/plugin drop end*/
