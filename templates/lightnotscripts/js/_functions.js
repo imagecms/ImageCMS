@@ -134,6 +134,15 @@ var ShopFront = {
             $('.' + genObj.toCompare).each(function() {
                 if (comparelist.indexOf($(this).data('id')) !== -1) {
                     var $this = $(this);
+                    console.log($this.
+                        removeClass(genObj.toCompare).
+                        addClass(genObj.inCompare).
+                        
+                        parent().
+                        addClass(genObj.compareIn).
+                        
+                        end().
+                        data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip())
                     $this.
                         removeClass(genObj.toCompare).
                         addClass(genObj.inCompare).

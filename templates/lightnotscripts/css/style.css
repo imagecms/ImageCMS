@@ -301,12 +301,12 @@ input.input-search{height: 33px;padding-right: 14px;}
 
 .items-catalog{margin-left: -42px;}
 .items-catalog > li .icon_times_order{position: absolute; left:10px; top:10px;}
-.items-catalog .frame-photo-title{display: block;}
+.items-catalog .frame-photo-title{display: block;margin-bottom: 5px;}
 .items-catalog .photo-block{margin-bottom: 10px;width: 200px;height: 110px;}
 .items-catalog.list .photo-block{float: left;margin-right: 10px;}
 .items-catalog.list .description{margin-left: 210px;}
 .items-catalog.list .frame-without-top{position: static !important;}
-.items-catalog .frame-star{margin-bottom: 8px;}
+.items-catalog .frame-star{margin-bottom: 5px;}
 .items-catalog .price-discount{margin-bottom: 10px;display: block;}
 .items-catalog .price-discount + .current-prices{margin-bottom: 10px;}
 .items-catalog .funcs-buttons{margin-bottom: 10px;}
