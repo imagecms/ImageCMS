@@ -772,7 +772,7 @@ function getCookie(c_name)
                 });
             textEl = $this.find(textEl);
             if (textEl.is(':visible') && $.existsN(textEl))
-                return false;
+                return $this;
             tooltip.html(title);
             if (otherClass) {
                 if (!$.exists('.' + otherClass))
@@ -806,6 +806,7 @@ function getCookie(c_name)
             $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
                 $(this).tooltip('remove', e);
             });
+            
             return $this;
         },
         left: function(el, tooltip, placement, left, eff, offset) {
