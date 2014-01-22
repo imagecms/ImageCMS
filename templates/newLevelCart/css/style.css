@@ -428,10 +428,10 @@ input.input-search{height: 33px;}
 .items-thumbs.items li{width: 64px !important;margin-left: 0;}
 .items-thumbs.items{margin-left: -5px;}
 .items-thumbs.items li{margin-left: 5px;}
-.carousel-js-css .items-thumbs.items{margin-left: 0;}
+.carousel-js-css .items-thumbs.items{margin-left: 0;display: inline-block;}
 .carousel-js-css .items-thumbs.items li{margin-right: 5px;margin-left: 0;margin-bottom: 0;}
 /*if not carousel*/
-.fancy-gallery .content-carousel{padding: 14px 0 9px;}
+.fancy-gallery .content-carousel{padding: 14px 0 9px;text-align: center;font-size: 0;}
 .fancy-gallery .items-thumbs > li{margin-right: 5px;margin-top: 5px;margin-left: 0;}
 
 .item-product .frame-star{margin-bottom: 20px;}

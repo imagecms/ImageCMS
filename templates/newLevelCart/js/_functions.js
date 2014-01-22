@@ -76,6 +76,7 @@ var ShopFront = {
                         el.closest(genObj.numberC).tooltip();
                 }
             }));
+            testNumber(inputs);
             inputs.off('maxminValue').on('maxminValue', function(e) {
                 if (checkProdStock && e.res)
                     $(this).closest(genObj.numberC).tooltip();
