@@ -11,72 +11,156 @@ if (!Array.indexOf) {
         return -1;
     }
 }
-var returnMsg = function(msg) {
-    if (window.console) {
-        console.log(msg);
-    }
-};
 var Shop = {
-    //var Cart = new Object();
-    currentItem: {},
     Cart: {
-        cartItem: function(obj) {
-            if (typeof obj == 'undefined' || obj == false)
-                obj = {
-                    id: false,
-                    vId: false,
-                    name: false,
-                    count: false,
-                    kit: false,
-                    maxcount: 0,
-                    number: '',
-                    vname: false,
-                    url: false
-                };
-            return {
-                id: obj.id ? obj.id : 0,
-                vId: obj.vId ? obj.vId : 0,
-                price: obj.price ? obj.price : 0,
-                prices: obj.prices ? obj.prices : 0,
-                addprice: obj.addprice ? obj.addprice : 0,
-                addprices: obj.addprices ? obj.addprices : 0,
-                origprice: obj.origprice ? obj.origprice : 0,
-                origprices: obj.origprices ? obj.origprices : 0,
-                name: obj.name ? obj.name : '',
-                count: obj.count ? obj.count : 1,
-                kit: obj.kit ? obj.kit : false,
-                kitId: obj.kitId ? obj.kitId : 0,
-                maxcount: obj.maxcount ? obj.maxcount : 0,
-                number: obj.number ? obj.number : 0,
-                vname: obj.vname ? obj.vname : '',
-                url: obj.url ? obj.url : '',
-                img: obj.img ? obj.img : '',
-                prodstatus: obj.prodstatus ? obj.prodstatus : '',
-                storageId: function() {
-                    return 'cartItem_' + this.id + '_' + this.vId;
+        baseUrl: siteUrl + 'shop/cart/api/',
+        xhr: {
+            
+        },
+        add: function(obj, id, kit) {
+            var method = kit ? 'addKit' : 'addProductByVariantId';
+            $(document).trigger({
+                'type': 'beforeAdd.Cart',
+                'id': id,
+                'kit': kit
+            });
+            if (this.xhr['add'+id])
+                this.xhr['add'+id].abort();
+            this.xhr['add'+id] = $.ajax({
+                'type': 'get',
+                'url': this.baseUrl + method + '/' + id,
+                'data': obj,
+                success: function(data) {
+                    $(document).trigger({
+                        'type': 'add.Cart',
+                        'datas': JSON.parse(data),
+                        'id': id,
+                        'kit': kit,
+                        'obj': obj
+                    });
                 }
-            };
+            });
+            return this;
+        },
+        remove: function(id, kit) {
+            var method = kit ? 'removeKit' : 'removeProductByVariantId';
+            $(document).trigger({
+                'type': 'beforeRemove.Cart',
+                'id': id,
+                'kit': kit
+            });
+            if (this.xhr['remove'+id])
+                this.xhr['remove'+id].abort();
+            this.xhr['remove'+id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
+                $(document).trigger({
+                    'type': 'remove.Cart',
+                    'datas': data,
+                    'id': id,
+                    'kit': kit
+                });
+            });
+            return this;
+        },
+        getAmount: function(kit, id) {
+            $(document).trigger({
+                'type': 'beforeGetAmount.Cart',
+                'kit': kit,
+                'id': id
+            });
+            if (this.xhr['amount'+id])
+                this.xhr['amount'+id].abort();
+            this.xhr['amount'+id] = $.ajax({
+                'type': 'post',
+                'url': this.baseUrl + 'getAmountInCart',
+                'data': {
+                    'id': id,
+                    'instance': kit ? 'ShopKit' : 'SProducts'
+                },
+                success: function(data){
+                    $(document).trigger({
+                        'type': 'getAmount.Cart',
+                        'kit': kit,
+                        'id': id,
+                        'datas': data
+                    });
+                }
+            });
+            return this;
+        },
+        changeCount: function(count, id, kit) {
+            var method = kit ? 'setQuantityKitById' : 'setQuantityProductByVariantId';
+            $(document).trigger({
+                'type': 'beforeChange.Cart',
+                'count': count,
+                'kit': kit,
+                'id': id
+            });
+            if (this.xhr['count'+id])
+                this.xhr['count'+id].abort();
+            this.xhr['count'+id] = $.ajax({
+                'type': 'get',
+                'url': this.baseUrl + method + '/' + id,
+                'data': {
+                    'quantity': count
+                },
+                success: function(data) {
+                    $(document).trigger({
+                        'type': 'сhange.Cart',
+                        'datas': JSON.parse(data),
+                        'count': count,
+                        'kit': kit,
+                        'id': id
+                    });
+                }
+            });
+            return this;
+        },
+        getPayment: function(id, tpl) {
+            tpl = tpl ? tpl : '';
+            $(document).trigger({
+                'type': 'beforeGetPayment.Cart',
+                'id': id,
+                'datas': tpl
+            });
+            if (this.xhr['payment'])
+                this.xhr['payment'].abort();
+            this.xhr['payment'] = $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
+                $(document).trigger({
+                    'type': 'getPayment.Cart',
+                    'id': id,
+                    'datas': data
+                });
+            });
+            return this;
+        },
+        getTpl: function(obj, objF) {
+            $(document).trigger({
+                'type': 'beforeGetTpl.Cart',
+                'obj': obj,
+                'objF': objF
+            });
+            if (this.xhr[obj.template])
+                this.xhr[obj.template].abort();
+            this.xhr[obj.template] = $.ajax({
+                'type': 'post',
+                'url': siteUrl + 'shop/cart',
+                'data': obj,
+                success: function(data) {
+                    $(document).trigger({
+                        'type': 'getTpl.Cart',
+                        'obj': obj,
+                        'objF': objF,
+                        'datas': data
+                    });
+                }
+            });
+            return this;
         },
         composeCartItem: function($context) {
-            var cartItem = new Shop.Cart.cartItem();
-            cartItem.id = $context.data('prodid');
-            cartItem.vId = $context.data('varid');
-            cartItem.count = $context.attr('data-count');
-            cartItem.price = $context.data('price');
-            cartItem.prices = $context.data('prices');
-            cartItem.addprice = $context.data('addprice');
-            cartItem.addprices = $context.data('addprices');
-            cartItem.origprice = $context.data('origprice')
-            cartItem.origprices = $context.data('origprices')
-            cartItem.name = $context.data('name');
-            cartItem.kit = $context.data('kit');
-            cartItem.kitId = $context.data('kitid');
-            cartItem.maxcount = $context.data('maxcount');
-            cartItem.number = $context.data('number');
-            cartItem.vname = $context.data('vname');
-            cartItem.url = $context.data('url');
-            cartItem.img = $context.data('img');
-            cartItem.prodstatus = $context.data('prodstatus');
+            var cartItem = {},
+            data = $context.data();
+            for (var i in data)
+                cartItem[i] = data[i]
             return cartItem;
         }
     },
@@ -96,8 +180,8 @@ var Shop = {
                         var dataObj = JSON.parse(data);
                         dataObj.id = key;
                         if (dataObj.success == true) {
-                            Shop.CompareList.items.push(key);
-                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                            this.items.push(key);
+                            localStorage.setItem('compareList', JSON.stringify(this.items));
                             $(document).trigger({
                                 type: 'compare_list_add',
                                 dataObj: dataObj
@@ -121,8 +205,8 @@ var Shop = {
                         var dataObj = JSON.parse(data);
                         dataObj.id = key;
                         if (dataObj.success == true) {
-                            Shop.CompareList.items = _.without(Shop.CompareList.items, key);
-                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                            this.items = _.without(this.items, key);
+                            localStorage.setItem('compareList', JSON.stringify(this.items));
                             $(document).trigger({
                                 type: 'compare_list_rm',
                                 dataObj: dataObj
@@ -235,8 +319,8 @@ var ImageCMSApi = {
                     var form = $(selector);
                     returnMsg("[status]:" + obj.status);
                     returnMsg("[message]: " + obj.msg);
-
-                    if (((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != '')))
+                    var cond = ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''));
+                    if (cond)
                         $(document).trigger({
                             'type': 'imageapi.before_refresh_reload',
                             'el': form,
@@ -245,7 +329,7 @@ var ImageCMSApi = {
 
                     if (typeof DS.callback == 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
-                    else
+                    else if (obj.status === true && !cond)
                         setTimeout((function() {
                             form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
@@ -261,13 +345,14 @@ var ImageCMSApi = {
                             location.href = obj.redirect;
                     }, DS.durationHideForm);
 
-                    if (obj.status == true) {
+                    if ($.trim(obj.msg) !== '' && obj.validations === undefined) {
                         if (DS.hideForm)
                             form.hide();
+                        var type = obj.status === true ? 'success' : 'error';
                         if (DS.messagePlace == 'ahead')
-                            $(message.success(obj.msg)).prependTo(form.parent());
+                            $(message[type](obj.msg)).prependTo(form.parent());
                         if (DS.messagePlace == 'behind')
-                            $(message.success(obj.msg)).appendTo(form.parent());
+                            $(message[type](obj.msg)).appendTo(form.parent());
                         $(document).trigger({
                             'type': 'imageapi.pastemsg',
                             'el': form.parent()
@@ -286,11 +371,12 @@ var ImageCMSApi = {
                         elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
-                            elMsg.hide();
+                            elMsg.remove();
                             $(document).trigger({
                                 'type': 'imageapi.hidemsg',
                                 'el': form
-                            })
+                            });
+                            $this.focus();
                         }
                     });
                 }
@@ -323,14 +409,15 @@ var ImageCMSApi = {
                     var input = sel.find('[name=' + key + ']');
                     input.addClass(DS.err);
                     input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, sel));
-                    var finput = sel.find(':input.' + DS.err + ':first');
-                    finput.setCursorPosition(finput.val().length);
                 }
-                if (i == Object.keys(validations).length)
+                if (i == Object.keys(validations).length) {
                     $(document).trigger({
                         'type': 'imageapi.pastemsg',
                         'el': sel.parent()
                     })
+                    var finput = sel.find(':input.' + DS.err + ':first');
+                    finput.setCursorPosition(finput.val().length);
+                }
                 i++;
             }
         } else {

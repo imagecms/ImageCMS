@@ -2,6 +2,41 @@
 //variants
 var ShopFront = {
     Cart: {
+        processBtnBuyCount: function(id, status, kit, count) {
+            var el = $(genObj.btnBuy).filter('[data-id="' + id + '"]').removeAttr('disabled');
+            if (kit)
+                el = el.filter(genObj.btnBuyKit);
+
+            el.each(function() {
+                var el = $(this);
+                if (status == 'add') {
+                    el.parent(genObj.btnToCart).addClass('d_n');
+                    el.parent(genObj.btnInCart).removeClass('d_n');
+                    el.closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart)
+                    .find(genObj.frameCount)
+                    .find(':input').attr('disabled', 'disabled');
+                }
+                if (status == 'remove') {
+                    el.parent(genObj.btnToCart).removeClass('d_n');
+                    el.parent(genObj.btnInCart).addClass('d_n');
+                    el.closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart)
+                    .find(genObj.frameCount)
+                    .find(':input').removeAttr('disabled', 'disabled')
+                    .end().find(genObj.plusMinus).attr('value', function(){
+                        return $(this).data('min');
+                    });
+                }
+                if (status == 'change') {
+                    el.closest(genObj.parentBtnBuy).find(genObj.frameCount).find('input').attr('value', count);
+                }
+            });
+
+            decorElemntItemProduct(el.closest(genObj.parentBtnBuy));
+
+            $(document).trigger({
+                'type': 'processPageEnd'
+            });
+        },
         changeVariant: function(el) {
             el = el == undefined ? body : el;
             /*Variants in Category*/
@@ -9,17 +44,16 @@ var ShopFront = {
                 var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy),
                 btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
-                vMediumImage = btnInfo.attr('data-mediumImage'),
-                vId = btnInfo.attr('data-id'),
-                vName = btnInfo.attr('data-vname'),
-                vPrice = btnInfo.attr('data-price'),
-                vOrigPrice = btnInfo.attr('data-origPrice'),
-                vAddPrice = btnInfo.attr('data-addPrice'),
-                vNumber = btnInfo.attr('data-number'),
-                vStock = btnInfo.attr('data-maxcount');
+                vMediumImage = $.trim(btnInfo.data('mediumImage')),
+                vId = btnInfo.data('id'),
+                vName = $.trim(btnInfo.data('vname')),
+                vNumber = $.trim(btnInfo.data('number')),
+                vPrice = btnInfo.data('price'),
+                vOrigPrice = btnInfo.data('origPrice'),
+                vAddPrice = btnInfo.data('addPrice'),
+                vStock = btnInfo.data('maxcount');
 
-                if (vMediumImage.search(/nophoto/) == -1)
-                    liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
+                liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
 
                 liBlock.find(genObj.selVariant).hide();
                 liBlock.find(genObj.prefV + vId).show();
@@ -30,8 +64,36 @@ var ShopFront = {
                 ShopFront.Cart.existsVnumber(vNumber, liBlock);
                 ShopFront.Cart.existsVnames(vName, liBlock);
                 ShopFront.Cart.condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId).find(genObj.infoBut));
+                
+                decorElemntItemProduct(liBlock);
             });
         /*/Variants in Category*/
+        },
+        changeCount: function(inputs) {
+            inputs.plusminus($.extend({}, optionsPlusminus, {
+                after: function(e, el, input) {
+                    if (checkProdStock && input.val() == input.data('max'))
+                        el.closest(genObj.numberC).tooltip();
+                }
+            }));
+            testNumber(inputs);
+            inputs.off('maxminValue').on('maxminValue', function(e) {
+                if (checkProdStock && e.res)
+                    $(this).closest(genObj.numberC).tooltip();
+            });
+        },
+        baskChangeCount: function(inputs) {
+            inputs.plusminus($.extend({}, optionsPlusminus, {
+                after: function(e, el, input) {
+                    Shop.Cart.changeCount(input.val(), input.data('id'), input.data('kit'));
+                }
+            }));
+            testNumber(inputs);
+            inputs.off('maxminValue').on('maxminValue', function(e) {
+                var input = $(this);
+                if (input.val() != '')
+                    Shop.Cart.changeCount(input.val(), input.data('id'), input.data('kit'));
+            })
         },
         existsVnumber: function(vNumber, liBlock) {
             if ($.trim(vNumber) != '') {
@@ -57,6 +119,12 @@ var ShopFront = {
                 liBlock.addClass(genObj.inCart)
             else
                 liBlock.addClass(genObj.toCart)
+        },
+        pasteItems: function(el) {
+            el.find("img.lazy").lazyload(lazyload);
+            wnd.scroll(); //for lazyload
+            drawIcons(el.find(selIcons));
+            el.find('[data-drop]').drop();
         }
     },
     CompareList: {
@@ -64,13 +132,13 @@ var ShopFront = {
             //comparelist checking
             var comparelist = Shop.CompareList.all();
             $('.' + genObj.toCompare).each(function() {
-                if (comparelist.indexOf($(this).data('prodid')) !== -1) {
+                if (comparelist.indexOf($(this).data('id')) !== -1) {
                     var $this = $(this);
                     $this.removeClass(genObj.toCompare).addClass(genObj.inCompare).parent().addClass(genObj.compareIn).end().attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
                 }
             });
             $('.' + genObj.inCompare).each(function() {
-                if (comparelist.indexOf($(this).data('prodid')) === -1) {
+                if (comparelist.indexOf($(this).data('id')) === -1) {
                     var $this = $(this);
                     $this.addClass(genObj.toCompare).removeClass(genObj.inCompare).parent().removeClass(genObj.compareIn).end().attr('data-title', $this.attr('data-firtitle')).find(genObj.textEl).text($this.attr('data-firtitle'));
                 }
@@ -78,15 +146,15 @@ var ShopFront = {
         },
         count: function() {
             var count = Shop.CompareList.all().length,
-            btn = $(genObj.tinyCompareList).find('[data-href]').off('click.drop').off('click.tocompare');
-            
-            if (count > 0){
+            btn = $(genObj.tinyCompareList).find('[data-href]').drop('destroy').off('click.tocompare');
+
+            if (count > 0) {
                 $(genObj.tinyCompareList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
-                btn.on('click.tocompare', function(){
+                btn.on('click.tocompare', function() {
                     location.href = $(this).data('href');
                 });
             }
-            else{
+            else {
                 $(genObj.tinyCompareList).removeClass(genObj.isAvail).find(genObj.blockNoEmpty).hide().end().find(genObj.blockEmpty).show();
                 btn.drop();
             }
@@ -105,27 +173,26 @@ var global = {
     processWish: function() {
         var wishlist = wishList.all();
         $(genObj.btnWish).each(function() {
-            var $this = $(this),
-            $thisP = $this.parent();
-            if (wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')) !== -1) {
+            var $this = $(this);
+            if (wishlist.indexOf($this.data('id')) !== -1) {
                 $this.addClass(genObj.wishIn);
-                $this.find('.' + genObj.toWishlist).hide();
-                $this.find('.' + genObj.inWishlist).show();
+                $this.find(genObj.toWishlist).hide();
+                $this.find(genObj.inWishlist).show();
             }
             else {
                 $this.removeClass(genObj.wishIn);
-                $this.find('.' + genObj.toWishlist).show();
-                $this.find('.' + genObj.inWishlist).hide();
+                $this.find(genObj.toWishlist).show();
+                $this.find(genObj.inWishlist).hide();
             }
         });
     },
     wishListCount: function() {
         var count = wishList.all().length,
-        btn = $(genObj.tinyWishList).find('[data-href]').off('click.drop').off('click.towish');
-        
+        btn = $(genObj.tinyWishList).find('[data-href]').drop('destroy').off('click.towish');
+
         if (count > 0) {
             $(genObj.tinyWishList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
-            btn.on('click.towish', function(){
+            btn.on('click.towish', function() {
                 location.href = $(this).data('href');
             });
         }
@@ -154,7 +221,6 @@ var global = {
         }
     }
 }
-
 /*declaration shop functions*/
 
 /*declaration front functions*/
@@ -179,7 +245,7 @@ function pluralStr(i, str) {
 }
 function serializeForm(el) {
     var $this = $(el);
-    return $this.data('data', $this.closest('form').serialize());
+    return $this.data('datas', $this.closest('form').serialize());
 }
 if (!$.isFunction($.fancybox)) {
     var loadingTimer, loadingFrame = 1;
@@ -268,8 +334,8 @@ function initCarouselJscrollPaneCycle(el) {
 
         if (cycle.find('li').length > 1) {
             cycle.cycle($.extend({}, optionsCycle, {
-//                'next': next,
-//                'prev': prev,
+                'next': next,
+                'prev': prev,
                 'pager': $this.find('.pager'),
                 'after': function() {
                     wnd.scroll();
@@ -285,10 +351,10 @@ function initCarouselJscrollPaneCycle(el) {
     });
 }
 function hideDrop(drop, form, durationHideForm) {
-    var drop = $(drop);
+    drop = $(drop);
     var closedrop = setTimeout(function() {
-        drop.drop('close', drop);
-    }, durationHideForm - 500/*time fadeout drop see on site*/)
+        drop.drop('close');
+    }, durationHideForm - drop.data('drp').durationOff);
     setTimeout(function() {
         drop.find(genObj.msgF).hide().remove();
         form.show();
@@ -296,12 +362,11 @@ function hideDrop(drop, form, durationHideForm) {
     }, durationHideForm)
 
     //    if close "esc" or click on body
-    $(document).off('drop.close').on('drop.close', function(e) {
+    drop.off('closed.' + $.drop.nS).on('closed.' + $.drop.nS, function(e) {
         clearTimeout(closedrop);
-        if (e.el.is(drop)) {
-            e.el.find(genObj.msgF).hide().remove();
-            form.show();
-        }
+
+        e.drop.find(genObj.msgF).hide().remove();
+        form.show();
     })
 }
 function showHidePart(el, absolute, time, btnPlace) {
@@ -423,10 +488,6 @@ function showHidePart(el, absolute, time, btnPlace) {
 
     }
 }
-function dropBaskResize() {
-    $(genObj.popupCart).drop('heightContent');
-    wnd.trigger('resize.drop');
-}
 function decorElemntItemProduct(el) {
     try {
         clearTimeout(curFuncTime);
@@ -536,7 +597,6 @@ function decorElemntItemProduct(el) {
                         break;
                 }
             });
-            console.log(1)
             wnd.scroll(); //if lazyload
         }
         var curFuncTime = setTimeout(curFunc, 400)
@@ -572,9 +632,9 @@ function itemUserToolbar() {
         return itemsUT;
     },
     this.resize = function(itemsUT, btnUp) {
+        itemsUT = $(itemsUT);
         var btnW = btnUp.outerWidth(true),
         bodyW = body.width(),
-        itemsUT = $(itemsUT),
         itemsUTCW = itemsUT.children().width();
         if ((bodyW - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
             btnUp.fadeIn();
@@ -622,9 +682,9 @@ function ieBoxSize(els) {
     });
 }
 function cuselInit(el, sel) {
-    var el = el == undefined ? body : el,
+    el = el == undefined ? body : el;
     sel = sel == undefined ? cuselOptions.changedEl : sel;
-    if ($.existsN(el.find(cuselOptions.changedEl)) && $.isFunction(window.cuSel)) {
+    if ($.existsN(el.find(sel)) && $.isFunction(window.cuSel)) {
         cuSel($.extend({}, cuselOptions, {
             changedEl: sel
         }));
@@ -633,9 +693,7 @@ function cuselInit(el, sel) {
     }
 }
 function testNumber(el) {
-    var el = el == undefined ? body : el;
-           
-    el.find(genObj.numberC + ' input').on('testNumber', function(e) {
+    el.on('testNumber', function(e) {
         if (e.res)
             $(this).tooltip('remove');
         else {
