@@ -14,7 +14,6 @@
         {$p = getProduct($p.variant_id)}
     {/if}
 
-
     {$variants = $p->getProductVariants()}
     {$hasDiscounts = $p->hasDiscounts()}
 
