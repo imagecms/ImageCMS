@@ -12,7 +12,7 @@ if (!defined('BASEPATH'))
  * @property discount_model $discount_model
  * @property discount_model_front $discount_model_front
  */
-class Mod_discount extends \mod_discount\classes\BaseDiscount {
+class Mod_discount extends \MY_Controller {
 
     public static $cnt = 0;
     public $no_install = true;
@@ -41,24 +41,21 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function autoload() {
-        if ($this->check_module_install()) {
-            \CMSFactory\Events::create()->on('getVariantProduct')->setListener('get_discount_for_product');
-            \CMSFactory\Events::create()->onShopMakeOrder()->setListener('make_order_with_discount');
-            \CMSFactory\Events::create()->on('Cart:Operation')->setListener('changeCart');
-        }
-
-
-        /** apply Gift */
-        if ($_POST['gift']) {
+        
+        if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
             
+            \CMSFactory\Events::create()->on('Cart:Operation')->setListener('changeCart');
+            /** apply Gift */
+            if ($_POST['gift']) {
+
                 $gift = $this->input->post('gift');
-                //echo __DIR__;
                 require_once __DIR__ . '/gift.php';
-                $obkGift = new \Gift();
+                $obkGift = new \mod_discount\Gift();
                 if ($_POST['gift_ord'])
-                    $obkGift->get_gift_certificate_new($gift, null,true);
+                    $obkGift->get_gift_certificate($gift, null, true);
                 else
-                    $obkGift->get_gift_certificate_new($gift);
+                    $obkGift->get_gift_certificate($gift);
+            }
         }
     }
 
@@ -71,38 +68,8 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public static function changeCart($cart) {
-        $obj = new \mod_discount\discount_order;
+        $obj = new \mod_discount\discount_order($cart['object']);
         $obj->update_cart_discount($cart['object']);
-    }
-
-    /**
-     * get discount for product when get product variant
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_discount_for_product($product) {
-
-        $obj = new \mod_discount\discount_product;
-        $obj->get_product_discount_event($product);
-    }
-
-    /**
-     * update order with discount and gift
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function make_order_with_discount($data) {
-        if (self::$cnt == 0) {
-            $obj = new \mod_discount\discount_order;
-            $obj->update_order_discount($data);
-            self::$cnt++;
-        }
     }
 
     public function register_script() {
