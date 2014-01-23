@@ -92,7 +92,7 @@ return array(
             array(
                 'name' => lang('Searched keywords', 'mod_stats'),
                 'controller' => 'search',
-                'action' => 'keywordsSearched',
+                'action' => 'keywords',
             ),
             array(
                 'name' => lang('Brands in search results', 'mod_stats'),
@@ -107,7 +107,7 @@ return array(
             array(
                 'name' => lang('Page not found', 'mod_stats'),
                 'controller' => 'search',
-                'action' => 'pageNotFound',
+                'action' => 'noResults',
             ),
         )
     ),
