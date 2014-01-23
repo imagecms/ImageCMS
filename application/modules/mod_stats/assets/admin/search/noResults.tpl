@@ -13,7 +13,7 @@
     <div class="row-fluid">
         {include_tpl('../left_block')}
         <div class="clearfix span9">
-           {include_tpl('../time_and_filter_block_for_search')}
+           {include_tpl('../time_and_filter_block')}
             <svg class="mypiechart pieChartStats" data-from="search/getBrandsInSearchData" style="height: 700px;"></svg>
             <svg class="mypiechart barChartStats" data-from="search/getBrandsInSearchData" style="height: 600px;"></svg>
             <div class="chartBlock" style="display: none;">                                    

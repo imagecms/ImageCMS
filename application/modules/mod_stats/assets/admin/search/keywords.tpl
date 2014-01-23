@@ -13,7 +13,7 @@
     <div class="row-fluid">
         {include_tpl('../left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block')}
+            {include_tpl('../time_and_filter_block_without_groupby')}
             <div class="fixedTableWithLeftScroll" style="">
                 <table class="table table-striped table-bordered table-condensed content_big_td">
                     <thead>
