@@ -355,7 +355,7 @@
                         <!--Start .Share-->
                         <dl class="social-product">
                             <dd class="social-like">
-                                {//echo $CI->load->module('share')->_make_like_buttons()}
+                                {echo $CI->load->module('share')->_make_like_buttons()}
                             </dd>
                         </dl>
                         <!-- End. Share -->
@@ -738,7 +738,6 @@
         </div>
         <div class="drop-content">
             <div class="inside-padd">
-                <span class="helper"></span>
                 <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
             </div>
             <div class="horizontal-carousel">
