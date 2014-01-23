@@ -34,13 +34,13 @@ var optionCompare = {
         arrowButtonSpeed: 250
     }
 };
-$(document).on('remove.Cart add.Cart', function() {
-    $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
-});
-$(window).resize(function() {
-    $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
-});
 $(document).on('scriptDefer', function() {
+    $(document).on('remove.Cart add.Cart', function() {
+        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+    });
+    $(window).resize(function() {
+        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+    });
     $(document).on('compare_list_rm', function(e) {
         var $this = e.el,
         $thisI = $this.parents('li'),

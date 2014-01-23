@@ -50,7 +50,7 @@
                     </tr>
                 {/if}
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('addphone','order', $model->getId())}
-                {if $s_field.field_data !== ''}
+                {if $s_field.field_data && $s_field.field_data !== ''}
                     <tr>
                         <th>{lang('Дополнительный телефон','newLevel')}:</th>
                         <td>{echo $s_field.field_data}</td>
@@ -78,13 +78,12 @@
                 {/if}
                 <!-- End. Delivery Method name -->
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
-                {if $s_field.field_data !== ''}
+                {if $s_field.field_data && $s_field.field_data !== ''}
                     <tr>
                         <th>{lang('Город','newLevel')}:</th>
                         <td>{echo $s_field.field_data}</td>
                     </tr>
                 {/if}
-                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
                 {if $model->getUserDeliverTo()}
                     <tr>
                         <th>{lang('Адрес','newLevel')}:</th>
@@ -115,10 +114,8 @@
                     <tr>
                         <th>{lang('Способ оплаты','newLevel')}:</th>
                         <td>
-                            {if $model->getTotalPriceWithGift() > 0}
-                                {if $paymentMethod->getName()}
-                                    {echo ShopCore::t($paymentMethod->getName())}
-                                {/if}
+                            {if $paymentMethod->getName()}
+                                {echo ShopCore::t($paymentMethod->getName())}
                             {/if}
                         </td>
                     </tr>
@@ -135,19 +132,17 @@
                     </td>
                 </tr>
                 <!--                End. Order status-->
-                {if $paymentMethod}
+                {if $paymentMethod && $model->getPaid() != true}
                     <tr>
                         <td></td>
-                        {if $model->getPaid() != true}
-                            <td>
-                                <div class="frame-payment">
-                                    {$locale = \MY_Controller::getCurrentLocale();}
-                                    {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
-                                    {/*echo $notif->message*/}
-                                    {echo $paymentMethod->getPaymentForm($model)}
-                                </div>
-                            </td>
-                        {/if}
+                        <td>
+                            <div class="frame-payment">
+                                {$locale = \MY_Controller::getCurrentLocale();}
+                                {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
+                                {/*echo $notif->message*/}
+                                {echo $paymentMethod->getPaymentForm($model)}
+                            </div>
+                        </td>
                     </tr>
                 {/if}
                 <!-- End. Render payment button and payment description -->

@@ -16,8 +16,8 @@
                     after = settings.after,
                     scrollPane = settings.scrollPane,
                     helper = settings.helper,
-                    nS = '.equal';
-            $this.each(function(index) {
+                    nS = 'equal';
+            $this.each(function(ind) {
                 var $this = $(this),
                         visThis = $this.is(':visible');
                 if (visThis) {
@@ -80,42 +80,42 @@
                         }
                         if (jScrollPane)
                             api = initNSS();
-                        function scrollNst(deltaY) {
-                            var $thisSL = $(this).scrollLeft();
-                            if (jScrollPane)
-                                $thisSL = api.getContentPositionX();
+                        function scrollNst(deltaY, $thisSL) {
                             if ($thisSL != scrollW && deltaY < 0) {
                                 if (jScrollPane)
                                     api.scrollToX($thisSL + w / frameScrollCL)
                                 else
                                     firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
-                                return false;
                             }
                             if ($thisSL > 0 && deltaY > 0) {
                                 if (jScrollPane)
                                     api.scrollToX($thisSL - w / frameScrollCL)
                                 else
                                     firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
-                                return false;
                             }
                         }
                         if ((mouseWhell || isTouch) && scrollW > 0) {
-                            firstScrl.add(secScrl).unbind('mousewheel').on('mousewheel', function(event, delta, deltaX, deltaY) {
-                                scrollNst(deltaY);
+                            firstScrl.add(secScrl).off('mousewheel').on('mousewheel', function(event, delta, deltaX, deltaY) {
+                                var $thisSL = $(this).scrollLeft();
+                                if (jScrollPane)
+                                    $thisSL = api.getContentPositionX();
+                                scrollNst(deltaY, $thisSL);
+                                if ($thisSL != scrollW && $thisSL > 0)
+                                    return false;
                             });
                             if (isTouch) {
-                                firstScrl.unbind('touchstart' + nS + ' touchmove' + nS + ' touchend' + nS + '');
-                                firstScrl.on('touchstart' + nS, function(e) {
+                                firstScrl.off('touchstart.' + nS + ind + ' touchmove.' + nS + ind + ' touchend.' + nS + ind + '');
+                                firstScrl.on('touchstart.' + nS + ind, function(e) {
                                     sP = e.originalEvent.touches[0];
                                     sP = sP.pageX;
                                 });
-                                firstScrl.on('touchmove' + nS, function(e) {
+                                firstScrl.on('touchmove.' + nS + ind, function(e) {
                                     e.stopPropagation();
                                     e.preventDefault();
                                     eP = e.originalEvent.touches[0];
                                     eP = eP.pageX;
                                 });
-                                firstScrl.on('touchend' + nS, function(e) {
+                                firstScrl.on('touchend.' + nS + ind, function(e) {
                                     e.stopPropagation();
                                     if (Math.abs(eP - sP) > 200) {
                                         if (eP - sP > 0) {
@@ -133,7 +133,7 @@
                         else
                             firstScrl.add(secScrl).scrollLeft('0');
                         if (scrollW > 0)
-                            secScrl.unbind('scroll' + nS).on('scroll' + nS, function() {
+                            secScrl.off('scroll.' + nS + ind).on('scroll.' + nS + ind, function() {
                                 var $thisSL = $(this).scrollLeft();
                                 if (jScrollPane)
                                     $thisSL = api.getContentPositionX();
@@ -161,14 +161,14 @@
                         });
                     });
                     methods.hoverComprasion(left, right, elEven);
-                    onlyDif.unbind('click' + nS).on('click' + nS, function() {
+                    onlyDif.off('click.' + nS + ind).on('click.' + nS + ind, function() {
                         methods.onlyDifM(left, right, liLength, elEven);
                     });
-                    allParams.unbind('click' + nS).on('click' + nS, function() {
+                    allParams.off('click.' + nS + ind).on('click.' + nS + ind, function() {
                         methods.allParamsM(left, right, elEven);
                     });
-                    onlyDif.parent('.' + aC).children().trigger('click' + nS);
-                    allParams.parent('.' + aC).children().trigger('click' + nS);
+                    onlyDif.parent('.' + aC).children().trigger('click.' + nS);
+                    allParams.parent('.' + aC).children().trigger('click.' + nS);
                     after($this);
                 }
             })
