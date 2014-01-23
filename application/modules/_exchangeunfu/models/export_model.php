@@ -11,19 +11,19 @@ class Export_model extends CI_Model {
     }
 
     /**
-      $this->products = $this->ci->db->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')->get('shop_products')->result_array();
-      $this->categories = $this->ci->db->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')->get('shop_category')->result_array();
-      $this->users = $this->ci->db->get('users')->result_array();
-      $this->orders = $this->ci->db->get('shop_orders')->result_array();
-      $this->productivity = $this->ci->db->get('mod_exchangeunfu_productivity')->result_array();
-      $this->partners = $this->ci->db->get('mod_exchangeunfu_partners')->result_array();
-      $this->prices = $this->ci->db->get('mod_exchangeunfu_prices')->result_array();
+     * $this->products = $this->ci->db->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')->get('shop_products')->result_array();
+     * $this->categories = $this->ci->db->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')->get('shop_category')->result_array();
+     *  $this->users = $this->ci->db->get('users')->result_array();
+     * $this->orders = $this->ci->db->get('shop_orders')->result_array();
+     * $this->productivity = $this->ci->db->get('mod_exchangeunfu_productivity')->result_array();
+     * $this->partners = $this->ci->db->get('mod_exchangeunfu_partners')->result_array();
+     * $this->prices = $this->ci->db->get('mod_exchangeunfu_prices')->result_array();
      */
     public function getProducts($products_ids = array()) {
 
         if (!empty($products_ids)) {
             $query = $this->db
-                    ->where_in('shop_products.external_id', $products_ids)
+                    ->where_in('shop_products.id', $products_ids)
                     ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                     ->join('shop_product_variants', 'shop_products.id=shop_product_variants.product_id')
                     ->get('shop_products');
@@ -54,9 +54,8 @@ class Export_model extends CI_Model {
         if ($ids) {
             $this->db->where_in('id', (array) $ids);
         }
+        $query = $this->db->get('users');
 
-        $query = $this->db
-                ->get('users');
         return $this->returnResults($query);
     }
 
@@ -66,11 +65,11 @@ class Export_model extends CI_Model {
                 ->get('components')
                 ->row_array();
         $config = unserialize($config['settings']);
-if($full){
+        if ($full) {
             $query = $this->db
                     ->where('partner_external_id', $partner_id)
                     ->get('shop_orders');
-}        elseif ($partner_id) {
+        } elseif ($partner_id) {
             $query = $this->db
                     ->where_in('status', $config['userstatuses'])
                     ->where('partner_external_id', $partner_id)

@@ -343,7 +343,7 @@ td:last-child .frame-item-menu:hover{border-right-color: #fd7c06;}
 .vertical-carousel .group-button-carousel .prev{}
 .vertical-carousel .group-button-carousel .next{}
 .fancy-gallery .group-button-carousel .arrow{height: 62px;top: 19px;}
-.horizontal-carousel .frame-thumbs .group-button-carousel .arrow{width: 21px;border: 1px solid #dedede;background-color: #f6f6f6;}
+.horizontal-carousel .frame-thumbs .group-button-carousel .arrow{width: 21px;border: 1px solid #dedede;background-color: #f6f6f6;height: 62px;}
 .vertical-layout .group-button-carousel{}
 
 .text-proposition-h.text-el{position: relative;padding-right: 14px;font-size: 18px;color: #666;}

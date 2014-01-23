@@ -13,26 +13,13 @@
     <div class="row-fluid">
         {include_tpl('../left_block')}
         <div class="clearfix span9">
-           {include_tpl('../time_and_filter_block_for_search')}
-            <svg class="mypiechart pieChartStats" data-from="search/getBrandsInSearchData" style="height: 700px;"></svg>
-            <svg class="mypiechart barChartStats" data-from="search/getBrandsInSearchData" style="height: 600px;"></svg>
-            <div class="chartBlock" style="display: none;">                                    
-                <div class="span2 chartTypeSwitcher">
-                    <div class="d-i_b">
-                        <select id="selectChartType">
-                            <option value="pieChart">{lang('pie', 'mod_stats')}   </option>
-                            <option value="barChart">{lang('bar', 'mod_stats')}   </option>
-                        </select>
-                    </div>
-                </div>
-                <div id="pieChart" class="hideChart">
-                    <svg style="height: 500px;"></svg>
-                </div>
-                <div id="barChart" class="hideChart span12" style="display: none;">
-                    <svg style="height: 500px; width: 800px;"></svg>
-                </div>
-            </div>
-
+            {include_tpl('../time_and_filter_block_for_search')}
+            {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
+                <svg class="mypiechart pieChartStats" data-from="search/getCategoriesInSearchData" style="height: 800px;"></svg>
+            {/if}
+            {if $_GET['charType'] == 'bar'}
+                <svg class="mypiechart barChartStats" data-from="search/getCategoriesInSearchData" style="height: 600px;"></svg>
+            {/if}
         </div>
     </div>
 </section>
