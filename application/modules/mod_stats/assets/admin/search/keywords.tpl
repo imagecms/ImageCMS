@@ -13,26 +13,30 @@
     <div class="row-fluid">
         {include_tpl('../left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block')}
+            {include_tpl('../time_and_filter_block_without_groupby')}
             <div class="fixedTableWithLeftScroll" style="">
-                <table class="table table-striped table-bordered table-condensed content_big_td">
-                    <thead>
-                        <tr>
-                            <th>{lang('Key','mod_stats')}</th>
-                            <th>{lang('Count','mod_stats')}</th>
-                            <th>{lang('Date','mod_stats')}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach $data as $word}
+                {if count($data) > 0}
+                    <table class="table table-striped table-bordered table-condensed content_big_td">
+                        <thead>
                             <tr>
-                                <td>{$word.key}</td>
-                                <td>{$word.key_count}</td>
-                                <td>{$word.date_search}</td>
+                                <th>{lang('Key','mod_stats')}</th>
+                                <th>{lang('Count','mod_stats')}</th>
+                                <th>{lang('Date','mod_stats')}</th>
                             </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {foreach $data as $word}
+                                <tr>
+                                    <td>{$word.key}</td>
+                                    <td>{$word.key_count}</td>
+                                    <td>{$word.date_search}</td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                {else:}
+                    <p style="text-align: center;">{lang("There are no keywords searched for specified period","mod_stats")} </p>
+                {/if}
             </div>
         </div>
     </div>
