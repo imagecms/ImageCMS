@@ -53,11 +53,12 @@ class Search_model extends CI_Model {
             ORDER BY 
                 key_count DESC
             LIMIT 0 , " . $resultsLimit;
+        
         $result = $this->db->query($query);
         if ($result) {
             return $result->result_array();
         }
-
+        
         return FALSE;
     }
 
@@ -97,24 +98,22 @@ class Search_model extends CI_Model {
      * @param type $param
      * @return boolean
      */
-    public function analysisCategories($whereQuery = '') {
+    public function analysisCategories($whereQuery = '', $params) {
         if (!$whereQuery) {
             return FALSE;
         }
-        /** Get params for analysis * */
-        $params = mod_stats\classes\Search::create()->prepareParamsFromCookiesForAnalysis();
-
+        
         /** Prepare and run query * */
         $query = "
             SELECT `shop_products`.`category_id` ,`shop_category_i18n`.`name`, COUNT(`shop_products`.`category_id`) as 'count' 
             FROM  `shop_products` 
             JOIN  `shop_products_i18n` ON  `shop_products`.`id` =  `shop_products_i18n`.`id` 
             JOIN `shop_category_i18n` ON `shop_products`.`category_id` = `shop_category_i18n`.`id`
-            WHERE " . $whereQuery . $params['useLocale'] . "
+            WHERE " . $whereQuery . "
             AND `shop_category_i18n`.`locale` = '" . $this->locale . "'
             GROUP BY  `shop_products`.`category_id`
             ORDER BY `count` DESC
-            LIMIT " . $params['results_quantity']
+            LIMIT " . $params['swr']
         ;
         $res = $this->db->query($query)->result_array();
         if ($res != null) {

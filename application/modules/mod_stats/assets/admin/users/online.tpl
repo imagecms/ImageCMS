@@ -13,10 +13,7 @@
     <div class="row-fluid">
         {include_tpl('../left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block')}
-            <!--<div id="chartContainer" class="span12" style="margin-left: 0 !important;">-->
-            <svg style='height:600px'/>
+            111
         </div>
     </div>
-     {var_dump($data)}
 </section>

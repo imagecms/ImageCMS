@@ -74,7 +74,7 @@ class Stats_model extends CI_Model {
 
     public function saveUrl($userId, $url) {
         $this->db->insert('mod_stats_urls', array(
-            'uder_id' => $userId,
+            'id_user' => $userId,
             'url' => $url,
         ));
     }
@@ -103,7 +103,6 @@ class Stats_model extends CI_Model {
             return false;
     }
 
-    
     /**
      * Get main currency symbol
      * @return boolean
@@ -116,7 +115,7 @@ class Stats_model extends CI_Model {
         else
             return false;
     }
-    
+
     /**
      * Install module and update settings
      */
@@ -134,7 +133,6 @@ class Stats_model extends CI_Model {
                 'null' => TRUE,
             )
         );
-
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_stats_search');
 
@@ -150,37 +148,59 @@ class Stats_model extends CI_Model {
                 'null' => TRUE,
             ),
         );
-
         $this->dbforge->add_field($fields2);
         $this->dbforge->create_table('mod_stats_settings');
 
         // збереження URL сторінок
-        /* $fields3 = array(
-          'id' => array(
-          'type' => 'INT',
-          'auto_increment' => TRUE
-          ),
-          'uder_id' => array(
-          'type' => 'int',
-          'constraint' => '5',
-          'null' => TRUE,
-          ),
-          'url' => array(
-          'type' => 'varchar',
-          'constraint' => '300',
-          'null' => TRUE,
-          ),
-          'time_add TIMESTAMP default CURRENT_TIMESTAMP'
-          );
+        $urlFields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+            'id_user' => array(
+                'type' => 'int',
+                'constraint' => '5',
+                'null' => TRUE,
+            ),
+            'url' => array(
+                'type' => 'varchar',
+                'constraint' => '300',
+                'null' => TRUE,
+            ),
+            'time_add TIMESTAMP default CURRENT_TIMESTAMP'
+        );
+        $this->dbforge->add_field($urlFields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_stats_urls');
 
-          $this->dbforge->add_field($fields3);
-          $this->dbforge->add_key('id', TRUE);
-          $this->dbforge->create_table('mod_stats_urls'); */
+        // збереження URL сторінок
+        $attendanceFields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+            'type_id' => array(
+                'type' => 'int',
+                'constraint' => '2',
+                'null' => TRUE,
+            ),
+            'id_entity' => array(
+                'type' => 'int',
+                'constraint' => '6',
+                'null' => TRUE,
+            ),
+            'time_add TIMESTAMP default CURRENT_TIMESTAMP'
+        );
+        $this->dbforge->add_field($attendanceFields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_stats_attendance');
+
 
         $this->db->where('name', 'mod_stats');
         $this->db->update('components', array(
             'enabled' => 1,
-            'autoload' => 1));
+            'autoload' => 1
+        ));
     }
 
     /**
@@ -192,6 +212,7 @@ class Stats_model extends CI_Model {
         $this->dbforge->drop_table('mod_stats_search');
         $this->dbforge->drop_table('mod_stats_settings');
         $this->dbforge->drop_table('mod_stats_urls');
+        $this->dbforge->drop_table('mod_stats_attendance');
     }
 
 }
