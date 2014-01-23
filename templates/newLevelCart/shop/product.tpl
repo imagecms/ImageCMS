@@ -743,47 +743,46 @@
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-        <div class="title"><%- obj.title %></div>
-        <div class="horizontal-carousel">
-        <div class="frame-fancy-gallery frame-thumbs">
-        <div class="fancy-gallery carousel-js-css">
-        <div class="content-carousel">
-        <ul class="items-thumbs items">
-        <%= obj.frame.find(obj.galleryContent).html() %>
-        </ul>
-        </div>
-        <div class="group-button-carousel">
-        <button type="button" class="prev arrow">
-        <span class="icon_arrow_p"></span>
-        </button>
-        <button type="button" class="next arrow">
-        <span class="icon_arrow_n"></span>
-        </button>
-        </div>
-        </div>
-        </div>
-        </div>
+            <div class="title"><%- obj.title %></div>
+            <div class="horizontal-carousel">
+                <div class="frame-fancy-gallery frame-thumbs">
+                    <div class="fancy-gallery carousel-js-css">
+                        <div class="content-carousel">
+                            <ul class="items-thumbs items">
+                                <%= obj.frame.find(obj.galleryContent).html() %>
+                            </ul>
+                        </div>
+                        <div class="group-button-carousel">
+                            <button type="button" class="prev arrow">
+                                <span class="icon_arrow_p"></span>
+                            </button>
+                            <button type="button" class="next arrow">
+                                <span class="icon_arrow_n"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="drop-content">
-        <div class="inside-padd">
-        <span class="helper"></span>
-        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-        </div>
-        <div class="horizontal-carousel">
-        <div class="group-button-carousel">
-        <button type="button" class="prev arrow">
-        <span class="icon_arrow_p"></span>
-        </button>
-        <button type="button" class="next arrow">
-        <span class="icon_arrow_n"></span>
-        </button>
-        </div>
-        </div>
+            <div class="inside-padd">
+                <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+            </div>
+            <div class="horizontal-carousel">
+                <div class="group-button-carousel">
+                    <button type="button" class="prev arrow">
+                        <span class="icon_arrow_p"></span>
+                    </button>
+                    <button type="button" class="next arrow">
+                        <span class="icon_arrow_n"></span>
+                    </button>
+                </div>
+            </div>
         </div>
         <div class="drop-footer">
-        <div class="inside-padd">
-        <%= obj.frame.find(obj.footerContent).html()%>
-        </div>
+            <div class="inside-padd">
+                <%= obj.frame.find(obj.footerContent).html()%>
+            </div>
         </div>
     {/literal}
 </script>
@@ -803,5 +802,5 @@
 <!-- End. JS vars-->
 
 <script type="text/javascript">
-    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', '_product'], 'initPhotoTrEv', 'initPhotoTrEv');
+    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>
