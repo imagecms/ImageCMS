@@ -1,0 +1,1 @@
+<ul class="start-page-category-menu items">{$wrapper}</ul>
