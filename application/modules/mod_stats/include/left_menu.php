@@ -105,7 +105,7 @@ return array(
                 'action' => 'categoriesInSearch',
             ),
             array(
-                'name' => lang('Page not found', 'mod_stats'),
+                'name' => lang('No results', 'mod_stats'),
                 'controller' => 'search',
                 'action' => 'noResults',
             ),
