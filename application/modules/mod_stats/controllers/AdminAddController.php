@@ -16,7 +16,21 @@ class AdminAddController extends ControllerBase {
      * Ajax update setting by value and setting name
      */
     public function ajaxUpdateSettingValue() {
-         \mod_stats\classes\AdminHelper::create()->ajaxUpdateSettingValue();
+        \mod_stats\classes\AdminHelper::create()->ajaxUpdateSettingValue();
+    }
+
+    public function gather_attendance() {
+        // load classes
+        $this->controller->load('classes/Attendance/IUrlInterpretator' . EXT);
+        $this->controller->load('classes/Attendance/*');
+        $attendance = new Attendance();
+        $attendance->addInterpretator(new UrlCategoriesInterpretator);
+        $attendance->addInterpretator(new UrlProductsInterpretator);
+        $attendance->processData();
+        echo '<pre>';
+        print_r($attendance->getResults());
+        echo '</pre>';
+        exit;
     }
 
 }

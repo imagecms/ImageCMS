@@ -20,20 +20,16 @@ class Mod_stats extends MY_Controller {
     }
 
     public function autoload() {
-        /** Check setting 'save_search_result' * */
-//        if ($this->stats_model->getSettingByName('save_search_results') == '1') {
-//            \CMSFactory\Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
-//        }
-//        if ($this->stats_model->getSettingByName('save_page_urls') == '1') {
-//            $this->savePageUrl($this->input->server('HTTP_REFERER'));
-//        }
-    }
-
-    public function savePageUrl($url) {
-        $baseUrl = base_url();
-        $url_ = "/" . str_replace($baseUrl, "", $url);
-        $userId = $this->dx_auth->get_user_id();
-        $this->stats_model->saveUrl($userId, $url_);
+        if (!$this->input->is_ajax_request()) {
+            /** Check setting 'save_search_result' * */
+            if ($this->stats_model->getSettingByName('save_search_results') == '1') {
+                \CMSFactory\Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
+            }
+            if ($this->stats_model->getSettingByName('save_users_attendance') == '1') {
+                $userId = $this->dx_auth->get_user_id();
+                $this->stats_model->saveUrl($userId, $_SERVER['REQUEST_URI']);
+            }
+        }
     }
 
     public function saveSearchedKeyWords($text = '') {
@@ -48,7 +44,6 @@ class Mod_stats extends MY_Controller {
      * Install module
      */
     public function _install() {
-
         $this->stats_model->install();
     }
 
