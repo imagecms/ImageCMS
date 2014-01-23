@@ -14,13 +14,8 @@ if (!Array.indexOf) {
 var Shop = {
     Cart: {
         baseUrl: siteUrl + 'shop/cart/api/',
-        totalPrice: 0,
-        totalPriceAdd: 0,
-        shipping: {
-            freeFrom: 0,
-            price: 0,
-            sumSpec: 0,
-            sumSpecMes: ""
+        xhr: {
+            
         },
         add: function(obj, id, kit) {
             var method = kit ? 'addKit' : 'addProductByVariantId';
@@ -29,7 +24,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            $.ajax({
+            if (this.xhr['add'+id])
+                this.xhr['add'+id].abort();
+            this.xhr['add'+id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': obj,
@@ -52,7 +49,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            $.getJSON(this.baseUrl + method + '/' + id, function(data) {
+            if (this.xhr['remove'+id])
+                this.xhr['remove'+id].abort();
+            this.xhr['remove'+id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
                 $(document).trigger({
                     'type': 'remove.Cart',
                     'datas': data,
@@ -68,7 +67,9 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            $.ajax({
+            if (this.xhr['amount'+id])
+                this.xhr['amount'+id].abort();
+            this.xhr['amount'+id] = $.ajax({
                 'type': 'post',
                 'url': this.baseUrl + 'getAmountInCart',
                 'data': {
@@ -94,7 +95,9 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            $.ajax({
+            if (this.xhr['count'+id])
+                this.xhr['count'+id].abort();
+            this.xhr['count'+id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': {
@@ -112,19 +115,19 @@ var Shop = {
             });
             return this;
         },
-        getPayment: function(id, obj, tpl) {
+        getPayment: function(id, tpl) {
             tpl = tpl ? tpl : '';
             $(document).trigger({
                 'type': 'beforeGetPayment.Cart',
                 'id': id,
-                'obj': obj,
                 'datas': tpl
             });
-            $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
+            if (this.xhr['payment'])
+                this.xhr['payment'].abort();
+            this.xhr['payment'] = $.get(siteUrl + 'shop/order/getPaymentsMethodsTpl/' + id + '/' + tpl, function(data) {
                 $(document).trigger({
                     'type': 'getPayment.Cart',
                     'id': id,
-                    'obj': obj,
                     'datas': data
                 });
             });
@@ -136,7 +139,9 @@ var Shop = {
                 'obj': obj,
                 'objF': objF
             });
-            $.ajax({
+            if (this.xhr[obj.template])
+                this.xhr[obj.template].abort();
+            this.xhr[obj.template] = $.ajax({
                 'type': 'post',
                 'url': siteUrl + 'shop/cart',
                 'data': obj,
@@ -165,59 +170,64 @@ var Shop = {
             return JSON.parse(localStorage.getItem('compareList')) ? _.compact(JSON.parse(localStorage.getItem('compareList'))) : [];
         },
         add: function(key) {
-            this.items = this.all();
+            var _self = this;
+            _self.items = _self.all();
             $(document).trigger({
                 type: 'before_add_to_compare'
             });
-            if (this.items.indexOf(key) === -1) {
-                $.get(siteUrl + 'shop/compare_api/add/' + key, function(data) {
-                    try {
-                        var dataObj = JSON.parse(data);
-                        dataObj.id = key;
-                        if (dataObj.success == true) {
-                            Shop.CompareList.items.push(key);
-                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
-                            $(document).trigger({
-                                type: 'compare_list_add',
-                                dataObj: dataObj
-                            });
-                        }
+            if (_self.items.indexOf(key) === -1) {
+                $.getJSON(siteUrl + 'shop/compare_api/add/' + key, function(data) {
+                    if (data.success == true) {
+                        data.id = key;
+                        _self.items.push(key);
+                        localStorage.setItem('compareList', JSON.stringify(_self.items));
+                        $(document).trigger({
+                            type: 'compare_list_add',
+                            dataObj: data
+                        });
                         returnMsg("=== add Compare Item. call compare_list_add ===");
-                    } catch (e) {
+                    }
+                    else{
                         returnMsg("=== Error. add Compare ===");
                         $(document).trigger('hideActivity');
                     }
-                });
-            }
-        },
-        rm: function(key, el) {
-            this.items = this.all();
-            if (this.items.indexOf(key) !== -1) {
-                this.items = _.without(this.items, key);
-                this.items = this.all();
-                $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
                     try {
                         var dataObj = JSON.parse(data);
-                        dataObj.id = key;
-                        if (dataObj.success == true) {
-                            Shop.CompareList.items = _.without(Shop.CompareList.items, key);
-                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
-                            $(document).trigger({
-                                type: 'compare_list_rm',
-                                dataObj: dataObj
-                            });
-                        }
-                        returnMsg("=== remove Compare Item. call compare_list_rm ===");
+                        
                     } catch (e) {
+                    }
+                });
+            }
+            return _self;
+        },
+        rm: function(key, el) {
+            var _self = this;
+            _self.items = _self.all();
+            $(document).trigger({
+                type: 'before_delete_compare'
+            });
+            if (_self.items.indexOf(key) !== -1) {
+                _self.items = _.without(_self.items, key);
+                _self.items = _self.all();
+                $.getJSON(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
+                    if (data.success == true) {
+                        data.id = key;
+                        _self.items = _.without(_self.items, key);
+                        localStorage.setItem('compareList', JSON.stringify(_self.items));
+                        $(document).trigger({
+                            type: 'compare_list_rm',
+                            dataObj: data,
+                            el: $(el)
+                        });
+                        returnMsg("=== remove Compare Item. call compare_list_rm ===");
+                    }
+                    else{
                         returnMsg("=== Error. remove Compare Item ===");
                         $(document).trigger('hideActivity');
                     }
                 });
             }
-            $(document).trigger({
-                type: 'delete_compare',
-                el: $(el)
-            });
+            return _self;
         },
         sync: function() {
             $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
@@ -233,6 +243,7 @@ var Shop = {
                 });
                 returnMsg("=== Compare sync. call compare_list_sync ===");
             });
+            return this;
         }
     }
 };
@@ -244,18 +255,18 @@ if (typeof (wishList) != 'object')
             } catch (err) {
                 return [];
             }
-    },
-    sync: function() {
-        $.get('/wishlist/wishlistApi/sync', function(data) {
-            localStorage.setItem('wishList', data);
-            $(document).trigger({
-                'type': 'wish_list_sync',
-                dataObj: data
-            });
-            returnMsg("=== WishList sync. call wish_list_sync ===");
-        })
+        },
+        sync: function() {
+            $.get('/wishlist/wishlistApi/sync', function(data) {
+                localStorage.setItem('wishList', data);
+                $(document).trigger({
+                    'type': 'wish_list_sync',
+                    dataObj: data
+                });
+                returnMsg("=== WishList sync. call wish_list_sync ===");
+            })
+        }
     }
-}
 /**
  * AuthApi ajax client
  * Makes simple request to api controllers and get return data in json
@@ -329,9 +340,9 @@ var ImageCMSApi = {
                             form.parent().find(DS.msgF).fadeOut(function() {
                                 $(this).remove();
                             });
-                        if (DS.hideForm)
-                            form.show();
-                    }), DS.durationHideForm);
+                            if (DS.hideForm)
+                                form.show();
+                        }), DS.durationHideForm);
 
                     setTimeout(function() {
                         if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))

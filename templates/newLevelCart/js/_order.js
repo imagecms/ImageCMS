@@ -1,127 +1,77 @@
 var Order = {
-    giftSubmit: function() {
+    initGift: function() {
         $(document).on('beforeGetTpl.Cart', function(e) {
             if (e.obj.template == 'cart_order')
                 $(genObj.orderDetails).find(preloader).show();
         });
-        $('#giftButton').click(function(e) {
+        $(genObj.giftButton).click(function(e) {
             Shop.Cart.getTpl({
                 ignoreWrap: '1',
                 template: 'cart_order',
-                gift: $('[name="gift"]').val()
+                gift: $(genObj.gift).val(),
+                deliveryMethodId: function(){
+                    if (selectDeliv)
+                        return $(genObj.dM).val()
+                    else
+                        return $(genObj.dM).filter(':checked').val()
+                }
             });
         })
-        $('[name="gift"]').keydown(function(e) {
+        $(genObj.gift).keydown(function(e) {
             if (e.keyCode == 13) {
-                $('#giftButton').trigger('click')
+                $(genObj.giftButton).trigger('click')
                 e.preventDefault();
             }
         })
     },
-    setDelivery: function() {
-        $(genObj.priceDelivery).add(genObj.noPriceDelivery).hide();
-        if (Shop.Cart.shipping) {
-            if (Shop.Cart.shipping.sumSpec != '1') {
-                var price = Shop.Cart.shipping.price,
-                priceAdd = Shop.Cart.shipping.priceAdd;
-
-                if (Shop.Cart.shipping.freeFrom <= Shop.Cart.totalPrice) {
-                    price = 0;
-                    priceAdd = 0;
-                }
-                $(genObj.deliveryPirce).text(price);
-                $(genObj.deliveryPriceSumNextCS).text(priceAdd);
-                $(genObj.priceDelivery).show();
-            }
-            else {
-                $(genObj.noPriceDelivery).text(Shop.Cart.shipping.sumSpecMes).show();
-            }
+    initOrder: function(){
+        if (selectDeliv) {
+            cuselInit($(genObj.frameDelivery), $(genObj.dM));
+            $(genObj.dM).on('change.methoddeliv', function() {
+                Shop.Cart.getPayment($(this).val(), '');
+            });
         }
-    },
-    getTotalPrice: function() {
-        Shop.Cart.totalPrice = parseFloat($(genObj.finalAmount).text());
-        Shop.Cart.totalPriceAdd = parseFloat($(genObj.finalAmountAdd).text());
-    },
-    setTotalPrice: function() {
-        if (Shop.Cart.shipping) {
-            if (Shop.Cart.shipping.sumSpec != '1') {
-                var price = Shop.Cart.shipping.price,
-                priceAdd = Shop.Cart.shipping.priceAdd;
-
-                if (Shop.Cart.shipping.freeFrom <= Shop.Cart.totalPrice) {
-                    price = 0;
-                    priceAdd = 0;
+        else {
+            $(genObj.frameDelivery).nStRadio({
+                wrapper: $(".frame-radio > .frame-label"),
+                elCheckWrap: '.niceRadio'
+                //,classRemove: 'b_n', //if not standart
+                ,
+                after: function(el, start) {
+                    if (!start) {
+                        var input = $(el).find('input');
+                        Shop.Cart.getTpl({
+                            ignoreWrap: '1',
+                            template: 'cart_order',
+                            gift: $(genObj.gift).val(),
+                            deliveryMethodId: input.val()
+                        });
+                        Shop.Cart.getPayment(input.val(), '');
+                    }
                 }
-
-                $(genObj.finalAmount).text(parseFloat(Shop.Cart.totalPrice + parseFloat(price)).toFixed(pricePrecision));
-                $(genObj.finalAmountAdd).text(parseFloat(Shop.Cart.totalPriceAdd + parseFloat(priceAdd)).toFixed(pricePrecision));
-            }
-            else {
-                $(genObj.finalAmount).text(parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision));
-                $(genObj.finalAmountAdd).text(parseFloat(Shop.Cart.totalPriceAdd).toFixed(pricePrecision));
-            }
+            });
         }
+                
+        if (selectPayment)
+            cuselInit($(genObj.framePaymentMethod), $(genObj.pM));
+
+        else
+            $(genObj.framePaymentMethod).nStRadio({
+                wrapper: $(".frame-radio > .frame-label"),
+                elCheckWrap: '.niceRadio'
+            //,classRemove: 'b_n'//if not standart
+            });
     }
 }
 $(document).on('scriptDefer', function() {
-    if (selectDeliv) {
-        cuselInit($(genObj.frameDelivery), $(genObj.dM));
-        $(genObj.dM).on('change.methoddeliv', function() {
-            var $this = $(this);
-            Shop.Cart.getPayment($this.val(), $("[val='" + $this.val() + "'][name='met_del']").data(), '');
-        });
-    }
-    else {
-        $(genObj.frameDelivery).nStRadio({
-            wrapper: $(".frame-radio > .frame-label"),
-            elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n', //if not standart
-            ,
-            before: function(el) {
-                $(document).trigger('showActivity');
-            },
-            after: function(el, start) {
-                if (!start) {
-                    Shop.Cart.getTpl({
-                        ignoreWrap: '1',
-                        template: 'cart_order',
-                        gift: $('[name="gift"]').val(),
-                        deliveryMethodId: $('[name="deliveryMethodId"]:checked').val()
-                    });
-                    var input = $(el).find('input');
-                    Shop.Cart.getPayment(input.val(), input.data(), '');
-                }
-            }
-        });
-    }
-    if (selectDeliv)
-        Shop.Cart.shipping = $("[val='" + $('[name="deliveryMethodId"]').val() + "'][name='met_del']").data();
-    else
-        Shop.Cart.shipping = $('[name="deliveryMethodId"]:checked').data()
-    Order.getTotalPrice();
-    Order.setDelivery();
-    Order.setTotalPrice();
-
-    if (selectPayment)
-        cuselInit($(genObj.framePaymentMethod), $(genObj.pM));
-
-    else
-        $(genObj.pM).nStRadio({
-            wrapper: $(".frame-radio > .frame-label"),
-            elCheckWrap: '.niceRadio'
-        //,classRemove: 'b_n'//if not standart
-        });
-
+    Order.initOrder();
     $(document).on('beforeGetPayment.Cart', function(e) {
-        Shop.Cart.shipping = e.obj;
-
-        Order.setDelivery();
-        Order.setTotalPrice();
-
+        $(genObj.submitOrder).attr('disabled', 'disabled');
         $(genObj.framePaymentMethod).next().show();
     });
     $(document).on('getPayment.Cart', function(e) {
         $(genObj.framePaymentMethod).html(e.datas).next().hide();
+        $(genObj.submitOrder).removeAttr('disabled');
         if (selectPayment)
             cuselInit($(genObj.framePaymentMethod), $(genObj.pM));
         else {
@@ -134,23 +84,20 @@ $(document).on('scriptDefer', function() {
 
         $(document).trigger('hideActivity');
     });
-});
-function initOrderTrEv() {
-    Order.giftSubmit();
     $(document).on('getTpl.Cart', function(e) {
         if (e.obj.template == 'cart_order') {
             $(genObj.orderDetails).empty().append(e.datas);
             $(genObj.orderDetails).find('[data-drop]').drop();
-            Order.giftSubmit();
-
-            Order.getTotalPrice();
-            Order.setDelivery();
-            Order.setTotalPrice();
             
-            if (!$.exists('.cart-product, .row-kits')){
+            Order.initGift();
+            
+            if (totalItemsBask == 0){
                 $('.pageCart').find(genObj.blockEmpty).show().end().find(genObj.blockNoEmpty).hide();
             }
         }
     });
+});
+function initOrderTrEv() {
+    Order.initGift();
     $(".maskPhoneFrame input").mask("+9 (9999) 999-99-99");
 }

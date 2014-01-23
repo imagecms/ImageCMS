@@ -9,17 +9,9 @@
         <div class="right-header f_r">
             {include_shop_tpl('auth_data')}
         </div>
-        <ul class="social-head items f_l">
-            <li>
-                <a href="#" class="icon-vk"></a>
-            </li>
-            <li>
-                <a href="#" class="icon-fb"></a>
-            </li>
-            <li>
-                <a href="#" class="icon-gp"></a>
-            </li>
-        </ul>
+        <div class="social-head items f_l">
+            {echo $CI->load->module('share')->_make_share_form()}
+        </div>
     </div>
 </div>
 <!--End. Top menu and authentication data block-->
@@ -45,14 +37,12 @@
                             <span class="phone-number">{echo siteinfo('siteinfo_mainphone')}</span>
                         </span>
                     </span>
-                    <ul class="tabs">
-                        <li class="btn-order-call">
-                            <a href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
-                                <span class="icon_order_call"></span>
-                                <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="btn-order-call">
+                        <button data-tab="true" data-href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
+                            <span class="icon_order_call"></span>
+                            <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="head-work">
                     <span class="c_b">Работаем:</span> <span class="s-t">Пн–Пт 09:00–20:00,<br/>Сб 09:00–17:00, Вс выходной</span>
