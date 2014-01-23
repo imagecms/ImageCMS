@@ -157,13 +157,7 @@ class Search extends \MY_Controller {
         } else {
             $params['results_quantity'] = '1';
         }
-        /** Use locale * */
-        if ($_COOKIE['use_locale_search_stats'] == 'true') {
-            $params['useLocale'] = "AND`shop_products_i18n`.`locale` =  '" . $this->stats_model_search->locale . "' ";
-        } else {
-            $params['useLocale'] = "";
-        }
-
+       
         return $params;
     }
 

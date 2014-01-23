@@ -93,11 +93,9 @@ Product = {
         hrefOptions.curHref = href;
         var drop = arg[1];
         fancyFrameInPH.parent().addClass('p_r');
-        fancyFrameInPH.after('<div class="preloader"></div>');
-        $('<img src="' + href + '">').load(function() {
-            drop.find('.drop-content').find('img').remove();
-            fancyFrameInPH.nextAll('.preloader').remove();
-            fancyFrameInPH.after($(this).css('visibility', 'visible').hide().fadeIn());
+        fancyFrameInPH.append('<div class="preloader"></div>');
+        $('<img src="' + href+'">').one('load').each(function() {
+            drop.find('.drop-content .inside-padd').empty().append($(this).css('visibility', 'visible').hide().fadeIn()).prepend('<span class="helper"></span>');
 
             var carGal = drop.find('.content-carousel');
 
@@ -106,6 +104,7 @@ Product = {
                 $.drop.method('center')(drop);
             });
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
+            
         });
     },
     beforeShowHref: function(el, drop, isajax) {
@@ -124,7 +123,7 @@ Product = {
         ShopFront.Cart.processBtnBuyCount(frame);
         ShopFront.Cart.changeCount(frame);
 
-        var fancyFrameInPH = content.find('.helper');
+        var fancyFrameInPH = content.find('.inside-padd');
 
         function condBtn(acA) {
             if (!cycle) {
