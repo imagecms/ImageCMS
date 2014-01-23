@@ -1163,12 +1163,11 @@ footer .box-5 > .inside-padd{padding-right: 24px;}
 
 /*photo product*/
 #photo{overflow: hidden;max-height: 95%;-webkit-transition: background-color 0.3s ease-in-out;-moz-transition: background-color 0.3s ease-in-out;-o-transition: background-color 0.3s ease-in-out;transition: background-color 0.3s ease-in-out;}
-#photo .drop-content .inside-padd{padding: 0;}
+#photo .drop-content .inside-padd{padding: 0 25px;height: 100%;}
 #photo .drop-header{padding: 0;border: 1px solid #eae5e1;}
 #photo .drop-header > .title{padding: 13px 50px 0;}
-#photo .drop-content {text-align: center;position: relative;padding: 10px 25px;}
-#photo .drop-content .inside-padd{height: 100%;}
-#photo .drop-content img{max-height: 100%;visibility: hidden;}
+#photo .drop-content {text-align: center;position: relative;}
+#photo .drop-content img{max-height: 96%;visibility: hidden;margin: 2% 0;}
 #photo .drop-content .horizontal-carousel{position: absolute;left: 0;top: 0;width: 100%;height: 100%;}
 
 #photo .content-carousel > ul{width: auto;overflow: hidden;height: 75px;visibility: hidden;}

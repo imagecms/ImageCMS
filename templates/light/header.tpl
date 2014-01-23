@@ -9,17 +9,9 @@
         <div class="right-header f_r">
             {include_shop_tpl('auth_data')}
         </div>
-        <ul class="social-head items f_l">
-            <li>
-                <a href="#" class="icon-vk"></a>
-            </li>
-            <li>
-                <a href="#" class="icon-fb"></a>
-            </li>
-            <li>
-                <a href="#" class="icon-gp"></a>
-            </li>
-        </ul>
+        <div class="social-head items f_l">
+            {echo $CI->load->module('share')->_make_share_form()}
+        </div>
     </div>
 </div>
 <!--End. Top menu and authentication data block-->
