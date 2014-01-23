@@ -37,8 +37,8 @@ class SearchController extends ControllerBase {
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-            'swr' => isset($_GET['swr']) ? (int) $_GET['swr'] : 10,
-            'swc' => isset($_GET['swc']) ? (int) $_GET['swc'] : 10
+            'swr' => isset($_GET['swr']) ? (int) $_GET['swr'] : 9,
+            'swc' => isset($_GET['swc']) ? (int) $_GET['swc'] : 9
         );
 
         $keywordsArray = $this->controller->search_model->queryKeywordsByDateRange($params, $params['swc']);
@@ -69,6 +69,44 @@ class SearchController extends ControllerBase {
     public function categoriesInSearch() {
 
         $this->renderAdmin('categoriesInSearch', array('data' => $result));
+    }
+
+    /**
+     * Return brands and counts data for chart
+     * @return chart data
+     */
+    public function getCategoriesInSearchData() {
+        $params = array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+            'swr' => isset($_GET['swr']) ? (int) $_GET['swr'] : 9,
+            'swc' => isset($_GET['swc']) ? (int) $_GET['swc'] : 9
+        );
+        
+        $keywordsArray = $this->controller->search_model->queryKeywordsByDateRange($params, $params['swc']);
+
+        $queryStringWhere = $this->prepareQueryStringForSearchAnalisis($keywordsArray);
+
+        if ($queryStringWhere != false) {
+            $arrayWithCategoriesInSearch = $this->controller->search_model->analysisCategories($queryStringWhere, $params);
+        } else {
+            return FALSE;
+        }
+
+        if ($arrayWithCategoriesInSearch != FALSE) {
+            /** Data for pie diagram * */
+            $chartData = array();
+            foreach ($arrayWithCategoriesInSearch as $item) {
+                $chartData[] = array(
+                    'key' => $item['name'],
+                    'y' => (int) $item['count']
+                );
+            }
+            echo json_encode($chartData);
+        } else {
+            return;
+        }
     }
 
     public function noResults() {
