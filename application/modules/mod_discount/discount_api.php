@@ -12,7 +12,7 @@ if (!defined('BASEPATH'))
  * @property discount_model $discount_model
  * @property discount_model_front $discount_model_front
  */
-class discount_api extends \mod_discount\discount {
+class discount_api extends \MY_Controller {
 
     /**
      * __construct base object loaded
@@ -29,6 +29,32 @@ class discount_api extends \mod_discount\discount {
     }
 
     /**
+     * get gift certificate in json format
+     * @access public
+     * @author DevImageCms
+     * @param key optional
+     * @return jsoon
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_gift_certificate($key = null, $totalPrice = null) {
+
+        $cart = \Cart\BaseCart::getInstance()->recountOriginTotalPrice()->recountTotalPrice();
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        if ($totalPrice === null)
+            $totalPrice = $cart->getTotalPrice();
+
+        if (null === $key)
+            $key = strip_tags(trim($_GET['key']));
+        foreach ($this->base_discount->discount_type['all_order'] as $disc)
+            if ($disc['key'] == $key and $disc['is_gift']) {
+                $value = $this->base_discount->get_discount_value($disc, $totalPrice);
+                return json_encode(array('key' => $disc['key'], 'val_orig' => $value, 'value' => \ShopCore::app()->SCurrencyHelper->convert($value), 'gift_array' => $disc));
+                break;
+            }
+        return json_encode(array('error' => true, 'mes' => lang('Invalid code try again', 'mod_discount')));
+    }
+
+    /**
      * get discount in json format
      * @access public
      * @author DevImageCms
@@ -37,16 +63,79 @@ class discount_api extends \mod_discount\discount {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_api($render = null) {
-        if (count(ShopCore::app()->SCart->getData()) > 0)
-            if ($this->check_module_install())
-                $discount = $this->init()->get_result_discount(1);
-        if ($discount['result_sum_discount']){
+
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        if (count($this->base_discount->cart_data) > 0)
+            if ($this->base_discount->check_module_install()) {
+
+
+                $discount['max_discount'] = $this->base_discount->discount_max;
+                $discount['sum_discount_product'] = $this->base_discount->discount_product_val;
+                $discount['sum_discount_no_product'] = $this->base_discount->discount_no_product_val;
+                if ($this->base_discount->discount_product_val > $this->base_discount->discount_no_product_val) {
+                    $discount['result_sum_discount'] = $this->base_discount->discount_product_val;
+                    $discount['type'] = 'product';
+                } else {
+                    $discount['result_sum_discount'] = $this->base_discount->discount_no_product_val;
+                    $discount['type'] = 'user';
+                }
+                $discount['result_sum_discount_convert'] = ShopCore::app()->SCurrencyHelper->convert($discount['result_sum_discount']);
+            }
+
+        if ($discount['result_sum_discount']) {
             if ($render === null)
                 echo json_encode($discount);
             else
                 return $discount;
-        }else
+        }
+        else
             echo '';
+    }
+
+    /**
+     * is in project gift certificate
+     * @access public
+     * @author DevImageCms
+     * @param ---
+     * @return boolean
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function is_gift_certificat() {
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        foreach ($this->base_discount->discount_type['all_order'] as $disc)
+            if ($disc['is_gift']) {
+                return true;
+                break;
+            }
+        return false;
+    }
+
+    /**
+     * render gift input
+     * @access public
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function render_gift_input($mes = null) {
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        if ($this->base_discount->check_module_install())
+            if ($this->is_gift_certificat())
+                \CMSFactory\assetManager::create()->setData(array('mes' => $mes))->render('gift', true);
+    }
+
+    /**
+     * get gift certificate in tpl
+     * @access public
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function render_gift_succes() {
+        $json = json_decode($_GET['json']);
+        \CMSFactory\assetManager::create()->setData(array('gift' => $json))->render('gift_succes', true);
     }
 
     /**
@@ -62,7 +151,7 @@ class discount_api extends \mod_discount\discount {
 
         \CMSFactory\assetManager::create()->setData(array('discount' => $json))->render('discount_order', true);
     }
-
+//----------------------------------------------------------------------
     /**
      * get discount product
      * @access public
@@ -88,8 +177,6 @@ class discount_api extends \mod_discount\discount {
         }
         return false;
     }
-    
-    
 
     /**
      * get all discount information
@@ -162,6 +249,7 @@ class discount_api extends \mod_discount\discount {
         function cmp($a, $b) {
             return strnatcmp($a["begin_value"], $b["begin_value"]);
         }
+
         if ($this->check_module_install())
             usort($this->discount_type['comulativ'], 'cmp');
         return $this->discount_type['comulativ'];

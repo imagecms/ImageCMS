@@ -40,7 +40,7 @@ class Discount_order extends \MY_Controller {
      * @return ---
      * @copyright (c) 2013, ImageCMS
      */        
-    public function update_cart_discount($cart){
+    public function update_cart_discount(){
         
         if ($this->base_discount->check_module_install()) {
             $discount['max_discount'] = $this->base_discount->discount_max;
@@ -53,11 +53,11 @@ class Discount_order extends \MY_Controller {
                 $discount['result_sum_discount'] = $this->base_discount->discount_no_product_val;
                 $discount['type'] = 'user';
             }
-            
+
 
             if ($discount['result_sum_discount']){                
-                $cart->setTotalPrice($cart->getOriginTotalPrice() - $discount['result_sum_discount']);
-                $cart->discount_info = $discount;
+                $this->base_discount->cart->setTotalPrice($this->base_discount->total_price - $discount['result_sum_discount']);
+                $this->base_discount->cart->discount_info = $discount;
                 $this->base_discount->updatediskapply($discount['max_discount']['key']);
                 
             } 
