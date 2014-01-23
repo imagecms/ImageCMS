@@ -76,7 +76,6 @@ class Products_model extends \CI_Model {
         }
 
 
-
         // getting all root categories if $categoryIds in not specified
         if (!is_array($categoryIds) || count($categoryIds) == 0) { // count all categories
             foreach ($categoriresRelations as $id => $pid) {
@@ -266,7 +265,7 @@ class Products_model extends \CI_Model {
             return 0;
         }
     }
-    
+
     /**
      * Get first level categories ids
      * @return boolean|array
@@ -276,12 +275,12 @@ class Products_model extends \CI_Model {
                 FROM `shop_category` 
                 WHERE  `url`=`full_path`";
         $result = $this->db->query($query)->result_array();
-        if ($result != null){
-           return $this->prepareArray($result);
+        if ($result != null) {
+            return $this->prepareArray($result);
         }
         return FALSE;
     }
-    
+
     /**
      * Prepare array with categories ids
      * @param array $dataArray
@@ -293,10 +292,57 @@ class Products_model extends \CI_Model {
         }
         $result = array();
         foreach ($dataArray as $key => $value) {
-                $result[] = $value['id'];
+            $result[] = $value['id'];
         }
         return $result;
     }
+
+    /**
+     * Get first level categories
+     * @return boolean|array
+     */
+    public function getFirstLevelCategories() {
+        $query = "SELECT *
+                    FROM `shop_category` 
+                    JOIN `shop_category_i18n` ON `shop_category`.`id` = `shop_category_i18n`.`id`
+                    WHERE `url`=`full_path`
+                    AND `locale` = '" . $this->locale . "'";
+        $result = $this->db->query($query)->result_array();
+        if ($result != null) {
+            return $result;
+        }
+        return FALSE;
+    }
+    
+    /**
+     * Get subcategories ids by category id
+     * @param int $id
+     * @return boolean|array
+     */
+    public function getSubcategoriesIds($id = null){
+        if (!$id){
+            return FALSE;
+        }
+        $query = "SELECT `id` 
+                    FROM  `shop_category` 
+                    WHERE  `shop_category`.`full_path_ids` LIKE  '%:$id;%'
+                    LIMIT 0 , 50";
+
+        $childs = $this->db->query($query)->result_array();
+                
+       $res = array();
+        if ($childs){
+            foreach ($childs as $value){
+                $res[] = (int)$value['id'];
+            }
+            
+        }
+        if ($res){
+            return $res;
+        }
+        return FALSE;
+    }
+
 }
 
 ?>

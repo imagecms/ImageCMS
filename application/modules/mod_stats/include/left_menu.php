@@ -104,11 +104,11 @@ return array(
                 'controller' => 'search',
                 'action' => 'categoriesInSearch',
             ),
-            array(
-                'name' => lang('No results', 'mod_stats'),
-                'controller' => 'search',
-                'action' => 'noResults',
-            ),
+//            array(
+//                'name' => lang('No results', 'mod_stats'),
+//                'controller' => 'search',
+//                'action' => 'noResults',
+//            ),
         )
     ),
 );
