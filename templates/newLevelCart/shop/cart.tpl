@@ -27,7 +27,7 @@
                         {/if}
                     </div>
                 </div>
-                <form method="post" action="{$BASE_URL}shop/cart" class="clearfix">
+                <form method="post" action="{$BASE_URL}order/make_order" class="clearfix">
                     <div class="left-cart">
                         <div class="horizontal-form order-form big-title">
                             {if $errors}

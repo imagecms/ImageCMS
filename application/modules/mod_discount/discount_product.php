@@ -14,9 +14,16 @@ if (!defined('BASEPATH'))
  * @property discount_model $discount_model
  * @property discount_model_front $discount_model_front
  */
-class Discount_product extends classes\BaseDiscount {
+class Discount_product {
 
     private $discount_for_product;
+    private static $object;
+
+    public static function create() {
+        if (!self::$object)
+            self::$object = new self;
+        return self::$object;
+    }
 
     /**
      * __construct base object loaded
@@ -26,14 +33,15 @@ class Discount_product extends classes\BaseDiscount {
      * @return ---
      * @copyright (c) 2013, ImageCMS
      */
-    public function __construct() {
+    private function __construct() {
 
-        parent::__construct();
         $lang = new \MY_Lang();
         $lang->load('mod_discount');
-        $this->get_all_discount();
-        $this->collect_type();
-        $this->discount_for_product = array_merge($this->discount_type['product'], $this->discount_type['brand'], $this->discount_type['category']);
+        require_once __DIR__ . '/models/discount_model_front.php';
+        $this->ci->discount_model_front = new \Discount_model_front;
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        $this->discount_for_product = array_merge($this->base_discount->discount_type['product'], $this->base_discount->discount_type['brand'], $this->base_discount->discount_type['category']);
+
     }
 
     /**
@@ -44,17 +52,14 @@ class Discount_product extends classes\BaseDiscount {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_product_discount_event($product, $price = null) {
-
+    public function get_product_discount($product, $price = null) {
 
         $discount_array = $this->get_discount_one_product($product);
-
-
         if (count($discount_array) > 0) {
             if (null === $price)
-                $price = $this->discount_model_front->get_price($product['vid']);
-            $discount_max = $this->get_max_discount($discount_array, $price);
-            $discount_value = $this->get_discount_value($discount_max, $price);
+                $price = $this->ci->discount_model_front->get_price($product['vid']);
+            $discount_max = $this->base_discount->get_max_discount($discount_array, $price);
+            $discount_value = $this->base_discount->get_discount_value($discount_max, $price);
         } else {
             \CMSFactory\assetManager::create()->discount = false;
             return false;

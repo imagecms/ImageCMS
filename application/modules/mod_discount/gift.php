@@ -1,4 +1,5 @@
 <?php
+namespace mod_discount;
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -12,7 +13,7 @@ if (!defined('BASEPATH'))
  * @property discount_model $discount_model
  * @property discount_model_front $discount_model_front
  */
-class Gift extends \mod_discount\classes\BaseDiscount {
+class Gift extends \MY_Controller {
 
     /**
      * __construct base object loaded
@@ -25,10 +26,8 @@ class Gift extends \mod_discount\classes\BaseDiscount {
     public function __construct() {
 
         parent::__construct();
-        $lang = new MY_Lang();
-        $lang->load('mod_discount');
-        $this->get_all_discount();
-        $this->collect_type();
+        $lang = new \MY_Lang();
+        $lang->load('mod_discount');    
     }
 
     /**
@@ -40,7 +39,8 @@ class Gift extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function is_gift_certificat() {
-        foreach ($this->discount_type['all_order'] as $disc)
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        foreach ($this->base_discount->discount_type['all_order'] as $disc)
             if ($disc['is_gift']) {
                 return true;
                 break;
@@ -48,36 +48,6 @@ class Gift extends \mod_discount\classes\BaseDiscount {
         return false;
     }
 
-    /**
-     * get gift certificate in json format
-     * @access public
-     * @author DevImageCms
-     * @param key optional
-     * @return jsoon
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_gift_certificate($key = null, $totalPrice = null) {
-
-        if ($this->config->item('use_deprecated_cart_methods')) {
-            $this->get_cart_data();
-            if ($totalPrice === null)
-                $totalPrice = $this->get_total_price();
-        }
-        else
-            $totalPrice = $this->get_total_price_new();
-
-
-        if (null === $key)
-            $key = strip_tags(trim($_GET['key']));
-        foreach ($this->discount_type['all_order'] as $disc)
-            if ($disc['key'] == $key and $disc['is_gift']) {
-                $value = $this->get_discount_value($disc, $totalPrice);
-                return json_encode(array('key' => $disc['key'], 'val_orig' => $value, 'value' => \ShopCore::app()->SCurrencyHelper->convert($value), 'gift_array' => $disc));
-                break;
-            }
-
-        return json_encode(array('error' => true, 'mes' => lang('Invalid code try again', 'mod_discount')));
-    }
 
     /**
      * get gift certificate
@@ -87,24 +57,25 @@ class Gift extends \mod_discount\classes\BaseDiscount {
      * @return ----
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_gift_certificate_new($key = null, $totalPrice = null, $order = null) {
-        $cart = \Cart\BaseCart::getInstance();  
+    public function get_gift_certificate($key = null, $totalPrice = null, $order = null) {
+        $cart = \Cart\BaseCart::getInstance()->recountOriginTotalPrice()->recountTotalPrice();
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
         $aplyGift = false;
         if ($totalPrice === null)
-            $totalPrice = $this->get_total_price_new();
+            $totalPrice = $cart->getTotalPrice();
+        echo '1';
         if (null === $key)
             $key = strip_tags(trim($_GET['key']));
-        foreach ($this->discount_type['all_order'] as $disc)
+        foreach ($this->base_discount->discount_type['all_order'] as $disc)
             if ($disc['key'] == $key and $disc['is_gift']) {
-                $value = $this->get_discount_value($disc, $totalPrice);
-                              
+                $value = $this->base_discount->get_discount_value($disc, $totalPrice);                
                 $cart->gift_info = $disc['key'];
                 $cart->gift_value = $value;
                 $cart->recountOriginTotalPrice();
                 $cart->recountTotalPrice();
                 $aplyGift = true;
                 if ($order)
-                    $this->updatediskapply($disc['key'], 'gift');
+                    $this->base_discount->updatediskapply($disc['key'], 'gift');
 
                 break;
             }

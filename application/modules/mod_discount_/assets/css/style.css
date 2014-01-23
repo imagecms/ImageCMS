@@ -1,0 +1,36 @@
+.pl_15 {padding-left: 15px !important;}
+.pt_10 {padding-top: 10px !important;}
+.pt_25 {padding-top: 25px !important;}
+.ml_50 {margin-left: 50px !important;}
+
+.bold_text {font-weight:bold;}
+.italc_text {font-style: italic;}
+
+.no_color{color:black;}
+
+.width150{width: 150px !important;}
+.width200{width: 200px !important;}
+.width100{width: 100px !important;}
+
+.m-b_15{margin-bottom: 15px !important;}
+.m-b_10{margin-bottom: 10px!important;}
+.m-b_5{margin-bottom: 5px !important;}
+.m-l_20{margin-left: 20px !important;}
+
+.module-cheep td{background-color: #f9f9f9;}
+
+.title-bonus{font-size: 16px;font-weight: bold;color: #dd4b39;}
+.title-bonus-out{margin-bottom: 8px;}
+.discount-out{padding-bottom: 22px;}
+.discount-out .span4{padding-right: 22px;text-align: right;}
+.discount-name input[type="text"]{width: 460px!important;}
+.discount-out #discountKey{width: 330px !important;}
+.discount-out .icon-info-sign{margin-right: 7px;}
+.discount-out #valueInput,.discount-out #comulativBlock .input-small,.discount-out #how-much{width: 60px !important;margin-right: 5px;}
+.discount-out #selectDiscountType,.discount-out #usersForDiscount,.discount-out #categoryBlock,.discount-out #brandBlock,.discount-out #productForDiscount{width: 320px!important;}
+.sum-of-order{width: 80px!important;margin-right: 7px;}
+.discount-out .icon-calendar{position: absolute;top: 6px;right: 6px;}
+.discount-out .niceCheck{top: 3px;}
+
+
+
