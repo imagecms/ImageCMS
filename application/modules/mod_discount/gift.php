@@ -30,24 +30,6 @@ class Gift extends \MY_Controller {
         $lang->load('mod_discount');    
     }
 
-    /**
-     * is in project gift certificate
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return boolean
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function is_gift_certificat() {
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        foreach ($this->base_discount->discount_type['all_order'] as $disc)
-            if ($disc['is_gift']) {
-                return true;
-                break;
-            }
-        return false;
-    }
-
 
     /**
      * get gift certificate
@@ -63,7 +45,7 @@ class Gift extends \MY_Controller {
         $aplyGift = false;
         if ($totalPrice === null)
             $totalPrice = $cart->getTotalPrice();
-        echo '1';
+
         if (null === $key)
             $key = strip_tags(trim($_GET['key']));
         foreach ($this->base_discount->discount_type['all_order'] as $disc)
@@ -87,32 +69,7 @@ class Gift extends \MY_Controller {
 
     }
 
-    /**
-     * render gift input
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function render_gift_input($mes = null) {
-        if ($this->check_module_install())
-            if ($this->is_gift_certificat())
-                \CMSFactory\assetManager::create()->setData(array('mes' => $mes))->render('gift', true);
-    }
 
-    /**
-     * get gift certificate in tpl
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function render_gift_succes() {
-        $json = json_decode($_GET['json']);
-        \CMSFactory\assetManager::create()->setData(array('gift' => $json))->render('gift_succes', true);
-    }
 
 }
 
