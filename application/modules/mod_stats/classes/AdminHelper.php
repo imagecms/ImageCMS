@@ -69,7 +69,7 @@ class AdminHelper extends \MY_Controller {
     public function getSetting($settingName) {
         return $this->stats_model->getSettingByName($settingName);
     }
-    
+
     /**
      * Get main currency symbol
      * @return string
@@ -82,7 +82,7 @@ class AdminHelper extends \MY_Controller {
      * Autocomlete products
      * @return jsone
      */
-    public function autoCompliteProducts() {
+    public function autoCompleteProducts() {
         $sCoef = $this->input->get('term');
         $sLimit = $this->input->get('limit');
 
@@ -93,6 +93,29 @@ class AdminHelper extends \MY_Controller {
                 $response[] = array(
                     'value' => $product['name'],
                     'id' => $product['id'],
+                );
+            }
+            echo json_encode($response);
+            return;
+        }
+        echo '';
+    }
+
+    /**
+     * Autocomlete categories
+     * @return jsone
+     */
+    public function autoCompleteCategories() {
+        $sCoef = $this->input->get('term');
+        $sLimit = $this->input->get('limit');
+
+        $categories = $this->stats_model->getCategoriesByIdName($sCoef, $sLimit);
+
+        if ($categories != false) {
+            foreach ($categories as $category) {
+                $response[] = array(
+                    'value' => $category['name'],
+                    'id' => $category['id'],
                 );
             }
             echo json_encode($response);
