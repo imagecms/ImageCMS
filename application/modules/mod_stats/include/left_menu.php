@@ -10,11 +10,11 @@ return array(
                 'controller' => 'orders',
                 'action' => 'amount',
             ),
-            array(
-                'name' => lang('Price', 'mod_stats'),
-                'controller' => 'orders',
-                'action' => 'price',
-            ),
+//            array(
+//                'name' => lang('Price', 'mod_stats'),
+//                'controller' => 'orders',
+//                'action' => 'price',
+//            ),
             array(
                 'name' => lang('Information', 'mod_stats'),
                 'controller' => 'orders',
@@ -92,7 +92,7 @@ return array(
             array(
                 'name' => lang('Searched keywords', 'mod_stats'),
                 'controller' => 'search',
-                'action' => 'keywordsSearched',
+                'action' => 'keywords',
             ),
             array(
                 'name' => lang('Brands in search results', 'mod_stats'),
@@ -105,9 +105,9 @@ return array(
                 'action' => 'categoriesInSearch',
             ),
             array(
-                'name' => lang('Page not found', 'mod_stats'),
+                'name' => lang('No results', 'mod_stats'),
                 'controller' => 'search',
-                'action' => 'pageNotFound',
+                'action' => 'noResults',
             ),
         )
     ),

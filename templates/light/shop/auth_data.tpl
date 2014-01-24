@@ -30,9 +30,6 @@
                                     <li>
                                         <button type="button" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', {literal}{'durationHideForm': 0, callback: function(msg, status, form, DS) {
                                                                     if (status) {
-                                    var items = Shop.Cart.getAllItems();
-                                    for (var i = 0; i < items.length; i++)
-                                        localStorage.removeItem(items[i].storageId());
                                     localStorage.removeItem('wishList');
                                 }
                                                                 }}{/literal});
@@ -48,7 +45,7 @@
             </li>
         {/if}
     </ul>
-    <div id="bask_block" class="frame-cleaner">
+    <div id="tinyBask" class="frame-cleaner">
         {include_tpl('cart_data')}
     </div>
 </div>

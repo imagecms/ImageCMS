@@ -2625,11 +2625,6 @@ function getCookie(c_name)
     
     $.drop = new $.dropInit();
     
-    var id = (new Date()).getTime();
-    body.append('<div style="overflow: scroll;" id="scrollDrop'+id+'"></div>').append('<div id="drop'+id+'"></div>');
-    $.drop.dP.widthScroll = $('drop'+id).width() - $('scrollDrop'+id).width();
-    $('drop'+id).add($('scrollDrop'+id)).remove();
-    
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
         wnd.scrollTop($.drop.dP.wST);
         return false;
