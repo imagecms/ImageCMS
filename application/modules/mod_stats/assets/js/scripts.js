@@ -71,7 +71,7 @@ $(document).ready(function() {
         pieChartBlocks.each(function(index, el) {
             nv.addGraph(function() {
                 var width = 800,
-                        height = 700;
+                        height = 850;
 
                 var chart = nv.models.pieChart()
                         .x(function(d) {
