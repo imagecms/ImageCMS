@@ -2,11 +2,15 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'traits' . DIRECTORY_SEPARATOR . 'FileImportTrait' . EXT;
+
 /**
  * Image CMS
  * Module Frame
  */
 class Mod_stats extends MY_Controller {
+
+    use FileImportTrait;
 
     public function __construct() {
         parent::__construct();
@@ -26,10 +30,16 @@ class Mod_stats extends MY_Controller {
                 \CMSFactory\Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
             }
             if ($this->stats_model->getSettingByName('save_users_attendance') == '1') {
-                $userId = $this->dx_auth->get_user_id();
-                $this->stats_model->saveUrl($userId, $_SERVER['REQUEST_URI']);
+                \CMSFactory\Events::create()->on('Core:pageLoaded')->setListener('saveAttendance');
             }
         }
+    }
+
+    public function saveAttendance() {
+        $coreData = CI::$APP->core->core_data;
+        $thisObj = new Mod_stats();
+        $thisObj->import('classes/Attendance');
+        Attendance::getInstance()->add($coreData);
     }
 
     public function saveSearchedKeyWords($text = '') {
