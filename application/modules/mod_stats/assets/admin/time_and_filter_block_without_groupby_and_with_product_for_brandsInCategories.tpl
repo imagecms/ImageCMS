@@ -16,8 +16,17 @@
                 <input 
                     id="autocomleteCategoryId"
                     type="hidden" 
-                    name="ci" value="{$_GET['id']}"/>
+                    name="ci" value="{$_GET['ci']}"/>
             </label>
+        </span>
+        <span class="d-i_b">
+        {lang('Char Type:','mod_stats')}
+        <label class="d-i_b p_r">
+            <select id="selectGroupBy" name='charType'>
+                <option value="pie"{if $_GET['charType'] == 'pie'} selected="selected"{/if}>{lang('Pie char','mod_stats')}</option>
+                <option value="bar"{if $_GET['charType'] == 'bar'} selected="selected"{/if}>{lang('Bar char','mod_stats')}</option>
+            </select>
+        </label>
         </span>
         <div class="pull-right">
             <button type="submit" class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">

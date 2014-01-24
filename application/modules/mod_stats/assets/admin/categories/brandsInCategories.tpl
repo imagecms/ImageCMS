@@ -15,10 +15,10 @@
         <div class="clearfix span9">
             {include_tpl('../time_and_filter_block_without_groupby_and_with_product_for_brandsInCategories')}
             {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
-                <svg class="mypiechart pieChartStats" data-from="categories/getBrandsInCategoriesChartData" style="height: 800px;"></svg>
+                <svg class="mypiechart pieChartStats" data-from="categories/getBrandsInCategoriesCharData" style="height: 800px;"></svg>
             {/if}
             {if $_GET['charType'] == 'bar'}
-                <svg class="mypiechart barChartStats" data-from="products/getBrandsInCategoriesChartData" style="height: 600px;"></svg>
+                <svg class="mypiechart barChartStats" data-from="categories/getBrandsInCategoriesCharData" style="height: 600px;"></svg>
             {/if}
         </div>
     </div>

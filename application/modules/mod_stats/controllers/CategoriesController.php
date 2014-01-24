@@ -22,10 +22,13 @@ class CategoriesController extends ControllerBase {
         $params = array(
             'categoryId' => isset($_GET['ci']) ? $_GET['ci'] : 20,
         );
-
-        $brands = $this->controller->products_model->getBrandsCountsData($params['topBrandsCount']);
-
-        $chartData = parent::prepareDataForStaticChart($brands);
+        
+        // Get children categories ids
+        $childCategoriesIds = $this->controller->categories_model->getAllChildCategoriesIds($params['categoryId']);
+        // Get brands in category 
+        $categories = $this->controller->categories_model->getBrandsIdsAndCount($childCategoriesIds);
+        
+        $chartData = parent::prepareDataForStaticChart($categories);
         echo json_encode($chartData);
     }
 

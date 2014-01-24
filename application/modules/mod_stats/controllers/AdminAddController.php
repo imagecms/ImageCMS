@@ -27,6 +27,14 @@ class AdminAddController extends ControllerBase {
         \mod_stats\classes\AdminHelper::create()->autoCompleteProducts();
     }
 
+    /**
+     * Autocomlete categories
+     * @return jsone
+     */
+    public function autoCompleteCategories() {
+        \mod_stats\classes\AdminHelper::create()->autoCompleteCategories();
+    }
+
     public function gather_attendance() {
         // load classes
         $this->controller->load('classes/Attendance/IUrlInterpretator' . EXT);
