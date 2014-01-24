@@ -8,6 +8,7 @@
             {lang('Choose Category:','mod_stats')}
             <label class="d-i_b p_r">
                 <select name='catId'>
+                    <option>-</option>
                     {foreach $categories as $category}
                         <option value="{echo $category['id']}"{if $_GET['catId'] == $category['id']} selected="selected"{/if}>{echo $category['name']}</option>
                     {/foreach}
