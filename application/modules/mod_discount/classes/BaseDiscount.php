@@ -7,7 +7,6 @@ if (!defined('BASEPATH'))
 
 /**
  * Class BaseDiscount for Mod_Discount module
- * @uses \MY_Controller
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
@@ -26,7 +25,7 @@ class BaseDiscount {
 
     /**
      * __construct base object loaded
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ---
      * @return ---
@@ -39,7 +38,7 @@ class BaseDiscount {
             $this->ci->discount_model_front = new \Discount_model_front;
             $lang = new \MY_Lang();
             $lang->load('mod_discount');
-            $this->cart = \Cart\BaseCart::getInstance()->recountOriginTotalPrice();
+            $this->cart = \Cart\BaseCart::getInstance();
             $this->user_group_id = $this->ci->dx_auth->get_role_id();
             $this->user_id = $this->ci->dx_auth->get_user_id();
             $this->cart_data = $this->get_cart_data();
@@ -73,7 +72,7 @@ class BaseDiscount {
 
     /**
      * get Cart items for current session
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ---
      * @return array
@@ -88,7 +87,7 @@ class BaseDiscount {
 
     /**
      * get all active discount joined whith his type
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param --
      * @return array
@@ -117,7 +116,7 @@ class BaseDiscount {
 
     /**
      * partitioning discounts on their types
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param optional discount
      * @return array
@@ -218,7 +217,7 @@ class BaseDiscount {
 
     /**
      * get max discount for current user
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ----
      * @return array 
@@ -236,7 +235,7 @@ class BaseDiscount {
 
     /**
      * get max discount for current user_group
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ----
      * @return array 
@@ -254,7 +253,7 @@ class BaseDiscount {
 
     /**
      * get max comulativ discount for current user with current amout
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ----
      * @return array 
@@ -272,7 +271,7 @@ class BaseDiscount {
 
     /**
      * get discount for product in cart with his discount
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ----
      * @return float 
@@ -293,7 +292,7 @@ class BaseDiscount {
 
     /**
      * get max discount for all order for register and not register user
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ----
      * @return array
@@ -312,7 +311,7 @@ class BaseDiscount {
 
     /**
      * get max discount for all order for not register user
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ----
      * @return array

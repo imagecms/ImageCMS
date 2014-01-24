@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 /**
  * Class discount_api for Mod_Discount module
- * @uses \mod_discount\classes\BaseDiscount
+ * @uses \MY_Controller
  * @author DevImageCms 
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
@@ -38,7 +38,7 @@ class discount_api extends \MY_Controller {
      */
     public function get_gift_certificate($key = null, $totalPrice = null) {
 
-        $cart = \Cart\BaseCart::getInstance()->recountOriginTotalPrice()->recountTotalPrice();
+        $cart = \Cart\BaseCart::getInstance();
         $this->base_discount = \mod_discount\classes\BaseDiscount::create();
         if ($totalPrice === null)
             $totalPrice = $cart->getTotalPrice();
@@ -151,7 +151,7 @@ class discount_api extends \MY_Controller {
 
         \CMSFactory\assetManager::create()->setData(array('discount' => $json))->render('discount_order', true);
     }
-//----------------------------------------------------------------------
+
     /**
      * get discount product
      * @access public
@@ -161,9 +161,10 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_product_api($product, $tpl = null, $price = null) {
-        if ($this->check_module_install()) {
-            $DiscProdObj = new \mod_discount\Discount_product;
-            if ($DiscProdObj->get_product_discount_event($product, $price)) {
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        if ($this->base_discount->check_module_install()) {
+            $DiscProdObj = \mod_discount\Discount_product::create();
+            if ($DiscProdObj->get_product_discount($product, $price)) {
                 $arr = \CMSFactory\assetManager::create()->discount;
                 if (null === $tpl)
                     return $arr;
@@ -178,23 +179,6 @@ class discount_api extends \MY_Controller {
         return false;
     }
 
-    /**
-     * get all discount information
-     * @access public
-     * @author DevImageCms
-     * @param tpl, price optional 
-     * @return array
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_all_discount_information($tpl = null, $price = null) {
-        if ($this->check_module_install()) {
-            $discount = $this->init()->get_result_discount(1, $price);
-            if (null === $tpl)
-                return $discount;
-            else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $discount))->render('discount_info_all', true);
-        }
-    }
 
     /**
      * get all discount information without maximized
@@ -205,34 +189,13 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_user_discount_api($tpl = null) {
-        if ($this->check_module_install()) {
-            $this->init();
-            $this->discount_type['comulativ'] = $this->get_comulativ_discount_api();
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        if ($this->base_discount->check_module_install()) {
+            $this->base_discount->discount_type['comulativ'] = $this->get_comulativ_discount_api();
             if (null === $tpl)
-                return $this->discount_type;
+                return $this->base_discount->discount_type;
             else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $this->discount_type))->render('discount_info_user', true);
-        }
-    }
-
-    /**
-     * is product discount
-     * @access public
-     * @author DevImageCms
-     * @param model 
-     * @return boolean
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function is_product_discount(SProducts $model) {
-        if ($this->check_module_install()) {
-            $obj = new \mod_discount\Discount_product;
-
-            $discount_array = $obj->get_discount_one_product($obj->discount_model_front->get_product($model->getid()));
-
-            if (count($discount_array) > 0)
-                return true;
-            else
-                return false;
+                \CMSFactory\assetManager::create()->setData(array('discount' => $this->base_discount->discount_type))->render('discount_info_user', true);
         }
     }
 
@@ -249,10 +212,10 @@ class discount_api extends \MY_Controller {
         function cmp($a, $b) {
             return strnatcmp($a["begin_value"], $b["begin_value"]);
         }
-
-        if ($this->check_module_install())
-            usort($this->discount_type['comulativ'], 'cmp');
-        return $this->discount_type['comulativ'];
+        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        if ($this->base_discount->check_module_install())
+            usort($this->base_discount->discount_type['comulativ'], 'cmp');
+        return $this->base_discount->discount_type['comulativ'];
     }
 
 }

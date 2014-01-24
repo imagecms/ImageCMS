@@ -1,2 +1,0 @@
-{var_dump($discount)}
-
