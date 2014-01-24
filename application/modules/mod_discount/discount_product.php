@@ -7,7 +7,6 @@ if (!defined('BASEPATH'))
 
 /**
  * Class Discount_product for Mod_Discount module
- * @uses \mod_discount\classes\BaseDiscount
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
@@ -27,21 +26,50 @@ class Discount_product {
 
     /**
      * __construct base object loaded
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ---
      * @return ---
      * @copyright (c) 2013, ImageCMS
      */
     private function __construct() {
-
+        $this->ci = & get_instance();
         $lang = new \MY_Lang();
         $lang->load('mod_discount');
         require_once __DIR__ . '/models/discount_model_front.php';
         $this->ci->discount_model_front = new \Discount_model_front;
         $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        $this->discount_for_product = array_merge($this->base_discount->discount_type['product'], $this->base_discount->discount_type['brand'], $this->base_discount->discount_type['category']);
+        $this->discount_for_product = array_merge($this->base_discount->discount_type['product'], $this->base_discount->discount_type['brand'], $this->create_child_discount($this->base_discount->discount_type['category']));
+    }
+    
+    /**
+     * create child discount
+     * @access private
+     * @author DevImageCms
+     * @param array
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function create_child_discount($discount) {
 
+        if (count($discount) > 0) {
+            $result_discount = array();
+            foreach ($discount as $disc) {
+                $result_discount[] = $disc;
+                if ($disc['child']) {
+                    $childs = $this->ci->db->like('full_path_ids', ':' . $disc['category_id'] . ';')->get('shop_category')->result_array();
+                    if (count($childs) > 0)
+                        foreach ($childs as $child) {
+                            $disc_aux = $disc;
+                            $disc_aux['category_id'] = $child['id'];
+                            $result_discount[] = $disc_aux;
+                        }
+                }
+            }
+
+            return $result_discount;
+        } else
+            return $discount;
     }
 
     /**
@@ -82,13 +110,13 @@ class Discount_product {
 
     /**
      * get product discount for one prouct
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param array product [product_id,brand_id,category_id]
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_one_product($product) {
+    private function get_discount_one_product($product) {
 
         $arr_discount = array();
 
