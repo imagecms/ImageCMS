@@ -25,6 +25,7 @@ class Admin extends \BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('file');
 
         $this->load('classes/ControllerBase' . EXT);
         $this->assetManager = \CMSFactory\assetManager::create()
@@ -41,9 +42,12 @@ class Admin extends \BaseAdminController {
         }
         // passing to template array with menu structure
         $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
+        
+        // set data to template
         $this->assetManager->setData('leftMenu', $leftMenu);
         $this->assetManager->setData('saveSearchResults', \mod_stats\classes\AdminHelper::create()->getSetting('save_search_results'));
         $this->assetManager->setData('saveUsersAttendance', \mod_stats\classes\AdminHelper::create()->getSetting('save_users_attendance'));
+        $this->assetManager->setData('CS', \mod_stats\classes\AdminHelper::create()->getCurrencySymbol());
     }
 
     public function index() {
@@ -89,12 +93,19 @@ class Admin extends \BaseAdminController {
     }
 
     /**
-     * Include file (relatively to module dir)
+     * Include file or dir (relatively to module dir)
      * @param string $filePath
      */
     public function load($filePath) {
-        $filePath = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
-        $this->load->file(__DIR__ . DIRECTORY_SEPARATOR . $filePath);
+        $filePath = __DIR__ . DIRECTORY_SEPARATOR . str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
+        if (strpos($filePath, '*') === FALSE) {
+            include_once $filePath;
+        } else {
+            $filesOfDir = get_filenames(str_replace('*', '', $filePath), TRUE);
+            foreach ($filesOfDir as $file) {
+                include_once str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $file);
+            }
+        }
     }
 
 }

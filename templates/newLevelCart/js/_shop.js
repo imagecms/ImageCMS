@@ -170,59 +170,64 @@ var Shop = {
             return JSON.parse(localStorage.getItem('compareList')) ? _.compact(JSON.parse(localStorage.getItem('compareList'))) : [];
         },
         add: function(key) {
-            this.items = this.all();
+            var _self = this;
+            _self.items = _self.all();
             $(document).trigger({
                 type: 'before_add_to_compare'
             });
-            if (this.items.indexOf(key) === -1) {
-                $.get(siteUrl + 'shop/compare_api/add/' + key, function(data) {
-                    try {
-                        var dataObj = JSON.parse(data);
-                        dataObj.id = key;
-                        if (dataObj.success == true) {
-                            this.items.push(key);
-                            localStorage.setItem('compareList', JSON.stringify(this.items));
-                            $(document).trigger({
-                                type: 'compare_list_add',
-                                dataObj: dataObj
-                            });
-                        }
+            if (_self.items.indexOf(key) === -1) {
+                $.getJSON(siteUrl + 'shop/compare_api/add/' + key, function(data) {
+                    if (data.success == true) {
+                        data.id = key;
+                        _self.items.push(key);
+                        localStorage.setItem('compareList', JSON.stringify(_self.items));
+                        $(document).trigger({
+                            type: 'compare_list_add',
+                            dataObj: data
+                        });
                         returnMsg("=== add Compare Item. call compare_list_add ===");
-                    } catch (e) {
+                    }
+                    else{
                         returnMsg("=== Error. add Compare ===");
                         $(document).trigger('hideActivity');
                     }
-                });
-            }
-        },
-        rm: function(key, el) {
-            this.items = this.all();
-            if (this.items.indexOf(key) !== -1) {
-                this.items = _.without(this.items, key);
-                this.items = this.all();
-                $.get(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
                     try {
                         var dataObj = JSON.parse(data);
-                        dataObj.id = key;
-                        if (dataObj.success == true) {
-                            this.items = _.without(this.items, key);
-                            localStorage.setItem('compareList', JSON.stringify(this.items));
-                            $(document).trigger({
-                                type: 'compare_list_rm',
-                                dataObj: dataObj
-                            });
-                        }
-                        returnMsg("=== remove Compare Item. call compare_list_rm ===");
+                        
                     } catch (e) {
+                    }
+                });
+            }
+            return _self;
+        },
+        rm: function(key, el) {
+            var _self = this;
+            _self.items = _self.all();
+            $(document).trigger({
+                type: 'before_delete_compare'
+            });
+            if (_self.items.indexOf(key) !== -1) {
+                _self.items = _.without(_self.items, key);
+                _self.items = _self.all();
+                $.getJSON(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
+                    if (data.success == true) {
+                        data.id = key;
+                        _self.items = _.without(_self.items, key);
+                        localStorage.setItem('compareList', JSON.stringify(_self.items));
+                        $(document).trigger({
+                            type: 'compare_list_rm',
+                            dataObj: data,
+                            el: $(el)
+                        });
+                        returnMsg("=== remove Compare Item. call compare_list_rm ===");
+                    }
+                    else{
                         returnMsg("=== Error. remove Compare Item ===");
                         $(document).trigger('hideActivity');
                     }
                 });
             }
-            $(document).trigger({
-                type: 'delete_compare',
-                el: $(el)
-            });
+            return _self;
         },
         sync: function() {
             $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
@@ -238,6 +243,7 @@ var Shop = {
                 });
                 returnMsg("=== Compare sync. call compare_list_sync ===");
             });
+            return this;
         }
     }
 };

@@ -16,8 +16,12 @@ class Module_frame extends MY_Controller {
     }
 
     public function index() {
-        $this->load->model('../modules/shop/models/cms_shop_admin');
-        $this->cms_shop_admin->
+        $data = array(
+//            'url' => 'asdfas',
+            'active' => '1',
+            'old_price' => 'y3',
+        );
+        \Products\ProductEdit::getInstance()->addProduct($data);
     }
 
     public function autoload() {
