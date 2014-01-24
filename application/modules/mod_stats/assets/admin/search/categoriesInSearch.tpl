@@ -15,7 +15,7 @@
         <div class="clearfix span9">
             {include_tpl('../time_and_filter_block_for_search')}
             {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
-                <svg class="mypiechart pieChartStats" data-from="search/getCategoriesInSearchData" style="height: 700px;"></svg>
+                <svg class="mypiechart pieChartStats" data-from="search/getCategoriesInSearchData" style="height: 800px;"></svg>
             {/if}
             {if $_GET['charType'] == 'bar'}
                 <svg class="mypiechart barChartStats" data-from="search/getCategoriesInSearchData" style="height: 600px;"></svg>
