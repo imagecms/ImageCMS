@@ -45,7 +45,7 @@
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: false,
+                                cache: true,
                                 success: function() {
                                     cL++;
                                     if (cL == scriptsL)

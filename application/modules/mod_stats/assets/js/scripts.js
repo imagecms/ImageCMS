@@ -58,6 +58,32 @@ $(document).ready(function() {
         $('.date_start').val(startDateForInput);
         $('.date_end').val(endDateForInput);
     });
+    
+    /**  Autocomplete for products    */
+    if ($('#autocomleteProduct').length) {
+        $('#autocomleteProduct').autocomplete({
+            source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteProducts?limit=25',
+            select: function(event, ui) {
+                productsData = ui.item;
+            },
+            close: function() {
+                $('#autocomleteProductId').val(productsData.id);
+            }
+        });
+    }
+    
+    /**  Autocomplete for categories    */
+    if ($('#autocomleteCategory').length) {
+        $('#autocomleteCategory').autocomplete({
+            source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteCategories?limit=25',
+            select: function(event, ui) {
+                categoriesData = ui.item;
+            },
+            close: function() {
+                $('#autocomleteCategoryId').val(categoriesData.id);
+            }
+        });
+    }
 
 
 
@@ -71,7 +97,7 @@ $(document).ready(function() {
         pieChartBlocks.each(function(index, el) {
             nv.addGraph(function() {
                 var width = 800,
-                        height = 700;
+                        height = 850;
 
                 var chart = nv.models.pieChart()
                         .x(function(d) {
@@ -191,7 +217,7 @@ $(document).ready(function() {
 
 
 
-    /*** REMOVE!!!!!!!!!!!!!! **/
+    /***!!!!!!!!!!!!!! **/
     function convertDataForPieToBarChart(data) {
         var inputData = data;
         var chartDataForReturn = [];

@@ -37,6 +37,25 @@ abstract class ControllerBase {
         $this->assetManager->render('admin/' . $folderName . '/' . $tpl);
     }
 
+    /**
+     * Prepare data for chart
+     * @param array $array
+     * @return array
+     */
+    public static function prepareDataForStaticChart($array = null) {
+        $chartData = array();
+        foreach ($array as $item) {
+            $chartData[] = array(
+                'key' => $item['name'],
+                'y' => (int) $item['count']
+            );
+        }
+        if ($chartData) {
+            return $chartData;
+        }
+        return FALSE;
+    }
+
 }
 
 ?>
