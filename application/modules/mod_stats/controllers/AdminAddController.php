@@ -21,8 +21,8 @@ class AdminAddController extends ControllerBase {
 
     public function gather_attendance() {
         // load classes
-        $this->controller->load('classes/Attendance/IUrlInterpretator' . EXT);
-        $this->controller->load('classes/Attendance/*');
+        $this->controller->import('classes/Attendance/IUrlInterpretator' . EXT);
+        $this->controller->import('classes/Attendance/*');
         $attendance = new Attendance();
         $attendance->addInterpretator(new UrlCategoriesInterpretator);
         $attendance->addInterpretator(new UrlProductsInterpretator);
