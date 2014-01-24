@@ -13,26 +13,49 @@ class ProductsController extends ControllerBase {
     }
 
     public function categories() {
-
+        $firstLevelCategories = $this->controller->products_model->getFirstLevelCategories();
         $this->assetManager
-                ->setData('data', 123)
+                ->setData('categories', $firstLevelCategories)
                 ->renderAdmin('products/categories');
     }
 
-    public function getCategoriesData() {
+    public function getCategoriesChartData() {
+        $params = array(
+            'categoryId' => isset($_GET['catId']) ? $_GET['catId'] : 0,
+        );
+        $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
+        $categories = $this->controller->products_model->getCategoriesCountsData($catIds);
 
-        $brands = $this->controller->products_model->getBrandsCountsData();
+        $chartData = parent::prepareDataForStaticChart($categories);
+        echo json_encode($chartData);
+    }
 
-        // data for pie diagram
-        $pieData = array();
-        foreach ($brands as $brand) {
-            $pieData[] = array(
-                'key' => $brand['name'],
-                'y' => (int) $brand['count']
-            );
-        }
+    public function brands() {
 
-        echo json_encode($pieData);
+        $this->assetManager
+                ->renderAdmin('products/brands');
+    }
+
+    public function getBrandsChartData() {
+        $params = array(
+            'topBrandsCount' => isset($_GET['stbc']) ? $_GET['stbc'] : 20,
+        );
+
+        $brands = $this->controller->products_model->getBrandsCountsData($params['topBrandsCount']);
+
+        $chartData = parent::prepareDataForStaticChart($brands);
+        echo json_encode($chartData);
+    }
+
+    public function productInfo() {
+        $params = array(
+            'productId' => isset($_GET['pi']) ? $_GET['pi'] : NULL,
+        );
+        
+        $product = $this->controller->products_model->getProductInfoById($params['productId']);
+        $this->assetManager
+                ->setData('product', $product)
+                ->renderAdmin('products/productInfo');
     }
 
     public function attendance_test() {
