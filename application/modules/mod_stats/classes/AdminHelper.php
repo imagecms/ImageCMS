@@ -82,7 +82,7 @@ class AdminHelper extends \MY_Controller {
      * Autocomlete products
      * @return jsone
      */
-    public function autoCompliteProducts() {
+    public function autoCompleteProducts() {
         $sCoef = $this->input->get('term');
         $sLimit = $this->input->get('limit');
 
