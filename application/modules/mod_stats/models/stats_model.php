@@ -115,7 +115,29 @@ class Stats_model extends CI_Model {
         else
             return false;
     }
+    
+      /**
+     * Get first level categories
+     * @return boolean|array
+     */
+    public function getCategoriesByIdName($term, $limit = 7) {
+        $locale = MY_Controller::getCurrentLocale();
+        $query = $this->db
+                ->select('id, name')
+                ->from('shop_category_i18n')
+                ->where('locale', $locale)
+                ->like('id', $term)
+                ->or_like('name', $term)
+                ->limit($limit)
+                ->get();
+                
 
+        if ($query)
+            return $query->result_array();
+        else
+            return false;
+    }
+    
     /**
      * Install module and update settings
      */
