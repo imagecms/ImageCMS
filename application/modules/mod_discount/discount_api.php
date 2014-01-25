@@ -61,7 +61,7 @@ class discount_api extends \MY_Controller {
      * @return json
      * @copyright (c) 2013, ImageCMS
      */
-    public function getDiscountApi($render = null) {
+    public function getDiscount($render = null) {
 
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if (count($this->baseDiscount->cartData) > 0)
@@ -99,7 +99,7 @@ class discount_api extends \MY_Controller {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function getDiscountProductApi($product, $tpl = null, $price = null) {
+    public function getDiscountProduct($product, $tpl = null, $price = null) {
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if ($this->baseDiscount->checkModuleInstall()) {
             $DiscProdObj = \mod_discount\Discount_product::create();
@@ -136,6 +136,50 @@ class discount_api extends \MY_Controller {
             else
                 \CMSFactory\assetManager::create()->setData(array('discount' => $this->baseDiscount->discountType))->render('discount_info_user', true);
         }
+    }
+    
+    /**
+     * get one discount
+     * @access public
+     * @author DevImageCms
+     * @param (string) key: criteria 
+     * @param (int) id: id discount 
+     * @return json
+     * @copyright (c) 2013, ImageCMS
+     */    
+    public function getDiscountBy($key, $id){
+        
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        foreach ($this->baseDiscount->allDiscount as $disc){
+            switch ($key) {
+                case 'key':
+                    if ($disc['key'] == $id)
+                        return json_encode ($disc);
+                    break;
+                case 'id':
+                    if ($disc['ids'] == $id)
+                        return json_encode ($disc);
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        return false;
+        
+    }
+    /**
+     * get all active discount
+     * @access public
+     * @author DevImageCms
+     * @return json
+     * @copyright (c) 2013, ImageCMS
+     */    
+    public function getAllDiscount(){
+        
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        return json_encode($this->baseDiscount->discountType);
+        
     }
     
     /**
@@ -180,12 +224,12 @@ class discount_api extends \MY_Controller {
             'value' => 50,
             'date_begin' => '2014-01-23',
             'date_end' => '2014-01-26',
-            'brand_id' => 30
+            'brand_id' => 30454
         );
         
         $manager = new \mod_discount\classes\DiscountManager();
         var_dump($manager->createBrandDiscount($data));
-        var_dump($manager->deleteDiscount(14));
+        //var_dump($manager->deleteDiscount(14));
     }
     
     
@@ -241,7 +285,7 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_product_api($product, $tpl = null, $price = null){
-        return $this->getDiscountProductApi($product, $tpl = null, $price = null);
+        return $this->getDiscountProduct($product, $tpl = null, $price = null);
     }
     
 
@@ -263,7 +307,7 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_api($render = null) {
-        return $this->getDiscountApi($render = null);
+        return $this->getDiscount($render = null);
     }
     
     /**

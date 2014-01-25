@@ -1,5 +1,5 @@
 <?php
-
+// to do validate max_aply, comulativ begin value end value, all_order begin_value
 namespace mod_discount\classes;
 
 if (!defined('BASEPATH'))
@@ -310,13 +310,22 @@ class DiscountManager extends \MY_Controller {
         $typeDiscount = $postArray['type_discount'];
         
         if (!in_array($typeDiscount, array('all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand')))
-            $this->error[] = lang('Wrong type discount');
+            $this->error[] = lang('Wrong type discount');  
         
-        if ($typeDiscount == 'comulativ' &&  !$postArray['comulativ']['begin_value']) 
-            $this->error[] = lang('Begin value must be');  
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['end_value']))
+           $this->error[] = lang('End value must be numeric'); 
         
-        if (!$postArray['value']) 
-            $this->error[] = lang('Value must be');        
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value']))
+           $this->error[] = lang('Begin value must be numeric'); 
+        
+        if ($typeDiscount == 'all_order' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value']))
+           $this->error[] = lang('Begin value must be numeric'); 
+        
+        if ($postArray['max_apply'] && !preg_match('/^[0-9]{1,15}$/', $postArray['max_apply']))
+           $this->error[] = lang('Max apply must be numeric'); 
+        
+        if (!$postArray['value'] || !preg_match('/^[0-9]{1,15}$/', $postArray['value'])) 
+            $this->error[] = lang('Value must be numeric');        
         
         if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) 
             $this->error[] = lang('Amount <<from>> can not be greater than the sum <<to>>', 'mod_discount');
@@ -345,15 +354,7 @@ class DiscountManager extends \MY_Controller {
         if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null) 
             $this->error[] = lang('Invalid date range!', 'mod_discount');
         
-        if ($postArray['date_end'] && strtotime($postArray['date_end']) < time()) 
-            $this->error[] = lang('Invalid date range!', 'mod_discount');
-        
-        if (strtotime($postArray['date_begin']) < strtotime('2000-01-01')) 
-            $this->error[] = lang('Invalid date range!', 'mod_discount');
-
-        
-
-        
+       
     }
 
     /**

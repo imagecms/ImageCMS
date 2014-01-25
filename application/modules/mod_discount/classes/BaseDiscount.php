@@ -47,7 +47,8 @@ class BaseDiscount {
             $this->cartData = $this->getCartData();
             $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($id);
             $this->totalPrice = $this->cart->getOriginTotalPrice();
-            $this->discountType = $this->collectType($this->getAllDiscount());
+            $this->allDiscount = $this->getAllDiscount();
+            $this->discountType = $this->collectType($this->allDiscount);
             $this->discountAllOrder = $this->getAllOrderDiscountNotRegister();
             if ($this->userId) {
                 $this->discountUser = $this->getUserDiscount();
