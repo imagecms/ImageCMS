@@ -15,9 +15,13 @@ if (!defined('BASEPATH'))
  */
 class Discount_product {
 
-    private $discount_for_product;
+    private $discountForProduct;
     private static $object;
-
+    
+    /**
+     * singelton method
+     * @return object BaseDiscount
+     */
     public static function create() {
         if (!self::$object)
             self::$object = new self;
@@ -38,8 +42,8 @@ class Discount_product {
         $lang->load('mod_discount');
         require_once __DIR__ . '/models/discount_model_front.php';
         $this->ci->discount_model_front = new \Discount_model_front;
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        $this->discount_for_product = array_merge($this->base_discount->discount_type['product'], $this->base_discount->discount_type['brand'], $this->create_child_discount($this->base_discount->discount_type['category']));
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        $this->discountForProduct = array_merge($this->baseDiscount->discountType['product'], $this->baseDiscount->discountType['brand'], $this->createChildDiscount($this->baseDiscount->discountType['category']));
     }
     
     /**
@@ -50,24 +54,24 @@ class Discount_product {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    private function create_child_discount($discount) {
+    private function createChildDiscount($discount) {
 
         if (count($discount) > 0) {
-            $result_discount = array();
+            $resultDiscount = array();
             foreach ($discount as $disc) {
-                $result_discount[] = $disc;
+                $resultDiscount[] = $disc;
                 if ($disc['child']) {
                     $childs = $this->ci->db->like('full_path_ids', ':' . $disc['category_id'] . ';')->get('shop_category')->result_array();
                     if (count($childs) > 0)
                         foreach ($childs as $child) {
-                            $disc_aux = $disc;
-                            $disc_aux['category_id'] = $child['id'];
-                            $result_discount[] = $disc_aux;
+                            $discAux = $disc;
+                            $discAux['category_id'] = $child['id'];
+                            $resultDiscount[] = $disc_aux;
                         }
                 }
             }
 
-            return $result_discount;
+            return $resultDiscount;
         } else
             return $discount;
     }
@@ -80,23 +84,23 @@ class Discount_product {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_product_discount($product, $price = null) {
+    public function getProductDiscount($product, $price = null) {
 
-        $discount_array = $this->get_discount_one_product($product);
-        if (count($discount_array) > 0) {
+        $discountArray = $this->getDiscountOneProduct($product);
+        if (count($discountArray) > 0) {
             if (null === $price)
-                $price = $this->ci->discount_model_front->get_price($product['vid']);
-            $discount_max = $this->base_discount->get_max_discount($discount_array, $price);
-            $discount_value = $this->base_discount->get_discount_value($discount_max, $price);
+                $price = $this->ci->discount_model_front->getPrice($product['vid']);
+            $discountMax = $this->baseDiscount->getMaxDiscount($discountArray, $price);
+            $discountValue = $this->baseDiscount->getDiscountValue($discountMax, $price);
         } else {
             \CMSFactory\assetManager::create()->discount = false;
             return false;
         }
 
         \CMSFactory\assetManager::create()->discount = array(
-            'discoun_all_product' => $discount_array,
-            'discount_max' => $discount_max,
-            'discount_value' => $discount_value,
+            'discoun_all_product' => $discountArray,
+            'discount_max' => $discountMax,
+            'discount_value' => $discountValue,
             'price' => $price
         );
         ob_start();
@@ -116,18 +120,18 @@ class Discount_product {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    private function get_discount_one_product($product) {
+    private function getDiscountOneProduct($product) {
 
-        $arr_discount = array();
+        $arrDiscount = array();
 
-        foreach ($this->discount_for_product as $disc)
+        foreach ($this->discountForProduct as $disc)
             foreach ($product as $key => $value) {
                 if ($disc[$key])
                     if ($disc[$key] == $value)
-                        $arr_discount[] = $disc;
+                        $arrDiscount[] = $disc;
             }
 
-        return $arr_discount;
+        return $arrDiscount;
     }
 
 }

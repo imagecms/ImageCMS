@@ -9,8 +9,6 @@ if (!defined('BASEPATH'))
  * @author DevImageCms 
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
- * @property discount_model $discount_model
- * @property discount_model_front $discount_model_front
  */
 class discount_api extends \MY_Controller {
 
@@ -32,22 +30,23 @@ class discount_api extends \MY_Controller {
      * get gift certificate in json format
      * @access public
      * @author DevImageCms
-     * @param key optional
+     * @param (string) key optional
+     * @param (float) totalPrice optional
      * @return jsoon
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_gift_certificate($key = null, $totalPrice = null) {
+    public function getGiftCertificate($key = null, $totalPrice = null) {
 
         $cart = \Cart\BaseCart::getInstance();
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if ($totalPrice === null)
             $totalPrice = $cart->getTotalPrice();
 
         if (null === $key)
             $key = strip_tags(trim($_GET['key']));
-        foreach ($this->base_discount->discount_type['all_order'] as $disc)
+        foreach ($this->baseDiscount->discountType['all_order'] as $disc)
             if ($disc['key'] == $key and $disc['is_gift']) {
-                $value = $this->base_discount->get_discount_value($disc, $totalPrice);
+                $value = $this->baseDiscount->getDiscountValue($disc, $totalPrice);
                 return json_encode(array('key' => $disc['key'], 'val_orig' => $value, 'value' => \ShopCore::app()->SCurrencyHelper->convert($value), 'gift_array' => $disc));
                 break;
             }
@@ -58,25 +57,25 @@ class discount_api extends \MY_Controller {
      * get discount in json format
      * @access public
      * @author DevImageCms
-     * @param ---
-     * @return ---
+     * @param (bool) optional
+     * @return json
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_api($render = null) {
+    public function getDiscountApi($render = null) {
 
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        if (count($this->base_discount->cart_data) > 0)
-            if ($this->base_discount->check_module_install()) {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        if (count($this->baseDiscount->cartData) > 0)
+            if ($this->baseDiscount->checkModuleInstall()) {
 
 
-                $discount['max_discount'] = $this->base_discount->discount_max;
-                $discount['sum_discount_product'] = $this->base_discount->discount_product_val;
-                $discount['sum_discount_no_product'] = $this->base_discount->discount_no_product_val;
-                if ($this->base_discount->discount_product_val > $this->base_discount->discount_no_product_val) {
-                    $discount['result_sum_discount'] = $this->base_discount->discount_product_val;
+                $discount['max_discount'] = $this->baseDiscount->discountMax;
+                $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
+                $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
+                if ($this->baseDiscount->discountProductVal > $this->baseDiscount->discountNoProductVal) {
+                    $discount['result_sum_discount'] = $this->baseDiscount->discountProductVal;
                     $discount['type'] = 'product';
                 } else {
-                    $discount['result_sum_discount'] = $this->base_discount->discount_no_product_val;
+                    $discount['result_sum_discount'] = $this->baseDiscount->discountNoProductVal;
                     $discount['type'] = 'user';
                 }
                 $discount['result_sum_discount_convert'] = ShopCore::app()->SCurrencyHelper->convert($discount['result_sum_discount']);
@@ -93,78 +92,18 @@ class discount_api extends \MY_Controller {
     }
 
     /**
-     * is in project gift certificate
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return boolean
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function is_gift_certificat() {
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        foreach ($this->base_discount->discount_type['all_order'] as $disc)
-            if ($disc['is_gift']) {
-                return true;
-                break;
-            }
-        return false;
-    }
-
-    /**
-     * render gift input
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function render_gift_input($mes = null) {
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        if ($this->base_discount->check_module_install())
-            if ($this->is_gift_certificat())
-                \CMSFactory\assetManager::create()->setData(array('mes' => $mes))->render('gift', true);
-    }
-
-    /**
-     * get gift certificate in tpl
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function render_gift_succes() {
-        $json = json_decode($_GET['json']);
-        \CMSFactory\assetManager::create()->setData(array('gift' => $json))->render('gift_succes', true);
-    }
-
-    /**
-     * get discount in tpl format from json
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_discount_tpl_from_json_api() {
-        $json = json_decode($_GET['json']);
-
-        \CMSFactory\assetManager::create()->setData(array('discount' => $json))->render('discount_order', true);
-    }
-
-    /**
      * get discount product
      * @access public
      * @author DevImageCms
-     * @param array [pid,vid], tpl optional 
+     * @param array [pid,vid], (bool) tpl optional, (float) price optional 
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_product_api($product, $tpl = null, $price = null) {
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        if ($this->base_discount->check_module_install()) {
+    public function getDiscountProductApi($product, $tpl = null, $price = null) {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        if ($this->baseDiscount->checkModuleInstall()) {
             $DiscProdObj = \mod_discount\Discount_product::create();
-            if ($DiscProdObj->get_product_discount($product, $price)) {
+            if ($DiscProdObj->getProductDiscount($product, $price)) {
                 $arr = \CMSFactory\assetManager::create()->discount;
                 if (null === $tpl)
                     return $arr;
@@ -178,44 +117,162 @@ class discount_api extends \MY_Controller {
         }
         return false;
     }
-
+    
 
     /**
      * get all discount information without maximized
      * @access public
      * @author DevImageCms
-     * @param tpl optional 
+     * @param (bool) tpl optional 
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_user_discount_api($tpl = null) {
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        if ($this->base_discount->check_module_install()) {
-            $this->base_discount->discount_type['comulativ'] = $this->get_comulativ_discount_api();
+    public function getUserDiscountApi($tpl = null) {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        if ($this->baseDiscount->checkModuleInstall()) {
+            $this->baseDiscount->discountType['comulativ'] = $this->getComulativDiscountApi();
             if (null === $tpl)
-                return $this->base_discount->discount_type;
+                return $this->baseDiscount->discountType;
             else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $this->base_discount->discount_type))->render('discount_info_user', true);
+                \CMSFactory\assetManager::create()->setData(array('discount' => $this->baseDiscount->discountType))->render('discount_info_user', true);
         }
     }
-
+    
     /**
      * get comulativ discount sorting
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param --
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_comulativ_discount_api() {
+    private function getComulativDiscountApi() {
 
         function cmp($a, $b) {
             return strnatcmp($a["begin_value"], $b["begin_value"]);
         }
-        $this->base_discount = \mod_discount\classes\BaseDiscount::create();
-        if ($this->base_discount->check_module_install())
-            usort($this->base_discount->discount_type['comulativ'], 'cmp');
-        return $this->base_discount->discount_type['comulativ'];
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        if ($this->baseDiscount->checkModuleInstall())
+            usort($this->baseDiscount->discountType['comulativ'], 'cmp');
+        return $this->baseDiscount->discountType['comulativ'];
+    }
+    
+    
+    /**
+     * test api DiscountManager
+     */
+    public function test (){
+     /*
+     * @param array $postArray input params:
+     * - (string) key: discount key optional
+     * - (string) name: discount name
+     * - (int) max_apply: max apply discount default null - infinity
+     * - (int) type_value: 1 - % 2 - float
+     * - (int) value: discount value
+     * - (string) type_discount: (all_order, comulativ, user, group_user, category, product, brand)
+     * - (string) date_begin: data begin discount 
+     * - (string) date_end: data end discount default null - infinity
+     * - (int) brand_id: id brand
+     */
+        $data = array(
+            'name' => 'discountApi',
+            'type_value' => 1,
+            'value' => 50,
+            'date_begin' => '2014-01-23',
+            'date_end' => '2014-01-26',
+            'brand_id' => 30
+        );
+        
+        $manager = new \mod_discount\classes\DiscountManager();
+        var_dump($manager->createBrandDiscount($data));
+        var_dump($manager->deleteDiscount(14));
+    }
+    
+    
+    /**
+     * is in project gift certificate
+     * @deprecated since version 4.5.2
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function is_gift_certificat() {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        foreach ($this->baseDiscount->discountType['all_order'] as $disc)
+            if ($disc['is_gift']) {
+                return true;
+                break;
+            }
+        return false;
+    }
+
+    /**
+     * render gift input
+     * @deprecated since version 4.5.2
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function render_gift_input($mes = null) {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        if ($this->baseDiscount->checkModuleInstall())
+            if ($this->is_gift_certificat())
+                \CMSFactory\assetManager::create()->setData(array('mes' => $mes))->render('gift', true);
+    }
+
+    /**
+     * get gift certificate in tpl
+     * @deprecated since version 4.5.2
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function render_gift_succes() {
+        $json = json_decode($_GET['json']);
+        \CMSFactory\assetManager::create()->setData(array('gift' => $json))->render('gift_succes', true);
+    }
+    
+    /**
+     * get all discount information without maximized
+     * @deprecated since version 4.5.2 
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_user_discount_api($tpl = null) {
+        return $this->getUserDiscountApi($tpl = null);
+    }
+    
+    /**
+     * get discount product
+     * @deprecated since version 4.5.2 
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_discount_product_api($product, $tpl = null, $price = null){
+        return $this->getDiscountProductApi($product, $tpl = null, $price = null);
+    }
+    
+
+    /**
+     * get discount in tpl format from json
+     * @deprecated since version 4.5.2 
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_discount_tpl_from_json_api() {
+        $json = json_decode($_GET['json']);
+
+        \CMSFactory\assetManager::create()->setData(array('discount' => $json))->render('discount_order', true);
+    }
+    
+    
+    /**
+     * get discount in json format
+     * @deprecated since version 4.5.2 
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_discount_api($render = null) {
+        return $this->getDiscountApi($render = null);
+    }
+    
+    /**
+     * get gift certificate in json format
+     * @deprecated since version 4.5.2 
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_gift_certificate($key = null, $totalPrice = null){
+        return $this->getGiftCertificate($key = null, $totalPrice = null);
     }
 
 }
