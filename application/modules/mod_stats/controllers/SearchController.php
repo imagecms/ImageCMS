@@ -9,7 +9,7 @@ class SearchController extends ControllerBase {
 
     public function __construct($some) {
         parent::__construct($some);
-        $this->controller->load('traits/DateIntervalTrait.php');
+        $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('search_model');
     }
 

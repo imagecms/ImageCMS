@@ -13,9 +13,14 @@
     <div class="row-fluid">
         {include_tpl('../left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block')}
-            <svg class="linePlusBarChartStats" data-from="orders/amount_chart" style="height: 600px; width: 800px;"></svg>
-            <!--</div>-->
+            {include_tpl('../time_and_filter_block_without_groupby_and_with_product_for_brandsInCategories')}
+            {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
+                <svg class="mypiechart pieChartStats" data-from="categories/getBrandsInCategoriesCharData" style="height: 800px;"></svg>
+            {/if}
+            {if $_GET['charType'] == 'bar'}
+                <svg class="mypiechart barChartStats" data-from="categories/getBrandsInCategoriesCharData" style="height: 600px;"></svg>
+            {/if}
         </div>
     </div>
+    
 </section>
