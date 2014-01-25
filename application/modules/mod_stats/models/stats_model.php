@@ -115,7 +115,29 @@ class Stats_model extends CI_Model {
         else
             return false;
     }
+    
+      /**
+     * Get first level categories
+     * @return boolean|array
+     */
+    public function getCategoriesByIdName($term, $limit = 7) {
+        $locale = MY_Controller::getCurrentLocale();
+        $query = $this->db
+                ->select('id, name')
+                ->from('shop_category_i18n')
+                ->where('locale', $locale)
+                ->like('id', $term)
+                ->or_like('name', $term)
+                ->limit($limit)
+                ->get();
+                
 
+        if ($query)
+            return $query->result_array();
+        else
+            return false;
+    }
+    
     /**
      * Install module and update settings
      */
@@ -152,7 +174,7 @@ class Stats_model extends CI_Model {
         $this->dbforge->create_table('mod_stats_settings');
 
         // збереження URL сторінок
-        $urlFields = array(
+        $attendanceFields = array(
             'id' => array(
                 'type' => 'INT',
                 'auto_increment' => TRUE
@@ -160,36 +182,23 @@ class Stats_model extends CI_Model {
             'id_user' => array(
                 'type' => 'int',
                 'constraint' => '5',
-                'null' => TRUE,
-            ),
-            'url' => array(
-                'type' => 'varchar',
-                'constraint' => '300',
-                'null' => TRUE,
-            ),
-            'time_add TIMESTAMP default CURRENT_TIMESTAMP'
-        );
-        $this->dbforge->add_field($urlFields);
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_stats_urls');
-
-        // збереження URL сторінок
-        $attendanceFields = array(
-            'id' => array(
-                'type' => 'INT',
-                'auto_increment' => TRUE
+                'null' => FALSE,
             ),
             'type_id' => array(
                 'type' => 'int',
                 'constraint' => '2',
-                'null' => TRUE,
+                'null' => FALSE,
             ),
             'id_entity' => array(
                 'type' => 'int',
                 'constraint' => '6',
-                'null' => TRUE,
+                'null' => FALSE,
             ),
-            'time_add TIMESTAMP default CURRENT_TIMESTAMP'
+            'time_add ' => array(
+                'type' => 'int',
+                'constraint' => '11',
+                'null' => FALSE,
+            ),
         );
         $this->dbforge->add_field($attendanceFields);
         $this->dbforge->add_key('id', TRUE);
@@ -211,7 +220,6 @@ class Stats_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_stats_search');
         $this->dbforge->drop_table('mod_stats_settings');
-        $this->dbforge->drop_table('mod_stats_urls');
         $this->dbforge->drop_table('mod_stats_attendance');
     }
 
