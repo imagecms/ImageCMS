@@ -10,7 +10,6 @@ if (!defined('BASEPATH'))
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
- * @property discount_model $discount_model
  * @property discount_model_front $discount_model_front
  */
 class Discount_product {
@@ -41,7 +40,7 @@ class Discount_product {
         $lang = new \MY_Lang();
         $lang->load('mod_discount');
         require_once __DIR__ . '/models/discount_model_front.php';
-        $this->ci->discount_model_front = new \Discount_model_front;
+        $this->ci->discount_model_front = new \discount_model_front;
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         $this->discountForProduct = array_merge($this->baseDiscount->discountType['product'], $this->baseDiscount->discountType['brand'], $this->createChildDiscount($this->baseDiscount->discountType['category']));
     }
@@ -66,7 +65,7 @@ class Discount_product {
                         foreach ($childs as $child) {
                             $discAux = $disc;
                             $discAux['category_id'] = $child['id'];
-                            $resultDiscount[] = $disc_aux;
+                            $resultDiscount[] = $discAux;
                         }
                 }
             }
