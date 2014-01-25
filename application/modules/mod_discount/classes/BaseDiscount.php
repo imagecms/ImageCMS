@@ -10,7 +10,6 @@ if (!defined('BASEPATH'))
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
- * @property discount_model $discount_model
  * @property discount_model_front $discount_model_front
  */
 class BaseDiscount {
@@ -39,7 +38,7 @@ class BaseDiscount {
         $this->ci = & get_instance();
         if ($this->checkModuleInstall()) {
             require_once __DIR__ . '/../models/discount_model_front.php';
-            $this->ci->discount_model_front = new \Discount_model_front;
+            $this->ci->discount_model_front = new \discount_model_front;
             $lang = new \MY_Lang();
             $lang->load('mod_discount');
             $this->cart = \Cart\BaseCart::getInstance();

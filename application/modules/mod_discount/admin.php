@@ -8,6 +8,7 @@
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
+ * @property discount_model_admin $discount_model_admin
  */
 class Admin extends \ShopAdminController {
 

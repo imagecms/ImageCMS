@@ -9,8 +9,7 @@ if (!defined('BASEPATH'))
  * @author DevImageCms 
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
- * @property discount_model $discount_model
- * @property discount_model_front $discount_model_front
+ * @property discount_model_admin $discount_model_admin
  */
 class Mod_discount extends \MY_Controller {
 

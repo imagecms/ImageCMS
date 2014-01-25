@@ -4,13 +4,13 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 /**
- * Class Discount_model_front for Mod_Discount module
+ * Class discount_model_front for Mod_Discount module
  * @uses CI_Model
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  */
-class Discount_model_front extends CI_Model {
+class discount_model_front extends CI_Model {
 
     public function __construct() {
         parent::__construct();
