@@ -47,9 +47,14 @@ abstract class ControllerBase {
         foreach ($array as $item) {
             // Make for all keys the same length
             if (mb_strlen($item['name']) > 35) {
-                $key = mb_substr($item['name'], 0, 33).'..';
+                $key = mb_substr($item['name'], 0, 33) . '..';
             } else {
-                $key = str_pad($item['name'], 35);
+                if (strlen($item['name']) != mb_strlen($item['name'])) {
+                    $c = 30 + (strlen($item['name'])/2);
+                } else {
+                    $c = 35;
+                }
+                $key = str_pad($item['name'], $c);
             }
             $chartData[] = array(
                 'key' => $key,
