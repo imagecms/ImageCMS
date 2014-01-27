@@ -18,7 +18,7 @@
 .items-wish-data > li > .frame-photo-title:hover .group-buttons{display: block;}
 
 .hidden input[type="file"]{width: 100%;height: 100%;position: absolute;left: 0;top: 0;opacity: 0;-moz-opacity: 0;-khtml-opacity: 0;padding: 0;}
-.btn-remove-photo-wishlist > button, .btn-edit-photo-wishlist > button{width: 36px;height: 31px;text-align: center;}
+.btn-remove-photo-wishlist > button, .btn-edit-photo-wishlist > button{padding: 0 10px;height: 31px;text-align: center;}
 .btn-remove-photo-wishlist > button > [class*="icon_"], .btn-edit-photo-wishlist > button > [class*="icon_"]{margin-right: 0;}
 .btn-remove-photo-wishlist, .btn-edit-photo-wishlist{
     border: 1px solid rgba(12, 154, 203, 0.4);
