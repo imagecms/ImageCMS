@@ -14,27 +14,75 @@
         {include_tpl('../left_block')}
         <div class="clearfix span9">
             {include_tpl('../time_and_filter_block_without_groupby_and_with_product_for_productInfo')}
-            {if $product}
+            {if $products}
                 <table class="table table-striped table-bordered table-condensed content_big_td">
-                    <thead>
-                        <tr>
-                            <th class="span8">{lang('Product name','mod_stats')}</th>
-                            <th>{lang('Count of purchasses','mod_stats')}</th>
-            <!--                <th>{lang('Count of comments','mod_stats')}</th>-->
-                            <!--<th>{lang('Rating','mod_stats')}</th>-->
-                        </tr>
-                    </thead>
                     <tbody>
-                        <tr>
-                            <td>{$product['name']}</td>
-                            <td>{$product['CountOfPurchasses']}</td>
-                        </tr>
+                        {foreach $products as $p}
+                            <tr data-id="{echo $p->getId()}" class="simple_tr">
+                                <td class="span1"><p>{echo $p->getId()}</p></td>
+                                <td class="share_alt span3">
+                                    <a href="/shop/product/{echo $p->getUrl()}"
+                                       target="_blank"
+                                       class="go_to_site pull-right btn btn-small"
+                                       data-rel="tooltip"
+                                       data-placement="top"
+                                       data-original-title="{lang('go to the website','admin')}">
+                                        <i class="icon-share-alt"></i>
+                                    </a>
+                                    <a href="/admin/components/run/shop/products/edit/{echo $p->getId()}{$_SESSION['ref_url']}"
+                                       class="pjax title"
+                                       data-rel="tooltip"
+                                       data-title="{lang('Editing','admin')}">
+                                        {truncate(ShopCore::encode($p->getName()),100)}
+                                    </a>
+                                </td>
+                                <td class="share_alt span2">
+                                    <a href="/shop/category/{echo $p->getMainCategory()->getFullPath()}"
+                                       target="_blank"
+                                       class="go_to_site pull-right btn btn-small"
+                                       data-rel="tooltip"
+                                       data-placement="top"
+                                       data-original-title="{lang('go to the website','admin')}">
+                                        <i class="icon-share-alt"></i>
+                                    </a>
+                                    <a href="{$ADMIN_URL}categories/edit/{echo $p->getMainCategory()->getId()}"
+                                       class="pjax"
+                                       data-rel="tooltip"
+                                       data-title="{lang('Editing','admin')}">
+                                        {echo $p->getMainCategory()->getName()}
+                                    </a>
+                                </td>
+                                <td class="span1">
+                                    <p>
+                                        {if $p->getAddedToCartCount() != null}
+                                            {echo $p->getAddedToCartCount()}
+                                        {else:}
+                                            0
+                                        {/if}
+                                    </p>
+                                </td>
+                                <td class="span1">
+                                    <p>
+                                        {if $p->getViews() != null}
+                                            {echo $p->getViews()}
+                                        {else:}
+                                            0
+                                        {/if}
+                                    </p>
+                                </td>
+
+                            </tr>
+                        {/foreach}
                     </tbody>
                 </table>
             {else:}
-                <p style="text-align: center;">There are no chosen products</p>
+                <p style="text-align: center;">{lang('No results','mod_stats')}</p>
             {/if}
+            <div class="clearfix">
+                {if $pagination > ''}
+                    {$pagination}
+                {/if}
+            </div>
         </div>
     </div>
-
 </section>
