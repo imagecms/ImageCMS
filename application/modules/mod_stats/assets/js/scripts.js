@@ -58,20 +58,20 @@ $(document).ready(function() {
         $('.date_start').val(startDateForInput);
         $('.date_end').val(endDateForInput);
     });
-    
+
     /**  Autocomplete for products    */
-    if ($('#autocomleteProduct').length) {
-        $('#autocomleteProduct').autocomplete({
-            source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteProducts?limit=25',
-            select: function(event, ui) {
-                productsData = ui.item;
-            },
-            close: function() {
-                $('#autocomleteProductId').val(productsData.id);
-            }
-        });
-    }
-    
+//    if ($('#autocomleteProduct').length) {
+//        $('#autocomleteProduct').autocomplete({
+//            source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteProducts?limit=25',
+//            select: function(event, ui) {
+//                productsData = ui.item;
+//            },
+//            close: function() {
+//                $('#autocomleteProductId').val(productsData.id);
+//            }
+//        });
+//    }
+
     /**  Autocomplete for categories    */
     if ($('#autocomleteCategory').length) {
         $('#autocomleteCategory').autocomplete({
@@ -84,6 +84,25 @@ $(document).ready(function() {
             }
         });
     }
+
+    /** Order by for products **/
+    $('.productListOrder').bind('click', function() {
+        var column = $(this).attr('data-column');
+        $('input[name=orderMethod]').attr('value', column);
+        if ($('input[name=order]').attr('value') === '') {
+            $('input[name=order]').attr('value', 'ASC');
+        } else {
+            if ($('input[name=order]').attr('value') === 'ASC') {
+                $('input[name=order]').attr('value', 'DESC');
+            } else {
+                $('input[name=order]').attr('value', 'ASC');
+            }
+        }
+        var query_string = $('#productFilterForm').serialize();
+//        console.log(query_string);
+        window.location.href = '/admin/components/cp/mod_stats/products/productInfo/0?' + query_string;
+
+    });
 
 
 
@@ -158,7 +177,36 @@ $(document).ready(function() {
         });
     }
 
-    /** Find and draw Line With Focus Chart */
+
+    nv.addGraph(function() {
+        var chart = nv.models.cumulativeLineChart()
+                .x(function(d) {
+                    return d[0]
+                })
+                .y(function(d) {
+                    return d[1] / 100
+                }) //adjusting, 100% is 1.00, not 100 as it is in the data
+                .color(d3.scale.category10().range());
+
+        chart.xAxis
+                .tickFormat(function(d) {
+                    return d3.time.format('%x')(new Date(d))
+                });
+
+        chart.yAxis
+                .tickFormat(d3.format(',.1%'));
+
+        d3.select('#chart svg')
+                .datum(data)
+                .transition().duration(500)
+                .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    /** Find and draw Line Plus Bar Chart */
     var linePlusBarChartStats = $('.linePlusBarChartStats');
     if (linePlusBarChartStats.length) {
         linePlusBarChartStats.each(function(index, el) {
@@ -184,10 +232,10 @@ $(document).ready(function() {
 
                 chart.y1Axis
                         .tickFormat(function(d) {
-                            return d3.format(',f')(d) + currency 
+                            return d3.format(',f')(d) + currency
                         });
 
-                
+
                 chart.y2Axis
                         .tickFormat(d3.format(',f'));
 
