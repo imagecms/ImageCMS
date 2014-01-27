@@ -318,7 +318,8 @@ input.input-search{height: 33px;padding-right: 14px;}
 .items-catalog.table .btn-compare, .items-catalog.table .btn-wish{width: 100%;}
 .items-catalog.table{margin-left: -5%;}
 .items-catalog.table:hover{position: relative;z-index: 2;}
-.items-catalog.table > li{width: 28.3% !important;margin-left: 5%;min-width: 202px;}
+.items-catalog.table > li{width: 28.3% !important;margin-left: 5%;min-width: 202px;overflow: hidden;}
+.items-catalog.table > li:hover{overflow: visible;}
 .items-catalog .star{margin-right: 11px;}
 
 .animateListItems.table .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;-webkit-transition: all .1s .3s ease-in-out;-moz-transition: all .1s .3s ease-in-out;-o-transition: all .1s .3s ease-in-out;transition: all .1s .3s ease-in-out;}

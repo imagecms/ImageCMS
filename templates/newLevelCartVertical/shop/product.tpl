@@ -597,13 +597,13 @@
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
-                {/if}
-                {if $fullDescription = $model->getFullDescription()}
+            {/if}
+            {if $fullDescription = $model->getFullDescription()}
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
-                {/if}
-                {if $accessories}
+            {/if}
+            {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
-                {/if}
+            {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
@@ -637,7 +637,6 @@
                                 <span class="text-el">{lang('Просмотреть все спецификации','newLevel')}</span>
                             </button>
                         </div>
-
                     </div>
                 {/if}
                 {if $fullDescription != ''}
@@ -656,7 +655,6 @@
                         </button>
                         <!--                        End. Description block-->
                     </div>
-
                 {/if}
 
                 {if $accessories}
@@ -733,6 +731,10 @@
 {widget('similar')}
 <!-- End. Similar Products-->
 
+<!-- Start. News-->
+{widget('latest_news')}
+<!-- End. News-->
+
 <!-- Start. Photo Popup Frame-->
 <div class="drop drop-style globalFrameProduct" id="photo"></div>
 <script type="text/template" id="framePhotoProduct">
@@ -791,8 +793,8 @@
 {literal}
     <script type="text/javascript">
         var
-                productPhotoDrop = true,
-                productPhotoCZoom = true;
+        productPhotoDrop = true,
+        productPhotoCZoom = true;
     </script>
 {/literal}
 <!-- End. JS vars-->
