@@ -58,20 +58,20 @@ $(document).ready(function() {
         $('.date_start').val(startDateForInput);
         $('.date_end').val(endDateForInput);
     });
-    
+
     /**  Autocomplete for products    */
-    if ($('#autocomleteProduct').length) {
-        $('#autocomleteProduct').autocomplete({
-            source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteProducts?limit=25',
-            select: function(event, ui) {
-                productsData = ui.item;
-            },
-            close: function() {
-                $('#autocomleteProductId').val(productsData.id);
-            }
-        });
-    }
-    
+//    if ($('#autocomleteProduct').length) {
+//        $('#autocomleteProduct').autocomplete({
+//            source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteProducts?limit=25',
+//            select: function(event, ui) {
+//                productsData = ui.item;
+//            },
+//            close: function() {
+//                $('#autocomleteProductId').val(productsData.id);
+//            }
+//        });
+//    }
+
     /**  Autocomplete for categories    */
     if ($('#autocomleteCategory').length) {
         $('#autocomleteCategory').autocomplete({
@@ -85,6 +85,28 @@ $(document).ready(function() {
         });
     }
 
+    /** Order by for products **/
+    $('.productListOrder').bind('click', function() {
+        var column = $(this).attr('data-column');
+        $('input[name=orderMethod]').attr('value', column);
+        if ($('input[name=order]').attr('value') === '') {
+            $('input[name=order]').attr('value', 'ASC');
+        } else {
+            if ($('input[name=order]').attr('value') === 'ASC') {
+                $('input[name=order]').attr('value', 'DESC');
+            } else {
+                $('input[name=order]').attr('value', 'ASC');
+            }
+        }
+        var query_string = $('#productFilterForm').serialize();
+        window.location.href = '/admin/components/cp/mod_stats/products/productInfo?' + query_string;
+    });
+
+    /** Send form for filtering */
+    $('#productFilterButton').bind('click', function() {
+        var query_string = $('#productFilterForm').serialize();
+        window.location.href = '/admin/components/cp/mod_stats/products/productInfo/0?' + query_string;
+    });
 
 
 
@@ -95,34 +117,41 @@ $(document).ready(function() {
     var pieChartBlocks = $('.pieChartStats');
     if (pieChartBlocks.length) {
         pieChartBlocks.each(function(index, el) {
-            nv.addGraph(function() {
-                var width = 800,
-                        height = 850;
+            var cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var width = 800,
+                            height = 650 + (cData.length / 3 * 20);
 
-                var chart = nv.models.pieChart()
-                        .x(function(d) {
-                            return d.key
-                        })
-                        .y(function(d) {
-                            return d.y
-                        })
-                        .color(d3.scale.category10().range())
-                        .width(width)
-                        .height(height);
+                    var chart = nv.models.pieChart()
+                            .x(function(d) {
+                                return d.key
+                            })
+                            .y(function(d) {
+                                return d.y
+                            })
+                            .color(d3.scale.category10().range())
+                            .width(width)
+                            .height(height);
 
-                d3.select(el)
-                        .datum(ChartData.getData($(el).data('from')))
-                        .transition().duration(1200)
-                        .attr('width', width)
-                        .attr('height', height)
-                        .call(chart);
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(1200)
+                            .attr('width', width)
+                            .attr('height', height)
+                            .call(chart);
 
-                chart.dispatch.on('stateChange', function(e) {
-                    nv.log('New State:', JSON.stringify(e));
+                    chart.dispatch.on('stateChange', function(e) {
+                        nv.log('New State:', JSON.stringify(e));
+                    });
+
+                    return chart;
                 });
+            }else{
+                $('#showNoChartData').show();
+            }
 
-                return chart;
-            });
         });
     }
 
@@ -158,7 +187,7 @@ $(document).ready(function() {
         });
     }
 
-    /** Find and draw Line With Focus Chart */
+    /** Find and draw Line Plus Bar Chart */
     var linePlusBarChartStats = $('.linePlusBarChartStats');
     if (linePlusBarChartStats.length) {
         linePlusBarChartStats.each(function(index, el) {
@@ -184,10 +213,10 @@ $(document).ready(function() {
 
                 chart.y1Axis
                         .tickFormat(function(d) {
-                            return d3.format(',f')(d) + currency 
+                            return d3.format(',f')(d) + currency
                         });
 
-                
+
                 chart.y2Axis
                         .tickFormat(d3.format(',f'));
 
@@ -204,17 +233,6 @@ $(document).ready(function() {
         });
     }
     /** ************************************************ */
-
-
-
-
-
-
-
-
-
-
-
 
 
     /***!!!!!!!!!!!!!! **/
