@@ -12,7 +12,10 @@ class SearchController extends ControllerBase {
         $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('search_model');
     }
-
+    
+    /**
+     * Render template and set data for "keywords"
+     */
     public function keywords() {
 
         $result = $this->controller->search_model->queryKeywordsByDateRange(array(
@@ -22,7 +25,10 @@ class SearchController extends ControllerBase {
         ));
         $this->renderAdmin('keywords', array('data' => $result));
     }
-
+    
+    /**
+     * Render template for  "brands in search"
+     */
     public function brandsInSearch() {
 
         $this->renderAdmin('brandsInSearch', array('data' => $result));
@@ -50,22 +56,14 @@ class SearchController extends ControllerBase {
         } else {
             return FALSE;
         }
-
-        if ($arrayWithBrandsInSearch != FALSE) {
-            /** Data for pie diagram * */
-            $chartData = array();
-            foreach ($arrayWithBrandsInSearch as $item) {
-                $chartData[] = array(
-                    'key' => $item['name'],
-                    'y' => (int) $item['count']
-                );
-            }
-            echo json_encode($chartData);
-        } else {
-            return;
-        }
+        
+        $chartData = parent::prepareDataForStaticChart($arrayWithBrandsInSearch);
+        echo json_encode($chartData);
     }
-
+    
+    /**
+     * Render template for "categories in search"
+     */
     public function categoriesInSearch() {
 
         $this->renderAdmin('categoriesInSearch', array('data' => $result));
@@ -93,20 +91,9 @@ class SearchController extends ControllerBase {
         } else {
             return FALSE;
         }
-
-        if ($arrayWithCategoriesInSearch != FALSE) {
-            /** Data for pie diagram * */
-            $chartData = array();
-            foreach ($arrayWithCategoriesInSearch as $item) {
-                $chartData[] = array(
-                    'key' => $item['name'],
-                    'y' => (int) $item['count']
-                );
-            }
-            echo json_encode($chartData);
-        } else {
-            return;
-        }
+        
+        $chartData = parent::prepareDataForStaticChart($arrayWithCategoriesInSearch);
+        echo json_encode($chartData);
     }
 
     public function noResults() {

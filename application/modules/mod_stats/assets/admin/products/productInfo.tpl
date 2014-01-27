@@ -14,10 +14,8 @@
         {include_tpl('../left_block')}
         <div class="clearfix span9">
             {include_tpl('../time_and_filter_block_without_groupby_and_with_product_for_productInfo')}
-
             {if $products}
                 <table class="table table-striped table-bordered table-condensed content_big_td">
-
                     <tbody>
                         {foreach $products as $p}
                             <tr data-id="{echo $p->getId()}" class="simple_tr">
@@ -87,5 +85,4 @@
             </div>
         </div>
     </div>
-
 </section>

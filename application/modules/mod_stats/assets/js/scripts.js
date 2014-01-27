@@ -99,11 +99,14 @@ $(document).ready(function() {
             }
         }
         var query_string = $('#productFilterForm').serialize();
-//        console.log(query_string);
-        window.location.href = '/admin/components/cp/mod_stats/products/productInfo/0?' + query_string;
-
+        window.location.href = '/admin/components/cp/mod_stats/products/productInfo?' + query_string;
     });
 
+    /** Send form for filtering */
+    $('#productFilterButton').bind('click', function() {
+        var query_string = $('#productFilterForm').serialize();
+        window.location.href = '/admin/components/cp/mod_stats/products/productInfo/0?' + query_string;
+    });
 
 
 
@@ -114,34 +117,41 @@ $(document).ready(function() {
     var pieChartBlocks = $('.pieChartStats');
     if (pieChartBlocks.length) {
         pieChartBlocks.each(function(index, el) {
-            nv.addGraph(function() {
-                var width = 800,
-                        height = 850;
+            var cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var width = 800,
+                            height = 650 + (cData.length / 3 * 20);
 
-                var chart = nv.models.pieChart()
-                        .x(function(d) {
-                            return d.key
-                        })
-                        .y(function(d) {
-                            return d.y
-                        })
-                        .color(d3.scale.category10().range())
-                        .width(width)
-                        .height(height);
+                    var chart = nv.models.pieChart()
+                            .x(function(d) {
+                                return d.key
+                            })
+                            .y(function(d) {
+                                return d.y
+                            })
+                            .color(d3.scale.category10().range())
+                            .width(width)
+                            .height(height);
 
-                d3.select(el)
-                        .datum(ChartData.getData($(el).data('from')))
-                        .transition().duration(1200)
-                        .attr('width', width)
-                        .attr('height', height)
-                        .call(chart);
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(1200)
+                            .attr('width', width)
+                            .attr('height', height)
+                            .call(chart);
 
-                chart.dispatch.on('stateChange', function(e) {
-                    nv.log('New State:', JSON.stringify(e));
+                    chart.dispatch.on('stateChange', function(e) {
+                        nv.log('New State:', JSON.stringify(e));
+                    });
+
+                    return chart;
                 });
+            }else{
+                $('#showNoChartData').show();
+            }
 
-                return chart;
-            });
         });
     }
 
@@ -176,35 +186,6 @@ $(document).ready(function() {
             });
         });
     }
-
-
-    nv.addGraph(function() {
-        var chart = nv.models.cumulativeLineChart()
-                .x(function(d) {
-                    return d[0]
-                })
-                .y(function(d) {
-                    return d[1] / 100
-                }) //adjusting, 100% is 1.00, not 100 as it is in the data
-                .color(d3.scale.category10().range());
-
-        chart.xAxis
-                .tickFormat(function(d) {
-                    return d3.time.format('%x')(new Date(d))
-                });
-
-        chart.yAxis
-                .tickFormat(d3.format(',.1%'));
-
-        d3.select('#chart svg')
-                .datum(data)
-                .transition().duration(500)
-                .call(chart);
-
-        nv.utils.windowResize(chart.update);
-
-        return chart;
-    });
 
     /** Find and draw Line Plus Bar Chart */
     var linePlusBarChartStats = $('.linePlusBarChartStats');
@@ -252,17 +233,6 @@ $(document).ready(function() {
         });
     }
     /** ************************************************ */
-
-
-
-
-
-
-
-
-
-
-
 
 
     /***!!!!!!!!!!!!!! **/

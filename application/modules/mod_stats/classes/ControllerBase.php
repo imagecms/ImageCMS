@@ -45,8 +45,14 @@ abstract class ControllerBase {
     public static function prepareDataForStaticChart($array = null) {
         $chartData = array();
         foreach ($array as $item) {
+            // Make for all keys the same length
+            if (mb_strlen($item['name']) > 35) {
+                $key = mb_substr($item['name'], 0, 33).'..';
+            } else {
+                $key = str_pad($item['name'], 35);
+            }
             $chartData[] = array(
-                'key' => $item['name'],
+                'key' => $key,
                 'y' => (int) $item['count']
             );
         }
