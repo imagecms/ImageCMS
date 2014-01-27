@@ -32,6 +32,9 @@ class Core extends MY_Controller {
     }
 
     public function index() {
+
+
+
         $page_found = FALSE;
         $without_cat = FALSE;
         $SLASH = '';
@@ -49,8 +52,6 @@ class Core extends MY_Controller {
 
         // Set site main template
         $this->config->set_item('template', $this->settings['site_template']);
-
-
 
         // Load Template library
         ($hook = get_hook('core_load_template_engine')) ? eval($hook) : NULL;
@@ -283,8 +284,11 @@ class Core extends MY_Controller {
         // Assign template variables and load modules
         $this->_process_core_data();
 
-        if (strstr($_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI], '//'))
+        if (strstr($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], '//'))
             $this->error_404();
+
+        // on every page load
+        \CMSFactory\Events::create()->registerEvent(NULL, 'Core:pageLoaded');
 
         // If module than exit from core and load module
         if ($this->is_module($mod_segment) == TRUE)
@@ -316,6 +320,7 @@ class Core extends MY_Controller {
         } elseif ($this->core_data['data_type'] == 'bridge') {
             log_message('debug', 'Bridge initialized.');
         }
+
         //you can use if statement in that hook
         ($hook = get_hook('core_datatype_switch')) ? eval($hook) : NULL;
     }
