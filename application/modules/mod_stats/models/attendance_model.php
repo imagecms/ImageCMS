@@ -11,14 +11,19 @@ class Attendance_model extends CI_Model {
 
     /**
      * 
-     * @param type $params
+     * @param array $params
+     *  - interval (string) day|month|year
+     *  - dateFrom (string) YYYY-MM-DD 
+     *  - dateTo (string) YYYY-MM-DD 
+     *  - registered (mixed) TRUE - only registered, FALSE - only unregistered, NULL or empty - all
      * @return boolean
      */
-    public function getCommonAttendanceUrl(array $params = array()) {
+    public function getCommonAttendance(array $params = array()) {
         $params = array(
             'interval' => 'day',
             'dateFrom' => NULL,
             'dateTo' => NULL,
+            'registered' => NULL
         );
 
         foreach ($params_ as $key => $value) {
@@ -27,24 +32,23 @@ class Attendance_model extends CI_Model {
             }
         }
 
+        $registeredCondition = "";
+        if (!is_null($type)) {
+            $sign = $type == TRUE ? '>' : '<';
+            $registeredCondition = " AND `id_user` {$sign} 0 ";
+        }
+
         $query = "
-            SELECT
-                DATE_FORMAT(`time_add`, '" . $this->getDatePattern($params['interval']) . "') as `date`, 
-                COUNT(`id`) as `count`
+            SELECT 
+                DATE_FORMAT(FROM_UNIXTIME(`time_add`), '" . $this->getDatePattern($params['interval']) . "') as `date`,
+                COUNT(DISTINCT `id_user`) as `users_count`
             FROM 
-                (SELECT 
-                    DATE_FORMAT(`time_add`, '" . $this->getDatePattern($params['interval']) . "') as `date`, 
-                 FROM 
-                    `mod_stats_urls`
-                 GROUP BY 
-                    `users`.`id`
-                 ORDER BY 
-                    FROM_UNIXTIME(`users`.`created`)
-                ) as dtable
+                `mod_stats_attendance`
             WHERE 1 
-                 " . $this->prepareDateBetweenCondition('created', $params) . " 
-            GROUP BY `date`
-            ORDER BY FROM_UNIXTIME(`created`)
+                " . $this->prepareDateBetweenCondition('created', $params) . " 
+                {$registeredCondition}
+            GROUP BY 
+                `date`
         ";
 
         $result = $this->db->query($query);
