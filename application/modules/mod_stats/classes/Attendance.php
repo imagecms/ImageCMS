@@ -48,13 +48,12 @@ class Attendance {
      * 
      * @param string $url
      */
-    public function add($coreData) {
+    public function add($coreData, $userId) {
         if (FALSE == $typeId = $this->getTypeId($coreData['data_type'])) {
             return;
         }
-        $userId = CI::$APP->dx_auth->get_user_id();
         $this->attendanceData = array(
-            'id_user' => $userId == FALSE ? 0 : $userId,
+            'id_user' => $userId,
             'type_id' => $typeId,
             'id_entity' => $coreData['id'],
             'time_add' => time(),
