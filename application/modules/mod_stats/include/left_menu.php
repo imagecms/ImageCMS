@@ -6,19 +6,19 @@ return array(
         'controller' => 'orders',
         'items' => array(
             array(
-                'name' => lang('Count', 'mod_stats'),
+                'name' => lang('Sum and count', 'mod_stats'),
                 'controller' => 'orders',
-                'action' => 'amount',
+                'action' => 'count',
             ),
-//            array(
-//                'name' => lang('Price', 'mod_stats'),
-//                'controller' => 'orders',
-//                'action' => 'price',
-//            ),
             array(
-                'name' => lang('Information', 'mod_stats'),
+                'name' => lang('Statuses and products', 'mod_stats'),
                 'controller' => 'orders',
-                'action' => 'info',
+                'action' => 'statuses',
+            ),
+            array(
+                'name' => lang('By users', 'mod_stats'),
+                'controller' => 'orders',
+                'action' => 'users',
             ),
         )
     ),
@@ -37,14 +37,9 @@ return array(
                 'action' => 'register',
             ),
             array(
-                'name' => lang('Attendance', 'mod_stats'),
+                'name' => lang('Common attendance', 'mod_stats'),
                 'controller' => 'users',
                 'action' => 'attendance',
-            ),
-            array(
-                'name' => lang('User information', 'mod_stats'),
-                'controller' => 'users',
-                'action' => 'info',
             ),
         )
     ),

@@ -24,7 +24,7 @@ class Products_model extends \CI_Model {
      * will return count of unique products. FALSE will give all.
      * @return array (brandId, brandName, productsCount)
      */
-    public function getBrandsCountsData($brandIds = NULL, $uniqueProducts = FALSE) {
+    public function getBrandsCountsData($limit = 20, $brandIds = NULL, $uniqueProducts = FALSE) {
         // if brand ids specified, then leave only them
         $brands = $this->getAllBrands();
         if (is_array($brandIds)) {
@@ -50,14 +50,22 @@ class Products_model extends \CI_Model {
                 $countAll += $row['stock'];
                 $countUnique++;
             }
-
+            
             $brandsInfo[] = array(
                 'id' => $id,
                 'name' => $name,
                 'count' => $uniqueProducts === FALSE ? $countAll : $countUnique,
             );
         }
-        return $brandsInfo;
+        
+
+            foreach ($brandsInfo as $key => $row) {
+                $count[$key] = $row['count'];
+            
+            }
+            array_multisort($count, SORT_DESC, $brandsInfo);
+            $res = array_slice($brandsInfo,0,$limit);
+        return $res;
     }
 
     /**
@@ -225,7 +233,8 @@ class Products_model extends \CI_Model {
         }
 
         $query = "SELECT  
-                    `shop_products_i18n`.`name`  AS 'Name' ,
+                    `shop_products_i18n`.`id`  AS 'id' ,
+                    `shop_products_i18n`.`name`  AS 'name' ,
                     IFNULL (SUM(`shop_orders_products`.`quantity`), 0) AS  'CountOfPurchasses'
                 FROM  
                     `shop_products_i18n` 

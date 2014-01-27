@@ -51,7 +51,7 @@
                                     if (cL == scriptsL)
                                         if (callback) {
                                             eval(callback)();
-                                            setTimeout(function(){
+                                            setTimeout(function() {
                                                 $(document).trigger({'type': customEvent});
                                             }, 0);
                                         }
@@ -116,9 +116,9 @@
 
         {literal}
             <script type="text/javascript">
-                $(window).load(function(){
+                $(window).load(function() {
                     init();
-                    setTimeout(function(){
+                    setTimeout(function() {
                         $(document).trigger({type: 'scriptDefer'})
                     }, 0)
                 })
@@ -126,7 +126,7 @@
         {/literal}
         { */}
         {/*}End. delete before upload to server{ */}
-        
+
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
         <script type="text/javascript">

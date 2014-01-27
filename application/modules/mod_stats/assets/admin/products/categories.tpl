@@ -14,8 +14,9 @@
         {include_tpl('../left_block')}
         <div class="clearfix span9">
             {include_tpl('../time_and_filter_block_without_groupby_and_with_type_for_categories')}
+            <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
-                <svg class="mypiechart pieChartStats" data-from="products/getCategoriesChartData" style="height: 800px;"></svg>
+                <svg class="mypiechart pieChartStats" data-from="products/getCategoriesChartData" style="height: 100%;"></svg>
             {/if}
             {if $_GET['charType'] == 'bar'}
                 <svg class="mypiechart barChartStats" data-from="products/getCategoriesChartData" style="height: 600px;"></svg>

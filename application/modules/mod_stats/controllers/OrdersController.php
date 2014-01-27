@@ -7,69 +7,145 @@
  */
 class OrdersController extends ControllerBase {
 
+    private $dataRemap;
+
     public function __construct($some) {
         parent::__construct($some);
-    }
-
-    /**
-     * 
-     */
-    public function amount() {
-        $this->renderAdmin('amount');
-    }
-
-    /**
-     * 
-     */
-    public function amount_chart() {
-        //$dateFrom = isset($_GET['dateFrom']) ? $_GET['dateFrom'] : date("Y-m-d", time() - 60 * 60 * 24 * 365);
-        $this->controller->load('traits/DateIntervalTrait.php');
+        $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('orders_model');
+        $this->controller->import('classes/ChartDataRemap.php');
+        $this->dataRemap = new ChartDataRemap();
+    }
+
+    /**
+     * Prints template for counts
+     */
+    public function count() {
+
+        $result = $this->controller->orders_model->getOrdersInfo(array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+        ));
+        $this->renderAdmin('count', array('data' => $result, 'viewType' => $viewType));
+    }
+
+    /**
+     * Output json data for count chart
+     */
+    public function getCountChartData() {
+        // Get results about orders from model
         $result = $this->controller->orders_model->getOrdersInfo(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
         ));
 
-        $this->controller->load('classes/ChartDataRemap.php');
-        $dataRemap = new ChartDataRemap;
+        $preFinalStruct = $this->dataRemap->remapFor2Axises($result);
 
-        $preFinalStruct = $dataRemap->remapFor2Axises($result);
+        // Remove unwanted values
+        unset($preFinalStruct['products_count'], $preFinalStruct['quantity'], $preFinalStruct['delivered']);
 
-        $labels = array(// для лангів
+        // For langs
+        $labels = array(
             'orders_count' => array('label' => 'Orders count'),
             'price_sum' => array('label' => 'Cash', 'bar' => TRUE),
-            'products_count' => array('label' => 'Count of products'),
-            'quantity' => array('label' => 'Quantity of products'),
-            'delivered' => array('label' => 'Count of delivered'),
         );
 
-        $finalStruct = array();
-        foreach ($preFinalStruct as $key => $values) {
-            $temp = array(
-                'key' => $labels[$key]['label'],
-                'values' => $values,
-            );
-            isset($labels[$key]['bar']) ? $temp['bar'] = 'TRUE' : NULL;
-            $finalStruct[] = $temp;
-        }
-
-        echo json_encode($finalStruct);
+        //Prepare data for diagram
+        $chartData = parent::prepareDataForLineChart($preFinalStruct, $labels);
+        echo json_encode($chartData);
     }
-
+    
     /**
-     * 
+     * Render template for statuses
      */
-    public function info() {
-        $this->controller->load('traits/DateIntervalTrait.php');
-        $this->controller->load->model('orders_model');
+    public function statuses() {
         $result = $this->controller->orders_model->getOrdersInfo(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
         ));
-        $this->renderAdmin('info', array('data' => $result));
+        $this->assetManager
+                ->setData('data', $result)
+                ->renderAdmin('orders/statuses');
+    }
+
+    /**
+     * Output json data for orders statuses and product chart
+     */
+    public function getStatusesChartData() {
+        // Get results about orders from model
+        $result = $this->controller->orders_model->getOrdersInfo(array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+        ));
+
+        $preFinalStruct = $this->dataRemap->remapForOneAxis($result);
+
+        // Remove unwanted values
+        unset($preFinalStruct['price_sum'], $preFinalStruct['quantity']);
+
+        // For langs
+        $labels = array(
+            'orders_count' => array('label' => 'Orders count'),
+            'delivered' => array('label' => 'Count of delivered'),
+            'products_count' => array('label' => 'Count of products')
+        );
+
+        //Prepare data for diagram
+        $chartData = parent::prepareDataForLineMultChart($preFinalStruct, $labels);
+        echo json_encode($chartData);
+    }
+
+    /**
+     * Template for users
+     */
+    public function users() {
+        // getting view type
+        if (!isset($_GET['view_type'])) {
+            $_GET['view_type'] = 'table';
+        }
+
+        $field = isset($_GET['chart_field']) ? $_GET['chart_field'] : 'orders_count';
+
+        $data = $this->controller->orders_model->getUsers(array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '20014-01-01',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+        ));
+
+        $this->renderAdmin('users', array(
+            'data' => $data,
+            'viewType' => $viewType,
+            'chartField' => isset($_GET['chart_field']) ? $_GET['chart_field'] : 'orders_count',
+        ));
+    }
+
+    /**
+     * Output json data for usres chart
+     */
+    public function getUsersChartData() {
+        
+        $params = array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+        );
+
+        $field = isset($_GET['chart_field']) ? $_GET['chart_field'] : 'orders_count';
+
+        $data = $this->controller->orders_model->getUsers($params);
+
+        $chartData = array();
+        foreach ($data as $user) {
+            $chartData[] = array(
+                'key' => $user['username'],
+                'y' => (int) $user[$field]
+            );
+        }
+        echo json_encode($chartData);
     }
 
 }
-
