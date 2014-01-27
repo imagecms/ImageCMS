@@ -66,7 +66,7 @@ class ProductsController extends ControllerBase {
      * @param int $perPage
      */
     public function productInfo($perPage = 0) {
-
+        // Get products model
         $model = SProductsQuery::create()
                 ->joinWithI18n(\MY_Controller::defaultLocale(), Criteria::LEFT_JOIN)
                 ->addSelectModifier('SQL_CALC_FOUND_ROWS')
@@ -96,12 +96,8 @@ class ProductsController extends ControllerBase {
                     ->endUse()
                     ->orWhere('ProductVariant.Number = ?', $text);
         }
-
-
-
-
-
-
+        
+        // Order by params
         if (isset(ShopCore::$_GET['orderMethod']) && ShopCore::$_GET['orderMethod'] != '') {
             $order_methods = array('Id', 'Name', 'CategoryId', 'Views', 'AddedToCartCount');
             if (in_array(ShopCore::$_GET['orderMethod'], $order_methods)) {
@@ -118,16 +114,8 @@ class ProductsController extends ControllerBase {
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
+        
+        // Get results
         $model = $model
                 ->offset((int) $perPage)
                 ->limit($this->perPage)
@@ -164,10 +152,6 @@ class ProductsController extends ControllerBase {
 
         $this->controller->pagination->num_links = 6;
         $this->controller->pagination->initialize($config);
-
-
-
-
 
         // Set data and render template
         $this->assetManager

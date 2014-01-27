@@ -5,14 +5,10 @@
     <form method="get" id="productFilterForm">
 
         <div class="pull-right">
-            <button type="submit" class="btn btn-small m_t_-10" type="button">
+            <button class="btn btn-small m_t_-10" type="button" id="productFilterButton">
                 <i class="icon-refresh"></i> {lang('Update','mod_stats')}
             </button>
         </div>
-
-
-
-
         <table class="table table-striped table-bordered table-hover table-condensed products_table">
             <thead>
                 <tr style="cursor: pointer;">
@@ -96,41 +92,5 @@
             </thead>
         </table>
     </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<span class="d-i_b m-r_10 m-l_10">{lang('Product', 'mod_stats')} </span>
-        <span class="d-i_b">
-            <label class="p_r">
-                <input 
-                    id="autocomleteProduct"
-                    class="input-small required" 
-                    style="width: 350px;"
-                    autocomplete="off"
-                    value="" 
-                    type="text"/>
-                <input 
-                    id="autocomleteProductId"
-                    type="hidden" 
-                    name="pi" value="{$_GET['id']}"/>
-            </label>
-        </span>-->
-
-
-</form>
 </div>
 <hr class="m-t_5" />
