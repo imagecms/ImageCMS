@@ -87,6 +87,30 @@ class Users_model extends CI_Model {
 
     /**
      * 
+     * @param type $registered
+     * @return type
+     */
+    public function getCommonAttendance($registered = TRUE) {
+        $condition = $registered ? '<>' : '=';
+        $query = "
+            SELECT 
+               DATE_FORMAT(FROM_UNIXTIME(`time_add`), '" . $this->getDatePattern($this->params['interval']) . "') as `date`,
+               COUNT(`id`)
+            FROM 
+                `mod_stats_attendance`        
+            WHERE 
+                `id_user` {$condition} 0
+            GROUP BY 
+                `date`
+           
+        ";
+                
+         
+        return $this->db->query($query)->result_array();
+    }
+
+    /**
+     * 
      * @param type $params
      * @return boolean
      */

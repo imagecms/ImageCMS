@@ -36,10 +36,33 @@ class Mod_stats extends MY_Controller {
     }
 
     public function saveAttendance() {
-        $coreData = CI::$APP->core->core_data;
         $thisObj = new Mod_stats();
         $thisObj->import('classes/Attendance');
-        Attendance::getInstance()->add($coreData);
+
+        /*
+         * If user is not registered, he has no id. For accurate data 
+         * traffic each user must differ. So for unregistered users 
+         * is generating negative random ID. When a user signs up it 
+         * changed to its id from users table
+         */
+        if (0 == $userId = (int) CI::$APP->dx_auth->get_user_id()) {
+            if (!isset($_COOKIE['u2id'])) { //unregistered user id
+                // setting up new unregistered user id
+                $userId = $thisObj->stats_model->getNewUnregisteredUserId();
+                setcookie('u2id', $userId, time() + 60 * 60 * 24 * 30, '/');
+            } else {
+                // just updating time
+                setcookie('u2id', $_COOKIE['u2id'], time() + 60 * 60 * 24 * 30, '/');
+                $userId = $_COOKIE['u2id'];
+            }
+        } else { // registered user
+            $userId = CI::$APP->dx_auth->get_user_id();
+            if (isset($_COOKIE['u2id'])) { // it means that user just make registration
+                $thisObj->stats_model->updateAttendanceUserId($_COOKIE['u2id'], $userId);
+                setcookie('u2id', $userId, time() - 100, '/'); // deleting cookie
+            }
+        }
+        Attendance::getInstance()->add(CI::$APP->core->core_data, $userId);
     }
 
     public function saveSearchedKeyWords($text = '') {
