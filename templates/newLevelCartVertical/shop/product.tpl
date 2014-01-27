@@ -681,7 +681,7 @@
                     <!--Start. Comments block-->
                     {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                     <div class="frame-form-comment">
-                        <div class="forComments">
+                        <div class="forComments p_r">
                             {echo $c['comments']}
                         </div>
                         <!--End. Comments block-->
@@ -707,7 +707,7 @@
                 </div>
             </div>
             <div id="comment">
-                <div class="inside-padd forComments">
+                <div class="inside-padd forComments p_r">
                     <div class="preloader"></div>
                 </div>
             </div>
