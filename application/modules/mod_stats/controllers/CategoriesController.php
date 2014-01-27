@@ -11,13 +11,18 @@ class CategoriesController extends ControllerBase {
         parent::__construct($some);
         $this->controller->load->model('categories_model');
     }
-
+    /**
+     * Render template and set data
+     */
     public function brandsInCategories() {
         $this->assetManager
                 ->setData('categories', $firstLevelCategories)
                 ->renderAdmin('categories/brandsInCategories');
     }
-
+    
+    /**
+     * Prepare and return data for chart "brands in categories"
+     */
     public function getBrandsInCategoriesCharData() {
         $params = array(
             'categoryId' => isset($_GET['ci']) ? $_GET['ci'] : 20,

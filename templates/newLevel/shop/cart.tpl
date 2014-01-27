@@ -536,7 +536,7 @@
                                             <span class="current-prices f-s_0">
                                                 <span class="price-new">
                                                     <span>
-                                                        <span class="price priceOrder""><%- parseFloat(item.count * item.price).toFixed(pricePrecision) %></span>
+                                                        <span class="price priceOrder"><%- parseFloat(item.count * item.price).toFixed(pricePrecision) %></span>
                                                         <span class="curr"><%-curr%></span>
                                                     </span>
                                                 </span>
