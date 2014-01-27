@@ -32,6 +32,22 @@ class UsersController extends ControllerBase {
         ));
     }
 
+    public function attendance() {
+        $this->controller->import('traits/DateIntervalTrait.php');
+        $this->controller->load->model('attendance_model');
+        $params = array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+            'registered' => TRUE
+        );
+        $data = $this->controller->attendance_model->getCommonAttendance($params);
+
+        $this->renderAdmin('attendance', array(
+            'data' => $data
+        ));
+    }
+
     public function register() {
         $this->renderAdmin('register');
     }
