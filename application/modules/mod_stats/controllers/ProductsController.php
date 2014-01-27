@@ -33,8 +33,8 @@ class ProductsController extends ControllerBase {
         );
         $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
         $categories = $this->controller->products_model->getCategoriesCountsData($catIds);
-
         $chartData = parent::prepareDataForStaticChart($categories);
+//        var_dumps($chartData);
         echo json_encode($chartData);
     }
 
@@ -96,7 +96,7 @@ class ProductsController extends ControllerBase {
                     ->endUse()
                     ->orWhere('ProductVariant.Number = ?', $text);
         }
-        
+
         // Order by params
         if (isset(ShopCore::$_GET['orderMethod']) && ShopCore::$_GET['orderMethod'] != '') {
             $order_methods = array('Id', 'Name', 'CategoryId', 'Views', 'AddedToCartCount');
@@ -114,7 +114,7 @@ class ProductsController extends ControllerBase {
                 }
             }
         }
-        
+
         // Get results
         $model = $model
                 ->offset((int) $perPage)
