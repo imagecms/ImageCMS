@@ -148,7 +148,7 @@ $(document).ready(function() {
 
                     return chart;
                 });
-            }else{
+            } else {
                 $('#showNoChartData').show();
             }
 
@@ -194,7 +194,7 @@ $(document).ready(function() {
             data = ChartData.getData($(el).data('from'));
             nv.addGraph(function() {
                 var chart = nv.models.linePlusBarChart()
-                        .margin({top: 30, right: 60, bottom: 50, left: 70})
+                        .margin({top: 30, right: 30, bottom: 50, left: 100})
                         .x(function(d, i) {
                             return i
                         })
@@ -212,10 +212,10 @@ $(document).ready(function() {
                         });
 
                 chart.y1Axis
+                        .axisLabel(lang('Price'))
                         .tickFormat(function(d) {
-                            return d3.format(',f')(d) + currency
+                            return d3.format(',f')(d)
                         });
-
 
                 chart.y2Axis
                         .tickFormat(d3.format(',f'));
@@ -232,6 +232,47 @@ $(document).ready(function() {
             });
         });
     }
+
+
+
+
+    /** Find and draw  Line Chart */
+    var lineChartStats = $('.cumulativeLineChartStats');
+    if (lineChartStats.length) {
+        lineChartStats.each(function(index, el) {
+            var cData = ChartData.getData($(el).data('from'));
+            nv.addGraph(function() {
+                var chart = nv.models.lineChart().margin({
+                    top: 30,
+                    right: 40,
+                    bottom: 50,
+                    left: 45
+                }).showLegend(true).tooltipContent(function(key, y, e, graph) {
+                    return '<h3>' + key + '</h3>' + '<p>' + e + ' at ' + y + '</p>'
+                });
+
+                chart.xAxis
+                        .axisLabel(lang('Date'))
+                        .tickFormat(function(d) {
+                            return d3.time.format('%d/%m/%Y')(new Date(d))
+                        });
+
+                chart.yAxis
+                        .tickFormat(d3.format('.0f'));
+
+                d3.select(el)
+                        .datum(cData)
+                        .transition().duration(500)
+                        .call(chart);
+
+                nv.utils.windowResize(chart.update);
+
+                return chart;
+            });
+
+        });
+    }
+
     /** ************************************************ */
 
 
