@@ -81,7 +81,7 @@
                 <div class="inside-padd">
                     <div class="title_h2__icsi-css">
                         {lang('У вас возникли вопросы? Напишите нам', 'comments')}
-                        <p style='font-size:11pt;'>{lang('Мы предоставим ответ в течении 24 часов', 'comments')}</p>
+                        <p style='font-size:11pt;'>{lang('Мы предоставим ответ в течение 24 часов', 'comments')}</p>
                     </div>
                     <!-- Start of new comment fild -->
                     <div class="form-comment__icsi-css form__icsi-css horizontal-form">

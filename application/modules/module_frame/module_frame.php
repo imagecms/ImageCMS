@@ -5,7 +5,6 @@
 /**
  * Image CMS
  * Module Frame
- * @property Cms_shop_admin $cms_shop_admin 
  */
 class Module_frame extends MY_Controller {
 
@@ -17,11 +16,17 @@ class Module_frame extends MY_Controller {
 
     public function index() {
         $data = array(
-//            'url' => 'asdfas',
-            'active' => '1',
-            'old_price' => 'y3',
+            'product_name' => 'sd',
+            'currency' => '26',
+            'category_id' => '52',
+            'price_in_main' => '2.3',
+//            'mainImage'=> 'http://upload.wikimedia.org/wikipedia/commons/2/22/Turkish_Van_Cat.jpg',
         );
-        \Products\ProductEdit::getInstance()->addProduct($data);
+        try {
+            echo \Products\ProductApi::getInstance()->addProduct($data);
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
     }
 
     public function autoload() {
