@@ -1,0 +1,57 @@
+<?php $arr = array (
+  'Name' => '666',
+  'Active' => '1',
+  'variants' => 
+  array (
+    'RandomId' => 
+    array (
+      0 => '45456465',
+      1 => '124053',
+    ),
+    'Name' => 
+    array (
+      0 => '6',
+      1 => '66',
+    ),
+    'PriceInMain' => 
+    array (
+      0 => '6',
+      1 => '6',
+    ),
+    'currency' => 
+    array (
+      0 => '2',
+      1 => '2',
+    ),
+    'Number' => 
+    array (
+      0 => '',
+      1 => '',
+    ),
+    'Stock' => 
+    array (
+      0 => '1',
+      1 => '1',
+    ),
+    'CurrentId' => 
+    array (
+      0 => '',
+    ),
+  ),
+  'changeImage' => 
+  array (
+    0 => '1',
+    1 => '1',
+  ),
+  'BrandId' => '',
+  'CategoryId' => '36',
+  'ShortDescription' => '',
+  'FullDescription' => '',
+  'Created' => '2014-01-28',
+  'OldPrice' => '',
+  'tpl' => '',
+  'Url' => '',
+  'MetaTitle' => '',
+  'MetaKeywords' => '',
+  'action' => 'undefined',
+);
