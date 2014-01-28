@@ -17,7 +17,7 @@
             
             {if $viewType == 'chart'}
                 <button  class="btn btn-small btn-primary" id="saveAsPng">
-                <i class="icon-download"></i> </button>
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
                 <svg class="linePlusBarChartStats" data-from="users/getAttendanceData" style="height: 600px; width: 800px;"></svg>
             {else:}
                 {if count($data) > 0}
