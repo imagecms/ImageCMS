@@ -1,4 +1,12 @@
 <div class="span3">
+    
+    <!-- Hidden <FORM> to submit the SVG data to the server, which will convert it to SVG/PDF/PNG downloadable file.
+     The form is populated and submitted by the JavaScript below. -->
+    <form id="svgform" method="post" action="http://d3export.cancan.cshl.edu/download.pl">
+        <input type="hidden" id="output_format" name="output_format" value="png">
+        <input type="hidden" id="data" name="data" value="&lt;svg width=&quot;360&quot; height=&quot;180&quot;&gt;&lt;circle class=&quot;little&quot; cx=&quot;280.7653628848493&quot; cy=&quot;169.69426963012666&quot; r=&quot;12&quot; fill=&quot;#c3426b&quot;&gt;&lt;/circle&gt;&lt;circle class=&quot;little&quot; cx=&quot;62.859246069565415&quot; cy=&quot;67.64177473727614&quot; r=&quot;12&quot; fill=&quot;#2f4409&quot;&gt;&lt;/circle&gt;&lt;circle class=&quot;little&quot; cx=&quot;298.011907087639&quot; cy=&quot;114.28427068982273&quot; r=&quot;12&quot; fill=&quot;#9d8d4d&quot;&gt;&lt;/circle&gt;&lt;/svg&gt;">
+    </form>
+
     <ul class="nav nav-tabs nav-stacked m-t_10 left-menu-ul">
         {foreach $leftMenu as $firstLevel}
             <li>

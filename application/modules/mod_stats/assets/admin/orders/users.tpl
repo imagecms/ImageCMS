@@ -12,7 +12,7 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
+        <div class="clearfix span9" id="chartArea">
             {include_tpl('../include/top_form_orders_users')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if  $_GET['view_type'] == 'table'}
@@ -48,6 +48,8 @@
 
                 </div>
             {else:}
+                <button  class="btn btn-small btn-primary" id="saveAsPng">
+                <i class="icon-download"></i> </button>
                 {if $_GET['charType'] == null || $_GET['charType'] == 'pie'}
                     <svg class="mypiechart pieChartStats" data-from="orders/getUsersChartData" style="height: 700px;"></svg>
                 {/if}

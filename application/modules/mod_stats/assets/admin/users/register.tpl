@@ -12,8 +12,10 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
+        <div class="clearfix span9" id="chartArea">
             {include_tpl('../include/top_form')}
+            <button  class="btn btn-small btn-primary" id="saveAsPng">
+                <i class="icon-download"></i> </button>
             <svg class="linePlusBarChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
         </div>
     </div>
