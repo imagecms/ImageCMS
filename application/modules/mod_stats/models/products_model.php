@@ -50,21 +50,20 @@ class Products_model extends \CI_Model {
                 $countAll += $row['stock'];
                 $countUnique++;
             }
-            
+
             $brandsInfo[] = array(
                 'id' => $id,
                 'name' => $name,
                 'count' => $uniqueProducts === FALSE ? $countAll : $countUnique,
             );
         }
-        
 
-            foreach ($brandsInfo as $key => $row) {
-                $count[$key] = $row['count'];
-            
-            }
-            array_multisort($count, SORT_DESC, $brandsInfo);
-            $res = array_slice($brandsInfo,0,$limit);
+
+        foreach ($brandsInfo as $key => $row) {
+            $count[$key] = $row['count'];
+        }
+        array_multisort($count, SORT_DESC, $brandsInfo);
+        $res = array_slice($brandsInfo, 0, $limit);
         return $res;
     }
 
@@ -322,14 +321,14 @@ class Products_model extends \CI_Model {
         }
         return FALSE;
     }
-    
+
     /**
      * Get subcategories ids by category id
      * @param int $id
      * @return boolean|array
      */
-    public function getSubcategoriesIds($id = null){
-        if (!$id){
+    public function getSubcategoriesIds($id = null) {
+        if (!$id) {
             return FALSE;
         }
         $query = "SELECT `id` 
@@ -338,15 +337,14 @@ class Products_model extends \CI_Model {
                     LIMIT 0 , 50";
 
         $childs = $this->db->query($query)->result_array();
-                
-       $res = array();
-        if ($childs){
-            foreach ($childs as $value){
-                $res[] = (int)$value['id'];
+
+        $res = array();
+        if ($childs) {
+            foreach ($childs as $value) {
+                $res[] = (int) $value['id'];
             }
-            
         }
-        if ($res){
+        if ($res) {
             return $res;
         }
         return FALSE;

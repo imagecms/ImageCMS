@@ -22,9 +22,9 @@
                         <tr>
                             <th style="width:7%;">{lang('Id', 'mod_stats')}</th>
                             <th style="width:15%;">{lang('Username', 'mod_stats')}</th>
-                            <th style="width:20%;">{lang('Email', 'mod_stats')}</th>
-                            <th style="width:13%;">{lang('Last activity', 'mod_stats')}</th>
-                            <th style="width:45%;">{lang('Last page', 'mod_stats')}</th>
+                            <th style="width:23%;">{lang('Email', 'mod_stats')}</th>
+                            <th style="width:20%;">{lang('Last activity', 'mod_stats')}</th>
+                            <th style="width:35%;">{lang('Last page', 'mod_stats')}</th>
                         </tr>
                     </thead>
                     <tbody>
