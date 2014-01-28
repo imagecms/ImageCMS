@@ -307,7 +307,7 @@ $(document).ready(function() {
         // The result will be an attachment file to download.
         var form = document.getElementById("svgform");
         form['output_format'].value = output_format;
-        form['data'].value = svg_xml;
+        form['data'].value = svg_xml.translit();
         form.submit();
     }
 
@@ -336,9 +336,6 @@ $(document).ready(function() {
         return chartDataForReturn;
     }
     /***********************/
-
-
-
 
 
 });
