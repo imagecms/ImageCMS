@@ -53,8 +53,8 @@ class Orders_model extends CI_Model {
             SELECT
                 `dtable`.`date_created` as `unix_date`,
                 DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $this->getDatePattern($interval) . "') as `date`,
-                COUNT(`dtable`.`id`) as `orders_count`,
                 SUM(`dtable`.`origin_price`) as `price_sum`,
+                COUNT(`dtable`.`id`) as `orders_count`,
                 SUM(`dtable`.`products_count`) as `products_count`,
                 SUM(`dtable`.`quantity`) as `quantity`,
                 SUM(`dtable`.`status`) as `delivered`
@@ -95,6 +95,68 @@ class Orders_model extends CI_Model {
             $ordersData[] = $row;
         }
         return $ordersData;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getUsers(array $params_ = array()) {
+        $params = array(
+            'interval' => 'day',
+            'dateFrom' => NULL,
+            'dateTo' => NULL,
+        );
+        foreach ($params_ as $key => $value) {
+            if (key_exists($key, $params)) {
+                $params[$key] = $params_[$key];
+            }
+        }
+
+        $query = "
+            SELECT
+                DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . $this->getDatePattern($params['interval']) . "') as `date`,
+                COUNT(`order_id`) as `orders_count`,
+                SUM(`paid`) as `paid`,
+                SUM(`status`) as `delivered`,
+                SUM(`origin_price`) as `price_sum`,
+                SUM(`products_count`) as `products_count`,
+                SUM(`quantity`) as `quantity`,
+                GROUP_CONCAT(`order_id` SEPARATOR ', ') as `orders_ids`,
+                `username`,
+                `user_id`
+            FROM 
+                (SELECT 
+                    `shop_orders`.`id` as `order_id`,
+                    `shop_orders`.`date_created`,
+                    IFNULL(`shop_orders`.`paid`, 0) as `paid`,
+                    SUM(`shop_orders_products`.`price`) as `origin_price`,
+                    IF(`shop_orders`.`status` = 2, 1, 0) as `status`,
+                    COUNT(`shop_orders_products`.`order_id`) as `products_count`,
+                    SUM(`shop_orders_products`.`quantity`) as `quantity`,
+                    IFNULL(`users`.`id`,'-') as `user_id`, 
+                    IFNULL(`users`.`username`,'-') as `username`
+                 FROM 
+                    `shop_orders`
+                 LEFT JOIN `shop_orders_products` ON `shop_orders_products`.`order_id` = `shop_orders`.`id`
+                 LEFT JOIN `users` ON `shop_orders`.`user_id` = `users`.`id`
+                 WHERE 1
+                    AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY 
+                    " . $this->prepareDateBetweenCondition('date_created', $params) . "
+                 GROUP BY 
+                   `shop_orders`.`id`
+                 ORDER BY 
+                   FROM_UNIXTIME(`shop_orders`.`date_created`)
+                ) as dtable                  
+            GROUP BY `username`
+            ORDER BY `orders_count` DESC
+        ";
+
+        $result = $this->db->query($query);
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        return $result->result_array();
     }
 
 }

@@ -24,9 +24,9 @@
                         <div class="inside-padd">
                             <nav>
                                 <ul class="nav nav-profile nav-vertical">
-                                    <li><a href="{site_url('/shop/profile/#my_data')}">Основні дані</a></li>
-                                    <li><a href="{site_url('/shop/profile/#change_pass')}">Змінити пароль</a></li>
-                                    <li><a href="{site_url('/shop/profile/#history_order')}">Історія замовлень</a></li>
+                                    <li><a href="{site_url('/shop/profile/#my_data')}">{lang('Основные данные', 'newLevel')}</a></li>
+                                    <li><a href="{site_url('/shop/profile/#change_pass')}">{lang('Изменить пароль', 'newLevel')}</a></li>
+                                    <li><a href="{site_url('/shop/profile/#history_order')}">{lang('История заказа', 'newLevel')}</a></li>
                                     <li>
                                         <button type="button" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', {literal}{'durationHideForm': 0, callback: function(msg, status, form, DS) {
                                                                     if (status) {
@@ -34,7 +34,7 @@
                                 }
                                                                 }}{/literal});
                                                                     return false;">
-                                            <span class="text-el">{lang('Вийти','newLevel')}</span>
+                                            <span class="text-el">{lang('Выйти','newLevel')}</span>
                                         </button>
                                     </li>
                                 </ul>

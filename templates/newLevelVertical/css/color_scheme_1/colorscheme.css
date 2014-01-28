@@ -604,12 +604,12 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 
 .btn-bask .text-el{color: #999;font-weight: bold;font-size: 14px;}
 .btn-bask{width: 100%;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
-.btn-bask > button, .btn-bask > a{width: 100%;}
+.btn-bask > button, .btn-bask > a{width: 100%;height: 43px;}
 .btn-bask:before{content: "";height: 42px;position: absolute;left: 58px;top: 1px;border-width: 0 1px;border-style: solid;border-left-color: #e4dfda;border-right-color: #fff;}
 .btn-bask.pointer .text-el{color: #0c9acb;}
 .btn-bask .divider{font-size: 10px;margin: 0 6px;}
 .btn-bask .curr{text-transform: lowercase;}
-.btn-bask .frame-icon{width: 58px;}
+.btn-bask .frame-icon{width: 58px;height: 43px;}
 .btn-bask .text-cleaner{margin-left: 58px;display: block;padding: 0 5px;height: 43px;}
 .btn-bask{
     background-color: #faf7f7;
@@ -1356,7 +1356,6 @@ footer .box-4{overflow: visible;}
 .status-pay{padding: 4px 8px;}
 .paid{background-color: #c9d99a;}
 .not-paid{background-color: #d6d6d6;}
-.frame-variant-code{display: none !important;}
 .table-info-order hr{border: 0;border-top: 1px solid #999;}
 
 /*for delete*/

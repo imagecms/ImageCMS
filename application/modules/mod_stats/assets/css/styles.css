@@ -45,3 +45,17 @@
     text-align: center;
     color: #696969;
 }
+
+
+.view_type {
+    text-align: center;
+    margin: 12px;
+}
+.view_type label {
+    width: 100px;
+    margin: 2px;
+    padding: 2px;
+    display: inline;
+    font-size: 13pt;
+    font-weight: bold;
+}

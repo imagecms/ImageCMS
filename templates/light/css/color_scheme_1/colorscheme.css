@@ -57,8 +57,8 @@ body{color: #333;}
 .icon_info{display: none;}
 .icon_info + .text-el{display: block;}
 .icon_home{width: 11px;height: 11px;}
-.icon_list_cat{width: 10px;height: 10px;background-position: -240px 0;margin-right: 5px;}
-.icon_table_cat{width: 10px;height: 10px;background-position: -220px 0;margin-right: 5px;}
+.icon_list_cat{width: 10px;height: 10px;background-position: -240px 0;}
+.icon_table_cat{width: 10px;height: 10px;background-position: -220px 0;}
 .active > button > .icon_list_cat{background-position: -240px -20px;}
 .active > button > .icon_table_cat{background-position: -220px -20px;}
 .icon_delivery{width: 17px;height: 15px;top: 3px;}
@@ -1009,3 +1009,4 @@ input.input-search{border: 0;-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.2);-we
 .drop-auth:after, .drop-auth:before{content: "";position: absolute;left: 50%;border-style: solid;top: 100%;border-color: transparent;}
 .drop-auth:before{border-width: 10px 8px;border-top-color: #c9c9c9;margin-left: -6px;}
 .drop-auth:after{border-width: 8px 6px;border-top-color: #fff;margin-left: -4px;}
+.tabs-list-table > li{margin-right: 5px;}

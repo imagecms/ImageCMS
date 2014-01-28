@@ -7,6 +7,7 @@
     <div class="btn-bask">
         <button>
             <span class="frame-icon">
+                <span class="helper"></span>
                 <span class="icon_cleaner"></span>
             </span>
             <span class="text-cleaner">
@@ -21,6 +22,7 @@
     <div class="btn-bask pointer">
         <button type="button" class="btnBask">
             <span class="frame-icon">
+                <span class="helper"></span>
                 <span class="icon_cleaner"></span>
             </span>
             <span class="text-cleaner">
