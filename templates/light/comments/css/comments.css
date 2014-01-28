@@ -1,7 +1,7 @@
 /*comments*/
 .comments:after, .comments .func-button-comment:after{visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
-.comments .comments-main-form{margin-bottom: 40px;}
-.comments{margin-bottom: 35px !important;}
+.comments .comments-main-form{padding-bottom: 40px;}
+.comments{padding-bottom: 35px !important;}
 .comments .title-comment{font-weight: bold;}
 .comments .main-form-comments .frame-form-field{margin-left: 0;}
 .frame-autor-comment{display: block;}
@@ -19,7 +19,7 @@
 .comments .frame-list-comments .btn.active{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 .comments .icon_comment{background-image: none;width: 0;height: 0;margin-right: 0!important;overflow: hidden;}
 .comments .frame-list-comments li{border-top: 0;padding: 0;}
-.comments .frame-list-comments > .sub-1 > li{margin-top: 29px;}
+.comments .frame-list-comments > .sub-1 > li{margin-top: 29px;margin-bottom: 0;}
 .comments .frame-list-comments > .sub-1 > li:first-child{border-top: 0;padding-top: 0;margin-top: 0;}
 .comments .frame-list-comments.sub-2 + .s-all-comments{margin-left: 33px;}
 .comments .frame-list-comments.sub-2 > li{position: relative;}
