@@ -3,7 +3,8 @@
 /**
  * 
  *
- * @author kolia
+ * 
+ * 
  */
 abstract class ControllerBase {
 
@@ -30,12 +31,29 @@ abstract class ControllerBase {
      * @param array $data data for template
      */
     public function renderAdmin($tpl, array $data = array()) {
-        foreach ($data as $key => $value) {
-            $this->assetManager->appendData($key, $value);
-        }
+        $this->assetManager->setData($data);
         $className = strtolower(get_class($this));
         $folderName = str_replace('controller', '', $className);
         $this->assetManager->render('admin/' . $folderName . '/' . $tpl);
+    }
+
+    /**
+     * Prepare data for chart
+     * @param array $array
+     * @return array
+     */
+    public static function prepareDataForStaticChart($array = null) {
+        $chartData = array();
+        foreach ($array as $item) {
+            $chartData[] = array(
+                'key' => $item['name'],
+                'y' => (int) $item['count']
+            );
+        }
+        if ($chartData) {
+            return $chartData;
+        }
+        return FALSE;
     }
 
 }

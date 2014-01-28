@@ -10,30 +10,48 @@ class ProductsController extends ControllerBase {
     public function __construct($some) {
         parent::__construct($some);
         $this->controller->load->model('products_model');
-        
     }
 
     public function categories() {
-        
+        $firstLevelCategories = $this->controller->products_model->getFirstLevelCategories();
         $this->assetManager
-                ->setData('data', 123)
+                ->setData('categories',$firstLevelCategories)
                 ->renderAdmin('products/categories');
     }
 
-    public function getCategoriesData() {
-       
+    public function getCategoriesChartData() {
+        $params = array(
+            'categoryId' => isset($_GET['catId']) ? $_GET['catId'] : 0,
+            
+        );
+        $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
+        $categories = $this->controller->products_model->getCategoriesCountsData($catIds);
+
+        $chartData = parent::prepareDataForStaticChart($categories);
+        echo json_encode($chartData);
+    }
+
+    public function brands() {
+
+        $this->assetManager
+                ->renderAdmin('products/brands');
+    }
+    
+    public function getBrandsChartData() {
+        $params = array(
+            'topBrandsCount' => isset($_GET['stbc']) ? $_GET['stbc'] : 20,
+        );
+
         $brands = $this->controller->products_model->getBrandsCountsData();
+        
 
-        // data for pie diagram
-        $pieData = array();
-        foreach ($brands as $brand) {
-            $pieData[] = array(
-                'key' => $brand['name'],
-                'y' => (int) $brand['count']
-            );
-        }
 
-        echo json_encode($pieData);
+        $chartData = parent::prepareDataForStaticChart($brands);
+        echo json_encode($chartData);
+    }
+
+    public function attendance_test() {
+        
     }
 
 }
