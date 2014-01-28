@@ -37,7 +37,7 @@ return array(
                 'action' => 'register',
             ),
             array(
-                'name' => lang('Common attendance', 'mod_stats'),
+                'name' => lang('Attendance', 'mod_stats'),
                 'controller' => 'users',
                 'action' => 'attendance',
             ),
@@ -69,9 +69,9 @@ return array(
         'controller' => 'categories',
         'items' => array(
             array(
-                'name' => lang('Most visited', 'mod_stats'),
+                'name' => lang('Categories attendance', 'mod_stats'),
                 'controller' => 'categories',
-                'action' => 'mostVisited',
+                'action' => 'attendance',
             ),
             array(
                 'name' => lang('Brands in category', 'mod_stats'),
