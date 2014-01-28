@@ -42,7 +42,7 @@ class UsersController extends ControllerBase {
             $vt = $_GET['view_type'];
             $viewType = $vt == 'table' || $vt == 'chart' ? $vt : 'chart';
         } else {
-            $viewType = 'chart';
+            $viewType = 'table';
         }
 
         $this->controller->import('traits/DateIntervalTrait.php');
@@ -93,6 +93,7 @@ class UsersController extends ControllerBase {
     }
 
     public function getRegisterData() {
+        $this->controller->load->model('users_model');
         $data = $this->controller->users_model->getRegister();
         $chartValues = array();
         foreach ($data as $row) {
