@@ -162,9 +162,9 @@ $(document).ready(function() {
             nv.addGraph(function() {
                 
                 var width = 800,
-                        height = 600;
+                        height = 700;
                 var chart = nv.models.discreteBarChart()
-                        .margin({top: 30, right: 30, bottom: 250, left: 80})
+                        .margin({top: 30, right: 30, bottom: 250, left: 70})
                         .x(function(d) {
                             return d.label
                         })
@@ -197,10 +197,10 @@ $(document).ready(function() {
                 labels.attr('transform', function(d,i,j) {
 //                    console.log($.trim(d).length);
                     console.log(labels[0]);
-//                    height = $.trim(d).length;
-                    height = labels[0][i].clientWidth;
+                    height = $.trim(d).length;
+//                    height = labels[0][i].clientWidth;
                     
-                    return 'translate (-10, '+height+') rotate(-90 0,0)' 
+                    return 'translate (-10, '+(height+80)+') rotate(-90 0,0)' 
                 });
             }
             
