@@ -17,7 +17,7 @@
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if $_GET['view_type'] == 'chart'}
                 <button  class="btn btn-small btn-primary" id="saveAsPng">
-                <i class="icon-download"></i> </button>
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')} </button>
                 <svg class="cumulativeLineChartStats" data-from="orders/getStatusesChartData" style="height: 600px; width: 800px;"></svg>
             {else:}
                 {if count($data) > 0}
