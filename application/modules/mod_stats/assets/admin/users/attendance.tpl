@@ -16,7 +16,7 @@
             {include_tpl('../include/top_form')}
             
             {if $viewType == 'chart'}
-                <svg class="linePlusBarChartStats" data-from="users/getAttendanceData" style="height: 600px; width: 800px;"></svg>
+                <svg class="cumulativeLineChartStats" data-from="users/getAttendanceData" style="height: 600px; width: 800px;"></svg>
             {else:}
                 {if count($data) > 0}
                     <table class="table table-striped table-bordered table-condensed content_big_td">

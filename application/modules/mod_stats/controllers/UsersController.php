@@ -67,8 +67,8 @@ class UsersController extends ControllerBase {
         $registered = array();
         foreach ($data as $row) {
             $registered[] = array(
-                (int) $row['unix_date'] * 1000,
-                (int) $row['users_count']
+                'x' => (int) $row['unix_date'] * 1000,
+                'y' => (int) $row['users_count']
             );
         }
 
@@ -98,8 +98,8 @@ class UsersController extends ControllerBase {
         $chartValues = array();
         foreach ($data as $row) {
             $chartValues[] = array(
-                (int) $row['unix_date'] * 1000,
-                (int) $row['count']
+                'x' => (int) $row['unix_date'] * 1000,
+                'y' => (int) $row['count']
             );
         }
         echo json_encode(array(array('key' => 'Registration dynamic', 'values' => $chartValues)));
