@@ -126,11 +126,11 @@ $(document).ready(function() {
 
                     var chart = nv.models.pieChart()
                             .x(function(d) {
-                                return d.key
-                            })
+                        return d.key
+                    })
                             .y(function(d) {
-                                return d.y
-                            })
+                        return d.y
+                    })
                             .color(d3.scale.category10().range())
                             .width(width)
                             .height(height);
@@ -166,11 +166,11 @@ $(document).ready(function() {
                 var chart = nv.models.discreteBarChart()
                         .margin({top: 30, right: 30, bottom: 250, left: 70})
                         .x(function(d) {
-                            return d.label
-                        })
+                    return d.label
+                })
                         .y(function(d) {
-                            return d.value
-                        })
+                    return d.value
+                })
                         .staggerLabels(true)
                         .tooltips(false)
                         .showValues(true);
@@ -216,25 +216,25 @@ $(document).ready(function() {
                 var chart = nv.models.linePlusBarChart()
                         .margin({top: 30, right: 30, bottom: 50, left: 100})
                         .x(function(d, i) {
-                            return i
-                        })
+                    return i
+                })
                         .y(function(d) {
-                            return d[1]
-                        })
+                    return d[1]
+                })
                         .color(d3.scale.category10().range());
 
                 chart.xAxis
                         .showMaxMin(false)
                         .tickFormat(function(d) {
-                            var dx = data[0].values[d] && data[0].values[d][0] || 0;
-                            if (dx !== 0)
-                                return d3.time.format('%d/%m/%Y')(new Date(dx))
-                        });
+                    var dx = data[0].values[d] && data[0].values[d][0] || 0;
+                    if (dx !== 0)
+                        return d3.time.format('%d/%m/%Y')(new Date(dx))
+                });
 
                 chart.y1Axis
                         .tickFormat(function(d) {
-                            return d3.format(',f')(d)
-                        });
+                    return d3.format(',f')(d)
+                });
 
                 chart.y2Axis
                         .tickFormat(d3.format(',f'));
@@ -272,8 +272,8 @@ $(document).ready(function() {
 
                 chart.xAxis
                         .tickFormat(function(d) {
-                            return d3.time.format('%d/%m/%Y')(new Date(d))
-                        });
+                    return d3.time.format('%d/%m/%Y')(new Date(d))
+                });
 
                 chart.yAxis
                         .tickFormat(d3.format('.0f'));
@@ -338,11 +338,42 @@ $(document).ready(function() {
     /***********************/
 
 
-
-
-
 });
 
 
 
 
+
+
+
+$(document).ready(function() {
+    $(".online-users-table").on('click', 'tr.main_row td', function() {
+
+        $("tr.additional_row").hide();
+        var tr = $(this).parent();
+        var userId = $(tr).data('user_id');
+        var trSelector = 'tr.additional_row[data-user_id="' + userId + '"]';
+        
+
+        if ($(tr).hasClass('open_row')) {
+            $('tr.main_row').removeClass('open_row');
+            return;
+        }
+
+        if ($(trSelector).size() == 0) {
+            $.post('/admin/components/cp/mod_stats/users/history', {userId: userId}, function(data) {
+                $(tr).after("<tr data-user_id='" + userId + "' class='additional_row'><td colspan='5'>" + data + "</td></tr>");
+                $(trSelector).show();
+            });
+        } else {
+            $(trSelector).show();
+        }
+        $('tr.main_row').removeClass('open_row');
+        $(tr).addClass('open_row');
+    });
+
+
+    $(".online-users-table").on('click', 'tr td a', function(obj, event) {
+        event.preventDefault();
+    });
+});
