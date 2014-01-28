@@ -2,7 +2,6 @@
     var currency = '{$CS}'
 </script>
 <div class="btn-group  m-t_20 pull-left">
-    <a class="btn btn-small intervalButton" data-group="day">{lang('Last day','mod_stats')}</a>
     <a class="btn btn-small intervalButton" data-group="month">{lang('Last month','mod_stats')}</a>
     <a class="btn btn-small intervalButton" data-group="year">{lang('Last year','mod_stats')}</a>       
 </div>
@@ -22,22 +21,38 @@
                 <span class="icon-calendar"></span>
             </label>
         </span>
-
-        <span class="d-i_b">
-            {lang('Group by:','mod_stats')}
-            <label class="d-i_b p_r">
-                <select id="selectGroupBy" name='group'>
-                    <option value="day"{if $_GET['group'] == 'day'} selected="selected"{/if}>{lang('day','mod_stats')}</option>
-                    <option value="month"{if $_GET['group'] == 'month' || !isset($_GET['group'])} selected="selected"{/if}>{lang('month','mod_stats')}</option>
-                    <option value="year"{if $_GET['group'] == 'year'} selected="selected"{/if}>{lang('year','mod_stats')}</option>
-                </select>
-            </label>
-        </span>
         <div class="pull-right">
-            <button type="submit" class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">
+            <button type="submit" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButton">
                 <i class="icon-refresh"></i> {lang('Update','mod_stats')}
             </button>
         </div>
+        <br/>
+        <span class="d-i_b m-r_10 m-l_10">{lang('Quantity of words', 'mod_stats')} </span>
+        <span class="d-i_b">
+            <label class="p_r">
+                <input class="input-small required" 
+                       value="{if $_GET['swc'] != null}{echo $_GET['swc']}{else:}9{/if}" 
+                       type="text" name="swc" maxlength="1"/>
+            </label>
+        </span>
+        <span class="d-i_b m-r_10 m-l_10">{lang('Count of results', 'mod_stats')} </span>
+        <span class="d-i_b">
+            <label class="p_r">
+                <input class="input-small required" 
+                       value="{if $_GET['swr'] != null}{echo $_GET['swr']}{else:}9{/if}" 
+                       type="text" name="swr" maxlength="2">
+            </label>
+        </span>
+        <span class="d-i_b">
+            &nbsp;&nbsp;&nbsp;
+            {lang('Char Type:','mod_stats')}
+            <label class="d-i_b p_r">
+                <select id="selectGroupBy" name='charType'>
+                    <option value="pie"{if $_GET['charType'] == 'pie'} selected="selected"{/if}>{lang('Pie char','mod_stats')}</option>
+                    <option value="bar"{if $_GET['charType'] == 'bar'} selected="selected"{/if}>{lang('Bar char','mod_stats')}</option>
+                </select>
+            </label>
+        </span>
+
     </form>
 </div>
-

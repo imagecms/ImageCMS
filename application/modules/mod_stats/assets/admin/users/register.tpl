@@ -11,9 +11,9 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
+        {include_tpl('../include/left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block')}
+            {include_tpl('../include/top_form')}
             <svg class="linePlusBarChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
         </div>
     </div>

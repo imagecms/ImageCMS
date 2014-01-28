@@ -21,7 +21,6 @@ class OrdersController extends ControllerBase {
      * Prints template for counts
      */
     public function count() {
-
         $result = $this->controller->orders_model->getOrdersInfo(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
@@ -56,7 +55,7 @@ class OrdersController extends ControllerBase {
         $chartData = parent::prepareDataForLineChart($preFinalStruct, $labels);
         echo json_encode($chartData);
     }
-    
+
     /**
      * Render template for statuses
      */
@@ -127,7 +126,7 @@ class OrdersController extends ControllerBase {
      * Output json data for usres chart
      */
     public function getUsersChartData() {
-        
+
         $params = array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),

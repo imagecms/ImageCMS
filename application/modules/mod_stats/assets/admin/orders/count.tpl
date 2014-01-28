@@ -11,9 +11,9 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
+        {include_tpl('../include/left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block_for_orders')}
+            {include_tpl('../include/top_form')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if $_GET['view_type'] == 'chart'}
                 <svg class="linePlusBarChartStats" data-from="orders/getCountChartData" style="height: 600px; width: 800px;"></svg>
