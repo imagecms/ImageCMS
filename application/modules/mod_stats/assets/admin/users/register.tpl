@@ -14,7 +14,8 @@
         {include_tpl('../include/left_block')}
         <div class="clearfix span9">
             {include_tpl('../include/top_form')}
-            <svg class="linePlusBarChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
+            
+            <svg class="cumulativeLineChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
         </div>
     </div>
 </section>
