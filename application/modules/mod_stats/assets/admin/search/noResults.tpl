@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
+        {include_tpl('../include/left_block')}
         <div class="clearfix span9">
             {include_tpl('../time_and_filter_block')}
             {if count($data) > 0}
