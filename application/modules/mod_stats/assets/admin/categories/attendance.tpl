@@ -12,8 +12,10 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
+        <div class="clearfix span9" id="chartArea">
             {include_tpl('../include/top_form_categories_attendance')}
+            <button  class="btn btn-small btn-primary" id="saveAsPng">
+                <i class="icon-download"></i> </button>
             <svg class="cumulativeLineChartStats" data-from="categories/getCategoriesAttendanceData" style="height: 600px; width: 800px;"></svg>
 
         </div>
