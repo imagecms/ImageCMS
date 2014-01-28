@@ -83,8 +83,6 @@ class Categories_model extends \CI_Model {
      * 
      */
     public function getCategoriesList($parentId = NULL) {
-
-        
         $this->db
                 ->select(array(
                     'shop_category.id',
@@ -95,7 +93,7 @@ class Categories_model extends \CI_Model {
                 ->join('shop_category_i18n', "shop_category_i18n.id=shop_category.id AND shop_category_i18n.locale='" . MY_Controller::getCurrentLocale() . "'", 'left')
                 ->order_by('position', 'asc');
 
-        if (is_int($parentId)) {
+        if (is_numeric($parentId)) {
             $this->db->where(array('parent_id' => $parentId));
         }
 

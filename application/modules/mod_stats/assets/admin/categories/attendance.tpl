@@ -59,10 +59,9 @@
 
                     <div class="span6">
                         <select name='category_id'>
-                            <option value='0'>{lang('All','mod_stats')}</option>
                             {foreach $categories as $categoryData}
                                 {$level = count($categoryData['full_path_ids'])}
-                                <option value='{$categoryData['id']}'>
+                                <option value='{$categoryData['id']}' {if $category_id == $categoryData['id']} selected="selected" {/if}>
                                     {for $i = 0; $i < $level; $i++}
                                         -
                                     {/for} 
@@ -73,13 +72,15 @@
                     </div>
                     <div class="span4">
                         <label for='include_childs'>
-                            <input type="checkbox" name="include_childs" checked="checked"/>
+                            <input type="checkbox" name="include_childs" {if $includeChilds == 1} checked="checked"{/if}/>
                             {lang('Include childs','mod_stats')}
                         </label>
                     </div>
                 </form>
             </div>
 
+
+            <svg class="cumulativeLineChartStats" data-from="categories/getCategoriesAttendanceData" style="height: 600px; width: 800px;"></svg>
 
         </div>
     </div>
