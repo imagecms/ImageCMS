@@ -49,7 +49,7 @@
                 </div>
             {else:}
                 <button  class="btn btn-small btn-primary" id="saveAsPng">
-                <i class="icon-download"></i> </button>
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
                 {if $_GET['charType'] == null || $_GET['charType'] == 'pie'}
                     <svg class="mypiechart pieChartStats" data-from="orders/getUsersChartData" style="height: 700px;"></svg>
                 {/if}

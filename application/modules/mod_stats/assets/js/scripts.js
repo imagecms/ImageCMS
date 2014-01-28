@@ -149,6 +149,7 @@ $(document).ready(function() {
                     return chart;
                 });
             } else {
+                $('#saveAsPng').hide();
                 $('#showNoChartData').show();
             }
 
@@ -159,51 +160,52 @@ $(document).ready(function() {
     var barChartBlocks = $('.barChartStats');
     if (barChartBlocks.length) {
         barChartBlocks.each(function(index, el) {
-            nv.addGraph(function() {
+            var cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
 
-                var width = 800,
-                        height = 700;
-                var chart = nv.models.discreteBarChart()
-                        .margin({top: 30, right: 30, bottom: 250, left: 70})
-                        .x(function(d) {
-                            return d.label
-                        })
-                        .y(function(d) {
-                            return d.value
-                        })
-                        .staggerLabels(true)
-                        .tooltips(false)
-                        .showValues(true);
+                    var width = 800,
+                            height = 700;
+                    var chart = nv.models.discreteBarChart()
+                            .margin({top: 30, right: 30, bottom: 250, left: 70})
+                            .x(function(d) {
+                                return d.label
+                            })
+                            .y(function(d) {
+                                return d.value
+                            })
+                            .staggerLabels(true)
+                            .tooltips(false)
+                            .showValues(true);
 
+                    chart.yAxis
+                            .tickFormat(d3.format('.0f'));
 
-                chart.yAxis
-                        .tickFormat(d3.format('.0f'));
+                    d3.select(el)
+                            .datum(convertDataForPieToBarChart(cData))
+                            .transition().duration(500)
+                            .attr('width', width)
+                            .attr('height', height)
+                            .call(chart);
 
-                d3.select(el)
-                        .datum(convertDataForPieToBarChart(ChartData.getData($(el).data('from'))))
-                        .transition().duration(500)
-                        .attr('width', width)
-                        .attr('height', height)
-                        .call(chart);
+                    nv.utils.windowResize(chart.update());
+                    nv.utils.windowResize(rotateLabels());
 
-                nv.utils.windowResize(chart.update());
-                nv.utils.windowResize(rotateLabels());
-
-                return chart;
-            });
-            function rotateLabels() {
-                var labels;
-                labels = d3.selectAll('.barChartStats .nv-x.nv-axis > g text');
-                labels.attr('transform', function(d, i, j) {
-//                    console.log($.trim(d).length);
-                    console.log(labels[0]);
-                    height = $.trim(d).length;
-//                    height = labels[0][i].clientWidth;
-
-                    return 'translate (-10, ' + (height + 80) + ') rotate(-90 0,0)'
+                    return chart;
                 });
+                function rotateLabels() {
+                    var labels;
+                    labels = d3.selectAll('.barChartStats .nv-x.nv-axis > g text');
+                    labels.attr('transform', function(d, i, j) {
+                        height = $.trim(d).length;
+                        return 'translate (-10, ' + (height + 80) + ') rotate(-90 0,0)'
+                    });
+                }
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
             }
-
         });
     }
 
@@ -211,44 +213,50 @@ $(document).ready(function() {
     var linePlusBarChartStats = $('.linePlusBarChartStats');
     if (linePlusBarChartStats.length) {
         linePlusBarChartStats.each(function(index, el) {
-            data = ChartData.getData($(el).data('from'));
-            nv.addGraph(function() {
-                var chart = nv.models.linePlusBarChart()
-                        .margin({top: 30, right: 30, bottom: 50, left: 100})
-                        .x(function(d, i) {
-                            return i
-                        })
-                        .y(function(d) {
-                            return d[1]
-                        })
-                        .color(d3.scale.category10().range());
+            cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var chart = nv.models.linePlusBarChart()
+                            .margin({top: 30, right: 30, bottom: 50, left: 100})
+                            .x(function(d, i) {
+                                return i
+                            })
+                            .y(function(d) {
+                                return d[1]
+                            })
+                            .color(d3.scale.category10().range());
 
-                chart.xAxis
-                        .showMaxMin(false)
-                        .tickFormat(function(d) {
-                            var dx = data[0].values[d] && data[0].values[d][0] || 0;
-                            if (dx !== 0)
-                                return d3.time.format('%d/%m/%Y')(new Date(dx))
-                        });
+                    chart.xAxis
+                            .showMaxMin(false)
+                            .tickFormat(function(d) {
+                                var dx = cData[0].values[d] && cData[0].values[d][0] || 0;
+                                if (dx !== 0)
+                                    return d3.time.format('%d/%m/%Y')(new Date(dx))
+                            });
 
-                chart.y1Axis
-                        .tickFormat(function(d) {
-                            return d3.format(',f')(d)
-                        });
+                    chart.y1Axis
+                            .tickFormat(function(d) {
+                                return d3.format(',f')(d)
+                            });
 
-                chart.y2Axis
-                        .tickFormat(d3.format(',f'));
+                    chart.y2Axis
+                            .tickFormat(d3.format(',f'));
 
-                chart.bars.forceY([0]);
+                    chart.bars.forceY([0]);
 
-                d3.select(el)
-                        .datum(data)
-                        .transition().duration(500).call(chart);
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(500).call(chart);
 
-                nv.utils.windowResize(chart.update);
+                    nv.utils.windowResize(chart.update);
 
-                return chart;
-            });
+                    return chart;
+                });
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
         });
     }
 
@@ -260,41 +268,51 @@ $(document).ready(function() {
     if (lineChartStats.length) {
         lineChartStats.each(function(index, el) {
             var cData = ChartData.getData($(el).data('from'));
-            nv.addGraph(function() {
-                var chart = nv.models.lineChart().margin({
-                    top: 30,
-                    right: 40,
-                    bottom: 50,
-                    left: 45
-                }).showLegend(true).tooltipContent(function(key, y, e, graph) {
-                    return '<h3>' + key + '</h3>' + '<p>' + e + ' at ' + y + '</p>'
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var chart = nv.models.lineChart().margin({
+                        top: 30,
+                        right: 40,
+                        bottom: 50,
+                        left: 45
+                    }).showLegend(true).tooltipContent(function(key, y, e, graph) {
+                        return '<h3>' + key + '</h3>' + '<p>' + e + ' at ' + y + '</p>'
+                    });
+
+                    chart.xAxis
+                            .tickFormat(function(d) {
+                                return d3.time.format('%d/%m/%Y')(new Date(d))
+                            });
+
+                    chart.yAxis
+                            .tickFormat(d3.format('.0f'));
+
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(500)
+                            .call(chart);
+
+                    nv.utils.windowResize(chart.update);
+
+                    return chart;
                 });
-
-                chart.xAxis
-                        .tickFormat(function(d) {
-                            return d3.time.format('%d/%m/%Y')(new Date(d))
-                        });
-
-                chart.yAxis
-                        .tickFormat(d3.format('.0f'));
-
-                d3.select(el)
-                        .datum(cData)
-                        .transition().duration(500)
-                        .call(chart);
-
-                nv.utils.windowResize(chart.update);
-
-                return chart;
-            });
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
 
         });
     }
 
-
+    /** Save button click **/
     $("#saveAsPng").click(function() {
         submit_download_form("png");
     });
+
+    /**
+     * Send form for download image
+     */
     function submit_download_form(output_format)
     {
         // Get the d3js SVG element
