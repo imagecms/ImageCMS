@@ -16,7 +16,8 @@
             {include_tpl('../time_and_filter_block_for_orders')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if $_GET['view_type'] == 'chart'}
-                <svg class="linePlusBarChartStats" data-from="orders/getCountChartData" style="height: 600px; width: 800px;"></svg>
+
+                <svg class="cumulativeLineChartStats" data-from="orders/getStatusesChartData" style="height: 600px; width: 800px;"></svg>
             {else:}
                 {if count($data) > 0}
                     <table class="table table-striped table-bordered table-condensed content_big_td">
@@ -24,9 +25,8 @@
                             <tr>
                                 <th>{lang('Period', 'mod_stats')}</th>
                                 <th>{lang('Orders', 'mod_stats')}</th>
-                            <!-- <th>{lang('Unique products', 'mod_stats')}</th>
-                                <th>{lang('Total products', 'mod_stats')}</th>-->
-                                <th>{lang('Sum', 'mod_stats')}</th>
+                                <th>{lang('Unique products', 'mod_stats')}</th>
+                                <th>{lang('Total products', 'mod_stats')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,9 +34,8 @@
                                 <tr>
                                     <td>{$order.date}</td>
                                     <td>{$order.orders_count}</td>
-                                    <!--<td>{$order.products_count}</td>
-                                    <td>{$order.quantity}</td>-->
-                                    <td>{$order.price_sum}</td>
+                                    <td>{$order.products_count}</td>
+                                    <td>{$order.quantity}</td>
                                 </tr>
                             {/foreach}
                         </tbody>
@@ -46,7 +45,6 @@
                 {/if}
 
             {/if}
-
         </div>
     </div>
 </section>
