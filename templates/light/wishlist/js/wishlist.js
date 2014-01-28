@@ -26,10 +26,11 @@ jQuery(function($) {
 var WishListFront = {
     btnRemoveItem: '.btnRemoveItem',
     frameWL: '[data-rel="list-item"]',
+    wishPhotoFrame: '#wishlistphoto',
     deleteImage: function(el) {
         el.parent().remove();
-        var img = $('#wishlistphoto img');
-        img.attr('src', img.data('src'));
+        var wishPhotoFrame = $(WishListFront.wishPhotoFrame);
+        wishPhotoFrame.empty().append('<img src="'+wishPhotoFrame.data('scr')+'">');
     },
     changeDataWishlist: function(el) {
         $('[data-wishlist-name]').each(function() {
@@ -160,7 +161,7 @@ var wishList = {
 };
 
 $(document).on('scriptDefer', function() {
-    var wishPhoto = $('#wishlistphoto');
+    var wishPhotoFrame = $(WishListFront.wishPhotoFrame);
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var file = this.files[0],
         img = document.createElement("img"),
@@ -169,17 +170,17 @@ $(document).on('scriptDefer', function() {
             img.src = reader.result;
         };
         reader.readAsDataURL(file);
-        wishPhoto.html($(img));
+        wishPhotoFrame.empty().append($(img));
         $(img).load(function() {
-            if ($(this).actual('width') > wishPhoto.data('widht') || $(this).actual('height') > wishPhoto.data('height')) {
+            if ($(this).actual('width') > wishPhotoFrame.data('widht') || $(this).actual('height') > wishPhotoFrame.data('height')) {
                 $('[data-drop="#notification"].trigger').data({
                     'timeclosemodal': 3000, 
                     datas: {
                         'answer': true,
-                        'data': text.error.fewsize(wishPhoto.data('width') + '&times' + wishPhoto.data('height'))
+                        'data': text.error.fewsize(wishPhotoFrame.data('width') + '&times' + wishPhotoFrame.data('height'))
                     }
                 }).drop('open').removeData('timeclosemodal');
-                wishPhoto.empty();
+                wishPhotoFrame.empty().append('<img src="'+wishPhotoFrame.data('src')+'">');
                 $(this).val('');
                 $('[data-wishlist="do_upload"]').attr('disabled', 'disabled').parent().addClass('disabled');
             }

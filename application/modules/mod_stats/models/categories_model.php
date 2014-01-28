@@ -13,6 +13,7 @@ class Categories_model extends \CI_Model {
         parent::__construct();
         $this->locale = \MY_Controller::getCurrentLocale();
     }
+
     /**
      * Get brands ids and count 
      * @param array $arrayData
@@ -76,6 +77,34 @@ class Categories_model extends \CI_Model {
             }
         }
         return $result . ')';
+    }
+
+    /**
+     * 
+     */
+    public function getCategoriesList($parentId = NULL) {
+        $this->db
+                ->select(array(
+                    'shop_category.id',
+                    'shop_category.parent_id',
+                    'shop_category_i18n.name',
+                    'shop_category.full_path_ids'
+                ))
+                ->join('shop_category_i18n', "shop_category_i18n.id=shop_category.id AND shop_category_i18n.locale='" . MY_Controller::getCurrentLocale() . "'", 'left')
+                ->order_by('position', 'asc');
+
+        if (is_numeric($parentId)) {
+            $this->db->where(array('parent_id' => $parentId));
+        }
+
+        $result = $this->db->get('shop_category')
+                ->result_array();
+
+        for ($i = 0; $i < count($result); $i++) {
+            $result[$i]['full_path_ids'] = unserialize($result[$i]['full_path_ids']);
+        }
+
+        return $result;
     }
 
 }

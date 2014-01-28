@@ -12,7 +12,7 @@
 
                 {$Comments = $CI->load->module('comments')->init($page)}
                 {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                <div class="forComments">
+                <div class="forComments p_r">
                     {echo $c['comments']}
                 </div>
             </div>

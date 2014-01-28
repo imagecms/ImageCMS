@@ -208,9 +208,9 @@
                                 <input type="hidden" value="{echo $user[id]}" name="userID"/>
                                 <div class="photo-block m-b_5">
                                     <span class="helper"></span>
-                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}">
+                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}" data-src="{$THEME}{$colorScheme}/images/nophoto.png">
                                         {if $user['user_image']!=''}
-                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
+                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt="{lang('Фото пользователя', 'newLevel')}"/>
                                         {else:}
                                             <img src="{$THEME}{$colorScheme}/images/nophoto.png"/>
                                         {/if}
