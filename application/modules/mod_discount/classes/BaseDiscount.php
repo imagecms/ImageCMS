@@ -15,15 +15,39 @@ if (!defined('BASEPATH'))
 class BaseDiscount {
 
     private static $object;
-    
+    private static $objectWithOption;
+    private static $totalPrice;
+    private static $ignoreCart;
+    private static $userId;
+
     /**
      * singelton method
      * @return object BaseDiscount
      */
     public static function create() {
-        if (!self::$object)
+        if (!self::$object) 
             self::$object = new self;
+        
         return self::$object;
+    }
+
+    /**
+     * modify singelton method for api
+     * @param array $data params:
+     * - (float) price: 
+     * - (int) userId: 
+     * - (bool) ignoreCart: ignore cart Data: 
+     * - (bool) new: for redeclare singelton: 
+     * @return object BaseDiscount whith option
+     */
+    public static function createWithOption($option = array()) {
+        if (!self::$objectWithOption || $option['new']) {
+            self::$totalPrice = $option['price'];
+            self::$userId = $option['userId'];
+            self::$ignoreCart = $option['ignoreCart'];
+            self::$objectWithOption = new self;
+        }
+        return self::$objectWithOption;
     }
 
     /**
@@ -42,11 +66,18 @@ class BaseDiscount {
             $lang = new \MY_Lang();
             $lang->load('mod_discount');
             $this->cart = \Cart\BaseCart::getInstance();
-            $this->userGroupId = $this->ci->dx_auth->get_role_id();
-            $this->userId = $this->ci->dx_auth->get_user_id();
-            $this->cartData = $this->getCartData();
+            if (!self::$userId) {
+                $this->userGroupId = $this->ci->dx_auth->get_role_id();
+                $this->userId = $this->ci->dx_auth->get_user_id();
+            } else {
+                $this->userId = self::$userId;
+                $this->userGroupId = $this->ci->db->where('id', $this->userId)->get('users')->row()->role_id;
+            }
+            if (self::$ignoreCart)
+                $this->cartData = $this->getCartData();
             $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($id);
-            $this->totalPrice = $this->cart->getOriginTotalPrice();
+            $this->totalPrice = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : $this->totalPrice = self::$totalPrice;
+
             $this->allDiscount = $this->getAllDiscount();
             $this->discountType = $this->collectType($this->allDiscount);
             $this->discountAllOrder = $this->getAllOrderDiscountNotRegister();
@@ -56,7 +87,7 @@ class BaseDiscount {
                 $this->discountComul = $this->getComulativDiscount();
                 $this->discountAllOrder = $this->getAllOrderDiscountRegister();
             }
-            $this->discountProductVal = $this->getDiscountProducts();
+            $this->discountProductVal = (self::$ignoreCart) ? null : $this->getDiscountProducts();
             $this->discountMax = $this->getMaxDiscount(array($this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder), $this->totalPrice);
             $this->discountNoProductVal = $this->getDiscountValue($this->discountMax, $this->totalPrice);
         }
@@ -87,7 +118,6 @@ class BaseDiscount {
         $cart = $this->cart->getItems();
         return $cart['data'];
     }
-
 
     /**
      * get all active discount joined whith his type
