@@ -21,6 +21,11 @@ class OrdersController extends ControllerBase {
      * Prints template for counts
      */
     public function count() {
+        // Set default view type
+        if (!isset($_GET['view_type'])) {
+            $_GET['view_type'] = 'table';
+        }
+
         $result = $this->controller->orders_model->getOrdersInfo(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
@@ -60,6 +65,11 @@ class OrdersController extends ControllerBase {
      * Render template for statuses
      */
     public function statuses() {
+        // Set default view type
+        if (!isset($_GET['view_type'])) {
+            $_GET['view_type'] = 'table';
+        }
+
         $result = $this->controller->orders_model->getOrdersInfo(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
@@ -102,7 +112,7 @@ class OrdersController extends ControllerBase {
      * Template for users
      */
     public function users() {
-        // getting view type
+        // Set default view type
         if (!isset($_GET['view_type'])) {
             $_GET['view_type'] = 'table';
         }
