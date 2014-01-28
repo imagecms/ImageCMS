@@ -11,9 +11,9 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
+        {include_tpl('../include/left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block_for_search')}
+            {include_tpl('../include/top_form_search')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
                 <svg class="mypiechart pieChartStats" data-from="search/getCategoriesInSearchData" style="height: 100%;"></svg>

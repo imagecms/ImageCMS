@@ -3,16 +3,24 @@
 </script>
 <div class="m-t_20">
     <form method="get">
-        <span class="d-i_b m-r_10 m-l_10">{lang('Show top brands count', 'mod_stats')} </span>
+        <span class="d-i_b m-r_10 m-l_10">{lang('Category', 'mod_stats')} </span>
         <span class="d-i_b">
             <label class="p_r">
-                <input class="input-small required" 
-                       value="{if $_GET['stbc'] != null}{echo $_GET['stbc']}{else:}20{/if}" 
-                       type="text" name="stbc" maxlength="2"/>
+                <input 
+                    id="autocomleteCategory"
+                    class="input-small required" 
+                    style="width: 350px;"
+                    autocomplete="off"
+                    value="" 
+                    type="text"/>
+                <input 
+                    id="autocomleteCategoryId"
+                    type="hidden" 
+                    name="ci" value="{$_GET['ci']}"/>
             </label>
         </span>
-        
         <span class="d-i_b">
+            &nbsp;&nbsp;&nbsp;&nbsp;
             {lang('Char Type:','mod_stats')}
             <label class="d-i_b p_r">
                 <select id="selectGroupBy" name='charType'>
@@ -22,7 +30,7 @@
             </label>
         </span>
         <div class="pull-right">
-            <button type="submit" class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">
+            <button type="submit" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButton">
                 <i class="icon-refresh"></i> {lang('Update','mod_stats')}
             </button>
         </div>
