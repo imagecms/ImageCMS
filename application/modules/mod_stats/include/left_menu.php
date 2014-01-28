@@ -6,9 +6,14 @@ return array(
         'controller' => 'orders',
         'items' => array(
             array(
-                'name' => lang('Count', 'mod_stats'),
+                'name' => lang('Sum and count', 'mod_stats'),
                 'controller' => 'orders',
                 'action' => 'count',
+            ),
+            array(
+                'name' => lang('Statuses and products', 'mod_stats'),
+                'controller' => 'orders',
+                'action' => 'statuses',
             ),
             array(
                 'name' => lang('By users', 'mod_stats'),

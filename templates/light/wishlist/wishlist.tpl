@@ -208,9 +208,9 @@
                                 <input type="hidden" value="{echo $user[id]}" name="userID"/>
                                 <div class="photo-block m-b_5">
                                     <span class="helper"></span>
-                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}">
+                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}" data-src="{$THEME}{$colorScheme}/images/nophoto.png">
                                         {if $user['user_image']!=''}
-                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
+                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt="{lang('Фото пользователя', 'newLevel')}"/>
                                         {else:}
                                             <img src="{$THEME}{$colorScheme}/images/nophoto.png"/>
                                         {/if}
@@ -220,6 +220,7 @@
                                             <button type="button" class="p_r hidden">
                                                 <span class="icon_edit"></span>
                                                 <input id="img" data-wishlist="image" type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg"/>
+                                                <span class="text-el">{lang('Выбрать', 'newLevel')}</span>
                                             </button>
                                         </label>
                                         {if $user['user_image']!=''}
@@ -239,6 +240,7 @@
                                                     data-effect-off="fadeOut"
                                                     >
                                                     <span class="icon_remove"></span>
+                                                    <span class="text-el">{lang('Удалить', 'newLevel')}</span>
                                                 </button>
                                             </div>
                                         {/if}
