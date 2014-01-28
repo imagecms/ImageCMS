@@ -7,9 +7,19 @@
  */
 class CategoriesController extends ControllerBase {
 
+    protected $params;
+
     public function __construct($some) {
         parent::__construct($some);
         $this->controller->load->model('categories_model');
+
+        $this->params = array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+            'category_id' => isset($_GET['category_id']) ? $_GET['category_id'] : 0,
+            'includeChilds' => (bool) isset($_GET['include_childs']) ? 1 : 0,
+        );
     }
 
     /**
@@ -24,32 +34,25 @@ class CategoriesController extends ControllerBase {
     public function attendance() {
         $this->controller->load->model('categories_model');
         $categories = $this->controller->categories_model->getCategoriesList();
-
-        $this->renderAdmin('mostVisited', array(
-            'categories' => $categories
-        ));
+        array_unshift($categories, array('id' => 0, 'name' => lang('All', 'mod_stats'), 'full_path_ids' => array()));
+        $data = array_merge(array('categories' => $categories), $this->params);
+        $this->renderAdmin('attendance', $data);
     }
 
     public function getCategoriesAttendanceData() {
-        $parentCategoryId = isset($_GET['category_id']) ? $_GET['category_id'] : 0;
-        $includeChilds = (bool) isset($_GET['include_childs']) ? $_GET['include_childs'] : 0;
 
         $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('attendance_model');
 
         $this->controller->load->model('categories_model');
-        $categoriesLabels = $this->controller->categories_model->getCategoriesList($parentCategoryId);
+        $categoriesLabels = $this->controller->categories_model->getCategoriesList($this->params['category_id']);
 
-        $params = array();
         $categoriesIds = array();
-
         foreach ($categoriesLabels as $categoryData) {
             $categoriesIds[$categoryData['id']] = array($categoryData['id']);
         }
 
-        $includeChilds = TRUE;
-
-        if ($includeChilds == TRUE) {
+        if ($this->params['includeChilds'] == TRUE) {
             $productsModel = $this->controller->load->model('products_model');
             foreach ($categoriesIds as $categoryId => $categoryIdCopy) {
                 $subCaregories = $productsModel->getSubcategoriesIds($categoryId);
@@ -58,7 +61,7 @@ class CategoriesController extends ControllerBase {
             }
         }
 
-        $categories = $this->controller->attendance_model->getCategoriesAttendance($params, $categoriesIds);
+        $categories = $this->controller->attendance_model->getCategoriesAttendance($this->params, $categoriesIds);
 
         $labels = array();
         foreach ($categoriesLabels as $categoryData) {
@@ -70,8 +73,8 @@ class CategoriesController extends ControllerBase {
             $oneCategoryAttendanceValues = array();
             foreach ($attendanceData as $attendanceDataDateRow) {
                 $oneCategoryAttendanceValues[] = array(
-                    $attendanceDataDateRow['unix_date'],
-                    $attendanceDataDateRow['users_count'],
+                    'x' => $attendanceDataDateRow['unix_date'] * 1000,
+                    'y' => $attendanceDataDateRow['users_count'] * 1,
                 );
             }
             $categoriesAttendance[] = array(
