@@ -17,16 +17,15 @@ class Module_frame extends MY_Controller {
     public function index() {
         $data = array(
             'product_name' => 'sd',
-            'currency' => '26',
+            'currency' => '2',
             'category_id' => '52',
             'price_in_main' => '2.3',
 //            'mainImage'=> 'http://upload.wikimedia.org/wikipedia/commons/2/22/Turkish_Van_Cat.jpg',
         );
-        try {
-            echo \Products\ProductApi::getInstance()->addProduct($data);
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        }
+
+          \Products\ProductApi::getInstance()->addProduct($data);
+          echo \Products\ProductApi::getInstance()->getError();
+       
     }
 
     public function autoload() {
