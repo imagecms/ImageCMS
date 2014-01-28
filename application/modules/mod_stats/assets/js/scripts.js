@@ -163,6 +163,7 @@ $(document).ready(function() {
                 var width = 800,
                         height = 600;
                 var chart = nv.models.discreteBarChart()
+                        .margin({top: 30, right: 30, bottom: 50, left: 80})
                         .x(function(d) {
                             return d.label
                         })
@@ -171,8 +172,11 @@ $(document).ready(function() {
                         })
                         .staggerLabels(true)
                         .tooltips(false)
-                        .showValues(true)
-
+                        .showValues(true);
+                
+                chart.yAxis
+                        .tickFormat(d3.format('.0f'));
+                
                 d3.select(el)
                         .datum(convertDataForPieToBarChart(ChartData.getData($(el).data('from'))))
                         .transition().duration(500)
@@ -212,7 +216,6 @@ $(document).ready(function() {
                         });
 
                 chart.y1Axis
-                        .axisLabel(lang('Price'))
                         .tickFormat(function(d) {
                             return d3.format(',f')(d)
                         });
@@ -252,7 +255,6 @@ $(document).ready(function() {
                 });
 
                 chart.xAxis
-                        .axisLabel(lang('Date'))
                         .tickFormat(function(d) {
                             return d3.time.format('%d/%m/%Y')(new Date(d))
                         });
