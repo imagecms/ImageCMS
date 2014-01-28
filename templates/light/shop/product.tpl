@@ -635,7 +635,7 @@
                                 <!--Start. Comments block-->
                                 <div class="frame-form-comment">
                                     {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                                    <div class="forComments">
+                                    <div class="forComments p_r">
                                         {if intval($c['commentsCount']) > 0}
                                             {echo $c['comments']}
                                         {/if}
@@ -663,7 +663,7 @@
                             </div>
                         </div>
                         <div id="comment">
-                            <div class="inside-padd forComments">
+                            <div class="inside-padd forComments p_r">
                                 <div class="preloader"></div>
                             </div>
                         </div>
@@ -737,7 +737,7 @@
             </div>
         </div>
         <div class="drop-content">
-            <div class="inside-padd">
+            <div class="inside-padd p_r">
                 <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
             </div>
             <div class="horizontal-carousel">

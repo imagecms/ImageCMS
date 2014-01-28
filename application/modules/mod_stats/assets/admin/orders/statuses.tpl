@@ -16,7 +16,6 @@
             {include_tpl('../time_and_filter_block_for_orders')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if $_GET['view_type'] == 'chart'}
-
                 <svg class="cumulativeLineChartStats" data-from="orders/getStatusesChartData" style="height: 600px; width: 800px;"></svg>
             {else:}
                 {if count($data) > 0}

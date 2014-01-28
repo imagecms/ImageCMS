@@ -378,8 +378,8 @@ input.input-search{height: 33px;padding-right: 14px;}
 .patch-product-view{overflow: hidden;margin-bottom: 10px;}
 .product-charac{max-height: 520px;}
 .product-descr{max-height: 250px;}
-.product-comment{max-height: 400px;}
-#comment .product-comment{max-height: none !important;height: auto !important;}
+#view .product-comment{max-height: 400px;}
+
 .photoProduct .photo-block{width: 100%;height: 252px;padding: 15px;}
 .title-product{margin-bottom: 6px;}
 .title-product .frame-title{margin-right: 15px;}
