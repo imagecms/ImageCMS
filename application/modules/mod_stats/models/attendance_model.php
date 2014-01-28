@@ -68,14 +68,13 @@ class Attendance_model extends CI_Model {
     public function getOnline() {
         $query = "
             SELECT 
-                IF (`mod_stats_attendance`.`id_user` < 0, '', `mod_stats_attendance`.`id_user`) as `id_user`,
+                `mod_stats_attendance`.`id_user`,
                 `mod_stats_attendance`.`type_id`,
                 `mod_stats_attendance`.`id_entity`,
                 IF (`mod_stats_attendance`.`id_user` < 0, 'Guest', `users`.`username`) as `username`,
                 IF (`mod_stats_attendance`.`id_user` < 0, '', `users`.`email`) as `email`,
                 FROM_UNIXTIME(`mod_stats_attendance`.`time_add`) as `last_activity`,
                
-
                 -- ---- for urls ----
                 CASE `mod_stats_attendance`.`type_id`
                     WHEN 1 THEN CONCAT(`content`.`cat_url`, `content`.`url`)
@@ -85,9 +84,8 @@ class Attendance_model extends CI_Model {
                 END as `last_url`   
                 -- ------------------
             FROM 
-                `mod_stats_attendance` 
+                (SELECT * FROM `mod_stats_attendance` ORDER BY `id` DESC) as `mod_stats_attendance` 
             LEFT JOIN `users` ON `users`.`id` = `mod_stats_attendance`.`id_user`
-            
 
             -- ---- for urls ----
             LEFT JOIN `content` ON `content`.`id` = `mod_stats_attendance`.`id_entity` 
@@ -105,7 +103,7 @@ class Attendance_model extends CI_Model {
             GROUP BY 
                 `mod_stats_attendance`.`id_user`
             ORDER BY 
-                `mod_stats_attendance`.`id` ASC
+                `mod_stats_attendance`.`id` DESC
         ";
         return $this->db->query($query)->result_array();
     }
@@ -141,6 +139,79 @@ class Attendance_model extends CI_Model {
         }
 
         return $categoriesAttendance;
+    }
+
+    /**
+     * 
+     * @param int $userId
+     */
+    public function getUserHistory($userId) {
+        if (!is_numeric($userId)) {
+            return FALSE;
+        }
+
+        $locale = MY_Controller::getCurrentLocale();
+
+        $query = "
+            SELECT 
+                `mod_stats_attendance`.`type_id`,
+                `mod_stats_attendance`.`id_entity`,
+                FROM_UNIXTIME(`mod_stats_attendance`.`time_add`) as `time`,
+                
+                -- ---- for urls ----
+                CASE `mod_stats_attendance`.`type_id`
+                    WHEN 1 THEN `content`.`title`
+                    WHEN 2 THEN `category`.`title`
+                    WHEN 3 THEN CONCAT('shop/category/',`shop_category`.`full_path`)
+                    WHEN 4 THEN CONCAT('shop/product/',`shop_products`.`url`)
+                END as `url`,
+                -- ------------------
+                
+                -- ---- for names ----
+                CASE `mod_stats_attendance`.`type_id`
+                    WHEN 1 THEN CONCAT(`content`.`cat_url`, `content`.`url`)
+                    WHEN 2 THEN `category`.`url`
+                    WHEN 3 THEN `shop_category_i18n`.`name`
+                    WHEN 4 THEN `shop_products_i18n`.`name`
+                END as `page_name`   
+                -- ------------------
+            FROM 
+                `mod_stats_attendance`
+                
+            -- ---- for urls ----
+            LEFT JOIN `content` ON `content`.`id` = `mod_stats_attendance`.`id_entity` 
+                AND `mod_stats_attendance`.`type_id` = 1
+            LEFT JOIN `category` ON `category`.`id` = `mod_stats_attendance`.`id_entity` 
+                AND `mod_stats_attendance`.`type_id` = 2
+            LEFT JOIN `shop_category` ON `shop_category`.`id` = `mod_stats_attendance`.`id_entity` 
+                AND `mod_stats_attendance`.`type_id` = 3
+            LEFT JOIN `shop_products` ON `shop_products`.`id` = `mod_stats_attendance`.`id_entity` 
+                AND `mod_stats_attendance`.`type_id` = 4
+            -- ------------------
+            
+
+            -- ---- for names ----
+            LEFT JOIN `shop_category_i18n` ON `shop_category`.`id` = `shop_category_i18n`.`id` 
+                AND `shop_category_i18n`.`locale` = '{$locale}'
+            LEFT JOIN `shop_products_i18n` ON `shop_products`.`id` = `shop_products_i18n`.`id` 
+                AND `shop_products_i18n`.`locale` = '{$locale}'
+            -- ------------------
+            
+
+            WHERE 
+                `id_user` = $userId
+            ORDER BY
+                `time_add` DESC
+                
+            LIMIT 200
+                
+        ";
+        $result = $this->db->query($query);
+
+        if ($result) {
+            return $result->result_array();
+        }
+        return FALSE;
     }
 
 }

@@ -16,7 +16,7 @@
             {include_tpl('../include/top_form')}
             <button  class="btn btn-small btn-primary" id="saveAsPng">
                 <i class="icon-download"></i> </button>
-            <svg class="linePlusBarChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
+            <svg class="cumulativeLineChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
         </div>
     </div>
 </section>

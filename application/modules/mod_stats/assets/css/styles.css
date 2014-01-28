@@ -14,7 +14,7 @@
     font-weight:bold;
     display: block;padding: 3px;
     padding-left: 10px;
-    
+
     border: 1px solid #ddd; display: block;
     border-bottom: none;
     text-align: center;
@@ -62,3 +62,21 @@
 .left-menu-ul .submenu:last-child li:last-child {
     border-bottom: 1px solid #ddd;
 }
+
+.online-users-table tr:hover {
+    cursor: pointer;
+}
+
+.hisory-table tr td:first-child {
+    width: 20%;
+}
+
+.hisory-table tr td:last-child {
+    width: 80%;
+}
+
+.hisory-table-container {
+    max-height: 400px;
+    overflow-y: scroll;
+}
+

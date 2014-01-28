@@ -27,6 +27,13 @@ class UsersController extends ControllerBase {
         ));
     }
 
+    public function history() {
+        $this->controller->load->model('attendance_model');
+        $data = $this->controller->attendance_model->getUserHistory($_POST['userId']);
+        $this->controller->assetManager->setData(array('data' => $data));
+        $this->controller->assetManager->render('admin/users/history');
+    }
+
     public function info() {
         $this->controller->load->model('users_model');
         $this->controller->users_model->setParams($this->params);
