@@ -20,7 +20,7 @@
         {/foreach}
     </ul>
     <div class="m-t_20">
-        <span class="settingTitle"> {lang('Settings:','mod_stats')} </span>
+        <span class="settingTitle"> {lang('Settings','mod_stats')} </span>
         <div class="settingsContainer">
             <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
                 <span class="niceCheck"  style="background-position: -46px -17px;">
