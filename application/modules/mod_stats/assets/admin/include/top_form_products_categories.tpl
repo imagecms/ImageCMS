@@ -3,19 +3,20 @@
 </script>
 <div class="m-t_20">
     <form method="get">
-        
         <span class="d-i_b">
             {lang('Choose Category:','mod_stats')}
             <label class="d-i_b p_r">
                 <select name='catId'>
-                    <option>-</option>
+                    <option>{lang('First level categories','mod_stats')}</option>
                     {foreach $categories as $category}
                         <option value="{echo $category['id']}"{if $_GET['catId'] == $category['id']} selected="selected"{/if}>{echo $category['name']}</option>
                     {/foreach}
                 </select>
             </label>
         </span>
+                
         <span class="d-i_b">
+            &nbsp;&nbsp;&nbsp;&nbsp;
             {lang('Char Type:','mod_stats')}
             <label class="d-i_b p_r">
                 <select name='charType'>
@@ -25,10 +26,10 @@
             </label>
         </span>
         <div class="pull-right">
-            <button type="submit" class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">
+            <button type="submit" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButton">
                 <i class="icon-refresh"></i> {lang('Update','mod_stats')}
             </button>
         </div>
     </form>
 </div>
-<hr class="m-t_5" />
+

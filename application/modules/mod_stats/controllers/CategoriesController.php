@@ -34,13 +34,12 @@ class CategoriesController extends ControllerBase {
     public function attendance() {
         $this->controller->load->model('categories_model');
         $categories = $this->controller->categories_model->getCategoriesList();
-        array_unshift($categories, array('id' => 0, 'name' => lang('All', 'mod_stats'), 'full_path_ids' => array()));
+        array_unshift($categories, array('id' => 0, 'name' => lang('First level categories', 'mod_stats'), 'full_path_ids' => array()));
         $data = array_merge(array('categories' => $categories), $this->params);
         $this->renderAdmin('attendance', $data);
     }
 
     public function getCategoriesAttendanceData() {
-
         $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('attendance_model');
 
