@@ -7,25 +7,29 @@
  */
 class UsersController extends ControllerBase {
 
+    public $params = array();
+
     public function __construct($controller) {
         parent::__construct($controller);
         $controller->import('traits/DateIntervalTrait.php');
-        $controller->load->model('users_model');
-        $controller->users_model->setParams(array(
+        $this->params = array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-        ));
+        );
     }
 
     public function online() {
-        $onlineUsers = $this->controller->users_model->getOnline();
+        $this->controller->load->model('attendance_model');
+        $onlineUsers = $this->controller->attendance_model->getOnline();
         $this->renderAdmin('online', array(
             'data' => $onlineUsers
         ));
     }
 
     public function info() {
+        $this->controller->load->model('users_model');
+        $this->controller->users_model->setParams($this->params);
         $data = $this->controller->users_model->getInfo();
         $this->renderAdmin('info', array(
             'data' => $data
@@ -33,18 +37,54 @@ class UsersController extends ControllerBase {
     }
 
     public function attendance() {
+        // getting view type
+        if (isset($_GET['view_type'])) {
+            $vt = $_GET['view_type'];
+            $viewType = $vt == 'table' || $vt == 'chart' ? $vt : 'chart';
+        } else {
+            $viewType = 'chart';
+        }
+
         $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('attendance_model');
-        $params = array(
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-            'registered' => TRUE
-        );
-        $data = $this->controller->attendance_model->getCommonAttendance($params);
+
+        $data = $this->controller->attendance_model->getCommonAttendance($this->params);
 
         $this->renderAdmin('attendance', array(
-            'data' => $data
+            'data' => $data,
+            'viewType' => $viewType,
+        ));
+    }
+
+    public function getAttendanceData() {
+        $params = $this->params;
+
+        $this->controller->import('traits/DateIntervalTrait.php');
+        $this->controller->load->model('attendance_model');
+
+        $params['type'] = 'registered';
+        $data = $this->controller->attendance_model->getCommonAttendance($params);
+        $registered = array();
+        foreach ($data as $row) {
+            $registered[] = array(
+                (int) $row['unix_date'] * 1000,
+                (int) $row['users_count']
+            );
+        }
+
+        $params['type'] = 'unregistered';
+        $data = $this->controller->attendance_model->getCommonAttendance($params);
+        $unregistered = array();
+        foreach ($data as $row) {
+            $unregistered[] = array(
+                (int) $row['unix_date'] * 1000,
+                (int) $row['users_count']
+            );
+        }
+
+        echo json_encode(array(
+            array('key' => 'Count of unique registered users', 'values' => $registered),
+            array('key' => 'Count of unique unregistered users', 'values' => $unregistered),
         ));
     }
 
