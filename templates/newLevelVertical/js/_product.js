@@ -100,7 +100,7 @@ Product = {
         $('<img src="' + href + '">').load(function() {
             drop.find('.drop-content').find('img').remove();
             fancyFrameInPH.nextAll('.preloader').remove();
-            fancyFrameInPH.after($(this).css('visibility', 'visible').hide().fadeIn());
+            fancyFrameInPH.after($(this).css('visibility', 'visible'));
 
             var carGal = drop.find('.content-carousel');
 
