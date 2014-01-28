@@ -125,13 +125,14 @@ $(document).ready(function() {
                             height = 650 + (cData.length / 3 * 20);
 
                     var chart = nv.models.pieChart()
+                            .showLabels(true)
                             .x(function(d) {
                                 return d.key
                             })
                             .y(function(d) {
                                 return d.y
                             })
-                            .color(d3.scale.category10().range())
+                            .color(d3.scale.category20().range())
                             .width(width)
                             .height(height);
 
