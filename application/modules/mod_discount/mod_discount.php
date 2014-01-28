@@ -49,14 +49,13 @@ class Mod_discount extends \MY_Controller {
                 $discount['max_discount'] = $this->baseDiscount->discountMax;
                 $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
                 $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
-                if ($this->baseDiscount->discount_product_val > $this->baseDiscount->discountNoProductVal) {
+                if ($this->baseDiscount->discountProductVal > $this->baseDiscount->discountNoProductVal) {
                     $discount['result_sum_discount'] = $this->baseDiscount->discountProductVal;
                     $discount['type'] = 'product';
                 } else {
                     $discount['result_sum_discount'] = $this->baseDiscount->discountNoProductVal;
                     $discount['type'] = 'user';
                 }
-
 
                 if ($discount['result_sum_discount']) {
                     $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);

@@ -331,7 +331,7 @@ var Filter = {
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
         
-        var catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter'),
+       /* var catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter'),
         dataPre = $(this.catalogForm).serialize();
         $.ajax({
             type: 'get',
@@ -341,13 +341,22 @@ var Filter = {
             success: function(dane) {
                 if (dane) {
                     dane = JSON.parse(dane);
-                    $(dane).each(function(key,value){
+                    $(dane.prop).each(function(key,value){
                         var id = value.property_id;
                         $(value.possibleValues).each(function(k,v){
                             if (v.count == 0){
                                 $('#p_'+id+'_'+v.id+' input').parent().nStCheck('checkUnChecked');
                             }
                         })
+                        
+                    });
+                    $(dane.brand).each(function(key,value){
+                        var id = value.id;
+                        var count = value.countProducts;
+                        if (count == 0){
+                            $('#brand_'+id+' input').parent().nStCheck('checkUnChecked');
+                        }
+                        
                         
                     })
                     
@@ -393,6 +402,9 @@ var Filter = {
                 else {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
+                
+                $('[name=checkbox]:checked').removeAttr('disabled');
+                //$('[name=checkbox]:checked').closest('.frame-label').find('.count').text();
 
             }
         });
