@@ -160,10 +160,11 @@ $(document).ready(function() {
     if (barChartBlocks.length) {
         barChartBlocks.each(function(index, el) {
             nv.addGraph(function() {
+                
                 var width = 800,
                         height = 600;
                 var chart = nv.models.discreteBarChart()
-                        .margin({top: 30, right: 30, bottom: 50, left: 80})
+                        .margin({top: 30, right: 30, bottom: 250, left: 80})
                         .x(function(d) {
                             return d.label
                         })
@@ -173,21 +174,36 @@ $(document).ready(function() {
                         .staggerLabels(true)
                         .tooltips(false)
                         .showValues(true);
+
                 
                 chart.yAxis
                         .tickFormat(d3.format('.0f'));
-                
+
                 d3.select(el)
                         .datum(convertDataForPieToBarChart(ChartData.getData($(el).data('from'))))
                         .transition().duration(500)
                         .attr('width', width)
                         .attr('height', height)
                         .call(chart);
-
-                nv.utils.windowResize(chart.update);
+                
+                nv.utils.windowResize(chart.update());
+                nv.utils.windowResize(rotateLabels());
 
                 return chart;
             });
+            function rotateLabels(){
+                var labels;
+                labels = d3.selectAll('.barChartStats .nv-x.nv-axis > g text');
+                labels.attr('transform', function(d,i,j) {
+//                    console.log($.trim(d).length);
+                    console.log(labels[0]);
+//                    height = $.trim(d).length;
+                    height = labels[0][i].clientWidth;
+                    
+                    return 'translate (-10, '+height+') rotate(-90 0,0)' 
+                });
+            }
+            
         });
     }
 
