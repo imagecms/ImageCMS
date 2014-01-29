@@ -125,13 +125,16 @@ $(document).ready(function() {
                             height = 650 + (cData.length / 3 * 20);
 
                     var chart = nv.models.pieChart()
+                            .showLabels(true)
                             .x(function(d) {
-                                return d.key
-                            })
+                        return d.key
+                    })
                             .y(function(d) {
+
                                 return d.y
                             })
-                            .color(d3.scale.category10().range())
+                            .color(d3.scale.category20().range())
+
                             .width(width)
                             .height(height);
 
@@ -149,6 +152,7 @@ $(document).ready(function() {
                     return chart;
                 });
             } else {
+                $('#saveAsPng').hide();
                 $('#showNoChartData').show();
             }
 
@@ -159,31 +163,54 @@ $(document).ready(function() {
     var barChartBlocks = $('.barChartStats');
     if (barChartBlocks.length) {
         barChartBlocks.each(function(index, el) {
-            nv.addGraph(function() {
-                var width = 800,
-                        height = 600;
-                var chart = nv.models.discreteBarChart()
-                        .x(function(d) {
-                            return d.label
-                        })
-                        .y(function(d) {
-                            return d.value
-                        })
-                        .staggerLabels(true)
-                        .tooltips(false)
-                        .showValues(true)
 
-                d3.select(el)
-                        .datum(convertDataForPieToBarChart(ChartData.getData($(el).data('from'))))
-                        .transition().duration(500)
-                        .attr('width', width)
-                        .attr('height', height)
-                        .call(chart);
+            var cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
 
-                nv.utils.windowResize(chart.update);
+                    var width = 800,
+                            height = 700;
+                    var chart = nv.models.discreteBarChart()
+                            .margin({top: 30, right: 30, bottom: 250, left: 70})
+                            .x(function(d) {
+                                return d.label
+                            })
+                            .y(function(d) {
+                                return d.value
+                            })
+                            .staggerLabels(true)
+                            .tooltips(false)
+                            .showValues(true);
 
-                return chart;
-            });
+                    chart.yAxis
+                            .tickFormat(d3.format('.0f'));
+
+                    d3.select(el)
+                            .datum(convertDataForPieToBarChart(cData))
+                            .transition().duration(500)
+                            .attr('width', width)
+                            .attr('height', height)
+                            .call(chart);
+
+                    nv.utils.windowResize(chart.update());
+                    nv.utils.windowResize(rotateLabels());
+
+                    return chart;
+
+                });
+                function rotateLabels() {
+                    var labels;
+                    labels = d3.selectAll('.barChartStats .nv-x.nv-axis > g text');
+                    labels.attr('transform', function(d, i, j) {
+                        height = $.trim(d).length;
+                        return 'translate (-10, ' + (height + 80) + ') rotate(-90 0,0)'
+                    });
+                }
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
         });
     }
 
@@ -191,45 +218,52 @@ $(document).ready(function() {
     var linePlusBarChartStats = $('.linePlusBarChartStats');
     if (linePlusBarChartStats.length) {
         linePlusBarChartStats.each(function(index, el) {
-            data = ChartData.getData($(el).data('from'));
-            nv.addGraph(function() {
-                var chart = nv.models.linePlusBarChart()
-                        .margin({top: 30, right: 30, bottom: 50, left: 100})
-                        .x(function(d, i) {
-                            return i
-                        })
-                        .y(function(d) {
-                            return d[1]
-                        })
-                        .color(d3.scale.category10().range());
 
-                chart.xAxis
-                        .showMaxMin(false)
-                        .tickFormat(function(d) {
-                            var dx = data[0].values[d] && data[0].values[d][0] || 0;
-                            if (dx !== 0)
-                                return d3.time.format('%d/%m/%Y')(new Date(dx))
-                        });
+            cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var chart = nv.models.linePlusBarChart()
+                            .margin({top: 30, right: 30, bottom: 50, left: 100})
+                            .x(function(d, i) {
+                                return i
+                            })
+                            .y(function(d) {
+                                return d[1]
+                            })
+                            .color(d3.scale.category10().range());
 
-                chart.y1Axis
-                        .axisLabel(lang('Price'))
-                        .tickFormat(function(d) {
-                            return d3.format(',f')(d)
-                        });
+                    chart.xAxis
+                            .showMaxMin(false)
+                            .tickFormat(function(d) {
+                                var dx = cData[0].values[d] && cData[0].values[d][0] || 0;
+                                if (dx !== 0)
+                                    return d3.time.format('%d/%m/%Y')(new Date(dx))
+                            });
 
-                chart.y2Axis
-                        .tickFormat(d3.format(',f'));
+                    chart.y1Axis
+                            .tickFormat(function(d) {
+                                return d3.format(',f')(d)
+                            });
 
-                chart.bars.forceY([0]);
+                    chart.y2Axis
+                            .tickFormat(d3.format(',f'));
 
-                d3.select(el)
-                        .datum(data)
-                        .transition().duration(500).call(chart);
+                    chart.bars.forceY([0]);
 
-                nv.utils.windowResize(chart.update);
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(500).call(chart);
 
-                return chart;
-            });
+                    nv.utils.windowResize(chart.update);
+
+                    return chart;
+                });
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
+
         });
     }
 
@@ -241,37 +275,69 @@ $(document).ready(function() {
     if (lineChartStats.length) {
         lineChartStats.each(function(index, el) {
             var cData = ChartData.getData($(el).data('from'));
-            nv.addGraph(function() {
-                var chart = nv.models.lineChart().margin({
-                    top: 30,
-                    right: 40,
-                    bottom: 50,
-                    left: 45
-                }).showLegend(true).tooltipContent(function(key, y, e, graph) {
-                    return '<h3>' + key + '</h3>' + '<p>' + e + ' at ' + y + '</p>'
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var chart = nv.models.lineChart().margin({
+                        top: 30,
+                        right: 40,
+                        bottom: 50,
+                        left: 45
+                    }).showLegend(true).tooltipContent(function(key, y, e, graph) {
+                        return '<h3>' + key + '</h3>' + '<p>' + e + ' at ' + y + '</p>'
+                    });
+
+
+                    chart.xAxis
+                            .tickFormat(function(d) {
+                                return d3.time.format('%d/%m/%Y')(new Date(d))
+                            });
+
+
+                    chart.yAxis
+                            .tickFormat(d3.format('.0f'));
+
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(500)
+                            .call(chart);
+
+                    nv.utils.windowResize(chart.update);
+
+                    return chart;
                 });
-
-                chart.xAxis
-                        .axisLabel(lang('Date'))
-                        .tickFormat(function(d) {
-                            return d3.time.format('%d/%m/%Y')(new Date(d))
-                        });
-
-                chart.yAxis
-                        .tickFormat(d3.format('.0f'));
-
-                d3.select(el)
-                        .datum(cData)
-                        .transition().duration(500)
-                        .call(chart);
-
-                nv.utils.windowResize(chart.update);
-
-                return chart;
-            });
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
 
         });
     }
+
+    /** Save button click **/
+    $("#saveAsPng").click(function() {
+        submit_download_form("png");
+    });
+
+    /**
+     * Send form for download image
+     */
+    function submit_download_form(output_format)
+    {
+        // Get the d3js SVG element
+        var tmp = document.getElementById("chartArea");
+        var svg = tmp.getElementsByTagName("svg")[0];
+        // Extract the data as SVG text string
+        var svg_xml = (new XMLSerializer).serializeToString(svg);
+
+        // Submit the <FORM> to the server.
+        // The result will be an attachment file to download.
+        var form = document.getElementById("svgform");
+        form['output_format'].value = output_format;
+        form['data'].value = svg_xml.translit();
+        form.submit();
+    }
+
 
     /** ************************************************ */
 
@@ -299,11 +365,40 @@ $(document).ready(function() {
     /***********************/
 
 
-
-
-
 });
 
 
 
 
+
+$(document).ready(function() {
+    $(".online-users-table").on('click', 'tr.main_row td', function() {
+
+        $("tr.additional_row").hide();
+        var tr = $(this).parent();
+        var userId = $(tr).data('user_id');
+        var trSelector = 'tr.additional_row[data-user_id="' + userId + '"]';
+        
+
+        if ($(tr).hasClass('open_row')) {
+            $('tr.main_row').removeClass('open_row');
+            return;
+        }
+
+        if ($(trSelector).size() == 0) {
+            $.post('/admin/components/cp/mod_stats/users/history', {userId: userId}, function(data) {
+                $(tr).after("<tr data-user_id='" + userId + "' class='additional_row'><td colspan='5'>" + data + "</td></tr>");
+                $(trSelector).show();
+            });
+        } else {
+            $(trSelector).show();
+        }
+        $('tr.main_row').removeClass('open_row');
+        $(tr).addClass('open_row');
+    });
+
+
+    $(".online-users-table").on('click', 'tr td a', function(obj, event) {
+        event.preventDefault();
+    });
+});

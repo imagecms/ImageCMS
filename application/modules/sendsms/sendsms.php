@@ -10,6 +10,8 @@
  * @property Exceptions $Exceptions 
  * @property Account $Account
  * @property Stat $Stat
+ * 
+ * @property Sendsms_model $sendsms_model
  */
 class Sendsms extends MY_Controller {
 
@@ -17,23 +19,33 @@ class Sendsms extends MY_Controller {
     static $Exceptions;
     static $Account;
     static $Addressbook;
+    static $Settings;
+    static $Name;
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('sendsms_model');
+
+        $settings = $this->sendsms_model->getApiSettings();
+        self::$Name = $settings['sms_company_name'];
+
+        $locale = MY_Controller::getCurrentLocale();
+        self::$Settings = $this->sendsms_model->getTemplates($locale);
 
         include 'epochtasmsApi/config.php';
         include 'epochtasmsApi/Addressbook.php';
         include 'epochtasmsApi/Exceptions.php';
         include 'epochtasmsApi/Account.php';
         include 'epochtasmsApi/Stat.php';
-        $sms_key_private = '010deb2628416432450a14b30577472d';
-        $sms_key_public = '8007cd4a7dc247798adec2b109210404';
+
+        $sms_key_private = $settings['sms_key_private'];
+        $sms_key_public = $settings['sms_key_public'];
+
         $Gateway = new APISMS($sms_key_private, $sms_key_public, 'http://atompark.com/api/sms/');
         self::$Addressbook = new Addressbook($Gateway);
         self::$Exceptions = new Exceptions($Gateway);
         self::$Account = new Account($Gateway);
         self::$Stat = new Stat($Gateway);
-//        $this->Stat = new Stat($Gateway);
     }
 
     public function index() {
@@ -49,9 +61,12 @@ class Sendsms extends MY_Controller {
     }
 
     public static function shop_order($data) {
+        /* @var $order SOrders */
+        $order = $data['order'];
+        $text = str_replace(array('%id', '%user_id%', '%key%', '%user_full_name%', '%user_email%', '%user_phone%', '%user_deliver_to%'), array($order->getId(), $order->getUserId(), $order->getKey(), $order->getUserFullName(), $order->getUserEmail(), $order->getUserPhone(), $order->getUserDeliverTo()), self::$Settings['orderTemplate']);
         if ($data['order']->user_phone) {
-
-            self::send_sms('заказ', $data['order']->user_phone);
+            $locale = MY_Controller::getCurrentLocale();
+            self::send_sms($text, $data['order']->user_phone);
         }
     }
 
@@ -63,36 +78,30 @@ class Sendsms extends MY_Controller {
     private static function send_sms($text, $phone) {
         $phone = str_replace(array('+', '(', ')', ' ', '-'), '', $phone);
         $phone = '38' . preg_replace('/^38/', '', $phone, -1, $count);
-        self::$Stat->sendSMS('budyak.net', 'text', $phone, $datetime, 0);
+        self::$Stat->sendSMS(self::$Name, $text, $phone, $datetime, 0);
     }
 
     public function _install() {
-        /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
-        /**
-          $this->load->dbforge();
 
-          $fields = array(
-          'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE,),
-          'name' => array('type' => 'VARCHAR', 'constraint' => 50,),
-          'value' => array('type' => 'VARCHAR', 'constraint' => 100,)
-          );
+        $sql = "CREATE TABLE IF NOT EXISTS `mod_sendsms` (
+                    `id` int(11) NOT NULL AUTO_INCREMENT,
+                    `locale` varchar(5) DEFAULT NULL,
+                    `settings` text DEFAULT NULL,
+                    PRIMARY KEY (`id`)
+                    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
 
-          $this->dbforge->add_key('id', TRUE);
-          $this->dbforge->add_field($fields);
-          $this->dbforge->create_table('mod_empty', TRUE);
-         */
-        /**
-          $this->db->where('name', 'module_frame')
-          ->update('components', array('autoload' => '1', 'enabled' => '1'));
-         */
+        $this->db->query($sql);
+
+        $this->db
+                ->where('name', 'mod_sendsms')
+                ->update('components', array('autoload' => 1, 'in_menu' => 1));
+        return TRUE;
     }
 
     public function _deinstall() {
-        /**
-          $this->load->dbforge();
-          $this->dbforge->drop_table('mod_empty');
-         *
-         */
+        $sql = "DROP TABLE `mod_sendsms`;";
+        $this->db->query($sql);
+        return TRUE;
     }
 
 }
