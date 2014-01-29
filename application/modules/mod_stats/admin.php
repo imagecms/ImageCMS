@@ -55,6 +55,9 @@ class Admin extends \BaseAdminController {
     }
 
     public function index() {
+//        if ($this->input->is_ajax_request()){
+//            exit();
+//        }
         $ca = explode('/', $this->defaultAction);
         $this->runControllerAction($ca[0], array($ca[1]));
     }
