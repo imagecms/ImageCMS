@@ -36,7 +36,7 @@ class ProductsController extends ControllerBase {
         $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
         $categories = $this->controller->products_model->getCategoriesCountsData($catIds);
         $chartData = parent::prepareDataForStaticChart($categories);
-//        var_dumps($chartData);
+
         echo json_encode($chartData);
     }
 
