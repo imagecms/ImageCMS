@@ -1,9 +1,11 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Class ProductsController for mod_stats module
+ * @uses ControllerBase
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 class ProductsController extends ControllerBase {
 
