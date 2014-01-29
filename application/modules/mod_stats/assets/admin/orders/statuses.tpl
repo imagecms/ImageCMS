@@ -11,11 +11,13 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
-        <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block_for_orders')}
+        {include_tpl('../include/left_block')}
+        <div class="clearfix span9" id="chartArea">
+            {include_tpl('../include/top_form')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if $_GET['view_type'] == 'chart'}
+                <button  class="btn btn-small btn-primary" id="saveAsPng">
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')} </button>
                 <svg class="cumulativeLineChartStats" data-from="orders/getStatusesChartData" style="height: 600px; width: 800px;"></svg>
             {else:}
                 {if count($data) > 0}

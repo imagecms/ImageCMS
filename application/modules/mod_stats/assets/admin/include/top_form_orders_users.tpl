@@ -2,7 +2,6 @@
     var currency = '{$CS}'
 </script>
 <div class="btn-group  m-t_20 pull-left">
-    <a class="btn btn-small intervalButton" data-group="day">{lang('Last day','mod_stats')}</a>
     <a class="btn btn-small intervalButton" data-group="month">{lang('Last month','mod_stats')}</a>
     <a class="btn btn-small intervalButton" data-group="year">{lang('Last year','mod_stats')}</a>       
 </div>
@@ -36,15 +35,25 @@
                 </label>
             </span>
             <div class="pull-right">
-                <button type="submit" class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">
+                <button type="submit" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButton">
                     <i class="icon-refresh"></i> {lang('Update','mod_stats')}
                 </button>
             </div>
+            {if $_GET['view_type'] == 'chart'}
+                <span class="d-i_b">
+                    {lang('Char Type:','mod_stats')}
+                    <label class="d-i_b p_r">
+                        <select id="selectGroupBy" name='charType'>
+                            <option value="pie"{if $_GET['charType'] == 'pie'} selected="selected"{/if}>{lang('Pie char','mod_stats')}</option>
+                            <option value="bar"{if $_GET['charType'] == 'bar'} selected="selected"{/if}>{lang('Bar char','mod_stats')}</option>
+                        </select>
+                    </label>
+                </span>
+            {/if}
         </div>
-        <hr/>
         <div class="view_type">
             <label>
-                <input type="radio" name="view_type" value="table" {if $_GET['view_type'] == 'table'}checked="checked"{/if} />
+                <input type="radio" name="view_type" value="table" {if $_GET['view_type'] == 'table' || !isset($_GET['view_type'])}checked="checked"{/if} />
                 {lang('Table','mod_stats')}
             </label>
             <label>

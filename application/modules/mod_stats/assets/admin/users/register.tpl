@@ -11,10 +11,14 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
-        <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block')}
-            <svg class="linePlusBarChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
+        {include_tpl('../include/left_block')}
+        <div class="clearfix span9" id="chartArea">
+            {include_tpl('../include/top_form')}
+            <button  class="btn btn-small btn-primary" id="saveAsPng">
+
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
+            <svg class="cumulativeLineChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
+
         </div>
     </div>
 </section>
