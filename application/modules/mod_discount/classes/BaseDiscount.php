@@ -131,7 +131,7 @@ class BaseDiscount {
                 $this->userId = self::$userId;
                 $this->userGroupId = $this->ci->db->where('id', $this->userId)->get('users')->row()->role_id;
             }
-            if (self::$ignoreCart)
+            if (!self::$ignoreCart)
                 $this->cartData = $this->getCartData();
             
             $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($this->userId);
@@ -145,6 +145,7 @@ class BaseDiscount {
                 $this->discountComul = $this->getComulativDiscount();
                 $this->discountAllOrder = $this->getAllOrderDiscountRegister();
             }
+
             $this->discountProductVal = (self::$ignoreCart) ? null : $this->getDiscountProducts();
             $this->discountMax = $this->getMaxDiscount(array($this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder), $this->totalPrice);
             $this->discountNoProductVal = $this->getDiscountValue($this->discountMax, $this->totalPrice);
