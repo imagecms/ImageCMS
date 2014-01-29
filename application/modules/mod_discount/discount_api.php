@@ -38,7 +38,7 @@ class discount_api extends \MY_Controller {
     public function getGiftCertificate($key = null, $totalPrice = null) {
 
         $cart = \Cart\BaseCart::getInstance();
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::createWithOption();
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if ($totalPrice === null)
             $totalPrice = $cart->getTotalPrice();
 
@@ -67,16 +67,12 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function getDiscount($typeReturn = null, $option = array()) {
+        
+        if (count($option) > 0)
+            \mod_discount\classes\BaseDiscount::prepareOption($option);
 
-        $option = array(
-            'price' => $option['price'],
-            'userId' => $option['userId'],
-            'ignoreCart' => $option['ignoreCart'],
-            'new' => $option['new']
-        );
-
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::createWithOption($option);
-        if ($this->baseDiscount->checkModuleInstall()) {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
             $discount['max_discount'] = $this->baseDiscount->discountMax;
             $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
             $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
@@ -109,8 +105,7 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function getDiscountProduct($product, $typeReturn = null, $price = null) {
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
-        if ($this->baseDiscount->checkModuleInstall()) {
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
             $DiscProdObj = \mod_discount\Discount_product::create();
             if ($DiscProdObj->getProductDiscount($product, $price)) {
                 $arr = \CMSFactory\assetManager::create()->discount;
@@ -141,21 +136,42 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function getUserDiscount($typeReturn = null, $option = array()) {
-        $option = array(
-            'price' => $option['price'],
-            'userId' => $option['userId'],
-            'ignoreCart' => $option['ignoreCart'],
-            'new' => $option['new']
-        );
+        if (count($option) > 0)
+            \mod_discount\classes\BaseDiscount::prepareOption($option);
 
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::createWithOption($option);
-        if ($this->baseDiscount->checkModuleInstall()) {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
             $this->baseDiscount->discountType['comulativ'] = $this->getComulativDiscount($option);
             if (null === $typeReturn)
                 return $this->baseDiscount->discountType;
             else
                 \CMSFactory\assetManager::create()->setData(array('discount' => $this->baseDiscount->discountType))->render('discount_info_user', true);
         }
+    }
+
+    /**
+     * get comulativ discount sorting
+     * @access private
+     * @author DevImageCms
+     * @param (float) price optional 
+     * @param (float) userId optional 
+     * @param (bool) new optional 
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function getComulativDiscount($option) {
+
+        if (count($option) > 0)
+            \mod_discount\classes\BaseDiscount::prepareOption($option);
+
+        function cmp($a, $b) {
+            return strnatcmp($a["begin_value"], $b["begin_value"]);
+        }
+
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall())
+            usort($this->baseDiscount->discountType['comulativ'], 'cmp');
+        return $this->baseDiscount->discountType['comulativ'];
     }
 
     /**
@@ -198,39 +214,49 @@ class discount_api extends \MY_Controller {
      * @return json
      * @copyright (c) 2013, ImageCMS
      */
-    public function getAllDiscount($price = null, $userId = null, $new = null) {
+    public function getAllDiscount() {
 
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create($price, $userId, $new);
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         return json_encode($this->baseDiscount->discountType);
     }
 
     /**
-     * get comulativ discount sorting
-     * @access private
+     * apply discount for all products
+     * @access public
      * @author DevImageCms
-     * @param (float) price optional 
-     * @param (float) userId optional 
-     * @param (bool) new optional 
-     * @return array
+     * @return (int) cnt: count update products
      * @copyright (c) 2013, ImageCMS
      */
-    private function getComulativDiscount($option) {
+    public function applyProductDiscount() {
         
-        $option = array(
-            'price' => $option['price'],
-            'userId' => $option['userId'],
-            'ignoreCart' => $option['ignoreCart'],
-            'new' => $option['new']
-        );
+        $productVariants = $this->db
+                ->select('shop_product_variants.id as var_id, shop_product_variants.price as price, shop_products.id as id, shop_products.brand_id as brand_id, shop_products.category_id as category_id')
+                ->from('shop_products')
+                ->join('shop_product_variants', 'shop_product_variants.product_id = shop_products.id')
+                ->get('shop_product_variants')
+                ->result_array();
+        foreach ($productVariants as $var) {
+            $arr_for_discount = array(
+                'product_id' => $var['id'],
+                'category_id' => $var['category_id'],
+                'brand_id' => $var['brand_id'],
+                'vid' => $var['var_id'],
+                'id' => $var['id']
+            );
+            \mod_discount\Discount_product::create()->getProductDiscount($arr_for_discount);
 
-        function cmp($a, $b) {
-            return strnatcmp($a["begin_value"], $b["begin_value"]);
+            if ($discount = \CMSFactory\assetManager::create()->discount) {
+                $priceNew = ((float) $var['price'] - (float) $discount['discount_value'] < 0) ? 1 : (float) $var['price'] - (float) $discount['discount_value'];
+                $dataProductUpdate = array(
+                    'price' => ($discount) ? $priceNew : $var['price'],
+                    'price_no_disc' => $var['price'],
+                    'disc' => $discount['discount_value'],
+                );
+                $this->db->where('id', $var['var_id'])->update('shop_product_variants', $dataProductUpdate);
+                $cnt++;
+            }
         }
-
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::createWithOption($option);
-        if ($this->baseDiscount->checkModuleInstall())
-            usort($this->baseDiscount->discountType['comulativ'], 'cmp');
-        return $this->baseDiscount->discountType['comulativ'];
+        return $cnt;
     }
 
     /**
@@ -284,8 +310,7 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function render_gift_input($mes = null) {
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
-        if ($this->baseDiscount->checkModuleInstall())
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall())
             if ($this->is_gift_certificat())
                 \CMSFactory\assetManager::create()->setData(array('mes' => $mes))->render('gift', true);
     }

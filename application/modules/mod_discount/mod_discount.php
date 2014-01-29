@@ -45,7 +45,7 @@ class Mod_discount extends \MY_Controller {
 
             $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
 
-            if ($this->baseDiscount->checkModuleInstall()) {
+            if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
                 $discount['max_discount'] = $this->baseDiscount->discountMax;
                 $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
                 $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
