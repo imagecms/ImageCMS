@@ -11,18 +11,25 @@
 class Search_model extends CI_Model {
 
     use DateIntervalTrait;
-
+    
+    /**
+     * Current locale
+     * @var int 
+     */
     public $locale;
 
-    /**
-     * Default params for method getOrdersByDateRange
-     * @var array
-     */
     function __construct() {
         parent::__construct();
         $this->locale = \MY_Controller::getCurrentLocale();
     }
-
+    
+    /**
+     * Prepare sql string for inseting in query
+     * @param array $params
+     * - dateFrom
+     * - dateTo
+     * @return array
+     */
     protected function prepareConditions(array $params) {
 
         $betweenCondition = "";
