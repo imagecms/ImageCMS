@@ -66,8 +66,8 @@ class discount_api extends \MY_Controller {
      * @return json
      * @copyright (c) 2013, ImageCMS
      */
-    public function getDiscount($typeReturn = null, $option = array()) {
-        
+    public function getDiscount($option = array(), $typeReturn = null) {
+
         if (count($option) > 0)
             \mod_discount\classes\BaseDiscount::prepareOption($option);
 
@@ -85,9 +85,8 @@ class discount_api extends \MY_Controller {
             }
             $discount['result_sum_discount_convert'] = ShopCore::app()->SCurrencyHelper->convert($discount['result_sum_discount']);
         }
-
         if ($discount['result_sum_discount']) {
-            if ($typeReturn === null)
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && !$typeReturn)
                 echo json_encode($discount);
             else
                 return $discount;
@@ -100,24 +99,20 @@ class discount_api extends \MY_Controller {
      * get discount product
      * @access public
      * @author DevImageCms
-     * @param array [pid,vid], (bool) typeReturn optional, (float) price optional 
+     * @param array [pid,vid], (float) price optional 
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function getDiscountProduct($product, $typeReturn = null, $price = null) {
+    public function getDiscountProduct($product, $price = null) {
         if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
             $DiscProdObj = \mod_discount\Discount_product::create();
             if ($DiscProdObj->getProductDiscount($product, $price)) {
                 $arr = \CMSFactory\assetManager::create()->discount;
-                if (null === $typeReturn)
-                    return $arr;
-                elseif (1 === $typeReturn)
-                    \CMSFactory\assetManager::create()->setData(array('discount_product' => $arr))->render('discount_product', true);
-                elseif ('json' === $typeReturn)
+                if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
                     echo json_encode($arr);
+                else
+                    return $arr;
             }
-            else
-                return false;
         }
         return false;
     }
@@ -126,7 +121,6 @@ class discount_api extends \MY_Controller {
      * get all discount information without maximized
      * @access public
      * @author DevImageCms
-     * @param (bool) typeReturn optional 
      * @param array $option params:
      * - (float) price: 
      * - (int) userId: 
@@ -135,17 +129,14 @@ class discount_api extends \MY_Controller {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function getUserDiscount($typeReturn = null, $option = array()) {
+    public function getUserDiscount($option = array()) {
         if (count($option) > 0)
             \mod_discount\classes\BaseDiscount::prepareOption($option);
 
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
             $this->baseDiscount->discountType['comulativ'] = $this->getComulativDiscount($option);
-            if (null === $typeReturn)
-                return $this->baseDiscount->discountType;
-            else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $this->baseDiscount->discountType))->render('discount_info_user', true);
+            return $this->baseDiscount->discountType;
         }
     }
 
@@ -228,7 +219,7 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function applyProductDiscount() {
-        
+
         $productVariants = $this->db
                 ->select('shop_product_variants.id as var_id, shop_product_variants.price as price, shop_products.id as id, shop_products.brand_id as brand_id, shop_products.category_id as category_id')
                 ->from('shop_products')
@@ -243,6 +234,7 @@ class discount_api extends \MY_Controller {
                 'vid' => $var['var_id'],
                 'id' => $var['id']
             );
+            \CMSFactory\assetManager::create()->discount = 0;
             \mod_discount\Discount_product::create()->getProductDiscount($arr_for_discount);
 
             if ($discount = \CMSFactory\assetManager::create()->discount) {
@@ -330,8 +322,8 @@ class discount_api extends \MY_Controller {
      * @deprecated since version 4.5.2 
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_user_discount_api($typeReturn = null) {
-        return $this->getUserDiscount($typeReturn = null);
+    public function get_user_discount_api($option = array()) {
+        return $this->getUserDiscount($option);
     }
 
     /**
@@ -359,8 +351,8 @@ class discount_api extends \MY_Controller {
      * @deprecated since version 4.5.2 
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_api($typeReturn = null) {
-        return $this->getDiscount($typeReturn = null);
+    public function get_discount_api($option = array()) {
+        return $this->getDiscount($option);
     }
 
     /**
