@@ -5,10 +5,14 @@
 include_once __DIR__ . DIRECTORY_SEPARATOR . 'traits' . DIRECTORY_SEPARATOR . 'FileImportTrait' . EXT;
 
 /**
- * Image CMS
- * Module Frame
+ * Class Mod_stats for mod_stats module
+ * @uses \MY_Controller
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @property stats_model $stats_model
+ * @package ImageCMSModule
  */
-class Mod_stats extends MY_Controller {
+class Mod_stats extends \MY_Controller {
 
     use FileImportTrait;
 
@@ -34,7 +38,10 @@ class Mod_stats extends MY_Controller {
             }
         }
     }
-
+    
+    /**
+     * Save user attandance
+     */
     public function saveAttendance() {
         $thisObj = new Mod_stats();
         $thisObj->import('classes/Attendance');
@@ -64,7 +71,12 @@ class Mod_stats extends MY_Controller {
         }
         Attendance::getInstance()->add(CI::$APP->core->core_data, $userId);
     }
-
+    
+    /**
+     * Save search keywords
+     * @param string $text
+     * @return 
+     */
     public function saveSearchedKeyWords($text = '') {
         if ($text['search_text'] == '') {
             return;
@@ -89,4 +101,3 @@ class Mod_stats extends MY_Controller {
 
 }
 
-/* End of file sample_module.php */

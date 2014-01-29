@@ -1,10 +1,10 @@
 <?php
 
 /**
- * 
- *
- * 
- * 
+ * Class ControllerBase for mod_stats module
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 abstract class ControllerBase {
 
@@ -116,4 +116,3 @@ abstract class ControllerBase {
 
 }
 
-?>

@@ -3,9 +3,11 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * 
- * 
- * 
+ * Class Admin for mod_stats module
+ * @uses \BaseAdminController
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 class Admin extends \BaseAdminController {
 
@@ -53,6 +55,9 @@ class Admin extends \BaseAdminController {
     }
 
     public function index() {
+//        if ($this->input->is_ajax_request()){
+//            exit();
+//        }
         $ca = explode('/', $this->defaultAction);
         $this->runControllerAction($ca[0], array($ca[1]));
     }
