@@ -25,6 +25,30 @@ ChartData.getData = function(link) {
     });
     return returnResult;
 };
+/** 
+ * Uses for converting data from Pie to Bar Chart
+ * @param {obj} data
+ * @returns {Array|ChartData.convertDataForPieToBarChart.chartDataForReturn|Object.convertDataForPieToBarChart.chartDataForReturn|String}
+ */
+ChartData.convertDataForPieToBarChart = function(data) {
+    var inputData = data;
+    var chartDataForReturn = [];
+    var tmpData = {};
+    tmpData.values = [];
+    if (inputData === undefined) {
+        return 'false';
+    }
+
+    $.each(inputData, function(index, value) {
+        var stepObj = {};
+        stepObj.label = value.key;
+        stepObj.value = value.y;
+        tmpData.values.push(stepObj);
+    });
+    tmpData.key = 'Bar data';
+    chartDataForReturn.push(tmpData);
+    return chartDataForReturn;
+}
 
 
 
@@ -35,7 +59,7 @@ ChartData.getData = function(link) {
 var StatsSettingsAndParams = new Object();
 
 /**
- * 
+ * Set mod stats settings
  * @param {string} name
  * @param {string} value
  * @returns {undefined} Show message with result
@@ -55,6 +79,28 @@ StatsSettingsAndParams.setModStatsSetting = function(name, value) {
         }
     });
 };
+
+
+/**
+ * Send form for download image
+ * @param {string} output_format
+ * @returns {undefined}
+ */
+StatsSettingsAndParams.submitDownloadForm = function(output_format)
+{
+    // Get the d3js SVG element
+    var tmp = document.getElementById("chartArea");
+    var svg = tmp.getElementsByTagName("svg")[0];
+    // Extract the data as SVG text string
+    var svg_xml = (new XMLSerializer).serializeToString(svg);
+
+    // Submit the <FORM> to the server.
+    // The result will be an attachment file to download.
+    var form = document.getElementById("svgform");
+    form['output_format'].value = output_format;
+    form['data'].value = svg_xml.translit();
+    form.submit();
+}
 
 
 

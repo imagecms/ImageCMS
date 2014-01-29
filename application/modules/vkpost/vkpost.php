@@ -33,6 +33,22 @@ class Vkpost extends MY_Controller {
 
     public static function adminAutoload() {
         \CMSFactory\Events::create()->onAdminPageCreate()->setListener('pageCreate');
+        \CMSFactory\Events::create()->onShopProductCreate()->setListener('productCreate');
+    }
+
+    public static function productCreate($data) {
+        /* @var $ci MY_Controller */
+        $ci = &get_instance();
+        $ci->load->module('vkpost');
+        /* @var $data SProducts */
+        $photo = $data['model']->getFirstVariant()->getMainimage();
+        if ($photo != '') {
+            $attachments = $ci->vkpost->combineAttachments(
+                    $ci->vkpost->createPhotoAttachment('./uploads/shop/products/origin/' . $photo), site_url('shop/product/' . $data['model']->getUrl())
+            );
+        }
+
+        $ci->vkpost->wallPostAttachment($attachments, $data['model']->getName());
     }
 
     public static function pageCreate($data) {

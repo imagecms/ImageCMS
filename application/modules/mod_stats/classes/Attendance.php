@@ -1,9 +1,10 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Class Attendance for mod_stats module
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 class Attendance {
 
@@ -25,10 +26,6 @@ class Attendance {
     private $attendanceData;
 
     private function __construct() {
-        ;
-    }
-
-    private function __clone() {
         ;
     }
 
@@ -59,7 +56,12 @@ class Attendance {
             'time_add' => time(),
         );
     }
-
+    
+    /**
+     * Get page type id
+     * @param string $dataType
+     * @return boolean|int
+     */
     private function getTypeId($dataType) {
         switch ($dataType) {
             case 'page':
@@ -76,5 +78,4 @@ class Attendance {
     }
 
 }
-
 ?>
