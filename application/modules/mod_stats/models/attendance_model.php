@@ -1,9 +1,12 @@
 <?php
 
 /**
-
+ * Class Attendance_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
  * @property CI_DB_active_record $db
- * @property DX_Auth $dx_auth
+ * @package ImageCMSModule
  */
 class Attendance_model extends CI_Model {
 
@@ -109,7 +112,7 @@ class Attendance_model extends CI_Model {
     }
 
     /**
-     * 
+     * Get categories attendance
      * @param array $params standart params (date, interval)
      * @param array $comparedCategories 
      */
@@ -142,7 +145,7 @@ class Attendance_model extends CI_Model {
     }
 
     /**
-     * 
+     * Get user history
      * @param int $userId
      */
     public function getUserHistory($userId) {
@@ -215,5 +218,3 @@ class Attendance_model extends CI_Model {
     }
 
 }
-
-?>
