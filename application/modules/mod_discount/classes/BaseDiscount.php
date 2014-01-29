@@ -15,39 +15,97 @@ if (!defined('BASEPATH'))
 class BaseDiscount {
 
     private static $object;
-    private static $objectWithOption;
     private static $totalPrice;
+    private static $reBuild;
     private static $ignoreCart;
     private static $userId;
+
+    /**
+     * check_module_install
+     * @access public
+     * @author DevImageCms
+     * @return boolean
+     * @copyright (c) 2013, ImageCMS
+     */
+    public static function checkModuleInstall() {
+        $ci = &get_instance();
+        return (count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
+    }
+
+    /**
+     * prepareOption
+     * @access public
+     * @author DevImageCms
+     * @param array $option params:
+     * - (float) price: 
+     * - (int) userId: 
+     * - (bool) ignoreCart: ignore cart Data: 
+     * - (bool) reBuild: for redeclare singelton:
+     * @copyright (c) 2013, ImageCMS
+     */
+    public static function prepareOption($option) {
+        if ($option['price'])
+            self::setTotalPrice($option['price']);
+        if ($option['userId'])
+            self::setUserId($option['userId']);
+        if ($option['ignoreCart'])
+            self::setIgnoreCart($option['ignoreCart']);
+        if ($option['reBuild'])
+            self::reBuild();
+    }
+
+    /**
+     * setTotalPrice
+     * @access private
+     * @author DevImageCms
+     * @param (float) price:
+     * @copyright (c) 2013, ImageCMS
+     */
+    private static function setTotalPrice($price = null) {
+        self::$totalPrice = $price;
+    }
+
+    /**
+     * setTotalPrice
+     * @access private
+     * @author DevImageCms
+     * @param (int) userId:
+     * @copyright (c) 2013, ImageCMS
+     */
+    private static function setUserId($userId = null) {
+        self::$userId = $userId;
+    }
+
+    /**
+     * setIgnoreCart
+     * @access private
+     * @author DevImageCms
+     * @param (bool) ignoreCart
+     * @copyright (c) 2013, ImageCMS
+     */
+    private static function setIgnoreCart($ignoreCart = null) {
+        self::$ignoreCart = $ignoreCart;
+    }
+
+    /**
+     * reBuild
+     * @access private
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     */
+    private static function reBuild() {
+        self::$reBuild = 1;
+    }
 
     /**
      * singelton method
      * @return object BaseDiscount
      */
     public static function create() {
-        if (!self::$object) 
+        if (!self::$object || self::$reBuild)
             self::$object = new self;
-        
-        return self::$object;
-    }
 
-    /**
-     * modify singelton method for api
-     * @param array $data params:
-     * - (float) price: 
-     * - (int) userId: 
-     * - (bool) ignoreCart: ignore cart Data: 
-     * - (bool) new: for redeclare singelton: 
-     * @return object BaseDiscount whith option
-     */
-    public static function createWithOption($option = array()) {
-        if (!self::$objectWithOption || $option['new']) {
-            self::$totalPrice = $option['price'];
-            self::$userId = $option['userId'];
-            self::$ignoreCart = $option['ignoreCart'];
-            self::$objectWithOption = new self;
-        }
-        return self::$objectWithOption;
+        return self::$object;
     }
 
     /**
@@ -60,7 +118,7 @@ class BaseDiscount {
      */
     private function __construct() {
         $this->ci = & get_instance();
-        if ($this->checkModuleInstall()) {
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
             require_once __DIR__ . '/../models/discount_model_front.php';
             $this->ci->discount_model_front = new \discount_model_front;
             $lang = new \MY_Lang();
@@ -75,9 +133,9 @@ class BaseDiscount {
             }
             if (self::$ignoreCart)
                 $this->cartData = $this->getCartData();
-            $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($id);
+            
+            $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($this->userId);
             $this->totalPrice = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : $this->totalPrice = self::$totalPrice;
-
             $this->allDiscount = $this->getAllDiscount();
             $this->discountType = $this->collectType($this->allDiscount);
             $this->discountAllOrder = $this->getAllOrderDiscountNotRegister();
@@ -91,18 +149,6 @@ class BaseDiscount {
             $this->discountMax = $this->getMaxDiscount(array($this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder), $this->totalPrice);
             $this->discountNoProductVal = $this->getDiscountValue($this->discountMax, $this->totalPrice);
         }
-    }
-
-    /**
-     * check_module_install
-     * @access public
-     * @author DevImageCms
-     * @return boolean
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function checkModuleInstall() {
-
-        return (count($this->ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
     }
 
     /**
