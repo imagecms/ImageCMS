@@ -407,8 +407,7 @@ function showHidePart(el, absolute, time, btnPlace) {
             sumHeight += $(this).outerHeight(true);
         })
         $this.find('*').css('max-height', '');
-        console.log(sumHeight)
-        console.log($thisH)
+
         if (sumHeight > $thisH) {
             $this.css({
                 'max-height': 'none',
