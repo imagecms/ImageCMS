@@ -1,9 +1,12 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Class AdminAddController for mod_stats module
+ * @uses ControllerBase
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @property stats_model $stats_model
+ * @package ImageCMSModule
  */
 class AdminAddController extends ControllerBase {
 
