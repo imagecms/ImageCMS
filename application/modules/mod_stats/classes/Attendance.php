@@ -1,9 +1,10 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Class Attendance for mod_stats module
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 class Attendance {
 
@@ -28,10 +29,6 @@ class Attendance {
         ;
     }
 
-    private function __clone() {
-        ;
-    }
-
     public static function getInstance() {
         if (is_null(self::$instance)) {
             self::$instance = new Attendance;
@@ -48,19 +45,23 @@ class Attendance {
      * 
      * @param string $url
      */
-    public function add($coreData) {
+    public function add($coreData, $userId) {
         if (FALSE == $typeId = $this->getTypeId($coreData['data_type'])) {
             return;
         }
-        $userId = CI::$APP->dx_auth->get_user_id();
         $this->attendanceData = array(
-            'id_user' => $userId == FALSE ? 0 : $userId,
+            'id_user' => $userId,
             'type_id' => $typeId,
             'id_entity' => $coreData['id'],
             'time_add' => time(),
         );
     }
-
+    
+    /**
+     * Get page type id
+     * @param string $dataType
+     * @return boolean|int
+     */
     private function getTypeId($dataType) {
         switch ($dataType) {
             case 'page':
@@ -77,5 +78,4 @@ class Attendance {
     }
 
 }
-
 ?>

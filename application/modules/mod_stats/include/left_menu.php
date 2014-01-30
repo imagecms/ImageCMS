@@ -6,9 +6,14 @@ return array(
         'controller' => 'orders',
         'items' => array(
             array(
-                'name' => lang('Count', 'mod_stats'),
+                'name' => lang('Sum and count', 'mod_stats'),
                 'controller' => 'orders',
                 'action' => 'count',
+            ),
+            array(
+                'name' => lang('Statuses and products', 'mod_stats'),
+                'controller' => 'orders',
+                'action' => 'statuses',
             ),
             array(
                 'name' => lang('By users', 'mod_stats'),
@@ -32,7 +37,7 @@ return array(
                 'action' => 'register',
             ),
             array(
-                'name' => lang('Common attendance', 'mod_stats'),
+                'name' => lang('Attendance', 'mod_stats'),
                 'controller' => 'users',
                 'action' => 'attendance',
             ),
@@ -64,9 +69,9 @@ return array(
         'controller' => 'categories',
         'items' => array(
             array(
-                'name' => lang('Most visited', 'mod_stats'),
+                'name' => lang('Categories attendance', 'mod_stats'),
                 'controller' => 'categories',
-                'action' => 'mostVisited',
+                'action' => 'attendance',
             ),
             array(
                 'name' => lang('Brands in category', 'mod_stats'),

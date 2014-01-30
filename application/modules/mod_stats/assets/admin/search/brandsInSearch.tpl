@@ -11,16 +11,18 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
-        <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block_for_search')}
+        {include_tpl('../include/left_block')}
+        <div class="clearfix span9" id="chartArea">
+            {include_tpl('../include/top_form_search')}
+            <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
+            <button  class="btn btn-small btn-primary" id="saveAsPng">
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
             {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
-                <svg class="mypiechart pieChartStats" data-from="search/getBrandsInSearchData" style="height: 800px;"></svg>
+                <svg class="mypiechart pieChartStats" data-from="search/getBrandsInSearchData" style="height: 100%;"></svg>
             {/if}
             {if $_GET['charType'] == 'bar'}
                 <svg class="mypiechart barChartStats" data-from="search/getBrandsInSearchData" style="height: 600px;"></svg>
             {/if}
-
         </div>
     </div>
 </section>
