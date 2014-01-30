@@ -1008,7 +1008,7 @@ $(document).ready(function() {
 
         // go furter if one image is selected
         var selectedImageUrl = $("span.selected_image img").attr("src");
-        $("#" + trId + " input.changeImage").val(selectedImageUrl);
+        $("#" + trId + " input.inetImage").val(selectedImageUrl);
         // adding thumbnail
         var img = document.createElement("img");
         img.src = selectedImageUrl;
