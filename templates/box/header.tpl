@@ -11,14 +11,14 @@
             </a>
         {/if}
         <div class="left-content-header">
-            <div class="header-left-content-header">
+            <div class="header-left-content-header t-a_j">
                 <!--                Start. contacts block-->
-                <div class="phones-header f_l">
+                <div class="phones-header">
                     <div class="f-s_0 d_i-b">
                         <span class="icon_phone_header"></span>
                         <span class="phone">
                             <span class="phone-number">{echo siteinfo('siteinfo_mainphone')}</span>
-
+                            <span class="phone-number">{echo siteinfo('addPhone')}</span>
                         </span>
                     </div>
                     <div class="btn-order-call">
@@ -29,13 +29,15 @@
                     </div>
                 </div>
                 <!--End. Contacts block-->
-                <div class="f_r">
-                    <nav>
+                <div class="d_i-b">
+                    <nav class="d_i-b v-a_m">
                         <ul class="nav">
                             {load_menu('top_menu')}
                         </ul>
                     </nav>
-                    {include_shop_tpl('auth_data')}
+                    <div class="d_i-b v-a_m">
+                        {include_shop_tpl('auth_data')}
+                    </div>
                 </div>
             </div>
             <div class="frame-search-cleaner">
