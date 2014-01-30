@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
+        {include_tpl('../include/left_block')}
         <div class="clearfix span9">
             <p id="online_deprecated_block" style="display: none; padding: 10px; text-align: center; color: #800">
                 {lang('Data may be deprecated. Please refresh the page.','mod_stats')}

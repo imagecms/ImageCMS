@@ -3,12 +3,6 @@
 </script>
 <div class="m-t_20">
     <form method="get" id="productFilterForm">
-
-        <div class="pull-right">
-            <button class="btn btn-small m_t_-10" type="button" id="productFilterButton">
-                <i class="icon-refresh"></i> {lang('Update','mod_stats')}
-            </button>
-        </div>
         <table class="table table-striped table-bordered table-hover table-condensed products_table">
             <thead>
                 <tr style="cursor: pointer;">
@@ -79,12 +73,13 @@
                             {/foreach}
                         </select>
                     </td>
-                    <td>
-                        <!--<input type="text" name="number" value="{$_GET.number}"/>-->
+                    <td colspan="2" style="background: white;">
+                        
+                        <button class="btn btn-small btn-primary" type="button" id="productFilterButton" style="margin:4px; width: 170px;">
+                            <i class="icon-refresh"></i> {lang('Update','mod_stats')}
+                        </button>
                     </td>
-                    <td>
-                        <!--<input type="text" name="number" value="{$_GET.number}"/>-->
-                    </td>
+
 
                 </tr>
             <input type="hidden" name="orderMethod" value="{$_GET.orderMethod}"/>
