@@ -177,8 +177,8 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 /*/adding selectors*/
 
 /*icons*/
-.icon_reg{width: 18px;height: 14px;}
-.icon_enter{width: 12px;height: 15px;}
+.icon_reg, .icon_enter{display: none;}
+
 .icon_skype{width: 14px;height: 14px;}
 .icon_mail{width: 15px;height: 10px;}
 .icon_search{width: 16px;height: 15px;}
@@ -186,7 +186,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .icon_cleaner_buy{width: 16px;height: 15px;}
 /*.btn-buy-p .icon_cleaner_buy{width: 22px;height: 22px;top: 5px;}*/
 .icon_time{width: 12px;height: 12px;top: 1px;}
-.icon_phone_header{width: 13px;height: 14px;}
+.icon_phone_header{display: none;}
 .icon_phone_footer{width: 10px;height: 17px;top: 5px;}
 .icon_phone_product{width: 10px;height: 17px;top: 5px;width: 13px;height: 14px;}
 .icon_exit{width: 18px;height: 18px;top: 4px;}
@@ -286,13 +286,13 @@ p {margin-bottom: 10px;line-height: 18px;}
 /*header*/
 .fon-header{position: relative;z-index: 2;}
 
-.content-header{padding-bottom: 15px;}
-.left-content-header{margin-left: 280px;padding-top: 17px;}
+.content-header{}
+.left-content-header{margin-left: 227px;padding-top: 0  ;}
 .header-left-content-header{margin-bottom: 15px;}
 .phones-header{margin-right: 25px;display: inline-block;}
 
-.frame-search-form{}
-.frame-cleaner{width: 245px;float: right;text-align: center;}
+.frame-search-form{float: left;width: 577px;}
+.frame-cleaner{width: 158px;float: right;text-align: center;}
 .frame-search-input{margin-right: 54px;display: block;}
 input.input-search{height: 33px;}
 .drop-search{width: 100%;margin-top: 6px;padding: 0 5px;margin-left: -5px;top: 100%;z-index: 1000;}
@@ -1225,3 +1225,6 @@ img.cloned{max-width: none;max-height: none;}
 
 .main-wrap{max-width: 1054px;padding: 0;overflow: hidden;min-height: 100%;}
 .main-body .main-wrap{padding-bottom: 20000px;margin-bottom: -20000px;}
+.sub-menu{position: absolute;display: none;}
+
+.drop-noinherit > li{display: block;}
