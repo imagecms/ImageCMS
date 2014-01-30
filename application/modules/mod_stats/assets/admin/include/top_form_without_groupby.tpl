@@ -2,7 +2,6 @@
     var currency = '{$CS}'
 </script>
 <div class="btn-group  m-t_20 pull-left">
-    <a class="btn btn-small intervalButton" data-group="day">{lang('Last day','mod_stats')}</a>
     <a class="btn btn-small intervalButton" data-group="month">{lang('Last month','mod_stats')}</a>
     <a class="btn btn-small intervalButton" data-group="year">{lang('Last year','mod_stats')}</a>       
 </div>
@@ -24,10 +23,9 @@
         </span>
 
         <div class="pull-right">
-            <button type="submit" class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">
+            <button type="submit" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButton">
                 <i class="icon-refresh"></i> {lang('Update','mod_stats')}
             </button>
         </div>
     </form>
 </div>
-<hr class="m-t_5" />

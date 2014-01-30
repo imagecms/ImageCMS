@@ -11,9 +11,9 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
+        {include_tpl('../include/left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block_for_orders_users')}
+            {include_tpl('../include/top_form_orders_users')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
             {if  $_GET['view_type'] == 'table'}
                 <div id="user_information">

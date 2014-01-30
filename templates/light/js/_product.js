@@ -95,7 +95,7 @@ Product = {
         fancyFrameInPH.parent().addClass('p_r');
         fancyFrameInPH.append('<div class="preloader"></div>');
         $('<img src="' + href+'">').one('load').each(function() {
-            drop.find('.drop-content .inside-padd').empty().append($(this).css('visibility', 'visible').hide().fadeIn()).prepend('<span class="helper"></span>');
+            drop.find('.drop-content .inside-padd').empty().append($(this).css('visibility', 'visible')).prepend('<span class="helper"></span>');
 
             var carGal = drop.find('.content-carousel');
 

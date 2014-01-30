@@ -71,7 +71,7 @@ return array(
             array(
                 'name' => lang('Categories attendance', 'mod_stats'),
                 'controller' => 'categories',
-                'action' => 'getCategoriesAttendanceData',
+                'action' => 'attendance',
             ),
             array(
                 'name' => lang('Brands in category', 'mod_stats'),
