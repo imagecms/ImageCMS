@@ -70,10 +70,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetError().
      */
     public function testGetError() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertEmpty($this->object->getError());
     }
 
     /**
@@ -81,10 +78,35 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testAddProduct().
      */
     public function testAddProduct() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        $data = array(
+            'product_name' => 'Name',
+            'active' => 'Active',
+            'variant_name' => 'variantsName',
+            'price_in_main' => 10,
+            'currency' => 2,
+            'number' => 'variantsNumber',
+            'stock' => 1,
+            'brand_id' => '',
+            'category_id' => 36,
+            'additional_categories_ids' => 'Categories',
+            'short_description' => 'ShortDescription',
+            'full_description' => 'FullDescription',
+            'old_price' => 'OldPrice',
+            'tpl' => 'tpl',
+            'url' => 'Url',
+            'meta_title' => 'MetaTitle',
+            'meta_description' => 'MetaDescription',
+            'meta_keywords' => 'MetaKeywords',
+            'related_products' => 'RelatedProducts',
+            'enable_comments' => 'EnableComments',
+            'created' => 'Created' ? strtotime('Created') : '',
+            'updated' => time(),
         );
+        $model = $this->object->addProduct($data);
+        $this->assertEmpty($this->object->getError());
+
+        $this->object->deleteProduct($model->getId());
+        $this->assertEmpty($this->object->getError());
     }
 
     /**
@@ -92,10 +114,38 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testAddProductI18N().
      */
     public function testAddProductI18N() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        $data = array(
+            'product_name' => 'Name',
+            'active' => 'Active',
+            'variant_name' => 'variantsName',
+            'price_in_main' => 10,
+            'currency' => 2,
+            'number' => 'variantsNumber',
+            'stock' => 1,
+            'brand_id' => '',
+            'category_id' => 36,
+            'additional_categories_ids' => 'Categories',
+            'short_description' => 'ShortDescription',
+            'full_description' => 'FullDescription',
+            'old_price' => 'OldPrice',
+            'tpl' => 'tpl',
+            'url' => 'Url',
+            'meta_title' => 'MetaTitle',
+            'meta_description' => 'MetaDescription',
+            'meta_keywords' => 'MetaKeywords',
+            'related_products' => 'RelatedProducts',
+            'enable_comments' => 'EnableComments',
+            'created' => 'Created' ? strtotime('Created') : '',
+            'updated' => time(),
         );
+        $model = $this->object->addProduct($data);
+        $this->assertEmpty($this->object->getError());
+
+        $this->object->addProductI18N($model->getId(), $data, 'ua');
+        $this->assertEmpty($this->object->getError());
+
+        $this->object->deleteProduct($model->getId());
+        $this->assertEmpty($this->object->getError());
     }
 
     /**
@@ -103,10 +153,38 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testAddVariant().
      */
     public function testAddVariant() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        $data = array(
+            'product_name' => 'Name',
+            'active' => 'Active',
+            'variant_name' => 'variantsName',
+            'price_in_main' => 10,
+            'currency' => 2,
+            'number' => 'variantsNumber',
+            'stock' => 1,
+            'brand_id' => '',
+            'category_id' => 36,
+            'additional_categories_ids' => 'Categories',
+            'short_description' => 'ShortDescription',
+            'full_description' => 'FullDescription',
+            'old_price' => 'OldPrice',
+            'tpl' => 'tpl',
+            'url' => 'Url',
+            'meta_title' => 'MetaTitle',
+            'meta_description' => 'MetaDescription',
+            'meta_keywords' => 'MetaKeywords',
+            'related_products' => 'RelatedProducts',
+            'enable_comments' => 'EnableComments',
+            'created' => 'Created' ? strtotime('Created') : '',
+            'updated' => time(),
         );
+        $model = $this->object->addProduct($data);
+        $this->assertEmpty($this->object->getError());
+
+        $this->object->addVariant($model->getId(), $data, 'ru');
+        $this->assertEmpty($this->object->getError());
+
+        $this->object->deleteProduct($model->getId());
+        $this->assertEmpty($this->object->getError());
     }
 
     /**
@@ -114,10 +192,38 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testAddVariantI18N().
      */
     public function testAddVariantI18N() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        $data = array(
+            'product_name' => 'Name',
+            'active' => 'Active',
+            'variant_name' => 'variantsName',
+            'price_in_main' => 10,
+            'currency' => 2,
+            'number' => 'variantsNumber',
+            'stock' => 1,
+            'brand_id' => '',
+            'category_id' => 36,
+            'additional_categories_ids' => 'Categories',
+            'short_description' => 'ShortDescription',
+            'full_description' => 'FullDescription',
+            'old_price' => 'OldPrice',
+            'tpl' => 'tpl',
+            'url' => 'Url',
+            'meta_title' => 'MetaTitle',
+            'meta_description' => 'MetaDescription',
+            'meta_keywords' => 'MetaKeywords',
+            'related_products' => 'RelatedProducts',
+            'enable_comments' => 'EnableComments',
+            'created' => 'Created' ? strtotime('Created') : '',
+            'updated' => time(),
         );
+        $model = $this->object->addProduct($data);
+        $this->assertEmpty($this->object->getError());
+
+        $this->object->addVariantI18N($model->getId(), $data, 'ua');
+        $this->assertEmpty($this->object->getError());
+
+        $this->object->deleteProduct($model->getId());
+        $this->assertEmpty($this->object->getError());
     }
 
     /**
