@@ -628,31 +628,6 @@ function decorElemntItemProduct(el) {
 }
 
 function drawIcons(selIcons) {
-    selIcons.each(function() {
-        var $this = $(this),
-        $thisW = $this.width(),
-        $thisH = $this.height(),
-        $thisT = parseInt($this.css('margin-top')),
-        $thisL = parseInt($this.css('margin-left')),
-        className = $this.attr('class').match(/(icon_)/).input.split(' ')[0];
-        if (!$.existsN($this.children('svg'))) {
-            if (icons[className] != undefined) {
-                var paper = Raphael($this[0], $thisW, $thisH),
-                s = paper.path(icons[className]).attr({
-                    fill: $this.css('color'),
-                    stroke: "none"
-                });
-                var k = ($thisW - 1) / s.getBBox().width;
-                s.scale(k, k);
-                s.translate(-$thisL, -$thisT)
-                $this.css({
-                    'margin-top': 0,
-                    'margin-left': 0,
-                    'position': 'relative'
-                });
-            }
-        }
-    })
 }
 
 function itemUserToolbar() {
