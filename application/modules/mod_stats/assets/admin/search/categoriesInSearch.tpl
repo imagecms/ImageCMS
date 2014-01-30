@@ -12,9 +12,11 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
+        <div class="clearfix span9" id="chartArea">
             {include_tpl('../include/top_form_search')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
+            <button  class="btn btn-small btn-primary" id="saveAsPng">
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
             {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
                 <svg class="mypiechart pieChartStats" data-from="search/getCategoriesInSearchData" style="height: 100%;"></svg>
             {/if}

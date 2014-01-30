@@ -1,9 +1,11 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Class CategoriesController for mod_stats module
+ * @uses ControllerBase
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 class CategoriesController extends ControllerBase {
 
@@ -30,7 +32,10 @@ class CategoriesController extends ControllerBase {
                 ->setData('categories', $firstLevelCategories)
                 ->renderAdmin('categories/brandsInCategories');
     }
-
+    
+    /**
+     * Render categories attendance template with data
+     */
     public function attendance() {
         $this->controller->load->model('categories_model');
         $categories = $this->controller->categories_model->getCategoriesList();
@@ -38,7 +43,10 @@ class CategoriesController extends ControllerBase {
         $data = array_merge(array('categories' => $categories), $this->params);
         $this->renderAdmin('attendance', $data);
     }
-
+    
+    /**
+     * Get data for categories attendance chart
+     */
     public function getCategoriesAttendanceData() {
         $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('attendance_model');
@@ -50,7 +58,7 @@ class CategoriesController extends ControllerBase {
         foreach ($categoriesLabels as $categoryData) {
             $categoriesIds[$categoryData['id']] = array($categoryData['id']);
         }
-
+        
         if ($this->params['includeChilds'] == TRUE) {
             $productsModel = $this->controller->load->model('products_model');
             foreach ($categoriesIds as $categoryId => $categoryIdCopy) {
@@ -66,7 +74,7 @@ class CategoriesController extends ControllerBase {
         foreach ($categoriesLabels as $categoryData) {
             $labels[$categoryData['id']] = $categoryData['name'];
         }
-
+        
         $categoriesAttendance = array();
         foreach ($categories as $categoryId => $attendanceData) {
             $oneCategoryAttendanceValues = array();
@@ -104,4 +112,3 @@ class CategoriesController extends ControllerBase {
 
 }
 
-?>
