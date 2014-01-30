@@ -566,7 +566,7 @@ input.input-search{height: 33px;}
 
 .jspContainer{overflow: hidden;position: relative;}
 .jspPane{position: absolute;}
-.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;background: red;}
+.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;}
 .jspHorizontalBar{position: absolute;bottom: 0;left: 0;width: 100%;}
 .jspHorizontalBar, .scrollNSP.jScrollPane > div{height: 16px;}
 .jspVerticalBar *, .jspHorizontalBar *{margin: 0;padding: 0;}
