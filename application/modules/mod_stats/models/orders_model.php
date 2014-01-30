@@ -1,9 +1,12 @@
 <?php
 
 /**
-
+ * Class Orders_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
  * @property CI_DB_active_record $db
- * @property DX_Auth $dx_auth
+ * @package ImageCMSModule
  */
 class Orders_model extends CI_Model {
 
@@ -98,8 +101,17 @@ class Orders_model extends CI_Model {
     }
 
     /**
-     * 
+     * Get users info 
      * @return boolean
+     *  - orders_count
+     *  - paid
+     *  - price_sum
+     *  - products_count
+     *  - quantity
+     *  - delivered
+     *  - orders_ids
+     *  - username
+     *  - user_id
      */
     public function getUsers(array $params_ = array()) {
         $params = array(
@@ -161,4 +173,3 @@ class Orders_model extends CI_Model {
 
 }
 
-?>

@@ -1,8 +1,12 @@
 <?php
 
 /**
+ * Class Stats_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
  * @property CI_DB_active_record $db
- * @property DX_Auth $dx_auth
+ * @package ImageCMSModule
  */
 class Stats_model extends CI_Model {
 

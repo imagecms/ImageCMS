@@ -90,7 +90,7 @@ body.isScroll{overflow: hidden;margin-right: 17px;}
 body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
-body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el{font-size: 13px;}
+body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li{font-size: 13px;}
 input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background-color: transparent;border: none;}
 input[type="button"], input[type="submit"], input[type="reset"], button{text-align: center;}
 label, input[type="button"], input[type="submit"], input[type="reset"], button{padding: 0;cursor: pointer;}
@@ -566,7 +566,7 @@ input.input-search{height: 33px;}
 
 .jspContainer{overflow: hidden;position: relative;}
 .jspPane{position: absolute;}
-.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;background: red;}
+.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;}
 .jspHorizontalBar{position: absolute;bottom: 0;left: 0;width: 100%;}
 .jspHorizontalBar, .scrollNSP.jScrollPane > div{height: 16px;}
 .jspVerticalBar *, .jspHorizontalBar *{margin: 0;padding: 0;}
