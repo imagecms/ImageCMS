@@ -1967,7 +1967,9 @@ function getCookie(c_name)
                 set = el.data('drp');
 
             var elSet = el.data(),
-            source = elSet.source || el.attr('href');
+            source = methods._checkProp(elSet, set, 'source') || el.attr('href'),
+            datas = methods._checkProp(elSet, set, 'datas');
+            
             var rel = '';
             if (el.get(0).rel != undefined)
                 rel = el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, '');
@@ -1975,7 +1977,7 @@ function getCookie(c_name)
             if (elSet.drop != undefined) {
                 $.ajax({
                     type: "post",
-                    data: elSet.datas,
+                    data: datas,
                     url: source,
                     beforeSend: function() {
                         if (!methods._checkProp(elSet, set, 'moreOne'))
@@ -2027,6 +2029,7 @@ function getCookie(c_name)
                     $.ajax({
                         type: "post",
                         url: source,
+                        data: datas,
                         dataType: 'html',
                         success: function(data) {
                             _update(data);
