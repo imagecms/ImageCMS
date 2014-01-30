@@ -93,7 +93,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'stock' => 1,
             'brand_id' => '',
             'category_id' => 36,
-            'additional_categories_ids' => 'Categories',
+            'additional_categories_ids' => array(1, 2),
             'short_description' => 'ShortDescription',
             'full_description' => 'FullDescription',
             'old_price' => 'OldPrice',
@@ -108,6 +108,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'updated' => time(),
         );
         $model = $this->object->addProduct($data);
+
         $this->assertEmpty($this->object->getError());
 
         $this->object->deleteProduct($model->getId());
@@ -129,7 +130,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'stock' => 1,
             'brand_id' => '',
             'category_id' => 36,
-            'additional_categories_ids' => 'Categories',
+            'additional_categories_ids' => array(1, 2),
             'short_description' => 'ShortDescription',
             'full_description' => 'FullDescription',
             'old_price' => 'OldPrice',
@@ -168,7 +169,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'stock' => 1,
             'brand_id' => '',
             'category_id' => 36,
-            'additional_categories_ids' => 'Categories',
+            'additional_categories_ids' => array(1, 2),
             'short_description' => 'ShortDescription',
             'full_description' => 'FullDescription',
             'old_price' => 'OldPrice',
@@ -207,7 +208,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'stock' => 1,
             'brand_id' => '',
             'category_id' => 36,
-            'additional_categories_ids' => 'Categories',
+            'additional_categories_ids' => array(1, 2),
             'short_description' => 'ShortDescription',
             'full_description' => 'FullDescription',
             'old_price' => 'OldPrice',
@@ -236,7 +237,6 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateProduct().
      */
     public function testUpdateProduct() {
-//        var_dumps($this->testDbProduct);
         if ($this->testDbProduct) {
 
             $this->assertFalse($this->object->updateProduct());
@@ -394,8 +394,8 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
         }
 
-//        $result = $this->object->deleteProduct($this->testDbProduct['id']);
-//        $this->assertTrue($result);
+        $result = $this->object->deleteProduct($this->testDbProduct['id']);
+        $this->assertTrue($result);
     }
 
     /**
@@ -524,10 +524,19 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testSetProductAdditionalCategories().
      */
     public function testSetProductAdditionalCategories() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $model = SProductsQuery::create()->findOneById($this->testDbProduct['id']);
+
+        $result = $this->object->setProductAdditionalCategories($model);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified categories array'));
+        }
+
+        $result = $this->object->setProductAdditionalCategories($model, $this->testData);
+
+        $this->assertTrue($result);
     }
 
     /**
@@ -535,10 +544,32 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testSaveProductAdditionalImage().
      */
     public function testSaveProductAdditionalImage() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->saveProductAdditionalImage($this->testDbProduct['id'], 'imageName', 5);
+        $this->assertTrue($result);
+
+        $result = $this->object->saveProductAdditionalImage();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
+
+        $result = $this->object->saveProductAdditionalImage($this->testDbProduct['id']);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified image name'));
+        }
+
+        $result = $this->object->saveProductAdditionalImage($this->testDbProduct['id'], 'imageName');
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified image position'));
+        }
     }
 
 }
