@@ -16,6 +16,8 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
     protected $testData;
     protected $testDbProductI18N;
     protected $testDbProductVariant;
+    protected $testDBCategory;
+    protected $testDBProperty;
 
     public function getFirstProduct() {
         
@@ -31,6 +33,9 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
         $this->testDbProduct = $this->ci->db->limit(1)->get('shop_products')->row_array();
         $this->testDbProductI18N = $this->ci->db->limit(1)->get('shop_products_i18n')->row_array();
         $this->testDbProductVariant = $this->ci->db->where('product_id', $this->testDbProduct['id'])->limit(1)->get('shop_product_variants')->row_array();
+        $this->testDBCategory = $this->ci->db->limit(1)->get('shop_category')->row_array();
+        $this->testDBProperty = $this->ci->db->limit(1)->get(' shop_product_properties')->row_array();
+
         $this->testData = array(
             'product_name' => 'testName',
             'active' => 1,
@@ -452,10 +457,30 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetProductProperties().
      */
     public function testGetProductProperties() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->testData['category_id'] = $this->testDBCategory['id'];
+        $this->object->updateProduct($this->testDbProduct['id'], $this->testData);
+
+        $result = $this->object->getProductProperties($this->testDbProduct['id']);
+
+        $this->assertTrue(is_array($result));
+
+        $this->assertTrue(count($result) > 0);
+
+        $result = $this->object->getProductProperties();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
+
+        $result = $this->object->getProductProperties(11111111);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Product that you specified does not exist'));
+        }
     }
 
     /**
@@ -463,10 +488,17 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testSetProductPropertyValue().
      */
     public function testSetProductPropertyValue() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->setProductPropertyValue($this->testDbProduct['id'], $this->testDBProperty['id'], '22');
+
+        $this->assertTrue($result);
+
+        $result = $this->object->setProductPropertyValue();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Not valid arguments passed to the method'));
+        }
     }
 
     /**
@@ -474,10 +506,17 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testDeleteProductPropertyValue().
      */
     public function testDeleteProductPropertyValue() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->deleteProductPropertyValue($this->testDbProduct['id'], $this->testDBProperty['id']);
+
+        $this->assertTrue($result);
+
+        $result = $this->object->deleteProductPropertyValue();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Not valid arguments passed to the method'));
+        }
     }
 
     /**
