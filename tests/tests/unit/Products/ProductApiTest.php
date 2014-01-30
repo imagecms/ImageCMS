@@ -11,6 +11,17 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @var ProductApi
      */
     protected $object;
+    protected $testDbProduct;
+    protected $ci;
+    protected $testData;
+    protected $testDbProductI18N;
+    protected $testDbProductVariant;
+    protected $testDBCategory;
+    protected $testDBProperty;
+
+    public function getFirstProduct() {
+        
+    }
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -18,6 +29,37 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = \Products\ProductApi::getInstance();
+        $this->ci = & get_instance();
+        $this->testDbProduct = $this->ci->db->limit(1)->get('shop_products')->row_array();
+        $this->testDbProductI18N = $this->ci->db->limit(1)->get('shop_products_i18n')->row_array();
+        $this->testDbProductVariant = $this->ci->db->where('product_id', $this->testDbProduct['id'])->limit(1)->get('shop_product_variants')->row_array();
+        $this->testDBCategory = $this->ci->db->limit(1)->get('shop_category')->row_array();
+        $this->testDBProperty = $this->ci->db->limit(1)->get(' shop_product_properties')->row_array();
+
+        $this->testData = array(
+            'product_name' => 'testName',
+            'active' => 1,
+            'variant_name' => 'testVariantName',
+            'price_in_main' => 1,
+            'currency' => 1,
+            'number' => 1,
+            'stock' => 1,
+            'brand_id' => 1,
+            'category_id' => 1,
+            'additional_categories_ids' => array(1, 2),
+            'short_description' => 'testShortDescription',
+            'full_description' => 'testFullDescription',
+            'old_price' => 1,
+            'tpl' => 'testTpl',
+            'url' => 'testUrl',
+            'meta_title' => 'testMetaTitle',
+            'meta_keywords' => 'testMetaKeywords',
+            'meta_description' => 'testMetaDescription',
+            'enable_comments' => 'testEnableComments',
+            'related_products' => '96,98',
+            'created' => time(),
+            'updated' => time()
+        );
     }
 
     /**
@@ -51,7 +93,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'stock' => 1,
             'brand_id' => '',
             'category_id' => 36,
-            'additional_categories_ids' => 'Categories',
+            'additional_categories_ids' => array(1, 2),
             'short_description' => 'ShortDescription',
             'full_description' => 'FullDescription',
             'old_price' => 'OldPrice',
@@ -66,6 +108,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'updated' => time(),
         );
         $model = $this->object->addProduct($data);
+
         $this->assertEmpty($this->object->getError());
 
         $this->object->deleteProduct($model->getId());
@@ -87,7 +130,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'stock' => 1,
             'brand_id' => '',
             'category_id' => 36,
-            'additional_categories_ids' => 'Categories',
+            'additional_categories_ids' => array(1, 2),
             'short_description' => 'ShortDescription',
             'full_description' => 'FullDescription',
             'old_price' => 'OldPrice',
@@ -126,7 +169,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'stock' => 1,
             'brand_id' => '',
             'category_id' => 36,
-            'additional_categories_ids' => 'Categories',
+            'additional_categories_ids' => array(1, 2),
             'short_description' => 'ShortDescription',
             'full_description' => 'FullDescription',
             'old_price' => 'OldPrice',
@@ -165,7 +208,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'stock' => 1,
             'brand_id' => '',
             'category_id' => 36,
-            'additional_categories_ids' => 'Categories',
+            'additional_categories_ids' => array(1, 2),
             'short_description' => 'ShortDescription',
             'full_description' => 'FullDescription',
             'old_price' => 'OldPrice',
@@ -194,10 +237,32 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateProduct().
      */
     public function testUpdateProduct() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        if ($this->testDbProduct) {
+
+            $this->assertFalse($this->object->updateProduct());
+
+            if (!$this->object->updateProduct()) {
+                $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+            }
+
+            $this->assertFalse($this->object->updateProduct($this->testDbProduct['id']));
+
+            if (!$this->object->updateProduct($this->testDbProduct['id'])) {
+                $this->assertTrue($this->object->getError() === lang('You did not specified data array'));
+            }
+
+            $result = $this->object->updateProduct($this->testDbProduct['id'], $this->testData, 'ru');
+
+            $this->assertTrue($result instanceof \SProducts);
+
+            $this->assertEquals($this->testDbProduct['id'], $result->getId());
+
+            $this->assertEquals($this->testData['product_name'], $result->getName());
+
+            $this->assertEquals($this->testData['tpl'], $result->getTpl());
+        } else {
+            $this->markTestSkipped('No products in db');
+        }
     }
 
     /**
@@ -205,10 +270,37 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateProductI18N().
      */
     public function testUpdateProductI18N() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->updateProductI18N();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
+
+        $result = $this->object->updateProductI18N($this->testDbProductI18N['id']);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified data array'));
+        }
+
+        $result = $this->object->updateProductI18N($this->testDbProductI18N['id'], 'rest data');
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Second parameter $data must be array'));
+        }
+
+        $result = $this->object->updateProductI18N($this->testDbProductI18N['id'], $this->testData);
+
+        $this->assertTrue($result instanceof \SProductsI18n);
+
+        $this->assertEquals($this->testDbProductI18N['id'], $result->getId());
+
+        $this->assertEquals($this->testData['product_name'], $result->getName());
     }
 
     /**
@@ -216,10 +308,39 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateVariant().
      */
     public function testUpdateVariant() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->updateVariant();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
+
+        $result = $this->object->updateVariant($this->testDbProduct['id']);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified data array'));
+        }
+
+        $result = $this->object->updateVariant($this->testDbProduct['id'], 'rest data');
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Second parameter $data must be array'));
+        }
+
+        $result = $this->object->updateVariant($this->testDbProduct['id'], $this->testData);
+
+        $this->assertTrue($result instanceof \SProductVariants);
+
+        $this->assertEquals($this->testDbProduct['id'], $result->getProductId());
+
+        $this->assertEquals($this->testDbProductVariant['id'], $result->getId());
+
+        $this->assertEquals($this->testData['number'], $result->getNumber());
     }
 
     /**
@@ -227,10 +348,37 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateVariantI18N().
      */
     public function testUpdateVariantI18N() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->updateVariantI18N();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product variant id'));
+        }
+
+        $result = $this->object->updateVariantI18N($this->testDbProductVariant['id']);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified data array'));
+        }
+
+        $result = $this->object->updateVariantI18N($this->testDbProductVariant['id'], 'rest data');
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Second parameter $data must be array'));
+        }
+
+        $result = $this->object->updateVariantI18N($this->testDbProductVariant['id'], $this->testData);
+
+        $this->assertTrue($result instanceof \SProductVariantsI18n);
+
+        $this->assertEquals($this->testDbProductVariant['id'], $result->getId());
+
+        $this->assertEquals($this->testData['variant_name'], $result->getName());
     }
 
     /**
@@ -238,10 +386,16 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testDeleteProduct().
      */
     public function testDeleteProduct() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->deleteProduct();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
+
+        $result = $this->object->deleteProduct($this->testDbProduct['id']);
+        $this->assertTrue($result);
     }
 
     /**
@@ -249,10 +403,17 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testDeleteProductKits().
      */
     public function testDeleteProductKits() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->deleteProductKits($this->testDbProduct['id']);
+
+        $this->assertTrue($result);
+
+        $result = $this->object->deleteProductKits();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
     }
 
     /**
@@ -260,10 +421,17 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testDeleteProductOrdes().
      */
     public function testDeleteProductOrdes() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->deleteProductOrdes($this->testDbProduct['id']);
+
+        $this->assertTrue($result);
+
+        $result = $this->object->deleteProductOrdes();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
     }
 
     /**
@@ -271,21 +439,17 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testDeleteProductNotifications().
      */
     public function testDeleteProductNotifications() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
+        $result = $this->object->deleteProductNotifications($this->testDbProduct['id']);
 
-    /**
-     * @covers ProductApi::deleteProductImages
-     * @todo   Implement testDeleteProductImages().
-     */
-    public function testDeleteProductImages() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($result);
+
+        $result = $this->object->deleteProductNotifications();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
     }
 
     /**
@@ -293,10 +457,30 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetProductProperties().
      */
     public function testGetProductProperties() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->testData['category_id'] = $this->testDBCategory['id'];
+        $this->object->updateProduct($this->testDbProduct['id'], $this->testData);
+
+        $result = $this->object->getProductProperties($this->testDbProduct['id']);
+
+        $this->assertTrue(is_array($result));
+
+        $this->assertTrue(count($result) > 0);
+
+        $result = $this->object->getProductProperties();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
+
+        $result = $this->object->getProductProperties(11111111);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Product that you specified does not exist'));
+        }
     }
 
     /**
@@ -304,10 +488,17 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testSetProductPropertyValue().
      */
     public function testSetProductPropertyValue() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->setProductPropertyValue($this->testDbProduct['id'], $this->testDBProperty['id'], '22');
+
+        $this->assertTrue($result);
+
+        $result = $this->object->setProductPropertyValue();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Not valid arguments passed to the method'));
+        }
     }
 
     /**
@@ -315,10 +506,17 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testDeleteProductPropertyValue().
      */
     public function testDeleteProductPropertyValue() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->deleteProductPropertyValue($this->testDbProduct['id'], $this->testDBProperty['id']);
+
+        $this->assertTrue($result);
+
+        $result = $this->object->deleteProductPropertyValue();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('Not valid arguments passed to the method'));
+        }
     }
 
     /**
@@ -326,10 +524,19 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testSetProductAdditionalCategories().
      */
     public function testSetProductAdditionalCategories() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $model = SProductsQuery::create()->findOneById($this->testDbProduct['id']);
+
+        $result = $this->object->setProductAdditionalCategories($model);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified categories array'));
+        }
+
+        $result = $this->object->setProductAdditionalCategories($model, $this->testData);
+
+        $this->assertTrue($result);
     }
 
     /**
@@ -337,10 +544,32 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testSaveProductAdditionalImage().
      */
     public function testSaveProductAdditionalImage() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->saveProductAdditionalImage($this->testDbProduct['id'], 'imageName', 5);
+        $this->assertTrue($result);
+
+        $result = $this->object->saveProductAdditionalImage();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified product id'));
+        }
+
+        $result = $this->object->saveProductAdditionalImage($this->testDbProduct['id']);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified image name'));
+        }
+
+        $result = $this->object->saveProductAdditionalImage($this->testDbProduct['id'], 'imageName');
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() === lang('You did not specified image position'));
+        }
     }
 
     /**
