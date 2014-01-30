@@ -11,9 +11,9 @@
         </div>
     </div>
     <div class="row-fluid">
-        {include_tpl('../left_block')}
+        {include_tpl('../include/left_block')}
         <div class="clearfix span9">
-            {include_tpl('../time_and_filter_block_without_groupby')}
+            {include_tpl('../include/top_form_without_groupby')}
             <div class="fixedTableWithLeftScroll" style="">
                 {if count($data) > 0}
                     <table class="table table-striped table-bordered table-condensed content_big_td">

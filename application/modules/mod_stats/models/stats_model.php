@@ -1,8 +1,12 @@
 <?php
 
 /**
+ * Class Stats_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
  * @property CI_DB_active_record $db
- * @property DX_Auth $dx_auth
+ * @package ImageCMSModule
  */
 class Stats_model extends CI_Model {
 
@@ -115,8 +119,8 @@ class Stats_model extends CI_Model {
         else
             return false;
     }
-    
-      /**
+
+    /**
      * Get first level categories
      * @return boolean|array
      */
@@ -130,14 +134,14 @@ class Stats_model extends CI_Model {
                 ->or_like('name', $term)
                 ->limit($limit)
                 ->get();
-                
+
 
         if ($query)
             return $query->result_array();
         else
             return false;
     }
-    
+
     /**
      * Install module and update settings
      */
@@ -221,6 +225,36 @@ class Stats_model extends CI_Model {
         $this->dbforge->drop_table('mod_stats_search');
         $this->dbforge->drop_table('mod_stats_settings');
         $this->dbforge->drop_table('mod_stats_attendance');
+    }
+
+    /**
+     * Picks up next negative id for unregistered user who has not visited the site before
+     * @return int
+     */
+    public function getNewUnregisteredUserId() {
+        $query = "
+            select 
+                (min(`id_user`) - 1) as `u2id` 
+            FROM 
+                `mod_stats_attendance`";
+
+        $result = $this->db->query($query);
+        if ($result) {
+            $result = $result->row_array();
+            return $result['u2id'] < 0 ? $result['u2id'] : -1;
+        }
+        return 0; // error
+    }
+
+    /**
+     * If a user has registered on the site, and before was visited it, 
+     * it is need to replace his old negative random id with a new real
+     * @param int $oldId generated negative id from cookies
+     * @param int $newId registered user id
+     * @return void
+     */
+    public function updateAttendanceUserId($oldId, $newId) {
+        $this->db->update('mod_stats_attendance', array('id_user' => $newId), array('id_user' => $oldId));
     }
 
 }

@@ -58,20 +58,8 @@ $(document).ready(function() {
         $('.date_start').val(startDateForInput);
         $('.date_end').val(endDateForInput);
     });
-    
-    /**  Autocomplete for products    */
-    if ($('#autocomleteProduct').length) {
-        $('#autocomleteProduct').autocomplete({
-            source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteProducts?limit=25',
-            select: function(event, ui) {
-                productsData = ui.item;
-            },
-            close: function() {
-                $('#autocomleteProductId').val(productsData.id);
-            }
-        });
-    }
-    
+
+
     /**  Autocomplete for categories    */
     if ($('#autocomleteCategory').length) {
         $('#autocomleteCategory').autocomplete({
@@ -85,9 +73,64 @@ $(document).ready(function() {
         });
     }
 
+    /** Order by for products **/
+    $('.productListOrder').bind('click', function() {
+        var column = $(this).attr('data-column');
+        $('input[name=orderMethod]').attr('value', column);
+        if ($('input[name=order]').attr('value') === '') {
+            $('input[name=order]').attr('value', 'ASC');
+        } else {
+            if ($('input[name=order]').attr('value') === 'ASC') {
+                $('input[name=order]').attr('value', 'DESC');
+            } else {
+                $('input[name=order]').attr('value', 'ASC');
+            }
+        }
+        var query_string = $('#productFilterForm').serialize();
+        window.location.href = '/admin/components/cp/mod_stats/products/productInfo?' + query_string;
+    });
+
+    /** Send form for filtering */
+    $('#productFilterButton').bind('click', function() {
+        var query_string = $('#productFilterForm').serialize();
+        window.location.href = '/admin/components/cp/mod_stats/products/productInfo/0?' + query_string;
+    });
 
 
+    /** Show user attendance on page online */
+    $(".online-users-table").on('click', 'tr.main_row td', function() {
 
+        $("tr.additional_row").hide();
+        var tr = $(this).parent();
+        var userId = $(tr).data('user_id');
+        var trSelector = 'tr.additional_row[data-user_id="' + userId + '"]';
+
+
+        if ($(tr).hasClass('open_row')) {
+            $('tr.main_row').removeClass('open_row');
+            return;
+        }
+
+        if ($(trSelector).size() == 0) {
+            $.post('/admin/components/cp/mod_stats/users/history', {userId: userId}, function(data) {
+                $(tr).after("<tr data-user_id='" + userId + "' class='additional_row'><td colspan='5'>" + data + "</td></tr>");
+                $(trSelector).show();
+            });
+        } else {
+            $(trSelector).show();
+        }
+        $('tr.main_row').removeClass('open_row');
+        $(tr).addClass('open_row');
+    });
+
+    $(".online-users-table").on('click', 'tr td a', function(obj, event) {
+        event.preventDefault();
+    });
+    
+    /** Save image button click **/
+    $("#saveAsPng").click(function() {
+        StatsSettingsAndParams.submitDownloadForm("png");
+    });
 
     /** DRAW CHARTS **/
 
@@ -95,34 +138,45 @@ $(document).ready(function() {
     var pieChartBlocks = $('.pieChartStats');
     if (pieChartBlocks.length) {
         pieChartBlocks.each(function(index, el) {
-            nv.addGraph(function() {
-                var width = 800,
-                        height = 850;
+            var cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var width = 800,
+                            height = 650 + (cData.length / 3 * 20);
 
-                var chart = nv.models.pieChart()
-                        .x(function(d) {
-                            return d.key
-                        })
-                        .y(function(d) {
-                            return d.y
-                        })
-                        .color(d3.scale.category10().range())
-                        .width(width)
-                        .height(height);
+                    var chart = nv.models.pieChart()
+                            .showLabels(true)
+                            .x(function(d) {
+                                return d.key
+                            })
+                            .y(function(d) {
 
-                d3.select(el)
-                        .datum(ChartData.getData($(el).data('from')))
-                        .transition().duration(1200)
-                        .attr('width', width)
-                        .attr('height', height)
-                        .call(chart);
+                                return d.y
+                            })
+                            .color(d3.scale.category20().range())
 
-                chart.dispatch.on('stateChange', function(e) {
-                    nv.log('New State:', JSON.stringify(e));
+                            .width(width)
+                            .height(height);
+
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(1200)
+                            .attr('width', width)
+                            .attr('height', height)
+                            .call(chart);
+
+                    chart.dispatch.on('stateChange', function(e) {
+                        nv.log('New State:', JSON.stringify(e));
+                    });
+
+                    return chart;
                 });
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
 
-                return chart;
-            });
         });
     }
 
@@ -130,121 +184,149 @@ $(document).ready(function() {
     var barChartBlocks = $('.barChartStats');
     if (barChartBlocks.length) {
         barChartBlocks.each(function(index, el) {
-            nv.addGraph(function() {
-                var width = 800,
-                        height = 600;
-                var chart = nv.models.discreteBarChart()
-                        .x(function(d) {
-                            return d.label
-                        })
-                        .y(function(d) {
-                            return d.value
-                        })
-                        .staggerLabels(true)
-                        .tooltips(false)
-                        .showValues(true)
+            var cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
 
-                d3.select(el)
-                        .datum(convertDataForPieToBarChart(ChartData.getData($(el).data('from'))))
-                        .transition().duration(500)
-                        .attr('width', width)
-                        .attr('height', height)
-                        .call(chart);
+                    var width = 800,
+                            height = 700;
+                    var chart = nv.models.discreteBarChart()
+                            .margin({top: 30, right: 30, bottom: 250, left: 70})
+                            .x(function(d) {
+                                return d.label
+                            })
+                            .y(function(d) {
+                                return d.value
+                            })
+                            .staggerLabels(true)
+                            .tooltips(false)
+                            .showValues(true);
 
-                nv.utils.windowResize(chart.update);
+                    chart.yAxis
+                            .tickFormat(d3.format('.0f'));
 
-                return chart;
-            });
+                    d3.select(el)
+                            .datum(ChartData.convertDataForPieToBarChart(cData))
+                            .transition().duration(500)
+                            .attr('width', width)
+                            .attr('height', height)
+                            .call(chart);
+
+                    nv.utils.windowResize(chart.update());
+                    nv.utils.windowResize(rotateLabels());
+
+                    return chart;
+
+                });
+                function rotateLabels() {
+                    var labels;
+                    labels = d3.selectAll('.barChartStats .nv-x.nv-axis > g text');
+                    labels.attr('transform', function(d, i, j) {
+                        height = $.trim(d).length;
+                        return 'translate (-10, ' + (height + 80) + ') rotate(-90 0,0)'
+                    });
+                }
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
         });
     }
 
-    /** Find and draw Line With Focus Chart */
+    /** Find and draw Line Plus Bar Chart */
     var linePlusBarChartStats = $('.linePlusBarChartStats');
     if (linePlusBarChartStats.length) {
         linePlusBarChartStats.each(function(index, el) {
-            data = ChartData.getData($(el).data('from'));
-            nv.addGraph(function() {
-                var chart = nv.models.linePlusBarChart()
-                        .margin({top: 30, right: 60, bottom: 50, left: 70})
-                        .x(function(d, i) {
-                            return i
-                        })
-                        .y(function(d) {
-                            return d[1]
-                        })
-                        .color(d3.scale.category10().range());
 
-                chart.xAxis
-                        .showMaxMin(false)
-                        .tickFormat(function(d) {
-                            var dx = data[0].values[d] && data[0].values[d][0] || 0;
-                            if (dx !== 0)
-                                return d3.time.format('%d/%m/%Y')(new Date(dx))
-                        });
+            cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var chart = nv.models.linePlusBarChart()
+                            .margin({top: 30, right: 30, bottom: 50, left: 100})
+                            .x(function(d, i) {
+                                return i
+                            })
+                            .y(function(d) {
+                                return d[1]
+                            })
+                            .color(d3.scale.category10().range());
 
-                chart.y1Axis
-                        .tickFormat(function(d) {
-                            return d3.format(',f')(d) + currency 
-                        });
+                    chart.xAxis
+                            .showMaxMin(false)
+                            .tickFormat(function(d) {
+                                var dx = cData[0].values[d] && cData[0].values[d][0] || 0;
+                                if (dx !== 0)
+                                    return d3.time.format('%d/%m/%Y')(new Date(dx))
+                            });
 
-                
-                chart.y2Axis
-                        .tickFormat(d3.format(',f'));
+                    chart.y1Axis
+                            .tickFormat(function(d) {
+                                return d3.format(',f')(d)
+                            });
 
-                chart.bars.forceY([0]);
+                    chart.y2Axis
+                            .tickFormat(d3.format(',f'));
 
-                d3.select(el)
-                        .datum(data)
-                        .transition().duration(500).call(chart);
+                    chart.bars.forceY([0]);
 
-                nv.utils.windowResize(chart.update);
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(500).call(chart);
 
-                return chart;
-            });
+                    nv.utils.windowResize(chart.update);
+
+                    return chart;
+                });
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
+
+        });
+    }
+
+    /** Find and draw  Line Chart */
+    var lineChartStats = $('.cumulativeLineChartStats');
+    if (lineChartStats.length) {
+        lineChartStats.each(function(index, el) {
+            var cData = ChartData.getData($(el).data('from'));
+            if (cData != false) {
+                $('#showNoChartData').hide();
+                nv.addGraph(function() {
+                    var chart = nv.models.lineChart().margin({
+                        top: 30,
+                        right: 40,
+                        bottom: 50,
+                        left: 45
+                    }).showLegend(true).tooltipContent(function(key, y, e, graph) {
+                        return '<h3>' + key + '</h3>' + '<p>' + e + ' at ' + y + '</p>'
+                    });
+
+                    chart.xAxis
+                            .tickFormat(function(d) {
+                                return d3.time.format('%d/%m/%Y')(new Date(d))
+                            });
+
+                    chart.yAxis
+                            .tickFormat(d3.format('.0f'));
+
+                    d3.select(el)
+                            .datum(cData)
+                            .transition().duration(500)
+                            .call(chart);
+
+                    nv.utils.windowResize(chart.update);
+
+                    return chart;
+                });
+            } else {
+                $('#saveAsPng').hide();
+                $('#showNoChartData').show();
+            }
+
         });
     }
     /** ************************************************ */
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /***!!!!!!!!!!!!!! **/
-    function convertDataForPieToBarChart(data) {
-        var inputData = data;
-        var chartDataForReturn = [];
-        var tmpData = {};
-        tmpData.values = [];
-        if (inputData === undefined) {
-            return 'false';
-        }
-
-        $.each(inputData, function(index, value) {
-            var stepObj = {};
-            stepObj.label = value.key;
-            stepObj.value = value.y;
-            tmpData.values.push(stepObj);
-        });
-        tmpData.key = 'Bar data';
-        chartDataForReturn.push(tmpData);
-        return chartDataForReturn;
-    }
-    /***********************/
-
-
-
-
-
 });
-
-
-
-

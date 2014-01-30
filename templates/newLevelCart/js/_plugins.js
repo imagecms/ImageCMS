@@ -2585,31 +2585,28 @@ function getCookie(c_name)
                     next = settings.next.split('.'),
                     checkProdStock = settings.checkProdStock,
                     step = settings.step,
-                    $thisPrev = $this,
-                    $thisNext = $this,
-                    regS = '', regM = '',
-                    max = $this.data('max'),
-                    min = $this.data('min');
-                    $.each(prev, function(i, v) {
-                        var regS = v.match(/\(.*\)/);
-                        if (regS !== null) {
-                            regM = regS['input'].replace(regS[0], '');
-                            regS = regS[0].substring(1, regS[0].length - 1);
-                        }
-                        if (regS === null)
-                            regM = v;
-                        $thisPrev = $thisPrev[regM](regS);
-                    });
-                    $.each(next, function(i, v) {
-                        regS = v.match(/\(.*\)/);
-                        if (regS !== null) {
-                            regM = regS['input'].replace(regS[0], '');
-                            regS = regS[0].substring(1, regS[0].length - 1);
-                        }
-                        if (regS === null)
-                            regM = v;
-                        $thisNext = $thisNext[regM](regS);
-                    });
+                    max = +$this.data('max'),
+                    min = +$this.data('min');
+                    
+                    function _checkBtn(type){
+                        var btn = $this,
+                        regS = '',
+                        regM = '';
+                        $.each(type, function(i, v) {
+                            var regS = v.match(/\(.*\)/);
+                            if (regS !== null) {
+                                regM = regS['input'].replace(regS[0], '');
+                                regS = regS[0].substring(1, regS[0].length - 1);
+                            }
+                            if (regS === null)
+                                regM = v;
+                            btn = btn[regM](regS);
+                        });
+                        return btn;
+                    }
+                    
+                    var $thisPrev = _checkBtn(prev),
+                    $thisNext = _checkBtn(next);
 
                     if (max != '' && $thisVal >= max && checkProdStock) {
                         $this.val(max);
@@ -2627,16 +2624,17 @@ function getCookie(c_name)
                         $thisPrev.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
                             var input = $this,
-                            inputVal = parseInt(input.val());
+                            inputVal = parseFloat(input.val());
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input, 'next');
+                                var nextVal = +(inputVal + step).toFixed(10);
                                 if (isNaN(inputVal))
                                     input.val(min || 1);
                                 else
-                                    input.val(inputVal + step);
-                                if (inputVal + step === max && checkProdStock) {
+                                    input.val(nextVal);
+                                if (nextVal === max && checkProdStock) {
                                     el.attr('disabled', 'disabled');
                                 }
                                 settings.after(e, el, input, 'next');
@@ -2648,19 +2646,19 @@ function getCookie(c_name)
                         $thisNext.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
                             var input = $this,
-                            inputVal = parseInt(input.val());
+                            inputVal = parseFloat(input.val());
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input, 'prev');
+                                var nextVal = +(inputVal - step).toFixed(10);
                                 if (isNaN(inputVal))
                                     input.val(min || 1);
-                                else if (inputVal > parseFloat(min || 1)) {
-                                    input.val(inputVal - step);
-                                    if (inputVal - step === min && checkProdStock)
+                                else if (inputVal > min || 1) {
+                                    input.val(nextVal);
+                                    if (nextVal === min && checkProdStock)
                                         el.attr('disabled', 'disabled');
                                 }
-
                                 settings.after(e, el, input, 'prev');
                             }
                         }
