@@ -1,25 +1,35 @@
 <?php
 
 /**
-
+ * Class Search_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
  * @property CI_DB_active_record $db
- * @property DX_Auth $dx_auth
+ * @package ImageCMSModule
  */
 class Search_model extends CI_Model {
 
     use DateIntervalTrait;
-
+    
+    /**
+     * Current locale
+     * @var int 
+     */
     public $locale;
 
-    /**
-     * Default params for method getOrdersByDateRange
-     * @var array
-     */
     function __construct() {
         parent::__construct();
         $this->locale = \MY_Controller::getCurrentLocale();
     }
-
+    
+    /**
+     * Prepare sql string for inseting in query
+     * @param array $params
+     * - dateFrom
+     * - dateTo
+     * @return array
+     */
     protected function prepareConditions(array $params) {
 
         $betweenCondition = "";
@@ -124,5 +134,3 @@ class Search_model extends CI_Model {
     }
 
 }
-
-?>

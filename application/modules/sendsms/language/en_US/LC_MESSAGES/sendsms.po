@@ -1,0 +1,74 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-28 07:14+0200\n"
+"PO-Revision-Date: 2013-12-28 07:14+0200\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ./application/modules/sendsms/admin.php:37
+#: ./application/modules/sendsms/admin.php:43
+msgid "Saved"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:4
+#: ./application/modules/sendsms/assets/admin/main.tpl:46
+msgid "Settings"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:10
+msgid "API key private"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:14
+msgid "API key public"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:18
+msgid "Company name"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:25
+msgid "Close"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:30
+msgid "Save settings"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:38
+msgid "Send SMS"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:44
+msgid "Go back"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:49
+msgid "Save"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:58
+msgid "Balance"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:68
+msgid "Variables, can use to"
+msgstr ""
+
+#: ./application/modules/sendsms/assets/admin/main.tpl:78
+msgid "Order template"
+msgstr ""
+
