@@ -14,24 +14,24 @@
             <div class="header-left-content-header t-a_j">
                 <!--                Start. contacts block-->
                 <div class="phones-header">
-                    <div class="f-s_0 d_i-b">
+                    <div class="f-s_0 d_i-b v-a_b">
                         <span class="icon_phone_header"></span>
-                        <span class="phone">
+                        <span class="phone f-s_0">
                             <span class="phone-number">{echo siteinfo('siteinfo_mainphone')}</span>
                             <span class="phone-number">{echo siteinfo('addPhone')}</span>
                         </span>
                     </div>
-                    <div class="btn-order-call">
+                    <div class="btn-order-call v-a_b">
                         <button data-href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}">
                             <span class="icon_order_call"></span>
-                            <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
+                            <span class="text-el ref-2">{lang('Заказать звонок','newLevel')}</span>
                         </button>
                     </div>
                 </div>
                 <!--End. Contacts block-->
-                <div class="d_i-b">
+                <div class="d_i-b f-s_0 f0I">
                     <nav class="d_i-b v-a_m">
-                        <ul class="nav">
+                        <ul class="nav nav-top-menu">
                             {load_menu('top_menu')}
                         </ul>
                     </nav>
@@ -51,10 +51,11 @@
                     <div class="p_r">
                         <form name="search" method="get" action="{shop_url('search')}">
                             <span class="btn-search">
-                                <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('Найти','newLevel')}</span></button>
+                                <button type="submit"><span class="text-el">{lang('Поиск','newLevel')}</span></button>
                             </span>
                             <div class="frame-search-input">
-                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Поиск по сайту', 'newLevel')}"/>
+                                <span class="icon_search"></span>
+                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Я ищу', 'newLevel')}"/>
                                 <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>
