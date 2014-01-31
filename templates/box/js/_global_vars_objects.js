@@ -66,7 +66,7 @@ var optionsCycle = {
     fx: 'fade',
     pauseOnPagerHover: true,
     pagerAnchorBuilder: function(idx, slide) {
-        return '<a href="#"></a>';
+        return '<li><a href="#">'+$(slide).data('description')+'</a></li>';
     }
 };
 var optionsDrop = {
