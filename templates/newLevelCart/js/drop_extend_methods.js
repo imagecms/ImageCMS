@@ -76,6 +76,7 @@ $.dropInit.prototype.extendDrop = function() {
                             dataSourceW = 0;
                         if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
                             dataSourceW = -drop.actual('width') + $thisW;
+
                         $thisT = $this.offset().top + dataSourceH;
                         $thisL = $this.offset().left + dataSourceW;
                         if ($thisL < 0)
