@@ -573,4 +573,44 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
         }
     }
 
+    /**
+     * @covers ProductApi::getProducts
+     * @todo   Implement testGetProducts().
+     */
+    public function testGetProducts() {
+        $data = array(
+            'product_name' => 'Name',
+            'active' => 'Active',
+            'variant_name' => 'variantsName',
+            'price_in_main' => 10,
+            'currency' => 2,
+            'number' => 'variantsNumber',
+            'stock' => 1,
+            'brand_id' => '',
+            'category_id' => 36,
+            'additional_categories_ids' => 'Categories',
+            'short_description' => 'ShortDescription',
+            'full_description' => 'FullDescription',
+            'old_price' => 'OldPrice',
+            'tpl' => 'tpl',
+            'url' => 'Url',
+            'meta_title' => 'MetaTitle',
+            'meta_description' => 'MetaDescription',
+            'meta_keywords' => 'MetaKeywords',
+            'related_products' => 'RelatedProducts',
+            'enable_comments' => 'EnableComments',
+            'created' => 'Created' ? strtotime('Created') : '',
+            'updated' => time(),
+        );
+        $model = $this->object->addProduct($data);
+        $this->assertEmpty($this->object->getError());
+
+        $m = $this->object->getProducts($model->getId());
+        $this->assertInstanceOf(PropelObjectCollection, $m);
+        $this->assertEquals(1, count($m));
+
+        $this->object->deleteProduct($model->getId());
+        $this->assertEmpty($this->object->getError());
+    }
+
 }
