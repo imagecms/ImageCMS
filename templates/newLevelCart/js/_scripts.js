@@ -72,7 +72,7 @@ function init() {
             carouselInDrop.addClass('visited');
             carouselInDrop.myCarousel(carousel);
         }
-        cuselInit(drop, '.drop:visible .lineForm select');
+        cuselInit(drop, '.lineForm select');
     };
     optionsDrop.close = function(el, drop, data) {
     };
@@ -281,12 +281,7 @@ function init() {
             document.location.href = '/shop/compare';
     });
     doc.on('compare_list_add', function(e) {
-        if (e.dataObj.success === true) {
-            var $this = $('.' + genObj.toCompare + '[data-id=' + e.dataObj.id + ']');
-            $this.removeClass(genObj.toCompare).addClass(genObj.inCompare).parent().addClass(genObj.compareIn).end().attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
-            $this.tooltip();
-        }
-        $this.tooltip();
+        ShopFront.CompareList.process();
     });
     doc.on('compare_list_add compare_list_rm compare_list_sync', function() {
         ShopFront.CompareList.count();
@@ -358,7 +353,7 @@ function init() {
                     drop.drop('close');
             }, e.obj.durationHideForm - drop.data('drp').durationOff > 0 ? e.obj.durationHideForm - drop.data('drp').durationOff : e.obj.durationHideForm);
     });
-    doc.on('autocomplete.before showActivity before_add_to_compare discount.load_certificate beforeAdd.Cart', function(e) {
+    doc.on('autocomplete.before showActivity before_add_to_compare before_delete_compare discount.load_certificate beforeAdd.Cart', function(e) {
         $.fancybox.showActivity();
     });
     doc.on('autocomplete.after after.drop closed.drop hideActivity compare_list_add compare_list_rm compare_list_sync imageapi.success getTpl.Cart', function(e) {
