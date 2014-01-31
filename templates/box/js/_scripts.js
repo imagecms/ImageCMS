@@ -417,4 +417,6 @@ function init() {
             banerResize('.baner:has(.cycle)');
         }, 300);
     });
+    
+    $('.nav-top-menu a:first').data({'drop': '.sub-menu', 'place': 'noinherit', 'overlayOpacity': '0', 'placement': 'top left'}).drop();
 }
