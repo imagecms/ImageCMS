@@ -51,7 +51,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             'full_description' => 'testFullDescription',
             'old_price' => 1,
             'tpl' => 'testTpl',
-            'url' => 'testUrl',
+            'url' => random_string(),
             'meta_title' => 'testMetaTitle',
             'meta_keywords' => 'testMetaKeywords',
             'meta_description' => 'testMetaDescription',
@@ -237,6 +237,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateProduct().
      */
     public function testUpdateProduct() {
+        
         if ($this->testDbProduct) {
 
             $this->assertFalse($this->object->updateProduct());
@@ -252,7 +253,7 @@ class ProductApiTest extends PHPUnit_Framework_TestCase {
             }
 
             $result = $this->object->updateProduct($this->testDbProduct['id'], $this->testData, 'ru');
-
+          
             $this->assertTrue($result instanceof \SProducts);
 
             $this->assertEquals($this->testDbProduct['id'], $result->getId());
