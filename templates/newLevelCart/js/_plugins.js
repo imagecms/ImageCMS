@@ -725,25 +725,21 @@ function getCookie(c_name)
     var nS = 'tooltip',
             sel = '.tooltip',
             methods = {
-                setDefault: function() {
-                    return {
-                        otherClass: false,
-                        effect: '',
-                        textEl: '.text-el',
-                        placement: 'top',
-                        offsetX: 10,
-                        offsetY: 10,
-                        tooltip: false,
-                        sel: '.tooltip',
-                        durationOn: 300,
-                        durationOff: 200
-                    };
+                def: {
+                    otherClass: false,
+                    effect: '',
+                    textEl: '.text-el',
+                    placement: 'top',
+                    offsetX: 10,
+                    offsetY: 10,
+                    tooltip: false,
+                    sel: '.tooltip',
+                    durationOn: 300,
+                    durationOff: 200
                 },
                 init: function(options, e) {
                     var sel = '.tooltip',
-                            settings = $.extend(methods.setDefault(), {
-                                title: this.attr('data-title')
-                            }, options),
+                            settings = $.extend(methods.def, options),
                             $this = this,
                             elSet = $this.data(),
                             title = elSet.title || settings.title,
@@ -776,7 +772,7 @@ function getCookie(c_name)
                         });
                     textEl = $this.find(textEl);
                     if (textEl.is(':visible') && $.existsN(textEl))
-                        return false;
+                        return $this;
                     tooltip.html(title);
                     if (otherClass) {
                         if (!$.exists('.' + otherClass))
@@ -810,6 +806,8 @@ function getCookie(c_name)
                     $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
                         $(this).tooltip('remove', e);
                     });
+
+                    return $this;
                 },
                 left: function(el, tooltip, placement, left, eff, offset) {
                     if (placement === 'left')
@@ -842,13 +840,14 @@ function getCookie(c_name)
                             sel = selA;
                     }
                     else
-                        durOff = methods.setDefault().durationOff;
+                        durOff = methods.def.durationOff;
                     $(sel).stop().fadeOut(durOff, function() {
                         $(document).trigger({
                             'type': 'tooltip.hide',
                             'el': $(this)
                         });
                     });
+                    return $this;
                 }
             };
     $.fn.tooltip = function(method) {
@@ -1968,15 +1967,17 @@ function getCookie(c_name)
                 set = el.data('drp');
 
             var elSet = el.data(),
-                    source = elSet.source || el.attr('href');
-            var rel = '';
+                    source = methods._checkProp(elSet, set, 'source') || el.attr('href'),
+                    datas = methods._checkProp(elSet, set, 'datas');
+
+            var rel = null;
             if (el.get(0).rel != undefined)
                 rel = el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, '');
 
             if (elSet.drop != undefined) {
                 $.ajax({
                     type: "post",
-                    data: elSet.datas,
+                    data: datas,
                     url: source,
                     beforeSend: function() {
                         if (!methods._checkProp(elSet, set, 'moreOne'))
@@ -2004,13 +2005,13 @@ function getCookie(c_name)
                 });
             }
             else {
-                $.drop.dP.curOld = $('.' + $.drop.dP.curDefault);
-                $.drop.dP.curDefault = 'drop-default' + (new Date()).getTime();
+                $.drop.dP.curDefault = 'drop-default-' + (rel ? rel : (new Date()).getTime());
+                el.data('drop', '.'+$.drop.dP.curDefault).attr('data-drop', '.'+$.drop.dP.curDefault);
 
                 function _update(data) {
-                    var rmObj = $($.drop.dP.curOld);
+                    if (rel)
+                        $('.drop-default-' + rel).remove();
 
-                    rmObj.remove();
                     var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
                     drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html(data);
                     methods._show(el, e, true, set, data);
@@ -2028,6 +2029,7 @@ function getCookie(c_name)
                     $.ajax({
                         type: "post",
                         url: source,
+                        data: datas,
                         dataType: 'html',
                         success: function(data) {
                             _update(data);
@@ -2137,7 +2139,7 @@ function getCookie(c_name)
                     prev = elSet.prev || set.prev,
                     cycle = elSet.cycle || set.cycle,
                     source = elSet.source || set.source || $this.attr('href'),
-                    selSource = elSet.drop || set.drop,
+                    selSource = elSet.drop,
                     tab = elSet.tab || set.tab,
                     scroll = elSet.scroll || set.scroll,
                     limitSize = elSet.limitSize || set.limitSize,
@@ -2162,7 +2164,7 @@ function getCookie(c_name)
                     closed = set.closed,
                     elClosed = elSet.closed,
                     drop = $(selSource);
-
+            
             $this.attr({
                 'data-drop': $this.data('drop')
             }).parent().addClass(aC);
@@ -2361,7 +2363,7 @@ function getCookie(c_name)
                     methods[place](drop)
                 })
             drop[$thisEOn]($thisD, function(e) {
-                var drop = $(this).css('overflow', 'hidden');
+                var drop = $(this).css('overflow', 'hidden').focus();
                 methods.init.call(drop.find('[data-drop]'));
                 drop.addClass(aC);
                 if (!confirm && modal && timeclosemodal)
@@ -2515,7 +2517,6 @@ function getCookie(c_name)
             changeSource: function() {
             },
             start: undefined,
-            drop: '.drop-default',
             pattern: '<div class="drop drop-style drop-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placePaste" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
             modalBtnDrop: '#drop-notification-default',
             patternNotif: '<div class="drop drop-style" id="drop-notification-default"><div class="drop-header-default"></div><div class="drop-content-default"><div class="inside-padd drop-notification-default"></div></div><div class="drop-footer-default"></div></div>',
@@ -2583,31 +2584,28 @@ function getCookie(c_name)
                             next = settings.next.split('.'),
                             checkProdStock = settings.checkProdStock,
                             step = settings.step,
-                            $thisPrev = $this,
-                            $thisNext = $this,
-                            regS = '', regM = '',
-                            max = $this.data('max'),
-                            min = $this.data('min');
-                    $.each(prev, function(i, v) {
-                        var regS = v.match(/\(.*\)/);
-                        if (regS !== null) {
-                            regM = regS['input'].replace(regS[0], '');
-                            regS = regS[0].substring(1, regS[0].length - 1);
-                        }
-                        if (regS === null)
-                            regM = v;
-                        $thisPrev = $thisPrev[regM](regS);
-                    });
-                    $.each(next, function(i, v) {
-                        regS = v.match(/\(.*\)/);
-                        if (regS !== null) {
-                            regM = regS['input'].replace(regS[0], '');
-                            regS = regS[0].substring(1, regS[0].length - 1);
-                        }
-                        if (regS === null)
-                            regM = v;
-                        $thisNext = $thisNext[regM](regS);
-                    });
+                            max = +$this.data('max'),
+                            min = +$this.data('min');
+
+                    function _checkBtn(type) {
+                        var btn = $this,
+                                regS = '',
+                                regM = '';
+                        $.each(type, function(i, v) {
+                            var regS = v.match(/\(.*\)/);
+                            if (regS !== null) {
+                                regM = regS['input'].replace(regS[0], '');
+                                regS = regS[0].substring(1, regS[0].length - 1);
+                            }
+                            if (regS === null)
+                                regM = v;
+                            btn = btn[regM](regS);
+                        });
+                        return btn;
+                    }
+
+                    var $thisPrev = _checkBtn(prev),
+                            $thisNext = _checkBtn(next);
 
                     if (max != '' && $thisVal >= max && checkProdStock) {
                         $this.val(max);
@@ -2625,16 +2623,17 @@ function getCookie(c_name)
                         $thisPrev.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
                             var input = $this,
-                                    inputVal = parseInt(input.val());
+                                    inputVal = parseFloat(input.val());
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input, 'next');
+                                var nextVal = +(inputVal + step).toFixed(10);
                                 if (isNaN(inputVal))
                                     input.val(min || 1);
                                 else
-                                    input.val(inputVal + step);
-                                if (inputVal + step === max && checkProdStock) {
+                                    input.val(nextVal);
+                                if (nextVal === max && checkProdStock) {
                                     el.attr('disabled', 'disabled');
                                 }
                                 settings.after(e, el, input, 'next');
@@ -2646,19 +2645,19 @@ function getCookie(c_name)
                         $thisNext.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
                             var input = $this,
-                                    inputVal = parseInt(input.val());
+                                    inputVal = parseFloat(input.val());
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input, 'prev');
+                                var nextVal = +(inputVal - step).toFixed(10);
                                 if (isNaN(inputVal))
                                     input.val(min || 1);
-                                else if (inputVal > parseFloat(min || 1)) {
-                                    input.val(inputVal - step);
-                                    if (inputVal - step === min && checkProdStock)
+                                else if (inputVal > min || 1) {
+                                    input.val(nextVal);
+                                    if (nextVal === min && checkProdStock)
                                         el.attr('disabled', 'disabled');
                                 }
-
                                 settings.after(e, el, input, 'prev');
                             }
                         }

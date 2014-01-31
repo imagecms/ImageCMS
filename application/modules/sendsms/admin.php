@@ -9,6 +9,7 @@
  * @property Exceptions $Exceptions 
  * @property Account $Account
  * @property Stat $Stat
+ * @property Sendsms_model $sendsms_model
  */
 class Admin extends BaseAdminController {
 
@@ -19,19 +20,68 @@ class Admin extends BaseAdminController {
         include 'epochtasmsApi/Exceptions.php';
         include 'epochtasmsApi/Account.php';
         include 'epochtasmsApi/Stat.php';
-        $sms_key_private = '';
-        $sms_key_public = '';
-        $Gateway = new APISMS($sms_key_private, $sms_key_public, 'http://atompark.com/api/sms/');
+
+        $this->load->model('sendsms_model');
+
+        $this->settings = $this->sendsms_model->getApiSettings();
+
+        $Gateway = new APISMS($this->settings['sms_key_private'], $this->settings['sms_key_public'], 'http://atompark.com/api/sms/');
         $this->Addressbook = new Addressbook($Gateway);
         $this->Exceptions = new Exceptions($Gateway);
         $this->Account = new Account($Gateway);
         $this->Stat = new Stat($Gateway);
     }
 
-    public function index() {
-        $acaunt = $this->Account->getUserBalance();
+    public function saveSettings($locale) {
+        $locale = $locale == null ? MY_Controller::getCurrentLocale() : $locale;
 
-        var_dump($acaunt['result']['balance_currency']);
+        $this->sendsms_model->setApiSettings($this->input->post());
+        showMessage(lang('Saved', 'sendsms'));
+    }
+
+    public function save($locale) {
+        $locale = $locale == null ? MY_Controller::getCurrentLocale() : $locale;
+        $this->sendsms_model->setSettings($this->input->post(), $locale);
+        showMessage(lang('Saved', 'sendsms'));
+    }
+
+    public function trans($locale) {
+        $locale = $locale == null ? MY_Controller::getCurrentLocale() : $locale;
+
+        $account = $this->Account->getUserBalance();
+        if (!$account['error']) {
+            $balance = $account['result']['balance_currency'] . ' ' . $account['result']['currency'];
+        } else {
+            $balance = $account['error'];
+        }
+        \CMSFactory\assetManager::create()
+                ->setData('locale', $locale)
+                ->setData('template', $this->sendsms_model->getTemplates($locale))
+                ->setData('settings', $this->settings)
+                ->setData('balance', $balance)
+                ->registerStyle('style')
+                ->setData('languages', ShopCore::$ci->cms_admin->get_langs(true))
+                ->renderAdmin('main');
+    }
+
+    public function index() {
+        $locale = $locale == null ? MY_Controller::getCurrentLocale() : $locale;
+
+        $account = $this->Account->getUserBalance();
+        if (!$account['error']) {
+            $balance = $account['result']['balance_currency'] . ' ' . $account['result']['currency'];
+        } else {
+            $balance = $account['error'];
+        }
+        \CMSFactory\assetManager::create()
+                ->setData('locale', $locale)
+                ->setData('template', $this->sendsms_model->getTemplates($locale))
+                ->setData('settings', $this->settings)
+                ->setData('balance', $balance)
+                ->registerStyle('style')
+                ->setData('languages', ShopCore::$ci->cms_admin->get_langs(true))
+                ->renderAdmin('main');
+
         exit;
 
 //Первым делом, зарегистрируем имя отправителя, если собираемся рассылать СМС

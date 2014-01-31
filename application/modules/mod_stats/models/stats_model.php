@@ -1,8 +1,12 @@
 <?php
 
 /**
+ * Class Stats_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
  * @property CI_DB_active_record $db
- * @property DX_Auth $dx_auth
+ * @package ImageCMSModule
  */
 class Stats_model extends CI_Model {
 
@@ -74,7 +78,7 @@ class Stats_model extends CI_Model {
 
     public function saveUrl($userId, $url) {
         $this->db->insert('mod_stats_urls', array(
-            'uder_id' => $userId,
+            'id_user' => $userId,
             'url' => $url,
         ));
     }
@@ -103,7 +107,6 @@ class Stats_model extends CI_Model {
             return false;
     }
 
-    
     /**
      * Get main currency symbol
      * @return boolean
@@ -116,7 +119,29 @@ class Stats_model extends CI_Model {
         else
             return false;
     }
-    
+
+    /**
+     * Get first level categories
+     * @return boolean|array
+     */
+    public function getCategoriesByIdName($term, $limit = 7) {
+        $locale = MY_Controller::getCurrentLocale();
+        $query = $this->db
+                ->select('id, name')
+                ->from('shop_category_i18n')
+                ->where('locale', $locale)
+                ->like('id', $term)
+                ->or_like('name', $term)
+                ->limit($limit)
+                ->get();
+
+
+        if ($query)
+            return $query->result_array();
+        else
+            return false;
+    }
+
     /**
      * Install module and update settings
      */
@@ -134,7 +159,6 @@ class Stats_model extends CI_Model {
                 'null' => TRUE,
             )
         );
-
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_stats_search');
 
@@ -150,37 +174,46 @@ class Stats_model extends CI_Model {
                 'null' => TRUE,
             ),
         );
-
         $this->dbforge->add_field($fields2);
         $this->dbforge->create_table('mod_stats_settings');
 
         // збереження URL сторінок
-        /* $fields3 = array(
-          'id' => array(
-          'type' => 'INT',
-          'auto_increment' => TRUE
-          ),
-          'uder_id' => array(
-          'type' => 'int',
-          'constraint' => '5',
-          'null' => TRUE,
-          ),
-          'url' => array(
-          'type' => 'varchar',
-          'constraint' => '300',
-          'null' => TRUE,
-          ),
-          'time_add TIMESTAMP default CURRENT_TIMESTAMP'
-          );
+        $attendanceFields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+            'id_user' => array(
+                'type' => 'int',
+                'constraint' => '5',
+                'null' => FALSE,
+            ),
+            'type_id' => array(
+                'type' => 'int',
+                'constraint' => '2',
+                'null' => FALSE,
+            ),
+            'id_entity' => array(
+                'type' => 'int',
+                'constraint' => '6',
+                'null' => FALSE,
+            ),
+            'time_add ' => array(
+                'type' => 'int',
+                'constraint' => '11',
+                'null' => FALSE,
+            ),
+        );
+        $this->dbforge->add_field($attendanceFields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_stats_attendance');
 
-          $this->dbforge->add_field($fields3);
-          $this->dbforge->add_key('id', TRUE);
-          $this->dbforge->create_table('mod_stats_urls'); */
 
         $this->db->where('name', 'mod_stats');
         $this->db->update('components', array(
             'enabled' => 1,
-            'autoload' => 1));
+            'autoload' => 1
+        ));
     }
 
     /**
@@ -191,7 +224,37 @@ class Stats_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_stats_search');
         $this->dbforge->drop_table('mod_stats_settings');
-        $this->dbforge->drop_table('mod_stats_urls');
+        $this->dbforge->drop_table('mod_stats_attendance');
+    }
+
+    /**
+     * Picks up next negative id for unregistered user who has not visited the site before
+     * @return int
+     */
+    public function getNewUnregisteredUserId() {
+        $query = "
+            select 
+                (min(`id_user`) - 1) as `u2id` 
+            FROM 
+                `mod_stats_attendance`";
+
+        $result = $this->db->query($query);
+        if ($result) {
+            $result = $result->row_array();
+            return $result['u2id'] < 0 ? $result['u2id'] : -1;
+        }
+        return 0; // error
+    }
+
+    /**
+     * If a user has registered on the site, and before was visited it, 
+     * it is need to replace his old negative random id with a new real
+     * @param int $oldId generated negative id from cookies
+     * @param int $newId registered user id
+     * @return void
+     */
+    public function updateAttendanceUserId($oldId, $newId) {
+        $this->db->update('mod_stats_attendance', array('id_user' => $newId), array('id_user' => $oldId));
     }
 
 }

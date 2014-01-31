@@ -1,9 +1,12 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Class AdminAddController for mod_stats module
+ * @uses ControllerBase
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @property stats_model $stats_model
+ * @package ImageCMSModule
  */
 class AdminAddController extends ControllerBase {
 
@@ -16,7 +19,37 @@ class AdminAddController extends ControllerBase {
      * Ajax update setting by value and setting name
      */
     public function ajaxUpdateSettingValue() {
-         \mod_stats\classes\AdminHelper::create()->ajaxUpdateSettingValue();
+        \mod_stats\classes\AdminHelper::create()->ajaxUpdateSettingValue();
+    }
+
+    /**
+     * Autocomlete products
+     * @return jsone
+     */
+    public function autoCompleteProducts() {
+        \mod_stats\classes\AdminHelper::create()->autoCompleteProducts();
+    }
+
+    /**
+     * Autocomlete categories
+     * @return jsone
+     */
+    public function autoCompleteCategories() {
+        \mod_stats\classes\AdminHelper::create()->autoCompleteCategories();
+    }
+
+    public function gather_attendance() {
+        // load classes
+        $this->controller->import('classes/Attendance/IUrlInterpretator' . EXT);
+        $this->controller->import('classes/Attendance/*');
+        $attendance = new Attendance();
+        $attendance->addInterpretator(new UrlCategoriesInterpretator);
+        $attendance->addInterpretator(new UrlProductsInterpretator);
+        $attendance->processData();
+        echo '<pre>';
+        print_r($attendance->getResults());
+        echo '</pre>';
+        exit;
     }
 
 }

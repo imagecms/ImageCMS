@@ -154,6 +154,18 @@ class Exchangeunfu extends MY_Controller {
 
         $ci->db->where('id', $orderId);
         $ci->db->update('shop_orders', $data);
+
+        foreach ($date['order']->SOrderProductss as $key => $product) {
+
+
+
+            $ci->db
+                    ->set('order_id', $product->order_id)
+                    ->set('product_id', $product->product_id)
+                    ->set('price', $product->price)
+                    ->set('quantity', $product->quantity)
+                    ->insert('mod_exchangeunfu_orders_products');
+        }
     }
 
     private function recountProductivityHour($count, $id) {
@@ -1011,14 +1023,14 @@ class Exchangeunfu extends MY_Controller {
         if ($this->check_perm() === true) {
             $this->export = new \exchangeunfu\exportXML();
             if ($this->input->get('partner')) {
-                $partner = $this->db->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
-                if ($partner) {
-                    $partner = $partner->row_array();
+                $parter = $this->db->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
+                if ($parter) {
+                    $parter = $parter->row_array();
 
                     if ($this->input->get('full') != 'full') {
-                        $this->export->export($partner['external_id'], $partner['send_cat'], $partner['send_prod'], $partner['send_users']);
+                        $this->export->export($parter['external_id'], $parter['send_cat'], $parter['send_prod'], $parter['send_users']);
                     } else {
-                        $this->export->export($partner['external_id'], 1, 1, 1, true);
+                        $this->export->export($parter['external_id'], 1, 1, 1, true);
                     }
                 }
             } else {
@@ -1033,7 +1045,7 @@ class Exchangeunfu extends MY_Controller {
      * runs when orders from site succesfully uploaded to 1c server
      * and sets some status for imported orders "waiting" for example
      */
-     private function command_sale_success() {
+    private function command_sale_success() {
         if ($this->check_perm() === true) {
             if ($this->input->get('partner')) {
                 $partner = $this->db->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
@@ -1045,7 +1057,7 @@ class Exchangeunfu extends MY_Controller {
                             ->set('send_users', 0)
                             ->set('send_prod', 0)
                             ->update('mod_exchangeunfu_partners');
-                    
+
                     $model = $this->db
                             ->where('partner_internal_id', $partner['id'])
                             ->where_in('status', $this->config['userstatuses'])
@@ -1056,8 +1068,8 @@ class Exchangeunfu extends MY_Controller {
 
             foreach ($model as $order) {
                 $this->db
-                        ->where('id',$order['id'])
-                        ->set('status',$this->config['userstatuses_after'])
+                        ->where('id', $order['id'])
+                        ->set('status', $this->config['userstatuses_after'])
                         ->update('shop_orders');
             }
             echo "success";
