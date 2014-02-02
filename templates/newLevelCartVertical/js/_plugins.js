@@ -1838,7 +1838,7 @@ function getCookie(c_name)
 
                                 if (set.forCenter)
                                     set.forCenter.stop(true, false).fadeOut(durOff);
-                                drop.css('overflow', '')[$thisEOff](durOff, function() {
+                                drop[$thisEOff](durOff, function() {
                                     if (set.dropOver)
                                         set.dropOver.fadeOut(durOff);
                                     var $this = $(this).css({
@@ -1848,8 +1848,7 @@ function getCookie(c_name)
                                         'left': '',
                                         'bottom': '',
                                         'right': '',
-                                        'position': '',
-                                        'overflow': ''
+                                        'position': ''
                                     });
                                     $this.removeClass(set.place);
                                     if (set.closed !== undefined)
@@ -2345,7 +2344,7 @@ function getCookie(c_name)
                     methods[place](drop)
                 })
             drop[$thisEOn]($thisD, function(e) {
-                var drop = $(this).css('overflow', 'hidden').focus();
+                var drop = $(this).focus();
                 methods.init.call(drop.find('[data-drop]'));
                 drop.addClass(aC);
                 if (!confirm && modal && timeclosemodal)
