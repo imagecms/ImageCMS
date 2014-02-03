@@ -29,7 +29,7 @@ function init() {
         ieBoxSize();
         ieBoxSize($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
     }
-    optionsDrop.before = function(el, drop, isajax) {
+    optionsDrop.before = function(el, drop) {
         drop.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
         drop.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
 
@@ -50,7 +50,7 @@ function init() {
         } catch (err) {
         }
     };
-    optionsDrop.after = function(el, drop, isajax) {
+    optionsDrop.after = function(el, drop) {
         drawIcons(drop.find(selIcons));
 
         drop.find("img.lazy:not(.load)").lazyload(lazyload);
@@ -74,9 +74,9 @@ function init() {
         }
         cuselInit(drop, '.lineForm select');
     };
-    optionsDrop.close = function(el, drop, data) {
+    optionsDrop.close = function(el, drop) {
     };
-    optionsDrop.closed = function(el, drop, data) {
+    optionsDrop.closed = function(el, drop) {
         if (drop.hasClass('frame-already-show')) {
             $('.frame-user-toolbar').css({
                 'width': body.width(),
