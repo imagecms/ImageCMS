@@ -154,7 +154,8 @@ class ParentEmail extends \MY_Controller {
             }
         }
         $default_settings['type'] = strtolower($patern_settings['type']);
-
+        $patern_settings['protocol'] = $default_settings['protocol'];
+        
         //Initializing library settings
         $this->_set_config($patern_settings);
 
