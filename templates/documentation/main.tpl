@@ -176,7 +176,7 @@
             <div class="info-box2 col-lg-4">
                 <div class="title">
                     <span class="icon-forum"></span>
-                    <span class="text-el">Последнее <a href="http://www.imagecms.net/forum">с форума</a></span>
+                    <span class="text-el">Последнее <a href="http://www.forum.imagecms.net/search.php?action=show_recent">с форума</a></span>
                 </div>
                 <ul>
                     {foreach $forumThemes as $forum}
