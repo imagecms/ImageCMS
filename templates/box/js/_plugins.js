@@ -738,8 +738,7 @@ function getCookie(c_name)
             durationOff: 200
         },
         init: function(options, e) {
-            var sel = '.tooltip',
-            settings = $.extend(methods.def, options),
+            var settings = $.extend(methods.def, options),
             $this = this,                           
             elSet = $this.data(),
             title = elSet.title || settings.title,
@@ -751,7 +750,7 @@ function getCookie(c_name)
             offsetY = elSet.offsetY || settings.offsetY,
             durationOn = elSet.durationOn || settings.durationOn,
             durationOff = elSet.durationOff || settings.durationOff,
-            sel = elSet.tooltip || sel,
+            sel = elSet.tooltip || methods.def.sel,
             tooltip = $(sel).not('.' + сC);
             if (effect !== 'always')
                 $this.data({
@@ -837,11 +836,11 @@ function getCookie(c_name)
                     selA = selA.add($(data.tooltip));
                 var durOff = $this.data('durationOff');
                 if ($.existsN(selA))
-                    sel = selA;
+                    var sel = selA;
             }
             else
                 durOff = methods.def.durationOff;
-            $(sel).stop().fadeOut(durOff, function() {
+            $(sel || methods.def.sel).stop().fadeOut(durOff, function() {
                 $(document).trigger({
                     'type': 'tooltip.hide',
                     'el': $(this)
@@ -1648,10 +1647,10 @@ function getCookie(c_name)
                     if (el.parent().hasClass(aC))
                         methods.close($(el.attr('data-drop')))
                     else {
-                        e.stopPropagation();
-                        e.preventDefault();
                         methods.open(undefined, $(this), options, e)
                     }
+                    e.stopPropagation();
+                    e.preventDefault();
                 });
 
             });
@@ -1854,16 +1853,15 @@ function getCookie(c_name)
                                     });
                                     $this.removeClass(set.place);
                                     if (set.closed !== undefined)
-                                        set.closed($thisB, $this, datas);
+                                        set.closed($thisB, $this);
                                     if (set.elClosed !== undefined)
-                                        eval(set.elClosed)($thisB, $this, datas);
+                                        eval(set.elClosed)($thisB, $this);
                                     if (isTouch)
                                         set.dropOver.off('touchmove.' + $.drop.nS);
                                     $this.add($(document)).trigger({
                                         type: 'closed.' + $.drop.nS,
                                         el: $thisB,
-                                        drop: $this,
-                                        datas: datas
+                                        drop: $this
                                     });
                                     var dC = $this.find($($this.data('drp').dropContent).add($($.drop.dPP.dropContent))).data('jsp');
                                     if (dC)
@@ -1873,15 +1871,14 @@ function getCookie(c_name)
                             drop.add($(document)).trigger({
                                 type: 'close.' + $.drop.nS,
                                 el: $thisB,
-                                drop: drop,
-                                datas: datas
+                                drop: drop
                             });
                             var close = set.elClose !== undefined ? set.elClose : set.close;
                             if (close !== undefined) {
                                 if (typeof close == 'string')
-                                    var res = eval(close)($thisB, $(this), datas);
+                                    var res = eval(close)($thisB, $(this));
                                 else
-                                    var res = close($thisB, $(this), datas);
+                                    var res = close($thisB, $(this));
                                 if (res === false && res !== true) {
                                     if (window.console)
                                         console.log(res);
@@ -2257,16 +2254,14 @@ function getCookie(c_name)
             drop.css('z-index', 1105);
 
             methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
-            before($this, drop, isajax, data, set);
+            before($this, drop, data);
             if (elBefore !== undefined)
-                eval(elBefore)($this, drop, isajax, data, set);
+                eval(elBefore)($this, drop, data);
             drop.add($(document)).trigger({
                 'type': 'before.' + $.drop.nS,
                 'el': $this,
                 'drop': drop,
-                'isajax': isajax,
-                'datas': data,
-                'settings': set
+                'datas': data
             });
             wnd.off('resize.' + $.drop.nS).on('resize.' + $.drop.nS, function() {
                 methods._checkMethod(function() {
@@ -2370,16 +2365,14 @@ function getCookie(c_name)
 
                 var cB = elAfter;
                 if (cB !== undefined) {
-                    eval(cB)($this, drop, isajax, data, set);
+                    eval(cB)($this, drop, data);
                 }
-                after($this, drop, isajax, data, set);
+                after($this, drop, data);
                 drop.add($(document)).trigger({
                     'type': 'after.' + $.drop.nS,
                     'el': $this,
                     'drop': drop,
-                    'isajax': isajax,
-                    'datas': data,
-                    'settings': set
+                    'datas': data
                 });
                 if (droppable && place != 'inherit')
                     methods._checkMethod(function() {
