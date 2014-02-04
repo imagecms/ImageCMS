@@ -1132,7 +1132,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 10px;margin-bottom: 10px;}
 /*/footer*/
 
 /*drop*/
-.drop{display: none;position: absolute;}
+.drop{display: none;position: absolute;overflow: hidden;}
 .drop.inherit{position: relative;}
 .drop.form-data{width: 100%;margin-top: 20px;margin-bottom: 30px;}
 .drop-header{padding: 13px 35px;text-align: center;position: relative;}

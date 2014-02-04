@@ -178,7 +178,7 @@ class Admin extends MY_Controller {
      * @access public
      */
     public function logout() {
-        $this->lib_admin->log(lang("exited the control panel", "admin"));
+        $this->lib_admin->log(lang("Exited the control panel", "admin"));
         $this->dx_auth->logout();
         redirect('/admin/login', 'refresh');
     }
