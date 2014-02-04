@@ -42,9 +42,9 @@ class Users_model extends CI_Model {
     }
 
     /**
-     * 
-     * @param type $params
-     * @return boolean
+     * Getting dynamic of users registration on site
+     * @param array $params
+     * @return boolean|array
      */
     public function getRegister($params) {
         $query = "

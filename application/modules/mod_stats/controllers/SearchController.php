@@ -12,7 +12,7 @@ class SearchController extends ControllerBase {
         $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('search_model');
     }
-    
+
     /**
      * Render template and set data for "keywords"
      */
@@ -25,13 +25,12 @@ class SearchController extends ControllerBase {
         ));
         $this->renderAdmin('keywords', array('data' => $result));
     }
-    
+
     /**
      * Render template for  "brands in search"
      */
     public function brandsInSearch() {
-
-        $this->renderAdmin('brandsInSearch', array('data' => $result));
+        $this->renderAdmin('brandsInSearch');
     }
 
     /**
@@ -56,17 +55,16 @@ class SearchController extends ControllerBase {
         } else {
             return FALSE;
         }
-        
+
         $chartData = parent::prepareDataForStaticChart($arrayWithBrandsInSearch);
         echo json_encode($chartData);
     }
-    
+
     /**
      * Render template for "categories in search"
      */
     public function categoriesInSearch() {
-
-        $this->renderAdmin('categoriesInSearch', array('data' => $result));
+        $this->renderAdmin('categoriesInSearch');
     }
 
     /**
@@ -81,7 +79,7 @@ class SearchController extends ControllerBase {
             'swr' => isset($_GET['swr']) ? (int) $_GET['swr'] : 9,
             'swc' => isset($_GET['swc']) ? (int) $_GET['swc'] : 9
         );
-        
+
         $keywordsArray = $this->controller->search_model->queryKeywordsByDateRange($params, $params['swc']);
 
         $queryStringWhere = $this->prepareQueryStringForSearchAnalisis($keywordsArray);
@@ -91,7 +89,7 @@ class SearchController extends ControllerBase {
         } else {
             return FALSE;
         }
-        
+
         $chartData = parent::prepareDataForStaticChart($arrayWithCategoriesInSearch);
         echo json_encode($chartData);
     }
