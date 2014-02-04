@@ -1,9 +1,11 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Class ProductsController for mod_stats module
+ * @uses ControllerBase
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 class ProductsController extends ControllerBase {
 
@@ -34,7 +36,7 @@ class ProductsController extends ControllerBase {
         $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
         $categories = $this->controller->products_model->getCategoriesCountsData($catIds);
         $chartData = parent::prepareDataForStaticChart($categories);
-//        var_dumps($chartData);
+
         echo json_encode($chartData);
     }
 

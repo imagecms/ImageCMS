@@ -1,9 +1,11 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Class UsersController for mod_stats module
+ * @uses ControllerBase
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 class UsersController extends ControllerBase {
 
@@ -19,6 +21,9 @@ class UsersController extends ControllerBase {
         );
     }
 
+    /**
+     * Show template for users online with data
+     */
     public function online() {
         $this->controller->load->model('attendance_model');
         $onlineUsers = $this->controller->attendance_model->getOnline();
@@ -27,6 +32,9 @@ class UsersController extends ControllerBase {
         ));
     }
 
+    /**
+     * Show template for users online with data
+     */
     public function history() {
         $this->controller->load->model('attendance_model');
         $data = $this->controller->attendance_model->getUserHistory($_POST['userId']);
@@ -34,6 +42,9 @@ class UsersController extends ControllerBase {
         $this->controller->assetManager->render('admin/users/history');
     }
 
+    /**
+     * Render template for users info with data
+     */
     public function info() {
         $this->controller->load->model('users_model');
         $this->controller->users_model->setParams($this->params);
@@ -43,6 +54,9 @@ class UsersController extends ControllerBase {
         ));
     }
 
+    /**
+     * Render template for users attendance with data
+     */
     public function attendance() {
         // getting view type
         if (isset($_GET['view_type'])) {
@@ -63,6 +77,9 @@ class UsersController extends ControllerBase {
         ));
     }
 
+    /**
+     * Output chart data for users attendance
+     */
     public function getAttendanceData() {
         $params = $this->params;
 
@@ -114,11 +131,18 @@ class UsersController extends ControllerBase {
 //        ));
     }
 
-    public function register
-    () {
+    
+    /**
+     * Render template for users registration
+     */
+    public function register() {
+
         $this->renderAdmin('register');
     }
 
+    /**
+     * Output chart data for users registration
+     */
     public function getRegisterData() {
         $this->controller->load->model('users_model');
         $data = $this->controller->users_model->getRegister();

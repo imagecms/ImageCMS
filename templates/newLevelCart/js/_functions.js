@@ -21,7 +21,7 @@ var ShopFront = {
                     el.parent(genObj.btnInCart).addClass('d_n');
                     el.closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart)
                     .find(genObj.frameCount)
-                    .find(':input').removeAttr('disabled', 'disabled')
+                    .find(':input:not(:disabled)').removeAttr('disabled', 'disabled')
                     .end().find(genObj.plusMinus).attr('value', function(){
                         return $(this).data('min');
                     });
@@ -407,8 +407,7 @@ function showHidePart(el, absolute, time, btnPlace) {
             sumHeight += $(this).outerHeight(true);
         })
         $this.find('*').css('max-height', '');
-        console.log(sumHeight)
-        console.log($thisH)
+
         if (sumHeight > $thisH) {
             $this.css({
                 'max-height': 'none',

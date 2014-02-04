@@ -59,18 +59,6 @@ $(document).ready(function() {
         $('.date_end').val(endDateForInput);
     });
 
-    /**  Autocomplete for products    */
-//    if ($('#autocomleteProduct').length) {
-//        $('#autocomleteProduct').autocomplete({
-//            source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteProducts?limit=25',
-//            select: function(event, ui) {
-//                productsData = ui.item;
-//            },
-//            close: function() {
-//                $('#autocomleteProductId').val(productsData.id);
-//            }
-//        });
-//    }
 
     /**  Autocomplete for categories    */
     if ($('#autocomleteCategory').length) {
@@ -109,7 +97,40 @@ $(document).ready(function() {
     });
 
 
+    /** Show user attendance on page online */
+    $(".online-users-table").on('click', 'tr.main_row td', function() {
 
+        $("tr.additional_row").hide();
+        var tr = $(this).parent();
+        var userId = $(tr).data('user_id');
+        var trSelector = 'tr.additional_row[data-user_id="' + userId + '"]';
+
+
+        if ($(tr).hasClass('open_row')) {
+            $('tr.main_row').removeClass('open_row');
+            return;
+        }
+
+        if ($(trSelector).size() == 0) {
+            $.post('/admin/components/cp/mod_stats/users/history', {userId: userId}, function(data) {
+                $(tr).after("<tr data-user_id='" + userId + "' class='additional_row'><td colspan='5'>" + data + "</td></tr>");
+                $(trSelector).show();
+            });
+        } else {
+            $(trSelector).show();
+        }
+        $('tr.main_row').removeClass('open_row');
+        $(tr).addClass('open_row');
+    });
+
+    $(".online-users-table").on('click', 'tr td a', function(obj, event) {
+        event.preventDefault();
+    });
+    
+    /** Save image button click **/
+    $("#saveAsPng").click(function() {
+        StatsSettingsAndParams.submitDownloadForm("png");
+    });
 
     /** DRAW CHARTS **/
 
@@ -127,8 +148,8 @@ $(document).ready(function() {
                     var chart = nv.models.pieChart()
                             .showLabels(true)
                             .x(function(d) {
-                        return d.key
-                    })
+                                return d.key
+                            })
                             .y(function(d) {
 
                                 return d.y
@@ -163,7 +184,6 @@ $(document).ready(function() {
     var barChartBlocks = $('.barChartStats');
     if (barChartBlocks.length) {
         barChartBlocks.each(function(index, el) {
-
             var cData = ChartData.getData($(el).data('from'));
             if (cData != false) {
                 $('#showNoChartData').hide();
@@ -187,7 +207,7 @@ $(document).ready(function() {
                             .tickFormat(d3.format('.0f'));
 
                     d3.select(el)
-                            .datum(convertDataForPieToBarChart(cData))
+                            .datum(ChartData.convertDataForPieToBarChart(cData))
                             .transition().duration(500)
                             .attr('width', width)
                             .attr('height', height)
@@ -267,9 +287,6 @@ $(document).ready(function() {
         });
     }
 
-
-
-
     /** Find and draw  Line Chart */
     var lineChartStats = $('.cumulativeLineChartStats');
     if (lineChartStats.length) {
@@ -287,12 +304,10 @@ $(document).ready(function() {
                         return '<h3>' + key + '</h3>' + '<p>' + e + ' at ' + y + '</p>'
                     });
 
-
                     chart.xAxis
                             .tickFormat(function(d) {
                                 return d3.time.format('%d/%m/%Y')(new Date(d))
                             });
-
 
                     chart.yAxis
                             .tickFormat(d3.format('.0f'));
@@ -313,92 +328,5 @@ $(document).ready(function() {
 
         });
     }
-
-    /** Save button click **/
-    $("#saveAsPng").click(function() {
-        submit_download_form("png");
-    });
-
-    /**
-     * Send form for download image
-     */
-    function submit_download_form(output_format)
-    {
-        // Get the d3js SVG element
-        var tmp = document.getElementById("chartArea");
-        var svg = tmp.getElementsByTagName("svg")[0];
-        // Extract the data as SVG text string
-        var svg_xml = (new XMLSerializer).serializeToString(svg);
-
-        // Submit the <FORM> to the server.
-        // The result will be an attachment file to download.
-        var form = document.getElementById("svgform");
-        form['output_format'].value = output_format;
-        form['data'].value = svg_xml.translit();
-        form.submit();
-    }
-
-
     /** ************************************************ */
-
-
-    /***!!!!!!!!!!!!!! **/
-    function convertDataForPieToBarChart(data) {
-        var inputData = data;
-        var chartDataForReturn = [];
-        var tmpData = {};
-        tmpData.values = [];
-        if (inputData === undefined) {
-            return 'false';
-        }
-
-        $.each(inputData, function(index, value) {
-            var stepObj = {};
-            stepObj.label = value.key;
-            stepObj.value = value.y;
-            tmpData.values.push(stepObj);
-        });
-        tmpData.key = 'Bar data';
-        chartDataForReturn.push(tmpData);
-        return chartDataForReturn;
-    }
-    /***********************/
-
-
-});
-
-
-
-
-
-$(document).ready(function() {
-    $(".online-users-table").on('click', 'tr.main_row td', function() {
-
-        $("tr.additional_row").hide();
-        var tr = $(this).parent();
-        var userId = $(tr).data('user_id');
-        var trSelector = 'tr.additional_row[data-user_id="' + userId + '"]';
-        
-
-        if ($(tr).hasClass('open_row')) {
-            $('tr.main_row').removeClass('open_row');
-            return;
-        }
-
-        if ($(trSelector).size() == 0) {
-            $.post('/admin/components/cp/mod_stats/users/history', {userId: userId}, function(data) {
-                $(tr).after("<tr data-user_id='" + userId + "' class='additional_row'><td colspan='5'>" + data + "</td></tr>");
-                $(trSelector).show();
-            });
-        } else {
-            $(trSelector).show();
-        }
-        $('tr.main_row').removeClass('open_row');
-        $(tr).addClass('open_row');
-    });
-
-
-    $(".online-users-table").on('click', 'tr td a', function(obj, event) {
-        event.preventDefault();
-    });
 });

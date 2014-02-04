@@ -179,8 +179,9 @@ var lazyload = {
     effect: "fadeIn"
 };
 var optionsPlusminus = {
-    prev: 'prev.children(:eq(1)).children',
-    next: 'prev.children(:eq(0)).children',
+    prev: 'prev().children(:eq(1)).children()',
+    next: 'prev().children(:eq(0)).children()',
+    step: 1,
     checkProdStock: checkProdStock
 }
 $.maxminValue.settings = {
