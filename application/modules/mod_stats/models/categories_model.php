@@ -80,7 +80,9 @@ class Categories_model extends \CI_Model {
     }
 
     /**
-     * 
+     * Helper function for categories attendance 
+     * @param int $parentId (optional) id of category childs wich to return
+     * @return array 
      */
     public function getCategoriesList($parentId = NULL) {
         $this->db

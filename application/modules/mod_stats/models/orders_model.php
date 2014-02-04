@@ -9,6 +9,11 @@ class Orders_model extends CI_Model {
 
     use DateIntervalTrait;
 
+    /**
+     * Helper function to create all conditions
+     * @param array $params
+     * @return array(paid condition, between condition)
+     */
     protected function prepareConditions(array $params) {
 
         $paidCondition = "";
@@ -34,8 +39,12 @@ class Orders_model extends CI_Model {
     }
 
     /**
-     * 
+     * Getting information about orders
      * @param array $params
+     *  - interval
+     *  - from (date)
+     *  - to (date)
+     *  - paid
      * @return boolean|array
      * arrays with fields:
      *  - orders_count
@@ -98,8 +107,9 @@ class Orders_model extends CI_Model {
     }
 
     /**
-     * 
-     * @return boolean
+     * Information about orders grouped by users
+     * @param arra $params standart params
+     * @return boolean|array
      */
     public function getUsers(array $params_ = array()) {
         $params = array(
