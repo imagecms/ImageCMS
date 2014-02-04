@@ -15,16 +15,6 @@ class Module_frame extends MY_Controller {
     }
 
     public function index() {
-        $data = array(
-            'product_name' => 'фв',
-            'currency' => '2',
-            'category_id' => '52',
-            'price_in_main' => '2.3',
-//            'mainImage'=> 'http://upload.wikimedia.org/wikipedia/commons/2/22/Turkish_Van_Cat.jpg',
-        );
-
-          \Products\ProductApi::getInstance()->addProduct($data);
-          echo \Products\ProductApi::getInstance()->getError();
        
     }
 
