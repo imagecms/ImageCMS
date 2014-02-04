@@ -1,9 +1,12 @@
 <?php
 
 /**
- * 
+ * Class SearchController for mod_stats module
+ * @uses ControllerBase
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
  * @property search_model $search_model
- * @author 
+ * @package ImageCMSModule
  */
 class SearchController extends ControllerBase {
 
@@ -94,11 +97,6 @@ class SearchController extends ControllerBase {
         echo json_encode($chartData);
     }
 
-    public function noResults() {
-
-        $this->renderAdmin('noResults', array('data' => $result));
-    }
-
     /**
      * Prepare query string, which will be inserted after WHERE
      * @param array $searchResults
@@ -118,6 +116,12 @@ class SearchController extends ControllerBase {
             $returnResult.=")";
             return $returnResult;
         }
+    }
+    
+    // TO DO
+    public function noResults() {
+
+        $this->renderAdmin('noResults', array('data' => $result));
     }
 
 }

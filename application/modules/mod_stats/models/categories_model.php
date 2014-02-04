@@ -1,9 +1,12 @@
 <?php
 
 /**
- * Description of ProductsBase
- *
- * @author 
+ * Class Categories_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @property CI_DB_active_record $db
+ * @package ImageCMSModule
  */
 class Categories_model extends \CI_Model {
 

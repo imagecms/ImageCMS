@@ -1,9 +1,12 @@
 <?php
 
 /**
-
+ * Class Attendance_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
  * @property CI_DB_active_record $db
- * @property DX_Auth $dx_auth
+ * @package ImageCMSModule
  */
 class Attendance_model extends CI_Model {
 
@@ -143,7 +146,11 @@ class Attendance_model extends CI_Model {
     }
 
     /**
+<<<<<<< HEAD
      * Returns "serfing" history of specified user
+=======
+     * Get user history
+>>>>>>> 4bf9048f9bbbd67ca554b671c8f137007fd5c3c1
      * @param int $userId
      * @return array
      */
@@ -217,5 +224,3 @@ class Attendance_model extends CI_Model {
     }
 
 }
-
-?>

@@ -6,10 +6,10 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 /**
- * Class BaseStats for mod_stats module
+ * Class AdminHelper for mod_stats module
  * @uses \MY_Controller
  * @author DevImageCms
- * @copyright (c) 2013, ImageCMS
+ * @copyright (c) 2014, ImageCMS
  * @property stats_model $stats_model
  * @package ImageCMSModule
  */

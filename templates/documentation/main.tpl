@@ -49,7 +49,7 @@
             hljs.initHighlightingOnLoad();
         </script>
     </head>
-    <body>
+    <body class="is{echo $agent[0]}">
         {include_tpl('inc/javascriptVars')}
         {include_tpl('inc/jsLangs.tpl')}
     {if !isset($_COOKIE['category_menu'])} {$_COOKIE['category_menu'] = 'begin-work'} {/if} 
@@ -176,7 +176,7 @@
             <div class="info-box2 col-lg-4">
                 <div class="title">
                     <span class="icon-forum"></span>
-                    <span class="text-el">Последнее <a href="http://www.imagecms.net/forum">с форума</a></span>
+                    <span class="text-el">Последнее <a href="http://forum.imagecms.net/search.php?action=show_recent">с форума</a></span>
                 </div>
                 <ul>
                     {foreach $forumThemes as $forum}
@@ -293,7 +293,76 @@
         </div>
     </div>
 </footer>
+<ul class="likes-fixed">
+    {//$soc = new SocialSharesCount( site_url($CI->uri->uri_string()) )}
+    <li class="social-button">
+        <a data-href="http://www.facebook.com/sharer.php?u={echo site_url($CI->uri->uri_string())}" onclick="_gaq.push(['_trackEvent', 'facebook', '{echo $CI->uri->uri_string()}']);">
+            <span class="helper"></span>
+            <span>
+                <span class="text-el">Поделиться</span>
+                <span class='icon-fsb'></span>
+            </span>
+        </a>
+        <div class="votes">
+            {echo $social_data['facebook']}
+        </div>
+    </li>
+    <li class="social-button">
+        <a data-href="http://vkontakte.ru/share.php?url={echo site_url($CI->uri->uri_string())}" onclick="_gaq.push(['_trackEvent', 'vkontakte', '{echo $CI->uri->uri_string()}']);">
+            <span class="helper"></span>
+            <span>
+                <span class="text-el">Поделиться</span>
+                <span class='icon-vk'></span>
+            </span>
+        </a>
+        <div class="votes">
+            {echo $social_data['vkontakte']}
+        </div>
+    </li>
+    <li class="social-button">
+        <a data-href="https://twitter.com/share" onclick="_gaq.push(['_trackEvent', 'twitter', '{echo $CI->uri->uri_string()}']);">
+            <span class="helper"></span>
+            <span>
+                <span class="text-el">Поделиться</span>
+                <span class='icon-tweet'></span>
+            </span>
+        </a>
+        <div class="votes">
+            {echo $social_data['twitter']}
+        </div>
+    </li>
+    <li class="social-button">
+        <a data-href="https://plus.google.com/share?url={echo site_url($CI->uri->uri_string())}" onclick="_gaq.push(['_trackEvent', 'plus.google', '{echo $CI->uri->uri_string()}']);">
+            <span class="helper"></span>
+            <span>
+                <span class="text-el">Поделиться</span>
+                <span class='icon-gplus'></span>
+            </span>
+        </a>
+        <!--div class="votes">{//echo $social_data['plusone']}</div-->
+    </li>
+    <li class="social-button">
+        <a data-href="http://www.linkedin.com/shareArticle?mini=true&url={echo site_url($CI->uri->uri_string())}&title={echo urlencode($site_title)}&source=ImageCMS&summary={echo urlencode($site_description)}" onclick="_gaq.push(['_trackEvent', 'linkedin', '{echo $CI->uri->uri_string()}']);">
+            <span class="helper"></span>
+            <span>
+                <span class="text-el">Поделиться</span>
+                <span class='icon-in'></span>
+            </span>
+        </a>
+        <!--div class="votes">{//echo $social_data['linkedin']}</div-->
+    </li>
+</ul>
+
 <script type="text/javascript" src="{$THEME}js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{$THEME}js/offcanvas.js?{time()}"></script>
+<script type="text/javascript">
+{literal}
+$(document).ready(function() {
+	$('.likes-fixed a').click(function(){
+        window.open($(this).data('href'),"_blank", "top="+($(window).height()-600)/2+", left="+($(window).width()-850)/2+", width="+850+", height="+600);
+    });
+});
+{/literal}
+</script>
 </body>
 </html>

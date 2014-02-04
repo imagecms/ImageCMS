@@ -764,6 +764,7 @@
         </div>
         <div class="drop-content">
             <div class="inside-padd">
+                <span class="helper"></span>
                 <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
             </div>
             <div class="horizontal-carousel">
@@ -800,5 +801,5 @@
 <!-- End. JS vars-->
 
 <script type="text/javascript">
-    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
+    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', '_product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>
