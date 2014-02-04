@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-03 01:44+0200\n"
-"PO-Revision-Date: 2014-02-03 01:44+0200\n"
+"POT-Creation-Date: 2014-02-04 11:52+0200\n"
+"PO-Revision-Date: 2014-02-04 11:52+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,22 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/callbacks/create_theme.tpl:6
+msgid "Callback topic сreation"
+msgstr "Создание темы колбека"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:173
+msgid "Really delete callback(s)"
+msgstr "Вы действительно хотите удалить колбек(и)"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:170
+msgid "Remove callback(s)"
+msgstr "Удалить колбек(и)"
+
+#: ./application/modules/shop/admin/templates/callbacks/edit.tpl:6
+msgid "Callback editing"
+msgstr "Редактирование колбека"
 
 #: ./application/modules/shop/admin/templates/callbacks/edit_theme.tpl:6
 msgid "Сallback topic editing"
@@ -1163,10 +1179,6 @@ msgstr "Вы действительно хотите удалить выбран
 #: ./application/modules/shop/admin/templates/warehouses/list.tpl:10
 msgid "Really remove selected warehouses?"
 msgstr "Вы действительно хотите удалить выбранные склады?"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:173
-msgid "Really delete callback(s)"
-msgstr "Вы действительно хотите удалить колюек(и)"
 
 #: ./application/modules/shop/admin/templates/orderstatuses/_deleteWindow.tpl:7
 msgid "Do you really want to delete the status?"
@@ -4722,10 +4734,6 @@ msgstr "Редактирование способа доставки"
 msgid "Edit status"
 msgstr "Редактирование статуса"
 
-#: ./application/modules/shop/admin/templates/callbacks/edit.tpl:6
-msgid "Callback editing"
-msgstr "Редактирование статуса callback'a"
-
 #: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:5
 msgid "Orders status edit"
 msgstr "Редактирование статуса заказа"
@@ -5186,10 +5194,6 @@ msgstr "Создание статуса колбека"
 #: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:6
 msgid "Creation of Status pending"
 msgstr "Создание статуса уведомления о появлении"
-
-#: ./application/modules/shop/admin/templates/callbacks/create_theme.tpl:6
-msgid "Creation of the request subject"
-msgstr "Создание тему запроса"
 
 #: ./application/modules/shop/admin/templates/products/_create.tpl:5
 #: ./application/modules/shop/admin/templates/products/create.tpl:5
@@ -6657,10 +6661,6 @@ msgstr "Удалить запрос?"
 #: ./templates/administrator/category_list.tpl:19
 msgid "Delete category"
 msgstr "Удалить категорию"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:170
-msgid "Remove callback"
-msgstr "Удалить колбек"
 
 #: ./templates/administrator/module_table.tpl:19
 msgid "Delete modules?"
