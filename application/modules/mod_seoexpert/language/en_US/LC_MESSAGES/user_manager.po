@@ -1,0 +1,404 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-11 13:35+0300\n"
+"PO-Revision-Date: 2013-10-11 13:36+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+
+#: /var/www/image.loc/_tempLangs.php:13
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "Delete"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:14
+msgid "Cancel"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:15
+#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:65
+msgid "Return"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:16
+msgid "User create"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:17
+msgid "Create a Group"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:18
+msgid "Users"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:19
+msgid "Groups"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "Access rights differentiation system"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "Cancel filter"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "Filter admin"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "All groups"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:26
+#: /var/www/image.loc/_tempLangs.php:30
+#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:66
+msgid "Save"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Properties"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:28
+#: /var/www/image.loc/_tempLangs.php:29
+#: /var/www/image.loc/_tempLangs.php:36
+#: /var/www/image.loc/_tempLangs.php:50
+#: /var/www/image.loc/_tempLangs.php:82
+#: /var/www/image.loc/_tempLangs.php:101
+msgid "Group"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:31
+msgid "Cancel all"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:32
+msgid "Cancel selection"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:33
+#: /var/www/image.loc/_tempLangs.php:98
+#: /var/www/image.loc/_tempLangs.php:106
+msgid "ID"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:34
+msgid "Login"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:35
+#: /var/www/image.loc/_tempLangs.php:47
+msgid "E-Mail"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:37
+#: /var/www/image.loc/_tempLangs.php:54
+msgid "Ban"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:38
+#: /var/www/image.loc/_tempLangs.php:103
+msgid "Last IP"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:39
+msgid "Latest Entry or Last Entry"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:40
+msgid "Created"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:41
+msgid "Edit"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:42
+msgid "Editing by"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:67
+msgid "Save and exit"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:46
+msgid "User data"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:48
+#: /var/www/image.loc/_tempLangs.php:78
+msgid "Full name"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Phone"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:51
+msgid "Without group"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:52
+#: /var/www/image.loc/_tempLangs.php:80
+msgid "New password"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:53
+msgid "Password confirm"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:55
+msgid "No"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:56
+msgid "Yes"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:57
+msgid "Ban Reason"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:58
+msgid "Options"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:64
+#: /var/www/image.loc/_tempLangs.php:86
+msgid "Create"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:89
+#: /var/www/image.loc/_tempLangs.php:107
+msgid "Name"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:70
+#: /var/www/image.loc/_tempLangs.php:90
+#: /var/www/image.loc/_tempLangs.php:108
+msgid "Identifier"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:62
+msgid "Just latin characters"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:63
+#: /var/www/image.loc/_tempLangs.php:71
+#: /var/www/image.loc/_tempLangs.php:92
+#: /var/www/image.loc/_tempLangs.php:109
+msgid "Description"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:72
+msgid "Create a new user"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:73
+#: /var/www/image.loc/_tempLangs.php:85
+msgid "Go back"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:74
+msgid "Сreate"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:75
+#: /var/www/image.loc/_tempLangs.php:87
+msgid "Create and exit"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:76
+msgid "New user"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:77
+msgid "Email"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:79
+msgid "Phone number"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:81
+msgid "Confirm the password"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:83
+msgid "No group"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:84
+msgid "Creating a group"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:88
+msgid "Group details"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:91
+msgid "Only Latin characters"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:93
+#: /var/www/image.loc/_tempLangs.php:95
+msgid "Deleting a user"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:94
+msgid "Remove selected users?"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:96
+msgid "Delete a user?"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:97
+msgid "User Manager"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:99
+msgid "User"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:100
+msgid "E-mail"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:102
+msgid "Banned"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:104
+msgid "Preliminary contents"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:105
+msgid "Group list"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:110
+msgid "Editing Groups"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:111
+msgid "Group data"
+msgstr ""
+
+#: ../../..//admin.php:94
+msgid "Next"
+msgstr ""
+
+#: ../../..//admin.php:95
+msgid "Prev"
+msgstr ""
+
+#: ../../..//admin.php:173
+#: ../../..//admin.php:370
+#: ../../..//admin.php:378
+msgid "Password"
+msgstr ""
+
+#: ../../..//admin.php:185
+#: ../../..//admin.php:384
+msgid "User with the same e-mail has been registered"
+msgstr ""
+
+#: ../../..//admin.php:205
+msgid "Create a user or the username has been created"
+msgstr ""
+
+#: ../../..//admin.php:209
+msgid "Username has been created or user has been created"
+msgstr ""
+
+#: ../../..//admin.php:248
+msgid "Ban the user  or the user has been banned"
+msgstr ""
+
+#: ../../..//admin.php:257
+msgid "The user has been unbanned "
+msgstr ""
+
+#: ../../..//admin.php:298
+#: ../../..//admin.php:315
+#: ../../..//admin.php:346
+msgid "User has not been found "
+msgstr ""
+
+#: ../../..//admin.php:328
+msgid "You do not pass search"
+msgstr ""
+
+#: ../../..//admin.php:412
+msgid "Updated a user"
+msgstr ""
+
+#: ../../..//admin.php:417
+#: ../../..//admin.php:522
+msgid "Changes have been saved"
+msgstr ""
+
+#: ../../..//admin.php:467
+msgid "Created a group"
+msgstr ""
+
+#: ../../..//admin.php:468
+msgid "Group has been created"
+msgstr ""
+
+#: ../../..//admin.php:486
+msgid "No data transmitted"
+msgstr ""
+
+#: ../../..//admin.php:496
+msgid "Deleted a user"
+msgstr ""
+
+#: ../../..//module_info.php:5
+msgid "Users manager"
+msgstr ""
+
+#, fuzzy
+#~ msgid "ac_val_name"
+#~ msgstr "Name"
+
+#~ msgid "a_positions_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_page_cont_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_val_position"
+#~ msgstr "Позиція"
+
+#~ msgid "Settings saved success"
+#~ msgstr "Settings saved success"
+
+#~ msgid "amt_name"
+#~ msgstr "User name"
