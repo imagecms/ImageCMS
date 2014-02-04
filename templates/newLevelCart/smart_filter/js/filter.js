@@ -403,7 +403,7 @@ var Filter = {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
                 
-                $('[name=checkbox]:checked').removeAttr('disabled');
+                $('[type=checkbox]:checked').removeAttr('disabled');
                 //$('[name=checkbox]:checked').closest('.frame-label').find('.count').text();
 
             }
