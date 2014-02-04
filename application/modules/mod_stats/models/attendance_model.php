@@ -13,7 +13,7 @@ class Attendance_model extends CI_Model {
     use DateIntervalTrait;
 
     /**
-     * 
+     * Common attendance by unique users per day(month|year)
      * @param array $params
      *  - interval (string) day|month|year
      *  - dateFrom (string) YYYY-MM-DD 
@@ -112,13 +112,13 @@ class Attendance_model extends CI_Model {
     }
 
     /**
-     * Get categories attendance
+     * Dynamic of categories attendance
      * @param array $params standart params (date, interval)
-     * @param array $comparedCategories 
+     * @param array $categoriesIds ids of categories witch attendance return
      */
     public function getCategoriesAttendance(array $params, array $categoriesIds) {
         $datePattern = $this->getDatePattern($params['interval']);
-        //$dateBetween = $this->prepareDateBetweenCondition('time_add', $params);
+        $dateBetween = $this->prepareDateBetweenCondition('time_add', $params);
 
         $categoriesAttendance = array();
         foreach ($categoriesIds as $categoryId => $categoryIds) {
@@ -134,6 +134,7 @@ class Attendance_model extends CI_Model {
                 WHERE 1 
                     AND `type_id` = 3
                     {$condition}
+                    {$dateBetween}
                 GROUP BY 
                     `date`
             ";
@@ -145,8 +146,13 @@ class Attendance_model extends CI_Model {
     }
 
     /**
+<<<<<<< HEAD
+     * Returns "serfing" history of specified user
+=======
      * Get user history
+>>>>>>> 4bf9048f9bbbd67ca554b671c8f137007fd5c3c1
      * @param int $userId
+     * @return array
      */
     public function getUserHistory($userId) {
         if (!is_numeric($userId)) {

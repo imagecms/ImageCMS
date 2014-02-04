@@ -91,7 +91,7 @@ class UsersController extends ControllerBase {
         $registered = array();
         foreach ($data as $row) {
             $registered[] = array(
-                'x' => (int) $row['unix_date'] * 1000,
+                'x' => $row['unix_date'] * 1000,
                 'y' => (int) $row['users_count']
             );
         }
@@ -101,21 +101,42 @@ class UsersController extends ControllerBase {
         $unregistered = array();
         foreach ($data as $row) {
             $unregistered[] = array(
-                (int) $row['unix_date'] * 1000,
-                (int) $row['users_count']
+                'x' => $row['unix_date'] * 1000,
+                'y' => (int) $row['users_count']
             );
         }
 
-        echo json_encode(array(
+        $this->controller->import('classes/ZeroFiller');
+
+        echo '<pre>';
+        print_r(ZeroFiller::fill($registered, 'x', 'y', $this->params['interval']));
+        echo '</pre>';
+        exit;
+
+        $array = array(
             array('key' => 'Count of unique registered users', 'values' => $registered),
-            array('key' => 'Count of unique unregistered users', 'values' => $unregistered),
-        ));
+            array('key' => 'Count of unique unregistered users', 'values' => ZeroFiller::fill($unregistered, 'x', 'y', $this->params['interval'])),
+        );
+
+        echo '<pre>';
+        print_r($array);
+        echo '</pre>';
+        exit;
+
+
+
+//        echo json_encode(array(
+//            array('key' => 'Count of unique registered users', 'values' => ZeroFiller::fill($registered, 'x', 'y', $this->params['interval'])),
+//            array('key' => 'Count of unique unregistered users', 'values' => ZeroFiller::fill($unregistered, 'x', 'y', $this->params['interval'])),
+//        ));
     }
+
     
     /**
      * Render template for users registration
      */
     public function register() {
+
         $this->renderAdmin('register');
     }
 
