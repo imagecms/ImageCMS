@@ -2,6 +2,7 @@
 <div class="btn-bask tiny-bask tinyBask{if $topCartCount != 0} pointer{/if}">
     <button>
         <span class="frame-icon">
+            <span class="helper"></span>
             <span class="icon_cleaner"></span>
         </span>
         <span class="text-cleaner">

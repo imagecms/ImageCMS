@@ -231,8 +231,7 @@ class Auth extends MY_Controller {
 //                 ($hook = get_hook('auth_show_success_message')) ? eval($hook) : NULL;
                 // Load registration success page
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
-                    $this->template->assign('content', $data['auth_message']);
-                    $this->template->show();
+                    $this->template->show('register_success');exit;
                 } else {
                     $this->template->display('register_popup', array('succes' => TRUE));
                 }

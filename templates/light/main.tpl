@@ -45,7 +45,7 @@
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: false,
+                                cache: true,
                                 success: function() {
                                     cL++;
                                     if (cL == scriptsL)
@@ -79,7 +79,7 @@
         <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
     </head>
-    <body class="is{echo $agent[0]} not-js"> 
+    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}">
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
@@ -106,18 +106,17 @@
         </footer>
         {include_tpl('user_toolbar')}
 
+        {/*}Start. delete before upload to server{ */}
+        {/*}
         <!-- scripts -->
-        <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
+        <script type="text/javascript" src="{$THEME}js/drop_extend_methods.js"></script>
         <script type="text/javascript" src="{$THEME}js/_shop.js"></script>
         <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
-
-        <script type="text/javascript">
-            {/*initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');*/}
-        </script>
+        <!-- scripts end -->
 
         {literal}
             <script type="text/javascript">
@@ -125,11 +124,19 @@
                     init();
                     setTimeout(function(){
                         $(document).trigger({type: 'scriptDefer'})
-                    }, 0);
+                    }, 0)
                 })
             </script>
         {/literal}
+        { */}
+        {/*}End. delete before upload to server{ */}
+        
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
+        {/*} Start. uncoment before development { */}
+        <script type="text/javascript">
+            initDownloadScripts(['united_scripts'], 'init', 'scriptDefer');
+        </script>
+        {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
-        <!-- scripts end -->
     </body>
 </html>

@@ -3,11 +3,15 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * 
- * 
- * 
+ * Class Admin for mod_stats module
+ * @uses \BaseAdminController
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @package ImageCMSModule
  */
 class Admin extends \BaseAdminController {
+
+    use FileImportTrait;
 
     /**
      * Asset manager is building path of clients scripts by trace,
@@ -21,15 +25,13 @@ class Admin extends \BaseAdminController {
      * In format controller/action
      * @var string
      */
-    public $defaultAction = 'orders/amount';
+    public $defaultAction = 'orders/count';
 
     public function __construct() {
         parent::__construct();
-        $interfacesDir = __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR;
-        include $interfacesDir . 'ControllerBase' . EXT;
-        include $interfacesDir . 'DynamicDiagramInterface' . EXT;
-        include $interfacesDir . 'StaticDiagramInterface' . EXT;
+        $this->load->helper('file');
 
+        $this->import('classes/ControllerBase' . EXT);
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
                 ->registerScript('d3.v3')
@@ -43,11 +45,19 @@ class Admin extends \BaseAdminController {
             $this->assetManager->setData('queryString', '?' . $_SERVER['QUERY_STRING']);
         }
         // passing to template array with menu structure
-        $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
+        $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
+
+        // set data to template
         $this->assetManager->setData('leftMenu', $leftMenu);
+        $this->assetManager->setData('saveSearchResults', \mod_stats\classes\AdminHelper::create()->getSetting('save_search_results'));
+        $this->assetManager->setData('saveUsersAttendance', \mod_stats\classes\AdminHelper::create()->getSetting('save_users_attendance'));
+        $this->assetManager->setData('CS', \mod_stats\classes\AdminHelper::create()->getCurrencySymbol());
     }
 
     public function index() {
+//        if ($this->input->is_ajax_request()){
+//            exit();
+//        }
         $ca = explode('/', $this->defaultAction);
         $this->runControllerAction($ca[0], array($ca[1]));
     }
@@ -72,6 +82,24 @@ class Admin extends \BaseAdminController {
         $this->runControllerAction(__FUNCTION__, func_get_args());
     }
 
+    public function adminAdd() {
+        $this->runControllerAction(__FUNCTION__, func_get_args());
+    }
+
+    /**
+     * Simple redirecting to page from attendance data
+     */
+    public function attendance_redirect() {
+        if (!isset($_GET['type_id']) || !isset($_GET['id_entity'])) {
+            echo "Page not found - No data";
+            exit;
+        }
+        $this->import('classes/Attendance');
+        $this->import('classes/AttendanceRedirect');
+        $attendanceRedirect = new AttendanceRedirect();
+        $attendanceRedirect->redirect($_GET['type_id'], $_GET['id_entity']);
+    }
+
     /**
      * Helper function for spliting controllers
      * @param string $callerFunctionName
@@ -86,3 +114,4 @@ class Admin extends \BaseAdminController {
     }
 
 }
+

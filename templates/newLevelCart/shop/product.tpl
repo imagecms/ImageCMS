@@ -38,14 +38,16 @@
                             {/if}
                         </span>
                     </span>
-                    <span class="frame-variant-name frameVariantName" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
-                        {lang('Вариант','newLevel')}:
-                        <span class="code js-code">
-                            {if $model->firstVariant->getName()}
-                                {trim($model->firstVariant->getName())}
-                            {/if}
+                    {if count($variants) > 1}
+                        <span class="frame-variant-name frameVariantName" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
+                            {lang('Вариант','newLevel')}:
+                            <span class="code js-code">
+                                {if $model->firstVariant->getName()}
+                                    {trim($model->firstVariant->getName())}
+                                {/if}
+                            </span>
                         </span>
-                    </span>
+                    {/if}
                     {if $model->getBrand() != null}
                         {$brand = $model->getBrand()->getName()}
                         {$hasBrand = trim($brand) != ''}
@@ -635,7 +637,6 @@
                                 <span class="text-el">{lang('Просмотреть все спецификации','newLevel')}</span>
                             </button>
                         </div>
-
                     </div>
                 {/if}
                 {if $fullDescription != ''}
@@ -654,7 +655,6 @@
                         </button>
                         <!--                        End. Description block-->
                     </div>
-
                 {/if}
 
                 {if $accessories}
@@ -681,7 +681,7 @@
                     <!--Start. Comments block-->
                     {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                     <div class="frame-form-comment">
-                        <div class="forComments">
+                        <div class="forComments p_r">
                             {echo $c['comments']}
                         </div>
                         <!--End. Comments block-->
@@ -707,7 +707,7 @@
                 </div>
             </div>
             <div id="comment">
-                <div class="inside-padd forComments">
+                <div class="inside-padd forComments p_r">
                     <div class="preloader"></div>
                 </div>
             </div>
