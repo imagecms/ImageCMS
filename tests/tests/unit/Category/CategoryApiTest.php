@@ -61,7 +61,6 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers CategoryApi::getInstance
-     * @todo   Implement testGetInstance().
      */
     public function testGetInstance() {
         $this->assertTrue($this->object instanceof \Category\CategoryApi);
@@ -77,7 +76,6 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers CategoryApi::addCategory
-     * @todo   Implement testAddCategory().
      */
     public function testAddCategory() {
         $result = $this->object->addCategory($this->testData, 'ru');
@@ -98,7 +96,6 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers CategoryApi::addCategoryI18N
-     * @todo   Implement testAddCategoryI18N().
      */
     public function testAddCategoryI18N() {
         $result = $this->object->addCategoryI18N($this->testCategory['id'], $this->testData, random_string());
@@ -126,7 +123,6 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers CategoryApi::updateCategory
-     * @todo   Implement testUpdateCategory().
      */
     public function testUpdateCategory() {
         $result = $this->object->updateCategory($this->testCategory['id'], $this->testData, random_string());
@@ -135,7 +131,7 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
             $this->assertTrue($result instanceof \SCategory);
 
         $this->assertEquals($result->getUrl(), $this->testData['url']);
-        
+
         $this->assertEquals($result->getParentId(), $this->testData['parent_id']);
 
         $result = $this->object->updateCategory();
@@ -149,7 +145,6 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers CategoryApi::updateCategoryI18N
-     * @todo   Implement testUpdateCategoryI18N().
      */
     public function testUpdateCategoryI18N() {
         $result = $this->object->updateCategoryI18N($this->testCategory['id'], $this->testData, random_string());
@@ -169,7 +164,6 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers CategoryApi::getCategory
-     * @todo   Implement testGetCategory().
      */
     public function testGetCategory() {
         $result = $this->object->getCategory();
@@ -186,7 +180,6 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers CategoryApi::deleteCategory
-     * @todo   Implement testDeleteCategory().
      */
     public function testDeleteCategory() {
         $result = $this->object->deleteCategory($this->testCategory['id']);
@@ -202,7 +195,6 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers CategoryApi::getTree
-     * @todo   Implement testGetTree().
      */
     public function testGetTree() {
         $result = $this->object->getTree();
