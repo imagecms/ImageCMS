@@ -331,40 +331,7 @@ var Filter = {
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
         
-       /* var catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter'),
-        dataPre = $(this.catalogForm).serialize();
-        $.ajax({
-            type: 'get',
-            async : false,
-            url: catUrlPre,
-            data: dataPre,
-            success: function(dane) {
-                if (dane) {
-                    dane = JSON.parse(dane);
-                    $(dane.prop).each(function(key,value){
-                        var id = value.property_id;
-                        $(value.possibleValues).each(function(k,v){
-                            if (v.count == 0){
-                                $('#p_'+id+'_'+v.id+' input').parent().nStCheck('checkUnChecked');
-                            }
-                        })
-                        
-                    });
-                    $(dane.brand).each(function(key,value){
-                        var id = value.id;
-                        var count = value.countProducts;
-                        if (count == 0){
-                            $('#brand_'+id+' input').parent().nStCheck('checkUnChecked');
-                        }
-                        
-                        
-                    })
-                    
-                           
-                }
-            }
 
-        });
         
         
          /*not hyper clever filter*/
