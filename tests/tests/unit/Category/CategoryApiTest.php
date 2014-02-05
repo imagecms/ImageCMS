@@ -11,6 +11,11 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @var CategoryApi
      */
     protected $object;
+    protected $testData;
+    protected $testCategory;
+    protected $testCategoryI18N;
+    protected $testCategoriesCount;
+    protected $ci;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -18,7 +23,32 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = \Category\CategoryApi::getInstance();
-        
+        $this->testData = array(
+            'tpl' => 'testTPL',
+            'order_method' => 2,
+            'showsitetitle' => 1,
+            'parent_id' => 1,
+            'url' => random_string(),
+            'active' => 1,
+            'image' => 'testImage',
+            'name' => 'testName',
+            'h1' => 'testH1',
+            'description' => 'testDescription',
+            'meta_desc' => 'testMetaDesc',
+            'meta_title' => 'testMetaTitle',
+            'meta_keywords' => 'testMetaKeywords',
+            'position' => 1,
+            'external_id' => 11
+        );
+
+        $this->ci = & get_instance();
+
+        $this->testCategory = $this->ci->db->limit(1)->get('shop_category');
+        $this->testCategory = $this->testCategory ? $this->testCategory->row_array() : array();
+        $this->testCategoryI18N = $this->ci->db->limit(1)->get('shop_category_i18n');
+        $this->testCategoryI18N = $this->testCategoryI18N ? $this->testCategoryI18N->row_array() : array();
+        $this->testCategoriesCount = $this->ci->db->get('shop_category');
+        $this->testCategoriesCount = $this->testCategoriesCount ? $this->testCategoriesCount->num_rows() : 0;
     }
 
     /**
@@ -34,10 +64,7 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetInstance().
      */
     public function testGetInstance() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object instanceof \Category\CategoryApi);
     }
 
     /**
@@ -45,10 +72,7 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetError().
      */
     public function testGetError() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertEmpty($this->object->getError());
     }
 
     /**
@@ -56,10 +80,20 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testAddCategory().
      */
     public function testAddCategory() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->addCategory($this->testData, 'ru');
+
+        if ($result)
+            $this->assertTrue($result instanceof \SCategory);
+
+        $this->assertEquals($result->getUrl(), $this->testData['url']);
+        $this->assertEquals($result->getParentId(), $this->testData['parent_id']);
+
+        $result = $this->object->addCategory();
+
+        $this->assertFalse($result);
+
+        if (!$result)
+            $this->assertTrue($this->object->getError() == lang('You did not specified data array'));
     }
 
     /**
@@ -67,10 +101,27 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testAddCategoryI18N().
      */
     public function testAddCategoryI18N() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->addCategoryI18N($this->testCategory['id'], $this->testData, random_string());
+
+        if ($result)
+            $this->assertTrue($result instanceof \SCategoryI18n);
+
+
+        $result = $this->object->addCategoryI18N();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() == lang('Category(ies) id(s) not specified'));
+        }
+
+        $result = $this->object->addCategoryI18N($this->testCategory['id']);
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() == lang('You did not specified data array'));
+        }
     }
 
     /**
@@ -78,10 +129,22 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateCategory().
      */
     public function testUpdateCategory() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->updateCategory($this->testCategory['id'], $this->testData, random_string());
+
+        if ($result)
+            $this->assertTrue($result instanceof \SCategory);
+
+        $this->assertEquals($result->getUrl(), $this->testData['url']);
+        
+        $this->assertEquals($result->getParentId(), $this->testData['parent_id']);
+
+        $result = $this->object->updateCategory();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() == lang('Category(ies) id(s) not specified'));
+        }
     }
 
     /**
@@ -89,10 +152,19 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateCategoryI18N().
      */
     public function testUpdateCategoryI18N() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->updateCategoryI18N($this->testCategory['id'], $this->testData, random_string());
+
+        if ($result)
+            $this->assertTrue($result instanceof \SCategoryI18n);
+
+
+        $result = $this->object->updateCategoryI18N();
+
+        $this->assertFalse($result);
+
+        if (!$result) {
+            $this->assertTrue($this->object->getError() == lang('Category(ies) id(s) not specified'));
+        }
     }
 
     /**
@@ -100,10 +172,16 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetCategory().
      */
     public function testGetCategory() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->getCategory();
+
+        $this->assertEquals(count($result), $this->testCategoriesCount);
+
+        if (count($this->testCategoriesCount) > 0)
+            $this->assertGreaterThan(0, count($result));
+
+        $result = $this->object->getCategory($this->testCategory['id']);
+
+        $this->assertCount(1, $result);
     }
 
     /**
@@ -111,10 +189,26 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testDeleteCategory().
      */
     public function testDeleteCategory() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $result = $this->object->deleteCategory($this->testCategory['id']);
+
+        $this->assertTrue($result);
+
+        $result = $this->object->deleteCategory();
+
+        $this->assertFalse($result);
+
+        $this->assertTrue($this->object->getError() == lang('Category(ies) id(s) not specified'));
+    }
+
+    /**
+     * @covers CategoryApi::getTree
+     * @todo   Implement testGetTree().
+     */
+    public function testGetTree() {
+        $result = $this->object->getTree();
+
+        $this->assertEquals(count($result), $this->testCategoriesCount);
     }
 
 }
+
