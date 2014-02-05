@@ -14,13 +14,12 @@
         {include_tpl('../include/left_block')}
         <div class="clearfix span9">
             {include_tpl('../include/top_form')}
-            
+
             {if $viewType == 'chart'}
                 <button  class="btn btn-small btn-primary" id="saveAsPng">
-
-                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
+                    <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}
+                </button>
                 <svg class="cumulativeLineChartStats" data-from="users/getAttendanceData" style="height: 600px; width: 800px;"></svg>
-
             {else:}
                 {if count($data) > 0}
                     <table class="table table-striped table-bordered table-condensed content_big_td">

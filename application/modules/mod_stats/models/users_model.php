@@ -45,7 +45,7 @@ class Users_model extends CI_Model {
     }
 
     /**
-     * Get registered userst
+     * Getting dynamic of users registration on site
      * @param array $params
      * @return boolean|array
      */

@@ -1,0 +1,467 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-28 13:05+0300\n"
+"PO-Revision-Date: 2013-03-28 13:05+0300\n"
+"Last-Translator: koloda <koloda90@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+
+#: ../../..//_out.php:6
+#: ../../..//templates/groups_edit.tpl:6
+msgid "Editing Groups"
+msgstr ""
+
+#: ../../..//_out.php:10
+#: ../../..//_out.php:68
+#: ../../..//_out.php:450
+#: ../../..//_out.php:549
+#: ../../..//_out.php:664
+#: ../../..//templates/groups_edit.tpl:10
+#: ../../..//templates/create_group.tpl:10
+#: ../../..//templates/edit_user.tpl:10
+#: ../../..//templates/create_user.tpl:10
+#: ../../..//templates/main.tpl:30
+msgid "Go back"
+msgstr ""
+
+#: ../../..//_out.php:11
+#: ../../..//_out.php:394
+#: ../../..//_out.php:451
+#: ../../..//templates/groups_edit.tpl:11
+#: ../../..//templates/edit_user.tpl:11
+msgid "Save"
+msgstr ""
+
+#: ../../..//_out.php:12
+#: ../../..//_out.php:452
+#: ../../..//templates/groups_edit.tpl:12
+#: ../../..//templates/edit_user.tpl:12
+msgid "Save and go back"
+msgstr ""
+
+#: ../../..//_out.php:21
+#: ../../..//templates/groups_edit.tpl:21
+msgid "Group data"
+msgstr ""
+
+#: ../../..//_out.php:32
+#: ../../..//_out.php:93
+#: ../../..//_out.php:126
+#: ../../..//_out.php:152
+#: ../../..//admin.php:444
+#: ../../..//templates/groups_edit.tpl:32
+#: ../../..//templates/create_group.tpl:35
+#: ../../..//templates/groups.tpl:7
+#: ../../..//templates/groups.tpl:33
+msgid "Name"
+msgstr ""
+
+#: ../../..//_out.php:38
+#: ../../..//_out.php:41
+#: ../../..//_out.php:99
+#: ../../..//_out.php:127
+#: ../../..//_out.php:156
+#: ../../..//admin.php:443
+#: ../../..//templates/groups_edit.tpl:38
+#: ../../..//templates/groups_edit.tpl:41
+#: ../../..//templates/create_group.tpl:41
+#: ../../..//templates/groups.tpl:8
+#: ../../..//templates/groups.tpl:37
+msgid "Identifier"
+msgstr ""
+
+#: ../../..//_out.php:45
+#: ../../..//_out.php:106
+#: ../../..//_out.php:128
+#: ../../..//_out.php:160
+#: ../../..//admin.php:445
+#: ../../..//templates/groups_edit.tpl:45
+#: ../../..//templates/create_group.tpl:48
+#: ../../..//templates/groups.tpl:9
+#: ../../..//templates/groups.tpl:41
+msgid "Description"
+msgstr ""
+
+#: ../../..//_out.php:64
+#: ../../..//templates/create_group.tpl:6
+msgid "Creating a group"
+msgstr ""
+
+#: ../../..//_out.php:69
+#: ../../..//_out.php:149
+#: ../../..//_out.php:168
+#: ../../..//_out.php:550
+#: ../../..//templates/create_group.tpl:11
+#: ../../..//templates/groups.tpl:30
+#: ../../..//templates/create_user.tpl:11
+msgid "Create"
+msgstr ""
+
+#: ../../..//_out.php:70
+#: ../../..//_out.php:551
+#: ../../..//templates/create_group.tpl:12
+#: ../../..//templates/create_user.tpl:12
+msgid "Create and exit"
+msgstr ""
+
+#: ../../..//_out.php:82
+#: ../../..//templates/create_group.tpl:24
+msgid "Group details"
+msgstr ""
+
+#: ../../..//_out.php:102
+#: ../../..//_out.php:157
+#: ../../..//templates/create_group.tpl:44
+#: ../../..//templates/groups.tpl:38
+msgid "Only Latin characters"
+msgstr ""
+
+#: ../../..//_out.php:121
+msgid "Preliminary contents"
+msgstr ""
+
+#: ../../..//_out.php:121
+#: ../../..//templates/groups.tpl:2
+msgid "Group list"
+msgstr ""
+
+#: ../../..//_out.php:125
+#: ../../..//_out.php:184
+#: ../../..//_out.php:698
+#: ../../..//templates/groups.tpl:6
+#: ../../..//templates/users_table_search.tpl:4
+#: ../../..//templates/main.tpl:64
+msgid "ID"
+msgstr ""
+
+#: ../../..//_out.php:149
+msgid "Options"
+msgstr ""
+
+#: ../../..//_out.php:185
+#: ../../..//admin.php:168
+#: ../../..//admin.php:362
+#: ../../..//templates/users_table_search.tpl:5
+msgid "Login"
+msgstr ""
+
+#: ../../..//_out.php:186
+#: ../../..//_out.php:474
+#: ../../..//_out.php:576
+#: ../../..//admin.php:171
+#: ../../..//admin.php:366
+#: ../../..//templates/users_table_search.tpl:6
+#: ../../..//templates/edit_user.tpl:34
+#: ../../..//templates/create_user.tpl:37
+msgid "E-Mail"
+msgstr ""
+
+#: ../../..//_out.php:187
+#: ../../..//_out.php:274
+#: ../../..//_out.php:366
+#: ../../..//_out.php:494
+#: ../../..//_out.php:614
+#: ../../..//_out.php:701
+#: ../../..//templates/users_table_search.tpl:7
+#: ../../..//templates/genreroletable.tpl:20
+#: ../../..//templates/edit_perms.tpl:41
+#: ../../..//templates/edit_user.tpl:54
+#: ../../..//templates/create_user.tpl:75
+#: ../../..//templates/main.tpl:67
+msgid "Group"
+msgstr ""
+
+#: ../../..//_out.php:188
+#: ../../..//_out.php:517
+#: ../../..//templates/users_table_search.tpl:8
+#: ../../..//templates/edit_user.tpl:77
+msgid "Ban"
+msgstr ""
+
+#: ../../..//_out.php:189
+#: ../../..//_out.php:703
+#: ../../..//templates/users_table_search.tpl:9
+#: ../../..//templates/main.tpl:69
+msgid "Last IP"
+msgstr ""
+
+#: ../../..//_out.php:190
+#: ../../..//templates/users_table_search.tpl:10
+msgid "Latest Entry or Last Entry"
+msgstr ""
+
+#: ../../..//_out.php:191
+#: ../../..//templates/users_table_search.tpl:11
+msgid "Created"
+msgstr ""
+
+#: ../../..//_out.php:208
+msgid "Edit"
+msgstr ""
+
+#: ../../..//_out.php:256
+#: ../../..//templates/genreroletable.tpl:2
+msgid "Have been saved"
+msgstr ""
+
+#: ../../..//_out.php:262
+#: ../../..//templates/genreroletable.tpl:8
+msgid "Properties"
+msgstr ""
+
+#: ../../..//_out.php:395
+#: ../../..//templates/edit_perms.tpl:70
+msgid "unmark or deselect"
+msgstr ""
+
+#: ../../..//_out.php:446
+#: ../../..//templates/edit_user.tpl:6
+msgid "Editing by"
+msgstr ""
+
+#: ../../..//_out.php:461
+#: ../../..//templates/edit_user.tpl:21
+msgid "User data"
+msgstr ""
+
+#: ../../..//_out.php:481
+#: ../../..//_out.php:583
+#: ../../..//templates/edit_user.tpl:41
+#: ../../..//templates/create_user.tpl:44
+msgid "Full name"
+msgstr ""
+
+#: ../../..//_out.php:488
+#: ../../..//_out.php:590
+#: ../../..//templates/edit_user.tpl:48
+#: ../../..//templates/create_user.tpl:51
+msgid "Phone number"
+msgstr ""
+
+#: ../../..//_out.php:505
+#: ../../..//_out.php:597
+#: ../../..//templates/edit_user.tpl:65
+#: ../../..//templates/create_user.tpl:58
+msgid "New password"
+msgstr ""
+
+#: ../../..//_out.php:511
+#: ../../..//_out.php:606
+#: ../../..//admin.php:170
+#: ../../..//admin.php:364
+#: ../../..//admin.php:372
+#: ../../..//templates/edit_user.tpl:71
+#: ../../..//templates/create_user.tpl:67
+msgid "Confirm the password"
+msgstr ""
+
+#: ../../..//_out.php:520
+#: ../../..//templates/edit_user.tpl:80
+msgid "No"
+msgstr ""
+
+#: ../../..//_out.php:521
+#: ../../..//templates/edit_user.tpl:81
+msgid "Yes"
+msgstr ""
+
+#: ../../..//_out.php:526
+#: ../../..//templates/edit_user.tpl:86
+msgid "Ban reason"
+msgstr ""
+
+#: ../../..//_out.php:545
+#: ../../..//templates/create_user.tpl:6
+msgid "Create a new user"
+msgstr ""
+
+#: ../../..//_out.php:563
+#: ../../..//templates/create_user.tpl:24
+msgid "New user"
+msgstr ""
+
+#: ../../..//_out.php:640
+#: ../../..//_out.php:652
+#: ../../..//templates/main.tpl:6
+msgid "Deleting a user"
+msgstr ""
+
+#: ../../..//_out.php:643
+#: ../../..//templates/main.tpl:9
+msgid "Remove selected users?"
+msgstr ""
+
+#: ../../..//_out.php:646
+#: ../../..//_out.php:681
+#: ../../..//templates/main.tpl:12
+#: ../../..//templates/main.tpl:47
+msgid "Delete"
+msgstr ""
+
+#: ../../..//_out.php:647
+#: ../../..//templates/main.tpl:13
+msgid "Cancel"
+msgstr ""
+
+#: ../../..//_out.php:653
+#: ../../..//templates/main.tpl:19
+msgid "Delete a user?"
+msgstr ""
+
+#: ../../..//_out.php:660
+#: ../../..//templates/main.tpl:26
+msgid "User Manager"
+msgstr ""
+
+#: ../../..//_out.php:665
+#: ../../..//templates/main.tpl:31
+msgid "Create user"
+msgstr ""
+
+#: ../../..//_out.php:666
+#: ../../..//templates/main.tpl:32
+msgid "Create a Group"
+msgstr ""
+
+#: ../../..//_out.php:672
+#: ../../..//templates/main.tpl:38
+msgid "Users"
+msgstr ""
+
+#: ../../..//_out.php:673
+#: ../../..//templates/main.tpl:39
+msgid "Groups"
+msgstr ""
+
+#: ../../..//_out.php:674
+#: ../../..//templates/main.tpl:40
+msgid "Access rights differentiation system"
+msgstr ""
+
+#: ../../..//_out.php:682
+#: ../../..//templates/main.tpl:48
+msgid "Cancel filter"
+msgstr ""
+
+#: ../../..//_out.php:683
+#: ../../..//templates/main.tpl:49
+msgid "Filter"
+msgstr ""
+
+#: ../../..//_out.php:685
+msgid "profiler_no_profiles"
+msgstr ""
+
+#: ../../..//_out.php:699
+#: ../../..//templates/main.tpl:65
+msgid "User"
+msgstr ""
+
+#: ../../..//_out.php:700
+#: ../../..//templates/main.tpl:66
+msgid "E-mail"
+msgstr ""
+
+#: ../../..//_out.php:702
+#: ../../..//templates/main.tpl:68
+msgid "Banned"
+msgstr ""
+
+#: ../../..//_out.php:713
+#: ../../..//templates/main.tpl:79
+msgid "All groups"
+msgstr ""
+
+#: ../../..//admin.php:169
+#: ../../..//admin.php:363
+#: ../../..//admin.php:371
+msgid "Password"
+msgstr ""
+
+#: ../../..//admin.php:183
+#: ../../..//admin.php:377
+msgid "User with the same e-mail has been registered"
+msgstr ""
+
+#: ../../..//admin.php:203
+msgid "Create a user or the username has been created"
+msgstr ""
+
+#: ../../..//admin.php:207
+msgid "Username has been created or user has been created"
+msgstr ""
+
+#: ../../..//admin.php:246
+msgid "Ban the user  or the user has been banned"
+msgstr ""
+
+#: ../../..//admin.php:255
+msgid "The user has been unbanned "
+msgstr ""
+
+#: ../../..//admin.php:292
+#: ../../..//admin.php:309
+#: ../../..//admin.php:339
+msgid "User has not been found "
+msgstr ""
+
+#: ../../..//admin.php:321
+msgid "You do not pass search"
+msgstr ""
+
+#: ../../..//admin.php:405
+msgid "Updated a user"
+msgstr ""
+
+#: ../../..//admin.php:410
+#: ../../..//admin.php:515
+msgid "Changes have been saved"
+msgstr ""
+
+#: ../../..//admin.php:460
+msgid "Created a group"
+msgstr ""
+
+#: ../../..//admin.php:461
+msgid "Group has been created"
+msgstr ""
+
+#: ../../..//admin.php:479
+msgid "No data transmitted"
+msgstr ""
+
+#: ../../..//admin.php:489
+msgid "Deleted a user"
+msgstr ""
+
+#, fuzzy
+#~ msgid "ac_val_name"
+#~ msgstr "Name"
+
+#~ msgid "a_positions_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_page_cont_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_val_position"
+#~ msgstr "Позиція"
+
+#~ msgid "Settings saved success"
+#~ msgstr "Settings saved success"
+
+#~ msgid "amt_name"
+#~ msgstr "User name"
