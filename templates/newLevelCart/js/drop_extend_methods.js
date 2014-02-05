@@ -76,6 +76,7 @@ $.dropInit.prototype.extendDrop = function() {
                             dataSourceW = 0;
                         if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
                             dataSourceW = -drop.actual('width') + $thisW;
+
                         $thisT = $this.offset().top + dataSourceH;
                         $thisL = $this.offset().left + dataSourceW;
                         if ($thisL < 0)
@@ -110,7 +111,8 @@ $.dropInit.prototype.extendDrop = function() {
                         if (forCenter)
                             forCenter.show();
                     }
-                    var dropH = drop.outerHeight();
+                    var dropH = drop.outerHeight(),
+                    dropHm = drop.height();
 
                     if (drp.dropContent) {
                         var el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':first');
@@ -137,21 +139,21 @@ $.dropInit.prototype.extendDrop = function() {
                                     el.css('overflow', 'auto');
                                 }
                             }
-                            var elCH = elJP.outerHeight(),
-                                    footerHeader = drop.find($(drp.dropHeader).add($($.drop.dPP.dropHeader))).outerHeight(true) + drop.find($(drp.dropFooter).add($($.drop.dPP.dropFooter))).outerHeight(true);
+                            var elCH = elJP.height(),
+                                    footerHeader = drop.find($(drp.dropHeader).add($($.drop.dPP.dropHeader))).outerHeight() + drop.find($(drp.dropFooter).add($($.drop.dPP.dropFooter))).outerHeight();
 
                             if (drp.place == 'noinherit') {
                                 var mayHeight = 0,
                                         placement = drp.placement;
                                 if (typeof placement == 'object') {
                                     if (placement.top != undefined)
-                                        mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - placement.top - footerHeader - (drop.outerHeight() - drop.height());
+                                        mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - placement.top - footerHeader - (dropH - dropHm);
                                     if (placement.bottom != undefined)
                                         mayHeight = placement.bottom - footerHeader;
                                 }
                                 else {
                                     if (placement.search(/top/) >= 0) {
-                                        mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - refer.offset().top - footerHeader - refer.outerHeight() - (drop.outerHeight() - drop.height());
+                                        mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - refer.offset().top - footerHeader - refer.outerHeight() - (dropH - dropHm);
                                     }
                                     if (placement.search(/bottom/) >= 0) {
                                         mayHeight = refer.offset().top - footerHeader - refer.outerHeight();
@@ -163,8 +165,8 @@ $.dropInit.prototype.extendDrop = function() {
                                     el.css('height', mayHeight);
                             }
                             else {
-                                if (elCH + footerHeader > dropH)
-                                    el.css('height', dropH - footerHeader);
+                                if (elCH + footerHeader > dropHm)
+                                    el.css('height', dropHm - footerHeader);
                                 else
                                     el.css('height', elCH);
                             }

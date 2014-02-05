@@ -90,7 +90,7 @@ body.isScroll{overflow: hidden;margin-right: 17px;}
 body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
-body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el{font-size: 13px;}
+body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li{font-size: 13px;}
 input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background-color: transparent;border: none;}
 input[type="button"], input[type="submit"], input[type="reset"], button{text-align: center;}
 label, input[type="button"], input[type="submit"], input[type="reset"], button{padding: 0;cursor: pointer;}
@@ -182,7 +182,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .icon_skype{width: 14px;height: 14px;}
 .icon_mail{width: 15px;height: 10px;}
 .icon_search{width: 16px;height: 15px;}
-.icon_cleaner{width: 28px;height: 25px;margin-right: 13px;top: 8px;}
+.icon_cleaner{width: 28px;height: 25px;margin-right: 13px;}
 .icon_cleaner_buy{width: 16px;height: 15px;}
 /*.btn-buy-p .icon_cleaner_buy{width: 22px;height: 22px;top: 5px;}*/
 .icon_time{width: 12px;height: 12px;top: 1px;}
@@ -407,8 +407,8 @@ input.input-search{height: 33px;}
 .patch-product-view{overflow: hidden;margin-bottom: 10px;}
 .product-charac{max-height: 520px;}
 .product-descr{max-height: 250px;}
-.product-comment{max-height: 400px;}
-#comment .product-comment{max-height: none !important;height: auto !important;}
+#view .product-comment{max-height: 400px;}
+
 .photoProduct .photo-block{width: 100%;height: 270px;padding: 15px;}
 .title-product{margin-bottom: 19px;}
 .title-product .frame-title{margin-right: 15px;}
@@ -428,10 +428,10 @@ input.input-search{height: 33px;}
 .items-thumbs.items li{width: 64px !important;margin-left: 0;}
 .items-thumbs.items{margin-left: -5px;}
 .items-thumbs.items li{margin-left: 5px;}
-.carousel-js-css .items-thumbs.items{margin-left: 0;}
+.carousel-js-css .items-thumbs.items{margin-left: 0;display: inline-block;}
 .carousel-js-css .items-thumbs.items li{margin-right: 5px;margin-left: 0;margin-bottom: 0;}
 /*if not carousel*/
-.fancy-gallery .content-carousel{padding: 14px 0 9px;}
+.fancy-gallery .content-carousel{padding: 14px 0 9px;text-align: center;font-size: 0;}
 .fancy-gallery .items-thumbs > li{margin-right: 5px;margin-top: 5px;margin-left: 0;}
 
 .item-product .frame-star{margin-bottom: 20px;}
@@ -566,7 +566,7 @@ input.input-search{height: 33px;}
 
 .jspContainer{overflow: hidden;position: relative;}
 .jspPane{position: absolute;}
-.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;background: red;}
+.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;}
 .jspHorizontalBar{position: absolute;bottom: 0;left: 0;width: 100%;}
 .jspHorizontalBar, .scrollNSP.jScrollPane > div{height: 16px;}
 .jspVerticalBar *, .jspHorizontalBar *{margin: 0;padding: 0;}
@@ -591,6 +591,7 @@ input.input-search{height: 33px;}
 /*menu*/
 .frame-menu-main{padding-bottom: 15px;position: relative;z-index: 2;}
 .menu-main{position: relative;z-index: 1;}
+.vertical-menu .menu-main{margin-bottom: 20px;}
 .horizontal-menu .menu-main{padding-bottom: 1px;}
 .menu-main .title-category-l1.active > span{cursor: pointer;}
 .menu-main > nav > table{table-layout: auto;}
@@ -770,7 +771,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .check-variant-delivery .lineForm, .check-variant-payment .lineForm{width: 100%;}
 .check-variant-delivery .niceRadio{top: 3px;}
 .check-variant-payment .preloader{display: none;z-index: 2;}
-.frame-payment-method{position: relative;z-index: 1;}
+.frame-payment{min-height: 36px;}
 .check-variant-product {margin-bottom: 19px;}
 .check-variant-product .title{display: inline;vertical-align: middle;}
 .frame-count-onpage .lineForm{width: 78px;}
@@ -970,7 +971,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .frame-cur-sum-price .frame-prices{padding-bottom: 0;}
 .frame-cur-sum-price .price-new{margin-bottom: 5px;}
 .count-or-compl{display: block;margin-bottom: 3px;}
-.frame-variant-code{display: none !important;}
+.frame-cur-sum-price .title{display: block;margin-bottom: 3px;}
 
 /*drop-bask*/
 .drop-bask{max-width: 854px;width: 90%;}
@@ -986,7 +987,6 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .row-kits .frame-count, .row-kits .frame-cur-sum-price{vertical-align: top;}
 .row-kits .frame-items{width: 555px;}
 .drop-bask .row-kits .count-or-compl{display: block;}
-.frame-cur-sum-price .title{display: block;margin-bottom: 5px;}
 .table-order > tbody > tr > td{padding-top: 20px;padding-bottom: 20px;vertical-align: top;}
 .table-order .frame-items{padding-left: 20px;}
 .table-order > tbody > tr > td.frame-cur-sum-price {padding-left: 10px;padding-right: 10px;}
@@ -1024,17 +1024,16 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .right-order{margin-bottom: 30px;}
 .number-order{margin-left: 7px;}
 .items-order .description > .frame-prices{padding-bottom: 2px;padding-top: 0;display: block;}
-.items-order td{padding-left: 20px;}
-.frame-items-kit .gen-sum-row{text-align: center;margin: 5px 0 15px;}
-.frame-items-kit .gen-sum-row img{margin-bottom: 20px;}
+.items-order td{padding-left: 10px;}
 .right-order .header-frame-foot > .inside-padd{padding-left: 30px;}
 .frame-payment{margin-bottom: 13px;}
 .table-info-order{margin-bottom: 35px;}
 .table-info-order td, .table-info-order th{padding: 3px 0;}
+.table-info-order td{padding-left: 5px;}
 .table-info-order hr{margin: 17px 0;}
 .gen-info-price td{padding: 15px 20px;border-top: 1px solid #eae5e1;vertical-align: middle;}
 .gen-info-price .price-new{margin-right: 0;}
-.frame-bask-order .table-order td{text-align: right;padding-right: 15px;}
+.frame-bask-order .table-order td{text-align: right;padding-right: 10px;}
 .frame-bask-order .frame-cur-sum-price [class*="price-"]{margin-right: 0;display: block;line-height: 1;}
 .frame-bask-order .table-order td:first-child{text-align: left;}
 /*/order-view*/
@@ -1112,7 +1111,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .h-footer{height: 349px;}
 footer{min-height:346px; margin: -346px auto 0;position: relative;}
 footer .content-footer{min-height: 245px;}
-.footer-footer{position: relative;height: 101px;}
+.footer-footer{position: relative;height: 91px;}
 
 footer li{margin-bottom: 5px;}
 footer ul li{margin-bottom: 10px;position: relative;}
@@ -1133,7 +1132,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 10px;margin-bottom: 10px;}
 /*/footer*/
 
 /*drop*/
-.drop{display: none;position: absolute;}
+.drop{display: none;position: absolute;overflow: hidden;}
 .drop.inherit{position: relative;}
 .drop.form-data{width: 100%;margin-top: 20px;margin-bottom: 30px;}
 .drop-header{padding: 13px 35px;text-align: center;position: relative;}
@@ -1229,3 +1228,5 @@ img.cloned{max-width: none;max-height: none;}
 #staticPage{display: block;position: static;}
 
 .isCart{display:none;}
+.cart .isCart{display: block}
+.cart .notCart{display: none;}

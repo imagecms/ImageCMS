@@ -1,9 +1,12 @@
 <?php
 
 /**
- * Description of ProductsBase
- *
- * @author kolia
+ * Class Products_model for mod_stats module
+ * @uses \CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2014, ImageCMS
+ * @property CI_DB_active_record $db
+ * @package ImageCMSModule
  */
 class Products_model extends \CI_Model {
 
@@ -24,7 +27,7 @@ class Products_model extends \CI_Model {
      * will return count of unique products. FALSE will give all.
      * @return array (brandId, brandName, productsCount)
      */
-    public function getBrandsCountsData($brandIds = NULL, $uniqueProducts = FALSE) {
+    public function getBrandsCountsData($limit = 20, $brandIds = NULL, $uniqueProducts = FALSE) {
         // if brand ids specified, then leave only them
         $brands = $this->getAllBrands();
         if (is_array($brandIds)) {
@@ -57,7 +60,14 @@ class Products_model extends \CI_Model {
                 'count' => $uniqueProducts === FALSE ? $countAll : $countUnique,
             );
         }
-        return $brandsInfo;
+
+
+        foreach ($brandsInfo as $key => $row) {
+            $count[$key] = $row['count'];
+        }
+        array_multisort($count, SORT_DESC, $brandsInfo);
+        $res = array_slice($brandsInfo, 0, $limit);
+        return $res;
     }
 
     /**
@@ -74,7 +84,6 @@ class Products_model extends \CI_Model {
         foreach ($categories as $category) {
             $categoriresRelations[$category['id']] = $category['parent_id'];
         }
-
 
 
         // getting all root categories if $categoryIds in not specified
@@ -226,7 +235,8 @@ class Products_model extends \CI_Model {
         }
 
         $query = "SELECT  
-                    `shop_products_i18n`.`name`  AS 'Name' ,
+                    `shop_products_i18n`.`id`  AS 'id' ,
+                    `shop_products_i18n`.`name`  AS 'name' ,
                     IFNULL (SUM(`shop_orders_products`.`quantity`), 0) AS  'CountOfPurchasses'
                 FROM  
                     `shop_products_i18n` 
@@ -266,7 +276,7 @@ class Products_model extends \CI_Model {
             return 0;
         }
     }
-    
+
     /**
      * Get first level categories ids
      * @return boolean|array
@@ -276,12 +286,12 @@ class Products_model extends \CI_Model {
                 FROM `shop_category` 
                 WHERE  `url`=`full_path`";
         $result = $this->db->query($query)->result_array();
-        if ($result != null){
-           return $this->prepareArray($result);
+        if ($result != null) {
+            return $this->prepareArray($result);
         }
         return FALSE;
     }
-    
+
     /**
      * Prepare array with categories ids
      * @param array $dataArray
@@ -293,10 +303,56 @@ class Products_model extends \CI_Model {
         }
         $result = array();
         foreach ($dataArray as $key => $value) {
-                $result[] = $value['id'];
+            $result[] = $value['id'];
         }
         return $result;
     }
+
+    /**
+     * Get first level categories
+     * @return boolean|array
+     */
+    public function getFirstLevelCategories() {
+        $query = "SELECT *
+                    FROM `shop_category` 
+                    JOIN `shop_category_i18n` ON `shop_category`.`id` = `shop_category_i18n`.`id`
+                    WHERE `url`=`full_path`
+                    AND `locale` = '" . $this->locale . "'";
+        $result = $this->db->query($query)->result_array();
+        if ($result != null) {
+            return $result;
+        }
+        return FALSE;
+    }
+
+    /**
+     * Get subcategories ids by category id
+     * @param int $id
+     * @return boolean|array
+     */
+    public function getSubcategoriesIds($id = null) {
+        if (!$id) {
+            return FALSE;
+        }
+        $query = "SELECT `id` 
+                    FROM  `shop_category` 
+                    WHERE  `shop_category`.`full_path_ids` LIKE  '%:$id;%'
+                    LIMIT 0 , 50";
+
+        $childs = $this->db->query($query)->result_array();
+
+        $res = array();
+        if ($childs) {
+            foreach ($childs as $value) {
+                $res[] = (int) $value['id'];
+            }
+        }
+        if ($res) {
+            return $res;
+        }
+        return FALSE;
+    }
+
 }
 
 ?>

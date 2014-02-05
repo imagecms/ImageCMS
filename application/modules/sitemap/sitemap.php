@@ -133,7 +133,7 @@ class Sitemap extends MY_Controller {
         foreach ($categories as $category) {
             if (!$this->robotsCheck(site_url($category['path_url']))) {
                 $this->items[] = array(
-                    'loc' => site_url($category['path_url']),
+                    'loc' => htmlspecialchars(site_url($category['path_url'])),
                     'changefreq' => $this->categories_changefreq,
                     'priority' => $this->cats_priority
                 );
@@ -142,7 +142,7 @@ class Sitemap extends MY_Controller {
                 foreach ($this->langs as $k => $v) {
                     if ($v['id'] != $this->default_lang['id']) {
                         $this->items[] = array(
-                            'loc' => site_url($k . '/' . $category['path_url']),
+                            'loc' => htmlspecialchars(site_url($k . '/' . $category['path_url'])),
                             'changefreq' => $this->categories_changefreq,
                             'priority' => $this->cats_priority
                         );
@@ -177,7 +177,7 @@ class Sitemap extends MY_Controller {
                     $c_priority = $this->pages_priority;
                 }
                 $this->items[] = array(
-                    'loc' => $url,
+                    'loc' => htmlspecialchars($url),
                     'lastmod' => $date,
                     'changefreq' => $this->pages_changefreq,
                     'priority' => $c_priority
@@ -194,7 +194,7 @@ class Sitemap extends MY_Controller {
                 $url = site_url('shop/category/' . $shopcat['full_path']);
                 if (!$this->robotsCheck($url)) {
                     $this->items[] = array(
-                        'loc' => $url,
+                        'loc' => htmlspecialchars($url),
                         'lastmod' => '',
                         'changefreq' => 'daily',
                         'priority' => $this->cats_priority,
@@ -207,7 +207,7 @@ class Sitemap extends MY_Controller {
                 $url = site_url('shop/brand/' . $shopbr['url']);
                 if (!$this->robotsCheck($url)) {
                     $this->items[] = array(
-                        'loc' => $url,
+                        'loc' => htmlspecialchars($url),
                         'lastmod' => '',
                         'changefreq' => 'daily',
                         'priority' => $this->cats_priority,
@@ -225,7 +225,7 @@ class Sitemap extends MY_Controller {
                         $date = date('Y-m-d', $shopprod['created']);
                     }
                     $this->items[] = array(
-                        'loc' => $url,
+                        'loc' => htmlspecialchars($url),
                         'lastmod' => $date,
                         'changefreq' => 'daily',
                         'priority' => $this->pages_priority,

@@ -164,6 +164,10 @@
     };
 })(jQuery);
 var Comments = {
+    toComment: function(el, drop){
+        $('html, body').scrollTop(drop.offset().top - 20);
+        drop.find(':input:first').focus();
+    },
     initComments: function () {
         $(".star-big").starRating({
             width: 23,

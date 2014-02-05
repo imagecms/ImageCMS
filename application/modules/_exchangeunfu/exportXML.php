@@ -53,40 +53,41 @@ class ExportXML {
     }
 
     /** export */
-    public function export($partner_id = null, $send_cat = 1, $send_prod = 1, $send_users = 1,$full = FALSE) {
+    public function export($partner_id = null, $send_cat = 1, $send_prod = 1, $send_users = 1, $full = FALSE) {
         $users = FALSE;
         //load db data
-        $this->orders = $this->ci->export_model->getOrders($partner_id,$full);
-
-        if ($partner_id and $this->orders) {
-            foreach ($this->orders as $order) {
-                $users[] = $order['user_id'];
-                $orders_ids[] = $order['id'];
-            }
-            $users = array_unique($users);
-            $prod_ids = $this->ci->db
-                    ->select('product_id, category_id, full_path_ids,shop_products.external_id as spexid')
-                    ->join('shop_products', 'shop_products.id=shop_orders_products.product_id')
-                    ->join('shop_category', 'shop_products.category_id=shop_category.id')
-                    ->where_in('order_id', $orders_ids)
-                    ->get('shop_orders_products')
-                    ->result_array();
+        $this->orders = $this->ci->export_model->getOrders($partner_id, $full);
+        if (!$full) {
+            if ($partner_id and $this->orders) {
+                foreach ($this->orders as $order) {
+                    $users[] = $order['user_id'];
+                    $orders_ids[] = $order['id'];
+                }
+                $users = array_unique($users);
+                $prod_ids = $this->ci->db
+                        ->select('product_id, category_id, full_path_ids,shop_products.external_id as spexid')
+                        ->join('shop_products', 'shop_products.id=shop_orders_products.product_id')
+                        ->join('shop_category', 'shop_products.category_id=shop_category.id')
+                        ->where_in('order_id', $orders_ids)
+                        ->get('shop_orders_products')
+                        ->result_array();
 
 //        var_dumps($prod_ids);
-            foreach ($prod_ids as $id) {
-                $p_ids[] = $id['spexid'];
-                $c_ids[] = $id['category_id'];
-                foreach (unserialize($id['full_path_ids']) as $value) {
-                    $c_ids[] = $value;
+                foreach ($prod_ids as $id) {
+                    $p_ids[] = $id['product_id'];
+                    $c_ids[] = $id['category_id'];
+                    foreach (unserialize($id['full_path_ids']) as $value) {
+                        $c_ids[] = $value;
+                    }
                 }
-            }
 
-            $prod_ids = array_unique($p_ids);
-            $cat_ids = array_unique($c_ids);
+                $prod_ids = array_unique($p_ids);
+                $cat_ids = array_unique($c_ids);
+            }
         }
-//        var_dumps($orders_ids);
-//        var_dumps($cat_ids);
-//        exit;
+        // var_dumps($users);
+        // var_dumps($prod_ids);
+        // exit;
         $this->users = $this->ci->export_model->getUsers($users);
         $this->partners = $this->ci->export_model->getPartners($partner_id);
         $this->products = $this->ci->export_model->getProducts($prod_ids);
@@ -325,10 +326,8 @@ class ExportXML {
             $users[$user['id']] = $user['external_id'];
         }
 
-
         /** get user external id */
         foreach ($this->orders as $order) {
-
             if ($order['status'] == 2) {
                 $this->invoice_export .=
                         "\t<СписокРасходныеНакладные>\r\n" .
@@ -341,8 +340,7 @@ class ExportXML {
                         "\t\t<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\r\n" .
                         "\t\t<IDWebЗаказПокупателя>" . $order['id'] . "</IDWebЗаказПокупателя>\r\n" .
                         "\t\t<IDКонтрагент>" . $users[$order['user_id']] . "</IDКонтрагент>\r\n" .
-                        "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n" .
-                        "\t\t<Комментарий>" . $order['user_comment'] . "</Комментарий>\r\n";
+                        "\t\t<IDWebКонтрагент>" . $order['user_id'] . "</IDWebКонтрагент>\r\n";
             }
 
             /** convert paid value */
@@ -395,14 +393,33 @@ class ExportXML {
                         "\t\t\t\t<Сумма>" . $order_product['quantity'] * $order_product['price'] . "</Сумма>\r\n" .
                         "\t\t\t</Строки>\r\n";
 
-                if ($order['status'] == 2) {
+                if ($order['status'] == "true") {
                     $this->invoice_export .= $products;
+                    $old_prod = $this->ci->db
+                            ->join('shop_products', 'shop_products.id=mod_exchangeunfu_orders_products.product_id')
+                            ->where('order_id', $order['id'])
+                            ->group_by('product_id')
+                            ->get('mod_exchangeunfu_orders_products')
+                            ->row_array();
+                                            $products_old .=
+                        "\t\t\t<Строки>\r\n" .
+                        "\t\t\t\t<IDДокумента>" . $order['external_id'] . "</IDДокумента>\r\n" .
+                        "\t\t\t\t<IDWebДокумента>" . $old_prod['id'] . "</IDWebДокумента>\r\n" .
+                        "\t\t\t\t<IDНоменклатура>" . $old_prod['product_external_id'] . "</IDНоменклатура>\r\n" .
+                        "\t\t\t\t<IDWebНоменклатура>" . $old_prod['product_id'] . "</IDWebНоменклатура>\r\n" .
+                        "\t\t\t\t<Количество>" . $old_prod['quantity'] . "</Количество>\r\n" .
+                        "\t\t\t\t<Цена>" . $old_prod['price'] . "</Цена>\r\n" .
+                        "\t\t\t\t<Сумма>" . $old_prod['quantity'] * $old_prod['price'] . "</Сумма>\r\n" .
+                        "\t\t\t</Строки>\r\n";
                 }
             }
 
-            $this->order_export .= $products;
-            if ($order['status'] == 2) {
+
+            if ($order['status'] == "true") {
+                $this->order_export .= $products_old;
                 $this->invoice_export .= "\t\t</СписокРасходныеНакладные>\r\n";
+            }else{
+                            $this->order_export .= $products;
             }
 
             $this->order_export .= "\t\t</СписокЗаказыПокупателя>\r\n";
@@ -491,7 +508,7 @@ class ExportXML {
                 $this->product_export .
                 $this->price_export .
                 $this->productivity_export .
-//                $this->invoice_export .
+                $this->invoice_export .
                 $this->order_export;
 
 

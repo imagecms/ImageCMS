@@ -3,7 +3,7 @@
     <div class="container">
         <div class="f-s_0 title-cart without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{lang('Список желаний','newLevel')}</h1>
+                <h1 class="title">{lang('Список желаний','newLevel')}</h1>
             </div>
         </div>
         {if $errors}
@@ -26,7 +26,7 @@
             </li>
         </ul>
         <div class="clearfix frame-tabs-ref">
-            <div id="list-products">
+            <div id="list-products" {if $_COOKIE['wishlistTabs'] == "#list-products"}style="display: block;"{/if}>
                 <div class="frame-button-add-wish-list">
                     <div class="btn-cart">
                         <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0" data-effect-on="slideDown" data-effect-off="slideUp">
@@ -50,9 +50,9 @@
                                         <div class="frame-form-field check-public">
                                             <div class="lineForm">
                                                 <select name="wlTypes" id="wlTypes">
-                                                    <option value="shared">Shared</option>
-                                                    <option value="public">Public</option>
-                                                    <option value="private">Private</option>
+                                                    <option value="shared">{lang('Коллективный')}</option>
+                                                    <option value="public">{lang('Публичный')}</option>
+                                                    <option value="private">{lang('Приватный')}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -86,7 +86,7 @@
                                                     data-effect-off="fadeOut"
                                                     data-after="WishListFront.createWishList"
                                                     >
-                                                    <span class="text-el">{lang('Создать новий список','newLevel')}</span>
+                                                    <span class="text-el">{lang('Создать новый список','newLevel')}</span>
                                                 </button>
                                             </div>
                                         </div>
@@ -113,7 +113,7 @@
                                     {/if}
                                     {if $wishlist[0][variant_id]}
                                         <ul class="items items-catalog items-wish-list">
-                                            {$CI->load->module('new_level')->OPI($wishlist, array(), 'array_product_item')}
+                                            {$CI->load->module('new_level')->OPI($wishlist, array('opi_wishListPage' => true))}
                                         </ul>
                                     {else:}
                                         <div class="msg layout-highlight layout-highlight-msg">
@@ -161,7 +161,15 @@
                                             </div>
                                             <div class="f_l">
                                                 <b>{lang('Доступность:','newLevel')}</b>
-                                                <span class="s_t">{echo $wishlist[0][access]}</span>
+                                                {if $wishlist[0][access] == 'private'}
+                                                    <span class="s_t">{lang('Приватный')}</span>
+                                                {/if}
+                                                {if $wishlist[0][access] == 'public'}
+                                                    <span class="s_t">{lang('Публичный')}</span>
+                                                {/if}
+                                                {if $wishlist[0][access] == 'shared'}
+                                                    <span class="s_t">{lang('Коллективный')}</span>
+                                                {/if}
                                             </div>
                                         </div>
                                         <div>
@@ -169,7 +177,7 @@
                                                 <div class="btn-form btn-send-wishlist">
                                                     <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
                                                         <span class="icon_mail"></span>
-                                                        <span class="text-el">Поделится з другом</span>
+                                                        <span class="text-el">{lang('Поделится з другом')}</span>
                                                     </button>
                                                 </div>
                                             {/if}
@@ -178,43 +186,6 @@
                                             {/if}
                                         </div>
                                     </div>
-                                    {if $wishlist[0][variant_id]}
-                                        <div class="f_r">
-                                            {$price = 0}
-                                            {$i = 0}
-                                            {foreach $wishlist as $key => $p}
-                                                {if $p.stock > 0}
-                                                    {$price += $p.price;}
-                                                    {$i++}
-                                                {/if}
-                                            {/foreach}
-                                            {if $i > 0}
-                                                <div class="frame-buy-all-products">
-                                                    <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')}
-                                                        <span class="frame-prices f-s_0">
-                                                            <span class="current-prices">
-                                                                <span class="price-new">
-                                                                    <span>
-                                                                        <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
-                                                                        <span class="curr">{$CS}</span>
-                                                                    </span>
-                                                                </span>
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                    <div class="btn-buy">
-                                                        <button
-                                                            type="button"
-                                                            class="btnBuyWishList"
-                                                            >
-                                                            <span class="icon_cleaner_buy"></span>
-                                                            <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}" data-buy-other="{lang('Докупить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            {/if}
-                                        </div>
-                                    {/if}
                                 </div>
                             </div>
                             {form_csrf()}
@@ -229,7 +200,7 @@
                     </div>
                 {/if}
             </div>
-            <div id="data-users">
+            <div id="data-users" {if $_COOKIE['wishlistTabs'] == "#data-users"}style="display: block;"{/if}>
                 <ul class="items items-wish-data left-wishlist-data">
                     <li class="clearfix">
                         <div class="frame-photo-title">
@@ -237,9 +208,9 @@
                                 <input type="hidden" value="{echo $user[id]}" name="userID"/>
                                 <div class="photo-block m-b_5">
                                     <span class="helper"></span>
-                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}">
+                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}" data-src="{$THEME}{$colorScheme}/images/nophoto.png">
                                         {if $user['user_image']!=''}
-                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
+                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt="{lang('Фото пользователя', 'newLevel')}"/>
                                         {else:}
                                             <img src="{$THEME}{$colorScheme}/images/nophoto.png"/>
                                         {/if}
@@ -249,6 +220,7 @@
                                             <button type="button" class="p_r hidden">
                                                 <span class="icon_edit"></span>
                                                 <input id="img" data-wishlist="image" type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg"/>
+                                                <span class="text-el">{lang('Выбрать', 'newLevel')}</span>
                                             </button>
                                         </label>
                                         {if $user['user_image']!=''}
@@ -268,6 +240,7 @@
                                                     data-effect-off="fadeOut"
                                                     >
                                                     <span class="icon_remove"></span>
+                                                    <span class="text-el">{lang('Удалить', 'newLevel')}</span>
                                                 </button>
                                             </div>
                                         {/if}
