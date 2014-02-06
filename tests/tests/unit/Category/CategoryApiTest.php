@@ -11,10 +11,35 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @var CategoryApi
      */
     protected $object;
+
+    /**
+     * Test add/update category data
+     * @var array 
+     */
     protected $testData;
+
+    /**
+     * Test category from DB
+     * @var array 
+     */
     protected $testCategory;
+
+    /**
+     * Test category i18n from DB
+     * @var array
+     */
     protected $testCategoryI18N;
+
+    /**
+     * Categories count from DB
+     * @var type 
+     */
     protected $testCategoriesCount;
+
+    /**
+     * Codeigniter object
+     * @var object 
+     */
     protected $ci;
 
     /**
@@ -23,6 +48,8 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = \Category\CategoryApi::getInstance();
+
+        /** Test add/update data */
         $this->testData = array(
             'tpl' => 'testTPL',
             'order_method' => 2,
@@ -43,10 +70,15 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
 
         $this->ci = & get_instance();
 
+        /** Get first category from DB */
         $this->testCategory = $this->ci->db->limit(1)->get('shop_category');
         $this->testCategory = $this->testCategory ? $this->testCategory->row_array() : array();
+
+        /** Get first category i18n from DB */
         $this->testCategoryI18N = $this->ci->db->limit(1)->get('shop_category_i18n');
         $this->testCategoryI18N = $this->testCategoryI18N ? $this->testCategoryI18N->row_array() : array();
+
+        /** Get categories count from DB */
         $this->testCategoriesCount = $this->ci->db->get('shop_category');
         $this->testCategoriesCount = $this->testCategoriesCount ? $this->testCategoriesCount->num_rows() : 0;
     }
@@ -71,6 +103,7 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetError().
      */
     public function testGetError() {
+        /** Check if is empty when no errors */
         $this->assertEmpty($this->object->getError());
     }
 
@@ -83,6 +116,7 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
         if ($result)
             $this->assertTrue($result instanceof \SCategory);
 
+        /** Check on equals set test data and result category */
         $this->assertEquals($result->getUrl(), $this->testData['url']);
         $this->assertEquals($result->getParentId(), $this->testData['parent_id']);
 
@@ -130,8 +164,8 @@ class CategoryApiTest extends PHPUnit_Framework_TestCase {
         if ($result)
             $this->assertTrue($result instanceof \SCategory);
 
+        /** Check on equals set test data and result category */
         $this->assertEquals($result->getUrl(), $this->testData['url']);
-
         $this->assertEquals($result->getParentId(), $this->testData['parent_id']);
 
         $result = $this->object->updateCategory();
