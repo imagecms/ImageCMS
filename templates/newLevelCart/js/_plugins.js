@@ -1632,7 +1632,7 @@ function getCookie(c_name)
         init: function(options) {
             this.drop('destroy').each(function() {
                 var el = $(this),
-                        trigger = (methods._checkProp(el.data(), options, 'trigger')).toString();
+                trigger = (methods._checkProp(el.data(), options, 'trigger')).toString();
                 methods._modalTrigger($.extend({}, options, el.data()));
                 var rel = this.rel;
                 if (rel !== undefined && rel !== '') {
@@ -1701,12 +1701,12 @@ function getCookie(c_name)
                 $this = this.elrun ? this.elrun : this;
             $this.each(function() {
                 var $this = $(this),
-                        elSet = $this.data(),
-                        moreOne = methods._checkProp(elSet, opt, 'moreOne'),
-                        confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
-                        source = methods._checkProp(elSet, opt, 'source') || $this.attr('href'),
-                        drop = $(elSet.drop),
-                        start = elSet.start;
+                elSet = $this.data(),
+                moreOne = methods._checkProp(elSet, opt, 'moreOne'),
+                confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
+                source = methods._checkProp(elSet, opt, 'source') || $this.attr('href'),
+                drop = $(elSet.drop),
+                start = elSet.start;
                 function _confirmF() {
                     if (!$.existsN(drop) || modal || always) {
                         if (!modal)
@@ -1725,8 +1725,8 @@ function getCookie(c_name)
 
                     if (!$this.is(':disabled')) {
                         var modal = methods._checkProp(elSet, opt, 'modal'),
-                                confirm = methods._checkProp(elSet, opt, 'confirm'),
-                                always = methods._checkProp(elSet, opt, 'always');
+                        confirm = methods._checkProp(elSet, opt, 'confirm'),
+                        always = methods._checkProp(elSet, opt, 'always');
                         if (start) {
                             var res = eval(start)($this, drop);
                             if (!res)
@@ -1780,14 +1780,14 @@ function getCookie(c_name)
             if ($.existsN(drop) && drop.data('drp')) {
                 drop.each(function() {
                     var drop = $(this),
-                            set = drop.data('drp');
+                    set = drop.data('drp');
                     if (set.modal || sel || set.place !== 'inherit' || set.inheritClose) {
                         var $thisB = set.elrun;
                         if (el)
                             $thisB = el;
                         if ($thisB !== undefined) {
                             var $thisEOff = set.effectOff,
-                                    durOff = set.durationOff;
+                            durOff = set.durationOff;
                             if (set.scroll) {
                                 methods._checkMethod(function() {
                                     methods.scroll.remove()
@@ -1803,8 +1803,8 @@ function getCookie(c_name)
 
                                 drop.removeClass(aC);
                                 var method = set.animate ? 'animate' : 'css',
-                                        pmt = set.placeAfterClose.toLowerCase().split(' '),
-                                        l = 0, t = 0;
+                                pmt = set.placeAfterClose.toLowerCase().split(' '),
+                                l = 0, t = 0;
                                 if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
                                     t = wnd.height();
                                 if (pmt[0] === 'right' || pmt[1] === 'right')
@@ -1906,9 +1906,9 @@ function getCookie(c_name)
                 var drop = $(this);
                 if (!drop.data('drp').droppableIn) {
                     var method = drop.data('drp').animate && !start ? 'animate' : 'css',
-                            dropV = drop.is(':visible'),
-                            w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
-                            h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
+                    dropV = drop.is(':visible'),
+                    w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
+                    h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
                     drop[method]({
                         'top': (body.height() - h) / 2 + (!drop.data('drp').scroll ? wnd.scrollTop() : 0),
                         'left': (body.width() - w) / 2 + (!drop.data('drp').scroll ? wnd.scrollLeft() : 0)
@@ -1922,8 +1922,8 @@ function getCookie(c_name)
         },
         _checkFloat: function() {
             for (var i = 0, temp = false; i < arguments.length; i++)
-                temp = +(temp || (arguments[i] != undefined && arguments[i] != null ? arguments[i].toString() : arguments[i]))
-            return temp;
+                temp = temp || (arguments[i] != undefined && arguments[i] != null ? arguments[i].toString() : arguments[i])
+            return +temp;
         },
         _checkProp: function(elSet, opt, prop) {
             var optP = undefined;
@@ -1954,7 +1954,7 @@ function getCookie(c_name)
         },
         _pasteModal: function(el, data, set, rel) {
             var elSet = el.data(),
-                    drop = $(elSet.drop);
+            drop = $(elSet.drop);
             methods._modalTrigger($.extend({}, set, elSet));
             methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), drop, undefined, rel);
             $(document).trigger({
@@ -1970,8 +1970,8 @@ function getCookie(c_name)
             if (!set)
                 set = el.data('drp');
             var elSet = el.data(),
-                    source = methods._checkProp(elSet, set, 'source') || el.attr('href'),
-                    datas = methods._checkProp(elSet, set, 'datas');
+            source = methods._checkProp(elSet, set, 'source') || el.attr('href'),
+            datas = methods._checkProp(elSet, set, 'datas');
             var rel = null;
             if (el.get(0).rel != undefined)
                 rel = el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, '');
@@ -2098,56 +2098,71 @@ function getCookie(c_name)
             var elSet = $this.data();
             set = $.extend({}, $.drop.dP, set ? set : elSet.drp);
             isajax = !isajax ? false : true;
-            var $thisD = methods._checkFloat(elSet.durationOn, set.durationOn),
-                    $thisDOff = methods._checkFloat(elSet.durationOff, set.durationOff),
-                    overlayOpacity = methods._checkFloat(elSet.overlayOpacity, set.overlayOpacity),
-                    timeclosemodal = methods._checkFloat(elSet.timeclosemodal, set.timeclosemodal),
-                    $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
-                    exit = elSet.exit || set.exit,
-                    trigger = elSet.trigger || set.trigger,
-                    place = elSet.place || set.place,
-                    placement = elSet.placement || set.placement,
-                    $thisEOff = elSet.effectOff || set.effectOff,
-                    $thisEOn = elSet.effectOn || set.effectOn,
-                    overlayColor = elSet.overlayColor || set.overlayColor,
-                    modal = elSet.modal || set.modal,
-                    confirm = elSet.confirm || set.confirm,
-                    position = elSet.position || set.position,
-                    placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
-                    placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
-                    moreOne = elSet.moreOne || set.moreOne,
-                    closeClick = elSet.closeClick || set.closeClick,
-                    closeEsc = elSet.closeEsc || set.closeEsc,
-                    droppable = elSet.droppable || set.droppable,
-                    next = elSet.next || set.next,
-                    prev = elSet.prev || set.prev,
-                    cycle = elSet.cycle || set.cycle,
-                    source = elSet.source || set.source || $this.attr('href'),
-                    selSource = elSet.drop,
-                    tab = elSet.tab || set.tab,
-                    scroll = elSet.scroll || set.scroll,
-                    limitSize = elSet.limitSize || set.limitSize,
-                    limitContentSize = elSet.limitContentSize || set.limitContentSize,
-                    scrollContent = elSet.scrollContent || set.scrollContent,
-                    inheritClose = elSet.inheritClose || set.inheritClose,
-                    dropContent = elSet.dropContent || set.dropContent,
-                    dropHeader = elSet.dropHeader || set.dropHeader,
-                    dropFooter = elSet.dropFooter || set.dropFooter,
-                    contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
-                    contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
-                    contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false),
-                    start = elSet.start,
-                    changeSource = set.changeSource,
-                    elChangeSource = elSet.changeSource,
-                    elBefore = elSet.before,
-                    elAfter = elSet.after,
-                    before = set.before,
-                    after = set.after,
-                    close = set.close,
-                    elClose = elSet.close,
-                    closed = set.closed,
-                    elClosed = elSet.closed,
-                    drop = $(selSource);
+            
+            var 
+            //float
+            $thisD = methods._checkFloat(elSet.durationOn, set.durationOn),
+            $thisDOff = methods._checkFloat(elSet.durationOff, set.durationOff),
+            overlayOpacity = methods._checkFloat(elSet.overlayOpacity, set.overlayOpacity),
+            timeclosemodal = methods._checkFloat(elSet.timeclosemodal, set.timeclosemodal),
+            
+            //string
+            exit = elSet.exit || set.exit,
+            trigger = elSet.trigger || set.trigger,
+            place = elSet.place || set.place,
+            placement = elSet.placement || set.placement,
+            $thisEOff = elSet.effectOff || set.effectOff,
+            $thisEOn = elSet.effectOn || set.effectOn,
+            overlayColor = elSet.overlayColor || set.overlayColor,
+            position = elSet.position || set.position,
+            placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
+            placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
+            next = elSet.next || set.next,
+            prev = elSet.prev || set.prev,
+            source = elSet.source || set.source || $this.attr('href'),
+            selSource = elSet.drop,
+            dropContent = elSet.dropContent || set.dropContent,
+            dropHeader = elSet.dropHeader || set.dropHeader,
+            dropFooter = elSet.dropFooter || set.dropFooter,
+            drop = $(selSource),
+                    
+            //function || object || string
+            contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
+            contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
+            contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false),
+                    
+            modal = elSet.modal != undefined ? elSet.modal : set.modal,
+            confirm = elSet.confirm != undefined ? elSet.confirm : set.confirm,
+            always = elSet.always != undefined ? elSet.always : set.always,
+            $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
+            moreOne = elSet.moreOne != undefined ? elSet.moreOne : set.moreOne,
+            closeClick = elSet.closeClick != undefined ? elSet.closeClick : set.closeClick,
+            closeEsc = elSet.closeEsc != undefined ? elSet.closeEsc : set.closeEsc,
+            droppable = elSet.droppable != undefined ? elSet.droppable : set.droppable,
+            cycle = elSet.cycle != undefined ? elSet.cycle : set.cycle,
+            tab = elSet.tab != undefined ? elSet.tab : set.tab,
+            scroll = elSet.scroll != undefined ? elSet.scroll : set.scroll,
+            limitSize = elSet.limitSize != undefined ? elSet.limitSize : set.limitSize,
+            limitContentSize = elSet.limitContentSize != undefined ? elSet.limitContentSize : set.limitContentSize,
+            scrollContent = elSet.scrollContent != undefined ? elSet.scrollContent : set.scrollContent,
+            inheritClose = elSet.inheritClose != undefined ? elSet.inheritClose : set.inheritClose,
+                    
+                    
+            //function
+            //string
+            start = elSet.start,
+            elChangeSource = elSet.changeSource,
+            elBefore = elSet.before,
+            elAfter = elSet.after,
+            elClose = elSet.close,
+            elClosed = elSet.closed,
+            //object of function
+            changeSource = set.changeSource,
+            before = set.before,
+            after = set.after,
+            close = set.close,
+            closed = set.closed;
+            
             $this.attr({
                 'data-drop': selSource
             }).parent().addClass(aC);
@@ -2196,6 +2211,7 @@ function getCookie(c_name)
                     'prev': prev,
                     'next': next,
                     'cycle': cycle,
+                    'always': always,
                     'droppableIn': false,
                     'contentHeader': contentHeader,
                     'contentContent': contentContent,
@@ -2219,7 +2235,7 @@ function getCookie(c_name)
                 methods.galleries($this, set, methods)
             });
             var overlays = $('.overlayDrop').css('z-index', 1103),
-                    condOverlay = overlayOpacity != 0;
+            condOverlay = overlayOpacity != 0;
             if (condOverlay) {
                 if (!$.exists('[data-rel="' + selSource + '"].overlayDrop')) {
                     body.append('<div class="overlayDrop" data-rel="' + selSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
@@ -2295,7 +2311,7 @@ function getCookie(c_name)
 
             if (place !== 'inherit') {
                 var t = -drop.actual('outerHeight'),
-                        l = -drop.actual('outerWidth');
+                l = -drop.actual('outerWidth');
                 var pmt = placeBeforeShow.toLowerCase().split(' ');
                 if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
                     t = wnd.height() + wnd.scrollTop();
