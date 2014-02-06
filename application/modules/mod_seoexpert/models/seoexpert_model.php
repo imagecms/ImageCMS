@@ -53,17 +53,17 @@ class Seoexpert_model extends CI_Model {
      * @param type $limit limit for results
      * @return boolean|array
      */
-     
     public function getCategoriesByIdName($term, $limit = 7) {
         $locale = MY_Controller::getCurrentLocale();
-        $query = $this->db
-                ->select('id, name')
-                ->from('shop_category_i18n')
-                ->where('locale', $locale)
-                ->like('id', $term)
-                ->or_like('name', $term)
-                ->limit($limit)
-                ->get();
+
+        $sql = "SELECT * 
+                FROM  `shop_category_i18n` 
+                WHERE  `locale` =  '".$locale."'
+                AND  `name` LIKE  '%".$term."%'
+                OR `id` LIKE '%".$term."%'
+                LIMIT 0 , ".$limit;
+        $query = $this->db->query($sql);
+
 
         if ($query)
             return $query->result_array();
@@ -87,7 +87,7 @@ class Seoexpert_model extends CI_Model {
 
         $sql = "CREATE TABLE IF NOT EXISTS `mod_seoexpert_products` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
-                    `cat_id` int(11) NOT,
+                    `cat_id` int(11) NOT NULL,
                     `locale` varchar(5) DEFAULT NULL,
                     `settings` text DEFAULT NULL,
                     PRIMARY KEY (`id`)
@@ -104,7 +104,7 @@ class Seoexpert_model extends CI_Model {
      * @return boolean
      */
     public function deinstall() {
-        $sql = "DROP TABLE `mod_seoexpert`;";
+        $sql = "DROP TABLE `mod_seoexpert`;DROP TABLE `mod_seoexpert_products`;";
         $this->db->query($sql);
         return TRUE;
     }
