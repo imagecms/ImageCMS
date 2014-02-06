@@ -50,8 +50,8 @@ $.dropInit.prototype.extendDrop = function() {
                     var method = drop.data('drp').animate && !start ? 'animate' : 'css',
                             placement = drop.data('drp').placement,
                             $this = drop.data('drp').elrun,
-                            dataSourceH = 0,
-                            dataSourceW = 0,
+                            t = 0,
+                            l = 0,
                             $thisW = $this.width(),
                             $thisH = $this.height(),
                             $thisT = 0,
@@ -69,16 +69,20 @@ $.dropInit.prototype.extendDrop = function() {
                     else {
                         var $thisPMT = placement.toLowerCase().split(' ');
                         if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
-                            dataSourceH = -drop.actual('height') - $thisH;
+                            t = -drop.actual('height') - $thisH;
                         if ($thisPMT[0] === 'top' || $thisPMT[1] === 'top')
-                            dataSourceH = $thisH;
+                            t = $thisH;
                         if ($thisPMT[0] === 'left' || $thisPMT[1] === 'left')
-                            dataSourceW = 0;
+                            l = 0;
                         if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
-                            dataSourceW = -drop.actual('width') + $thisW;
+                            l = -drop.actual('width') - $thisW;
+                        if ($thisPMT[0] === 'center')
+                            l = -drop.actual('width') / 2 + $thisW / 2;
+                        if ($thisPMT[1] === 'center')
+                            t = -drop.actual('height') / 2 + $thisH / 2;
 
-                        $thisT = $this.offset().top + dataSourceH;
-                        $thisL = $this.offset().left + dataSourceW;
+                        $thisT = $this.offset().top + t;
+                        $thisL = $this.offset().left + l;
                         if ($thisL < 0)
                             $thisL = 0;
                         drop[method]({
@@ -112,7 +116,7 @@ $.dropInit.prototype.extendDrop = function() {
                             forCenter.show();
                     }
                     var dropH = drop.outerHeight(),
-                    dropHm = drop.height();
+                            dropHm = drop.height();
 
                     if (drp.dropContent) {
                         var el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':first');
