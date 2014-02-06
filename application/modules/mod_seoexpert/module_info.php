@@ -10,7 +10,7 @@ $com_info = array(
     'w' => 600,
     'h' => 550,
     'version' => '1.0 beta',
-    'author' => 'pefolios@gmail.com'
+    'author' => 'dev@imagecms.net'  // Author info
 );
 
 /* End of file module_info.php */
