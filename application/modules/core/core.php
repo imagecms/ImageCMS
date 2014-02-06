@@ -311,9 +311,11 @@ class Core extends MY_Controller {
             $this->core->core_data['id'] = $main_id;
             $this->_mainpage();
         } elseif ($this->core_data['data_type'] == 'category') {
+            $this->core->core_data['id'] = $this->cat_content['id'];
             $this->_display_category($this->cat_content);
         } elseif ($this->core_data['data_type'] == 'page') {
             $this->check_page_access($this->page_content['roles']);
+            $this->core->core_data['id'] = $this->page_content['id'];
             $this->_display_page_and_cat($this->page_content, $this->cat_content);
         } elseif ($this->core_data['data_type'] == '404') {
             $this->error_404();
@@ -329,6 +331,9 @@ class Core extends MY_Controller {
      * Display main page
      */
     function _mainpage() {
+        /** Register event 'Core:_mainpage' */
+        \CMSFactory\Events::create()->registerEvent(NULL, 'Core:_mainPage')->runFactory();
+        
         switch ($this->settings['main_type']) {
             // Load main page
             case 'page':
@@ -405,6 +410,9 @@ class Core extends MY_Controller {
      * Display page
      */
     function _display_page_and_cat($page = array(), $category = array()) {
+        /** Register event 'Core:_displayPage' */
+        \CMSFactory\Events::create()->registerEvent($this->page_content, 'Core:_displayPage')->runFactory();
+        
         //$this->load->library('typography');
         ($hook = get_hook('core_disp_page_and_cat')) ? eval($hook) : NULL;
 
@@ -461,6 +469,7 @@ class Core extends MY_Controller {
 
     // Select or count pages in category
     public function _get_category_pages($category = array(), $row_count = 0, $offset = 0, $count = FALSE) {
+
         ($hook = get_hook('core_get_category_pages')) ? eval($hook) : NULL;
 
         $this->db->where('post_status', 'publish');
@@ -503,6 +512,9 @@ class Core extends MY_Controller {
      * Display category
      */
     function _display_category($category = array()) {
+        /** Register event 'Core:_displayCategory' */
+        \CMSFactory\Events::create()->registerEvent($this->cat_content, 'Core:_displayCategory')->runFactory();
+        
         ($hook = get_hook('core_disp_category')) ? eval($hook) : NULL;
 
         $category['fetch_pages'] = unserialize($category['fetch_pages']);
@@ -712,6 +724,7 @@ class Core extends MY_Controller {
      * Show 404 error
      */
     function error_404() {
+        var_dump($this->core_data);
         ($hook = get_hook('core_init_error_404')) ? eval($hook) : NULL;
         header('HTTP/1.1 404 Not Found');
         ($hook = get_hook('core_display_error_404')) ? eval($hook) : NULL;
