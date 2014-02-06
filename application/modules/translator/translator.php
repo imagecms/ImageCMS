@@ -10,9 +10,6 @@ class Translator extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        
-        \Products\ProductApi::getInstance()->addProduct();
-        var_dumps_exit(\Products\ProductApi::getInstance()->getError());
     }
 
     public function index() {
