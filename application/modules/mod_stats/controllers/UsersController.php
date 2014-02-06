@@ -136,7 +136,6 @@ class UsersController extends ControllerBase {
      * Render template for users registration
      */
     public function register() {
-
         $this->renderAdmin('register');
     }
 
