@@ -3,9 +3,12 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
+ * 
  * @property Smartseo_model $seoexpert_model
+ * @author dev@imagecms.net
+ * @copyright ImageCMS (c) 2014
  */
-class Mod_seoexpert extends MY_Controller {
+class Mod_seoexpert extends \MY_Controller {
 
     public $storage = 1;
 
@@ -21,13 +24,37 @@ class Mod_seoexpert extends MY_Controller {
     }
 
     public function autoload() {
+        // Shop
         \CMSFactory\Events::create()->onSearchPageLoad()->setListener('_buildSearchMeta');
         \CMSFactory\Events::create()->onBrandPageLoad()->setListener('_buildBrandMeta');
         \CMSFactory\Events::create()->onProductPageLoad()->setListener('_buildProductsMeta');
         \CMSFactory\Events::create()->onCategoryPageLoad()->setListener('_buildCategoryMeta');
+
+        // Core
+        \CMSFactory\Events::create()->on('Core:_mainPage')->setListener('_test');
+        \CMSFactory\Events::create()->on('Core:_displayPage')->setListener('_test');
+        \CMSFactory\Events::create()->on('Core:_displayCategory')->setListener('_test');
+    }
+
+    public function _test($data) {
+        var_dump($data);
     }
 
     public function _buildProductsMeta($arg) {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
          * Let's do the harlem shake!!!
          */
@@ -35,11 +62,10 @@ class Mod_seoexpert extends MY_Controller {
             return FALSE;
         }
 
-        $local = MY_Controller::getCurrentLocale();
+        $local = \MY_Controller::getCurrentLocale();
         $model = $arg['model'];
         $settings = ShopCore::$ci->seoexpert_model->getSettings($local);
 
-//        if ($local == 'ru') {
         if ($settings['useProductPattern'] != 1) {
             return FALSE;
         }
@@ -65,6 +91,7 @@ class Mod_seoexpert extends MY_Controller {
         $templateDesc = str_replace('%desc%', substr(strip_tags($model->getShortDescription()), 0, intval($descCount)), $templateDesc);
         $templateDesc = str_replace('%price%', $model->firstVariant->toCurrency(), $templateDesc);
         $templateDesc = str_replace('%CS%', ShopCore::app()->SCurrencyHelper->getSymbol(), $templateDesc);
+
         $templateKey = str_replace('%name%', $model->getName(), $templateKey);
 
         ShopCore::$ci->core->set_meta_tags($template, $templateKey, substr(strip_tags($templateDesc), 0, -1));
@@ -146,6 +173,7 @@ class Mod_seoexpert extends MY_Controller {
 
         ShopCore::$ci->core->set_meta_tags($template, $templateKey, iconv('utf-8', 'utf-8', substr($templateDesc, 0, -2)));
     }
+
     public function _buildSearchMeta($arg) {
         /**
          * Let's do the harlem shake!!!
@@ -165,29 +193,19 @@ class Mod_seoexpert extends MY_Controller {
         $template = $settings['searchTemplate'];
         $templateDesc = $settings['searchTemplateDesc'];
         $templateKey = $settings['searchTemplateKey'];
-        
+
         ShopCore::$ci->core->set_meta_tags($template, $templateKey, iconv('utf-8', 'utf-8', substr($templateDesc, 0, -2)));
     }
-
+    
+    
+    
     public function _install() {
-
-        $sql = "CREATE TABLE IF NOT EXISTS `mod_seoexpert` (
-                    `id` int(11) NOT NULL AUTO_INCREMENT,
-                    `locale` varchar(5) DEFAULT NULL,
-                    `settings` text DEFAULT NULL,
-                    PRIMARY KEY (`id`)
-                    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
-
-        $this->db->query($sql);
-
-        $this->db->where('name', 'mod_seoexpert')->update('components', array('autoload' => 1, 'in_menu' => 1));
-        return TRUE;
+        $this->mod_seoexpert->install();
+        
     }
 
     public function _deinstall() {
-        $sql = "DROP TABLE `mod_seoexpert`;";
-        $this->db->query($sql);
-        return TRUE;
+       $this->mod_seoexpert->deinstall();
     }
 
 }
