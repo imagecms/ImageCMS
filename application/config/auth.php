@@ -10,7 +10,8 @@
 */
 
 $config['DX_website_name'] = 'Image CMS';
-$config['DX_webmaster_email'] = 'info@client.com.ua';
+$config['DX_webmaster_email'] = '';
+
 
 /*
 |--------------------------------------------------------------------------

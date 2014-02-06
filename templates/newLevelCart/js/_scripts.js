@@ -335,7 +335,7 @@ function init() {
     doc.on('rendercomment.after', function(e) {
         showHidePart(e.el.find('.frame-list-comments.sub-2'));
         showHidePart(e.el.find('.product-comment'));
-        e.el.find('[data-drop]').drop(optionsDrop);
+        e.el.find('[data-drop]').drop();
         e.el.find(preloader).remove();
     });
     doc.on('autocomplete.after rendercomment.after imageapi.pastemsg showCleaverFilter tabs.afterload renderorder.after', function(e) {
