@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name='newLevel' type="shop" version="0.1">
+    
+    <dependencies><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
+        <!-- залежності - те має бути в ЦМС для правильної роботи шаблону -->
+        <widget name="name1" type="required" /><!-- обов’язковий якщо віджет не встановлений, то шаблон не поставиться -->
+        <widget name="name2" type="wishful" /><!-- бажаний - шаблон поставиться, але видасть повідовлення, якщо він не встановлений -->
+        <module name="name1" type="wishful"/> <!-- все те саме що і в віджеті -->       
+    </dependencies>
+    
+    <dscription><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
+        <!-- буде показуватись в інформації про шаблон -->
+        Опис шаблону
+        Цей шаблон тра-ля-ля і бє-бє-бє
+    </dscription>
+    
+    <screenshots><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
+        <screenshot url="" main="1" />
+        <screenshot url="" main="0" />
+    </screenshots>
+    
+    <widgets><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
+        <!-- HTML-віджети що будуть добавлені в БД -->
+        <widget name="superPuperWidget" type="html" deleteWithModule="1">
+            <![CDATA[
+                s;dlfjkhsd;
+            ]]>    
+        </widget>
+    </widgets>  
+    
+    <media><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
+        <!-- тут інструкції про переміщення фото, відео... - ЧИ ТО ВООБШЕ ТРЕ!!!!! -->
+    </media>  
+    
+    <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
+        <!-- початкові параметри для компонентів шаблону -->
+        
+        <component handler='TColorScheme'>
+            <param name="color_scheme" value="color_scheme_1" />
+        </component>
+        
+        <component handler="TPaginationBrand">
+            <param name="page_query_string" value="true" />
+            <param name="first_link" value="1" />
+            <param name="page_query_string" value="3" />
+        </component>
+        
+        <component handler="TPaginationCategory">
+            <param name="page_query_string" value="true" />
+            <param name="first_link" value="1" />
+            <param name="page_query_string" value="3" />
+        </component>
+        
+        <component handler="TPaginationSearch">
+            <param name="page_query_string" value="true" />
+            <param name="first_link" value="1" />
+            <param name="page_query_string" value="3" />
+        </component>
+        
+        <component handler="TMenuColumn">
+            <param name="" value="" />
+        </component> 
+        
+        <component handler="TProperties">
+            <param name="" value="" />
+        </component>    
+        
+    </components>
+
+</template>

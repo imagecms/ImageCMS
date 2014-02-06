@@ -1,0 +1,13 @@
+<?php
+
+
+/**
+ * 
+ *
+ * @author 
+ */
+class WidgetDependence {
+    
+}
+
+?>
