@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-31 03:39+0200\n"
-"PO-Revision-Date: 2014-01-31 03:39+0200\n"
+"POT-Creation-Date: 2014-02-06 12:23+0200\n"
+"PO-Revision-Date: 2014-02-06 12:23+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -29,6 +29,132 @@ msgstr ""
 "X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
 "X-Poedit-SearchPath-11: ../../../../../templates/administrator/js/jquery-validate\n"
 
+#: ./application/modules/shop/classes/Products/ProductApi.php:491
+msgid "not specified product_name"
+msgstr "product_name не указан"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:472
+#: ./application/modules/shop/classes/Products/ProductApi.php:463
+msgid "active not 1 or 0"
+msgstr "active должно бить 1 или 0"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:488
+msgid "Invalid position"
+msgstr "Неверное значение position"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:504
+msgid "Invalid parent_id"
+msgstr "Неверное значение parent_id"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:512
+#: ./application/modules/shop/classes/Products/ProductApi.php:603
+msgid "The tpl field can only contain Latin characters"
+msgstr "Поле Tpl может содержать только латинские символы"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:471
+#: ./application/modules/shop/classes/Products/ProductApi.php:591
+msgid "hit not 1 or 0"
+msgstr "hit должно бить 1 или 0"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:479
+msgid "Invalid stock"
+msgstr "Неверное значение stock"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:487
+msgid "Invalid brand_id"
+msgstr "Неверное значение brand_id"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:496
+msgid "currency not specified"
+msgstr "currency не указан"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:500
+msgid "currency not exist"
+msgstr "currency не существует"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:504
+msgid "price_in_main not specified"
+msgstr "price_in_main не указан"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:508
+msgid "price_in_main not float"
+msgstr "price_in_main не float"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:513
+msgid "Invalid category_id"
+msgstr "Неверное значение category_id"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:516
+msgid "category_id not specified"
+msgstr "category_id не указан"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:529
+msgid "Invalid related_products"
+msgstr "Неверное значение related_products"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:533
+msgid "Invalid created"
+msgstr "Неверное значение created"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:541
+msgid "Invalid updated"
+msgstr "Неверное значение updated"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:548
+msgid "Invalid old_price"
+msgstr "Неверное значение old_price"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:556
+msgid "Invalid views"
+msgstr "Неверное значение views"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:568
+msgid "Invalid added_to_cart_count"
+msgstr "Неверное значение added_to_cart_count"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:577
+msgid "Invalid external_id"
+msgstr "Неверное значение external_id"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:585
+msgid "hot not 1 or 0"
+msgstr "hot должно бить 1 или 0"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:597
+msgid "action not 1 or 0"
+msgstr "action должно бить 1 или 0"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:150
+#: ./application/modules/shop/classes/Category/CategoryApi.php:190
+#: ./application/modules/shop/classes/Category/CategoryApi.php:251
+#: ./application/modules/shop/classes/Category/CategoryApi.php:333
+msgid "Category(ies) id(s) not specified"
+msgstr "Идентификатор категории(й) не указан"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:231
+msgid "Category with such ID not exist"
+msgstr "Категория с таким идентификатором не существует"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:320
+msgid "Category(ies) was not found"
+msgstr "Категория(и) не найдена"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:363
+msgid "Category(ies) not exists"
+msgstr "Категория(и) не существует(ют)"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:480
+msgid "showsitetitle not 1 or 0"
+msgstr "showsitetitle не 1 или 0"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:496
+msgid "Invalid order method"
+msgstr "Невалидное значение метода доставки"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:536
+msgid "Can not buid category tree"
+msgstr "Не возможно построить дерево категорий"
+
 #: ./application/modules/shop/classes/Products/ProductApi.php:432
 #: ./application/modules/shop/classes/Products/ProductApi.php:446
 msgid "This URL is already in use!"
@@ -40,7 +166,7 @@ msgstr "Продукт, который указан не существует"
 
 #: ./application/modules/shop/classes/Products/ProductApi.php:1019
 msgid "Additional categories ids must be array"
-msgstr ""
+msgstr "Идентификаторы дополнительных категорий должны быть в массиве"
 
 #: ./application/modules/shop/classes/Products/ProductApi.php:893
 msgid "Product category does not exists"
@@ -57,10 +183,6 @@ msgstr "Продукт не имеет свойств"
 #: ./application/modules/shop/classes/Products/ProductApi.php:1046
 msgid "You did not specified image name"
 msgstr "Вы не уточнил название изображения"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:594
-msgid "The 'tpl' field can only contain Latin characters"
-msgstr "'Tpl' поля могут содержать только латинские символы"
 
 #: ./application/modules/shop/classes/Profile/BaseProfile.php:82
 msgid "Email"
@@ -397,54 +519,6 @@ msgstr "Не несколько собственности не могу зад�
 #: ./system/language/upload/upload_validation.php:9
 msgid "upload_userfile_not_set"
 msgstr "Не удается найти переменную UserFile."
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:454
-msgid "Invalid 'active'. Must be 1 or 0"
-msgstr "Неверный 'active'. Должно быть 1 или 0"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:559
-msgid "Invalid 'added_to_cart_count'"
-msgstr "Неверный 'added_to_cart_count'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:478
-msgid "Invalid 'brand_id'"
-msgstr "Неверный 'brand_id'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:504
-msgid "Invalid 'category_id'"
-msgstr "Неверный 'category_id'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:524
-msgid "Invalid 'created'"
-msgstr "Неверный 'created'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:568
-msgid "Invalid 'external_id'"
-msgstr "Неверный 'external_id'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:462
-msgid "Invalid 'hit'. Must be 1 or 0"
-msgstr "Неверный 'hit'. Должно быть 1 или 0"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:539
-msgid "Invalid 'old_price'"
-msgstr "Неверный 'old_price'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:520
-msgid "Invalid 'related_products'"
-msgstr "Неверный 'related_products'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:470
-msgid "Invalid 'stock'"
-msgstr "Неверный 'stock'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:532
-msgid "Invalid 'updated'"
-msgstr "Неверный 'updated'"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:547
-msgid "Invalid 'views'"
-msgstr "Неверный 'views'"
 
 #: ./application/libraries/DX_Auth.php:813
 msgid "auth login incorrect password"
