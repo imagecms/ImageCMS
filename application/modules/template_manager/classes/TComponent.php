@@ -18,11 +18,11 @@ abstract class TComponent {
         // отримання шляхів
     }
 
-    public function render() {
+    public function render($tplName, array $data = array()) {
         
     }
 
-    public function renderAdmin() {
+    public function renderAdmin($tplName, array $data = array()) {
         
     }
 

@@ -86,9 +86,9 @@ class TemplateManager {
         
     }
 
-    public function setParam($handler, $key, $value) {
+    public function action($setParam,$handler, $key, $value) {
         $this->getComponent();
-        $this->handlersClasses[$handler]->setParam($key, $param);
+        $this->handlersClasses[$handler]->$setParam($key, $param);
     }
 
     public function getComponent($handler) {

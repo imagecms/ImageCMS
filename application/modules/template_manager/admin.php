@@ -9,6 +9,8 @@
 class Admin extends BaseAdminController {
 
     public function __construct() {
+        
+        
         parent::__construct();
         
     }
@@ -16,6 +18,9 @@ class Admin extends BaseAdminController {
     public function index() {
 
     }
+    
+    
+    
 
     
    
