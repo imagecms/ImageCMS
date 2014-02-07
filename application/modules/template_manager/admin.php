@@ -35,7 +35,7 @@ class Admin extends BaseAdminController {
         foreach ($components as $key => $component){
             $data[$key] = $component->renderAdmin();
         }
-        
+        $in->setParam();
         \CMSFactory\assetManager::create()->setData($data)->renderAdmin('main');
         
         //var_dump($data);
@@ -51,10 +51,19 @@ class Admin extends BaseAdminController {
         $xml = \template_manager\classes\TemplateManager::getInstance()->getXML();
         $dependenceDirector = new \template_manager\installer\DependenceDirector();
         if ($dependenceDirector->setDependicies($xml->dependencies->dependency)){
-            hakhf
+            //hakhf
         } else {
             $dependenceDirector->getMessages();
         }
+        foreach ($this->xml->components->component as $component) {
+            $attributes = $component->attributes();
+            $handler = '' . $attributes['handler'];
+            $instance = \template_manager\classes\TemplateManager::getInstance()->getComponents($handler);
+            $instance->setParamsXml($component->param);
+            
+        }
+        
+        
         
     }
     

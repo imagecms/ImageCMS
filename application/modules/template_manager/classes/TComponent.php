@@ -41,16 +41,24 @@ abstract class TComponent {
 //        $data = $this->getParam();
     }
 
-    public function setParam() {
-        
+    public function setParam($data){
+        foreach ($data as $key => $value) {
+            if (\CI::$APP->db->where('type', $this->handler)->where('key', $key)->get('template_settings')->num_rows()){
+                    //jlkj
+            }else{
+                //insert
+            
+            }
+            
+            
+        };
     }
-
-    public function getParam() {
+    public function getParam($key = null) {
 
         return CI::$APP->db->where('type', $this->handler)->get('template_settings')->result_array();
     }
 
-    abstract public function importParams($nodes);
+    abstract public function setParamsXml($nodes);
 }
 
 ?>
