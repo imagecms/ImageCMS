@@ -50,14 +50,13 @@ class SeoHelper extends \MY_Controller {
      */
     public function prepareCategoriesForProductCategory($categoryId = false, $locale = false) {
         $res = $this->seoexpert_model_products->getCategoryByIdAndLocale($categoryId, $locale);
-      
-        if ($res){
+
+        if ($res) {
             $res['parentCategory'] = $res['name'];
             unset($res['name']);
             return $res;
         }
         return FALSE;
-                
     }
 
     /**
@@ -81,6 +80,43 @@ class SeoHelper extends \MY_Controller {
             return;
         }
         echo '';
+    }
+    /**
+     * Get base settings
+     * @param string $locale
+     * @return boolean|array
+     */
+    public function getBaseSettings($locale = FALSE) {
+        if (!$locale) {
+            $locale = \MY_Controller::getCurrentLocale();
+        }
+        $langId = $this->seoexpert_model->getLangIdByLocale($locale);
+        $res = $this->seoexpert_model->getBaseSettings($langId);
+
+        if ($res) {
+            return $res;
+        }
+        return FALSE;
+    }
+    
+    
+    /**
+     * 
+     * @param type $locale
+     * @return boolean
+     */
+    public function setBaseSettings($locale = FALSE, $settings = FALSE) {
+        if (!$locale) {
+            $locale = \MY_Controller::getCurrentLocale();
+        }
+        $langId = $this->seoexpert_model->getLangIdByLocale($locale);
+        
+        $res = $this->seoexpert_model->setBaseSettings($langId, $settings);
+
+        if ($res) {
+            return $res;
+        }
+        return FALSE;
     }
 
 }

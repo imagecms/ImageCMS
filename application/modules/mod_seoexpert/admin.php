@@ -27,7 +27,6 @@ class Admin extends \BaseAdminController {
         $this->locale = \MY_Controller::getCurrentLocale();
 
         \CMSFactory\assetManager::create()
-                
                 ->setData('languages', $this->cms_admin->get_langs(true))
                 ->registerStyle('style')
                 ->registerScript('scripts');
@@ -37,13 +36,15 @@ class Admin extends \BaseAdminController {
      * Render main template and set data
      */
     public function index($locale = FALSE) {
-        if (!$locale){
+        if (!$locale) {
             $locale = $this->locale;
         }
-        
+
+        $baseSettings = \mod_seoexpert\classes\SeoHelper::create()->getBaseSettings($locale);
         $settings = $this->seoexpert_model->getSettings($locale);
         \CMSFactory\assetManager::create()
                 ->setData('locale', $locale)
+                ->setData('baseSettings', $baseSettings)
                 ->setData('settings', $settings)
                 ->renderAdmin('main');
     }
@@ -109,7 +110,11 @@ class Admin extends \BaseAdminController {
         if (!$id) {
             return FALSE;
         }
-        
+        // Set default locale if no
+        if (!$locale) {
+            $locale = $this->locale;
+        }
+
         $category = $this->seoexpert_model_products->getProductCategory($id, $this->locale);
 
         if (!empty($_POST)) {
@@ -137,11 +142,12 @@ class Admin extends \BaseAdminController {
             }
         } else {
             // Set Category Id if no (for other language)
-            if (!$category){
+            if (!$category) {
                 $categoryDef = $this->seoexpert_model_products->getCategoryNameAndId($id);
             }
-            
+
             \CMSFactory\assetManager::create()
+                    ->setData('locale', $locale)
                     ->setData('category', $category)
                     ->setData('categoryDef', $categoryDef)
                     ->renderAdmin('advanced/productsCategoryEdit');
@@ -155,19 +161,19 @@ class Admin extends \BaseAdminController {
         \mod_seoexpert\classes\SeoHelper::create()->autoCompleteCategories();
     }
 
-//    public function translit($locale = FALSE) {
-//
-//        $settings = $this->seoexpert_model->getSettings($locale);
-//        \CMSFactory\assetManager::create()
-//                ->setData('locale', $locale)
-//                ->setData('languages', $this->cms_admin->get_langs(true))
-//                ->setData('settings', $settings)
-//                ->registerStyle('style')
-//                ->renderAdmin('main');
-//    }
-
+    /**
+     * Save settings
+     * @param string $locale
+     */
     public function save($locale = FALSE) {
-        if ($this->seoexpert_model->setSettings($this->input->post(), $locale))
+        $baseSettings = $this->input->post('base');
+        
+        \mod_seoexpert\classes\SeoHelper::create()->setBaseSettings($locale, $baseSettings);
+        
+        $shopSettings = $this->input->post();
+        unset($shopSettings['base']);
+        
+        if ($this->seoexpert_model->setSettings($shopSettings, $locale))
             showMessage('Сохранено!');
     }
 
