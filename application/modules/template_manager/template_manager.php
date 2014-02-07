@@ -23,6 +23,8 @@ class template_manager extends MY_Controller {
     public function autoload() {
         
     }
+    
+    
 
     /**
      * Інклудить всі файли потрібні файли, кидає ексепшн якщо якогось немає
