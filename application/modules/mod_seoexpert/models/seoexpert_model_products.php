@@ -140,7 +140,7 @@ class Seoexpert_model_products extends CI_Model {
     }
     
     /**
-     * 
+     * Get category name by id
      * @param type $id
      * @return boolean|array
      * -id
