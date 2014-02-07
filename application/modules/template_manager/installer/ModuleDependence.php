@@ -1,5 +1,6 @@
 <?php
 
+namespace template_manager\installer;
 /**
  * 
  *
@@ -16,6 +17,8 @@ class ModuleDependence implements IDependence {
     }
 
     public function verify() {
+        
+
         
     }
 

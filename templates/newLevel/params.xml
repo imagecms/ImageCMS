@@ -3,13 +3,18 @@
     
     <dependencies><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
         <!-- залежності - те має бути в ЦМС для правильної роботи шаблону -->
-        <widget name="name1" type="required" /><!-- обов’язковий якщо віджет не встановлений, то шаблон не поставиться -->
-        <widget name="name2" type="wishful" /><!-- бажаний - шаблон поставиться, але видасть повідовлення, якщо він не встановлений -->
-        <module name="name1" type="wishful"/> <!-- все те саме що і в віджеті -->    
-        <page name="name1" type="add"><!-- такий тип використовується коли треба добавити контент в базу -->
+        <dependency entityName="widget" name="name1" type="required" /><!-- обов’язковий якщо віджет не встановлений, то шаблон не поставиться -->
+        <dependency entityName="widget" name="name2" type="wishful" /><!-- бажаний - шаблон поставиться, але видасть повідовлення, якщо він не встановлений -->
+        <dependency entityName="widget" name="someNew" type="add" ><!-- бажаний - шаблон поставиться, але видасть повідовлення, якщо він не встановлений -->
+            <![CDATA[
+                s;dlfjkhsd;
+            ]]>  
+        </dependency>
+        <dependency entityName="module" name="name1" type="wishful"/> <!-- все те саме що і в віджеті -->    
+        <dependency entityName="page" name="name1" type="add"><!-- такий тип використовується коли треба добавити контент в базу -->
             Контент сторінки
-        </page>
-        <category name="Назва категорії" parent_name="назва_батьківської (якщо є)" type="add"></category>
+        </dependency>
+        <dependency entityName="category" name="Назва категорії" parent_name="назва_батьківської (якщо є)" type="add"></dependency>
     </dependencies>
     
     <dscription><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
@@ -22,21 +27,9 @@
         <screenshot url="" main="1" />
         <screenshot url="" main="0" />
     </screenshots>
-    
-    <widgets><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
-        <!-- HTML-віджети що будуть добавлені в БД -->
-        <widget name="superPuperWidget" type="html" deleteWithModule="1">
-            <![CDATA[
-                s;dlfjkhsd;
-            ]]>    
-        </widget>
-    </widgets>  
        
-    <media><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
-        <!-- тут інструкції про переміщення фото, відео... - ЧИ ТО ВООБШЕ ТРЕ!!!!! -->
-    </media>  
     
-    <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
+    <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ ТА КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
         <!-- початкові параметри для компонентів шаблону -->
         
         <component handler='TColorScheme'>
@@ -62,11 +55,16 @@
         </component>
         
         <component handler="TMenuColumn">
-            <param name="" value="" />
+            <param name="938,45,54,654" value="1" />
+            <param name="938,45,54,654" value="1" />
+            <param name="938,45,54,654" value="1" />
         </component> 
         
+        
         <component handler="TProperties">
-            <param name="" value="" />
+            <param name="15,15,15,85,85" value="scrol,dropdown" />
+            <param name="15,15,15,85,85" value="scrol" />
+            <param name="15,15,15,85,85" value="dropdown" />
         </component>    
         
     </components>

@@ -27,5 +27,10 @@ interface IDependence {
      * @return boolean 
      */
     public function verify();
+
+    /**
+     * @return string error or notice, if there is some
+     */
+    public function getMessage();
 }
 

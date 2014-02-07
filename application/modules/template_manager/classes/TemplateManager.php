@@ -9,11 +9,14 @@ namespace template_manager\classes;
  */
 class TemplateManager {
 
+    private static $instance;
+
     /**
      *
      * @var \SimpleXMLElement
      */
     private $xml;
+    private $components = array();
 
     /**
      *
@@ -27,28 +30,61 @@ class TemplateManager {
      */
     private $handlersClasses = array();
 
+    public static function getInstance() {
+        if (is_null(self::$instance))
+            self::$instance = new self;
+        return self::$instance;
+    }
+
+    private function __construct() {
+        $this->_getXml();
+        $this->_getComponents();
+    }
+
     public function getXml() {
-        $this->template = CI::$APP->db
+        return $this->xml;
+    }
+
+    public function getComponents($handlerName = NULL) {
+        if (key_exists($handlerName, $this->components)) {
+            return $this->components[$handlerName];
+        }
+        return $this->components;
+    }
+
+    private function _getXml() {
+        $this->template = \CI::$APP->db
                         ->select('site_template')
                         ->get('settings')
                         ->row()->site_template;
 
         $xmlPath = 'templates/' . $this->template . '/params.xml';
         if (!file_exists($xmlPath)) {
-            throw new Exception;
+            throw new \Exception;
         }
         $this->xml = simplexml_load_file($xmlPath);
     }
 
-    /**
-     * Інклудить всі файли потрібні файли, кидає ексепшн якщо якогось немає
-     */
-    public function getIncludes() {
-        $classes = array();
-        foreach ($this->xml->components as $component) {
-            require_once $component->attributes->handler; // TODO: перевірити
+    private function _getComponents() {
+        foreach ($this->xml->components->component as $component) {
+            $attributes = $component->attributes();
+            $handler = '' . $attributes['handler'];
+            $pathCoreHandler = __DIR__ . '/../components/' . $handler . '/' . $handler . '.php';
+            $pathTemplateHandler = 'templates/' . $this->template . '/components/' . $handler . '/' . $handler . '.php';
+
+            if (file_exists($pathTemplateHandler)) {
+                require_once $pathTemplateHandler;
+                $this->components[$handler] = new $handler;
+                continue;
+            }
+
+
+            if (file_exists($pathCoreHandler)) {
+                require_once $pathCoreHandler;
+                $this->components[$handler] = new $handler;
+                continue;
+            }
         }
-        $this->handlersClasses;
     }
 
     /**
@@ -86,7 +122,7 @@ class TemplateManager {
         
     }
 
-    public function action($setParam,$handler, $key, $value) {
+    public function action($setParam, $handler, $key, $value) {
         $this->getComponent();
         $this->handlersClasses[$handler]->$setParam($key, $param);
     }

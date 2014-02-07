@@ -1,5 +1,7 @@
 <?php
 
+namespace template_manager\installer;
+
 /**
  * 
  *
@@ -7,15 +9,16 @@
  */
 class WidgetDependence implements IDependence {
 
-    public function setName($name) {
-        
-    }
-
-    public function setType($type) {
-        
-    }
-
     public function verify() {
+        $attributes = $node->attributes();
+        switch ($attributes['type']) {
+            
+        }
+        
+        return TRUE;
+    }
+
+    public function getMessage() {
         
     }
 

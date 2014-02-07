@@ -18,6 +18,7 @@ class template_manager extends MY_Controller {
 
     public function index() {
         
+        
     }
 
     public function autoload() {
@@ -67,9 +68,14 @@ class template_manager extends MY_Controller {
 
     public function _install() {
         
+        $this->db->where('name', 'template_manager');
+        $this->db->update('components', array('enabled' => 1, 'autoload' => 1));
+        
     }
 
     public function _deinstall() {
+        
+
         
     }
 

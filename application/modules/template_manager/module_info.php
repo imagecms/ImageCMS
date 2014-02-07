@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 $com_info = array(
     'menu_name' => lang('Template manager', 'template_manager'), // Menu name
-    'description' => '', // Module Description
+    'description' => 'Template manager', // Module Description
     'admin_type' => 'window', // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr', // Load method. Possible values xhr/iframe
     'w' => 600, // Window width

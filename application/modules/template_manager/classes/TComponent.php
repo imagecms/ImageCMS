@@ -14,23 +14,43 @@ namespace template_manager\classes;
  */
 abstract class TComponent {
 
+    private $handler;
+    private $basePath;
+    private $viewPath;
+    private $viewAdminPath;
+
     public function __construct() {
-        // отримання шляхів
+        $this->handler = get_class($this);
+        $rfc = new \ReflectionClass($this);
+        $this->basePath = dirname($rfc->getFileName());
+
+        $this->viewPath = $this->basePath . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR;
+        $this->viewAdminPath = $this->viewPath . 'admin' . DIRECTORY_SEPARATOR;
     }
 
     public function render($tplName, array $data = array()) {
         
     }
 
-    public function renderAdmin($tplName, array $data = array()) {
+    public function renderAdmin($tpl = 'main') {
+
+        //fgdf
+        extract($this->getParam());
+        include_once $this->viewAdminPath . 'main.tpl';
+
+//        $data = $this->getParam();
+    }
+
+    public function setParam() {
         
     }
 
-    /**
-     * Повертає ід компонента - для збереження в БД
-     * @return int
-     */
-    abstract public function getComponentId();
+    public function getParam() {
+
+        return CI::$APP->db->where('type', $this->handler)->get('template_settings')->result_array();
+    }
+
+    abstract public function importParams($nodes);
 }
 
 ?>
