@@ -10,7 +10,7 @@
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>Сохранить
                 </button>
-                {echo create_language_select($languages, $locale, "/admin/components/init_window/mod_seoexpert/productCategoryCreate")}
+                {//echo create_language_select($languages, $locale, "/admin/components/init_window/mod_seoexpert/productCategoryCreate")}
             </div>
         </div>
     </div>
@@ -41,8 +41,10 @@
                                             <b>%ID%</b> - ID наименования<br/>
                                             <b>%name%</b> - название продукта<br/>
                                             <b>%category%</b> - категория, которой присвоен продукт<br/>
+                                            <b>%brand%</b> - бренд, которому присвоен продукт<br/>
                                             <b>%price%</b> - стоимость продукта<br/>
                                             <b>%CS%</b> - основная валюта витрины<br/>
+                                            <b>%p_xxxx%</b> - виведет значение свойства, вместе xxxx - id свойства <br/>
                                         </div>
                                         Meta-title шаблон:
                                     </span>
@@ -58,8 +60,10 @@
                                             <b>%name%</b> - название продукта<br/>
                                             <b>%desc%</b> - описание продукта<br/>
                                             <b>%category%</b> - категория, которой присвоен продукт<br/>
+                                            <b>%brand%</b> - бренд, которому присвоен продукт<br/>
                                             <b>%price%</b> - стоимость продукта<br/>
                                             <b>%CS%</b> - основная валюта витрины<br/>
+                                            <b>%p_xxxx%</b> - виведет значение свойства, вместе xxxx - id свойства <br/>
                                         </div>
                                         Meta-description шаблон:
                                     </span>
@@ -80,6 +84,9 @@
                                         </span>
                                         <div class="d_n">
                                             <b>%name%</b> - название продукта<br/>
+                                            <b>%category%</b> - категория, которой присвоен продукт<br/>
+                                            <b>%brand%</b> - бренд, которому присвоен продукт<br/>
+                                            <b>%p_xxxx%</b> - виведет значение свойства, вместе xxxx - id свойства <br/>
                                         </div>
                                         Meta-keywords шаблон:
                                     </span>
