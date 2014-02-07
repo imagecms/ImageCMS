@@ -230,6 +230,7 @@ $.dropInit.prototype.extendDrop = function() {
                             'overflow': 'hidden',
                             'margin-right': $.drop.widthScroll
                         });
+                        $('html').css('overflow', 'hidden');
                         body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"></div>');
                     }
                     if (isTouch)
@@ -248,7 +249,7 @@ $.dropInit.prototype.extendDrop = function() {
                         'overflow': '',
                         'margin-right': ''
                     });
-                    ;
+                    $('html').css('overflow', '');
                     wnd.scrollTop($.drop.dP.wST);
                     $('.scrollEmulation').remove();
                     if (isTouch)
