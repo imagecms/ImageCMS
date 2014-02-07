@@ -41,9 +41,23 @@ class SeoHelper extends \MY_Controller {
         return self::$_instance;
     }
 
-    
+    /**
+     * Prepare parent category name (in future all categories in full path)
+     * @param int $categoryId
+     * @param string $locale
+     * @return boolean|array
+     * - parentCategory
+     */
     public function prepareCategoriesForProductCategory($categoryId = false, $locale = false) {
-        
+        $res = $this->seoexpert_model_products->getCategoryByIdAndLocale($categoryId, $locale);
+      
+        if ($res){
+            $res['parentCategory'] = $res['name'];
+            unset($res['name']);
+            return $res;
+        }
+        return FALSE;
+                
     }
 
     /**
