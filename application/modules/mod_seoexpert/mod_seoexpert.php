@@ -34,21 +34,11 @@ class Mod_seoexpert extends \MY_Controller {
 
         // Core
 //        \CMSFactory\Events::create()->on('Core:_mainPage')->setListener('_test');
-        \CMSFactory\Events::create()->on('Core:_displayPage')->setListener('_buildPageMeta');
+//        \CMSFactory\Events::create()->on('Core:_displayPage')->setListener('_buildPageMeta');
 //        \CMSFactory\Events::create()->on('Core:_displayCategory')->setListener('_test');
     }
    
-    public function _buildPageMeta($data) {
-        var_dumps(11);
-        //Set meta tags
-        ShopCore::$ci->core->set_meta_tags("aaaaaaaaa", "324234","213123");
-    }
-    
-    
-//    public function _test($data) {
-//        var_dump($data);
-//    }
-
+  
     /**
      * Buld Meta tags for Shop Product
      * @param array $arg
