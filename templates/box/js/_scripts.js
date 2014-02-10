@@ -9,7 +9,7 @@ function init() {
         body.addClass('notTouch');
 
     /*call general functions and plugins*/
-    cuselInit(body, '#sort, #sort2, #compare, [id ^= сVariantSwitcher_]');
+    cuselInit(body, '#sort2, #compare, [id ^= сVariantSwitcher_]');
     /*call general functions and plugins*/
 
     /*call functions for shop objects*/

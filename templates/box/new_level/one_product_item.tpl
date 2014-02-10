@@ -88,8 +88,8 @@
                     <div class="frame-star f-s_0">
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
+                            {lang('Отзывы', 'newLevel')}
                             {intval($Comments[$p->getId()])}
-                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
                         </a>
                     </div>
                 {/if}
@@ -142,8 +142,9 @@
             <!-- Start. Check variant-->
             {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
                 {if count($variants) > 1}
-                    <div class="check-variant-catalog">
-                        <div class="lineForm">
+                    <div class="check-variant-catalog f-s_0">
+                        <span class="s-t m-r_5 v-a_m">{lang('Вариант', 'newLevel')}</span>
+                        <div class="lineForm v-a_m">
                             <select id="сVariantSwitcher_{echo $p->firstVariant->getId()}" name="variant">
                                 {foreach $variants as $key => $pv}
                                     {if $pv->getName()}
@@ -173,25 +174,6 @@
                             {$inCart = getAmountInCart('SProducts', $pv->getId())}
                             <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $pv->getId()}">
-                                    {if !$opi_widget && !$opi_defaultItem}
-                                        <div class="frame-count frameCount">
-                                            <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}">
-                                                <div class="frame-change-count">
-                                                    <div class="btn-plus">
-                                                        <button type="button"{if $inCart} disabled="disabled"{/if}>
-                                                            <span class="icon-plus"></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="btn-minus">
-                                                        <button type="button"{if $inCart} disabled="disabled"{/if}>
-                                                            <span class="icon-minus"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}"{if $inCart} disabled="disabled"{/if}>
-                                            </div>
-                                        </div>
-                                    {/if}
                                     <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                         <button 
                                             type="button"
@@ -248,6 +230,9 @@
                                 <button
                                     class="infoBut"
                                     type="button"
+                                    data-title="{lang('Узнать о наличии','newLevel')}"
+                                    data-rel="tooltip"
+                                    
                                     data-drop=".drop-report"
                                     data-source="/shop/ajax/getNotifyingRequest"
 
@@ -300,9 +285,9 @@
                                     <button class="toCompare"
                                             data-id="{echo $p->getId()}"
                                             type="button"
-                                            data-title="{lang('В список сравнений','newLevel')}"
                                             data-firtitle="{lang('В список сравнений','newLevel')}"
                                             data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                            data-title="{lang('В список сравнений','newLevel')}"
                                             data-rel="tooltip">
                                         <span class="icon_compare"></span>
                                         <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
