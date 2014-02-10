@@ -1004,7 +1004,6 @@ label.error, .error .text-el{color: #ff7264;}
 }
 .ui-slider-handle{position: absolute;z-index: 2;width: 12px;height: 22px;cursor: pointer;top: -4px;background-position: -420px 0;}
 .ui-slider-handle:active, .ui-slider-handle:focus{background-position: -420px -23px;}
-.cusel{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
 .cuselFrameRight{-moz-border-radius: 0 4px 4px 0;-webkit-border-radius: 0 4px 4px 0;border-radius: 0 4px 4px 0;}
 .cusel .jScrollPaneContainer{border-width: 0 1px 1px 1px;border-style: solid;border-color: #ccc;-moz-border-radius: 0 0 3px 3px;-webkit-border-radius: 0 0 3px 3px;border-radius: 0 0 3px 3px;-moz-box-shadow: 0 2px 3px #dcdcdc;-webkit-box-shadow: 0 2px 3px #dcdcdc;box-shadow: 0 2px 3px #dcdcdc;}
 .cusel .cusel-scroll-wrap{background: #fff;}

@@ -1344,8 +1344,8 @@ function getCookie(c_name)
                             data = $thiss.data(),
                             effectOn = data.effectOn || settings.effectOn,
                             effectOff = data.effectOff || settings.effectOff,
-                            durationOn = parseInt(data.durationOn || settings.durationOn),
-                            durationOff = parseInt(data.durationOff || settings.durationOff);
+                            durationOn = +(data.durationOn.toString() || settings.durationOn.toString()),
+                            durationOff = +(data.durationOff.toString() || settings.durationOff.toString());
                     navTabsLi[index] = $thiss.children();
                     refs[index] = navTabsLi[index].children(':first-child');
                     attrOrdata[index] = refs[index].attr('href') !== undefined ? 'attr' : 'data';
