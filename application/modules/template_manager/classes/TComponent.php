@@ -53,7 +53,6 @@ abstract class TComponent {
      * @param array $params one dimentional associative array 
      */
     public function setParams($params) {
-        
         \CI::$APP->db->where('type',  $this->handler)->delete('template_settings');
         foreach ($params as $key => $value)
             \CI::$APP->db->insert('template_settings', array('type'=>$this->getId(), 'key' => $key, 'value' => $value));
@@ -63,13 +62,12 @@ abstract class TComponent {
     }
 
     public function getParam($key = null) {
-        if ($key === NULL) {
-            return \CI::$APP->db->where('type', $this->getId())->get('template_settings')->result_array();
-        } else {
-            return \CI::$APP->db->where('type', $this->getId())->where('key', $key)->get('template_settings')->result();
-            
-        }
-
+//        if ($key === NULL) {
+//            return \CI::$APP->db->where('type', $this->getId())->get('template_settings')->result_array();
+//        } else {
+//            return \CI::$APP->db->where('type', $this->getId())->where('key', $key)->get('template_settings')->result();
+//            
+//        }
     }
 
     /**

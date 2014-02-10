@@ -8,7 +8,7 @@
 class TColorScheme extends \template_manager\classes\TComponent {
 
     public function getId() {
-        return 1;
+        return 28;
     }
 
     public function setParamsXml(\SimpleXMLElement $nodes) {
@@ -20,8 +20,9 @@ class TColorScheme extends \template_manager\classes\TComponent {
     }
 
     public function renderAdmin() {
-        $this->cAssetManager->registerScriptFile('script');
-        //echo $this->cAssetManager->fetch('some_asset', array('data' => $this->getParam()));
+        $this->cAssetManager->registerScript('script');
+        $this->cAssetManager->registerCss('style');
+        echo $this->cAssetManager->fetch('some_asset', array('someVar' => 123));
     }
     public function getParam($key = null) {
         parent::getParam($key);

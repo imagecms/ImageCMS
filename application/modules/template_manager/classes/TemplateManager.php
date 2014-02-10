@@ -9,7 +9,6 @@ namespace template_manager\classes;
  */
 class TemplateManager {
 
-     use \template_manager\traits\FileImportTrait;
 
     /**
      *
