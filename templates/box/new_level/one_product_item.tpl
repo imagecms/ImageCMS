@@ -138,6 +138,13 @@
                 {/if}
             </div>
             <div class="frame-prices-buttons">
+                {foreach $variants as $key => $pv}
+                    {if $pv->getStock() == 0}
+                        <div class="m-b_5    js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                            <span class="c_6 f-w_b">{lang('Нет в наличии', 'newLevel')}</span>
+                        </div>
+                    {/if}
+                {/foreach}
                 <!-- Start. Prices-->
                 <div class="frame-prices f-s_0">
                     {$oldoprice = $p->getOldPrice() && $p->getOldPrice() != 0 && $p->getOldPrice() > $p->firstVariant->toCurrency()}

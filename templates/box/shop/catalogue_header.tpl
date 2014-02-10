@@ -8,7 +8,7 @@
                     <ul class="nav-sort nav f_l" id="sort" name="order">
                         {$sort =ShopCore::app()->SSettings->getSortingFront()}
                         {foreach $sort as $s}
-                            <li{if ShopCore::$_GET['order']==$s['get']}class="active"{/if}>
+                            <li{if ShopCore::$_GET['order']==$s['get']} class="active"{/if}>
                                 <button type="button" data-value="{echo $s['get']}" class="d_l_3">{echo $s['name_front']}</button>
                                 </li>
                             {/foreach}
