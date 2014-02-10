@@ -125,7 +125,7 @@ class Seoexpert_model extends CI_Model {
      * @return boolean|array
      */
     public function getBaseSettings($langId = FALSE) {
-        if (!$langId) {
+        if (!$langId || is_numeric($langId) == FALSE) {
             return FALSE;
         }
         $settings = $this->db->select('add_site_name, add_site_name_to_cat, delimiter, create_keywords, create_description')->where('s_name', 'main')->get('settings')->row_array();
