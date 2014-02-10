@@ -14,7 +14,7 @@ class Template extends Mabilis {
     public $template_vars = array();
 
     public function __construct() {
-        
+
         $this->load();
         if (file_exists('templates/' . $this->CI->config->item('template') . '/shop/helpers/helper.php'))
             require_once 'templates/' . $this->CI->config->item('template') . '/shop/helpers/helper.php';
@@ -148,7 +148,6 @@ class Template extends Mabilis {
 
     public function view($file, $data = array(), $return = FALSE) {
         $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
-
         return $this->splitTplFiles(parent::view($file, $data, $return));
     }
 
