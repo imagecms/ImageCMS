@@ -1,5 +1,7 @@
 <?php
 
+namespace template_manager\classes;
+
 /**
  * 
  *
@@ -18,9 +20,10 @@ class TComponentAssetManager {
      * @param string $fileName file name or path to file
      */
     public function registerCssFile($fileName, $pos = 'before') {
-        $fullPath = $this->tComponentPath . 'assets/css/' . $filePath;
+        $filePath = strpos($filePath, '.css') === FALSE ? $filePath .= '.css' : $filePath;
+        $fullPath = $this->tComponentPath . '/assets/css/' . $filePath;
         $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
-        \CI_Controller::get_instance()->template->registerCssFile($this->buildStylePath($name), 'before');
+        \CI_Controller::get_instance()->template->registerCssFile($fullPath, $pos);
     }
 
     /**
@@ -28,9 +31,14 @@ class TComponentAssetManager {
      * @param string $filePath
      */
     public function registerScriptFile($filePath, $pos = 'after') {
-        $fullPath = $this->tComponentPath . 'assets/js/' . $filePath;
+        $filePath = strpos($filePath, '.js') === FALSE ? $filePath .= '.js' : $filePath;
+        $fullPath = $this->tComponentPath . '/assets/js/' . $filePath;
         $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
-        \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), $position);
+        echo '<pre>';
+        print_r($fullPath);
+        echo '</pre>';
+        exit;
+        \CI_Controller::get_instance()->template->registerJsFile($fullPath, $pos);
     }
 
     /**
@@ -40,7 +48,8 @@ class TComponentAssetManager {
      * @return string html of component 
      */
     public function fetch($filePath, array $data = array()) {
-        $fullPath = $this->tComponentPath . 'assets/' . $filePath;
+        $filePath = strpos($filePath, '.tpl') === FALSE ? $filePath .= '.tpl' : $filePath;
+        $fullPath = $this->tComponentPath . '/assets/' . $filePath;
         $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
         return \CI_Controller::get_instance()->template->fetch('file:' . $fullPath, $data);
     }

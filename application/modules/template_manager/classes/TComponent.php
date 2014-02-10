@@ -9,8 +9,6 @@ namespace template_manager\classes;
  * Компоненти шаблону - свого роду "модулі" для шаблону - тобто
  * розширення його фунціналу самого ід. 
  * 
- * 
- * 
  */
 abstract class TComponent {
 
@@ -48,28 +46,7 @@ abstract class TComponent {
         $this->cAssetManager = new TComponentAssetManager($this->basePath);
     }
 
-    /**
-     * Renders the template of component
-     * (
-     * @param string $tplName name of file
-     * @param array $data data for template
-     * @return string html ready html
-     */
-    public function fetch($tplName = 'main', array $data = array()) {
-        return $this->cAssetManager->fetch('some_asset');
-    }
 
-    /**
-     * Same as rander, but searches templates is admin folder
-     * @param string $tplName name of file
-     * @param array $data data for template
-     * @return string html ready html
-     */
-    public function renderAdmin($tpl = 'main', array $data = array()) {
-        if (count($data) == 0)
-            $data = $this->getParam ();
-        return $this->render('admin' . DIRECTORY_SEPARATOR . $tpl, $data);
-    }
 
     /**
      * Setting params of components
@@ -92,7 +69,7 @@ abstract class TComponent {
             return \CI::$APP->db->where('type', $this->handler)->where('key', $key)->get('template_settings')->result();
             
         }
-        
+
     }
 
     /**
@@ -103,6 +80,23 @@ abstract class TComponent {
     
 
 
+
+
+    /**
+     * Each component must have his own unique id
+     * @return int id for field `handler_id`
+     */
+    abstract public function getId();
+
+    /**
+     * @return string Name of component (for view)
+     */
+    abstract public function getLabel();
+
+    /**
+     * @return string html
+     */
+    abstract public function renderAdmin();
 
 }
 
