@@ -9,8 +9,6 @@ namespace template_manager\classes;
  */
 class Template {
 
-    use FileImportTrait;
-
     /**
      * Path to current template
      * @var string
@@ -66,7 +64,7 @@ class Template {
     public $version;
 
     /**
-     * Components
+     * All components (core + template)
      * @var array
      */
     public $components = array();
@@ -104,7 +102,7 @@ class Template {
         }
         // searching in template
         if (!isset($this->componentsInstances[$componentName])) {
-            $this->import("components/{$componentName}/{$componentName}");
+            require_once $this->templatePath . "components/{$componentName}/{$componentName}" . EXT;
             $this->componentsInstances[$componentName] = new $componentName;
         }
         return $this->componentsInstances[$componentName];
@@ -115,7 +113,7 @@ class Template {
      * @throws \Exception
      */
     protected function loadXml() {
-        $xmlPath = 'templates/' . $this->templateName . '/params.xml';
+        $xmlPath = 'templates/' . $this->name . '/params.xml';
         if (!file_exists($xmlPath)) {
             throw new \Exception;
         }
@@ -131,7 +129,7 @@ class Template {
         $this->label = (string) $attrs['label'];
         $this->type = (string) $attrs['type'];
         $this->version = (string) $attrs['version'];
-        $this->description = (string) $this->xml->description;
+        $this->description = trim((string) $this->xml->description);
         foreach ($this->xml->screenshots->screenshot as $screenshots) {
             $scrAttrs = $screenshots->attributes();
             if ($scrAttrs['main'] = 1) {
@@ -146,6 +144,11 @@ class Template {
      * Loads all components from XML
      */
     protected function loadComponents() {
+        // loading core components
+        foreach (\template_manager\classes\TemplateManager::getInstance()->defaultComponents as $name => $instance) {
+            array_push($this->components, $name);
+            $this->componentsInstances[$name] = $instance;
+        }
         if (!isset($this->xml->components)) {
             return;
         }
@@ -155,7 +158,10 @@ class Template {
         $componentsBasePath = $this->templatePath . 'components/';
         foreach ($this->xml->components->component as $component) {
             $attributes = $component->attributes();
-            array_push($this->components, (string) $attributes['handler']);
+            $name = (string) $attributes['handler'];
+            if (!in_array($name, $this->components)) {
+                array_push($this->components, $name);
+            }
         }
     }
 

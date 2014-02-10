@@ -68,7 +68,6 @@ abstract class TComponent {
 //            return \CI::$APP->db->where('type', $this->getId())->where('key', $key)->get('template_settings')->result();
 //            
 //        }
-
     }
 
     /**
