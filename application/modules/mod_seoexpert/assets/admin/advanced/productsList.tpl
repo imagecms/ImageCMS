@@ -33,14 +33,14 @@
                         <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top">
                             <!--<span class="prod-on_off {if $category['settings']['useProductPattern'] != 1}disable_tovar{/if}" style="{if $category['settings']['useProductPattern'] != 1}left: -28px;{/if}" {if $category['settings']['useProductPattern'] != 1}rel="true"{else:}rel="false"{/if}
                                   onclick="changeProductsSeoActive(this,{echo $category['id']});"></span>-->
-                            {if $category['settings']['useProductPattern'] == 1}<b style="color:green;">Ⅴ</b>{else:}<b style="color:red;">X</b>{/if}
+                            {if $category['settings']['useProductPattern'] == 1}<b style="color:green;" class="icon-ok"></b>{else:}<b style="color:red;">X</b>{/if}
                         </div>
                     </td>
                     <td>
                         <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top">
                             <!--<span class="prod-on_off {if $category['settings']['useProductPatternForEmptyMeta'] != 1}disable_tovar{/if}" style="{if $category['settings']['useProductPatternForEmptyMeta'] != 1}left: -28px;{/if}" {if $category['settings']['useProductPatternForEmptyMeta'] != 1}rel="true"{else:}rel="false"{/if}
                                   onclick="changeProductsSeoOnlyForEmpty(this,{echo $category['id']});"></span>-->
-                            {if $category['settings']['useProductPatternForEmptyMeta'] == 1}<b style="color:green;">Ⅴ</b>{else:}<b style="color:red;">X</b>{/if}
+                            {if $category['settings']['useProductPatternForEmptyMeta'] == 1}<b style="color:green;" class="icon-ok"></b>{else:}<b style="color:red;">X</b>{/if}
                         </div>
                     </td>
                 </tr>
