@@ -29,11 +29,11 @@ class template_manager extends MY_Controller {
     public function __get($handler) {
         try {
             $template = new \template_manager\classes\Template($this->templateName);
-
-            return ($template->components[$handler]) ? $template->components[$handler] : false;
+            return ($template->getComponent($handler)) ? $template->getComponent($handler) : false;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
+        
 
     }
 

@@ -56,7 +56,7 @@ abstract class TComponent {
         
         \CI::$APP->db->where('type',  $this->handler)->delete('template_settings');
         foreach ($params as $key => $value)
-            \CI::$APP->db->insert('template_settings', array('type'=>$this->handler, 'key' => $key, 'value' => $value));
+            \CI::$APP->db->insert('template_settings', array('type'=>$this->getId(), 'key' => $key, 'value' => $value));
             
         
         
@@ -64,9 +64,9 @@ abstract class TComponent {
 
     public function getParam($key = null) {
         if ($key === NULL) {
-            return \CI::$APP->db->where('type', $this->handler)->get('template_settings')->result_array();
+            return \CI::$APP->db->where('type', $this->getId())->get('template_settings')->result_array();
         } else {
-            return \CI::$APP->db->where('type', $this->handler)->where('key', $key)->get('template_settings')->result();
+            return \CI::$APP->db->where('type', $this->getId())->where('key', $key)->get('template_settings')->result();
             
         }
 

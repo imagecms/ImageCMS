@@ -67,7 +67,7 @@ class TemplateManager {
         foreach ($template->xml->components->component as $component) {
             $attributes = $component->attributes();
             $handler = '' . $attributes['handler'];
-            $instance = $template->components[$handler];
+            $instance = $template->getComponent($handler);
             $instance->setParamsXml($component->param);
         }
 

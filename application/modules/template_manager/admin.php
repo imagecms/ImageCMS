@@ -22,7 +22,7 @@ class Admin extends BaseAdminController {
         $template = new \template_manager\classes\Template($templateName);
         if ($_POST){
             $handlerComponent = $this->input->post('handler');
-            $template->components[$handlerComponent]->setParams();
+            $template->getComponent($handlerComponent)->setParams();
         }
         
         \CMSFactory\assetManager::create()->setData(array('template' => $template))->renderAdmin('main');

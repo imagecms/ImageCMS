@@ -18,13 +18,22 @@ class TMenuColumn extends \template_manager\classes\TComponent {
         foreach ($_POST['column'] as $col => $value){
             $key = serialize(explode(',', $value));
             $value = str_replace('col', '', $col);
-            $data[$key] = $nodeAttr['value'];
+            $data[$key] = $value;
         }
 
         if (count($data) > 0)
             parent::setParams($data);
     }
-
+    
+    public function renderAdmin() {
+        $this->cAssetManager->fetch('main',  array('params' => $this->getParam(), 'handler' => $this->handler));
+    }
+    public function getId() {
+        ;
+    }
+    public function getLabel() {
+        ;
+    }
 }
 
 ?>
