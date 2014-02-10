@@ -66,6 +66,8 @@ abstract class TComponent {
      * @return string html ready html
      */
     public function renderAdmin($tpl = 'main', array $data = array()) {
+        if (count($data) == 0)
+            $data = $this->getParam ();
         return $this->render('admin' . DIRECTORY_SEPARATOR . $tpl, $data);
     }
 
@@ -75,15 +77,22 @@ abstract class TComponent {
      */
     public function setParams($params) {
         
+        \CI::$APP->db->where('type',  $this->handler)->delete('template_settings');
+        foreach ($params as $key => $value)
+            \CI::$APP->db->insert('template_settings', array('type'=>$this->handler, 'key' => $key, 'value' => $value));
+            
+        
+        
     }
 
     public function getParam($key = null) {
-        if ($key == NULL) {
-            
+        if ($key === NULL) {
+            return \CI::$APP->db->where('type', $this->handler)->get('template_settings')->result_array();
         } else {
+            return \CI::$APP->db->where('type', $this->handler)->where('key', $key)->get('template_settings')->result();
             
         }
-        return CI::$APP->db->where('type', $this->handler)->get('template_settings')->result_array();
+        
     }
 
     /**
@@ -91,12 +100,10 @@ abstract class TComponent {
      * @param \SimpleXMLElement $nodes nodes from xml
      */
     abstract public function setParamsXml(\SimpleXMLElement $nodes);
+    
 
-    /**
-     * Each component must have his own unique id
-     * @return int id for field `handler_id`
-     */
-    abstract public function getId();
+
+
 }
 
 ?>
