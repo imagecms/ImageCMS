@@ -2,6 +2,9 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+// trait for php files including
+//require_once __DIR__ . DIRECTORY_SEPARATOR . 'traits' . DIRECTORY_SEPARATOR . 'FileImportTrait' . EXT;
+
 /**
  * Image CMS 
  * tenplate Manager Module Admin
@@ -27,7 +30,6 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-
         $templateName = $this->db->get('settings')->row()->site_template;
         $template = new \template_manager\classes\Template($templateName);
         \CMSFactory\assetManager::create()->setData(array('template' => $template))->renderAdmin('main');
@@ -40,7 +42,11 @@ class Admin extends BaseAdminController {
     }
 
     public function test() {
-        //\template_manager\classes\TemplateManager::getInstance()->
+        $tm = \template_manager\classes\TemplateManager::getInstance();
+        require_once '/var/www/image.loc/application/modules/template_manager/components/TColorScheme/TColorScheme.php';
+        $colorScheme = new TColorScheme();
+        //echo $colorScheme->renderAdmin();
+        \CMSFactory\assetManager::create()->renderAdmin('main');
     }
 
     /**

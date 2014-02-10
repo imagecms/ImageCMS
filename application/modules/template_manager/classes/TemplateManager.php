@@ -9,16 +9,45 @@ namespace template_manager\classes;
  */
 class TemplateManager {
 
+    use \FileImportTrait;
+
+    /**
+     *
+     * @var TemplateManager 
+     */
     private static $instance;
 
+    /**
+     *
+     * @var array 
+     */
+    public $defaultComponents = array();
+
+    /**
+     * 
+     * @return TemplateManager
+     */
     public static function getInstance() {
         if (is_null(self::$instance))
             self::$instance = new self;
         return self::$instance;
     }
 
+    /**
+     * Getting core components
+     */
     private function __construct() {
-        
+        $componentsPath = __DIR__ . '/../components/';
+        $dirList = array();
+        if ($handle = opendir($componentsPath)) {
+            while (false !== ($componentName = readdir($handle))) {
+                if ($componentName != "." && $componentName != "..") {
+                    require_once $componentsPath . "$componentName/$componentName" . EXT;
+                    $this->defaultComponents[$componentName] = new $componentName;
+                }
+            }
+            closedir($handle);
+        }
     }
 
     /**
@@ -27,7 +56,6 @@ class TemplateManager {
      * @return boolean 
      */
     public function setTemplate(Template $template) {
-
         $dependenceDirector = new \template_manager\installer\DependenceDirector();
         if ($dependenceDirector->setDependicies($template->xml->dependencies->dependency)) {
             //hakhf
@@ -76,7 +104,6 @@ class TemplateManager {
      * @return Template
      */
     public function moveToTempates($zipPath) {
-        
         $zip = new ZipArchive();
         $zip->open($zipPath);
         $rez = $zip->extractTo('uploads/template_library/tmp');
@@ -90,7 +117,6 @@ class TemplateManager {
                 // помилки
             }
         }
-        
     }
 
 }

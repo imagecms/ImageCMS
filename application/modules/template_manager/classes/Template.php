@@ -9,37 +9,112 @@ namespace template_manager\classes;
  */
 class Template {
 
+    use FileImportTrait;
+
     /**
-     *
+     * Path to current template
+     * @var string
+     */
+    protected $templatePath;
+
+    /**
+     * File params.xml
      * @var \SimpleXMLElement
      */
     public $xml;
-    public $description;
-    public $screenshots = array();
-    public $mainImage;
-    public $type;
-    public $label;
-    public $templateCompomnents;
-    public $version;
-    public $components;
+
+    /**
+     * System name of template (shoud match with template folder)
+     * @var string
+     */
     public $name;
 
     /**
-     * 
-     * @param type $templateName
+     * Name of template for displaing
+     * @var string 
+     */
+    public $label;
+
+    /**
+     * Corporate or shop template
+     * @var string 
+     */
+    public $type;
+
+    /**
+     * Full description of template
+     * @var string
+     */
+    public $description;
+
+    /**
+     * Url of main image of template (main thumbnail)
+     * @var string 
+     */
+    public $mainImage;
+
+    /**
+     * Array of screenshots urls of template
+     * @var string 
+     */
+    public $screenshots = array();
+
+    /**
+     * Version of template 
+     * @var string 
+     */
+    public $version;
+
+    /**
+     * Components
+     * @var array
+     */
+    public $components = array();
+
+    /**
+     * Instances of TComponent
+     * Creates on appeal
+     * @var array
+     */
+    protected $componentsInstances = array();
+
+    /**
+     * Getting all params
+     * @param string $templateName
      */
     public function __construct($templateName) {
-        $this->templateName = $templateName;
-        $this->getXml(); //отримання XML
-        $this->getData(); // дані про шаблон (назва, тип...)
-        $this->getComponents(); // створення інстансів копонентів
+        $this->templatePath = TEMPLATES_PATH . $templateName . '/';
+        $this->name = $templateName;
+        $this->loadXml();
+        $this->loadData();
+        $this->loadComponents();
+    }
+
+    /**
+     * Returns instance of component
+     * It can be component of template or core template-component
+     * @param string $componentName name of component
+     * @return null|TComponent
+     */
+    public function getComponent($componentName) {
+        // first check if it's core component
+        $tm = \template_manager\classes\TemplateManager::getInstance();
+        if (isset($tm->defaultComponents[$componentName])) {
+            return $tm->defaultComponents[$componentName];
+        }
+        // searching in template
+        if (!isset($this->componentsInstances[$componentName])) {
+            $this->import("components/{$componentName}/{$componentName}");
+            $this->componentsInstances[$componentName] = new $componentName;
+        }
+        return $this->componentsInstances[$componentName];
     }
 
     /**
      * 
      * @throws \Exception
      */
-    public function getXml() {
+    protected function loadXml() {
         $xmlPath = 'templates/' . $this->templateName . '/params.xml';
         if (!file_exists($xmlPath)) {
             throw new \Exception;
@@ -48,46 +123,39 @@ class Template {
     }
 
     /**
-     * 
+     * Gets main fields from xml
      */
-    protected function getData() {
+    protected function loadData() {
         $attrs = $this->xml->attributes();
-        $this->name = $attrs['name'];
-        $this->label = $attrs['label'];
-        $this->type = $attrs['type'];
-        $this->version = $attrs['version'];
-        $this->description = $this->xml->description;
+        $this->name = (string) $attrs['name'];
+        $this->label = (string) $attrs['label'];
+        $this->type = (string) $attrs['type'];
+        $this->version = (string) $attrs['version'];
+        $this->description = (string) $this->xml->description;
         foreach ($this->xml->screenshots->screenshot as $screenshots) {
             $scrAttrs = $screenshots->attributes();
             if ($scrAttrs['main'] = 1) {
-                $this->mainImage = $scrAttrs['url'];
+                $this->mainImage = (string) $scrAttrs['url'];
             } else {
-                $this->screenshots[] = $scrAttrs['url'];
+                $this->screenshots[] = (string) $scrAttrs['url'];
             }
         }
     }
 
     /**
-     * 
+     * Loads all components from XML
      */
-    protected function getComponents() {
+    protected function loadComponents() {
+        if (!isset($this->xml->components)) {
+            return;
+        }
+        if (!isset($this->xml->components->component)) {
+            return;
+        }
+        $componentsBasePath = $this->templatePath . 'components/';
         foreach ($this->xml->components->component as $component) {
             $attributes = $component->attributes();
-            $handler = '' . $attributes['handler'];
-            $pathCoreHandler = __DIR__ . '/../components/' . $handler . '/' . $handler . '.php';
-            $pathTemplateHandler = 'templates/' . $this->template . '/components/' . $handler . '/' . $handler . '.php';
-
-            if (file_exists($pathTemplateHandler)) {
-                require_once $pathTemplateHandler;
-                $this->components[$handler] = new $handler;
-                continue;
-            }
-
-            if (file_exists($pathCoreHandler)) {
-                require_once $pathCoreHandler;
-                $this->components[$handler] = new $handler;
-                continue;
-            }
+            array_push($this->components, (string) $attributes['handler']);
         }
     }
 
