@@ -107,12 +107,10 @@
         </script>
     {/literal}
     <span class="tooltip"></span>
-    <div class="apply">
+        <div class="apply">
         <div class="content-apply">
-            <a href="#">{lang('Фильтр','newLevel')}</a>
-            <div class="description">{lang('Найдено','newLevel')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
+            <div class="description"><a href="#">{lang('Найдено','newLevel')}</a> <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
-        <button type="button" class="icon_times_drop icon_times_apply"></button>
     </div>
     <div class="drop drop-style" id="notification">
         <div class="drop-content-notification">

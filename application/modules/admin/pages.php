@@ -402,8 +402,9 @@ class Pages extends BaseAdminController {
             // set langs
             $langs = $this->cms_admin->get_langs();
 
-            if (count($langs) > 1)
+            if (count($langs) > 1) {
                 $this->template->assign('show_langs', 1);
+            }
 
             // Load category
             $category = $this->lib_category->get_category($data['category']);
@@ -434,7 +435,6 @@ class Pages extends BaseAdminController {
 
             if ($cur_lang != FALSE) { // lang exists
                 $defpage = $this->cms_admin->get_page($page_id);
-//                var_dump($defpage);exit;
                 $new_data = array(
                     'author' => $this->dx_auth->get_username(),
                     'comments_status' => $defpage['comments_status'],
@@ -456,10 +456,11 @@ class Pages extends BaseAdminController {
                 
                 if ($new_p_id > 0) {
                     showMessage(lang("Language of the page", "admin") . '<b> ' . $cur_lang['lang_name'] . '. </b>' . lang("ID", 'admin') . ' <b>' . $new_p_id . '.</b>');
-                    if ($this->pjaxRequest)
+                    if ($this->pjaxRequest) {
                         pjax('/admin/pages/edit/' . $page_id . '/' . $lang);
-                    else
+                    } else {
                         redirect('/admin/pages/edit/' . $page_id . '/' . $lang);
+                    }
                     //exit;
                 } else {
                     die('Cant get page id!');
@@ -508,7 +509,6 @@ class Pages extends BaseAdminController {
             } else {
                 $url = $this->input->post('page_url');
             }
-
 
             // check if we have existing module with entered URL
             $this->db->where('name', $url);
