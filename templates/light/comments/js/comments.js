@@ -276,8 +276,7 @@ var Comments = {
                         }
                     });
                     if (parseInt(obj.commentsCount) != 0) {
-                        $('#cc').html('');
-                        $('#cc').html(text.comment + ' ('+parseInt(obj.commentsCount)+')');
+                        $('#cc').html('('+parseInt(obj.commentsCount)+')');
                     }
                     $(document).trigger({
                         'type': 'rendercomment.after', 
