@@ -3,7 +3,13 @@
 namespace template_manager\classes;
 
 /**
+ * Each template component have may have his own "views" - this class
+ * is for comfortably using of tpl-files and clients scripts
  * 
+ * Default pathes:
+ *  - base assset folder: /ComponentName/assets/
+ *  - base script folder: /ComponentName/assets/js/
+ *  - base css folder: /ComponentName/assets/css/
  *
  * @author 
  */

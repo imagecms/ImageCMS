@@ -3,7 +3,7 @@
 /**
  * 
  *
- * @author kolia
+ * @author 
  */
 class TColorScheme extends \template_manager\classes\TComponent {
 
@@ -24,9 +24,11 @@ class TColorScheme extends \template_manager\classes\TComponent {
         $this->cAssetManager->registerCss('style');
         echo $this->cAssetManager->fetch('some_asset', array('someVar' => 123));
     }
+
     public function getParam($key = null) {
         parent::getParam($key);
     }
+
 }
 
 ?>

@@ -9,7 +9,6 @@ namespace template_manager\classes;
  */
 class Template {
 
-
     /**
      * Path to current template
      * @var string
@@ -78,15 +77,33 @@ class Template {
     protected $componentsInstances = array();
 
     /**
+     * 
+     * @var boolean
+     */
+    protected $isValid = TRUE;
+
+    /**
      * Getting all params
      * @param string $templateName
      */
     public function __construct($templateName) {
         $this->templatePath = TEMPLATES_PATH . $templateName . '/';
         $this->name = $templateName;
-        $this->loadXml();
-        $this->loadData();
-        $this->loadComponents();
+        try {
+            $this->loadXml();
+            $this->loadData();
+            $this->loadComponents();
+        } catch (Exception $e) {
+            $this->isValid = FALSE;
+        }
+    }
+
+    /**
+     * Check if template is no broken (has all need files and XML-data)
+     * @return boolean 
+     */
+    public function isValid() {
+        return $this->isValid;
     }
 
     /**
@@ -117,13 +134,14 @@ class Template {
     protected function loadXml() {
         $xmlPath = 'templates/' . $this->name . '/params.xml';
         if (!file_exists($xmlPath)) {
-            throw new \Exception;
+            throw new \Exception("XML-file 'params.xml' don't exist");
         }
         $this->xml = simplexml_load_file($xmlPath);
     }
 
     /**
      * Gets main fields from xml
+     * @throws \Exception from \SimpleXMLElement
      */
     protected function loadData() {
         $attrs = $this->xml->attributes();
@@ -144,6 +162,7 @@ class Template {
 
     /**
      * Loads all components from XML
+     * @throws \Exception from \SimpleXMLElement
      */
     protected function loadComponents() {
         // loading core components
@@ -162,10 +181,12 @@ class Template {
             $attributes = $component->attributes();
             $name = (string) $attributes['handler'];
             if (!in_array($name, $this->components)) {
+                if (!file_exists($this->templatePath . "components/{$componentName}/{$componentName}" . EXT)) {
+                    throw new \Exception("Component class {$name} don't exists");
+                }
                 array_push($this->components, $name);
             }
         }
-        var_dump($this->components);
     }
 
 }
