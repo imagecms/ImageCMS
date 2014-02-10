@@ -11,7 +11,7 @@
                                     <a href="{shop_url($brand.full_url)}" class="frame-photo-title">
                                         <span class="photo-block">
                                             <span class="helper"></span>
-                                            <img data-original="{media_url($brand.img_fullpath)}" src="{$THEME}images/blank.gif" title="{$brand.name}" alt="{$brand.name}" class="lazy"/>
+                                            <img src="{media_url($brand.img_fullpath)}" alt="{$brand.name}"/>
                                         </span>
                                     </a>
                                 </li>
