@@ -376,6 +376,81 @@ $.dropInit.prototype.extendDrop = function() {
                     }
                 });
             }
+        },
+        placeBeforeShow: function(drop, $this, methods, place, placeBeforeShow) {
+            if (place !== 'inherit') {
+                var t = -drop.actual('outerHeight'),
+                        l = -drop.actual('outerWidth');
+                var pmt = placeBeforeShow.toLowerCase().split(' ');
+                if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
+                    t = wnd.height() + wnd.scrollTop();
+                if (pmt[0] === 'right' || pmt[1] === 'right')
+                    l = wnd.width() + wnd.scrollLeft();
+                if (pmt[0] === 'center' || pmt[1] === 'center') {
+                    if (pmt[1] === 'left')
+                        l = -drop.actual('outerWidth');
+                    if (pmt[1] === 'right')
+                        l = wnd.width() + wnd.scrollLeft();
+                    if (pmt[0] === 'top')
+                        t = -drop.actual('outerHeight');
+                    if (pmt[0] === 'bottom')
+                        t = wnd.height() + wnd.scrollTop();
+                }
+                drop.css({
+                    'left': l,
+                    'top': t
+                });
+                if (pmt[0] === 'center' && pmt[1] === 'center')
+                    methods._checkMethod(function() {
+                        methods[place](drop, true)
+                    })
+                if (pmt[0] === 'inherit')
+                    drop.css({
+                        'left': $this.offset().left + wnd.scrollLeft(),
+                        'top': $this.offset().top + wnd.scrollTop()
+                    });
+            }
+        },
+        placeAfterClose: function(drop, $this, set) {
+            var method = set.animate ? 'animate' : 'css',
+            pmt = set.placeAfterClose.toLowerCase().split(' '),
+                    l = 0, t = 0;
+            if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
+                t = wnd.height();
+            if (pmt[0] === 'right' || pmt[1] === 'right')
+                l = wnd.width();
+            if (pmt[0] == 'center' || pmt[1] == 'center') {
+                if (pmt[1] === 'left') {
+                    l = -drop.actual('outerWidth');
+                    t = drop.css('top');
+                }
+                if (pmt[1] === 'right') {
+                    l = wnd.width() + wnd.scrollLeft();
+                    t = drop.css('top');
+                }
+                if (pmt[0] === 'top') {
+                    t = -drop.actual('outerHeight');
+                    l = drop.css('left');
+                }
+                if (pmt[0] === 'bottom') {
+                    t = wnd.height() + wnd.scrollTop();
+                    l = drop.css('left');
+                }
+            }
+            if (pmt[0] !== 'center' || pmt[1] !== 'center')
+                drop.stop()[method]({
+                    'top': t,
+                    'left': l
+                }, {
+                    queue: false
+                });
+            if (pmt[0] === 'inherit')
+                drop.stop()[method]({
+                    'left': $this.offset().left + wnd.scrollLeft(),
+                    'top': $this.offset().top + wnd.scrollTop()
+                }, {
+                    queue: false
+                });
         }
     };
     var newMethods = {};
