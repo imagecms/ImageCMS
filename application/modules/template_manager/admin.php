@@ -39,7 +39,7 @@ class Admin extends BaseAdminController {
         $tm = \template_manager\classes\TemplateManager::getInstance();
         require_once '/var/www/image.loc/application/modules/template_manager/components/TColorScheme/TColorScheme.php';
         $colorScheme = new TColorScheme();
-        //echo $colorScheme->renderAdmin();
+        echo $colorScheme->renderAdmin();
         \CMSFactory\assetManager::create()->renderAdmin('main');
 
     }

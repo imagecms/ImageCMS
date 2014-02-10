@@ -17,28 +17,24 @@ class TComponentAssetManager {
 
     /**
      * 
-     * @param string $fileName file name or path to file
+     * @param string $filePath file name or path to file
      */
-    public function registerCssFile($fileName, $pos = 'before') {
+    public function registerCss($filePath, $pos = 'before') {
         $filePath = strpos($filePath, '.css') === FALSE ? $filePath .= '.css' : $filePath;
         $fullPath = $this->tComponentPath . '/assets/css/' . $filePath;
         $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
-        \CI_Controller::get_instance()->template->registerCssFile($fullPath, $pos);
+        \CI_Controller::get_instance()->template->registerCss('<style>' . file_get_contents($fullPath) . '</style>', $pos);
     }
 
     /**
      * 
      * @param string $filePath
      */
-    public function registerScriptFile($filePath, $pos = 'after') {
+    public function registerScript($filePath, $pos = 'after') {
         $filePath = strpos($filePath, '.js') === FALSE ? $filePath .= '.js' : $filePath;
         $fullPath = $this->tComponentPath . '/assets/js/' . $filePath;
         $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
-        echo '<pre>';
-        print_r($fullPath);
-        echo '</pre>';
-        exit;
-        \CI_Controller::get_instance()->template->registerJsFile($fullPath, $pos);
+        \CI_Controller::get_instance()->template->registerJsScript('<script>' . file_get_contents($fullPath) . '</script>', $pos);
     }
 
     /**

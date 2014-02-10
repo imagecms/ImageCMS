@@ -1,3 +1,3 @@
 <h3>Template component view</h3>
 
-<p>{$someVar}</p>
+<p class="tcolorschemep">{$someVar}</p>
