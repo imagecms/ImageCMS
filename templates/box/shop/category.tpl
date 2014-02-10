@@ -27,7 +27,7 @@
                 <div class="frame-title">
                     <h1 class="title">{echo $title}</h1>
                 </div>
-                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
+                <span class="count">{lang('Найдено', 'newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}
@@ -61,7 +61,7 @@
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
                         <div class="title-default">
-                            <div class="title-h3 title">{lang('Категории', 'newLevel')}:</div>
+                            <div class="title-h3 title">{lang('Категории', 'newLevel')}</div>
                         </div>
                     </div>
                     <div class="inside-padd">
@@ -79,11 +79,13 @@
             {/if}
             <!-- Load filter-->
             {$CI->load->module('smart_filter')->init()}
+            <div id="popular_products">
+                {widget('popular_products', TRUE)}
+            </div>
         </div>
         <!--widget for popular products in this category-->
     </div>
 </div>
-{widget('latest_news')}
 {if trim($category->getDescription()) != ""}
     <div class="frame-seo-text">
         <div class="container">
