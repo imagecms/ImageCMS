@@ -1,6 +1,6 @@
 <?php
 
-
+namespace template_manager\traits;
 
 trait FileImportTrait {
 
@@ -15,7 +15,7 @@ trait FileImportTrait {
             return;
 
         $filePath = str_replace('.php', '', $filePath);
-        $reflection = new ReflectionClass($this);
+        $reflection = new \ReflectionClass($this);
         $workingDir = pathinfo($reflection->getFileName(), PATHINFO_DIRNAME);
         $filePath = $workingDir . DIRECTORY_SEPARATOR . str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
         if (strpos($filePath, '*') === FALSE) {

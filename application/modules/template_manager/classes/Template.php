@@ -9,7 +9,7 @@ namespace template_manager\classes;
  */
 class Template {
 
-    use FileImportTrait;
+    use \template_manager\traits\FileImportTrait;
 
     /**
      * Path to current template
@@ -103,7 +103,7 @@ class Template {
             return $tm->defaultComponents[$componentName];
         }
         // searching in template
-        if (!isset($this->componentsInstances[$componentName])) {
+        if (!isset($this->componentsInstances[$componentName])) {     
             $this->import("components/{$componentName}/{$componentName}");
             $this->componentsInstances[$componentName] = new $componentName;
         }
@@ -115,7 +115,7 @@ class Template {
      * @throws \Exception
      */
     protected function loadXml() {
-        $xmlPath = 'templates/' . $this->templateName . '/params.xml';
+        $xmlPath = 'templates/' . $this->name . '/params.xml';
         if (!file_exists($xmlPath)) {
             throw new \Exception;
         }
@@ -157,6 +157,7 @@ class Template {
             $attributes = $component->attributes();
             array_push($this->components, (string) $attributes['handler']);
         }
+        var_dump($this->components);
     }
 
 }

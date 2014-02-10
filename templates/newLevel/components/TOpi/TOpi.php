@@ -9,6 +9,15 @@ class TOpi extends \template_manager\classes\TComponent{
                 ->render($tpl, TRUE, FALSE);
     }
     
+    public function getId() {
+        ;
+    }
+    public function getLabel() {
+        ;
+    }
+    public function renderAdmin() {
+        ;
+    }
     public function setParamsXml(\SimpleXMLElement $nodes) {
         ;
     }
