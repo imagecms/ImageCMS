@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<template name='newLevel' type="shop" version="0.1">
+<template label='Сині Фіалки' name='newLevel' type="shop" version="0.1">
     
     <dependencies><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
         <!-- залежності - те має бути в ЦМС для правильної роботи шаблону -->
@@ -17,17 +17,16 @@
         <dependency entityName="category" name="Назва категорії" parent_name="назва_батьківської (якщо є)" type="add"></dependency>
     </dependencies>
     
-    <dscription><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
+    <description><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
         <!-- буде показуватись в інформації про шаблон -->
         Опис шаблону
         Цей шаблон тра-ля-ля і бє-бє-бє
-    </dscription>
+    </description>
     
     <screenshots><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
         <screenshot url="" main="1" />
         <screenshot url="" main="0" />
     </screenshots>
-       
     
     <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ ТА КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
         <!-- початкові параметри для компонентів шаблону -->
@@ -58,14 +57,13 @@
             <param name="938,45,54,654" value="1" />
             <param name="938,45,54,654" value="1" />
             <param name="938,45,54,654" value="1" />
-        </component> 
-        
+        </component>
         
         <component handler="TProperties">
             <param name="15,15,15,85,85" value="scrol,dropdown" />
             <param name="15,15,15,85,85" value="scrol" />
             <param name="15,15,15,85,85" value="dropdown" />
-        </component>    
+        </component>
         
     </components>
 

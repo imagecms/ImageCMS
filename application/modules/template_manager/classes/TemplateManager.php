@@ -11,25 +11,6 @@ class TemplateManager {
 
     private static $instance;
 
-    /**
-     *
-     * @var \SimpleXMLElement
-     */
-    private $xml;
-    private $components = array();
-
-    /**
-     *
-     * @var string
-     */
-    private $template;
-
-    /**
-     * 
-     * @var array 
-     */
-    private $handlersClasses = array();
-
     public static function getInstance() {
         if (is_null(self::$instance))
             self::$instance = new self;
@@ -37,77 +18,53 @@ class TemplateManager {
     }
 
     private function __construct() {
-        $this->_getXml();
-        $this->_getComponents();
-    }
-
-    public function getXml() {
-        return $this->xml;
-    }
-
-    public function getComponents($handlerName = NULL) {
-        if (key_exists($handlerName, $this->components)) {
-            return $this->components[$handlerName];
-        }
-        return $this->components;
-    }
-
-    private function _getXml() {
-        $this->template = \CI::$APP->db
-                        ->select('site_template')
-                        ->get('settings')
-                        ->row()->site_template;
-
-        $xmlPath = 'templates/' . $this->template . '/params.xml';
-        if (!file_exists($xmlPath)) {
-            throw new \Exception;
-        }
-        $this->xml = simplexml_load_file($xmlPath);
-    }
-
-    private function _getComponents() {
-        foreach ($this->xml->components->component as $component) {
-            $attributes = $component->attributes();
-            $handler = '' . $attributes['handler'];
-            $pathCoreHandler = __DIR__ . '/../components/' . $handler . '/' . $handler . '.php';
-            $pathTemplateHandler = 'templates/' . $this->template . '/components/' . $handler . '/' . $handler . '.php';
-
-            if (file_exists($pathTemplateHandler)) {
-                require_once $pathTemplateHandler;
-                $this->components[$handler] = new $handler;
-                continue;
-            }
-
-
-            if (file_exists($pathCoreHandler)) {
-                require_once $pathCoreHandler;
-                $this->components[$handler] = new $handler;
-                continue;
-            }
-        }
+        
     }
 
     /**
      * 
-     * @param type $templateName
+     * @param type $template
      * @return boolean 
      */
-    public function setTemplate($templateName) {
-        
+    public function setTemplate(Template $template) {
+
+        $dependenceDirector = new \template_manager\installer\DependenceDirector();
+        if ($dependenceDirector->setDependicies($template->xml->dependencies->dependency)) {
+            //hakhf
+        } else {
+            $dependenceDirector->getMessages();
+            return false;
+        }
+
+        foreach ($template->xml->components->component as $component) {
+            $attributes = $component->attributes();
+            $handler = '' . $attributes['handler'];
+            $instance = $template->components[$handler];
+            $instance->setParamsXml($component->param);
+        }
+
+        $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
+        $this->db->update('settings', array('site_template' => $template->name));
     }
 
     /**
      * 
-     * @return array 
+     * @return array of Template
      */
     public function listLocal() {
-        
+        \CI::$APP->load->helper('file');
+        $templatesNames = get_filenames('templates');
+        $templates = array();
+        foreach ($templatesNames as $name) {
+            $templates[] = new Template($name);
+        }
+        return $templates;
     }
 
     /**
      * 
      * @param string $sourceUrl url of remote xml file with template data
-     * @return array 
+     * @return array of Template
      */
     public function listRemote($sourceUrl) {
         
@@ -116,18 +73,23 @@ class TemplateManager {
     /**
      * 
      * @param string $url path to zip file
-     * @return bool
+     * @return Template
      */
-    public function downloadTemplate($url) {
+    public function moveToTempates($zipPath) {
         
-    }
-
-    public function action($setParam, $handler, $key, $value) {
-        $this->getComponent();
-        $this->handlersClasses[$handler]->$setParam($key, $param);
-    }
-
-    public function getComponent($handler) {
+        $zip = new ZipArchive();
+        $zip->open($zipPath);
+        $rez = $zip->extractTo('uploads/template_library/tmp');
+        $zip->close();
+        if (file_exists('uploads/template_library/tmp/param.xml')) {
+            $xmlParam = simplexml_load_file('uploads/template_library/tmp/param.xml');
+            $attributes = $xmlParam->attributes();
+            if (TRUE) {
+                // перенесення папки в шаблони із назвою із XML
+            } else {
+                // помилки
+            }
+        }
         
     }
 
