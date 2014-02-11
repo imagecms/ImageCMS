@@ -808,12 +808,12 @@ function getScrollTop() {
         scrOfY = window.pageYOffset;
     } else if (document.body
             && (document.body.scrollLeft
-                    || document.body.scrollTop)) {
+            || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
             && (document.documentElement.scrollLeft
-                    || document.documentElement.scrollTop)) {
+            || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -1186,8 +1186,8 @@ function initAdminArea() {
 
     })
             .on('pjax:end', function() {
-                $('#loading').fadeOut(300);
-            });
+        $('#loading').fadeOut(300);
+    });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1432,31 +1432,6 @@ $(document).ready(
             });
             $('#settings_form .control-label').live('click', function() {
                 $(this).next().find(':input:first').focus();
-            });
-            $('.updateColumn').live('click', function() {
-                var btn = $(this);
-                var categoryId = btn.data('id');
-                var column = btn.parent().find('input').val();
-
-                if (!parseInt(column) && parseInt(column) != 0)
-                    showMessage(langs.message, langs.enterColumnNum, 'r');
-
-
-                $.ajax({
-                    type: 'POST',
-                    data: 'categoryId=' + categoryId + '&column=' + column,
-                    url: base_url + 'admin/components/run/shop/categories/ajaxUpdateCategoryColumn/',
-                    success: function(data) {
-                        if (data == true) {
-
-                            showMessage(langs.message, langs.columnNumUpdated, 'success');
-                            btn.hide();
-                        } else {
-                            showMessage(langs.message, langs.failColumnNumUodate, 'errror');
-
-                        }
-                    }
-                });
             });
 
         });
