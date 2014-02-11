@@ -23,6 +23,5 @@ var SiteMap = {
                 $('.notifications.top-right').append(data);
             }
         });
-
     }
 };

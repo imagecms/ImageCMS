@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'sitemap')}</span></a>
+                <a href="/admin/components/init_window/sitemap/priorities" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'sitemap')}</span></a>
                 <button type="button" class="btn btn-small btn-success formSubmit" data-form="#sitemap_settings_form" data-submit><i class="icon-ok"></i>{lang("Save", 'sitemap')}</button>
                 <button type="button" class="btn btn-small btn-success formSubmit" data-form="#sitemap_settings_form" data-action="show_sitemap" data-submit><i class="icon-share"></i>{lang("Save and view", 'sitemap')}</button>
                 <span class="btn-group">
@@ -45,66 +45,72 @@
                                         <option value="0" {if !$settings.generateXML}selected="checked"{/if}>{lang('Use existing', 'sitemap')}</option>
                                     </select>
 
-                                    <button type="button" onclick="SiteMap.saveSiteMap()" class="btn btn-small btn-success"><i class="icon-ok"></i>
-                                {if $fileSiteMapData}{lang("Regenerate", 'sitemap')}{else:}{lang("Generate", 'sitemap')}{/if}
-                            </button>
-                        </div>
-                    </div>
-
-                    {if $fileSiteMapData}
-                        <div style="float: right;margin-top: -40px;margin-right: 60px;margin-bottom: 20px;margin-left: -50px;padding-left: 60px;width: 500px;">
-                            <a href="{echo site_url('admin/components/init_window/sitemap/sitemapDownload')}">{lang('Saved Site Map', 'sitemap')}</a> ( <b>{lang('Created at', 'sitemap')}:</b> {echo date('Y-m-d  H:i', $fileSiteMapData['time'])}, <b>{lang('Size', 'sitemap')}:</b> {echo number_format($fileSiteMapData['size']/1024, 2)} {lang('Kb', 'sitemap')} )
-                        </div>
-                    {else:}
-                        <div style="float: right;margin-top: -40px;margin-right: 60px;margin-bottom: 20px;margin-left: -50px;padding-left: 60px;width: 500px;">
-                            <span class="help-block">{lang('There is no saved Site Map.', 'sitemap')}</span>
-                        </div>
-                    {/if}
-
-                    <div class="control-group">
-                        <label class="control-label" for="comcount">{lang("Turn ON/OFF robots", 'sitemap')}:</label>
-                        <div class="controls number">
-                            <select name="settings[robotsStatus]">
-                                <option value="1" {if $settings.robotsStatus}selected="selected"{/if}>{lang('ON', 'sitemap')}</option>
-                                <option value="0" {if !$settings.robotsStatus}selected="selected"{/if}>{lang('OFF', 'sitemap')}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="comcount">{lang("Send Site Map", 'sitemap')}:</label>
-                        <div class="controls number">
-                            <select name="settings[sendSiteMap]">
-                                <option value="0" {if !$settings.sendSiteMap}selected="selected"{/if}>{lang('No', 'sitemap')}</option>
-                                <option value="1" {if $settings.sendSiteMap}selected="checked"{/if}>{lang('Yes', 'sitemap')}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="comcount">{lang("Send Site Map only when url is changed", 'sitemap')}:</label>
-                        <div class="controls number">
-                            <select name="settings[sendWhenUrlChanged]">
-                                <option value="0" {if !$settings.sendWhenUrlChanged}selected="selected"{/if}>{lang('No', 'sitemap')}</option>
-                                <option value="1" {if $settings.sendWhenUrlChanged}selected="checked"{/if}>{lang('Yes', 'sitemap')}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    {if $settings.lastSend}
-                        <div class="control-group">
-                            <label class="control-label" for="comcount">{lang("Last send Site Map time", 'sitemap')}:</label>
-                            <div class="controls number">
-                                <input type="text" readonly="readonly" value="{echo date('Y-m-d  H:i:s', $settings.lastSend)}">
-                                <input type="hidden" name="settings[lastSend]" value="{echo $settings.lastSend}">
+                                    <button type="button" onclick="SiteMap.saveSiteMap()" class="btn btn-small btn-success">
+                                        {if $fileSiteMapData}
+                                            <i class="icon-refresh"></i>
+                                            {lang("Regenerate", 'sitemap')}
+                                        {else:}
+                                            <i class="icon-ok"></i>
+                                            {lang("Generate", 'sitemap')}
+                                        {/if}
+                                    </button>
+                                </div>
                             </div>
+
+                            {if $fileSiteMapData}
+                                <div style="float: right;margin-top: -40px;margin-right: 60px;margin-bottom: 20px;margin-left: -50px;padding-left: 60px;width: 500px;">
+                                    <a href="{echo site_url('admin/components/init_window/sitemap/sitemapDownload')}">{lang('Saved Site Map', 'sitemap')}</a> ( <b>{lang('Created at', 'sitemap')}:</b> {echo date('Y-m-d  H:i', $fileSiteMapData['time'])}, <b>{lang('Size', 'sitemap')}:</b> {echo number_format($fileSiteMapData['size']/1024, 2)} {lang('Kb', 'sitemap')} )
+                                </div>
+                            {else:}
+                                <div style="float: right;margin-top: -40px;margin-right: 60px;margin-bottom: 20px;margin-left: -50px;padding-left: 60px;width: 500px;">
+                                    <span class="help-block">{lang('There is no saved Site Map.', 'sitemap')}</span>
+                                </div>
+                            {/if}
+
+                            <div class="control-group">
+                                <label class="control-label" for="comcount">{lang("Turn ON/OFF robots", 'sitemap')}:</label>
+                                <div class="controls number">
+                                    <select name="settings[robotsStatus]">
+                                        <option value="1" {if $settings.robotsStatus}selected="selected"{/if}>{lang('ON', 'sitemap')}</option>
+                                        <option value="0" {if !$settings.robotsStatus}selected="selected"{/if}>{lang('OFF', 'sitemap')}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="comcount">{lang("Send Site Map", 'sitemap')}:</label>
+                                <div class="controls number">
+                                    <select name="settings[sendSiteMap]">
+                                        <option value="0" {if !$settings.sendSiteMap}selected="selected"{/if}>{lang('No', 'sitemap')}</option>
+                                        <option value="1" {if $settings.sendSiteMap}selected="checked"{/if}>{lang('Yes', 'sitemap')}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="comcount">{lang("Send Site Map only when url is changed", 'sitemap')}:</label>
+                                <div class="controls number">
+                                    <select name="settings[sendWhenUrlChanged]">
+                                        <option value="0" {if !$settings.sendWhenUrlChanged}selected="selected"{/if}>{lang('No', 'sitemap')}</option>
+                                        <option value="1" {if $settings.sendWhenUrlChanged}selected="checked"{/if}>{lang('Yes', 'sitemap')}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {if $settings.lastSend}
+                                <div class="control-group">
+                                    <label class="control-label" for="comcount">{lang("Last send Site Map time", 'sitemap')}:</label>
+                                    <div class="controls number">
+                                        <input type="text" readonly="readonly" value="{echo date('Y-m-d  H:i:s', $settings.lastSend)}">
+                                        <input type="hidden" name="settings[lastSend]" value="{echo $settings.lastSend}">
+                                    </div>
+                                </div>
+                            {/if}
                         </div>
-                    {/if}
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
-{form_csrf()}
-</form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {form_csrf()}
+    </form>
 </section>
