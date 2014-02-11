@@ -1,34 +1,46 @@
-#
-# asdasd <ad@min.com>, 2013.
-#
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27 12:00+0300\n"
-"PO-Revision-Date: 2013-09-27 12:24+0300\n"
+"POT-Creation-Date: 2014-02-06 06:44+0200\n"
+"PO-Revision-Date: 2014-02-06 06:44+0200\n"
 "Last-Translator: asdasd <ad@min.com>\n"
 "Language-Team: Basque <ad@min.com>\n"
-"Language: English\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
 "X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-Language: English\n"
-"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-# asdasdas
-#: /var/www/image.loc/_tempLangs.php:20
-msgid "post_comment"
+#: ../shop/helpers/helper.php:6
+msgid "Ноября"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:21
-msgid "login_for_comments"
+#: /var/www/image.loc/_tempLangs.php:38
+msgid "Наверх"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:30 /var/www/image.loc/_tempLangs.php:65
+msgid "Почта"
+msgstr ""
+
+#: ../shop/helpers/helper.php:6
+msgid "Декабря"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:34
+msgid "Promo код: "
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:29 /var/www/image.loc/_tempLangs.php:47
+msgid "Название списка:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:22
@@ -43,19 +55,12 @@ msgstr ""
 msgid "lang_comment_button"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:25
-msgid "Страница не найдена"
+#: /var/www/image.loc/_tempLangs.php:30 /var/www/image.loc/_tempLangs.php:48
+msgid "Описание:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:26
 msgid "Эта страница не существует или была удалена."
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:27
-msgid ""
-"Приносим свои извинения за доставленные неудобства. Для продолжения работы "
-"вы можете перейти к представленным пунктам меню, воспользоваться  поиском по "
-"сайту либо перейти на"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:28
@@ -67,9 +72,9 @@ msgstr ""
 msgid "Вход"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:30 /var/www/image.loc/_tempLangs.php:65
-msgid "Почта"
-msgstr "asdasd"
+#: /var/www/image.loc/_tempLangs.php:31
+msgid "Коментарий к:"
+msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:31 /var/www/image.loc/_tempLangs.php:66
 #: /var/www/image.loc/_tempLangs.php:77
@@ -86,9 +91,8 @@ msgstr ""
 msgid "Забыли Пароль?"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:34 /var/www/image.loc/_tempLangs.php:69
-#: /var/www/image.loc/_tempLangs.php:74
-msgid "Я еще не зарегистрирован"
+#: /var/www/image.loc/_tempLangs.php:32 /var/www/image.loc/_tempLangs.php:69
+msgid "Сохранить"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:35 /var/www/image.loc/_tempLangs.php:70
@@ -104,9 +108,9 @@ msgstr ""
 msgid "Развернуть"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:38
-msgid "Наверх"
-msgstr "asdasdasd"
+#: /var/www/image.loc/_tempLangs.php:33
+msgid "Отправить другу"
+msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:39
 msgid "Сайт"
@@ -120,8 +124,8 @@ msgstr ""
 msgid "Пользователь"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:42 /var/www/image.loc/_tempLangs.php:43
-msgid "Выход"
+#: /var/www/image.loc/_tempLangs.php:34
+msgid "Email друга"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:44 /var/www/image.loc/_tempLangs.php:45
@@ -137,8 +141,8 @@ msgstr ""
 msgid "Регистрация"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:52 /var/www/image.loc/_tempLangs.php:53
-msgid "Список сравнений"
+#: /var/www/image.loc/_tempLangs.php:36
+msgid "В список желаний"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:54 /var/www/image.loc/_tempLangs.php:55
@@ -153,8 +157,8 @@ msgstr ""
 msgid "Мобильная версия"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:58
-msgid "Купить"
+#: /var/www/image.loc/_tempLangs.php:37
+msgid "В список желания"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:59
@@ -169,8 +173,8 @@ msgstr ""
 msgid "Отправить сообщение"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:62
-msgid "ООО «Сайт Имидж"
+#: /var/www/image.loc/_tempLangs.php:38
+msgid "В списке желаний"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:63
@@ -185,8 +189,8 @@ msgstr ""
 msgid "Пароль будет выслан на e-mail "
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:73
-msgid "Отправить"
+#: /var/www/image.loc/_tempLangs.php:39
+msgid "В списке желания"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:76
@@ -201,8 +205,8 @@ msgstr ""
 msgid "Зарегистрироваться"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:80
-msgid "Регистрация прошла успешно!"
+#: /var/www/image.loc/_tempLangs.php:41
+msgid "Список товаров"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:82
@@ -217,8 +221,8 @@ msgstr ""
 msgid "Повторите:"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:86
-msgid "Я уже зарегистрирован"
+#: /var/www/image.loc/_tempLangs.php:42
+msgid "Дополнительные данные"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:88
@@ -233,8 +237,8 @@ msgstr ""
 msgid "Найти"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:91
-msgid "Поиск по сайту"
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Создать новый список"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:92
@@ -249,8 +253,8 @@ msgstr ""
 msgid "товара"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:95
-msgid "товаров"
+#: /var/www/image.loc/_tempLangs.php:45
+msgid "Создание списка избранных товаров"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:96
@@ -265,8 +269,8 @@ msgstr ""
 msgid "наборов"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:99
-msgid "отзыв"
+#: /var/www/image.loc/_tempLangs.php:51
+msgid "Редактировать список"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:100
@@ -281,8 +285,8 @@ msgstr ""
 msgid "Введите боллее"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:103
-msgid "символов"
+#: /var/www/image.loc/_tempLangs.php:52
+msgid "Удалить список"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:104
@@ -297,8 +301,8 @@ msgstr ""
 msgid "пикселей"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:107
-msgid "Введите название"
+#: /var/www/image.loc/_tempLangs.php:54
+msgid "Поделится с другом"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:20
@@ -313,8 +317,8 @@ msgstr ""
 msgid "Проверьте наличие файла или измените настройки меню"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:23
-msgid "Переустановите модуль меню "
+#: /var/www/image.loc/_tempLangs.php:59
+msgid "на сумму"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:24
@@ -329,8 +333,8 @@ msgstr ""
 msgid "Promo код"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:27
-msgid "Сумма:"
+#: /var/www/image.loc/_tempLangs.php:64
+msgid "загрузить катринку"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:28 /var/www/image.loc/_tempLangs.php:34
@@ -345,8 +349,8 @@ msgstr ""
 msgid "Размер скидки:"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:31
-msgid "Цифровой"
+#: /var/www/image.loc/_tempLangs.php:65
+msgid "Редактировать"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:32
@@ -361,8 +365,8 @@ msgstr ""
 msgid "Тип расчета скидки: "
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:36
-msgid "Размер скидки: "
+#: /var/www/image.loc/_tempLangs.php:66
+msgid "ФИО:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:37
@@ -377,8 +381,8 @@ msgstr ""
 msgid "Применить"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:22
-msgid "Wishlist"
+#: /var/www/image.loc/_tempLangs.php:67
+msgid "Дата рождения:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:23
@@ -393,8 +397,8 @@ msgstr ""
 msgid "Сообщить о появлении"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:27
-msgid "Адрес электронной почты получателя"
+#: /var/www/image.loc/_tempLangs.php:68
+msgid "Дополнительно:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:28
@@ -409,8 +413,8 @@ msgstr ""
 msgid "Все бренды магазина"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:32
-msgid "Имя: "
+#: /var/www/image.loc/_tempLangs.php:70
+msgid "Выбор cписка желаний"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:33
@@ -425,8 +429,8 @@ msgstr ""
 msgid "Позвоните мне"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:36 /var/www/image.loc/_tempLangs.php:75
-msgid "Ваше имя"
+#: /var/www/image.loc/_tempLangs.php:71
+msgid "Создать список"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:37
@@ -441,8 +445,8 @@ msgstr ""
 msgid "E-mail является логином"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:40 /var/www/image.loc/_tempLangs.php:78
-msgid "Адрес"
+#: /var/www/image.loc/_tempLangs.php:72
+msgid "Переместить в список"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:41
@@ -457,9 +461,8 @@ msgstr ""
 msgid "Товаров на сумму"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:44 /var/www/image.loc/_tempLangs.php:46
-#: /var/www/image.loc/_tempLangs.php:85
-msgid "Ваша текущая скидка"
+#: /var/www/image.loc/_tempLangs.php:73
+msgid "Добавить в список"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:45
@@ -474,8 +477,8 @@ msgstr ""
 msgid "оставить"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:49
-msgid "Сделать покупки по ценам"
+#: /var/www/image.loc/_tempLangs.php:74
+msgid "Фильтровать"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:50
@@ -490,8 +493,8 @@ msgstr ""
 msgid "Размер скидки"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:53
-msgid "От"
+#: /var/www/image.loc/_tempLangs.php:75
+msgid "Сбросить фильтр"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:54
@@ -506,8 +509,8 @@ msgstr ""
 msgid "Корзина пуста"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:57
-msgid "Товар"
+#: /var/www/image.loc/_tempLangs.php:76
+msgid "Смотреть все"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:61
@@ -522,8 +525,8 @@ msgstr ""
 msgid "Заказ №"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:65
-msgid "Параметры заказа"
+#: /var/www/image.loc/_tempLangs.php:77
+msgid "Новости"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:66
@@ -538,8 +541,8 @@ msgstr ""
 msgid "Способ оплаты"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:69
-msgid "Статус заказа"
+#: /var/www/image.loc/_tempLangs.php:78
+msgid "Остальные новости"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:70
@@ -554,8 +557,8 @@ msgstr ""
 msgid "Нет"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:73
-msgid "Способ доставки"
+#: /var/www/image.loc/_tempLangs.php:20 /var/www/image.loc/_tempLangs.php:22
+msgid "No viewed products"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:74
@@ -570,8 +573,8 @@ msgstr ""
 msgid "Комментарий к заказу"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:80
-msgid "Количество"
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "Главная"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:81 /var/www/image.loc/_tempLangs.php:83
@@ -586,8 +589,8 @@ msgstr ""
 msgid "Стоимость доставки"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:86
-msgid "Подарочный сертификат"
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "Show all"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:87
@@ -602,8 +605,8 @@ msgstr ""
 msgid "или"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:94
-msgid "Старый пароль"
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Не обнаружен необходимый файл шаблона для меню "
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:95
@@ -618,8 +621,8 @@ msgstr ""
 msgid "Изменить пароль"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:98
-msgid "Добро пожаловать!"
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "Hide"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:99
@@ -634,8 +637,8 @@ msgstr ""
 msgid "Артикул"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:20 /var/www/image.loc/_tempLangs.php:22
-msgid "Оформление заказа"
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "All categoties"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:23
@@ -650,40 +653,33 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:29 /var/www/image.loc/_tempLangs.php:111
-msgid "Комментарий:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:30
-msgid "Доставка:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:31
-msgid "Цена: "
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "Переустановите модуль меню"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:32
 msgid "Оплата:"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:33
-msgid "Доставка: "
+#: /var/www/image.loc/_tempLangs.php:31
+msgid "Цена: "
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:34
-msgid "Promo код: "
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "Доставка:"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:35
-msgid "Всего к оплате:"
+#: /var/www/image.loc/_tempLangs.php:19 /var/www/image.loc/_tempLangs.php:20
+#: /var/www/image.loc/_tempLangs.php:22
+msgid "В список сравнений"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:36
 msgid "Подтвердить заказ"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:37
-msgid "В корзине"
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Страница не найдена"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:41 /var/www/image.loc/_tempLangs.php:48
@@ -692,18 +688,17 @@ msgstr ""
 msgid "Количество на складе"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:42 /var/www/image.loc/_tempLangs.php:49
-#: /var/www/image.loc/_tempLangs.php:63 /var/www/image.loc/_tempLangs.php:69
-#: /var/www/image.loc/_tempLangs.php:118
-msgid "Только цифры"
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "В списке сравнений"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:52
 msgid "Вернуться к оформлению"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:53 /var/www/image.loc/_tempLangs.php:71
-msgid "Всего"
+#: /var/www/image.loc/_tempLangs.php:34 /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:74
+msgid "Я еще не зарегистрирован"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:54 /var/www/image.loc/_tempLangs.php:59
@@ -711,137 +706,136 @@ msgstr ""
 msgid "Вернуться к покупкам"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:55 /var/www/image.loc/_tempLangs.php:73
-msgid "Оформить заказ"
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "количество на складе"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:56
 msgid "Ваша корзина"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:57
-msgid "пуста"
+#: /var/www/image.loc/_tempLangs.php:42 /var/www/image.loc/_tempLangs.php:43
+msgid "Выход"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:58
 msgid "Вы удалили все элементы из корзины"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:74
-msgid "В вашей корзине"
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "только цифры"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:75
 msgid "пусто"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:76
-msgid "Вы удалили все товары из корзины"
+#: /var/www/image.loc/_tempLangs.php:58
+msgid "Купить"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:77
 msgid "Посмотреть все результаты"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:78
-msgid "По Вашему запросу ничего не найдено"
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Удалить"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:79
 msgid "Фильтр"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:80 /var/www/image.loc/_tempLangs.php:94
-#: /var/www/image.loc/_tempLangs.php:154
-msgid "Найдено"
+#: /var/www/image.loc/_tempLangs.php:73
+msgid "Отправить"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:81
 msgid "Подтвердите"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:82
-msgid "Подтвердить"
+#: /var/www/image.loc/_tempLangs.php:28
+msgid "Переместить"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:83
 msgid "Отменить"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:84
-msgid "Вы ище не совершали покупки"
+#: /var/www/image.loc/_tempLangs.php:86
+msgid "Я уже зарегистрирован"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:85 /var/www/image.loc/_tempLangs.php:90
 msgid "Заказ #"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:86
-msgid "Время покупки"
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "Отзывы покупателей"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:87
 msgid "Сумма покупки"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:89
-msgid "Статус платежа"
+#: /var/www/image.loc/_tempLangs.php:95
+msgid "товаров"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:91
 msgid "Оплачиваемый"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:92
-msgid "Не оплачен"
+#: /var/www/image.loc/_tempLangs.php:31
+msgid "Оставить комментарий"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:93
 msgid "Результаты поиска"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:99
-msgid "Категории"
+#: /var/www/image.loc/_tempLangs.php:103
+msgid "символов"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:100
 msgid "Показывать"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:101
-msgid "Смотреть"
+#: /var/www/image.loc/_tempLangs.php:32 /var/www/image.loc/_tempLangs.php:53
+msgid "Комментарий будет отправлен на модерацию"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:102 /var/www/image.loc/_tempLangs.php:103
 msgid "Таблица"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:104 /var/www/image.loc/_tempLangs.php:105
-msgid "Список"
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "Переустановите модуль меню "
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:106
 msgid "На странице"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:109
-msgid "Вы получите письмо, когда товар будет доступен"
+#: /var/www/image.loc/_tempLangs.php:34 /var/www/image.loc/_tempLangs.php:52
+msgid "Ваш email:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:110
 msgid "Телефон:"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:115
-msgid "Бренд"
+#: /var/www/image.loc/_tempLangs.php:31
+msgid "Цифровой"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:116
 msgid "Выберите вариант"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:120
-msgid "Нет в наличии"
+#: /var/www/image.loc/_tempLangs.php:35
+msgid "Текст комментария:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:122 /var/www/image.loc/_tempLangs.php:123
@@ -849,29 +843,24 @@ msgstr ""
 msgid "К сравнению"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:124
-msgid "В сравнении"
+#: /var/www/image.loc/_tempLangs.php:22
+msgid "Wishlist"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:126
 msgid "Понравился товар?"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:127
-msgid "Рассказать друзьям:"
+#: /var/www/image.loc/_tempLangs.php:36
+msgid "Ваша оценка:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:128 /var/www/image.loc/_tempLangs.php:135
 msgid "Оставить отзыв"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:129
-msgid ""
-"Специальное предложение! Купить установить и получить скидку на аксессуары!"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:131
-msgid "Обзор"
+#: /var/www/image.loc/_tempLangs.php:32
+msgid "Имя: "
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:132 /var/www/image.loc/_tempLangs.php:136
@@ -879,8 +868,8 @@ msgstr ""
 msgid "Свойства"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:133 /var/www/image.loc/_tempLangs.php:139
-msgid "Полное описание"
+#: /var/www/image.loc/_tempLangs.php:37
+msgid "Код защиты"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:134 /var/www/image.loc/_tempLangs.php:140
@@ -888,92 +877,259 @@ msgstr ""
 msgid "Аксессуары"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:137
-msgid "Просмотреть все спецификации"
+#: /var/www/image.loc/_tempLangs.php:40 /var/www/image.loc/_tempLangs.php:78
+msgid "Адрес"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:138 /var/www/image.loc/_tempLangs.php:143
 msgid "Описание"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:141
-msgid "Смотреть все аксессуары"
+#: /var/www/image.loc/_tempLangs.php:38 /var/www/image.loc/_tempLangs.php:55
+msgid "Комментировать"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:146 /var/www/image.loc/_tempLangs.php:150
 msgid "Сравнение товаров"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:147
-msgid "Все параметры"
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "Сделать покупки по ценам"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:148
 msgid "Только Различия"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:149
-msgid "Категория"
+#: /var/www/image.loc/_tempLangs.php:39
+msgid "Оценка товара:"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:151
 msgid "Вы удалили все товары из сравнения"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:152
-msgid "Cравнения товаров"
+#: /var/www/image.loc/_tempLangs.php:57
+msgid "Товар"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:153
 msgid "Список сравнения пуст"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:158
-msgid "По вашему запросу товаров не найдено"
+#: /var/www/image.loc/_tempLangs.php:40
+msgid "s_plus"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:159
 msgid "Найдено в категориях:"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:21
-msgid "Все категории"
+#: /var/www/image.loc/_tempLangs.php:69
+msgid "Статус заказа"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:22 /var/www/image.loc/_tempLangs.php:23
 msgid "Оплатить"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:24 /var/www/image.loc/_tempLangs.php:30
-msgid "Выставить счёт за покупку"
+#: /var/www/image.loc/_tempLangs.php:41
+msgid "s_cons"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:25
 msgid "Мобильный телефон"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:27
-msgid "руб."
+#: /var/www/image.loc/_tempLangs.php:80
+msgid "Количество"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:28
 msgid "коп."
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:29
-msgid "Комментарий"
+#: /var/www/image.loc/_tempLangs.php:42
+msgid "Ответить"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:31
 msgid "PayPal - более безопасный и легкий способ оплаты через Интернет!"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:21
-msgid "товара на сумму"
+#: /var/www/image.loc/_tempLangs.php:94
+msgid "Старый пароль"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:22 /var/www/image.loc/_tempLangs.php:60
 msgid "Просмотреть купленные товары"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:43
+msgid "Отзыв полезен?"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:25 /var/www/image.loc/_tempLangs.php:50
+msgid "Список пуст"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:20 /var/www/image.loc/_tempLangs.php:22
+msgid "Оформление заказа"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Редактировать:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:46
+msgid "Комментарий от"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:35
+msgid "Всего к оплате:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "login_for_comments"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:42 /var/www/image.loc/_tempLangs.php:49
+#: /var/www/image.loc/_tempLangs.php:63 /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:118
+msgid "Только цифры"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:48 /var/www/image.loc/_tempLangs.php:49
+msgid "Смотреть все ответы"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:55 /var/www/image.loc/_tempLangs.php:73
+msgid "Оформить заказ"
+msgstr ""
+
+#: ../shop/helpers/helper.php:6
+msgid "Октября"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:74
+msgid "В вашей корзине"
+msgstr ""
+
+#: ../shop/helpers/helper.php:6
+msgid "Сентября"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:78
+msgid "По Вашему запросу ничего не найдено"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:52 /var/www/image.loc/_tempLangs.php:53
+msgid "Список сравнений"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:82
+msgid "Подтвердить"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:80
+msgid "Регистрация прошла успешно!"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:86
+msgid "Время покупки"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:50
+msgid "Ваш ответ"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:92
+msgid "Не оплачен"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:99
+msgid "отзыв"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:101
+msgid "Смотреть"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:54
+msgid "Текст ответа:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:109
+msgid "Вы получите письмо, когда товар будет доступен"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Сумма:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:120
+msgid "Нет в наличии"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:56 /var/www/image.loc/_tempLangs.php:58
+msgid "Leav"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:127
+msgid "Рассказать друзьям:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Адрес электронной почты получателя"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:133 /var/www/image.loc/_tempLangs.php:139
+msgid "Полное описание"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:57 /var/www/image.loc/_tempLangs.php:59
+msgid "people(s)"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:141
+msgid "Смотреть все аксессуары"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:44 /var/www/image.loc/_tempLangs.php:46
+#: /var/www/image.loc/_tempLangs.php:85
+msgid "Ваша текущая скидка"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:149
+msgid "Категория"
+msgstr ""
+
+#: jsLangs.php:20 ../language/jsLangs.php:20
+msgid "tyyyyyyy"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:158
+msgid "По вашему запросу товаров не найдено"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:65
+msgid "Параметры заказа"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:24 /var/www/image.loc/_tempLangs.php:30
+msgid "Выставить счёт за покупку"
+msgstr ""
+
+#: ../shop/helpers/helper.php:6
+msgid "Января"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:29
+msgid "Комментарий"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:86
+msgid "Подарочный сертификат"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:23 /var/www/image.loc/_tempLangs.php:24
@@ -981,16 +1137,8 @@ msgstr ""
 msgid "Купить все доступные товары"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:25 /var/www/image.loc/_tempLangs.php:50
-msgid "Список пуст"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:26 /var/www/image.loc/_tempLangs.php:63
-msgid "Список Желания пуст"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:27
-msgid "Редактировать:"
+#: ../shop/helpers/helper.php:6
+msgid "Февраля"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:28 /var/www/image.loc/_tempLangs.php:46
@@ -998,327 +1146,149 @@ msgstr ""
 msgid "Доступность:"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:29 /var/www/image.loc/_tempLangs.php:47
-msgid "Название списка:"
+#: /var/www/image.loc/_tempLangs.php:29 /var/www/image.loc/_tempLangs.php:111
+msgid "Комментарий:"
 msgstr ""
 
-#: /var/www/image.loc/_tempLangs.php:30 /var/www/image.loc/_tempLangs.php:48
-msgid "Описание:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:31
-msgid "Коментарий к:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:32 /var/www/image.loc/_tempLangs.php:69
-msgid "Сохранить"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:33
-msgid "Отправить другу"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:34
-msgid "Email друга"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:36
-msgid "В список желаний"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:37
-msgid "В список желания"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:38
-msgid "В списке желаний"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:39
-msgid "В списке желания"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:41
-msgid "Список товаров"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:42
-msgid "Дополнительные данные"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:43
-msgid "Создать новый список"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:44
-msgid ""
-"В список избранных вы можете отложить понравившиеся товары, также показать "
-"список друзьям"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:45
-msgid "Создание списка избранных товаров"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:49
-msgid "Создать новый список"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:51
-msgid "Редактировать список"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:52
-msgid "Удалить список"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:54
-msgid "Поделится с другом"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:59
-msgid "на сумму"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:64
-msgid "загрузить катринку"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:65
-msgid "Редактировать"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:66
-msgid "ФИО:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:67
-msgid "Дата рождения:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:68
-msgid "Дополнительно:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:70
-msgid "Выбор cписка  желаний"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:71
-msgid "Создать список"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:72
-msgid "Переместить в список"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:73
-msgid "Добавить в список"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:74
-msgid "Фильтровать"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:75
-msgid "Сбросить фильтр"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:76
-msgid "Смотреть все"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:77
-msgid "Новости"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:78
-msgid "Остальные новости"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:20 /var/www/image.loc/_tempLangs.php:22
-msgid "No viewed products"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:21
-msgid "Главная"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:23
-msgid "Show all"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:25
-msgid "Не обнаружен необходимый файл шаблона для меню "
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:20
-msgid "Hide"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:21
-msgid "All categoties"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:23
-msgid "Переустановите модуль меню"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:19 /var/www/image.loc/_tempLangs.php:20
-#: /var/www/image.loc/_tempLangs.php:22
-msgid "В список сравнений"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:21
-msgid "В списке сравнений"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:23
-msgid "количество на складе"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:24
-msgid "только цифры"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:27
-msgid "Удалить"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:28
-msgid "Переместить"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:30
-msgid "Отзывы покупателей"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:31
-msgid "Оставить комментарий"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:32 /var/www/image.loc/_tempLangs.php:53
-msgid "Комментарий будет отправлен на модерацию"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:34 /var/www/image.loc/_tempLangs.php:52
-msgid "Ваш email:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:35
-msgid "Текст комментария:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:36
-msgid "Ваша оценка:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:37
-msgid "Код защиты"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:38 /var/www/image.loc/_tempLangs.php:55
-msgid "Комментировать"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:39
-msgid "Оценка товара:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:40
-msgid "s_plus"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:41
-msgid "s_cons"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:42
-msgid "Ответить"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:43
-msgid "Отзыв полезен?"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:46
-msgid "Комментарий от"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:48 /var/www/image.loc/_tempLangs.php:49
-msgid "Смотреть все ответы"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:50
-msgid "Ваш ответ"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:54
-msgid "Текст ответа:"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:56 /var/www/image.loc/_tempLangs.php:58
-msgid "Leav"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:57 /var/www/image.loc/_tempLangs.php:59
-msgid "people(s)"
-msgstr ""
-
-#: jsLangs.php:20 ../language/jsLangs.php:20
-msgid "tyyyyyyy"
-msgstr ""
-
-#: ../shop/helpers/helper.php:6
-msgid "Января"
-msgstr ""
-
-#: ../shop/helpers/helper.php:6
-msgid "Февраля"
+#: /var/www/image.loc/_tempLangs.php:53 /var/www/image.loc/_tempLangs.php:71
+msgid "Всего"
 msgstr ""
 
 #: ../shop/helpers/helper.php:6
 msgid "Марта"
 msgstr ""
 
+#: /var/www/image.loc/_tempLangs.php:76
+msgid "Вы удалили все товары из корзины"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:91
+msgid "Поиск по сайту"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:84
+msgid "Вы ище не совершали покупки"
+msgstr ""
+
 #: ../shop/helpers/helper.php:6
 msgid "Апреля"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:99
+msgid "Категории"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:36
+msgid "Размер скидки: "
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:115
+msgid "Бренд"
 msgstr ""
 
 #: ../shop/helpers/helper.php:6
 msgid "Мая"
 msgstr ""
 
+#: /var/www/image.loc/_tempLangs.php:131
+msgid "Обзор"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:53
+msgid "От"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:147
+msgid "Все параметры"
+msgstr ""
+
 #: ../shop/helpers/helper.php:6
 msgid "Июня"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "Все категории"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:98
+msgid "Добро пожаловать!"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "товара на сумму"
 msgstr ""
 
 #: ../shop/helpers/helper.php:6
 msgid "Июля"
 msgstr ""
 
+#: /var/www/image.loc/_tempLangs.php:37
+msgid "В корзине"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:107
+msgid "Введите название"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:80 /var/www/image.loc/_tempLangs.php:94
+#: /var/www/image.loc/_tempLangs.php:154
+msgid "Найдено"
+msgstr ""
+
 #: ../shop/helpers/helper.php:6
 msgid "Августа"
 msgstr ""
 
-#: ../shop/helpers/helper.php:6
-msgid "Сентября"
+#: /var/www/image.loc/_tempLangs.php:104 /var/www/image.loc/_tempLangs.php:105
+msgid "Список"
 msgstr ""
 
-#: ../shop/helpers/helper.php:6
-msgid "Октября"
+#: /var/www/image.loc/_tempLangs.php:73
+msgid "Способ доставки"
 msgstr ""
 
-#: ../shop/helpers/helper.php:6
-msgid "Ноября"
-msgstr "asdasdasd"
-
-#: ../shop/helpers/helper.php:6
-msgid "Декабря"
+#: /var/www/image.loc/_tempLangs.php:137
+msgid "Просмотреть все спецификации"
 msgstr ""
 
-#~ msgid "s_se_thi_sit"
-#~ msgstr "ererererererer"
+#: /var/www/image.loc/_tempLangs.php:36 /var/www/image.loc/_tempLangs.php:75
+msgid "Ваше имя"
+msgstr ""
 
-#~ msgid "STAAAAAr"
-#~ msgstr "Зірка"
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "руб."
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:62
+msgid "ООО «Сайт Имидж"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:57
+msgid "пуста"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:33
+msgid "Доставка: "
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:124
+msgid "В сравнении"
+msgstr ""
+
+# asdasdas
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "post_comment"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:26 /var/www/image.loc/_tempLangs.php:63
+msgid "Список Желания пуст"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:152
+msgid "Cравнения товаров"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:89
+msgid "Статус платежа"
+msgstr ""
+

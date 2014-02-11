@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:57+0200\n"
-"PO-Revision-Date: 2013-12-26 01:57+0200\n"
+"POT-Creation-Date: 2014-02-06 06:35+0200\n"
+"PO-Revision-Date: 2014-02-06 06:35+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,6 +18,15 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/trash/admin.php:37
+msgid "Old URL is not specified"
+msgstr "Старый адрес не указан"
+
+#: ./application/modules/trash/templates/admin/main.tpl:46
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:39
+msgid "Old URL"
+msgstr "Старый URL"
+
 #: ./application/modules/trash/templates/admin/main.tpl:29
 msgid "Create redirect list"
 msgstr "Создать список перенаправления"
@@ -30,10 +39,6 @@ msgstr "Пример"
 #: ./application/modules/trash/templates/admin/create_trash_list.tpl:37
 msgid "New URL"
 msgstr "Новый URL-адрес"
-
-#: ./application/modules/trash/admin.php:37
-msgid "Old URL is not specified"
-msgstr "Старый адрес не указан"
 
 #: ./application/modules/trash/admin.php:40
 msgid "New URL is not specified"
@@ -64,11 +69,6 @@ msgstr "Редирект"
 #: ./application/modules/trash/templates/admin/main.tpl:28
 msgid "Create redirect"
 msgstr "Создать редирект"
-
-#: ./application/modules/trash/templates/admin/main.tpl:46
-#: ./application/modules/trash/templates/admin/edit_trash.tpl:39
-msgid "Old URL"
-msgstr "Старый URL"
 
 #: ./application/modules/trash/templates/admin/main.tpl:47
 msgid "Redirect type"

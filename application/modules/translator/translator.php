@@ -30,6 +30,7 @@ class Translator extends MY_Controller {
     }
 
     public function _deinstall() {
+        
     }
 
 }
