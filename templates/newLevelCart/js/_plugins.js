@@ -1,7 +1,7 @@
 /*
  *imagecms frontend plugins
  ** @author Domovoj
- * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
+ * @copyright <domovoj1@gmail.com>
  */
 var isTouch = 'ontouchstart' in document.documentElement,
         aC = 'active',
