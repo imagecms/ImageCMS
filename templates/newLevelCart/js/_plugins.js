@@ -1684,6 +1684,80 @@ function getCookie(c_name)
             });
             return el;
         },
+        get: function(el, set, e, modal) {
+            if (!el)
+                el = this;
+            if (!set)
+                set = el.data('drp');
+            var elSet = el.data(),
+                    source = methods._checkProp(elSet, set, 'source') || el.attr('href'),
+                    datas = methods._checkProp(elSet, set, 'datas');
+            var rel = null;
+            if (el.get(0).rel != undefined)
+                rel = el.get(0).rel.replace(methods._reg(), '');
+            if (elSet.drop != undefined) {
+                $.ajax({
+                    type: "post",
+                    data: datas,
+                    url: source,
+                    beforeSend: function() {
+                        if (!methods._checkProp(elSet, set, 'moreOne'))
+                            methods._closeMoreOne(el);
+                        $(document).trigger({
+                            'type': 'showActivity'
+                        });
+                    },
+                    dataType: elSet.type ? elSet.type : 'html',
+                    success: function(data) {
+                        if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
+                            methods._pasteModal(el, data, set, rel);
+                        }
+                        else {
+                            methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), data, undefined, rel);
+                            var drop = $(elSet.drop);
+                            $(document).trigger({
+                                type: 'successHtml.' + $.drop.nS,
+                                el: drop,
+                                datas: data
+                            });
+                            methods._show(el, e, true, set, data);
+                        }
+                    }
+                });
+            }
+            else {
+                $.drop.dP.curDefault = $.drop.dP.defaultClassBtnDrop + (rel ? rel : (source ? source.replace(methods._reg(), '') : (new Date()).getTime()));
+                el.data('drop', '.' + $.drop.dP.curDefault).attr('data-drop', '.' + $.drop.dP.curDefault);
+                function _update(data) {
+                    if (rel)
+                        $('.' + $.drop.dP.defaultClassBtnDrop + rel).remove();
+                    var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
+
+                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html(data);
+                    methods._show(el, e, true, set, data);
+                    methods.init.call(drop.find('[data-drop]'));
+                }
+
+                $(document).trigger({
+                    'type': 'showActivity'
+                });
+                if (source.match(/jpg|gif|png|bmp|jpeg/))
+                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function() {
+                        _update($(this));
+                    });
+                else
+                    $.ajax({
+                        type: "post",
+                        url: source,
+                        data: datas,
+                        dataType: 'html',
+                        success: function(data) {
+                            _update(data);
+                        }
+                    });
+            }
+            return el;
+        },
         open: function($this, opt, datas, e) {
             e = e ? e : window.event;
             var addClass = undefined;
@@ -1704,12 +1778,12 @@ function getCookie(c_name)
                     }
                     else {
                         var sourcePref = opt.source.replace(methods._reg(), '');
-                        addClass = $.drop.dP.defaultClassBtnDrop.replace('.', '') + sourcePref;
-                        if (!$.exists($.drop.dP.defaultClassBtnDrop + sourcePref)) {
-                            $this = $('<button class="' + addClass + '"></button>').appendTo(body).hide();
+
+                        if (!$.exists('.refer' + $.drop.dP.defaultClassBtnDrop + sourcePref)) {
+                            $this = $('<button class="refer' + ($.drop.dP.defaultClassBtnDrop + sourcePref) + '"></button>').appendTo(body).hide();
                         }
                         else
-                            $this = $($.drop.dP.defaultClassBtnDrop + sourcePref);
+                            $this = $('.refer' + $.drop.dP.defaultClassBtnDrop + sourcePref);
                     }
                 }
             }
@@ -1728,7 +1802,7 @@ function getCookie(c_name)
                         if (datas !== undefined && modal)
                             methods._pasteModal($this, datas, opt, undefined);
                         else
-                            methods.get($this, opt, e, modal, addClass);
+                            methods.get($this, opt, e, modal);
                     }
                 }
 
@@ -1945,79 +2019,6 @@ function getCookie(c_name)
         _reg: function() {
             return /[^a-zA-Z0-9]+/ig;
         },
-        get: function(el, set, e, modal, addClass) {
-            if (!el)
-                el = this;
-            if (!set)
-                set = el.data('drp');
-            var elSet = el.data(),
-                    source = methods._checkProp(elSet, set, 'source') || el.attr('href'),
-                    datas = methods._checkProp(elSet, set, 'datas');
-            var rel = null;
-            if (el.get(0).rel != undefined)
-                rel = el.get(0).rel.replace(methods._reg(), '');
-            if (elSet.drop != undefined) {
-                $.ajax({
-                    type: "post",
-                    data: datas,
-                    url: source,
-                    beforeSend: function() {
-                        if (!methods._checkProp(elSet, set, 'moreOne'))
-                            methods._closeMoreOne(el);
-                        $(document).trigger({
-                            'type': 'showActivity'
-                        });
-                    },
-                    dataType: elSet.type ? elSet.type : 'html',
-                    success: function(data) {
-                        if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
-                            methods._pasteModal(el, data, set, rel);
-                        }
-                        else {
-                            methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), data, addClass, rel);
-                            var drop = $(elSet.drop);
-                            $(document).trigger({
-                                type: 'successHtml.' + $.drop.nS,
-                                el: drop,
-                                datas: data
-                            });
-                            methods._show(el, e, true, set, data);
-                        }
-                    }
-                });
-            }
-            else {
-                $.drop.dP.curDefault = 'drop-default-' + (rel ? rel : (new Date()).getTime());
-                el.data('drop', '.' + $.drop.dP.curDefault).attr('data-drop', '.' + $.drop.dP.curDefault);
-                function _update(data) {
-                    if (rel)
-                        $('.drop-default-' + rel).remove();
-                    var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault + ' ' + addClass, rel);
-                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html(data);
-                    methods._show(el, e, true, set, data);
-                    methods.init.call(drop.find('[data-drop]'));
-                }
-
-                $(document).trigger({
-                    'type': 'showActivity'
-                });
-                if (source.match(/jpg|gif|png|bmp|jpeg/))
-                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function() {
-                        _update($(this));
-                    });
-                else
-                    $.ajax({
-                        type: "post",
-                        url: source,
-                        data: datas,
-                        dataType: 'html',
-                        success: function(data) {
-                            _update(data);
-                        }
-                    });
-            }
-            return el;
-        },
         _pasteDrop: function(set, drop, addClass, rel) {
             if (addClass === undefined)
                 addClass = '';
@@ -2035,8 +2036,8 @@ function getCookie(c_name)
                         _for_center(set.drop);
                     }
                     var forCenter = $(sel).empty();
-                    $(drop).appendTo(forCenter);
-                    drop = $(set.drop).data({
+                    drop = $(drop).appendTo(forCenter);
+                    drop.data({
                         'drp': {
                             'forCenter': forCenter
                         }
@@ -2437,7 +2438,7 @@ function getCookie(c_name)
             start: undefined,
             pattern: '<div class="drop drop-style drop-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placePaste" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
             modalBtnDrop: '#drop-notification-default',
-            defaultClassBtnDrop: '.drop-default',
+            defaultClassBtnDrop: 'drop-default-',
             patternNotif: '<div class="drop drop-style" id="drop-notification-default"><div class="drop-header-default"></div><div class="drop-content-default"><div class="inside-padd drop-notification-default"></div></div><div class="drop-footer-default"></div></div>',
             confirmBtnDrop: '#drop-confirm-default',
             confirmActionBtn: '[data-button-confirm]',
