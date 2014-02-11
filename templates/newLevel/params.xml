@@ -64,6 +64,9 @@
             <param name="15,15,15,85,85" value="scrol" />
             <param name="15,15,15,85,85" value="dropdown" />
         </component>
+        <component handler="TOpi">
+
+        </component>
         
     </components>
 

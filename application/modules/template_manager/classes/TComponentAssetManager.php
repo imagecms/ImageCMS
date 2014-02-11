@@ -49,6 +49,20 @@ class TComponentAssetManager {
         $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
         return \CI_Controller::get_instance()->template->fetch('file:' . $fullPath, $data);
     }
+    /**
+     * 
+     * @param string $filePath file name or path to file
+     * @param array $data data for template
+     * @return html
+     */
+    public function display($filePath, array $data = array()) {
+        $filePath = strpos($filePath, '.tpl') === FALSE ? $filePath .= '.tpl' : $filePath;
+        $fullPath = $this->tComponentPath . '/assets/' . $filePath;
+        $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
+        if (count($data) > 0)
+            \CI_Controller::get_instance()->template->add_array($data);
+        \CI_Controller::get_instance()->template->display('file:' . $fullPath);
+    }
 
 }
 

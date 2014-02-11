@@ -9,7 +9,6 @@ namespace template_manager\classes;
  */
 class Template {
 
-
     /**
      * Path to current template
      * @var string
@@ -104,8 +103,10 @@ class Template {
         // searching in template
 
         if (!isset($this->componentsInstances[$componentName])) {
-            require_once $this->templatePath . "components/{$componentName}/{$componentName}" . EXT;
-            $this->componentsInstances[$componentName] = new $componentName;
+            if (array_search($componentName, $this->components)) {
+                require_once $this->templatePath . "components/{$componentName}/{$componentName}" . EXT;
+                $this->componentsInstances[$componentName] = new $componentName;
+            }
         }
         return $this->componentsInstances[$componentName];
     }
@@ -165,7 +166,6 @@ class Template {
                 array_push($this->components, $name);
             }
         }
-        var_dump($this->components);
     }
 
 }
