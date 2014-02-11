@@ -177,6 +177,7 @@ class Sitemap_model extends CI_Model {
 
     /**
      * Install sitemap module
+     * @param int $robotsCheck - robots status (0 - turn off, 1 - turn on)
      */
     public function installModule($robotsCheck) {
 
