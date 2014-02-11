@@ -92,10 +92,12 @@ class Template {
         try {
             $this->loadXml();
             $this->loadData();
+            $this->getScreenshots();
             $this->loadComponents();
         } catch (Exception $e) {
             $this->isValid = FALSE;
         }
+        $this->xml = null;
     }
 
     /**
@@ -150,13 +152,23 @@ class Template {
         $this->type = (string) $attrs['type'];
         $this->version = (string) $attrs['version'];
         $this->description = trim((string) $this->xml->description);
-        foreach ($this->xml->screenshots->screenshot as $screenshots) {
-            $scrAttrs = $screenshots->attributes();
-            if ($scrAttrs['main'] = 1) {
-                $this->mainImage = (string) $scrAttrs['url'];
-            } else {
-                $this->screenshots[] = (string) $scrAttrs['url'];
+    }
+
+    /**
+     * Loading screenshots
+     */
+    public function getScreenshots() {
+        if (isset($this->xml->main_screenshot)) {
+            $attrs = $this->xml->main_screenshot->attributes();
+            $this->mainImage = $attrs['fileName'];
+        }
+        if ($handle = opendir($this->templatePath . 'screenshots/')) {
+            while (false !== ($fileName = readdir($handle))) {
+                if ($fileName != "." && $fileName != ".." && $fileName != $this->mainImage) {
+                    $this->screenshots[] = $fileName;
+                }
             }
+            closedir($handle);
         }
     }
 

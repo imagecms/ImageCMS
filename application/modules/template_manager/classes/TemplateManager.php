@@ -54,12 +54,15 @@ class TemplateManager {
      * @return boolean 
      */
     public function setTemplate(Template $template) {
-        $dependenceDirector = new \template_manager\installer\DependenceDirector();
-        if ($dependenceDirector->setDependicies($template->xml->dependencies->dependency)) {
-            //hakhf
-        } else {
-            $dependenceDirector->getMessages();
-            return false;
+        if (isset($template->xml->dependencies)) {
+            if (isset($template->xml->dependencies->dependence)) {
+                $dependenceDirector = new \template_manager\installer\DependenceDirector($template->xml->dependencies->dependence);
+                $verifyRes = $dependenceDirector->verify();
+                $massages = $dependenceDirector->getMessages();
+                if (FALSE == $verifyRes) {
+                    exit('No!');
+                }
+            }
         }
 
         foreach ($template->xml->components->component as $component) {
@@ -71,6 +74,7 @@ class TemplateManager {
 
         $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
         $this->db->update('settings', array('site_template' => $template->name));
+        return TRUE;
     }
 
     /**
@@ -101,20 +105,32 @@ class TemplateManager {
      * @param string $url path to zip file
      * @return Template
      */
-    public function moveToTempates($zipPath) {
-        $zip = new ZipArchive();
+    public function unpack($zipPath) {
+        $templateName = pathinfo($zipPath, PATHINFO_FILENAME);
+        $zip = new \ZipArchive();
         $zip->open($zipPath);
-        $rez = $zip->extractTo('uploads/template_library/tmp');
-        $zip->close();
-        if (file_exists('uploads/template_library/tmp/param.xml')) {
-            $xmlParam = simplexml_load_file('uploads/template_library/tmp/param.xml');
-            $attributes = $xmlParam->attributes();
-            if (TRUE) {
-                // перенесення папки в шаблони із назвою із XML
-            } else {
-                // помилки
+
+        // перевірка чи є файл із параметрами
+        $paramsXml = FALSE;
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $innerFilePath = $zip->getNameIndex($i);
+            if ($innerFilePath == "{$templateName}/params.xml") {
+                $paramsXml = TRUE;
+                break;
             }
         }
+
+        if ($paramsXml == TRUE) {
+            if (is_dir('templates/' . $templateName)) {
+                return FALSE;
+            }
+            if (mkdir('templates/' . $templateName, 0777)) {
+                $zip->extractTo('templates/');
+                return TRUE;
+            }
+        }
+
+        return FALSE;
     }
 
 }

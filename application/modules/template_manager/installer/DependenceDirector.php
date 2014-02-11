@@ -9,27 +9,57 @@ namespace template_manager\installer;
  */
 class DependenceDirector {
 
+    /**
+     *
+     * @var boolean
+     */
     private $status = TRUE;
-    private $dependeciesHandlers = array();
+
+    /**
+     *
+     * @var \SilmpleXmlElement
+     */
+    private $dependicies;
+
+    /**
+
+     * @var array
+     */
     private $messages = array();
 
-    public function setDependicies(\SilmpleXmlElement $dependicies) {
+    public function __construct(\SilmpleXmlElement $dependicies) {
+        $this->dependicies = $dependicies;
+    }
 
-        foreach ($dependicies as $node) {
+    public function verify() {
+        foreach ($this->dependicies as $node) {
             $attributes = $node->attributes();
-            $depHandlerClass = ucfirst($attributes['entityName']) . 'Dependence';
-            if (!isset($this->dependeciesHandlers[$depHandlerClass])) {
-                $this->dependeciesHandlers[$depHandlerClass] = new $depHandlerClass;
-            }
+            $depHandlerClass = ucfirst($attributes['type']) . 'Dependence';
+            $dependence = new $depHandlerClass($node);
 
-            $this->dependeciesHandlers[$depHandlerClass]->setName($attributes['name']);
-            $this->dependeciesHandlers[$depHandlerClass]->setType($attributes['type']);
-            if ($this->dependeciesHandlers[$depHandlerClass]->verify() == FALSE) {
+            $status = $dependence->verify();
+            if ($status == FALSE) {
                 $this->status = FALSE;
             }
-            $this->messages[] = $this->dependeciesHandlers[$depHandlerClass]->getMessage();
-        }
 
+            // gathering messages
+            if (FALSE !== $msgs = $dependence->getMessages()) {
+                foreach ($msgs as $message) {
+                    $this->messages[] = array(
+                        'text' => $message,
+                        'relation' => $dependence->relation,
+                        'name' => $dependence->name,
+                        'type' => $dependence->type,
+                    );
+                }
+            } elseif ($status == FALSE) {
+                $this->messages[] = array(
+                    'relation' => $dependence->relation,
+                    'name' => $dependence->name,
+                    'type' => $dependence->type,
+                );
+            }
+        }
         return $this->status;
     }
 
