@@ -408,8 +408,7 @@ input.input-search{height: 33px;}
 .product-charac{max-height: 520px;}
 .product-descr{max-height: 250px;}
 #view .product-comment{max-height: 400px;}
-
-.photoProduct .photo-block{width: 100%;height: 270px;padding: 15px;}
+.item-product .photo-block{width: 100%;height: 270px;padding: 15px;}
 .title-product{margin-bottom: 19px;}
 .title-product .frame-title{margin-right: 15px;}
 .title-product .frame-variant-name-code{display: inline;}
@@ -439,7 +438,7 @@ input.input-search{height: 33px;}
 .item-product .frame-prices .price-discount, #photo .frame-prices .price-discount{display: block;}
 .item-product .frame-prices-buy{padding: 16px 15px 20px 25px;}
 .items-catalog .frame-count, .item-product .frame-count, #photo .drop-footer .frame-count{display: inline-block;vertical-align: middle;margin-right: 10px;}
-.item-product .frame-wish-compare-list > .frame-btn-wish, .item-product .frame-wish-compare-list > .frame-btn-compare{width: 50%;margin-bottom: 0;padding: 8px 0;text-align: center;}
+.item-product .frame-wish-compare-list > .frame-btn-wish, .item-product .frame-wish-compare-list > .frame-btn-comp{width: 50%;margin-bottom: 0;padding: 8px 0;text-align: center;}
 .item-product .frame-prices-buy-wish-compare{margin-bottom: 15px;}
 
 .items-complect > li{float: left;margin-right: 20px;text-align: center;}

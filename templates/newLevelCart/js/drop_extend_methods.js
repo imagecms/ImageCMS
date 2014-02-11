@@ -50,8 +50,8 @@ $.dropInit.prototype.extendDrop = function() {
                     var method = drop.data('drp').animate && !start ? 'animate' : 'css',
                             placement = drop.data('drp').placement,
                             $this = drop.data('drp').elrun,
-                            dataSourceH = 0,
-                            dataSourceW = 0,
+                            t = 0,
+                            l = 0,
                             $thisW = $this.width(),
                             $thisH = $this.height(),
                             $thisT = 0,
@@ -69,16 +69,20 @@ $.dropInit.prototype.extendDrop = function() {
                     else {
                         var $thisPMT = placement.toLowerCase().split(' ');
                         if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
-                            dataSourceH = -drop.actual('height') - $thisH;
+                            t = -drop.actual('height') - $thisH;
                         if ($thisPMT[0] === 'top' || $thisPMT[1] === 'top')
-                            dataSourceH = $thisH;
+                            t = $thisH;
                         if ($thisPMT[0] === 'left' || $thisPMT[1] === 'left')
-                            dataSourceW = 0;
+                            l = 0;
                         if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
-                            dataSourceW = -drop.actual('width') + $thisW;
+                            l = -drop.actual('width') - $thisW;
+                        if ($thisPMT[0] === 'center')
+                            l = -drop.actual('width') / 2 + $thisW / 2;
+                        if ($thisPMT[1] === 'center')
+                            t = -drop.actual('height') / 2 + $thisH / 2;
 
-                        $thisT = $this.offset().top + dataSourceH;
-                        $thisL = $this.offset().left + dataSourceW;
+                        $thisT = $this.offset().top + t;
+                        $thisL = $this.offset().left + l;
                         if ($thisL < 0)
                             $thisL = 0;
                         drop[method]({
@@ -112,7 +116,7 @@ $.dropInit.prototype.extendDrop = function() {
                             forCenter.show();
                     }
                     var dropH = drop.outerHeight(),
-                    dropHm = drop.height();
+                            dropHm = drop.height();
 
                     if (drp.dropContent) {
                         var el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':first');
@@ -226,6 +230,7 @@ $.dropInit.prototype.extendDrop = function() {
                             'overflow': 'hidden',
                             'margin-right': $.drop.widthScroll
                         });
+                        $('html').css('overflow', 'hidden');
                         body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"></div>');
                     }
                     if (isTouch)
@@ -244,7 +249,7 @@ $.dropInit.prototype.extendDrop = function() {
                         'overflow': '',
                         'margin-right': ''
                     });
-                    ;
+                    $('html').css('overflow', '');
                     wnd.scrollTop($.drop.dP.wST);
                     $('.scrollEmulation').remove();
                     if (isTouch)
@@ -371,6 +376,81 @@ $.dropInit.prototype.extendDrop = function() {
                     }
                 });
             }
+        },
+        placeBeforeShow: function(drop, $this, methods, place, placeBeforeShow) {
+            if (place !== 'inherit') {
+                var t = -drop.actual('outerHeight'),
+                        l = -drop.actual('outerWidth');
+                var pmt = placeBeforeShow.toLowerCase().split(' ');
+                if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
+                    t = wnd.height() + wnd.scrollTop();
+                if (pmt[0] === 'right' || pmt[1] === 'right')
+                    l = wnd.width() + wnd.scrollLeft();
+                if (pmt[0] === 'center' || pmt[1] === 'center') {
+                    if (pmt[1] === 'left')
+                        l = -drop.actual('outerWidth');
+                    if (pmt[1] === 'right')
+                        l = wnd.width() + wnd.scrollLeft();
+                    if (pmt[0] === 'top')
+                        t = -drop.actual('outerHeight');
+                    if (pmt[0] === 'bottom')
+                        t = wnd.height() + wnd.scrollTop();
+                }
+                drop.css({
+                    'left': l,
+                    'top': t
+                });
+                if (pmt[0] === 'center' && pmt[1] === 'center')
+                    methods._checkMethod(function() {
+                        methods[place](drop, true)
+                    })
+                if (pmt[0] === 'inherit')
+                    drop.css({
+                        'left': $this.offset().left + wnd.scrollLeft(),
+                        'top': $this.offset().top + wnd.scrollTop()
+                    });
+            }
+        },
+        placeAfterClose: function(drop, $this, set) {
+            var method = set.animate ? 'animate' : 'css',
+            pmt = set.placeAfterClose.toLowerCase().split(' '),
+                    l = 0, t = 0;
+            if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
+                t = wnd.height();
+            if (pmt[0] === 'right' || pmt[1] === 'right')
+                l = wnd.width();
+            if (pmt[0] == 'center' || pmt[1] == 'center') {
+                if (pmt[1] === 'left') {
+                    l = -drop.actual('outerWidth');
+                    t = drop.css('top');
+                }
+                if (pmt[1] === 'right') {
+                    l = wnd.width() + wnd.scrollLeft();
+                    t = drop.css('top');
+                }
+                if (pmt[0] === 'top') {
+                    t = -drop.actual('outerHeight');
+                    l = drop.css('left');
+                }
+                if (pmt[0] === 'bottom') {
+                    t = wnd.height() + wnd.scrollTop();
+                    l = drop.css('left');
+                }
+            }
+            if (pmt[0] !== 'center' || pmt[1] !== 'center')
+                drop.stop()[method]({
+                    'top': t,
+                    'left': l
+                }, {
+                    queue: false
+                });
+            if (pmt[0] === 'inherit')
+                drop.stop()[method]({
+                    'left': $this.offset().left + wnd.scrollLeft(),
+                    'top': $this.offset().top + wnd.scrollTop()
+                }, {
+                    queue: false
+                });
         }
     };
     var newMethods = {};

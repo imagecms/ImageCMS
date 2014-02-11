@@ -9,7 +9,7 @@ function init() {
         body.addClass('notTouch');
 
     /*call general functions and plugins*/
-    cuselInit(body, '#sort, #sort2, #compare, [id ^= сVariantSwitcher_]');
+    cuselInit(body, '#sort2, #compare, [id ^= сVariantSwitcher_]');
     /*call general functions and plugins*/
 
     /*call functions for shop objects*/
@@ -145,8 +145,8 @@ function init() {
 
     /*sample of events shop*/
     var catalogForm = $('#catalogForm');
-    $('#sort').on('change.orderproducts', function() {
-        catalogForm.find('input[name=order]').val($(this).val());
+    $('#sort button').on('click.orderproducts', function() {
+        catalogForm.find('input[name=order]').val($(this).data('value'));
         catalogForm.submit();
     });
     $('#sort2').on('change.countvisibleproducts', function() {

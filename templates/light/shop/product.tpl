@@ -318,7 +318,7 @@
                                 </div>
                                 <!-- Start. Wish List & Compare List buttons -->
                                 <div class="frame-wish-compare-list f-s_0">
-                                    <div class="frame-btn-compare">
+                                    <div class="frame-btn-comp">
                                         <div class="btn-compare">
                                             <button class="toCompare"
                                                     data-id="{echo $model->getId()}"
@@ -565,13 +565,9 @@
                                 <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'), {literal}{'visibleMainForm': '1'}{/literal})">
                                     <span class="icon_comment-tab"></span>
                                     <span class="text-el">
+                                        {lang("Отзывы","newLevel")}
                                         <span id="cc">
-                                            {if intval($Comments[$model->getId()][0]) !== 0}
-                                                {lang("Отзывы","newLevel")}
-                                                ({echo intval($Comments[$model->getId()])})
-                                            {else:}
-                                                {lang('Оставить отзыв','newLevel')}
-                                            {/if}
+                                            ({echo intval($Comments[$model->getId()])})
                                         </span>
                                     </span>
                                 </button>

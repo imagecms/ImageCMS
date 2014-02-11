@@ -519,7 +519,7 @@ $(document).ready(function() {
         });
     });
 
-    function save_positions(url) {
+    function save_positions(url, categoryId) {
         var arr = new Array();
         $('input[name=ids]').each(function() {
             arr.push($(this).val());
@@ -527,11 +527,12 @@ $(document).ready(function() {
         $.post(
                 url,
                 {
-                    positions: arr
+                    positions: arr,
+                    categoryId: categoryId,
                 },
-        function(data) {
-            $('.notifications').append(data);
-        });
+                function(data) {
+                    $('.notifications').append(data);
+                });
     }
 
     //  sortstop blocks end
@@ -616,9 +617,10 @@ $(document).ready(function() {
         $('.modal_move_to_cat').modal();
     }
 
-    $(".save_positions").live("sortstop", function(event, ui) {
+    $(".save_positions").on("sortstop", function(event, ui) {
+        var categoryId = $(ui.item[0]).find('input[name="ids"]:first-child').val();
         var url = $(this).attr('data-url');
-        save_positions(url);
+        save_positions(url, categoryId);
     });
 
     $('.item_hidden').live('click', function() {
@@ -1008,7 +1010,7 @@ $(document).ready(function() {
 
         // go furter if one image is selected
         var selectedImageUrl = $("span.selected_image img").attr("src");
-        $("#" + trId + " input.changeImage").val(selectedImageUrl);
+        $("#" + trId + " input.inetImage").val(selectedImageUrl);
         // adding thumbnail
         var img = document.createElement("img");
         img.src = selectedImageUrl;

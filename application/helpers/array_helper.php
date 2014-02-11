@@ -54,4 +54,19 @@ if (!function_exists('array_key_exists_recursive')) {
     }
 
 }
+
+if (!function_exists('array_to_file')) {
+
+    /**
+     * Write array in file.
+     * 
+     * @param string $file
+     * @param array $array
+     * @return bool
+     */
+    function array_to_file($file, $array) {
+        return file_put_contents($file, '<?php $arr = ' . var_export($array, true) . ';');
+    }
+
+}
 ?>

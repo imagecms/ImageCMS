@@ -150,7 +150,7 @@
                                                     <input type="text" name="page_url" value="{$url}" id="page_url" />
                                                 </div>
                                             {else:}
-                                                <input type="text" name="page_url" value="{$url}" id="page_url" disabled="disabled" />
+                                                <input type="text" name="page_url" value="{$url}" id="page_url" />
                                             {/if}
                                             <div class="help-block">({lang("Only Latin characters","admin")})</div>
                                         </div>

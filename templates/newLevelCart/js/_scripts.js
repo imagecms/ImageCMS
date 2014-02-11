@@ -88,7 +88,7 @@ function init() {
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $.drop.setParameters(optionsDrop);
-    $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries');
+    $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries', 'placeBeforeShow', 'placeAfterClose');
     $('[data-drop]').drop();
 
     ShopFront.CompareList.count();
@@ -335,7 +335,7 @@ function init() {
     doc.on('rendercomment.after', function(e) {
         showHidePart(e.el.find('.frame-list-comments.sub-2'));
         showHidePart(e.el.find('.product-comment'));
-        e.el.find('[data-drop]').drop(optionsDrop);
+        e.el.find('[data-drop]').drop();
         e.el.find(preloader).remove();
     });
     doc.on('autocomplete.after rendercomment.after imageapi.pastemsg showCleaverFilter tabs.afterload renderorder.after', function(e) {

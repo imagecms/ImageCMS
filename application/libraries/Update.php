@@ -79,7 +79,7 @@ class Update {
      * @return array return info about new relise or 0 if version is actual
      */
     public function getStatus() {
-        if (time() >= $this->getSettings('checkTime') + 60 * 60 * 10) {
+        if (time() >= $this->getSettings('checkTime') + 60 * 10) {
             $domen = $_SERVER['SERVER_NAME'];
             $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
 
@@ -96,7 +96,7 @@ class Update {
      * @return array Array of hashsum files new version
      */
     public function getHashSum() {
-        if (time() >= $this->getSettings('checkTime') + 60 * 60 * 10) {
+        if (time() >= $this->getSettings('checkTime') + 60 * 10) {
             $domen = $_SERVER['SERVER_NAME'];
             $key = $this->getSettings('careKey');
             $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
