@@ -592,7 +592,7 @@ class Menu extends MY_Controller {
 
                 if ($langs != FALSE) {
                     foreach ($langs as $lang) {
-                        $this->db->where('item_id', $menus[$i]['item_id']);
+                        $this->db->where('item_id', $menus[$i]['id']);
                         $this->db->where('lang_id', $lang['id']);
                         $t_query = $this->db->get('menu_translate');
 
