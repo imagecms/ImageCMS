@@ -108,7 +108,7 @@
                     </li>
                 {/foreach}
             </ul>
-            <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
+            <button class="t-d_n f-s_0 s-all-d ref2 d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
                 <span class="icon_arrow"></span>
                 <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
             </button>
