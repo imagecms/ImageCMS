@@ -15,7 +15,7 @@ class Module_frame extends MY_Controller {
     }
 
     public function index() {
-        
+       
     }
 
     public function autoload() {
