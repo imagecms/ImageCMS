@@ -64,6 +64,7 @@ class Admin extends BaseAdminController {
 
             $this->_viewSiteMap();
         } else {
+            // Get Information About Saved Site Map
             if (file_exists($this->sitemap_path)) {
                 $file_data = array('url' => $this->sitemap_path, 'time' => filemtime($this->sitemap_path), 'size' => filesize($this->sitemap_path));
             } else {
@@ -85,10 +86,16 @@ class Admin extends BaseAdminController {
      * Save sitemap
      */
     public function saveSiteMap() {
+        // Get Site Map Data
         $sitemap = file_get_contents(site_url('sitemap.xml'));
 
-        if (file_put_contents($this->sitemap_path, $sitemap)) {
-            showMessage(lang("Site map have been saved", 'sitemap'), lang("Message", "sitemap"));
+        if ($sitemap) {
+            // Create file and puts Site Map data 
+            if (file_put_contents($this->sitemap_path, $sitemap)) {
+                showMessage(lang("Site map have been saved", 'sitemap'), lang("Message", "sitemap"));
+            } else {
+                showMessage(lang("Site map have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+            }
         } else {
             showMessage(lang("Site map have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
         }
@@ -145,7 +152,7 @@ class Admin extends BaseAdminController {
             $this->form_validation->set_rules('products_sub_categories_priority', lang('Products subcategories priority', 'sitemap'), "required|callback_priority_validation");
 
             if ($this->form_validation->run($this) == FALSE) {
-                showMessage(validation_errors(), '', 'r');
+                showMessage(validation_errors(), lang("Error", "sitemap"), 'r');
                 exit;
             }
 
