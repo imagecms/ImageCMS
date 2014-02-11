@@ -338,12 +338,7 @@
                                         {/foreach}
                                         <!-- Start. Wish List & Compare List buttons -->
                                         <div class="frame-wish-compare-list f-s_0">
-                                            {foreach $variants as $key => $pv}
-                                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
-                                                    {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
-                                                </div>
-                                            {/foreach}
-                                            <div class="frame-btn-compare">
+                                            <div class="frame-btn-comp">
                                                 <div class="btn-compare">
                                                     <button class="toCompare"
                                                             data-id="{echo $model->getId()}"
@@ -357,6 +352,11 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            {foreach $variants as $key => $pv}
+                                                <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
+                                                    {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
+                                                </div>
+                                            {/foreach}
                                         </div>
                                         <!-- End. Wish List & Compare List buttons -->
                                     </div>
@@ -391,7 +391,7 @@
                     <div class="container">
                         <section class="frame-complect horizontal-carousel">
                             <div class="frame-title">
-                                <div class="title">{lang('Специальное предложение! Купить, установить и получить скидку на аксессуары!','newLevel')}</div>
+                                <div class="title">{lang('Комплект по выгодной цене','newLevel')}</div>
                             </div>
                             <div class="carousel-js-css items-carousel complects-carousel">
                                 <div class="content-carousel">
@@ -402,7 +402,7 @@
                                                 <ul class="items items-bask row-kits rowKits">
                                                     <!-- main product -->
 
-                                                    <li>
+                                                    <li clsss="f-s_0">
                                                         <div class="frame-kit main-product">
                                                             <div class="frame-photo-title">
                                                                 <span class="photo-block">
@@ -441,7 +441,7 @@
                                                     <!-- /end main product -->
                                                     {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
                                                         <!-- additional product -->
-                                                        <li>
+                                                        <li class="f-s_0">
                                                             <div class="next-kit">+</div>
                                                             <div class="frame-kit">
                                                                 <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="frame-photo-title">
@@ -578,13 +578,13 @@
                         {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
                             <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
-                        {/if}
-                        {if $fullDescription = $model->getFullDescription()}
+                            {/if}
+                            {if $fullDescription = $model->getFullDescription()}
                             <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
-                        {/if}
-                        {if $accessories}
+                            {/if}
+                            {if $accessories}
                             <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
-                        {/if}
+                            {/if}
                         <!--Output of the block comments-->
                         {if $Comments && $model->enable_comments}
                             <li>
@@ -608,12 +608,12 @@
                         <div id="view">
                             {if $dl_properties}
                                 <div class="inside-padd">
-                                    <span class="title-h2">{lang('Свойства','newLevel')}</span>
+                                    <div class="title-h2">{lang('Свойства','newLevel')}</div>
                                     <div class="characteristic">
                                         <div class="product-charac patch-product-view">
                                             {echo $dl_properties}
                                         </div>
-                                        <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#first']" data-scroll="true">
+                                        <button class="t-d_n f-s_0 s-all-d ref2 d_n_" data-trigger="[data-href='#first']" data-scroll="true">
                                             <span class="icon_arrow"></span>
                                             <span class="text-el">{lang('Просмотреть все спецификации','newLevel')}</span>
                                         </button>
@@ -630,7 +630,7 @@
                                             {echo $fullDescription}
                                         </div>
                                     </div>
-                                    <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#second']" data-scroll="true">
+                                    <button class="t-d_n f-s_0 s-all-d ref2 d_n_" data-trigger="[data-href='#second']" data-scroll="true">
                                         <span class="icon_arrow"></span>
                                         <span class="text-el">{lang('Полное описание','newLevel')}</span>
                                     </button>
@@ -640,16 +640,16 @@
 
                             {if $accessories}
                                 <div class="accessories">
-                                    <div class="title-default">
+                                    <div class="frame-title">
                                         <div class="title">
                                             <h2 class="d_i">{lang('С этим товаром покупают','newLevel')}</h2>
-                                            {if count($accessories) > 4}
-                                                <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
-                                                    <span class="icon_arrow"></span>
-                                                    <span class="text-el">{lang('Смотреть все аксессуары','newLevel')}</span>
-                                                </button>
-                                            {/if}
                                         </div>
+                                        {if count($accessories) > 4}
+                                            <button class="t-d_n f-s_0 s-all-d ref2 s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
+                                                <span class="icon_arrow"></span>
+                                                <span class="text-el">{lang('Смотреть все аксессуары','newLevel')}</span>
+                                            </button>
+                                        {/if}
                                     </div>
                                     <div class="inside-padd">
                                         <ul class="items items-default">
@@ -719,47 +719,47 @@
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-            <div class="title"><%- obj.title %></div>
-            <div class="horizontal-carousel">
-                <div class="frame-fancy-gallery frame-thumbs">
-                    <div class="fancy-gallery carousel-js-css">
-                        <div class="content-carousel">
-                            <ul class="items-thumbs items">
-                                <%= obj.frame.find(obj.galleryContent).html() %>
-                            </ul>
-                        </div>
-                        <div class="group-button-carousel">
-                            <button type="button" class="prev arrow">
-                                <span class="icon_arrow_p"></span>
-                            </button>
-                            <button type="button" class="next arrow">
-                                <span class="icon_arrow_n"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="title"><%- obj.title %></div>
+        <div class="horizontal-carousel">
+        <div class="frame-fancy-gallery frame-thumbs">
+        <div class="fancy-gallery carousel-js-css">
+        <div class="content-carousel">
+        <ul class="items-thumbs items">
+        <%= obj.frame.find(obj.galleryContent).html() %>
+        </ul>
+        </div>
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
         <div class="drop-content">
-            <div class="inside-padd">
-                <span class="helper"></span>
-                <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-            </div>
-            <div class="horizontal-carousel">
-                <div class="group-button-carousel">
-                    <button type="button" class="prev arrow">
-                        <span class="icon_arrow_p"></span>
-                    </button>
-                    <button type="button" class="next arrow">
-                        <span class="icon_arrow_n"></span>
-                    </button>
-                </div>
-            </div>
+        <div class="inside-padd">
+        <span class="helper"></span>
+        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+        </div>
+        <div class="horizontal-carousel">
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
         </div>
         <div class="drop-footer">
-            <div class="inside-padd">
-                <%= obj.frame.find(obj.footerContent).html()%>
-            </div>
+        <div class="inside-padd">
+        <%= obj.frame.find(obj.footerContent).html()%>
+        </div>
         </div>
     {/literal}
 </script>
