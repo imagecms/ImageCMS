@@ -7,7 +7,7 @@
 	<title>Class CategoriesController | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?2320901906"></script>
+	<script type="text/javascript" src="elementlist.js?2135572232"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -58,6 +58,11 @@
 				<li><a href="namespace-mod_discount.html">mod_discount<span></span></a>
 						<ul>
 				<li><a href="namespace-mod_discount.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-mod_seoexpert.html">mod_seoexpert<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_seoexpert.classes.html">classes</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-mod_stats.html">mod_stats<span></span></a>
@@ -197,6 +202,7 @@
 				<li><a href="class-Mobile.html">Mobile</a></li>
 				<li><a href="class-Mod_discount.html">Mod_discount</a></li>
 				<li><a href="class-Mod_search.html">Mod_search</a></li>
+				<li><a href="class-Mod_seoexpert.html">Mod_seoexpert</a></li>
 				<li><a href="class-Mod_stats.html" class="invalid">Mod_stats</a></li>
 				<li><a href="class-Module_frame.html">Module_frame</a></li>
 				<li><a href="class-Module_frame_model.html" class="invalid">Module_frame_model</a></li>
@@ -247,6 +253,9 @@
 				<li><a href="class-Search_model.html">Search_model</a></li>
 				<li><a href="class-SearchController.html">SearchController</a></li>
 				<li><a href="class-Sendsms.html">Sendsms</a></li>
+				<li><a href="class-Sendsms_model.html">Sendsms_model</a></li>
+				<li><a href="class-Seoexpert_model.html">Seoexpert_model</a></li>
+				<li><a href="class-Seoexpert_model_products.html">Seoexpert_model_products</a></li>
 				<li><a href="class-Settings.html">Settings</a></li>
 				<li><a href="class-SFilter.html">SFilter</a></li>
 				<li><a href="class-Share.html">Share</a></li>
@@ -303,7 +312,6 @@
 				<li><a href="class-SSettings.html">SSettings</a></li>
 				<li><a href="class-SStringHelper.html">SStringHelper</a></li>
 				<li><a href="class-Star_rating.html">Star_rating</a></li>
-				<li><a href="class-StaticChartData.html">StaticChartData</a></li>
 				<li><a href="class-Stats_model.html" class="invalid">Stats_model</a></li>
 				<li><a href="class-Stats_model_categories.html">Stats_model_categories</a></li>
 				<li><a href="class-Stats_model_orders.html">Stats_model_orders</a></li>
@@ -332,6 +340,7 @@
 				<li><a href="class-Users_model.html">Users_model</a></li>
 				<li><a href="class-UsersController.html">UsersController</a></li>
 				<li><a href="class-vkapi.html">vkapi</a></li>
+				<li><a href="class-Vkpost.html">Vkpost</a></li>
 				<li><a href="class-Widgets_manager.html">Widgets_manager</a></li>
 				<li><a href="class-Wish_list.html">Wish_list</a></li>
 				<li><a href="class-Wish_list_api.html">Wish_list_api</a></li>
@@ -340,6 +349,7 @@
 				<li><a href="class-WishlistApi.html">WishlistApi</a></li>
 				<li><a href="class-Yandex.html">Yandex</a></li>
 				<li><a href="class-Yandex_maps.html">Yandex_maps</a></li>
+				<li><a href="class-ZeroFiller.html">ZeroFiller</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
@@ -369,6 +379,7 @@
 				<li><a href="function-ajax_links.html">ajax_links</a></li>
 				<li><a href="function-ajax_redirect.html">ajax_redirect</a></li>
 				<li><a href="function-array_key_exists_recursive.html">array_key_exists_recursive</a></li>
+				<li><a href="function-array_to_file.html">array_to_file</a></li>
 				<li><a href="function-beginCache.html">beginCache</a></li>
 				<li><a href="function-build_cats_tree.html">build_cats_tree</a></li>
 				<li><a href="function-build_cats_tree_ul_li.html">build_cats_tree_ul_li</a></li>
@@ -532,6 +543,11 @@
 	<h1>Class CategoriesController</h1>
 
 
+	<div class="description">
+	
+<p>Class CategoriesController for mod_stats module</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -559,10 +575,14 @@
 		
 		
 		
-		
+		<b>Package:</b> ImageCMSModule<br>
 
-				<b>Author</b>
-				<br>
+				<b>Copyright:</b>
+				(c) 2014, ImageCMS<br>
+				<b>Author:</b>
+				DevImageCms<br>
+				<b>Uses:</b>
+				<code><code><a href="class-ControllerBase.html">ControllerBase</a></code></code> <br>
 		<b>Located at</b> application/modules/mod_stats/controllers/CategoriesController.php<br>
 	</div>
 
@@ -623,6 +643,72 @@
 		<div class="description detailed hidden">
 			
 <p>Render template and set data</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="attendance" id="_attendance">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_attendance">#</a>
+		<code>attendance( )</code>
+
+		<div class="description short">
+			
+<p>Render categories attendance template with data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Render categories attendance template with data</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCategoriesAttendanceData" id="_getCategoriesAttendanceData">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCategoriesAttendanceData">#</a>
+		<code>getCategoriesAttendanceData( )</code>
+
+		<div class="description short">
+			
+<p>Get data for categories attendance chart</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get data for categories attendance chart</p>
 
 
 
