@@ -94,7 +94,7 @@ class Admin extends BaseAdminController {
             if (file_put_contents($this->sitemap_path, $sitemap)) {
                 showMessage(lang("Site map have been saved", 'sitemap'), lang("Message", "sitemap"));
             } else {
-                showMessage(lang("Site map have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+                showMessage(lang("Site map have not been saved. Set writing permissions on module folder.", 'sitemap'), lang("Error", "sitemap"), 'r');
             }
         } else {
             showMessage(lang("Site map have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
