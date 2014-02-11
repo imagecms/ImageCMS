@@ -276,7 +276,7 @@ function init_2() {
                 dataType: 'jsonp',
                 type: 'POST',
                 data: {
-                    "for": '$number$',
+                    "for": '%number%',
                 },
                 url: atob('aHR0cDovL3JlcXVlc3RzLmltYWdlY21zLm5ldC9pbmRleC5waHAvbmV3cy9hcGk'),
             });
