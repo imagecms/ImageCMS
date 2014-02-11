@@ -238,6 +238,12 @@ class Categories extends BaseAdminController {
                     break;
 
                 case 'update':
+                    $cat = $this->cms_admin->get_category($cat_id);
+
+                    /** Init Event. Pre Create Category */
+                    \CMSFactory\Events::create()->registerEvent(array('pageId' => $cat_id, 'url' => $cat['url']), 'Categories:preUpdate');
+                    \CMSFactory\Events::runFactory();
+
                     ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
                     $this->cms_admin->update_category($data, $cat_id);
 
@@ -398,7 +404,7 @@ class Categories extends BaseAdminController {
         $cat = $this->cms_admin->get_category($id);
 
         /** Init Event. Pre Create Category */
-        \CMSFactory\Events::create()->registerEvent(array('pageId' => $id), 'Categories:preUpdate');
+        \CMSFactory\Events::create()->registerEvent(array('pageId' => $id, 'url' => $cat['url']), 'Categories:preUpdate');
         \CMSFactory\Events::runFactory();
 
         ($hook = get_hook('admin_edit_category')) ? eval($hook) : NULL;

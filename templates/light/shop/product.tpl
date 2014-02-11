@@ -318,7 +318,7 @@
                                 </div>
                                 <!-- Start. Wish List & Compare List buttons -->
                                 <div class="frame-wish-compare-list f-s_0">
-                                    <div class="frame-btn-compare">
+                                    <div class="frame-btn-comp">
                                         <div class="btn-compare">
                                             <button class="toCompare"
                                                     data-id="{echo $model->getId()}"
