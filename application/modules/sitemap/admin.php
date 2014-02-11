@@ -258,7 +258,11 @@ class Admin extends BaseAdminController {
             if ($this->sitemap_model->updateBlockedUrls($data)) {
                 showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
             } else {
-                showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+                if ($data) {
+                    showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+                } else {
+                    showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+                }
             }
 
 
