@@ -178,7 +178,7 @@ class Sitemap_model extends CI_Model {
     /**
      * Install sitemap module
      */
-    public function installModule() {
+    public function installModule($robotsCheck) {
 
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
@@ -329,7 +329,7 @@ class Sitemap_model extends CI_Model {
         $this->db->delete('components');
 
         $data = array(
-            'robotsStatus' => 0,
+            'robotsStatus' => $robotsCheck,
             'generateXML' => 1,
             'sendSiteMap' => 1,
             'lastSend' => 0,
@@ -339,7 +339,7 @@ class Sitemap_model extends CI_Model {
         return $this->db->insert('components', array(
                     'name' => 'sitemap',
                     'identif' => 'sitemap',
-                    'autoload' => '0',
+                    'autoload' => '1',
                     'enabled' => '1',
                     'settings' => serialize($data)
                         )

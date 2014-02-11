@@ -220,7 +220,7 @@ class Sitemap extends MY_Controller {
      * @param type $data - events array that contains page url $data['url'] 
      * @return boolean
      */
-    public function setUpdatedUrl($data) {
+    public function setUpdatedUrl($data = array()) {
         $ci = & get_instance();
         if ($data) {
             if ($data['url']) {
@@ -228,6 +228,7 @@ class Sitemap extends MY_Controller {
                 return TRUE;
             }
         }
+        return FALSE;
     }
 
     /**
@@ -269,6 +270,8 @@ class Sitemap extends MY_Controller {
                 $this->blocked_urls[] = $url['url'];
             }
         }
+
+        return $this;
     }
 
     /**
@@ -583,6 +586,9 @@ class Sitemap extends MY_Controller {
      * @return array
      */
     public function replace($lines) {
+        if (!$lines)
+            return FALSE;
+
         $array = array();
         foreach ($lines as $line) {
             if ((substr_count($line, 'Disallow:') > 0) && (trim(str_replace('Disallow:', '', $line)) != ''))
@@ -598,6 +604,7 @@ class Sitemap extends MY_Controller {
      */
     public function robotsCheck($check) {
         $array = $this->robots;
+
         foreach ($array as $ar) {
             if ($ar == '/')
                 return true;
@@ -610,9 +617,10 @@ class Sitemap extends MY_Controller {
 
     /**
      * Send xml to google
+     * @param array $data - data array (array('url' => 'pageurl'))
      * return $code if send (200 = ok) else 'false'
      */
-    public function ping_google($data) {
+    public function ping_google($data = array()) {
         // Checking is used server is local
         if (strstr($_SERVER['SERVER_NAME'], '.loc'))
             return FALSE;
@@ -679,7 +687,8 @@ class Sitemap extends MY_Controller {
      * Install module
      */
     function _install() {
-        return $this->sitemap_model->installModule();
+        $robotsCheck = $this->robotsCheck() ? 1 : 0;
+        return $this->sitemap_model->installModule($robotsCheck);
     }
 
     /**
