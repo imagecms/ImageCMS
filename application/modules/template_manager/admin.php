@@ -25,18 +25,12 @@ class Admin extends BaseAdminController {
     }
 
     public function templates() {
-
         $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
         \CMSFactory\assetManager::create()->setData(array('template' => $templates))->renderAdmin('list');
     }
 
     public function test() {
-        $nl = new \template_manager\classes\Template('newLevel');
-
-        echo '<pre>';
-        print_r($nl->components);
-        echo '</pre>';
-        exit;
+        
     }
 
     /**
@@ -55,9 +49,13 @@ class Admin extends BaseAdminController {
         }
     }
 
-    public function inslaller($templateName) {
+    public function inslallTemplate($templateName) {
         $template = new \template_manager\classes\Template($templateName);
         $result = \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
+        echo '<pre>';
+        var_dump($result);
+        echo '</pre>';
+        exit;
     }
 
 }
