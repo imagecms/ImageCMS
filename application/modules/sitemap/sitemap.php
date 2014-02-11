@@ -15,13 +15,13 @@ class Sitemap extends MY_Controller {
      * Priority for pages
      * @var int
      */
-    public $pages_priority = '0.6';
+    public $pages_priority = '1';
 
     /**
      * Priority for categories
      * @var int 
      */
-    public $cats_priority = '0.8';
+    public $cats_priority = '1';
 
     /**
      * Priority for main page
@@ -33,30 +33,30 @@ class Sitemap extends MY_Controller {
      * Priority for subcategories pages
      * @var int 
      */
-    public $sub_cats_priority = '0.7'; // priority for subcategories pages
+    public $sub_cats_priority = '1'; // priority for subcategories pages
     /**
      * Priority for products pages
      * @var int 
      */
-    public $products_priority = '0.5';
+    public $products_priority = '1';
 
     /**
      * Priority for products categories pages
      * @var int 
      */
-    public $products_categories_priority = '0.4';
+    public $products_categories_priority = '1';
 
     /**
      * Priority for products sub categories pages
      * @var int 
      */
-    public $products_sub_categories_priority = '0.4';
+    public $products_sub_categories_priority = '1';
 
     /**
      * Priority for brands pages
      * @var int 
      */
-    public $brands_priority = '0.4';
+    public $brands_priority = '1';
 
     /**
      * Frequency for pages
@@ -68,19 +68,19 @@ class Sitemap extends MY_Controller {
      * Frequency for categories pages
      * @var string 
      */
-    public $categories_changefreq = 'weekly';
+    public $categories_changefreq = 'daily';
 
     /**
      * Frequency for products categories pages
      * @var string 
      */
-    public $products_categories_changefreq = 'weekly';
+    public $products_categories_changefreq = 'daily';
 
     /**
      * Frequency for products sub categiries pages
      * @var string 
      */
-    public $products_sub_categories_changefreq = 'weekly';
+    public $products_sub_categories_changefreq = 'daily';
 
     /**
      * Frequency for main page
@@ -92,31 +92,31 @@ class Sitemap extends MY_Controller {
      * Frequency for products pages
      * @var string 
      */
-    public $products_changefreq = 'weekly';
+    public $products_changefreq = 'daily';
 
     /**
      * Frequency for brands pages
      * @var string 
      */
-    public $brands_changefreq = 'weekly';
+    public $brands_changefreq = 'daily';
 
     /**
      * Frequency for sub categories pages
      * @var string 
      */
-    public $sub_categories_changefreq = 'weekly';
-
-    /**
-     * Blocked urls array
-     * @var array 
-     */
-    public $blocked_urls = array();
+    public $sub_categories_changefreq = 'daily';
 
     /**
      * Default frequency
      * @var string 
      */
     public $changefreq = 'daily';
+
+    /**
+     * Blocked urls array
+     * @var array 
+     */
+    public $blocked_urls = array();
 
     /**
      * Gzip level
@@ -141,13 +141,6 @@ class Sitemap extends MY_Controller {
      * @var type 
      */
     public $default_lang = array();
-    public $sitemap_ttl = 3600;
-
-    /**
-     * Sitemap key
-     * @var type 
-     */
-    public $sitemap_key = 'sitemap_';
 
     /**
      * Updated page url
@@ -239,7 +232,6 @@ class Sitemap extends MY_Controller {
 
     /**
      * Initialize module settings
-     * @param array $settings
      */
     public function initialize() {
         // Get sitemap values
@@ -281,6 +273,8 @@ class Sitemap extends MY_Controller {
 
     /**
      * Display sitemap ul list
+     * @param array $items - site map items
+     * @return string
      */
     public function sitemap_ul($items = array()) {
         $out .= '<ul id="sitemap">';
@@ -319,12 +313,14 @@ class Sitemap extends MY_Controller {
     public function build_xml_map() {
         $settings = $this->sitemap_model->load_settings();
 
+        // Generate new or use saved map
         if ($settings['generateXML']) {
             $this->_create_map();
         } else {
             $this->result = file_get_contents($this->sitemap_path);
         }
 
+        // Show Site Map
         if ($this->result) {
             header("content-type: text/xml");
             echo $this->result;
@@ -369,11 +365,12 @@ class Sitemap extends MY_Controller {
                 }
 
                 // Add links to categories in all langs.
-                foreach ($this->langs as $k => $v) {
-                    if ($v['id'] != $this->default_lang['id']) {
-                        if ($this->not_blocked_url($k . '/' . $category['path_url'])) {
+                foreach ($this->langs as $lang_indentif => $lang) {
+                    if ($lang['id'] != $this->default_lang['id']) {
+                        $url = $lang_indentif . '/' . $category['path_url'];
+                        if ($this->not_blocked_url($url)) {
                             $this->items[] = array(
-                                'loc' => site_url($k . '/' . $category['path_url']),
+                                'loc' => site_url($url),
                                 'changefreq' => $changefreq,
                                 'priority' => $priority
                             );
@@ -396,8 +393,8 @@ class Sitemap extends MY_Controller {
                     $url_page = $page['full_url'];
                 } else {
                     $prefix = $this->_get_lang_prefix($page['lang']);
-                    $url = site_url($prefix . '/' . $page['full_url']);
                     $url_page = $prefix . '/' . $page['full_url'];
+                    $url = site_url($url_page);
                 }
 
                 // create date
@@ -406,6 +403,8 @@ class Sitemap extends MY_Controller {
                 } else {
                     $date = date('Y-m-d', $page['created']);
                 }
+
+                // Set priority, check if page is category
                 $c_priority = $this->cats_priority;
                 if ($page['cat_url'] == '') {
                     $c_priority = $this->cats_priority;
@@ -426,14 +425,16 @@ class Sitemap extends MY_Controller {
 
 
         if (SHOP_INSTALLED) {
-
+            // Get Shop Categories
             $shop_categories = $this->sitemap_model->get_shop_categories();
+
+            // Add categories to Site Map 
             foreach ($shop_categories as $shopcat) {
                 $url = 'shop/category/' . $shopcat['full_path'];
                 if ($this->not_blocked_url($url)) {
-                    $url = site_url($url);
-                    if (!$this->robotsCheck($url)) {
+                    if (!$this->robotsCheck(site_url($url))) {
 
+                        // Check if category is subcategory
                         if ((int) $shopcat['parent_id']) {
                             $changefreq = $this->products_sub_categories_changefreq;
                             $priority = $this->products_sub_categories_priority;
@@ -443,7 +444,7 @@ class Sitemap extends MY_Controller {
                         }
 
                         $this->items[] = array(
-                            'loc' => site_url('shop/category/' . $shopcat['full_path']),
+                            'loc' => site_url($url),
                             'lastmod' => '',
                             'changefreq' => $changefreq,
                             'priority' => $priority
@@ -452,7 +453,10 @@ class Sitemap extends MY_Controller {
                 }
             }
 
+            // Get Shop Brands
             $shop_brands = $this->sitemap_model->get_shop_brands();
+
+            // Add Shop Brand to Site Map
             foreach ($shop_brands as $shopbr) {
                 $url = site_url('shop/brand/' . $shopbr['url']);
                 if ($this->not_blocked_url('shop/brand/' . $shopbr['url'])) {
@@ -467,7 +471,10 @@ class Sitemap extends MY_Controller {
                 }
             }
 
+            // Get Shop products
             $shop_products = $this->sitemap_model->get_shop_products();
+
+            // Add Shop products to Site Map
             foreach ($shop_products as $shopprod) {
                 $url = site_url('shop/product/' . $shopprod['url']);
                 if ($this->not_blocked_url('shop/product/' . $shopprod['url'])) {
@@ -489,7 +496,6 @@ class Sitemap extends MY_Controller {
         }
         $this->result = $this->generate_xml($this->items);
         return $this->result;
-//$this->cache->store($this->sitemap_key, $this->result, $this->sitemap_ttl);
     }
 
     /**
