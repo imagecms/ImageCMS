@@ -349,7 +349,7 @@ td:last-child .frame-item-menu:hover{border-right-color: #fd7c06;}
 .text-proposition-h.text-el{position: relative;padding-right: 14px;font-size: 18px;color: #666;}
 .special-proposition > .frame-title{border-bottom: 2px solid #fd7c06;}
 .special-proposition > .frame-title > .title{margin-bottom: 4px;}
-.page-main .horizontal-carousel .special-proposition .carousel-js-css{border-width: 0 1px 1px;border-style: solid;border-color: #dedede;padding: 0 30px;}
+.page-main .horizontal-carousel .special-proposition .carousel-js-css, .horizontal-carousel .special-proposition.frame-complect .carousel-js-css{border-width: 0 1px 1px;border-style: solid;border-color: #dedede;padding: 0 30px;}
 
 .carousel-category-popular{border: 1px solid #eae5e1;-moz-border-radius:  4px;-webkit-border-radius:  4px;border-radius:  4px;}
 .carousel-category-popular .frame-title > .title > .text-el{display: block;width: 117px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
@@ -976,7 +976,7 @@ input.input-search{border: 0;-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.2);-we
 .items-catalog.table .icon_wish, .items-catalog.table .icon_compare{margin-right: 0;}
 .items-catalog.table .icon_wish, .items-catalog.table .icon_compare{top: 0;}
 .items-catalog.list .short-desc, .items-catalog.list .short-desc *{color: #b1b1b1;}
-.item-product .frame-btn-compare{margin-right: 30px;}
+.item-product .frame-btn-comp{margin-right: 30px;}
 
 .items-thumbs .photo-block{border: 1px solid #dedede;background-color: #fff;}
 .item-product .frame-prices-buy{border-width: 1px 0;border-style: solid;border-color: #e5e5e5;padding: 11px 0 15px;margin-bottom: 15px;}

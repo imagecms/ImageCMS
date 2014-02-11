@@ -53,7 +53,7 @@
                                             eval(callback)();
                                             setTimeout(function(){
                                                 $(document).trigger({'type': customEvent});
-                                            }, 0);
+                                            }, 100);
                                         }
                                 }
                             });
