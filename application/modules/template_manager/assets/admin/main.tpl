@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Online store template settings', 'new_level')}</span>
+                <span class="title">{lang('Online store template settings', 'template_manager')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -37,18 +37,20 @@
                             {$cnt = 1}
                             {foreach $template->components as $componentName}
                                 {$components = $template->getComponent($componentName)}
-                                <a href="#{echo $componentName}" class="btn btn-small {if $cnt == 1}active{/if}">{echo $key}</a>
+                                <a href="#{echo $componentName}" class="btn btn-small {if $cnt == 1}active{/if}">{echo $componentName}</a>
                                 {$cnt++}
                             {/foreach}
                         </div>
                     </div>
 
                     <div class="tab-content">
+                        {$cnt = 1}
                         {foreach $template->components as $componentName}
-                            {$components = $template->getComponent($componentName)}    
-                            <div class="tab-pane active" id="{echo $componentName}">
+                            {$component = $template->getComponent($componentName)}    
+                            <div class="tab-pane {if $cnt == 1}active{/if}" id="{echo $componentName}">
                                 {$component->renderAdmin()}
                             </div>
+                            {$cnt++}
                         {/foreach}
 
                     </div>

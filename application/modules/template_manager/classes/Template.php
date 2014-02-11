@@ -123,8 +123,10 @@ class Template {
         // searching in template
 
         if (!isset($this->componentsInstances[$componentName])) {
-            require_once $this->templatePath . "components/{$componentName}/{$componentName}" . EXT;
-            $this->componentsInstances[$componentName] = new $componentName;
+            if (array_search($componentName, $this->components)) {
+                require_once $this->templatePath . "components/{$componentName}/{$componentName}" . EXT;
+                $this->componentsInstances[$componentName] = new $componentName;
+            }
         }
         return $this->componentsInstances[$componentName];
     }
