@@ -273,7 +273,7 @@
                                         {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                     </div>
                                 {/foreach}
-                                <div class="frame-btn-compare">
+                                <div class="frame-btn-comp">
                                     <div class="btn-compare">
                                         <button class="toCompare"
                                                 data-id="{echo $model->getId()}"
