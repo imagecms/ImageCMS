@@ -439,7 +439,8 @@ input.input-search{height: 33px;padding-right: 14px;}
 .items-compare .items > li{margin-bottom: 20px;margin-left: 22px;}
 
 .content-carousel .items.items-brands{width: auto;}
-.items-brands > li{width: 50%;margin-top: -1px;}
+.items-brands{margin-right: -2px;}
+.items-brands > li{width: 50%;margin-top: -1px;margin-left: -1px;}
 .items-brands > li .frame-photo-title{display: block;font-size: 0;}
 .items-brands > li .photo-block{width: 100%;height: 88px;padding: 10px;}
 .items-brands{overflow: hidden;}
