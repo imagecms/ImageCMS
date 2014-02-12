@@ -26,10 +26,10 @@ class Share extends MY_Controller {
      * Default function to access module by URL
      */
     public function index() {
-        return false;
-//        $this->template->add_array('ss', array(
-//            'html' => $this->_make_share_form(),
-//        ));
+//        return false;
+        $this->template->add_array('ss', array(
+            'html' => $this->_make_share_form(),
+        ));
     }
 
     public function _install() {
@@ -74,12 +74,18 @@ class Share extends MY_Controller {
         if ($settings['gg'] == 1) {
             $html .= 'gplus,';
         }
-        $type = $settings['type'];
+        
+        if ($settings['type'] == 'counter') {
+            $type = 'data-yashareTheme="counter"';
+        } else {
+            $type = 'data-yashareType="' . $settings['type'] . '"';
+        }
+
         $html = '<script async="async" defer="defer" type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
                  <span class="yashare-auto-init"
-                       data-yashareL10n="ru"
-                       data-yashareType="' . $type . '"
-                       data-yashareLink="' . $url . '"
+                       data-yashareL10n="ru"'
+                . $type .
+                '"data-yashareLink="' . $url . '"
                        data-yashareQuickServices="' . $html . '"></span> ';
         return $html;
     }
@@ -135,10 +141,9 @@ class Share extends MY_Controller {
                 . $string['facebook']
                 . $string['vk']
                 . $string['google']
-                . $string['twitter'].
+                . $string['twitter'] .
                 '</ul>';
         return $html;
     }
 
 }
-

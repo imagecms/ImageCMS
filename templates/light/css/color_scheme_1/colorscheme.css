@@ -334,14 +334,14 @@ td:last-child .frame-item-menu:hover{border-right-color: #fd7c06;}
 /*/product*/
 
 /*carousels*/
-.horizontal-carousel .group-button-carousel .arrow{border-right: 1px solid #dedede;background-color: #f6f6f6;}
+.horizontal-carousel .group-button-carousel .arrow{background-color: #f6f6f6;}
 .horizontal-carousel .group-button-carousel .arrow:hover{background-color: #eee;}
 .items-v-carousel > li:first-child{border-top: 0;}
 .group-button-carousel .arrow > [class*="icon_arrow"]{width: 7px;height: 13px;}
 .horizontal-carousel .group-button-carousel .arrow{width: 29px;height: 100%;top: 0;}
 .vertical-carousel .group-button-carousel .arrow{}
-.vertical-carousel .group-button-carousel .prev{}
-.vertical-carousel .group-button-carousel .next{}
+.group-button-carousel .prev{border-right: 1px solid #dedede;}
+.group-button-carousel .next{border-left: 1px solid #dedede;}
 .fancy-gallery .group-button-carousel .arrow{height: 62px;top: 19px;}
 .horizontal-carousel .frame-thumbs .group-button-carousel .arrow{width: 21px;border: 1px solid #dedede;background-color: #f6f6f6;height: 62px;}
 .vertical-layout .group-button-carousel{}
