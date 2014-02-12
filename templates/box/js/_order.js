@@ -35,8 +35,7 @@ var Order = {
             $(genObj.frameDelivery).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-                //,classRemove: 'b_n', //if not standart
-                ,
+                ,classRemove: 'b_n', //if not standart
                 after: function(el, start) {
                     if (!start) {
                         var input = $(el).find('input');
@@ -59,7 +58,7 @@ var Order = {
             $(genObj.framePaymentMethod).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+            ,classRemove: 'b_n'//if not standart
             });
     }
 }
@@ -78,7 +77,7 @@ $(document).on('scriptDefer', function() {
             $(genObj.framePaymentMethod).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+            ,classRemove: 'b_n'//if not standart
             });
         }
 
