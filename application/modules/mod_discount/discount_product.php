@@ -102,11 +102,6 @@ class Discount_product {
             'discount_value' => $discountValue,
             'price' => $price
         );
-        ob_start();
-        \CMSFactory\assetManager::create()->setData(array('discount_product' => \CMSFactory\assetManager::create()->discount))->render('discount_product', true);
-        $tpl = ob_get_clean();
-
-        \CMSFactory\assetManager::create()->discount_tpl = $tpl;
 
         return true;
     }
