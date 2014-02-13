@@ -43,51 +43,111 @@ class Mod_discount extends \MY_Controller {
 
         if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
 
-            $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+            $this->applyDiscountCartItems();
 
-            if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
-                $discount['max_discount'] = $this->baseDiscount->discountMax;
-                $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
-                $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
-                if ($this->baseDiscount->discountProductVal > $this->baseDiscount->discountNoProductVal) {
-                    $discount['result_sum_discount'] = $this->baseDiscount->discountProductVal;
-                    $discount['type'] = 'product';
-                } else {
-                    $discount['result_sum_discount'] = $this->baseDiscount->discountNoProductVal;
-                    $discount['type'] = 'user';
-                }
-
-                if ($discount['result_sum_discount']) {
-                    $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);
-                    $this->baseDiscount->cart->discount_info = $discount;
-                    $this->baseDiscount->cart->discount_type = $discount['type'];
-                    $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
-                }
-            }
+            $this->applyResultDiscount();
             /** apply Gift */
-            if ($_POST['gift']) {
+            if ($_POST['gift'])
+                $this->applyGift();
+        }
+    }
+    
+    /**
+     * apply discount to Cart Items
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function applyDiscountCartItems() {
+        $cart = \Cart\BaseCart::getInstance();
+        $cartItems = $cart->getItems('SProducts');
 
-                $key = $this->input->post('gift');
-                $aplyGift = false;
-                foreach ($this->baseDiscount->discountType['all_order'] as $disc)
-                    if ($disc['key'] == $key and $disc['is_gift']) {
-                        $value = $this->baseDiscount->getDiscountValue($disc, $this->baseDiscount->cart->getTotalPrice());
-                        $this->baseDiscount->cart->gift_info = $disc['key'];
-                        $this->baseDiscount->cart->gift_value = $value;
-                        $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getTotalPrice() - $value);
-                        $aplyGift = true;
-                        if ($_POST['gift_ord'])
-                            $this->baseDiscount->updateDiskApply($disc['key'], 'gift');
+        if (count($cartItems['data']) > 0) {
+            foreach ($cartItems['data'] as $item) {
+                if ($item->originPrice == $item->price) {
+                    $arr_for_discount = array(
+                        'product_id' => $item->getSProducts()->getId(),
+                        'category_id' => $item->getSProducts()->getCategoryId(),
+                        'brand_id' => $item->getSProducts()->getBrandId(),
+                        'vid' => $item->id,
+                        'id' => $item->getSProducts()->getId()
+                    );
+                    \CMSFactory\assetManager::create()->discount = 0;
 
-                        break;
+                    if (\mod_discount\classes\BaseDiscount::checkModuleInstall())
+                        \mod_discount\discount_product::create()->getProductDiscount($arr_for_discount);
+
+                    if ($discount = \CMSFactory\assetManager::create()->discount) {
+                        $priceNew = ((float) $item->originPrice - (float) $discount['discount_value'] < 0) ? 1 : (float) $item->originPrice - (float) $discount['discount_value'];
+                        $cart->setItemPrice(array('instance' => 'SProducts', 'id' => $item->id), $priceNew);
                     }
-
-                if (!$aplyGift)
-                    $this->baseDiscount->cart->gift_error = TRUE;
+                }
             }
         }
     }
 
+    /**
+     * apply result discount
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function applyResultDiscount() {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+            $discount['max_discount'] = $this->baseDiscount->discountMax;
+            $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
+            $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
+            if ($this->baseDiscount->discountProductVal > $this->baseDiscount->discountNoProductVal) {
+                $discount['result_sum_discount'] = $this->baseDiscount->discountProductVal;
+                $discount['type'] = 'product';
+            } else {
+                $discount['result_sum_discount'] = $this->baseDiscount->discountNoProductVal;
+                $discount['type'] = 'user';
+            }
+
+            if ($discount['result_sum_discount']) {
+                $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);
+                $this->baseDiscount->cart->discount_info = $discount;
+                $this->baseDiscount->cart->discount_type = $discount['type'];
+                $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
+            }
+        }
+    }
+
+    /**
+     * apply user gift
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function applyGift() {
+
+        $key = $this->input->post('gift');
+        $aplyGift = false;
+        foreach ($this->baseDiscount->discountType['all_order'] as $disc)
+            if ($disc['key'] == $key and $disc['is_gift']) {
+                $value = $this->baseDiscount->getDiscountValue($disc, $this->baseDiscount->cart->getTotalPrice());
+                $this->baseDiscount->cart->gift_info = $disc['key'];
+                $this->baseDiscount->cart->gift_value = $value;
+                $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getTotalPrice() - $value);
+                $aplyGift = true;
+                if ($_POST['gift_ord'])
+                    $this->baseDiscount->updateDiskApply($disc['key'], 'gift');
+
+                break;
+            }
+
+        if (!$aplyGift)
+            $this->baseDiscount->cart->gift_error = TRUE;
+    }
 
     /**
      * install module and create table
@@ -115,7 +175,7 @@ class Mod_discount extends \MY_Controller {
 
         $this->discount_model_admin->moduleDelete();
     }
-    
+
     /**
      * register javascript
      * @deprecated since version 4.5.2
