@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template label='New Level - New Generation Super-Puper Cart' name='newLevelCart' type="shop" version="0.1">
+    
+    <dependencies>
+        <!--        <dependence type="widget" name="TestWidget" description="Some description" relation="add">
+            <![CDATA[
+                <div> 
+                    a;slkdfj;asldkfj;
+                </div>
+            ]]>
+        </dependence>-->
+        <dependence type="widget" name="tags123" relation="wishful" />
+        <dependence type="module" name="wishlist" relation="wishful" />
+    </dependencies>
+    
+    <description>
+        "Новий рівень" - це шаблон інтернет-магазину для Вас, навіть якщо ви слюсар!
+    </description>
+    
+    <main_screenshot fileName="U9Wu7yZqZlM.jpg" />
+    
+    <components>
+        
+        <component handler='TColorScheme'>
+            <param name="color_scheme" value="color_scheme_7" />
+        </component>
+        
+        <component handler='TMenuColumn'>
+            <param name="7" value="23,24,243,43,3,4234,213,423" />
+            <param name="8" value="1,2,3,4,5,6" />
+        </component> 
+        
+    </components>
+
+</template>
