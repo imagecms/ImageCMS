@@ -1,8 +1,13 @@
 
 #upload_template_form {
-    background: silver;
+
 }
 
-body {
-    color: red;
+.or_container {
+    width: 400px;
+}
+
+
+#upload_template_form {
+    padding: 10px;
 }

@@ -82,7 +82,6 @@ class TemplateManager {
             }
         }
 
-        return;
         \CI::$APP->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
         \CI::$APP->db->update('settings', array('site_template' => $template->name));
         return TRUE;
@@ -121,6 +120,7 @@ class TemplateManager {
      * 
      * @param string $url path to zip file
      * @return Template
+     * @throws Exception
      */
     public function unpack($zipPath) {
         $templateName = pathinfo($zipPath, PATHINFO_FILENAME);
@@ -139,15 +139,15 @@ class TemplateManager {
 
         if ($paramsXml == TRUE) {
             if (is_dir('templates/' . $templateName)) {
-                return FALSE;
+                throw new \Exception('Template already exists');
             }
             if (mkdir('templates/' . $templateName, 0777)) {
                 $zip->extractTo('templates/');
                 return TRUE;
             }
+        } else {
+            throw new \Exception('No params.xml file');
         }
-
-        return FALSE;
     }
 
 }

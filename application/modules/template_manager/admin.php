@@ -18,15 +18,34 @@ class Admin extends BaseAdminController {
      * render main with settings current template 
      */
     public function index() {
+        if ($_POST) {
+            $error = '';
+            if (isset($_POST['upload_template'])) { // UPLOAD TEMPLATE FROM PC OR BY URL
+                try {
+                    $this->upload();
+                } catch (\Exception $e) {
+                    $error = $e->getMessage();
+                }
+            } elseif (isset($_POST['install_template'])) { // INSTALL TEMPLATE
+                $template = new \template_manager\classes\Template($_POST['template_name']);
+                if ($template->isValid()) {
+                    return \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
+                } else {
+                    $error = 'Template is broken';
+                }
+            } else { // SETTING SOME PARAMS
+                $handlerComponent = $this->input->post('handler');
+                $template->getComponent($handlerComponent)->setParams();
+            }
+        }
 
         $templateName = $this->db->get('settings')->row()->site_template;
         $template = new \template_manager\classes\Template($templateName);
-        if ($_POST) {
-            $handlerComponent = $this->input->post('handler');
-            $template->getComponent($handlerComponent)->setParams();
-        }
-
-        \CMSFactory\assetManager::create()->setData(array('template' => $template))->renderAdmin('main');
+        \CMSFactory\assetManager::create()
+                ->registerStyle('style_admin')
+                ->registerScript('script_admin')
+                ->setData(array('template' => $template, 'error' => $error))
+                ->renderAdmin('main');
     }
     
     /**
@@ -38,24 +57,17 @@ class Admin extends BaseAdminController {
         \CMSFactory\assetManager::create()->setData(array('templates' => $templates, 'currTpl' => $templateNameCurr))->renderAdmin('list');
     }
 
-    /**
-     * Template installing
-     */
     public function install() {
-        if ($_POST) {
-            $template = new \template_manager\classes\Template($_POST['template_name']);
-            if ($template->isValid()) {
-                $res = \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
-                echo '<pre>';
-                var_dump($res);
-                echo '</pre>';
-                exit;
-            } else {
-                echo 'Template is broken';
-            }
+        $templateToInstall = 'newLevelCart';
+        $template = new \template_manager\classes\Template($templateToInstall);
+        $status = FALSE;
+        if ($template->isValid()) {
+            $status = \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
+            $this->cache->delete_all();
         } else {
-            \CMSFactory\assetManager::create()->renderAdmin('install');
+            $status = 'Template is broken';
         }
+        var_dump($status);
     }
 
     /**
@@ -63,77 +75,60 @@ class Admin extends BaseAdminController {
      * @param string $url
      * @return boolan|string хиба якщо помилка, назва шаблону якшо все ок
      */
-    public function upload() {
-        $name = time();
+    private function upload() {
         if (!empty($_POST['template_url']) || !empty($_FILES['template_file'])) {
             if (!empty($_POST['template_url'])) {
-                $zipPath = $this->uploadByUrl();
+                $zipPath = $this->uploadByUrl($_POST['template_url']);
             } else {
-                $zipPath = $this->uploadFromPc();
+                $zipPath = $this->uploadFromPc('template_file');
             }
-
-            if ($zipPath != FALSE) {
-                // розпакувати шаблон
-                if (TRUE == \template_manager\classes\TemplateManager::getInstance()->unpack($zipPath)) {
-                    echo 'Всьо чікі - показати список шаблонів';
-                    exit; // переадресація на список шаблонів
-                } else {
-                    // помилка під час розпакування
-                }
+            // розпакувати шаблон
+            if (TRUE == \template_manager\classes\TemplateManager::getInstance()->unpack($zipPath)) {
+                return TRUE;
             } else {
-                // помилка під час завантаження
+                throw new Exception('Error while unpacking');
             }
         }
-
-        // добавити можливі помилки
-        \CMSFactory\assetManager::create()
-                ->registerStyle('style_admin')
-                ->renderAdmin('upload');
-    }
-
-    /**
-     * 
-     */
-    public function test() {
-        $t = new \template_manager\classes\Template('administrator');
-        echo '<pre>';
-        var_dump($t);
-        echo '</pre>';
-        exit;
+        throw new Exception('No input data specified');
     }
 
     /**
      * 
      * @return boolean|string хиба, або шлях до файлу
      */
-    private function uploadByUrl() {
-        $fullName = array_pop(explode('/', $_POST['template_url']));
+    private function uploadByUrl($url) {
+        $fullName = array_pop(explode('/', $url));
         $nameArray = explode('.', $fullName);
         $ext = array_pop($nameArray);
         $name = count($nameArray) > 1 ? implode('.', $nameArray) : $nameArray[0];
 
         if ($ext == 'zip') {
             $fullPath = './uploads/templates/' . $name . '.zip';
-            if (file_put_contents($fullPath, file_get_contents($_POST['template_url'])) > 0) {
+            if (file_put_contents($fullPath, file_get_contents($url)) > 0) {
                 return $fullPath;
             }
+        } else {
+            throw new Exception('Wrong file type');
         }
-        return FALSE;
     }
 
     /**
      * 
      * @return boolean|string хиба, або шлях до файлу
      */
-    private function uploadFromPc() {
+    private function uploadFromPc($fieldName) {
         $this->load->library('upload', array(
             'upload_path' => './uploads/templates/',
             'allowed_types' => 'zip',
             'max_size' => 1024 * 10, // 10 Mb
+            'file_name' => $_FILES[$fieldName]['name'],
         ));
-        if (!$this->upload->do_upload('template_file')) {
-            $this->errors[] = $this->upload->display_errors();
-            return FALSE;
+        $destination = './uploads/templates/' . $_FILES[$fieldName]['name'];
+        if (file_exists($destination)) {
+            unlink($destination);
+        }
+        if (!$this->upload->do_upload($fieldName)) {
+            throw new Exception($this->upload->display_errors());
         } else {
             $data = $this->upload->data();
             return $data['full_path'];
