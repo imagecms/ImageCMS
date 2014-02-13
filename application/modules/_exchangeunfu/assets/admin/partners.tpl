@@ -27,7 +27,8 @@
                     <th>{lang('Name', 'exchangeunfu')}</th>
                     <th class="span2">{lang('Prefix', 'exchangeunfu')}</th>
                     <th>{lang('Code', 'exchangeunfu')}</th>
-                    <th class="span4">{lang('Region', 'exchangeunfu')}</th>
+                    <th class="span3">{lang('Region', 'exchangeunfu')}</th>
+                    <th class="span3">Стандартні періоди</th>
                     <th class="span2">{lang('Edit', 'exchangeunfu')}</th>
                     <th class="span2">{lang('Delete', 'exchangeunfu')}</th>
                 </tr>
@@ -54,6 +55,34 @@
                             <input type="text" class="region" style="display: none"/>
                         </td>
                         <td class="span1">
+
+
+                        <div class="periods" style="display: none;">
+
+                            <div class="first">Первый период</div>
+                            <input type="text" name="periodFirst" value='{echo $periods[$partner['id']][first]}'  />
+
+                             <div class="second">Другій период</div>
+                            <input type="text" name="periodSecond"  value='{echo $periods[$partner['id']][second]}' />
+
+
+                             <div class="third">Третій период</div>
+                            <input type="text" name="periodThird" value='{echo $periods[$partner['id']][third]}'   />
+
+
+                             <div class="prefix">Четвертий период</div>
+                            <input type="text" name="periodFourth" value='{echo $periods[$partner['id']][fourth]}'  />
+
+                        </div>
+
+                            <button type="button" class="btn btn-small btn-success periodEdit">
+                                <i class="icon-edit"></i>{lang('Edit', 'exchangeunfu')}</button>
+                            <button type="button" class="btn btn-small btn-success periodUpdate" style="display: none">
+                                <i class="icon-refresh"></i>{lang('Refresh', 'exchangeunfu')}</button>
+
+
+                        </td>
+                        <td class="span1">
                             <button type="button" class="btn btn-small btn-success partnerRefresh">
                                 <i class="icon-edit"></i>{lang('Edit', 'exchangeunfu')}</button>
                             <button type="button" class="btn btn-small btn-success partnerUpdate" style="display: none">
@@ -64,6 +93,7 @@
                                 <i class="icon-trash"></i>{lang('Delete', 'exchangeunfu')}</button>
                         </td>
 
+                      
                     </tr>
                 {/foreach}
                 <tr class="newPartner" style="display: none">
