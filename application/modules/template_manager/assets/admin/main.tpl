@@ -31,7 +31,7 @@
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                     <a href="#properties_template" class="btn btn-small active">{lang('Template properties', 'template_manager')}</a>
-                    <a href="#" class="btn btn-small">{lang('Templates list', 'template_manager')}</a>
+                    <a href="/admin/components/init_window/template_manager/templates" class="btn btn-small">{lang('Templates list', 'template_manager')}</a>
                     <a href="#upload_template" class="btn btn-small">{lang('Upload template', 'ntemplate_manager')}</a>
                 </div>
             </div>

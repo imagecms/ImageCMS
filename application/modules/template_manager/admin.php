@@ -13,7 +13,10 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
     }
-
+    
+    /**
+     * render main with settings current template 
+     */
     public function index() {
         if ($_POST) {
             $error = '';
@@ -44,10 +47,14 @@ class Admin extends BaseAdminController {
                 ->setData(array('template' => $template, 'error' => $error))
                 ->renderAdmin('main');
     }
-
+    
+    /**
+     * render template list
+     */
     public function templates() {
+        $templateNameCurr = $this->db->get('settings')->row()->site_template;
         $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
-        \CMSFactory\assetManager::create()->setData(array('template' => $templates))->renderAdmin('list');
+        \CMSFactory\assetManager::create()->setData(array('templates' => $templates, 'currTpl' => $templateNameCurr))->renderAdmin('list');
     }
 
     public function install() {

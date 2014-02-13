@@ -27,25 +27,23 @@
                         </td>
                         <td>
                             <div>
+                                {$type = array()}
                                 {if $propertie.param}
                                     {$type = unserialize($propertie.param)}
                                 {/if}
-                                <label>
-                                    <input type="checkbox" name="property[prop{echo $propertie.id}][scroll]" {if $type && in_array('scroll',$type)}checked="checked"{/if} value="1" />
-                                    scroll
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="property[prop{echo $propertie.id}][dropDown]" {if $type && in_array('dropDown',$type)}checked="checked"{/if} value="1" />
-                                    dropDown
-                                </label>
-
+                                {foreach $propType as $pt}
+                                    <label>
+                                        <input type="checkbox" name="property[prop{echo $propertie.id}][{echo $pt}]" {if in_array($pt,$type)}checked="checked"{/if} value="1" />
+                                        {echo $pt}
+                                    </label>
+                                {/foreach}
                             </div>
                         </td>
                     </tr>
                 {/foreach}
             </tbody>
         </table>
-        
+
     </div>
     {form_csrf()}
 

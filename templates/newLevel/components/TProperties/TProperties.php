@@ -4,6 +4,8 @@
  * class TProperties for Components template manager
  */
 class TProperties extends \template_manager\classes\TComponent {
+    
+    private $propType = array('dropDown', 'scroll', 'select');
 
     /**
      *  prepare to save param from xml to db 
@@ -42,6 +44,7 @@ class TProperties extends \template_manager\classes\TComponent {
                     $keyValue = serialize($arrAux);
                     $data[$keyData] = $keyValue;
                 }
+
                 if (count($data) > 0)
                     parent::setParams($data);
             }
@@ -69,7 +72,7 @@ class TProperties extends \template_manager\classes\TComponent {
      */
     public function renderAdmin() {
 
-        $this->cAssetManager->display('admin/main', array('handler' => $this->handler, 'properties' => $this->getParam()));
+        $this->cAssetManager->display('admin/main', array('propType' => $this->propType,'handler' => $this->handler, 'properties' => $this->getParam()));
     }
 
     /**
