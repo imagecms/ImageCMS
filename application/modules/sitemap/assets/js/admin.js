@@ -12,9 +12,15 @@ var SiteMap = {
         $(newUrlContainer).removeClass('addHidenUrlClone');
         $(newUrlContainer).show();
         $('#hide_url').val('');
+        $('.robots_check').each(function(number) {
+            $(this).attr('name', 'robots_check[' + number + ']');
+        });
     },
     removeHidenUrl: function(curElement) {
         $(curElement).closest('.control-group').remove();
+        $('.robots_check').each(function(number) {
+            $(this).attr('name', 'robots_check[' + number + ']');
+        });
     },
     saveSiteMap: function() {
         $.ajax({
