@@ -35,7 +35,7 @@ abstract class TComponent {
      * @var TComponentAssetManager 
      */
     protected $cAssetManager;
-    
+
     /**
      *
      * @var currTemplate 
@@ -47,7 +47,7 @@ abstract class TComponent {
      */
     public function __construct() {
         $this->currTemplate =
-        $this->handler = get_class($this);
+                $this->handler = get_class($this);
         $rfc = new \ReflectionClass($this);
         $this->basePath = dirname($rfc->getFileName());
         $this->cAssetManager = new TComponentAssetManager($this->basePath);
@@ -58,8 +58,6 @@ abstract class TComponent {
      * @param array $params one dimentional associative array 
      */
     public function setParams($params) {
-
-        
         \CI::$APP->db->where('type', $this->getId())->delete('template_settings');
         foreach ($params as $key => $value) {
             \CI::$APP->db->insert('template_settings', array('type' => $this->getId(), 'key' => $key, 'value' => $value));

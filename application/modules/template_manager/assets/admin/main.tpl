@@ -27,6 +27,11 @@
                     {$error}
                 </div>
             {/if}
+            {if !empty($message)}
+                <div class="alert alert-success t_notice_on_load" style='margin:10px;'>
+                    {$message}
+                </div>
+            {/if}
 
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
@@ -73,10 +78,8 @@
                             {lang('Local file','template_manager')}
                             <input type="file" name="template_file" />
                         </div>
-
                         <br />
                         <input id="submit" type="submit" name="upload_template" class="btn btn-primary" value="{lang('Upload','template_manager')}" />
-
                     </form>
                 </div>
 

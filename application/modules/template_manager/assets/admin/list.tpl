@@ -53,12 +53,10 @@
                                 <hr />
                             {/foreach}
 
-                            <button type="submit" class="pull-right btn btn-small btn-primary"><i class="icon-ok icon-white"></i>{lang('Install', 'template_manager')}</button>
+                            <button name="install_template" type="submit" class="pull-right btn btn-small btn-primary"><i class="icon-ok icon-white"></i>{lang('Install', 'template_manager')}</button>
                                 {form_csrf()}
-
-
+                        </form>
                     </div>
-
 
                 </div>
                 <div class="tab-pane" id="upload_template">

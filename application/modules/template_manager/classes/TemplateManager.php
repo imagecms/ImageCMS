@@ -28,6 +28,12 @@ class TemplateManager {
     public $messages = array();
 
     /**
+     * Current template
+     * @var string
+     */
+    private $currentTemplate;
+
+    /**
      * 
      * @return TemplateManager
      */
@@ -41,6 +47,7 @@ class TemplateManager {
      * Getting core components
      */
     private function __construct() {
+        $this->currentTemplate = \CI::$APP->db->get('settings')->row()->site_template;
         $componentsPath = __DIR__ . '/../components/';
         $dirList = array();
         if ($handle = opendir($componentsPath)) {
@@ -60,6 +67,9 @@ class TemplateManager {
      * @return boolean 
      */
     public function setTemplate(Template $template) {
+        if ($this->currentTemplate == $template->name) {
+            throw new \Exception('Template ' . $template->name . ' already installed');
+        }
 
         // processing all dependicies 
         if (isset($template->xml->dependencies)) {
@@ -68,7 +78,7 @@ class TemplateManager {
                 $res = $dependenceDirector->verify();
                 $this->massages = $dependenceDirector->getMessages();
                 if (FALSE == $res) {
-                    return FALSE;
+                    throw new \Exception('One or more dependency error');
                 }
             }
         }
@@ -92,17 +102,17 @@ class TemplateManager {
      * @return array of Template
      */
     public function listLocal() {
-        
+
         if ($handle = opendir('templates')) {
-            while (false !== ($fileName = readdir($handle))) 
+            while (false !== ($fileName = readdir($handle)))
                 if ($fileName != "." && $fileName != ".." && is_dir('templates/' . $fileName)) {
                     $template = new Template($fileName);
                     if ($template->isValid())
                         $templates[] = $template;
-                }          
+                }
             closedir($handle);
         }
-        
+
 
         return $templates;
     }

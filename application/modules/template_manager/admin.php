@@ -18,24 +18,26 @@ class Admin extends BaseAdminController {
      * render main with settings current template 
      */
     public function index() {
+        $error = '';
+        $message = '';
         if ($_POST) {
-            $error = '';
-            if (isset($_POST['upload_template'])) { // UPLOAD TEMPLATE FROM PC OR BY URL
-                try {
+            try {
+                if (isset($_POST['upload_template'])) { // UPLOAD TEMPLATE FROM PC OR BY URL
                     $this->upload();
-                } catch (\Exception $e) {
-                    $error = $e->getMessage();
+                } elseif (isset($_POST['install_template'])) { // INSTALL TEMPLATE
+                    $template = new \template_manager\classes\Template($_POST['template_name']);
+                    if ($template->isValid()) {
+                        \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
+                        $message = 'Template ' . $template->name . ' is set';
+                    } else {
+                        throw new \Exception('Template is broken');
+                    }
+                } else { // SETTING SOME PARAMS
+                    $handlerComponent = $this->input->post('handler');
+                    $template->getComponent($handlerComponent)->setParams();
                 }
-            } elseif (isset($_POST['install_template'])) { // INSTALL TEMPLATE
-                $template = new \template_manager\classes\Template($_POST['template_name']);
-                if ($template->isValid()) {
-                    return \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
-                } else {
-                    $error = 'Template is broken';
-                }
-            } else { // SETTING SOME PARAMS
-                $handlerComponent = $this->input->post('handler');
-                $template->getComponent($handlerComponent)->setParams();
+            } catch (\Exception $e) {
+                $error = $e->getMessage();
             }
         }
 
@@ -44,7 +46,7 @@ class Admin extends BaseAdminController {
         \CMSFactory\assetManager::create()
                 ->registerStyle('style_admin')
                 ->registerScript('script_admin')
-                ->setData(array('template' => $template, 'error' => $error))
+                ->setData(array('template' => $template, 'error' => $error, 'message' => $message))
                 ->renderAdmin('main');
     }
 
