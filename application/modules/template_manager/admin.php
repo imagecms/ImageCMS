@@ -13,7 +13,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
     }
-    
+
     /**
      * render main with settings current template 
      */
@@ -47,7 +47,7 @@ class Admin extends BaseAdminController {
                 ->setData(array('template' => $template, 'error' => $error))
                 ->renderAdmin('main');
     }
-    
+
     /**
      * render template list
      */
@@ -55,19 +55,6 @@ class Admin extends BaseAdminController {
         $templateNameCurr = $this->db->get('settings')->row()->site_template;
         $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
         \CMSFactory\assetManager::create()->setData(array('templates' => $templates, 'currTpl' => $templateNameCurr))->renderAdmin('list');
-    }
-
-    public function install() {
-        $templateToInstall = 'newLevelCart';
-        $template = new \template_manager\classes\Template($templateToInstall);
-        $status = FALSE;
-        if ($template->isValid()) {
-            $status = \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
-            $this->cache->delete_all();
-        } else {
-            $status = 'Template is broken';
-        }
-        var_dump($status);
     }
 
     /**
