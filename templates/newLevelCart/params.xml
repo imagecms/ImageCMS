@@ -2,19 +2,15 @@
 <template label='New Level - New Generation Super-Puper Cart' name='newLevelCart' type="shop" version="0.1">
     
     <dependencies>
-        
-        <dependence type="widget" name="name1" description="Some description" relation="required" />
-        <dependence type="widget" name="name2" relation="wishful" />
-        <dependence type="widget" name="someNew" relation="add" >
+        <!--        <dependence type="widget" name="TestWidget" description="Some description" relation="add">
             <![CDATA[
-                s;dlfjkhsd;
-            ]]>  
-        </dependence>
-        <dependence type="module" name="name1" relation="wishful"/>
-        <dependence type="page" name="name1" relation="add">
-            Контент сторінки
-        </dependence>
-        <dependence type="category" name="Назва категорії" parent_name="назва_батьківської (якщо є)" relation="add"></dependence>
+                <div> 
+                    a;slkdfj;asldkfj;
+                </div>
+            ]]>
+        </dependence>-->
+        <dependence type="widget" name="tags123" relation="wishful" />
+        <dependence type="module" name="wishlist" relation="wishful" />
     </dependencies>
     
     <description>
@@ -24,11 +20,15 @@
     <main_screenshot fileName="U9Wu7yZqZlM.jpg" />
     
     <components>
-
+        
         <component handler='TColorScheme'>
-            <param name="color_scheme" value="color_scheme_1" />
+            <param name="color_scheme" value="color_scheme_7" />
         </component>
         
+        <component handler='TMenuColumn'>
+            <param name="7" value="23,24,243,43,3,4234,213,423" />
+            <param name="8" value="1,2,3,4,5,6" />
+        </component> 
         
     </components>
 

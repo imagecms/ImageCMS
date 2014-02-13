@@ -22,6 +22,12 @@ class TemplateManager {
     public $defaultComponents = array();
 
     /**
+     * May have messages 
+     * @var array
+     */
+    public $messages = array();
+
+    /**
      * 
      * @return TemplateManager
      */
@@ -54,26 +60,31 @@ class TemplateManager {
      * @return boolean 
      */
     public function setTemplate(Template $template) {
+
+        // processing all dependicies 
         if (isset($template->xml->dependencies)) {
             if (isset($template->xml->dependencies->dependence)) {
                 $dependenceDirector = new \template_manager\installer\DependenceDirector($template->xml->dependencies->dependence);
-                $verifyRes = $dependenceDirector->verify();
-                $massages = $dependenceDirector->getMessages();
-                if (FALSE == $verifyRes) {
-                    exit('No!');
+                $res = $dependenceDirector->verify();
+                $this->massages = $dependenceDirector->getMessages();
+                if (FALSE == $res) {
+                    return FALSE;
                 }
             }
         }
 
         foreach ($template->xml->components->component as $component) {
             $attributes = $component->attributes();
-            $handler = '' . $attributes['handler'];
-            $instance = $template->getComponent($handler);
-            $instance->setParamsXml($component->param);
+            $handler = (string) $attributes['handler'];
+            if (isset($component->param)) {
+                $instance = $template->getComponent($handler);
+                $instance->setParamsXml($component->param);
+            }
         }
 
-        $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
-        $this->db->update('settings', array('site_template' => $template->name));
+        return;
+        \CI::$APP->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
+        \CI::$APP->db->update('settings', array('site_template' => $template->name));
         return TRUE;
     }
 

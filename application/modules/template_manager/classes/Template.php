@@ -94,10 +94,9 @@ class Template {
             $this->loadData();
             $this->getScreenshots();
             $this->loadComponents();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->isValid = FALSE;
         }
-        $this->xml = null;
     }
 
     /**

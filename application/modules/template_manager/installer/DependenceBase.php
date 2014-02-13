@@ -45,9 +45,9 @@ abstract class DependenceBase {
     public function __construct(\SimpleXMLElement $node) {
         $this->node = $node;
         $attrs = $this->node->attributes();
-        $this->name = $attrs['name'];
-        $this->type = $attrs['type'];
-        $this->relation = $attrs['relation'];
+        $this->name = (string) $attrs['name'];
+        $this->type = (string) $attrs['type'];
+        $this->relation = (string) $attrs['relation'];
     }
 
     /**

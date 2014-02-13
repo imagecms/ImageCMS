@@ -46,21 +46,15 @@ abstract class TComponent {
         $this->cAssetManager = new TComponentAssetManager($this->basePath);
     }
 
-
-
     /**
      * Setting params of components
      * @param array $params one dimentional associative array 
      */
     public function setParams($params) {
-        \CI::$APP->db->where('type',  $this->getId())->delete('template_settings');
-        foreach ($params as $key => $value){
-            
-            \CI::$APP->db->insert('template_settings', array('type'=>$this->getId(), 'key' => $key, 'value' => $value));
+        \CI::$APP->db->where('type', $this->getId())->delete('template_settings');
+        foreach ($params as $key => $value) {
+            \CI::$APP->db->insert('template_settings', array('type' => $this->getId(), 'key' => $key, 'value' => $value));
         }
-            
-        
-        
     }
 
     public function getParam($key = null) {
@@ -69,7 +63,6 @@ abstract class TComponent {
             return \CI::$APP->db->where('type', $this->getId())->get('template_settings')->result_array();
         } else {
             return \CI::$APP->db->where('type', $this->getId())->where('key', $key)->get('template_settings')->row_array();
-            
         }
     }
 
@@ -78,10 +71,6 @@ abstract class TComponent {
      * @param \SimpleXMLElement $nodes nodes from xml
      */
     abstract public function setParamsXml(\SimpleXMLElement $nodes);
-    
-
-
-
 
     /**
      * Each component must have his own unique id
@@ -98,7 +87,6 @@ abstract class TComponent {
      * @return string html
      */
     abstract public function renderAdmin();
-
 }
 
 ?>

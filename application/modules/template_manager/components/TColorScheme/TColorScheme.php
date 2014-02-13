@@ -19,14 +19,12 @@ class TColorScheme extends \template_manager\classes\TComponent {
      * prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
-    public function setParamsXml(\SimpleXMLElement $nodes) {
-        $data = array();
-        foreach ($nodes as $node) {
-            $nodeAttr = $node->attributes();
-            $data[(string)$nodeAttr['name']] = (string)$nodeAttr['value'];
-        }
-        if (count($data) > 0)
-            $this->setParams($data);
+    public function setParamsXml(\SimpleXMLElement $node) {
+        $attrs = $node->attributes();
+        $data = array(
+            (string) $attrs['name'] => (string) $attrs['value'],
+        );
+        parent::setParams($data);
     }
 
     /**
@@ -38,7 +36,7 @@ class TColorScheme extends \template_manager\classes\TComponent {
         else {
             if ($_POST['colorSchema']) {
                 $data = array();
-                foreach ($_POST['colorSchema'] as $key => $value){
+                foreach ($_POST['colorSchema'] as $key => $value) {
                     $val = end(explode('/', $value));
                     $data[$key] = $val;
                 }
@@ -48,25 +46,22 @@ class TColorScheme extends \template_manager\classes\TComponent {
             }
         }
     }
-    
+
     /**
      * get all color schema
      * @return array 
      */
-    public function getAllColorSchema(){
-        
+    public function getAllColorSchema() {
         $tempaltePath = \CI::$APP->db->get('settings')->row()->site_template;
         $Path = 'templates/' . $tempaltePath . '/css/';
         $dirList = array();
         if ($handle = opendir($Path)) {
-            while (false !== ($schema = readdir($handle))) 
-                if ($schema != "." && $schema != ".." && !is_file($Path . $schema)) 
+            while (false !== ($schema = readdir($handle)))
+                if ($schema != "." && $schema != ".." && !is_file($Path . $schema))
                     $dirList[$schema] = $Path . $schema;
             closedir($handle);
         }
-        
         return $dirList;
-        
     }
 
     /**
@@ -81,11 +76,9 @@ class TColorScheme extends \template_manager\classes\TComponent {
      * render wityh param
      */
     public function renderAdmin() {
-
         $tempaltePath = \CI::$APP->db->get('settings')->row()->site_template;
         $mainSchema = $this->getParam('color_scheme');
         $this->cAssetManager->display('admin/main', array('handler' => $this->handler, 'mainSchema' => 'templates/' . $tempaltePath . '/css/' . $mainSchema['value'], 'allScheme' => $this->getAllColorSchema()));
-
     }
 
 }

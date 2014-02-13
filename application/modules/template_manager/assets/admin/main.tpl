@@ -24,9 +24,9 @@
         <div class="content_big_td row-fluid">
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                    <a href="#properties_template" class="btn btn-small active">{lang('properties_template', 'template_manager')}</a>
-                    <a href="#" class="btn btn-small">{lang('template_list', 'template_manager')}</a>
-                    <a href="#" class="btn btn-small">{lang('uploads_template', 'ntemplate_manager')}</a>
+                    <a href="#properties_template" class="btn btn-small active">{lang('Template properties', 'template_manager')}</a>
+                    <a href="#" class="btn btn-small">{lang('Templates list', 'template_manager')}</a>
+                    <a href="#upload_template" class="btn btn-small">{lang('Upload template', 'ntemplate_manager')}</a>
                 </div>
             </div>
             <div class="tab-content">
@@ -56,7 +56,28 @@
                     </div>
 
                 </div>
-
+                <div class="tab-pane" id="upload_template">
+                    <form method="POST" enctype="multipart/form-data" id="upload_template_form">
+                        {form_csrf()}   
+                        <table>
+                            <tr>
+                                <td>Enter URL</td>
+                                <td><input type="text" name="template_url" value="http://localhost/newLevelCart.zip" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan='2' style="text-align: center; color: #622">OR</td>
+                            </tr>
+                            <tr>
+                                <td>Select file</td>
+                                <td><input type="file" name="template_file" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input id="submit" type="submit" name="submit" value="Upload" /></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
