@@ -318,7 +318,12 @@ class Sitemap_model extends CI_Model {
                 'type' => 'VARCHAR',
                 'null' => FALSE,
                 'constraint' => '255'
-            )
+            ),
+            'robots_check' => array(
+                'type' => 'INT',
+                'null' => TRUE,
+                'default' => 0
+            ),
         );
 
         $this->dbforge->add_field($fields);
