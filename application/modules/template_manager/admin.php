@@ -79,7 +79,20 @@ class Admin extends BaseAdminController {
         }
 
         // добавити можливі помилки
-        \CMSFactory\assetManager::create()->renderAdmin('upload');
+        \CMSFactory\assetManager::create()
+                ->registerStyle('style_admin')
+                ->renderAdmin('upload');
+    }
+
+    /**
+     * 
+     */
+    public function test() {
+        $t = new \template_manager\classes\Template('administrator');
+        echo '<pre>';
+        var_dump($t);
+        echo '</pre>';
+        exit;
     }
 
     /**

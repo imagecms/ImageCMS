@@ -94,10 +94,9 @@ class Template {
             $this->loadData();
             $this->getScreenshots();
             $this->loadComponents();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->isValid = FALSE;
         }
-        $this->xml = null;
     }
 
     /**
@@ -195,7 +194,7 @@ class Template {
             $attributes = $component->attributes();
             $name = (string) $attributes['handler'];
             if (!in_array($name, $this->components)) {
-                if (!file_exists($this->templatePath . "components/{$componentName}/{$componentName}" . EXT)) {
+                if (!file_exists($this->templatePath . "components/{$name}/{$name}" . EXT)) {
                     throw new \Exception("Component class {$name} don't exists");
                 }
                 array_push($this->components, $name);

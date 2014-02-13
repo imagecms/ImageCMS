@@ -1,17 +1,15 @@
 <?php
 
-namespace template_manager\installer;
-
 /**
  * 
  *
  * @author 
  */
-class WidgetDependence extends DependenceBase {
+class WidgetDependence extends \template_manager\installer\DependenceBase {
 
     public function verify() {
         $this->getWidgets();
-        switch ($relation) {
+        switch ($this->relation) {
             case "add":
                 return $this->add();
             case "required":
@@ -40,14 +38,20 @@ class WidgetDependence extends DependenceBase {
             return FALSE;
         }
 
-        $content = $this->node->asXML();
+        $data = (string) $this->node;
+
+        if (empty($data)) {
+            $this->messages[] = 'Widget must have content';
+            return FALSE;
+        }
+
         $attrs = $this->node->attributes();
-        $description = $attrs['description'];
+        $description = (string) $attrs['description'];
 
         $result = \CI::$APP->db->insert('widgets', array(
             'name' => $this->name,
             'description' => $description,
-            'data' => $content,
+            'data' => $data,
             'type' => 'html'
         ));
 

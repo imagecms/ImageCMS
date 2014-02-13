@@ -27,15 +27,16 @@ class DependenceDirector {
      */
     private $messages = array();
 
-    public function __construct(\SilmpleXmlElement $dependicies) {
+    public function __construct(\SimpleXMLElement $dependicies) {
         $this->dependicies = $dependicies;
     }
 
     public function verify() {
         foreach ($this->dependicies as $node) {
             $attributes = $node->attributes();
-            $depHandlerClass = ucfirst($attributes['type']) . 'Dependence';
-            $dependence = new $depHandlerClass($node);
+            $handlerClass = ucfirst($attributes['type']) . 'Dependence';
+            include_once __DIR__ . DIRECTORY_SEPARATOR . $handlerClass . EXT;
+            $dependence = new $handlerClass($node);
 
             $status = $dependence->verify();
             if ($status == FALSE) {

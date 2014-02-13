@@ -1,17 +1,15 @@
 <?php
 
-namespace template_manager\installer;
-
 /**
  * 
  *
  * @author 
  */
-class ModuleDependence extends DependenceBase {
+class ModuleDependence extends \template_manager\installer\DependenceBase {
 
     public function verify() {
         $this->getModules();
-        switch ($relation) {
+        switch ($this->relation) {
             case "required":
                 return $this->required();
             case "wishful":
@@ -28,7 +26,7 @@ class ModuleDependence extends DependenceBase {
 
         $this->components = array();
         foreach ($components as $row) {
-            $this->components[] = $row['name'];
+            $this->components[] = $row['identif'];
         }
     }
 
