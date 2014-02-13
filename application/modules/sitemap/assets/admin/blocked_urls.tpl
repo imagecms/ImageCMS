@@ -58,20 +58,29 @@
                                 <div class="input-prepend">
                                     <span class="add-on" style="height: 17px;">{site_url()}</span>
                                     <input class="hide_url" class="span2" type="text" style="width: 335px;">
+                                    <button type="button" onclick="SiteMap.removeHidenUrl($(this))" class="btn btn-small btn-danger"><i class="icon-remove"></i>{lang("Remove", 'sitemap')}</button>
                                 </div>
+                                <br>
+                                <input type="checkbox" class="robots_check" {if $url['robots_check']}checked="checked"{/if}>
+                                <span>{lang('Add to robots', 'sitemap')}</span>
                             </div> 
                         </div>
 
                         {if $hide_urls}
-                            {foreach $hide_urls as $url}
+                            {foreach $hide_urls as $key => $url}
                                 <div class="control-group">
                                     <label class="control-label" for="url">Url</label>
                                     <div class="controls">
                                         <div class="input-prepend">
                                             <span class="add-on" style="height: 17px;">{site_url()}</span>
                                             <input class="hide_url span2" name="hide_urls[]" type="text" value="{echo $url['url']}" style="width: 335px;">
+
                                             <button type="button" onclick="SiteMap.removeHidenUrl($(this))" class="btn btn-small btn-danger"><i class="icon-remove"></i>{lang("Remove", 'sitemap')}</button>
+
                                         </div>
+                                        <br>
+                                        <input type="checkbox" class="robots_check" name="robots_check[{echo ++$key}]" {if $url['robots_check']}checked="checked"{/if}>
+                                        <span>{lang('Add to robots', 'sitemap')}</span>
                                     </div> 
                                 </div>
                             {/foreach}
