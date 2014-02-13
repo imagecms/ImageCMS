@@ -34,7 +34,7 @@
 
                     <div class="inside_padd">
                         <h4>Список шаблонов</h4>
-                        <form method="post" action="/admin/components/init_window/template_manager/install">
+                        <form method="post" action="/admin/components/init_window/template_manager/">
                             {foreach $templates as $tpl}
                                 <div class="row-fluid">
                                     <div class="span1">

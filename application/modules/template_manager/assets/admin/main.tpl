@@ -60,7 +60,7 @@
                         {/foreach}
                     </div>
                 </div>
-                    
+
                 <div class="tab-pane" id="upload_template">
                     <form method="POST" enctype="multipart/form-data" id="upload_template_form">
                         {form_csrf()}   
@@ -76,10 +76,10 @@
 
                         <br />
                         <input id="submit" type="submit" name="upload_template" class="btn btn-primary" value="{lang('Upload','template_manager')}" />
-                        </table>
+
                     </form>
                 </div>
-                        
+
             </div>
         </div>
     </section>
