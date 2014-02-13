@@ -24,8 +24,8 @@
     </description>
     
     <screenshots><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
-        <screenshot url="" main="1" />
-        <screenshot url="" main="0" />
+        <screenshot url="/templates/newLevel/screenshot.png" main="1" />
+        <screenshot url="/templates/newLevel/screenshot.png" main="0" />
     </screenshots>
     
     <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ ТА КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->

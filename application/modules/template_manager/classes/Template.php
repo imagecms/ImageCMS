@@ -139,7 +139,7 @@ class Template {
         $xmlPath = 'templates/' . $this->name . '/params.xml';
         if (!file_exists($xmlPath)) {
             throw new \Exception("XML-file 'params.xml' don't exist");
-        }
+        } 
         $this->xml = simplexml_load_file($xmlPath);
     }
 
@@ -160,18 +160,11 @@ class Template {
      * Loading screenshots
      */
     public function getScreenshots() {
-        if (isset($this->xml->main_screenshot)) {
-            $attrs = $this->xml->main_screenshot->attributes();
-            $this->mainImage = $attrs['fileName'];
-        }
-        if ($handle = opendir($this->templatePath . 'screenshots/')) {
-            while (false !== ($fileName = readdir($handle))) {
-                if ($fileName != "." && $fileName != ".." && $fileName != $this->mainImage) {
-                    $this->screenshots[] = $fileName;
-                }
+        if (isset($this->xml->screenshots->screenshot))
+            foreach ($this->xml->screenshots->screenshot as $screen) {
+                $attrs = $screen->attributes();
+                ($attrs['main']) ? $this->mainImage = $attrs['url'] : $this->screenshots[] = $attrs['url']; 
             }
-            closedir($handle);
-        }
     }
 
     /**
@@ -190,12 +183,12 @@ class Template {
         if (!isset($this->xml->components->component)) {
             return;
         }
-        $componentsBasePath = $this->templatePath . 'components/';
+
         foreach ($this->xml->components->component as $component) {
             $attributes = $component->attributes();
             $name = (string) $attributes['handler'];
             if (!in_array($name, $this->components)) {
-                if (!file_exists($this->templatePath . "components/{$componentName}/{$componentName}" . EXT)) {
+                if (!file_exists($this->templatePath . "components/{$name}/{$name}" . EXT)) {
                     throw new \Exception("Component class {$name} don't exists");
                 }
                 array_push($this->components, $name);
