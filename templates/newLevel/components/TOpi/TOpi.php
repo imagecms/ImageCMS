@@ -28,6 +28,7 @@ class TOpi extends \template_manager\classes\TComponent {
     }
 
     public function renderAdmin() {
+        echo 'Нет настроек';
         
     }
 

@@ -52,8 +52,8 @@ class TColorScheme extends \template_manager\classes\TComponent {
      * @return array 
      */
     public function getAllColorSchema() {
-        $tempaltePath = \CI::$APP->db->get('settings')->row()->site_template;
-        $Path = 'templates/' . $tempaltePath . '/css/';
+
+        $Path = 'templates/' . $this->currTemplate . '/css/';
         $dirList = array();
         if ($handle = opendir($Path)) {
             while (false !== ($schema = readdir($handle)))
@@ -76,9 +76,9 @@ class TColorScheme extends \template_manager\classes\TComponent {
      * render wityh param
      */
     public function renderAdmin() {
-        $tempaltePath = \CI::$APP->db->get('settings')->row()->site_template;
+        
         $mainSchema = $this->getParam('color_scheme');
-        $this->cAssetManager->display('admin/main', array('handler' => $this->handler, 'mainSchema' => 'templates/' . $tempaltePath . '/css/' . $mainSchema['value'], 'allScheme' => $this->getAllColorSchema()));
+        $this->cAssetManager->display('admin/main', array('handler' => $this->handler, 'mainSchema' => 'templates/' . $this->currTemplate . '/css/' . $mainSchema['value'], 'allScheme' => $this->getAllColorSchema()));
     }
 
 }
