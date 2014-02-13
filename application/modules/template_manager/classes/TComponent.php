@@ -35,11 +35,18 @@ abstract class TComponent {
      * @var TComponentAssetManager 
      */
     protected $cAssetManager;
+    
+    /**
+     *
+     * @var currTemplate 
+     */
+    protected $currTemplate;
 
     /**
      * Getting paths & data from DB
      */
     public function __construct() {
+        $this->currTemplate =
         $this->handler = get_class($this);
         $rfc = new \ReflectionClass($this);
         $this->basePath = dirname($rfc->getFileName());
