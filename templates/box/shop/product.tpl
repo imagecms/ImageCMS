@@ -575,7 +575,7 @@
                         <li class="active">
                             <button data-href="#view">{lang('Обзор','newLevel')}</button>
                         </li>
-                        {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
+                        {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
 
                             <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
                             {/if}
@@ -615,7 +615,7 @@
                                         </div>
                                         <button class="t-d_n f-s_0 s-all-d ref2 d_n_" data-trigger="[data-href='#first']" data-scroll="true">
                                             <span class="icon_arrow"></span>
-                                            <span class="text-el">{lang('Просмотреть все спецификации','newLevel')}</span>
+                                            <span class="text-el">{lang('Смотреть все','newLevel')}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -632,7 +632,7 @@
                                     </div>
                                     <button class="t-d_n f-s_0 s-all-d ref2 d_n_" data-trigger="[data-href='#second']" data-scroll="true">
                                         <span class="icon_arrow"></span>
-                                        <span class="text-el">{lang('Полное описание','newLevel')}</span>
+                                        <span class="text-el">{lang('Смотреть все','newLevel')}</span>
                                     </button>
                                     <!--                        End. Description block-->
                                 </div>
@@ -642,12 +642,12 @@
                                 <div class="accessories">
                                     <div class="frame-title">
                                         <div class="title">
-                                            <h2 class="d_i">{lang('С этим товаром покупают','newLevel')}</h2>
+                                            <h2 class="d_i">{lang('Аксессуары','newLevel')}</h2>
                                         </div>
                                         {if count($accessories) > 4}
                                             <button class="t-d_n f-s_0 s-all-d ref2 s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
                                                 <span class="icon_arrow"></span>
-                                                <span class="text-el">{lang('Смотреть все аксессуары','newLevel')}</span>
+                                                <span class="text-el">{lang('Смотреть все','newLevel')}</span>
                                             </button>
                                         {/if}
                                     </div>

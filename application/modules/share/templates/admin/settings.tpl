@@ -133,6 +133,7 @@
                                                 <label class="control-label" for="maxsym">{lang('External view', 'share')}:</label>
                                                 <div class="controls">
                                                     <select name="ss[type]">
+                                                        <option value="counter" {if $settings['type'] == 'counter'}selected="selected"{/if}>{lang('counter', 'share')}</option>
                                                         <option value="button" {if $settings['type'] == 'button'}selected="selected"{/if}>{lang('button', 'share')}</option>
                                                         <option value="link" {if $settings['type'] == 'link'}selected="selected"{/if}>{lang('link', 'share')}</option>
                                                         <option value="icon" {if $settings['type'] == 'icon'}selected="selected"{/if}>{lang('icon and menu', 'share')}</option>
