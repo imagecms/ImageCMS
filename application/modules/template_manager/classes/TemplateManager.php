@@ -95,23 +95,16 @@ class TemplateManager {
     public function listLocal() {
         
         if ($handle = opendir('templates')) {
-            while (false !== ($fileName = readdir($handle))) {
+            while (false !== ($fileName = readdir($handle))) 
                 if ($fileName != "." && $fileName != ".." && is_dir('templates/' . $fileName)) {
-                    //echo $fileName . '<br/>';
-                    $templates[] = new Template($name);
-                }
-            }
+                    $template = new Template($fileName);
+                    if ($template->isValid())
+                        $templates[] = $template;
+                }          
             closedir($handle);
         }
-        //var_dump($templates);
-        exit;
-//        \CI::$APP->load->helper('file');
-//        $templatesNames = get_filenames('templates');
-//        var_dump($templatesNames);
-//        $templates = array();
-//        foreach ($templatesNames as $name) {
-//            $templates[] = new Template($name);
-//        }
+        
+
         return $templates;
     }
 

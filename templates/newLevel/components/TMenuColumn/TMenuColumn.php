@@ -4,6 +4,8 @@
  * class TMenuColumn for component template_manager
  */
 class TMenuColumn extends \template_manager\classes\TComponent {
+    
+    private $column = array(1,2,3,4,5);
 
     /**
      * prepare to save param from xml to db 
@@ -33,14 +35,9 @@ class TMenuColumn extends \template_manager\classes\TComponent {
                     $key = str_replace('col', '', $col);
                     $data[$key] = $value;
                 }
-                if (count($data) > 0) {
-                    $countColumn = count($this->getParam());
-                    for ($i = 1; $i <= $countColumn; $i++) {
-                        if (!array_key_exists($i, $data))
-                            $data[$i] = serialize(array());
-                    }
+                if (count($data) > 0) 
                     parent::setParams($data);
-                }
+                
             }
         }
     }
@@ -49,7 +46,7 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * render admin tpl with data
      */
     public function renderAdmin() {
-        $this->cAssetManager->display('admin/main', array('params' => $this->getParam(), 'handler' => $this->handler));
+        $this->cAssetManager->display('admin/main', array('columns' => $this->column,'params' => $this->getParam(), 'handler' => $this->handler));
     }
 
     /**

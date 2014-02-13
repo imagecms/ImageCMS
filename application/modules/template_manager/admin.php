@@ -33,8 +33,9 @@ class Admin extends BaseAdminController {
      * render template list
      */
     public function templates() {
+        $templateNameCurr = $this->db->get('settings')->row()->site_template;
         $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
-        \CMSFactory\assetManager::create()->setData(array('templates' => $templates))->renderAdmin('list');
+        \CMSFactory\assetManager::create()->setData(array('templates' => $templates, 'currTpl' => $templateNameCurr))->renderAdmin('list');
     }
 
     /**

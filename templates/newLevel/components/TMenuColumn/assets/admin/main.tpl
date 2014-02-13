@@ -18,27 +18,31 @@
                                 <div class="span3">
                                     <table class="table-columns">
                                         <tr>
-                                            {foreach $params as $value}
+                                            {foreach $columns as $colon}
+                                                {//foreach $params as $value}
                                                 <td class="span4">
                                                     <div class="control-group">
-                                                        <label class="control-label"><b class="columnName">{lang('Column', 'template_manager')} {echo $value['key']}:</b></label>
+                                                        <label class="control-label"><b class="columnName">{lang('Column', 'template_manager')} {echo $colon}:</b></label>
                                                         <div class="controls ">
-                                                            <select  class="ColumnsSelect" name="column[col{echo $value['key']}][]" multiple="multiple" style="height:400px !important;">
+                                                            <select  class="ColumnsSelect" name="column[col{echo $colon}][]" multiple="multiple" style="height:400px !important;">
                                                                 {foreach $categories as $key => $category}
-                                                                    {$selected = ""}
-                                                                    {foreach unserialize($value['value']) as $cat}
-                                                                        {if $cat == $category['id']}
-                                                                            {$selected = "selected='selected'"}
+                                                                    {foreach $params as $value}
+                                                                        {if $colon == $value['key']}
+                                                                            {$selected = ""}
+                                                                            {foreach unserialize($value['value']) as $cat}
+                                                                                {if $cat == $category['id']}
+                                                                                    {$selected = "selected='selected'"}
+                                                                                {/if}
+                                                                            {/foreach}
                                                                         {/if}
                                                                     {/foreach}
-                                                                    <option {echo $selected} {if count($category['full_path_ids']) == 0}style="font-weight:bold"{/if} value="{echo $key}">{echo str_repeat("-", count($category['full_path_ids']))}{echo $category['name']}</option>
-
+                                                                    <option {echo $selected} {if count($category['full_path_ids']) == 0}style="font-weight:bold"{/if} value="{echo $category['id']}">{echo str_repeat("-", count($category['full_path_ids']))}{echo $category['name']}</option>
                                                                 {/foreach}
                                                             </select>
-
                                                         </div>
                                                     </div>   
                                                 </td>
+
                                             {/foreach}
                                         </tr>
                                     </table>
