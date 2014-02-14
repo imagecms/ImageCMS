@@ -1748,7 +1748,7 @@ function getCookie(c_name)
         open: function($this, opt, datas, e) {
             e = e ? e : window.event;
             var addClass = undefined;
-            if ($this == undefined) {
+            if (!$this) {
                 if ($(this).hasClass('isDrop'))
                     $this = this;
                 else {

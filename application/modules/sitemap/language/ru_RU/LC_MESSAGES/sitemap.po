@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-11 09:33+0200\n"
-"PO-Revision-Date: 2014-02-11 09:33+0200\n"
+"POT-Creation-Date: 2014-02-13 11:14+0200\n"
+"PO-Revision-Date: 2014-02-13 11:14+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,15 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:65
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:83
+msgid "Add to robots"
+msgstr "Добавить в robots.txt"
+
+#: ./application/modules/sitemap/admin.php:97
+msgid "Site map have not been saved. Set writing permissions on module folder."
+msgstr "Карта сайта не сохранена. Установите права записи на папку модуля."
 
 #: ./application/modules/sitemap/assets/admin/settings.tpl:60
 msgid "There is no saved Site Map."
