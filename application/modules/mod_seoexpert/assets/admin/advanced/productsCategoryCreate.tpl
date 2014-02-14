@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">СЕО Експерт</span>
+            <span class="title">SEO Эксперт</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">

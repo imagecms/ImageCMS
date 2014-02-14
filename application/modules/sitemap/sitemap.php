@@ -609,7 +609,7 @@ class Sitemap extends MY_Controller {
             if ($ar == '/')
                 return true;
 
-            if (strstr($check, $ar))
+            if (strstr($ar, $check))
                 return true;
         }
         return false;
