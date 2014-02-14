@@ -37,8 +37,7 @@ class Mod_seoexpert extends \MY_Controller {
 //        \CMSFactory\Events::create()->on('Core:_displayPage')->setListener('_buildPageMeta');
 //        \CMSFactory\Events::create()->on('Core:_displayCategory')->setListener('_test');
     }
-   
-  
+
     /**
      * Buld Meta tags for Shop Product
      * @param array $arg
@@ -129,22 +128,38 @@ class Mod_seoexpert extends \MY_Controller {
         $model = $arg['category'];
         $settings = ShopCore::$ci->seoexpert_model->getSettings($local);
 
-        if ($settings['useCategoryPattern'] != 1) {
-            return FALSE;
+        if ($model->getParentId()) {
+            if ($settings['usesubcategoryPattern'] != 1) {
+                return FALSE;
+            }
+
+            if ($settings['usesubcategoryPatternForEmptyMeta'] == 1 && trim($model->getMetaTitle()) != '') {
+                return FALSE;
+            }
+
+            // Get settings
+            $template = $settings['subcategoryTemplate'];
+            $templateDesc = $settings['subcategoryTemplateDesc'];
+            $templateKey = $settings['subcategoryTemplateKey'];
+            $descCount = $settings['subcategoryTemplateDescCount'];
+            $brandsCount = $settings['subcategoryTemplateBrandsCount'];
+        } else {
+            if ($settings['useCategoryPattern'] != 1) {
+                return FALSE;
+            }
+
+            if ($settings['useCategoryPatternForEmptyMeta'] == 1 && trim($model->getMetaTitle()) != '') {
+                return FALSE;
+            }
+
+
+            // Get settings
+            $template = $settings['categoryTemplate'];
+            $templateDesc = $settings['categoryTemplateDesc'];
+            $templateKey = $settings['categoryTemplateKey'];
+            $descCount = $settings['categoryTemplateDescCount'];
+            $brandsCount = $settings['categoryTemplateBrandsCount'];
         }
-
-        if ($settings['useCategoryPatternForEmptyMeta'] == 1 && trim($model->getMetaTitle()) != '') {
-            return FALSE;
-        }
-
-
-        // Get settings
-        $template = $settings['categoryTemplate'];
-        $templateDesc = $settings['categoryTemplateDesc'];
-        $templateKey = $settings['categoryTemplateKey'];
-        $descCount = $settings['categoryTemplateDescCount'];
-        $brandsCount = $settings['categoryTemplateBrandsCount'];
-
         //Replace title variables
         $template = str_replace('%ID%', $model->getId(), $template);
         $template = str_replace('%name%', $model->getName(), $template);
@@ -180,7 +195,7 @@ class Mod_seoexpert extends \MY_Controller {
         // Set meta tags
         ShopCore::$ci->core->set_meta_tags($template, $templateKey, iconv('utf-8', 'utf-8', substr($templateDesc, 0, -2)));
     }
-    
+
     /**
      * Build Meta for Shop Brand
      * @param array $arg

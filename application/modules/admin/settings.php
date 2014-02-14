@@ -74,6 +74,7 @@ class Settings extends BaseAdminController {
                 $lang_meta[$lang['id']] = null;
         }
         $this->template->assign('langs', $langs);
+        
         $this->template->assign('meta_langs', $lang_meta);
 
 //++++++++++++++++++++
