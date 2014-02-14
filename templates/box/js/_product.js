@@ -1,5 +1,5 @@
 var productPhotoCZoom = window.productPhotoCZoom !== undefined,
-productPhotoDrop = window.productPhotoDrop !== undefined;
+        productPhotoDrop = window.productPhotoDrop !== undefined;
 
 var hrefOptions = {
     next: '#photo .drop-content .next',
@@ -25,18 +25,18 @@ Product = {
         /*Variants in Product*/
         el.find(genObj.parentBtnBuy).find(genObj.changeVariantProduct).on('change', function() {
             var productId = parseInt($(this).attr('value')),
-            liBlock = $(this).closest(genObj.parentBtnBuy),
-            btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
-            vId = btnInfo.data('id'),
-            vName = $.trim(btnInfo.data('vname')),
-            vNumber = $.trim(btnInfo.data('number')),
-            vPrice = btnInfo.data('price'),
-            vAddPrice = btnInfo.data('addPrice'),
-            vOrigPrice = btnInfo.data('origPrice'),
-            vLargeImage = $.trim(btnInfo.data('largeImage')),
-            vMainImage = $.trim(btnInfo.data('mainImage')),
-            vStock = btnInfo.data('maxcount');
-            
+                    liBlock = $(this).closest(genObj.parentBtnBuy),
+                    btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
+                    vId = btnInfo.data('id'),
+                    vName = $.trim(btnInfo.data('vname')),
+                    vNumber = $.trim(btnInfo.data('number')),
+                    vPrice = btnInfo.data('price'),
+                    vAddPrice = btnInfo.data('addPrice'),
+                    vOrigPrice = btnInfo.data('origPrice'),
+                    vLargeImage = $.trim(btnInfo.data('largeImage')),
+                    vMainImage = $.trim(btnInfo.data('mainImage')),
+                    vStock = btnInfo.data('maxcount');
+
             $(genObj.photoProduct).add($(genObj.mainThumb)).attr('href', vLargeImage);
             $(genObj.imgVP).attr({
                 'src': vMainImage,
@@ -59,7 +59,7 @@ Product = {
                 $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
             }
         });
-    /*/Variants in Product*/
+        /*/Variants in Product*/
     },
     initDrop: function(el) {//when click on <a>
         $this = el;
@@ -72,7 +72,7 @@ Product = {
     },
     resizePhoto: function(drop, s, c) {
         var fancyFrame = drop.find('.drop-content'),
-        img = fancyFrame.find('img');
+                img = fancyFrame.find('img');
 
         img.css({
             'width': img.actual('width'),
@@ -94,6 +94,8 @@ Product = {
         var drop = arg[1];
         fancyFrameInPH.parent().addClass('p_r');
         fancyFrameInPH.append('<div class="preloader"></div>');
+        if (href == hrefOptions.curHref)
+            fancyFrameInPH.find('.preloader').remove();
         fancyFrameInPH.find('img').attr('src', href).load(function() {
             fancyFrameInPH.find('.preloader').remove();
             var carGal = drop.find('.content-carousel');
@@ -107,15 +109,15 @@ Product = {
     },
     beforeShowHref: function(el, drop, isajax) {
         var arg = arguments,
-        cycle = hrefOptions.cycle,
-        obj = $.extend({}, el.data(), hrefOptions, el.closest(genObj.parentBtnBuy).find(genObj.infoBut).data()),
-        frame = $('#photo');
+                cycle = hrefOptions.cycle,
+                obj = $.extend({}, el.data(), hrefOptions, el.closest(genObj.parentBtnBuy).find(genObj.infoBut).data()),
+                frame = $('#photo');
         frame.html(_.template($('#framePhotoProduct').html(), obj));
 
         var next = $(hrefOptions.next),
-        prev = $(hrefOptions.prev),
-        content = drop.find('.drop-content'),
-        img = content.find('img');
+                prev = $(hrefOptions.prev),
+                content = drop.find('.drop-content'),
+                img = content.find('img');
         hrefOptions.curHref = img.attr('src');
 
         ShopFront.Cart.processBtnBuyCount(frame);
@@ -175,8 +177,8 @@ Product = {
         if ($.existsN(carGal.find('.items-thumbs').children())) {
             carGal.closest('.horizontal-carousel').show();
             var itemGal = carGal.find('.items-thumbs > li').removeClass('active'),
-            itemGalL = itemGal.length,
-            thumbsA = itemGal.find('a');
+                    itemGalL = itemGal.length,
+                    thumbsA = itemGal.find('a');
             hrefOptions.thumbs = new Array();
 
             thumbsA.each(function() {
@@ -184,7 +186,7 @@ Product = {
             });
 
             var btns = prev.add(next).removeAttr('disabled').fadeIn(),
-            acA = ($.inArray(img.attr('src'), hrefOptions.thumbs));
+                    acA = ($.inArray(img.attr('src'), hrefOptions.thumbs));
             itemGal.eq(acA).addClass('active');
 
             var itemGalUl = itemGal.parent();
@@ -196,7 +198,7 @@ Product = {
                 itemGal.removeClass('active');
                 $(this).parent().addClass('active');
                 var href = $(this).attr('href'),
-                acA = ($.inArray(href, hrefOptions.thumbs));
+                        acA = ($.inArray(href, hrefOptions.thumbs));
                 e.preventDefault();
                 Product.changePhoto(arg, fancyFrameInPH, href);
                 condBtn(acA);
@@ -219,7 +221,7 @@ Product = {
     onComplete: function(el, drop, isajax) {
         var carGal = drop.find('.content-carousel');
         drop.find('.drop-content img').css('visibility', 'visible');
-        
+
         ShopFront.Cart.changeCount(drop.find(genObj.plusMinus));
 
         Product.resizePhoto(drop, function() {
@@ -239,8 +241,8 @@ function initPhoto() {
         function margZoomLens() {
             $(genObj.photoProduct).find('img').each(function() {
                 var $this = $(this),
-                mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
-                mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
+                        mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
+                        mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
                 $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}');
             });
             $('.leftProduct').off('mouseover', '.mousetrap').on('mouseover', '.mousetrap', function() {
@@ -265,7 +267,7 @@ function initPhoto() {
     $('.item-product .items-thumbs > li > a').on('click.thumb', function(e) {
         e.preventDefault();
         var $this = $(this),
-        href = $this.attr('href');
+                href = $this.attr('href');
 
         $this.parent().siblings().removeClass('active').end().addClass('active');
         $(genObj.photoProduct).attr('href', href).find('img').attr('src', href);

@@ -15,21 +15,21 @@
                             }}{/literal});
                                 return false;">
                     <label>
-                        <span class="title">{lang('Имя: ','newLevel')}</span>
+                        <span class="title">{lang('Имя','newLevel')}</span>
                         <span class="frame-form-field">
                             <span class="must">*</span>
                             <input type="text" name="Name"/>
                         </span>
                     </label>
                     <label>
-                        <span class="title">{lang('Телефон: ','newLevel')}</span>
+                        <span class="title">{lang('Телефон','newLevel')}</span>
                         <span class="frame-form-field">
                             <span class="must">*</span>
                             <input type="text" name="Phone"/>
                         </span>
                     </label>
                     <label>
-                        <span class="title">{lang('Комментарий: ','newLevel')}</span>
+                        <span class="title">{lang('Текст','newLevel')}</span>
                         <span class="frame-form-field">
                             <textarea name="Comment"></textarea>
                         </span>

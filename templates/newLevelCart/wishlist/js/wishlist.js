@@ -37,7 +37,7 @@ var WishListFront = {
             $this.html(el.closest('form').find('[name=' + $this.data('wishlistName') + ']').val());
         });
     },
-    createWishList: function(el, elS, isajax, data) {
+    createWishList: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 location.reload();
@@ -80,14 +80,14 @@ var WishListFront = {
             return true;
         }
     },
-    reload: function(el, elS, isajax, data) {
+    reload: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 location.reload();
             }
         }
     },
-    addToWL: function(el, elS, isajax, data) {
+    addToWL: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 wishList.add(el.data('id'));
@@ -96,7 +96,7 @@ var WishListFront = {
             }
         }
     },
-    removeItem: function(el, elS, isajax, data) {
+    removeItem: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 var li = el.closest(genObj.parentBtnBuy),
@@ -108,7 +108,7 @@ var WishListFront = {
             }
         }
     },
-    removeWL: function(el, elS, isajax, data) {
+    removeWL: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 var frame = el.closest(WishListFront.frameWL),
