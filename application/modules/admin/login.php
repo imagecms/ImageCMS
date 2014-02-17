@@ -85,7 +85,7 @@ class Login extends BaseAdminController {
             }
         }
 
-        $this->template->display('login_page');
+        $this->template->display('login');
 //			$this->template->show('login', TRUE);
     }
 
