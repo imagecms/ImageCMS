@@ -44,7 +44,9 @@
                     </tbody>
                 </table>
             {else:}
-                <p style="text-align: center; padding: 15px; font-size: 13pt;">There are no users online </p>
+                <p style="text-align: center; padding: 15px; font-size: 13pt;">
+                    {lang('There are no users online', 'mod_stats')}
+                </p>
             {/if}
         </div>
     </div>

@@ -9,6 +9,8 @@
  */
 class UsersController extends ControllerBase {
 
+    use FileImportTrait;
+
     public $params = array();
 
     public function __construct($controller) {
@@ -135,7 +137,7 @@ class UsersController extends ControllerBase {
         $this->controller->load->model('users_model');
         $this->controller->users_model->setParams($params);
         $data = $this->controller->users_model->getRegister();
-        
+
         $this->renderAdmin('registered', array(
             'data' => $data,
             'viewType' => $viewType,
@@ -162,7 +164,7 @@ class UsersController extends ControllerBase {
                 'y' => (int) $row['count']
             );
         }
-        $this->import('classes/ZeroFiller');
+        $this->controller->import('classes/ZeroFiller');
         echo json_encode(
                 array(
                     array(
@@ -171,6 +173,25 @@ class UsersController extends ControllerBase {
                     )
                 )
         );
+    }
+
+    /**
+     * 
+     */
+    public function robots_attendance() {
+        $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+        $this->controller->import('classes/RobotsAttendance');
+        $robots = RobotsAttendance::getInstance()->getRobots();
+        $currentRobot = isset($_GET['currentRobot']) ? $_GET['currentRobot'] : $robots[0];
+
+        $this->controller->load->model('attendance_model');
+        $data = $this->controller->attendance_model->getRobotAttendance($currentRobot, $date);
+
+        $this->renderAdmin('robots_attendance', array(
+            'data' => $data,
+            'robots' => $robots,
+            'currentRobot' => $currentRobot
+        ));
     }
 
 }
