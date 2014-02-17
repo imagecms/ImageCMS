@@ -70,7 +70,7 @@
                                             <input class="ratec" name="ratec" type="hidden" value=""/>
                                         </div>
                                     </div>
-                                    <div class="btn-form f_r">
+                                    <div class="btn-def f_r">
                                         <input type="submit" value="{lang('Оставить отзыв')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
                                     </div>
                                 </div>

@@ -21,6 +21,14 @@
                 <span class="icon-calendar"></span>
             </label>
         </span>
+        <span class="d-i_b m-r_10 m-l_10">{lang('Count of results', 'mod_stats')} </span>
+        <span class="d-i_b" style="width: 60px !important;">
+            <label class="p_r">
+                <input class="input-small required" 
+                       value="{if $_GET['swr'] != null}{echo $_GET['swr']}{else:}200{/if}" 
+                       type="text" name="swr" maxlength="5" >
+            </label>
+        </span>
 
         <div class="pull-right">
             <button type="submit" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButton">
