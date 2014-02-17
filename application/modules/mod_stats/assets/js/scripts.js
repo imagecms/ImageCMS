@@ -154,7 +154,7 @@ $(document).ready(function() {
                             height = 650 + (cData.length / 3 * 20);
 
                     var tooltip = function(key, x, y, e, graph) {
-                        x = parseFloat(x.replace(' ','').replace(',','').replace(',','.'));
+                        x = parseFloat(x.replace(' ','').replace(',',''));
                         return '<h3>' + key + '</h3>' +
                                 '<p>' + x + '</p>';
                     }
