@@ -69,12 +69,13 @@ class Orders_model extends CI_Model {
                 COUNT(`dtable`.`id`) as `orders_count`,
                 SUM(`dtable`.`products_count`) as `products_count`,
                 SUM(`dtable`.`quantity`) as `quantity`,
-                SUM(`dtable`.`status`) as `delivered`
+                SUM(`dtable`.`status`) as `delivered`,
+                SUM(`paid`) as `paid`
             FROM 
                 (SELECT 
                     `shop_orders`.`id`,
                     `shop_orders`.`date_created`,
-                    `shop_orders`.`paid`,
+                    IFNULL(`shop_orders`.`paid`, 0) as `paid`,
                     -- IF(ISNULL(`shop_orders`.`origin_price`), 0, `shop_orders`.`origin_price`) as `origin_price`,
                     SUM(`shop_orders_products`.`price`) as `origin_price`,
                     IF(`shop_orders`.`status` = 2, 1, 0) as `status`,
@@ -97,7 +98,6 @@ class Orders_model extends CI_Model {
             ORDER BY FROM_UNIXTIME(`date_created`)
         ";
 
-
         $result = $this->db->query($query);
         if ($result === FALSE) {
             return FALSE;
@@ -112,7 +112,7 @@ class Orders_model extends CI_Model {
     /**
      * Information about orders grouped by users
      * @param arra $params standart params
-     @return boolean|array
+      @return boolean|array
      *  - orders_count
      *  - paid
      *  - price_sum
@@ -129,6 +129,8 @@ class Orders_model extends CI_Model {
             'interval' => 'day',
             'dateFrom' => NULL,
             'dateTo' => NULL,
+            'username' => NULL,
+            'order_id' => NULL,
         );
         foreach ($params_ as $key => $value) {
             if (key_exists($key, $params)) {
@@ -136,11 +138,32 @@ class Orders_model extends CI_Model {
             }
         }
 
+        $codumns = array(
+            'date', 'orders_count', 'paid', 'unpaid', 'delivered', 'price_sum', 'products_count', 'quantity', 'orders_ids', 'username', 'user_id'
+        );
+
+        $orderBy = NULL;
+        if (isset($_GET['orderMethod']) && isset($_GET['order'])) {
+            if (in_array($_GET['orderMethod'], $codumns) && ($_GET['order'] == "ASC" || $_GET['order'] == "DESC")) {
+                $orderBy = "ORDER BY `{$_GET['orderMethod']}` {$_GET['order']}";
+            }
+        }
+        $orderBy = is_null($orderBy) ? 'ORDER BY `orders_count` DESC' : $orderBy;
+
+        $otherConditions = "";
+        if (!is_null($params['username']) && !empty($params['username'])) {
+            $otherConditions .= " AND `username` LIKE '%{$params['username']}%' ";
+        }
+        if (!is_null($params['order_id']) && !empty($params['order_id'])) {
+            $otherConditions .= " AND `order_id` = {$params['order_id']} ";
+        }
+
         $query = "
             SELECT
                 DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . $this->getDatePattern($params['interval']) . "') as `date`,
                 COUNT(`order_id`) as `orders_count`,
                 SUM(`paid`) as `paid`,
+                COUNT(`order_id`) - SUM(`paid`) as `unpaid`,
                 SUM(`status`) as `delivered`,
                 SUM(`origin_price`) as `price_sum`,
                 SUM(`products_count`) as `products_count`,
@@ -166,14 +189,16 @@ class Orders_model extends CI_Model {
                  WHERE 1
                     AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY 
                     " . $this->prepareDateBetweenCondition('date_created', $params) . "
+                    {$otherConditions}
                  GROUP BY 
                    `shop_orders`.`id`
                  ORDER BY 
                    FROM_UNIXTIME(`shop_orders`.`date_created`)
                 ) as dtable                  
             GROUP BY `username`
-            ORDER BY `orders_count` DESC
+            {$orderBy}
         ";
+
 
         $result = $this->db->query($query);
         if ($result === FALSE) {

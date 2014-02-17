@@ -35,8 +35,9 @@
     text-align: center;
 }
 #user_information table thead th {width: 10%;}
-#user_information table thead th:nth-child(5) {width: 28%;}
-#user_information table thead th:nth-child(6) {width: 12%;}
+#user_information table thead th:nth-child(1) {width: 15%;}
+#user_information table thead th:nth-child(6) {width: 15%;}
+#user_information table thead th:nth-child(7) {width: 12%;}
 
 
 .mod_stats_no_online {
@@ -78,5 +79,30 @@
 .hisory-table-container {
     max-height: 400px;
     overflow-y: scroll;
+}
+
+#common-info-table {
+    display: block;
+    width: 100%;
+    margin: 20px;
+}
+
+#common-info-table tr td:first-child {
+    width: 30%;
+    padding: 5px;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+}
+
+#common-info-table tr td:last-child {
+    width: 70%;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+
+.orders_users_order:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 

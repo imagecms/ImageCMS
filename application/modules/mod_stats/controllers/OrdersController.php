@@ -20,58 +20,75 @@ class OrdersController extends ControllerBase {
     }
 
     /**
-     * Prints template for counts
+     * Prints template for charts
      */
-    public function count() {
+    public function charts() {
         // Set default view type
-        if (!isset($_GET['view_type'])) {
-            $_GET['view_type'] = 'table';
-        }
-
         $result = $this->controller->orders_model->getOrdersInfo(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
         ));
-        $this->renderAdmin('count', array('data' => $result, 'viewType' => $viewType));
+        $this->renderAdmin('charts', array(
+            'data' => $result,
+            'viewType' => $viewType,
+            'show_by' => !empty($_GET['show_by']) ? $_GET['show_by'] : 'Price')
+        );
     }
 
-    /**
-     * Output json data for count chart
-     */
-    public function getCountChartData() {
-        // Get results about orders from model
+    public function getChartDataPrice() {
+        $this->outputChart(array(
+            'price_sum' => lang('Price', 'mod_stats'),
+        ));
+    }
+
+    public function getChartDataCount() {
+        $this->outputChart(array(
+            'orders_count' => lang('Orders', 'mod_stats'),
+            'products_count' => lang('Products', 'mod_stats'),
+            'paid' => lang('Paid', 'mod_stats'),
+            'delivered' => lang('Delivered', 'mod_stats')
+        ));
+    }
+
+    private function outputChart(array $lines) {
         $result = $this->controller->orders_model->getOrdersInfo(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
         ));
 
-        $preFinalStruct = $this->dataRemap->remapFor2Axises($result);
+        $countsData = array();
+        foreach ($result as $i => $row) {
+            foreach ($row as $field => $value) {
+                if (key_exists($field, $lines)) {
+                    $countsData[$field][] = array(
+                        'date' => $result[$i]['date'],
+                        'x' => $result[$i]['unix_date'] * 1000,
+                        'y' => $value
+                    );
+                }
+            }
+        }
 
-        // Remove unwanted values
-        unset($preFinalStruct['products_count'], $preFinalStruct['quantity'], $preFinalStruct['delivered']);
+        $this->controller->import('classes/ZeroFiller');
 
-        // For langs
-        $labels = array(
-            'orders_count' => array('label' => 'Orders count'),
-            'price_sum' => array('label' => 'Cash', 'bar' => TRUE),
-        );
+        $chartData = array();
+        foreach ($countsData as $labelKey => $valuesArray) {
+            $chartData[] = array(
+                'key' => $lines[$labelKey],
+                //'values' => $valuesArray,// without filling zeros
+                'values' => ZeroFiller::fill($valuesArray, 'x', 'y', isset($_GET['group']) ? $_GET['group'] : 'day'),
+            );
+        }
 
-        //Prepare data for diagram
-        $chartData = parent::prepareDataForLineChart($preFinalStruct, $labels);
         echo json_encode($chartData);
     }
 
     /**
      * Render template for statuses
      */
-    public function statuses() {
-        // Set default view type
-        if (!isset($_GET['view_type'])) {
-            $_GET['view_type'] = 'table';
-        }
-
+    public function info() {
         $result = $this->controller->orders_model->getOrdersInfo(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
@@ -79,53 +96,36 @@ class OrdersController extends ControllerBase {
         ));
         $this->assetManager
                 ->setData('data', $result)
-                ->renderAdmin('orders/statuses');
-    }
-
-    /**
-     * Output json data for orders statuses and product chart
-     */
-    public function getStatusesChartData() {
-        // Get results about orders from model
-        $result = $this->controller->orders_model->getOrdersInfo(array(
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-        ));
-
-        $preFinalStruct = $this->dataRemap->remapForOneAxis($result);
-
-        // Remove unwanted values
-        unset($preFinalStruct['price_sum'], $preFinalStruct['quantity']);
-
-        // For langs
-        $labels = array(
-            'orders_count' => array('label' => 'Orders count'),
-            'delivered' => array('label' => 'Count of delivered'),
-            'products_count' => array('label' => 'Count of products')
-        );
-
-        //Prepare data for diagram
-        $chartData = parent::prepareDataForLineMultChart($preFinalStruct, $labels);
-        echo json_encode($chartData);
+                ->renderAdmin('orders/info');
     }
 
     /**
      * Template for users
      */
     public function users() {
-        // Set default view type
-        if (!isset($_GET['view_type'])) {
-            $_GET['view_type'] = 'table';
-        }
 
-        $field = isset($_GET['chart_field']) ? $_GET['chart_field'] : 'orders_count';
-
+        // getting all data
         $data = $this->controller->orders_model->getUsers(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '20014-01-01',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+            'username' => isset($_GET['username']) ? $_GET['username'] : NULL,
+            'order_id' => isset($_GET['order_id']) ? $_GET['order_id'] : NULL,
         ));
+
+        // adding links and some data
+        for ($i = 0; $i < count($data); $i++) {
+            $orderIds = explode(',', $data[$i]['orders_ids']);
+            $orderLinks = '';
+            foreach ($orderIds as $oId) {
+                $orderLinks .= "<a href='/admin/components/run/shop/orders/edit/{$oId}'>{$oId}</a>,";
+            }
+            $data[$i]['orders_ids'] = trim($orderLinks, ',');
+            if (!in_array($data[$i]['username'], array('-', '0'))) {
+                $data[$i]['username'] = "<a href='/admin/components/run/shop/users/edit/{$data[$i]['user_id']}'>{$data[$i]['username']}</a>";
+            }
+            $data[$i]['unpaid'] = $data[$i]['orders_count'] - $data[$i]['paid'];
+        }
 
         $this->renderAdmin('users', array(
             'data' => $data,

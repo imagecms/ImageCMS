@@ -1,5 +1,5 @@
 <div class="span3">
-    
+
     <!-- Hidden <FORM> to submit the SVG data to the server, which will convert it to SVG/PDF/PNG downloadable file.
      The form is populated and submitted by the JavaScript below. -->
     <form id="svgform" method="post" action="http://d3export.cancan.cshl.edu/download.pl">
@@ -8,6 +8,9 @@
     </form>
 
     <ul class="nav nav-tabs nav-stacked m-t_10 left-menu-ul">
+        <li>
+            <a class='firstLevelMenu' href="/admin/components/cp/mod_stats/">Start page</a> 
+        </li>
         {foreach $leftMenu as $firstLevel}
             <li>
                 <a class="firstLevelMenu">{$firstLevel.name}</a> 
@@ -17,33 +20,40 @@
                     <li>
                         <a href="{site_url('admin/components/cp/mod_stats/')}/{$secondLevel.controller}/{$secondLevel.action}{$queryString}" 
                            class="linkChart 
-                           {if strpos($_SERVER['REQUEST_URI'], implode("/", array($secondLevel.controller,$secondLevel.action)))} active{/if}"
+                        {if strpos($_SERVER['REQUEST_URI'], implode("/", array($secondLevel.controller,$secondLevel.action)))} active{/if}"
 
-                           >&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">-</span> {$secondLevel.name}   
-                        </a>
-                    </li>
-                {/foreach}
-            </div>
-        {/foreach}
-    </ul>
-    <div class="m-t_20">
-        <span class="settingTitle"> {lang('Settings','mod_stats')} </span>
-        <div class="settingsContainer">
-            <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
-                <span class="niceCheck"  style="background-position: -46px -17px;">
-                    <input type="checkbox" {if $saveSearchResults == '1'}checked="checked" {/if} class="shortSettingsCheckbox" data-sname="save_search_results">
-                </span>
-                {lang('save search results','mod_stats')}
-            </span>
-
-            <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
-                <span class="niceCheck"  style="background-position: -46px -17px;">
-                    <input type="checkbox" {if $saveUsersAttendance == '1'}checked="checked" {/if} class="shortSettingsCheckbox" data-sname="save_users_attendance">
-                </span>
-                {lang("save user's attendance","mod_stats")}
-            </span>
-
+                        >&nbsp;&nbsp;&nbsp;
+                        <span class="simple_tree">-</span> {$secondLevel.name}   
+                    </a>
+                </li>
+            {/foreach}
         </div>
+    {/foreach}
+</ul>
+<div class="m-t_20">
+    <span class="settingTitle"> {lang('Settings','mod_stats')} </span>
+    <div class="settingsContainer">
+        <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
+            <span class="niceCheck"  style="background-position: -46px -17px;">
+                <input type="checkbox" {if $saveSearchResults == '1'}checked="checked" {/if} class="shortSettingsCheckbox" data-sname="save_search_results">
+            </span>
+            {lang('Save search results', 'mod_stats')}
+        </span>
+
+        <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
+            <span class="niceCheck"  style="background-position: -46px -17px;">
+                <input type="checkbox" {if $saveUsersAttendance == '1'}checked="checked" {/if} class="shortSettingsCheckbox" data-sname="save_users_attendance">
+            </span>
+            {lang("Save user's attendance", "mod_stats")}
+        </span>
+
+        <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
+            <span class="niceCheck"  style="background-position: -46px -17px;">
+                <input type="checkbox" {if $saveRobotsAttendance == '1'}checked="checked" {/if} class="shortSettingsCheckbox" data-sname="save_robots_attendance">
+            </span>
+            {lang("Save robots's attendance", "mod_stats")}
+        </span>
+
     </div>
+</div>
 </div>
