@@ -49,6 +49,7 @@ class Attendance {
         if (FALSE == $typeId = $this->getTypeId($coreData['data_type'])) {
             return;
         }
+
         $this->attendanceData = array(
             'id_user' => $userId,
             'type_id' => $typeId,
@@ -56,7 +57,7 @@ class Attendance {
             'time_add' => time(),
         );
     }
-    
+
     /**
      * Get page type id
      * @param string $dataType
@@ -78,4 +79,5 @@ class Attendance {
     }
 
 }
+
 ?>

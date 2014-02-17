@@ -1,4 +1,3 @@
-
 <script>
     var currency = '{$CS}'
 </script>
@@ -8,8 +7,9 @@
 </div>
 
 <div class="m-t_20">
-    <form id="top_form_orders_users" method="get">
+    <form method="get">
         <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="d-i_b m-r_10 m-l_10">{lang('From:','mod_stats')}</span>
             <span class="d-i_b">
                 <label class="p_r">
@@ -26,6 +26,7 @@
             </span>
 
             <span class="d-i_b">
+                &nbsp;&nbsp;&nbsp;
                 {lang('Group by:','mod_stats')}
                 <label class="d-i_b p_r">
                     <select id="selectGroupBy" name='group'>
@@ -36,7 +37,7 @@
                 </label>
             </span>
             <div class="pull-right">
-                <button type="button" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButtonOrdersUsers">
+                <button type="submit" class="btn btn-small  btn-primary" type="button" id="refreshIntervalsButton">
                     <i class="icon-refresh"></i> {lang('Update','mod_stats')}
                 </button>
             </div>

@@ -14,37 +14,32 @@
         {include_tpl('../include/left_block')}
         <div class="clearfix span9" id="chartArea">
             {include_tpl('../include/top_form')}
-            <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
-            {if $_GET['view_type'] == 'chart'}
+
+            {if $viewType == 'chart'}
                 <button  class="btn btn-small btn-primary" id="saveAsPng">
-                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')} </button>
-                <svg class="linePlusBarChartStats" data-from="orders/getCountChartData" style="height: 600px; width: 800px;"></svg>
+                    <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}
+                </button>
+                <svg class="cumulativeLineChartStats" data-from="users/getRegisterData" style="height: 600px; width: 800px;"></svg>
             {else:}
                 {if count($data) > 0}
                     <table class="table table-striped table-bordered table-condensed content_big_td">
                         <thead>
                             <tr>
-                                <th>{lang('Period', 'mod_stats')}</th>
-                                <th>{lang('Orders', 'mod_stats')}</th>
-                            <!-- <th>{lang('Unique products', 'mod_stats')}</th>
-                                <th>{lang('Total products', 'mod_stats')}</th>-->
-                                <th>{lang('Sum', 'mod_stats')}</th>
+                                <th>{lang('Date', 'mod_stats')}</th>
+                                <th>{lang('Count registrations', 'mod_stats')}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {foreach $data as $order}
+                            {foreach $data as $day}
                                 <tr>
-                                    <td>{$order.date}</td>
-                                    <td>{$order.orders_count}</td>
-                                    <!--<td>{$order.products_count}</td>
-                                    <td>{$order.quantity}</td>-->
-                                    <td>{$order.price_sum}</td>
+                                    <td>{$day.date}</td>
+                                    <td>{$day.count}</td>
                                 </tr>
                             {/foreach}
                         </tbody>
                     </table>
                 {else:}
-                    <p style="text-align: center;">There are no orders for specified period</p>
+                    <p style="text-align: center;">There are no registrations for specified period</p>
                 {/if}
 
             {/if}

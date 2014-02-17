@@ -38,13 +38,21 @@ class Mod_stats extends \MY_Controller {
             }
         }
     }
-    
+
     /**
      * Save user attandance
      */
     public function saveAttendance() {
         $thisObj = new Mod_stats();
         $thisObj->import('classes/Attendance');
+
+        $thisObj->load->library('user_agent');
+        if ($thisObj->agent->is_robot()) {
+            if ((int) \mod_stats\classes\AdminHelper::create()->getSetting('save_robots_attendance') == 1) {
+                RobotsAttendance::getInstance()->add(CI::$APP->core->core_data, $this->agent->robot());
+            }
+            return;
+        }
 
         /*
          * If user is not registered, he has no id. For accurate data 
@@ -71,7 +79,7 @@ class Mod_stats extends \MY_Controller {
         }
         Attendance::getInstance()->add(CI::$APP->core->core_data, $userId);
     }
-    
+
     /**
      * Save search keywords
      * @param string $text
