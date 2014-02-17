@@ -16,8 +16,8 @@
                             <span class="text-el">{lang('Вход','newLevel')}</span>
                         </button>
                     </li>
-                    <li class="btn-register">
-                        <a href="{site_url('/auth/register')}" rel=”nofollow”>
+                    <li>
+                        <a href="{site_url('/auth/register')}" rel=”nofollow” class="t-d_u">
                             <span class="text-el">{lang('Регистрация','newLevel')}</span>
                         </a>
                     </li>
@@ -27,6 +27,7 @@
         {else:}
             <li class="btn-personal-exit">
                 <button type="button" data-drop=".dropPersonalExit" data-place="noinherit" data-overlay-opacity="0" data-placement="top right">
+                    <span class="icon_enter"></span>
                     <span class="text-el">{lang('Личный кабинет', 'newLevel')}</span>
                 </button>
                 <ul class="drop dropPersonalExit drop-auth-refer drop-noinherit">

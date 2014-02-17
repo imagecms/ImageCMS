@@ -93,10 +93,12 @@ Product = {
         $.drop.method('center')(drop);
     },
     changePhoto: function(arg, fancyFrameInPH, href) {
-        hrefOptions.curHref = href;
         var drop = arg[1];
         fancyFrameInPH.parent().addClass('p_r');
         fancyFrameInPH.after('<div class="preloader"></div>');
+        if (href == hrefOptions.curHref)
+            fancyFrameInPH.find('.preloader').remove();
+        hrefOptions.curHref = href;
         $('<img src="' + href + '">').load(function() {
             drop.find('.drop-content').find('img').remove();
             fancyFrameInPH.nextAll('.preloader').remove();

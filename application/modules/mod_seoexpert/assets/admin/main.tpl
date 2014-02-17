@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">СЕО Експерт</span>
+            <span class="title">SEO Эксперт</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
@@ -333,129 +333,213 @@
                                                     Meta-keywords шаблон:
                                                 </span>
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='categoryTemplateKey' value="{$settings.categoryTemplateKey}" /></span>
-                                                </label>
+                                            </label>
 
-                                                <label class="">
-                                                    <span class="span4">Активный:</span>
-                                                    <span style="width: 16px;" class="span1"><input name="useCategoryPattern"  {if $settings.useCategoryPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                                </label>
+                                            <label class="">
+                                                <span class="span4">Активный:</span>
+                                                <span style="width: 16px;" class="span1"><input name="useCategoryPattern"  {if $settings.useCategoryPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
+                                            </label>
 
-                                                <label class=""><span class="span4">Использовать только для пустых метаданных:</span>
-                                                    <span style="width: 16px;" class="span1"><input name="useCategoryPatternForEmptyMeta"  {if $settings.useCategoryPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                                </label>
+                                            <label class=""><span class="span4">Использовать только для пустых метаданных:</span>
+                                                <span style="width: 16px;" class="span1"><input name="useCategoryPatternForEmptyMeta"  {if $settings.useCategoryPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
+                                            </label>
 
-                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="inside_padd discount-out">
-                                            <div class="form-horizontal">
-                                                <div class="title-bonus-out"><div class="span4"></div><div class="span8 title-bonus">Бренды [{$locale}]</div></div>
+                                    </div>
+                                </td>
+                            </tr>
 
-                                                <label class="">
-                                                    <span class="span4">
-                                                        <span data-title="Переменные, которые можно использовать" class="popover_ref" data-original-title="">
-                                                            <i class="icon-info-sign"></i>
-                                                        </span>
-                                                        <div class="d_n">
-                                                            <b>%ID%</b> - ID бренда<br/>
-                                                            <b>%name%</b> - название бренда<br/>
-                                                            <b>%desc%</b> - описание бренда<br/>
-                                                        </div>
-                                                        Meta-title pattern:
+                            <tr>
+                                <td colspan="6">
+                                    <div class="inside_padd discount-out">
+                                        <div class="form-horizontal">
+                                            <div class="title-bonus-out"><div class="span4"></div><div class="span8 title-bonus">Подкатегория [{$locale}]</div></div>
+
+                                            <label class="">
+                                                <span class="span4">
+                                                    <span data-title="Переменные, которые можно использовать:" class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
                                                     </span>
-                                                    <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplate' value="{$settings.brandTemplate}" /></span>
-                                                </label>
+                                                    <div class="d_n">
+                                                        <b>%ID%</b> - ID категории<br/>
+                                                        <b>%name%</b> - название категории<br/>
+                                                        <b>%desc%</b> - описание категории<br/>
+                                                        <b>%H1%</b> - поле H1 категории<br/>
+                                                        <b>%brands%</b> - список топ брендов, через запятую <br/>
+                                                    </div>
+                                                    Meta-title pattern:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='subcategoryTemplate' value="{$settings.subcategoryTemplate}" /></span>
+                                            </label>
 
-                                                <label class="">
-                                                    <span class="span4">
-                                                        <span data-title="Переменные, которые можно использовать" class="popover_ref" data-original-title="">
-                                                            <i class="icon-info-sign"></i>
-                                                        </span>
-                                                        <div class="d_n">
-                                                            <b>%ID%</b> - ID бренда<br/>
-                                                            <b>%name%</b> - название бренда<br/>
-                                                            <b>%desc%</b> - описание бренда<br/>
-                                                        </div>
-                                                        Meta-description шаблон:
+                                            <label class="">
+                                                <span class="span4">
+                                                    <span data-title="Переменные, которые можно использовать" class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
                                                     </span>
-                                                    <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateDesc' value="{$settings.brandTemplateDesc}" /></span>
-                                                </label>
+                                                    <div class="d_n">
+                                                        <b>%ID%</b> - ID категории<br/>
+                                                        <b>%name%</b> - название категории<br/>
+                                                        <b>%desc%</b> - описание категории<br/>
+                                                        <b>%H1%</b> - поле H1 категории<br/>
+                                                        <b>%brands%</b> - список топ брендов, через запятую <br/>
+                                                    </div>
+                                                    Meta-description шаблон:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='subcategoryTemplateDesc' value="{$settings.subcategoryTemplateDesc}" /></span>
+                                            </label>
 
-                                                <label class="">
-                                                    <span class="span4">
-                                                        Длина описания:
+                                            <label class="">
+                                                <span class="span4">
+                                                    Длина описания:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='subcategoryTemplateDescCount' value="{$settings.subcategoryTemplateDescCount}" /></span>
+                                            </label>
+                                            <label class="">
+                                                <span class="span4">
+                                                    Количество брендов:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='subcategoryTemplateBrandsCount' value="{$settings.subcategoryTemplateBrandsCount}" /></span>
+                                            </label>
+                                            <label class="">
+                                                <span class="span4">
+                                                    <span data-title="Переменные, которые можно использовать:" class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
                                                     </span>
-                                                    <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateDescCount' value="{$settings.brandTemplateDescCount}" /></span>
-                                                </label>
-                                                <label class="">
-                                                    <span class="span4">
-                                                        <span data-title="Переменные, которые можно использовать:" class="popover_ref" data-original-title="">
-                                                            <i class="icon-info-sign"></i>
-                                                        </span>
-                                                        <div class="d_n">
-                                                            <b>%name%</b> - название бренда<br/>
-                                                        </div>
-                                                        Meta-keywords шаблон:
-                                                    </span>
-                                                    <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateKey' value="{$settings.brandTemplateKey}" /></span>
-                                                </label>
+                                                    <div class="d_n">
+                                                        <b>%ID%</b> - ID категории<br/>
+                                                        <b>%name%</b> - название категории<br/>
+                                                        <b>%desc%</b> - описание категории<br/>
+                                                        <b>%H1%</b> - поле H1 категории<br/>
+                                                        <b>%brands%</b> - список топ брендов, через запятую <br/>
+                                                    </div>
+                                                    Meta-keywords шаблон:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='subcategoryTemplateKey' value="{$settings.subcategoryTemplateKey}" /></span>
+                                            </label>
 
-                                                <label class="">
-                                                    <span class="span4">Активный:</span>
-                                                    <span style="width: 16px;" class="span1"><input name="useBrandPattern"  {if $settings.useBrandPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                                </label>
+                                            <label class="">
+                                                <span class="span4">Активный:</span>
+                                                <span style="width: 16px;" class="span1"><input name="usesubcategoryPattern"  {if $settings.usesubcategoryPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
+                                            </label>
 
-                                                <label class=""><span class="span4">Использовать только для пустых метаданных:</span>
-                                                    <span style="width: 16px;" class="span1"><input name="useBrandPatternForEmptyMeta"  {if $settings.useBrandPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                                </label>
+                                            <label class=""><span class="span4">Использовать только для пустых метаданных:</span>
+                                                <span style="width: 16px;" class="span1"><input name="usesubcategoryPatternForEmptyMeta"  {if $settings.usesubcategoryPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
+                                            </label>
 
-                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="inside_padd discount-out">
-                                            <div class="form-horizontal">
-                                                <div class="title-bonus-out"><div class="span4"></div><div class="span8 title-bonus">Поиск [{$locale}]</div></div>
+                                    </div>
+                                </td>
+                            </tr>
 
-                                                <label class="">
-                                                    <span class="span4">                                        
-                                                        Meta-title pattern:
+                            <tr>
+                                <td colspan="6">
+                                    <div class="inside_padd discount-out">
+                                        <div class="form-horizontal">
+                                            <div class="title-bonus-out"><div class="span4"></div><div class="span8 title-bonus">Бренды [{$locale}]</div></div>
+
+                                            <label class="">
+                                                <span class="span4">
+                                                    <span data-title="Переменные, которые можно использовать" class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
                                                     </span>
-                                                    <span class="span8 discount-name"><input type="text" autocomplete="off" name='searchTemplate' value="{$settings.searchTemplate}" /></span>
-                                                </label>
+                                                    <div class="d_n">
+                                                        <b>%ID%</b> - ID бренда<br/>
+                                                        <b>%name%</b> - название бренда<br/>
+                                                        <b>%desc%</b> - описание бренда<br/>
+                                                    </div>
+                                                    Meta-title pattern:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplate' value="{$settings.brandTemplate}" /></span>
+                                            </label>
 
-                                                <label class="">
-                                                    <span class="span4">                                        
-                                                        Meta-description шаблон:
+                                            <label class="">
+                                                <span class="span4">
+                                                    <span data-title="Переменные, которые можно использовать" class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
                                                     </span>
-                                                    <span class="span8 discount-name"><input type="text" autocomplete="off" name='searchTemplateDesc' value="{$settings.searchTemplateDesc}" /></span>
-                                                </label>
+                                                    <div class="d_n">
+                                                        <b>%ID%</b> - ID бренда<br/>
+                                                        <b>%name%</b> - название бренда<br/>
+                                                        <b>%desc%</b> - описание бренда<br/>
+                                                    </div>
+                                                    Meta-description шаблон:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateDesc' value="{$settings.brandTemplateDesc}" /></span>
+                                            </label>
 
-                                                <label class="">
-                                                    <span class="span4">                                        
-                                                        Meta-keywords шаблон:
+                                            <label class="">
+                                                <span class="span4">
+                                                    Длина описания:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateDescCount' value="{$settings.brandTemplateDescCount}" /></span>
+                                            </label>
+                                            <label class="">
+                                                <span class="span4">
+                                                    <span data-title="Переменные, которые можно использовать:" class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
                                                     </span>
-                                                    <span class="span8 discount-name"><input type="text" autocomplete="off" name='searchTemplateKey' value="{$settings.searchTemplateKey}" /></span>
-                                                </label>
+                                                    <div class="d_n">
+                                                        <b>%name%</b> - название бренда<br/>
+                                                    </div>
+                                                    Meta-keywords шаблон:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateKey' value="{$settings.brandTemplateKey}" /></span>
+                                            </label>
 
-                                                <label class="">
-                                                    <span class="span4">Активный:</span>
-                                                    <span style="width: 16px;" class="span1"><input name="useSearchPattern"  {if $settings.useSearchPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                                </label>
+                                            <label class="">
+                                                <span class="span4">Активный:</span>
+                                                <span style="width: 16px;" class="span1"><input name="useBrandPattern"  {if $settings.useBrandPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
+                                            </label>
 
-                                            </div>
+                                            <label class=""><span class="span4">Использовать только для пустых метаданных:</span>
+                                                <span style="width: 16px;" class="span1"><input name="useBrandPatternForEmptyMeta"  {if $settings.useBrandPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
+                                            </label>
+
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="inside_padd discount-out">
+                                        <div class="form-horizontal">
+                                            <div class="title-bonus-out"><div class="span4"></div><div class="span8 title-bonus">Поиск [{$locale}]</div></div>
+
+                                            <label class="">
+                                                <span class="span4">                                        
+                                                    Meta-title pattern:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='searchTemplate' value="{$settings.searchTemplate}" /></span>
+                                            </label>
+
+                                            <label class="">
+                                                <span class="span4">                                        
+                                                    Meta-description шаблон:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='searchTemplateDesc' value="{$settings.searchTemplateDesc}" /></span>
+                                            </label>
+
+                                            <label class="">
+                                                <span class="span4">                                        
+                                                    Meta-keywords шаблон:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='searchTemplateKey' value="{$settings.searchTemplateKey}" /></span>
+                                            </label>
+
+                                            <label class="">
+                                                <span class="span4">Активный:</span>
+                                                <span style="width: 16px;" class="span1"><input name="useSearchPattern"  {if $settings.useSearchPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </form>
-    </section>
+        </div>
+    </form>
+</section>

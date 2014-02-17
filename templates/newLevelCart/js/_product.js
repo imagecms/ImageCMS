@@ -90,10 +90,12 @@ Product = {
         $.drop.method('center')(drop);
     },
     changePhoto: function(arg, fancyFrameInPH, href) {
-        hrefOptions.curHref = href;
         var drop = arg[1];
         fancyFrameInPH.parent().addClass('p_r');
         fancyFrameInPH.append('<div class="preloader"></div>');
+        if (href == hrefOptions.curHref)
+            fancyFrameInPH.find('.preloader').remove();
+        hrefOptions.curHref = href;
         fancyFrameInPH.find('img').attr('src', href).load(function() {
             fancyFrameInPH.find('.preloader').remove();
             var carGal = drop.find('.content-carousel');

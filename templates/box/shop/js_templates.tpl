@@ -15,10 +15,10 @@
                             <span class="helper"></span>
                             <img src="<%- item.smallImage %>">
                         </span>
+                        <span class="description">
                         <span class="title"><% print(item.name)  %></span>
                         <!-- End. Photo Block and name -->
 
-                        <span class="description">
                         <!-- Start. Product price  -->
                             <span class="frame-prices f-s_0">
                                 <span class="current-prices var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
@@ -32,14 +32,14 @@
                                     <span class="price-add">
                                         <span>
                                             (<span class="price addCurrPrice"><%- item.nextCurrency %></span>
-                                        {/literal}<span class="curr-add">{$NextCS}</span>){literal}                                            
+    {/literal}<span class="curr-add">{$NextCS}</span>){literal}                                            
                                         </span>
                                     </span>
                                     <% } %>
                                 </span>
                             </span>
-                        </span>
                         <!-- End. Product price  -->
+                        </span>
                     </a>
                 </li>
                 <% }
@@ -48,13 +48,13 @@
             <!-- Start. Show link see all results if amount products >0  -->
             <div>
                 <div class="btn-autocomplete">{/literal}
-                    <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u">
-                        <span class="icon_show_all"></span><span class="text-el">{lang('Посмотреть все результаты','newLevel')} →</span>
+                    <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u ref2">
+                        <span class="icon_arrow"></span><span class="text-el">{lang('Смотреть все результаты','newLevel')}</span>
                     </a>
                 </div>{literal}
                 <!-- End. Show link  -->
                 <% } else {%>    
-            {/literal}<div class="msg f-s_0">
+    {/literal}<div class="msg f-s_0">
                 <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevel'))}</span></div>
             </div>{literal}
             <% }%>
@@ -66,50 +66,50 @@
         <script type="text/template" id="reportappearance">
             <% var nextCsCond = nextCs == '' ? false : true %>
             <ul class="items items-bask item-report">
-                <li>
-                    <a href="<%-item.url%>" class="frame-photo-title" title="<%-item.name%>">
-                        <span class="photo-block">
-                            <span class="helper"></span>
-                            <img src="<%-item.img%>" alt="<%-item.name%>">
-                        </span>
-                        <span class="title"><%-item.name%></span>
-                    </a>
-                    <div class="description">
-                        <div class="frame-prices f-s_0">
-                            <%if (item.origprice) { %>
-                            <span class="price-discount">
-                                <span>
-                                    <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %></span>
-                                    <span class="curr"><%-curr%></span>
-                                </span>
-                            </span>
-                            <% } %>
-                            <span class="current-prices f-s_0">
-                                <span class="price-new">
-                                    <span>
-                                        <span class="price priceVariant"><%-parseFloat(item.price).toFixed(pricePrecision)%></span>
-                                        <span class="curr"><%-curr%></span>
-                                    </span>
-                                </span>
-                                <%if (nextCsCond){%>
-                                <span class="price-add">
-                                    <span>
-                                        (<span class="price addCurrPrice"><%-parseFloat(item.addprice).toFixed(pricePrecision)%></span>
-                                        <span class="curr-add"><%-nextCs%></span>)
-                                    </span>
-                                </span>
-                                <%}%>
-                            </span>
-                        </div>
-                    </div>
-                </li>
+            <li>
+            <a href="<%-item.url%>" class="frame-photo-title" title="<%-item.name%>">
+            <span class="photo-block">
+            <span class="helper"></span>
+            <img src="<%-item.img%>" alt="<%-item.name%>">
+            </span>
+            <span class="title"><%-item.name%></span>
+            </a>
+            <div class="description">
+            <div class="frame-prices f-s_0">
+            <%if (item.origprice) { %>
+            <span class="price-discount">
+            <span>
+            <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %></span>
+            <span class="curr"><%-curr%></span>
+            </span>
+            </span>
+            <% } %>
+            <span class="current-prices f-s_0">
+            <span class="price-new">
+            <span>
+            <span class="price priceVariant"><%-parseFloat(item.price).toFixed(pricePrecision)%></span>
+            <span class="curr"><%-curr%></span>
+            </span>
+            </span>
+            <%if (nextCsCond){%>
+            <span class="price-add">
+            <span>
+            (<span class="price addCurrPrice"><%-parseFloat(item.addPrice).toFixed(pricePrecision)%></span>
+            <span class="curr-add"><%-nextCs%></span>)
+            </span>
+            </span>
+            <%}%>
+            </span>
+            </div>
+            </div>
+            </li>
             </ul>
         </script>
     {/literal}
     <span class="tooltip"></span>
-        <div class="apply">
+    <div class="apply">
         <div class="content-apply">
-            <div class="description"><a href="#">{lang('Найдено','newLevel')}</a> <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
+            <div class="description">{lang('Найдено','newLevel')} <a href="#"><span id="apply-count">5</span> <span class="plurProd"></span></a></div>
         </div>
     </div>
     <div class="drop drop-style" id="notification">
