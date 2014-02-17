@@ -219,6 +219,7 @@
                                         <label class="btn-edit-photo-wishlist" for="img">
                                             <button type="button" class="p_r hidden">
                                                 <span class="icon_edit"></span>
+                                                <span class="text-el">{lang('Выбрать фото', 'newLevel')}</span>
                                                 <input id="img" data-wishlist="image" type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg"/>
                                             </button>
                                         </label>

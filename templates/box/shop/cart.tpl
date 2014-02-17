@@ -111,7 +111,7 @@
                                                         <span class="text-el p_r">
                                                             {echo $deliveryMethod->getName()}
                                                             {if $deliveryMethod->getDescription() && trim($deliveryMethod->getDescription()) != ""}
-                                                                <span class="icon_ask" data-rel="tooltip" data-title="{echo $deliveryMethod->getDescription()}"></span>
+                                                                <span class="icon_ask" data-rel="tooltip" data-placement="right" data-other-class="info-delivery" data-title='{echo $deliveryMethod->getDescription()}' data-offset-x="16"></span>
                                                             {/if}
                                                         </span>
                                                     </div>
@@ -166,7 +166,7 @@
                                 <div class="frame-label">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame-form-field">
-                                        <div class="btn-cart btn-cart-p">
+                                        <div class="btn-buy btn-buy-p btn-buy-pp">
                                             <input type="submit" value="{lang('Подтвердить заказ','newLevel')}" id="submitOrder"/>
                                         </div>
                                     </span>
