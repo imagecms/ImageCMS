@@ -51,6 +51,8 @@ function init() {
     };
     optionsDrop.after = function(el, drop, isajax) {
         drawIcons(drop.find(selIcons));
+        
+        $.tooltip('remove')();
 
         drop.find("img.lazy:not(.load)").lazyload(lazyload);
         wnd.scroll(); //for lazyload

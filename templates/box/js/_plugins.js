@@ -2355,7 +2355,7 @@ function getCookie(c_name)
                     methods[place](drop)
                 })
             drop[$thisEOn]($thisD, function(e) {
-                var drop = $(this).css('overflow', 'hidden').focus();
+                var drop = $(this).css('overflow', 'hidden');
                 methods.init.call(drop.find('[data-drop]'));
                 drop.addClass(aC);
                 if (!confirm && modal && timeclosemodal)
