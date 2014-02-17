@@ -297,7 +297,7 @@
                         <!-- End. Collect information about Variants, for future processing -->
                         {if !$opi_defaultItem}
                             <!-- Wish List & Compare List buttons -->
-                            <div class="frame-wish-compare-list">
+                            <div class="frame-wish-compare-list f-s_0">
                                 {if !$opi_compare}
                                     <div class="frame-btn-comp">
                                         <!-- Start. Compare List button -->
