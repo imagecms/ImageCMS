@@ -6,14 +6,14 @@ return array(
         'controller' => 'orders',
         'items' => array(
             array(
-                'name' => lang('Sum and count', 'mod_stats'),
+                'name' => lang('Sum and count charts', 'mod_stats'),
                 'controller' => 'orders',
-                'action' => 'count',
+                'action' => 'charts',
             ),
             array(
-                'name' => lang('Statuses and products', 'mod_stats'),
+                'name' => lang('Collected info', 'mod_stats'),
                 'controller' => 'orders',
-                'action' => 'statuses',
+                'action' => 'info',
             ),
             array(
                 'name' => lang('By users', 'mod_stats'),
@@ -34,7 +34,7 @@ return array(
             array(
                 'name' => lang('Registered', 'mod_stats'),
                 'controller' => 'users',
-                'action' => 'register',
+                'action' => 'registered',
             ),
             array(
                 'name' => lang('Attendance', 'mod_stats'),

@@ -69,6 +69,7 @@ class Attendance_model extends CI_Model {
      * @return boolean
      */
     public function getOnline() {
+        $locale = MY_Controller::getCurrentLocale();
         $query = "
             SELECT 
                 `mod_stats_attendance`.`id_user`,
@@ -84,7 +85,16 @@ class Attendance_model extends CI_Model {
                     WHEN 2 THEN `category`.`url`
                     WHEN 3 THEN CONCAT('shop/category/',`shop_category`.`full_path`)
                     WHEN 4 THEN CONCAT('shop/product/',`shop_products`.`url`)
-                END as `last_url`   
+                END as `last_url`,   
+                -- ------------------
+
+                -- ---- for names ----
+                CASE `mod_stats_attendance`.`type_id`
+                    WHEN 1 THEN CONCAT(`content`.`cat_url`, `content`.`url`)
+                    WHEN 2 THEN `category`.`url`
+                    WHEN 3 THEN `shop_category_i18n`.`name`
+                    WHEN 4 THEN `shop_products_i18n`.`name`
+                END as `page_name`   
                 -- ------------------
             FROM 
                 (SELECT * FROM `mod_stats_attendance` ORDER BY `id` DESC) as `mod_stats_attendance` 
@@ -99,6 +109,13 @@ class Attendance_model extends CI_Model {
                 AND `mod_stats_attendance`.`type_id` = 3
             LEFT JOIN `shop_products` ON `shop_products`.`id` = `mod_stats_attendance`.`id_entity` 
                 AND `mod_stats_attendance`.`type_id` = 4
+            -- ------------------
+            
+             -- ---- for names ----
+            LEFT JOIN `shop_category_i18n` ON `shop_category`.`id` = `shop_category_i18n`.`id` 
+                AND `shop_category_i18n`.`locale` = '{$locale}'
+            LEFT JOIN `shop_products_i18n` ON `shop_products`.`id` = `shop_products_i18n`.`id` 
+                AND `shop_products_i18n`.`locale` = '{$locale}'
             -- ------------------
 
             WHERE 1
@@ -146,11 +163,7 @@ class Attendance_model extends CI_Model {
     }
 
     /**
-<<<<<<< HEAD
      * Returns "serfing" history of specified user
-=======
-     * Get user history
->>>>>>> 4bf9048f9bbbd67ca554b671c8f137007fd5c3c1
      * @param int $userId
      * @return array
      */
@@ -222,5 +235,4 @@ class Attendance_model extends CI_Model {
         }
         return FALSE;
     }
-
 }
