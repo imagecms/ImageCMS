@@ -164,7 +164,7 @@
                         </div>
                         <div class="f_r">
                             {if $discount_val}
-                                <span class="frame-discount f_l">
+                                <span class="frame-discount">
                                     <span class="s-t">{lang('Ваша скидка','newLevel')}:</span>
                                     <span class="text-discount current-discount"><span class="text-el">-{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
                                 </span>
