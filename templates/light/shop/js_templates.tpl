@@ -103,7 +103,7 @@
                                 <%if (nextCsCond){%>
                                 <span class="price-add">
                                     <span>
-                                        (<span class="price addCurrPrice"><%-parseFloat(item.addprice).toFixed(pricePrecision)%></span>
+                                        (<span class="price addCurrPrice"><%-parseFloat(item.addPrice).toFixed(pricePrecision)%></span>
                                         <span class="curr-add"><%-nextCs%></span>)
                                     </span>
                                 </span>

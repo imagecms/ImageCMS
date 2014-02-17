@@ -142,7 +142,7 @@ var ShopFront = {
                     addClass(genObj.compareIn).
                         
                     end().
-                    data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip().
+                    data('title', $this.attr('data-sectitle')).tooltip('remove').
                         
                     find(genObj.textEl).
                     text($this.attr('data-sectitle'));
@@ -159,7 +159,7 @@ var ShopFront = {
                     removeClass(genObj.compareIn).
                         
                     end().
-                    data('title', $this.attr('data-firtitle')).tooltip('remove').tooltip().
+                    data('title', $this.attr('data-firtitle')).tooltip('remove').
                         
                     find(genObj.textEl).
                     text($this.attr('data-firtitle'));
@@ -430,8 +430,6 @@ function showHidePart(el, absolute, time, btnPlace) {
             sumHeight += $(this).outerHeight(true);
         })
         $this.find('*').css('max-height', '');
-        console.log(sumHeight)
-        console.log($thisH)
         if (sumHeight > $thisH) {
             $this.css({
                 'max-height': 'none',
