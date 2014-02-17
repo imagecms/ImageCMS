@@ -22,18 +22,23 @@
                     <td>{lang('Count of robots (all time)','mod_stats')}</td>
                     <td>{$countUniqueRobots}</td>                    
                 </tr>
-                <tr>
+                <!--tr>
                     <td>{lang('Count of redirects from search engines','mod_stats')}</td>
-                    <td>no data</td>                    
+                    <td>{lang('No data','mod_stats')}</td>                    
                 </tr>
                 <tr>
                     <td>{lang('Count of redirects from other sites','mod_stats')}</td>
-                    <td>no data</td>                    
-                </tr>
+                    <td>{lang('No data','mod_stats')}</td>                    
+                </tr-->
                 <tr>
                     <td>{lang('Last viewed page','mod_stats')}</td>
                     <td>
-                        <a href="/{$lastPage['url']}">{$lastPage['page_name']}</a> by <strong> {$lastPage['username']} </strong>
+                        {if !empty($lastPage)}
+                            <a href="/{$lastPage['url']}">{$lastPage['page_name']}</a> by <strong> {$lastPage['username']} </strong>
+                        {else:}
+                            {lang('No data','mod_stats')}
+                        {/if}
+
                     </td>                    
                 </tr>
             </table>
