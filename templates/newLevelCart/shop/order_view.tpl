@@ -335,14 +335,14 @@
                                         <span class="frame-prices">
                                             <span class="price-discount">
                                                 <span>
-                                                    <span class="price">{echo $orderProduct->getKit()->getTotalPriceOld()}</span>
+                                                    <span class="price">{echo $orderProduct->getKit()->getTotalPriceOld()*$orderProduct->getQuantity()}</span>
                                                     <span class="curr">{$CS}</span>
                                                 </span>
                                             </span>
                                             <span class="current-prices f-s_0">
                                                 <span class="price-new">
                                                     <span>
-                                                        <span class="price">{echo $orderProduct->getKit()->getTotalPrice()}</span>
+                                                        <span class="price">{echo $orderProduct->getKit()->getTotalPrice()*$orderProduct->getQuantity()}</span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
@@ -350,7 +350,7 @@
                                                 {if $NextCSIdCond}
                                                     <span class="price-add">
                                                         <span>
-                                                            <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)}</span>
+                                                            <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
                                                             <span class="curr-add">{$NextCS}</span>
                                                         </span>
                                                     </span>

@@ -37,24 +37,17 @@
                         <span class="title">&nbsp;</span>
                         <div class="frame-form-field">
                             <div class="clearfix">
-                                <span class="btn-form f_l">
+                                <span class="btn-form f_l m-r_20">
                                     <button type="submit">
                                         <span class="icon_enter_drop"></span>
                                         <span class="text-el">{lang('Войти','newLevel')}</span>
                                     </button>
                                 </span>
-                                <div class="f_r neigh-buttonform">
+                                <div class="f_l neigh-buttonform f-s_0">
                                     <span class="helper"></span>
-                                    <button type="button" class="d_l_1" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">{lang('Забыли Пароль?','newLevel')}</button>
+                                    <button type="button" class="d_l_3" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">{lang('Напомнить пароль','newLevel')}</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="frame-label">
-                        <span class="title">&nbsp;</span>
-                        <div class="frame-form-field">
-                            <div class="help-block">{lang('Я еще не зарегистрирован','newLevel')}</div>
-                            <a href="/auth/register">{lang('Перейти к регистрации','newLevel')}</a>
                         </div>
                     </div>
                     {form_csrf()}
@@ -62,5 +55,17 @@
             </div>
         </div>
     </div>
-    <div class="drop-footer"></div>
+    <div class="drop-footer">
+        <div class="inside-padd">
+            <div class="horizontal-form">
+                <div class="frame-label">
+                    <span class="title">&nbsp;</span>
+                    <div class="frame-form-field">
+                        <div class="help-block">{lang('Для новых покупателей нашего магазина','newLevel')}:</div>
+                        <a href="/auth/register">{lang('Регистрация','newLevel')}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
