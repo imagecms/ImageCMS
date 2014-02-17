@@ -32,7 +32,7 @@
             <label class="p_r">
                 <input class="input-small required" 
                        value="{if $_GET['swc'] != null}{echo $_GET['swc']}{else:}9{/if}" 
-                       type="text" name="swc" maxlength="1"/>
+                       type="text" name="swc" maxlength="2"/>
             </label>
         </span>
         <span class="d-i_b m-r_10 m-l_10">{lang('Count of results', 'mod_stats')} </span>
