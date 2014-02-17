@@ -20,12 +20,12 @@ class SearchController extends ControllerBase {
      * Render template and set data for "keywords"
      */
     public function keywords() {
-
+        $limit = isset($_GET['swr']) ? (int) $_GET['swr'] : 200;
         $result = $this->controller->search_model->queryKeywordsByDateRange(array(
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-        ));
+        ), $limit);
         $this->renderAdmin('keywords', array('data' => $result));
     }
 
