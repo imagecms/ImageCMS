@@ -41,6 +41,11 @@ return array(
                 'controller' => 'users',
                 'action' => 'attendance',
             ),
+            array(
+                'name' => lang('Robots attendance', 'mod_stats'),
+                'controller' => 'users',
+                'action' => 'robots_attendance',
+            ),
         )
     ),
     array(

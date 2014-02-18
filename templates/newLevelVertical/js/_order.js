@@ -120,7 +120,7 @@ var Order = {
             $(genObj.gift).find(preloader).show();
             var gift = 0;
             $.ajax({
-                url: '/mod_discount/gift/get_gift_certificate',
+                url: '/mod_discount/discount_api/get_gift_certificate',
                 data: 'key=' + $('[name=giftcert]').val(),
                 type: "GET",
                 success: function(data) {

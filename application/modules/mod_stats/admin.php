@@ -65,7 +65,7 @@ class Admin extends \BaseAdminController {
 
         $data = array(
             'countUniqueUsers' => $model->getAllTimeCountUnique(),
-            'countUniqueRobots' => 1, // $model->getAllTimeCountUniqueRobots(),
+            'countUniqueRobots' => $model->getAllTimeCountUniqueRobots(),
             'lastPage' => $model->getLastViewedPage()
         );
 

@@ -2,8 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
-class Discount_model_admin extends CI_Model {
+/**
+ * Class discount_model_admin for Mod_Discount module
+ * @uses CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2013, ImageCMS
+ * @package ImageCMSModule
+ */
+class discount_model_admin extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -68,6 +74,7 @@ class Discount_model_admin extends CI_Model {
 
     /**
      * Check have any discoun with given key
+     * @return (bool) 
      */
     public function checkDiscountCode($key) {
         $query = $this->db->where('key', $key)->get('mod_shop_discounts')->row_array();
@@ -293,6 +300,37 @@ class Discount_model_admin extends CI_Model {
         } catch (Exception $e) {
             return false;
         }
+    }
+    
+    /**
+     * Delete discount by id
+     * @param (int) $id
+     * @param (string) $entity
+     * @return boolean
+     */
+    public function checkEntityExists($entity, $id){
+        
+        switch ($entity) {
+            case 'product':
+                return $this->db->where('id', $id)->get('shop_products')->num_rows();
+                break;
+            case 'category':
+                return $this->db->where('id', $id)->get('shop_category')->num_rows();
+                break;
+            case 'brand':
+                return $this->db->where('id', $id)->get('shop_brands')->num_rows();
+                break;
+            case 'user':
+                return $this->db->where('id', $id)->get('users')->num_rows();
+                break;
+            case 'group_user':
+                return $this->db->where('id', $id)->get('shop_rbac_roles')->num_rows();
+                break;
+
+            default:
+                break;
+        }
+        
     }
 
     /**

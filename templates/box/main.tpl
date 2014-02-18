@@ -102,7 +102,7 @@
             {include_tpl('footer')}
         </footer>
         {include_tpl('user_toolbar')}
-
+        {/*}
         {/*}Start. delete before upload to server{ */}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
@@ -125,7 +125,7 @@
                 })
             </script>
         {/literal}
-
+        { */}
         {/*}End. delete before upload to server{ */}
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}

@@ -48,6 +48,7 @@ class Mod_stats extends \MY_Controller {
 
         $thisObj->load->library('user_agent');
         if ($thisObj->agent->is_robot()) {
+            $thisObj->import('classes/RobotsAttendance');
             if ((int) \mod_stats\classes\AdminHelper::create()->getSetting('save_robots_attendance') == 1) {
                 RobotsAttendance::getInstance()->add(CI::$APP->core->core_data, $this->agent->robot());
             }

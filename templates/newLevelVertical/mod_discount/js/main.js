@@ -55,7 +55,7 @@ var Discount = {
         $(document).trigger({
             'type': 'discount.load_certificate'
         });
-        $.get('/mod_discount/gift/render_gift_succes', {
+        $.get('/mod_discount/discount_api/render_gift_succes', {
             json: JSON.stringify(gift)
         }, function(tpl) {
             $(document).trigger({
@@ -68,7 +68,7 @@ var Discount = {
     },
     renderGift: function(gift) {
         if (gift === undefined) {
-            $.get('/mod_discount/gift/render_gift_input', function(tpl) {
+            $.get('/mod_discount/discount_api/render_gift_input', function(tpl) {
                 $(document).trigger({
                     'type': 'discount.renderGiftInput',
                     'tpl': tpl
