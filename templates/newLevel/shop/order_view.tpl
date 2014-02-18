@@ -27,7 +27,7 @@
             </div>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).on('scriptDefer', function() {
-                Shop.Cart.clear();
+                    Shop.Cart.clear();
                 }){/literal}
             </script>
         {/if}
@@ -130,16 +130,16 @@
 
                 <!-- Start. Render payment button and payment description -->
                 {if $paymentMethod}
-                <tr>
-                    <th>{lang('Способ оплаты','newLevel')}:</th>
-                    <td>
-                        {if $model->getTotalPriceWithGift() > 0}
-                            {if $paymentMethod->getName()}
-                                {echo ShopCore::t($paymentMethod->getName())}
+                    <tr>
+                        <th>{lang('Способ оплаты','newLevel')}:</th>
+                        <td>
+                            {if $model->getTotalPriceWithGift() > 0}
+                                {if $paymentMethod->getName()}
+                                    {echo ShopCore::t($paymentMethod->getName())}
+                                {/if}
                             {/if}
-                        {/if}
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 {/if}
                 <!--                Start. Order status-->
                 <tr>
@@ -262,7 +262,7 @@
                                     {/foreach}
                                     <!-- end for single product -->
                                     <!-- Start. Render Ordered kit products  -->
-                                    {$sumKit = 0}
+
                                     {foreach $model->getOrderKits() as $orderProduct}
                                         <tr class="row-kits rowKits items-order row">
                                             <td class="frame-items frame-items-kit">
@@ -362,14 +362,14 @@
                                                 <span class="frame-prices">
                                                     <span class="price-discount">
                                                         <span>
-                                                            <span class="price">{echo $orderProduct->getKit()->getTotalPriceOld()}</span>
+                                                            <span class="price">{echo $orderProduct->getKit()->getTotalPriceOld()*$orderProduct->getQuantity()}</span>
                                                             <span class="curr">{$CS}</span>
                                                         </span>
                                                     </span>
                                                     <span class="current-prices f-s_0">
                                                         <span class="price-new">
                                                             <span>
-                                                                <span class="price">{echo $orderProduct->getKit()->getTotalPrice()}</span>
+                                                                <span class="price">{echo $orderProduct->getKit()->getTotalPrice()*$orderProduct->getQuantity()}</span>
                                                                 <span class="curr">{$CS}</span>
                                                             </span>
                                                         </span>
@@ -377,14 +377,14 @@
                                                         {if $NextCSIdCond}
                                                             <span class="price-add">
                                                                 <span>
-                                                                    <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)}</span>
+                                                                    <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
                                                                     <span class="curr-add">{$NextCS}</span>
                                                                 </span>
                                                             </span>
                                                         {/if}
                                                         { */}
                                                     </span>
-                                                    {$sumKit += $orderProduct->getKit()->getTotalPrice() - $orderProduct->getKit()->getTotalPriceOld()}
+                                                    
                                                 </span>
                                             </td>
                                         </tr>
@@ -421,7 +421,7 @@
                                     </tr>
 
                                     {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
-                                    {if $discount || $sumKit != 0}
+                                    {if $discount}
                                         <tr>
                                             <td colspan="2">
                                                 <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
@@ -429,7 +429,7 @@
                                             <td>
                                                 <span class="price-item">
                                                     <span>
-                                                        <span class="text-discount current-discount">{echo $discount + $sumKit} <span class="curr">{$CS}</span></span>
+                                                        <span class="text-discount current-discount">{echo $discount} <span class="curr">{$CS}</span></span>
                                                     </span>
                                                 </span>
                                             </td>

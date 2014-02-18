@@ -20,7 +20,7 @@
                                 {foreach $propertiesInCat as $prop}
                                     {foreach $prop->possibleValues as $key}
                                         {foreach $_GET['p'][$prop->property_id] as $nm}
-                                            {if $nm == $key.value}
+                                            {if $nm == $key.value or \ShopCore::encode($nm) == $key.value}
                                     <li data-name="p_{echo $prop->property_id}_{echo $key.id}" class="clear-filter"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{echo $prop->name}: {echo $key.value}</span></button></li>
                                             {/if}
                                         {/foreach}
@@ -42,9 +42,9 @@
 <form method="get" id="catalogForm">
     <input type="hidden" name="order" value="{echo $order_method}" />
     <input type="hidden" name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>
-    {if $totalProducts > 0}
+    {//if $totalProducts > 0}
         <div class="frame-filter p_r">
             {include_tpl('filter')}
         </div>
-    {/if}
+    {//if}
 </form>

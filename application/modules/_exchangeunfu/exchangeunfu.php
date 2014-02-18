@@ -154,18 +154,6 @@ class Exchangeunfu extends MY_Controller {
 
         $ci->db->where('id', $orderId);
         $ci->db->update('shop_orders', $data);
-
-        foreach ($date['order']->SOrderProductss as $key => $product) {
-
-
-
-            $ci->db
-                    ->set('order_id', $product->order_id)
-                    ->set('product_id', $product->product_id)
-                    ->set('price', $product->price)
-                    ->set('quantity', $product->quantity)
-                    ->insert('mod_exchangeunfu_orders_products');
-        }
     }
 
     private function recountProductivityHour($count, $id) {
@@ -829,7 +817,7 @@ class Exchangeunfu extends MY_Controller {
     public function getDefaultRegion() {
         $ci = & get_instance();
 
-        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND $ci->dx_auth->is_admin()) {
             $region = $ci->db
                             ->where('id', $_COOKIE['region'])
                             ->select(array('region'))
@@ -855,7 +843,7 @@ class Exchangeunfu extends MY_Controller {
 
     public function getDefaultRegionId() {
         $ci = & get_instance();
-        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND $ci->dx_auth->is_admin() ) {
 
             return $_COOKIE['region'];
         } else {
@@ -863,26 +851,26 @@ class Exchangeunfu extends MY_Controller {
                     ->limit(1)
                     ->select(array('id'))
                     ->get('mod_exchangeunfu_partners')
-                    ->result_array();
+                    ->row();
 
-            return $region['0']['id'];
+            return $region->id;
         }
     }
 
     public function getDefaultRegionExternalId() {
-
-        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
+ $ci = & get_instance();
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND $ci->dx_auth->is_admin() ) {
             $region = $this->db->limit(1)->select(array('external_id'))->where('id', $_COOKIE['region'])->get('mod_exchangeunfu_partners')->result_array();
 
-            if (count($region) > 0)
-                return $region[0]['external_id'];
-            else {
-                $region = $this->db
-                                ->limit(1)
-                                ->select(array('external_id'))
-                                ->get('mod_exchangeunfu_partners')->result_array();
-                return $region[0]['external_id'];
-            }
+     if(count($region) > 0)             
+            return $region[0]['external_id'];
+        else {
+             $region = $this->db
+                            ->limit(1)
+                            ->select(array('external_id'))
+                            ->get('mod_exchangeunfu_partners')->result_array();
+            return $region[0]['external_id'];
+        }
         } else {
             $region = $this->db
                             ->limit(1)
@@ -896,7 +884,7 @@ class Exchangeunfu extends MY_Controller {
 
         $ci = & get_instance();
         $defID = self::getDefaultRegionId();
-        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region'])) {
+        if (isset($_COOKIE['region']) AND !empty($_COOKIE['region']) AND $ci->dx_auth->is_admin()) {
             $region = $ci->db
                     ->limit(1)
                     ->where('id = ', $_COOKIE['region'])
@@ -1045,7 +1033,7 @@ class Exchangeunfu extends MY_Controller {
      * runs when orders from site succesfully uploaded to 1c server
      * and sets some status for imported orders "waiting" for example
      */
-    private function command_sale_success() {
+     private function command_sale_success() {
         if ($this->check_perm() === true) {
             if ($this->input->get('partner')) {
                 $partner = $this->db->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
@@ -1057,7 +1045,7 @@ class Exchangeunfu extends MY_Controller {
                             ->set('send_users', 0)
                             ->set('send_prod', 0)
                             ->update('mod_exchangeunfu_partners');
-
+                    
                     $model = $this->db
                             ->where('partner_internal_id', $partner['id'])
                             ->where_in('status', $this->config['userstatuses'])
@@ -1068,8 +1056,8 @@ class Exchangeunfu extends MY_Controller {
 
             foreach ($model as $order) {
                 $this->db
-                        ->where('id', $order['id'])
-                        ->set('status', $this->config['userstatuses_after'])
+                        ->where('id',$order['id'])
+                        ->set('status',$this->config['userstatuses_after'])
                         ->update('shop_orders');
             }
             echo "success";

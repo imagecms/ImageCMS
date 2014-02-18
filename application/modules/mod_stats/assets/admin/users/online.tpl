@@ -35,19 +35,8 @@
                                 <td>{$user.email}</td>
                                 <td>{$user.last_activity}</td>
                                 <td>
-                                    <a href="{site_url($user.last_url)}" target="_blank">
-                                        {if $user.type_id == 1}
-                                            {lang('Page','mod_stats')}
-                                        {/if}
-                                        {if $user.type_id == 2}
-                                            {lang('Category','mod_stats')}
-                                        {/if}
-                                        {if $user.type_id == 3}
-                                            {lang('Shop category','mod_stats')}
-                                        {/if}
-                                        {if $user.type_id == 4}
-                                            {lang('Product','mod_stats')}
-                                        {/if}
+                                    <a href="/{$user.last_url}" target="_blank">
+                                        {$user['page_name']}
                                     </a>
                                 </td>
                             </tr>
@@ -55,7 +44,9 @@
                     </tbody>
                 </table>
             {else:}
-                <p style="text-align: center; padding: 15px; font-size: 13pt;">There are no users online </p>
+                <p style="text-align: center; padding: 15px; font-size: 13pt;">
+                    {lang('There are no users online', 'mod_stats')}
+                </p>
             {/if}
         </div>
     </div>

@@ -75,7 +75,7 @@
                     </td>
                     <td colspan="2" style="background: white;">
                         
-                        <button class="btn btn-small btn-primary" type="button" id="productFilterButton" style="margin:4px; width: 170px;">
+                        <button class="btn btn-small btn-primary" type="submit" id="productFilterButton" style="margin:4px; width: 170px;">
                             <i class="icon-refresh"></i> {lang('Update','mod_stats')}
                         </button>
                     </td>

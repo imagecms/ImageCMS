@@ -128,4 +128,57 @@ $(document).ready(function() {
         TR.find('input.region').val('');
 
     });
+
+ $('.periodEdit').on('click', function() {
+
+var TR = $(this).closest('tr');
+TR.find('.periods').show();
+TR.find('.periodUpdate').show();
+$(this).hide();
+
+
+ });
+
+
+ $('.periodUpdate').on('click', function() {
+
+var TR = $(this).closest('tr');
+TR.find('.periods').hide();
+TR.find('.periodEdit').show();
+$(this).hide();
+
+var first = TR.find('[name="periodFirst"]').val();
+var second = TR.find('[name="periodSecond"]').val();
+var third = TR.find('[name="periodThird"]').val();
+var fourth = TR.find('[name="periodFourth"]').val();
+var partnerid = TR.attr('data-partnerId');
+
+
+   $.ajax({
+            type: 'POST',
+            data: {
+                periods: {
+                first: first,
+                second: second,
+                third: third,
+                fourth: fourth,                
+            },
+                partnerId: partnerid,
+                
+            },
+            url: '/exchangeunfu/admin/updatePeriod',
+            success: function(data) {
+                if(data){
+                    showMessage('OK', 'Period updated');
+                   
+                }else{
+                    showMessage(lang('Error'), lang('Partner not added'), 'r');
+                }          
+            }
+        });
+
+ });
+
+
+
 });

@@ -216,6 +216,8 @@ var currencySymbolJS = '{echo $CS}';
                         <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                         {/foreach}
                     </select>
+                    <input type="checkbox" name="category[child]" value="1"/>  {lang('Change child category', 'mod_discount')} 
+                    
                 </div>
                 <!-- End. Show if discount type is category of products-->
             </div>
