@@ -67,6 +67,11 @@ $(document).ready(function() {
         $('#chartArea').find('form').submit();
     });
 
+    /** Send form when change chart type **/
+    $("select[name*='charType']").on('change', function() {
+        $('#chartArea').find('form').submit();
+    });
+
 
     /**  Autocomplete for categories    */
     if ($('#autocomleteCategory').length) {
@@ -144,6 +149,10 @@ $(document).ready(function() {
     $("#saveAsPng").click(function() {
         StatsSettingsAndParams.submitDownloadForm("png");
     });
+
+
+
+
 
     /** DRAW CHARTS **/
 
