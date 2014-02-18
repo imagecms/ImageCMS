@@ -3,13 +3,24 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Discount_model_front extends CI_Model {
+/**
+ * Class discount_model_front for Mod_Discount module
+ * @uses CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2013, ImageCMS
+ * @package ImageCMSModule
+ */
+class discount_model_front extends CI_Model {
 
     public function __construct() {
         parent::__construct();
     }
 
-    public function get_discount() {
+    /**
+     * get all activ discount
+     * @return array discount
+     */
+    public function getDiscount() {
 
         $locale = \MY_Controller::getCurrentLocale();
         $time = time();
@@ -29,51 +40,63 @@ class Discount_model_front extends CI_Model {
                       and 
                        active = 1";
         
-        
-        
-
+         
         return $this->db->query($sql)->result_array();
     }
 
-    public function join_discount($id, $type) {
+    /**
+     * get current type discount
+     * @param (int) $id
+     * @param (string) $type
+     * @return array discount
+     */
+    public function joinDiscount($id, $type) {
 
         $sql = "select * from mod_discount_$type where discount_id = '$id'";
         return $this->db->query($sql)->row_array();
     }
 
-    public function get_product($id) {
+    /**
+     * get product for id
+     * @param (int) $id
+     * @return StdClass product
+     */
+    public function getProduct($id) {
 
         $sql = "select id as product_id, category_id, brand_id from shop_products where id = '$id' limit 1";
         return $this->db->query($sql)->row();
     }
 
-    public function get_price($id) {
+    /**
+     * get origin product price for id variant
+     * @param (int) $id
+     * @return (float) price
+     */
+    public function getPrice($id) {
 
-
-        $price_prod = $this->db->query("select price from shop_product_variants where id = '$id'")->row();
-        return number_format($price_prod->price, ShopCore::app()->SSettings->pricePrecision,'.', '');
+        $priceProd = $this->db->query("select price from shop_product_variants where id = '$id'")->row();
+        return number_format($priceProd->price, ShopCore::app()->SSettings->pricePrecision,'.', '');
     }
 
-    public function get_total_price($data) {
-
-        $price = 0;
-        foreach ($data as $item)
-            if ($item['instance'] == 'SProducts')
-                $price += $this->get_price($item['variantId']) * $item['quantity'];
-            else
-                $price += $item['price'] * $item['quantity'];
-
-        return $price;
-    }
-
-    public function get_amout_user($id) {
+    /**
+     * get sum orders paid users
+     * @param (int) $id
+     * @return (float) price
+     */
+    public function getAmoutUser($id) {
 
         $sql = "select amout from users where id = '$id'";
         $result = $this->db->query($sql)->row();
         return $result->amout;
     }
     
-    public function updateapply($key, $gift = null){
+    /**
+     * update apply for discount
+     * @param (int) $key
+     * @param (boll) $gift
+     * @return (float) price
+     */
+    public function updateApply($key, $gift = null){
         
         $sql = "update mod_shop_discounts set count_apply = 0 where `key` = '$key' and max_apply IS NOT NULL and count_apply IS NULL";
         $this->db->query($sql);

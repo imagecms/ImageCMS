@@ -719,26 +719,22 @@ function getCookie(c_name)
     var nS = 'tooltip',
     sel = '.tooltip',
     methods = {
-        setDefault: function() {
-            return {
-                otherClass: false,
-                effect: '',
-                textEl: '.text-el',
-                placement: 'top',
-                offsetX: 10,
-                offsetY: 10,
-                tooltip: false,
-                sel: '.tooltip',
-                durationOn: 300,
-                durationOff: 200
-            };
+        def: {
+            otherClass: false,
+            effect: '',
+            textEl: '.text-el',
+            placement: 'top',
+            offsetX: 10,
+            offsetY: 10,
+            tooltip: false,
+            sel: '.tooltip',
+            durationOn: 300,
+            durationOff: 200
         },
         init: function(options, e) {
             var sel = '.tooltip',
-            settings = $.extend(methods.setDefault(), {
-                title: this.attr('data-title')
-            }, options),
-            $this = this,
+            settings = $.extend(methods.def, options),
+            $this = this,                           
             elSet = $this.data(),
             title = elSet.title || settings.title,
             otherClass = elSet.otherClass || settings.otherClass,
@@ -770,7 +766,7 @@ function getCookie(c_name)
                 });
             textEl = $this.find(textEl);
             if (textEl.is(':visible') && $.existsN(textEl))
-                return false;
+                return $this;
             tooltip.html(title);
             if (otherClass) {
                 if (!$.exists('.' + otherClass))
@@ -804,6 +800,8 @@ function getCookie(c_name)
             $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
                 $(this).tooltip('remove', e);
             });
+            
+            return $this;
         },
         left: function(el, tooltip, placement, left, eff, offset) {
             if (placement === 'left')
@@ -836,13 +834,14 @@ function getCookie(c_name)
                     sel = selA;
             }
             else
-                durOff = methods.setDefault().durationOff;
+                durOff = methods.def.durationOff;
             $(sel).stop().fadeOut(durOff, function() {
                 $(document).trigger({
                     'type': 'tooltip.hide',
                     'el': $(this)
                 });
             });
+            return $this;
         }
     };
     $.fn.tooltip = function(method) {

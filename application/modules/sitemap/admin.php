@@ -94,7 +94,7 @@ class Admin extends BaseAdminController {
             if (file_put_contents($this->sitemap_path, $sitemap)) {
                 showMessage(lang("Site map have been saved", 'sitemap'), lang("Message", "sitemap"));
             } else {
-                showMessage(lang("Site map have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+                showMessage(lang("Site map have not been saved. Set writing permissions on module folder.", 'sitemap'), lang("Error", "sitemap"), 'r');
             }
         } else {
             showMessage(lang("Site map have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
@@ -125,13 +125,41 @@ class Admin extends BaseAdminController {
 
         if ((int) $robotsStatus) {
             // Turn on robots
-            $robots[1] = 'Disallow: /';
+            $turnOnRobot = TRUE;
+
+            foreach ($robots as $key => $robot) {
+                if (trim($robot) == 'Disallow: /') {
+                    $turnOnRobot = FALSE;
+                    break;
+                }
+
+                if (trim($robot) == 'Disallow:') {
+                    unset($robots[$key]);
+                }
+            }
+
+            if ($turnOnRobot) {
+                array_splice($robots, 1, 0, 'Disallow: /' . PHP_EOL);
+            }
         } else {
             // Turn off robots
-            $robots[1] = 'Disallow: ';
-        }
+            $turnOffRobot = TRUE;
 
-        $robots = array($robots[0], $robots[1]);
+            foreach ($robots as $key => $robot) {
+                if (trim($robot) == 'Disallow:') {
+                    $turnOffRobot = FALSE;
+                    break;
+                }
+
+                if (trim($robot) == 'Disallow: /') {
+                    unset($robots[$key]);
+                }
+            }
+
+            if ($turnOffRobot) {
+                array_splice($robots, 1, 0, 'Disallow:' . PHP_EOL);
+            }
+        }
 
         return file_put_contents('robots.txt', $robots);
     }
@@ -246,13 +274,22 @@ class Admin extends BaseAdminController {
              */
             $data = array();
             $hide_urls = $this->input->post('hide_urls');
+            $robots_check = $this->input->post('robots_check');
+
+//            var_dumps_exit($robots_check);
             if ($hide_urls) {
-                foreach ($hide_urls as $url) {
+                foreach ($hide_urls as $key => $url) {
                     if ($url) {
-                        $data[]['url'] = $url;
+                        $data[] = array(
+                            'url' => $url,
+                            'robots_check' => $robots_check[$key + 1] ? 1 : 0
+                        );
                     }
                 }
             }
+
+
+            $this->robotsAdd($data);
 
             /** Set blockedUrls */
             if ($this->sitemap_model->updateBlockedUrls($data)) {
@@ -274,6 +311,51 @@ class Admin extends BaseAdminController {
                     ->setData('hide_urls', $blockedUrls)
                     ->renderAdmin('blocked_urls');
         }
+    }
+
+    /**
+     * Check robots 
+     * @param type $url
+     * @return boolean
+     */
+    public function robotsAdd($data) {
+        $robots = file('robots.txt');
+
+        foreach ($data as $url) {
+            if ($url['robots_check']) {
+                $putUrl = TRUE;
+
+                foreach ($robots as $robot) {
+                    if (strstr($robot, $url['url'])) {
+                        $putUrl = FALSE;
+                        break;
+                    }
+                }
+
+                if ($putUrl == TRUE) {
+                    if (mb_strpos($url['url'], '/') === 0) {
+                        $robots[] = 'Disallow: ' . $url['url'] . PHP_EOL;
+                    } else {
+                        $robots[] = 'Disallow: /' . $url['url'] . PHP_EOL;
+                    }
+                }
+            } else {
+                foreach ($robots as $key => $robot) {
+                    if (strstr($robot, $url['url'])) {
+                        unset($robots[$key]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        foreach ($robots as $key => $robot) {
+            if (!trim($robot)) {
+                unset($robots[$key]);
+            }
+        }
+
+        return file_put_contents('robots.txt', implode('', $robots));
     }
 
     /**

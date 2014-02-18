@@ -40,6 +40,10 @@
                     </div>
                 </div>
             {/if}
+            
+            <!--Start. Banners block-->
+            {$CI->load->module('banners')->render($model->getId())}
+            <!--End. Banners-->
 
             {include_tpl('catalogue_header')}
 

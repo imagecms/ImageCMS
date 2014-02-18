@@ -38,9 +38,8 @@ function init() {
             dropRep.html(_.template($('#reportappearance').html(), {
                 item: Shop.Cart.composeCartItem(el)
             }));
-
             dropRep.append($('[data-clone="data-report"]').find(genObj.msgF).remove().end().clone(true).removeClass('d_n'));
-            dropRep.find('input[name="ProductId"]').val(el.data('id'));
+            dropRep.find('input[name="ProductId"]').val(el.data('prodid'));
         }
 
         try {
@@ -52,6 +51,8 @@ function init() {
     };
     optionsDrop.after = function(el, drop, isajax) {
         drawIcons(drop.find(selIcons));
+        
+        $.tooltip('remove')();
 
         drop.find("img.lazy:not(.load)").lazyload(lazyload);
         wnd.scroll(); //for lazyload

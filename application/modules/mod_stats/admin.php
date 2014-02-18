@@ -2,6 +2,8 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'traits' . DIRECTORY_SEPARATOR . 'FileImportTrait' . EXT;
+
 /**
  * Class Admin for mod_stats module
  * @uses \BaseAdminController
@@ -30,7 +32,11 @@ class Admin extends \BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->helper('file');
-
+        
+        if ($this->input->is_ajax_request() && $this->uri->uri_string() == "admin/components/cp/mod_stats" || $this->uri->uri_string() == "admin/components/init_window/mod_stats"){
+            redirect('admin/components/cp/mod_stats');
+        }
+        
         $this->import('classes/ControllerBase' . EXT);
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
@@ -48,18 +54,29 @@ class Admin extends \BaseAdminController {
         $leftMenu = include __DIR__ . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'left_menu' . EXT;
 
         // set data to template
+        $helper = \mod_stats\classes\AdminHelper::create();
         $this->assetManager->setData('leftMenu', $leftMenu);
-        $this->assetManager->setData('saveSearchResults', \mod_stats\classes\AdminHelper::create()->getSetting('save_search_results'));
-        $this->assetManager->setData('saveUsersAttendance', \mod_stats\classes\AdminHelper::create()->getSetting('save_users_attendance'));
-        $this->assetManager->setData('CS', \mod_stats\classes\AdminHelper::create()->getCurrencySymbol());
+        $this->assetManager->setData('saveSearchResults', $helper->getSetting('save_search_results'));
+        $this->assetManager->setData('saveSearchResultsAC', $helper->getSetting('save_search_results_ac'));
+        $this->assetManager->setData('saveUsersAttendance', $helper->getSetting('save_users_attendance'));
+        $this->assetManager->setData('saveRobotsAttendance', $helper->getSetting('save_robots_attendance'));
+        $this->assetManager->setData('CS', $helper->getCurrencySymbol());
     }
 
     public function index() {
-//        if ($this->input->is_ajax_request()){
-//            exit();
-//        }
-        $ca = explode('/', $this->defaultAction);
-        $this->runControllerAction($ca[0], array($ca[1]));
+        $this->load->model('custom_model');
+        $model = $this->custom_model;
+
+
+        $data = array(
+            'countUniqueUsers' => $model->getAllTimeCountUnique(),
+            'countUniqueRobots' => $model->getAllTimeCountUniqueRobots(),
+            'lastPage' => $model->getLastViewedPage()
+        );
+
+        $this->assetManager
+                ->setData($data)
+                ->renderAdmin('start');
     }
 
     public function orders() {

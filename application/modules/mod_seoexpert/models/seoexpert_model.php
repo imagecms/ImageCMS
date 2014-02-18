@@ -84,6 +84,10 @@ class Seoexpert_model extends CI_Model {
         if (!$locale) {
             $locale = \MY_Controller::getCurrentLocale();
         }
+        
+         if (!$limit) {
+            $limit = 3;
+        }
 
         $sql = "SELECT  `shop_products`.`brand_id` ,  `shop_brands_i18n`.`name` , COUNT(  `shop_products`.`brand_id` ) AS  'count'
                 FROM  `shop_products` 

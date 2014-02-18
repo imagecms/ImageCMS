@@ -15,8 +15,10 @@
             </ul>
             <div class="preloader"></div>
             <div class="frame-frame-pager">
-                <div class="frame-pager">
-                    <ol class="pager"></ol>
+                <div class="frame-scroll-pane">
+                    <div class="frame-pager content-carousel">
+                        <ol class="pager"></ol>
+                    </div>
                 </div>
             </div>
         </div>

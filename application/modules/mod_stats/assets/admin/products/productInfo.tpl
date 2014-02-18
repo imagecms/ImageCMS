@@ -14,7 +14,8 @@
         {include_tpl('../include/left_block')}
         <div class="clearfix span9">
             {include_tpl('../include/top_form_product_info')}
-            {if $products}
+            {//var_dumps(count($products))}
+            {if count($products)}
                 <table class="table table-striped table-bordered table-condensed content_big_td">
                     <tbody>
                         {foreach $products as $p}

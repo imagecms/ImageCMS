@@ -42,7 +42,7 @@
                         </tbody>
                     </table>
                 {else:}
-                    <p style="text-align: center;">There are no orders for specified period</p>
+                    <p style="text-align: center;">{lang('There are no orders for specified period', 'mod_stats')}</p>
                 {/if}
 
             {/if}

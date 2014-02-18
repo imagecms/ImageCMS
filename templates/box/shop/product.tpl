@@ -234,10 +234,10 @@
                                                         <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                             <div class="frame-count frameCount">
                                                                 <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}">
-                                                                    <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
+                                                                    <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
                                                                 </div>
                                                             </div>
-                                                            <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                                            <div class="btn-cart-p btn-cart{if !$inCart} d_n{/if}">
                                                                 <button 
                                                                     type="button"
                                                                     data-id="{echo $productVariant->getId()}"
@@ -522,7 +522,7 @@
                                                             </span>
                                                         </div>
                                                         <form method="POST" action="/shop/cart/addKit/{echo $kitProducts->getId()}">
-                                                            <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                                            <div class="btn-cart-p btn-cart{if !$inCart} d_n{/if}">
                                                                 <button 
                                                                     type="button"
                                                                     data-id="{echo $kitProducts->getId()}"
@@ -779,5 +779,5 @@
 <!-- End. JS vars-->
 
 <script type="text/javascript">
-    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
+    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', '_product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>

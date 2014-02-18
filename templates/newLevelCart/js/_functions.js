@@ -142,7 +142,7 @@ var ShopFront = {
                         addClass(genObj.compareIn).
                         
                         end().
-                        data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip().
+                        data('title', $this.attr('data-sectitle')).tooltip('remove').
                         
                         find(genObj.textEl).
                         text($this.attr('data-sectitle'));
@@ -159,7 +159,7 @@ var ShopFront = {
                         removeClass(genObj.compareIn).
                         
                         end().
-                        data('title', $this.attr('data-firtitle')).tooltip('remove').tooltip().
+                        data('title', $this.attr('data-firtitle')).tooltip('remove').
                         
                         find(genObj.textEl).
                         text($this.attr('data-firtitle'));
