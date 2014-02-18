@@ -12,7 +12,8 @@
                     </span>
                 </li>
             </ul>
-            <input type="hidden" name="giftkey" value="{echo $gift->key}"/>
+            <input type="hidden" name="gift" value="{echo $gift->key}"/>
+            <input type="hidden" name="gift_ord" value="1"/>
         </div>
     </div>
 </div>

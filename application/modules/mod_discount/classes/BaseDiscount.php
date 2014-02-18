@@ -7,41 +7,18 @@ if (!defined('BASEPATH'))
 
 /**
  * Class BaseDiscount for Mod_Discount module
- * @uses \MY_Controller
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
- * @property discount_model $discount_model
  * @property discount_model_front $discount_model_front
  */
-class BaseDiscount extends \MY_Controller {
+class BaseDiscount {
 
-    protected static $discount;
-    protected $cart_data;
-    protected $total_price;
-    protected $discount_type;
-    protected $user_id;
-    protected $user_group_id;
-    protected $amout_user;
-    public $ci;
-
-    /**
-     * __construct base object loaded
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function __construct() {
-        parent::__construct();
-        if ($this->check_module_install()) {
-            $this->load->module('core');
-            $this->load->model('discount_model_front');
-            $lang = new \MY_Lang();
-            $lang->load('mod_discount');
-        }
-    }
+    private static $object;
+    private static $totalPrice;
+    private static $reBuild;
+    private static $ignoreCart;
+    private static $userId;
 
     /**
      * check_module_install
@@ -50,132 +27,156 @@ class BaseDiscount extends \MY_Controller {
      * @return boolean
      * @copyright (c) 2013, ImageCMS
      */
-    public function check_module_install() {
-        if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) == 0)
-            return false;
-        else
-            return true;
+    public static function checkModuleInstall() {
+        $ci = &get_instance();
+        return (count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
     }
 
     /**
-     * get user by id
+     * prepareOption
      * @access public
      * @author DevImageCms
-     * @param ---
-     * @return int
+     * @param array $option params:
+     * - (float) price: 
+     * - (int) userId: 
+     * - (bool) ignoreCart: ignore cart Data: 
+     * - (bool) reBuild: for redeclare singelton:
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_user_id() {
-
-        $this->user_id = $this->session->userdata('DX_user_id');
-        return $this->user_id;
+    public static function prepareOption($option) {
+        if ($option['price'])
+            self::setTotalPrice($option['price']);
+        if ($option['userId'])
+            self::setUserId($option['userId']);
+        if ($option['ignoreCart'])
+            self::setIgnoreCart($option['ignoreCart']);
+        if ($option['reBuild'])
+            self::reBuild();
     }
 
     /**
-     * get user group for current user
-     * @access public
+     * setTotalPrice
+     * @access private
      * @author DevImageCms
-     * @param ---
-     * @return int
+     * @param (float) price:
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_user_group_id() {
+    private static function setTotalPrice($price = null) {
+        self::$totalPrice = $price;
+    }
 
-        $this->user_group_id = $this->session->userdata('DX_role_id');
-        return $this->user_group_id;
+    /**
+     * setTotalPrice
+     * @access private
+     * @author DevImageCms
+     * @param (int) userId:
+     * @copyright (c) 2013, ImageCMS
+     */
+    private static function setUserId($userId = null) {
+        self::$userId = $userId;
+    }
+
+    /**
+     * setIgnoreCart
+     * @access private
+     * @author DevImageCms
+     * @param (bool) ignoreCart
+     * @copyright (c) 2013, ImageCMS
+     */
+    private static function setIgnoreCart($ignoreCart = null) {
+        self::$ignoreCart = $ignoreCart;
+    }
+
+    /**
+     * reBuild
+     * @access private
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     */
+    private static function reBuild() {
+        self::$reBuild = 1;
+    }
+
+    /**
+     * singelton method
+     * @return object BaseDiscount
+     */
+    public static function create() {
+        if (!self::$object || self::$reBuild)
+            self::$object = new self;
+
+        return self::$object;
+    }
+
+    /**
+     * __construct base object loaded
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function __construct() {
+        $this->ci = & get_instance();
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+            require_once __DIR__ . '/../models/discount_model_front.php';
+            $this->ci->discount_model_front = new \discount_model_front;
+            $lang = new \MY_Lang();
+            $lang->load('mod_discount');
+            $this->cart = \Cart\BaseCart::getInstance();
+            if (!self::$userId) {
+                $this->userGroupId = $this->ci->dx_auth->get_role_id();
+                $this->userId = $this->ci->dx_auth->get_user_id();
+            } else {
+                $this->userId = self::$userId;
+                $this->userGroupId = $this->ci->db->where('id', $this->userId)->get('users')->row()->role_id;
+            }
+            if (!self::$ignoreCart)
+                $this->cartData = $this->getCartData();
+            
+            $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($this->userId);
+            $this->totalPrice = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : $this->totalPrice = self::$totalPrice;
+            $this->allDiscount = $this->getAllDiscount();
+            $this->discountType = $this->collectType($this->allDiscount);
+            $this->discountAllOrder = $this->getAllOrderDiscountNotRegister();
+            if ($this->userId) {
+                $this->discountUser = $this->getUserDiscount();
+                $this->discountGroupUser = $this->getUserGroupDiscount();
+                $this->discountComul = $this->getComulativDiscount();
+                $this->discountAllOrder = $this->getAllOrderDiscountRegister();
+            }
+
+            $this->discountProductVal = (self::$ignoreCart) ? null : $this->getDiscountProducts();
+            $this->discountMax = $this->getMaxDiscount(array($this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder), $this->totalPrice);
+            $this->discountNoProductVal = $this->getDiscountValue($this->discountMax, $this->totalPrice);
+        }
     }
 
     /**
      * get Cart items for current session
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param ---
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_cart_data() {
+    private function getCartData() {
 
-        $this->cart_data = \ShopCore::app()->SCart->getData();
-        //var_dump($this->cart_data);
-        return $this->cart_data;
-    }
-     /**
-     * get Cart items for current session
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return array
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_cart_data_new() {
-
-        $cart = \Cart\BaseCart::getInstance();
-        $cart = $cart->getItems();
-        $this->cart_data = $cart['data'];
-        return $this->cart_data;
-    }
-
-    /**
-     * get current user amout
-     * @access public
-     * @author DevImageCms
-     * @param user_id optional
-     * @return float
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_amout_user($id = null) {
-
-        if (null === $id)
-            $id = $this->user_id;
-        $this->load->model('discount_model_front');
-        $this->amout_user = $this->discount_model_front->get_amout_user($id);
-        return $this->amout_user;
-    }
-
-    /**
-     * get totall origin price for current session
-     * @access public
-     * @author DevImageCms
-     * @param cart_data optional
-     * @return float
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_total_price($data = null) {
-
-        if (null === $data)
-            $data = $this->cart_data;
-        $this->total_price = $this->discount_model_front->get_total_price($data);
-        return $this->total_price;
-    }
-    
-     /**
-     * get totall origin price for current session
-     * @access public
-     * @author DevImageCms
-     * @param cart_data optional
-     * @return float
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_total_price_new($data = null) {
-
-        $cart = \Cart\BaseCart::getInstance();
-        $this->total_price = $cart->getOriginTotalPrice();
-        return $this->total_price;
+        $cart = $this->cart->getItems();
+        return $cart['data'];
     }
 
     /**
      * get all active discount joined whith his type
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param --
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_all_discount() {
+    private function getAllDiscount() {
 
-        if (!self::$discount)
-            self::$discount = $this->join_discount_settings($this->discount_model_front->get_discount());
-        return self::$discount;
+        return $this->joinDiscountSettings($this->ci->discount_model_front->getDiscount());
     }
 
     /**
@@ -186,32 +187,29 @@ class BaseDiscount extends \MY_Controller {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    private function join_discount_settings($discount) {
+    private function joinDiscountSettings($discount) {
 
         foreach ($discount as $key => $disc)
-            $discount[$key] = array_merge($discount[$key], $this->discount_model_front->join_discount($disc['id'], $disc['type_discount']));
+            $discount[$key] = array_merge($discount[$key], $this->ci->discount_model_front->joinDiscount($disc['id'], $disc['type_discount']));
 
         return $discount;
     }
 
     /**
      * partitioning discounts on their types
-     * @access public
+     * @access private
      * @author DevImageCms
      * @param optional discount
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function collect_type($discount = null) {
+    private function collectType($discount) {
 
-        if (null === $discount)
-            $discount = self::$discount;
         $arr = array();
         foreach ($discount as $disc)
             $arr[$disc['type_discount']][] = $disc;
-        $this->discount_type = $arr;
-        $this->empty_to_array();
-        return $this->discount_type;
+
+        return $this->emptyToArray($arr);
     }
 
     /**
@@ -222,27 +220,29 @@ class BaseDiscount extends \MY_Controller {
      * @return ----
      * @copyright (c) 2013, ImageCMS
      */
-    private function empty_to_array() {
-        if (!isset($this->discount_type['product']))
-            $this->discount_type['product'] = array();
+    private function emptyToArray($discount) {
+        if (!isset($discount['product']))
+            $discount['product'] = array();
 
-        if (!isset($this->discount_type['brand']))
-            $this->discount_type['brand'] = array();
+        if (!isset($discount['brand']))
+            $discount['brand'] = array();
 
-        if (!isset($this->discount_type['category']))
-            $this->discount_type['category'] = array();
+        if (!isset($discount['category']))
+            $discount['category'] = array();
 
-        if (!isset($this->discount_type['all_order']))
-            $this->discount_type['all_order'] = array();
+        if (!isset($discount['all_order']))
+            $discount['all_order'] = array();
 
-        if (!isset($this->discount_type['comulativ']))
-            $this->discount_type['comulativ'] = array();
+        if (!isset($discount['comulativ']))
+            $discount['comulativ'] = array();
 
-        if (!isset($this->discount_type['group_user']))
-            $this->discount_type['group_user'] = array();
+        if (!isset($discount['group_user']))
+            $discount['group_user'] = array();
 
-        if (!isset($this->discount_type['user']))
-            $this->discount_type['user'] = array();
+        if (!isset($discount['user']))
+            $discount['user'] = array();
+
+        return $discount;
     }
 
     /**
@@ -253,21 +253,21 @@ class BaseDiscount extends \MY_Controller {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_max_discount($discount, $price) {
-//        var_dumps($discount);
+    public function getMaxDiscount($discount, $price) {
+
         $discount = array_filter(
                 $discount, function($el) {
                     return !empty($el);
                 });
-        $max_discount = 0;
+        $maxDiscount = 0;
         foreach ($discount as $key => $disc) {
-            $discount_value = $this->get_discount_value($disc, $price);
-            if ($max_discount <= $discount_value) {
-                $max_discount = $discount_value;
-                $key_max = $key;
+            $discountValue = $this->getDiscountValue($disc, $price);
+            if ($maxDiscount <= $discountValue) {
+                $maxDiscount = $discountValue;
+                $keyMax = $key;
             }
         }
-        return $discount[$key_max];
+        return $discount[$keyMax];
     }
 
     /**
@@ -278,14 +278,9 @@ class BaseDiscount extends \MY_Controller {
      * @return float
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_value($discount, $price) {
+    public function getDiscountValue($discount, $price) {
 
-        if ($discount['type_value'] == 1)
-            $discount_value = $price * $discount['value'] / 100;
-        if ($discount['type_value'] == 2)
-            $discount_value = $discount['value'];
-
-        return $discount_value;
+        return ($discount['type_value'] == 1) ? $price * $discount['value'] / 100 : $discount['value'];
     }
 
     /**
@@ -296,9 +291,120 @@ class BaseDiscount extends \MY_Controller {
      * @return -----
      * @copyright (c) 2013, ImageCMS
      */
-    public function updatediskapply($key, $gift = null) {
+    public function updateDiskApply($key, $gift = null) {
 
-        return $this->discount_model_front->updateapply($key, $gift);
+        return $this->ci->discount_model_front->updateApply($key, $gift);
+    }
+
+    /**
+     * get max discount for current user
+     * @access private
+     * @author DevImageCms
+     * @param ----
+     * @return array 
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function getUserDiscount() {
+
+        $discountUser = array();
+        foreach ($this->discountType['user'] as $key => $userDisc)
+            if ($userDisc['user_id'] == $this->userId)
+                $discountUser[] = $userDisc;
+
+        return (count($discountUser) > 0) ? $this->getMaxDiscount($discountUser, $this->totalPrice) : false;
+    }
+
+    /**
+     * get max discount for current user_group
+     * @access private
+     * @author DevImageCms
+     * @param ----
+     * @return array 
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function getUserGroupDiscount() {
+
+        $discountUserGr = array();
+        foreach ($this->discountType['group_user'] as $userGrDisc)
+            if ($userGrDisc['group_id'] == $this->userGroupId)
+                $discountUserGr[] = $userGrDisc;
+
+        return (count($discountUserGr) > 0) ? $this->getMaxDiscount($discountUserGr, $this->totalPrice) : false;
+    }
+
+    /**
+     * get max comulativ discount for current user with current amout
+     * @access private
+     * @author DevImageCms
+     * @param ----
+     * @return array 
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function getComulativDiscount() {
+
+        $discountComulativ = array();
+        foreach ($this->discountType['comulativ'] as $disc)
+            if (($disc['begin_value'] <= (float) $this->amoutUser and $disc['end_value'] > (float) $this->amoutUser ) or ($disc['begin_value'] <= (float) $this->amoutUser and !$disc['end_value']))
+                $discountComulativ[] = $disc;
+
+        return (count($discountComulativ) > 0) ? $this->getMaxDiscount($discountComulativ, $this->totalPrice) : false;
+    }
+
+    /**
+     * get discount for product in cart with his discount
+     * @access private
+     * @author DevImageCms
+     * @param ----
+     * @return float 
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function getDiscountProducts() {
+
+        foreach ($this->cartData as $item) {
+            $priceOrigin = number_format($item->originPrice, \ShopCore::app()->SSettings->pricePrecision, '.', ''); // new Cart
+            if (abs($priceOrigin - $item->price) > 1)
+                $discountValue += ($priceOrigin - $item->price) * $item->quantity;
+        }
+
+        return $discountValue;
+    }
+
+    /**
+     * get max discount for all order for register and not register user
+     * @access private
+     * @author DevImageCms
+     * @param ----
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function getAllOrderDiscountRegister() {
+
+        $allOrderArrReg = array();
+        foreach ($this->discountType['all_order'] as $disc)
+            if (!$disc['is_gift'])
+                if ($disc['begin_value'] <= (int) $this->totalPrice)
+                    $allOrderArrReg[] = $disc;
+
+        return (count($allOrderArrReg) > 0) ? $this->getMaxDiscount($allOrderArrReg, $this->totalPrice) : false;
+    }
+
+    /**
+     * get max discount for all order for not register user
+     * @access private
+     * @author DevImageCms
+     * @param ----
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function getAllOrderDiscountNotRegister() {
+
+        $allOrderArrNotReg = array();
+        foreach ($this->discountType['all_order'] as $disc)
+            if (!$disc['is_gift'])
+                if ($disc['begin_value'] <= $this->totalPrice and !$disc['for_autorized'])
+                    $allOrderArrNotReg[] = $disc;
+
+        return (count($allOrderArrNotReg) > 0) ? $this->getMaxDiscount($allOrderArrNotReg, $this->totalPrice) : false;
     }
 
 }
