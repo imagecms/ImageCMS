@@ -2168,6 +2168,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   `product_name` varchar(255) DEFAULT NULL,
   `variant_name` varchar(255) DEFAULT NULL,
   `price` float(10,2) DEFAULT NULL,
+  `origin_price` float(10,2) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `kit_id` int(11) DEFAULT NULL,
   `is_main` tinyint(1) DEFAULT NULL,
