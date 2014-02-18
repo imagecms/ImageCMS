@@ -1229,3 +1229,5 @@ img.cloned{max-width: none;max-height: none;}
 .isCart{display:none;}
 .cart .isCart{display: block}
 .cart .notCart{display: none;}
+
+.drop .drop{display: block;position: relative;}
