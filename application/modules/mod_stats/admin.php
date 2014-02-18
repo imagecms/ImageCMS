@@ -32,7 +32,11 @@ class Admin extends \BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->helper('file');
-
+        
+        if ($this->input->is_ajax_request() && $this->uri->uri_string() == "admin/components/cp/mod_stats" || $this->uri->uri_string() == "admin/components/init_window/mod_stats"){
+            redirect('admin/components/cp/mod_stats');
+        }
+        
         $this->import('classes/ControllerBase' . EXT);
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
@@ -53,6 +57,7 @@ class Admin extends \BaseAdminController {
         $helper = \mod_stats\classes\AdminHelper::create();
         $this->assetManager->setData('leftMenu', $leftMenu);
         $this->assetManager->setData('saveSearchResults', $helper->getSetting('save_search_results'));
+        $this->assetManager->setData('saveSearchResultsAC', $helper->getSetting('save_search_results_ac'));
         $this->assetManager->setData('saveUsersAttendance', $helper->getSetting('save_users_attendance'));
         $this->assetManager->setData('saveRobotsAttendance', $helper->getSetting('save_robots_attendance'));
         $this->assetManager->setData('CS', $helper->getCurrencySymbol());
@@ -69,7 +74,7 @@ class Admin extends \BaseAdminController {
             'lastPage' => $model->getLastViewedPage()
         );
 
-        \CMSFactory\assetManager::create()
+        $this->assetManager
                 ->setData($data)
                 ->renderAdmin('start');
     }

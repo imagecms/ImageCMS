@@ -34,7 +34,7 @@
                     <td>{lang('Last viewed page','mod_stats')}</td>
                     <td>
                         {if !empty($lastPage)}
-                            <a href="/{$lastPage['url']}">{$lastPage['page_name']}</a> by <strong> {$lastPage['username']} </strong>
+                            <a href="/{$lastPage['url']}" target="_blank">{$lastPage['page_name']}</a> by <strong> {$lastPage['username']} </strong>
                         {else:}
                             {lang('No data','mod_stats')}
                         {/if}

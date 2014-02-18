@@ -39,6 +39,13 @@
             </span>
             {lang('Save search results', 'mod_stats')}
         </span>
+        
+        <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
+            <span class="niceCheck"  style="background-position: -46px -17px;">
+                <input type="checkbox" {if $saveSearchResultsAC == '1'}checked="checked" {/if} class="shortSettingsCheckbox" data-sname="save_search_results_ac">
+            </span>
+            {lang('Save autocomplete search results', 'mod_stats')}
+        </span>
 
         <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
             <span class="niceCheck"  style="background-position: -46px -17px;">

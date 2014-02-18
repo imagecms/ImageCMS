@@ -15,9 +15,9 @@
         <div class="clearfix span9" id="chartArea">
             {include_tpl('../include/top_form_charts')}
             <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
-            <button  class="btn btn-small btn-primary" id="saveAsPng">
+            <!--<button  class="btn btn-small btn-primary" id="saveAsPng">
                 <i class="icon-download"></i> {lang('Save Image', 'mod_stats')} 
-            </button>
+            </button>-->
             <svg class="cumulativeLineChartStats" data-from="orders/getChartData{$show_by}" style="height: 600px; width: 800px;"></svg>
         </div>
     </div>
