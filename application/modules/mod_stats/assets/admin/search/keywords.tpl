@@ -12,7 +12,7 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
+        <div class="clearfix span9" id="chartArea">
             {include_tpl('../include/top_form_without_groupby')}
             <div class="fixedTableWithLeftScroll" style="">
                 {if count($data) > 0}

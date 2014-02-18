@@ -42,7 +42,6 @@
             {/if}
             <!--Start. Banners block-->
             {$CI->load->module('banners')->render($category->getId())}
-
             <!--End. Banners-->
             {include_tpl('catalogue_header')}
             <!-- Start.If count products in category > 0 then show products list and pagination links -->
