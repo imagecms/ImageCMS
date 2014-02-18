@@ -1878,10 +1878,16 @@ function getCookie(c_name)
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
                                 var $thisHref = $thisB.attr('href') || $thisB.data('href');
-                                $.drop.dP.curHash = !hashChange ? $thisHref : null;
-                                if ($thisHref !== undefined) {
+
+                                if ($thisHref) {
+                                    $.drop.dP.curHash = !hashChange ? $thisHref : null;
+
                                     var wLH = location.hash;
                                     location.hash = wLH.replace($thisHref, '');
+
+                                    setTimeout(function() {
+                                        $.drop.dP.curHash = null;
+                                    }, 400);
                                 }
 
                                 drop.removeClass(aC);
@@ -2304,11 +2310,16 @@ function getCookie(c_name)
             methods.placeBeforeShow(drop, $this, methods, place, placeBeforeShow);
 
             var href = $this.attr('href') || $this.data('href');
-            if (href !== undefined) {
+            if (href) {
                 $.drop.dP.curHash = !hashChange ? href : null;
+
                 var wlh = window.location.hash;
                 if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
                     window.location.hash = wlh + href;
+
+                setTimeout(function() {
+                    $.drop.dP.curHash = null;
+                }, 400);
             }
             if (place !== 'inherit')
                 methods._checkMethod(function() {
@@ -2500,22 +2511,17 @@ function getCookie(c_name)
     $.drop = new $.dropInit();
     var wLH = window.location.hash;
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
-        $.drop.dP.curHash = null;
-        setTimeout(function() {
-            var wLHN = window.location.hash;
-            console.log('wLH=' + wLH)
-            console.log(!$.drop.dP.curHash)
-            if (!$.drop.dP.curHash) {
-                for (var i in $.drop.dP.hrefs) {
-                    if (wLH.indexOf($.drop.dP.hrefs[i]) === -1 && wLHN.indexOf($.drop.dP.hrefs[i]) !== -1) {
-                        methods.open(undefined, undefined, $.drop.dP.hrefs[i], e, true);
-                    }
-                    else
-                        methods.close($($.drop.dP.hrefs[i].data('drop')), true);
+        var wLHN = window.location.hash;
+        if (!$.drop.dP.curHash) {
+            for (var i in $.drop.dP.hrefs) {
+                if (wLH.indexOf(i) === -1 && wLHN.indexOf(i) !== -1) {
+                    methods.open(undefined, undefined, $.drop.dP.hrefs[i], e, true);
                 }
+                else
+                    methods.close($($.drop.dP.hrefs[i].data('drop')), true);
             }
-            wLH = wLHN;
-        }, 100)
+        }
+        wLH = wLHN;
     });
 })(jQuery);
 /*/plugin drop end*/
