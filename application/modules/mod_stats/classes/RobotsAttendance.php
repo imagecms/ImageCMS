@@ -47,16 +47,20 @@ class RobotsAttendance {
         ;
     }
 
+    /**
+     * 
+     * @return RobotsAttendance
+     */
     public static function getInstance() {
         if (is_null(self::$instance)) {
-            self::$instance = new Attendance;
+            self::$instance = new self;
         }
         return self::$instance;
     }
 
     public function __destruct() {
         if (!is_null($this->attendanceData))
-            CI::$APP->db->insert('mod_stats_attendance_robots', $this->attendanceData);
+            \CI::$APP->db->insert('mod_stats_attendance_robots', $this->attendanceData);
     }
 
     /**
@@ -123,6 +127,10 @@ class RobotsAttendance {
             return $this->robots[$robotId];
         }
         return FALSE;
+    }
+
+    public function getRobots() {
+        return $this->robots;
     }
 
 }

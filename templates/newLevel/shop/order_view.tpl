@@ -262,7 +262,7 @@
                                     {/foreach}
                                     <!-- end for single product -->
                                     <!-- Start. Render Ordered kit products  -->
-                                    {$sumKit = 0}
+
                                     {foreach $model->getOrderKits() as $orderProduct}
                                         <tr class="row-kits rowKits items-order row">
                                             <td class="frame-items frame-items-kit">
@@ -384,7 +384,7 @@
                                                         {/if}
                                                         { */}
                                                     </span>
-                                                    {$sumKit += $orderProduct->getKit()->getTotalPrice() - $orderProduct->getKit()->getTotalPriceOld()}
+                                                    
                                                 </span>
                                             </td>
                                         </tr>
@@ -421,7 +421,7 @@
                                     </tr>
 
                                     {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
-                                    {if $discount || $sumKit != 0}
+                                    {if $discount}
                                         <tr>
                                             <td colspan="2">
                                                 <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
@@ -429,7 +429,7 @@
                                             <td>
                                                 <span class="price-item">
                                                     <span>
-                                                        <span class="text-discount current-discount">{echo $discount + $sumKit} <span class="curr">{$CS}</span></span>
+                                                        <span class="text-discount current-discount">{echo $discount} <span class="curr">{$CS}</span></span>
                                                     </span>
                                                 </span>
                                             </td>

@@ -235,4 +235,73 @@ class Attendance_model extends CI_Model {
         }
         return FALSE;
     }
+
+    public function getRobotAttendance($robotId, $date) {
+        $locale = MY_Controller::getCurrentLocale();
+
+        $from = strtotime($date . ' 00:00:00');
+        $to = strtotime($date . ' 23:59:59');
+
+        $query = "
+            SELECT 
+                `mod_stats_attendance_robots`.`type_id`,
+                `mod_stats_attendance_robots`.`id_entity`,
+                FROM_UNIXTIME(`mod_stats_attendance_robots`.`time_add`) as `time`,
+                
+                -- ---- for urls ----
+                CASE `mod_stats_attendance_robots`.`type_id`
+                    WHEN 1 THEN `content`.`title`
+                    WHEN 2 THEN `category`.`title`
+                    WHEN 3 THEN CONCAT('shop/category/',`shop_category`.`full_path`)
+                    WHEN 4 THEN CONCAT('shop/product/',`shop_products`.`url`)
+                END as `url`,
+                -- ------------------
+                
+                -- ---- for names ----
+                CASE `mod_stats_attendance_robots`.`type_id`
+                    WHEN 1 THEN CONCAT(`content`.`cat_url`, `content`.`url`)
+                    WHEN 2 THEN `category`.`url`
+                    WHEN 3 THEN `shop_category_i18n`.`name`
+                    WHEN 4 THEN `shop_products_i18n`.`name`
+                END as `page_name`   
+                -- ------------------
+            FROM 
+                `mod_stats_attendance_robots`
+                
+            -- ---- for urls ----
+            LEFT JOIN `content` ON `content`.`id` = `mod_stats_attendance_robots`.`id_entity` 
+                AND `mod_stats_attendance_robots`.`type_id` = 1
+            LEFT JOIN `category` ON `category`.`id` = `mod_stats_attendance_robots`.`id_entity` 
+                AND `mod_stats_attendance_robots`.`type_id` = 2
+            LEFT JOIN `shop_category` ON `shop_category`.`id` = `mod_stats_attendance_robots`.`id_entity` 
+                AND `mod_stats_attendance_robots`.`type_id` = 3
+            LEFT JOIN `shop_products` ON `shop_products`.`id` = `mod_stats_attendance_robots`.`id_entity` 
+                AND `mod_stats_attendance_robots`.`type_id` = 4
+            -- ------------------
+            
+            -- ---- for names ----
+            LEFT JOIN `shop_category_i18n` ON `shop_category`.`id` = `shop_category_i18n`.`id` 
+                AND `shop_category_i18n`.`locale` = '{$locale}'
+            LEFT JOIN `shop_products_i18n` ON `shop_products`.`id` = `shop_products_i18n`.`id` 
+                AND `shop_products_i18n`.`locale` = '{$locale}'
+            -- ------------------
+
+            WHERE 1
+                AND `mod_stats_attendance_robots`.`id_robot` = {$robotId}
+                AND `mod_stats_attendance_robots`.`time_add` > {$from}
+                AND `mod_stats_attendance_robots`.`time_add` < {$to}
+            ORDER BY
+                `mod_stats_attendance_robots`.`time_add` DESC
+                
+        ";
+
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            return $result->result_array();
+        }
+        return FALSE;
+    }
+
 }

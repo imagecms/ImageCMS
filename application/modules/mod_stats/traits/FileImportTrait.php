@@ -16,13 +16,14 @@ trait FileImportTrait {
         $reflection = new ReflectionClass($this);
         $workingDir = pathinfo($reflection->getFileName(), PATHINFO_DIRNAME);
         $filePath = $workingDir . DIRECTORY_SEPARATOR . str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
+        
         if (strpos($filePath, '*') === FALSE) {
             include_once $filePath . EXT;
         } else {
             $filesOfDir = get_filenames(str_replace('*', '', $filePath), TRUE);
             foreach ($filesOfDir as $file) {
                 if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) == 'php') {
-                    include_once str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $file);                    
+                    include_once str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $file);
                 }
             }
         }
