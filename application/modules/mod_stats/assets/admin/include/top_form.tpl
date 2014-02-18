@@ -42,7 +42,7 @@
                 </button>
             </div>
         </div>
-                
+
         <div class="view_type">
             <label>
                 <input type="radio" name="view_type" value="table" {if $_GET['view_type'] == 'table' || !isset($_GET['view_type'])}checked="checked"{/if} />

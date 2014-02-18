@@ -3,7 +3,7 @@
 /**
  * 
  *
- * @author kolia
+ * @author 
  */
 class ZeroFiller {
 
@@ -12,8 +12,6 @@ class ZeroFiller {
     const YEAR = 3;
 
     public static function fill(array $values, $timeKey, $valueKey, $dateRange) {
-
-
 
         switch ($dateRange) {
             case self::DAY;
@@ -45,18 +43,17 @@ class ZeroFiller {
 
             $filledValues[] = $values[$i - 1];
 
-
             if ($difference > $interval) { // значить є прогалина - треба заповнити нулями
-                $countOfEmptyIntervals = floor($difference / $interval);                
+                $countOfEmptyIntervals = floor($difference / $interval);
 
                 if (($difference % $interval) == 0) {
                     $countOfEmptyIntervals--;
                 }
 
-
                 for ($j = 0; $j < $countOfEmptyIntervals; $j++) {
+                    $currentTimeValue = $prevTime += $interval;
                     $filledValues[] = array(
-                        $timeKey => $currentTime += $interval,
+                        $timeKey => $currentTimeValue,
                         $valueKey => 0,
                     );
                 }

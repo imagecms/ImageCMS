@@ -46,10 +46,9 @@ class Users_model extends CI_Model {
 
     /**
      * Getting dynamic of users registration on site
-     * @param array $params
      * @return boolean|array
      */
-    public function getRegister($params) {
+    public function getRegister() {
         $query = "
             SELECT
                 DATE_FORMAT(FROM_UNIXTIME(`created`), '" . $this->getDatePattern($this->params['interval']) . "') as `date`,

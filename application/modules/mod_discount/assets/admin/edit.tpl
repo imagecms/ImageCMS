@@ -229,6 +229,7 @@
                                                     <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}" {if $category->getId() == $discount['category']['category_id']}selected=selected{/if}>{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                 {/foreach}
                                             </select>
+                                            <input type="checkbox" name="category[child]" value="1"{if $discount['category']['child']}checked="checked"{/if}/>  {lang('Change child category', 'mod_discount')} 
                                         </div>
                                         <!-- End. Show if discount type is category of products-->
                                     </div>

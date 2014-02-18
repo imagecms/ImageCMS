@@ -207,8 +207,8 @@ $mobiles = array(
 	'midp'			=> 'Generic Mobile',
 	'cldc'			=> 'Generic Mobile',
 	'up.link'		=> 'Generic Mobile',
-	'up.browser'	=> 'Generic Mobile',
-	'smartphone'	=> 'Generic Mobile',
+	'up.browser'    	=> 'Generic Mobile',
+	'smartphone'            => 'Generic Mobile',
 	'cellphone'		=> 'Generic Mobile'
 );
 
@@ -216,12 +216,12 @@ $mobiles = array(
 $robots = array(
 	'googlebot'		=> 'Googlebot',
 	'msnbot'		=> 'MSNBot',
-	'baiduspider'	=> 'Baiduspider',
+	'baiduspider'   	=> 'Baiduspider',
 	'bingbot'		=> 'Bing',
 	'slurp'			=> 'Inktomi Slurp',
 	'yahoo'			=> 'Yahoo',
 	'askjeeves'		=> 'AskJeeves',
-	'fastcrawler'	=> 'FastCrawler',
+	'fastcrawler'   	=> 'FastCrawler',
 	'infoseek'		=> 'InfoSeek Robot 1.0',
 	'lycos'			=> 'Lycos',
 	'yandex'		=> 'YandexBot'
