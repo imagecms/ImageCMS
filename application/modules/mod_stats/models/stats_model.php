@@ -208,6 +208,37 @@ class Stats_model extends CI_Model {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_stats_attendance');
 
+        // збереження URL сторінок
+        $robotsAttendanceFields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+            'id_robot' => array(
+                'type' => 'int',
+                'constraint' => '5',
+                'null' => FALSE,
+            ),
+            'type_id' => array(
+                'type' => 'int',
+                'constraint' => '2',
+                'null' => FALSE,
+            ),
+            'id_entity' => array(
+                'type' => 'int',
+                'constraint' => '6',
+                'null' => FALSE,
+            ),
+            'time_add ' => array(
+                'type' => 'int',
+                'constraint' => '11',
+                'null' => FALSE,
+            ),
+        );
+
+        $this->dbforge->add_field($robotsAttendanceFields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_stats_attendance_robots');
 
         $this->db->where('name', 'mod_stats');
         $this->db->update('components', array(

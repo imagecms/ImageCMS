@@ -18,7 +18,7 @@
                         {lang('Product','mod_stats')}
                     {/if}
                     :
-                    <a href="{$row['url']}">
+                    <a href="/{$row['url']}">
                         {$row['page_name']}
                     </a>
                 </td>
