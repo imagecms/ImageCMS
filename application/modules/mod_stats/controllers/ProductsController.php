@@ -34,7 +34,7 @@ class ProductsController extends ControllerBase {
             'categoryId' => isset($_GET['catId']) ? $_GET['catId'] : 0,
         );
         $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
-        $categories = $this->controller->products_model->getCategoriesCountsData($catIds);
+        $categories = $this->controller->products_model->getCategoriesCountsData($catIds, TRUE);
         $chartData = parent::prepareDataForStaticChart($categories);
 
         echo json_encode($chartData);
@@ -57,7 +57,7 @@ class ProductsController extends ControllerBase {
             'topBrandsCount' => isset($_GET['stbc']) ? $_GET['stbc'] : 20,
         );
 
-        $brands = $this->controller->products_model->getBrandsCountsData($params['topBrandsCount']);
+        $brands = $this->controller->products_model->getBrandsCountsData($params['topBrandsCount'],NULL, TRUE);
 
         $chartData = parent::prepareDataForStaticChart($brands);
         echo json_encode($chartData);
