@@ -130,3 +130,20 @@ String.prototype.translit = (function() {
     };
 })();
 
+
+
+function refreshOrdersUsers() {
+    $('input[name=orderMethod]').val($(this).attr('data-column'));
+    if ($('input[name=order]').val() === '') {
+        $('input[name=order]').val('ASC');
+    } else {
+        if ($('input[name=order]').val() === 'ASC') {
+            $('input[name=order]').val('DESC');
+        } else {
+            $('input[name=order]').val('ASC');
+        }
+    }
+    var topFrom = $('#top_form_orders_users').serialize();
+    var filterForm = $('#orders_users_filter_form').serialize();
+    window.location.href = '/admin/components/cp/mod_stats/orders/users/?' + topFrom + '&' + filterForm;
+}

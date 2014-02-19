@@ -109,7 +109,6 @@ $.dropInit.prototype.extendDrop = function() {
                     var dropV = drop.is(':visible'),
                             forCenter = drp.forCenter,
                             docH = $(document).height();
-
                     if (!dropV) {
                         drop.show();
                         if (forCenter)
