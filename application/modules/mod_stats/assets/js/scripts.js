@@ -67,6 +67,11 @@ $(document).ready(function() {
         $('#chartArea').find('form').submit();
     });
 
+    /** Send form when change chart type **/
+    $("select[name*='charType']").on('change', function() {
+        $('#chartArea').find('form').submit();
+    });
+
 
     /**  Autocomplete for categories    */
     if ($('#autocomleteCategory').length) {
@@ -99,16 +104,15 @@ $(document).ready(function() {
     });
 
     /** Send form for filtering */
-    $('#productFilterButton').bind('click', function() {
+    $('#productFilterForm').on('submit', function(e) {
+        e.preventDefault();
         var query_string = $('#productFilterForm').serialize();
         window.location.href = '/admin/components/cp/mod_stats/products/productInfo/0?' + query_string;
     });
 
-
     /** Order for order/users **/
     $('.orders_users_order').on('click', refreshOrdersUsers);
     $("#refreshIntervalsButtonOrdersUsers").on('click', refreshOrdersUsers);
-
 
 
     /** Show user attendance on page online */
@@ -146,6 +150,10 @@ $(document).ready(function() {
         StatsSettingsAndParams.submitDownloadForm("png");
     });
 
+
+
+
+
     /** DRAW CHARTS **/
 
     /** Find and draw Pie Chart */
@@ -160,7 +168,7 @@ $(document).ready(function() {
                             height = 650 + (cData.length / 3 * 20);
 
                     var tooltip = function(key, x, y, e, graph) {
-                        x = parseFloat(x.replace(' ','').replace(',','').replace(',','.'));
+                        x = parseFloat(x.replace(' ', '').replace(',', ''));
                         return '<h3>' + key + '</h3>' +
                                 '<p>' + x + '</p>';
                     }
@@ -169,17 +177,17 @@ $(document).ready(function() {
                             .tooltipContent(tooltip)
                             .showLabels(true)
                             .x(function(d) {
-                        return d.key
-                    })
+                                return d.key
+                            })
                             .y(function(d) {
 
-                        return d.y
-                    })
+                                return d.y
+                            })
                             .color(d3.scale.category20().range())
 
                             .width(width)
                             .height(height);
-                    
+
                     d3.select(el)
                             .datum(cData)
                             .transition().duration(1200)
@@ -269,25 +277,25 @@ $(document).ready(function() {
                     var chart = nv.models.linePlusBarChart()
                             .margin({top: 30, right: 30, bottom: 50, left: 100})
                             .x(function(d, i) {
-                        return i
-                    })
+                                return i
+                            })
                             .y(function(d) {
-                        return d[1]
-                    })
+                                return d[1]
+                            })
                             .color(d3.scale.category10().range());
 
                     chart.xAxis
                             .showMaxMin(false)
                             .tickFormat(function(d) {
-                        var dx = cData[0].values[d] && cData[0].values[d][0] || 0;
-                        if (dx !== 0)
-                            return d3.time.format('%d/%m/%Y')(new Date(dx))
-                    });
+                                var dx = cData[0].values[d] && cData[0].values[d][0] || 0;
+                                if (dx !== 0)
+                                    return d3.time.format('%d/%m/%Y')(new Date(dx))
+                            });
 
                     chart.y1Axis
                             .tickFormat(function(d) {
-                        return d3.format(',f')(d)
-                    });
+                                return d3.format(',f')(d)
+                            });
 
                     chart.y2Axis
                             .tickFormat(d3.format(',f'));
@@ -329,8 +337,8 @@ $(document).ready(function() {
 
                     chart.xAxis
                             .tickFormat(function(d) {
-                        return d3.time.format('%d/%m/%Y')(new Date(d))
-                    });
+                                return d3.time.format('%d/%m/%Y')(new Date(d))
+                            });
 
                     chart.yAxis
                             .tickFormat(d3.format('.0f'));
@@ -353,19 +361,3 @@ $(document).ready(function() {
     }
     /** ************************************************ */
 });
-
-function refreshOrdersUsers() {
-    $('input[name=orderMethod]').val($(this).attr('data-column'));
-    if ($('input[name=order]').val() === '') {
-        $('input[name=order]').val('ASC');
-    } else {
-        if ($('input[name=order]').val() === 'ASC') {
-            $('input[name=order]').val('DESC');
-        } else {
-            $('input[name=order]').val('ASC');
-        }
-    }
-    var topFrom = $('#top_form_orders_users').serialize();
-    var filterForm = $('#orders_users_filter_form').serialize();
-    window.location.href = '/admin/components/cp/mod_stats/orders/users/?' + topFrom + '&' + filterForm;
-}
