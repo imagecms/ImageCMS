@@ -25,7 +25,7 @@
                         </label>
                         <div class="frame-label">
                             <span class="title">&nbsp;</span>
-                            <div class="btn-form">
+                            <div class="btn-buy">
                                 <button type="submit">
                                     <span class="icon_forgot_password"></span>
                                     <span class="text-el">{lang('Отправить','newLevel')}</span>

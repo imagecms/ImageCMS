@@ -9,9 +9,6 @@
         <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'newLevel')}</button>{/if}</div>
         <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight">
-                <div class="title-default title-comment">
-                    <div class="title">{lang('Оставить комментарий','newLevel')}</div>
-                </div>
                 <!-- Start of new comment fild -->
                 <div class="form-comment main-form-comments">
                     <div class="inside-padd">
@@ -49,7 +46,7 @@
                             </label>
                             <!-- Start star reiting -->
                             <div class="frame-label">
-                                <span class="title f_l t-a_l">{lang('Ваша оценка:', 'newLevel')}</span>
+                                <span class="title f_l t-a_l" style="margin-top: 2px;">{lang('Ваша оценка:', 'newLevel')}</span>
                                 <div class="frame-form-field">
                                     <div class="star">
                                         <div class="productRate star-big clicktemprate">
@@ -148,7 +145,7 @@
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                             <span class="icon_comment"></span>
-                                            <span class="text-el d_l_1">{lang('Ответить')}</span>
+                                            <span class="text-el d_l_1 f-s_11">{lang('Ответить')}</span>
                                         </button>
                                     </div>
                                 {/if}
