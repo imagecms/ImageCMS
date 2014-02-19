@@ -63,7 +63,30 @@ class Stats_model extends CI_Model {
         }
         return TRUE;
     }
-
+    
+    /**
+     * Save keywords autocomplete
+     * @param type $keyword
+     * @return boolean
+     */
+    public function saveKeyWordsAC($keyword = '') {
+        /** Return if not set values * */
+        if ($keyword == '') {
+            return FALSE;
+        }
+        /** Insert value * */
+        $this->db->insert('mod_stats_search', array(
+            'key' => $keyword,
+            'date' => time(),
+            'ac' => 1
+        ));
+    }
+    
+    /**
+     * Save keywords
+     * @param type $keyword
+     * @return boolean
+     */
     public function saveKeyWords($keyword = '') {
         /** Return if not set values * */
         if ($keyword == '') {
@@ -155,6 +178,10 @@ class Stats_model extends CI_Model {
                 'null' => TRUE,
             ),
             'date' => array(
+                'type' => 'INT',
+                'null' => TRUE,
+            ),
+            'ac' => array(
                 'type' => 'INT',
                 'null' => TRUE,
             )
