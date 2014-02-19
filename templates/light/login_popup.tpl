@@ -37,7 +37,7 @@
                         <span class="title">&nbsp;</span>
                         <div class="frame-form-field">
                             <div class="clearfix">
-                                <span class="btn-form f_l">
+                                <span class="btn-buy f_l">
                                     <button type="submit">
                                         <span class="icon_enter_drop"></span>
                                         <span class="text-el">{lang('Войти','newLevel')}</span>
