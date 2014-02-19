@@ -1060,6 +1060,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
   `discount_id` int(11) DEFAULT NULL,
+  `child` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `discount_id` (`discount_id`),
   KEY `category_id` (`category_id`)
