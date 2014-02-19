@@ -55,7 +55,7 @@
                     <div class="frame-label">
                         <span class="title">&nbsp;</span>
                         <div class="frame-form-field">
-                            <div class="btn-form m-b_15">
+                            <div class="btn-buy m-b_15">
                                 <input type="submit" value="{lang('Зарегистрироваться','newLevel')}"/>
                             </div>
                             <p class="help-block">{lang('Я уже зарегистрирован','newLevel')}</p>

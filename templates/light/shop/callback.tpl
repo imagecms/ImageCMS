@@ -37,7 +37,7 @@
                     <div class="frame-label">
                         <span class="title">&nbsp;</span>
                         <div class="frame-form-field">
-                            <div class="btn-form">
+                            <div class="btn-buy">
                                 <button type="submit">
                                     <span class="text-el">{lang('Позвоните мне','newLevel')}</span>
                                 </button>
