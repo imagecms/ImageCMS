@@ -397,6 +397,6 @@ $config['proxy_ips'] = '';
 /**
  * Use cart deprecated methods
  */
-$config['use_deprecated_cart_methods'] = TRUE;
+$config['use_deprecated_cart_methods'] = FALSE;
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */

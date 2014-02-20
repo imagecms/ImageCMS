@@ -69,7 +69,7 @@ $.dropInit.prototype.extendDrop = function() {
                     else {
                         var $thisPMT = placement.toLowerCase().split(' ');
                         if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
-                            t = -drop.actual('height') - $thisH;
+                            t = -drop.actual('outerHeight');
                         if ($thisPMT[0] === 'top' || $thisPMT[1] === 'top')
                             t = $thisH;
                         if ($thisPMT[0] === 'left' || $thisPMT[1] === 'left')
@@ -114,52 +114,51 @@ $.dropInit.prototype.extendDrop = function() {
                         if (forCenter)
                             forCenter.show();
                     }
-                    var dropH = drop.outerHeight(),
-                            dropHm = drop.height();
 
                     if (drp.dropContent) {
-                        var el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':first');
-
-                        el.css({
-                            'height': '',
-                            'overflow': ''
-                        })
+                        var el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':visible');
 
                         if (el.data('jsp'))
                             el.data('jsp').destroy()
+
+                        el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':visible');
+
                         if ($.existsN(el)) {
                             var refer = drp.elrun;
 
                             var api = false,
-                                    elJP = el.css('overflow', '');
+                                    elCH = el.css('overflow', '').outerHeight();
 
                             if (drp.scrollContent) {
                                 try {
-                                    el.jScrollPane(scrollPane);
-                                    elJP = el.find('.jspPane');
-                                    api = el.data('jsp');
+                                    api = el.jScrollPane(scrollPane).data('jsp');
+                                    if ($.existsN(el.find('.jspPane')))
+                                        elCH = el.find('.jspPane').outerHeight();
                                 } catch (err) {
                                     el.css('overflow', 'auto');
                                 }
                             }
-                            var elCH = elJP.height(),
-                                    footerHeader = drop.find($(drp.dropHeader).add($($.drop.dPP.dropHeader))).outerHeight() + drop.find($(drp.dropFooter).add($($.drop.dPP.dropFooter))).outerHeight();
+                            
+                            var dropH = drop.outerHeight(),
+                                    dropHm = drop.height();
+
+                            var footerHeader = drop.find($(drp.dropHeader).add($($.drop.dPP.dropHeader))).outerHeight() + drop.find($(drp.dropFooter).add($($.drop.dPP.dropFooter))).outerHeight();
 
                             if (drp.place == 'noinherit') {
                                 var mayHeight = 0,
                                         placement = drp.placement;
                                 if (typeof placement == 'object') {
                                     if (placement.top != undefined)
-                                        mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - placement.top - footerHeader - (dropH - dropHm);
+                                        mayHeight = (drp.scroll ? wnd.height() : docH) - placement.top - footerHeader - (dropH - dropHm);
                                     if (placement.bottom != undefined)
-                                        mayHeight = placement.bottom - footerHeader;
+                                        mayHeight = placement.bottom - footerHeader - (dropH - dropHm);
                                 }
                                 else {
                                     if (placement.search(/top/) >= 0) {
-                                        mayHeight = drp.overlayOpacity === '0' ? docH : wnd.height() - refer.offset().top - footerHeader - refer.outerHeight() - (dropH - dropHm);
+                                        mayHeight = (drp.scroll ? wnd.height() : docH) - refer.offset().top - (drp.scroll ? wnd.scrollTop() : 0) - footerHeader - refer.outerHeight() - (dropH - dropHm);
                                     }
                                     if (placement.search(/bottom/) >= 0) {
-                                        mayHeight = refer.offset().top - footerHeader - refer.outerHeight();
+                                        mayHeight = refer.offset().top - (drp.scroll ? wnd.scrollTop() : 0) - footerHeader - (dropH - dropHm);
                                     }
                                 }
                                 if (mayHeight > elCH)
@@ -229,7 +228,7 @@ $.dropInit.prototype.extendDrop = function() {
                             'overflow': 'hidden',
                             'margin-right': $.drop.widthScroll
                         });
-                        $('html').css('overflow', 'hidden');
+                        //$('html').css('overflow', 'hidden');
                         body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"></div>');
                     }
                     if (isTouch)
@@ -248,8 +247,7 @@ $.dropInit.prototype.extendDrop = function() {
                         'overflow': '',
                         'margin-right': ''
                     });
-                    $('html').css('overflow', '');
-                    wnd.scrollTop($.drop.dP.wST);
+                    //$('html').css('overflow', '');
                     $('.scrollEmulation').remove();
                     if (isTouch)
                         $('.for-center').off('touchmove.' + $.drop.nS);

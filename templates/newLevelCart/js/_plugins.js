@@ -1485,15 +1485,7 @@ function getCookie(c_name)
                         methods.location(regRefs, refs);
                 });
                 wnd.off('hashchange.tabs').on('hashchange.tabs', function(e) {
-                    function scrollTop(wST) {
-                        if (e.scroll || e.scroll === undefined)
-                            $('html, body').scrollTop(wST);
-                        wST = wnd.scrollTop();
-                    }
-                    //chrome bug
-                    if ($.browser.webkit)
-                        scrollTop(wST - 100);
-                    scrollTop(wST);
+                    e.preventDefault();
                     _.map(location.hash.split('#'), function(i, n) {
                         if (i !== '') {
                             var el = $('[data-href="#' + i + '"], [href="#' + i + '"]');
@@ -1503,7 +1495,6 @@ function getCookie(c_name)
                             }
                         }
                     });
-                    e.preventDefault();
                 });
             }
             return $this;
@@ -1651,7 +1642,7 @@ function getCookie(c_name)
                     e.preventDefault();
                 });
             });
-            for (i in $.drop.dP.galleries)
+            for (var i in $.drop.dP.galleries)
                 if ($.drop.dP.galleries[i].length <= 1) {
                     delete $.drop.dP.galleries[i];
                 }
@@ -1700,12 +1691,12 @@ function getCookie(c_name)
                             'type': 'showActivity'
                         });
                     },
-                    dataType: elSet.type ? elSet.type : 'html',
+                    dataType: modal ? 'json' : 'html',
                     success: function(data) {
                         $.drop.dP.drops[source.replace(methods._reg(), '')] = data;
 
-                        if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
-                            methods._pasteModal(el, data, set, rel, _pasteModal);
+                        if (modal) {
+                            methods._pasteModal(el, data, set, rel, hashChange);
                         }
                         else {
                             methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), data, undefined, rel);
@@ -1808,9 +1799,9 @@ function getCookie(c_name)
                     }
 
                     if (!$this.is(':disabled')) {
-                        var modal = methods._checkProp(elSet, opt, 'modal'),
-                                confirm = methods._checkProp(elSet, opt, 'confirm'),
-                                always = methods._checkProp(elSet, opt, 'always');
+                        var modal = elSet.modal !== undefined ? elSet.modal : (opt ? opt.modal : false),
+                                confirm = elSet.confirm !== undefined ? elSet.confirm : (opt ? opt.confirm : false),
+                                always = elSet.always !== undefined ? elSet.always : (opt ? opt.always : false);
                         if (start) {
                             var res = eval(start)($this, drop);
                             if (!res)
@@ -1877,7 +1868,7 @@ function getCookie(c_name)
                             }
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
-                                var $thisHref = $thisB.attr('href') || $thisB.data('href');
+                                var $thisHref = $thisB.data('href') || $thisB.attr('href');
 
                                 if ($thisHref) {
                                     $.drop.dP.curHash = !hashChange ? $thisHref : null;
@@ -2036,7 +2027,7 @@ function getCookie(c_name)
             if (set.place === 'inherit') {
                 if (set.placeInherit)
                     drop = $(drop).appendTo($(set.placeInherit).empty());
-                else
+                else if (typeof drop !== 'object')
                     $(document).trigger({
                         'type': 'showActivity'
                     });
@@ -2156,7 +2147,6 @@ function getCookie(c_name)
                     after = set.after,
                     close = set.close,
                     closed = set.closed;
-
 
             $this.attr({
                 'data-drop': selSource
@@ -2309,7 +2299,7 @@ function getCookie(c_name)
 
             methods.placeBeforeShow(drop, $this, methods, place, placeBeforeShow);
 
-            var href = $this.attr('href') || $this.data('href');
+            var href = $this.data('href') || $this.attr('href');
             if (href) {
                 $.drop.dP.curHash = !hashChange ? href : null;
 
@@ -2463,15 +2453,16 @@ function getCookie(c_name)
             changeSource: function() {
             },
             start: null,
-            pattern: '<div class="drop drop-style drop-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placePaste" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
+            pattern: '<div class="drop drop-style drop-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placePaste"></div></div><div class="drop-footer-default"></div></div>',
             modalBtnDrop: '#drop-notification-default',
             defaultClassBtnDrop: 'drop-default-',
             patternNotif: '<div class="drop drop-style" id="drop-notification-default"><div class="drop-header-default"></div><div class="drop-content-default"><div class="inside-padd drop-notification-default"></div></div><div class="drop-footer-default"></div></div>',
             confirmBtnDrop: '#drop-confirm-default',
             confirmActionBtn: '[data-button-confirm]',
-            patternConfirm: '<div class="drop drop-style" id="drop-confirm-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><div class="inside-padd"><div class="drop-btn-confrim"><button type="button" data-button-confirm data-modal="true"><span class="text-el">confirm</span></button></div><div class="drop-btn-cancel"><button type="button" data-closed="closed-js"><span class="text-el">cancel</span></button></div></div></div><div class="drop-footer-default"></div></div>',
+            patternConfirm: '<div class="drop drop-style" id="drop-confirm-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default"><div class="inside-padd"><div class="drop-btn-confrim"><button type="button" data-button-confirm data-modal="true"><span class="text-el">confirm</span></button></div><div class="drop-btn-cancel"><button type="button" data-closed="closed-js"><span class="text-el">cancel</span></button></div></div></div><div class="drop-footer-default"></div></div>',
             next: '.drop-next',
             prev: '.drop-prev',
+            //type: 'post',
             overlayOpacity: 0.7,
             durationOn: 200,
             durationOff: 100,
@@ -2511,6 +2502,7 @@ function getCookie(c_name)
     $.drop = new $.dropInit();
     var wLH = window.location.hash;
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
+        e.preventDefault();
         var wLHN = window.location.hash;
         if (!$.drop.dP.curHash) {
             for (var i in $.drop.dP.hrefs) {
