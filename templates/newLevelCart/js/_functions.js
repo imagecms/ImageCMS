@@ -522,7 +522,7 @@ function decorElemntItemProduct(el) {
         function curFunc() {
             clearTimeout(curFuncTime);
             el.each(function() {
-                var $thisLi = $(this),
+                var $thisLi = $(this).css({'min-height': 0, 'max-height': 'none'}),
                 sumH = 0,
                 sumW = 0,
                 decEl = $thisLi.find('.decor-element').css({
@@ -593,7 +593,9 @@ function decorElemntItemProduct(el) {
                 $thisLi.css({
                     'width': '',
                     'height': '',
-                    'overflow': ''
+                    'overflow': '',
+                    'min-height': '',
+                    'max-height': ''
                 });
                 switch ($thisS) {
                     case 'top':
