@@ -38,7 +38,7 @@
                      class="vImg lazy"/>
                 {$discount = 0}
                 {if $hasDiscounts}
-                    {$discount = $p->firstVariant->getvirtual('numDiscount') / $p->firstVariant->toCurrency('origprice') * 100}
+                    {$discount = ShopCore::app()->SCurrencyHelper->convert($p->firstVariant->getvirtual('numDiscount')) / $p->firstVariant->toCurrency('origprice') * 100}
                 {/if}
                 {promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}
             </span>
