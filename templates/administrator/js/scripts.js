@@ -846,13 +846,12 @@ function fixed_frame_title() {
         var fixed_block_h = fixed_block.outerHeight(true);
 
         var top = getScrollTop();
-
         if (top < fixed_block_top) {
             fixed_block.css("top", fixed_block_top - top + 20);
             frame_zH_frame_title.css("top", fixed_block_top - top + 6);
         }
         else {
-            fixed_block.css("top", 20);
+            fixed_block.css("top", 20 + ($.exists('.imagecms-top-fixed-header') ? 31 : 0));
             frame_zH_frame_title.css("top", 6);
         }
 
