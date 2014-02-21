@@ -1,5 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /
 Disallow: /000777
 Disallow: /8889
 Disallow: /999999
