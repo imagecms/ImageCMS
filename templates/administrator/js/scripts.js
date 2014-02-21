@@ -107,13 +107,13 @@ function check1(el, input) {
             temp_nabir = el.closest('.row-category').parent().find('.row-category');
             temp_nabir.addClass('active');
             temp_nabir.find('.frame_label').each(function() {
-                changeCheckallchecks($(this).find('> span:eq(0)'));
+                changeCheckallchecks($(this).find('.niceCheck'));
             });
         }
     }
     if (el.closest('.comments').next('tr').length > 0) {
         temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function() {
-            changeCheckallchecks($(this).find('> span:eq(0)'));
+            changeCheckallchecks($(this).find('.niceCheck'));
         });
     }
 }
@@ -148,13 +148,13 @@ function check2(el, input) {
             temp_nabir = el.closest('.row-category').parent().find('.row-category');
             temp_nabir.removeClass('active');
             temp_nabir.find('.frame_label').each(function() {
-                changeCheckallreset($(this).find('> span:eq(0)'));
+                changeCheckallreset($(this).find('.niceCheck'));
             });
         }
     }
     if (el.closest('.comments').next('tr').length > 0) {
         temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function() {
-            changeCheckallreset($(this).find('> span:eq(0)'));
+            changeCheckallreset($(this).find('.niceCheck'));
         });
     }
 }
@@ -164,8 +164,9 @@ function check3(el, input) {
     el.css("background-position", active_R_b_p);
     el.parent().addClass('active');
     input.attr("checked", true);
-    el.parents('.row-category, tr').addClass('active');
-    $('[name=' + input.attr('name') + ']').not(input).each(function() {
+    if (el.closest('.frame_label.no_connection').length == 0)
+        el.parents('.row-category, tr').addClass('active');
+    $('[name="' + input.attr('name') + '"]').not(input).each(function() {
         check4($(this).parent(), $(this));
     });
 }
@@ -174,7 +175,8 @@ function check4(el, input) {
     var input = input;
     el.css("background-position", n_active_R_b_p);
     el.parent().removeClass('active');
-    el.parents('.row-category, tr').removeClass('active');
+    if (el.closest('.frame_label.no_connection').length == 0)
+        el.parents('.row-category, tr').removeClass('active');
     input.attr("checked", false);
 }
 function changeCheck(el)
@@ -423,6 +425,7 @@ function init_2() {
         $(".niceRadio").each(function() {
             active_R_b_p = '-179px -17px';
             n_active_R_b_p = '-179px 0';
+            console.log($(this))
             changeRadioStart($(this));
         });
     }
@@ -462,35 +465,35 @@ function init_2() {
             });
         }
         if ($this.closest('thead')[0] != undefined) {
-            changeCheck($this.find('> span:eq(0)'));
+            changeCheck($this.find('.niceCheck'));
             if ($this.hasClass('active')) {
                 $this.parents('table').find('.frame_label').each(function() {
-                    changeCheckallchecks($(this).find('> span:eq(0)'));
+                    changeCheckallchecks($(this).find('.niceCheck'));
                 });
             }
             else
             {
                 $(this).parents('table').find('.frame_label').each(function() {
-                    changeCheckallreset($(this).find('> span:eq(0)'));
+                    changeCheckallreset($(this).find('.niceCheck'));
                 });
             }
         }
         else if ($this.closest('.head')[0] != undefined) {
-            changeCheck($this.find('> span:eq(0)'));
+            changeCheck($this.find('.niceCheck'));
             if ($this.hasClass('active')) {
                 $this.parents('#category').find('.frame_label').each(function() {
-                    changeCheckallchecks($(this).find('> span:eq(0)'));
+                    changeCheckallchecks($(this).find('.niceCheck'));
                 });
             }
             else
             {
                 $(this).parents('#category').find('.frame_label').each(function() {
-                    changeCheckallreset($(this).find('> span:eq(0)'));
+                    changeCheckallreset($(this).find('.niceCheck'));
                 });
             }
         }
         else {
-            changeCheck($this.find('> span:eq(0)'));
+            changeCheck($this.find('.niceCheck'));
         }
         if (!$this.hasClass('no_connection')) {
             dis_un_dis();
@@ -500,22 +503,22 @@ function init_2() {
 
     $(".frame_label:has(.niceRadio)").die('click').click(function() {
         var $this = $(this);
-        changeRadio($this.find('> span:eq(0)'));
+        changeRadio($this.find('.niceRadio'));
     });
 
     $('.all_select').toggle(function() {
         $(this).parents('table').find('tbody .frame_label').each(function() {
-            changeCheckallchecks($(this).find('> span:eq(0)'));
+            changeCheckallchecks($(this).find('.niceCheck'));
         });
     },
             function() {
                 $(this).parents('table').find('tbody .frame_label').each(function() {
-                    changeCheckallreset($(this).find('> span:eq(0)'));
+                    changeCheckallreset($(this).find('.niceCheck'));
                 });
             });
     $('.all_diselect').die('click').live('click', function() {
         $(this).parents('table').find('.frame_label').each(function() {
-            changeCheckallreset($(this).find('> span:eq(0)'));
+            changeCheckallreset($(this).find('.niceCheck'));
         });
     });
 

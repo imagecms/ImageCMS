@@ -68,7 +68,12 @@
                                     </span>
                                 </div> 
                             </div> 
-                            <button type="button" class="btn btn-small btn-default formSubmit" data-form="#sitemap_blockedUrls_form" data-action="show_sitemap" data-submit><i class="icon-share"></i>{lang("Save and view", 'sitemap')}</button>
+                            <div class="control-group">
+                                <span class="control-label">&nbsp;</span>
+                                <div class="controls">
+                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("Просмотреть код", 'sitemap')}</a>
+                                </div>
+                            </div>
                         </div>
 
                         {if $hide_urls}
