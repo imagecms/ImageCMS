@@ -1,0 +1,11 @@
+.star-big, .star-big div, .star-big span{background-image: url("../images/star.png");}
+.star-big {width: 529px;height: 29px;}
+
+.star-big{position: relative;background-position: left top;}
+.star-big div {background-position: left center;width: 0;height: 100%;position: absolute;top: 0;left: 0;z-index: 1;cursor: pointer;}
+.star-big span {background-position: left bottom;display: block;height: 100%;position: absolute;top: 0;left: 0;z-index: 2;width: 0;cursor: pointer;}
+.for_comment i{position: absolute;right: 0;width: 53px;top: 0;text-align: center;color: #fff;font-size: 14px;font-style: normal;line-height: 28px;}
+.star-big.disabled, .star-big.disabled div{cursor: default;}
+
+#sitemapPriorities .control-group{margin-bottom: 6px;}
+#sitemapPriorities .control-frame-group{margin-bottom: 38px;}
