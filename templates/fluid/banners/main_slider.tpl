@@ -2,6 +2,13 @@
     <section class="carousel-js-css baner container resize cycleFrame">
         <!--remove class="resize" if not resize-->
         <div class="content-carousel">
+            <div class="f_l">
+                {widget('bannerstartpage1')}
+            </div>
+            <div class="f_r">
+                {widget('bannerstartpage3')}
+                {widget('bannerstartpage4')}
+            </div>
             <ul class="cycle"><!--remove class="cycle" if not cycle-->
                 {foreach $banners as $banner}
                     <li>

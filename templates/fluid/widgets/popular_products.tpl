@@ -1,11 +1,6 @@
 {if count($products) > 0}
     <div class="horizontal-carousel">
         <section class="special-proposition">
-            <div class="title-proposition-h">
-                <div class="frame-title">
-                    <div class="title">{$title}</div>
-                </div>
-            </div>
             <div class="big-container">
                 <div class="carousel-js-css items-carousel">
                     {/*frame-scroll-pane || carousel-js-css || ' '*/}

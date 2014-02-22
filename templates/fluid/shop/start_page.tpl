@@ -1,25 +1,31 @@
 <div class="page-main">
-    {$CI->load->module('banners')->render()}
-    <div class="frame-benefits">
-        {widget('benefits')}
-    </div>
-    {/*}<div class="frame-start-page-category-menu">
-        <div class="container">
-            {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('start_page_category_menu')}
+    <div class="container">
+        <ul class="tabs tabs-special-proposition">
+            <li class="active">
+                <button data-href="#popular_products" type="button">{lang('Чаще всего покупают', 'newLevel')}</button>
+            </li>
+            <li>
+                <button data-href="#new_products" type="button">{lang('Новинки', 'newLevel')}</button>
+            </li>
+            <li>
+                <button data-href="#action_products" type="button">{lang('Спецпредложения', 'newLevel')}</button>
+            </li>
+        </ul>
+        <div class="frame-tabs-ref">
+            <div id="popular_products">
+                {widget('popular_products', TRUE)}
+            </div>
+            <div id="new_products">
+                <div class="preloader"></div>
+                {widget_ajax('new_products', '#new_products')}
+            </div>
+            <div id="action_products">
+                <div class="preloader"></div>
+                {widget_ajax('action_products', '#action_products')}
+            </div>
         </div>
-    </div>{ */}
-    <div id="popular_products">
-        {widget('popular_products', TRUE)}
+        {widget('latest_news', TRUE)}
     </div>
-    <div id="action_products">
-        <div class="preloader"></div>
-        {widget_ajax('action_products', '#action_products')}
-    </div>
-    <div id="new_products">
-        <div class="preloader"></div>
-        {widget_ajax('new_products', '#new_products')}
-    </div>
-    {widget('brands')}
     <div class="frame-seotext-news">
         <div class="frame-seo-text">
             <div class="container">
@@ -28,6 +34,6 @@
                 </div>
             </div>
         </div>
-        {widget('latest_news', TRUE)}
+
     </div>
 </div>
