@@ -13,6 +13,7 @@
             <span class="text-cleaner">
                 <span class="helper"></span>
                 <span>
+                    <span class="title text-el">{lang('Моя корзина', 'newLevel')}</span>
                     <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
                 </span>
             </span>
@@ -28,6 +29,7 @@
             <span class="text-cleaner">
                 <span class="helper"></span>
                 <span>
+                    <span class="title text-el">{lang('Моя корзина', 'newLevel')}</span>
                     <span class="text-el">{echo $count}</span>
                     <span class="text-el">&nbsp;</span>
                     <span class="text-el">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>

@@ -90,6 +90,9 @@
                 <div class="frame-menu-main horizontal-menu">
                     {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
                 </div>
+                {if $CI->core->core_data['data_type'] == 'main'}
+                    {$CI->load->module('banners')->render()}
+                {/if}
             </div>
             <div class="content">
                 {$content}
@@ -102,7 +105,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-        
+
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -124,7 +127,7 @@
                 })
             </script>
         {/literal}
-        
+
         {/*}End. delete before upload to server{ */}
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}

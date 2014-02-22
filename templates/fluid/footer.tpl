@@ -21,61 +21,35 @@
 
         <!--Start. User menu-->
         <div class="box-3">
-            <div class="inside-padd">
-                <div class="main-title">{lang('Пользователь','newLevel')}</div>
-                <ul class="nav nav-vertical">
-                    {if $is_logged_in}
-                        <li>
-                            <button type="button" onclick="location = '{site_url('auth/logout')}'" title="{lang('Выход','newLevel')}">{lang('Выход','newLevel')}</button>
-                        </li>
-                        <li>
-                            <button type="button" onclick="location = '{site_url('shop/profile')}'" title="{lang('Личный кабинет','newLevel')}">{lang('Личный кабинет','newLevel')}</button>
-                        </li>
-                        <li>
-                            <button type="button" onclick="location = '{site_url('wishlist')}'" title="{lang('Список желаний','newLevel')}">{lang('Список желаний','newLevel')}</button>
-                        </li>
-                    {else:}
-                        <li>
-                            <button type="button" data-trigger="#loginButton" title="{lang('Вход','newLevel')}">{lang('Вход','newLevel')}</button>
-                        </li>
-                        <li>
-                            <button onclick="location = '{site_url('auth/register')}'" title="{lang('Регистрация','newLevel')}">{lang('Регистрация','newLevel')}</button>
-                        </li>
-                    {/if}
-                    {if $compare = $CI->session->userdata('shopForCompare')}
-                        {$count = count($compare);}
-                        {if $count > 0}
-                            <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="{lang('Список сравнений','newLevel')}">{lang('Список сравнений','newLevel')}</button></li>
-                        {/if}
-                    {/if}
-                    <li><button type="button" data-href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
-                </ul>
+            <div class="frame-benefits">
+                {widget('benefits')}
             </div>
         </div>
         <!--End. User menu-->
 
         <!--Start. Info block-->
         <div class="box-4">
-            <div class="inside-padd">
-                <div class="main-title">{lang('Контакты','newLevel')}</div>
-                <ul>
-                    <li>
-                        <div class="c_9">{lang('Главный офис', 'newLevel')}:</div>
-                        <div class="c_w">{echo siteinfo('siteinfo_address')}</div>
-                    </li>
-                    <li>
-                        <div class="c_w f-s_0"><span class="f-s_16"><span class="f-w_b">{echo siteinfo('siteinfo_mainphone')}</span></span></div>
-                    </li>
-                    <li><a class="f-s_0" href="skype:{echo siteinfo('Skype')}"> <span class="icon_skype">&nbsp;</span> <span class="text-el">{echo siteinfo('Skype')}</span> </a></li>
-                    <li><a class="f-s_0" href="mailto:{echo siteinfo('Email')}"> <span class="icon_mail">&nbsp;</span> <span class="text-el">{echo siteinfo('Email')}</span> </a></li>
-                </ul>
-            </div>
+            {widget('brands')}
         </div>
         <!--End. Info block-->
     </div>
 </div>
 <div class="footer-footer">
     <div class="container">
+        <div class="inside-padd">
+            <div class="main-title">{lang('Контакты','newLevel')}</div>
+            <ul>
+                <li>
+                    <div class="c_9">{lang('Главный офис', 'newLevel')}:</div>
+                    <div class="c_w">{echo siteinfo('siteinfo_address')}</div>
+                </li>
+                <li>
+                    <div class="c_w f-s_0"><span class="f-s_16"><span class="f-w_b">{echo siteinfo('siteinfo_mainphone')}</span></span></div>
+                </li>
+                <li><a class="f-s_0" href="skype:{echo siteinfo('Skype')}"> <span class="icon_skype">&nbsp;</span> <span class="text-el">{echo siteinfo('Skype')}</span> </a></li>
+                <li><a class="f-s_0" href="mailto:{echo siteinfo('Email')}"> <span class="icon_mail">&nbsp;</span> <span class="text-el">{echo siteinfo('Email')}</span> </a></li>
+            </ul>
+        </div>
         <div class="f_l">
             <div class="c_w">{echo siteinfo('siteinfo_companytype')}</div>
             <div class="c_9">{lang('Все права защищены','newLevel')}, {echo date('Y')}</div>
