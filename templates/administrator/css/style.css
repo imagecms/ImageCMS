@@ -380,7 +380,7 @@ tr.active a.m_ed{display: none;}*/
 .controls > label:first-child{margin-top: 1px;}
 
 .f-s_0, .f-s_0 .f-s_0{font-size: 0;}
-.f-s_0 *{font-size: 12px;}
+.f-s_0 > *{font-size: 12px;}
 .v-a_m{vertical-align: middle;}
 .v-a_t{vertical-align: top;}
 .v-a_b{vertical-align: bottom;}
