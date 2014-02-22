@@ -22,7 +22,7 @@
                            class="linkChart 
                         {if strpos($_SERVER['REQUEST_URI'], implode("/", array($secondLevel.controller,$secondLevel.action)))} active{/if}"
 
-                        >&nbsp;&nbsp;&nbsp;
+                        >
                         <span class="simple_tree">-</span> {$secondLevel.name}   
                     </a>
                 </li>
@@ -30,7 +30,7 @@
         </div>
     {/foreach}
 </ul>
-<div class="m-t_20">
+<div class="">
     <span class="settingTitle"> {lang('Settings','mod_stats')} </span>
     <div class="settingsContainer">
         <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
