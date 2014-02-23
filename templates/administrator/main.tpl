@@ -29,6 +29,75 @@
 
     </head>
     <body>
+        {literal}
+            <style>
+                body{padding-top: 31px !important;}
+                .imagecms-close{float: right;width: 37px;margin-left: 26px;cursor: pointer;}
+                .imagecms-top-fixed-header{background-color: #37414d;height: 31px;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-logo{float: left;}
+                .imagecms-ref-skype, .imagecms-phone{font-size: 0;}
+                .imagecms-phone{margin-right: 32px;}
+                .imagecms-phone .imagecms-text-el{font-size: 12px;color: #fff;}
+                .imagecms-ref-skype .imagecms-text-el{font-size: 12px;color: #fff;}
+                .imagecms-ref-skype{color: #223340;text-decoration: none;}
+                .imagecms-ref-skype:hover{color: #223340;text-decoration: none;}
+                .imagecms-list{list-style: none;margin: 0;float: left;}
+                .imagecms-list > li{height: 31px;vertical-align: top;padding: 0 23px;text-align: left;border-right: 1px solid #525f6f;display: inline-block;}
+                .imagecms-list > li > a{line-height: 31px;}
+                .imagecms-list > li:first-child{border-left: 1px solid #525f6f;}
+                .imagecms-ref{color: #fff;text-decoration: none;text-transform: uppercase;font-size: 11px;}
+                .imagecms-ref:hover{color: #fff;text-decoration: none;}
+                .imagecms-ico-phone, .imagecms-ico-skype{width: auto !important;height: auto !important;position: relative !important;vertical-align: baseline;}
+                .imagecms-ico-skype{position: relative;top: 3px;margin-right: 10px;}
+                .imagecms-ico-phone{position: relative;top: 2px;margin-right: 6px;}
+                .imagecms-buy-license > a{text-decoration: none;height: 100%;display: block;padding: 0 20px;font-size: 0;}
+                .imagecms-buy-license > a > .imagecms-text-el{color: #fff;font-weight: normal;font-size: 11px;line-height: 31px;text-transform: uppercase;}
+                .imagecms-buy-license{
+                    float: right;height: 31px;box-shadow: 0 1px 1px rgba(0,0,0,.1);
+                    background: #0eb48e; /* Old browsers */
+                    background: -moz-linear-gradient(top,  #0eb48e 0%, #09a77d 100%); /* FF3.6+ */
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0eb48e), color-stop(100%,#09a77d)); /* Chrome,Safari4+ */
+                    background: -webkit-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* Chrome10+,Safari5.1+ */
+                    background: -o-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* Opera 11.10+ */
+                    background: -ms-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* IE10+ */
+                    background: linear-gradient(to bottom,  #0eb48e 0%,#09a77d 100%); /* W3C */
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0eb48e', endColorstr='#09a77d',GradientType=0 ); /* IE6-9 */
+                }
+                .imagecms-contacts{text-align: center;padding-top: 4px;}
+                .imagecms-buy-license .imagecms-text-el{vertical-align: middle;}
+                .imagecms-buy-license .imagecms-ico-donwload{vertical-align: middle;margin-left: 11px;}
+            </style>
+        {/literal}
+        <div class="imagecms-top-fixed-header">
+            <div class="container">
+                <button type="button" class="imagecms-close">
+                    <img src="{$THEME}close.png"/>
+                </button>
+                <div class="imagecms-buy-license">
+                    <a href="http://www.imagecms.net/shop/prices" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
+                        <span class="imagecms-text-el">Купить лицензицю</span>
+                    </a>
+                </div>
+                <ul class="imagecms-list">
+                    <li>
+                        <a href="http://www.imagecms.net" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">Обзор продукта</a>
+                    </li>
+                    <li>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">преимущества продукта</a>
+                    </li>
+                </ul>
+                <div class="imagecms-contacts">
+                    <span class="imagecms-phone">
+                        <img src="{$THEME}icon_phone.png" class="imagecms-ico-phone"/>
+                        <span class="imagecms-text-el">+7 (499) 703-37-54</span>
+                    </span>
+                    <a href="skype:imagecms_partner" class="imagecms-ref-skype">
+                        <img src="{$THEME}icon_skype.png" class="imagecms-ico-skype"/>
+                        <span class="imagecms-text-el">imagecms_partner</span>
+                    </a>
+                </div>
+            </div>
+        </div>
         {include_tpl('inc/javascriptVars')}
         {include_tpl('inc/jsLangs.tpl')}
         {$langDomain = $CI->land->gettext_domain}
@@ -400,75 +469,5 @@
                     var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
             <div id="jsOutput" style="display: none;"></div>
-
-            {literal}
-                <style>
-                    body{padding-top: 31px !important;}
-                    .imagecms-close{float: right;width: 37px;margin-left: 26px;cursor: pointer;}
-                    .imagecms-top-fixed-header{background-color: #37414d;height: 31px;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
-                    .imagecms-logo{float: left;}
-                    .imagecms-ref-skype, .imagecms-phone{font-size: 0;}
-                    .imagecms-phone{margin-right: 32px;}
-                    .imagecms-phone .imagecms-text-el{font-size: 12px;color: #fff;}
-                    .imagecms-ref-skype .imagecms-text-el{font-size: 12px;color: #fff;}
-                    .imagecms-ref-skype{color: #223340;text-decoration: none;}
-                    .imagecms-ref-skype:hover{color: #223340;text-decoration: none;}
-                    .imagecms-list{list-style: none;margin: 0;float: left;}
-                    .imagecms-list > li{height: 31px;vertical-align: top;padding: 0 23px;text-align: left;border-right: 1px solid #525f6f;display: inline-block;}
-                    .imagecms-list > li > a{line-height: 31px;}
-                    .imagecms-list > li:first-child{border-left: 1px solid #525f6f;}
-                    .imagecms-ref{color: #fff;text-decoration: none;text-transform: uppercase;font-size: 11px;}
-                    .imagecms-ref:hover{color: #fff;text-decoration: none;}
-                    .imagecms-ico-phone, .imagecms-ico-skype{width: auto !important;height: auto !important;position: relative !important;vertical-align: baseline;}
-                    .imagecms-ico-skype{position: relative;top: 3px;margin-right: 10px;}
-                    .imagecms-ico-phone{position: relative;top: 2px;margin-right: 6px;}
-                    .imagecms-buy-license > a{text-decoration: none;height: 100%;display: block;padding: 0 20px;font-size: 0;}
-                    .imagecms-buy-license > a > .imagecms-text-el{color: #fff;font-weight: normal;font-size: 11px;line-height: 31px;text-transform: uppercase;}
-                    .imagecms-buy-license{
-                        float: right;height: 31px;box-shadow: 0 1px 1px rgba(0,0,0,.1);
-                        background: #0eb48e; /* Old browsers */
-                        background: -moz-linear-gradient(top,  #0eb48e 0%, #09a77d 100%); /* FF3.6+ */
-                        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0eb48e), color-stop(100%,#09a77d)); /* Chrome,Safari4+ */
-                        background: -webkit-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* Chrome10+,Safari5.1+ */
-                        background: -o-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* Opera 11.10+ */
-                        background: -ms-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* IE10+ */
-                        background: linear-gradient(to bottom,  #0eb48e 0%,#09a77d 100%); /* W3C */
-                        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0eb48e', endColorstr='#09a77d',GradientType=0 ); /* IE6-9 */
-                    }
-                    .imagecms-contacts{text-align: center;padding-top: 4px;}
-                    .imagecms-buy-license .imagecms-text-el{vertical-align: middle;}
-                    .imagecms-buy-license .imagecms-ico-donwload{vertical-align: middle;margin-left: 11px;}
-                </style>
-            {/literal}
-            <div class="imagecms-top-fixed-header">
-                <div class="container">
-                    <button type="button" class="imagecms-close">
-                        <img src="{$THEME}close.png"/>
-                    </button>
-                    <div class="imagecms-buy-license">
-                        <a href="http://www.imagecms.net/shop/prices" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
-                            <span class="imagecms-text-el">Купить лицензицю</span>
-                        </a>
-                    </div>
-                    <ul class="imagecms-list">
-                        <li>
-                            <a href="http://www.imagecms.net" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">Обзор продукта</a>
-                        </li>
-                        <li>
-                            <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">преимущества продукта</a>
-                        </li>
-                    </ul>
-                    <div class="imagecms-contacts">
-                        <span class="imagecms-phone">
-                            <img src="{$THEME}icon_phone.png" class="imagecms-ico-phone"/>
-                            <span class="imagecms-text-el">+7 (499) 703-37-54</span>
-                        </span>
-                        <a href="skype:imagecms_partner" class="imagecms-ref-skype">
-                            <img src="{$THEME}icon_skype.png" class="imagecms-ico-skype"/>
-                            <span class="imagecms-text-el">imagecms_partner</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
         </body>
     </html>

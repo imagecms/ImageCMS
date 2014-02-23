@@ -12,7 +12,7 @@
     </div>
     <div class="row-fluid">
         {include_tpl('include/left_block')}
-        <div class="clearfix span9" id="chartArea">
+        <div class="clearfix span9 content-statistic" id="chartArea">
             <table id="common-info-table">
                 <tr>
                     <td>{lang('Unique visitors count (all time)','mod_stats')}</td>

@@ -12,7 +12,7 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
+        <div class="clearfix span9 content-statistic">
             {include_tpl('../time_and_filter_block')}
             {if count($data) > 0}
                 <table class="table table-striped table-bordered table-condensed content_big_td">
@@ -38,7 +38,9 @@
                     </tbody>
                 </table>
             {else:}
-                <p style="text-align: center;">{lang("There are no keywords searched for specified period","mod_stats")}</p>
+                <div class="alert alert-info">
+                    {lang("There are no keywords searched for specified period","mod_stats")}
+                </div>
             {/if}
 
         </div>

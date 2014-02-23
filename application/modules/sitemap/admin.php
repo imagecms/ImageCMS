@@ -209,8 +209,11 @@ class Admin extends BaseAdminController {
             $this->_viewSiteMap();
         } else {
             $priorities = $this->sitemap_model->getPriorities();
+
             \CMSFactory\assetManager::create()
                     ->setData($priorities)
+                    ->registerStyle('style_rating')
+                    ->registerScript('rating')
                     ->renderAdmin('priorities');
         }
     }

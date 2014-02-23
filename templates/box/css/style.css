@@ -472,7 +472,7 @@ input.input-search{height: 31px;padding-left: 34px;}
 .items-default-h > li{text-align: left;height: auto !important;overflow: hidden;margin-bottom: 15px;}
 .items-default-h > li > .frame-photo-title{display: inline;}
 .items-default-h .description{margin-left: 82px;padding-top: 5px;}
-.items-default-h .frame-photo-title .photo-block{float: left;width: 82px;height: auto;padding: 0 10px;}
+.items-default-h .frame-photo-title .photo-block{float: left;width: 82px;height: auto;padding: 0 10px;min-height: 32px;}
 .items-default-h .price-new{margin-bottom: 5px;}
 /*/items*/
 
