@@ -12,7 +12,7 @@
     </div>
     <div class="row-fluid" id="chartArea">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
+        <div class="clearfix span9 content-statistic">
             {include_tpl('../include/top_form_robots')}
 
             {if count($data) > 0}
@@ -38,9 +38,9 @@
                     </tbody>
                 </table>
             {else:}
-                <p style="text-align: center;">
+                <div class="alert alert-info">
                     {lang('There are no data for specified period', 'mod_stats')}
-                </p>
+                </div>
             {/if}
 
 

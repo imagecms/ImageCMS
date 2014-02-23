@@ -1,4 +1,4 @@
-<section class="mini-layout">
+<section class="mini-layout adminSitemap" id="sitemapPriorities">
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
@@ -7,10 +7,9 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'sitemap')}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#sitemap_priorities_form" data-submit><i class="icon-ok"></i>{lang("Save", 'sitemap')}</button>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#sitemap_priorities_form" data-action="show_sitemap" data-submit><i class="icon-share"></i>{lang("Save and view", 'sitemap')}</button>
-                <span class="btn-group">
-                    <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" style="margin-top: -5px;">
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#sitemap_priorities_form" data-submit><i class="icon-ok icon-white"></i>{lang("Save", 'sitemap')}</button>
+                <div class="p_r d-i_b v-a_m">
+                    <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-white icon-list"></i>
                         {lang('Others', 'sitemap')}<span class="caret"></span>
                     </button>
@@ -23,7 +22,7 @@
                         <li class="divider"></li>
                         <li><a style="text-decoration: none" class="pjax" href="/admin/components/init_window/sitemap/settings">{lang('Settings', 'sitemap')}</a></li>
                     </ul>
-                </span>
+                </div>
             </div>
         </div>                            
     </div>
@@ -35,73 +34,126 @@
             <tbody>
                 <tr>
                     <td>
-                        <div class="inside_padd span9">
-                            <div class="control-group">
-                                <label class="control-label" for="comcount">{lang("Main page", 'sitemap')}:</label>
-                                <div class="controls number">
-                                    <input type="text" id="comcount" name="main_page_priority" value="{$main_page_priority}" />
-                                    <span class="help-block">{lang('Value must be in range from 0.1(not important) to 1(important)', 'sitemap')}</span>
+                        <div class="inside_padd span10">
+                            <div class="control-group control-frame-group">
+                                <label class="control-label">{lang("Main page", 'sitemap')}:</label>
+                                <div class="controls">
+                                    <div class="star">
+                                        <div class="frameRate star-big">
+                                            <div class="for_comment" style="width: {echo $main_page_priority * 100}%">
+                                                <i>{echo $main_page_priority}</i>
+                                            </div>
+                                            <input name="main_page_priority" type="hidden" value="{echo $main_page_priority}"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="control-group">
-                                <label class="control-label" for="sppri">{lang("Regular or usual pages", 'sitemap')}:</label>
-                                <div class="controls number">
-                                    <input type="text" id="sppri" name="pages_priority" value="{$pages_priority}" />
-                                    <span class="help-block">{lang('Value must be in range from 0.1(not important) to 1(important)', 'sitemap')}</span>
+                            <div class="control-group control-frame-group">
+                                <label class="control-label">{lang("Regular or usual pages", 'sitemap')}:</label>
+                                <div class="controls">
+                                    <div class="star">
+                                        <div class="frameRate star-big">
+                                            <div class="for_comment" style="width: {echo $pages_priority * 100}%">
+                                                <i>{echo $pages_priority}</i>
+                                            </div>
+                                            <input name="pages_priority" type="hidden" value="{echo $pages_priority}"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>  
 
                             <div class="control-group">
-                                <label class="control-label" for="symcount">{lang("Categories", 'sitemap')}:</label>
-                                <div class="controls number">
-                                    <input type="text" id="symcount" name="cats_priority" value="{$cats_priority}" />
-                                    <span class="help-block">{lang('Value must be in range from 0.1(not important) to 1(important)', 'sitemap')}</span>
+                                <label class="control-label">{lang("Categories", 'sitemap')}:</label>
+                                <div class="controls">
+                                    <div class="star">
+                                        <div class="frameRate star-big">
+                                            <div class="for_comment" style="width: {echo $cats_priority * 100}%">
+                                                <i>{echo $cats_priority}</i>
+                                            </div>
+                                            <input name="cats_priority" type="hidden" value="{echo $cats_priority}"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="control-group">
-                                <label class="control-label" for="subcat">{lang("Sub categories", 'sitemap')}:</label>
-                                <div class="controls number">
-                                    <input type="text" id="subcat" name="sub_cats_priority" value="{$sub_cats_priority}" />
-                                    <span class="help-block">{lang('Value must be in range from 0.1(not important) to 1(important)', 'sitemap')}</span>
+                            <div class="control-group control-frame-group">
+                                <label class="control-label">{lang("Sub categories", 'sitemap')}:</label>
+                                <div class="controls">
+                                    <div class="star">
+                                        <div class="frameRate star-big">
+                                            <div class="for_comment" style="width: {echo $sub_cats_priority * 100}%">
+                                                <i>{echo $sub_cats_priority}</i>
+                                            </div>
+                                            <input name="sub_cats_priority" type="hidden" value="{echo $sub_cats_priority}"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             {if SHOP_INSTALLED}
                                 <div class="control-group">
-                                    <label class="control-label" for="products_categories_pr">{lang("Products categories", 'sitemap')}:</label>
-                                    <div class="controls number">
-                                        <input type="text" id="products_categories_pr" name="products_categories_priority" value="{$products_categories_priority}" />
-                                        <span class="help-block">{lang('Value must be in range from 0.1(not important) to 1(important)', 'sitemap')}</span>
+                                    <label class="control-label">{lang("Products categories", 'sitemap')}:</label>
+                                    <div class="controls">
+                                        <div class="star">
+                                            <div class="frameRate star-big">
+                                                <div class="for_comment" style="width: {echo $products_categories_priority * 100}%">
+                                                    <i>{echo $products_categories_priority}</i>
+                                                </div>
+                                                <input name="products_categories_priority" type="hidden" value="{echo $products_categories_priority}"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div> 
 
-                                <div class="control-group">
-                                    <label class="control-label" for="products_sub_categories_pr">{lang("Products sub-categories", 'sitemap')}:</label>
-                                    <div class="controls number">
-                                        <input type="text" id="products_sub_categories_pr" name="products_sub_categories_priority" value="{$products_sub_categories_priority}" />
-                                        <span class="help-block">{lang('Value must be in range from 0.1(not important) to 1(important)', 'sitemap')}</span>
+                                <div class="control-group control-frame-group">
+                                    <label class="control-label">{lang("Products sub-categories", 'sitemap')}:</label>
+                                    <div class="controls">
+                                        <div class="star">
+                                            <div class="frameRate star-big">
+                                                <div class="for_comment" style="width: {echo $products_sub_categories_priority * 100}%">
+                                                    <i>{echo $products_sub_categories_priority}</i>
+                                                </div>
+                                                <input name="products_sub_categories_priority" type="hidden" value="{echo $products_sub_categories_priority}"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div> 
 
-                                <div class="control-group">
-                                    <label class="control-label" for="products_pr">{lang("Products", 'sitemap')}:</label>
-                                    <div class="controls number">
-                                        <input type="text" id="products_pr" name="products_priority" value="{$products_priority}" />
-                                        <span class="help-block">{lang('Value must be in range from 0.1(not important) to 1(important)', 'sitemap')}</span>
+                                <div class="control-group control-frame-group">
+                                    <label class="control-label">{lang("Products", 'sitemap')}:</label>
+                                    <div class="controls">
+                                        <div class="star">
+                                            <div class="frameRate star-big">
+                                                <div class="for_comment" style="width: {echo $products_priority * 100}%">
+                                                    <i>{echo $products_priority}</i>
+                                                </div>
+                                                <input name="products_priority" type="hidden" value="{echo $products_priority}"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div> 
 
-                                <div class="control-group">
-                                    <label class="control-label" for="brands_pr">{lang("Brands", 'sitemap')}:</label>
-                                    <div class="controls number">
-                                        <input type="text" id="brands_pr" name="brands_priority" value="{$brands_priority}" />
-                                        <span class="help-block">{lang('Value must be in range from 0.1(not important) to 1(important)', 'sitemap')}</span>
+                                <div class="control-group control-frame-group">
+                                    <label class="control-label">{lang("Brands", 'sitemap')}:</label>
+                                    <div class="controls">
+                                        <div class="star">
+                                            <div class="frameRate star-big">
+                                                <div class="for_comment" style="width: {echo $brands_priority * 100}%">
+                                                    <i>{echo $brands_priority}</i>
+                                                </div>
+                                                <input name="brands_priority" type="hidden" value="{echo $brands_priority}"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div> 
                             {/if}
-
+                            <div class="control-group">
+                                <span class="control-label">&nbsp;</span>
+                                <div class="controls">
+                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("Просмотреть код", 'sitemap')}</a>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>
