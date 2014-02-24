@@ -112,7 +112,7 @@
                                         </div>
                                     {/if}
                                     {if $wishlist[0][variant_id]}
-                                        <ul class="items items-catalog items-wish-list">
+                                        <ul class="items items-catalog items-wish-list items-product">
                                             {$CI->load->module('new_level')->OPI($wishlist, array('opi_wishListPage' => true))}
                                         </ul>
                                     {else:}

@@ -10,7 +10,7 @@
         {foreach $items as $item}
             <!-- Start. For single product -->
             {if  $item->instance == 'SProducts'}
-                <tr class="items items-bask cart-product">
+                <tr class="items items-bask cart-product items-product">
                     <td class="frame-items">
                         <a href="{echo shop_url('product/'.$item->getSProducts()->getUrl())}" class="frame-photo-title">
                             <span class="photo-block">
@@ -82,7 +82,7 @@
                 <tr class="row row-kits">
                     <td class="frame-items frame-items-kit">
                         <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
-                        <ul class="items items-bask">
+                        <ul class="items items-bask items-product">
                             {foreach $item->items as $k => $kitItem}
                                 <li>
                                     {if $k != 0}
