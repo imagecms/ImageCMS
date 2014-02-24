@@ -363,7 +363,7 @@
                                 <ul class="items-thumbs items">
                                     <!-- Start. main image-->
                                     <li class="active">
-                                        <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
+                                        <a onclick="return false;" rel="useZoom: 'photoProduct'" data-href="#a-1" data-tab="true" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
                                             <span class="photo-block">
                                                 <span class="helper"></span>
                                                 <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
