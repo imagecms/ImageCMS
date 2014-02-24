@@ -61,14 +61,8 @@ $(document).ready(function() {
         $('#chartArea').find('form').submit();
     });
 
-
-    /** Refresh interval, when change date **/
-    $('.datepicker').on('change', function() {
-        $('#chartArea').find('form').submit();
-    });
-
     /** Send form when change chart type **/
-    $("select[name*='charType']").on('change', function() {
+    $("select").on('change', function() {
         $('#chartArea').find('form').submit();
     });
 
@@ -360,4 +354,10 @@ $(document).ready(function() {
         });
     }
     /** ************************************************ */
+    
+    $('[data-btn-select]').click(function(){
+        var $this = $(this);
+        $($this.data('rel')).val($this.data('val'));
+        $this.closest('form').submit();
+    })
 });

@@ -351,8 +351,8 @@ form > *{font-size: 12px;}
 #mainContent .control-group .input-large {width: 210px !important;}
 #mainContent .control-group .input-xlarge {width: 270px !important;}
 #mainContent .control-group .input-xxlarge {width: 530px !important;}
-.form-horizontal .control-label{width: 180px !important;padding-top: 3px !important;}
-.form-horizontal .controls{margin-left: 200px !important;}
+.form-horizontal .control-label{width: 180px !important;}
+.form-horizontal .controls{margin-left: 200px !important;display: block;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}
 
 .btn-primary [class^="icon-"],
@@ -380,7 +380,7 @@ tr.active a.m_ed{display: none;}*/
 .controls > label:first-child{margin-top: 1px;}
 
 .f-s_0, .f-s_0 .f-s_0{font-size: 0;}
-.f-s_0 *{font-size: 12px;}
+.f-s_0 > *{font-size: 12px;}
 .v-a_m{vertical-align: middle;}
 .v-a_t{vertical-align: top;}
 .v-a_b{vertical-align: bottom;}
@@ -843,3 +843,4 @@ table#backups_list thead th:nth-child(3) {width: 10px;}*/
 .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
     z-index: 4!important;
 }
+.s-t{color: #b1b1b1;}

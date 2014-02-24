@@ -44,13 +44,23 @@
                                             <div class="row-fluid">
 
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="add_site_name">{lang('Site name',"admin")}:</label>
+                                                    <label class="control-label">{lang('Site name',"admin")}:</label>
                                                     <div class="controls">
-                                                        <select name="base[add_site_name]" id="add_site_name">
-                                                            <option value="1" {if $baseSettings['add_site_name'] == "1"}selected="selected"{/if}>{lang('Yes',"admin")}</option>
-                                                            <option value="0" {if $baseSettings['add_site_name'] == "0"}selected="selected"{/if} >{lang('No',"admin")}</option>
-                                                        </select>
-                                                        <span class="help-block">
+                                                        <div>
+                                                            <span class="frame_label no_connection m-r_15">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" {if $baseSettings['add_site_name'] == "1"}checked="checked"{/if} name="base[add_site_name]" value="1"/>
+                                                                </span>
+                                                                {lang('Yes',"admin")}
+                                                            </span>
+                                                            <span class="frame_label no_connection">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" {if $baseSettings['add_site_name'] == "0"}checked="checked"{/if} name="base[add_site_name]" value="0"/>
+                                                                </span>
+                                                                {lang('No',"admin")}
+                                                            </span>
+                                                        </div>
+                                                        <span class="help-block s-t">
                                                             {lang('Whether to display the site name in the title page','admin')}
                                                         </span>
                                                     </div>
@@ -59,11 +69,21 @@
                                                 <div class="control-group m-t_10">
                                                     <label class="control-label" for="add_site_name_to_cat">{lang('Category name',"admin")}:</label>
                                                     <div class="controls">
-                                                        <select name="base[add_site_name_to_cat]" id="add_site_name_to_cat">
-                                                            <option value="1" {if $baseSettings['add_site_name_to_cat'] == "1"}selected="selected"{/if}>{lang("Yes","admin")}</option>
-                                                            <option value="0" {if $baseSettings['add_site_name_to_cat'] == "0"}selected="selected"{/if}>{lang("No","admin")}</option>
-                                                        </select>
-                                                        <span class="help-block">
+                                                        <div>
+                                                            <span class="frame_label no_connection m-r_15">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" {if $baseSettings['add_site_name_to_cat'] == "1"}checked="checked"{/if} name="base[add_site_name_to_cat]" value="1"/>
+                                                                </span>
+                                                                {lang('Yes',"admin")}
+                                                            </span>
+                                                            <span class="frame_label no_connection">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" {if $baseSettings['add_site_name_to_cat'] == "0"}checked="checked"{/if} name="base[add_site_name_to_cat]" value="0"/>
+                                                                </span>
+                                                                {lang('No',"admin")}
+                                                            </span>
+                                                        </div>
+                                                        <span class="help-block s-t">
                                                             {lang('Whether to display the category name in the title page','admin')}
                                                         </span>
                                                     </div>
@@ -163,10 +183,6 @@
                         </tbody>
                     </table>
                     {form_csrf()}
-
-
-
-
                 </div>
                 <div class="tab-pane" id="shop">
                     <table class="table table-striped table-bordered table-condensed content_big_td module-cheep">
@@ -178,7 +194,7 @@
                                         <div class="form-horizontal">
                                             <div class="title-bonus-out"><div class="span4"></div><div class="span8 title-bonus">Страница продукта [{$locale}]</div></div>
 
-                                            <label class="">
+                                            <label>
                                                 <span class="span4">
                                                     <span data-title="Variables, can use to:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
@@ -239,31 +255,36 @@
                                                 </span>
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='productTemplateKey' value="{$settings.productTemplateKey}" /></span>
                                             </label>
-
-                                            <label class="">
-                                                <span class="span4">Активный:</span>
-                                                <span style="width: 16px;" class="span1"><input name="useProductPattern"  {if $settings.useProductPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
-
-                                            <label class="">
-                                                <span class="span4">Использовать только для пустых метаданных:</span>
-                                                <span style="width: 16px;" class="span1"><input name="useProductPatternForEmptyMeta"  {if $settings.useProductPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
-
-
-                                            <div class="clearfix">
-                                                <div class="pull-right">
-                                                    <div class="d-i_b">
-                                                        <a href="/admin/components/init_window/mod_seoexpert/productsCategories" class="t-d_n pjax">
-                                                            <span class="t-d_u">{lang('Advanced','mod_seoexpert')}</span>
-                                                        </a>
-                                                    </div>
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Активный:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="useProductPattern" {if $settings.useProductPattern == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
                                                 </div>
                                             </div>
-
-
-
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Использовать только для пустых метаданных:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="useProductPatternForEmptyMeta"  {if $settings.useProductPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix">
+                                                <span class="span4"></span>
+                                                <div class="span3">
+                                                    <a href="/admin/components/init_window/mod_seoexpert/productsCategories" class="t-d_n pjax btn btn-default">
+                                                        {lang('Advanced','mod_seoexpert')}
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -334,15 +355,27 @@
                                                 </span>
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='categoryTemplateKey' value="{$settings.categoryTemplateKey}" /></span>
                                             </label>
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Активный:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="useCategoryPattern"  {if $settings.useCategoryPattern == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
 
-                                            <label class="">
-                                                <span class="span4">Активный:</span>
-                                                <span style="width: 16px;" class="span1"><input name="useCategoryPattern"  {if $settings.useCategoryPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
-
-                                            <label class=""><span class="span4">Использовать только для пустых метаданных:</span>
-                                                <span style="width: 16px;" class="span1"><input name="useCategoryPatternForEmptyMeta"  {if $settings.useCategoryPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Использовать только для пустых метаданных:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="useCategoryPatternForEmptyMeta"  {if $settings.useCategoryPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -418,20 +451,31 @@
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='subcategoryTemplateKey' value="{$settings.subcategoryTemplateKey}" /></span>
                                             </label>
 
-                                            <label class="">
-                                                <span class="span4">Активный:</span>
-                                                <span style="width: 16px;" class="span1"><input name="usesubcategoryPattern"  {if $settings.usesubcategoryPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Активный:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="usesubcategoryPattern"  {if $settings.usesubcategoryPattern == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
 
-                                            <label class=""><span class="span4">Использовать только для пустых метаданных:</span>
-                                                <span style="width: 16px;" class="span1"><input name="usesubcategoryPatternForEmptyMeta"  {if $settings.usesubcategoryPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
-
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Использовать только для пустых метаданных:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="usesubcategoryPatternForEmptyMeta"  {if $settings.usesubcategoryPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td colspan="6">
                                     <div class="inside_padd discount-out">
@@ -487,15 +531,27 @@
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateKey' value="{$settings.brandTemplateKey}" /></span>
                                             </label>
 
-                                            <label class="">
-                                                <span class="span4">Активный:</span>
-                                                <span style="width: 16px;" class="span1"><input name="useBrandPattern"  {if $settings.useBrandPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Активный:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="useBrandPattern"  {if $settings.useBrandPattern == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
 
-                                            <label class=""><span class="span4">Использовать только для пустых метаданных:</span>
-                                                <span style="width: 16px;" class="span1"><input name="useBrandPatternForEmptyMeta"  {if $settings.useBrandPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
-
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Использовать только для пустых метаданных:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="useBrandPatternForEmptyMeta"  {if $settings.useBrandPatternForEmptyMeta == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -520,18 +576,23 @@
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='searchTemplateDesc' value="{$settings.searchTemplateDesc}" /></span>
                                             </label>
 
-                                            <label class="">
+                                            <label>
                                                 <span class="span4">                                        
                                                     Meta-keywords шаблон:
                                                 </span>
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='searchTemplateKey' value="{$settings.searchTemplateKey}" /></span>
                                             </label>
 
-                                            <label class="">
-                                                <span class="span4">Активный:</span>
-                                                <span style="width: 16px;" class="span1"><input name="useSearchPattern"  {if $settings.useSearchPattern == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                            </label>
-
+                                            <div>
+                                                <div class="frame_label no_connection">
+                                                    <span class="span4">Активный:</span>
+                                                    <span class="span1">
+                                                        <span class="niceCheck b_n">
+                                                            <input name="useSearchPattern"  {if $settings.useSearchPattern == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>

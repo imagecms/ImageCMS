@@ -102,8 +102,8 @@
             {include_tpl('footer')}
         </footer>
         {include_tpl('user_toolbar')}
-        {/*}
         {/*}Start. delete before upload to server{ */}
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -130,11 +130,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        {/*}
+        
         <script type="text/javascript">
-            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
+            initDownloadScripts(['united_scripts'], 'init', 'scriptDefer');
         </script>
-        { */}
+        
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
