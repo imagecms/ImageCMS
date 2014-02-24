@@ -15,7 +15,7 @@
                             {foreach $items as $item}
                                 <!-- for single product -->
                                 {if $item->instance === "SProducts"}
-                                    <tr data-id="{echo $item->getId()}" class="items items-bask cart-product">
+                                    <tr data-id="{echo $item->getId()}" class="items items-bask cart-product items-product">
                                         <td class="frame-remove-bask-btn">
                                             <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()})"></button>
                                         </td>
@@ -100,7 +100,7 @@
                                             <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()}, true)"></button></button>
                                         </td>
                                         <td class="frame-items frame-items-kit">
-                                            <ul class="items items-bask">
+                                            <ul class="items items-bask items-product">
                                                 {foreach $item->items as $k => $kitItem}
                                                     <li>
                                                         {if $k != 0}

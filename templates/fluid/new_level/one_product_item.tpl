@@ -129,8 +129,8 @@
                         {if $NextCS != null}
                             <span class="price-add">
                                 <span>
-                                    (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price',$NextCSId)}</span>
-                                    <span class="curr-add">{$NextCS}</span>)
+                                    <span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price',$NextCSId)}</span>
+                                    <span class="curr-add">{$NextCS}</span>
                                 </span>
                             </span>
                         {/if}
@@ -276,7 +276,7 @@
                 {/foreach}
             </div>
             <!-- End. Collect information about Variants, for future processing -->
-            {if !$opi_widget && !$opi_defaultItem}
+            {if !$opi_defaultItem}
                 <div class="frame-without-top">
                     <!-- Wish List & Compare List buttons -->
                     <div class="frame-wish-compare-list no-vis-table">

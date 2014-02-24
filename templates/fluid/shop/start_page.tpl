@@ -1,5 +1,5 @@
 <div class="page-main">
-    <div class="container">
+    <div class="container f-s_0">
         <ul class="tabs tabs-special-proposition">
             <li class="active">
                 <button data-href="#popular_products" type="button">{lang('Чаще всего покупают', 'newLevel')}</button>

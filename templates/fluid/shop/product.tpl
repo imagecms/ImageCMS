@@ -418,7 +418,7 @@
                             {foreach $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) as $key => $kitProducts}
                                 {$inCart = getAmountInCart('ShopKit', $kitProducts->getId())}
                                 <li class="globalFrameProduct{if $inCart} in-cart{else:} to-cart{/if}">
-                                    <ul class="items items-bask row-kits rowKits">
+                                    <ul class="items items-bask row-kits rowKits items-product">
                                         <!-- main product -->
 
                                         <li>
@@ -671,7 +671,7 @@
                             </div>
                         </div>
                         <div class="inside-padd">
-                            <ul class="items items-default">
+                            <ul class="items items-default items-product">
                                 {$CI->load->module('new_level')->OPI($accessories, array('opi_defaultItem'=>true, 'opi_limit'=>4))}
                             </ul>
                         </div>
@@ -716,7 +716,7 @@
                 <div id="fourth" class="accessories">
                     <div class="inside-padd">
                         <h2 class="m-b_30">{lang('С этим товаром покупают','newLevel')}</h2>
-                        <ul class="items items-default">
+                        <ul class="items items-default items-product">
                             <div class="preloader"></div>
                         </ul>
                     </div>

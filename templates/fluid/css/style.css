@@ -289,7 +289,7 @@ input.input-search{height: 33px;}
 .items-catalog{margin-left: -42px;}
 .items-catalog > li .icon_times_order{position: absolute; left:10px; top:10px;}
 .items-catalog .frame-photo-title{display: block;}
-.items-catalog .photo-block{margin-bottom: 10px;width: 200px;height: 180px;}
+.items-catalog .photo-block{margin-bottom: 10px;width: 200px;height: 176px;}
 .items-catalog.list .photo-block{float: left;margin-right: 10px;}
 .items-catalog.list .description{margin-left: 210px;}
 .items-catalog.list .frame-without-top{position: static !important;}
@@ -310,7 +310,7 @@ input.input-search{height: 33px;}
 .items-catalog.table > li:hover{overflow: visible;}
 .items-catalog .star{margin-right: 11px;}
 
-.animateListItems.table .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;-webkit-transition: all .1s .3s ease-in-out;-moz-transition: all .1s .3s ease-in-out;-o-transition: all .1s .3s ease-in-out;transition: all .1s .3s ease-in-out;}
+.animateListItems.table .no-vis-table, .animateListItems.items-h-carousel .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;-webkit-transition: all .1s .3s ease-in-out;-moz-transition: all .1s .3s ease-in-out;-o-transition: all .1s .3s ease-in-out;transition: all .1s .3s ease-in-out;}
 .animateListItems.table > li:hover{z-index: 2;}
 .items-catalog.list{margin-left: 0;}
 .items-catalog.list > li{width: auto !important;margin-left: 0;overflow: hidden;display: block;}
@@ -457,7 +457,7 @@ input.input-search{height: 33px;}
 .vertical-layout .horizontal-carousel .special-proposition  .group-button-carousel .arrow{position: static;}
 .vertical-layout .horizontal-carousel .special-proposition  .group-button-carousel .prev{margin-left: 15px;}
 .vertical-layout .horizontal-carousel .special-proposition  .group-button-carousel .next{margin-left: 5px;}
-.carousel-js-css .content-carousel, .frame-scroll-pane .content-carousel{overflow: hidden;}
+.frame-scroll-pane .content-carousel{overflow: hidden;}
 .jcarousel-clip{overflow: hidden;}
 
 .items-h-carousel{margin-left: -42px;}
@@ -467,8 +467,8 @@ input.input-search{height: 33px;}
 .frame-scroll-pane .items-h-carousel{margin-left: -44px;padding-bottom: 46px;}/*height scroll + padding*/
 
 .items-catalog > li{position:relative;width: 215px;margin: 0 0 54px 42px;}
-.carousel-js-css .items-h-carousel > li{margin: 0 44px 0 0;}
-.items-h-carousel > li{width: 212px !important;margin-bottom: 30px;}
+.carousel-js-css .items-h-carousel > li{margin: 0 30px 0 0;}
+.items-h-carousel > li{width: 208px !important;margin-bottom: 30px;text-align: center;}
 .vertical-layout .items-h-carousel > li{width: 210px !important;}
 
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin-left: 44px;margin-right: 0;margin-bottom: 0;}
@@ -487,6 +487,7 @@ input.input-search{height: 33px;}
 .vertical-carousel .photo-block{margin-top: 22px;}
 .vertical-carousel .description{margin-left: 15px;margin-right: 15px;}
 .vertical-carousel .jcarousel-clip, .vertical-carousel .content-carousel{max-height: 542px;}
+.special-proposition .content-carousel{padding: 0 20px;}
 .vertical-carousel .iscarousel{padding: 40px 0 40px;}
 .carousel-category-popular .frame-title{position: relative;overflow: hidden;}
 
@@ -503,6 +504,7 @@ input.input-search{height: 33px;}
 .baner li > a, .baner li > span{display: block;text-align: center;height: 100%;}
 .frame-baner .cycle{position: relative;z-index: 1;height: 100%;}
 .frame-baner .content-carousel ul{width: 100%;}
+.frame-baner-start_page .content-carousel ul{width: auto;margin: 0 457px 0 244px;overflow: hidden;}
 .baner .cycle img{display: none;max-width: none;max-height: none;position: absolute;left: 50%;}
 .baner.resize .cycle img{max-width: 100%;max-height: 100%;position: static;}
 .cycle > li{width: 100% !important;height: 100% !important;}
@@ -513,6 +515,8 @@ input.input-search{height: 33px;}
 .frame-baner-start_page .baner{height: 248px;}
 .frame-baner-catalog .baner{height: 208px;}
 .frame-baner .content-carousel{position: absolute;height: 100%;width: 100%;}
+.frame-baner .content-carousel .f_l, .frame-baner .content-carousel .f_r{position: relative;z-index: 2;}
+.frame-baner .content-carousel p{margin-bottom: 9px;}
 .frame-baner-catalog{margin-bottom: 25px;}
 .frame-baner-catalog .baner .prev{left: 0;}
 .frame-baner-catalog .baner .next{right: 0;}

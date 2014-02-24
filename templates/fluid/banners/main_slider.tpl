@@ -1,5 +1,5 @@
 <div class="frame-baner frame-baner-start_page">
-    <section class="carousel-js-css baner container resize cycleFrame">
+    <section class="carousel-js-css baner container cycleFrame">
         <!--remove class="resize" if not resize-->
         <div class="content-carousel">
             <div class="f_l">

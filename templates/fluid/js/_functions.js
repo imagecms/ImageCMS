@@ -297,14 +297,14 @@ function banerResize(el) {
         var $this = $(this).css('height', '');
         if ($this.hasClass('resize')) {
             var h = 0;
-            $this.find('img').each(function() {
+            $this.find('.cycle img').each(function() {
                 var $thisH = $(this).height()
                 h = $thisH > h ? $thisH : h;
             });
             $this.css('height', h + $this.children().outerHeight() - $this.children().height())
         }
         else {
-            var img = $this.find('img');
+            var img = $this.find('.cycle img');
             img.css('margin-left', -img.filter(':visible').css('max-width', 'none').width() / 2);
         }
     });
