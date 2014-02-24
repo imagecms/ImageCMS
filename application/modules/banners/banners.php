@@ -33,26 +33,26 @@ class Banners extends MY_Controller {
     /**
      * Render banner into template
      * @access public
+     * @param int $id is id entity (brand, category, product, page) .... for main id = 0
+     * @param int $group_id
+     * @return boolean
      * @author L.Andriy <l.andriy@siteimage.com.ua>
      * @copyright (c) 2013, ImageCMS
      */
-    public function render($id = 0) {
-
-
-        /* $id - is id entity (brand, category, product, page) .... for main id = 0 */
-        if ($this->no_install === false)
+    public function render($id = 0, $group_id = 0) {
+        if ($this->no_install === false) {
             return false;
-
+        }
 
         $type = $this->core->core_data['data_type'];
         $lang = $this->get_main_lang('identif');
         $painting = $type . '_' . (int) $id;
 
         $hash = 'baners' . $type . $id . \CI_Controller::get_instance()->config->item('template');
-        if ($cahe = Cache_html::get_html($hash)) {
+        if ($cache = Cache_html::get_html($hash)) {
             \CMSFactory\assetManager::create()
                     ->registerScript('jquery.cycle.all.min', TRUE);
-            echo $cahe;
+            echo $cache;
         } else {
 
             $banners = $this->banner_model->get_all_banner($lang);
@@ -81,8 +81,7 @@ class Banners extends MY_Controller {
                 Cache_html::set_html($baners_view, $hash);
 
                 echo $baners_view;
-            }
-            else
+            } else
                 return FALSE;
         }
     }
