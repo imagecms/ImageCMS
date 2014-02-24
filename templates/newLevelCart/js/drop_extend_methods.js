@@ -124,13 +124,13 @@ $.dropInit.prototype.extendDrop = function() {
                         if (el.data('jsp'))
                             el.data('jsp').destroy()
 
-                        el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':visible');
+                        el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':visible').css({'height': ''});
 
                         if ($.existsN(el)) {
                             var refer = drp.elrun;
 
                             var api = false,
-                                    elCH = el.css('overflow', '').outerHeight();
+                                    elCH = el.css({'overflow': ''}).outerHeight();
 
                             if (drp.scrollContent) {
                                 try {
@@ -269,7 +269,7 @@ $.dropInit.prototype.extendDrop = function() {
         galleries: function($this, set, methods) {
             var elSet = $this.data(),
                     relO = $this.get(0).rel;
-            
+
             if (relO != '' && relO !== undefined) {
                 var source = elSet.source || set.source || $this.attr('href'),
                         next = elSet.next || set.next,
@@ -290,7 +290,8 @@ $.dropInit.prototype.extendDrop = function() {
                     if (cycle)
                         $(prev).add($(next)).show().removeAttr('disabled');
                 }
-                $(prev).add($(next)).attr('data-rel', rel).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function() {
+                $(prev).add($(next)).attr('data-rel', rel).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                    e.stopPropagation();
                     var $thisB = $(this).attr('disabled', 'disabled'),
                             relNext = relP + ($thisB.is(prev) ? -1 : 1);
                     if (cycle) {
@@ -299,14 +300,14 @@ $.dropInit.prototype.extendDrop = function() {
                         if (relNext < 0)
                             relNext = relL - 1;
                     }
-                    var $this = $('[data-source="' + relA[relP] + '"][rel], [href="' + relA[relP] + '"][rel]').filter(':last'),
-                            $next = $('[data-source="' + relA[relNext] + '"][rel], [href="' + relA[relNext] + '"][rel]').filter(':last'),
-                            drop = $($this.data('drop'));
-                    console.log($next)
-                    methods.close(drop);
-                    setTimeout(function() {
-                        methods.open({}, undefined, $next, undefined);
-                    }, drop.data('drp').durationOff)
+                    if (relA[relNext]) {
+                        var $this = $('[data-source="' + relA[relP] + '"][rel], [href="' + relA[relP] + '"][rel]').filter(':last'),
+                                $next = $('[data-source="' + relA[relNext] + '"][rel], [href="' + relA[relNext] + '"][rel]').filter(':last');
+
+                        methods.close($($this.data('drop')), undefined, function() {
+                            methods.open({}, undefined, $next);
+                        });
+                    }
                 });
             }
         },
@@ -399,4 +400,5 @@ $.dropInit.prototype.extendDrop = function() {
         }
     }
     this.setMethods(newMethods);
+    return this;
 };
