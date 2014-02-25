@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-03 09:32+0200\n"
-"PO-Revision-Date: 2013-12-03 09:32+0200\n"
+"POT-Creation-Date: 2014-02-25 05:00+0200\n"
+"PO-Revision-Date: 2014-02-25 05:00+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,12 +18,341 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: ./application/modules/mod_seoexpert//mod_seoexpert.php:41
-#: ./application/modules/mod_seoexpert//mod_seoexpert.php:43
-msgid "Whoami"
-msgstr "ru"
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:338
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:433
+msgid "Count of brands:"
+msgstr "Количество брендов"
 
-#: ./application/modules/mod_seoexpert//assets/admin/main.tpl:9
-msgid "a_back"
-msgstr ""
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:70
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:303
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:320
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:349
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:398
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:415
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:444
+msgid "Category name"
+msgstr "название категории"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:87
+msgid "Whether to display the category name in the title page"
+msgstr "Будет ли отображатся название категории в тайтле страницы"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:199
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:218
+msgid "Variables, can use to"
+msgstr "Переменные, которые можно использовать"
+
+#: ./application/modules/mod_seoexpert/admin.php:74
+#: ./application/modules/mod_seoexpert/admin.php:121
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:294
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:20
+msgid "Category"
+msgstr "Категория"
+
+#: ./application/modules/mod_seoexpert/admin.php:92
+#: ./application/modules/mod_seoexpert/admin.php:138
+msgid "Successfully created"
+msgstr "Успешно создана"
+
+#: ./application/modules/mod_seoexpert/admin.php:95
+#: ./application/modules/mod_seoexpert/admin.php:140
+msgid "Can not create"
+msgstr "Не возможно создать"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:5
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:5
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:5
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:6
+msgid "SEO expert"
+msgstr "SEO эксперт"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:9
+#: ./application/modules/mod_seoexpert/assets/admin/__productsCategoryCreate.tpl:9
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:9
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:9
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:10
+msgid "Back"
+msgstr "Назад"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:11
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:11
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:12
+msgid "Save"
+msgstr "Сохранить"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:21
+msgid "Base"
+msgstr "Базовой"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:22
+msgid "Shop"
+msgstr "Магазин"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:35
+msgid "Meta tags"
+msgstr "Мета-теги"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:47
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:149
+msgid "Site name"
+msgstr "Название сайта"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:54
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:77
+msgid "Yes"
+msgstr "Да"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:60
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:83
+msgid "No"
+msgstr "Нет"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:64
+msgid "Whether to display the site name in the title page"
+msgstr "Будет ли отображатся название сайта в тайтле страницы"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:93
+msgid "Separator"
+msgstr "Разделитель"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:100
+msgid "Meta Keywords"
+msgstr "Meta Keywords"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:103
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:115
+msgid "Auto formation"
+msgstr "Сформировать автоматически"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:104
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:116
+msgid "Leave empty"
+msgstr "Оставить пустым"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:107
+msgid "If not given or specified"
+msgstr "Если не указано"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:112
+msgid "Meta Description"
+msgstr "Meta Description"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:119
+msgid "If not specified"
+msgstr "Если не указано"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:137
+msgid "Enter Meta Tags"
+msgstr "Введите Мета-Теги"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:156
+msgid "Short site name"
+msgstr "Короткое название сайта"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:163
+msgid "Description"
+msgstr "Описание"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:170
+msgid "Keywords"
+msgstr "Ключевые слова"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:195
+msgid "Product page"
+msgstr "Страница продукта"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:204
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:223
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:249
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:42
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:60
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:86
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:49
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:67
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:93
+msgid "Product name"
+msgstr "название продукта"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:205
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:225
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:250
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:43
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:62
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:87
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:50
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:69
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:94
+msgid "Category, which is assigned to the product"
+msgstr "категория, которой присвоен продукт"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:206
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:226
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:251
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:44
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:63
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:88
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:51
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:70
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:95
+msgid "Brand, which is assigned to the product"
+msgstr "бренд, которому присвоен продукт"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:207
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:227
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:45
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:64
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:52
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:71
+msgid "Product price"
+msgstr "цена продукта"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:208
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:228
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:46
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:65
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:53
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:72
+msgid "Main currency"
+msgstr "основная валюта"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:209
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:229
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:252
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:47
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:66
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:89
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:54
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:73
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:96
+msgid "Displays the value of the property, instead of xxxx - id properties"
+msgstr "виведет значение свойства, вместе xxxx - id свойства"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:222
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:59
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:66
+msgid "Product ID"
+msgstr "ID наименования"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:224
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:61
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:68
+msgid "Product description"
+msgstr "описание продукта"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:238
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:332
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:427
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:517
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:75
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:82
+msgid "Description length"
+msgstr "Длина описания"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:260
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:360
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:456
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:536
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:588
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:98
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:21
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:105
+msgid "Active"
+msgstr "Активный"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:270
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:371
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:467
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:547
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:109
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:116
+msgid "Use only for empty metadata"
+msgstr "Использовать только для пустых метаданных"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:282
+msgid "Advanced"
+msgstr "Дополнительные возможности"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:302
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:319
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:348
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:397
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:414
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:443
+msgid "Category ID"
+msgstr "ID категории"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:304
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:321
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:350
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:399
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:416
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:445
+msgid "Category description"
+msgstr "описание категории"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:305
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:322
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:351
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:400
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:417
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:446
+msgid "field H1 of category"
+msgstr "поле H1 категории"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:306
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:323
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:352
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:401
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:418
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:447
+msgid "list of the top brands, separated by "
+msgstr "список топ-брендов, через запятую"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:389
+msgid "Subcategory"
+msgstr "Подкатегория"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:483
+msgid "Brands"
+msgstr "Бренды"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:491
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:506
+msgid "Brand ID"
+msgstr "ID бренда"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:492
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:507
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:527
+msgid "Brand name"
+msgstr "название бренда"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:493
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:508
+msgid "Brand description"
+msgstr "описание бренда"
+
+#: ./application/modules/mod_seoexpert/assets/admin/__productsCategoryCreate.tpl:19
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:19
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:20
+msgid "Create"
+msgstr "Создать"
+
+#: ./application/modules/mod_seoexpert/assets/admin/__productsCategoryCreate.tpl:27
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:27
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:28
+msgid "Choose category"
+msgstr "Выберите категорию"
+
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:11
+msgid "Add new category"
+msgstr "Добавить новую категорию"
+
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:22
+msgid "Only for empty Meta-tags"
+msgstr "Только для пустых Мета-теги"
+
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:51
+msgid "List is empty."
+msgstr "Список пуст."
 
