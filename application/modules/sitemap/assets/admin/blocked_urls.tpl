@@ -37,7 +37,7 @@
                         <br/>
                         <div class="control-group">
                             <div class="controls">
-                                <button type="button" class="icon-info-sign" data-toggle="popover" data-placement="right" data-title="{lang('Example:', 'sitemap')}" data-content="
+                                <button type="button" style="margin-left: -20px" class="icon-info-sign" data-toggle="popover" data-placement="right" data-title="{lang('Example:', 'sitemap')}" data-content="
                                         <span class='s-t'>{site_url()}</span>shop/product/123 - {lang('will blocked this url', 'sitemap')}<br/>
                                         <span class='s-t'>{site_url()}</span>shop/product*/123 - {lang('blocked all urls than starts with', 'sitemap')} shop/product<br/>
                                         <span class='s-t'>{site_url()}</span>*shop/product - {lang('blocked all urls than ends with', 'sitemap')} shop/product"
@@ -64,16 +64,10 @@
                                         <span class="niceCheck b_n"> 
                                             <input type="checkbox" class="robots_check" {if $url['robots_check']}checked="checked"{/if}>
                                         </span>
-                                        <span>{lang('Add to robots', 'sitemap')}</span>
+                                        <span>{lang('Block in robots', 'sitemap')}</span>
                                     </span>
                                 </div> 
                             </div> 
-                            <div class="control-group">
-                                <span class="control-label">&nbsp;</span>
-                                <div class="controls">
-                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("Просмотреть код", 'sitemap')}</a>
-                                </div>
-                            </div>
                         </div>
 
                         {if $hide_urls}
@@ -91,7 +85,7 @@
                                                 <span class="niceCheck b_n"> 
                                                     <input type="checkbox" class="robots_check" name="robots_check[{echo ++$key}]" {if $url['robots_check']}checked="checked"{/if}>
                                                 </span>
-                                                <span>{lang('Add to robots', 'sitemap')}</span>
+                                                <span>{lang('Block in robots', 'sitemap')}</span>
                                             </span>
                                         </div>
                                     </div> 

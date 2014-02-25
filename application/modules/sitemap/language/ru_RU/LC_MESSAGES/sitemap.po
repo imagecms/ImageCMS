@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-13 11:14+0200\n"
-"PO-Revision-Date: 2014-02-13 11:14+0200\n"
+"POT-Creation-Date: 2014-02-25 03:52+0200\n"
+"PO-Revision-Date: 2014-02-25 03:52+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,10 +18,61 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:65
-#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:83
-msgid "Add to robots"
-msgstr "Добавить в robots.txt"
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:110
+msgid "Products subcategories pages"
+msgstr "Страницы подкатегрий товаров"
+
+#: ./application/modules/sitemap/templates/admin/settings.tpl:25
+#: ./application/modules/sitemap/templates/admin/settings.tpl:62
+msgid "Main page"
+msgstr "Главная страница"
+
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:81
+msgid "Subcategories pages"
+msgstr "Страницы подкатегорий"
+
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:124
+msgid "Products pages"
+msgstr "Страницы товаров"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:41
+msgid "will blocked this url"
+msgstr "будет блокировать этот url"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:42
+msgid "blocked all urls than starts with"
+msgstr "заблокированы все адреса, которие начинаются с"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:43
+msgid "blocked all urls than ends with"
+msgstr "заблокированы все адреса, которие с окончанием"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:67
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:88
+msgid "Block in robots"
+msgstr "Блокировать в robots.txt"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:99
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:154
+#: ./application/modules/sitemap/assets/admin/settings.tpl:117
+msgid "View code"
+msgstr "Просмотр кода"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:44
+msgid "Use saved"
+msgstr "Использовать сохраненную"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:63
+msgid "Update"
+msgstr "Обновить"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:86
+msgid "Send/Not send Site Map"
+msgstr "Отправлять/Не отправлять Карту Сайта"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:96
+msgid "Send Site Map only when page url is changed"
+msgstr "Отправлять Карту Сайта только при изменении url страницы"
 
 #: ./application/modules/sitemap/admin.php:97
 msgid "Site map have not been saved. Set writing permissions on module folder."
@@ -31,20 +82,12 @@ msgstr "Карта сайта не сохранена. Установите пр
 msgid "There is no saved Site Map."
 msgstr "Нет сохраненной Карты Сайта."
 
-#: ./application/modules/sitemap/assets/admin/settings.tpl:49
-msgid "Generate"
-msgstr "Сгенерировать"
-
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:5
 #: ./application/modules/sitemap/assets/admin/changefreq.tpl:5
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:5
 #: ./application/modules/sitemap/assets/admin/settings.tpl:5
 msgid "Site Map"
 msgstr "Карта Сайта"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:47
-msgid "Regenerate"
-msgstr "Перегенерировать"
 
 #: ./application/modules/sitemap/admin.php:91
 msgid "Site map have been saved"
@@ -53,13 +96,6 @@ msgstr "Карта сайта создана"
 #: ./application/modules/sitemap/admin.php:93
 msgid "Site map have not been saved"
 msgstr "Карта сайта не сохранена"
-
-#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:11
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:11
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:11
-#: ./application/modules/sitemap/assets/admin/settings.tpl:11
-msgid "Save and view"
-msgstr "Сохранить и просмотреть"
 
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:15
 #: ./application/modules/sitemap/assets/admin/changefreq.tpl:15
@@ -97,17 +133,9 @@ msgstr "Просмотр Карты Сайта"
 msgid "Settings"
 msgstr "Настройки"
 
-#: ./application/modules/sitemap/assets/admin/settings.tpl:41
-msgid "Generate Site Map or use existing map"
-msgstr "Генерировать Карту Сайта или использовать существующую карту"
-
 #: ./application/modules/sitemap/assets/admin/settings.tpl:44
 msgid "Generate new"
 msgstr "Создать новую"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:45
-msgid "Use existing"
-msgstr "Использувать существующую"
 
 #: ./application/modules/sitemap/assets/admin/settings.tpl:53
 msgid "Saved Site Map"
@@ -129,46 +157,9 @@ msgstr "КБ"
 msgid "Turn ON/OFF robots"
 msgstr "Включить/Выключить роботов"
 
-#: ./application/modules/sitemap/assets/admin/settings.tpl:61
-msgid "ON"
-msgstr "Включено"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:62
-msgid "OFF"
-msgstr "Выключено"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:68
-msgid "Send Site Map"
-msgstr "Отправить Карту Сайта"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:71
-#: ./application/modules/sitemap/assets/admin/settings.tpl:81
-msgid "No"
-msgstr "Нет"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:72
-#: ./application/modules/sitemap/assets/admin/settings.tpl:82
-msgid "Yes"
-msgstr "Да"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:78
-msgid "Send Site Map only when url is changed"
-msgstr "Отправить Карту Сайта только тогда, когда меняется url"
-
 #: ./application/modules/sitemap/assets/admin/settings.tpl:89
 msgid "Last send Site Map time"
 msgstr "Время последнего отправления Карты Сайта"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:37
-#: ./application/modules/sitemap/assets/admin/settings.tpl:45
-#: ./application/modules/sitemap/assets/admin/settings.tpl:53
-#: ./application/modules/sitemap/assets/admin/settings.tpl:61
-#: ./application/modules/sitemap/assets/admin/settings.tpl:69
-#: ./application/modules/sitemap/assets/admin/settings.tpl:77
-#: ./application/modules/sitemap/assets/admin/settings.tpl:85
-#: ./application/modules/sitemap/assets/admin/settings.tpl:93
-msgid "Value must be in range from 0.1(not important) to 1(important)"
-msgstr "Значение должно быть в диапазоне от 0,1(не важно) до 1(важно)"
 
 #: ./application/modules/sitemap/admin.php:54
 msgid "The %s field value can be in range from 0.1 to 1"
@@ -209,43 +200,6 @@ msgstr "Приоритет категорий товаров"
 #: ./application/modules/sitemap/assets/admin/settings.tpl:218
 msgid "Example:"
 msgstr "Пример:"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:219
-msgid "shop/product/1 - will blocked this url"
-msgstr "shop/product/1 - будет блокировать этот url"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:220
-msgid "shop/product* - blocked all urls than starts with: shop/product"
-msgstr "shop/product* - заблокированы все адреса, которые начинаються с: shop/product"
-
-#: ./application/modules/sitemap/assets/admin/settings.tpl:221
-msgid "*shop/product - blocked all urls than ends with: shop/product"
-msgstr "*shop/product - заблокированы все адреса, которые заканчиваються на: shop/product"
-
-#: ./application/modules/sitemap/templates3/admin/settings.tpl:46
-#: ./application/modules/sitemap/assets/admin/settings.tpl:55
-msgid "Sub categories"
-msgstr "Подкатегории"
-
-#: ./application/modules/sitemap/templates3/admin/settings.tpl:53
-#: ./application/modules/sitemap/assets/admin/settings.tpl:62
-msgid "Products categories"
-msgstr "Категории товаров"
-
-#: ./application/modules/sitemap/templates3/admin/settings.tpl:60
-#: ./application/modules/sitemap/assets/admin/settings.tpl:69
-msgid "Products sub-categories"
-msgstr "Подкатегорий товаров"
-
-#: ./application/modules/sitemap/templates3/admin/settings.tpl:67
-#: ./application/modules/sitemap/assets/admin/settings.tpl:76
-msgid "Products"
-msgstr "Товары"
-
-#: ./application/modules/sitemap/templates3/admin/settings.tpl:74
-#: ./application/modules/sitemap/assets/admin/settings.tpl:83
-msgid "Brands"
-msgstr "Бренды"
 
 #: ./application/modules/sitemap/templates3/admin/settings.tpl:120
 #: ./application/modules/sitemap/assets/admin/settings.tpl:149
@@ -293,10 +247,6 @@ msgstr "Ошибка"
 msgid "Add"
 msgstr "Добавить"
 
-#: ./application/modules/sitemap/assets/admin/settings.tpl:230
-msgid "Remove"
-msgstr "Удалить"
-
 #: ./application/modules/sitemap/templates/admin/settings.tpl:80
 msgid "Products page"
 msgstr "Страница товаров"
@@ -312,15 +262,6 @@ msgstr "Сохранить"
 #: ./application/modules/sitemap/templates/admin/settings.tpl:18
 msgid "Priorities"
 msgstr "Приоритеты"
-
-#: ./application/modules/sitemap/templates/admin/settings.tpl:25
-#: ./application/modules/sitemap/templates/admin/settings.tpl:62
-msgid "Main page"
-msgstr "Главная"
-
-#: ./application/modules/sitemap/templates/admin/settings.tpl:31
-msgid "Categories"
-msgstr "Категории"
 
 #: ./application/modules/sitemap/templates/admin/settings.tpl:37
 #: ./application/modules/sitemap/templates/admin/settings.tpl:74
