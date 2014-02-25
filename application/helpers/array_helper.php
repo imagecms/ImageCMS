@@ -69,4 +69,15 @@ if (!function_exists('array_to_file')) {
     }
 
 }
+
+if (!function_exists('user_function_sort')) {
+
+    function user_function_sort($arr) {
+        usort($arr, function($a, $b) {
+                    return strnatcmp($a['value'], $b['value']);
+                });
+        return $arr;
+    }
+
+}
 ?>
