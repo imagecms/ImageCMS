@@ -100,16 +100,29 @@
                                     <span class="span8 discount-name"><input type="text" autocomplete="off" name='productTemplateKey' value="{$category['settings']['productTemplateKey']}" /></span>
                                 </label>
 
-                                <label class="">
-                                    <span class="span4">Активный:</span>
-                                    <span style="width: 16px;" class="span1"><input name="useProductPattern"  {if $category['settings']['useProductPattern'] == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                </label>
+                                <div>
+                                    <div class="frame_label no_connection">
+                                        <span class="span4">Активный:</span>
+                                        <span class="span1">
+                                            <span class="niceCheck b_n">
+                                                <input name="useProductPattern"  {if $category['settings']['useProductPattern'] == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
 
-                                <label class="">
-                                    <span class="span4">Использовать только для пустых метаданных:</span>
-                                    <span style="width: 16px;" class="span1"><input name="useProductPatternForEmptyMeta"  {if $category['settings']['useProductPatternForEmptyMeta'] == 1} checked="checked" {/if}value="1" type="checkbox"/></span>
-                                </label>
+                                <div>
+                                    <div class="frame_label no_connection">
+                                        <span class="span4">Использовать только для пустых метаданных:</span>
+                                        <span class="span1">
+                                            <span class="niceCheck b_n">
+                                                <input name="useProductPatternForEmptyMeta"  {if $category['settings']['useProductPatternForEmptyMeta'] == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>

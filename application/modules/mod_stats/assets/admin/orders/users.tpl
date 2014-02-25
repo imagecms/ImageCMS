@@ -12,30 +12,130 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9" id="chartArea">
+        <div class="clearfix span9 content-statistic" id="chartArea">
             {include_tpl('../include/top_form_orders_users')}
-            <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
-            {if  $_GET['view_type'] == 'table'}
-                <div id="user_information">
+            <div id="user_information">
+                <form id="orders_users_filter_form">
+                    <input type="hidden" name="orderMethod" value="{$_GET['orderMethod']}"/>
+                    <input type="hidden" name="order" value="{$_GET['order']}"/>
+
                     <table class="table table-striped table-bordered table-condensed content_big_td">
                         <thead>
                             <tr>
-                                <th>Польз.</th>
-                                <th>К-во заказов</th>
-                                <th>Оплаченных</th>
-                                <th>Дост. заказов</th>
-                                <th>Заказы</th>
-                                <th>На суму</th>
-                                <th>К-во товаров</th>
-                                <th>Всего товаров</th>
+                                <th class="orders_users_order" data-column="username">
+                                    <span class="t-d_u">{lang('User','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'username'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
+                                <th class="orders_users_order" data-column="orders_count">
+                                    <span class="t-d_u">{lang('Orders count','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'orders_count'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
+                                <th class="orders_users_order" data-column="paid">
+                                    <span class="t-d_u">{lang('Paid count','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'paid'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
+                                <th class="orders_users_order" data-column="unpaid">
+                                    <span class="t-d_u">{lang('Unpaid count','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'unpaid'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
+                                <th class="orders_users_order" data-column="delivered">
+                                    <span class="t-d_u">{lang('Delivered count','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'delivered'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
+                                <th class="orders_users_order" data-column="orders_ids">
+                                    <span class="t-d_u">{lang('Orders','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'orders_ids'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
+                                <th class="orders_users_order" data-column="price_sum">
+                                    <span class="t-d_u">{lang('Total sum','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'price_sum'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
+                                <th class="orders_users_order" data-column="products_count">
+                                    <span class="t-d_u">{lang('Unique products count','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'products_count'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
+                                <th class="orders_users_order" data-column="quantity">
+                                    <span class="t-d_u">{lang('Total products count','admin')}</span>
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'quantity'}
+                                        {if $_GET.order == 'ASC'}
+                                            <span class="f-s_14">↑</span>
+                                        {else:}
+                                            <span class="f-s_14">↓</span>
+                                        {/if}
+                                    {/if}
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
+                            <tr class="head_body">
+
+                                <td>
+                                    <div>
+                                        <input name="username" type="text" value="{$_GET['username']}"/>
+                                    </div>
+                                </td>
+                                <td colspan="4"></td>
+                                <td class="number">
+                                    <input type="text" name="order_id" value="{$_GET['order_id']}" maxlength="5"/>
+                                </td>
+                                <td colspan="3"></td>
+
+                            </tr>
+
                             {foreach $data as $user}
                                 <tr>
                                     <td>{$user.username}</td>
                                     <td>{$user.orders_count}</td>
                                     <td>{$user.paid}</td>
+                                    <td>{$user.unpaid}</td>
                                     <td>{$user.delivered}</td>
                                     <td>{$user.orders_ids}</td>
                                     <td>{$user.price_sum}</td>
@@ -45,18 +145,10 @@
                             {/foreach}
                         </tbody>
                     </table>
+                </form>
 
-                </div>
-            {else:}
-                <button  class="btn btn-small btn-primary" id="saveAsPng">
-                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
-                {if $_GET['charType'] == null || $_GET['charType'] == 'pie'}
-                    <svg class="mypiechart pieChartStats" data-from="orders/getUsersChartData" style="height: 700px;"></svg>
-                {/if}
-                {if $_GET['charType'] == 'bar'}
-                    <svg class="mypiechart barChartStats" data-from="orders/getUsersChartData" style="height: 600px;"></svg>
-                {/if}
-            {/if}
+            </div>
+
 
         </div>
     </div>

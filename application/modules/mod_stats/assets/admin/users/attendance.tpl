@@ -8,17 +8,19 @@
             <div class="d-i_b">
                 <a href="" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
             </div>
-        </div>
-    </div>
-    <div class="row-fluid" id="chartArea">
-        {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
-            {include_tpl('../include/top_form')}
-
             {if $viewType == 'chart'}
                 <button  class="btn btn-small btn-primary" id="saveAsPng">
                     <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}
                 </button>
+            {/if}
+        </div>
+    </div>
+    <div class="row-fluid" id="chartArea">
+        {include_tpl('../include/left_block')}
+        <div class="clearfix span9 content-statistic">
+            {include_tpl('../include/top_form')}
+
+            {if $viewType == 'chart'}
                 <svg class="cumulativeLineChartStats" data-from="users/getAttendanceData" style="height: 600px; width: 800px;"></svg>
             {else:}
                 {if count($data) > 0}
@@ -39,7 +41,9 @@
                         </tbody>
                     </table>
                 {else:}
-                    <p style="text-align: center;">There are no orders for specified period</p>
+                    <div class="alert alert-info">
+                        {lang('There are no attendance for specified period', 'mod_stats')}
+                    </div>
                 {/if}
 
             {/if}

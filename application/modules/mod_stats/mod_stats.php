@@ -28,23 +28,53 @@ class Mod_stats extends \MY_Controller {
     }
 
     public function autoload() {
+        /** Check setting 'save_search_result' * */
+        if ($this->stats_model->getSettingByName('save_search_results_ac') == '1') {
+            //Autocomplete results
+            \CMSFactory\Events::create()->on('search:AC')->setListener('saveSearchedKeyWordsAC');
+        }
+        
         if (!$this->input->is_ajax_request()) {
             /** Check setting 'save_search_result' * */
             if ($this->stats_model->getSettingByName('save_search_results') == '1') {
+                // When enter press
                 \CMSFactory\Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
             }
+
             if ($this->stats_model->getSettingByName('save_users_attendance') == '1') {
                 \CMSFactory\Events::create()->on('Core:pageLoaded')->setListener('saveAttendance');
             }
         }
     }
-    
+
+    /**
+     * Save search keywords for autocomplete
+     * @param string $text
+     * @return 
+     */
+    public function saveSearchedKeyWordsAC($text = '') {
+        if ($text['search_text'] == '') {
+            return;
+        }
+        $thisObj = new Mod_stats();
+        $thisObj->stats_model->saveKeyWordsAC($text['search_text']);
+    }
+
     /**
      * Save user attandance
      */
     public function saveAttendance() {
         $thisObj = new Mod_stats();
         $thisObj->import('classes/Attendance');
+
+        $thisObj->load->library('user_agent');
+        if ($thisObj->agent->is_robot()) {
+            $thisObj->import('classes/RobotsAttendance');
+            if ((int) \mod_stats\classes\AdminHelper::create()->getSetting('save_robots_attendance') == 1) {
+                RobotsAttendance::getInstance()->add(CI::$APP->core->core_data, $this->agent->robot());
+            }
+            return;
+        }
 
         /*
          * If user is not registered, he has no id. For accurate data 
@@ -71,7 +101,7 @@ class Mod_stats extends \MY_Controller {
         }
         Attendance::getInstance()->add(CI::$APP->core->core_data, $userId);
     }
-    
+
     /**
      * Save search keywords
      * @param string $text
@@ -100,4 +130,3 @@ class Mod_stats extends \MY_Controller {
     }
 
 }
-

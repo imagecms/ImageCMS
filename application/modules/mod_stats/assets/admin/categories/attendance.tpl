@@ -8,16 +8,16 @@
             <div class="d-i_b">
                 <a href="" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
             </div>
+            <button  class="btn btn-small btn-primary" id="saveAsPng">
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}
+            </button>
         </div>
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9" id="chartArea">
+        <div class="clearfix span9 content-statistic" id="chartArea">
             {include_tpl('../include/top_form_categories_attendance')}
-            <button  class="btn btn-small btn-primary" id="saveAsPng">
-                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
             <svg class="cumulativeLineChartStats" data-from="categories/getCategoriesAttendanceData" style="height: 600px; width: 800px;"></svg>
-
         </div>
     </div>
 </section>

@@ -34,7 +34,7 @@ class ProductsController extends ControllerBase {
             'categoryId' => isset($_GET['catId']) ? $_GET['catId'] : 0,
         );
         $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
-        $categories = $this->controller->products_model->getCategoriesCountsData($catIds);
+        $categories = $this->controller->products_model->getCategoriesCountsData($catIds, TRUE);
         $chartData = parent::prepareDataForStaticChart($categories);
 
         echo json_encode($chartData);
@@ -57,7 +57,7 @@ class ProductsController extends ControllerBase {
             'topBrandsCount' => isset($_GET['stbc']) ? $_GET['stbc'] : 20,
         );
 
-        $brands = $this->controller->products_model->getBrandsCountsData($params['topBrandsCount']);
+        $brands = $this->controller->products_model->getBrandsCountsData($params['topBrandsCount'],NULL, TRUE);
 
         $chartData = parent::prepareDataForStaticChart($brands);
         echo json_encode($chartData);
@@ -98,23 +98,32 @@ class ProductsController extends ControllerBase {
                     ->endUse()
                     ->orWhere('ProductVariant.Number = ?', $text);
         }
-
+        
+//        $model = $model->orderBy('AddedToCartCount', 'DESC');
         // Order by params
         if (isset(ShopCore::$_GET['orderMethod']) && ShopCore::$_GET['orderMethod'] != '') {
             $order_methods = array('Id', 'Name', 'CategoryId', 'Views', 'AddedToCartCount');
             if (in_array(ShopCore::$_GET['orderMethod'], $order_methods)) {
                 switch (ShopCore::$_GET['orderMethod']) {
+                    case 'Id':
+                        $model = $model->orderById(ShopCore::$_GET['order']);
+                        break;
                     case 'Name':
                         $model = $model->useSProductsI18nQuery()->orderByName(ShopCore::$_GET['order'])->endUse();
                         break;
-                    case 'Price':
-                        $model = $model->useProductVariantQuery()->orderByPrice(ShopCore::$_GET['order'])->endUse();
+                    case 'AddedToCartCount':
+                        $model = $model->orderByAddedToCartCount(ShopCore::$_GET['order']);
+                        break;
+                    case 'Views':
+                        $model = $model->orderByViews(ShopCore::$_GET['order']);
                         break;
                     default :
-                        $model = $model->orderBy(ShopCore::$_GET['orderMethod'], ShopCore::$_GET['order']);
+                        $model = $model->orderByAddedToCartCount('DESC');
                         break;
                 }
             }
+        }else{
+            $model = $model->orderByAddedToCartCount('DESC');
         }
 
         // Get results

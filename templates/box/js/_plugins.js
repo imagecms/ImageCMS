@@ -22,6 +22,16 @@ $.expr[':'].regex = function(elem, index, match) {
             regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
     return regex.test($(elem)[attr.method](attr.property));
 };
+if (!Array.indexOf) {
+    Array.prototype.indexOf = function(obj, start) {
+        for (var i = (start || 0); i < this.length; i++) {
+            if (this[i] === obj) {
+                return i;
+            }
+        }
+        return -1;
+    };
+}
 String.prototype.trimMiddle = function()
 {
     var r = /\s\s+/g;
@@ -2355,7 +2365,7 @@ function getCookie(c_name)
                     methods[place](drop)
                 })
             drop[$thisEOn]($thisD, function(e) {
-                var drop = $(this).css('overflow', 'hidden').focus();
+                var drop = $(this).css('overflow', 'hidden');
                 methods.init.call(drop.find('[data-drop]'));
                 drop.addClass(aC);
                 if (!confirm && modal && timeclosemodal)

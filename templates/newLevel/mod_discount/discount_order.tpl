@@ -1,4 +1,4 @@
-{$kitDisc = $CI->load->module('shop/cart_api')->get_kit_discount()}
+
 
 {if $discount->sum_discount_product > $discount->sum_discount_no_product}
     <div>
@@ -9,7 +9,7 @@
         <span class="s-t">{lang('Размер скидки:','newLevel')}</span>
         <span class="price-item">
             <span class="text-discount">
-                <span class="price">{echo $discount->result_sum_discount_convert+$kitDisc}</span>
+                <span class="price">{echo $discount->result_sum_discount_convert}</span>
                 <span class="curr">{$CS}</span>
             </span>
         </span>
@@ -26,6 +26,6 @@
 </div>
 <div>
     <span class="s-t">{lang('Общая скидка: ','newLevel')}</span>
-    <span class="price-item text-discount"><span>{echo $discount->result_sum_discount_convert + $kitDisc} <span class="curr">{$CS}</span></span></span>
+    <span class="price-item text-discount"><span>{echo $discount->result_sum_discount_convert} <span class="curr">{$CS}</span></span></span>
 </div>
 {/if}

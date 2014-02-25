@@ -12,10 +12,7 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9">
-            <p id="online_deprecated_block" style="display: none; padding: 10px; text-align: center; color: #800">
-                {lang('Data may be deprecated. Please refresh the page.','mod_stats')}
-            </p>
+        <div class="clearfix span9 content-statistic">
             {if count($data) > 0}
                 <table class="table table-striped table-bordered table-condensed content_big_td online-users-table">
                     <thead>
@@ -35,19 +32,8 @@
                                 <td>{$user.email}</td>
                                 <td>{$user.last_activity}</td>
                                 <td>
-                                    <a href="{site_url($user.last_url)}" target="_blank">
-                                        {if $user.type_id == 1}
-                                            {lang('Page','mod_stats')}
-                                        {/if}
-                                        {if $user.type_id == 2}
-                                            {lang('Category','mod_stats')}
-                                        {/if}
-                                        {if $user.type_id == 3}
-                                            {lang('Shop category','mod_stats')}
-                                        {/if}
-                                        {if $user.type_id == 4}
-                                            {lang('Product','mod_stats')}
-                                        {/if}
+                                    <a href="/{$user.last_url}" target="_blank">
+                                        {$user['page_name']}
                                     </a>
                                 </td>
                             </tr>
@@ -55,7 +41,9 @@
                     </tbody>
                 </table>
             {else:}
-                <p style="text-align: center; padding: 15px; font-size: 13pt;">There are no users online </p>
+                <div class="alert alert-info">
+                    {lang('There are no users online', 'mod_stats')}
+                </div>
             {/if}
         </div>
     </div>
