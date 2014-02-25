@@ -29,6 +29,13 @@ var SiteMap = {
                 $('.notifications.top-right').append(data);
             }
         });
+    },
+    showHideSavedInformation: function(curElement) {
+        if (curElement.val()) {
+            $('.savedSitemap').show();
+        } else {
+            $('.savedSitemap').hide();
+        }
     }
 };
 $('[data-toggle="popover"]').popover();
@@ -37,7 +44,7 @@ $('.frame_prod-on_off').off('click').off('click.setSitemap').on('click.setSitema
             val = input.val(),
             valOn = input.data('valOn'),
             valOff = input.data('valOff');
-            
+
     if (val == valOn)
         input.val(valOff);
     else

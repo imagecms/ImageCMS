@@ -1115,7 +1115,6 @@ function getCookie(c_name)
                             function(e) {
                                 var $this = $(this);
                                 if ($this.data("show") === "no" || $this.data("show") === undefined) {
-
                                     $this.data("show", "yes");
                                     clearTimeout(hoverTO);
                                     closeMenu();
@@ -1130,7 +1129,7 @@ function getCookie(c_name)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
                                         hoverTO = setTimeout(function() {
-                                            $thisDrop[effOn](durationOn, function() {
+                                            $thisDrop[effOn](durationOn, function(e) {
                                                 $this.data('kk', $this.data('kk') + 1);
                                                 $(document).trigger({
                                                     type: 'menu.showDrop',
@@ -1272,6 +1271,7 @@ function getCookie(c_name)
                             e.stopPropagation();
                     });
                     menuItem.find('a:first').off('click.menuref').on('click.menuref', function(e) {
+                        e.preventDefault();
                         if (!$.existsN($(this).closest(menuItem).find(drop)))
                             e.stopPropagation();
                     });
