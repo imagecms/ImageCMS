@@ -1,3 +1,18 @@
+<div class="modal hide fade" id='myModal'>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{lang('Create group', 'banners')}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{lang('Group name', 'banners')}</p>
+        <input type="text" name="nameGroup" id="nameGroup">
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-primary" onclick="groupCreate();
+                $('#myModal').modal('hide')">{lang('Create', 'banners')}</a>
+    </div>
+</div>
+
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
@@ -57,8 +72,25 @@
                                     </div>
                                 </div>
 
+                                <div class="control-group">
+                                    <label class="control-label" for="Url"> {lang('Banner group', 'banners')} {$translatable}:</label>
+                                    <div class="controls">
+                                        <div class="input-append">
+                                            <select class="span2" 
+                                                    id="appendedInputButton" 
+                                                    ondblclick="groupDel()"
+                                                    type="text" 
+                                                    name="group[]" 
+                                                    multiple="multiple">
+                                                {foreach $groups as $group}
+                                                    <option value="{echo $group.name}"{if in_array($group.name,unserialize($banner.group))}selected="selected"{/if}>{echo $group.name}</option>    
+                                                {/foreach}
+                                            </select>
 
-
+                                            <a class="btn btn-small btn-success" onclick="$('#myModal').modal('show')">{lang('Create group', 'banners')}</a>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="control-group">
                                     <label class="control-label" for="data">{lang('Selected items', 'banners')}:</label>
@@ -67,8 +99,6 @@
                                             {foreach unserialize($banner['where_show']) as $w}
                                                 <option  ondblclick='delEntity(this)' value="{echo $w}">{get_entity_mod($w)}</option>
                                             {/foreach}
-
-
                                         </select> 
                                         <span class="help-block">{lang('Double click to deleting', 'banners')}</span>
                                     </div>
@@ -114,7 +144,7 @@
                                     <div class="controls">
                                         <div class="group_icon pull-right">            
                                             <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                        return false;"><i class="icon-picture"></i>  {lang('Choose an image ', 'banners')}</button>
+                                                    return false;"><i class="icon-picture"></i>  {lang('Choose an image ', 'banners')}</button>
                                         </div>
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}">					
@@ -122,18 +152,18 @@
                                         <div id="Img-preview" style="width: 400px;" >
                                             {if $banner['photo']}
                                                 <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 100px;">
-                                            {/if}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                                        {/if}
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
 
 
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>                               
-    </form>
-    <div id="elFinder"></div>
-</section>
+                                                        </div>
+                                                        </td>
+                                                        </tr>
+                                                        </tbody>
+                                                        </table>                               
+                                                        </form>
+                                                    <div id="elFinder"></div>
+                                                    </section>
