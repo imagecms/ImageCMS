@@ -63,7 +63,30 @@ class Stats_model extends CI_Model {
         }
         return TRUE;
     }
-
+    
+    /**
+     * Save keywords autocomplete
+     * @param type $keyword
+     * @return boolean
+     */
+    public function saveKeyWordsAC($keyword = '') {
+        /** Return if not set values * */
+        if ($keyword == '') {
+            return FALSE;
+        }
+        /** Insert value * */
+        $this->db->insert('mod_stats_search', array(
+            'key' => $keyword,
+            'date' => time(),
+            'ac' => 1
+        ));
+    }
+    
+    /**
+     * Save keywords
+     * @param type $keyword
+     * @return boolean
+     */
     public function saveKeyWords($keyword = '') {
         /** Return if not set values * */
         if ($keyword == '') {
@@ -157,6 +180,10 @@ class Stats_model extends CI_Model {
             'date' => array(
                 'type' => 'INT',
                 'null' => TRUE,
+            ),
+            'ac' => array(
+                'type' => 'INT',
+                'null' => TRUE,
             )
         );
         $this->dbforge->add_field($fields);
@@ -208,6 +235,37 @@ class Stats_model extends CI_Model {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_stats_attendance');
 
+        // збереження URL сторінок
+        $robotsAttendanceFields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+            'id_robot' => array(
+                'type' => 'int',
+                'constraint' => '5',
+                'null' => FALSE,
+            ),
+            'type_id' => array(
+                'type' => 'int',
+                'constraint' => '2',
+                'null' => FALSE,
+            ),
+            'id_entity' => array(
+                'type' => 'int',
+                'constraint' => '6',
+                'null' => FALSE,
+            ),
+            'time_add ' => array(
+                'type' => 'int',
+                'constraint' => '11',
+                'null' => FALSE,
+            ),
+        );
+
+        $this->dbforge->add_field($robotsAttendanceFields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_stats_attendance_robots');
 
         $this->db->where('name', 'mod_stats');
         $this->db->update('components', array(

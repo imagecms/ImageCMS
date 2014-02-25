@@ -57,6 +57,13 @@ $(document).ready(function() {
         // Set values for start and end date inputs **/
         $('.date_start').val(startDateForInput);
         $('.date_end').val(endDateForInput);
+
+        $('#chartArea').find('form').submit();
+    });
+
+    /** Send form when change chart type **/
+    $("select").on('change', function() {
+        $('#chartArea').find('form').submit();
     });
 
 
@@ -91,10 +98,15 @@ $(document).ready(function() {
     });
 
     /** Send form for filtering */
-    $('#productFilterButton').bind('click', function() {
+    $('#productFilterForm').on('submit', function(e) {
+        e.preventDefault();
         var query_string = $('#productFilterForm').serialize();
         window.location.href = '/admin/components/cp/mod_stats/products/productInfo/0?' + query_string;
     });
+
+    /** Order for order/users **/
+    $('.orders_users_order').on('click', refreshOrdersUsers);
+    $("#refreshIntervalsButtonOrdersUsers").on('click', refreshOrdersUsers);
 
 
     /** Show user attendance on page online */
@@ -126,11 +138,15 @@ $(document).ready(function() {
     $(".online-users-table").on('click', 'tr td a', function(obj, event) {
         event.preventDefault();
     });
-    
+
     /** Save image button click **/
     $("#saveAsPng").click(function() {
         StatsSettingsAndParams.submitDownloadForm("png");
     });
+
+
+
+
 
     /** DRAW CHARTS **/
 
@@ -145,7 +161,14 @@ $(document).ready(function() {
                     var width = 800,
                             height = 650 + (cData.length / 3 * 20);
 
+                    var tooltip = function(key, x, y, e, graph) {
+                        x = parseFloat(x.replace(' ', '').replace(',', ''));
+                        return '<h3>' + key + '</h3>' +
+                                '<p>' + x + '</p>';
+                    }
                     var chart = nv.models.pieChart()
+                            .tooltips(true)
+                            .tooltipContent(tooltip)
                             .showLabels(true)
                             .x(function(d) {
                                 return d.key
@@ -194,14 +217,16 @@ $(document).ready(function() {
                     var chart = nv.models.discreteBarChart()
                             .margin({top: 30, right: 30, bottom: 250, left: 70})
                             .x(function(d) {
-                                return d.label
+
+                                return d.label;
                             })
                             .y(function(d) {
-                                return d.value
+                                return d.value;
                             })
+
                             .staggerLabels(true)
-                            .tooltips(false)
-                            .showValues(true);
+                            .tooltips(true);
+//                            .showValues(true);
 
                     chart.yAxis
                             .tickFormat(d3.format('.0f'));
@@ -329,4 +354,10 @@ $(document).ready(function() {
         });
     }
     /** ************************************************ */
+    
+    $('[data-btn-select]').click(function(){
+        var $this = $(this);
+        $($this.data('rel')).val($this.data('val'));
+        $this.closest('form').submit();
+    })
 });

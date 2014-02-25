@@ -1,4 +1,4 @@
-<section class="mini-layout">
+<section class="mini-layout adminSitemap">
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
@@ -7,10 +7,9 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/init_window/sitemap/priorities" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'sitemap')}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#sitemap_changefreq_form" data-submit><i class="icon-ok"></i>{lang("Save", 'sitemap')}</button>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#sitemap_changefreq_form" data-action="show_sitemap" data-submit><i class="icon-share"></i>{lang("Save and view", 'sitemap')}</button>
-                <span class="btn-group">
-                    <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" style="margin-top: -5px;">
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#sitemap_changefreq_form" data-submit><i class="icon-ok icon-white"></i>{lang("Save", 'sitemap')}</button>
+                <div class="p_r d-i_b v-a_m">
+                    <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-white icon-list"></i>
                         {lang('Others', 'sitemap')}<span class="caret"></span>
                     </button>
@@ -23,7 +22,7 @@
                         <li class="divider"></li>
                         <li><a style="text-decoration: none" class="pjax" href="/admin/components/init_window/sitemap/settings">{lang('Settings', 'sitemap')}</a></li>
                     </ul>
-                </span>
+                </div>
             </div>
         </div>                            
     </div>
@@ -94,6 +93,12 @@
                                     </div>
                                 </div>
                             {/if}
+                            <div class="control-group">
+                                <span class="control-label">&nbsp;</span>
+                                <div class="controls">
+                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("Просмотреть код", 'sitemap')}</a>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>

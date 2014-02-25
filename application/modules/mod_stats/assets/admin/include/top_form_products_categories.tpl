@@ -1,10 +1,10 @@
 <script>
     var currency = '{$CS}'
 </script>
-<div class="m-t_20">
-    <form method="get">
+<form method="get">
+    <div class="f-s_0 frame-panel-stat">
         <span class="d-i_b">
-            {lang('Choose Category:','mod_stats')}
+            <span class="d_b title-field">{lang('Choose Category:','mod_stats')}</span>
             <label class="d-i_b p_r">
                 <select name='catId'>
                     <option>{lang('First level categories','mod_stats')}</option>
@@ -14,22 +14,14 @@
                 </select>
             </label>
         </span>
-                
         <span class="d-i_b">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            {lang('Char Type:','mod_stats')}
-            <label class="d-i_b p_r">
-                <select name='charType'>
-                    <option value="pie"{if $_GET['charType'] == 'pie'} selected="selected"{/if}>{lang('Pie char','mod_stats')}</option>
-                    <option value="bar"{if $_GET['charType'] == 'bar'} selected="selected"{/if}>{lang('Bar char','mod_stats')}</option>
-                </select>
-            </label>
+            <span class="d_b title-field">{lang('Show','mod_stats')}</span>
+            <div class="btn-group" data-toggle="buttons-radio">
+                <button type="button" class="btn btn-default{if $_GET['charType'] == 'pie'} active{/if}" data-val="pie" data-rel="[name='charType']" data-btn-select>{lang('Pie char','mod_stats')}</button>
+                <button type="button" class="btn btn-default{if $_GET['charType'] == 'bar'} active{/if}" data-val="bar" data-rel="[name='charType']" data-btn-select>{lang('Bar char','mod_stats')}</button>
+            </div>
+            <input type="hidden" name="charType" value="{if $_GET['charType'] == 'bar'}bar{else:}pie{/if}"/>
         </span>
-        <div class="pull-right">
-            <button type="submit" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButton">
-                <i class="icon-refresh"></i> {lang('Update','mod_stats')}
-            </button>
-        </div>
-    </form>
-</div>
+    </div>
+</form>
 

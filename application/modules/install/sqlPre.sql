@@ -1060,6 +1060,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
   `discount_id` int(11) DEFAULT NULL,
+  `child` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `discount_id` (`discount_id`),
   KEY `category_id` (`category_id`)
@@ -2274,6 +2275,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   `product_name` varchar(255) DEFAULT NULL,
   `variant_name` varchar(255) DEFAULT NULL,
   `price` float(10,2) DEFAULT NULL,
+  `origin_price` float(10,2) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `kit_id` int(11) DEFAULT NULL,
   `is_main` tinyint(1) DEFAULT NULL,

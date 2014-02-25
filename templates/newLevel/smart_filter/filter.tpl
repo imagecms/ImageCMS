@@ -47,7 +47,7 @@
                         {else:}
                             {$check = ''}
                         {/if}
-                        {if $brand->countProducts == 0}
+                        {if $brand->countProducts == 0 && $check == ''}
                             {$dis = 'disabled="disabled"'}
                         {else:}
                             {$dis = ""}
@@ -94,7 +94,7 @@
                                         {else:}
                                             {$check = ''}
                                         {/if}
-                                        {if $item.count == 0}
+                                        {if $item.count == 0 && $check == ''}
                                             {$dis = 'disabled="disabled"'}
                                         {else:}
                                             {$dis = ""}

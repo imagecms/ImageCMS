@@ -363,7 +363,7 @@
                                 <ul class="items-thumbs items">
                                     <!-- Start. main image-->
                                     <li class="active">
-                                        <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
+                                        <a onclick="return false;" rel="useZoom: 'photoProduct'" data-href="#a-1" data-tab="true" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
                                             <span class="photo-block">
                                                 <span class="helper"></span>
                                                 <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
@@ -373,7 +373,7 @@
                                     <!-- End. main image-->
                                     {foreach $productImages as $key => $image}
                                         <li>
-                                            <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
+                                            <a onclick="return false;" rel="useZoom: 'photoProduct'" data-href="#a{$key}" data-tab="true" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
                                                 <span class="photo-block">
                                                     <span class="helper"></span>
                                                     <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
@@ -418,9 +418,8 @@
                             {foreach $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) as $key => $kitProducts}
                                 {$inCart = getAmountInCart('ShopKit', $kitProducts->getId())}
                                 <li class="globalFrameProduct{if $inCart} in-cart{else:} to-cart{/if}">
-                                    <ul class="items items-bask row-kits rowKits">
+                                    <ul class="items items-bask row-kits rowKits items-product">
                                         <!-- main product -->
-
                                         <li>
                                             <div class="frame-kit main-product">
                                                 <div class="frame-photo-title">
@@ -671,7 +670,7 @@
                             </div>
                         </div>
                         <div class="inside-padd">
-                            <ul class="items items-default">
+                            <ul class="items items-default items-product">
                                 {$CI->load->module('new_level')->OPI($accessories, array('opi_defaultItem'=>true, 'opi_limit'=>4))}
                             </ul>
                         </div>
@@ -716,7 +715,7 @@
                 <div id="fourth" class="accessories">
                     <div class="inside-padd">
                         <h2 class="m-b_30">{lang('С этим товаром покупают','newLevel')}</h2>
-                        <ul class="items items-default">
+                        <ul class="items items-default items-product">
                             <div class="preloader"></div>
                         </ul>
                     </div>

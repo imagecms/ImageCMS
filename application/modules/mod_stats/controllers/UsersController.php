@@ -9,6 +9,8 @@
  */
 class UsersController extends ControllerBase {
 
+    use FileImportTrait;
+
     public $params = array();
 
     public function __construct($controller) {
@@ -108,42 +110,52 @@ class UsersController extends ControllerBase {
 
         $this->controller->import('classes/ZeroFiller');
 
-        echo '<pre>';
-        print_r(ZeroFiller::fill($registered, 'x', 'y', $this->params['interval']));
-        echo '</pre>';
-        exit;
-
-        $array = array(
-            array('key' => 'Count of unique registered users', 'values' => $registered),
+        echo json_encode(array(
+            array('key' => 'Count of unique registered users', 'values' => ZeroFiller::fill($registered, 'x', 'y', $this->params['interval'])),
             array('key' => 'Count of unique unregistered users', 'values' => ZeroFiller::fill($unregistered, 'x', 'y', $this->params['interval'])),
-        );
-
-        echo '<pre>';
-        print_r($array);
-        echo '</pre>';
-        exit;
-
-
-
-//        echo json_encode(array(
-//            array('key' => 'Count of unique registered users', 'values' => ZeroFiller::fill($registered, 'x', 'y', $this->params['interval'])),
-//            array('key' => 'Count of unique unregistered users', 'values' => ZeroFiller::fill($unregistered, 'x', 'y', $this->params['interval'])),
-//        ));
+        ));
     }
 
-    
     /**
      * Render template for users registration
      */
-    public function register() {
-        $this->renderAdmin('register');
+    public function registered() {
+        // getting view type
+        if (isset($_GET['view_type'])) {
+            $vt = $_GET['view_type'];
+            $viewType = $vt == 'table' || $vt == 'chart' ? $vt : 'chart';
+        } else {
+            $viewType = 'table';
+        }
+
+        $params = array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+        );
+
+        $this->controller->load->model('users_model');
+        $this->controller->users_model->setParams($params);
+        $data = $this->controller->users_model->getRegister();
+
+        $this->renderAdmin('registered', array(
+            'data' => $data,
+            'viewType' => $viewType,
+        ));
     }
 
     /**
      * Output chart data for users registration
      */
     public function getRegisterData() {
+        $params = array(
+            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
+            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+        );
+
         $this->controller->load->model('users_model');
+        $this->controller->users_model->setParams($params);
         $data = $this->controller->users_model->getRegister();
         $chartValues = array();
         foreach ($data as $row) {
@@ -152,7 +164,34 @@ class UsersController extends ControllerBase {
                 'y' => (int) $row['count']
             );
         }
-        echo json_encode(array(array('key' => 'Registration dynamic', 'values' => $chartValues)));
+        $this->controller->import('classes/ZeroFiller');
+        echo json_encode(
+                array(
+                    array(
+                        'key' => 'Registration dynamic',
+                        'values' => ZeroFiller::fill($chartValues, 'x', 'y', isset($_GET['group']) ? $_GET['group'] : 'day')
+                    )
+                )
+        );
+    }
+
+    /**
+     * 
+     */
+    public function robots_attendance() {
+        $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+        $this->controller->import('classes/RobotsAttendance');
+        $robots = RobotsAttendance::getInstance()->getRobots();
+        $currentRobot = isset($_GET['currentRobot']) ? $_GET['currentRobot'] : $robots[0];
+
+        $this->controller->load->model('attendance_model');
+        $data = $this->controller->attendance_model->getRobotAttendance($currentRobot, $date);
+
+        $this->renderAdmin('robots_attendance', array(
+            'data' => $data,
+            'robots' => $robots,
+            'currentRobot' => $currentRobot
+        ));
     }
 
 }
