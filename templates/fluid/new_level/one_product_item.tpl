@@ -280,6 +280,26 @@
                 <div class="frame-without-top">
                     <!-- Wish List & Compare List buttons -->
                     <div class="frame-wish-compare-list no-vis-table">
+                        {if !$opi_compare}
+                            <div class="frame-btn-comp">
+                                <!-- Start. Compare List button -->
+                                <div class="btn-compare">
+                                    <div class="toCompare btnCompare"
+                                            data-id="{echo $p->getId()}"
+                                            type="button"
+                                            data-title="{lang('Сравнить','newLevel')}"
+                                            data-firtitle="{lang('Сравнить','newLevel')}"
+                                            data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                            data-rel="tooltip">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox">
+                                        </span>
+                                        <span class="text-el d_l">{lang('Сравнить','newLevel')}</span>
+                                    </div>
+                                </div>
+                                <!-- End. Compare List button -->
+                            </div>
+                        {/if}
                         {if $opi_wishlist}
                             <!-- Start. Wish list buttons -->
                             {foreach $variants as $key => $pv}
@@ -288,24 +308,6 @@
                                 </div>
                             {/foreach}
                             <!-- End. wish list buttons -->
-                        {/if}
-                        {if !$opi_compare}
-                            <div class="frame-btn-comp">
-                                <!-- Start. Compare List button -->
-                                <div class="btn-compare">
-                                    <button class="toCompare"
-                                            data-id="{echo $p->getId()}"
-                                            type="button"
-                                            data-title="{lang('В список сравнений','newLevel')}"
-                                            data-firtitle="{lang('В список сравнений','newLevel')}"
-                                            data-sectitle="{lang('В списке сравнений','newLevel')}"
-                                            data-rel="tooltip">
-                                        <span class="icon_compare"></span>
-                                        <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
-                                    </button>
-                                </div>
-                                <!-- End. Compare List button -->
-                            </div>
                         {/if}
                     </div>
                     <!-- End. Wish List & Compare List buttons -->
