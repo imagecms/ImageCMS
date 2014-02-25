@@ -26,7 +26,7 @@
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
     {$inCartFV = getAmountInCart('SProducts', $p->firstVariant->getId())}
-    <li class="globalFrameProduct{if $p->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}" data-pos="{if intval(($key+1)/3) - ($key+1)/3 == 0}right{else:}left{/if}">
+    <li  class="globalFrameProduct{if $p->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}" data-pos="{if intval(($key+1)/3) - ($key+1)/3 == 0}right{else:}left{/if}">
         <!-- Start. Photo & Name product -->
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title" title="{echo ShopCore::encode($p->getName())}">
             <span class="photo-block">

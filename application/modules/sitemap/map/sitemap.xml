@@ -3,7 +3,12 @@
 <url>
 	<loc>http://image.loc/</loc>
 	<changefreq>weekly</changefreq>
-	<priority>0.2</priority>
+	<priority>1</priority>
+</url>
+<url>
+	<loc>http://image.loc/novosti33377</loc>
+	<changefreq>weekly</changefreq>
+	<priority>1</priority>
 </url>
 <url>
 	<loc>http://image.loc/en/novosti33377</loc>
@@ -79,6 +84,42 @@
 <url>
 	<loc>http://image.loc/o-saiteffff6667733</loc>
 	<lastmod>2012-07-31</lastmod>
+	<changefreq>weekly</changefreq>
+	<priority>1</priority>
+</url>
+<url>
+	<loc>http://image.loc/novosti33377/kak-raskrutit-sait-metody-poiskovogo-prodvizheniia</loc>
+	<lastmod>2013-12-19</lastmod>
+	<changefreq>weekly</changefreq>
+	<priority>1</priority>
+</url>
+<url>
+	<loc>http://image.loc/novosti33377/kak-dobavit-sait-v-iandeks-i-gugl-sovety-nachinaiushchim-vebmasteram</loc>
+	<lastmod>2013-12-18</lastmod>
+	<changefreq>weekly</changefreq>
+	<priority>1</priority>
+</url>
+<url>
+	<loc>http://image.loc/novosti33377/8r-biznes-v-seti</loc>
+	<lastmod>2013-12-18</lastmod>
+	<changefreq>weekly</changefreq>
+	<priority>1</priority>
+</url>
+<url>
+	<loc>http://image.loc/novosti33377/lviv-social-media-camp-2013</loc>
+	<lastmod>2013-12-18</lastmod>
+	<changefreq>weekly</changefreq>
+	<priority>1</priority>
+</url>
+<url>
+	<loc>http://image.loc/novosti33377/otsenka-stoimosti-saita-i-faktory-kotorye-vliiaiut-na-tsenu</loc>
+	<lastmod>2013-12-18</lastmod>
+	<changefreq>weekly</changefreq>
+	<priority>1</priority>
+</url>
+<url>
+	<loc>http://image.loc/novosti33377/zachem-vashemu-offlain-biznesu-nuzhen-internet-magazin</loc>
+	<lastmod>2013-12-18</lastmod>
 	<changefreq>weekly</changefreq>
 	<priority>1</priority>
 </url>
@@ -465,7 +506,7 @@
 </url>
 <url>
 	<loc>http://image.loc/shop/product/82</loc>
-	<lastmod>2013-12-20</lastmod>
+	<lastmod>2014-02-19</lastmod>
 	<changefreq>weekly</changefreq>
 	<priority>1</priority>
 </url>

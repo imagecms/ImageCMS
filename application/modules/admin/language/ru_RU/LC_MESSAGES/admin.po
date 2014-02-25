@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-04 11:52+0200\n"
-"PO-Revision-Date: 2014-02-04 11:52+0200\n"
+"POT-Creation-Date: 2014-02-25 02:28+0200\n"
+"PO-Revision-Date: 2014-02-25 02:28+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,14 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/orders/create.tpl:227
+msgid "Surname"
+msgstr "Фамилия"
+
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:126
+msgid "User Surname"
+msgstr "Фамилия Пользователя"
 
 #: ./application/modules/shop/admin/templates/callbacks/create_theme.tpl:6
 msgid "Callback topic сreation"
@@ -2312,10 +2320,6 @@ msgstr "Категории переведена"
 msgid "Product categories"
 msgstr "Категории товаров"
 
-#: ./application/modules/shop/admin/categories.php:300
-msgid "Categories deleted successfully"
-msgstr "Категории успешно удалены"
-
 #: ./application/modules/admin/categories.php:229
 #: ./application/modules/admin/categories.php:382
 msgid "Category"
@@ -2333,10 +2337,6 @@ msgstr "Категория изменена"
 #: ./application/modules/shop/admin/categories.php:183
 #: ./application/modules/shop/admin/products.php:46
 msgid "Category not found"
-msgstr "Категория не найдена"
-
-#: ./application/modules/shop/admin/categories.php:428
-msgid "Category was not found"
 msgstr "Категория не найдена"
 
 #: ./application/modules/shop/admin/categories.php:152
@@ -4211,10 +4211,6 @@ msgstr "Поле"
 msgid "The %s field can only contain Latin characters"
 msgstr "Поле %s должно содержать только латинские символы."
 
-#: ./application/modules/shop/admin/products.php:157
-msgid "Field Url is empty!"
-msgstr "Поле URL пустое!"
-
 #: ./application/modules/shop/admin/templates/customfields/edit.tpl:80
 msgid "Field Active"
 msgstr "Поле Активное"
@@ -4252,11 +4248,6 @@ msgstr "Полное имя"
 #: ./application/modules/shop/admin/templates/orders/create.tpl:225
 msgid "Full Name"
 msgstr "Полное имя"
-
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:112
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:115
-msgid "Full user name"
-msgstr "Полное имя пользователя"
 
 #: ./templates/administrator/translateRole.tpl:57
 #: ./templates/administrator/privilegeEdit.tpl:67
@@ -6774,18 +6765,6 @@ msgstr "укажите действительный номер кредитно�
 msgid "Specified a language or selected a language"
 msgstr "Указажите язык"
 
-#: ./application/modules/shop/admin/products.php:371
-msgid "The specified URL is busy"
-msgstr "Указанный URL занят"
-
-#: ./application/modules/shop/admin/categories.php:121
-msgid "Specified URL busy"
-msgstr "Указаной URL занят"
-
-#: ./application/modules/shop/admin/categories.php:201
-msgid "Specified URL is busy"
-msgstr "Указаной URL занят"
-
 #: ./application/modules/shop/admin/templates/gifts/index.tpl:49
 msgid "Unique key"
 msgstr "Уникальный ключ"
@@ -7163,10 +7142,6 @@ msgstr "Это поле обязательное."
 #: ./application/modules/shop/admin/brands.php:187
 msgid "This URL is already in use"
 msgstr "Этот адрес уже используется"
-
-#: ./application/modules/shop/admin/products.php:146
-msgid "This URL is already in use!"
-msgstr "Этот адрес уже используется!"
 
 #: ./application/modules/shop/admin/orders.php:876
 msgid "This product does not exist"
