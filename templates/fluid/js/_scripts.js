@@ -255,10 +255,8 @@ function init() {
     });
     //End. Cart
 
-    $(genObj.parentBtnBuy).on('click.toCompare', '.' + genObj.toCompare, function() {
-        Shop.CompareList.add($(this).data('id'));
-    });
-    $(genObj.parentBtnBuy).on('click.inCompare', '.' + genObj.inCompare, function() {
+    $(genObj.parentBtnBuy).on('click.inCompare', '.' + genObj.inCompare + ' ' + genObj.textEl, function(e) {
+        e.stopPropagation();
         var pN = window.location.pathname,
                 tab;
         if (/category|product/.test(pN)) {
@@ -271,11 +269,22 @@ function init() {
         else
             document.location.href = '/shop/compare';
     });
+    $('.items-product').nStCheck({
+        wrapper: $(".btnCompare"),
+        elCheckWrap: '.niceCheck',
+        after: function(a, b, c, e) {
+            if (c.find('input').is(':checked'))
+                Shop.CompareList.add(b.data('id'));
+            else
+                Shop.CompareList.rm(b.data('id'), b);
+        }
+    })
     doc.on('compare_list_add', function(e) {
         ShopFront.CompareList.process();
     });
     doc.on('compare_list_add compare_list_rm compare_list_sync', function() {
         ShopFront.CompareList.count();
+        ShopFront.CompareList.process();
     });
     doc.on('compare_list_sync', function() {
         ShopFront.CompareList.process();
