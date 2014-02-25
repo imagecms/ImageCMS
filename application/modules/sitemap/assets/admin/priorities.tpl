@@ -64,7 +64,7 @@
                             </div>  
 
                             <div class="control-group">
-                                <label class="control-label">{lang("Categories", 'sitemap')}:</label>
+                                <label class="control-label">{lang("Categories pages", 'sitemap')}:</label>
                                 <div class="controls">
                                     <div class="star">
                                         <div class="frameRate star-big">
@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="control-group control-frame-group">
-                                <label class="control-label">{lang("Sub categories", 'sitemap')}:</label>
+                                <label class="control-label">{lang("Subcategories pages", 'sitemap')}:</label>
                                 <div class="controls">
                                     <div class="star">
                                         <div class="frameRate star-big">
@@ -93,7 +93,7 @@
 
                             {if SHOP_INSTALLED}
                                 <div class="control-group">
-                                    <label class="control-label">{lang("Products categories", 'sitemap')}:</label>
+                                    <label class="control-label">{lang("Products categories pages", 'sitemap')}:</label>
                                     <div class="controls">
                                         <div class="star">
                                             <div class="frameRate star-big">
@@ -107,7 +107,7 @@
                                 </div> 
 
                                 <div class="control-group control-frame-group">
-                                    <label class="control-label">{lang("Products sub-categories", 'sitemap')}:</label>
+                                    <label class="control-label">{lang("Products subcategories pages", 'sitemap')}:</label>
                                     <div class="controls">
                                         <div class="star">
                                             <div class="frameRate star-big">
@@ -121,7 +121,7 @@
                                 </div> 
 
                                 <div class="control-group control-frame-group">
-                                    <label class="control-label">{lang("Products", 'sitemap')}:</label>
+                                    <label class="control-label">{lang("Products pages", 'sitemap')}:</label>
                                     <div class="controls">
                                         <div class="star">
                                             <div class="frameRate star-big">
@@ -135,7 +135,7 @@
                                 </div> 
 
                                 <div class="control-group control-frame-group">
-                                    <label class="control-label">{lang("Brands", 'sitemap')}:</label>
+                                    <label class="control-label">{lang("Brands pages", 'sitemap')}:</label>
                                     <div class="controls">
                                         <div class="star">
                                             <div class="frameRate star-big">
@@ -151,7 +151,7 @@
                             <div class="control-group">
                                 <span class="control-label">&nbsp;</span>
                                 <div class="controls">
-                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("Просмотреть код", 'sitemap')}</a>
+                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("View code", 'sitemap')}</a>
                                 </div>
                             </div>
                         </div>
