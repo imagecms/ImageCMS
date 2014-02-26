@@ -273,6 +273,7 @@ input.input-search{height: 33px;}
 .star{display: inline-block;top: 2px;position: relative;margin-right: 5px;}
 .left-product .star{top: -2px;}
 .funcs-buttons{display: inline-block;position: relative;vertical-align: middle;}
+.funcs-buttons.frame-without-top{display: block;}
 .frame-wish-compare-list{display: block;position: relative;}
 
 .items-catalog.list .funcs-buttons .text-el{display: inline;}
@@ -296,7 +297,7 @@ input.input-search{height: 33px;}
 .items-catalog .frame-star{margin-bottom: 8px;}
 .items-catalog .price-discount{margin-bottom: 10px;display: block;}
 .items-catalog .price-discount + .current-prices{margin-bottom: 10px;}
-.items-catalog .funcs-buttons{margin-bottom: 10px;}
+.items-catalog .funcs-buttons{margin-bottom: 5px;}
 .items-catalog .funcs-buttons > .variant{margin-bottom: 12px;}
 .items-catalog .frame-count, .items-catalog .btn-buy{margin-bottom: 5px;}
 .short-desc{padding-bottom: 20px;word-break: break-word;word-wrap: break-word;}
@@ -309,8 +310,9 @@ input.input-search{height: 33px;}
 .items-catalog.table > li{width: 28.3% !important;margin-left: 5%;min-width: 202px;overflow: hidden;}
 .items-catalog.table > li:hover{overflow: visible;}
 .items-catalog .star{margin-right: 11px;}
+.items-catalog .frame-btn-comp, .items-catalog .frame-btn-wish{margin-bottom: 2px;}
 
-.animateListItems.table .no-vis-table, .animateListItems.items-h-carousel .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;-webkit-transition: all .1s .3s ease-in-out;-moz-transition: all .1s .3s ease-in-out;-o-transition: all .1s .3s ease-in-out;transition: all .1s .3s ease-in-out;}
+.animateListItems.table .no-vis-table, .animateListItems.items-h-carousel .no-vis-table{width: 100%;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;}
 .animateListItems.table > li:hover{z-index: 2;}
 .items-catalog.list{margin-left: 0;}
 .items-catalog.list > li{width: auto !important;margin-left: 0;overflow: hidden;display: block;}
@@ -468,7 +470,7 @@ input.input-search{height: 33px;}
 
 .items-catalog > li{position:relative;width: 215px;margin: 0 0 54px 42px;}
 .carousel-js-css .items-h-carousel > li{margin: 0 30px 0 0;}
-.items-h-carousel > li{width: 208px !important;margin-bottom: 30px;text-align: center;}
+.items-h-carousel > li{width: 188px !important;padding: 0 10px;margin-bottom: 30px;text-align: center;}
 .vertical-layout .items-h-carousel > li{width: 210px !important;}
 
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin-left: 44px;margin-right: 0;margin-bottom: 0;}
@@ -710,7 +712,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 /*/benefits*/
 
 /*prices*/
-.frame-prices{padding-bottom: 7px;}
+.frame-prices{padding-bottom: 9px;}
 .description .frame-prices:first-child, .description .frame-variant-name-code:first-child+.frame-prices{margin-top: 10px;}
 [class*="price-"]{display: inline-block;line-height: 0.75;}
 [class*="price-"] > span{display: block;white-space: nowrap;}
