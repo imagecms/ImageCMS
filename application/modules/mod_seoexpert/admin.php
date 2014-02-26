@@ -167,14 +167,26 @@ class Admin extends \BaseAdminController {
      */
     public function save($locale = FALSE) {
         $baseSettings = $this->input->post('base');
-        
+
         \mod_seoexpert\classes\SeoHelper::create()->setBaseSettings($locale, $baseSettings);
-        
+
         $shopSettings = $this->input->post();
         unset($shopSettings['base']);
-        
+
         if ($this->seoexpert_model->setSettings($shopSettings, $locale))
             showMessage('Сохранено!');
+    }
+
+    public function ajaxDeleteProductCategories() {
+        if (count($_POST['ids']) < 1 ){
+            return FALSE;
+        }
+        
+        foreach ($_POST['ids'] as $id) {
+            $this->seoexpert_model_products->deleteCategoryById($id);
+        }
+
+        showMessage(lang('Deleted complete', 'admin'));
     }
 
 }
