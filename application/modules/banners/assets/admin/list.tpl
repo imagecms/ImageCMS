@@ -7,9 +7,10 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    
+
                     <span style="position: relative">
-                        <a href="#" onclick="$(this).next().slideToggle();return false" class="btn btn-small">{lang('Template settings', 'banners')}</a>
+                        <a href="#" onclick="$(this).next().slideToggle();
+                                return false" class="btn btn-small">{lang('Template settings', 'banners')}</a>
                         <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px; border-radius: 5px; width: 335px;">
                             <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> {lang('Use different templates for different pages', 'banners')}
                         </div>
@@ -35,6 +36,7 @@
                                 </th>
                                 <th class="span1">{lang('ID', 'banners')}</th>
                                 <th class="span3">{lang('Name', 'banners')}</th>
+                                <th class="span3">{lang('Groups', 'banners')}</th>
                                 <th class="span2" style="width:80px;">{lang('Active to', 'banners')}</th>
                                 <th class="span1" style="width:60px;">{lang('Status', 'banners')}</th>
 
@@ -50,9 +52,18 @@
                                             </span>
                                         </span>
                                     </td>
-                                    <td><a class="pjax" href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('Editing', 'banners')}">{echo $b['id']}</a></td>
+                                    <td>
+                                        <a class="pjax" 
+                                           href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" 
+                                           data-rel="tooltip" 
+                                           data-title="{lang('Editing', 'banners')}">{echo $b['id']}
+                                        </a>
+                                    </td>
                                     <td>
                                         <a class="pjax" href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('Editing', 'banners')}">{echo $b['name']}</a>
+                                    </td>
+                                    <td>
+                                        {echo implode(', ',unserialize($b['group']))}
                                     </td>
 
                                     <td><p>{echo date('Y-m-d',$b['active_to'])}</p></td>
@@ -62,19 +73,16 @@
                                                   onclick="ChangeBannerSliderActive(this,{echo $b['id']});"></span>
                                         </div>
                                     </td>
-
-                                    </div>
-                                    </td>
                                 </tr>
-                                                  {/foreach}
+                            {/foreach}
 
                         </tbody>
                     </table>
-                                                      {else:}
+                {else:}
                     <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                                                          {lang('Empty banner list.', 'banners')}
+                        {lang('Empty banner list.', 'banners')}
                     </div>
-                                                          {/if}
+                {/if}
             </div>
         </div>
     </section>
