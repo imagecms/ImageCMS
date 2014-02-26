@@ -718,6 +718,8 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .price-discount{text-decoration: line-through;margin-bottom: 7px;}
 .price-discount + .current-prices{margin-bottom: 7px;}/*for Safari*/
 .price-discount, .price-new{margin-right: 5px;}
+.items-catalog .price-new{margin-right: 9px;}
+.items-catalog .price-add{padding-left: 5px;}
 .items-bask .price-new, .items-catalog .price-new, .items-bask .price-add, .items-catalog .price-add{margin-bottom: 5px;}
 /*/prices*/
 
@@ -814,6 +816,8 @@ input + .msg{margin-top: 5px;}
 
 .frame-tabs-ref > div > .inside-padd{padding: 15px 25px;}
 .frame-tabs-profile > div > .inside-padd{padding: 25px 25px;}
+
+.page-main .frame-tabs-ref{padding: 8px 0;}
 /*/tabs*/
 
 /*filter*/

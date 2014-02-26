@@ -196,7 +196,7 @@
 
                                             <label>
                                                 <span class="span4">
-                                                    <span data-title="Variables, can use to:" class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -215,7 +215,7 @@
 
                                             <label class="">
                                                 <span class="span4">
-                                                    <span data-title="Variables, can use to:" class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -242,7 +242,7 @@
 
                                             <label class="">
                                                 <span class="span4">
-                                                    <span data-title="Переменные, которые можно использовать:" class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -312,7 +312,7 @@
 
                                             <label class="">
                                                 <span class="span4">
-                                                    <span data-title="Переменные, которые можно использовать" class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -390,7 +390,7 @@
 
                                             <label class="">
                                                 <span class="span4">
-                                                    <span data-title="Переменные, которые можно использовать:" class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -407,7 +407,7 @@
 
                                             <label class="">
                                                 <span class="span4">
-                                                    <span data-title="Переменные, которые можно использовать" class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -436,7 +436,7 @@
                                             </label>
                                             <label class="">
                                                 <span class="span4">
-                                                    <span data-title="Переменные, которые можно использовать:" class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -484,7 +484,7 @@
 
                                             <label class="">
                                                 <span class="span4">
-                                                    <span class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -499,7 +499,7 @@
 
                                             <label class="">
                                                 <span class="span4">
-                                                    <span data-title="Переменные, которые можно использовать" class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
                                                     <div class="d_n">
@@ -520,13 +520,14 @@
                                             </label>
                                             <label class="">
                                                 <span class="span4">
-                                                    <span  class="popover_ref" data-original-title="">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seoexpert')}:" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
+
                                                     <div class="d_n">
-                                                         <b>%name%</b> - {lang('Brand name','mod_seoexpert')}<br/>
+                                                        <b>%name%</b> - {lang('Brand name','mod_seoexpert')}<br/>
                                                     </div>
-                                                    Meta-keywords:
+                                                    {lang('Meta-keywords', 'mod_seoexpert')}:
                                                 </span>
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateKey' value="{$settings.brandTemplateKey}" /></span>
                                             </label>
