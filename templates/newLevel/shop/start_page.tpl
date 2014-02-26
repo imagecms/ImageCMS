@@ -1,5 +1,5 @@
 <div class="page-main">
-    {$CI->load->module('banners')->render()}
+    {$CI->load->module('banners')->render(0)}
     <div class="frame-benefits">
         {widget('benefits')}
     </div>

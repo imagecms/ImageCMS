@@ -108,7 +108,6 @@
                                     <label class="control-label" for="banner_type">{lang('Show in categories (select items)', 'banners')}:</label>
                                     <div class="controls">
                                         <select id="banner_type" onchange="autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')">
-
                                             <option value="default">--{lang('select essence', 'banners')}--</option>
                                             <option value="main">{lang('Main', 'banners')}</option>
                                             {if $is_shop}
@@ -118,17 +117,11 @@
                                             {/if}
                                             <option value="category">{lang('Pages categories', 'banners')}</option>
                                             <option value="page">{lang('Pages', 'banners')}</option>
-
-
                                         </select>
-                                        <div id="autodrop">
-                                        </div>
+                                        <div id="autodrop"></div>
 
                                     </div>
                                 </div>
-
-
-
 
                                 <div class="control-group">
                                     <label class="control-label">{lang('Active until', 'banners')}:</label>

@@ -77,7 +77,7 @@ class Banner_model extends CI_Model {
         if ($query) {
             $query = $query->result_array();
 
-            if ($group != 0) {
+            if ($group != '0') {
                 foreach ($query as $key => $banner) {
                     if (!in_array($group, unserialize($banner['group']))) {
                         unset($query[$key]);
