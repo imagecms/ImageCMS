@@ -97,6 +97,7 @@ a:focus, a:active {color: #51d2ff;}
 
 /*dotted lines*/
 [class*="d_l"]{text-decoration: none;cursor: pointer;position: relative;display: inline-block;border-bottom: 1px dotted transparent;line-height: 1.2;}
+.active > [class*="d_l"]{cursor: pointer;}
 [disabled] [class*="d_l"]{cursor: default;}
 .d_l_1, .btn-order-call .d_l, .btn-compare .d_l, .btn-wish .d_l, .old-buyer .d_l, .frame-group-checks .title .d_l{color: #0088cc;border-bottom-color: #0088cc;line-height: 1.2;}
 .d_l_1:hover, .pointer:hover .d_l_1, .btn-order-call .d_l:hover, .btn-compare > button:hover .d_l, .btn-wish > button:hover .d_l, .old-buyer:hover .d_l, a:focus [class*="d_l"], button:focus [class*="d_l"]{color: #51d2ff;border-bottom-color: #51d2ff;}
@@ -294,7 +295,7 @@ a:focus, a:active {color: #51d2ff;}
 /*/items*/
 
 /*decor-element*/
-.decor-element{left: 0;padding: 8px;margin: -13px;position: absolute;top: 0;width: 100%;height: 100%;z-index: -1;border-radius: 3px;}
+.decor-element{left: 0;padding: 8px;margin-left: -8px;position: absolute;top: 0;width: 100%;height: 100%;z-index: -1;border-radius: 3px;}
 .animateListItems.table > li:hover .decor-element, .animateListItems.items-h-carousel > li:hover .decor-element{border-color: #0c9acb;background-color: #faf8f6;box-shadow: 0 3px 10px rgba(57, 93, 132, 0.2);background-color: #fff;}
 .animateListItems.table > li:hover .no-vis-table, .animateListItems.items-h-carousel > li:hover .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;}
 /*/decor-element*/
@@ -777,6 +778,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .icon_search{width: 13px;height: 13px;background-position: -120px 0;}
 .special-proposition .icon_arrow_p{background-position: -140px 0;}
 .special-proposition .icon_arrow_n{background-position: -160px 0;}
+.icon_times{width: 20px;height: 20px;}
 
 .icon_time, .icon_cleaner_buy{display: none;}
 
@@ -822,7 +824,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 
 /*prices*/
 .frame-prices{color: #333;}
-.price-add{color: #999;}
+.price-add{color: #999;border-left: 1px dotted #d4d4d3;}
 .price-new{color: #000;}
 .price-new .price{font-size: 18px;}
 .price-new .curr, .price-add .curr{font-size: 13px;}
