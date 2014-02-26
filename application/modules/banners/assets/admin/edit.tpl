@@ -89,6 +89,7 @@
 
                                             <a class="btn btn-small btn-success" onclick="$('#myModal').modal('show')">{lang('Create group', 'banners')}</a>
                                         </div>
+                                            <span class="help-block">{lang('Double click to deleting', 'banners')}</span>
                                     </div>
                                 </div>
 
@@ -145,18 +146,18 @@
                                         <div id="Img-preview" style="width: 400px;" >
                                             {if $banner['photo']}
                                                 <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 100px;">
-                                                        {/if}
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                        </div>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
-                                                        </div>
-                                                        </td>
-                                                        </tr>
-                                                        </tbody>
-                                                        </table>                               
-                                                        </form>
-                                                    <div id="elFinder"></div>
-                                                    </section>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>                               
+    </form>
+    <div id="elFinder"></div>
+</section>
