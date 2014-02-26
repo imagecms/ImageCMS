@@ -39,34 +39,36 @@
                             <div class="control-group">
                                 <label class="control-label" for="comcount">{lang("Site Map", 'sitemap')}:</label>
                                 <div class="controls number">
-                                    <select name="settings[generateXML]">
+                                    <select name="settings[generateXML]" onchange="SiteMap.showHideSavedInformation($(this))">
                                         <option value="1" {if $settings.generateXML}selected="selected"{/if}>{lang('Generate new', 'sitemap')}</option>
-                                        <option value="0" {if !$settings.generateXML}selected="checked"{/if}>{lang('Use existing', 'sitemap')}</option>
+                                        <option value="0" {if !$settings.generateXML}selected="checked"{/if}>{lang('Use saved', 'sitemap')}</option>
                                     </select>
                                     <br/>
                                     <br/>
-                                    {if $fileSiteMapData}
-                                        <div>
-                                            <a href="{echo site_url('admin/components/init_window/sitemap/sitemapDownload')}">{lang('Saved Site Map', 'sitemap')}</a>
-                                            <b>&nbsp;&nbsp;&nbsp;{lang('Created at', 'sitemap')}:</b> {echo date('Y-m-d  H:i', $fileSiteMapData['time'])}, <b>{lang('Size', 'sitemap')}:</b> {echo number_format($fileSiteMapData['size']/1024, 2)} {lang('Kb', 'sitemap')}
-                                        </div>
-                                    {else:}
-                                        <div>
-                                            <span class="help-block">{lang('There is no saved Site Map.', 'sitemap')}</span>
-                                        </div>
-                                    {/if}
-                                    <br/>
-                                    <button type="button" onclick="SiteMap.saveSiteMap()" class="btn btn-small btn-default">
+                                    <div class="savedSitemap" style="{if $settings.generateXML}display: none{/if}">
                                         {if $fileSiteMapData}
-                                            <i class="icon-refresh"></i>
-                                            {lang("Regenerate", 'sitemap')}
+                                            <div>
+                                                <a href="{echo site_url('admin/components/init_window/sitemap/sitemapDownload')}">{lang('Saved Site Map', 'sitemap')}</a>
+                                                <b>&nbsp;&nbsp;&nbsp;{lang('Created at', 'sitemap')}:</b> {echo date('Y-m-d  H:i', $fileSiteMapData['time'])}, <b>{lang('Size', 'sitemap')}:</b> {echo number_format($fileSiteMapData['size']/1024, 2)} {lang('Kb', 'sitemap')}
+                                            </div>
                                         {else:}
-                                            <i class="icon-ok"></i>
-                                            {lang("Generate", 'sitemap')}
+                                            <div>
+                                                <span class="help-block">{lang('There is no saved Site Map.', 'sitemap')}</span>
+                                            </div>
                                         {/if}
-                                    </button>
-                                    <br/>
-                                    <br/>
+                                        <br/>
+                                        <button type="button" onclick="SiteMap.saveSiteMap()" class="btn btn-small btn-default">
+                                            {if $fileSiteMapData}
+                                                <i class="icon-refresh"></i>
+                                                {lang("Update", 'sitemap')}
+                                            {else:}
+                                                <i class="icon-ok"></i>
+                                                {lang("Save", 'sitemap')}
+                                            {/if}
+                                        </button>
+                                        <br/>
+                                        <br/>
+                                    </div>
                                 </div>
                             </div>
 
@@ -81,7 +83,7 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="comcount">{lang("Send Site Map", 'sitemap')}:</label>
+                                <label class="control-label" for="comcount">{lang("Send/Not send Site Map", 'sitemap')}:</label>
                                 <div class="controls">
                                     <div class="frame_prod-on_off">
                                         <span class="prod-on_off{if !$settings.sendSiteMap} disable_tovar{/if}"></span>
@@ -91,7 +93,7 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="comcount">{lang("Send Site Map only when url is changed", 'sitemap')}:</label>
+                                <label class="control-label" for="comcount">{lang("Send Site Map only when page url is changed", 'sitemap')}:</label>
                                 <div class="controls">
                                     <div class="frame_prod-on_off">
                                         <span class="prod-on_off{if !$settings.sendWhenUrlChanged} disable_tovar{/if}"></span>
@@ -112,7 +114,7 @@
                             <div class="control-group">
                                 <span class="control-label">&nbsp;</span>
                                 <div class="controls">
-                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("Просмотреть код", 'sitemap')}</a>
+                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("View code", 'sitemap')}</a>
                                 </div>
                             </div>
                         </div>

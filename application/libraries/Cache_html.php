@@ -18,14 +18,18 @@ class Cache_html {
     }
 
     public static function get_html($file) {
-        $file = $file . MY_Controller::getCurrentLocale();
-        $file = self::$path . md5($file) . '.html';
-        if (file_exists($file)) {
-            if (time() - filemtime($file) > \CI_Controller::get_instance()->config->item('tpl_compiled_ttl')) {
-                @unlink($file);
-                return false;
+        if (!\CI_Controller::get_instance()->config->item('tpl_force_compile')) {
+            $file = $file . MY_Controller::getCurrentLocale();
+            $file = self::$path . md5($file) . '.html';
+            if (file_exists($file)) {
+                if (time() - filemtime($file) > \CI_Controller::get_instance()->config->item('tpl_compiled_ttl')) {
+                    @unlink($file);
+                    return false;
+                } else {
+                    return file_get_contents($file);
+                }
             } else {
-                return file_get_contents($file);
+                return false;
             }
         } else {
             return false;
