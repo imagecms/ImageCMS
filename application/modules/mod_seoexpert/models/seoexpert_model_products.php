@@ -43,10 +43,10 @@ class Seoexpert_model_products extends CI_Model {
         if (!$id) {
             return FALSE;
         }
-        if (!$locale){
+        if (!$locale) {
             $locale = \MY_Controller::getCurrentLocale();
         }
-        
+
 //        $this->db->cache_on();
         $category = $this->db
                 ->where('cat_id', $id)
@@ -75,7 +75,7 @@ class Seoexpert_model_products extends CI_Model {
         if (!$id || !$settings) {
             return FALSE;
         }
-        
+
         $data = $this->db
                 ->select('locale')
                 ->where('cat_id', $id)
@@ -84,9 +84,9 @@ class Seoexpert_model_products extends CI_Model {
                 ->row_array();
 
         if (empty($data))
-            return $this->db->insert('mod_seoexpert_products', array('cat_id'=> $id, 'locale' => $locale, 'settings' => serialize($settings)));
-        
-        
+            return $this->db->insert('mod_seoexpert_products', array('cat_id' => $id, 'locale' => $locale, 'settings' => serialize($settings)));
+
+
         return $this->db
                         ->where('cat_id', $id)
                         ->where('locale', $locale)
@@ -117,28 +117,28 @@ class Seoexpert_model_products extends CI_Model {
         }
         return FALSE;
     }
-    
+
     /**
      * Get categories ids array
      * @return boolean|array
      */
-    public function getCategoriesArray(){
+    public function getCategoriesArray() {
         //        $this->db->cache_on();
         $res = $this->db->select('cat_id')
                 ->get('mod_seoexpert_products')
                 ->result_array();
         //        $this->db->cache_off();
-        
+
         $ids = array();
-        if ($res){
-            foreach ($res as $key=>$value){
-                $ids[]  = $value['cat_id'];
+        if ($res) {
+            foreach ($res as $key => $value) {
+                $ids[] = $value['cat_id'];
             }
             return $ids;
         }
         return FALSE;
     }
-    
+
     /**
      * Get category name by id
      * @param type $id
@@ -146,16 +146,23 @@ class Seoexpert_model_products extends CI_Model {
      * -id
      * -name
      */
-    public function getCategoryNameAndId($id = FALSE){
-       if (!$id){
-           return FALSE;
-       } 
-       $res = $this->db->where('id',$id)->get('shop_category_i18n')->row_array();
-       
-       if ($res){
-           return $res;
-       }
-       return FALSE;
+    public function getCategoryNameAndId($id = FALSE) {
+        if (!$id) {
+            return FALSE;
+        }
+        $res = $this->db->where('id', $id)->get('shop_category_i18n')->row_array();
+
+        if ($res) {
+            return $res;
+        }
+        return FALSE;
+    }
+
+    public function deleteCategoryById($id = FALSE) {
+        if (!$id) {
+            return FALSE;
+        }
+        return $this->db->where('cat_id', $id)->delete('mod_seoexpert_products');
     }
 
 }
