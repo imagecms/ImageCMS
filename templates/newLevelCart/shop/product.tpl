@@ -306,11 +306,11 @@
                     <dl class="social-product">
                         <dt class="s-t text-social-like">{lang('Понравился товар?', 'newLevel')}</dt>
                         <dd class="social-like">
-                            {echo $CI->load->module('share')->_make_like_buttons()}
+                            {//echo $CI->load->module('share')->_make_like_buttons()}
                         </dd>
                         <dt class="s-t text-social-tell">{lang('Рассказать друзьям:', 'newLevel')}</dt>
                         <dd class="social-tell">
-                            {echo $CI->load->module('share')->_make_share_form()}
+                            {//echo $CI->load->module('share')->_make_share_form()}
                         </dd>
                     </dl>
                     <!-- End. Share -->
@@ -363,7 +363,7 @@
                                 <ul class="items-thumbs items">
                                     <!-- Start. main image-->
                                     <li class="active">
-                                        <a onclick="return false;" rel="useZoom: 'photoProduct'" data-href="#a-1" data-tab="true" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
+                                        <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
                                             <span class="photo-block">
                                                 <span class="helper"></span>
                                                 <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
@@ -373,7 +373,7 @@
                                     <!-- End. main image-->
                                     {foreach $productImages as $key => $image}
                                         <li>
-                                            <a onclick="return false;" rel="useZoom: 'photoProduct'" data-href="#a{$key}" data-tab="true" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
+                                            <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
                                                 <span class="photo-block">
                                                     <span class="helper"></span>
                                                     <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
