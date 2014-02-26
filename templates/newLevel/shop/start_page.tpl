@@ -1,13 +1,8 @@
 <div class="page-main">
-    {$CI->load->module('banners')->render()}
+    {$CI->load->module('banners')->render(0)}
     <div class="frame-benefits">
         {widget('benefits')}
     </div>
-    {/*}<div class="frame-start-page-category-menu">
-        <div class="container">
-            {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('start_page_category_menu')}
-        </div>
-    </div>{ */}
     <div id="popular_products">
         {widget('popular_products', TRUE)}
     </div>
