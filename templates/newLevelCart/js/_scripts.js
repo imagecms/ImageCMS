@@ -90,7 +90,6 @@ function init() {
     $.drop.setParameters(optionsDrop);
     $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries', 'placeBeforeShow', 'placeAfterClose');
     $('[data-drop]').drop();
-    $('.cloud-zoom-gallery').drop();
 
     ShopFront.CompareList.count();
     global.wishListCount();
