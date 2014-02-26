@@ -229,6 +229,7 @@ function getCookie(c_name)
                 frameChecks.find(elCheckWrap).removeClass(dC + ' ' + aC + ' ' + fC);
                 //init event click on wrapper change state
                 frameChecks.find(wrapper).removeClass(dC + ' ' + aC + ' ' + fC).off('click.' + nS).on('click.' + nS, function(e) {
+                    console.log(e.target)
                     var $this = $(this),
                     nstcheck = $this.find(elCheckWrap);
                     if (!$.existsN(nstcheck))
