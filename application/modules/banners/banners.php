@@ -34,12 +34,12 @@ class Banners extends MY_Controller {
      * Render banner into template
      * @access public
      * @param int $id is id entity (brand, category, product, page) .... for main id = 0
-     * @param int $group_id
+     * @param string $group
      * @return boolean
      * @author L.Andriy <l.andriy@siteimage.com.ua>
      * @copyright (c) 2013, ImageCMS
      */
-    public function render($id = 0, $group_id = 0) {
+    public function render($id = 0, $group = 0) {
         if ($this->no_install === false) {
             return false;
         }
@@ -53,16 +53,14 @@ class Banners extends MY_Controller {
                     ->registerScript('jquery.cycle.all.min', TRUE);
             echo $cache;
         } else {
-
-            $banners = $this->banner_model->get_all_banner($lang, $group_id);
+            $banners = $this->banner_model->get_all_banner($lang, $group);
             foreach ($banners as $banner) {
                 $data = unserialize($banner['where_show']);
 
-                if (in_array($painting, $data) && $banner['active'] && time() < $banner['active_to']) {
+                if ((in_array($painting, $data) || in_array($type . '_0', $data)) && $banner['active'] && time() < $banner['active_to']) {
                     $ban[] = $banner;
                 }
             }
-
             if (count($ban) > 0) {
 
                 $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider';
@@ -84,6 +82,11 @@ class Banners extends MY_Controller {
                 return FALSE;
             }
         }
+    }
+
+    public function getByGroup($group) {
+        $banners = $this->banner_model->get_all_banner(MY_Controller::getCurrentLocale(), $group);
+        var_dump($banners);
     }
 
     /**
