@@ -2259,18 +2259,20 @@ DROP TABLE IF EXISTS `shop_order_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `fontcolor` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_order_statuses_I_2` (`position`),
   KEY `shop_order_statuses_I_1` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп даних таблиці `shop_order_statuses`
+-- Dumping data for table `shop_order_statuses`
 --
 
-INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
-(1, 1),
-(2, 99);
+INSERT INTO `shop_order_statuses` (`id`, `position`, `color`, `fontcolor`) VALUES
+(1, 0, '#8b8f8b', '#ffffff'),
+(2, 3, '#348c30', '#ffffff');
 
 -- --------------------------------------------------------
 
