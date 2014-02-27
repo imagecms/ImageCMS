@@ -1,5 +1,7 @@
 <?php
+
 // to do validate max_aply, comulativ begin value end value, all_order begin_value
+
 namespace mod_discount\classes;
 
 if (!defined('BASEPATH'))
@@ -16,7 +18,7 @@ if (!defined('BASEPATH'))
 class DiscountManager extends \MY_Controller {
 
     public $error = array();
-    
+
     public function __construct() {
         parent::__construct();
         $lang = new \MY_Lang();
@@ -44,8 +46,8 @@ class DiscountManager extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function createBrandDiscount($data) {
-        
-        if (!$this->discount_model_admin->checkEntityExists('brand',$data['brand_id']))
+
+        if (!$this->discount_model_admin->checkEntityExists('brand', $data['brand_id']))
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
         $data['type_discount'] = 'brand';
         $data['brand']['brand_id'] = $data['brand_id'];
@@ -75,7 +77,7 @@ class DiscountManager extends \MY_Controller {
      */
     public function createCategoryDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('category',$data['category_id']))
+        if (!$this->discount_model_admin->checkEntityExists('category', $data['category_id']))
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
         $data['type_discount'] = 'category';
         $data['category']['category_id'] = $data['category_id'];
@@ -105,7 +107,7 @@ class DiscountManager extends \MY_Controller {
      */
     public function createProductDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('product',$data['product_id']))
+        if (!$this->discount_model_admin->checkEntityExists('product', $data['product_id']))
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
         $data['type_discount'] = 'product';
         $data['product']['product_id'] = $data['product_id'];
@@ -134,7 +136,7 @@ class DiscountManager extends \MY_Controller {
      */
     public function createUserDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('user',$data['user_id']))
+        if (!$this->discount_model_admin->checkEntityExists('user', $data['user_id']))
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
         $data['type_discount'] = 'user';
         $data['user']['user_id'] = $data['user_id'];
@@ -163,7 +165,7 @@ class DiscountManager extends \MY_Controller {
      */
     public function createUserGroupDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('group_user',$data['group_id']))
+        if (!$this->discount_model_admin->checkEntityExists('group_user', $data['group_id']))
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
         $data['type_discount'] = 'group_user';
         $data['group_user']['group_id'] = $data['group_id'];
@@ -226,7 +228,7 @@ class DiscountManager extends \MY_Controller {
         return $this->create($data);
     }
 
-     /**
+    /**
      * delete discount
      * @access public
      * @author DevImageCms
@@ -234,8 +236,8 @@ class DiscountManager extends \MY_Controller {
      * @return (boolean) success: result of deleting
      * @copyright (c) 2013, ImageCMS
      */
-    public function deleteDiscount($id){
-        
+    public function deleteDiscount($id) {
+
         return $this->discount_model_admin->deleteDiscountById($id);
     }
 
@@ -252,12 +254,12 @@ class DiscountManager extends \MY_Controller {
     public function create($postArray) {
 
         $this->validation($postArray);
-        
+
         if (count($this->error) > 0)
             return array('success' => false, 'error' => $this->error);
 
         if (!$postArray['key'])
-            $postArray['key'] = $this->generateDiscountKey();     
+            $postArray['key'] = $this->generateDiscountKey();
 
         $typeDiscount = $postArray['type_discount'];
         $typeDiscountTableName = 'mod_discount_' . $typeDiscount;
@@ -293,11 +295,11 @@ class DiscountManager extends \MY_Controller {
         }
 
         if ($result && $discountId)
-            return array('success' => true);
-        else 
+            return array('success' => true, 'id' => $discountId);
+        else
             return array('success' => false, 'error' => array('wrong query to db'));
     }
-    
+
     /**
      * validation data
      * @access public
@@ -306,55 +308,53 @@ class DiscountManager extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function validation($postArray) {
-        
+
         $typeDiscount = $postArray['type_discount'];
-        
+
         if (!in_array($typeDiscount, array('all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand')))
-            $this->error[] = lang('Wrong type discount');  
-        
+            $this->error[] = lang('Wrong type discount');
+
         if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['end_value']))
-           $this->error[] = lang('End value must be numeric'); 
-        
+            $this->error[] = lang('End value must be numeric');
+
         if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value']))
-           $this->error[] = lang('Begin value must be numeric'); 
-        
+            $this->error[] = lang('Begin value must be numeric');
+
         if ($typeDiscount == 'all_order' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value']))
-           $this->error[] = lang('Begin value must be numeric'); 
-        
+            $this->error[] = lang('Begin value must be numeric');
+
         if ($postArray['max_apply'] && !preg_match('/^[0-9]{1,15}$/', $postArray['max_apply']))
-           $this->error[] = lang('Max apply must be numeric'); 
-        
-        if (!$postArray['value'] || !preg_match('/^[0-9]{1,15}$/', $postArray['value'])) 
-            $this->error[] = lang('Value must be numeric');        
-        
-        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) 
+            $this->error[] = lang('Max apply must be numeric');
+
+        if (!$postArray['value'] || !preg_match('/^[0-9]{1,15}$/', $postArray['value']))
+            $this->error[] = lang('Value must be numeric');
+
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value']))
             $this->error[] = lang('Amount <<from>> can not be greater than the sum <<to>>', 'mod_discount');
-        
-        if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id']) 
+
+        if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id'])
             $this->error[] = lang('Enter a product that is in the database', 'mod_discount');
-        
-        if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id']) 
+
+        if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id'])
             $this->error[] = lang('Enter the user who is in the database', 'mod_discount');
-        
-        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()) 
+
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue())
             $this->error[] = lang('There can be more than one discount with said upper threshold as a <<maximum>>!', 'mod_discount');
-        
-        if ($postArray['type_value'] != 1 && $postArray['type_value'] != 2) 
+
+        if ($postArray['type_value'] != 1 && $postArray['type_value'] != 2)
             $this->error[] = lang('Invalid type value!', 'mod_discount');
-       
-        if ($postArray['type_value'] == 1 && $postArray['value'] >= 100) 
+
+        if ($postArray['type_value'] == 1 && $postArray['value'] >= 100)
             $this->error[] = lang('Invalid type value!', 'mod_discount');
-        
-        if(!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_begin']))
+
+        if (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_begin']))
             $this->error[] = lang('Invalid date range!', 'mod_discount');
-        
-        if($postArray['date_end'] && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_end']))
+
+        if ($postArray['date_end'] && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_end']))
             $this->error[] = lang('Invalid date range!', 'mod_discount');
-        
-        if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null) 
+
+        if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null)
             $this->error[] = lang('Invalid date range!', 'mod_discount');
-        
-       
     }
 
     /**
@@ -386,5 +386,3 @@ class DiscountManager extends \MY_Controller {
     }
 
 }
-
-
