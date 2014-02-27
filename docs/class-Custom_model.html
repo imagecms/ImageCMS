@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="generator" content="ApiGen 2.8.0">
 
-	<title>Class Discount_model_front | ImageCMS Docs</title>
+	<title>Class Custom_model | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?2135572232"></script>
+	<script type="text/javascript" src="elementlist.js?1494635625"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -153,12 +153,13 @@
 				<li><a href="class-ControllerBase.html">ControllerBase</a></li>
 				<li><a href="class-Core.html">Core</a></li>
 				<li><a href="class-Core_Widgets.html">Core_Widgets</a></li>
+				<li class="active"><a href="class-Custom_model.html">Custom_model</a></li>
 				<li><a href="class-CustomFieldsHelper.html">CustomFieldsHelper</a></li>
 				<li><a href="class-Dashboard.html">Dashboard</a></li>
 				<li><a href="class-Digital_products.html">Digital_products</a></li>
 				<li><a href="class-discount_api.html">discount_api</a></li>
-				<li><a href="class-Discount_model_admin.html">Discount_model_admin</a></li>
-				<li class="active"><a href="class-Discount_model_front.html">Discount_model_front</a></li>
+				<li><a href="class-discount_model_admin.html">discount_model_admin</a></li>
+				<li><a href="class-discount_model_front.html">discount_model_front</a></li>
 				<li><a href="class-Documentation.html">Documentation</a></li>
 				<li><a href="class-Documentation_model.html">Documentation_model</a></li>
 				<li><a href="class-DX_Auth.html">DX_Auth</a></li>
@@ -174,7 +175,6 @@
 				<li><a href="class-Gallery.html">Gallery</a></li>
 				<li><a href="class-Gallery_m.html">Gallery_m</a></li>
 				<li><a href="class-Gallery_Widgets.html">Gallery_Widgets</a></li>
-				<li><a href="class-Gift.html">Gift</a></li>
 				<li><a href="class-Google.html">Google</a></li>
 				<li><a href="class-googleTranslate.html">googleTranslate</a></li>
 				<li><a href="class-Group_Mailer.html">Group_Mailer</a></li>
@@ -237,6 +237,7 @@
 				<li><a href="class-Rating_model.html">Rating_model</a></li>
 				<li><a href="class-Rbac.html">Rbac</a></li>
 				<li><a href="class-ReCaptchaResponse.html">ReCaptchaResponse</a></li>
+				<li><a href="class-RobotsAttendance.html">RobotsAttendance</a></li>
 				<li><a href="class-Roles.html">Roles</a></li>
 				<li><a href="class-Rss.html">Rss</a></li>
 				<li><a href="class-SAdminSidebarRenderer.html">SAdminSidebarRenderer</a></li>
@@ -298,6 +299,7 @@
 				<li><a href="class-ShopImport.html">ShopImport</a></li>
 				<li><a href="class-SiteInfo.html">SiteInfo</a></li>
 				<li><a href="class-Sitemap.html">Sitemap</a></li>
+				<li><a href="class-Sitemap_model.html">Sitemap_model</a></li>
 				<li><a href="class-Smart_filter.html">Smart_filter</a></li>
 				<li><a href="class-SMemCached.html">SMemCached</a></li>
 				<li><a href="class-SMobileVersion.html">SMobileVersion</a></li>
@@ -492,6 +494,7 @@
 				<li><a href="function-translit.html">translit</a></li>
 				<li><a href="function-translit_url.html">translit_url</a></li>
 				<li><a href="function-updateDiv.html">updateDiv</a></li>
+				<li><a href="function-user_function_sort.html">user_function_sort</a></li>
 				<li><a href="function-var_dumps.html">var_dumps</a></li>
 				<li><a href="function-var_dumps_exit.html">var_dumps_exit</a></li>
 				<li><a href="function-whereami.html">whereami</a></li>
@@ -540,9 +543,14 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Discount_model_front</h1>
+	<h1>Class Custom_model</h1>
 
 
+	<div class="description">
+	
+<p>Class Attendance_model for mod_stats module</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -552,7 +560,7 @@ CI_Model
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Discount_model_front</span></b>			
+<b><span>Custom_model</span></b>			
 			
 			
 		</dd>
@@ -569,27 +577,33 @@ CI_Model
 		
 		
 		
-		
+		<b>Package:</b> ImageCMSModule<br>
 
-		<b>Located at</b> application/modules/mod_discount/models/discount_model_front.php<br>
+				<b>Copyright:</b>
+				(c) 2014, ImageCMS<br>
+				<b>Author:</b>
+				DevImageCms<br>
+				<b>Uses:</b>
+				\CI_Model<br>
+		<b>Located at</b> application/modules/mod_stats/models/custom_model.php<br>
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="getAllTimeCountUnique" id="_getAllTimeCountUnique">
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( )</code>
+		<a class="anchor" href="#_getAllTimeCountUnique">#</a>
+		<code>getAllTimeCountUnique( )</code>
 
 		<div class="description short">
 			
@@ -600,6 +614,10 @@ CI_Model
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
 
 
 
@@ -607,18 +625,18 @@ CI_Model
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="get_discount" id="_get_discount">
+	<tr data-order="getAllTimeCountUniqueRobots" id="_getAllTimeCountUniqueRobots">
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_get_discount">#</a>
-		<code>get_discount( )</code>
+		<a class="anchor" href="#_getAllTimeCountUniqueRobots">#</a>
+		<code>getAllTimeCountUniqueRobots( )</code>
 
 		<div class="description short">
 			
@@ -629,6 +647,10 @@ CI_Model
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
 
 
 
@@ -636,18 +658,18 @@ CI_Model
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="join_discount" id="_join_discount">
+	<tr data-order="getLastViewedPage" id="_getLastViewedPage">
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_join_discount">#</a>
-		<code>join_discount( <span>mixed <var>$id</var></span>, <span>mixed <var>$type</var></span> )</code>
+		<a class="anchor" href="#_getLastViewedPage">#</a>
+		<code>getLastViewedPage( )</code>
 
 		<div class="description short">
 			
@@ -658,151 +680,10 @@ CI_Model
 
 
 
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_product" id="_get_product">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_product">#</a>
-		<code>get_product( <span>mixed <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_price" id="_get_price">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_price">#</a>
-		<code>get_price( <span>mixed <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_total_price" id="_get_total_price">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_total_price">#</a>
-		<code>get_total_price( <span>mixed <var>$data</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_amout_user" id="_get_amout_user">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_amout_user">#</a>
-		<code>get_amout_user( <span>mixed <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="updateapply" id="_updateapply">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_updateapply">#</a>
-		<code>updateapply( <span>mixed <var>$key</var></span>, <span>mixed <var>$gift</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
 
 
 
@@ -826,6 +707,30 @@ CI_Model
 
 
 
+	<table class="summary" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="db" id="m$db">
+		<td class="attributes"><code>
+			public  
+			CI_DB_active_record
+		</code></td>
+
+		<td class="name">
+<var>$db</var>		</td>
+		<td class="description"><div>
+			<a href="#m$db" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 
