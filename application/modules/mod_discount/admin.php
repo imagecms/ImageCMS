@@ -258,7 +258,7 @@ class Admin extends \ShopAdminController {
         if ($products != false) {
             foreach ($products as $product) {
                 $response[] = array(
-                    'value' => $product['name'],
+                    'value' => $product['id'] . ' - ' . $product['name'],
                     'id' => $product['id'],
                 );
             }
