@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-25 02:28+0200\n"
-"PO-Revision-Date: 2014-02-25 02:28+0200\n"
+"POT-Creation-Date: 2014-02-26 05:54+0200\n"
+"PO-Revision-Date: 2014-02-26 05:54+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,46 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
+msgid "Edit category"
+msgstr "Редактировать категорию"
+
+#: ./application/modules/shop/models/build/classes/Shop/SCategory.php:29
+msgid "Sorting method by default"
+msgstr "Выбор метода сортировки по умолчанию"
+
+#: ./application/modules/shop/admin/templates/categories/list.tpl:48
+msgid "Delete categories"
+msgstr "Удалить категории"
+
+#: ./application/modules/shop/admin/categories.php:458
+msgid "Template name"
+msgstr "Имя шаблона"
+
+#: ./application/modules/shop/admin/categories.php:481
+msgid "File with the same name is already exist."
+msgstr "Файл с таким именем уже существует."
+
+#: ./application/modules/shop/admin/templates/orders/check.tpl:22
+msgid "City"
+msgstr "Город"
+
+#: ./application/modules/shop/admin/templates/orders/check.tpl:30
+msgid "Order date"
+msgstr "Дата заказа"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:43
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:22
+#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:43
+msgid "Background Color"
+msgstr "Цвет Фона"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:53
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:23
+#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:54
+msgid "Font Color"
+msgstr "Цвет Шрифта"
 
 #: ./application/modules/shop/admin/templates/orders/create.tpl:227
 msgid "Surname"
@@ -1901,10 +1941,6 @@ msgstr "Заказ"
 msgid "Order not found"
 msgstr "Заказ не найден"
 
-#: ./application/modules/shop/admin/templates/orders/check.tpl:3
-msgid "Product order"
-msgstr "Заказ товара"
-
 #: ./application/modules/shop/admin/orders.php:1089
 msgid "Order was successfully created"
 msgstr "Заказ успешно создан"
@@ -2064,10 +2100,6 @@ msgstr "Изменить"
 #: ./templates/administrator/cats_tree_css.tpl:6
 msgid "Change category data"
 msgstr "Изменить данные категории"
-
-#: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
-msgid "Edit the category"
-msgstr "Изменить категорию"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:53
 msgid "Product changes"
@@ -2345,10 +2377,6 @@ msgstr "Категория создана"
 
 #: ./application/modules/admin/categories.php:612
 msgid "Category deleted"
-msgstr "Категория удалена"
-
-#: ./application/modules/shop/admin/templates/categories/list.tpl:48
-msgid "Category delete"
 msgstr "Категория удалена"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:18
@@ -6152,10 +6180,6 @@ msgstr "Текстовый редактор"
 #: ./templates/administrator/sys_update_info.tpl:38
 msgid "Current version"
 msgstr "Текущая версия"
-
-#: ./application/modules/shop/admin/templates/orders/create.tpl:269
-msgid "Current discount"
-msgstr "Текущая скидка"
 
 #: ./application/modules/shop/models/build/classes/Shop/CustomFields.php:28
 msgid "Custom posibble list"
