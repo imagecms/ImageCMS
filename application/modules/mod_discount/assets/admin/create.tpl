@@ -15,6 +15,9 @@ var currencySymbolJS = '{echo $CS}';
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>{lang('Save', 'mod_discount')}
                 </button>
+                <button onclick="" type="button" class="btn btn-small formSubmit submitButton" data-form="#createDiscountForm" data-submit data-action="tomain">
+                    <i class="icon-check"></i>{lang('Create and exit', 'mod_discount')}
+                </button>
             </div>
         </div>
     </div>
