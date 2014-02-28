@@ -1,39 +1,39 @@
 var editorsEnabled = false;
- /**
-     * Getting/Setting caret position
-     * @param node domObject
-     * @param int begin
-     * @param int end
-     *
-     */
-    function caret(domObject, begin, end) {
-        var range;
+/**
+ * Getting/Setting caret position
+ * @param node domObject
+ * @param int begin
+ * @param int end
+ *
+ */
+function caret(domObject, begin, end) {
+    var range;
 
-        if (typeof begin == 'number') {
-            end = (typeof end === 'number') ? end : begin;
-            return $(domObject).each(function() {
-                if (domObject.setSelectionRange) {
-                    domObject.setSelectionRange(begin, end);
-                } else if (domObject.createTextRange) {
-                    range = domObject.createTextRange();
-                    range.collapse(true);
-              http://test21.siteimage.com.ua/corporate/main      range.moveEnd('character', end);
-                    range.moveStart('character', begin);
-                    range.select();
-                }
-            });
-        } else {
-            if (domObject[0].setSelectionRange) {
-                begin = domObject[0].selectionStart;
-                end = domObject[0].selectionEnd;
-            } else if (document.selection && document.selection.createRange) {
-                range = document.selection.createRange();
-                begin = 0 - range.duplicate().moveStart('character', -100000);
-                end = begin + range.text.length;
+    if (typeof begin == 'number') {
+        end = (typeof end === 'number') ? end : begin;
+        return $(domObject).each(function() {
+            if (domObject.setSelectionRange) {
+                domObject.setSelectionRange(begin, end);
+            } else if (domObject.createTextRange) {
+                range = domObject.createTextRange();
+                range.collapse(true);
+                http://test21.siteimage.com.ua/corporate/main      range.moveEnd('character', end);
+                        range.moveStart('character', begin);
+                range.select();
             }
-            return {begin: begin, end: end};
+        });
+    } else {
+        if (domObject[0].setSelectionRange) {
+            begin = domObject[0].selectionStart;
+            end = domObject[0].selectionEnd;
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            begin = 0 - range.duplicate().moveStart('character', -100000);
+            end = begin + range.text.length;
         }
+        return {begin: begin, end: end};
     }
+}
 // read cookie by name
 function readCookie(name) {
     var nameEQ = name + "=";
@@ -95,9 +95,30 @@ function changeDefaultValute(id) {
     $.post('/admin/components/run/shop/currencies/makeCurrencyDefault', {id: id})
 
 }
-function changeMainValute(id) {
+function changeMainValute(id, curElement) {
+    $('.btn-danger').removeAttr('disabled');
+
+    $(curElement).closest('tr').find('.btn-danger').attr('disabled', 'disabled');
+
+    var additionalCurrency = $(curElement).closest('tr').find('.prod-on_off ');
+    if (!$(additionalCurrency).hasClass('disable_tovar')) {
+        $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
+
+        $.ajax({
+            type: "post",
+            data: {id: id, showOnSite: 0},
+            url: '/admin/components/run/shop/currencies/showOnSite',
+            success: function(data) {
+                //alert(data)
+            },
+            error: function() {
+
+            }
+        });
+    }
 
     $.post('/admin/components/run/shop/currencies/makeCurrencyMain', {id: id})
+
 
 }
 function ChangeMenuItemActive(obj, id) {
@@ -1143,17 +1164,28 @@ var callbacks = new Object({
     },
     setDefaultStatus: function(id, element)
     {
-
+        $('.btn-danger').removeAttr('disabled');
         $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
+        if ($(element).hasClass('disable_tovar')) {
+            $(element).closest('tr').find('.btn-danger').attr('disabled', 'disabled');
+            $(element).closest('tr').find('.prod-on_off').css('left', '0');
+            event.stopPropagation();
+        }
+
+
         $.post('/admin/components/run/shop/callbacks/setDefaultStatus', {
             id: id
         }, function(data) {
             $('.notifications').append(data);
         });
+
         return true;
     },
-    deleteStatus: function(id)
+    deleteStatus: function(id, curElement)
     {
+        if (!$(curElement).closest('tr').find('.disable_tovar').length) {
+            return false;
+        }
         $.post('/admin/components/run/shop/callbacks/deleteStatus', {
             id: id
         }, function(data) {

@@ -87,7 +87,7 @@ var currencySymbolJS = '{echo $CS}';
                                     </select>
                                 </div>
                                 <div class="d-i_b w-s_n-w">
-                                    <input id="valueInput" class="input-small required" type="text" name="value" maxlength="9" />
+                                    <input id="valueInput" class="input-small required" required="required" type="text" name="value" maxlength="9" />
                                     <span  id="typeValue">
                                       %
                                   </span>
@@ -159,7 +159,7 @@ var currencySymbolJS = '{echo $CS}';
                     <div id="comulativBlock" class="forHide" style="display: none;">
                         <span class="d-i_b m-r_5">{lang('from', 'mod_discount')}</span>
                         <span class="d-i_b">
-                            <input class="input-small onlyNumbersInput required" type="text" name="comulativ[begin_value]" value="" maxlength="9" />
+                            <input class="input-small onlyNumbersInput required" required="required" type="text" name="comulativ[begin_value]" value="" maxlength="9" />
                         </span>
                         <div class="noLimitC d-i_b">
                             <span class="d-i_b m-r_5">{lang('to', 'mod_discount')}</span>
@@ -188,7 +188,7 @@ var currencySymbolJS = '{echo $CS}';
                                    
                                 </label>
                                 <label> {lang('ID / Name / E-mail', 'mod_discount')} :</label>
-                                <input id="usersForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                <input id="usersForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                 <input id="discountUserId" type="hidden" name="user[user_id]" value=""/>
                             </div>
                         </div>
@@ -229,7 +229,7 @@ var currencySymbolJS = '{echo $CS}';
                         <span class="now-active-prod"></span>
                     </label>
                     <label> {lang('Name / ID', 'mod_discount')} :</label>
-                    <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                    <input id="productForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                     <input id="discountProductId" type="hidden" name="product[product_id]" value=""/>
                 </div>
             </div>
@@ -266,7 +266,7 @@ var currencySymbolJS = '{echo $CS}';
                 <div class="">
                     <span class="d-i_b">
                         <label class="p_r">
-                            <input class="required discountDate beginDateDiscount" type="text" value="" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
+                            <input class="required discountDate beginDateDiscount" required="required" type="text" value="" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
                             <span class="icon-calendar"></span>
                         </label>
                     </span>
