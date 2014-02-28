@@ -16,7 +16,8 @@ class Seoexpert_model_products extends CI_Model {
      * @return boolean|array
      */
     public function getAllCategories($locale = 'ru') {
-        $sql = "SELECT  `shop_category_i18n`.`id`, `shop_category_i18n`.`name` ,  `mod_seoexpert_products`.`cat_id` ,  `mod_seoexpert_products`.`settings` 
+        $sql = "SELECT  `shop_category_i18n`.`id`, `shop_category_i18n`.`name` ,  `mod_seoexpert_products`.`cat_id` ,
+                    `mod_seoexpert_products`.`settings` ,`mod_seoexpert_products`.`active`, `mod_seoexpert_products`.`empty_meta`  
                     FROM  `mod_seoexpert_products` 
                     JOIN  `shop_category_i18n` ON  `mod_seoexpert_products`.`cat_id` =  `shop_category_i18n`.`id` 
                     WHERE  `mod_seoexpert_products`.`locale` =  '" . $locale . "'
@@ -84,14 +85,22 @@ class Seoexpert_model_products extends CI_Model {
                 ->row_array();
 
         if (empty($data))
-            return $this->db->insert('mod_seoexpert_products', array('cat_id' => $id, 'locale' => $locale, 'settings' => serialize($settings)));
+            return $this->db->insert('mod_seoexpert_products', array('cat_id' => $id,
+                        'locale' => $locale,
+                        'settings' => serialize($settings),
+                        'active' => $settings['useProductPattern'],
+                        'empty_meta' => $settings['useProductPatternForEmptyMeta']
+                            )
+            );
 
 
         return $this->db
                         ->where('cat_id', $id)
                         ->where('locale', $locale)
                         ->update('mod_seoexpert_products', array(
-                            'settings' => serialize($settings)
+                            'settings' => serialize($settings),
+                            'active' => $settings['useProductPattern'],
+                            'empty_meta' => $settings['useProductPatternForEmptyMeta']
         ));
 
         return FALSE;
@@ -158,11 +167,54 @@ class Seoexpert_model_products extends CI_Model {
         return FALSE;
     }
 
+    /**
+     * Delete category by id
+     * @param int $id
+     * @return boolean\
+     */
     public function deleteCategoryById($id = FALSE) {
         if (!$id) {
             return FALSE;
         }
         return $this->db->where('cat_id', $id)->delete('mod_seoexpert_products');
+    }
+
+    /**
+     * Change category active
+     * @return boolean
+     */
+    public function changeActiveCategory($id = NULL) {
+        $cat = $this->db->where('cat_id', $id)->get('mod_seoexpert_products')->row();
+        $active = $cat->active;
+        if ($active == 1)
+            $active = 0;
+        else
+            $active = 1;
+
+        // If updated active succes then return TRUE
+        if ($this->db->where('cat_id', $id)->update('mod_seoexpert_products', array('active' => $active)))
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Change use for emty meta
+     * @return boolean
+     */
+    public function changeEmptyMetaCategory($id = NULL) {
+        $cat = $this->db->where('cat_id', $id)->get('mod_seoexpert_products')->row();
+        $active = $cat->empty_meta;
+        if ($active == 1)
+            $active = 0;
+        else
+            $active = 1;
+
+        // If updated active succes then return TRUE
+        if ($this->db->where('cat_id', $id)->update('mod_seoexpert_products', array('empty_meta' => $active)))
+            return true;
+
+        return false;
     }
 
 }

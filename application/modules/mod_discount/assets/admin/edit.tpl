@@ -289,7 +289,7 @@
                                                 {$endDate = true;}
                                             {/if}
                                             <label class="d-i_b p_r">
-                                                <input class="datepicker discountDate" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                                                <input class="discountDate endDateDiscount" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                                 <span class="icon-calendar"></span>
                                             </label>
                                             <div class="d-i_b m-l_10 v-a_m">

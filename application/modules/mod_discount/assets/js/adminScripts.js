@@ -2,7 +2,9 @@ $(document).ready(function() {
     /**
      * set begin discount date to now date
      */
-    $(".beginDateDiscount, .endDateDiscount").datepicker({minDate: new Date(), dateFormat: "yy-mm-dd"  });
+    var today = new Date();
+    $(".beginDateDiscount").datepicker({minDate: new Date(), dateFormat: "yy-mm-dd"  });
+    $(".endDateDiscount").datepicker({minDate: new Date(today.getTime() + (24 * 60 * 60 * 1000)), dateFormat: "yy-mm-dd"  });
     
     /**
      * Change is discount active or not

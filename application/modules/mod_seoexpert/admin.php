@@ -177,16 +177,41 @@ class Admin extends \BaseAdminController {
             showMessage('Сохранено!');
     }
 
+    /**
+     * Ajax delete product categories
+     * @return boolean
+     */
     public function ajaxDeleteProductCategories() {
-        if (count($_POST['ids']) < 1 ){
+        if (count($_POST['ids']) < 1) {
             return FALSE;
         }
-        
+
         foreach ($_POST['ids'] as $id) {
             $this->seoexpert_model_products->deleteCategoryById($id);
         }
 
         showMessage(lang('Deleted complete', 'admin'));
+    }
+
+    public function ajaxChangeActiveCategory() {
+        $id = $this->input->post('id');
+        if (!$id) {
+            return FALSE;
+        }
+        if ($this->seoexpert_model_products->changeActiveCategory($id)){
+            echo 'true';
+        }
+        
+    }
+
+    public function ajaxChangeEmptyMetaCategory() {
+        $id = $this->input->post('id');
+        if (!$id) {
+            return FALSE;
+        }
+        if ($this->seoexpert_model_products->changeEmptyMetaCategory($id)){
+            echo 'true';
+        }
     }
 
 }
