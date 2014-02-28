@@ -50,7 +50,7 @@
                                     {/if}
                                 </th>
                                 <th class="span1 productListOrder" data-column="AddedToCartCount">
-                                    <span class="t-d_u">{lang('Added to cart', 'admin')}</span>
+                                    <span class="t-d_u">{lang('Count of purchases', 'mod_stats')}</span>
                                     {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'AddedToCartCount'}
                                         {if $_GET.order == 'ASC'}
                                             <span class="f-s_14">↑</span>
