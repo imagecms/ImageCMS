@@ -31,6 +31,10 @@ class Admin extends BaseAdminController {
         $this->db->update('mod_sample_settings', array('value' => $this->input->post('useEmailNotification')), array('name' => 'useEmailNotification'));
         $this->db->update('mod_sample_settings', array('value' => $this->input->post('key')), array('name' => 'key'));
         showMessage(lang('Settings saved', 'sample_module'));
+        
+        if($_POST['action'] == 'back'){
+            pjax('/admin/components/modules_table');
+        }
     }
 
 }

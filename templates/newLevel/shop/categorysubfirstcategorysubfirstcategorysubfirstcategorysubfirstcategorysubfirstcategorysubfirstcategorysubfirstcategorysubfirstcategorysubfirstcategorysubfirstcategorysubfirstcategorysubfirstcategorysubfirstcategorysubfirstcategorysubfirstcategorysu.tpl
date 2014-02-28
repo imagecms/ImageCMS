@@ -1,0 +1,1 @@
+/* new ImageCMS Tpl file */
