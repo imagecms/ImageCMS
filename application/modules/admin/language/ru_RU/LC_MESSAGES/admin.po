@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 05:54+0200\n"
-"PO-Revision-Date: 2014-02-26 05:54+0200\n"
+"POT-Creation-Date: 2014-02-28 01:27+0200\n"
+"PO-Revision-Date: 2014-02-28 01:27+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,19 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/notifications/list.tpl:86
+msgid "none"
+msgstr "не указан"
+
+#: ./application/modules/shop/admin/templates/notifications/list.tpl:158
+#: ./application/modules/shop/admin/templates/notifications/list.tpl:257
+msgid "Notify"
+msgstr "Уведомить"
+
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:379
+msgid "Info buyer about change status"
+msgstr "Уведомлять покупателя о смене статуса"
 
 #: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
 msgid "Edit category"
@@ -6400,15 +6413,6 @@ msgstr "Уведомления о появлении"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:811
 msgid "Customer notification about the order placement"
 msgstr "Уведомления покупателя о размещении заказа"
-
-#: ./application/modules/shop/admin/templates/notifications/list.tpl:158
-#: ./application/modules/shop/admin/templates/notifications/list.tpl:257
-msgid "Notify"
-msgstr "Уведомлять"
-
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:379
-msgid "Info buyer about change status"
-msgstr "Уведомлять покупателя о смене статуса"
 
 #: ./templates/administrator/sys_update.tpl:139
 msgid "Deleting"
