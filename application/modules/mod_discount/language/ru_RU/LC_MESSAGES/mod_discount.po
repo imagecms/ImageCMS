@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 03:30+0400\n"
-"PO-Revision-Date: 2014-02-28 03:30+0400\n"
+"POT-Creation-Date: 2014-02-28 03:49+0200\n"
+"PO-Revision-Date: 2014-02-28 03:49+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,14 +18,23 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/mod_discount/assets/admin/create.tpl:234
+msgid "ID / Name"
+msgstr "ID / Имя"
+
+#: ./application/modules/mod_discount/admin.php:66
+#: ./application/modules/mod_discount/admin.php:187
+msgid "Enter a product that is in the database"
+msgstr "Введите продукт, который находится в базе данных"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:19
+msgid "Create and exit"
+msgstr "Создать и выйти"
+
 #: ./application/modules/mod_discount/assets/js/adminScripts.js:212
 #: ./application/modules/mod_discount/assets/js/adminScripts.js:214
 msgid "Yes"
 msgstr "Да"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:19
-msgid "Create and exit"
-msgstr ""
 
 #: ./application/modules/mod_discount/classes/DiscountManager.php:269
 msgid "Has been already created with the cumulative discount value"
@@ -45,12 +54,9 @@ msgstr "Количество << от >> не может быть больше, �
 msgid "Unlimit"
 msgstr "Неограничено"
 
-msgid "Unlimited"
-msgstr "Создать и выйти"
-
 #: ./application/modules/mod_discount/assets/admin/create.tpl:231
-msgid "ID / Name "
-msgstr "ID / Имя"
+msgid "Unlimited"
+msgstr "Неограничено"
 
 #: ./application/modules/mod_discount/classes/DiscountManager.php:49
 #: ./application/modules/mod_discount/classes/DiscountManager.php:79
@@ -386,11 +392,6 @@ msgstr "Сохранить и выйти"
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:30
 msgid "Edit"
 msgstr "Редактировать"
-
-#: ./application/modules/mod_discount/admin.php:66
-#: ./application/modules/mod_discount/admin.php:187
-msgid "Enter a product that is in the database"
-msgstr "Введите продукт, который находится в базе"
 
 #: ./application/modules/mod_discount/admin.php:71
 #: ./application/modules/mod_discount/admin.php:191

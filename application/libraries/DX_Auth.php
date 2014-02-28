@@ -1159,7 +1159,9 @@ class DX_Auth {
     function captcha() {
         $this->ci->load->helper('dx_captcha');
         // Load library SESSION
-//        $this->ci->load->library('session');
+
+        if (!strstr($this->ci->uri->uri_string(), 'admin'))
+            $this->ci->load->library('session');
 
         $vals = array(
             'img_path' => $this->ci->config->item('DX_captcha_path'),
