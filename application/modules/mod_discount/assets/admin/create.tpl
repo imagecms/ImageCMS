@@ -15,6 +15,9 @@ var currencySymbolJS = '{echo $CS}';
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>{lang('Save', 'mod_discount')}
                 </button>
+                <button onclick="" type="button" class="btn btn-small formSubmit submitButton" data-form="#createDiscountForm" data-submit data-action="tomain">
+                    <i class="icon-check"></i>{lang('Create and exit', 'mod_discount')}
+                </button>
             </div>
         </div>
     </div>
@@ -228,7 +231,7 @@ var currencySymbolJS = '{echo $CS}';
                     <label class="hideAfterAutocomlite"> {lang('Current product', 'mod_discount')} :
                         <span class="now-active-prod"></span>
                     </label>
-                    <label> {lang('Name / ID', 'mod_discount')} :</label>
+                    <label> {lang('ID / Name ', 'mod_discount')} :</label>
                     <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                     <input id="discountProductId" type="hidden" name="product[product_id]" value=""/>
                 </div>

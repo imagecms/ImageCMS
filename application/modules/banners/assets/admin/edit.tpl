@@ -89,7 +89,7 @@
 
                                             <a class="btn btn-small btn-success" onclick="$('#myModal').modal('show')">{lang('Create group', 'banners')}</a>
                                         </div>
-                                            <span class="help-block">{lang('Double click to deleting', 'banners')}</span>
+                                        <span class="help-block">{lang('Double click to deleting', 'banners')}</span>
                                     </div>
                                 </div>
 
