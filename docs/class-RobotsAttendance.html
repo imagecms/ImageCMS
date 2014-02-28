@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="generator" content="ApiGen 2.8.0">
 
-	<title>Class Discount_model_admin | ImageCMS Docs</title>
+	<title>Class RobotsAttendance | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?2135572232"></script>
+	<script type="text/javascript" src="elementlist.js?1494635625"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -153,12 +153,13 @@
 				<li><a href="class-ControllerBase.html">ControllerBase</a></li>
 				<li><a href="class-Core.html">Core</a></li>
 				<li><a href="class-Core_Widgets.html">Core_Widgets</a></li>
+				<li><a href="class-Custom_model.html">Custom_model</a></li>
 				<li><a href="class-CustomFieldsHelper.html">CustomFieldsHelper</a></li>
 				<li><a href="class-Dashboard.html">Dashboard</a></li>
 				<li><a href="class-Digital_products.html">Digital_products</a></li>
 				<li><a href="class-discount_api.html">discount_api</a></li>
-				<li class="active"><a href="class-Discount_model_admin.html">Discount_model_admin</a></li>
-				<li><a href="class-Discount_model_front.html">Discount_model_front</a></li>
+				<li><a href="class-discount_model_admin.html">discount_model_admin</a></li>
+				<li><a href="class-discount_model_front.html">discount_model_front</a></li>
 				<li><a href="class-Documentation.html">Documentation</a></li>
 				<li><a href="class-Documentation_model.html">Documentation_model</a></li>
 				<li><a href="class-DX_Auth.html">DX_Auth</a></li>
@@ -174,7 +175,6 @@
 				<li><a href="class-Gallery.html">Gallery</a></li>
 				<li><a href="class-Gallery_m.html">Gallery_m</a></li>
 				<li><a href="class-Gallery_Widgets.html">Gallery_Widgets</a></li>
-				<li><a href="class-Gift.html">Gift</a></li>
 				<li><a href="class-Google.html">Google</a></li>
 				<li><a href="class-googleTranslate.html">googleTranslate</a></li>
 				<li><a href="class-Group_Mailer.html">Group_Mailer</a></li>
@@ -237,6 +237,7 @@
 				<li><a href="class-Rating_model.html">Rating_model</a></li>
 				<li><a href="class-Rbac.html">Rbac</a></li>
 				<li><a href="class-ReCaptchaResponse.html">ReCaptchaResponse</a></li>
+				<li class="active"><a href="class-RobotsAttendance.html">RobotsAttendance</a></li>
 				<li><a href="class-Roles.html">Roles</a></li>
 				<li><a href="class-Rss.html">Rss</a></li>
 				<li><a href="class-SAdminSidebarRenderer.html">SAdminSidebarRenderer</a></li>
@@ -298,6 +299,7 @@
 				<li><a href="class-ShopImport.html">ShopImport</a></li>
 				<li><a href="class-SiteInfo.html">SiteInfo</a></li>
 				<li><a href="class-Sitemap.html">Sitemap</a></li>
+				<li><a href="class-Sitemap_model.html">Sitemap_model</a></li>
 				<li><a href="class-Smart_filter.html">Smart_filter</a></li>
 				<li><a href="class-SMemCached.html">SMemCached</a></li>
 				<li><a href="class-SMobileVersion.html">SMobileVersion</a></li>
@@ -492,6 +494,7 @@
 				<li><a href="function-translit.html">translit</a></li>
 				<li><a href="function-translit_url.html">translit_url</a></li>
 				<li><a href="function-updateDiv.html">updateDiv</a></li>
+				<li><a href="function-user_function_sort.html">user_function_sort</a></li>
 				<li><a href="function-var_dumps.html">var_dumps</a></li>
 				<li><a href="function-var_dumps_exit.html">var_dumps_exit</a></li>
 				<li><a href="function-whereami.html">whereami</a></li>
@@ -540,23 +543,15 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Discount_model_admin</h1>
+	<h1>Class RobotsAttendance</h1>
 
 
+	<div class="description">
+	
+<p>Class Attendance for mod_stats module (for robots)</p>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-CI_Model
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Discount_model_admin</span></b>			
-			
-			
-		</dd>
-	</dl>
+	</div>
+
 
 
 
@@ -569,27 +564,31 @@ CI_Model
 		
 		
 		
-		
+		<b>Package:</b> ImageCMSModule<br>
 
-		<b>Located at</b> application/modules/mod_discount/models/discount_model_admin.php<br>
+				<b>Copyright:</b>
+				(c) 2014, ImageCMS<br>
+				<b>Author:</b>
+				DevImageCms<br>
+		<b>Located at</b> application/modules/mod_stats/classes/RobotsAttendance.php<br>
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="getInstance" id="_getInstance">
 
 		<td class="attributes"><code>
-			 public 
-			
+			 public static
+			<code><a href="class-RobotsAttendance.html">RobotsAttendance</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( )</code>
+		<a class="anchor" href="#_getInstance">#</a>
+		<code>getInstance( )</code>
 
 		<div class="description short">
 			
@@ -599,52 +598,10 @@ CI_Model
 			
 
 
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getDiscountsList" id="_getDiscountsList">
-
-		<td class="attributes"><code>
-			 public 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getDiscountsList">#</a>
-		<code>getDiscountsList( <span>string <var>$discountType</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$rowCount</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$offset</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Get discounts List</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get discounts List</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$discountType</var></dt>
-					<dd><code>string</code><br>$discountType</dd>
-					<dt><var>$rowCount</var></dt>
-					<dd><code>integer</code><br>$rowCount</dd>
-					<dt><var>$offset</var></dt>
-					<dd><code>integer</code><br>$offset</dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>
+					<code><code><a href="class-RobotsAttendance.html">RobotsAttendance</a></code></code><br>
 				</div>
 
 
@@ -653,86 +610,7 @@ CI_Model
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="changeActive" id="_changeActive">
-
-		<td class="attributes"><code>
-			 public 
-			string|boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_changeActive">#</a>
-		<code>changeActive( <span>integer <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Change discount status active or not</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Change discount status active or not</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd><code>integer</code><br>$id</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string|boolean</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getMainCurrencySymbol" id="_getMainCurrencySymbol">
-
-		<td class="attributes"><code>
-			 public 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getMainCurrencySymbol">#</a>
-		<code>getMainCurrencySymbol( )</code>
-
-		<div class="description short">
-			
-<p>Get main currency symbol</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get main currency symbol</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="checkDiscountCode" id="_checkDiscountCode">
+	<tr data-order="__destruct" id="___destruct">
 
 		<td class="attributes"><code>
 			 public 
@@ -742,19 +620,15 @@ CI_Model
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_checkDiscountCode">#</a>
-		<code>checkDiscountCode( <span>mixed <var>$key</var></span> )</code>
+		<a class="anchor" href="#___destruct">#</a>
+		<code>__destruct( )</code>
 
 		<div class="description short">
 			
-<p>Check have any discoun with given key</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Check have any discoun with given key</p>
-
 
 
 
@@ -765,7 +639,7 @@ CI_Model
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getUsersByIdNameEmail" id="_getUsersByIdNameEmail">
+	<tr data-order="add" id="_add">
 
 		<td class="attributes"><code>
 			 public 
@@ -775,90 +649,8 @@ CI_Model
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getUsersByIdNameEmail">#</a>
-		<code>getUsersByIdNameEmail( <span>string <var>$term</var></span>, <span>integer <var>$limit</var> = <span class="php-num">7</span></span> )</code>
-
-		<div class="description short">
-			
-<p>get users by id name email</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>get users by id name email</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$term</var></dt>
-					<dd><code>string</code><br>$term</dd>
-					<dt><var>$limit</var></dt>
-					<dd><code>integer</code><br>$limit return boolean|array</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserGroups" id="_getUserGroups">
-
-		<td class="attributes"><code>
-			 public 
-			boolean|array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserGroups">#</a>
-		<code>getUserGroups( <span>string <var>$locale</var> = <span class="php-quote">'ru'</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Get user groups</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get user groups</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$locale</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean|array</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getProductsByIdNameNumber" id="_getProductsByIdNameNumber">
-
-		<td class="attributes"><code>
-			 public 
-			boolean|array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getProductsByIdNameNumber">#</a>
-		<code>getProductsByIdNameNumber( <span>string <var>$term</var></span>, <span>integer <var>$limit</var> = <span class="php-num">7</span></span> )</code>
+		<a class="anchor" href="#_add">#</a>
+		<code>add( <span>array <var>$coreData</var></span>, <span>string <var>$robotName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -870,16 +662,12 @@ CI_Model
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$term</var></dt>
-					<dd><code>string</code><br>$term</dd>
-					<dt><var>$limit</var></dt>
-					<dd><code>integer</code><br>$limit</dd>
+					<dt><var>$coreData</var></dt>
+					<dd><code>array</code><br>$coreData</dd>
+					<dt><var>$robotName</var></dt>
+					<dd><code>string</code><br>$robotName</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean|array</code><br>
-				</div>
 
 
 
@@ -887,7 +675,7 @@ CI_Model
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="insertDataToDB" id="_insertDataToDB">
+	<tr data-order="getRobotId" id="_getRobotId">
 
 		<td class="attributes"><code>
 			 public 
@@ -897,27 +685,21 @@ CI_Model
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_insertDataToDB">#</a>
-		<code>insertDataToDB( <span>string <var>$tableName</var></span>, <span>array <var>$data</var></span> )</code>
+		<a class="anchor" href="#_getRobotId">#</a>
+		<code>getRobotId( <span>string <var>$robotName</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Insert data, uses when create discount</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Insert data, uses when create discount</p>
-
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$tableName</var></dt>
-					<dd><code>string</code><br>$tableName</dd>
-					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
+					<dt><var>$robotName</var></dt>
+					<dd><code>string</code><br>$robotName</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -931,7 +713,7 @@ CI_Model
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="updateDiscountById" id="_updateDiscountById">
+	<tr data-order="getRobotName" id="_getRobotName">
 
 		<td class="attributes"><code>
 			 public 
@@ -941,31 +723,21 @@ CI_Model
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_updateDiscountById">#</a>
-		<code>updateDiscountById( <span>integer <var>$id</var></span>, <span>array <var>$data</var></span>, <span>mixed <var>$typeDiscountData</var></span>, <span>mixed <var>$locale</var></span> )</code>
+		<a class="anchor" href="#_getRobotName">#</a>
+		<code>getRobotName( <span>type <var>$robotId</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Update discount by id.</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Update discount by id.</p>
-
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd><code>integer</code><br>$id</dd>
-					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
-					<dt><var>$typeDiscountData</var></dt>
-					<dd></dd>
-					<dt><var>$locale</var></dt>
-					<dd></dd>
+					<dt><var>$robotId</var></dt>
+					<dd><code>type</code><br>$robotId</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -979,219 +751,7 @@ CI_Model
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="checkHaveAnyComulativDiscountMaxEndValue" id="_checkHaveAnyComulativDiscountMaxEndValue">
-
-		<td class="attributes"><code>
-			 public 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_checkHaveAnyComulativDiscountMaxEndValue">#</a>
-		<code>checkHaveAnyComulativDiscountMaxEndValue( <span>integer <var>$editDiscountId</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Check have any comulativ discount max endValue.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Check have any comulativ discount max endValue.</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$editDiscountId</var></dt>
-					<dd><code>integer</code><br>$editDiscountId uses in order to not counting edited discount</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getDiscountAllDataById" id="_getDiscountAllDataById">
-
-		<td class="attributes"><code>
-			 public 
-			boolean|array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getDiscountAllDataById">#</a>
-		<code>getDiscountAllDataById( <span>integer <var>$id</var></span>, <span>mixed <var>$locale</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Get discount all data by id</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get discount all data by id</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd><code>integer</code><br>$id</dd>
-					<dt><var>$locale</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean|array</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserNameAndEmailById" id="_getUserNameAndEmailById">
-
-		<td class="attributes"><code>
-			 public 
-			string|boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserNameAndEmailById">#</a>
-		<code>getUserNameAndEmailById( <span>integer <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Get username and email by id</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get username and email by id</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd><code>integer</code><br>$id</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string|boolean</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getProductById" id="_getProductById">
-
-		<td class="attributes"><code>
-			 public 
-			string|boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getProductById">#</a>
-		<code>getProductById( <span>integer <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Get product name by id</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get product name by id</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd><code>integer</code><br>$id</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string|boolean</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="deleteDiscountById" id="_deleteDiscountById">
-
-		<td class="attributes"><code>
-			 public 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_deleteDiscountById">#</a>
-		<code>deleteDiscountById( <span>type <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Delete discount by id</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Delete discount by id</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd><code>type</code><br>$id</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="moduleInstall" id="_moduleInstall">
+	<tr data-order="getRobots" id="_getRobots">
 
 		<td class="attributes"><code>
 			 public 
@@ -1201,129 +761,18 @@ CI_Model
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_moduleInstall">#</a>
-		<code>moduleInstall( )</code>
+		<a class="anchor" href="#_getRobots">#</a>
+		<code>getRobots( )</code>
 
 		<div class="description short">
 			
-<p>Install module</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Install module</p>
 
 
 
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="moduleDelete" id="_moduleDelete">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_moduleDelete">#</a>
-		<code>moduleDelete( )</code>
-
-		<div class="description short">
-			
-<p>Delete module</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Delete module</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="attributeLabels" id="_attributeLabels">
-
-		<td class="attributes"><code>
-			 public 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_attributeLabels">#</a>
-		<code>attributeLabels( )</code>
-
-		<div class="description short">
-			
-<p>Validation atribute lables</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Validation atribute lables</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="rules" id="_rules">
-
-		<td class="attributes"><code>
-			 public 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_rules">#</a>
-		<code>rules( )</code>
-
-		<div class="description short">
-			
-<p>Validation attribute rules</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Validation attribute rules</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br>
-				</div>
 
 
 
@@ -1340,6 +789,85 @@ CI_Model
 
 
 
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="PAGE" id="PAGE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+<b>PAGE</b>		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#PAGE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="CATEGORY" id="CATEGORY">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+<b>CATEGORY</b>		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#CATEGORY" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="SHOP_CATEGORY" id="SHOP_CATEGORY">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+<b>SHOP_CATEGORY</b>		</code></td>
+		<td class="value"><code><span class="php-num">3</span></code></td>
+		<td class="description"><div>
+			<a href="#SHOP_CATEGORY" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PRODUCT" id="PRODUCT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+<b>PRODUCT</b>		</code></td>
+		<td class="value"><code><span class="php-num">4</span></code></td>
+		<td class="description"><div>
+			<a href="#PRODUCT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 

@@ -3,11 +3,11 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('SEO expert','mod_seoexpert')}</span>
+            <span class="title">{lang('Edit metadata for category','mod_seoexpert')} {echo  $category['settings']['categoryNameTMP']}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$ADMIN_URL}/admin/components/init_window/mod_seoexpert/productsCategories" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
+                <a href="{$ADMIN_URL}/admin/components/init_window/mod_seoexpert/productsCategories" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','mod_seoexpert')}</span></a>
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>{lang('Save','mod_seoexpert')}
                 </button>
@@ -17,18 +17,13 @@
     </div>
     <form method="post" action="/admin/components/init_window/mod_seoexpert/productCategoryEdit/{$categoryId}/{$locale}" enctype="multipart/form-data" id="createDiscountForm">
         <table class="table table-striped table-bordered table-condensed content_big_td module-cheep">
-            <thead><tr><th colspan="6">{lang('Create','mod_seoexpert')}</th></tr></thead>
+            <thead><tr><th colspan="6"><br/></th></tr></thead>
             <tbody>
                 <tr>
                     <td colspan="6">
                         <div class="inside_padd discount-out">
                             <div class="form-horizontal">
-                                <label class="">
-                                    <span class="span4">
-                                        {lang('Choose category','mod_seoexpert')}
-                                    </span>
-                                    <span class="span8 discount-name">
-                                        <input id="autocomleteCategory" type="text" 
+                                        <input id="autocomleteCategory" type="hidden" 
                                                autocomplete="off" 
                                                name='categoryNameTMP' 
                                                readonly="readonly"
@@ -36,9 +31,6 @@
                                         <input id="autocomleteCategoryId" type="hidden" 
                                                name='category_id' 
                                                value="{$categoryId}" />
-                                    </span>
-                                </label>
-                                <hr/>
                                 <label class="">
                                     <span class="span4">
                                         <span data-title="Variables, can use to:" class="popover_ref" data-original-title="">
@@ -105,7 +97,7 @@
                                         <span class="span4">{lang('Active','mod_seoexpert')}:</span>
                                         <span class="span1">
                                             <span class="niceCheck b_n">
-                                                <input name="useProductPattern"  {if $category['settings']['useProductPattern'] == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                <input name="useProductPattern"  {if $category['active'] == 1} checked="checked" {/if}value="1" type="checkbox"/>
                                             </span>
                                         </span>
                                     </div>
@@ -116,7 +108,7 @@
                                         <span class="span4">{lang('Use only for empty metadata','mod_seoexpert')}:</span>
                                         <span class="span1">
                                             <span class="niceCheck b_n">
-                                                <input name="useProductPatternForEmptyMeta"  {if $category['settings']['useProductPatternForEmptyMeta'] == 1} checked="checked" {/if}value="1" type="checkbox"/>
+                                                <input name="useProductPatternForEmptyMeta"  {if $category['empty_meta'] == 1} checked="checked" {/if}value="1" type="checkbox"/>
                                             </span>
                                         </span>
                                     </div>
