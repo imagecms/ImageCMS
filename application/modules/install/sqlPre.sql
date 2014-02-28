@@ -2244,6 +2244,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `discount` float(10,2) DEFAULT NULL,
   `discount_info` text,
   `origin_price` float(10,2) DEFAULT NULL,
+  `user_surname` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
   KEY `shop_orders_I_2` (`status`),
