@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 05:14+0200\n"
-"PO-Revision-Date: 2014-02-28 05:14+0200\n"
+"POT-Creation-Date: 2014-02-28 06:01+0200\n"
+"PO-Revision-Date: 2014-02-28 06:01+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -30,6 +30,19 @@ msgstr "Сущность не существует!"
 #: ./application/modules/mod_discount/classes/DiscountManager.php:329
 msgid "Begin value must be numeric"
 msgstr "Начальное значение должно быть числовым"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:35
+msgid "Name"
+msgstr "Имя"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:12
+msgid "discount name"
+msgstr "Название скидки"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:14
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:14
+msgid "Back"
+msgstr "Вернуться"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:234
 msgid "ID / Name"
@@ -218,14 +231,15 @@ msgstr "Может быть более одной скидки с указанн
 msgid "on amount"
 msgstr "на сумму"
 
-#: ./application/modules/mod_discount/assets/admin/create.tpl:14
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:14
-msgid "Back"
-msgstr "Назад"
+#: ./application/modules/mod_discount/assets/admin/create.tpl:16
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:16
+msgid "Save"
+msgstr "Сохранить"
 
-#: ./application/modules/mod_discount/assets/discount_order.tpl:12
-msgid "discount name"
-msgstr "название скидки"
+#: ./application/modules/mod_discount/assets/admin/create.tpl:26
+#: ./application/modules/mod_discount/assets/admin/list.tpl:11
+msgid "Create"
+msgstr "Создать"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:40
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:44
@@ -262,10 +276,6 @@ msgstr "Неправильный тип скидки"
 #: ./application/modules/mod_discount/assets/admin/create.tpl:115
 msgid "No"
 msgstr "Нет"
-
-#: ./application/modules/mod_discount/assets/admin/list.tpl:35
-msgid "Description"
-msgstr "Описание"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:160
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:166
@@ -344,16 +354,6 @@ msgstr "Скидки интернет-магазина"
 #: ./application/modules/mod_discount/assets/admin/create.tpl:10
 msgid "Discount creating"
 msgstr "Создание скидки"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:26
-#: ./application/modules/mod_discount/assets/admin/list.tpl:11
-msgid "Create"
-msgstr "Создать"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:16
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:16
-msgid "Save"
-msgstr "Сохранить"
 
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:19
 msgid "Save and exit"
