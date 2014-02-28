@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 05:54+0200\n"
-"PO-Revision-Date: 2014-02-26 05:54+0200\n"
+"POT-Creation-Date: 2014-02-27 09:19+0400\n"
+"PO-Revision-Date: 2014-02-27 09:19+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -21,53 +21,43 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
-#: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
-msgid "Edit category"
-msgstr "Редактировать категорию"
-
-#: ./application/modules/shop/models/build/classes/Shop/SCategory.php:29
-msgid "Sorting method by default"
-msgstr "Выбор метода сортировки по умолчанию"
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:39
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
+msgid "Sort by username"
+msgstr "Сортировать по имени пользователя"
 
 #: ./application/modules/shop/admin/templates/categories/list.tpl:48
-msgid "Delete categories"
-msgstr "Удалить категории"
+msgid "Category delete"
+msgstr ""
 
-#: ./application/modules/shop/admin/categories.php:458
-msgid "Template name"
-msgstr "Имя шаблона"
+#: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
+msgid "Edit the category"
+msgstr ""
 
-#: ./application/modules/shop/admin/categories.php:481
-msgid "File with the same name is already exist."
-msgstr "Файл с таким именем уже существует."
+#: ./application/modules/shop/admin/templates/orders/check.tpl:12
+msgid "Имя получателя"
+msgstr ""
 
 #: ./application/modules/shop/admin/templates/orders/check.tpl:22
-msgid "City"
-msgstr "Город"
+msgid "Город"
+msgstr ""
 
 #: ./application/modules/shop/admin/templates/orders/check.tpl:30
-msgid "Order date"
-msgstr "Дата заказа"
+msgid "Дата заказа"
+msgstr ""
 
-#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:43
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:22
-#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:43
-msgid "Background Color"
-msgstr "Цвет Фона"
+#: ./application/modules/shop/admin/templates/orders/check.tpl:34
+msgid "Способ доставки"
+msgstr ""
 
-#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:53
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:23
-#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:54
-msgid "Font Color"
-msgstr "Цвет Шрифта"
+#: ./application/modules/shop/admin/templates/orders/check.tpl:41
+msgid "Способ оплаты"
+msgstr ""
 
-#: ./application/modules/shop/admin/templates/orders/create.tpl:227
-msgid "Surname"
-msgstr "Фамилия"
-
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:126
-msgid "User Surname"
-msgstr "Фамилия Пользователя"
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:114
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:117
+msgid "Full user name"
+msgstr ""
 
 #: ./application/modules/shop/admin/templates/callbacks/create_theme.tpl:6
 msgid "Callback topic сreation"
@@ -5488,10 +5478,6 @@ msgstr "Сортировать по дате"
 msgid "Sort by name ."
 msgstr "Сортировать по имени."
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
-msgid "Sort by name."
-msgstr "Сортировать по имени."
-
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:40
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:102
 msgid "Sort by phone number"
@@ -5510,11 +5496,6 @@ msgstr "Сортировать по теме"
 #: ./application/modules/shop/admin/templates/products/list.tpl:52
 msgid "Sort by price"
 msgstr "Сортировать по цене"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:38
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:100
-msgid "Sort by number"
-msgstr "Сортировать по числу"
 
 #: ./templates/administrator/groupCreate.tpl:12
 #: ./templates/administrator/groupEdit.tpl:12

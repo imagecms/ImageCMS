@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-27 07:20+0400\n"
-"PO-Revision-Date: 2014-02-27 07:20+0400\n"
+"POT-Creation-Date: 2014-02-27 09:11+0400\n"
+"PO-Revision-Date: 2014-02-27 09:11+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,28 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:57
+msgid "Count of usage"
+msgstr "Количество использований"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:53
+msgid "Users count"
+msgstr "Количество пользователей"
+
+#: ./application/modules/mod_discount/admin.php:61
+#: ./application/modules/mod_discount/admin.php:182
+msgid "Amount <<from>> can not be greater than the sum <<to>>"
+msgstr "Количество << от >> не может быть больше, чем << до >>"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:63
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:70
+msgid "Unlimit"
+msgstr "Неограничено"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:67
+msgid "Unlimited"
+msgstr "Неограничено"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:231
 msgid "ID / Name "
@@ -67,10 +89,6 @@ msgstr "Используется максимально возможная ск�
 #: ./application/modules/mod_discount/assets/admin/list.tpl:37
 msgid "Used"
 msgstr "Использований"
-
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:57
-msgid "Count of usage"
-msgstr "Количество использования"
 
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:200
 msgid "User does not exist"
@@ -163,15 +181,6 @@ msgstr "Название скидки"
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:48
 msgid "Discount code"
 msgstr "Код скидки"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:53
-msgid "Users count"
-msgstr "Количество пользователей"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:63
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:70
-msgid "Unlimit"
-msgstr "Неограничено"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:78
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:85
@@ -356,10 +365,6 @@ msgstr "Активен"
 msgid "Delete"
 msgstr "Удалить"
 
-#: ./application/modules/mod_discount/assets/admin/list.tpl:67
-msgid "Unlimited"
-msgstr "Неограничено"
-
 #: ./application/modules/mod_discount/assets/admin/list.tpl:72
 msgid "show"
 msgstr "показать"
@@ -375,11 +380,6 @@ msgstr "Сохранить и выйти"
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:30
 msgid "Edit"
 msgstr "Редактировать"
-
-#: ./application/modules/mod_discount/admin.php:61
-#: ./application/modules/mod_discount/admin.php:182
-msgid "Amount <<from>> can not be greater than the sum <<to>>"
-msgstr "Количество << от >> не может быть больше, чем << до >>"
 
 #: ./application/modules/mod_discount/admin.php:66
 #: ./application/modules/mod_discount/admin.php:187
