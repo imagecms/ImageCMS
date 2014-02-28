@@ -11,6 +11,7 @@ $(document).ready(function() {
      */
     $('.discounts_table').find('span.prod-on_off').add($('[data-page="tovar"]')).on('click', function() {
         var discountId = $(this).attr('data-id');
+        changeEmtyActive();
         $.ajax({
             type: 'POST',
             data: 'id=' + discountId,
@@ -171,7 +172,7 @@ $(document).ready(function() {
         else
             window.location.replace(base_url + 'admin/components/init_window/mod_discount/index');
     })
-    
+
     /**
      * If is selected use discount as gift
      */
@@ -180,14 +181,42 @@ $(document).ready(function() {
         if ($(this).find('input').prop('checked')) {
             $(countUsesBlock).find('#how-much').val('');
             $(countUsesBlock).find('#how-much').prop('disabled', false);
-         
+
         } else {
             $(countUsesBlock).find('#how-much').val(1);
             $(countUsesBlock).find('#how-much').prop('disabled', 'disabled');
-            $(countUsesBlock).find('.noLimitCountCheck').prop('checked',false);
+            $(countUsesBlock).find('.noLimitCountCheck').prop('checked', false);
             $(countUsesBlock).find('.spanForNoLimit').removeClass('active');
-            $(countUsesBlock).find('.niceCheck').css('background-position','-46px 0px');
-         
+            $(countUsesBlock).find('.niceCheck').css('background-position', '-46px 0px');
+
         }
     });
+
+
+
+    /** Change active or not category*/
+    function changeEmtyActive() {
+      
+        $('.prod-on_off').live('click', function() {
+            var $this = $(this);
+            if (!$this.hasClass('disabled')) {
+                if ($this.hasClass('disable_tovar')) {
+
+                    $this.parent().attr('data-original-title', lang('No'))
+                    $('.tooltip-inner').text(lang('No'));
+
+                }
+                else {
+
+                    if ($this.parent().data('only-original-title') == undefined) {
+                        $this.parent().attr('data-original-title', lang('Yes'))
+
+                        $('.tooltip-inner').text(lang('Yes'));
+                    }
+                }
+
+            }
+        });
+    }
+
 })
