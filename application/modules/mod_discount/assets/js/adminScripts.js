@@ -83,10 +83,14 @@ $(document).ready(function() {
     if ($('#usersForDiscount').length) {
         $('#usersForDiscount').autocomplete({
             source: base_url + 'admin/components/init_window/mod_discount/autoCompliteUsers?limit=25',
+            search: function(event, ui) {
+                $('#usersForDiscount').css('border-color', 'coral')
+            },
             select: function(event, ui) {
                 userData = ui.item;
+                $('#usersForDiscount').css('border-color', 'darkturquoise')
             },
-            close: function() {
+            close: function(event, ui) {
                 $('#discountUserId').val(userData.id);
                 $('.hideAfterAutocomlite').hide();
             }
@@ -99,8 +103,12 @@ $(document).ready(function() {
     if ($('#productForDiscount').length) {
         $('#productForDiscount').autocomplete({
             source: base_url + 'admin/components/init_window/mod_discount/autoCompliteProducts?limit=25',
+            search: function(event, ui) {
+                $('#productForDiscount').css('border-color', 'coral')
+            },
             select: function(event, ui) {
                 productsData = ui.item;
+                $('#productForDiscount').css('border-color', 'darkturquoise')
             },
             close: function() {
                 $('#discountProductId').val(productsData.id);
