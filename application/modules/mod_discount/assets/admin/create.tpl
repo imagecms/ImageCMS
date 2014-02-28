@@ -13,7 +13,10 @@ var currencySymbolJS = '{echo $CS}';
             <div class="d-i_b">
                 <a href="/admin/components/init_window/mod_discount{echo $filterQuery}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'mod_discount')}</span></a>
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
-                    <i class="icon-ok icon-white"></i>{lang('Save', 'mod_discount')}
+                    <i class="icon-ok icon-white"></i>{lang('Create', 'mod_discount')}
+                </button>
+                <button onclick="" type="button" class="btn btn-small formSubmit submitButton" data-form="#createDiscountForm" data-submit data-action="tomain">
+                    <i class="icon-check"></i>{lang('Create and exit', 'mod_discount')}
                 </button>
             </div>
         </div>
@@ -50,7 +53,7 @@ var currencySymbolJS = '{echo $CS}';
                                 </span>
                             </label>
                             <div class="noLimitC">
-                                <div class="span4">{lang('Users count', 'mod_discount')}:</div>
+                                <div class="span4">{lang('Count of usage', 'mod_discount')}:</div>
                                 <div class="span8">
                                     <span class="d-i_b m-r_10">
                                         <input class="input-small onlyNumbersInput " id="how-much" type="text" name="max_apply"  disabled='disabled' maxlength="7"/>
@@ -145,7 +148,7 @@ var currencySymbolJS = '{echo $CS}';
                         </div>
                         <div class="">
                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
-                                <span class="niceCheck" style="background-position: -46px 0px; ">
+                                <span class="niceCheck" id="giftSpanCheckbox" style="background-position: -46px 0px; ">
                                     <input type="checkbox" name="all_order[is_gift]" value="1" >
                                 </span>
                                 {lang('Gift Certificate', 'mod_discount')}
@@ -198,12 +201,12 @@ var currencySymbolJS = '{echo $CS}';
                 <div class="">
                     <!--Start. Show if discount type is group of users-->
                     <div id="group_userBlock" class="forHide" style="display: none;">
-                        
+                        {$checked=TRUE}
                         {foreach $userGroups as $group}
                         <label>
-                            <input type="radio" name="group_user[group_id]"  value="{echo $group[id]}" >{echo $group['alt_name']}<br/>
+                            <input type="radio" name="group_user[group_id]"  value="{echo $group[id]}" {if $checked}checked="checked" {/if}>{echo $group['alt_name']}<br/>
                         </label>
-                        {$checked=''}
+                        {$checked=FALSE}
                         {/foreach}
                     </div>
                     <!-- End. Show if discount type is group of users-->
@@ -228,7 +231,7 @@ var currencySymbolJS = '{echo $CS}';
                     <label class="hideAfterAutocomlite"> {lang('Current product', 'mod_discount')} :
                         <span class="now-active-prod"></span>
                     </label>
-                    <label> {lang('Name / ID', 'mod_discount')} :</label>
+                    <label> {lang('ID / Name', 'mod_discount')} :</label>
                     <input id="productForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                     <input id="discountProductId" type="hidden" name="product[product_id]" value=""/>
                 </div>

@@ -518,5 +518,26 @@ class discount_model_admin extends CI_Model {
             ),
         );
     }
+    /**
+     * Check range for cumulative discount
+     * @param array $data
+     * @return boolean
+     */
+    public function checkRangeForCumulativeDiscount($data = FALSE){
+        if (!$data){
+            return FALSE;
+        }
+        $sql = "SELECT * FROM `mod_discount_comulativ`
+                WHERE (`begin_value` BETWEEN  ".$data['begin_value']." AND ".$data['end_value'].") 
+                OR (`end_value` BETWEEN ".$data['begin_value']." AND ".$data['end_value'].")";
+        
+       
+        $query = $this->db->query($sql)->row_array();
+         
+        if ($query){
+            return TRUE;
+        }
+        return FALSE;
+    }
 
 }

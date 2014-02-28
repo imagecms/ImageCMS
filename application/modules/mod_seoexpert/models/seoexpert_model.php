@@ -84,8 +84,8 @@ class Seoexpert_model extends CI_Model {
         if (!$locale) {
             $locale = \MY_Controller::getCurrentLocale();
         }
-        
-         if (!$limit) {
+
+        if (!$limit) {
             $limit = 3;
         }
 
@@ -177,10 +177,10 @@ class Seoexpert_model extends CI_Model {
 
         // Update or insert shop setiings I18n table
         if ($checkLangSettings) {
-            return $this->db->where('lang_ident', $langId)->update('settings_i18n',$mainSettingsIn);
-        }else{
+            return $this->db->where('lang_ident', $langId)->update('settings_i18n', $mainSettingsIn);
+        } else {
             $mainSettingsIn['lang_ident'] = $langId;
-            return $this->db->insert('settings_i18n',$mainSettingsIn);
+            return $this->db->insert('settings_i18n', $mainSettingsIn);
         }
 
         return FALSE;
@@ -191,6 +191,8 @@ class Seoexpert_model extends CI_Model {
      * @return boolean
      */
     public function install() {
+
+
         $sql = "CREATE TABLE IF NOT EXISTS `mod_seoexpert` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
                     `locale` varchar(5) DEFAULT NULL,
@@ -205,9 +207,20 @@ class Seoexpert_model extends CI_Model {
                     `cat_id` int(11) NOT NULL,
                     `locale` varchar(5) DEFAULT NULL,
                     `settings` text DEFAULT NULL,
+                    `active` tinyint(4) DEFAULT NULL,
+                    `empty_meta` int(11) DEFAULT NULL,
                     PRIMARY KEY (`id`)
                     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
 
+        $this->db->query($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS `mod_seoexpert_inflect` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `original` varchar(250) NOT NULL,
+                `inflection_id` int(11) NOT NULL,
+                `inflected` varchar(250) NOT NULL,
+                PRIMARY KEY (`id`)
+              ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
         $this->db->query($sql);
 
         $this->db->where('name', 'mod_seoexpert')->update('components', array('autoload' => 1, 'in_menu' => 1));
@@ -219,9 +232,12 @@ class Seoexpert_model extends CI_Model {
      * @return boolean
      */
     public function deinstall() {
-        $sql = "DROP TABLE `mod_seoexpert`;DROP TABLE `mod_seoexpert_products`;";
-        $this->db->query($sql);
-        return TRUE;
+        
+        $this->load->dbforge();
+        $this->dbforge->drop_table('mod_seoexpert');
+        $this->dbforge->drop_table('mod_seoexpert_products');
+        $this->dbforge->drop_table('mod_seoexpert_inflect');
+        
     }
 
 }

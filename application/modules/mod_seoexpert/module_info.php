@@ -3,8 +3,8 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => 'SEO Expert',
-    'description' => 'Расширяет возможности управления Мета-данными',
+    'menu_name' => lang('SEO expert','mod_seoexpert'),
+    'description' => lang('Extends the metadata management','mod_seoexpert'),
     'admin_type' => 'window',
     'window_type' => 'xhr',
     'w' => 600,

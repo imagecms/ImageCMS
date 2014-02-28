@@ -2,7 +2,9 @@ $(document).ready(function() {
     /**
      * set begin discount date to now date
      */
-    $(".beginDateDiscount, .endDateDiscount").datepicker({minDate: new Date(), dateFormat: "yy-mm-dd"});
+    var today = new Date();
+    $(".beginDateDiscount").datepicker({minDate: new Date(), dateFormat: "yy-mm-dd"});
+    $(".endDateDiscount").datepicker({minDate: new Date(today.getTime() + (24 * 60 * 60 * 1000)), dateFormat: "yy-mm-dd"});
 
     /**
      * Change is discount active or not
@@ -92,7 +94,6 @@ $(document).ready(function() {
                 $('.hideAfterAutocomlite').hide();
             }
         });
-
     }
 
     /**
@@ -178,4 +179,23 @@ $(document).ready(function() {
         else
             window.location.replace(base_url + 'admin/components/init_window/mod_discount/index');
     })
+
+    /**
+     * If is selected use discount as gift
+     */
+    $('#giftSpanCheckbox').bind('click', function() {
+        var countUsesBlock = $('.noLimitC')[0];
+        if ($(this).find('input').prop('checked')) {
+            $(countUsesBlock).find('#how-much').val('');
+            $(countUsesBlock).find('#how-much').prop('disabled', false);
+
+        } else {
+            $(countUsesBlock).find('#how-much').val(1);
+            $(countUsesBlock).find('#how-much').prop('disabled', 'disabled');
+            $(countUsesBlock).find('.noLimitCountCheck').prop('checked', false);
+            $(countUsesBlock).find('.spanForNoLimit').removeClass('active');
+            $(countUsesBlock).find('.niceCheck').css('background-position', '-46px 0px');
+
+        }
+    });
 })

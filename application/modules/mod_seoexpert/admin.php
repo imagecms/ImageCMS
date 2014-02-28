@@ -89,7 +89,7 @@ class Admin extends \BaseAdminController {
 
                 // Show message about result
                 if ($this->seoexpert_model_products->setProductCategory($categoryId, $data, $locale) != FALSE) {
-                    showMessage(lang("Successfully created", "mod_seoexpert"));
+                    showMessage(lang("Changes saved", "mod_seoexpert"));
                     pjax('/admin/components/init_window/mod_seoexpert/productsCategories');
                 } else {
                     showMessage(lang("Can not create", "mod_seoexpert"), '', 'r');
@@ -135,7 +135,7 @@ class Admin extends \BaseAdminController {
                 unset($data['action']);
                 // Show message about result
                 if ($this->seoexpert_model_products->setProductCategory($categoryId, $data, $locale) != FALSE) {
-                    showMessage(lang("Successfully created", "mod_seoexpert"));
+                    showMessage(lang("Changes saved", "mod_seoexpert"));
                 } else {
                     showMessage(lang("Can not create", "mod_seoexpert"), '', 'r');
                 }
@@ -174,19 +174,44 @@ class Admin extends \BaseAdminController {
         unset($shopSettings['base']);
 
         if ($this->seoexpert_model->setSettings($shopSettings, $locale))
-            showMessage('Сохранено!');
+            showMessage(lang("Changes saved", "mod_seoexpert"));
     }
 
+    /**
+     * Ajax delete product categories
+     * @return boolean
+     */
     public function ajaxDeleteProductCategories() {
-        if (count($_POST['ids']) < 1 ){
+        if (count($_POST['ids']) < 1) {
             return FALSE;
         }
-        
+
         foreach ($_POST['ids'] as $id) {
             $this->seoexpert_model_products->deleteCategoryById($id);
         }
 
         showMessage(lang('Deleted complete', 'admin'));
+    }
+
+    public function ajaxChangeActiveCategory() {
+        $id = $this->input->post('id');
+        if (!$id) {
+            return FALSE;
+        }
+        if ($this->seoexpert_model_products->changeActiveCategory($id)){
+            echo 'true';
+        }
+        
+    }
+
+    public function ajaxChangeEmptyMetaCategory() {
+        $id = $this->input->post('id');
+        if (!$id) {
+            return FALSE;
+        }
+        if ($this->seoexpert_model_products->changeEmptyMetaCategory($id)){
+            echo 'true';
+        }
     }
 
 }
