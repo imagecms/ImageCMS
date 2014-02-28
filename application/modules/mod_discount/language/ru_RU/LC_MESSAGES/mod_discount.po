@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 03:49+0200\n"
-"PO-Revision-Date: 2014-02-28 03:49+0200\n"
+"POT-Creation-Date: 2014-02-28 07:40+0400\n"
+"PO-Revision-Date: 2014-02-28 07:40+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,11 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:14
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:14
+msgid "Back"
+msgstr "Вернуться"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:234
 msgid "ID / Name"
@@ -163,11 +168,6 @@ msgstr "Скидка удалена"
 #: ./application/modules/mod_discount/assets/admin/create.tpl:10
 msgid "Discount creating"
 msgstr "Создание скидки"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:14
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:14
-msgid "Back"
-msgstr "Назад"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:16
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:16
