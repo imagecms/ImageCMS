@@ -207,8 +207,8 @@ class Seoexpert_model extends CI_Model {
                     `cat_id` int(11) NOT NULL,
                     `locale` varchar(5) DEFAULT NULL,
                     `settings` text DEFAULT NULL,
-                    `active` TINYINT NOT NULL ,
-                    `empty_meta` INT NOT NULL 
+                    `active` tinyint(4) DEFAULT NULL,
+                    `empty_meta` int(11) DEFAULT NULL,
                     PRIMARY KEY (`id`)
                     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
 
@@ -232,9 +232,12 @@ class Seoexpert_model extends CI_Model {
      * @return boolean
      */
     public function deinstall() {
-        $sql = "DROP TABLE `mod_seoexpert`;DROP TABLE `mod_seoexpert_products`;";
-        $this->db->query($sql);
-        return TRUE;
+        
+        $this->load->dbforge();
+        $this->dbforge->drop_table('mod_seoexpert');
+        $this->dbforge->drop_table('mod_seoexpert_products');
+        $this->dbforge->drop_table('mod_seoexpert_inflect');
+        
     }
 
 }
