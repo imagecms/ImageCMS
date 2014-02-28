@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 05:54+0200\n"
-"PO-Revision-Date: 2014-02-26 05:54+0200\n"
+"POT-Creation-Date: 2014-02-28 02:26+0200\n"
+"PO-Revision-Date: 2014-02-28 02:26+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,52 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/notifications/edit.tpl:6
+msgid "Notification editing"
+msgstr "Редактирование уведомления"
+
+#: ./application/modules/shop/admin/templates/notifications/list.tpl:113
+msgid "Edit notification"
+msgstr "Редактировать уведомление"
+
+#: ./templates/administrator/translateRole.tpl:9
+#: ./templates/administrator/edit_page.tpl:10
+#: ./templates/administrator/cat_translate_edit.tpl:10
+#: ./templates/administrator/sys_update_properties.tpl:12
+#: ./templates/administrator/roleCreate.tpl:9
+#: ./templates/administrator/privilegeEdit.tpl:9
+#: ./templates/administrator/translatePrivilege.tpl:9
+#: ./templates/administrator/category_edit.tpl:10
+#: ./templates/administrator/desktop.tpl:86
+#: ./templates/administrator/create_cat.tpl:11
+#: ./templates/administrator/roleEdit.tpl:9
+msgid "Back"
+msgstr "Вернуться"
+
+#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:31
+msgid "Edit callback theme"
+msgstr "Редактировать тему колбека"
+
+#: ./application/modules/shop/admin/callbacks.php:281
+msgid "Callback theme is changed"
+msgstr "Тема колбека изменена"
+
+#: ./application/modules/shop/admin/callbacks.php:302
+msgid "Callback(s) was removed"
+msgstr "Колбек(и) удален(ы)"
+
+#: ./application/modules/shop/admin/templates/currencies/create.tpl:11
+msgid "Create and go back"
+msgstr "Создать и выйти"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:25
+msgid "Recalculate"
+msgstr "Пересчитать"
+
+#: ./application/modules/shop/admin/currencies.php:208
+msgid "Unable to remove currency. The currency used in the payment methods."
+msgstr "Невозможно удалить валюту. Эта валюта используется в Способах оплаты."
 
 #: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
 msgid "Edit category"
@@ -976,20 +1022,6 @@ msgstr "ввести число меньше или равно"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:345
 msgid "Up"
 msgstr "Вгору"
-
-#: ./templates/administrator/translateRole.tpl:9
-#: ./templates/administrator/edit_page.tpl:10
-#: ./templates/administrator/cat_translate_edit.tpl:10
-#: ./templates/administrator/sys_update_properties.tpl:12
-#: ./templates/administrator/roleCreate.tpl:9
-#: ./templates/administrator/privilegeEdit.tpl:9
-#: ./templates/administrator/translatePrivilege.tpl:9
-#: ./templates/administrator/category_edit.tpl:10
-#: ./templates/administrator/desktop.tpl:86
-#: ./templates/administrator/create_cat.tpl:11
-#: ./templates/administrator/roleEdit.tpl:9
-msgid "Back"
-msgstr "Вернутся"
 
 #: ./templates/administrator/sys_update_info.tpl:12
 #: ./templates/administrator/backup.tpl:10
@@ -1999,10 +2031,6 @@ msgstr "Запомнить"
 msgid "Request showed no result"
 msgstr "Запрос не дал результатов"
 
-#: ./application/modules/shop/admin/templates/notifications/edit.tpl:6
-msgid "The request for notification"
-msgstr "Запрос относительно уведомления"
-
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:16
 msgid "Removal requests"
 msgstr "Запросов на удаление"
@@ -2484,22 +2512,10 @@ msgstr "Кодирование"
 msgid "Callback"
 msgstr "Колбек"
 
-#: ./application/modules/shop/admin/callbacks.php:281
-msgid "Callback is changed"
-msgstr "Колбек изменен"
-
-#: ./application/modules/shop/admin/callbacks.php:297
-msgid "Callback was removed"
-msgstr "Колбек удален"
-
 #: ./templates/administrator/shop_menu.tpl:13
 #: ./templates/administrator/inc/menus.php:171
 msgid "Callbacks"
 msgstr "Колбеки"
-
-#: ./application/modules/shop/admin/callbacks.php:302
-msgid "Callbacks was removed"
-msgstr "Колбекы удалены"
 
 #: ./application/modules/shop/admin/templates/orders/check.tpl:12
 #: ./application/modules/shop/admin/templates/system/export_.tpl:75
@@ -3860,10 +3876,6 @@ msgstr "Ошибка установки модуля"
 msgid "Error. The currency used in the products. Check the currency options products"
 msgstr "Ошибка. Валюта, используется в товарах. Проверьте настройки валюты товаров"
 
-#: ./application/modules/shop/admin/currencies.php:211
-msgid "Error. Currency used by other objects. Check the payment methods"
-msgstr "Ошибка. Валюту, используют другие объекты. Проверьте способы оплаты"
-
 #: ./application/modules/admin/widgets_manager.php:243
 #: ./application/modules/admin/widgets_manager.php:368
 msgid "Error: widget not found!"
@@ -3985,10 +3997,6 @@ msgstr "Пересчитать товары после оплаты заказа
 #: ./application/modules/shop/admin/templates/search/list.tpl:398
 msgid "Drag product variant"
 msgstr "Перетащите вариант продукта"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:25
-msgid "Recalculate"
-msgstr "Перещитать"
 
 #: ./templates/administrator/sys_info.tpl:37
 msgid "Period"
@@ -4761,10 +4769,6 @@ msgstr "Редактирование статуса заказа"
 msgid "Editing status of appearance"
 msgstr "Редактирование статуса появления"
 
-#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:31
-msgid "Request subject editing"
-msgstr "Редактирование темы запроса"
-
 #: ./templates/administrator/lang_edit.tpl:6
 msgid "Language edit"
 msgstr "Редактирование языка"
@@ -4994,14 +4998,6 @@ msgstr "Сгенерировать"
 #: ./templates/administrator/sys_upgrade.tpl:10
 msgid "Make a database backup copy before updating "
 msgstr "Сделайте резервную копию базы данных перед обновлением"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:82
-msgid "Make currency default "
-msgstr "Сделать валютой по умолчанию"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:78
-msgid "Make main"
-msgstr "Сделать главной"
 
 #: ./application/modules/shop/admin/templates/system/import.tpl:107
 msgid "Take a snapshot of the database before start"
