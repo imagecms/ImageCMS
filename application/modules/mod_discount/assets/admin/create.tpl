@@ -53,7 +53,7 @@ var currencySymbolJS = '{echo $CS}';
                                 </span>
                             </label>
                             <div class="noLimitC">
-                                <div class="span4">{lang('Users count', 'mod_discount')}:</div>
+                                <div class="span4">{lang('Count of usage', 'mod_discount')}:</div>
                                 <div class="span8">
                                     <span class="d-i_b m-r_10">
                                         <input class="input-small onlyNumbersInput " id="how-much" type="text" name="max_apply"  disabled='disabled' maxlength="7"/>
@@ -148,7 +148,7 @@ var currencySymbolJS = '{echo $CS}';
                         </div>
                         <div class="">
                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
-                                <span class="niceCheck" style="background-position: -46px 0px; ">
+                                <span class="niceCheck" id="giftSpanCheckbox" style="background-position: -46px 0px; ">
                                     <input type="checkbox" name="all_order[is_gift]" value="1" >
                                 </span>
                                 {lang('Gift Certificate', 'mod_discount')}
@@ -201,12 +201,12 @@ var currencySymbolJS = '{echo $CS}';
                 <div class="">
                     <!--Start. Show if discount type is group of users-->
                     <div id="group_userBlock" class="forHide" style="display: none;">
-                        
+                        {$checked=TRUE}
                         {foreach $userGroups as $group}
                         <label>
-                            <input type="radio" name="group_user[group_id]"  value="{echo $group[id]}" >{echo $group['alt_name']}<br/>
+                            <input type="radio" name="group_user[group_id]"  value="{echo $group[id]}" {if $checked}checked="checked" {/if}>{echo $group['alt_name']}<br/>
                         </label>
-                        {$checked=''}
+                        {$checked=FALSE}
                         {/foreach}
                     </div>
                     <!-- End. Show if discount type is group of users-->
