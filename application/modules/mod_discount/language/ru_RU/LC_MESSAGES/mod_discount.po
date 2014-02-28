@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 04:10+0200\n"
-"PO-Revision-Date: 2014-02-28 04:10+0200\n"
+"POT-Creation-Date: 2014-02-28 05:14+0200\n"
+"PO-Revision-Date: 2014-02-28 05:14+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,26 +18,40 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:49
-#: ./application/modules/mod_discount/classes/DiscountManager.php:79
-#: ./application/modules/mod_discount/classes/DiscountManager.php:109
-#: ./application/modules/mod_discount/classes/DiscountManager.php:138
-#: ./application/modules/mod_discount/classes/DiscountManager.php:167
+#: ./application/modules/mod_discount/classes/DiscountManager.php:51
+#: ./application/modules/mod_discount/classes/DiscountManager.php:81
+#: ./application/modules/mod_discount/classes/DiscountManager.php:111
+#: ./application/modules/mod_discount/classes/DiscountManager.php:140
+#: ./application/modules/mod_discount/classes/DiscountManager.php:169
 msgid "Entity does not exists!"
 msgstr "Сущность не существует!"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:319
-#: ./application/modules/mod_discount/classes/DiscountManager.php:322
+#: ./application/modules/mod_discount/classes/DiscountManager.php:326
+#: ./application/modules/mod_discount/classes/DiscountManager.php:329
 msgid "Begin value must be numeric"
 msgstr "Начальное значение должно быть числовым"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:234
+msgid "ID / Name"
+msgstr "ID / Имя"
+
+#: ./application/modules/mod_discount/admin.php:66
+#: ./application/modules/mod_discount/admin.php:187
+msgid "Enter a product that is in the database"
+msgstr "Введите продукт, который находится в базе"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:19
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
-#: ./application/modules/mod_discount/assets/admin/create.tpl:231
-msgid "ID / Name "
-msgstr "ID / Имя"
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:212
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:214
+msgid "Yes"
+msgstr "Да"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:269
+msgid "Has been already created with the cumulative discount value"
+msgstr "Уже создана накопительная скидка с таким значением"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:190
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:199
@@ -59,10 +73,8 @@ msgstr "Бренд"
 msgid "Enter the user who is in the database"
 msgstr "Введите пользователя, который находится в базе данных"
 
-#: ./application/modules/mod_discount/admin.php:66
-#: ./application/modules/mod_discount/admin.php:187
-msgid "Enter a product that is in the database"
-msgstr "Введите продукт, который находится в базе"
+msgid "Unlimited"
+msgstr "Создать и выйти"
 
 #: ./application/modules/mod_discount/assets/admin/list.tpl:38
 msgid "Beggining time"
@@ -98,11 +110,6 @@ msgstr "Группа пользователей"
 #: ./application/modules/mod_discount/assets/admin/create.tpl:119
 msgid "Users group"
 msgstr "Группа пользователей"
-
-#: ./application/modules/mod_discount/assets/js/adminScripts.js:212
-#: ./application/modules/mod_discount/assets/js/adminScripts.js:214
-msgid "Yes"
-msgstr "Да"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:37
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:41
@@ -343,9 +350,6 @@ msgstr "Создание скидки"
 msgid "Create"
 msgstr "Создать"
 
-msgid "Unlimited"
-msgstr "Создать и выйти"
-
 #: ./application/modules/mod_discount/assets/admin/create.tpl:16
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:16
 msgid "Save"
@@ -407,10 +411,6 @@ msgstr "Только для зарегистрированных"
 #: ./application/modules/mod_discount/assets/admin/list.tpl:80
 msgid "Delete"
 msgstr "Удалить"
-
-#: ./application/modules/mod_discount/classes/DiscountManager.php:269
-msgid "Has been already created with the cumulative discount value"
-msgstr "Уже создана накопительная скидка с таким значением"
 
 #: ./application/modules/mod_discount/module_info.php:5
 msgid "Manage all discounts of online store"

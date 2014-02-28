@@ -94,7 +94,7 @@
                                             </select>
                                         </div>
                                         <div class="d-i_b w-s_n-w">
-                                            <input id="valueInput" class="input-small required" type="text" name="value" value="{echo $discount['value']}" maxlength="9" />
+                                            <input id="valueInput" required="required" class="input-small required" type="text" name="value" value="{echo $discount['value']}" maxlength="9" />
                                             <span  id="typeValue">
                                                 {if $discount['type_value'] == 1} % {/if}
                                                 {if $discount['type_value'] == 2} {echo $CS} {/if}
@@ -138,7 +138,7 @@
                                             <!--Start. Show if discount type is all_orders -->
                                             <div id="all_orderBlock" class="forHide" {if $discount['type_discount'] != 'all_order'}style="display: none;"{/if}>
                                                 <span class="d_b m-b_10">
-                                                    <span class="d-i_b sum-of-order"><input class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="{if !$discount['all_order']['begin_value']}0{else:}{echo $discount['all_order']['begin_value']}{/if}" maxlength="9" /></span>
+                                                    <span class="d-i_b sum-of-order"><input required="required" class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="{if !$discount['all_order']['begin_value']}0{else:}{echo $discount['all_order']['begin_value']}{/if}" maxlength="9" /></span>
                                                     <span class="d-i_b">{echo $CS}</span>
                                                 </span>
                                                 <div class="m-b_5">
@@ -201,7 +201,7 @@
                                                             {/if}
                                                         </label>
                                                         <label> {lang('ID / Name / E-mail', 'mod_discount')}:</label>
-                                                        <input id="usersForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                                        <input id="usersForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                         <input id="discountUserId" type="hidden" name="user[user_id]" value="{echo $discount['user']['user_id']}"/>
                                                     </div>
                                                 </div>
@@ -241,7 +241,7 @@
                                                     <span class="now-active-prod">{echo $discount['product']['productInfo']}</span>
                                                 </label>
                                                 <label> {lang('Name / ID', 'mod_discount')}  :</label>
-                                                <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                                <input id="productForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                 <input id="discountProductId" type="hidden" name="product[product_id]" value="{echo $discount['product']['product_id']}"/>
                                             </div>
                                         </div>

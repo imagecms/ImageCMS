@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 02:58+0200\n"
-"PO-Revision-Date: 2014-02-28 02:58+0200\n"
+"POT-Creation-Date: 2014-02-28 04:04+0200\n"
+"PO-Revision-Date: 2014-02-28 04:04+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -21,6 +21,96 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
+#: ./application/modules/shop/admin/templates/notifications/edit.tpl:6
+msgid "Notification editing"
+msgstr "Редактирование уведомления"
+
+#: ./application/modules/shop/admin/templates/notifications/list.tpl:113
+msgid "Edit notification"
+msgstr "Редактировать уведомление"
+
+#: ./application/modules/shop/admin/templates/notifications/edit.tpl:50
+msgid "Status has been set"
+msgstr "Статус установлен"
+
+#: ./application/modules/shop/admin/templates/callbacks/edit_status.tpl:6
+msgid "Editing callback status"
+msgstr "Редактирование статуса колбека"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:937
+msgid "Time of the order status change"
+msgstr "Время изменения статуса заказа"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/_deleteWindow.tpl:7
+msgid "Do you really want to delete the status?"
+msgstr "Вы действительно хотите удалить статус?"
+
+#: ./application/modules/shop/admin/gifts.php:139
+msgid "You have changed the status of the certificate"
+msgstr "Вы изменили статус сертификата"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:23
+msgid "Callback status data"
+msgstr "Данные статуса колбека"
+
+#: ./application/modules/shop/admin/templates/notifications/list.tpl:7
+msgid " Change the status of marked notifications?"
+msgstr "Изменение статуса уведомлений отмеченных ?"
+
+#: ./application/modules/shop/admin/templates/orders/list.tpl:30
+msgid "Change status"
+msgstr "Изменить статус"
+
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:424
+msgid "Status history"
+msgstr "История статусов"
+
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:371
+msgid "Commentary to change the status"
+msgstr "Комментарий к изменению статуса"
+
+#: ./application/modules/shop/admin/callbacks.php:319
+msgid "Unable to remove default status"
+msgstr "Не удается удалить статус по умолчанию"
+
+#: ./application/modules/shop/admin/orderstatuses.php:192
+msgid "Unable to remove the base status"
+msgstr "Не удалось удалить основной статус"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:935
+msgid "New order status"
+msgstr "Новый статус заказа"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:72
+#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:4
+msgid "Empty status list."
+msgstr "Пустой список статуса."
+
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:34
+msgid "Edit status"
+msgstr "Редактирование статуса"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:5
+msgid "Orders status edit"
+msgstr "Редактирование статуса заказа"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:6
+msgid "Editing status of appearance"
+msgstr "Редактирование статуса появления"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:11
+#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:6
+msgid "Orders status creating"
+msgstr "Создание статуса заказа"
+
+#: ./application/modules/shop/admin/templates/callbacks/create_status.tpl:6
+msgid "Creating a status callback"
+msgstr "Создание статуса колбека"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:6
+msgid "Creation of Status pending"
+msgstr "Создание статуса уведомления о появлении"
+
 #: ./application/modules/shop/models/build/classes/Shop/SCategory.php:29
 msgid "Sorting method by default"
 msgstr "Сортировка по умолчанию"
@@ -30,6 +120,186 @@ msgstr "Сортировка по умолчанию"
 msgid "Sort by number"
 msgstr "Сортировка по номеру"
 
+#: ./application/modules/shop/admin/orders.php:318
+#: ./application/modules/shop/admin/notifications.php:289
+msgid "Order status changed"
+msgstr "Статус заказа изменен"
+
+#: ./application/modules/shop/admin/orders.php:419
+#: ./application/modules/shop/admin/orders.php:523
+msgid "Order Status changed"
+msgstr "Статус заказа изменен"
+
+#: ./application/modules/shop/admin/orderstatuses.php:110
+msgid "Order Status not found"
+msgstr "Статус заказа не найден"
+
+#: ./application/modules/shop/admin/orderstatuses.php:79
+msgid "Order status created"
+msgstr "Статус заказа создан"
+
+#: ./application/modules/shop/admin/orderstatuses.php:172
+msgid "Status and related orders removed"
+msgstr "Статус и связанных с ним заказы удалены"
+
+#: ./application/modules/shop/admin/notificationstatuses.php:95
+msgid "Status pending not found"
+msgstr "Статус ожидания не найден"
+
+#: ./application/modules/shop/admin/notificationstatuses.php:71
+msgid "Status pending created"
+msgstr "Статус ожидания создан"
+
+#: ./application/modules/shop/admin/templates/orders/list.tpl:38
+msgid "Payment status"
+msgstr "Статус оплаты"
+
+#: ./application/modules/shop/admin/orders.php:560
+msgid "Payment status of orders changed"
+msgstr "Статус оплаты заказов изменен"
+
+#: ./application/modules/shop/admin/callbacks.php:230
+msgid "Default status was changed"
+msgstr "Статус по умолчанию изменен"
+
+#: ./templates/administrator/add_page.tpl:218
+#: ./templates/administrator/edit_page.tpl:266
+msgid "Publication status"
+msgstr "Статус публикации"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:622
+msgid "Notification status about the arrival"
+msgstr "Статус уведомления о прибытии"
+
+#: ./application/modules/shop/admin/notifications.php:181
+msgid "Notification status updated"
+msgstr "Статус уведомления обновлен"
+
+#: ./application/modules/shop/admin/notificationstatuses.php:150
+#: ./application/modules/shop/admin/orderstatuses.php:180
+#: ./application/modules/shop/admin/orderstatuses.php:184
+msgid "Status removed"
+msgstr "Статус удален"
+
+#: ./templates/administrator/shop_menu.tpl:12
+msgid "Order status"
+msgstr "Статусы заказов"
+
+#: ./templates/administrator/inc/menus.php:167
+msgid "Order statuses"
+msgstr "Статусы заказов"
+
+#: ./templates/administrator/shop_menu.tpl:15
+#: ./templates/administrator/inc/menus.php:179
+msgid "Callback statuses"
+msgstr "Статусы колбеков"
+
+#: ./templates/administrator/inc/menus.php:195
+msgid "Notification statuses"
+msgstr "Статусы уведомлений"
+
+#: ./templates/administrator/shop_menu.tpl:19
+msgid "Statuses of the appearance"
+msgstr "Статусы уведомлений"
+
+#: ./application/modules/shop/admin/callbacks.php:186
+#: ./application/modules/shop/admin/orderstatuses.php:189
+msgid "Such status does not exist"
+msgstr "Такой статус не существует"
+
+#: ./application/modules/shop/admin/templates/notifications/edit.tpl:57
+#: ./application/modules/shop/admin/templates/orders/_create.tpl:78
+msgid "Notify a buyer about the status change"
+msgstr "Уведомить покупателя об изменении статуса"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:882
+msgid " Customer notification about the order status change"
+msgstr "Уведомления клиента об изменении статуса заказа"
+
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:379
+msgid "Info buyer about change status"
+msgstr "Уведомлять покупателя о смене статуса"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:6
+#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:18
+msgid "Removing status"
+msgstr "Удаление статуса"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:54
+msgid "Order status deleting"
+msgstr "Удаление статуса заказа"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:9
+msgid "Remove your status?"
+msgstr "Удалить ваш статус?"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/_deleteWindow.tpl:28
+msgid "Delete all orders with this status"
+msgstr "Удалить все заказы с таким статусом"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:57
+msgid "Delete order status(es)?"
+msgstr "Удалить статус заказа(ов)?"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:19
+msgid "Remove status?"
+msgstr "Удалить статус?"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/_deleteWindow.tpl:14
+msgid "Set another status for these orders"
+msgstr "Установить другой статус этих заказов"
+
+#: ./templates/administrator/inc/javascriptVars.tpl:8
+msgid "Something went wrong. Startup status is not changed."
+msgstr "Что-то пошло не так. Начальный статус не изминен."
+
+#: ./application/modules/shop/admin/templates/notifications/edit.tpl:52
+msgid "Inform"
+msgstr "Уведомить"
+
+#: ./templates/administrator/translateRole.tpl:9
+#: ./templates/administrator/edit_page.tpl:10
+#: ./templates/administrator/cat_translate_edit.tpl:10
+#: ./templates/administrator/sys_update_properties.tpl:12
+#: ./templates/administrator/roleCreate.tpl:9
+#: ./templates/administrator/privilegeEdit.tpl:9
+#: ./templates/administrator/translatePrivilege.tpl:9
+#: ./templates/administrator/category_edit.tpl:10
+#: ./templates/administrator/desktop.tpl:86
+#: ./templates/administrator/create_cat.tpl:11
+#: ./templates/administrator/roleEdit.tpl:9
+msgid "Back"
+msgstr "Вернуться"
+
+#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:31
+msgid "Edit callback theme"
+msgstr "Редактировать тему колбека"
+
+#: ./application/modules/shop/admin/callbacks.php:281
+msgid "Callback theme is changed"
+msgstr "Тема колбека изменена"
+
+#: ./application/modules/shop/admin/callbacks.php:302
+msgid "Callback(s) was removed"
+msgstr "Колбек(и) удален(ы)"
+
+#: ./application/modules/shop/admin/templates/currencies/create.tpl:11
+msgid "Create and go back"
+msgstr "Создать и выйти"
+
+#: ./application/modules/shop/admin/templates/currencies/list.tpl:25
+msgid "Recalculate"
+msgstr "Пересчитать"
+
+#: ./application/modules/shop/admin/currencies.php:208
+msgid "Unable to remove currency. The currency used in the payment methods."
+msgstr "Невозможно удалить валюту. Эта валюта используется в Способах оплаты."
+
+#: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
+msgid "Edit category"
+msgstr "Редактирование категории"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:39
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
 msgid "Sort by name."
 msgstr "Сортировать по имени."
@@ -837,20 +1107,6 @@ msgstr "ввести число меньше или равно"
 msgid "Up"
 msgstr "Вгору"
 
-#: ./templates/administrator/translateRole.tpl:9
-#: ./templates/administrator/edit_page.tpl:10
-#: ./templates/administrator/cat_translate_edit.tpl:10
-#: ./templates/administrator/sys_update_properties.tpl:12
-#: ./templates/administrator/roleCreate.tpl:9
-#: ./templates/administrator/privilegeEdit.tpl:9
-#: ./templates/administrator/translatePrivilege.tpl:9
-#: ./templates/administrator/category_edit.tpl:10
-#: ./templates/administrator/desktop.tpl:86
-#: ./templates/administrator/create_cat.tpl:11
-#: ./templates/administrator/roleEdit.tpl:9
-msgid "Back"
-msgstr "Вернуться"
-
 #: ./templates/administrator/sys_update_info.tpl:12
 #: ./templates/administrator/backup.tpl:10
 #: ./templates/administrator/widget_create.tpl:9
@@ -1013,10 +1269,6 @@ msgstr "Время добавления"
 msgid "Time of the order"
 msgstr "Время заказа"
 
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:937
-msgid "Time of the order status change"
-msgstr "Время изменения статуса заказа"
-
 #: ./application/modules/admin/pages.php:157
 #: ./application/modules/admin/pages.php:492
 msgid "Publication time"
@@ -1095,14 +1347,6 @@ msgstr "Вы действительно хотите удалить выбран
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:173
 msgid "Really delete callback(s)"
 msgstr "Вы действительно хотите удалить колбек(и)"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/_deleteWindow.tpl:7
-msgid "Do you really want to delete the status?"
-msgstr "Вы действительно хотите удалить статус?"
-
-#: ./application/modules/shop/admin/gifts.php:139
-msgid "You have changed the status of the certificate"
-msgstr "Вы изменили статус сертификата"
 
 #: ./application/modules/admin/sys_upgrade.php:48
 msgid "You are using the latest version"
@@ -1448,10 +1692,6 @@ msgstr "Данные отправки списка желаний"
 #: ./application/modules/shop/admin/templates/users/edit.tpl:22
 msgid "User data"
 msgstr "Данные пользователя"
-
-#: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:23
-msgid "Callback status data"
-msgstr "Данные статуса колбека"
 
 #: ./application/modules/shop/admin/templates/orders/_editWindow.tpl:3
 msgid " This product has been deleted from the shop! You can only change the quantity or replace by another product"
@@ -1895,10 +2135,6 @@ msgstr "Запомнить"
 msgid "Request showed no result"
 msgstr "Запрос не дал результатов"
 
-#: ./application/modules/shop/admin/templates/notifications/edit.tpl:6
-msgid "The request for notification"
-msgstr "Запрос относительно уведомления"
-
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:16
 msgid "Removal requests"
 msgstr "Запросов на удаление"
@@ -1937,10 +2173,6 @@ msgstr "Значения для количества товаров на сай�
 #: ./application/modules/admin/languages.php:253
 msgid "Identifier"
 msgstr "Идентификатор"
-
-#: ./application/modules/shop/admin/templates/notifications/list.tpl:7
-msgid " Change the status of marked notifications?"
-msgstr "Изменение статуса уведомлений отмеченных ?"
 
 #: ./application/modules/admin/sys_update.php:105
 msgid "Changes not saved"
@@ -2004,10 +2236,6 @@ msgstr "Изменить продукт"
 #: ./templates/administrator/inc/javascriptVars.tpl:100
 msgid "Change product"
 msgstr "Изменить продукт"
-
-#: ./application/modules/shop/admin/templates/orders/list.tpl:30
-msgid "Change status"
-msgstr "Изменить статус"
 
 #: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:37
 msgid "Edit topic callback"
@@ -2178,10 +2406,6 @@ msgstr "Использувать подарочные сертификаты?"
 #: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:25
 msgid "Orders history"
 msgstr "История заказов"
-
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:424
-msgid "Status history"
-msgstr "История статусов"
 
 #: ./templates/administrator/backup.tpl:31
 msgid "Source"
@@ -2380,14 +2604,6 @@ msgstr "Кодирование"
 msgid "Callback"
 msgstr "Колбек"
 
-#: ./application/modules/shop/admin/callbacks.php:281
-msgid "Callback is changed"
-msgstr "Колбек изменен"
-
-#: ./application/modules/shop/admin/callbacks.php:297
-msgid "Callback was removed"
-msgstr "Колбек удален"
-
 #: ./templates/administrator/shop_menu.tpl:13
 #: ./templates/administrator/inc/menus.php:171
 msgid "Callbacks"
@@ -2466,10 +2682,6 @@ msgstr "Комментарий"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:561
 msgid "Comments of the wishlist author"
 msgstr "Комментарий автора желаний"
-
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:371
-msgid "Commentary to change the status"
-msgstr "Комментарий к изменению статуса"
 
 #: ./application/modules/shop/admin/kits.php:118
 msgid "The kit was not found"
@@ -3058,10 +3270,6 @@ msgstr "Не создано виджетов"
 msgid "Can't load module info file"
 msgstr "Не удается загрузить файл информации модуля"
 
-#: ./application/modules/shop/admin/callbacks.php:319
-msgid "Unable to remove default status"
-msgstr "Не удается удалить статус по умолчанию"
-
 #: ./application/modules/shop/admin/system.php:118
 msgid "Could not find any properties"
 msgstr "Не удалось найти свойства"
@@ -3077,10 +3285,6 @@ msgstr "Не удалось создать пользователя"
 #: ./application/modules/shop/admin/categories.php:497
 msgid "Could not create file"
 msgstr "Не удалось создать файл"
-
-#: ./application/modules/shop/admin/orderstatuses.php:192
-msgid "Unable to remove the base status"
-msgstr "Не удалось удалить основной статус"
 
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:197
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:174
@@ -3302,10 +3506,6 @@ msgstr "Новый"
 #: ./application/modules/shop/admin/users.php:382
 msgid "New password"
 msgstr "Новый пароль"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:935
-msgid "New order status"
-msgstr "Новый статус заказа"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1117
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1167
@@ -3781,10 +3981,6 @@ msgstr "Ошибка установки модуля"
 msgid "Error. The currency used in the products. Check the currency options products"
 msgstr "Ошибка. Валюта, используется в товарах. Проверьте настройки валюты товаров"
 
-#: ./application/modules/shop/admin/currencies.php:211
-msgid "Error. Currency used by other objects. Check the payment methods"
-msgstr "Ошибка. Валюту, используют другие объекты. Проверьте способы оплаты"
-
 #: ./application/modules/admin/widgets_manager.php:243
 #: ./application/modules/admin/widgets_manager.php:368
 msgid "Error: widget not found!"
@@ -3910,10 +4106,6 @@ msgstr "Пересчитать товары после оплаты заказа
 #: ./application/modules/shop/admin/templates/search/list.tpl:398
 msgid "Drag product variant"
 msgstr "Перетащите вариант продукта"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:25
-msgid "Recalculate"
-msgstr "Перещитать"
 
 #: ./templates/administrator/sys_info.tpl:37
 msgid "Period"
@@ -4501,11 +4693,6 @@ msgstr "Простой пользователь"
 msgid "Empty callback list."
 msgstr "Пустой список колбеков."
 
-#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:72
-#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:4
-msgid "Empty status list."
-msgstr "Пустой список статуса."
-
 #: ./templates/administrator/rbac.tpl:59
 #: ./templates/administrator/roleList.tpl:81
 #: ./templates/administrator/groupList.tpl:59
@@ -4650,10 +4837,6 @@ msgstr "Редактирование виджета"
 msgid "Editing a custom field"
 msgstr "Редактирование дополнительного поля"
 
-#: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
-msgid "Edit category"
-msgstr "Редактирование категории"
-
 #: ./application/modules/shop/admin/templates/categories/edit.tpl:5
 msgid "Edit category ID"
 msgstr "Редактирование категории ID"
@@ -4689,22 +4872,6 @@ msgstr "Редактирование скидкок"
 #: ./application/modules/shop/admin/templates/deliverymethods/edit.tpl:22
 msgid "Delivery method edit"
 msgstr "Редактирование способа доставки"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:34
-msgid "Edit status"
-msgstr "Редактирование статуса"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:5
-msgid "Orders status edit"
-msgstr "Редактирование статуса заказа"
-
-#: ./application/modules/shop/admin/templates/callbacks/edit_status.tpl:6
-msgid "Editing callback status"
-msgstr "Редактирование статуса колбека"
-
-#: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:6
-msgid "Editing status of appearance"
-msgstr "Редактирование статуса появления"
 
 #: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:31
 msgid "Request subject editing"
@@ -4944,14 +5111,6 @@ msgstr "Сгенерировать"
 msgid "Make a database backup copy before updating "
 msgstr "Сделайте резервную копию базы данных перед обновлением"
 
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:82
-msgid "Make currency default "
-msgstr "Сделать валютой по умолчанию"
-
-#: ./application/modules/shop/admin/templates/currencies/list.tpl:78
-msgid "Make main"
-msgstr "Сделать главной"
-
 #: ./application/modules/shop/admin/templates/system/import.tpl:107
 msgid "Take a snapshot of the database before start"
 msgstr "Сделать снимок базы данных перед запуском"
@@ -5153,19 +5312,6 @@ msgstr "Создание склада"
 #: ./application/modules/shop/admin/templates/discounts/create.tpl:19
 msgid "Payment method create"
 msgstr "Создание способа оплаты"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:11
-#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:6
-msgid "Orders status creating"
-msgstr "Создание статуса заказа"
-
-#: ./application/modules/shop/admin/templates/callbacks/create_status.tpl:6
-msgid "Creating a status callback"
-msgstr "Создание статуса колбека"
-
-#: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:6
-msgid "Creation of Status pending"
-msgstr "Создание статуса уведомления о появлении"
 
 #: ./application/modules/shop/admin/templates/callbacks/create_theme.tpl:6
 msgid "Callback topic сreation"
@@ -5886,92 +6032,6 @@ msgstr "Статус был изменен"
 msgid "Status was removed"
 msgstr "Статус был удален"
 
-#: ./application/modules/shop/admin/orders.php:419
-#: ./application/modules/shop/admin/orders.php:523
-msgid "Order Status changed"
-msgstr "Статус заказа изменен"
-
-#: ./application/modules/shop/admin/orders.php:318
-#: ./application/modules/shop/admin/notifications.php:289
-msgid "Order status changed"
-msgstr "Статус заказа изменен"
-
-#: ./application/modules/shop/admin/orderstatuses.php:110
-msgid "Order Status not found"
-msgstr "Статус заказа не найден"
-
-#: ./application/modules/shop/admin/orderstatuses.php:79
-msgid "Order status created"
-msgstr "Статус заказа создан"
-
-#: ./application/modules/shop/admin/orderstatuses.php:172
-msgid "Status and related orders removed"
-msgstr "Статус и связанных с ним заказы удалены"
-
-#: ./application/modules/shop/admin/notificationstatuses.php:95
-msgid "Status pending not found"
-msgstr "Статус ожидания не найден"
-
-#: ./application/modules/shop/admin/notificationstatuses.php:71
-msgid "Status pending created"
-msgstr "Статус ожидания создан"
-
-#: ./application/modules/shop/admin/templates/orders/list.tpl:38
-msgid "Payment status"
-msgstr "Статус оплаты"
-
-#: ./application/modules/shop/admin/orders.php:560
-msgid "Payment status of orders changed"
-msgstr "Статус оплаты заказов изменен"
-
-#: ./application/modules/shop/admin/callbacks.php:230
-msgid "Default status was changed"
-msgstr "Статус по умолчанию изменен"
-
-#: ./templates/administrator/add_page.tpl:218
-#: ./templates/administrator/edit_page.tpl:266
-msgid "Publication status"
-msgstr "Статус публикации"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:622
-msgid "Notification status about the arrival"
-msgstr "Статус уведомления о прибытии"
-
-#: ./application/modules/shop/admin/notifications.php:181
-msgid "Notification status updated"
-msgstr "Статус уведомления обновлен"
-
-#: ./application/modules/shop/admin/notificationstatuses.php:150
-#: ./application/modules/shop/admin/orderstatuses.php:180
-#: ./application/modules/shop/admin/orderstatuses.php:184
-msgid "Status removed"
-msgstr "Статус удален"
-
-#: ./application/modules/shop/admin/templates/notifications/edit.tpl:50
-msgid "Status has been set"
-msgstr "Статус установлен"
-
-#: ./templates/administrator/shop_menu.tpl:12
-msgid "Order status"
-msgstr "Статусы заказов"
-
-#: ./templates/administrator/inc/menus.php:167
-msgid "Order statuses"
-msgstr "Статусы заказов"
-
-#: ./templates/administrator/shop_menu.tpl:15
-#: ./templates/administrator/inc/menus.php:179
-msgid "Callback statuses"
-msgstr "Статусы колбеков"
-
-#: ./templates/administrator/inc/menus.php:195
-msgid "Notification statuses"
-msgstr "Статусы уведомлений"
-
-#: ./templates/administrator/shop_menu.tpl:19
-msgid "Statuses of the appearance"
-msgstr "Статусы уведомлений"
-
 #: ./application/modules/shop/admin/gifts.php:49
 #: ./application/modules/shop/admin/gifts.php:106
 msgid "Cost of the certificate"
@@ -6097,11 +6157,6 @@ msgstr "Табуляция"
 #: ./application/modules/shop/admin/templates/comulativ/edit.tpl:46
 msgid "Just like the number 10"
 msgstr "Так же, как номер 10"
-
-#: ./application/modules/shop/admin/callbacks.php:186
-#: ./application/modules/shop/admin/orderstatuses.php:189
-msgid "Such status does not exist"
-msgstr "Такой статус не существует"
 
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:173
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:365
@@ -6311,11 +6366,6 @@ msgstr "Точка с запятой"
 msgid "Tags"
 msgstr "Тэги"
 
-#: ./application/modules/shop/admin/templates/notifications/edit.tpl:57
-#: ./application/modules/shop/admin/templates/orders/_create.tpl:78
-msgid "Notify a buyer about the status change"
-msgstr "Уведомить покупателя об изменении статуса"
-
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:153
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:252
 msgid "Notified"
@@ -6349,10 +6399,6 @@ msgstr "Уведомление по электронной почте"
 msgid "Notifications"
 msgstr "Уведомления"
 
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:882
-msgid " Customer notification about the order status change"
-msgstr "Уведомления клиента об изменении статуса заказа"
-
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:27
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1197
 msgid "Notifications in pages"
@@ -6370,10 +6416,6 @@ msgstr "Уведомления покупателя о размещении за
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:257
 msgid "Notify"
 msgstr "Уведомлять"
-
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:379
-msgid "Info buyer about change status"
-msgstr "Уведомлять покупателя о смене статуса"
 
 #: ./templates/administrator/sys_update.tpl:139
 msgid "Deleting"
@@ -6450,15 +6492,6 @@ msgstr "Удаление способов доставки"
 msgid "Removal of payment methods"
 msgstr "Удаление способов оплаты"
 
-#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:6
-#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:18
-msgid "Removing status"
-msgstr "Удаление статуса"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:54
-msgid "Order status deleting"
-msgstr "Удаление статуса заказа"
-
 #: ./application/modules/admin/components.php:138
 msgid "Deleted a module"
 msgstr "Удаленный модуль"
@@ -6521,17 +6554,9 @@ msgstr "Удалить валюту"
 msgid "Remove currency?"
 msgstr "Удалить валюту?"
 
-#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:9
-msgid "Remove your status?"
-msgstr "Удалить ваш статус?"
-
 #: ./templates/administrator/widgets_list.tpl:6
 msgid "Widget delete"
 msgstr "Удалить виджет"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/_deleteWindow.tpl:28
-msgid "Delete all orders with this status"
-msgstr "Удалить все заказы с таким статусом"
 
 #: ./application/modules/shop/admin/templates/currencies/list.tpl:8
 msgid "Remove the selected currency?"
@@ -6720,14 +6745,6 @@ msgstr "Удалить способ доставки?"
 msgid "Delete method of payment?"
 msgstr "Удалить способ оплаты?"
 
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:57
-msgid "Delete order status(es)?"
-msgstr "Удалить статус заказа(ов)?"
-
-#: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:19
-msgid "Remove status?"
-msgstr "Удалить статус?"
-
 #: ./templates/administrator/pages_list.tpl:23
 msgid "Delete pages"
 msgstr "Удалить страницы"
@@ -6815,10 +6832,6 @@ msgstr "Успешное удаление"
 #: ./application/modules/admin/widgets_manager.php:214
 msgid "Set the directory access rights to continue the work with widgets"
 msgstr "Установите права доступа к каталогу, чтобы продолжить работу с виджетами"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/_deleteWindow.tpl:14
-msgid "Set another status for these orders"
-msgstr "Установить другой статус этих заказов"
 
 #: ./templates/administrator/module_table.tpl:38
 msgid "Install modules"
@@ -7050,10 +7063,6 @@ msgstr "Читать полностью"
 #: ./templates/administrator/inc/javascriptVars.tpl:9
 msgid "Something went wrong. URL access is not changed."
 msgstr "Что-то пошло не так. URL доступ не изменился."
-
-#: ./templates/administrator/inc/javascriptVars.tpl:8
-msgid "Something went wrong. Startup status is not changed."
-msgstr "Что-то пошло не так. Начальный статус не изминен."
 
 #: ./application/modules/admin/languages.php:74
 #: ./application/modules/admin/languages.php:256
