@@ -2,13 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2014-02-28 03:08+0400\n"
-"PO-Revision-Date: 2014-02-28 03:08+0400\n"
-=======
-"POT-Creation-Date: 2014-02-28 11:41+0200\n"
-"PO-Revision-Date: 2014-02-28 11:41+0200\n"
->>>>>>> 04bbe4474429a1c327c20458a9d1b83ea0c13a1e
+"POT-Creation-Date: 2014-02-28 03:30+0400\n"
+"PO-Revision-Date: 2014-02-28 03:30+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -23,9 +18,13 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:212
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:214
+msgid "Yes"
+msgstr "Да"
+
 #: ./application/modules/mod_discount/assets/admin/create.tpl:19
 msgid "Create and exit"
-<<<<<<< HEAD
 msgstr ""
 
 #: ./application/modules/mod_discount/classes/DiscountManager.php:269
@@ -46,12 +45,8 @@ msgstr "Количество << от >> не может быть больше, �
 msgid "Unlimit"
 msgstr "Неограничено"
 
-#: ./application/modules/mod_discount/assets/admin/list.tpl:67
 msgid "Unlimited"
-msgstr "Неограничено"
-=======
 msgstr "Создать и выйти"
->>>>>>> 04bbe4474429a1c327c20458a9d1b83ea0c13a1e
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:231
 msgid "ID / Name "
