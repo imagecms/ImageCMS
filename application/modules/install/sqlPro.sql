@@ -2123,6 +2123,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `discount` float(10,2) DEFAULT NULL,
   `discount_info` text,
   `origin_price` float(10,2) DEFAULT NULL,
+  `user_surname` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
   KEY `shop_orders_I_2` (`status`),
@@ -2135,24 +2136,24 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
 -- Дамп даних таблиці `shop_orders`
 --
 
-INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`, `discount`, `discount_info`, `origin_price`) VALUES
-(31, 'f409841g1b', 6, 0.00, 2, 1, 'Оксана', 'ad@min.com', '', '', '', 1296950400, 1296950400, '127.0.0.1', 1, 1, 62.18, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(32, 'vi653829e7', 6, 0.00, 2, NULL, 'Валентина', 'geg@g.com', '', '', '', 1311379200, 1311379200, '127.0.0.1', 6, 1, 68.80, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(30, 'w81299k2j2', 6, 0.00, 1, 1, 'Игор Петрович', 'ad@min.com', '', '', '', 1311638400, 1311638400, '127.0.0.1', 1, 3, 443.31, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 'g3x517u800', 6, 0.00, 1, 1, 'Игор Петрович', 'ad@min.com', '', '', '', 1309046400, 1309046400, '127.0.0.1', 1, 1, 58.89, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(28, '68176pt39h', 6, 0.00, 2, 0, 'Василий Пупкин', 'ad@min.com', '', '', '', 1299456000, 1299456000, '127.0.0.1', 1, 1, 35.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(33, '3zw82m7510', 6, 0.00, 2, NULL, 'Юлия', 'gola@go.go', '', '', '', 1296950400, 1296950400, '127.0.0.1', 7, 1, 45.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(34, 'p9334a80d9', 6, 0.00, 2, 1, 'Микола', 'hi@hello.com', '', '', '', 1301270400, 1301270400, '127.0.0.1', 8, 1, 372.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(35, '36f8u736h1', 6, 0.00, 1, 1, 'Петр', 'go@gmail.com', '', '', '', 1301443200, 1301443200, '127.0.0.1', 9, 1, 179.87, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(36, '00x41ly257', 7, 0.00, 1, 1, 'Петр', 'go@gmail.com', '', '', '', 1322611200, 1322611200, '127.0.0.1', 9, 4, 534.61, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(37, '64p2cy7539', 6, 0.00, 1, 1, 'Юрий', 'hell@hi.com', '', '', '', 1297036800, 1297036800, '127.0.0.1', 10, 1, 1032.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(38, '758mil1438', 6, 0.00, 2, 1, 'Артур', 'joker@g.com', '', '', '', 1322956800, 1322956800, '127.0.0.1', 11, 1, 500.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(39, '1l6f17647c', 6, 0.00, 2, 1, 'Роман', 'h@g.com', '', '', '', 1300492800, 1300492800, '127.0.0.1', 12, 1, 777.65, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(40, 'b04a24866n', 6, 0.00, 2, 1, 'Иван', 't@com.com', '', '', '', 1310169600, 1310169600, '127.0.0.1', 13, 1, 39.95, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(41, '1p4491f5m5', 6, 0.00, 2, 1, 'roman', 'hh@f.com', '', '', '', 1302134400, 1302134400, '127.0.0.1', 14, 1, 60.99, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(42, 'bx41g39564', 6, 0.00, 2, 1, 'Степа', 'w@go.com', '', '', '', 1306108800, 1306108800, '127.0.0.1', 15, 1, 42.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(43, 'd5fw278457', 5, 0.00, 2, 1, 'Катерина', 'd@com.ua', '', '', '', 1302048000, 1302048000, '127.0.0.1', 16, 2, 500.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(44, 'h82681tn83', 6, 0.00, 2, 1, 'Валерия', 'q@w.com', '', '', '', 1299196800, 1299196800, '127.0.0.1', 17, 1, 1178.99, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`, `discount`, `discount_info`, `origin_price`, `user_surname`) VALUES
+(31, 'f409841g1b', 6, 0.00, 2, 1, 'Оксана', 'ad@min.com', '', '', '', 1296950400, 1296950400, '127.0.0.1', 1, 1, 62.18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(32, 'vi653829e7', 6, 0.00, 2, NULL, 'Валентина', 'geg@g.com', '', '', '', 1311379200, 1311379200, '127.0.0.1', 6, 1, 68.80, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(30, 'w81299k2j2', 6, 0.00, 1, 1, 'Игор', 'ad@min.com', '', '', '', 1311638400, 1311638400, '127.0.0.1', 1, 3, 443.31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Петрович'),
+(29, 'g3x517u800', 6, 0.00, 1, 1, 'Игор', 'ad@min.com', '', '', '', 1309046400, 1309046400, '127.0.0.1', 1, 1, 58.89, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Петрович'),
+(28, '68176pt39h', 6, 0.00, 2, 0, 'Василий', 'ad@min.com', '', '', '', 1299456000, 1299456000, '127.0.0.1', 1, 1, 35.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Пупкин'),
+(33, '3zw82m7510', 6, 0.00, 2, NULL, 'Юлия', 'gola@go.go', '', '', '', 1296950400, 1296950400, '127.0.0.1', 7, 1, 45.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(34, 'p9334a80d9', 6, 0.00, 2, 1, 'Микола', 'hi@hello.com', '', '', '', 1301270400, 1301270400, '127.0.0.1', 8, 1, 372.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(35, '36f8u736h1', 6, 0.00, 1, 1, 'Петр', 'go@gmail.com', '', '', '', 1301443200, 1301443200, '127.0.0.1', 9, 1, 179.87, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(36, '00x41ly257', 7, 0.00, 1, 1, 'Петр', 'go@gmail.com', '', '', '', 1322611200, 1322611200, '127.0.0.1', 9, 4, 534.61, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(37, '64p2cy7539', 6, 0.00, 1, 1, 'Юрий', 'hell@hi.com', '', '', '', 1297036800, 1297036800, '127.0.0.1', 10, 1, 1032.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(38, '758mil1438', 6, 0.00, 2, 1, 'Артур', 'joker@g.com', '', '', '', 1322956800, 1322956800, '127.0.0.1', 11, 1, 500.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(39, '1l6f17647c', 6, 0.00, 2, 1, 'Роман', 'h@g.com', '', '', '', 1300492800, 1300492800, '127.0.0.1', 12, 1, 777.65, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(40, 'b04a24866n', 6, 0.00, 2, 1, 'Иван', 't@com.com', '', '', '', 1310169600, 1310169600, '127.0.0.1', 13, 1, 39.95, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(41, '1p4491f5m5', 6, 0.00, 2, 1, 'roman', 'hh@f.com', '', '', '', 1302134400, 1302134400, '127.0.0.1', 14, 1, 60.99, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(42, 'bx41g39564', 6, 0.00, 2, 1, 'Степа', 'w@go.com', '', '', '', 1306108800, 1306108800, '127.0.0.1', 15, 1, 42.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(43, 'd5fw278457', 5, 0.00, 2, 1, 'Катерина', 'd@com.ua', '', '', '', 1302048000, 1302048000, '127.0.0.1', 16, 2, 500.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(44, 'h82681tn83', 6, 0.00, 2, 1, 'Валерия', 'q@w.com', '', '', '', 1299196800, 1299196800, '127.0.0.1', 17, 1, 1178.99, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
