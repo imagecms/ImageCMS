@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 02:43+0200\n"
-"PO-Revision-Date: 2014-02-28 02:43+0200\n"
+"POT-Creation-Date: 2014-02-28 03:49+0200\n"
+"PO-Revision-Date: 2014-02-28 03:49+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -31,6 +31,11 @@ msgstr "Введите продукт, который находится в ба
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:212
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:214
+msgid "Yes"
+msgstr "Да"
+
 #: ./application/modules/mod_discount/classes/DiscountManager.php:269
 msgid "Has been already created with the cumulative discount value"
 msgstr "Уже создана накопительная скидка с таким значением"
@@ -49,7 +54,7 @@ msgstr "Количество << от >> не может быть больше, �
 msgid "Unlimit"
 msgstr "Неограничено"
 
-#: ./application/modules/mod_discount/assets/admin/list.tpl:67
+#: ./application/modules/mod_discount/assets/admin/create.tpl:231
 msgid "Unlimited"
 msgstr "Неограничено"
 
