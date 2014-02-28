@@ -11,6 +11,7 @@ $(document).ready(function() {
      */
     $('.discounts_table').find('span.prod-on_off').add($('[data-page="tovar"]')).on('click', function() {
         var discountId = $(this).attr('data-id');
+        changeEmtyActive();
         $.ajax({
             type: 'POST',
             data: 'id=' + discountId,
@@ -198,4 +199,32 @@ $(document).ready(function() {
 
         }
     });
+
+
+
+    /** Change active or not category*/
+    function changeEmtyActive() {
+      
+        $('.prod-on_off').live('click', function() {
+            var $this = $(this);
+            if (!$this.hasClass('disabled')) {
+                if ($this.hasClass('disable_tovar')) {
+
+                    $this.parent().attr('data-original-title', lang('No'))
+                    $('.tooltip-inner').text(lang('No'));
+
+                }
+                else {
+
+                    if ($this.parent().data('only-original-title') == undefined) {
+                        $this.parent().attr('data-original-title', lang('Yes'))
+
+                        $('.tooltip-inner').text(lang('Yes'));
+                    }
+                }
+
+            }
+        });
+    }
+
 })

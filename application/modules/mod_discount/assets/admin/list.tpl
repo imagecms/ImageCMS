@@ -69,7 +69,12 @@
                                         <td {if time()< (int)$discount['date_begin']}style="color: red;"{/if}>{echo date("Y-m-d", $discount['date_begin'])}</td>
                                         <td {if time()> (int)$discount['date_end'] && $discount['date_end'] != '0'}style="color: red;"{/if}>{if $discount['date_end'] != 0}{echo date("Y-m-d", $discount['date_end'])}{else:} - {/if}</td>
                                         <td>
-                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('show', 'mod_discount')}">
+                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="
+                                                 {if $discount['active'] == 1}
+                                                     {lang('Yes', 'mod_discount')}
+                                                 {else:}
+                                                     {lang('No', 'mod_discount')}
+                                                 {/if}">
                                                 {if $discount['active'] == 1}
                                                     <span class="prod-on_off" data-id="{echo $discount['id']}"></span>
                                                 {else:}
