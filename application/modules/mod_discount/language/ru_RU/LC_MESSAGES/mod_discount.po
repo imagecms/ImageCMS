@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-27 05:24+0200\n"
-"PO-Revision-Date: 2014-02-27 05:24+0200\n"
+"POT-Creation-Date: 2014-02-28 11:30+0200\n"
+"PO-Revision-Date: 2014-02-28 11:30+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,43 +18,43 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:51
-#: ./application/modules/mod_discount/classes/DiscountManager.php:81
-#: ./application/modules/mod_discount/classes/DiscountManager.php:111
-#: ./application/modules/mod_discount/classes/DiscountManager.php:140
-#: ./application/modules/mod_discount/classes/DiscountManager.php:169
+#: ./application/modules/mod_discount/assets/admin/create.tpl:231
+msgid "ID / Name "
+msgstr "ID / Имя"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:49
+#: ./application/modules/mod_discount/classes/DiscountManager.php:79
+#: ./application/modules/mod_discount/classes/DiscountManager.php:109
+#: ./application/modules/mod_discount/classes/DiscountManager.php:138
+#: ./application/modules/mod_discount/classes/DiscountManager.php:167
 msgid "Entity does not exists!"
 msgstr "Сущность не существует!"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:315
+#: ./application/modules/mod_discount/classes/DiscountManager.php:313
 msgid "Wrong type discount"
 msgstr "Неправильный тип скидки"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:318
+#: ./application/modules/mod_discount/classes/DiscountManager.php:316
 msgid "End value must be numeric"
-msgstr "Конечное значение должно быть числовым"
+msgstr "Конечноезначение должено быть числовым"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:321
-#: ./application/modules/mod_discount/classes/DiscountManager.php:324
+#: ./application/modules/mod_discount/classes/DiscountManager.php:319
+#: ./application/modules/mod_discount/classes/DiscountManager.php:322
 msgid "Begin value must be numeric"
 msgstr "Начальное значение должно быть числовым"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:327
+#: ./application/modules/mod_discount/classes/DiscountManager.php:325
 msgid "Max apply must be numeric"
-msgstr "Максимально число применений должено быть числовым"
+msgstr "Максимальное количество применений должено быть числовым"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:330
+#: ./application/modules/mod_discount/classes/DiscountManager.php:328
 msgid "Value must be numeric"
 msgstr "Значение должно быть числовым"
 
-#: ./application/modules/mod_discount/classes/DiscountManager.php:345
-#: ./application/modules/mod_discount/classes/DiscountManager.php:348
+#: ./application/modules/mod_discount/classes/DiscountManager.php:343
+#: ./application/modules/mod_discount/classes/DiscountManager.php:346
 msgid "Invalid type value!"
 msgstr "Недопустимый тип значения!"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:19
-msgid "Create and exit"
-msgstr "Создать и выйти"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:219
 msgid "Change child category"
