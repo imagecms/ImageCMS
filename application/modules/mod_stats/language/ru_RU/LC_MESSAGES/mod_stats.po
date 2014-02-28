@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 01:39+0400\n"
-"PO-Revision-Date: 2014-02-28 01:39+0400\n"
+"POT-Creation-Date: 2014-02-28 06:31+0200\n"
+"PO-Revision-Date: 2014-02-28 06:31+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/mod_stats/module_info.php:6
+msgid "Statistic"
+msgstr "Статистика"
 
 #: ./application/modules/mod_stats/assets/admin/include/left_block.tpl:54
 msgid "Save users attendance"
@@ -488,10 +492,6 @@ msgstr "Уникальные продукты"
 #: ./application/modules/mod_stats/assets/admin/main.tpl:106
 msgid "Search"
 msgstr "Всего товаров"
-
-#: ./application/modules/mod_stats/module_info.php:6
-msgid "Statistic"
-msgstr "Сумма"
 
 #: ./application/modules/mod_stats/classes/Orders.php:77
 msgid "All"
