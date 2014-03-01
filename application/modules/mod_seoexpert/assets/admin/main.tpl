@@ -207,6 +207,10 @@
                                                         <b>%price%</b> - {lang('Product price','mod_seoexpert')}<br/>
                                                         <b>%CS%</b> - {lang('Main currency','mod_seoexpert')}<br/>
                                                         <b>%p_xxxx%</b> - {lang('Displays the value of the property, instead of xxxx - id properties','mod_seoexpert')}<br/>
+                                                        <br/>
+                                                        {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
+                                                        <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
+                                                        <b>[1..6]</b> - {lang('Number case of word','mod_seoexpert')}<br/>
                                                     </div>
                                                     Meta-title:
                                                 </span>
@@ -227,6 +231,10 @@
                                                         <b>%price%</b> - {lang('Product price','mod_seoexpert')}<br/>
                                                         <b>%CS%</b> - {lang('Main currency','mod_seoexpert')}<br/>
                                                         <b>%p_xxxx%</b> - {lang('Displays the value of the property, instead of xxxx - id properties','mod_seoexpert')}<br/>
+                                                        <br/>
+                                                        {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
+                                                        <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
+                                                        <b>[1..6]</b> - {lang('Number case of word','mod_seoexpert')}<br/>
                                                     </div>
                                                     Meta-description:
                                                 </span>
@@ -304,6 +312,10 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <br/>
+                                                        {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
+                                                        <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
+                                                        <b>[1..6]</b> - {lang('Number case of word','mod_seoexpert')}<br/>
                                                     </div>
                                                     Meta-title:
                                                 </span>
@@ -321,6 +333,10 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <br/>
+                                                        {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
+                                                        <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
+                                                        <b>[1..6]</b> - {lang('Number case of word','mod_seoexpert')}<br/>
                                                     </div>
                                                     Meta-description:
                                                 </span>
@@ -399,6 +415,10 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <br/>
+                                                        {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
+                                                        <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
+                                                        <b>[1..6]</b> - {lang('Number case of word','mod_seoexpert')}<br/>
                                                     </div>
                                                     Meta-title:
                                                 </span>
@@ -416,6 +436,10 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <br/>
+                                                        {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
+                                                        <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
+                                                        <b>[1..6]</b> - {lang('Number case of word','mod_seoexpert')}<br/>
                                                     </div>
                                                     Meta-description:
                                                 </span>

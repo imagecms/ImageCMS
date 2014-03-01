@@ -92,7 +92,7 @@ class Admin extends BaseAdminController {
                 }
 
                 $this->load->library('lib_admin');
-                $this->lib_admin->log(lang("Send", 'group_mailer') . '(' . $counter['true'] . '/' . $counter['all'] . ')' . lang("users e-mail with a subject", 'group_mailer') . ')' . $_POST['subject']);
+                $this->lib_admin->log(lang("Sent", 'group_mailer') . ' (' . $counter['true'] . '/' . $counter['all'] . ') ' . lang("users e-mail with a subject", 'group_mailer') . ' - ' . $_POST['subject']);
                 $class = 'b';
                 if ($counter['true'] == $counter['all']) {
                     $class = 'g';

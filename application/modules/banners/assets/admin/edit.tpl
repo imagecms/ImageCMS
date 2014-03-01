@@ -89,6 +89,7 @@
 
                                             <a class="btn btn-small btn-success" onclick="$('#myModal').modal('show')">{lang('Create group', 'banners')}</a>
                                         </div>
+                                        <span class="help-block">{lang('Double click to deleting', 'banners')}</span>
                                     </div>
                                 </div>
 
@@ -108,7 +109,6 @@
                                     <label class="control-label" for="banner_type">{lang('Show in categories (select items)', 'banners')}:</label>
                                     <div class="controls">
                                         <select id="banner_type" onchange="autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')">
-
                                             <option value="default">--{lang('select essence', 'banners')}--</option>
                                             <option value="main">{lang('Main', 'banners')}</option>
                                             {if $is_shop}
@@ -118,17 +118,11 @@
                                             {/if}
                                             <option value="category">{lang('Pages categories', 'banners')}</option>
                                             <option value="page">{lang('Pages', 'banners')}</option>
-
-
                                         </select>
-                                        <div id="autodrop">
-                                        </div>
+                                        <div id="autodrop"></div>
 
                                     </div>
                                 </div>
-
-
-
 
                                 <div class="control-group">
                                     <label class="control-label">{lang('Active until', 'banners')}:</label>
@@ -152,18 +146,18 @@
                                         <div id="Img-preview" style="width: 400px;" >
                                             {if $banner['photo']}
                                                 <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 100px;">
-                                                        {/if}
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                        </div>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
-                                                        </div>
-                                                        </td>
-                                                        </tr>
-                                                        </tbody>
-                                                        </table>                               
-                                                        </form>
-                                                    <div id="elFinder"></div>
-                                                    </section>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>                               
+    </form>
+    <div id="elFinder"></div>
+</section>

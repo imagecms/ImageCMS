@@ -4,7 +4,7 @@ function ChangeBannerSliderActive(obj, id) {
             $(obj).addClass('disable_tovar').attr('rel', false);
         else
             $(obj).removeClass('disable_tovar').attr('rel', true);
-    })
+    });
 
 }
 
@@ -12,10 +12,10 @@ function DeleteSliderBanner() {
     var ids = new Array();
     $('[name=ids]:checked').each(function() {
         ids.push($(this).val());
-    })
+    });
     $.post('/admin/components/init_window/banners/delete', {id: JSON.stringify(ids)}, function() {
         window.location.reload()
-    })
+    });
 }
 
 function chckTplParam(el) {

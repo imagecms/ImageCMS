@@ -2,11 +2,11 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('SEO expert','mod_seoexpert')}</span>
+            <span class="title">{lang('Create meta-data for category','mod_seoexpert')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$ADMIN_URL}/admin/components/init_window/mod_seoexpert/productsCategories/{$locale}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
+                <a href="{$ADMIN_URL}/admin/components/init_window/mod_seoexpert/productsCategories/{$locale}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','mod_seoexpert')}</span></a>
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>{lang('Save','mod_seoexpert')}
                 </button>
@@ -16,7 +16,7 @@
     </div>
     <form method="post" action="/admin/components/init_window/mod_seoexpert/productCategoryCreate/{$locale}" enctype="multipart/form-data" id="createDiscountForm">
         <table class="table table-striped table-bordered table-condensed content_big_td module-cheep">
-            <thead><tr><th colspan="6">{lang('Create','mod_seoexpert')}</th></tr></thead>
+            <thead><tr><th colspan="6"><br/></th></tr></thead>
             <tbody>
                 <tr>
                     <td colspan="6">

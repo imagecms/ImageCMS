@@ -1,3 +1,20 @@
+<!-- Start. Remove block -->
+<div class="modal hide fade modal_del">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{lang('Delete categories','admin')}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{lang('Really delete selected categories?','admin')}</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/init_window/mod_seoexpert/ajaxDeleteProductCategories')" >{lang('Delete','admin')}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
+    </div>
+</div>
+<!-- End. Remove block -->
+
+
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
@@ -6,7 +23,8 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$ADMIN_URL}/admin/components/init_window/mod_seoexpert#shop" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
+                <a href="{$ADMIN_URL}/admin/components/init_window/mod_seoexpert#shop" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','mod_seoexpert')}</span></a>
+                <a class="btn btn-small btn-danger disabled action_on" id="del_in_search" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang('Delete','admin')}</a>
                 <a href="{$ADMIN_URL}/admin/components/init_window/mod_seoexpert/productCategoryCreate" class="btn btn-small btn-success">
                     <i class="icon-plus icon-white"></i>{lang('Add new category','mod_seoexpert')}
                 </a>
@@ -14,32 +32,51 @@
         </div>
     </div>
     {if $categories}
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table class="table table-striped table-bordered table-hover table-condensed content_big_td seoProductCategoriesTable">
             <thead>
                 <tr>
-                    <th class="span10">{lang('Category','mod_seoexpert')}</th>
+                    <th class="t-a_c span1">
+                        <span class="frame_label">
+                            <span class="niceCheck b_n">
+                                <input type="checkbox"/>
+                            </span>
+                        </span>
+                    </th>
+                    <th class="span10">{lang('Name category ','mod_seoexpert')}</th>
                     <th>{lang('Active','mod_seoexpert')}</th>
-                    <th>{lang('Only for empty Meta-tags','mod_seoexpert')}</th>
+                    <th>{lang('Use only for empty metadata','mod_seoexpert')}</th>
                 </tr>
             </thead>
             <tbody class="">
                 {foreach $categories as $category}
-                    <tr data-original-title="" >
+                    <tr data-id="{echo $category['id']}" class="simple_tr">
+                        <td class="t-a_c">
+                            <span class="frame_label">
+                                <span class="niceCheck b_n">
+                                    <input type="checkbox" name="ids" value="{echo $category['id']}" data-id="{echo $category['id']}"/>
+                                </span>
+                            </span>
+                        </td>
                         <td class="span8">
-                            <a href="productCategoryEdit/{$category['id']}">
+                            <a href="productCategoryEdit/{$category['id']}"data-rel="tooltip"
+                                       data-title="{lang('Editing','admin')}">
                                 {$category['name']}
                             </a>
                         </td>
+                        
                         <td>
-                            <div class="frame_prod-on_off">
-                                <span class="prod-on_off{if !$category['settings']['useProductPattern']} disable_tovar{/if}"></span>
-                                <input type="hidden" name="" value="{if $category['settings']['useProductPattern']}1{else:}0{/if}" data-val-on="1" data-val-off="0">
+                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('show','admin')}">
+                                <span class="prod-on_off{if !$category['active']} disable_tovar{/if} categorySeo" data-id="{echo $category['id']}"></span>
+                                <input type="hidden" name="" value="{if $category['active']}1{else:}0{/if}" data-val-on="1" data-val-off="0">
                             </div>
                         </td>
                         <td>
-                            <div class="frame_prod-on_off">
-                                <span class="prod-on_off{if !$category['settings']['useProductPatternForEmptyMeta']} disable_tovar{/if}"></span>
-                                <input type="hidden" name="" value="{if $category['settings']['useProductPatternForEmptyMeta']}1{else:}0{/if}" data-val-on="1" data-val-off="0">
+                            <div class="frame_prod-on_off" 
+                                        data-rel="tooltip" 
+                                        data-placement="top" 
+                                        data-original-title="{if $category['empty_meta']}{lang('Yes','admin')}{else:}{lang('No','admin')}{/if}">
+                                <span class="prod-on_off{if !$category['empty_meta']} disable_tovar{/if} emptyMetaSeo" data-id="{echo $category['id']}"></span>
+                                <input type="hidden" name="" value="{if $category['empty_meta']}1{else:}0{/if}" data-val-on="1" data-val-off="0">
                             </div>
                         </td>
                     </tr>

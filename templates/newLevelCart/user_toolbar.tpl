@@ -11,7 +11,7 @@
                 </li>
                 <li class="box-3">
                     <div class="btn-already-show{if $countSh} pointer{/if}">
-                        <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit">
+                        <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit" data-drop-filter="parents(.frame-user-toolbar).children(.frame-already-show)">
                             <span class="icon_arrow_down"></span>
                             <span class="text-view-list">
                                 <span class="text-el d_l_1">{lang("Просмотренные товары",'newLevel')}</span>
