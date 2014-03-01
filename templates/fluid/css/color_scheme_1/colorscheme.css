@@ -295,7 +295,7 @@ a:focus, a:active {color: #51d2ff;}
 /*/items*/
 
 /*decor-element*/
-.decor-element{left: 0;padding: 8px;margin-left: -8px;position: absolute;top: 0;width: 100%;height: 100%;z-index: -1;border-radius: 3px;}
+.decor-element{left: 0;padding: 8px 8px 4px;;margin-left: -8px;position: absolute;top: 0;width: 100%;height: 100%;z-index: -1;border-radius: 3px;}
 .animateListItems.table > li:hover .decor-element, .animateListItems.items-h-carousel > li:hover .decor-element{border-color: #0c9acb;background-color: #faf8f6;box-shadow: 0 3px 10px rgba(57, 93, 132, 0.2);background-color: #fff;}
 .animateListItems.table > li:hover .no-vis-table, .animateListItems.items-h-carousel > li:hover .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;}
 /*/decor-element*/
@@ -751,8 +751,6 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .btn-crumb .text-el{text-shadow: 0 1px #fff;}
 .btn-crumb a:hover .text-el{color: #01afeb;}
 
-.btn-compare{height: 20px;margin-bottom: 4px;}
-.btn-wish{height: 20px;margin-bottom: 4px;}
 .btn-comp-in .text-el, .btn-wish-in .text-el{color: #699200;}
 .btn-comp-in button:focus .text-el, .btn-wish-in button:focus .text-el{color: #85b901;}
 .btn-comp-in .d_l, .btn-wish-in .d_l{border-bottom: 0;text-decoration: underline;}
@@ -779,6 +777,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .special-proposition .icon_arrow_p{background-position: -140px 0;}
 .special-proposition .icon_arrow_n{background-position: -160px 0;}
 .icon_times{width: 20px;height: 20px;}
+.icon_wish{width: 14px;height: 12px;background-position: -180px 0;top: 1px;margin-right: 3px;}
 
 .icon_time, .icon_cleaner_buy{display: none;}
 
@@ -797,10 +796,8 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .icon_times_apply{position: absolute;right: 4px;top: 2px;color: #0c9acb !important;width: 9px;height: 9px;margin: 23px 0 0 23px;}
 .icon_times{color: #999;margin: 25px 0 0 23px;}
 .btn-toggle-toolbar .icon_times{color: #fff;margin-right: 4px;}
-.icon_wish, .icon_wish_list{color: #fff;margin: 14px 7px 0 13px;}
 .icon_compare, .icon_compare_list{color: #fff;margin: 18px 7px 0 15px;}
 .icon_compare{color: #3dadd4;top: 2px;}
-.icon_wish{color: #3dadd4;}
 .icon_already_show{color: #fff;margin: 6px 6px 0 4px;}
 .icon_home{color: #0c9acb;margin: 24px 4px 0 24px;}
 .icon_list_cat{color: #666;margin: 14px 0 0 14px;}
@@ -861,8 +858,8 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 
 /*not standart checkbox radio*/
 .frame-label:hover .niceCheck{}
-.niceCheck{float: left;position: relative;top: 1px;margin-right: 5px;}
-.niceCheck.active{}
+.niceCheck{float: left;position: relative;top: -1px;margin-right: 5px;width: 16px;height: 16px;background-position: -520px 0;}
+.niceCheck.active{background-position: -540px 0;}
 .niceCheck.disabled{}
 .niceCheck input, .niceRadio input{display: none;}
 .b_n.niceCheck, .b_n.niceRadio{background: none;}

@@ -119,12 +119,12 @@ $.dropInit.prototype.extendDrop = function() {
                     }
 
                     if (drp.dropContent) {
-                        var el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':visible');
+                        var el = drop.find($(drp.dropContent)).filter(':visible');
 
                         if (el.data('jsp'))
                             el.data('jsp').destroy()
 
-                        el = drop.find($(drp.dropContent).add($($.drop.dPP.dropContent))).filter(':visible').css({'height': ''});
+                        el = drop.find($(drp.dropContent)).filter(':visible').css({'height': ''});
 
                         if ($.existsN(el)) {
                             var refer = drp.elrun;
@@ -145,7 +145,7 @@ $.dropInit.prototype.extendDrop = function() {
                             var dropH = drop.outerHeight(),
                                     dropHm = drop.height();
 
-                            var footerHeader = drop.find($(drp.dropHeader).add($($.drop.dPP.dropHeader))).outerHeight() + drop.find($(drp.dropFooter).add($($.drop.dPP.dropFooter))).outerHeight();
+                            var footerHeader = drop.find($(drp.dropHeader)).outerHeight() + drop.find($(drp.dropFooter)).outerHeight();
 
                             if (drp.place == 'noinherit') {
                                 var mayHeight = 0,
@@ -220,37 +220,33 @@ $.dropInit.prototype.extendDrop = function() {
         },
         scroll: {
             create: function() {
-                var dur = $.drop.dP.durationOn;
-                try {
-                    clearInterval($.drop.dP.scrollemulatetimeout);
-                } catch (err) {
-                }
-                setTimeout(function() {
-                    if (!isTouch) {
-                        body.addClass('isScroll').css({
-                            'overflow': 'hidden',
-                            'margin-right': $.drop.widthScroll,
-                            'margin-left': 1
-                        });
-                        //$('html').css('overflow', 'hidden');
-                        body.prepend('<div class="scrollEmulation" style="position: fixed;right: 0;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"><div style="width: 1px;height: ' + $.drop.dP.curDrop.height() + 'px;"></div></div>');
-                        $('.scrollEmulation').off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function() {
-                            $.drop.dP.curDrop.data('drp').forCenter.scrollTop($(this).scrollTop());
-                        });
-
-                    }
-                    if (isTouch)
-                        $('.for-center').on('touchmove.' + $.drop.nS, function(e) {
-                            return false;
-                        });
-                    $(document).trigger({
-                        'type': 'scrollEmulate.' + $.drop.nS
+                if (!isTouch) {
+                    body.addClass('isScroll').css({
+                        'overflow': 'hidden',
+                        'margin-right': $.drop.widthScroll,
+                        'margin-left': 1
                     });
-                }, dur);
+                    body.prepend('<div class="scrollEmulation" style="position: fixed;right: 0;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"><div style="width: 1px;height: ' + $.drop.drp.curDrop.height() + 'px;"></div></div>');
+                    $('.scrollEmulation').off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function() {
+                        $.drop.drp.curDrop.data('drp').forCenter.scrollTop($(this).scrollTop());
+                    });
+
+                }
+                if (isTouch)
+                    $('.for-center').on('touchmove.' + $.drop.nS, function(e) {
+                        return false;
+                    });
+                $(document).trigger({
+                    'type': 'scrollEmulate.' + $.drop.nS
+                });
             },
             remove: function() {
-                var dur = $.drop.dP.durationOff;
-                $.drop.dP.scrollemulatetimeout = setTimeout(function() {
+                var condOverlay = true;
+                $('[data-elrun]:visible').each(function() {
+                    if ($(this).data('drp').overlayOpacity === 0)
+                        condOverlay = false;
+                });
+                if (!condOverlay || !$.exists('[data-elrun]:visible')) {
                     body.removeClass('isScroll').css({
                         'overflow': '',
                         'margin-right': '',
@@ -263,7 +259,7 @@ $.dropInit.prototype.extendDrop = function() {
                     $(document).trigger({
                         'type': 'scrollEmulateRemove.' + $.drop.nS
                     });
-                }, dur);
+                }
             }
         },
         galleries: function($this, set, methods) {
@@ -276,12 +272,12 @@ $.dropInit.prototype.extendDrop = function() {
                         prev = elSet.prev || set.prev,
                         cycle = elSet.cycle || set.cycle,
                         rel = relO.replace(/[^a-zA-Z0-9]+/ig, ''),
-                        relA = $.drop.dP.galleries[rel],
+                        relA = $.drop.drp.galleries[rel],
                         drop = $('[data-elrun][data-rel="' + rel + '"]');
 
                 if (relA !== undefined) {
                     var relL = relA.length,
-                            relP = $.inArray(source ? source : drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).find('img').attr('src'), relA);
+                            relP = $.inArray(source ? source : drop.find($(methods._checkProp(elSet, set, 'placePaste'))).find('img').attr('src'), relA);
                     $(prev).add($(next)).hide().attr('disabled', 'disabled');
                     if (relP >= 0 && relP !== relL - 1)
                         $(next).show().removeAttr('disabled');

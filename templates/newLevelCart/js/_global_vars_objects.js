@@ -71,7 +71,7 @@ var optionsCycle = {
 };
 var optionsDrop = {
     overlayColor: '#000',
-    overlayOpacity: '0.6',
+    overlayOpacity: 0.6,
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
     durationOff: 500,
@@ -89,7 +89,9 @@ var optionsDrop = {
     scroll: true,
     limitSize: true,
     limitContentSize: true,
-    scrollContent: true
+    scrollContent: true,
+    keyNavigate: true,
+    cycle: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',

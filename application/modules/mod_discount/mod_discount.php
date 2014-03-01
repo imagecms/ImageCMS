@@ -51,7 +51,7 @@ class Mod_discount extends \MY_Controller {
                 $this->applyGift();
         }
     }
-    
+
     /**
      * apply discount to Cart Items
      * @access private
@@ -97,6 +97,7 @@ class Mod_discount extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     private function applyResultDiscount() {
+        \mod_discount\classes\BaseDiscount::prepareOption(array('reBuild' => 1));
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
 
         if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {

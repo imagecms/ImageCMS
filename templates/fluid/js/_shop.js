@@ -15,7 +15,6 @@ var Shop = {
     Cart: {
         baseUrl: siteUrl + 'shop/cart/api/',
         xhr: {
-            
         },
         add: function(obj, id, kit) {
             var method = kit ? 'addKit' : 'addProductByVariantId';
@@ -24,9 +23,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            if (this.xhr['add'+id])
-                this.xhr['add'+id].abort();
-            this.xhr['add'+id] = $.ajax({
+            if (this.xhr['add' + id])
+                this.xhr['add' + id].abort();
+            this.xhr['add' + id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': obj,
@@ -49,9 +48,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            if (this.xhr['remove'+id])
-                this.xhr['remove'+id].abort();
-            this.xhr['remove'+id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
+            if (this.xhr['remove' + id])
+                this.xhr['remove' + id].abort();
+            this.xhr['remove' + id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
                 $(document).trigger({
                     'type': 'remove.Cart',
                     'datas': data,
@@ -67,16 +66,16 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            if (this.xhr['amount'+id])
-                this.xhr['amount'+id].abort();
-            this.xhr['amount'+id] = $.ajax({
+            if (this.xhr['amount' + id])
+                this.xhr['amount' + id].abort();
+            this.xhr['amount' + id] = $.ajax({
                 'type': 'post',
                 'url': this.baseUrl + 'getAmountInCart',
                 'data': {
                     'id': id,
                     'instance': kit ? 'ShopKit' : 'SProducts'
                 },
-                success: function(data){
+                success: function(data) {
                     $(document).trigger({
                         'type': 'getAmount.Cart',
                         'kit': kit,
@@ -95,9 +94,9 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            if (this.xhr['count'+id])
-                this.xhr['count'+id].abort();
-            this.xhr['count'+id] = $.ajax({
+            if (this.xhr['count' + id])
+                this.xhr['count' + id].abort();
+            this.xhr['count' + id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': {
@@ -158,7 +157,7 @@ var Shop = {
         },
         composeCartItem: function($context) {
             var cartItem = {},
-            data = $context.data();
+                    data = $context.data();
             for (var i in data)
                 cartItem[i] = data[i]
             return cartItem;
@@ -187,14 +186,9 @@ var Shop = {
                         });
                         returnMsg("=== add Compare Item. call compare_list_add ===");
                     }
-                    else{
+                    else {
                         returnMsg("=== Error. add Compare ===");
                         $(document).trigger('hideActivity');
-                    }
-                    try {
-                        var dataObj = JSON.parse(data);
-                        
-                    } catch (e) {
                     }
                 });
             }
@@ -221,7 +215,7 @@ var Shop = {
                         });
                         returnMsg("=== remove Compare Item. call compare_list_rm ===");
                     }
-                    else{
+                    else {
                         returnMsg("=== Error. remove Compare Item ===");
                         $(document).trigger('hideActivity');
                     }
@@ -372,9 +366,9 @@ var ImageCMSApi = {
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                        form = $this.closest('form'),
-                        $thisТ = $this.attr('name'),
-                        elMsg = form.find('[for=' + $thisТ + ']');
+                                form = $this.closest('form'),
+                                $thisТ = $this.attr('name'),
+                                elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.remove();
