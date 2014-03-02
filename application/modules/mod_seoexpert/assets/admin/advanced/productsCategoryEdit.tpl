@@ -11,6 +11,10 @@
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>{lang('Save','mod_seoexpert')}
                 </button>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#createDiscountForm" data-action="close">
+                    <i class="icon-check"></i>
+                    {lang('Save and exit', 'admin')}
+                </button>
                 {echo create_language_select($languages, $locale, "/admin/components/init_window/mod_seoexpert/productCategoryEdit/".$categoryId)}
             </div>
         </div>
@@ -23,14 +27,14 @@
                     <td colspan="6">
                         <div class="inside_padd discount-out">
                             <div class="form-horizontal">
-                                        <input id="autocomleteCategory" type="hidden" 
-                                               autocomplete="off" 
-                                               name='categoryNameTMP' 
-                                               readonly="readonly"
-                                               value="{if $category['settings']['categoryNameTMP']}{$category['settings']['categoryNameTMP']}{else:}{$categoryDef['name']}{/if}" />
-                                        <input id="autocomleteCategoryId" type="hidden" 
-                                               name='category_id' 
-                                               value="{$categoryId}" />
+                                <input id="autocomleteCategory" type="hidden" 
+                                       autocomplete="off" 
+                                       name='categoryNameTMP' 
+                                       readonly="readonly"
+                                       value="{if $category['settings']['categoryNameTMP']}{$category['settings']['categoryNameTMP']}{else:}{$categoryDef['name']}{/if}" />
+                                <input id="autocomleteCategoryId" type="hidden" 
+                                       name='category_id' 
+                                       value="{$categoryId}" />
                                 <label class="">
                                     <span class="span4">
                                         <span data-title="Variables, can use to:" class="popover_ref" data-original-title="">
