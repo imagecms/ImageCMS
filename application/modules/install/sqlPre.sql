@@ -2244,6 +2244,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `discount` float(10,2) DEFAULT NULL,
   `discount_info` text,
   `origin_price` float(10,2) DEFAULT NULL,
+  `user_surname` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
   KEY `shop_orders_I_2` (`status`),
@@ -5833,7 +5834,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VAL
 (481, 'Widgets_manager::get', 59, NULL),
 (482, 'Widgets_manager::edit_html_widget', 59, NULL),
 (483, 'Widgets_manager::edit_module_widget', 59, NULL),
-(484, 'Widgets_manager::display_create_tpl', 59, NULL);
+(484, 'Widgets_manager::display_create_tpl', 59, NULL),
+(485, 'ShopAdminProducts::get_images', '19', NULL);
 
 -- --------------------------------------------------------
 
@@ -6327,7 +6329,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
 (482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
-(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
+(485, 'Поиск картинок', NULL , 'ru' );
 
 -- --------------------------------------------------------
 

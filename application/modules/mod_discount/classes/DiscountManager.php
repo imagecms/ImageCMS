@@ -263,6 +263,11 @@ class DiscountManager extends \MY_Controller {
 
         $typeDiscount = $postArray['type_discount'];
         $typeDiscountTableName = 'mod_discount_' . $typeDiscount;
+     
+        // Check range for cumulative discount
+        if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
+            return array('success' => false, 'error' => array(lang('Has been already created with the cumulative discount value','mod_discount')));
+        }
 
         $data = array(
             'key' => $postArray['key'],

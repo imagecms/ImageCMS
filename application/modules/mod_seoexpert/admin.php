@@ -89,7 +89,7 @@ class Admin extends \BaseAdminController {
 
                 // Show message about result
                 if ($this->seoexpert_model_products->setProductCategory($categoryId, $data, $locale) != FALSE) {
-                    showMessage(lang("Successfully created", "mod_seoexpert"));
+                    showMessage(lang("Changes saved", "mod_seoexpert"));
                     pjax('/admin/components/init_window/mod_seoexpert/productsCategories');
                 } else {
                     showMessage(lang("Can not create", "mod_seoexpert"), '', 'r');
@@ -135,7 +135,11 @@ class Admin extends \BaseAdminController {
                 unset($data['action']);
                 // Show message about result
                 if ($this->seoexpert_model_products->setProductCategory($categoryId, $data, $locale) != FALSE) {
-                    showMessage(lang("Successfully created", "mod_seoexpert"));
+                    showMessage(lang("Changes saved", "mod_seoexpert"));
+                    $action = $_POST['action'];
+                    if ($action == 'close') {
+                        pjax('/admin/components/init_window/mod_seoexpert/productsCategories');
+                    }
                 } else {
                     showMessage(lang("Can not create", "mod_seoexpert"), '', 'r');
                 }
@@ -174,7 +178,7 @@ class Admin extends \BaseAdminController {
         unset($shopSettings['base']);
 
         if ($this->seoexpert_model->setSettings($shopSettings, $locale))
-            showMessage('Сохранено!');
+            showMessage(lang("Changes saved", "mod_seoexpert"));
     }
 
     /**
@@ -198,10 +202,9 @@ class Admin extends \BaseAdminController {
         if (!$id) {
             return FALSE;
         }
-        if ($this->seoexpert_model_products->changeActiveCategory($id)){
+        if ($this->seoexpert_model_products->changeActiveCategory($id)) {
             echo 'true';
         }
-        
     }
 
     public function ajaxChangeEmptyMetaCategory() {
@@ -209,7 +212,7 @@ class Admin extends \BaseAdminController {
         if (!$id) {
             return FALSE;
         }
-        if ($this->seoexpert_model_products->changeEmptyMetaCategory($id)){
+        if ($this->seoexpert_model_products->changeEmptyMetaCategory($id)) {
             echo 'true';
         }
     }

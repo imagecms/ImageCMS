@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-27 06:49+0400\n"
-"PO-Revision-Date: 2014-02-27 06:49+0400\n"
+"POT-Creation-Date: 2014-02-28 02:30+0400\n"
+"PO-Revision-Date: 2014-02-28 02:30+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,12 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: ../../..\n"
+
+#: ./application/modules/mod_seoexpert/admin.php:92
+#: ./application/modules/mod_seoexpert/admin.php:138
+#: ./application/modules/mod_seoexpert/admin.php:177
+msgid "Changes saved"
+msgstr "Изменения сохранены"
 
 #: ./application/modules/mod_seoexpert/assets/admin/main.tpl:211
 #: ./application/modules/mod_seoexpert/assets/admin/main.tpl:235
@@ -153,11 +159,6 @@ msgstr "Переменные, которые можно использовать
 #: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:20
 msgid "Category"
 msgstr "Категория"
-
-#: ./application/modules/mod_seoexpert/admin.php:92
-#: ./application/modules/mod_seoexpert/admin.php:138
-msgid "Successfully created"
-msgstr "Успешно создана"
 
 #: ./application/modules/mod_seoexpert/assets/admin/main.tpl:5
 #: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:5

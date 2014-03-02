@@ -121,6 +121,12 @@ class Admin extends \ShopAdminController {
 
                 //Prepare data for inserting in the table of selected discount type
                 $typeDiscountData = $postArray[$typeDiscount];
+                
+                // Check range for cumulative discount
+                if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
+                    showMessage(lang('Has been already created with the cumulative discount value','mod_discount'), '', 'r');
+                    return ;
+                }
 
                 // Insert data
                 if ($this->discount_model_admin->updateDiscountById($id, $data, $typeDiscountData, $locale)) {

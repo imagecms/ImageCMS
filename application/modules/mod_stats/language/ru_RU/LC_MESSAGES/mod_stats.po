@@ -1,9 +1,9 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:25+0200\n"
-"PO-Revision-Date: 2013-12-26 01:25+0200\n"
+"POT-Creation-Date: 2014-02-28 06:31+0200\n"
+"PO-Revision-Date: 2014-02-28 06:31+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,262 +18,486 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/mod_stats/models/stats_model_urls.php:38
-msgid "Guest"
-msgstr "Гость"
+#: ./application/modules/mod_stats/module_info.php:6
+msgid "Statistic"
+msgstr "Статистика"
 
-#: ./application/modules/mod_stats/assets/admin/main.tpl:147
-msgid "save page URLs"
-msgstr "сохранить Url-адреса страницы"
+#: ./application/modules/mod_stats/assets/admin/include/left_block.tpl:54
+msgid "Save users attendance"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/left_block.tpl:61
+msgid "Save robotss attendance"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:53
+msgid "Count of purchases"
+msgstr "Количество покупок"
+
+#: ./application/modules/mod_stats/include/left_menu.php:73
+msgid "Product's categories"
+msgstr ""
+
+#: ./application/modules/mod_stats/include/left_menu.php:73
+msgid "Product"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/categories/attendance.tpl:12
+#: ./application/modules/mod_stats/assets/admin/categories/brandsInCategories.tpl:12
+#: ./application/modules/mod_stats/assets/admin/orders/charts.tpl:21
+#: ./application/modules/mod_stats/assets/admin/orders/statuses.tpl:13
+#: ./application/modules/mod_stats/assets/admin/products/brands.tpl:12
+#: ./application/modules/mod_stats/assets/admin/products/categories.tpl:12
+#: ./application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:12
+#: ./application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:12
+#: ./application/modules/mod_stats/assets/admin/users/attendance.tpl:13
+#: ./application/modules/mod_stats/assets/admin/users/registered.tpl:13
+msgid "Save Image"
+msgstr "Сохранить как изображение"
+
+#: ./application/modules/mod_stats/assets/admin/categories/brandsInCategories.tpl:21
+#: ./application/modules/mod_stats/assets/admin/orders/charts.tpl:18
+#: ./application/modules/mod_stats/assets/admin/orders/statuses.tpl:23
+#: ./application/modules/mod_stats/assets/admin/products/brands.tpl:21
+#: ./application/modules/mod_stats/assets/admin/products/categories.tpl:21
+#: ./application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:21
+#: ./application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:21
+msgid "No chart data for displaying"
+msgstr "Нет данных"
+
+#: ./application/modules/mod_stats/assets/admin/include/left_block.tpl:34
+msgid "Settings"
+msgstr "Настройки"
+
+#: ./application/modules/mod_stats/assets/admin/include/left_block.tpl:40
+msgid "Save search results"
+msgstr "Сохранять результаты поиска"
+
+#: ./application/modules/mod_stats/assets/admin/include/left_block.tpl:47
+msgid "Save autocomplete search results"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form.tpl:5
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:5
+#: ./application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:5
+#: ./application/modules/mod_stats/assets/admin/include/top_form_min.tpl:5
+#: ./application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:6
+#: ./application/modules/mod_stats/assets/admin/include/top_form_search.tpl:5
+#: ./application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:5
+msgid "Last month"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form.tpl:6
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:6
+#: ./application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:6
+#: ./application/modules/mod_stats/assets/admin/include/top_form_min.tpl:6
+#: ./application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:7
+#: ./application/modules/mod_stats/assets/admin/include/top_form_search.tpl:6
+#: ./application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:6
+msgid "Last year"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form.tpl:19
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:20
+#: ./application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:20
+#: ./application/modules/mod_stats/assets/admin/include/top_form_min.tpl:20
+#: ./application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:21
+#: ./application/modules/mod_stats/assets/admin/include/top_form_search.tpl:19
+#: ./application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:19
+msgid "to"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form.tpl:27
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:28
+#: ./application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:28
+#: ./application/modules/mod_stats/assets/admin/include/top_form_min.tpl:28
+#: ./application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:29
+#: ./application/modules/mod_stats/assets/admin/include/top_form_robots.tpl:17
+#: ./application/modules/mod_stats/assets/admin/include/top_form_search.tpl:27
+#: ./application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:27
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:96
+msgid "OK"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form.tpl:41
+#: ./application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:41
+msgid "View"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form.tpl:43
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:64
+msgid "Table"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form.tpl:44
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:68
+msgid "Chart"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:48
+msgid "Include childs"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:7
+#: ./application/modules/mod_stats/assets/admin/users/history.tpl:12
+msgid "Category"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:25
+#: ./application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:15
+#: ./application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:20
+#: ./application/modules/mod_stats/assets/admin/include/top_form_search.tpl:49
+msgid "Pie char"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:26
+#: ./application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:16
+#: ./application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:21
+#: ./application/modules/mod_stats/assets/admin/include/top_form_search.tpl:50
+msgid "Bar char"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:7
+msgid "Show top brands count"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:7
+msgid "Choose Category:"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:10
+#: ./application/modules/mod_stats/controllers/CategoriesController.php:42
+msgid "First level categories"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/include/top_form_robots.tpl:21
+msgid "Robots:"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/info.tpl:22
+#: ./application/modules/mod_stats/assets/admin/orders/users.tpl:36
+msgid "Orders count"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/info.tpl:46
+#: ./application/modules/mod_stats/assets/admin/orders/statuses.tpl:51
+msgid "There are no orders for specified period"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/users.tpl:26
+msgid "User"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/users.tpl:46
+msgid "Paid count"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/users.tpl:56
+msgid "Unpaid count"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/users.tpl:66
+msgid "Delivered count"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/users.tpl:86
+msgid "Total sum"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/users.tpl:96
+msgid "Unique products count"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/orders/users.tpl:106
+msgid "Total products count"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:23
+msgid "ID"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:33
+msgid "Name"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:63
+msgid "Views"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:111
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:127
+msgid "go to the website"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:117
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:133
+msgid "Editing"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:162
+#: ./application/modules/mod_stats/include/left_menu.php:108
+msgid "No results"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/search/keywords.tpl:39
+#: ./application/modules/mod_stats/assets/admin/search/noResults.tpl:42
+msgid "There are no keywords searched for specified period"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/start.tpl:18
+msgid "Unique visitors count (all time)"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/start.tpl:22
+msgid "Count of robots (all time)"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/start.tpl:26
+msgid "Count of redirects from search engines"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/start.tpl:27
+#: ./application/modules/mod_stats/assets/admin/start.tpl:31
+#: ./application/modules/mod_stats/assets/admin/start.tpl:39
+msgid "No data"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/start.tpl:30
+msgid "Count of redirects from other sites"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/start.tpl:34
+msgid "Last viewed page"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/attendance.tpl:31
+msgid "Count of unique visitors (registered + unregistered)"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/attendance.tpl:45
+msgid "There are no attendance for specified period"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/history.tpl:9
+#: ./application/modules/mod_stats/assets/admin/users/robots_attendance.tpl:23
+msgid "Page"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/history.tpl:15
+msgid "Shop category"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/history.tpl:30
+msgid "Max 200 rows"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/online.tpl:20
+msgid "Id"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/online.tpl:21
+msgid "Username"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/online.tpl:22
+msgid "Email"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/online.tpl:23
+msgid "Last activity"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/online.tpl:24
+msgid "Last page"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/online.tpl:45
+msgid "There are no users online"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/registered.tpl:31
+msgid "Count registrations"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/registered.tpl:45
+msgid "There are no registrations for specified period"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/robots_attendance.tpl:22
+msgid "Time"
+msgstr ""
+
+#: ./application/modules/mod_stats/assets/admin/users/robots_attendance.tpl:42
+msgid "There are no data for specified period"
+msgstr ""
+
+#: ./application/modules/mod_stats/controllers/ProductsController.php:155
+msgid "Next"
+msgstr ""
+
+#: ./application/modules/mod_stats/controllers/ProductsController.php:156
+msgid "Prev"
+msgstr ""
+
+#: ./application/modules/mod_stats/include/left_menu.php:9
+msgid "Sum and count charts"
+msgstr ""
+
+#: ./application/modules/mod_stats/include/left_menu.php:14
+msgid "Collected info"
+msgstr ""
+
+#: ./application/modules/mod_stats/include/left_menu.php:19
+msgid "By users"
+msgstr ""
+
+#: ./application/modules/mod_stats/include/left_menu.php:45
+msgid "Robots attendance"
+msgstr ""
+
+#: ./application/modules/mod_stats/include/left_menu.php:77
+msgid "Categories attendance"
+msgstr ""
+
+#: ./application/modules/mod_stats/include/left_menu.php:103
+msgid "Categories in search results"
+msgstr ""
 
 #: ./application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:9
 #: ./application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:9
 msgid "Quantity of words"
-msgstr "Количество слов"
-
-#: ./application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:19
-#: ./application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:19
-msgid "Consider the current language"
-msgstr "Рассмотрим текущий язык"
+msgstr ""
 
 #: ./application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:26
 #: ./application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:26
 msgid "Count of results"
-msgstr "Подсчет результатов"
-
-#: ./application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:38
-#: ./application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:38
-msgid "Starting the analysis"
-msgstr "Начинается анализ"
-
-#: ./application/modules/mod_stats/assets/admin/users/online.tpl:24
-msgid "No online users"
-msgstr "Нет пользователей онлайн"
+msgstr ""
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:5
 msgid "Stats"
-msgstr "Статистика"
+msgstr ""
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:9
 msgid "Back"
-msgstr "Назад"
+msgstr ""
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:18
 #: ./application/modules/mod_stats/assets/admin/orders/info.tpl:5
 msgid "Orders"
-msgstr "Заказы"
+msgstr "Количество слов"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:23
 #: ./application/modules/mod_stats/assets/admin/search/keywordsSearched.tpl:6
 msgid "Count"
-msgstr "Количество"
+msgstr "Подсчет результатов"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:28
 msgid "Price"
-msgstr "Цена"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:33
-msgid "Information"
-msgstr "Информация"
+msgstr "Статистика"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:40
 msgid "Users"
-msgstr "Пользователи"
+msgstr "Назад"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:45
 msgid "Online"
-msgstr "Онлайн"
+msgstr "Заказы"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:50
 msgid "Registered"
-msgstr "Зарегистирование"
+msgstr "Количество"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:55
 msgid "Attendance"
-msgstr "Посещаемость"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:60
-msgid "User information"
-msgstr "Информация пользователя"
+msgstr "Цена"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:67
 msgid "Products"
-msgstr "Продукты"
+msgstr "Пользователи"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:72
 msgid "Categories"
-msgstr "Категории"
+msgstr "Онлайн"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:77
 msgid "Brands"
-msgstr "Бренды"
+msgstr "Зарегистирование"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:82
 msgid "Product information"
-msgstr "Информация товара"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:94
-msgid "Most visited"
-msgstr "Самые посещаемые"
+msgstr "Посещаемость"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:99
 msgid "Brands in category"
-msgstr "Бренды в категориях"
+msgstr "Продукты"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:111
 msgid "Searched keywords"
-msgstr "Ключи поиска"
+msgstr "Категории"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:116
 msgid "Brands in search results"
-msgstr "Бренды в результатах поиска"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:133
-msgid "Settings:"
-msgstr "Настройки:"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:140
-msgid "save search results"
-msgstr "сохранить результы поиска"
+msgstr "Бренды"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:155
 #: ./application/modules/mod_stats/assets/admin/main.tpl:182
 msgid "day"
-msgstr "день"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:156
-#: ./application/modules/mod_stats/assets/admin/main.tpl:183
-msgid "week"
-msgstr "неделя"
+msgstr "Информация товара"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:157
 #: ./application/modules/mod_stats/assets/admin/main.tpl:184
 msgid "month"
-msgstr "месяц"
+msgstr "Бренды в категориях"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:158
 #: ./application/modules/mod_stats/assets/admin/main.tpl:185
 msgid "year"
-msgstr "год"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:161
-msgid "From:"
-msgstr "От:"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:168
-msgid "To:"
-msgstr "До:"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:179
-msgid "Group by:"
-msgstr "Группировать по:"
+msgstr "Ключи поиска"
 
 #: ./application/modules/mod_stats/assets/admin/search/keywordsSearched.tpl:5
 msgid "Key"
-msgstr "Ключ"
+msgstr "Бренды в результатах поиска"
 
 #: ./application/modules/mod_stats/assets/admin/search/keywordsSearched.tpl:7
 msgid "Date"
-msgstr "Дата"
-
-#: ./application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:53
-#: ./application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:53
-#: ./application/modules/mod_stats/assets/admin/categories/brandsInCategories.tpl:17
-#: ./application/modules/mod_stats/assets/admin/products/categories.tpl:37
-#: ./application/modules/mod_stats/assets/admin/products/brands.tpl:3
-#: ./application/modules/mod_stats/assets/admin/users/information.tpl:34
-msgid "pie"
-msgstr "круг"
-
-#: ./application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:54
-#: ./application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:54
-#: ./application/modules/mod_stats/assets/admin/categories/brandsInCategories.tpl:18
-#: ./application/modules/mod_stats/assets/admin/products/categories.tpl:38
-#: ./application/modules/mod_stats/assets/admin/products/brands.tpl:4
-#: ./application/modules/mod_stats/assets/admin/users/information.tpl:35
-msgid "bar"
-msgstr "колонки"
+msgstr "день"
 
 #: ./application/modules/mod_stats/assets/admin/orders/info.tpl:4
 msgid "Period"
-msgstr "Период"
+msgstr "месяц"
 
 #: ./application/modules/mod_stats/assets/admin/orders/info.tpl:6
 msgid "Unique products"
-msgstr "Уникальные продукты"
+msgstr "год"
 
 #: ./application/modules/mod_stats/assets/admin/orders/info.tpl:7
 msgid "Total products"
-msgstr "Всего товаров"
+msgstr "Ключ"
 
 #: ./application/modules/mod_stats/assets/admin/orders/info.tpl:8
 msgid "Sum"
-msgstr "Сумма"
+msgstr "Дата"
 
 #: ./application/modules/mod_stats/assets/admin/orders/paid.tpl:1
 #: ./application/modules/mod_stats/classes/Orders.php:57
 #: ./application/modules/mod_stats/classes/Orders.php:81
 msgid "Paid"
-msgstr "Оплаченый"
-
-#: ./application/modules/mod_stats/assets/admin/products/categories.tpl:3
-msgid "Select categories"
-msgstr "Вибрать категорию"
+msgstr "Период"
 
 #: ./application/modules/mod_stats/assets/admin/products/categories.tpl:27
 #: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:11
 msgid "Show"
-msgstr "Показывать"
-
-#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:2
-msgid "Product / ID"
-msgstr "Продукт / ID"
-
-#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:19
-msgid "Product name"
-msgstr "Название товара"
-
-#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:20
-msgid "Count of purchasses"
-msgstr "Количество покупок"
-
-#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:21
-msgid "Count of comments"
-msgstr "Количество комментариев"
-
-#: ./application/modules/mod_stats/assets/admin/products/productInfo.tpl:22
-msgid "Rating"
-msgstr "Рейтинг"
-
-#: /var/www/image.loc/_temp2.php:76
-msgid "Product's categories"
-msgstr "Категории товаров"
+msgstr "Уникальные продукты"
 
 #: ./application/modules/mod_stats/assets/admin/main.tpl:106
 msgid "Search"
-msgstr "Поиск"
-
-#: /var/www/image.loc/_temp2.php:78
-msgid "Product's categories in search results"
-msgstr "Категории товаров в результатах поиска"
-
-#: ./application/modules/mod_stats/assets/admin/main.tpl:126
-msgid "Page not found"
-msgstr "Страница не найдена"
-
-#: ./application/modules/mod_stats/module_info.php:6
-msgid "Statistic"
-msgstr "Статистика"
+msgstr "Всего товаров"
 
 #: ./application/modules/mod_stats/classes/Orders.php:77
 msgid "All"
-msgstr "Все"
+msgstr "Оплаченый"
 
 #: ./application/modules/mod_stats/classes/Orders.php:85
 msgid "Delivered"
-msgstr "Доставленный"
-
-#: ./application/modules/mod_stats/classes/Users.php:80
-msgid "Registrations number"
-msgstr "Число регистраций"
+msgstr "Показывать"
 
