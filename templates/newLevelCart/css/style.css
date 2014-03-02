@@ -1110,7 +1110,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 
 /*footer*/
 .h-footer{height: 349px;}
-footer{min-height:346px; margin: -346px auto 0;position: relative;}
+footer{min-height:346px; margin: -349px auto 0;position: relative;}
 footer .content-footer{min-height: 245px;}
 .footer-footer{position: relative;height: 91px;}
 
@@ -1232,4 +1232,4 @@ img.cloned{max-width: none;max-height: none;}
 .cart .isCart{display: block}
 .cart .notCart{display: none;}
 
-.drop .drop{display: block;position: relative;}
+.btn-compare .text-el{display: none;}
