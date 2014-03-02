@@ -115,9 +115,8 @@ $.fn.getCursorPosition = function() {
     } else if ('selection' in document) {
         el.focus();
         var Sel = document.selection.createRange();
-        var SelLength = document.selection.createRange().text.length;
         Sel.moveStart('character', -el.value.length);
-        pos = Sel.text.length - SelLength;
+        pos = Sel.text.length - document.selection.createRange().text.length;
     }
     return pos;
 };
@@ -726,75 +725,71 @@ function getCookie(c_name)
 /*plugin tooltip*/
 (function($) {
     var nS = 'tooltip',
-            sel = '.tooltip',
+            tooltip = '.tooltip',
             methods = {
                 def: {
-                    otherClass: false,
+                    title: '',
+                    otherClass: '',
                     effect: '',
                     textEl: '.text-el',
                     placement: 'top',
-                    offsetX: 10,
-                    offsetY: 10,
-                    tooltip: false,
-                    sel: '.tooltip',
+                    offsetX: 0,
+                    offsetY: 0,
+                    tooltip: '.tooltip',
                     durationOn: 300,
                     durationOff: 200
                 },
-                init: function(options, e) {
-                    var settings = $.extend(methods.def, options),
-                            $this = this,
+                init: function(options) {
+                    if (!options)
+                        options = {};
+
+                    var $this = this,
                             elSet = $this.data(),
-                            title = elSet.title || settings.title,
-                            otherClass = elSet.otherClass || settings.otherClass,
-                            effect = elSet.effect || settings.effect,
-                            textEl = elSet.textEl || settings.textEl,
-                            placement = elSet.placement || settings.placement,
-                            offsetX = elSet.offsetX || settings.offsetX,
-                            offsetY = elSet.offsetY || settings.offsetY,
-                            durationOn = elSet.durationOn || settings.durationOn,
-                            durationOff = elSet.durationOff || settings.durationOff,
-                            sel = elSet.tooltip || methods.def.sel,
-                            tooltip = $(sel).not('.' + сC);
-                    if (effect !== 'always')
-                        $this.data({
-                            'title': title,
-                            'otherClass': otherClass,
-                            'effect': effect,
-                            'textEl': textEl,
-                            'placement': placement,
-                            'offsetX': offsetX,
-                            'offsetY': offsetY,
-                            'tooltip': sel,
-                            'durationOn': durationOn,
-                            'durationOff': durationOff
-                        });
-                    else
-                        $this.data({
-                            'title': ''
-                        });
-                    textEl = $this.find(textEl);
-                    if (textEl.is(':visible') && $.existsN(textEl))
-                        return $this;
-                    tooltip.html(title);
-                    if (otherClass) {
-                        if (!$.exists('.' + otherClass))
-                            tooltip = tooltip.addClass(otherClass).appendTo(body);
+                            set = {};
+
+                    for (var i in methods.def) {
+                        var prop = (elSet[i] !== undefined ? elSet[i] : '').toString() || (options[i] !== undefined ? options[i] : '').toString() || methods.def[i].toString()
+                        if (!isNaN(parseFloat(methods.def[i])) && isFinite(methods.def[i]))
+                            set[i] = +(prop);
                         else
-                            tooltip = $('.' + otherClass);
+                            set[i] = prop;
                     }
 
-                    if (effect === 'mouse')
-                        this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
+                    if ($.exists(set.tooltip))
+                        tooltip = $(set.tooltip);
+                    else
+                        tooltip = $(set.tooltip).appendTo(body);
+
+                    console.log(set.tooltip)
+
+                    if (set.effect !== 'always')
+                        $this.data(set);
+                    else
+                        $this.data('title', '');
+
+                    var textEl = $this.find(set.textEl);
+                    if (textEl.is(':visible') && $.existsN(textEl))
+                        return $this;
+                    tooltip.html(set.title);
+                    if (set.otherClass) {
+                        if (!$.exists(set.tooltip + '.' + set.otherClass))
+                            tooltip.clone().appendTo(body).addClass(set.otherClass);
+
+                        tooltip = $(set.tooltip + '.' + set.otherClass);
+                    }
+
+                    if (set.effect === 'mouse')
+                        $this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
                             tooltip.css({
-                                'left': methods.left($(this), tooltip, placement, e.pageX, effect, offsetX),
-                                'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY)
+                                'left': methods.left($(this), tooltip, set.placement, e.pageX, set.effect, set.offsetX),
+                                'top': methods.top($(this), tooltip, set.placement, e.pageY, set.effect, set.offsetY)
                             });
                         });
-                    tooltip.removeClass('top bottom right left').addClass(placement);
+                    tooltip.removeClass('top bottom right left').addClass(set.placement);
                     tooltip.css({
-                        'left': methods.left(this, tooltip, placement, this.offset().left, effect, offsetX),
-                        'top': methods.top(this, tooltip, placement, this.offset().top, effect, offsetY)
-                    }).fadeIn(durationOn, function() {
+                        'left': methods.left($this, tooltip, set.placement, $this.offset().left, set.effect, set.offsetX),
+                        'top': methods.top($this, tooltip, set.placement, $this.offset().top, set.effect, set.offsetY)
+                    }).fadeIn(set.durationOn, function() {
                         $(document).trigger({
                             'type': 'tooltip.show',
                             'el': $(this).css('opacity', 1)
@@ -802,7 +797,7 @@ function getCookie(c_name)
                     });
                     $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
                         var el = $(this);
-                        if (effect !== 'always')
+                        if (set.effect !== 'always')
                             el.tooltip('remove', e);
                     });
                     $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
@@ -812,6 +807,7 @@ function getCookie(c_name)
                     return $this;
                 },
                 left: function(el, tooltip, placement, left, eff, offset) {
+                    console.log(tooltip)
                     if (placement === 'left')
                         return Math.ceil(left - (eff === 'mouse' ? offset : tooltip.actual('outerWidth') - offset));
                     if (placement === 'right')
@@ -829,27 +825,28 @@ function getCookie(c_name)
                     }
                 },
                 remove: function(e) {
-                    var $this = this;
-                    if ($this.length !== 0 && $this['data'] !== undefined) {
-                        var data = $this.data(),
-                                selA = $([]);
-                        if (data.otherClass)
-                            selA = $(data.otherClass);
-                        if (data.tooltip !== '.tooltip')
-                            selA = selA.add($(data.tooltip));
-                        var durOff = $this.data('durationOff');
-                        if ($.existsN(selA))
-                            var sel = selA;
-                    }
-                    else
-                        durOff = methods.def.durationOff;
-                    $(sel || methods.def.sel).stop().fadeOut(durOff, function() {
-                        $(document).trigger({
-                            'type': 'tooltip.hide',
-                            'el': $(this)
+                    this.each(function() {
+                        var $this = $(this),
+                                tooltip = $(methods.def.tooltip);
+                                
+                        if ($this instanceof jQuery && $this['data']) {
+                            var data = $this.data(),
+                            durOff = $this.data('durationOff');
+
+                            if (data.tooltip !== '.tooltip')
+                                tooltip = tooltip.add($(data.tooltip));
+                            if (data.otherClass)
+                                tooltip = tooltip.add($('.' + data.otherClass));
+                        }
+                        else
+                            durOff = methods.def.durationOff;
+                        
+                        $(tooltip).stop().fadeOut(durOff, function() {
+                            if (data.otherClass)
+                                $(this).remove();
                         });
                     });
-                    return $this;
+                    return this;
                 }
             };
     $.fn.tooltip = function(method) {
@@ -866,13 +863,13 @@ function getCookie(c_name)
     };
     body.on('mouseenter.' + nS, '[data-rel="tooltip"]', function(e) {
         if ($(e.relatedTarget).has('[data-rel="tooltip"]'))
-            $(sel).hide();
-        $(this).tooltip({}, e);
+            $(tooltip).hide();
+        $(this).tooltip('init', {}, e);
     }).on('click.' + nS + ' mouseup.' + nS, function(e) {
-        if ($(this).data('effect') == 'always')
+        if ($(this).data('effect') === 'always')
             $.tooltip('remove')(e);
     });
-    if (!$.exists(sel))
+    if (!$.exists(tooltip))
         body.append('<span class="tooltip"></span>');
 })(jQuery);
 /*plugin tooltip end*/
@@ -1743,7 +1740,7 @@ function getCookie(c_name)
                 });
             }
             else {
-                $.drop.drp.curDefault = $.drop.dP.defaultClassBtnDrop + (rel ? rel : (source ? source.replace(methods._reg(), '') : (new Date()).getTime()));
+                $.drop.drp.curDefault = methods._checkProp(elSet, set, 'defaultClassBtnDrop') + (rel ? rel : (source ? source.replace(methods._reg(), '') : (new Date()).getTime()));
                 el.data('drop', '.' + $.drop.drp.curDefault).attr('data-drop', '.' + $.drop.drp.curDefault);
 
                 $.drop.showActivity();
@@ -1770,25 +1767,28 @@ function getCookie(c_name)
                 if ($(this).hasClass('isDrop'))
                     $this = this;
                 else {
+                    var elSet = $this.data();
                     if (datas) {
-                        if (!$.exists('[data-drop="' + $.drop.dP.modalBtnDrop + '"]')) {
-                            $this = $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', $.drop.dP.modalBtnDrop).data({
-                                'drop': $.drop.dP.modalBtnDrop,
+                        var modalBtnDrop = methods._checkProp(elSet, opt, 'modalBtnDrop');
+                        if (!$.exists('[data-drop="' + modalBtnDrop + '"]')) {
+                            $this = $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', modalBtnDrop).data({
+                                'drop': modalBtnDrop,
                                 'modal': true
                             });
-                            methods._pasteDrop($.extend({}, $.drop.dP, opt, $this.data()), $.drop.dP.patternNotif);
+                            methods._pasteDrop($.extend({}, $.drop.dP, opt, $this.data()), methods._checkProp(elSet, opt, 'patternNotif'));
                         }
                         else
-                            $this = $('[data-drop="' + $.drop.dP.modalBtnDrop + '"]');
+                            $this = $('[data-drop="' + modalBtnDrop + '"]');
                     }
                     else {
-                        var sourcePref = opt.source.replace(methods._reg(), '');
+                        var sourcePref = opt.source.replace(methods._reg(), ''),
+                                defaultClassBtnDrop = methods._checkProp(elSet, opt, 'defaultClassBtnDrop');
 
-                        if (!$.exists('.refer' + $.drop.dP.defaultClassBtnDrop + sourcePref)) {
-                            $this = $('<div><button class="refer' + ($.drop.dP.defaultClassBtnDrop + sourcePref) + '"></button></div>').appendTo(body).hide().children();
+                        if (!$.exists('.refer' + defaultClassBtnDrop + sourcePref)) {
+                            $this = $('<div><button class="refer' + (defaultClassBtnDrop + sourcePref) + '"></button></div>').appendTo(body).hide().children();
                         }
                         else
-                            $this = $('.refer' + $.drop.dP.defaultClassBtnDrop + sourcePref);
+                            $this = $('.refer' + defaultClassBtnDrop + sourcePref);
                     }
                 }
             }
@@ -1796,8 +1796,6 @@ function getCookie(c_name)
                 var $this = $(this),
                         elSet = $this.data(),
                         moreOne = methods._checkProp(elSet, opt, 'moreOne'),
-                        confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
-                        promptBtnDrop = methods._checkProp(elSet, opt, 'promptBtnDrop'),
                         source = methods._checkProp(elSet, opt, 'source') || $this.attr('href'),
                         drop = $(elSet.drop),
                         start = elSet.start;
@@ -1834,20 +1832,27 @@ function getCookie(c_name)
                                 _confirmF();
                             else {//for cofirm && prompt
                                 if (confirm) {
-                                    var confirmPattern = methods._checkProp(elSet, opt, 'patternConfirm');
+                                    var confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
+                                            confirmPattern = methods._checkProp(elSet, opt, 'patternConfirm');
+
                                     if (!$.exists('[data-drop="' + confirmBtnDrop + '"]'))
-                                        $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', confirmBtnDrop).data({
-                                            'drop': confirmBtnDrop,
-                                            'confirm': true
-                                        });
-                                    if (!$.exists(confirmBtnDrop))
-                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, $('[data-drop="' + confirmBtnDrop + '"]').data()), confirmPattern);
+                                        var confirmBtn = $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', confirmBtnDrop);
                                     else
-                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, $('[data-drop="' + confirmBtnDrop + '"]').data()), $(confirmBtnDrop));
-                                    setTimeout(function() {
-                                        methods._show($('[data-drop="' + confirmBtnDrop + '"]'), e, opt, false, hashChange);
+                                        confirmBtn = $('[data-drop="' + confirmBtnDrop + '"]');
+
+                                    confirmBtn.data({
+                                        'drop': confirmBtnDrop,
+                                        'confirm': true
                                     });
-                                    $(methods._checkProp(elSet, opt, 'confirmActionBtn')).focus().off('click.' + $.drop.nS).on('click.' + $.drop.nS, function() {
+                                    if (!$.exists(confirmBtnDrop))
+                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, confirmBtn.data()), confirmPattern);
+                                    else
+                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, confirmBtn.data()), $(confirmBtnDrop));
+                                    setTimeout(function() {
+                                        methods._show(confirmBtn, e, opt, false, hashChange);
+                                    });
+                                    $(methods._checkProp(elSet, opt, 'confirmActionBtn')).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                                        e.stopPropagation();
                                         if (elSet.after)
                                             $(confirmBtnDrop).data({
                                                 'drp': $.extend($(confirmBtnDrop).data('drp'), {
@@ -1860,21 +1865,29 @@ function getCookie(c_name)
                                     });
                                 }
                                 if (prompt) {
-                                    var promptPattern = methods._checkProp(elSet, opt, 'patternPrompt');
+                                    var promptPattern = methods._checkProp(elSet, opt, 'patternPrompt'),
+                                            promptBtnDrop = methods._checkProp(elSet, opt, 'promptBtnDrop');
+
                                     if (!$.exists('[data-drop="' + promptBtnDrop + '"]'))
-                                        $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', promptBtnDrop).data({
-                                            'drop': promptBtnDrop,
-                                            'prompt': true,
-                                            'promptInputValue': methods._checkProp(elSet, opt, 'promptInputValue')
-                                        });
-                                    if (!$.exists(promptBtnDrop))
-                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, $('[data-drop="' + promptBtnDrop + '"]').data()), promptPattern);
+                                        var promptBtn = $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', promptBtnDrop);
                                     else
-                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, $('[data-drop="' + promptBtnDrop + '"]').data()), $(promptBtnDrop));
+                                        promptBtn = $('[data-drop="' + promptBtnDrop + '"]');
+
+                                    promptBtn.data({
+                                        'drop': promptBtnDrop,
+                                        'prompt': true,
+                                        'promptInputValue': methods._checkProp(elSet, opt, 'promptInputValue')
+                                    });
+
+                                    if (!$.exists(promptBtnDrop))
+                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, promptBtn.data()), promptPattern);
+                                    else
+                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, promptBtn.data()), $(promptBtnDrop));
                                     setTimeout(function() {
-                                        methods._show($('[data-drop="' + promptBtnDrop + '"]'), e, opt, false, hashChange);
+                                        methods._show(promptBtn, e, opt, false, hashChange);
                                     }, 0)
-                                    $(methods._checkProp(elSet, opt, 'promptActionBtn')).focus().off('click.' + $.drop.nS).on('click.' + $.drop.nS, function() {
+                                    $(methods._checkProp(elSet, opt, 'promptActionBtn')).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                                        e.stopPropagation();
                                         if (elSet.after)
                                             $(promptBtnDrop).data({
                                                 'drp': $.extend($(promptBtnDrop).data('drp'), {
@@ -2108,30 +2121,22 @@ function getCookie(c_name)
                     drop = $(drop).appendTo(forCenter);
                 }
             }
-            return (set.drop ? (set.drop.indexOf($.drop.dP.defaultClassBtnDrop) != -1 ? drop.filter($.drop.dP.defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
+            var defaultClassBtnDrop = methods._checkProp(set, null, 'defaultClassBtnDrop');
+            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) != -1 ? drop.filter(defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
         },
-        _pasteContent: function($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter) {
-            if (contentFooter) {
-                var footer = drop.find($(dropFooter));
-                if (typeof contentFooter === 'string' || typeof contentFooter === 'object')
-                    footer.empty().append(contentFooter);
-                else if (typeof contentFooter === 'function')
-                    contentFooter(footer, $this, drop);
+        _pasteContent: function($this, drop, opt) {
+            function _pasteContent(content, place) {
+                if (content) {
+                    var place = drop.find(place);
+                    if (typeof content === 'string' || typeof content === 'number' || typeof content === 'object')
+                        place.empty().append(content);
+                    else if (typeof content === 'function')
+                        content(place, $this, drop);
+                }
             }
-            if (contentHeader) {
-                var header = drop.find($(dropHeader));
-                if (typeof contentHeader === 'string' || typeof contentHeader === 'object')
-                    header.empty().append(contentHeader);
-                else if (typeof contentHeader === 'function')
-                    contentHeader(header, $this, drop);
-            }
-            if (contentContent) {
-                var content = drop.find($(dropContent));
-                if (typeof contentContent === 'string' || typeof contentContent === 'object')
-                    content.empty().append(contentContent);
-                else if (typeof contentContent === 'function')
-                    contentContent(content, $this, drop);
-            }
+            _pasteContent(opt.contentHeader, opt.dropHeader);
+            _pasteContent(opt.contentContent, opt.dropContent);
+            _pasteContent(opt.contentFooter, opt.dropFooter);
         },
         _show: function($this, e, set, data, hashChange) {
             if (!$this)
@@ -2167,9 +2172,9 @@ function getCookie(c_name)
             opt.closeG = $.drop.dP.close;
             opt.closedG = $.drop.dP.closed;
             opt.elrun = $this;
+            opt.drop = elSet.drop;
 
-            var selSource = elSet.drop,
-                    drop = $('[data-elrun="' + selSource + '"]');
+            var drop = $('[data-elrun="' + opt.drop + '"]');
 
             elSet.trigger = opt.trigger;
             elSet.triggerOn = opt.triggerOn;
@@ -2178,7 +2183,7 @@ function getCookie(c_name)
             if (opt.dropFilter)
                 drop = methods._filterSource($this, opt.dropFilter);
             $this.attr({
-                'data-drop': selSource
+                'data-drop': opt.drop
             }).parent().addClass(aC);
 
             var drp = drop.data('drp') ? drop.data('drp') : {};
@@ -2190,7 +2195,8 @@ function getCookie(c_name)
                     }, $.drop.methods())
                 })
             });
-            drop.attr('data-elrun', selSource).off('click.' + $.drop.nS, opt.exit).on('click.' + $.drop.nS, opt.exit, function() {
+            drop.attr('data-elrun', opt.drop).off('click.' + $.drop.nS, opt.exit).on('click.' + $.drop.nS, opt.exit, function(e) {
+                e.stopPropagation();
                 methods.close($(this).closest('[data-elrun]'));
             });
             methods._checkMethod(function() {
@@ -2199,10 +2205,10 @@ function getCookie(c_name)
             var overlays = $('.overlayDrop').css('z-index', 1103),
                     condOverlay = opt.overlayOpacity !== 0;
             if (condOverlay) {
-                if (!$.exists('[data-rel="' + selSource + '"].overlayDrop')) {
-                    body.append('<div class="overlayDrop" data-rel="' + selSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
+                if (!$.exists('[data-rel="' + opt.drop + '"].overlayDrop')) {
+                    body.append('<div class="overlayDrop" data-rel="' + opt.drop + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
                 }
-                drop.data('drp').dropOver = $('[data-rel="' + selSource + '"].overlayDrop');
+                drop.data('drp').dropOver = $('[data-rel="' + opt.drop + '"].overlayDrop');
                 drop.data('drp').dropOver.css({
                     'background-color': opt.overlayColor,
                     'opacity': opt.overlayOpacity,
@@ -2210,7 +2216,7 @@ function getCookie(c_name)
                 });
             }
             $('.forCenter').css('z-index', 1104);
-            var forCenter = $('[data-rel="' + selSource + '"].forCenter');
+            var forCenter = $('[data-rel="' + opt.drop + '"].forCenter');
             if (forCenter) {
                 drop.data('drp').forCenter = forCenter;
                 forCenter.add(drop).css('z-index', overlays.length + 1104);
@@ -2218,7 +2224,7 @@ function getCookie(c_name)
                     return opt.scroll ? '100%' : $(document).height();
                 });
             }
-            methods._pasteContent($this, drop, opt.contentHeader, opt.dropHeader, opt.contentContent, opt.dropContent, opt.contentFooter, opt.dropFooter);
+            methods._pasteContent($this, drop, opt);
             if (opt.elBefore)
                 eval(opt.elBefore)($this, drop, data);
             if (opt.before)
@@ -2231,7 +2237,7 @@ function getCookie(c_name)
                 'drop': drop,
                 'datas': data
             });
-            var ev = (selSource ? selSource : '').replace(methods._reg(), '');
+            var ev = opt.drop.replace(methods._reg(), '');
             wnd.off('resize.' + $.drop.nS + ev).on('resize.' + $.drop.nS + ev, function() {
                 methods._checkMethod(function() {
                     methods.limitSize(drop);
@@ -2295,10 +2301,22 @@ function getCookie(c_name)
                     methods[opt.place](drop);
                 });
             if (opt.prompt) {
-                drop.find($.drop.dP.promptInput).focus().val(opt.promptInputValue);
+                var input = drop.find(opt.promptInput).val(opt.promptInputValue);
+                function focusInput() {
+                    input.focus();
+                }
+                setTimeout(focusInput, 0);
                 drop.find('form').off('submit.' + $.drop.nS).on('submit.' + $.drop.nS, function(e) {
                     e.preventDefault();
                 });
+                drop.click(focusInput);
+            }
+            if (opt.confirm) {
+                function focusConfirm() {
+                    $(opt.confirmActionBtn).focus();
+                }
+                setTimeout(focusConfirm, 0);
+                drop.click(focusConfirm);
             }
             $(opt.next).add($(opt.prev)).css('height', drop.actual('height'));
 
@@ -2481,7 +2499,7 @@ function getCookie(c_name)
             patternNotif: '<div class="drop drop-style" id="drop-notification-default" style="background-color: #fff;"><div class="drop-header-default" style="padding: 10px 20px;border-bottom: 1px solid #ccc;"></div><div class="drop-content-default"><div class="inside-padd drop-notification-default"></div></div><div class="drop-footer-default"></div></div>',
             confirmBtnDrop: '#drop-confirm-default',
             confirmActionBtn: '[data-button-confirm]',
-            patternConfirm: '<div class="drop drop-style" id="drop-confirm-default" style="background-color: #fff;"><button type="button" class="icon-times-drop" data-closed="closed-js" style="position: absolute;right: 5px;top: 5px;background-color: red;width: 10px;height: 10px;"></button><div class="drop-header-default" style="padding: 10px 20px;border-bottom: 1px solid #ccc;">Confirm</div><div class="drop-content-default"><div class="inside-padd" style="padding: 20px 40px;text-align: center;"><div class="drop-btn-confrim" style="margin-right: 10px;"><button type="button" data-button-confirm><span class="text-el">confirm</span></button></div><div class="drop-btn-cancel"><button type="button" data-closed="closed-js"><span class="text-el">cancel</span></button></div></div></div><div class="drop-footer-default"></div></div>',
+            patternConfirm: '<div class="drop drop-style" id="drop-confirm-default" style="background-color: #fff;"><button type="button" class="icon-times-drop" data-closed="closed-js" style="position: absolute;right: 5px;top: 5px;background-color: red;width: 10px;height: 10px;"></button><div class="drop-header-default" style="padding: 10px 20px;border-bottom: 1px solid #ccc;">Confirm</div><div class="drop-content-default"><div class="inside-padd" style="padding: 20px 40px;text-align: center;"><div class="drop-btn-confirm" style="margin-right: 10px;"><button type="button" data-button-confirm><span class="text-el">confirm</span></button></div><div class="drop-btn-cancel"><button type="button" data-closed="closed-js"><span class="text-el">cancel</span></button></div></div></div><div class="drop-footer-default"></div></div>',
             promptBtnDrop: '#drop-prompt-default',
             promptActionBtn: '[data-button-prompt]',
             promptInput: '[name="promptInput"]',
@@ -2568,7 +2586,7 @@ function getCookie(c_name)
         if (!$.drop.drp.curHash) {
             for (var i in $.drop.drp.hrefs) {
                 if (wLH.indexOf(i) === -1 && wLHN.indexOf(i) !== -1) {
-                    methods.open(null, null, $.drop.drp.hrefs[i], e, true);
+                    methods.open({}, null, $.drop.drp.hrefs[i], e, true);
                 }
                 else
                     methods.close($($.drop.drp.hrefs[i].data('drop')), true);

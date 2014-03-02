@@ -74,7 +74,7 @@ var optionsDrop = {
     overlayOpacity: 0.6,
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
-    durationOff: 500,
+    durationOff: 200,
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
