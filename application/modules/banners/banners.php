@@ -86,7 +86,7 @@ class Banners extends MY_Controller {
 
     public function getByGroup($group) {
         $banners = $this->banner_model->get_all_banner(MY_Controller::getCurrentLocale(), $group);
-        var_dump($banners);
+        return $banners;
     }
 
     /**

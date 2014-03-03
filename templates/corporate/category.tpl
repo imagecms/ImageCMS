@@ -1,31 +1,25 @@
-<div class="frame-inside">
+<div class="frame-inside page-text">
     <div class="container">
         <div class="frame-crumbs">
             {widget('path')}
         </div>
-        <div class="clearfix">
-            <div class="text">
-                <h1>Заголовок1</h1>
-                <h2>Заголовок2</h2>
-                <h3>Заголовок3</h3>
-                <ul class="f_l">
-                    <li>
-                        Мы всегда заботимся о качестве нашей продукции и  безопасности нашего товара.
-                    </li>
-                    <li>
-                        Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право считаться лучшими в своей сфере.
-                    </li>
-                    <li>
-                        Мы можем в любое время вернуть вам всю сумму, оплаченную за товар, если он еще не привык к Вам и Вашей семье!
-                    </li>
-                    <li>
-                        Мы заботимся не только о правах человека, но и о правах роботов, согласно галактического законодательства.
-                    </li>
-                    <li>
-                        Мы боремся с теми, кто выгоняет роботов на улицу и согласны на бесплатную утилизацию ввиду отсутствия интереса к таковому.
-                    </li>
+        <h1>{$category.name}</h1>
+        <div class="text">
+            {if $no_pages}
+                <p>{$no_pages}</p>
+            {else:}
+                {$category.short_desc}
+                <ul class="items items-row">
+                    {foreach $pages as $page}
+                        <li>
+                            <span class="date">{date('d.m.Y',$page.publish_date)}</span>
+                            <h2><a href="{site_url($page.full_url)}">{$page.title}</a></h2>
+                                {$page.prev_text}
+                        </li>
+                    {/foreach}
                 </ul>
-            </div> 
-        </div>  
-    </div>    
+                {$pagination}
+            {/if}
+        </div>
+    </div>
 </div>
