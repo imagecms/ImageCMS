@@ -7,7 +7,7 @@
 	<title>Class mod_discount\classes\BaseDiscount | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?2135572232"></script>
+	<script type="text/javascript" src="elementlist.js?1494635625"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -95,6 +95,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li class="active"><a href="class-mod_discount.classes.BaseDiscount.html">BaseDiscount</a></li>
+				<li><a href="class-mod_discount.classes.DiscountManager.html">DiscountManager</a></li>
 			</ul>
 
 
@@ -152,34 +153,9 @@
 
 	</div>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-MY_Controller
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by">
-<b><span>mod_discount\classes\BaseDiscount</span></b>			
-			
-			
-		</dd>
-	</dl>
 
 
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-Gift.html">Gift</a>, 
-			<a href="class-Mod_discount.html">Mod_discount</a>, 
-			<a href="class-mod_discount.discount.html">mod_discount\discount</a>, 
-			<a href="class-mod_discount.Discount_order.html">mod_discount\Discount_order</a>, 
-			<a href="class-mod_discount.Discount_product.html">mod_discount\Discount_product</a>
-	</div>
 
-	<div>
-		<h4>Indirect known subclasses</h4>
-			<a href="class-discount_api.html">discount_api</a>
-	</div>
 
 
 
@@ -195,20 +171,6 @@ MY_Controller
 				(c) 2013, ImageCMS<br>
 				<b>Author:</b>
 				DevImageCms<br>
-				<b>Uses:</b>
-				\MY_Controller<br>
-				<b>Used by:</b>
-				<code><code><a href="class-discount_api.html">discount_api</a></code></code> <br>
-				<b>Used by:</b>
-				<code><code><a href="class-Gift.html">Gift</a></code></code> <br>
-				<b>Used by:</b>
-				<code><code><a href="class-Mod_discount.html">Mod_discount</a></code></code> <br>
-				<b>Used by:</b>
-				<code><code><a href="class-mod_discount.discount.html">mod_discount\discount</a></code></code> <br>
-				<b>Used by:</b>
-				<code><code><a href="class-mod_discount.Discount_order.html">mod_discount\Discount_order</a></code></code> <br>
-				<b>Used by:</b>
-				<code><code><a href="class-mod_discount.Discount_product.html">mod_discount\Discount_product</a></code></code> <br>
 		<b>Located at</b> application/modules/mod_discount/classes/BaseDiscount.php<br>
 	</div>
 
@@ -216,63 +178,18 @@ MY_Controller
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="checkModuleInstall" id="_checkModuleInstall">
 
 		<td class="attributes"><code>
-			 public 
-			---
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( )</code>
-
-		<div class="description short">
-			
-<p>__construct base object loaded</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>__construct base object loaded</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>---</code><br>
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="check_module_install" id="_check_module_install">
-
-		<td class="attributes"><code>
-			 public 
+			 public static
 			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_check_module_install">#</a>
-		<code>check_module_install( )</code>
+		<a class="anchor" href="#_checkModuleInstall">#</a>
+		<code>checkModuleInstall( )</code>
 
 		<div class="description short">
 			
@@ -306,221 +223,38 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="get_user_id" id="_get_user_id">
+	<tr data-order="prepareOption" id="_prepareOption">
 
 		<td class="attributes"><code>
-			 public 
-			integer
+			 public static
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_get_user_id">#</a>
-		<code>get_user_id( )</code>
+		<a class="anchor" href="#_prepareOption">#</a>
+		<code>prepareOption( <span>array <var>$option</var></span> )</code>
 
 		<div class="description short">
 			
-<p>get user by id</p>
+<p>prepareOption</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>get user by id</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>integer</code><br>
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_user_group_id" id="_get_user_group_id">
-
-		<td class="attributes"><code>
-			 public 
-			integer
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_user_group_id">#</a>
-		<code>get_user_group_id( )</code>
-
-		<div class="description short">
-			
-<p>get user group for current user</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>get user group for current user</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>integer</code><br>
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_cart_data" id="_get_cart_data">
-
-		<td class="attributes"><code>
-			 public 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_cart_data">#</a>
-		<code>get_cart_data( )</code>
-
-		<div class="description short">
-			
-<p>get Cart items for current session</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>get Cart items for current session</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br>
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_cart_data_new" id="_get_cart_data_new">
-
-		<td class="attributes"><code>
-			 public 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_cart_data_new">#</a>
-		<code>get_cart_data_new( )</code>
-
-		<div class="description short">
-			
-<p>get Cart items for current session</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>get Cart items for current session</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br>
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_amout_user" id="_get_amout_user">
-
-		<td class="attributes"><code>
-			 public 
-			float
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_amout_user">#</a>
-		<code>get_amout_user( <span>user_id <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-<p>get current user amout</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>get current user amout</p>
+<p>prepareOption</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd><code>user_id</code><br>optional</dd>
+					<dt><var>$option</var></dt>
+					<dd><code>array</code><br>$option params: - (float) price: - (int) userId: - (bool) ignoreCart: ignore
+cart Data: - (bool) reBuild: for redeclare singelton:</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<code>float</code><br>
-				</div>
 
 
 				<h4>Copyright</h4>
@@ -536,107 +270,44 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="get_total_price" id="_get_total_price">
+	<tr data-order="create" id="_create">
 
 		<td class="attributes"><code>
-			 public 
-			float
+			 public static
+			object
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_get_total_price">#</a>
-		<code>get_total_price( <span>cart_data <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_create">#</a>
+		<code>create( )</code>
 
 		<div class="description short">
 			
-<p>get totall origin price for current session</p>
+<p>singelton method</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>get totall origin price for current session</p>
+<p>singelton method</p>
 
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$data</var></dt>
-					<dd><code>cart_data</code><br>optional</dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>float</code><br>
+					<code>object</code><br>BaseDiscount<br>
 				</div>
 
 
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="get_total_price_new" id="_get_total_price_new">
-
-		<td class="attributes"><code>
-			 public 
-			float
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_total_price_new">#</a>
-		<code>get_total_price_new( <span>cart_data <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-<p>get totall origin price for current session</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>get totall origin price for current session</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$data</var></dt>
-					<dd><code>cart_data</code><br>optional</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>float</code><br>
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_all_discount" id="_get_all_discount">
+	<tr data-order="getMaxDiscount" id="_getMaxDiscount">
 
 		<td class="attributes"><code>
 			 public 
@@ -646,103 +317,8 @@ MY_Controller
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_get_all_discount">#</a>
-		<code>get_all_discount( )</code>
-
-		<div class="description short">
-			
-<p>get all active discount joined whith his type</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>get all active discount joined whith his type</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br>
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="collect_type" id="_collect_type">
-
-		<td class="attributes"><code>
-			 public 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_collect_type">#</a>
-		<code>collect_type( <span>optional <var>$discount</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-<p>partitioning discounts on their types</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>partitioning discounts on their types</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$discount</var></dt>
-					<dd><code>optional</code><br>discount</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br>
-				</div>
-
-
-				<h4>Copyright</h4>
-				<div class="list">
-						(c) 2013, ImageCMS<br>
-				</div>
-				<h4>Author</h4>
-				<div class="list">
-						DevImageCms<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get_max_discount" id="_get_max_discount">
-
-		<td class="attributes"><code>
-			 public 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get_max_discount">#</a>
-		<code>get_max_discount( <span>discount, <var>$discount</var></span>, <span>mixed <var>$price</var></span> )</code>
+		<a class="anchor" href="#_getMaxDiscount">#</a>
+		<code>getMaxDiscount( <span>discount, <var>$discount</var></span>, <span>mixed <var>$price</var></span> )</code>
 
 		<div class="description short">
 			
@@ -783,7 +359,7 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="get_discount_value" id="_get_discount_value">
+	<tr data-order="getDiscountValue" id="_getDiscountValue">
 
 		<td class="attributes"><code>
 			 public 
@@ -793,8 +369,8 @@ MY_Controller
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_get_discount_value">#</a>
-		<code>get_discount_value( <span>discount, <var>$discount</var></span>, <span>mixed <var>$price</var></span> )</code>
+		<a class="anchor" href="#_getDiscountValue">#</a>
+		<code>getDiscountValue( <span>discount, <var>$discount</var></span>, <span>mixed <var>$price</var></span> )</code>
 
 		<div class="description short">
 			
@@ -835,7 +411,7 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="updatediskapply" id="_updatediskapply">
+	<tr data-order="updateDiskApply" id="_updateDiskApply">
 
 		<td class="attributes"><code>
 			 public 
@@ -845,8 +421,8 @@ MY_Controller
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_updatediskapply">#</a>
-		<code>updatediskapply( <span>mixed <var>$key</var></span>, <span>mixed <var>$gift</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_updateDiskApply">#</a>
+		<code>updateDiskApply( <span>mixed <var>$key</var></span>, <span>mixed <var>$gift</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -900,61 +476,15 @@ MY_Controller
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="ci" id="$ci">
-		<td class="attributes"><code>
-			public  
-			mixed
-		</code></td>
-
-		<td class="name">
-<var>$ci</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$ci" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
 
 
 
 	<table class="summary" id="magicProperties">
 	<caption>Magic properties summary</caption>
-	<tr data-order="discount_model" id="m$discount_model">
-		<td class="attributes"><code>
-			public  
-			discount_model
-		</code></td>
-
-		<td class="name">
-<var>$discount_model</var>		</td>
-		<td class="description"><div>
-			<a href="#m$discount_model" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
 	<tr data-order="discount_model_front" id="m$discount_model_front">
 		<td class="attributes"><code>
 			public  
-			discount_model_front
+			<code><a href="class-discount_model_front.html">discount_model_front</a></code>
 		</code></td>
 
 		<td class="name">
