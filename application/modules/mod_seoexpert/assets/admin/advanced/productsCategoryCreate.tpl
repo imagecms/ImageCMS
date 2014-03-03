@@ -24,7 +24,7 @@
                             <div class="form-horizontal">
                                 <label class="">
                                     <span class="span4">
-                                        {lang('Choose category','mod_seoexpert')}
+                                        {lang('Choose category','mod_seoexpert')}:
                                     </span>
                                     <span class="span8 discount-name">
                                         <input id="autocomleteCategory" type="text" autocomplete="off" name='categoryNameTMP' value="{$_POST['categoryNameTMP']}" />

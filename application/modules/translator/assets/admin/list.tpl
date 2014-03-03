@@ -113,8 +113,8 @@
                             {lang('Others', 'translator')}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a class="pjax" href="/admin/components/init_window/translator/createFile">{lang('Create', 'translator')}</a></li>
-                            <li><a class="pjax" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Exchange', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/createFile">{lang('Create', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Exchange', 'translator')}</a></li>
                             <li><a onclick="Translator.correctPaths($(this))">{lang('Correct paths', 'translator')}</a></li>
                             <li class="divider"></li>
                             <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
@@ -126,6 +126,9 @@
         </div>
         <div class="content_big_td row-fluid">
             <div class="statistic" style="display: none; width: 302px; height: 50px; float: right; margin-top: 2px; margin-bottom: 2px;">
+                <div style="position: absolute; margin-left: -85px; margin-top: 5px;">
+                    <h5><b>{lang('Statistic', 'translator')}:</b></h5>
+                </div>
                 <div class="pull-left">
                     <table class=" table-hover table-bordered" style="width: 140px; height: 50px; padding-left: 10px; border-left: 1px solid #ddd ">
                         <tr>

@@ -9,7 +9,7 @@
                     <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-danger {/if}btn btn-small notCorrect" style="margin-top: 30px"><i class="icon-lock"></i></button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-small" onclick="Translator.translateString($(this))" style="float: right; margin-right: 5px; margin-bottom: -30px"><i class="icon-globe"></i></button>
+                    <button type="button" class="btn btn-small translateWord" data-rel="tooltip" data-placement="top" data-original-title="{lang('Translate', 'translator')}" onclick="Translator.translateString($(this))" style="float: right; margin-right: 5px; margin-bottom: -30px"><i class="icon-globe"></i></button>
                     <textarea class="origin" style="margin-bottom: 0px" readonly="">{echo htmlspecialchars($origin,ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
                 </td>
                 <td  rowspan="2">
