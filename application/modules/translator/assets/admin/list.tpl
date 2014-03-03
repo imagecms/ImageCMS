@@ -113,8 +113,8 @@
                             {lang('Others', 'translator')}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a class="pjax" href="/admin/components/init_window/translator/createFile">{lang('Create', 'translator')}</a></li>
-                            <li><a class="pjax" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Exchange', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/createFile">{lang('Create', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Exchange', 'translator')}</a></li>
                             <li><a onclick="Translator.correctPaths($(this))">{lang('Correct paths', 'translator')}</a></li>
                             <li class="divider"></li>
                             <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>

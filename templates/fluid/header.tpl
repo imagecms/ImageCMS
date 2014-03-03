@@ -1,12 +1,3 @@
-<!--Start. Top menu and authentication data block-->
-<div class="menu-header">
-    <div class="container">
-        <div class="right-header f_r">
-            {include_shop_tpl('auth_data')}
-        </div>
-    </div>
-</div>
-<!--End. Top menu and authentication data block-->
 <div class="content-header">
     <div class="container">
         <!--        Logo-->
@@ -50,7 +41,7 @@
                 </div>
             </div>
             <nav class="left-header">
-                <ul class="nav">
+                <ul class="nav nav-default-inline">
                     {load_menu('top_menu')}
                 </ul>
             </nav>
