@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 06:01+0200\n"
-"PO-Revision-Date: 2014-02-28 06:01+0200\n"
+"POT-Creation-Date: 2014-03-03 10:11+0200\n"
+"PO-Revision-Date: 2014-03-03 10:11+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -51,7 +51,7 @@ msgstr "ID / Имя"
 #: ./application/modules/mod_discount/admin.php:66
 #: ./application/modules/mod_discount/admin.php:187
 msgid "Enter a product that is in the database"
-msgstr "Введите продукт, который находится в базе"
+msgstr "Введите продукт, который находится в базе данных"
 
 #: ./application/modules/mod_discount/assets/admin/create.tpl:19
 msgid "Create and exit"
