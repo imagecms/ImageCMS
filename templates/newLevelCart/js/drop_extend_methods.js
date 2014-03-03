@@ -221,16 +221,17 @@ $.dropInit.prototype.extendDrop = function() {
         scroll: {
             create: function() {
                 if (!isTouch) {
-                    body.addClass('isScroll').css({
-                        'overflow': 'hidden',
-                        'margin-right': $.drop.widthScroll,
-                        'margin-left': 1
-                    });
-                    body.prepend('<div class="scrollEmulation" style="position: fixed;right: 0;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"><div style="width: 1px;height: ' + $.drop.drp.curDrop.height() + 'px;"></div></div>');
-                    $('.scrollEmulation').off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function() {
-                        $.drop.drp.curDrop.data('drp').forCenter.scrollTop($(this).scrollTop());
-                    });
-
+                    if (body.css('overflow') == 'auto' || wnd.height() < $(document).height()) {
+                        body.addClass('isScroll').css({
+                            'overflow': 'hidden',
+                            'margin-right': $.drop.widthScroll,
+                            'margin-left': 1
+                        });
+                        body.prepend('<div class="scrollEmulation" style="position: fixed;right: 0;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"><div style="width: 1px;height: ' + $.drop.drp.curDrop.height() + 'px;"></div></div>');
+                        $('.scrollEmulation').off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function() {
+                            $.drop.drp.curDrop.data('drp').forCenter.scrollTop($(this).scrollTop());
+                        });
+                    }
                 }
                 if (isTouch)
                     $('.for-center').on('touchmove.' + $.drop.nS, function(e) {

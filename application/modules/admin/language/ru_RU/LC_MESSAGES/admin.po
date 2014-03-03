@@ -4,6 +4,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-03 10:20+0200\n"
 "PO-Revision-Date: 2014-03-03 10:20+0200\n"
+"POT-Creation-Date: 2014-03-03 11:24+0400\n"
+"PO-Revision-Date: 2014-03-03 11:24+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -21,13 +23,14 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:39
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
+msgid "Sort by username"
+msgstr "Сортировать по имени пользователя"
+
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:6
 msgid "Notification editing"
 msgstr "Редактирование уведомления"
-
-#: ./application/modules/shop/admin/templates/notifications/list.tpl:113
-msgid "Edit notification"
-msgstr "Редактировать уведомление"
 
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:50
 msgid "Status has been set"
@@ -114,11 +117,6 @@ msgstr "Создание статуса уведомления о появлен
 #: ./application/modules/shop/models/build/classes/Shop/SCategory.php:29
 msgid "Sorting method by default"
 msgstr "Сортировка по умолчанию"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:38
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:100
-msgid "Sort by number"
-msgstr "Сортировка по номеру"
 
 #: ./application/modules/shop/admin/orders.php:318
 #: ./application/modules/shop/admin/notifications.php:289
@@ -298,11 +296,6 @@ msgstr "Невозможно удалить валюту. Эта валюта и
 #: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
 msgid "Edit category"
 msgstr "Редактирование категории"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:39
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
-msgid "Sort by name."
-msgstr "Сортировать по имени."
 
 #: ./application/modules/shop/admin/orders.php:147
 msgid "&nbsp;Back"
@@ -2609,10 +2602,6 @@ msgstr "Колбек"
 msgid "Callbacks"
 msgstr "Колбеки"
 
-#: ./application/modules/shop/admin/callbacks.php:302
-msgid "Callbacks was removed"
-msgstr "Колбекы удалены"
-
 #: ./application/modules/shop/admin/comulativ.php:49
 #: ./application/modules/shop/admin/comulativ.php:112
 msgid "The amount of"
@@ -4872,10 +4861,6 @@ msgstr "Редактирование скидкок"
 #: ./application/modules/shop/admin/templates/deliverymethods/edit.tpl:22
 msgid "Delivery method edit"
 msgstr "Редактирование способа доставки"
-
-#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:31
-msgid "Request subject editing"
-msgstr "Редактирование темы запроса"
 
 #: ./application/modules/shop/admin/templates/callbacks/edit_theme.tpl:6
 msgid "Сallback topic editing"

@@ -18,6 +18,14 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+msgid "Unlimited"
+msgstr "Неограниченно"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:63
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:70
+msgid "Unlimit"
+msgstr "Неограниченно"
+
 #: ./application/modules/mod_discount/classes/DiscountManager.php:51
 #: ./application/modules/mod_discount/classes/DiscountManager.php:81
 #: ./application/modules/mod_discount/classes/DiscountManager.php:111
@@ -85,9 +93,6 @@ msgstr "Бренд"
 #: ./application/modules/mod_discount/admin.php:191
 msgid "Enter the user who is in the database"
 msgstr "Введите пользователя, который находится в базе данных"
-
-msgid "Unlimited"
-msgstr "Создать и выйти"
 
 #: ./application/modules/mod_discount/assets/admin/list.tpl:38
 msgid "Beggining time"
@@ -263,11 +268,6 @@ msgstr "Неверный код, попробуйте еще раз"
 
 msgid "Invalid type value!"
 msgstr "Недопустимый тип значения!"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:63
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:70
-msgid "Unlimit"
-msgstr "Неограничено"
 
 #: ./application/modules/mod_discount/classes/DiscountManager.php:313
 msgid "Wrong type discount"
