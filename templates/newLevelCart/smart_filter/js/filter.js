@@ -16,12 +16,12 @@ var cleaverFilterObj = {
             $(this).each(function() {
                 var $this = $(this),
                         settings = $.extend({
-                    slider: $this.find('.slider'),
-                    minCost: null,
-                    maxCost: null,
-                    leftSlider: $this.find('.left-slider'),
-                    rightSlider: $this.find('.right-slider')
-                }, eval($this.data('rel')));
+                            slider: $this.find('.slider'),
+                            minCost: null,
+                            maxCost: null,
+                            leftSlider: $this.find('.left-slider'),
+                            rightSlider: $this.find('.right-slider')
+                        }, eval($this.data('rel')));
                 var slider = settings.slider,
                         minCost = $(settings.minCost),
                         maxCost = $(settings.maxCost),
@@ -330,15 +330,15 @@ var Filter = {
     },
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
-        
 
-        
-        
-         /*not hyper clever filter*/
+
+
+
+        /*not hyper clever filter*/
         //    $(this.catalogForm).submit();
         /*/not hyper clever filter*/
-        
-        
+
+
 
         /*hyper clever filter*/
         var $this = el,
@@ -369,7 +369,7 @@ var Filter = {
                 else {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
-                
+
                 $('[type=checkbox]:checked').removeAttr('disabled');
                 //$('[name=checkbox]:checked').closest('.frame-label').find('.count').text();
 

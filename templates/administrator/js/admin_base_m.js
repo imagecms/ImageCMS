@@ -227,7 +227,12 @@ var delete_functionS = new Object({
 
 
 var delete_currency_function = new Object({
-    deleteFunction: function(cid) {
+    deleteFunction: function(cid, currentEl) {
+        var checkedAsMain = $(currentEl).closest('tr').find('.mainCurrency').attr('checked');
+        if (checkedAsMain) {
+            event.stopPropagation()
+            return false;
+        }
         $('#first').modal();
         id = cid;
         return id;
@@ -269,6 +274,18 @@ var delete_currency_function = new Object({
     },
 });
 function showOnSite(id, currentEl) {
+    if (!$(currentEl).hasClass('disable_tovar')) {
+        event.stopPropagation()
+        return false;
+    }
+
+    var checkedAsMain = $(currentEl).closest('tr').find('.mainCurrency').attr('checked');
+    if (checkedAsMain) {
+        event.stopPropagation()
+        return false;
+    }
+
+    $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
     var showStatus = currentEl.attr('rel');
     if (showStatus == 1) {
         showStatus = 0;
