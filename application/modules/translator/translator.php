@@ -13,7 +13,7 @@ class Translator extends MY_Controller {
     }
 
     public function index() {
-        
+        $this->core->error_404();
     }
 
     public function autoload() {
@@ -21,6 +21,8 @@ class Translator extends MY_Controller {
     }
 
     public function _install() {
+        ($this->dx_auth->is_admin()) OR exit;
+
         $this->db->where('name', 'translator')
                 ->update('components', array(
                     'autoload' => '1',
@@ -30,7 +32,9 @@ class Translator extends MY_Controller {
     }
 
     public function _deinstall() {
-        
+        ($this->dx_auth->is_admin()) OR exit;
+
+        $this->db->where('name', 'translator')->delete('components');
     }
 
 }
