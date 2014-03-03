@@ -17,6 +17,11 @@ $(document).ready(function() {
         Search.go();
     });
 
+//    $('.translateWord').live('mouseover', function() {
+//        $('div[class="tooltip-inner"]').attr('style', 'min-width: 100px!important; text-align: center!important;');
+//        $('div.tooltip').attr('style', 'min-width: 100px!important; text-align: center!important;');
+//    });
+
 
     $('.searchObjects').die().live('change', function() {
         if ($('.searchObjects:checked').length) {
@@ -963,7 +968,7 @@ var Translator = {
         var counter = 0;
         for (var origin in po_array) {
             if (origin) {
-                var nextTmp =values[counter] + '&text=' + encodeURIComponent(origin);
+                var nextTmp = values[counter] + '&text=' + encodeURIComponent(origin);
                 if (nextTmp.length < 9999) {
                     if (!values[counter]) {
                         values[counter] = '';
@@ -978,7 +983,8 @@ var Translator = {
 
         var translations = [];
         for (var value in values) {
-            var text = values[value].replace("undefined","");;
+            var text = values[value].replace("undefined", "");
+            ;
             var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + originLang + '-' + lang + '&format=plain';
             $.ajax({
                 crossDomain: true,
