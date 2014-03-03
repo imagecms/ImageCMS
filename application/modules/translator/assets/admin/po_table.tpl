@@ -9,7 +9,7 @@
                     <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-danger {/if}btn btn-small notCorrect" style="margin-top: 30px"><i class="icon-lock"></i></button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-small translateWord" data-rel="tooltip" data-placement="top" data-original-title="{lang('Translate', 'translator')}" onclick="Translator.translateString($(this))" style="float: right; margin-right: 5px; margin-bottom: -30px"><i class="icon-globe"></i></button>
+                    <button type="button" class="btn btn-small translateWord" data-rel="tooltip" data-placement="right" data-original-title="{lang('Translate', 'translator')}" onclick="Translator.translateString($(this))" style="float: right; margin-right: 5px; margin-bottom: -30px"><i class="icon-globe"></i></button>
                     <textarea class="origin" style="margin-bottom: 0px" readonly="">{echo htmlspecialchars($origin,ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
                 </td>
                 <td  rowspan="2">
@@ -27,7 +27,7 @@
             </tr>
             <tr class="translationTR" {if $counter > 10}style="display: none"{/if}>
                 <td>
-                    <button type="button" class="btn btn-small translationCancel" style="display: none; float: right; margin-left: 600px; margin-bottom: -30px"><i class="icon-share-alt"></i></button>
+                    <button type="button" data-rel="tooltip" data-placement="right" data-original-title="{lang('Undo', 'translator')}" class="btn btn-small translationCancel" style="display: none; float: right; margin-left: 600px; margin-bottom: -30px"><i class="icon-share-alt"></i></button>
                     <textarea class="translation" style="margin-bottom: 0px;">{echo htmlspecialchars($translation['text'], ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
                     <textarea class="translationTEMP" style="display: none"></textarea>
                 </td>

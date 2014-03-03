@@ -31,3 +31,18 @@ div[class="tooltip-inner"] {
     resize: vertical;
     max-height: 250px;
 }
+
+.translateWord i:hover{
+    background-color: #93D3E5;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+
+.sortTable.asc span.asc{
+    display: inline-block!important;
+}
+
+.sortTable.desc span.desc{
+    display: inline-block!important;
+}
