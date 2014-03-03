@@ -168,7 +168,7 @@
                                                 {break;}
                                             {/if}
                                         {/foreach}
-                                        <tr class="items items-bask items-order cart-product">
+                                        <tr class="items items-bask items-order cart-product items-product">
                                             <td class="frame-items">
                                                 <!-- Start. Render Ordered Products -->            
                                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="frame-photo-title">
@@ -242,7 +242,7 @@
                                 <tr class="row-kits rowKits items-order row">
                                     <td class="frame-items frame-items-kit">
                                         <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
-                                        <ul class="items items-bask">
+                                        <ul class="items items-bask items-product">
                                             <li>
                                                 <div class="frame-kit main-product">
                                                     <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="frame-photo-title">

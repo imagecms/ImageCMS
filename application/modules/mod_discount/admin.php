@@ -52,15 +52,18 @@ class Admin extends \ShopAdminController {
             $discauntManager = new \mod_discount\classes\DiscountManager();
 
             $result = $discauntManager->create($postArray);
-            
+
             if ($result['success']) {
                 showMessage(lang('Discount successfully created!', 'mod_discount'));
-                pjax('index');
+                if ($postArray['action'] == 'tomain') {
+                    pjax('/admin/components/init_window/mod_discount/index');
+                } else {
+                    pjax('/admin/components/init_window/mod_discount/edit/' . $result['id']);
+                }
             } else {
                 showMessage(implode('<br/> ', $result['error']), '', 'r');
                 exit;
             }
-
         } else {
 
             //Prepare data for template
@@ -90,13 +93,13 @@ class Admin extends \ShopAdminController {
         if (null === $locale)
             $locale = \MY_Controller::getCurrentLocale();
         if ($this->input->post()) {
-            
+
             $postArray = $this->input->post();
             $typeDiscount = $postArray['type_discount'];
-            
+
             $discauntManager = new \mod_discount\classes\DiscountManager();
             $discauntManager->validation($postArray);
-            
+
             if (count($discauntManager->error) == 0) {
 
                 // If empty field with discount key, then generate key
@@ -118,6 +121,12 @@ class Admin extends \ShopAdminController {
 
                 //Prepare data for inserting in the table of selected discount type
                 $typeDiscountData = $postArray[$typeDiscount];
+                
+                // Check range for cumulative discount
+                if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
+                    showMessage(lang('Has been already created with the cumulative discount value','mod_discount'), '', 'r');
+                    return ;
+                }
 
                 // Insert data
                 if ($this->discount_model_admin->updateDiscountById($id, $data, $typeDiscountData, $locale)) {
@@ -258,7 +267,7 @@ class Admin extends \ShopAdminController {
         if ($products != false) {
             foreach ($products as $product) {
                 $response[] = array(
-                    'value' => $product['name'],
+                    'value' => $product['id'] . ' - ' . $product['name'],
                     'id' => $product['id'],
                 );
             }

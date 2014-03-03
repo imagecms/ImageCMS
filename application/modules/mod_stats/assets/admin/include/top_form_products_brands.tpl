@@ -1,32 +1,21 @@
 <script>
     var currency = '{$CS}'
 </script>
-<div class="m-t_20">
-    <form method="get">
-        <span class="d-i_b m-r_10 m-l_10">{lang('Show top brands count', 'mod_stats')} </span>
+<form method="get">
+    <div class="f-s_0 frame-panel-stat">
         <span class="d-i_b">
-            <label class="p_r">
-                <input class="input-small required" 
-                       value="{if $_GET['stbc'] != null}{echo $_GET['stbc']}{else:}20{/if}" 
-                       type="text" name="stbc" maxlength="2"/>
-            </label>
+            <span class="d_b title-field">{lang('Show top brands count', 'mod_stats')}</span>
+            <input class="input-small required" 
+                   value="{if $_GET['stbc'] != null}{echo $_GET['stbc']}{else:}20{/if}" 
+                   type="text" name="stbc" maxlength="2"/>
         </span>
-        
         <span class="d-i_b">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            {lang('Char Type:','mod_stats')}
-            <label class="d-i_b p_r">
-                <select id="selectGroupBy" name='charType'>
-                    <option value="pie"{if $_GET['charType'] == 'pie'} selected="selected"{/if}>{lang('Pie char','mod_stats')}</option>
-                    <option value="bar"{if $_GET['charType'] == 'bar'} selected="selected"{/if}>{lang('Bar char','mod_stats')}</option>
-                </select>
-            </label>
+            <span class="d_b title-field">{lang('Show','mod_stats')}</span>
+            <div class="btn-group" data-toggle="buttons-radio">
+                <button type="button" class="btn btn-default{if $_GET['charType'] == 'pie'} active{/if}" data-val="pie" data-rel="[name='charType']" data-btn-select>{lang('Pie char','mod_stats')}</button>
+                <button type="button" class="btn btn-default{if $_GET['charType'] == 'bar'} active{/if}" data-val="bar" data-rel="[name='charType']" data-btn-select>{lang('Bar char','mod_stats')}</button>
+            </div>
+            <input type="hidden" name="charType" value="{if $_GET['charType'] == 'bar'}bar{else:}pie{/if}"/>
         </span>
-        <div class="pull-right">
-            <button type="submit" class="btn btn-small btn-primary" type="button" id="refreshIntervalsButton">
-                <i class="icon-refresh"></i> {lang('Update','mod_stats')}
-            </button>
-        </div>
-
-    </form>
-</div>
+    </div>
+</form>

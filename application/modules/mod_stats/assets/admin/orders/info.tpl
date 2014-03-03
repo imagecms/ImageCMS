@@ -12,7 +12,7 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9" id="chartArea">
+        <div class="clearfix span9 content-statistic" id="chartArea">
             {include_tpl('../include/top_form_min')}
             {if count($data) > 0}
                 <table class="table table-striped table-bordered table-condensed content_big_td">
@@ -42,9 +42,9 @@
                     </tbody>
                 </table>
             {else:}
-                <p style="text-align: center;">
+                <div class="alert alert-info">
                     {lang('There are no orders for specified period', 'mod_stats')}
-                </p>
+                </div>
             {/if}
         </div>
     </div>

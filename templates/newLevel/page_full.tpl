@@ -5,6 +5,8 @@
     <div class="container">
         <div class="text-left">{load_menu('left_menu')}</div>
         <div class="text-right">
+            {$CI->load->module('banners')->render($page.id)}
+
             <div class="text">
                 <h1>{$page.title}</h1>
                 {$page.full_text}

@@ -71,10 +71,10 @@ var optionsCycle = {
 };
 var optionsDrop = {
     overlayColor: '#000',
-    overlayOpacity: '0.6',
+    overlayOpacity: 0.6,
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
-    durationOff: 500,
+    durationOff: 200,
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
@@ -86,10 +86,12 @@ var optionsDrop = {
     closeEsc: true,
     position: 'absolute',
     confirmBtnDrop: '#confirm',
-    scroll: false,
+    scroll: true,
     limitSize: true,
     limitContentSize: true,
-    scrollContent: true
+    scrollContent: true,
+    keyNavigate: true,
+    cycle: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',

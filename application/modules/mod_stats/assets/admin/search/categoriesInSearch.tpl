@@ -8,15 +8,18 @@
             <div class="d-i_b">
                 <a href="" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
             </div>
+            <button  class="btn btn-small btn-primary" id="saveAsPng">
+                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}
+            </button>
         </div>
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9" id="chartArea">
+        <div class="clearfix span9 content-statistic" id="chartArea">
             {include_tpl('../include/top_form_search')}
-            <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
-            <button  class="btn btn-small btn-primary" id="saveAsPng">
-                <i class="icon-download"></i> {lang('Save Image', 'mod_stats')}</button>
+            <div class="alert alert-info" id="showNoChartData">
+                {lang('No chart data for displaying','mod_stats')}
+            </div>
             {if $_GET['charType'] == false || $_GET['charType'] == 'pie'}
                 <svg class="mypiechart pieChartStats" data-from="search/getCategoriesInSearchData" style="height: 100%;"></svg>
             {/if}
