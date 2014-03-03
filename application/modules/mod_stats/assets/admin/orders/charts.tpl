@@ -12,9 +12,11 @@
     </div>
     <div class="row-fluid">
         {include_tpl('../include/left_block')}
-        <div class="clearfix span9" id="chartArea">
+        <div class="clearfix span9 content-statistic" id="chartArea">
             {include_tpl('../include/top_form_charts')}
-            <p id="showNoChartData" style="text-align: center; display: none;">{lang('No chart data for displaying','mod_stats')}</p>
+            <div class="alert alert-info" id="showNoChartData">
+                {lang('No chart data for displaying','mod_stats')}
+            </div>
             <!--<button  class="btn btn-small btn-primary" id="saveAsPng">
                 <i class="icon-download"></i> {lang('Save Image', 'mod_stats')} 
             </button>-->

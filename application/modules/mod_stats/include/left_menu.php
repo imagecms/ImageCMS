@@ -70,7 +70,7 @@ return array(
         )
     ),
     array(
-        'name' => lang('Product\'s categories', 'mod_stats'),
+        'name' => lang("Product's categories", 'mod_stats'),
         'controller' => 'categories',
         'items' => array(
             array(

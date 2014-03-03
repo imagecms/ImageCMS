@@ -1,9 +1,9 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:04+0200\n"
-"PO-Revision-Date: 2013-12-26 01:04+0200\n"
+"POT-Creation-Date: 2014-02-28 12:20+0200\n"
+"PO-Revision-Date: 2014-02-28 12:20+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/group_mailer/admin.php:95
+msgid "Sent"
+msgstr "Отправленно"
 
 #: ./application/modules/group_mailer/templates/admin/form.tpl:9
 msgid "back"
@@ -78,10 +82,6 @@ msgstr "HTML"
 #: ./application/modules/group_mailer/templates/admin/form.tpl:85
 msgid "Plain Text"
 msgstr "Обычный текст"
-
-#: ./application/modules/group_mailer/admin.php:95
-msgid "Send"
-msgstr "Послать"
 
 #: ./application/modules/group_mailer/admin.php:96
 msgid "users e-mail with a subject"

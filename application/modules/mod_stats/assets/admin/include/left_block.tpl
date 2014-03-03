@@ -22,7 +22,7 @@
                            class="linkChart 
                         {if strpos($_SERVER['REQUEST_URI'], implode("/", array($secondLevel.controller,$secondLevel.action)))} active{/if}"
 
-                        >&nbsp;&nbsp;&nbsp;
+                        >
                         <span class="simple_tree">-</span> {$secondLevel.name}   
                     </a>
                 </li>
@@ -30,7 +30,7 @@
         </div>
     {/foreach}
 </ul>
-<div class="m-t_20">
+<div class="">
     <span class="settingTitle"> {lang('Settings','mod_stats')} </span>
     <div class="settingsContainer">
         <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
@@ -51,14 +51,14 @@
             <span class="niceCheck"  style="background-position: -46px -17px;">
                 <input type="checkbox" {if $saveUsersAttendance == '1'}checked="checked" {/if} class="shortSettingsCheckbox" data-sname="save_users_attendance">
             </span>
-            {lang("Save user's attendance", "mod_stats")}
+            {lang("Save users attendance", "mod_stats")}
         </span>
 
         <span class="frame_label no_connection m-r_15 shortSettingsSpan" style="display: block;">
             <span class="niceCheck"  style="background-position: -46px -17px;">
                 <input type="checkbox" {if $saveRobotsAttendance == '1'}checked="checked" {/if} class="shortSettingsCheckbox" data-sname="save_robots_attendance">
             </span>
-            {lang("Save robots's attendance", "mod_stats")}
+            {lang("Save robotss attendance", "mod_stats")}
         </span>
 
     </div>

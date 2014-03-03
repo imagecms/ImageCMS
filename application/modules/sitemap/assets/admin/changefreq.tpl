@@ -96,7 +96,7 @@
                             <div class="control-group">
                                 <span class="control-label">&nbsp;</span>
                                 <div class="controls">
-                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("Просмотреть код", 'sitemap')}</a>
+                                    <a class="btn btn-default" href="{site_url('sitemap.xml')}" target="_blank">{lang("View code", 'sitemap')}</a>
                                 </div>
                             </div>
                         </div>

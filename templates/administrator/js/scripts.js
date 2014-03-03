@@ -452,7 +452,6 @@ function init_2() {
             $('#Paid').removeAttr('checked');
         }
     });
-
     $(".frame_label:has(.niceCheck)").die('click').live('click', function() {
         var $this = $(this);
         if ($('#show_in_all_cat').attr('checked')) {

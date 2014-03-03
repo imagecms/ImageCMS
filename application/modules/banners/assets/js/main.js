@@ -4,7 +4,7 @@ function ChangeBannerSliderActive(obj, id) {
             $(obj).addClass('disable_tovar').attr('rel', false);
         else
             $(obj).removeClass('disable_tovar').attr('rel', true);
-    })
+    });
 
 }
 
@@ -12,10 +12,10 @@ function DeleteSliderBanner() {
     var ids = new Array();
     $('[name=ids]:checked').each(function() {
         ids.push($(this).val());
-    })
+    });
     $.post('/admin/components/init_window/banners/delete', {id: JSON.stringify(ids)}, function() {
         window.location.reload()
-    })
+    });
 }
 
 function chckTplParam(el) {
@@ -24,8 +24,8 @@ function chckTplParam(el) {
     else
         var status = 0;
 
-    
-    $.post('/admin/components/init_window/banners/settings', {status:status})
+
+    $.post('/admin/components/init_window/banners/settings', {status: status})
 
 }
 
@@ -93,3 +93,32 @@ $(document).ready(function() {
 
 
 });
+function groupCreate() {
+    $.ajax({
+        type: 'POST',
+        data: {
+            "name": $('#nameGroup').val(),
+        },
+        url: '/admin/components/init_window/banners/createGroup',
+        complete: function(response) {
+            if (response.responseText != 0) {
+                $('#appendedInputButton').append(new Option($('#nameGroup').val(), $('#nameGroup').val()));
+            }
+        }
+    });
+}
+function groupDel() {
+    $.ajax({
+        type: 'POST',
+        data: {
+            "name": $('#appendedInputButton').val(),
+        },
+        url: '/admin/components/init_window/banners/delGroup',
+        complete: function(response) {
+            if (response.responseText != 0) {
+                $('#appendedInputButton option:selected').remove();
+
+            }
+        }
+    });
+}
