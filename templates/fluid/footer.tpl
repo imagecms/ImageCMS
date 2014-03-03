@@ -3,65 +3,118 @@
         <!--Start. Load menu in footer-->
         <div class="box-1">
             <div class="inside-padd">
-                <div class="main-title">{lang('Сайт','newLevel')}</div>
-                <ul class="nav nav-vertical">
-                    {load_menu('top_menu')}
-                </ul>
+                <div class="frame-seo-text">
+                    <div class="text seo-text">
+                        {widget('seo_text_footer')}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="box-2">
             <div class="inside-padd">
-                <div class="main-title">{lang('Продукция','newLevel')}</div>
-                <ul class="footer-category-menu nav nav-vertical">
-                    {\Category\RenderMenu::create()->setConfig(array('cache'=>FALSE))->load('footer_category_menu')}
-                </ul>
+                <div class="frame-benefits">
+                    <div class="title-h1">{lang('Почему мы', 'newLevel')}</div>
+                    {widget('benefits')}
+                </div>
             </div>
         </div>
-        <!--End. Load menu in footer-->
-
-        <!--Start. User menu-->
         <div class="box-3">
-            <div class="frame-benefits">
-                {widget('benefits')}
+            <div class="inside-padd">
+                <div class="title-h1">
+                    <a href="{shop_url('brand')}" class="t-d_n f-s_0 s-all-d">
+                        <span class="text-el">{lang('Бренды', 'newLevel')}</span>
+                        <span class="icon_arrow"></span>
+                    </a>
+                </div>
+                {widget('brands')}
             </div>
         </div>
-        <!--End. User menu-->
-
-        <!--Start. Info block-->
-        <div class="box-4">
-            {widget('brands')}
-        </div>
-        <!--End. Info block-->
     </div>
 </div>
 <div class="footer-footer">
     <div class="container">
-        <div class="inside-padd">
-            <div class="main-title">{lang('Контакты','newLevel')}</div>
-            <ul>
-                <li>
-                    <div class="c_9">{lang('Главный офис', 'newLevel')}:</div>
-                    <div class="c_w">{echo siteinfo('siteinfo_address')}</div>
-                </li>
-                <li>
-                    <div class="c_w f-s_0"><span class="f-s_16"><span class="f-w_b">{echo siteinfo('siteinfo_mainphone')}</span></span></div>
-                </li>
-                <li><a class="f-s_0" href="skype:{echo siteinfo('Skype')}"> <span class="icon_skype">&nbsp;</span> <span class="text-el">{echo siteinfo('Skype')}</span> </a></li>
-                <li><a class="f-s_0" href="mailto:{echo siteinfo('Email')}"> <span class="icon_mail">&nbsp;</span> <span class="text-el">{echo siteinfo('Email')}</span> </a></li>
-            </ul>
-        </div>
-        <div class="f_l">
-            <div class="c_w">{echo siteinfo('siteinfo_companytype')}</div>
-            <div class="c_9">{lang('Все права защищены','newLevel')}, {echo date('Y')}</div>
-        </div>
-        {if function_exists('mobile_site_address')}
-            <div class="f_r">
-                <a href="{mobile_site_address()}" class="f-s_0 c_w">
-                    <span class="icon_phone_footer"></span>
-                    <span class="text-el">{lang('Мобильная версия','newLevel')}</span>
-                </a>
+        <div class="inside-padd t-a_j">
+            <div>
+                <div class="c_b">{echo siteinfo('siteinfo_companytype')} {echo date('Y')}</div>
+                <div class="c_9">{lang('Все права защищены','newLevel')}</div>
             </div>
-        {/if}
+            <div>
+                {echo $CI->load->module('share')->_make_share_form()}
+            </div>
+            <div>
+                <ul class="nav nav-default-inline">
+                    {load_menu('top_menu')}
+                </ul>
+            </div>
+            <span class="phone f-w_b">
+                <span class="phone-number d_b">{echo siteinfo('siteinfo_mainphone')}</span>
+                <span class="phone-number d_b">{echo siteinfo('siteinfo_addphone')}</span>
+            </span>
+            <div>
+                <ul class="items-contact">
+                    <li>
+                        <span class="f-s_0">
+                            <span class="icon_icq"></span>
+                            <span class="text-el">{echo siteinfo('icq')}</span>
+                        </span>
+                    </li>
+                    <li>
+                        <a class="f-s_0" href="mailto:{echo siteinfo('Email')}">
+                            <span class="icon_mail"></span>
+                            <span class="text-el">{echo siteinfo('Email')}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="f-s_0" href="skype:{echo siteinfo('Skype')}">
+                            <span class="icon_skype"></span>
+                            <span class="text-el">{echo siteinfo('Skype')}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="items items-payment">
+                    <li>
+                        <span class="photo-block">
+                            <span class="helper"></span>
+                            <span class="icon-p-1"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="photo-block">
+                            <span class="helper"></span>
+                            <span class="icon-p-2"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="photo-block">
+                            <span class="helper"></span>
+                            <span class="icon-p-3"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="photo-block">
+                            <span class="helper"></span>
+                            <span class="icon-p-4"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="photo-block">
+                            <span class="helper"></span>
+                            <span class="icon-p-5"></span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            {if function_exists('mobile_site_address')}
+                <div>
+                    <a href="{mobile_site_address()}" class="f-s_0 c_w">
+                        <span class="icon_phone_footer"></span>
+                        <span class="text-el">{lang('Мобильная версия','newLevel')}</span>
+                    </a>
+                </div>
+            {/if}
+        </div>
     </div>
 </div>
 

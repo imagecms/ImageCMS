@@ -91,7 +91,44 @@
                     {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
                 </div>
                 {if $CI->core->core_data['data_type'] == 'main'}
-                    {$CI->load->module('banners')->render()}
+                    <div class="frame-baner frame-baner-start_page">
+                        <section class="carousel-js-css baner container cycleFrame">
+                            <!--remove class="resize" if not resize-->
+                            <div class="content-carousel">
+                                <div class="f_l">
+                                    {foreach $CI->load->module('banners')->getByGroup('leftStartPage') as $banner}
+                                        <p>
+                                            {if trim($banner.url)}
+                                                <a href="{site_url($banner.url)}"><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></a>
+                                                {else:}
+                                                <span><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></span>
+                                                {/if}
+                                        </p>
+                                    {/foreach}
+                                </div>
+                                <div class="f_r">
+                                    {foreach $CI->load->module('banners')->getByGroup('rightStartPage') as $banner}
+                                        <p>
+                                            {if trim($banner.url)}
+                                                <a href="{site_url($banner.url)}"><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></a>
+                                                {else:}
+                                                <span><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></span>
+                                                {/if}
+                                        </p>
+                                    {/foreach}
+                                </div>
+                                {$CI->load->module('banners')->render()}
+                            </div>
+                            <div class="group-button-carousel">
+                                <button type="button" class="prev arrow">
+                                    <span class="icon_arrow_p"></span>
+                                </button>
+                                <button type="button" class="next arrow">
+                                    <span class="icon_arrow_n"></span>
+                                </button>
+                            </div>
+                        </section>
+                    </div>
                 {/if}
             </div>
             <div class="content">
