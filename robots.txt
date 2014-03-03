@@ -1,4 +1,4 @@
 User-agent: *
-Disallow:
+Disallow: /
 Disallow: /novosti*
 Disallow: /8889
