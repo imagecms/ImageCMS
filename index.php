@@ -193,13 +193,13 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.5.2 Premium');
+define('IMAGECMS_NUMBER', '4.5.3alpha Premium');
 
-define('IMAGECMS_VERSION', '20140115');
+define('IMAGECMS_VERSION', '20140228');
 
 define('IMAGECMS_BUILD_ID', '');
 
-define('BUILD_ID', '452.657');
+define('BUILD_ID', '453.712');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*

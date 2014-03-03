@@ -65,7 +65,14 @@
                         </td>
                         
                         <td>
-                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('show','admin')}">
+                            <div class="frame_prod-on_off" data-rel="tooltip" 
+                                                           data-placement="top" 
+                                                           accesskey=""data-original-title="
+                                                            {if !$category['active']}
+                                                                {lang('Not show','mod_seoexpert')}
+                                                            {else:}
+                                                                {lang('Show','mod_seoexpert')}
+                                                            {/if}">
                                 <span class="prod-on_off{if !$category['active']} disable_tovar{/if} categorySeo" data-id="{echo $category['id']}"></span>
                                 <input type="hidden" name="" value="{if $category['active']}1{else:}0{/if}" data-val-on="1" data-val-off="0">
                             </div>
