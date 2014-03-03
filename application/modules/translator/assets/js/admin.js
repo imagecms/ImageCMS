@@ -17,6 +17,18 @@ $(document).ready(function() {
         Search.go();
     });
 
+    $('.translateWord').live('mouseover', function() {
+        setTimeout(function() {
+            $('div[class="tooltip-inner"]').attr('style', 'min-width: 90px!important; text-align: center!important;');
+        }, 500);
+    });
+
+    $('.translationCancel').live('mouseover', function() {
+        setTimeout(function() {
+            $('div[class="tooltip-inner"]').attr('style', 'min-width: 90px!important; text-align: center!important;');
+        }, 500);
+    });
+
 
     $('.searchObjects').die().live('change', function() {
         if ($('.searchObjects:checked').length) {
@@ -54,12 +66,15 @@ var Sort = {
         this.isAsc = $(curElement).hasClass('asc');
         this.sortType = '';
     },
-    default: function() {
+    default: function(curElement) {
         var lang = $('#langs').val();
         var type = $('#types').val();
         var module_template = $('#modules_templates').val();
         var per_page = $('#per_page').val();
         var url = '';
+        
+        this.removeSortArrows(curElement);
+        
         switch (type) {
             case  'modules':
                 url = '/admin/components/init_window/translator/renderModulePoFile/' + module_template + '/' + type + '/' + lang + '/0/' + per_page;
@@ -94,6 +109,7 @@ var Sort = {
     },
     sortFuzzy: function(curElement) {
         this.init();
+        this.removeSortArrows(curElement);
         var findContent = '';
         var leftContent = '';
         var condition = false;
@@ -144,6 +160,7 @@ var Sort = {
     },
     go: function(curElement) {
         this.init(curElement);
+        this.removeSortArrows(curElement);
 
         if ($(curElement).hasClass('originHead')) {
             this.sortOrigins(curElement);
@@ -221,6 +238,14 @@ var Sort = {
             this.sort(array, array2, newPivot + 1, right);
         }
 
+    },
+    removeSortArrows: function(curElement) {
+        $('.sortTable').each(function() {
+            if ($(this)[0].className !== $(curElement)[0].className) {
+                $(this).removeClass('asc');
+                $(this).removeClass('desc');
+            }
+        });
     }
 };
 
@@ -963,7 +988,7 @@ var Translator = {
         var counter = 0;
         for (var origin in po_array) {
             if (origin) {
-                var nextTmp =values[counter] + '&text=' + encodeURIComponent(origin);
+                var nextTmp = values[counter] + '&text=' + encodeURIComponent(origin);
                 if (nextTmp.length < 9999) {
                     if (!values[counter]) {
                         values[counter] = '';
@@ -978,7 +1003,8 @@ var Translator = {
 
         var translations = [];
         for (var value in values) {
-            var text = values[value].replace("undefined","");;
+            var text = values[value].replace("undefined", "");
+            ;
             var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + originLang + '-' + lang + '&format=plain';
             $.ajax({
                 crossDomain: true,
