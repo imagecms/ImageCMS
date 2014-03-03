@@ -1,8 +1,9 @@
 function change_status(hrefFn) {
     $.post(hrefFn, {}, function(data) {
-        $('.notifications').append(data)
-    })
+        $('.notifications').append(data);
+    });
 }
+
 function export_csv() {
     $('.export').die('click').live('click', function() {
 
