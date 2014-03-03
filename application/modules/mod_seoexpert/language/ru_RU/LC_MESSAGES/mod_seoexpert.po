@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 02:30+0400\n"
-"PO-Revision-Date: 2014-02-28 02:30+0400\n"
+"POT-Creation-Date: 2014-03-03 02:42+0400\n"
+"PO-Revision-Date: 2014-03-03 02:42+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,12 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: ../../..\n"
+
+#: ./application/modules/mod_seoexpert/assets/admin/__productsCategoryCreate.tpl:27
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:27
+#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:28
+msgid "Choose category"
+msgstr "Выбрать категорию"
 
 #: ./application/modules/mod_seoexpert/admin.php:92
 #: ./application/modules/mod_seoexpert/admin.php:138
@@ -420,12 +426,6 @@ msgstr "описание бренда"
 #: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:20
 msgid "Create"
 msgstr "Создать"
-
-#: ./application/modules/mod_seoexpert/assets/admin/__productsCategoryCreate.tpl:27
-#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:27
-#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:28
-msgid "Choose category"
-msgstr "Выберите категорию"
 
 #: ./application/modules/mod_seoexpert/assets/admin/advanced/productsList.tpl:11
 msgid "Add new category"
