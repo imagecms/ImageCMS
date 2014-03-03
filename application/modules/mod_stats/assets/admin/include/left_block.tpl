@@ -9,7 +9,7 @@
 
     <ul class="nav nav-tabs nav-stacked m-t_10 left-menu-ul">
         <li>
-            <a class='firstLevelMenu' href="/admin/components/cp/mod_stats/">Start page</a> 
+            <a class='firstLevelMenu' href="/admin/components/cp/mod_stats/">{lang('Start page','mod_stats')}</a> 
         </li>
         {foreach $leftMenu as $firstLevel}
             <li>
