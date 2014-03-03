@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 06:28+0200\n"
-"PO-Revision-Date: 2014-02-28 06:28+0200\n"
+"POT-Creation-Date: 2014-03-03 01:26+0200\n"
+"PO-Revision-Date: 2014-03-03 01:26+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -28,6 +28,10 @@ msgstr ""
 "X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
 "X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
 "X-Poedit-SearchPath-11: ../../../../../templates/administrator/js/jquery-validate\n"
+
+#: ./system/language/form_validation/form_validation.php:18
+msgid "alpha_numeric"
+msgstr "Поле %s может содержать только латинские алфавитно-цифровые символы."
 
 #: ./application/modules/shop/classes/Category/CategoryApi.php:523
 msgid "Invalid file type."
@@ -764,10 +768,6 @@ msgstr "Поле %s должно содержать число менее %s."
 #: ./system/language/form_validation/form_validation.php:30
 msgid "greater_than"
 msgstr "Поле %s должно содержать число, большее, чем %s."
-
-#: ./system/language/form_validation/form_validation.php:18
-msgid "alpha_numeric"
-msgstr "Поле %s может содержать только алфавитно-цифровые символы."
 
 #: ./system/language/form_validation/form_validation.php:17
 msgid "alpha"

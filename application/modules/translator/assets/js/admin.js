@@ -17,10 +17,11 @@ $(document).ready(function() {
         Search.go();
     });
 
-//    $('.translateWord').live('mouseover', function() {
-//        $('div[class="tooltip-inner"]').attr('style', 'min-width: 100px!important; text-align: center!important;');
-//        $('div.tooltip').attr('style', 'min-width: 100px!important; text-align: center!important;');
-//    });
+    $('.translateWord').live('mouseover', function() {
+        setTimeout(function(){
+            $('div[class="tooltip-inner"]').attr('style', 'min-width: 90px!important; text-align: center!important;');
+        }, 500);
+    });
 
 
     $('.searchObjects').die().live('change', function() {
